@@ -21,22 +21,35 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.form.dto.v1_0.Form;
 import com.liferay.headless.form.dto.v1_0.Options;
+import com.liferay.headless.form.resource.v1_0.FormResource;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.odata.entity.EntityField;
+import com.liferay.portal.odata.entity.EntityModel;
+import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.pagination.Pagination;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.net.URL;
+
+import java.text.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -162,6 +175,136 @@ public abstract class BaseFormResourceTestCase {
 		}
 
 		return false;
+	}
+
+	protected Collection<EntityField> getEntityFields() throws Exception {
+		if (!(_formResource instanceof EntityModelResource)) {
+			throw new UnsupportedOperationException(
+				"Resource is not an instance of EntityModelResource");
+		}
+
+		EntityModelResource entityModelResource =
+			(EntityModelResource)_formResource;
+
+		EntityModel entityModel = entityModelResource.getEntityModel(null);
+
+		Map<String, EntityField> entityFieldsMap =
+			entityModel.getEntityFieldsMap();
+
+		return entityFieldsMap.values();
+	}
+
+	protected List<EntityField> getEntityFields(EntityField.Type type)
+		throws Exception {
+
+		Collection<EntityField> entityFields = getEntityFields();
+
+		Stream<EntityField> stream = entityFields.stream();
+
+		return stream.filter(
+			entityField -> Objects.equals(entityField.getType(), type)
+		).collect(
+			Collectors.toList()
+		);
+	}
+
+	protected String getFilterString(
+		EntityField entityField, String operator, Form form) {
+
+		StringBundler sb = new StringBundler();
+
+		String entityFieldName = entityField.getName();
+
+		sb.append(entityFieldName);
+
+		sb.append(" ");
+		sb.append(operator);
+		sb.append(" ");
+
+		if (entityFieldName.equals("availableLanguages")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("contentSpace")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("creator")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("dateCreated")) {
+			sb.append(_dateFormat.format(form.getDateCreated()));
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("dateModified")) {
+			sb.append(_dateFormat.format(form.getDateModified()));
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("datePublished")) {
+			sb.append(_dateFormat.format(form.getDatePublished()));
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("defaultLanguage")) {
+			sb.append("'");
+			sb.append(String.valueOf(form.getDefaultLanguage()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("description")) {
+			sb.append("'");
+			sb.append(String.valueOf(form.getDescription()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("formRecords")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("formRecordsIds")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("id")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("name")) {
+			sb.append("'");
+			sb.append(String.valueOf(form.getName()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("structure")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("structureId")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		throw new IllegalArgumentException(
+			"Invalid entity field " + entityFieldName);
 	}
 
 	protected Page<Form> invokeGetContentSpaceFormsPage(
@@ -345,19 +488,19 @@ public abstract class BaseFormResourceTestCase {
 			return new ArrayList<>(items);
 		}
 
-		public int getItemsPerPage() {
+		public long getItemsPerPage() {
 			return itemsPerPage;
 		}
 
-		public int getLastPageNumber() {
+		public long getLastPageNumber() {
 			return lastPageNumber;
 		}
 
-		public int getPageNumber() {
+		public long getPageNumber() {
 			return pageNumber;
 		}
 
-		public int getTotalCount() {
+		public long getTotalCount() {
 			return totalCount;
 		}
 
@@ -365,16 +508,16 @@ public abstract class BaseFormResourceTestCase {
 		protected Collection<T> items;
 
 		@JsonProperty("pageSize")
-		protected int itemsPerPage;
+		protected long itemsPerPage;
 
 		@JsonProperty
-		protected int lastPageNumber;
+		protected long lastPageNumber;
 
 		@JsonProperty("page")
-		protected int pageNumber;
+		protected long pageNumber;
 
 		@JsonProperty
-		protected int totalCount;
+		protected long totalCount;
 
 	}
 
@@ -406,6 +549,12 @@ public abstract class BaseFormResourceTestCase {
 		}
 	};
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+
+	private final DateFormat _dateFormat =
+		DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+	@Inject
+	private FormResource _formResource;
 
 	private URL _resourceURL;
 

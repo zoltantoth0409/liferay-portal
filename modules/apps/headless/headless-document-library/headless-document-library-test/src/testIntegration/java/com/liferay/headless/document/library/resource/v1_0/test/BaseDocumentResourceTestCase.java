@@ -20,22 +20,35 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.document.library.dto.v1_0.Document;
+import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.URLCodec;
+import com.liferay.portal.odata.entity.EntityField;
+import com.liferay.portal.odata.entity.EntityModel;
+import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Pagination;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.net.URL;
+
+import java.text.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -181,6 +194,151 @@ public abstract class BaseDocumentResourceTestCase {
 		}
 
 		return false;
+	}
+
+	protected Collection<EntityField> getEntityFields() throws Exception {
+		if (!(_documentResource instanceof EntityModelResource)) {
+			throw new UnsupportedOperationException(
+				"Resource is not an instance of EntityModelResource");
+		}
+
+		EntityModelResource entityModelResource =
+			(EntityModelResource)_documentResource;
+
+		EntityModel entityModel = entityModelResource.getEntityModel(null);
+
+		Map<String, EntityField> entityFieldsMap =
+			entityModel.getEntityFieldsMap();
+
+		return entityFieldsMap.values();
+	}
+
+	protected List<EntityField> getEntityFields(EntityField.Type type)
+		throws Exception {
+
+		Collection<EntityField> entityFields = getEntityFields();
+
+		Stream<EntityField> stream = entityFields.stream();
+
+		return stream.filter(
+			entityField -> Objects.equals(entityField.getType(), type)
+		).collect(
+			Collectors.toList()
+		);
+	}
+
+	protected String getFilterString(
+		EntityField entityField, String operator, Document document) {
+
+		StringBundler sb = new StringBundler();
+
+		String entityFieldName = entityField.getName();
+
+		sb.append(entityFieldName);
+
+		sb.append(" ");
+		sb.append(operator);
+		sb.append(" ");
+
+		if (entityFieldName.equals("adaptedImages")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("aggregateRating")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("categories")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("categoryIds")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("contentUrl")) {
+			sb.append("'");
+			sb.append(String.valueOf(document.getContentUrl()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("creator")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("dateCreated")) {
+			sb.append(_dateFormat.format(document.getDateCreated()));
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("dateModified")) {
+			sb.append(_dateFormat.format(document.getDateModified()));
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("description")) {
+			sb.append("'");
+			sb.append(String.valueOf(document.getDescription()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("encodingFormat")) {
+			sb.append("'");
+			sb.append(String.valueOf(document.getEncodingFormat()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("fileExtension")) {
+			sb.append("'");
+			sb.append(String.valueOf(document.getFileExtension()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("folderId")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("id")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("keywords")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("sizeInBytes")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("title")) {
+			sb.append("'");
+			sb.append(String.valueOf(document.getTitle()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		throw new IllegalArgumentException(
+			"Invalid entity field " + entityFieldName);
 	}
 
 	protected boolean invokeDeleteDocument(Long documentId) throws Exception {
@@ -449,19 +607,19 @@ public abstract class BaseDocumentResourceTestCase {
 			return new ArrayList<>(items);
 		}
 
-		public int getItemsPerPage() {
+		public long getItemsPerPage() {
 			return itemsPerPage;
 		}
 
-		public int getLastPageNumber() {
+		public long getLastPageNumber() {
 			return lastPageNumber;
 		}
 
-		public int getPageNumber() {
+		public long getPageNumber() {
 			return pageNumber;
 		}
 
-		public int getTotalCount() {
+		public long getTotalCount() {
 			return totalCount;
 		}
 
@@ -469,16 +627,16 @@ public abstract class BaseDocumentResourceTestCase {
 		protected Collection<T> items;
 
 		@JsonProperty("pageSize")
-		protected int itemsPerPage;
+		protected long itemsPerPage;
 
 		@JsonProperty
-		protected int lastPageNumber;
+		protected long lastPageNumber;
 
 		@JsonProperty("page")
-		protected int pageNumber;
+		protected long pageNumber;
 
 		@JsonProperty
-		protected int totalCount;
+		protected long totalCount;
 
 	}
 
@@ -543,6 +701,12 @@ public abstract class BaseDocumentResourceTestCase {
 		}
 	};
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+
+	private final DateFormat _dateFormat =
+		DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+	@Inject
+	private DocumentResource _documentResource;
 
 	private URL _resourceURL;
 

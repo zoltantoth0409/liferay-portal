@@ -20,19 +20,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.headless.form.dto.v1_0.Options;
+import com.liferay.headless.form.resource.v1_0.FormDocumentResource;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.odata.entity.EntityField;
+import com.liferay.portal.odata.entity.EntityModel;
+import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.net.URL;
+
+import java.text.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -154,6 +167,96 @@ public abstract class BaseFormDocumentResourceTestCase {
 		return false;
 	}
 
+	protected Collection<EntityField> getEntityFields() throws Exception {
+		if (!(_formDocumentResource instanceof EntityModelResource)) {
+			throw new UnsupportedOperationException(
+				"Resource is not an instance of EntityModelResource");
+		}
+
+		EntityModelResource entityModelResource =
+			(EntityModelResource)_formDocumentResource;
+
+		EntityModel entityModel = entityModelResource.getEntityModel(null);
+
+		Map<String, EntityField> entityFieldsMap =
+			entityModel.getEntityFieldsMap();
+
+		return entityFieldsMap.values();
+	}
+
+	protected List<EntityField> getEntityFields(EntityField.Type type)
+		throws Exception {
+
+		Collection<EntityField> entityFields = getEntityFields();
+
+		Stream<EntityField> stream = entityFields.stream();
+
+		return stream.filter(
+			entityField -> Objects.equals(entityField.getType(), type)
+		).collect(
+			Collectors.toList()
+		);
+	}
+
+	protected String getFilterString(
+		EntityField entityField, String operator, FormDocument formDocument) {
+
+		StringBundler sb = new StringBundler();
+
+		String entityFieldName = entityField.getName();
+
+		sb.append(entityFieldName);
+
+		sb.append(" ");
+		sb.append(operator);
+		sb.append(" ");
+
+		if (entityFieldName.equals("contentUrl")) {
+			sb.append("'");
+			sb.append(String.valueOf(formDocument.getContentUrl()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("encodingFormat")) {
+			sb.append("'");
+			sb.append(String.valueOf(formDocument.getEncodingFormat()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("fileExtension")) {
+			sb.append("'");
+			sb.append(String.valueOf(formDocument.getFileExtension()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("id")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("sizeInBytes")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("title")) {
+			sb.append("'");
+			sb.append(String.valueOf(formDocument.getTitle()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		throw new IllegalArgumentException(
+			"Invalid entity field " + entityFieldName);
+	}
+
 	protected boolean invokeDeleteFormDocument(Long formDocumentId)
 		throws Exception {
 
@@ -233,19 +336,19 @@ public abstract class BaseFormDocumentResourceTestCase {
 			return new ArrayList<>(items);
 		}
 
-		public int getItemsPerPage() {
+		public long getItemsPerPage() {
 			return itemsPerPage;
 		}
 
-		public int getLastPageNumber() {
+		public long getLastPageNumber() {
 			return lastPageNumber;
 		}
 
-		public int getPageNumber() {
+		public long getPageNumber() {
 			return pageNumber;
 		}
 
-		public int getTotalCount() {
+		public long getTotalCount() {
 			return totalCount;
 		}
 
@@ -253,16 +356,16 @@ public abstract class BaseFormDocumentResourceTestCase {
 		protected Collection<T> items;
 
 		@JsonProperty("pageSize")
-		protected int itemsPerPage;
+		protected long itemsPerPage;
 
 		@JsonProperty
-		protected int lastPageNumber;
+		protected long lastPageNumber;
 
 		@JsonProperty("page")
-		protected int pageNumber;
+		protected long pageNumber;
 
 		@JsonProperty
-		protected int totalCount;
+		protected long totalCount;
 
 	}
 
@@ -294,6 +397,12 @@ public abstract class BaseFormDocumentResourceTestCase {
 		}
 	};
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+
+	private final DateFormat _dateFormat =
+		DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+	@Inject
+	private FormDocumentResource _formDocumentResource;
 
 	private URL _resourceURL;
 

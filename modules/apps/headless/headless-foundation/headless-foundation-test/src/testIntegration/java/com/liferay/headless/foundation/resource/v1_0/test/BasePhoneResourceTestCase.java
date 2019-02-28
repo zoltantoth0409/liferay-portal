@@ -307,19 +307,19 @@ public abstract class BasePhoneResourceTestCase {
 			return new ArrayList<>(items);
 		}
 
-		public int getItemsPerPage() {
+		public long getItemsPerPage() {
 			return itemsPerPage;
 		}
 
-		public int getLastPageNumber() {
+		public long getLastPageNumber() {
 			return lastPageNumber;
 		}
 
-		public int getPageNumber() {
+		public long getPageNumber() {
 			return pageNumber;
 		}
 
-		public int getTotalCount() {
+		public long getTotalCount() {
 			return totalCount;
 		}
 
@@ -327,16 +327,16 @@ public abstract class BasePhoneResourceTestCase {
 		protected Collection<T> items;
 
 		@JsonProperty("pageSize")
-		protected int itemsPerPage;
+		protected long itemsPerPage;
 
 		@JsonProperty
-		protected int lastPageNumber;
+		protected long lastPageNumber;
 
 		@JsonProperty("page")
-		protected int pageNumber;
+		protected long pageNumber;
 
 		@JsonProperty
-		protected int totalCount;
+		protected long totalCount;
 
 	}
 
