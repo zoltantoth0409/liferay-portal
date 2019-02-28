@@ -264,9 +264,6 @@ public class Category {
 		sb.append("availableLanguages=");
 
 		sb.append(availableLanguages);
-		sb.append(", parentCategory=");
-
-		sb.append(parentCategory);
 		sb.append(", creator=");
 
 		sb.append(creator);
@@ -288,6 +285,9 @@ public class Category {
 		sb.append(", name=");
 
 		sb.append(name);
+		sb.append(", parentCategory=");
+
+		sb.append(parentCategory);
 		sb.append(", parentVocabulary=");
 
 		sb.append(parentVocabulary);

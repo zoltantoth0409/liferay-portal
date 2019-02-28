@@ -262,6 +262,9 @@ public class Fields {
 		sb.append("dataType=");
 
 		sb.append(dataType);
+		sb.append(", inputControl=");
+
+		sb.append(inputControl);
 		sb.append(", label=");
 
 		sb.append(label);
@@ -271,15 +274,15 @@ public class Fields {
 		sb.append(", multiple=");
 
 		sb.append(multiple);
-		sb.append(", inputControl=");
-
-		sb.append(inputControl);
-		sb.append(", predefinedValue=");
-
-		sb.append(predefinedValue);
 		sb.append(", name=");
 
 		sb.append(name);
+		sb.append(", options=");
+
+		sb.append(options);
+		sb.append(", predefinedValue=");
+
+		sb.append(predefinedValue);
 		sb.append(", repeatable=");
 
 		sb.append(repeatable);
@@ -289,9 +292,6 @@ public class Fields {
 		sb.append(", showLabel=");
 
 		sb.append(showLabel);
-		sb.append(", options=");
-
-		sb.append(options);
 
 		sb.append("}");
 
