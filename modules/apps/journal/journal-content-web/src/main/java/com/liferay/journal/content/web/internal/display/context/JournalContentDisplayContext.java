@@ -145,13 +145,6 @@ public class JournalContentDisplayContext {
 			return _article;
 		}
 
-		_article = (JournalArticle)_portletRequest.getAttribute(
-			WebKeys.JOURNAL_ARTICLE);
-
-		if (_article != null) {
-			return _article;
-		}
-
 		long articleResourcePrimKey = ParamUtil.getLong(
 			_portletRequest, "articleResourcePrimKey");
 
@@ -176,13 +169,6 @@ public class JournalContentDisplayContext {
 	}
 
 	public JournalArticleDisplay getArticleDisplay() {
-		if (_articleDisplay != null) {
-			return _articleDisplay;
-		}
-
-		_articleDisplay = (JournalArticleDisplay)_portletRequest.getAttribute(
-			WebKeys.JOURNAL_ARTICLE_DISPLAY);
-
 		if (_articleDisplay != null) {
 			return _articleDisplay;
 		}
