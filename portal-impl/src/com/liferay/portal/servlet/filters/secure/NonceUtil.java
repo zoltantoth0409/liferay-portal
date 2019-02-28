@@ -103,7 +103,7 @@ public class NonceUtil {
 
 				ClusterNodeResponse clusterNodeResponse =
 					clusterNodeResponses.poll(
-						_TIMEOUT_IN_MILLISECONDS, TimeUnit.MILLISECONDS);
+						_NONCE_CLUSTER_TIMEOUT, TimeUnit.MILLISECONDS);
 
 				if (clusterNodeResponse == null) {
 					_log.error(
@@ -133,11 +133,11 @@ public class NonceUtil {
 		return _nonceDelayQueue.remove(new NonceDelayed(nonce));
 	}
 
+	private static final long _NONCE_CLUSTER_TIMEOUT = GetterUtil.getLong(
+		PropsUtil.get(PropsKeys.WEBDAV_NONCE_CLUSTER_TIMEOUT), 10000);
+
 	private static final long _NONCE_EXPIRATION =
 		PropsValues.WEBDAV_NONCE_EXPIRATION * Time.MINUTE;
-
-	private static final long _TIMEOUT_IN_MILLISECONDS = GetterUtil.getLong(
-		PropsUtil.get(PropsKeys.WEBDAV_NONCE_CLUSTER_TIMEOUT), 10000);
 
 	private static final Log _log = LogFactoryUtil.getLog(NonceUtil.class);
 
