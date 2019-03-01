@@ -220,7 +220,7 @@ public class ResourceOpenAPIParser {
 
 		if (parameterNames.contains("sort")) {
 			JavaMethodParameter javaMethodParameter = new JavaMethodParameter(
-				"sorts", Sort.class.getName() + "[]");
+				"sorts", Sort[].class.getName());
 
 			javaMethodParameters.add(javaMethodParameter);
 		}
@@ -462,7 +462,7 @@ public class ResourceOpenAPIParser {
 			return "@Context";
 		}
 
-		if (Objects.equals(parameterType, Sort.class.getName() + "[]") &&
+		if (Objects.equals(parameterType, Sort[].class.getName()) &&
 			parameterNames.contains("sort")) {
 
 			return "@Context";
@@ -522,12 +522,13 @@ public class ResourceOpenAPIParser {
 				String returnType = OpenAPIParserUtil.getJavaDataType(
 					javaDataTypeMap, schema);
 
-				if (returnType.endsWith("[]")) {
+				if (returnType.startsWith("[")) {
 					StringBuilder sb = new StringBuilder();
 
 					sb.append(Page.class.getName());
 					sb.append("<");
-					sb.append(returnType.substring(0, returnType.length() - 2));
+					sb.append(
+						OpenAPIParserUtil.getElementClassName(returnType));
 					sb.append(">");
 
 					return sb.toString();
