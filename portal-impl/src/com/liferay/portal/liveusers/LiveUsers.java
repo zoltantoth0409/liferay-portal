@@ -84,7 +84,9 @@ public class LiveUsers {
 	}
 
 	public static int getGroupUsersCount(long companyId, long groupId) {
-		return getGroupUsers(companyId, groupId).size();
+		return getGroupUsers(
+			companyId, groupId
+		).size();
 	}
 
 	public static Map<Long, Map<Long, Set<String>>> getLocalClusterUsers() {
@@ -110,7 +112,9 @@ public class LiveUsers {
 	}
 
 	public static int getSessionUsersCount(long companyId) {
-		return getSessionUsers(companyId).size();
+		return getSessionUsers(
+			companyId
+		).size();
 	}
 
 	public static UserTracker getUserTracker(long companyId, String sessionId) {

@@ -1364,7 +1364,9 @@ public class MainServlet extends ActionServlet {
 		properties.put("service.version", ReleaseInfo.getVersion());
 
 		_moduleServiceLifecycleServiceRegistration = registry.registerService(
-			ModuleServiceLifecycle.class, new ModuleServiceLifecycle() {},
+			ModuleServiceLifecycle.class,
+			new ModuleServiceLifecycle() {
+			},
 			properties);
 
 		ServletContext servletContext = getServletContext();

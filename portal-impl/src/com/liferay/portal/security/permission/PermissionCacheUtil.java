@@ -370,8 +370,8 @@ public class PermissionCacheUtil {
 	private static final PortalCacheIndexer<String, PermissionKey, Boolean>
 		_permissionPortalCacheNamePrimKeyIndexer = new PortalCacheIndexer<>(
 			new PermissionKeyNamePrimKeyIndexEncoder(), _permissionPortalCache);
-	private static final
-		PortalCache<ResourceBlockIdsBagKey, ResourceBlockIdsBag>
+	private static final PortalCache
+		<ResourceBlockIdsBagKey, ResourceBlockIdsBag>
 			_resourceBlockIdsBagCache = PortalCacheHelperUtil.getPortalCache(
 				PortalCacheManagerNames.MULTI_VM,
 				RESOURCE_BLOCK_IDS_BAG_CACHE_NAME,
@@ -481,7 +481,11 @@ public class PermissionCacheUtil {
 		implements IndexEncoder<String, PermissionKey> {
 
 		public static String encode(String name, String primKey) {
-			return name.concat(StringPool.UNDERLINE).concat(primKey);
+			return name.concat(
+				StringPool.UNDERLINE
+			).concat(
+				primKey
+			);
 		}
 
 		@Override

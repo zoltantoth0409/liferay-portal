@@ -139,12 +139,18 @@ public class LayoutTemplateLocalServiceImpl
 
 		if (themeId != null) {
 			if (standard) {
-				layoutTemplate = _getThemesStandard(themeId).get(
-					layoutTemplateId);
+				layoutTemplate = _getThemesStandard(
+					themeId
+				).get(
+					layoutTemplateId
+				);
 			}
 			else {
-				layoutTemplate = _getThemesCustom(themeId).get(
-					layoutTemplateId);
+				layoutTemplate = _getThemesCustom(
+					themeId
+				).get(
+					layoutTemplateId
+				);
 			}
 
 			if (layoutTemplate != null) {

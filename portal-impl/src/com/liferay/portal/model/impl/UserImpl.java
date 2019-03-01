@@ -329,8 +329,11 @@ public class UserImpl extends UserBaseImpl {
 		String profileFriendlyURL = getProfileFriendlyURL();
 
 		if (profileFriendlyURL != null) {
-			return portalURL.concat(PortalUtil.getPathContext()).concat(
-				profileFriendlyURL);
+			return portalURL.concat(
+				PortalUtil.getPathContext()
+			).concat(
+				profileFriendlyURL
+			);
 		}
 
 		return StringPool.BLANK;
@@ -415,7 +418,10 @@ public class UserImpl extends UserBaseImpl {
 			return PortalUtil.addPreservedParameters(
 				themeDisplay,
 				portalURL.concat(
-					PortalUtil.getPathContext()).concat(profileFriendlyURL));
+					PortalUtil.getPathContext()
+				).concat(
+					profileFriendlyURL
+				));
 		}
 
 		Group group = getGroup();

@@ -526,18 +526,32 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 		pos = sql.indexOf(_GROUP_BY_CLAUSE);
 
 		if (pos != -1) {
-			return sql.substring(0, pos + 1).concat(permissionWhere).concat(
-				sql.substring(pos + 1));
+			return sql.substring(
+				0, pos + 1
+			).concat(
+				permissionWhere
+			).concat(
+				sql.substring(pos + 1)
+			);
 		}
 
 		pos = sql.indexOf(_ORDER_BY_CLAUSE);
 
 		if (pos != -1) {
-			return sql.substring(0, pos + 1).concat(permissionWhere).concat(
-				sql.substring(pos + 1));
+			return sql.substring(
+				0, pos + 1
+			).concat(
+				permissionWhere
+			).concat(
+				sql.substring(pos + 1)
+			);
 		}
 
-		return sql.concat(StringPool.SPACE).concat(permissionWhere);
+		return sql.concat(
+			StringPool.SPACE
+		).concat(
+			permissionWhere
+		);
 	}
 
 	protected String replacePermissionCheckJoin(

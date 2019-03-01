@@ -1181,8 +1181,8 @@ public class ResourceBlockLocalServiceImpl
 
 			});
 		actionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.
-				PerformActionMethod<PermissionedModel>() {
+			new ActionableDynamicQuery.PerformActionMethod
+				<PermissionedModel>() {
 
 				@Override
 				public void performAction(PermissionedModel permissionedModel) {

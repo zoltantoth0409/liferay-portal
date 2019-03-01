@@ -240,8 +240,8 @@ public class ResourceActionLocalServiceImpl
 				resourceBlockActionableDynamicQuery.setCompanyId(
 					company.getCompanyId());
 				resourceBlockActionableDynamicQuery.setPerformActionMethod(
-					new ActionableDynamicQuery.
-						PerformActionMethod<ResourceBlock>() {
+					new ActionableDynamicQuery.PerformActionMethod
+						<ResourceBlock>() {
 
 						@Override
 						public void performAction(ResourceBlock resourceBlock) {
@@ -290,8 +290,8 @@ public class ResourceActionLocalServiceImpl
 				resourceTypeActionableDynamicQuery.setCompanyId(
 					company.getCompanyId());
 				resourceTypeActionableDynamicQuery.setPerformActionMethod(
-					new ActionableDynamicQuery.
-						PerformActionMethod<ResourceTypePermission>() {
+					new ActionableDynamicQuery.PerformActionMethod
+						<ResourceTypePermission>() {
 
 						@Override
 						public void performAction(
@@ -325,8 +325,8 @@ public class ResourceActionLocalServiceImpl
 				actionableDynamicQuery.setAddCriteriaMethod(addCriteriaMethod);
 				actionableDynamicQuery.setCompanyId(company.getCompanyId());
 				actionableDynamicQuery.setPerformActionMethod(
-					new ActionableDynamicQuery.
-						PerformActionMethod<ResourcePermission>() {
+					new ActionableDynamicQuery.PerformActionMethod
+						<ResourcePermission>() {
 
 						@Override
 						public void performAction(
@@ -402,7 +402,11 @@ public class ResourceActionLocalServiceImpl
 	}
 
 	protected String encodeKey(String name, String actionId) {
-		return name.concat(StringPool.POUND).concat(actionId);
+		return name.concat(
+			StringPool.POUND
+		).concat(
+			actionId
+		);
 	}
 
 	private static final Map<String, ResourceAction> _resourceActions =

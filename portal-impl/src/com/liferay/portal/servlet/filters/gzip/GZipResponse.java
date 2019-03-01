@@ -145,7 +145,6 @@ public class GZipResponse extends HttpServletResponseWrapper {
 			{
 				def.setLevel(PropsValues.GZIP_COMPRESSION_LEVEL);
 			}
-
 		};
 
 		return new ServletOutputStreamAdapter(gzipOutputStream) {
