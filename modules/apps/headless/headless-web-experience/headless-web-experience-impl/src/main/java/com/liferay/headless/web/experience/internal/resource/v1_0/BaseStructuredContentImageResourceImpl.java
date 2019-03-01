@@ -16,7 +16,6 @@ package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContentImage;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentImageResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -53,7 +52,6 @@ public abstract class BaseStructuredContentImageResourceImpl
 	@Override
 	@Path("/structured-content-images/{structured-content-image-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteStructuredContentImage(
 			@PathParam("structured-content-image-id") Long
 				structuredContentImageId)
@@ -66,7 +64,6 @@ public abstract class BaseStructuredContentImageResourceImpl
 	@Override
 	@Path("/structured-content-images/{structured-content-image-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public StructuredContentImage getStructuredContentImage(
 			@PathParam("structured-content-image-id") Long
 				structuredContentImageId)
@@ -81,7 +78,6 @@ public abstract class BaseStructuredContentImageResourceImpl
 		"/structured-contents/{structured-content-id}/structured-content-images"
 	)
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<StructuredContentImage>
 			getStructuredContentStructuredContentImagesPage(
 				@PathParam("structured-content-id") Long structuredContentId)

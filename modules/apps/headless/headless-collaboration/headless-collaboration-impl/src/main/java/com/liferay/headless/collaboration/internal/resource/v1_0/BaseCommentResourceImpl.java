@@ -16,7 +16,6 @@ package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
 import com.liferay.headless.collaboration.resource.v1_0.CommentResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -58,7 +57,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Override
 	@Path("/comments/{comment-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteComment(@PathParam("comment-id") Long commentId)
 		throws Exception {
 
@@ -69,7 +67,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Override
 	@Path("/blog-postings/{blog-posting-id}/comments")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Comment> getBlogPostingCommentsPage(
 			@PathParam("blog-posting-id") Long blogPostingId,
 			@Context Filter filter, @Context Pagination pagination,
@@ -83,7 +80,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Override
 	@Path("/comments/{comment-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Comment getComment(@PathParam("comment-id") Long commentId)
 		throws Exception {
 
@@ -94,7 +90,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Override
 	@Path("/comments/{comment-id}/comments")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Comment> getCommentCommentsPage(
 			@PathParam("comment-id") Long commentId, @Context Filter filter,
 			@Context Pagination pagination, @Context Sort[] sorts)
@@ -108,7 +103,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Path("/blog-postings/{blog-posting-id}/comments")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Comment postBlogPostingComment(
 			@PathParam("blog-posting-id") Long blogPostingId, Comment comment)
 		throws Exception {
@@ -121,7 +115,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Path("/comments/{comment-id}/comments")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Comment postCommentComment(
 			@PathParam("comment-id") Long commentId, Comment comment)
 		throws Exception {
@@ -134,7 +127,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Path("/comments/{comment-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public Comment putComment(
 			@PathParam("comment-id") Long commentId, Comment comment)
 		throws Exception {

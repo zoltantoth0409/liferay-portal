@@ -16,7 +16,6 @@ package com.liferay.headless.workflow.internal.resource.v1_0;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -55,7 +54,6 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Override
 	@Path("/roles/{role-id}/workflow-tasks")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<WorkflowTask> getRoleWorkflowTasksPage(
 			@PathParam("role-id") Long roleId, @Context Pagination pagination)
 		throws Exception {
@@ -67,7 +65,6 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Override
 	@Path("/workflow-tasks/{workflow-task-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public WorkflowTask getWorkflowTask(
 			@PathParam("workflow-task-id") Long workflowTaskId)
 		throws Exception {
@@ -79,7 +76,6 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Override
 	@Path("/workflow-tasks")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<WorkflowTask> getWorkflowTasksPage(
 			@Context Pagination pagination)
 		throws Exception {
@@ -92,7 +88,6 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Path("/workflow-tasks/{workflow-task-id}/assign-to-me")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.write")
 	public WorkflowTask postWorkflowTaskAssignToMe(
 			@PathParam("workflow-task-id") Long workflowTaskId,
 			WorkflowTask workflowTask)
@@ -106,7 +101,6 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Path("/workflow-tasks/{workflow-task-id}/assign-to-user")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.write")
 	public WorkflowTask postWorkflowTaskAssignToUser(
 			@PathParam("workflow-task-id") Long workflowTaskId,
 			WorkflowTask workflowTask)
@@ -120,7 +114,6 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Path("/workflow-tasks/{workflow-task-id}/change-transition")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.write")
 	public WorkflowTask postWorkflowTaskChangeTransition(
 			@PathParam("workflow-task-id") Long workflowTaskId,
 			WorkflowTask workflowTask)
@@ -134,7 +127,6 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Path("/workflow-tasks/{workflow-task-id}/update-due-date")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.write")
 	public WorkflowTask postWorkflowTaskUpdateDueDate(
 			@PathParam("workflow-task-id") Long workflowTaskId,
 			WorkflowTask workflowTask)

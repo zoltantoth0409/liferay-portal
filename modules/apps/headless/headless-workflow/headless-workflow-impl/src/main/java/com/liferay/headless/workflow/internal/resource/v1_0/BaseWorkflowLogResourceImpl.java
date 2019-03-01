@@ -16,7 +16,6 @@ package com.liferay.headless.workflow.internal.resource.v1_0;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowLogResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -53,7 +52,6 @@ public abstract class BaseWorkflowLogResourceImpl
 	@Override
 	@Path("/workflow-logs/{workflow-log-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public WorkflowLog getWorkflowLog(
 			@PathParam("workflow-log-id") Long workflowLogId)
 		throws Exception {
@@ -65,7 +63,6 @@ public abstract class BaseWorkflowLogResourceImpl
 	@Override
 	@Path("/workflow-tasks/{workflow-task-id}/workflow-logs")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<WorkflowLog> getWorkflowTaskWorkflowLogsPage(
 			@PathParam("workflow-task-id") Long workflowTaskId,
 			@Context Pagination pagination)

@@ -16,7 +16,6 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.headless.foundation.resource.v1_0.UserAccountResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -58,7 +57,6 @@ public abstract class BaseUserAccountResourceImpl
 	@Override
 	@Path("/user-accounts/{user-account-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteUserAccount(
 			@PathParam("user-account-id") Long userAccountId)
 		throws Exception {
@@ -70,7 +68,6 @@ public abstract class BaseUserAccountResourceImpl
 	@Override
 	@Path("/my-user-accounts/{my-user-account-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public UserAccount getMyUserAccount(
 			@PathParam("my-user-account-id") Long myUserAccountId)
 		throws Exception {
@@ -82,7 +79,6 @@ public abstract class BaseUserAccountResourceImpl
 	@Override
 	@Path("/organizations/{organization-id}/user-accounts")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<UserAccount> getOrganizationUserAccountsPage(
 			@PathParam("organization-id") Long organizationId,
 			@Context Pagination pagination)
@@ -95,7 +91,6 @@ public abstract class BaseUserAccountResourceImpl
 	@Override
 	@Path("/user-accounts/{user-account-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public UserAccount getUserAccount(
 			@PathParam("user-account-id") Long userAccountId)
 		throws Exception {
@@ -107,7 +102,6 @@ public abstract class BaseUserAccountResourceImpl
 	@Override
 	@Path("/user-accounts")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<UserAccount> getUserAccountsPage(
 			@QueryParam("fullnamequery") String fullnamequery,
 			@Context Pagination pagination)
@@ -120,7 +114,6 @@ public abstract class BaseUserAccountResourceImpl
 	@Override
 	@Path("/web-sites/{web-site-id}/user-accounts")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<UserAccount> getWebSiteUserAccountsPage(
 			@PathParam("web-site-id") Long webSiteId,
 			@Context Pagination pagination)
@@ -134,7 +127,6 @@ public abstract class BaseUserAccountResourceImpl
 	@Path("/user-accounts")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public UserAccount postUserAccount(UserAccount userAccount)
 		throws Exception {
 
@@ -146,7 +138,6 @@ public abstract class BaseUserAccountResourceImpl
 	@Path("/user-accounts/{user-account-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public UserAccount putUserAccount(
 			@PathParam("user-account-id") Long userAccountId,
 			UserAccount userAccount)

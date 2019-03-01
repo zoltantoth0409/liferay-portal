@@ -16,7 +16,6 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -58,7 +57,6 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 	@Override
 	@Path("/vocabularies/{vocabulary-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteVocabulary(
 			@PathParam("vocabulary-id") Long vocabularyId)
 		throws Exception {
@@ -70,7 +68,6 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 	@Override
 	@Path("/content-spaces/{content-space-id}/vocabularies")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Vocabulary> getContentSpaceVocabulariesPage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			@Context Filter filter, @Context Pagination pagination,
@@ -84,7 +81,6 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 	@Override
 	@Path("/vocabularies/{vocabulary-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Vocabulary getVocabulary(
 			@PathParam("vocabulary-id") Long vocabularyId)
 		throws Exception {
@@ -97,7 +93,6 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 	@Path("/content-spaces/{content-space-id}/vocabularies")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Vocabulary postContentSpaceVocabulary(
 			@PathParam("content-space-id") Long contentSpaceId,
 			Vocabulary vocabulary)
@@ -111,7 +106,6 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 	@Path("/vocabularies/{vocabulary-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public Vocabulary putVocabulary(
 			@PathParam("vocabulary-id") Long vocabularyId,
 			Vocabulary vocabulary)

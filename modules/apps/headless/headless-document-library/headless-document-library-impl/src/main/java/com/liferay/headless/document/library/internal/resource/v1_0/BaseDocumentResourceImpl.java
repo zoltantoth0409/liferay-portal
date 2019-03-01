@@ -16,7 +16,6 @@ package com.liferay.headless.document.library.internal.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -60,7 +59,6 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	@Override
 	@Path("/documents/{document-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteDocument(@PathParam("document-id") Long documentId)
 		throws Exception {
 
@@ -71,7 +69,6 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	@Override
 	@Path("/content-spaces/{content-space-id}/documents")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Document> getContentSpaceDocumentsPage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			@Context Filter filter, @Context Pagination pagination,
@@ -85,7 +82,6 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	@Override
 	@Path("/documents/{document-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Document getDocument(@PathParam("document-id") Long documentId)
 		throws Exception {
 
@@ -96,7 +92,6 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	@Override
 	@Path("/folders/{folder-id}/documents")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Document> getFolderDocumentsPage(
 			@PathParam("folder-id") Long folderId, @Context Filter filter,
 			@Context Pagination pagination, @Context Sort[] sorts)
@@ -110,7 +105,6 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	@PATCH
 	@Path("/documents/{document-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Document patchDocument(
 			@PathParam("document-id") Long documentId,
 			MultipartBody multipartBody)
@@ -124,7 +118,6 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	@Path("/content-spaces/{content-space-id}/documents")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Document postContentSpaceDocument(
 			@PathParam("content-space-id") Long contentSpaceId,
 			MultipartBody multipartBody)
@@ -138,7 +131,6 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	@Path("/folders/{folder-id}/documents")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Document postFolderDocument(
 			@PathParam("folder-id") Long folderId, MultipartBody multipartBody)
 		throws Exception {
@@ -151,7 +143,6 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	@Path("/documents/{document-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public Document putDocument(
 			@PathParam("document-id") Long documentId,
 			MultipartBody multipartBody)

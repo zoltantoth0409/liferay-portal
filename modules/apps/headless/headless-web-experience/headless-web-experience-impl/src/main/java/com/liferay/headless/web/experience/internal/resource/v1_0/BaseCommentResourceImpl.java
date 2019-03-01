@@ -16,7 +16,6 @@ package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
 import com.liferay.headless.web.experience.resource.v1_0.CommentResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -58,7 +57,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Override
 	@Path("/comments/{comment-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteComment(@PathParam("comment-id") Long commentId)
 		throws Exception {
 
@@ -69,7 +67,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Override
 	@Path("/comments/{comment-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Comment getComment(@PathParam("comment-id") Long commentId)
 		throws Exception {
 
@@ -80,7 +77,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Override
 	@Path("/comments/{comment-id}/comments")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Comment> getCommentCommentsPage(
 			@PathParam("comment-id") Long commentId, @Context Filter filter,
 			@Context Pagination pagination, @Context Sort[] sorts)
@@ -93,7 +89,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Override
 	@Path("/structured-contents/{structured-content-id}/comments")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Comment> getStructuredContentCommentsPage(
 			@PathParam("structured-content-id") Long structuredContentId,
 			@Context Filter filter, @Context Pagination pagination,
@@ -108,7 +103,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Path("/comments/{comment-id}/comments")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Comment postCommentComment(
 			@PathParam("comment-id") Long commentId, Comment comment)
 		throws Exception {
@@ -121,7 +115,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Path("/structured-contents/{structured-content-id}/comments")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Comment postStructuredContentComment(
 			@PathParam("structured-content-id") Long structuredContentId,
 			Comment comment)
@@ -135,7 +128,6 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	@Path("/comments/{comment-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public Comment putComment(
 			@PathParam("comment-id") Long commentId, Comment comment)
 		throws Exception {

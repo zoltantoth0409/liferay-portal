@@ -16,7 +16,6 @@ package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -61,7 +60,6 @@ public abstract class BaseStructuredContentResourceImpl
 	@Override
 	@Path("/structured-contents/{structured-content-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteStructuredContent(
 			@PathParam("structured-content-id") Long structuredContentId)
 		throws Exception {
@@ -73,7 +71,6 @@ public abstract class BaseStructuredContentResourceImpl
 	@Override
 	@Path("/content-spaces/{content-space-id}/structured-contents")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			@Context Filter filter, @Context Pagination pagination,
@@ -87,7 +84,6 @@ public abstract class BaseStructuredContentResourceImpl
 	@Override
 	@Path("/content-structures/{content-structure-id}/structured-contents")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<StructuredContent> getContentStructureStructuredContentsPage(
 			@PathParam("content-structure-id") Long contentStructureId,
 			@Context Filter filter, @Context Pagination pagination,
@@ -101,7 +97,6 @@ public abstract class BaseStructuredContentResourceImpl
 	@Override
 	@Path("/structured-contents/{structured-content-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public StructuredContent getStructuredContent(
 			@PathParam("structured-content-id") Long structuredContentId)
 		throws Exception {
@@ -115,7 +110,6 @@ public abstract class BaseStructuredContentResourceImpl
 		"/structured-contents/{structured-content-id}/rendered-content/{template-id}"
 	)
 	@Produces("text/html")
-	@RequiresScope("everything.read")
 	public String getStructuredContentTemplate(
 			@PathParam("structured-content-id") Long structuredContentId,
 			@PathParam("template-id") Long templateId)
@@ -129,7 +123,6 @@ public abstract class BaseStructuredContentResourceImpl
 	@PATCH
 	@Path("/structured-contents/{structured-content-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public StructuredContent patchStructuredContent(
 			@PathParam("structured-content-id") Long structuredContentId,
 			StructuredContent structuredContent)
@@ -203,7 +196,6 @@ public abstract class BaseStructuredContentResourceImpl
 	@Path("/content-spaces/{content-space-id}/structured-contents")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public StructuredContent postContentSpaceStructuredContent(
 			@PathParam("content-space-id") Long contentSpaceId,
 			StructuredContent structuredContent)
@@ -217,7 +209,6 @@ public abstract class BaseStructuredContentResourceImpl
 	@Path("/structured-contents/{structured-content-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public StructuredContent putStructuredContent(
 			@PathParam("structured-content-id") Long structuredContentId,
 			StructuredContent structuredContent)

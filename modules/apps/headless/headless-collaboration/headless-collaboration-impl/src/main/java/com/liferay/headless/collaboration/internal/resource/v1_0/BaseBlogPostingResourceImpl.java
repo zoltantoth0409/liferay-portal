@@ -16,7 +16,6 @@ package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -61,7 +60,6 @@ public abstract class BaseBlogPostingResourceImpl
 	@Override
 	@Path("/blog-postings/{blog-posting-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteBlogPosting(
 			@PathParam("blog-posting-id") Long blogPostingId)
 		throws Exception {
@@ -73,7 +71,6 @@ public abstract class BaseBlogPostingResourceImpl
 	@Override
 	@Path("/blog-postings/{blog-posting-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public BlogPosting getBlogPosting(
 			@PathParam("blog-posting-id") Long blogPostingId)
 		throws Exception {
@@ -85,7 +82,6 @@ public abstract class BaseBlogPostingResourceImpl
 	@Override
 	@Path("/content-spaces/{content-space-id}/blog-postings")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<BlogPosting> getContentSpaceBlogPostingsPage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			@Context Filter filter, @Context Pagination pagination,
@@ -100,7 +96,6 @@ public abstract class BaseBlogPostingResourceImpl
 	@PATCH
 	@Path("/blog-postings/{blog-posting-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public BlogPosting patchBlogPosting(
 			@PathParam("blog-posting-id") Long blogPostingId,
 			BlogPosting blogPosting)
@@ -182,7 +177,6 @@ public abstract class BaseBlogPostingResourceImpl
 	@Path("/content-spaces/{content-space-id}/blog-postings")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public BlogPosting postContentSpaceBlogPosting(
 			@PathParam("content-space-id") Long contentSpaceId,
 			BlogPosting blogPosting)
@@ -196,7 +190,6 @@ public abstract class BaseBlogPostingResourceImpl
 	@Path("/blog-postings/{blog-posting-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public BlogPosting putBlogPosting(
 			@PathParam("blog-posting-id") Long blogPostingId,
 			BlogPosting blogPosting)

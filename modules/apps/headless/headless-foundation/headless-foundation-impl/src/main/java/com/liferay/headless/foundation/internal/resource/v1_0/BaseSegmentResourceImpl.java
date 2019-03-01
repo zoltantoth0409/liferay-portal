@@ -16,7 +16,6 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Segment;
 import com.liferay.headless.foundation.resource.v1_0.SegmentResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -52,7 +51,6 @@ public abstract class BaseSegmentResourceImpl implements SegmentResource {
 	@Override
 	@Path("/user-accounts/{user-id}/segments")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Segment> getUserSegmentsPage(
 			@PathParam("user-id") Long userId, @Context Pagination pagination)
 		throws Exception {

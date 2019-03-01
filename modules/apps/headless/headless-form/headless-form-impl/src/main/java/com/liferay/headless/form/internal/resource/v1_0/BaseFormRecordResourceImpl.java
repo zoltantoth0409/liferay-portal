@@ -16,7 +16,6 @@ package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.headless.form.resource.v1_0.FormRecordResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -55,7 +54,6 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 	@Override
 	@Path("/forms/{form-id}/form-records")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<FormRecord> getFormFormRecordsPage(
 			@PathParam("form-id") Long formId, @Context Pagination pagination)
 		throws Exception {
@@ -67,7 +65,6 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 	@Override
 	@Path("/form-records/{form-record-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public FormRecord getFormRecord(
 			@PathParam("form-record-id") Long formRecordId)
 		throws Exception {
@@ -80,7 +77,6 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 	@Path("/forms/{form-id}/form-records")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public FormRecord postFormFormRecord(
 			@PathParam("form-id") Long formId, FormRecord formRecord)
 		throws Exception {
@@ -93,7 +89,6 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 	@Path("/form-records/{form-record-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public FormRecord putFormRecord(
 			@PathParam("form-record-id") Long formRecordId,
 			FormRecord formRecord)

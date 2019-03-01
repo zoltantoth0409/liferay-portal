@@ -16,7 +16,6 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
 import com.liferay.headless.foundation.resource.v1_0.KeywordResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -58,7 +57,6 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 	@Override
 	@Path("/keywords/{keyword-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteKeyword(@PathParam("keyword-id") Long keywordId)
 		throws Exception {
 
@@ -69,7 +67,6 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 	@Override
 	@Path("/content-spaces/{content-space-id}/keywords")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Keyword> getContentSpaceKeywordsPage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			@Context Filter filter, @Context Pagination pagination,
@@ -83,7 +80,6 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 	@Override
 	@Path("/keywords/{keyword-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Keyword getKeyword(@PathParam("keyword-id") Long keywordId)
 		throws Exception {
 
@@ -95,7 +91,6 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 	@Path("/content-spaces/{content-space-id}/keywords")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Keyword postContentSpaceKeyword(
 			@PathParam("content-space-id") Long contentSpaceId, Keyword keyword)
 		throws Exception {
@@ -108,7 +103,6 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 	@Path("/keywords/{keyword-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public Keyword putKeyword(
 			@PathParam("keyword-id") Long keywordId, Keyword keyword)
 		throws Exception {

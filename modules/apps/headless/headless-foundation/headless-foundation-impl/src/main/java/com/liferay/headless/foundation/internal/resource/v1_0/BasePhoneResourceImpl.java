@@ -16,7 +16,6 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Phone;
 import com.liferay.headless.foundation.resource.v1_0.PhoneResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -52,7 +51,6 @@ public abstract class BasePhoneResourceImpl implements PhoneResource {
 	@Override
 	@Path("/phones")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Phone> getGenericParentPhonesPage(
 			@PathParam("generic-parent-id") Object genericParentId,
 			@Context Pagination pagination)
@@ -65,7 +63,6 @@ public abstract class BasePhoneResourceImpl implements PhoneResource {
 	@Override
 	@Path("/phones/{phone-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Phone getPhone(@PathParam("phone-id") Long phoneId)
 		throws Exception {
 

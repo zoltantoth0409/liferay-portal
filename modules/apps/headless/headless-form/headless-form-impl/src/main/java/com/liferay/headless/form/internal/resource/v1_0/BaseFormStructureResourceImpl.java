@@ -16,7 +16,6 @@ package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.FormStructure;
 import com.liferay.headless.form.resource.v1_0.FormStructureResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -53,7 +52,6 @@ public abstract class BaseFormStructureResourceImpl
 	@Override
 	@Path("/content-spaces/{content-space-id}/form-structures")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<FormStructure> getContentSpaceFormStructuresPage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			@Context Pagination pagination)
@@ -66,7 +64,6 @@ public abstract class BaseFormStructureResourceImpl
 	@Override
 	@Path("/form-structures/{form-structure-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public FormStructure getFormStructure(
 			@PathParam("form-structure-id") Long formStructureId)
 		throws Exception {

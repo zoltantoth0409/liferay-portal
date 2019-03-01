@@ -16,7 +16,6 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Organization;
 import com.liferay.headless.foundation.resource.v1_0.OrganizationResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -53,7 +52,6 @@ public abstract class BaseOrganizationResourceImpl
 	@Override
 	@Path("/my-user-accounts/{my-user-account-id}/organizations")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Organization> getMyUserAccountOrganizationsPage(
 			@PathParam("my-user-account-id") Long myUserAccountId,
 			@Context Pagination pagination)
@@ -66,7 +64,6 @@ public abstract class BaseOrganizationResourceImpl
 	@Override
 	@Path("/organizations/{organization-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Organization getOrganization(
 			@PathParam("organization-id") Long organizationId)
 		throws Exception {
@@ -78,7 +75,6 @@ public abstract class BaseOrganizationResourceImpl
 	@Override
 	@Path("/organizations/{organization-id}/organizations")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Organization> getOrganizationOrganizationsPage(
 			@PathParam("organization-id") Long organizationId,
 			@Context Pagination pagination)
@@ -91,7 +87,6 @@ public abstract class BaseOrganizationResourceImpl
 	@Override
 	@Path("/organizations")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Organization> getOrganizationsPage(
 			@Context Pagination pagination)
 		throws Exception {
@@ -103,7 +98,6 @@ public abstract class BaseOrganizationResourceImpl
 	@Override
 	@Path("/user-accounts/{user-account-id}/organizations")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Organization> getUserAccountOrganizationsPage(
 			@PathParam("user-account-id") Long userAccountId,
 			@Context Pagination pagination)

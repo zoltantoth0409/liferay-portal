@@ -16,7 +16,6 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -58,7 +57,6 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 	@Override
 	@Path("/categories/{category-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteCategory(@PathParam("category-id") Long categoryId)
 		throws Exception {
 
@@ -69,7 +67,6 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 	@Override
 	@Path("/categories/{category-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Category getCategory(@PathParam("category-id") Long categoryId)
 		throws Exception {
 
@@ -80,7 +77,6 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 	@Override
 	@Path("/categories/{category-id}/categories")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Category> getCategoryCategoriesPage(
 			@PathParam("category-id") Long categoryId, @Context Filter filter,
 			@Context Pagination pagination, @Context Sort[] sorts)
@@ -93,7 +89,6 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 	@Override
 	@Path("/vocabularies/{vocabulary-id}/categories")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Category> getVocabularyCategoriesPage(
 			@PathParam("vocabulary-id") Long vocabularyId,
 			@Context Filter filter, @Context Pagination pagination,
@@ -108,7 +103,6 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 	@Path("/categories/{category-id}/categories")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Category postCategoryCategory(
 			@PathParam("category-id") Long categoryId, Category category)
 		throws Exception {
@@ -121,7 +115,6 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 	@Path("/vocabularies/{vocabulary-id}/categories")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Category postVocabularyCategory(
 			@PathParam("vocabulary-id") Long vocabularyId, Category category)
 		throws Exception {
@@ -134,7 +127,6 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 	@Path("/categories/{category-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public Category putCategory(
 			@PathParam("category-id") Long categoryId, Category category)
 		throws Exception {

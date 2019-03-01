@@ -16,7 +16,6 @@ package com.liferay.headless.document.library.internal.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Folder;
 import com.liferay.headless.document.library.resource.v1_0.FolderResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -58,7 +57,6 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	@Override
 	@Path("/folders/{folder-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteFolder(@PathParam("folder-id") Long folderId)
 		throws Exception {
 
@@ -69,7 +67,6 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	@Override
 	@Path("/content-spaces/{content-space-id}/folders")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Folder> getContentSpaceFoldersPage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			@Context Pagination pagination)
@@ -82,7 +79,6 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	@Override
 	@Path("/folders/{folder-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Folder getFolder(@PathParam("folder-id") Long folderId)
 		throws Exception {
 
@@ -93,7 +89,6 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	@Override
 	@Path("/folders/{folder-id}/folders")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Folder> getFolderFoldersPage(
 			@PathParam("folder-id") Long folderId,
 			@Context Pagination pagination)
@@ -107,7 +102,6 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	@PATCH
 	@Path("/folders/{folder-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Folder patchFolder(
 			@PathParam("folder-id") Long folderId, Folder folder)
 		throws Exception {
@@ -152,7 +146,6 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	@Path("/content-spaces/{content-space-id}/folders")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Folder postContentSpaceFolder(
 			@PathParam("content-space-id") Long contentSpaceId, Folder folder)
 		throws Exception {
@@ -165,7 +158,6 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	@Path("/folders/{folder-id}/folders")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Folder postFolderFolder(
 			@PathParam("folder-id") Long folderId, Folder folder)
 		throws Exception {
@@ -178,7 +170,6 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	@Path("/folders/{folder-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public Folder putFolder(
 			@PathParam("folder-id") Long folderId, Folder folder)
 		throws Exception {

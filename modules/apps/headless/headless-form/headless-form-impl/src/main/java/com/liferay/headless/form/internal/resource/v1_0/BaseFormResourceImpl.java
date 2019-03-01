@@ -16,7 +16,6 @@ package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.Form;
 import com.liferay.headless.form.resource.v1_0.FormResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -54,7 +53,6 @@ public abstract class BaseFormResourceImpl implements FormResource {
 	@Override
 	@Path("/content-spaces/{content-space-id}/form")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Form> getContentSpaceFormsPage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			@Context Pagination pagination)
@@ -67,7 +65,6 @@ public abstract class BaseFormResourceImpl implements FormResource {
 	@Override
 	@Path("/forms/{form-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Form getForm(@PathParam("form-id") Long formId) throws Exception {
 		return new Form();
 	}
@@ -76,7 +73,6 @@ public abstract class BaseFormResourceImpl implements FormResource {
 	@Override
 	@Path("/forms/{form-id}/fetch-latest-draft")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Form getFormFetchLatestDraft(@PathParam("form-id") Long formId)
 		throws Exception {
 
@@ -88,7 +84,6 @@ public abstract class BaseFormResourceImpl implements FormResource {
 	@Path("/forms/{form-id}/evaluate-context")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.write")
 	public Form postFormEvaluateContext(
 			@PathParam("form-id") Long formId, Form form)
 		throws Exception {
@@ -101,7 +96,6 @@ public abstract class BaseFormResourceImpl implements FormResource {
 	@Path("/forms/{form-id}/upload-file")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.write")
 	public Form postFormUploadFile(@PathParam("form-id") Long formId, Form form)
 		throws Exception {
 

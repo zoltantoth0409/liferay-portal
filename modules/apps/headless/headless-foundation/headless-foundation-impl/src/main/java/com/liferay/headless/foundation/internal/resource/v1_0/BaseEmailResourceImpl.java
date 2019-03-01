@@ -16,7 +16,6 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Email;
 import com.liferay.headless.foundation.resource.v1_0.EmailResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -52,7 +51,6 @@ public abstract class BaseEmailResourceImpl implements EmailResource {
 	@Override
 	@Path("/emails/{email-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Email getEmail(@PathParam("email-id") Long emailId)
 		throws Exception {
 
@@ -63,7 +61,6 @@ public abstract class BaseEmailResourceImpl implements EmailResource {
 	@Override
 	@Path("/emails")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<Email> getGenericParentEmailsPage(
 			@PathParam("generic-parent-id") Object genericParentId,
 			@Context Pagination pagination)

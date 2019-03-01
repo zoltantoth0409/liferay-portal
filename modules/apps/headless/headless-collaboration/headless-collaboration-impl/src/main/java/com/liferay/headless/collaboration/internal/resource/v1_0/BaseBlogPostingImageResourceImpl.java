@@ -16,7 +16,6 @@ package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -61,7 +60,6 @@ public abstract class BaseBlogPostingImageResourceImpl
 	@Override
 	@Path("/blog-posting-images/{blog-posting-image-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public boolean deleteBlogPostingImage(
 			@PathParam("blog-posting-image-id") Long blogPostingImageId)
 		throws Exception {
@@ -73,7 +71,6 @@ public abstract class BaseBlogPostingImageResourceImpl
 	@Override
 	@Path("/blog-posting-images/{blog-posting-image-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public BlogPostingImage getBlogPostingImage(
 			@PathParam("blog-posting-image-id") Long blogPostingImageId)
 		throws Exception {
@@ -85,7 +82,6 @@ public abstract class BaseBlogPostingImageResourceImpl
 	@Override
 	@Path("/content-spaces/{content-space-id}/blog-posting-images")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public Page<BlogPostingImage> getContentSpaceBlogPostingImagesPage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			@Context Filter filter, @Context Pagination pagination,
@@ -100,7 +96,6 @@ public abstract class BaseBlogPostingImageResourceImpl
 	@PATCH
 	@Path("/blog-posting-images/{blog-posting-image-id}")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public BlogPostingImage patchBlogPostingImage(
 			@PathParam("blog-posting-image-id") Long blogPostingImageId,
 			MultipartBody multipartBody)
@@ -114,7 +109,6 @@ public abstract class BaseBlogPostingImageResourceImpl
 	@Path("/content-spaces/{content-space-id}/blog-posting-images")
 	@POST
 	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public BlogPostingImage postContentSpaceBlogPostingImage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			MultipartBody multipartBody)
@@ -128,7 +122,6 @@ public abstract class BaseBlogPostingImageResourceImpl
 	@Path("/blog-posting-images/{blog-posting-image-id}")
 	@Produces("application/json")
 	@PUT
-	@RequiresScope("everything.read")
 	public BlogPostingImage putBlogPostingImage(
 			@PathParam("blog-posting-image-id") Long blogPostingImageId,
 			MultipartBody multipartBody)
