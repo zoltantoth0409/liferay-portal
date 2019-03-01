@@ -51,7 +51,6 @@ public class UpgradeFileEntryTypeName extends UpgradeProcess {
 					RestrictionsFactoryUtil.eq(
 						"fileEntryTypeKey",
 						GoogleDocsConstants.DL_FILE_ENTRY_TYPE_KEY)));
-
 			actionableDynamicQuery.setPerformActionMethod(
 				(DLFileEntryType dlFileEntryType) ->
 					_upgradeGoogleDocsDLFileEntryType(dlFileEntryType));
