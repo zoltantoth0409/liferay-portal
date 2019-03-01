@@ -36,6 +36,8 @@ public class DDMDataProviderInvokeCommand
 		String ddmDataProviderInstanceName, DDMDataProvider ddmDataProvider,
 		DDMDataProviderRequest ddmDataProviderRequest) {
 
+		// Skip JavaParser
+
 		super(
 			Setter.withGroupKey(
 				_hystrixCommandGroupKey
