@@ -45,13 +45,21 @@ public class HTTPMethodOverrideFilterTest {
 			"DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
 		).forEach(
 			method -> {
-				when(_containerRequestContext.getMethod()).thenReturn(method);
+				when(
+					_containerRequestContext.getMethod()
+				).thenReturn(
+					method
+				);
 
 				_httpMethodOverrideFilter.filter(_containerRequestContext);
 			}
 		);
 
-		verify(_containerRequestContext, never()).setMethod(anyString());
+		verify(
+			_containerRequestContext, never()
+		).setMethod(
+			anyString()
+		);
 	}
 
 	@Test
@@ -60,13 +68,21 @@ public class HTTPMethodOverrideFilterTest {
 			"LINK", "MERGE", "REMOVE", "SUBSCRIBE", "UNLINK"
 		).forEach(
 			method -> {
-				when(_containerRequestContext.getMethod()).thenReturn(method);
+				when(
+					_containerRequestContext.getMethod()
+				).thenReturn(
+					method
+				);
 
 				_httpMethodOverrideFilter.filter(_containerRequestContext);
 			}
 		);
 
-		verify(_containerRequestContext, times(5)).setMethod("CUSTOM");
+		verify(
+			_containerRequestContext, times(5)
+		).setMethod(
+			"CUSTOM"
+		);
 	}
 
 	private ContainerRequestContext _containerRequestContext;

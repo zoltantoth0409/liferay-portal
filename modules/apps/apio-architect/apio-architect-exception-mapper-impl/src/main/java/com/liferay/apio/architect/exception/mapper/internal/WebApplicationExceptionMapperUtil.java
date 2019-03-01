@@ -38,7 +38,11 @@ public class WebApplicationExceptionMapperUtil {
 	 *         {@code false} otherwise
 	 */
 	public static Predicate<String> isNotDefaultMessage(StatusType statusType) {
-		return anObject -> !_getDefaultMessage(statusType).equals(anObject);
+		return anObject -> !_getDefaultMessage(
+			statusType
+		).equals(
+			anObject
+		);
 	}
 
 	private static String _getDefaultMessage(StatusType statusType) {

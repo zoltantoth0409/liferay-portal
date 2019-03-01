@@ -415,7 +415,8 @@ public class BaseTest {
 	);
 
 	private static final BundleContext _bundleContext = FrameworkUtil.getBundle(
-		BaseTest.class).getBundleContext();
+		BaseTest.class
+	).getBundleContext();
 	private static final Collection<ComponentDescriptionDTO>
 		_classedDisabledImplementations = new ArrayList<>();
 	private static final Collection<ServiceRegistration<?>>

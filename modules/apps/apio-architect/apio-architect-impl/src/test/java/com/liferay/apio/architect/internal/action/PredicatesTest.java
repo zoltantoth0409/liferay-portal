@@ -91,8 +91,18 @@ public class PredicatesTest {
 
 	@Test
 	public void testIsActionBy() {
-		assertTrue(isActionBy("GET").test(_actionSemantics));
-		assertFalse(isActionBy("DELETE").test(_actionSemantics));
+		assertTrue(
+			isActionBy(
+				"GET"
+			).test(
+				_actionSemantics
+			));
+		assertFalse(
+			isActionBy(
+				"DELETE"
+			).test(
+				_actionSemantics
+			));
 	}
 
 	@Test

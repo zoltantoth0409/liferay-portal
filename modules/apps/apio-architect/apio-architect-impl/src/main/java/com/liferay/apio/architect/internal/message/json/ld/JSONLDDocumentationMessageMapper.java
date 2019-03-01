@@ -251,8 +251,7 @@ public class JSONLDDocumentationMessageMapper
 					"@vocab"
 				).stringValue(
 					"http://schema.org/"
-				)
-			),
+				)),
 			arrayBuilder -> arrayBuilder.addString(
 				"https://www.w3.org/ns/hydra/core#"),
 			arrayBuilder -> arrayBuilder.add(
@@ -283,8 +282,7 @@ public class JSONLDDocumentationMessageMapper
 					).stringValue(
 						"@id"
 					)
-				)
-			)
+				))
 		);
 
 		jsonObjectBuilder.field(
@@ -411,8 +409,7 @@ public class JSONLDDocumentationMessageMapper
 				documentationField.getExtraType();
 
 			extraTypeOptional.ifPresent(
-				extraType -> _addExtraType(jsonObjectBuilder, extraType)
-			);
+				extraType -> _addExtraType(jsonObjectBuilder, extraType));
 		}
 		else if (STRING.equals(type)) {
 			typeString = "string";

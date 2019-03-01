@@ -54,7 +54,11 @@ public class NestedResourceTest {
 	public void testCustomCallsResultFunctionWithCustomMethod() {
 		HttpServletRequest request = mock(HttpServletRequest.class);
 
-		when(request.getMethod()).thenReturn("CUSTOM");
+		when(
+			request.getMethod()
+		).thenReturn(
+			"CUSTOM"
+		);
 
 		Response response = _nestedResource.custom(request);
 
