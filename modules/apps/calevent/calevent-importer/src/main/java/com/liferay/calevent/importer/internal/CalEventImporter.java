@@ -866,8 +866,8 @@ public class CalEventImporter {
 			sb.append("repeating, recurrence, remindBy, firstReminder, ");
 			sb.append("secondReminder from CalEvent where eventId = ?");
 
-			try (PreparedStatement ps =
-					connection.prepareStatement(sb.toString())) {
+			try (PreparedStatement ps = connection.prepareStatement(
+					sb.toString())) {
 
 				ps.setLong(1, calEventId);
 
@@ -1000,8 +1000,8 @@ public class CalEventImporter {
 			sb.append("repeating, recurrence, remindBy, firstReminder, ");
 			sb.append("secondReminder from CalEvent");
 
-			try (PreparedStatement ps =
-					connection.prepareStatement(sb.toString())) {
+			try (PreparedStatement ps = connection.prepareStatement(
+					sb.toString())) {
 
 				ResultSet rs = ps.executeQuery();
 
