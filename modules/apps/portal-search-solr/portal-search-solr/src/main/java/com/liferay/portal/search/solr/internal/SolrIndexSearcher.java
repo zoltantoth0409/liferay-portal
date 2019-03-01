@@ -360,7 +360,11 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 
 		document.addText(
-			Field.SNIPPET.concat(StringPool.UNDERLINE).concat(snippetFieldName),
+			Field.SNIPPET.concat(
+				StringPool.UNDERLINE
+			).concat(
+				snippetFieldName
+			),
 			StringUtil.merge(list, StringPool.TRIPLE_PERIOD));
 	}
 
