@@ -120,8 +120,8 @@ public abstract class BaseOverridingRepositoryDefiner
 
 		Optional<RepositoryDefiner> repositoryDefinerOptional =
 			repositoryDefinerStream.filter(
-				repositoryDefiner ->
-					className.equals(repositoryDefiner.getClassName())
+				repositoryDefiner -> className.equals(
+					repositoryDefiner.getClassName())
 			).findFirst();
 
 		_overridenRepositoryDefiner = repositoryDefinerOptional.orElseThrow(
