@@ -50,11 +50,10 @@ public class RequestContextMapper {
 		Context context = new Context();
 
 		context.put(Context.BROWSER, _browserSniffer.getBrowserId(request));
+		context.put(Context.COOKIES, _getCookies(request));
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		context.put(Context.COOKIES, _getCookies(request));
 
 		Device device = themeDisplay.getDevice();
 
