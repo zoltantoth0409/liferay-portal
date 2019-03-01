@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.headless.web.experience.dto.v1_0.Options;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 import com.liferay.petra.string.StringBundler;
@@ -59,8 +60,8 @@ import javax.annotation.Generated;
 import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.apache.commons.beanutils.BeanUtils;
-
 import org.apache.commons.lang.time.DateUtils;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -130,6 +131,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 				contentSpaceId, (String)null, Pagination.of(2, 1),
 				(String)null);
 
+		Assert.assertEquals(2, page.getTotalCount());
+
 		assertEqualsIgnoringOrder(
 			Arrays.asList(structuredContent1, structuredContent2),
 			(List<StructuredContent>)page.getItems());
@@ -150,26 +153,24 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Long contentSpaceId =
 			testGetContentSpaceStructuredContentsPage_getContentSpaceId();
 
-		StructuredContent randomStructuredContent1 = randomStructuredContent();
+		StructuredContent structuredContent1 = randomStructuredContent();
+		StructuredContent structuredContent2 = randomStructuredContent();
 
-		randomStructuredContent1.setDatePublished(
-			DateUtils.addMinutes(new Date(), -2));
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				structuredContent1, entityField.getName(),
+				DateUtils.addMinutes(new Date(), -2));
+		}
 
-		StructuredContent structuredContent1 =
+		structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
-				contentSpaceId, randomStructuredContent1);
+				contentSpaceId, structuredContent1);
 
 		Thread.sleep(1000);
 
-		StructuredContent randomStructuredContent2 = randomStructuredContent();
-
-		randomStructuredContent2.setDatePublished(
-			DateUtils.addMinutes(
-				randomStructuredContent1.getDatePublished(), 1));
-
-		StructuredContent structuredContent2 =
+		structuredContent2 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
-				contentSpaceId, randomStructuredContent2);
+				contentSpaceId, structuredContent2);
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContent> page =
@@ -251,6 +252,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 				contentSpaceId, (String)null, Pagination.of(2, 2),
 				(String)null);
 
+		Assert.assertEquals(3, page2.getTotalCount());
+
 		List<StructuredContent> structuredContents2 =
 			(List<StructuredContent>)page2.getItems();
 
@@ -282,24 +285,24 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Long contentSpaceId =
 			testGetContentSpaceStructuredContentsPage_getContentSpaceId();
 
-		StructuredContent randomStructuredContent1 = randomStructuredContent();
+		StructuredContent structuredContent1 = randomStructuredContent();
+		StructuredContent structuredContent2 = randomStructuredContent();
 
-		randomStructuredContent1.setDatePublished(
-			DateUtils.addMinutes(new Date(), -2));
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				structuredContent1, entityField.getName(),
+				DateUtils.addMinutes(new Date(), -2));
+		}
 
-		StructuredContent structuredContent1 =
+		structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
-				contentSpaceId, randomStructuredContent1);
+				contentSpaceId, structuredContent1);
 
-		StructuredContent randomStructuredContent2 = randomStructuredContent();
+		Thread.sleep(1000);
 
-		randomStructuredContent2.setDatePublished(
-			DateUtils.addMinutes(
-				randomStructuredContent1.getDatePublished(), 1));
-
-		StructuredContent structuredContent2 =
+		structuredContent2 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
-				contentSpaceId, randomStructuredContent2);
+				contentSpaceId, structuredContent2);
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContent> ascPage =
@@ -383,16 +386,17 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		StructuredContent structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent());
-
+				contentStructureId, randomStructuredContent());
 		StructuredContent structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent());
+				contentStructureId, randomStructuredContent());
 
 		Page<StructuredContent> page =
 			invokeGetContentStructureStructuredContentsPage(
 				contentStructureId, (String)null, Pagination.of(2, 1),
 				(String)null);
+
+		Assert.assertEquals(2, page.getTotalCount());
 
 		assertEqualsIgnoringOrder(
 			Arrays.asList(structuredContent1, structuredContent2),
@@ -411,31 +415,32 @@ public abstract class BaseStructuredContentResourceTestCase {
 			return;
 		}
 
-		StructuredContent randomStructuredContent1 = randomStructuredContent();
+		Long contentStructureId =
+			testGetContentStructureStructuredContentsPage_getContentStructureId();
 
-		randomStructuredContent1.setDatePublished(
-			DateUtils.addMinutes(new Date(), -2));
+		StructuredContent structuredContent1 = randomStructuredContent();
+		StructuredContent structuredContent2 = randomStructuredContent();
 
-		StructuredContent structuredContent1 =
-			testGetContentSpaceStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent1);
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				structuredContent1, entityField.getName(),
+				DateUtils.addMinutes(new Date(), -2));
+		}
+
+		structuredContent1 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, structuredContent1);
 
 		Thread.sleep(1000);
 
-		StructuredContent randomStructuredContent2 = randomStructuredContent();
-
-		randomStructuredContent2.setDatePublished(
-			DateUtils.addMinutes(
-				randomStructuredContent1.getDatePublished(), 1));
-
-		StructuredContent structuredContent2 =
-			testGetContentSpaceStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent2);
+		structuredContent2 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, structuredContent2);
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContent> page =
 				invokeGetContentStructureStructuredContentsPage(
-					testGetContentStructureStructuredContentsPage_getContentStructureId(),
+					contentStructureId,
 					getFilterString(entityField, "eq", structuredContent1),
 					Pagination.of(2, 1), (String)null);
 
@@ -456,17 +461,20 @@ public abstract class BaseStructuredContentResourceTestCase {
 			return;
 		}
 
+		Long contentStructureId =
+			testGetContentStructureStructuredContentsPage_getContentStructureId();
+
 		StructuredContent structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent());
+				contentStructureId, randomStructuredContent());
 		StructuredContent structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent());
+				contentStructureId, randomStructuredContent());
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContent> page =
 				invokeGetContentStructureStructuredContentsPage(
-					testGetContentStructureStructuredContentsPage_getContentStructureId(),
+					contentStructureId,
 					getFilterString(entityField, "eq", structuredContent1),
 					Pagination.of(2, 1), (String)null);
 
@@ -480,18 +488,18 @@ public abstract class BaseStructuredContentResourceTestCase {
 	public void testGetContentStructureStructuredContentsPageWithPagination()
 		throws Exception {
 
-		StructuredContent structuredContent1 =
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent());
-		StructuredContent structuredContent2 =
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent());
-		StructuredContent structuredContent3 =
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent());
-
 		Long contentStructureId =
 			testGetContentStructureStructuredContentsPage_getContentStructureId();
+
+		StructuredContent structuredContent1 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+		StructuredContent structuredContent2 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+		StructuredContent structuredContent3 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
 
 		Page<StructuredContent> page1 =
 			invokeGetContentStructureStructuredContentsPage(
@@ -508,6 +516,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 			invokeGetContentStructureStructuredContentsPage(
 				contentStructureId, (String)null, Pagination.of(2, 2),
 				(String)null);
+
+		Assert.assertEquals(3, page2.getTotalCount());
 
 		List<StructuredContent> structuredContents2 =
 			(List<StructuredContent>)page2.getItems();
@@ -537,27 +547,27 @@ public abstract class BaseStructuredContentResourceTestCase {
 			return;
 		}
 
-		StructuredContent randomStructuredContent1 = randomStructuredContent();
-
-		randomStructuredContent1.setDatePublished(
-			DateUtils.addMinutes(new Date(), -2));
-
-		StructuredContent structuredContent1 =
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent1);
-		
-		StructuredContent randomStructuredContent2 = randomStructuredContent();
-
-		randomStructuredContent2.setDatePublished(
-			DateUtils.addMinutes(
-				randomStructuredContent1.getDatePublished(), 1));
-
-		StructuredContent structuredContent2 =
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent2);
-
 		Long contentStructureId =
 			testGetContentStructureStructuredContentsPage_getContentStructureId();
+
+		StructuredContent structuredContent1 = randomStructuredContent();
+		StructuredContent structuredContent2 = randomStructuredContent();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				structuredContent1, entityField.getName(),
+				DateUtils.addMinutes(new Date(), -2));
+		}
+
+		structuredContent1 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, structuredContent1);
+
+		Thread.sleep(1000);
+
+		structuredContent2 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, structuredContent2);
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContent> ascPage =
@@ -591,6 +601,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 			return;
 		}
 
+		Long contentStructureId =
+			testGetContentStructureStructuredContentsPage_getContentStructureId();
+
 		StructuredContent structuredContent1 = randomStructuredContent();
 		StructuredContent structuredContent2 = randomStructuredContent();
 
@@ -603,13 +616,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), structuredContent1);
+				contentStructureId, structuredContent1);
 		structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				testGroup.getGroupId(), structuredContent2);
-
-		Long contentStructureId =
-			testGetContentStructureStructuredContentsPage_getContentStructureId();
+				contentStructureId, structuredContent2);
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContent> ascPage =
