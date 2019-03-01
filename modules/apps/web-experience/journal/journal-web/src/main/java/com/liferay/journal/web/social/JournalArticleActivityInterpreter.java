@@ -95,8 +95,10 @@ public class JournalArticleActivityInterpreter
 				layout.getLayoutSet(), serviceContext.getThemeDisplay());
 
 			return groupFriendlyURL.concat(
-				JournalArticleConstants.CANONICAL_URL_SEPARATOR).concat(
-				article.getUrlTitle());
+				JournalArticleConstants.CANONICAL_URL_SEPARATOR
+			).concat(
+				article.getUrlTitle()
+			);
 		}
 
 		return null;
@@ -184,8 +186,9 @@ public class JournalArticleActivityInterpreter
 		_journalArticleLocalService = journalArticleLocalService;
 	}
 
-	private static final String[] _CLASS_NAMES =
-		{JournalArticle.class.getName()};
+	private static final String[] _CLASS_NAMES = {
+		JournalArticle.class.getName()
+	};
 
 	private JournalArticleLocalService _journalArticleLocalService;
 

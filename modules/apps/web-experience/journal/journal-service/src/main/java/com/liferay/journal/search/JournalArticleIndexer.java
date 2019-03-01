@@ -372,8 +372,8 @@ public class JournalArticleIndexer
 
 				});
 			actionableDynamicQuery.setPerformActionMethod(
-				new ActionableDynamicQuery.
-					PerformActionMethod<JournalArticleResource>() {
+				new ActionableDynamicQuery.PerformActionMethod
+					<JournalArticleResource>() {
 
 					@Override
 					public void performAction(JournalArticleResource article)
@@ -899,8 +899,8 @@ public class JournalArticleIndexer
 				_batchIndexingHelper.getBulkSize(
 					JournalArticle.class.getName()));
 			indexableActionableDynamicQuery.setPerformActionMethod(
-				new ActionableDynamicQuery.
-					PerformActionMethod<JournalArticle>() {
+				new ActionableDynamicQuery.PerformActionMethod
+					<JournalArticle>() {
 
 					@Override
 					public void performAction(JournalArticle article) {
@@ -932,8 +932,8 @@ public class JournalArticleIndexer
 					JournalArticleResource.class.getName()));
 
 			indexableActionableDynamicQuery.setPerformActionMethod(
-				new ActionableDynamicQuery.
-					PerformActionMethod<JournalArticleResource>() {
+				new ActionableDynamicQuery.PerformActionMethod
+					<JournalArticleResource>() {
 
 					@Override
 					public void performAction(
@@ -1044,11 +1044,13 @@ public class JournalArticleIndexer
 		return text;
 	}
 
-	private static final String[] _ESCAPE_SAFE_HIGHLIGHTS =
-		{"[@HIGHLIGHT1@]", "[@HIGHLIGHT2@]"};
+	private static final String[] _ESCAPE_SAFE_HIGHLIGHTS = {
+		"[@HIGHLIGHT1@]", "[@HIGHLIGHT2@]"
+	};
 
-	private static final String[] _HIGHLIGHT_TAGS =
-		{HighlightUtil.HIGHLIGHT_TAG_OPEN, HighlightUtil.HIGHLIGHT_TAG_CLOSE};
+	private static final String[] _HIGHLIGHT_TAGS = {
+		HighlightUtil.HIGHLIGHT_TAG_OPEN, HighlightUtil.HIGHLIGHT_TAG_CLOSE
+	};
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalArticleIndexer.class);

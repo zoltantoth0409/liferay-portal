@@ -79,8 +79,9 @@ public class JournalContentAddPortletProvider
 						JournalArticle.class.getName());
 
 		JournalArticleAssetRenderer articleAssetRenderer =
-			(JournalArticleAssetRenderer)articleAssetRendererFactory.
-				getAssetRenderer(assetEntry.getClassPK());
+			(JournalArticleAssetRenderer)
+				articleAssetRendererFactory.getAssetRenderer(
+					assetEntry.getClassPK());
 
 		JournalArticle article = articleAssetRenderer.getArticle();
 

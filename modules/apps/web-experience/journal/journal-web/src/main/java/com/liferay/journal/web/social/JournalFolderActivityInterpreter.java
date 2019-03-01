@@ -106,7 +106,8 @@ public class JournalFolderActivityInterpreter
 			actionId);
 	}
 
-	private static final String[] _CLASS_NAMES =
-		{JournalFolder.class.getName()};
+	private static final String[] _CLASS_NAMES = {
+		JournalFolder.class.getName()
+	};
 
 }

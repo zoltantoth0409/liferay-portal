@@ -368,8 +368,7 @@ public class JournalContentDisplayContext {
 		}
 		catch (PortalException pe) {
 			_log.error(
-				"Unable to obtain ddm temmplate for article " +
-					article.getId(),
+				"Unable to obtain ddm temmplate for article " + article.getId(),
 				pe);
 		}
 

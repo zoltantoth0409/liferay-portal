@@ -959,7 +959,8 @@ public class JournalTestUtil {
 		return map;
 	}
 
-	private static final Locale[] _locales =
-		{LocaleUtil.US, LocaleUtil.GERMANY, LocaleUtil.SPAIN};
+	private static final Locale[] _locales = {
+		LocaleUtil.US, LocaleUtil.GERMANY, LocaleUtil.SPAIN
+	};
 
 }

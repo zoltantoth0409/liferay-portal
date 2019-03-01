@@ -284,8 +284,8 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 		}
 
 		actionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.
-				PerformActionMethod<JournalArticleResource>() {
+			new ActionableDynamicQuery.PerformActionMethod
+				<JournalArticleResource>() {
 
 				@Override
 				public void performAction(
@@ -652,8 +652,8 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 			}
 
 			actionableDynamicQuery.setPerformActionMethod(
-				new ActionableDynamicQuery.
-					PerformActionMethod<JournalArticle>() {
+				new ActionableDynamicQuery.PerformActionMethod
+					<JournalArticle>() {
 
 					@Override
 					public void performAction(JournalArticle article)
@@ -827,8 +827,8 @@ public class JournalServiceVerifyProcess extends VerifyLayout {
 			}
 
 			actionableDynamicQuery.setPerformActionMethod(
-				new ActionableDynamicQuery.
-					PerformActionMethod<JournalArticle>() {
+				new ActionableDynamicQuery.PerformActionMethod
+					<JournalArticle>() {
 
 					@Override
 					public void performAction(JournalArticle article) {

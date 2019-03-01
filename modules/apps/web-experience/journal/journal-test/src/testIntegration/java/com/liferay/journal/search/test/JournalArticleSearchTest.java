@@ -450,8 +450,8 @@ public class JournalArticleSearchTest extends BaseSearchTestCase {
 
 	@Override
 	protected boolean isCheckBaseModelPermission() {
-		return
-			_journalServiceConfiguration.articleViewPermissionsCheckEnabled();
+		return _journalServiceConfiguration.
+			articleViewPermissionsCheckEnabled();
 	}
 
 	@Override
