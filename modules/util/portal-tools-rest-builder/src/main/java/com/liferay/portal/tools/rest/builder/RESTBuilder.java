@@ -91,6 +91,7 @@ public class RESTBuilder {
 		context.put("validator", Validator_IW.getInstance());
 
 		_createApplicationFile(context);
+		_createOAuth2ConfigFile(context);
 
 		File[] files = FileUtil.getFiles(_configDir, "rest-openapi", ".yaml");
 
@@ -212,6 +213,27 @@ public class RESTBuilder {
 			file,
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "application", context));
+	}
+
+	private void _createOAuth2ConfigFile(Map<String, Object> context)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getImplDir());
+		sb.append("/../../../configs/");
+		sb.append(_configYAML.getApiPackagePath());
+		sb.append(".oauth2.rest.provider.rest.jaxrs.feature.configuration.");
+		sb.append(".ConfigurableScopeCheckerFeatureConfiguration.cfg");
+
+		File file = new File(sb.toString());
+
+		_files.add(file);
+
+		FileUtil.write(
+			file,
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "oauth2_config", context));
 	}
 
 	private void _createBaseResourceImplFile(

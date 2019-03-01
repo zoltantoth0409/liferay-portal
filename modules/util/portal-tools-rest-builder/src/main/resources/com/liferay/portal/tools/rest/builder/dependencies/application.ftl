@@ -12,7 +12,7 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	property = {
-		"oauth2.scope.checker.type=annotations",
+		"oauth2.scope.checker.type=configuration",
 		"osgi.jaxrs.application.base=${configYAML.application.baseURI}",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan)",
 		"osgi.jaxrs.name=${configYAML.application.name}"

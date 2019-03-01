@@ -8,7 +8,6 @@ package ${configYAML.apiPackagePath}.internal.graphql.mutation.${versionDirName}
 	</#list>
 </#compress>
 
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.multipart.MultipartBody;

@@ -109,13 +109,6 @@ public class ResourceOpenAPIParser {
 
 		methodAnnotations.add("@" + StringUtil.toUpperCase(httpMethod));
 
-		if (pathItem.getGet() != null) {
-			methodAnnotations.add("@RequiresScope(\"everything.read\")");
-		}
-		else {
-			methodAnnotations.add("@RequiresScope(\"everything.write\")");
-		}
-
 		String methodAnnotation = _getMethodAnnotationConsumes(operation);
 
 		if (Validator.isNotNull(methodAnnotation)) {

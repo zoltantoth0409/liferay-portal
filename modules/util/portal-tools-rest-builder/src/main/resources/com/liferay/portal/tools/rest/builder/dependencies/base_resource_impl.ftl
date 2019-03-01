@@ -8,7 +8,6 @@ package ${configYAML.apiPackagePath}.internal.resource.${versionDirName};
 
 import ${configYAML.apiPackagePath}.resource.${versionDirName}.${schemaName}Resource;
 
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
