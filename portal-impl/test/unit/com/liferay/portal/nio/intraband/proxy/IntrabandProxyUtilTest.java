@@ -144,6 +144,7 @@ public class IntrabandProxyUtilTest {
 
 			@SuppressWarnings("unused")
 			private String _testField;
+
 		}
 
 		Field[] fields = TestClass.class.getDeclaredFields();
@@ -660,8 +661,9 @@ public class IntrabandProxyUtilTest {
 
 		ClassNode classNode = _loadClass(TestClass.class);
 
-		String[] proxyMethodSignatures =
-			{"testSignature1", "testSignature2", "testSignature3"};
+		String[] proxyMethodSignatures = {
+			"testSignature1", "testSignature2", "testSignature3"
+		};
 
 		IntrabandProxyUtil.rewriteGetProxyMethodSignaturesMethodNode(
 			classNode, proxyMethodSignatures);
@@ -1281,8 +1283,11 @@ public class IntrabandProxyUtilTest {
 
 			String name = proxyMethod.getName();
 
-			proxyMethodSignatures[i] = name.concat(StringPool.DASH).concat(
-				Type.getMethodDescriptor(proxyMethod));
+			proxyMethodSignatures[i] = name.concat(
+				StringPool.DASH
+			).concat(
+				Type.getMethodDescriptor(proxyMethod)
+			);
 		}
 
 		return proxyMethodSignatures;
@@ -1682,7 +1687,7 @@ public class IntrabandProxyUtilTest {
 							"Unknow method index ", String.valueOf(i),
 							" for proxy methods mappings ",
 							ReflectionTestUtil.getFieldValue(
-									skeletonClass, "_PROXY_METHODS_MAPPING")),
+								skeletonClass, "_PROXY_METHODS_MAPPING")),
 						throwable.getMessage());
 				}
 
@@ -2187,6 +2192,7 @@ public class IntrabandProxyUtilTest {
 
 				@SuppressWarnings("unused")
 				private String _PROXY_METHODS_MAPPING;
+
 			}
 
 			try {
@@ -2211,6 +2217,7 @@ public class IntrabandProxyUtilTest {
 
 				@SuppressWarnings("unused")
 				private String _log;
+
 			}
 
 			try {
@@ -2234,6 +2241,7 @@ public class IntrabandProxyUtilTest {
 
 				@SuppressWarnings("unused")
 				private Object _targetLocator;
+
 			}
 
 			try {
@@ -2259,6 +2267,7 @@ public class IntrabandProxyUtilTest {
 
 				@SuppressWarnings("unused")
 				int _proxyType = 0;
+
 			}
 
 			try {
@@ -2283,6 +2292,7 @@ public class IntrabandProxyUtilTest {
 
 				@SuppressWarnings("unused")
 				private Object _id;
+
 			}
 
 			try {
@@ -2306,6 +2316,7 @@ public class IntrabandProxyUtilTest {
 
 				@SuppressWarnings("unused")
 				private Object _intraband;
+
 			}
 
 			try {
@@ -2330,6 +2341,7 @@ public class IntrabandProxyUtilTest {
 
 				@SuppressWarnings("unused")
 				private Object _registrationReference;
+
 			}
 
 			try {
@@ -2355,6 +2367,7 @@ public class IntrabandProxyUtilTest {
 
 				@SuppressWarnings("unused")
 				private Object _exceptionHandler;
+
 			}
 
 			try {

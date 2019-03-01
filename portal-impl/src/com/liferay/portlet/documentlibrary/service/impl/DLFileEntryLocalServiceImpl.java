@@ -532,8 +532,11 @@ public class DLFileEntryLocalServiceImpl
 		String extension = dlFileEntry.getExtension();
 
 		if (Validator.isNotNull(extension)) {
-			sourceFileName = sourceFileName.concat(StringPool.PERIOD).concat(
-				extension);
+			sourceFileName = sourceFileName.concat(
+				StringPool.PERIOD
+			).concat(
+				extension
+			);
 		}
 
 		InputStream inputStream = DLStoreUtil.getFileAsStream(
@@ -1940,8 +1943,8 @@ public class DLFileEntryLocalServiceImpl
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
 			if (DLUtil.compareVersions(
-					dlFileEntry.getVersion(),
-					dlFileVersion.getVersion()) <= 0) {
+					dlFileEntry.getVersion(), dlFileVersion.getVersion()) <=
+						0) {
 
 				dlFileEntry.setModifiedDate(dlFileVersion.getModifiedDate());
 				dlFileEntry.setFileName(dlFileVersion.getFileName());

@@ -384,8 +384,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 		// Resources
 
-		if ((parentMessageId !=
-				MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID) &&
+		if ((parentMessageId != MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID) &&
 			GetterUtil.getBoolean(
 				serviceContext.getAttribute("propagatePermissions"))) {
 

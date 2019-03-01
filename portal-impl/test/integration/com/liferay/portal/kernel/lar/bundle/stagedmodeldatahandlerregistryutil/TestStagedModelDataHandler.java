@@ -33,8 +33,9 @@ import org.osgi.service.component.annotations.Component;
 public class TestStagedModelDataHandler
 	implements StagedModelDataHandler<User> {
 
-	public static final String[] CLASS_NAMES =
-		{TestStagedModelDataHandler.class.getName()};
+	public static final String[] CLASS_NAMES = {
+		TestStagedModelDataHandler.class.getName()
+	};
 
 	@Override
 	public void deleteStagedModel(
