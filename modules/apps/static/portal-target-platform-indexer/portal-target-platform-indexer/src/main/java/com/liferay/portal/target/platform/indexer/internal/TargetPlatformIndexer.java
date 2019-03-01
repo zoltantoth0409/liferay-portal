@@ -205,7 +205,11 @@ public class TargetPlatformIndexer implements Indexer {
 
 		String postfix = content.substring(end);
 
-		String newContent = prefix.concat(sha256sum).concat(postfix);
+		String newContent = prefix.concat(
+			sha256sum
+		).concat(
+			postfix
+		);
 
 		index = newContent.indexOf(url);
 
@@ -226,7 +230,11 @@ public class TargetPlatformIndexer implements Indexer {
 		prefix = newContent.substring(0, start);
 		postfix = newContent.substring(end);
 
-		newContent = prefix.concat(String.valueOf(size)).concat(postfix);
+		newContent = prefix.concat(
+			String.valueOf(size)
+		).concat(
+			postfix
+		);
 
 		newContent = newContent.replace("\r\n", "\n");
 

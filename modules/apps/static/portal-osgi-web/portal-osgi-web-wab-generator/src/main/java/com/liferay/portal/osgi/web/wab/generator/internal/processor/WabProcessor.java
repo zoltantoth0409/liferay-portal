@@ -1210,8 +1210,9 @@ public class WabProcessor {
 			PropsUtil.get(
 				"module.framework.web.generator.autodeployed.wars.store"));
 
-	private static final String[] _KNOWN_PROPERTY_KEYS =
-		{"jdbc.driverClassName"};
+	private static final String[] _KNOWN_PROPERTY_KEYS = {
+		"jdbc.driverClassName"
+	};
 
 	private static final String _XPATHS_HBM = StringUtil.merge(
 		new String[] {
