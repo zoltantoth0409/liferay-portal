@@ -277,8 +277,8 @@ public class ShoppingUtil {
 			Map<ShoppingCartItem, Integer> items)
 		throws PortalException {
 
-		double discount = calculateDiscountSubtotal(
-			items) / calculateSubtotal(items);
+		double discount =
+			calculateDiscountSubtotal(items) / calculateSubtotal(items);
 
 		if (Double.isNaN(discount) || Double.isInfinite(discount)) {
 			discount = 0.0;
@@ -458,8 +458,8 @@ public class ShoppingUtil {
 				}
 
 				shippingRate = GetterUtil.getDouble(
-					shoppingGroupServiceOverriddenConfiguration.
-						getShipping()[rangeId]);
+					shoppingGroupServiceOverriddenConfiguration.getShipping()
+						[rangeId]);
 			}
 		}
 
