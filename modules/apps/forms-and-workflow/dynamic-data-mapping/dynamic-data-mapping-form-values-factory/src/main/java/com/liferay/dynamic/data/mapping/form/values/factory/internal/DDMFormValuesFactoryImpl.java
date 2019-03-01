@@ -416,8 +416,10 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 		}
 
 		return parentEntryKey.concat(
-			DDMFormRendererConstants.DDM_FORM_FIELDS_SEPARATOR).concat(
-				fieldNameFilter);
+			DDMFormRendererConstants.DDM_FORM_FIELDS_SEPARATOR
+		).concat(
+			fieldNameFilter
+		);
 	}
 
 	protected Set<String> getEntryKeys(
@@ -454,8 +456,8 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 	protected String getFieldInstanceId(
 		String[] ddmFormFieldParameterNameParts) {
 
-		return
-			ddmFormFieldParameterNameParts[_DDM_FORM_FIELD_INSTANCE_ID_INDEX];
+		return ddmFormFieldParameterNameParts
+			[_DDM_FORM_FIELD_INSTANCE_ID_INDEX];
 	}
 
 	protected String getFieldName(String[] ddmFormFieldParameterNameParts) {

@@ -66,7 +66,11 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 
 	@Test
 	public void testInvalidEmailFieldWithCustomMessage() throws Exception {
-		when(_ddmExpression.evaluate()).thenReturn(false);
+		when(
+			_ddmExpression.evaluate()
+		).thenReturn(
+			false
+		);
 
 		DDMForm ddmForm = new DDMForm();
 
@@ -114,7 +118,11 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 
 	@Test
 	public void testInvalidEmailFieldWithoutCustomMessage() throws Exception {
-		when(_ddmExpression.evaluate()).thenReturn(false);
+		when(
+			_ddmExpression.evaluate()
+		).thenReturn(
+			false
+		);
 
 		DDMForm ddmForm = new DDMForm();
 
