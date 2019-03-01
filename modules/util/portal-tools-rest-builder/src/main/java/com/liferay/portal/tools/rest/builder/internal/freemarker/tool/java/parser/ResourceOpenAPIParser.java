@@ -103,7 +103,6 @@ public class ResourceOpenAPIParser {
 		JavaMethodSignature javaMethodSignature) {
 
 		String path = javaMethodSignature.getPath();
-		PathItem pathItem = javaMethodSignature.getPathItem();
 		Operation operation = javaMethodSignature.getOperation();
 
 		Set<String> methodAnnotations = new TreeSet<>();
