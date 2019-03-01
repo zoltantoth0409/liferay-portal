@@ -72,12 +72,10 @@ definition {
 	macro addDraftPGViaWCD {
 		WebContent._gotoAddPGViaWCD();
 
-		WebContent.addCP(
+		WebContent.addDraft(
 			webContentContent = "${webContentContent}",
 			webContentTitle = "${webContentTitle}"
 		);
-
-		Button.clickSaveAsDraft();
 	}
 
 	macro addExistingRelatedAssetCP {
