@@ -289,6 +289,9 @@ components:
                     type: integer
                 sizeInBytes:
                     type: number
+                structuredContentId:
+                    format: int64
+                    type: integer
                 title:
                     type: string
             type: object
