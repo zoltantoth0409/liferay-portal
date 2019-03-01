@@ -489,7 +489,6 @@ public class AssetBrowserDisplayContext {
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return new DropdownItemList() {
 			{
-
 				if (!AssetBrowserWebConfigurationValues.SEARCH_WITH_DATABASE) {
 					add(
 						dropdownItem -> {

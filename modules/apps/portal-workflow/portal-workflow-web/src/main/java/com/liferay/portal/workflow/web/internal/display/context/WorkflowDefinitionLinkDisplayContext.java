@@ -151,7 +151,6 @@ public class WorkflowDefinitionLinkDisplayContext {
 	public DropdownItemList getFilterOptions(HttpServletRequest request) {
 		return new DropdownItemList() {
 			{
-
 				addGroup(
 					dropdownGroupItem -> {
 						dropdownGroupItem.setDropdownItems(
