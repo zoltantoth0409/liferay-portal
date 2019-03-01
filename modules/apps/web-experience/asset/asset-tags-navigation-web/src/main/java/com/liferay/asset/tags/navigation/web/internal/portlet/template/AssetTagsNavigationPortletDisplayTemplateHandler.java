@@ -62,8 +62,11 @@ public class AssetTagsNavigationPortletDisplayTemplateHandler
 			AssetTagsNavigationPortletKeys.ASSET_TAGS_NAVIGATION,
 			resourceBundle);
 
-		return portletTitle.concat(StringPool.SPACE).concat(
-			LanguageUtil.get(locale, "template"));
+		return portletTitle.concat(
+			StringPool.SPACE
+		).concat(
+			LanguageUtil.get(locale, "template")
+		);
 	}
 
 	@Override
@@ -108,8 +111,8 @@ public class AssetTagsNavigationPortletDisplayTemplateHandler
 
 	@Override
 	protected String getTemplatesConfigPath() {
-		return
-			AssetTagsNavigationWebConfigurationValues.DISPLAY_TEMPLATES_CONFIG;
+		return AssetTagsNavigationWebConfigurationValues.
+			DISPLAY_TEMPLATES_CONFIG;
 	}
 
 	@Reference

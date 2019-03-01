@@ -44,10 +44,7 @@ public class AssetTagsNavigationWebUpgrade implements UpgradeStepRegistrator {
 							"141",
 							AssetTagsNavigationPortletKeys.ASSET_TAGS_NAVIGATION
 						},
-						{
-							"148",
-							AssetTagsNavigationPortletKeys.ASSET_TAGS_CLOUD
-						}
+						{"148", AssetTagsNavigationPortletKeys.ASSET_TAGS_CLOUD}
 					};
 				}
 
