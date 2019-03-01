@@ -80,8 +80,11 @@ public class SiteNavigationMenuPortletDisplayTemplateHandler
 		String portletTitle = _portal.getPortletTitle(
 			SiteNavigationMenuPortletKeys.SITE_NAVIGATION_MENU, resourceBundle);
 
-		return portletTitle.concat(StringPool.SPACE).concat(
-			LanguageUtil.get(locale, "template"));
+		return portletTitle.concat(
+			StringPool.SPACE
+		).concat(
+			LanguageUtil.get(locale, "template")
+		);
 	}
 
 	@Override

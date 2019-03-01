@@ -70,8 +70,11 @@ public class SiteNavigationLanguagePortletDisplayTemplateHandler
 			SiteNavigationLanguagePortletKeys.SITE_NAVIGATION_LANGUAGE,
 			resourceBundle);
 
-		return portletTitle.concat(StringPool.SPACE).concat(
-			LanguageUtil.get(locale, "template"));
+		return portletTitle.concat(
+			StringPool.SPACE
+		).concat(
+			LanguageUtil.get(locale, "template")
+		);
 	}
 
 	@Override
