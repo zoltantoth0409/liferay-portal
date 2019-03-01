@@ -55,8 +55,8 @@ public class BufferedIncrementConfigurationTest {
 
 	@Test
 	public void testInvalidSettingWithLog() {
-		try (CaptureHandler captureHandler =
-				_testInvalidSetting(Level.WARNING)) {
+		try (CaptureHandler captureHandler = _testInvalidSetting(
+				Level.WARNING)) {
 
 			List<LogRecord> logRecords = captureHandler.getLogRecords();
 

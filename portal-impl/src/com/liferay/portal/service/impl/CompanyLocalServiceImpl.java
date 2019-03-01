@@ -1408,8 +1408,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		layoutSetPrototypeActionableDynamicQuery.setCompanyId(companyId);
 		layoutSetPrototypeActionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.
-				PerformActionMethod<LayoutSetPrototype>() {
+			new ActionableDynamicQuery.PerformActionMethod
+				<LayoutSetPrototype>() {
 
 				@Override
 				public void performAction(LayoutSetPrototype layoutSetPrototype)

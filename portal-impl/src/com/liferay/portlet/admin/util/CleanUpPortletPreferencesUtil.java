@@ -100,8 +100,8 @@ public class CleanUpPortletPreferencesUtil {
 
 			});
 		portletPreferencesActionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.
-				PerformActionMethod<PortletPreferences>() {
+			new ActionableDynamicQuery.PerformActionMethod
+				<PortletPreferences>() {
 
 				@Override
 				public void performAction(PortletPreferences portletPreferences)

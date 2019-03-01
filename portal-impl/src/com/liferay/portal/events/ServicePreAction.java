@@ -1044,8 +1044,11 @@ public class ServicePreAction extends Action {
 
 		String securePortalURL = PortalUtil.getPortalURL(request, secure);
 
-		String urlSignIn = securePortalURL.concat(mainPath).concat(
-			_PATH_PORTAL_LOGIN);
+		String urlSignIn = securePortalURL.concat(
+			mainPath
+		).concat(
+			_PATH_PORTAL_LOGIN
+		);
 
 		if (layout != null) {
 			urlSignIn = HttpUtil.addParameter(

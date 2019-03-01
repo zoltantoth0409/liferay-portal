@@ -1335,8 +1335,8 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	private final ServiceTrackerMap
-		<String, List<AssetEntryValidatorExclusionRule>>
-			_serviceTrackerMap = ServiceTrackerCollections.openMultiValueMap(
+		<String, List<AssetEntryValidatorExclusionRule>> _serviceTrackerMap =
+			ServiceTrackerCollections.openMultiValueMap(
 				AssetEntryValidatorExclusionRule.class, "model.class.name");
 
 }
