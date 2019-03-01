@@ -35,9 +35,8 @@ public class DefaultControlPanelEntryFactory {
 
 	private static class ServiceTrackerHolder {
 
-		private static final
-			ServiceTracker<ControlPanelEntry, ControlPanelEntry>
-				_serviceTracker;
+		private static final ServiceTracker
+			<ControlPanelEntry, ControlPanelEntry> _serviceTracker;
 
 		static {
 			Registry registry = RegistryUtil.getRegistry();

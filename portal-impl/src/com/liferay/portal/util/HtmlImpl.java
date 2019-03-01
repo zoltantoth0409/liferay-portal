@@ -471,15 +471,25 @@ public class HtmlImpl implements Html {
 			String[] parts = xPathAttribute.split(StringPool.APOSTROPHE);
 
 			return "concat('".concat(
-				StringUtil.merge(parts, "', \"'\", '")).concat("')");
+				StringUtil.merge(parts, "', \"'\", '")
+			).concat(
+				"')"
+			);
 		}
 
 		if (hasQuote) {
-			return StringPool.APOSTROPHE.concat(xPathAttribute).concat(
-				StringPool.APOSTROPHE);
+			return StringPool.APOSTROPHE.concat(
+				xPathAttribute
+			).concat(
+				StringPool.APOSTROPHE
+			);
 		}
 
-		return StringPool.QUOTE.concat(xPathAttribute).concat(StringPool.QUOTE);
+		return StringPool.QUOTE.concat(
+			xPathAttribute
+		).concat(
+			StringPool.QUOTE
+		);
 	}
 
 	/**
@@ -930,11 +940,13 @@ public class HtmlImpl implements Html {
 		'e', 'f'
 	};
 
-	private static final String[] _MS_WORD_HTML =
-		{"&reg;", StringPool.APOSTROPHE, StringPool.QUOTE, StringPool.QUOTE};
+	private static final String[] _MS_WORD_HTML = {
+		"&reg;", StringPool.APOSTROPHE, StringPool.QUOTE, StringPool.QUOTE
+	};
 
-	private static final String[] _MS_WORD_UNICODE =
-		{"\u00ae", "\u2019", "\u201c", "\u201d"};
+	private static final String[] _MS_WORD_UNICODE = {
+		"\u00ae", "\u2019", "\u201c", "\u201d"
+	};
 
 	private static final char[] _TAG_SCRIPT = {'s', 'c', 'r', 'i', 'p', 't'};
 

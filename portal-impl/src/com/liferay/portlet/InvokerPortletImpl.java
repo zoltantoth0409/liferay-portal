@@ -97,15 +97,23 @@ public class InvokerPortletImpl
 
 		String sesResponseId = encodeResponseKey(plid, portletId, languageId);
 
-		getResponses(session).remove(sesResponseId);
+		getResponses(
+			session
+		).remove(
+			sesResponseId
+		);
 	}
 
 	public static void clearResponses(HttpSession session) {
-		getResponses(session).clear();
+		getResponses(
+			session
+		).clear();
 	}
 
 	public static void clearResponses(PortletSession session) {
-		getResponses(session).clear();
+		getResponses(
+			session
+		).clear();
 	}
 
 	public static String encodeResponseKey(

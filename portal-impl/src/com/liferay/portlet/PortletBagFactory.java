@@ -310,8 +310,8 @@ public class PortletBagFactory {
 
 		ServiceTrackerList<AssetRendererFactory<?>>
 			assetRendererFactoryInstances = ServiceTrackerCollections.openList(
-				(Class<AssetRendererFactory<?>>)(Class<?>)
-					AssetRendererFactory.class,
+				(Class<AssetRendererFactory<?>>)
+					(Class<?>)AssetRendererFactory.class,
 				filter, properties);
 
 		for (String assetRendererFactoryClass :
@@ -357,8 +357,8 @@ public class PortletBagFactory {
 
 		ServiceTrackerList<AtomCollectionAdapter<?>>
 			atomCollectionAdapterInstances = ServiceTrackerCollections.openList(
-				(Class<AtomCollectionAdapter<?>>)(Class<?>)
-					AtomCollectionAdapter.class,
+				(Class<AtomCollectionAdapter<?>>)
+					(Class<?>)AtomCollectionAdapter.class,
 				filter, properties);
 
 		for (String atomCollectionAdapterClass :
@@ -755,8 +755,8 @@ public class PortletBagFactory {
 		ServiceTrackerList<StagedModelDataHandler<?>>
 			stagedModelDataHandlerInstances =
 				ServiceTrackerCollections.openList(
-					(Class<StagedModelDataHandler<?>>)(Class<?>)
-						StagedModelDataHandler.class,
+					(Class<StagedModelDataHandler<?>>)
+						(Class<?>)StagedModelDataHandler.class,
 					filter, properties);
 
 		List<String> stagedModelDataHandlerClasses =

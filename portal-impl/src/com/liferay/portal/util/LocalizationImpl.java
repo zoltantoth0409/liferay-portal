@@ -649,7 +649,11 @@ public class LocalizationImpl implements Localization {
 
 	@Override
 	public String getLocalizedName(String name, String languageId) {
-		return name.concat(StringPool.UNDERLINE).concat(languageId);
+		return name.concat(
+			StringPool.UNDERLINE
+		).concat(
+			languageId
+		);
 	}
 
 	@Override
