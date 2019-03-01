@@ -147,7 +147,7 @@ public class StructuredContentResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		return _getStructuredContentPage(
+		return _getStructuredContentsPage(
 			contentSpaceId, null, filter, pagination, sorts);
 	}
 
@@ -157,7 +157,7 @@ public class StructuredContentResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		return _getStructuredContentPage(
+		return _getStructuredContentsPage(
 			null, contentStructureId, filter, pagination, sorts);
 	}
 
@@ -394,7 +394,7 @@ public class StructuredContentResourceImpl
 		return ddmTemplate.getTemplateKey();
 	}
 
-	private Page<StructuredContent> _getStructuredContentPage(
+	private Page<StructuredContent> _getStructuredContentsPage(
 			Long contentSpaceId, Long contentStructureId, Filter filter,
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
