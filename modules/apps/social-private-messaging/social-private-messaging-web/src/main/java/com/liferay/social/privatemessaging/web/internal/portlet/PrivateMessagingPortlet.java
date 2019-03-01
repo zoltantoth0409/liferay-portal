@@ -386,7 +386,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			themeDisplay.getUserId(),
 			_privateMessagingConfiguration.autocompleteRecipientType(),
 			keywords, 0,
-			_privateMessagingConfiguration .autocompleteRecipientMax());
+			_privateMessagingConfiguration.autocompleteRecipientMax());
 
 		resultsJSONObject.put("results", jsonObject);
 
