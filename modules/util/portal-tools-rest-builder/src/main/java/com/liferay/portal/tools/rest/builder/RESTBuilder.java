@@ -477,7 +477,8 @@ public class RESTBuilder {
 		sb.append("/../resources/OSGI-INF/liferay/rest/");
 		sb.append(escapedVersion);
 		sb.append("/");
-		sb.append(CamelCaseUtil.fromCamelCase(schemaName));
+		sb.append(
+			StringUtil.toLowerCase(CamelCaseUtil.fromCamelCase(schemaName)));
 		sb.append(".properties");
 
 		File file = new File(sb.toString());
