@@ -167,11 +167,11 @@ public class StructuredContentResourceTest
 	@Override
 	protected StructuredContent
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				Long contentSpaceId, StructuredContent structuredContent)
+				Long contentStructureId, StructuredContent structuredContent)
 		throws Exception {
 
 		return invokePostContentSpaceStructuredContent(
-			contentSpaceId, structuredContent);
+			testGroup.getGroupId(), structuredContent);
 	}
 
 	@Override
