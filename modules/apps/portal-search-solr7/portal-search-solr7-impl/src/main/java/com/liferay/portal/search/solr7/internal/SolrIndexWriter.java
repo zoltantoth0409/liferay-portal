@@ -73,7 +73,7 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		SolrClient solrClient = _solrClientManager.getSolrClient();
 
 		try {
-			solrClient.commit();
+			solrClient.commit(_defaultCollection);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -99,12 +99,13 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		List<String> uidsList = new ArrayList<>(uids);
 
 		try {
-			UpdateResponse updateResponse = solrClient.deleteById(uidsList);
+			UpdateResponse updateResponse = solrClient.deleteById(
+				_defaultCollection, uidsList);
 
 			if (PortalRunMode.isTestMode() ||
 				searchContext.isCommitImmediately()) {
 
-				solrClient.commit();
+				solrClient.commit(_defaultCollection);
 			}
 
 			LogUtil.logSolrResponseBase(_log, updateResponse);
@@ -148,12 +149,12 @@ public class SolrIndexWriter extends BaseIndexWriter {
 			sb.append(className);
 
 			UpdateResponse updateResponse = solrClient.deleteByQuery(
-				sb.toString());
+				_defaultCollection, sb.toString());
 
 			if (PortalRunMode.isTestMode() ||
 				searchContext.isCommitImmediately()) {
 
-				solrClient.commit();
+				solrClient.commit(_defaultCollection);
 			}
 
 			LogUtil.logSolrResponseBase(_log, updateResponse);
@@ -208,6 +209,16 @@ public class SolrIndexWriter extends BaseIndexWriter {
 			searchContext, documents, true);
 	}
 
+	@Activate
+	@Modified
+	protected void activate(Map<String, Object> properties) {
+		_solrConfiguration = ConfigurableUtil.createConfigurable(
+			SolrConfiguration.class, properties);
+
+		_defaultCollection = _solrConfiguration.defaultCollection();
+		_logExceptionsOnly = _solrConfiguration.logExceptionsOnly();
+	}
+
 	@Reference(unbind = "-")
 	protected void setSolrClientManager(SolrClientManager solrClientManager) {
 		_solrClientManager = solrClientManager;
@@ -223,6 +234,8 @@ public class SolrIndexWriter extends BaseIndexWriter {
 	private static final Log _log = LogFactoryUtil.getLog(
 		SolrIndexWriter.class);
 
+	private String _defaultCollection;
+	private boolean _logExceptionsOnly;
 	private SolrClientManager _solrClientManager;
 	private SolrUpdateDocumentCommand _solrUpdateDocumentCommand;
 
