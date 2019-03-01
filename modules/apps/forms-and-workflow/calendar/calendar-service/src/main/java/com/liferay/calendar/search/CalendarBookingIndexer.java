@@ -161,8 +161,11 @@ public class CalendarBookingIndexer extends BaseIndexer<CalendarBooking> {
 			}
 
 			document.addText(
-				Field.DESCRIPTION.concat(StringPool.UNDERLINE).concat(
-					descriptionLanguageId),
+				Field.DESCRIPTION.concat(
+					StringPool.UNDERLINE
+				).concat(
+					descriptionLanguageId
+				),
 				description);
 		}
 
@@ -182,8 +185,11 @@ public class CalendarBookingIndexer extends BaseIndexer<CalendarBooking> {
 			}
 
 			document.addText(
-				Field.TITLE.concat(StringPool.UNDERLINE).concat(
-					titleLanguageId),
+				Field.TITLE.concat(
+					StringPool.UNDERLINE
+				).concat(
+					titleLanguageId
+				),
 				title);
 		}
 

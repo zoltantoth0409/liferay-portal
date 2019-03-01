@@ -56,8 +56,9 @@ import org.osgi.service.component.annotations.Reference;
 public class CalendarBookingStagedModelDataHandler
 	extends BaseStagedModelDataHandler<CalendarBooking> {
 
-	public static final String[] CLASS_NAMES =
-		{CalendarBooking.class.getName()};
+	public static final String[] CLASS_NAMES = {
+		CalendarBooking.class.getName()
+	};
 
 	@Override
 	public void deleteStagedModel(CalendarBooking calendarBooking)
