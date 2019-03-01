@@ -206,11 +206,11 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 			}
 
 			if (_lambdaCollectionEntityField != null) {
-				return _lambdaContains(
+				return _getLambdaContainsPredicate(
 					(EntityField)expressions.get(0), expressions.get(1));
 			}
 
-			return _contains(
+			return _getContainsPredicate(
 				(EntityField)expressions.get(0), expressions.get(1));
 		}
 
@@ -246,7 +246,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		return expression.accept(this);
 	}
 
-	private Predicate<Context> _contains(
+	private Predicate<Context> _getContainsPredicate(
 		EntityField entityField, Object fieldValue) {
 
 		if (Objects.equals(entityField.getType(), EntityField.Type.STRING)) {
@@ -470,7 +470,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		return Optional.of(predicate);
 	}
 
-	private Predicate<Context> _lambdaContains(
+	private Predicate<Context> _getLambdaContainsPredicate(
 		EntityField entityField, Object fieldValue) {
 
 		if (Objects.equals(entityField.getType(), EntityField.Type.STRING)) {
