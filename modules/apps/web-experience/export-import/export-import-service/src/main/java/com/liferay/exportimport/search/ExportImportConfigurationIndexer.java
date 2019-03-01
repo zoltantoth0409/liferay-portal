@@ -310,8 +310,8 @@ public class ExportImportConfigurationIndexer
 
 		indexableActionableDynamicQuery.setCompanyId(companyId);
 		indexableActionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.
-				PerformActionMethod<ExportImportConfiguration>() {
+			new ActionableDynamicQuery.PerformActionMethod
+				<ExportImportConfiguration>() {
 
 				@Override
 				public void performAction(

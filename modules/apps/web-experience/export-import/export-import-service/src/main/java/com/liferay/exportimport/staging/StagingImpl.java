@@ -721,11 +721,12 @@ public class StagingImpl implements Staging {
 				((exportImportConfiguration.getType() ==
 					ExportImportConfigurationConstants.
 						TYPE_PUBLISH_LAYOUT_LOCAL) ||
-				(exportImportConfiguration.getType() ==
-					ExportImportConfigurationConstants.
-						TYPE_PUBLISH_LAYOUT_REMOTE) ||
-				(exportImportConfiguration.getType() ==
-					ExportImportConfigurationConstants.TYPE_PUBLISH_PORTLET))) {
+				 (exportImportConfiguration.getType() ==
+					 ExportImportConfigurationConstants.
+						 TYPE_PUBLISH_LAYOUT_REMOTE) ||
+				 (exportImportConfiguration.getType() ==
+					 ExportImportConfigurationConstants.
+						 TYPE_PUBLISH_PORTLET))) {
 
 				errorMessage = LanguageUtil.get(
 					locale,
@@ -828,11 +829,12 @@ public class StagingImpl implements Staging {
 				((exportImportConfiguration.getType() ==
 					ExportImportConfigurationConstants.
 						TYPE_PUBLISH_LAYOUT_LOCAL) ||
-				(exportImportConfiguration.getType() ==
-					ExportImportConfigurationConstants.
-						TYPE_PUBLISH_LAYOUT_REMOTE) ||
-				(exportImportConfiguration.getType() ==
-					ExportImportConfigurationConstants.TYPE_PUBLISH_PORTLET))) {
+				 (exportImportConfiguration.getType() ==
+					 ExportImportConfigurationConstants.
+						 TYPE_PUBLISH_LAYOUT_REMOTE) ||
+				 (exportImportConfiguration.getType() ==
+					 ExportImportConfigurationConstants.
+						 TYPE_PUBLISH_PORTLET))) {
 
 				errorMessage = LanguageUtil.get(
 					locale,
@@ -1148,8 +1150,11 @@ public class StagingImpl implements Staging {
 
 	@Override
 	public String getSchedulerGroupName(String destinationName, long groupId) {
-		return destinationName.concat(StringPool.SLASH).concat(
-			String.valueOf(groupId));
+		return destinationName.concat(
+			StringPool.SLASH
+		).concat(
+			String.valueOf(groupId)
+		);
 	}
 
 	@Override
@@ -1847,8 +1852,8 @@ public class StagingImpl implements Staging {
 
 				if (!Validator.isBlank(name)) {
 					Map<String, String[]> parameterMap =
-						(Map<String, String[]>)publishLayoutRemoteSettingsMap.
-							get("parameterMap");
+						(Map<String, String[]>)
+							publishLayoutRemoteSettingsMap.get("parameterMap");
 
 					parameterMap.put("name", new String[] {name});
 				}
@@ -2972,7 +2977,7 @@ public class StagingImpl implements Staging {
 			userId, layoutSetBranchId, plid, layoutBranchId);
 	}
 
-	@Reference (unbind = "-")
+	@Reference(unbind = "-")
 	protected void setRecentLayoutRevisionLocalService(
 		RecentLayoutRevisionLocalService recentLayoutRevisionLocalService) {
 

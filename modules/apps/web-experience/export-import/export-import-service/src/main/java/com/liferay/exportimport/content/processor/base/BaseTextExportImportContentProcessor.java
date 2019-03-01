@@ -1661,8 +1661,7 @@ public class BaseTextExportImportContentProcessor
 						if (substring.startsWith(hostName)) {
 							if (content.regionMatches(
 									true, curBeginPos - _OFFSET_HREF_ATTRIBUTE,
-									"href=", 0,
-									5) ||
+									"href=", 0, 5) ||
 								content.regionMatches(
 									true, curBeginPos - _OFFSET_SRC_ATTRIBUTE,
 									"src=", 0, 4)) {
@@ -2037,9 +2036,8 @@ public class BaseTextExportImportContentProcessor
 				StringPool.SLASH;
 
 	protected static final String PUBLIC_GROUP_SERVLET_MAPPING =
-		PropsUtil.get(
-			PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING) +
-				StringPool.SLASH;
+		PropsUtil.get(PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING) +
+			StringPool.SLASH;
 
 	protected static final Pattern exportLinksToLayoutPattern = Pattern.compile(
 		"\\[([\\d]+)@(private(-group|-user)?|public)(@([\\d]+))?\\]");
