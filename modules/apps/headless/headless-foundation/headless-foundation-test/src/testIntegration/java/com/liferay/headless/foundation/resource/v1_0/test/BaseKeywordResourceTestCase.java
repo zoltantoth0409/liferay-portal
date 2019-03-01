@@ -44,7 +44,9 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -52,6 +54,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -94,27 +100,253 @@ public abstract class BaseKeywordResourceTestCase {
 
 	@Test
 	public void testDeleteKeyword() throws Exception {
-		Assert.assertTrue(true);
+		Keyword keyword = testDeleteKeyword_addKeyword();
+
+		assertResponseCode(200, invokeDeleteKeywordResponse(keyword.getId()));
+
+		assertResponseCode(404, invokeGetKeywordResponse(keyword.getId()));
 	}
 
 	@Test
 	public void testGetContentSpaceKeywordsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long contentSpaceId =
+			testGetContentSpaceKeywordsPage_getContentSpaceId();
+
+		Keyword keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+		Keyword keyword2 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+
+		Page<Keyword> page = invokeGetContentSpaceKeywordsPage(
+			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(keyword1, keyword2), (List<Keyword>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceKeywordsPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceKeywordsPage_getContentSpaceId();
+
+		Keyword keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+
+		Thread.sleep(1000);
+
+		Keyword keyword2 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+
+		for (EntityField entityField : entityFields) {
+			Page<Keyword> page = invokeGetContentSpaceKeywordsPage(
+				contentSpaceId, getFilterString(entityField, "eq", keyword1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(keyword1),
+				(List<Keyword>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceKeywordsPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceKeywordsPage_getContentSpaceId();
+
+		Keyword keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+		Keyword keyword2 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+
+		for (EntityField entityField : entityFields) {
+			Page<Keyword> page = invokeGetContentSpaceKeywordsPage(
+				contentSpaceId, getFilterString(entityField, "eq", keyword1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(keyword1),
+				(List<Keyword>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceKeywordsPageWithPagination()
+		throws Exception {
+
+		Long contentSpaceId =
+			testGetContentSpaceKeywordsPage_getContentSpaceId();
+
+		Keyword keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+		Keyword keyword2 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+		Keyword keyword3 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+
+		Page<Keyword> page1 = invokeGetContentSpaceKeywordsPage(
+			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+
+		List<Keyword> keywords1 = (List<Keyword>)page1.getItems();
+
+		Assert.assertEquals(keywords1.toString(), 2, keywords1.size());
+
+		Page<Keyword> page2 = invokeGetContentSpaceKeywordsPage(
+			contentSpaceId, (String)null, Pagination.of(2, 2), (String)null);
+
+		List<Keyword> keywords2 = (List<Keyword>)page2.getItems();
+
+		Assert.assertEquals(keywords2.toString(), 1, keywords2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(keyword1, keyword2, keyword3),
+			new ArrayList<Keyword>() {
+				{
+					addAll(keywords1);
+					addAll(keywords2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetContentSpaceKeywordsPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceKeywordsPage_getContentSpaceId();
+
+		Keyword keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+		Keyword keyword2 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, randomKeyword());
+
+		for (EntityField entityField : entityFields) {
+			Page<Keyword> ascPage = invokeGetContentSpaceKeywordsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(keyword1, keyword2),
+				(List<Keyword>)ascPage.getItems());
+
+			Page<Keyword> descPage = invokeGetContentSpaceKeywordsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(keyword2, keyword1),
+				(List<Keyword>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceKeywordsPageWithSortString()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceKeywordsPage_getContentSpaceId();
+
+		Keyword keyword1 = randomKeyword();
+		Keyword keyword2 = randomKeyword();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(keyword1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(keyword2, entityField.getName(), "Bbb");
+		}
+
+		keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, keyword1);
+		keyword2 = testGetContentSpaceKeywordsPage_addKeyword(
+			contentSpaceId, keyword2);
+
+		for (EntityField entityField : entityFields) {
+			Page<Keyword> ascPage = invokeGetContentSpaceKeywordsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(keyword1, keyword2),
+				(List<Keyword>)ascPage.getItems());
+
+			Page<Keyword> descPage = invokeGetContentSpaceKeywordsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(keyword2, keyword1),
+				(List<Keyword>)descPage.getItems());
+		}
 	}
 
 	@Test
 	public void testGetKeyword() throws Exception {
-		Assert.assertTrue(true);
+		Keyword postKeyword = testGetKeyword_addKeyword();
+
+		Keyword getKeyword = invokeGetKeyword(postKeyword.getId());
+
+		assertEquals(postKeyword, getKeyword);
+		assertValid(getKeyword);
 	}
 
 	@Test
 	public void testPostContentSpaceKeyword() throws Exception {
-		Assert.assertTrue(true);
+		Keyword randomKeyword = randomKeyword();
+
+		Keyword postKeyword = testPostContentSpaceKeyword_addKeyword(
+			randomKeyword);
+
+		assertEquals(randomKeyword, postKeyword);
+		assertValid(postKeyword);
 	}
 
 	@Test
 	public void testPutKeyword() throws Exception {
-		Assert.assertTrue(true);
+		Keyword postKeyword = testPutKeyword_addKeyword();
+
+		Keyword randomKeyword = randomKeyword();
+
+		Keyword putKeyword = invokePutKeyword(
+			postKeyword.getId(), randomKeyword);
+
+		assertEquals(randomKeyword, putKeyword);
+		assertValid(putKeyword);
+
+		Keyword getKeyword = invokeGetKeyword(putKeyword.getId());
+
+		assertEquals(randomKeyword, getKeyword);
+		assertValid(getKeyword);
 	}
 
 	protected void assertEquals(Keyword keyword1, Keyword keyword2) {
@@ -164,6 +396,11 @@ public abstract class BaseKeywordResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Keyword keyword) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<Keyword> page) {
 		boolean valid = false;
 
@@ -198,7 +435,8 @@ public abstract class BaseKeywordResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_keywordResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -453,6 +691,42 @@ public abstract class BaseKeywordResourceTestCase {
 				name = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected Keyword testDeleteKeyword_addKeyword() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Keyword testGetContentSpaceKeywordsPage_addKeyword(
+			Long contentSpaceId, Keyword keyword)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetContentSpaceKeywordsPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
+	}
+
+	protected Keyword testGetKeyword_addKeyword() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Keyword testPostContentSpaceKeyword_addKeyword(Keyword keyword)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Keyword testPutKeyword_addKeyword() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

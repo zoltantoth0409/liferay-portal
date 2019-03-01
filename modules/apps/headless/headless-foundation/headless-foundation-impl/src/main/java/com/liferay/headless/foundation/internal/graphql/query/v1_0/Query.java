@@ -71,21 +71,6 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public PostalAddress getAddress(@GraphQLName("address-id") Long addressId)
-		throws Exception {
-
-		PostalAddressResource postalAddressResource =
-			_createPostalAddressResource();
-
-		postalAddressResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
-		return postalAddressResource.getAddress(addressId);
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public Category getCategory(@GraphQLName("category-id") Long categoryId)
 		throws Exception {
 
@@ -420,6 +405,22 @@ public class Query {
 				CompanyThreadLocal.getCompanyId()));
 
 		return phoneResource.getPhone(phoneId);
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public PostalAddress getPostalAddress(
+			@GraphQLName("postal-address-id") Long postalAddressId)
+		throws Exception {
+
+		PostalAddressResource postalAddressResource =
+			_createPostalAddressResource();
+
+		postalAddressResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return postalAddressResource.getPostalAddress(postalAddressId);
 	}
 
 	@GraphQLField

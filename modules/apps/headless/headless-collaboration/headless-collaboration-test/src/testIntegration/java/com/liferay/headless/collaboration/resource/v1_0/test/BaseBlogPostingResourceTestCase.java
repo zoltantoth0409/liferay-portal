@@ -44,7 +44,9 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -52,6 +54,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -94,17 +100,241 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	@Test
 	public void testDeleteBlogPosting() throws Exception {
-		Assert.assertTrue(true);
+		BlogPosting blogPosting = testDeleteBlogPosting_addBlogPosting();
+
+		assertResponseCode(
+			200, invokeDeleteBlogPostingResponse(blogPosting.getId()));
+
+		assertResponseCode(
+			404, invokeGetBlogPostingResponse(blogPosting.getId()));
 	}
 
 	@Test
 	public void testGetBlogPosting() throws Exception {
-		Assert.assertTrue(true);
+		BlogPosting postBlogPosting = testGetBlogPosting_addBlogPosting();
+
+		BlogPosting getBlogPosting = invokeGetBlogPosting(
+			postBlogPosting.getId());
+
+		assertEquals(postBlogPosting, getBlogPosting);
+		assertValid(getBlogPosting);
 	}
 
 	@Test
 	public void testGetContentSpaceBlogPostingsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long contentSpaceId =
+			testGetContentSpaceBlogPostingsPage_getContentSpaceId();
+
+		BlogPosting blogPosting1 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+		BlogPosting blogPosting2 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+
+		Page<BlogPosting> page = invokeGetContentSpaceBlogPostingsPage(
+			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(blogPosting1, blogPosting2),
+			(List<BlogPosting>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceBlogPostingsPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceBlogPostingsPage_getContentSpaceId();
+
+		BlogPosting blogPosting1 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+
+		Thread.sleep(1000);
+
+		BlogPosting blogPosting2 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+
+		for (EntityField entityField : entityFields) {
+			Page<BlogPosting> page = invokeGetContentSpaceBlogPostingsPage(
+				contentSpaceId,
+				getFilterString(entityField, "eq", blogPosting1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(blogPosting1),
+				(List<BlogPosting>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceBlogPostingsPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceBlogPostingsPage_getContentSpaceId();
+
+		BlogPosting blogPosting1 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+		BlogPosting blogPosting2 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+
+		for (EntityField entityField : entityFields) {
+			Page<BlogPosting> page = invokeGetContentSpaceBlogPostingsPage(
+				contentSpaceId,
+				getFilterString(entityField, "eq", blogPosting1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(blogPosting1),
+				(List<BlogPosting>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceBlogPostingsPageWithPagination()
+		throws Exception {
+
+		Long contentSpaceId =
+			testGetContentSpaceBlogPostingsPage_getContentSpaceId();
+
+		BlogPosting blogPosting1 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+		BlogPosting blogPosting2 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+		BlogPosting blogPosting3 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+
+		Page<BlogPosting> page1 = invokeGetContentSpaceBlogPostingsPage(
+			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+
+		List<BlogPosting> blogPostings1 = (List<BlogPosting>)page1.getItems();
+
+		Assert.assertEquals(blogPostings1.toString(), 2, blogPostings1.size());
+
+		Page<BlogPosting> page2 = invokeGetContentSpaceBlogPostingsPage(
+			contentSpaceId, (String)null, Pagination.of(2, 2), (String)null);
+
+		List<BlogPosting> blogPostings2 = (List<BlogPosting>)page2.getItems();
+
+		Assert.assertEquals(blogPostings2.toString(), 1, blogPostings2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(blogPosting1, blogPosting2, blogPosting3),
+			new ArrayList<BlogPosting>() {
+				{
+					addAll(blogPostings1);
+					addAll(blogPostings2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetContentSpaceBlogPostingsPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceBlogPostingsPage_getContentSpaceId();
+
+		BlogPosting blogPosting1 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+		BlogPosting blogPosting2 =
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				contentSpaceId, randomBlogPosting());
+
+		for (EntityField entityField : entityFields) {
+			Page<BlogPosting> ascPage = invokeGetContentSpaceBlogPostingsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(blogPosting1, blogPosting2),
+				(List<BlogPosting>)ascPage.getItems());
+
+			Page<BlogPosting> descPage = invokeGetContentSpaceBlogPostingsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(blogPosting2, blogPosting1),
+				(List<BlogPosting>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceBlogPostingsPageWithSortString()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceBlogPostingsPage_getContentSpaceId();
+
+		BlogPosting blogPosting1 = randomBlogPosting();
+		BlogPosting blogPosting2 = randomBlogPosting();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(blogPosting1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(blogPosting2, entityField.getName(), "Bbb");
+		}
+
+		blogPosting1 = testGetContentSpaceBlogPostingsPage_addBlogPosting(
+			contentSpaceId, blogPosting1);
+		blogPosting2 = testGetContentSpaceBlogPostingsPage_addBlogPosting(
+			contentSpaceId, blogPosting2);
+
+		for (EntityField entityField : entityFields) {
+			Page<BlogPosting> ascPage = invokeGetContentSpaceBlogPostingsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(blogPosting1, blogPosting2),
+				(List<BlogPosting>)ascPage.getItems());
+
+			Page<BlogPosting> descPage = invokeGetContentSpaceBlogPostingsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(blogPosting2, blogPosting1),
+				(List<BlogPosting>)descPage.getItems());
+		}
 	}
 
 	@Test
@@ -114,12 +344,32 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	@Test
 	public void testPostContentSpaceBlogPosting() throws Exception {
-		Assert.assertTrue(true);
+		BlogPosting randomBlogPosting = randomBlogPosting();
+
+		BlogPosting postBlogPosting =
+			testPostContentSpaceBlogPosting_addBlogPosting(randomBlogPosting);
+
+		assertEquals(randomBlogPosting, postBlogPosting);
+		assertValid(postBlogPosting);
 	}
 
 	@Test
 	public void testPutBlogPosting() throws Exception {
-		Assert.assertTrue(true);
+		BlogPosting postBlogPosting = testPutBlogPosting_addBlogPosting();
+
+		BlogPosting randomBlogPosting = randomBlogPosting();
+
+		BlogPosting putBlogPosting = invokePutBlogPosting(
+			postBlogPosting.getId(), randomBlogPosting);
+
+		assertEquals(randomBlogPosting, putBlogPosting);
+		assertValid(putBlogPosting);
+
+		BlogPosting getBlogPosting = invokeGetBlogPosting(
+			putBlogPosting.getId());
+
+		assertEquals(randomBlogPosting, getBlogPosting);
+		assertValid(getBlogPosting);
 	}
 
 	protected void assertEquals(
@@ -171,6 +421,11 @@ public abstract class BaseBlogPostingResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(BlogPosting blogPosting) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<BlogPosting> page) {
 		boolean valid = false;
 
@@ -207,7 +462,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_blogPostingResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -595,6 +851,45 @@ public abstract class BaseBlogPostingResourceTestCase {
 				imageId = RandomTestUtil.randomLong();
 			}
 		};
+	}
+
+	protected BlogPosting testDeleteBlogPosting_addBlogPosting()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected BlogPosting testGetBlogPosting_addBlogPosting() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected BlogPosting testGetContentSpaceBlogPostingsPage_addBlogPosting(
+			Long contentSpaceId, BlogPosting blogPosting)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetContentSpaceBlogPostingsPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
+	}
+
+	protected BlogPosting testPostContentSpaceBlogPosting_addBlogPosting(
+			BlogPosting blogPosting)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected BlogPosting testPutBlogPosting_addBlogPosting() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

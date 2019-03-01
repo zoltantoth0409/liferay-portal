@@ -31,12 +31,11 @@ import javax.annotation.Generated;
 @Generated("")
 public interface StructuredContentImageResource {
 
-	public boolean deleteStructuredContentContentDocument(
-			Long structuredContentId, Long contentDocumentId)
+	public boolean deleteStructuredContentImage(Long structuredContentImageId)
 		throws Exception;
 
-	public StructuredContentImage getStructuredContentContentDocument(
-			Long structuredContentId, Long contentDocumentId)
+	public StructuredContentImage getStructuredContentImage(
+			Long structuredContentImageId)
 		throws Exception;
 
 	public Page<StructuredContentImage>

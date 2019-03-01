@@ -44,6 +44,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +53,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -93,22 +96,94 @@ public abstract class BaseFormRecordResourceTestCase {
 
 	@Test
 	public void testGetFormFormRecordsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long formId = testGetFormFormRecordsPage_getFormId();
+
+		FormRecord formRecord1 = testGetFormFormRecordsPage_addFormRecord(
+			formId, randomFormRecord());
+		FormRecord formRecord2 = testGetFormFormRecordsPage_addFormRecord(
+			formId, randomFormRecord());
+
+		Page<FormRecord> page = invokeGetFormFormRecordsPage(
+			formId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(formRecord1, formRecord2),
+			(List<FormRecord>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetFormFormRecordsPageWithPagination() throws Exception {
+		Long formId = testGetFormFormRecordsPage_getFormId();
+
+		FormRecord formRecord1 = testGetFormFormRecordsPage_addFormRecord(
+			formId, randomFormRecord());
+		FormRecord formRecord2 = testGetFormFormRecordsPage_addFormRecord(
+			formId, randomFormRecord());
+		FormRecord formRecord3 = testGetFormFormRecordsPage_addFormRecord(
+			formId, randomFormRecord());
+
+		Page<FormRecord> page1 = invokeGetFormFormRecordsPage(
+			formId, Pagination.of(2, 1));
+
+		List<FormRecord> formRecords1 = (List<FormRecord>)page1.getItems();
+
+		Assert.assertEquals(formRecords1.toString(), 2, formRecords1.size());
+
+		Page<FormRecord> page2 = invokeGetFormFormRecordsPage(
+			formId, Pagination.of(2, 2));
+
+		List<FormRecord> formRecords2 = (List<FormRecord>)page2.getItems();
+
+		Assert.assertEquals(formRecords2.toString(), 1, formRecords2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(formRecord1, formRecord2, formRecord3),
+			new ArrayList<FormRecord>() {
+				{
+					addAll(formRecords1);
+					addAll(formRecords2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetFormRecord() throws Exception {
-		Assert.assertTrue(true);
+		FormRecord postFormRecord = testGetFormRecord_addFormRecord();
+
+		FormRecord getFormRecord = invokeGetFormRecord(postFormRecord.getId());
+
+		assertEquals(postFormRecord, getFormRecord);
+		assertValid(getFormRecord);
 	}
 
 	@Test
 	public void testPostFormFormRecord() throws Exception {
-		Assert.assertTrue(true);
+		FormRecord randomFormRecord = randomFormRecord();
+
+		FormRecord postFormRecord = testPostFormFormRecord_addFormRecord(
+			randomFormRecord);
+
+		assertEquals(randomFormRecord, postFormRecord);
+		assertValid(postFormRecord);
 	}
 
 	@Test
 	public void testPutFormRecord() throws Exception {
-		Assert.assertTrue(true);
+		FormRecord postFormRecord = testPutFormRecord_addFormRecord();
+
+		FormRecord randomFormRecord = randomFormRecord();
+
+		FormRecord putFormRecord = invokePutFormRecord(
+			postFormRecord.getId(), randomFormRecord);
+
+		assertEquals(randomFormRecord, putFormRecord);
+		assertValid(putFormRecord);
+
+		FormRecord getFormRecord = invokeGetFormRecord(putFormRecord.getId());
+
+		assertEquals(randomFormRecord, getFormRecord);
+		assertValid(getFormRecord);
 	}
 
 	protected void assertEquals(
@@ -160,6 +235,11 @@ public abstract class BaseFormRecordResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(FormRecord formRecord) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<FormRecord> page) {
 		boolean valid = false;
 
@@ -194,7 +274,8 @@ public abstract class BaseFormRecordResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_formRecordResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -428,6 +509,37 @@ public abstract class BaseFormRecordResourceTestCase {
 				id = RandomTestUtil.randomLong();
 			}
 		};
+	}
+
+	protected FormRecord testGetFormFormRecordsPage_addFormRecord(
+			Long formId, FormRecord formRecord)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetFormFormRecordsPage_getFormId() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected FormRecord testGetFormRecord_addFormRecord() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected FormRecord testPostFormFormRecord_addFormRecord(
+			FormRecord formRecord)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected FormRecord testPutFormRecord_addFormRecord() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

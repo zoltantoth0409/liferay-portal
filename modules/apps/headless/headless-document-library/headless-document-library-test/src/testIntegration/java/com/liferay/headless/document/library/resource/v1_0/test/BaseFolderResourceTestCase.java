@@ -43,6 +43,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -93,22 +96,129 @@ public abstract class BaseFolderResourceTestCase {
 
 	@Test
 	public void testDeleteFolder() throws Exception {
-		Assert.assertTrue(true);
+		Folder folder = testDeleteFolder_addFolder();
+
+		assertResponseCode(200, invokeDeleteFolderResponse(folder.getId()));
+
+		assertResponseCode(404, invokeGetFolderResponse(folder.getId()));
 	}
 
 	@Test
 	public void testGetContentSpaceFoldersPage() throws Exception {
-		Assert.assertTrue(true);
+		Long contentSpaceId =
+			testGetContentSpaceFoldersPage_getContentSpaceId();
+
+		Folder folder1 = testGetContentSpaceFoldersPage_addFolder(
+			contentSpaceId, randomFolder());
+		Folder folder2 = testGetContentSpaceFoldersPage_addFolder(
+			contentSpaceId, randomFolder());
+
+		Page<Folder> page = invokeGetContentSpaceFoldersPage(
+			contentSpaceId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(folder1, folder2), (List<Folder>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceFoldersPageWithPagination()
+		throws Exception {
+
+		Long contentSpaceId =
+			testGetContentSpaceFoldersPage_getContentSpaceId();
+
+		Folder folder1 = testGetContentSpaceFoldersPage_addFolder(
+			contentSpaceId, randomFolder());
+		Folder folder2 = testGetContentSpaceFoldersPage_addFolder(
+			contentSpaceId, randomFolder());
+		Folder folder3 = testGetContentSpaceFoldersPage_addFolder(
+			contentSpaceId, randomFolder());
+
+		Page<Folder> page1 = invokeGetContentSpaceFoldersPage(
+			contentSpaceId, Pagination.of(2, 1));
+
+		List<Folder> folders1 = (List<Folder>)page1.getItems();
+
+		Assert.assertEquals(folders1.toString(), 2, folders1.size());
+
+		Page<Folder> page2 = invokeGetContentSpaceFoldersPage(
+			contentSpaceId, Pagination.of(2, 2));
+
+		List<Folder> folders2 = (List<Folder>)page2.getItems();
+
+		Assert.assertEquals(folders2.toString(), 1, folders2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(folder1, folder2, folder3),
+			new ArrayList<Folder>() {
+				{
+					addAll(folders1);
+					addAll(folders2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetFolder() throws Exception {
-		Assert.assertTrue(true);
+		Folder postFolder = testGetFolder_addFolder();
+
+		Folder getFolder = invokeGetFolder(postFolder.getId());
+
+		assertEquals(postFolder, getFolder);
+		assertValid(getFolder);
 	}
 
 	@Test
 	public void testGetFolderFoldersPage() throws Exception {
-		Assert.assertTrue(true);
+		Long folderId = testGetFolderFoldersPage_getFolderId();
+
+		Folder folder1 = testGetFolderFoldersPage_addFolder(
+			folderId, randomFolder());
+		Folder folder2 = testGetFolderFoldersPage_addFolder(
+			folderId, randomFolder());
+
+		Page<Folder> page = invokeGetFolderFoldersPage(
+			folderId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(folder1, folder2), (List<Folder>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetFolderFoldersPageWithPagination() throws Exception {
+		Long folderId = testGetFolderFoldersPage_getFolderId();
+
+		Folder folder1 = testGetFolderFoldersPage_addFolder(
+			folderId, randomFolder());
+		Folder folder2 = testGetFolderFoldersPage_addFolder(
+			folderId, randomFolder());
+		Folder folder3 = testGetFolderFoldersPage_addFolder(
+			folderId, randomFolder());
+
+		Page<Folder> page1 = invokeGetFolderFoldersPage(
+			folderId, Pagination.of(2, 1));
+
+		List<Folder> folders1 = (List<Folder>)page1.getItems();
+
+		Assert.assertEquals(folders1.toString(), 2, folders1.size());
+
+		Page<Folder> page2 = invokeGetFolderFoldersPage(
+			folderId, Pagination.of(2, 2));
+
+		List<Folder> folders2 = (List<Folder>)page2.getItems();
+
+		Assert.assertEquals(folders2.toString(), 1, folders2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(folder1, folder2, folder3),
+			new ArrayList<Folder>() {
+				{
+					addAll(folders1);
+					addAll(folders2);
+				}
+			});
 	}
 
 	@Test
@@ -118,17 +228,39 @@ public abstract class BaseFolderResourceTestCase {
 
 	@Test
 	public void testPostContentSpaceFolder() throws Exception {
-		Assert.assertTrue(true);
+		Folder randomFolder = randomFolder();
+
+		Folder postFolder = testPostContentSpaceFolder_addFolder(randomFolder);
+
+		assertEquals(randomFolder, postFolder);
+		assertValid(postFolder);
 	}
 
 	@Test
 	public void testPostFolderFolder() throws Exception {
-		Assert.assertTrue(true);
+		Folder randomFolder = randomFolder();
+
+		Folder postFolder = testPostFolderFolder_addFolder(randomFolder);
+
+		assertEquals(randomFolder, postFolder);
+		assertValid(postFolder);
 	}
 
 	@Test
 	public void testPutFolder() throws Exception {
-		Assert.assertTrue(true);
+		Folder postFolder = testPutFolder_addFolder();
+
+		Folder randomFolder = randomFolder();
+
+		Folder putFolder = invokePutFolder(postFolder.getId(), randomFolder);
+
+		assertEquals(randomFolder, putFolder);
+		assertValid(putFolder);
+
+		Folder getFolder = invokeGetFolder(putFolder.getId());
+
+		assertEquals(randomFolder, getFolder);
+		assertValid(getFolder);
 	}
 
 	protected void assertEquals(Folder folder1, Folder folder2) {
@@ -175,6 +307,11 @@ public abstract class BaseFolderResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Folder folder) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<Folder> page) {
 		boolean valid = false;
 
@@ -209,7 +346,8 @@ public abstract class BaseFolderResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_folderResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -570,6 +708,62 @@ public abstract class BaseFolderResourceTestCase {
 				name = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected Folder testDeleteFolder_addFolder() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Folder testGetContentSpaceFoldersPage_addFolder(
+			Long contentSpaceId, Folder folder)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetContentSpaceFoldersPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
+	}
+
+	protected Folder testGetFolder_addFolder() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Folder testGetFolderFoldersPage_addFolder(
+			Long folderId, Folder folder)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetFolderFoldersPage_getFolderId() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Folder testPostContentSpaceFolder_addFolder(Folder folder)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Folder testPostFolderFolder_addFolder(Folder folder)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Folder testPutFolder_addFolder() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

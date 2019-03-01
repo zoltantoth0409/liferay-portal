@@ -43,6 +43,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -93,12 +96,75 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 	@Test
 	public void testGetRoleWorkflowTasksPage() throws Exception {
-		Assert.assertTrue(true);
+		Long roleId = testGetRoleWorkflowTasksPage_getRoleId();
+
+		WorkflowTask workflowTask1 =
+			testGetRoleWorkflowTasksPage_addWorkflowTask(
+				roleId, randomWorkflowTask());
+		WorkflowTask workflowTask2 =
+			testGetRoleWorkflowTasksPage_addWorkflowTask(
+				roleId, randomWorkflowTask());
+
+		Page<WorkflowTask> page = invokeGetRoleWorkflowTasksPage(
+			roleId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(workflowTask1, workflowTask2),
+			(List<WorkflowTask>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetRoleWorkflowTasksPageWithPagination() throws Exception {
+		Long roleId = testGetRoleWorkflowTasksPage_getRoleId();
+
+		WorkflowTask workflowTask1 =
+			testGetRoleWorkflowTasksPage_addWorkflowTask(
+				roleId, randomWorkflowTask());
+		WorkflowTask workflowTask2 =
+			testGetRoleWorkflowTasksPage_addWorkflowTask(
+				roleId, randomWorkflowTask());
+		WorkflowTask workflowTask3 =
+			testGetRoleWorkflowTasksPage_addWorkflowTask(
+				roleId, randomWorkflowTask());
+
+		Page<WorkflowTask> page1 = invokeGetRoleWorkflowTasksPage(
+			roleId, Pagination.of(2, 1));
+
+		List<WorkflowTask> workflowTasks1 =
+			(List<WorkflowTask>)page1.getItems();
+
+		Assert.assertEquals(
+			workflowTasks1.toString(), 2, workflowTasks1.size());
+
+		Page<WorkflowTask> page2 = invokeGetRoleWorkflowTasksPage(
+			roleId, Pagination.of(2, 2));
+
+		List<WorkflowTask> workflowTasks2 =
+			(List<WorkflowTask>)page2.getItems();
+
+		Assert.assertEquals(
+			workflowTasks2.toString(), 1, workflowTasks2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(workflowTask1, workflowTask2, workflowTask3),
+			new ArrayList<WorkflowTask>() {
+				{
+					addAll(workflowTasks1);
+					addAll(workflowTasks2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetWorkflowTask() throws Exception {
-		Assert.assertTrue(true);
+		WorkflowTask postWorkflowTask = testGetWorkflowTask_addWorkflowTask();
+
+		WorkflowTask getWorkflowTask = invokeGetWorkflowTask(
+			postWorkflowTask.getId());
+
+		assertEquals(postWorkflowTask, getWorkflowTask);
+		assertValid(getWorkflowTask);
 	}
 
 	@Test
@@ -108,22 +174,49 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 	@Test
 	public void testPostWorkflowTaskAssignToMe() throws Exception {
-		Assert.assertTrue(true);
+		WorkflowTask randomWorkflowTask = randomWorkflowTask();
+
+		WorkflowTask postWorkflowTask =
+			testPostWorkflowTaskAssignToMe_addWorkflowTask(randomWorkflowTask);
+
+		assertEquals(randomWorkflowTask, postWorkflowTask);
+		assertValid(postWorkflowTask);
 	}
 
 	@Test
 	public void testPostWorkflowTaskAssignToUser() throws Exception {
-		Assert.assertTrue(true);
+		WorkflowTask randomWorkflowTask = randomWorkflowTask();
+
+		WorkflowTask postWorkflowTask =
+			testPostWorkflowTaskAssignToUser_addWorkflowTask(
+				randomWorkflowTask);
+
+		assertEquals(randomWorkflowTask, postWorkflowTask);
+		assertValid(postWorkflowTask);
 	}
 
 	@Test
 	public void testPostWorkflowTaskChangeTransition() throws Exception {
-		Assert.assertTrue(true);
+		WorkflowTask randomWorkflowTask = randomWorkflowTask();
+
+		WorkflowTask postWorkflowTask =
+			testPostWorkflowTaskChangeTransition_addWorkflowTask(
+				randomWorkflowTask);
+
+		assertEquals(randomWorkflowTask, postWorkflowTask);
+		assertValid(postWorkflowTask);
 	}
 
 	@Test
 	public void testPostWorkflowTaskUpdateDueDate() throws Exception {
-		Assert.assertTrue(true);
+		WorkflowTask randomWorkflowTask = randomWorkflowTask();
+
+		WorkflowTask postWorkflowTask =
+			testPostWorkflowTaskUpdateDueDate_addWorkflowTask(
+				randomWorkflowTask);
+
+		assertEquals(randomWorkflowTask, postWorkflowTask);
+		assertValid(postWorkflowTask);
 	}
 
 	protected void assertEquals(
@@ -193,6 +286,11 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(WorkflowTask workflowTask) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(
 		WorkflowTask workflowTask1, WorkflowTask workflowTask2) {
 
@@ -212,7 +310,8 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_workflowTaskResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -601,6 +700,58 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 				name = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected WorkflowTask testGetRoleWorkflowTasksPage_addWorkflowTask(
+			Long roleId, WorkflowTask workflowTask)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetRoleWorkflowTasksPage_getRoleId() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected WorkflowTask testGetWorkflowTask_addWorkflowTask()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected WorkflowTask testPostWorkflowTaskAssignToMe_addWorkflowTask(
+			WorkflowTask workflowTask)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected WorkflowTask testPostWorkflowTaskAssignToUser_addWorkflowTask(
+			WorkflowTask workflowTask)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected WorkflowTask testPostWorkflowTaskChangeTransition_addWorkflowTask(
+			WorkflowTask workflowTask)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected WorkflowTask testPostWorkflowTaskUpdateDueDate_addWorkflowTask(
+			WorkflowTask workflowTask)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

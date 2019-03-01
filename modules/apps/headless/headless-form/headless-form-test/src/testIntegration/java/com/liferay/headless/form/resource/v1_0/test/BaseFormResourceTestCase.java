@@ -44,6 +44,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +53,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -93,27 +96,94 @@ public abstract class BaseFormResourceTestCase {
 
 	@Test
 	public void testGetContentSpaceFormsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long contentSpaceId = testGetContentSpaceFormsPage_getContentSpaceId();
+
+		Form form1 = testGetContentSpaceFormsPage_addForm(
+			contentSpaceId, randomForm());
+		Form form2 = testGetContentSpaceFormsPage_addForm(
+			contentSpaceId, randomForm());
+
+		Page<Form> page = invokeGetContentSpaceFormsPage(
+			contentSpaceId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(form1, form2), (List<Form>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceFormsPageWithPagination() throws Exception {
+		Long contentSpaceId = testGetContentSpaceFormsPage_getContentSpaceId();
+
+		Form form1 = testGetContentSpaceFormsPage_addForm(
+			contentSpaceId, randomForm());
+		Form form2 = testGetContentSpaceFormsPage_addForm(
+			contentSpaceId, randomForm());
+		Form form3 = testGetContentSpaceFormsPage_addForm(
+			contentSpaceId, randomForm());
+
+		Page<Form> page1 = invokeGetContentSpaceFormsPage(
+			contentSpaceId, Pagination.of(2, 1));
+
+		List<Form> forms1 = (List<Form>)page1.getItems();
+
+		Assert.assertEquals(forms1.toString(), 2, forms1.size());
+
+		Page<Form> page2 = invokeGetContentSpaceFormsPage(
+			contentSpaceId, Pagination.of(2, 2));
+
+		List<Form> forms2 = (List<Form>)page2.getItems();
+
+		Assert.assertEquals(forms2.toString(), 1, forms2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(form1, form2, form3),
+			new ArrayList<Form>() {
+				{
+					addAll(forms1);
+					addAll(forms2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetForm() throws Exception {
-		Assert.assertTrue(true);
+		Form postForm = testGetForm_addForm();
+
+		Form getForm = invokeGetForm(postForm.getId());
+
+		assertEquals(postForm, getForm);
+		assertValid(getForm);
 	}
 
 	@Test
 	public void testGetFormFetchLatestDraft() throws Exception {
-		Assert.assertTrue(true);
+		Form postForm = testGetFormFetchLatestDraft_addForm();
+
+		Form getForm = invokeGetFormFetchLatestDraft(postForm.getId());
+
+		assertEquals(postForm, getForm);
+		assertValid(getForm);
 	}
 
 	@Test
 	public void testPostFormEvaluateContext() throws Exception {
-		Assert.assertTrue(true);
+		Form randomForm = randomForm();
+
+		Form postForm = testPostFormEvaluateContext_addForm(randomForm);
+
+		assertEquals(randomForm, postForm);
+		assertValid(postForm);
 	}
 
 	@Test
 	public void testPostFormUploadFile() throws Exception {
-		Assert.assertTrue(true);
+		Form randomForm = randomForm();
+
+		Form postForm = testPostFormUploadFile_addForm(randomForm);
+
+		assertEquals(randomForm, postForm);
+		assertValid(postForm);
 	}
 
 	protected void assertEquals(Form form1, Form form2) {
@@ -159,6 +229,11 @@ public abstract class BaseFormResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Form form) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<Form> page) {
 		boolean valid = false;
 
@@ -193,7 +268,8 @@ public abstract class BaseFormResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_formResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -485,6 +561,42 @@ public abstract class BaseFormResourceTestCase {
 				structureId = RandomTestUtil.randomLong();
 			}
 		};
+	}
+
+	protected Form testGetContentSpaceFormsPage_addForm(
+			Long contentSpaceId, Form form)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetContentSpaceFormsPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
+	}
+
+	protected Form testGetForm_addForm() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Form testGetFormFetchLatestDraft_addForm() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Form testPostFormEvaluateContext_addForm(Form form)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Form testPostFormUploadFile_addForm(Form form) throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

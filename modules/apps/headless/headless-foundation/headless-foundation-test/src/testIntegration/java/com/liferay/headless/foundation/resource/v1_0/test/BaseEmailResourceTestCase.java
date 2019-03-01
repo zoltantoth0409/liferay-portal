@@ -41,6 +41,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -91,12 +94,68 @@ public abstract class BaseEmailResourceTestCase {
 
 	@Test
 	public void testGetEmail() throws Exception {
-		Assert.assertTrue(true);
+		Email postEmail = testGetEmail_addEmail();
+
+		Email getEmail = invokeGetEmail(postEmail.getId());
+
+		assertEquals(postEmail, getEmail);
+		assertValid(getEmail);
 	}
 
 	@Test
 	public void testGetGenericParentEmailsPage() throws Exception {
-		Assert.assertTrue(true);
+		Object genericParentId =
+			testGetGenericParentEmailsPage_getGenericParentId();
+
+		Email email1 = testGetGenericParentEmailsPage_addEmail(
+			genericParentId, randomEmail());
+		Email email2 = testGetGenericParentEmailsPage_addEmail(
+			genericParentId, randomEmail());
+
+		Page<Email> page = invokeGetGenericParentEmailsPage(
+			genericParentId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(email1, email2), (List<Email>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetGenericParentEmailsPageWithPagination()
+		throws Exception {
+
+		Object genericParentId =
+			testGetGenericParentEmailsPage_getGenericParentId();
+
+		Email email1 = testGetGenericParentEmailsPage_addEmail(
+			genericParentId, randomEmail());
+		Email email2 = testGetGenericParentEmailsPage_addEmail(
+			genericParentId, randomEmail());
+		Email email3 = testGetGenericParentEmailsPage_addEmail(
+			genericParentId, randomEmail());
+
+		Page<Email> page1 = invokeGetGenericParentEmailsPage(
+			genericParentId, Pagination.of(2, 1));
+
+		List<Email> emails1 = (List<Email>)page1.getItems();
+
+		Assert.assertEquals(emails1.toString(), 2, emails1.size());
+
+		Page<Email> page2 = invokeGetGenericParentEmailsPage(
+			genericParentId, Pagination.of(2, 2));
+
+		List<Email> emails2 = (List<Email>)page2.getItems();
+
+		Assert.assertEquals(emails2.toString(), 1, emails2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(email1, email2, email3),
+			new ArrayList<Email>() {
+				{
+					addAll(emails1);
+					addAll(emails2);
+				}
+			});
 	}
 
 	protected void assertEquals(Email email1, Email email2) {
@@ -143,6 +202,11 @@ public abstract class BaseEmailResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Email email) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<Email> page) {
 		boolean valid = false;
 
@@ -177,7 +241,8 @@ public abstract class BaseEmailResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_emailResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -295,6 +360,26 @@ public abstract class BaseEmailResourceTestCase {
 				type = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected Email testGetEmail_addEmail() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Email testGetGenericParentEmailsPage_addEmail(
+			Object genericParentId, Email email)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Object testGetGenericParentEmailsPage_getGenericParentId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

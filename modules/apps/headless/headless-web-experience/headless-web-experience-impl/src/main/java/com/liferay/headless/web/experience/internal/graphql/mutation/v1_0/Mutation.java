@@ -58,17 +58,16 @@ public class Mutation {
 	}
 
 	@GraphQLInvokeDetached
-	public boolean deleteStructuredContentContentDocument(
-			@GraphQLName("structured-content-id") Long structuredContentId,
-			@GraphQLName("content-document-id") Long contentDocumentId)
+	public boolean deleteStructuredContentImage(
+			@GraphQLName("structured-content-image-id") Long
+				structuredContentImageId)
 		throws Exception {
 
 		StructuredContentImageResource structuredContentImageResource =
 			_createStructuredContentImageResource();
 
-		return structuredContentImageResource.
-			deleteStructuredContentContentDocument(
-				structuredContentId, contentDocumentId);
+		return structuredContentImageResource.deleteStructuredContentImage(
+			structuredContentImageId);
 	}
 
 	@GraphQLInvokeDetached

@@ -41,6 +41,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -91,12 +94,75 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 	@Test
 	public void testGetWorkflowLog() throws Exception {
-		Assert.assertTrue(true);
+		WorkflowLog postWorkflowLog = testGetWorkflowLog_addWorkflowLog();
+
+		WorkflowLog getWorkflowLog = invokeGetWorkflowLog(
+			postWorkflowLog.getId());
+
+		assertEquals(postWorkflowLog, getWorkflowLog);
+		assertValid(getWorkflowLog);
 	}
 
 	@Test
 	public void testGetWorkflowTaskWorkflowLogsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long workflowTaskId =
+			testGetWorkflowTaskWorkflowLogsPage_getWorkflowTaskId();
+
+		WorkflowLog workflowLog1 =
+			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
+				workflowTaskId, randomWorkflowLog());
+		WorkflowLog workflowLog2 =
+			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
+				workflowTaskId, randomWorkflowLog());
+
+		Page<WorkflowLog> page = invokeGetWorkflowTaskWorkflowLogsPage(
+			workflowTaskId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(workflowLog1, workflowLog2),
+			(List<WorkflowLog>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetWorkflowTaskWorkflowLogsPageWithPagination()
+		throws Exception {
+
+		Long workflowTaskId =
+			testGetWorkflowTaskWorkflowLogsPage_getWorkflowTaskId();
+
+		WorkflowLog workflowLog1 =
+			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
+				workflowTaskId, randomWorkflowLog());
+		WorkflowLog workflowLog2 =
+			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
+				workflowTaskId, randomWorkflowLog());
+		WorkflowLog workflowLog3 =
+			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
+				workflowTaskId, randomWorkflowLog());
+
+		Page<WorkflowLog> page1 = invokeGetWorkflowTaskWorkflowLogsPage(
+			workflowTaskId, Pagination.of(2, 1));
+
+		List<WorkflowLog> workflowLogs1 = (List<WorkflowLog>)page1.getItems();
+
+		Assert.assertEquals(workflowLogs1.toString(), 2, workflowLogs1.size());
+
+		Page<WorkflowLog> page2 = invokeGetWorkflowTaskWorkflowLogsPage(
+			workflowTaskId, Pagination.of(2, 2));
+
+		List<WorkflowLog> workflowLogs2 = (List<WorkflowLog>)page2.getItems();
+
+		Assert.assertEquals(workflowLogs2.toString(), 1, workflowLogs2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(workflowLog1, workflowLog2, workflowLog3),
+			new ArrayList<WorkflowLog>() {
+				{
+					addAll(workflowLogs1);
+					addAll(workflowLogs2);
+				}
+			});
 	}
 
 	protected void assertEquals(
@@ -165,6 +231,11 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(WorkflowLog workflowLog) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(
 		WorkflowLog workflowLog1, WorkflowLog workflowLog2) {
 
@@ -184,7 +255,8 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_workflowLogResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -377,6 +449,26 @@ public abstract class BaseWorkflowLogResourceTestCase {
 				type = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected WorkflowLog testGetWorkflowLog_addWorkflowLog() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected WorkflowLog testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
+			Long workflowTaskId, WorkflowLog workflowLog)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetWorkflowTaskWorkflowLogsPage_getWorkflowTaskId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

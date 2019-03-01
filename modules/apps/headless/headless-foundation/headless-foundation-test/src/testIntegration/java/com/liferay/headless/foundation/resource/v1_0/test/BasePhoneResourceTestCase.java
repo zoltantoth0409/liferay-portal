@@ -41,6 +41,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -91,12 +94,68 @@ public abstract class BasePhoneResourceTestCase {
 
 	@Test
 	public void testGetGenericParentPhonesPage() throws Exception {
-		Assert.assertTrue(true);
+		Object genericParentId =
+			testGetGenericParentPhonesPage_getGenericParentId();
+
+		Phone phone1 = testGetGenericParentPhonesPage_addPhone(
+			genericParentId, randomPhone());
+		Phone phone2 = testGetGenericParentPhonesPage_addPhone(
+			genericParentId, randomPhone());
+
+		Page<Phone> page = invokeGetGenericParentPhonesPage(
+			genericParentId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(phone1, phone2), (List<Phone>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetGenericParentPhonesPageWithPagination()
+		throws Exception {
+
+		Object genericParentId =
+			testGetGenericParentPhonesPage_getGenericParentId();
+
+		Phone phone1 = testGetGenericParentPhonesPage_addPhone(
+			genericParentId, randomPhone());
+		Phone phone2 = testGetGenericParentPhonesPage_addPhone(
+			genericParentId, randomPhone());
+		Phone phone3 = testGetGenericParentPhonesPage_addPhone(
+			genericParentId, randomPhone());
+
+		Page<Phone> page1 = invokeGetGenericParentPhonesPage(
+			genericParentId, Pagination.of(2, 1));
+
+		List<Phone> phones1 = (List<Phone>)page1.getItems();
+
+		Assert.assertEquals(phones1.toString(), 2, phones1.size());
+
+		Page<Phone> page2 = invokeGetGenericParentPhonesPage(
+			genericParentId, Pagination.of(2, 2));
+
+		List<Phone> phones2 = (List<Phone>)page2.getItems();
+
+		Assert.assertEquals(phones2.toString(), 1, phones2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(phone1, phone2, phone3),
+			new ArrayList<Phone>() {
+				{
+					addAll(phones1);
+					addAll(phones2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetPhone() throws Exception {
-		Assert.assertTrue(true);
+		Phone postPhone = testGetPhone_addPhone();
+
+		Phone getPhone = invokeGetPhone(postPhone.getId());
+
+		assertEquals(postPhone, getPhone);
+		assertValid(getPhone);
 	}
 
 	protected void assertEquals(List<Phone> phones1, List<Phone> phones2) {
@@ -160,6 +219,11 @@ public abstract class BasePhoneResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(Phone phone) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(Phone phone1, Phone phone2) {
 		if (phone1 == phone2) {
 			return true;
@@ -177,7 +241,8 @@ public abstract class BasePhoneResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_phoneResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -304,6 +369,26 @@ public abstract class BasePhoneResourceTestCase {
 				phoneType = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected Phone testGetGenericParentPhonesPage_addPhone(
+			Object genericParentId, Phone phone)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Object testGetGenericParentPhonesPage_getGenericParentId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Phone testGetPhone_addPhone() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

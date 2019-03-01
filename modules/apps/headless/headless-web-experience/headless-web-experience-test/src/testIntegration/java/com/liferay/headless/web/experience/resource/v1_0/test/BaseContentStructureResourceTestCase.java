@@ -43,7 +43,9 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -51,6 +53,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -93,12 +99,252 @@ public abstract class BaseContentStructureResourceTestCase {
 
 	@Test
 	public void testGetContentSpaceContentStructuresPage() throws Exception {
-		Assert.assertTrue(true);
+		Long contentSpaceId =
+			testGetContentSpaceContentStructuresPage_getContentSpaceId();
+
+		ContentStructure contentStructure1 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+		ContentStructure contentStructure2 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+
+		Page<ContentStructure> page =
+			invokeGetContentSpaceContentStructuresPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				(String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(contentStructure1, contentStructure2),
+			(List<ContentStructure>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceContentStructuresPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceContentStructuresPage_getContentSpaceId();
+
+		ContentStructure contentStructure1 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+
+		Thread.sleep(1000);
+
+		ContentStructure contentStructure2 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+
+		for (EntityField entityField : entityFields) {
+			Page<ContentStructure> page =
+				invokeGetContentSpaceContentStructuresPage(
+					contentSpaceId,
+					getFilterString(entityField, "eq", contentStructure1),
+					Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(contentStructure1),
+				(List<ContentStructure>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceContentStructuresPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceContentStructuresPage_getContentSpaceId();
+
+		ContentStructure contentStructure1 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+		ContentStructure contentStructure2 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+
+		for (EntityField entityField : entityFields) {
+			Page<ContentStructure> page =
+				invokeGetContentSpaceContentStructuresPage(
+					contentSpaceId,
+					getFilterString(entityField, "eq", contentStructure1),
+					Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(contentStructure1),
+				(List<ContentStructure>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceContentStructuresPageWithPagination()
+		throws Exception {
+
+		Long contentSpaceId =
+			testGetContentSpaceContentStructuresPage_getContentSpaceId();
+
+		ContentStructure contentStructure1 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+		ContentStructure contentStructure2 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+		ContentStructure contentStructure3 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+
+		Page<ContentStructure> page1 =
+			invokeGetContentSpaceContentStructuresPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				(String)null);
+
+		List<ContentStructure> contentStructures1 =
+			(List<ContentStructure>)page1.getItems();
+
+		Assert.assertEquals(
+			contentStructures1.toString(), 2, contentStructures1.size());
+
+		Page<ContentStructure> page2 =
+			invokeGetContentSpaceContentStructuresPage(
+				contentSpaceId, (String)null, Pagination.of(2, 2),
+				(String)null);
+
+		List<ContentStructure> contentStructures2 =
+			(List<ContentStructure>)page2.getItems();
+
+		Assert.assertEquals(
+			contentStructures2.toString(), 1, contentStructures2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(
+				contentStructure1, contentStructure2, contentStructure3),
+			new ArrayList<ContentStructure>() {
+				{
+					addAll(contentStructures1);
+					addAll(contentStructures2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetContentSpaceContentStructuresPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceContentStructuresPage_getContentSpaceId();
+
+		ContentStructure contentStructure1 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+		ContentStructure contentStructure2 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, randomContentStructure());
+
+		for (EntityField entityField : entityFields) {
+			Page<ContentStructure> ascPage =
+				invokeGetContentSpaceContentStructuresPage(
+					contentSpaceId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(contentStructure1, contentStructure2),
+				(List<ContentStructure>)ascPage.getItems());
+
+			Page<ContentStructure> descPage =
+				invokeGetContentSpaceContentStructuresPage(
+					contentSpaceId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(contentStructure2, contentStructure1),
+				(List<ContentStructure>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceContentStructuresPageWithSortString()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceContentStructuresPage_getContentSpaceId();
+
+		ContentStructure contentStructure1 = randomContentStructure();
+		ContentStructure contentStructure2 = randomContentStructure();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				contentStructure1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(
+				contentStructure2, entityField.getName(), "Bbb");
+		}
+
+		contentStructure1 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, contentStructure1);
+		contentStructure2 =
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				contentSpaceId, contentStructure2);
+
+		for (EntityField entityField : entityFields) {
+			Page<ContentStructure> ascPage =
+				invokeGetContentSpaceContentStructuresPage(
+					contentSpaceId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(contentStructure1, contentStructure2),
+				(List<ContentStructure>)ascPage.getItems());
+
+			Page<ContentStructure> descPage =
+				invokeGetContentSpaceContentStructuresPage(
+					contentSpaceId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(contentStructure2, contentStructure1),
+				(List<ContentStructure>)descPage.getItems());
+		}
 	}
 
 	@Test
 	public void testGetContentStructure() throws Exception {
-		Assert.assertTrue(true);
+		ContentStructure postContentStructure =
+			testGetContentStructure_addContentStructure();
+
+		ContentStructure getContentStructure = invokeGetContentStructure(
+			postContentStructure.getId());
+
+		assertEquals(postContentStructure, getContentStructure);
+		assertValid(getContentStructure);
 	}
 
 	protected void assertEquals(
@@ -156,6 +402,11 @@ public abstract class BaseContentStructureResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(ContentStructure contentStructure) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<ContentStructure> page) {
 		boolean valid = false;
 
@@ -193,7 +444,8 @@ public abstract class BaseContentStructureResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_contentStructureResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -363,6 +615,28 @@ public abstract class BaseContentStructureResourceTestCase {
 				name = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected ContentStructure
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				Long contentSpaceId, ContentStructure contentStructure)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetContentSpaceContentStructuresPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
+	}
+
+	protected ContentStructure testGetContentStructure_addContentStructure()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

@@ -43,6 +43,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -93,42 +96,240 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	@Test
 	public void testDeleteUserAccount() throws Exception {
-		Assert.assertTrue(true);
+		UserAccount userAccount = testDeleteUserAccount_addUserAccount();
+
+		assertResponseCode(
+			200, invokeDeleteUserAccountResponse(userAccount.getId()));
+
+		assertResponseCode(
+			404, invokeGetUserAccountResponse(userAccount.getId()));
 	}
 
 	@Test
 	public void testGetMyUserAccount() throws Exception {
-		Assert.assertTrue(true);
+		UserAccount postUserAccount = testGetMyUserAccount_addUserAccount();
+
+		UserAccount getUserAccount = invokeGetMyUserAccount(
+			postUserAccount.getId());
+
+		assertEquals(postUserAccount, getUserAccount);
+		assertValid(getUserAccount);
 	}
 
 	@Test
 	public void testGetOrganizationUserAccountsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long organizationId =
+			testGetOrganizationUserAccountsPage_getOrganizationId();
+
+		UserAccount userAccount1 =
+			testGetOrganizationUserAccountsPage_addUserAccount(
+				organizationId, randomUserAccount());
+		UserAccount userAccount2 =
+			testGetOrganizationUserAccountsPage_addUserAccount(
+				organizationId, randomUserAccount());
+
+		Page<UserAccount> page = invokeGetOrganizationUserAccountsPage(
+			organizationId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(userAccount1, userAccount2),
+			(List<UserAccount>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetOrganizationUserAccountsPageWithPagination()
+		throws Exception {
+
+		Long organizationId =
+			testGetOrganizationUserAccountsPage_getOrganizationId();
+
+		UserAccount userAccount1 =
+			testGetOrganizationUserAccountsPage_addUserAccount(
+				organizationId, randomUserAccount());
+		UserAccount userAccount2 =
+			testGetOrganizationUserAccountsPage_addUserAccount(
+				organizationId, randomUserAccount());
+		UserAccount userAccount3 =
+			testGetOrganizationUserAccountsPage_addUserAccount(
+				organizationId, randomUserAccount());
+
+		Page<UserAccount> page1 = invokeGetOrganizationUserAccountsPage(
+			organizationId, Pagination.of(2, 1));
+
+		List<UserAccount> userAccounts1 = (List<UserAccount>)page1.getItems();
+
+		Assert.assertEquals(userAccounts1.toString(), 2, userAccounts1.size());
+
+		Page<UserAccount> page2 = invokeGetOrganizationUserAccountsPage(
+			organizationId, Pagination.of(2, 2));
+
+		List<UserAccount> userAccounts2 = (List<UserAccount>)page2.getItems();
+
+		Assert.assertEquals(userAccounts2.toString(), 1, userAccounts2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(userAccount1, userAccount2, userAccount3),
+			new ArrayList<UserAccount>() {
+				{
+					addAll(userAccounts1);
+					addAll(userAccounts2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetUserAccount() throws Exception {
-		Assert.assertTrue(true);
+		UserAccount postUserAccount = testGetUserAccount_addUserAccount();
+
+		UserAccount getUserAccount = invokeGetUserAccount(
+			postUserAccount.getId());
+
+		assertEquals(postUserAccount, getUserAccount);
+		assertValid(getUserAccount);
 	}
 
 	@Test
 	public void testGetUserAccountsPage() throws Exception {
-		Assert.assertTrue(true);
+		String fullnamequery = testGetUserAccountsPage_getFullnamequery();
+
+		UserAccount userAccount1 = testGetUserAccountsPage_addUserAccount(
+			fullnamequery, randomUserAccount());
+		UserAccount userAccount2 = testGetUserAccountsPage_addUserAccount(
+			fullnamequery, randomUserAccount());
+
+		Page<UserAccount> page = invokeGetUserAccountsPage(
+			fullnamequery, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(userAccount1, userAccount2),
+			(List<UserAccount>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetUserAccountsPageWithPagination() throws Exception {
+		String fullnamequery = testGetUserAccountsPage_getFullnamequery();
+
+		UserAccount userAccount1 = testGetUserAccountsPage_addUserAccount(
+			fullnamequery, randomUserAccount());
+		UserAccount userAccount2 = testGetUserAccountsPage_addUserAccount(
+			fullnamequery, randomUserAccount());
+		UserAccount userAccount3 = testGetUserAccountsPage_addUserAccount(
+			fullnamequery, randomUserAccount());
+
+		Page<UserAccount> page1 = invokeGetUserAccountsPage(
+			fullnamequery, Pagination.of(2, 1));
+
+		List<UserAccount> userAccounts1 = (List<UserAccount>)page1.getItems();
+
+		Assert.assertEquals(userAccounts1.toString(), 2, userAccounts1.size());
+
+		Page<UserAccount> page2 = invokeGetUserAccountsPage(
+			fullnamequery, Pagination.of(2, 2));
+
+		List<UserAccount> userAccounts2 = (List<UserAccount>)page2.getItems();
+
+		Assert.assertEquals(userAccounts2.toString(), 1, userAccounts2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(userAccount1, userAccount2, userAccount3),
+			new ArrayList<UserAccount>() {
+				{
+					addAll(userAccounts1);
+					addAll(userAccounts2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetWebSiteUserAccountsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long webSiteId = testGetWebSiteUserAccountsPage_getWebSiteId();
+
+		UserAccount userAccount1 =
+			testGetWebSiteUserAccountsPage_addUserAccount(
+				webSiteId, randomUserAccount());
+		UserAccount userAccount2 =
+			testGetWebSiteUserAccountsPage_addUserAccount(
+				webSiteId, randomUserAccount());
+
+		Page<UserAccount> page = invokeGetWebSiteUserAccountsPage(
+			webSiteId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(userAccount1, userAccount2),
+			(List<UserAccount>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetWebSiteUserAccountsPageWithPagination()
+		throws Exception {
+
+		Long webSiteId = testGetWebSiteUserAccountsPage_getWebSiteId();
+
+		UserAccount userAccount1 =
+			testGetWebSiteUserAccountsPage_addUserAccount(
+				webSiteId, randomUserAccount());
+		UserAccount userAccount2 =
+			testGetWebSiteUserAccountsPage_addUserAccount(
+				webSiteId, randomUserAccount());
+		UserAccount userAccount3 =
+			testGetWebSiteUserAccountsPage_addUserAccount(
+				webSiteId, randomUserAccount());
+
+		Page<UserAccount> page1 = invokeGetWebSiteUserAccountsPage(
+			webSiteId, Pagination.of(2, 1));
+
+		List<UserAccount> userAccounts1 = (List<UserAccount>)page1.getItems();
+
+		Assert.assertEquals(userAccounts1.toString(), 2, userAccounts1.size());
+
+		Page<UserAccount> page2 = invokeGetWebSiteUserAccountsPage(
+			webSiteId, Pagination.of(2, 2));
+
+		List<UserAccount> userAccounts2 = (List<UserAccount>)page2.getItems();
+
+		Assert.assertEquals(userAccounts2.toString(), 1, userAccounts2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(userAccount1, userAccount2, userAccount3),
+			new ArrayList<UserAccount>() {
+				{
+					addAll(userAccounts1);
+					addAll(userAccounts2);
+				}
+			});
 	}
 
 	@Test
 	public void testPostUserAccount() throws Exception {
-		Assert.assertTrue(true);
+		UserAccount randomUserAccount = randomUserAccount();
+
+		UserAccount postUserAccount = testPostUserAccount_addUserAccount(
+			randomUserAccount);
+
+		assertEquals(randomUserAccount, postUserAccount);
+		assertValid(postUserAccount);
 	}
 
 	@Test
 	public void testPutUserAccount() throws Exception {
-		Assert.assertTrue(true);
+		UserAccount postUserAccount = testPutUserAccount_addUserAccount();
+
+		UserAccount randomUserAccount = randomUserAccount();
+
+		UserAccount putUserAccount = invokePutUserAccount(
+			postUserAccount.getId(), randomUserAccount);
+
+		assertEquals(randomUserAccount, putUserAccount);
+		assertValid(putUserAccount);
+
+		UserAccount getUserAccount = invokeGetUserAccount(
+			putUserAccount.getId());
+
+		assertEquals(randomUserAccount, getUserAccount);
+		assertValid(getUserAccount);
 	}
 
 	protected void assertEquals(
@@ -197,6 +398,11 @@ public abstract class BaseUserAccountResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(UserAccount userAccount) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(
 		UserAccount userAccount1, UserAccount userAccount2) {
 
@@ -216,7 +422,8 @@ public abstract class BaseUserAccountResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_userAccountResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -669,6 +876,83 @@ public abstract class BaseUserAccountResourceTestCase {
 				profileURL = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected UserAccount testDeleteUserAccount_addUserAccount()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected UserAccount testGetMyUserAccount_addUserAccount()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected UserAccount testGetOrganizationUserAccountsPage_addUserAccount(
+			Long organizationId, UserAccount userAccount)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetOrganizationUserAccountsPage_getOrganizationId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected UserAccount testGetUserAccount_addUserAccount() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected UserAccount testGetUserAccountsPage_addUserAccount(
+			String fullnamequery, UserAccount userAccount)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected String testGetUserAccountsPage_getFullnamequery()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected UserAccount testGetWebSiteUserAccountsPage_addUserAccount(
+			Long webSiteId, UserAccount userAccount)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetWebSiteUserAccountsPage_getWebSiteId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected UserAccount testPostUserAccount_addUserAccount(
+			UserAccount userAccount)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected UserAccount testPutUserAccount_addUserAccount() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

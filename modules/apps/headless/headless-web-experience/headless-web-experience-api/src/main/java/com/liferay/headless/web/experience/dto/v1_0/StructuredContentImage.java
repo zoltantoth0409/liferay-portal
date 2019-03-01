@@ -70,6 +70,10 @@ public class StructuredContentImage {
 		return sizeInBytes;
 	}
 
+	public Long getStructuredContentId() {
+		return structuredContentId;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -200,6 +204,22 @@ public class StructuredContentImage {
 		}
 	}
 
+	public void setStructuredContentId(Long structuredContentId) {
+		this.structuredContentId = structuredContentId;
+	}
+
+	@JsonIgnore
+	public void setStructuredContentId(
+		UnsafeSupplier<Long, Exception> structuredContentIdUnsafeSupplier) {
+
+		try {
+			structuredContentId = structuredContentIdUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -217,7 +237,7 @@ public class StructuredContentImage {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(20);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("{");
 
@@ -245,6 +265,9 @@ public class StructuredContentImage {
 		sb.append(", sizeInBytes=");
 
 		sb.append(sizeInBytes);
+		sb.append(", structuredContentId=");
+
+		sb.append(structuredContentId);
 		sb.append(", title=");
 
 		sb.append(title);
@@ -285,6 +308,10 @@ public class StructuredContentImage {
 	@GraphQLField
 	@JsonProperty
 	protected Number sizeInBytes;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long structuredContentId;
 
 	@GraphQLField
 	@JsonProperty

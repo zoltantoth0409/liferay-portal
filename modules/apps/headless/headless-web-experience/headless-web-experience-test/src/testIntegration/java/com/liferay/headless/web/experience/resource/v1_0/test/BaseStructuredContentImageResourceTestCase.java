@@ -41,6 +41,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -90,20 +93,55 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 	}
 
 	@Test
-	public void testDeleteStructuredContentContentDocument() throws Exception {
-		Assert.assertTrue(true);
+	public void testDeleteStructuredContentImage() throws Exception {
+		StructuredContentImage structuredContentImage =
+			testDeleteStructuredContentImage_addStructuredContentImage();
+
+		assertResponseCode(
+			200,
+			invokeDeleteStructuredContentImageResponse(
+				structuredContentImage.getId()));
+
+		assertResponseCode(
+			404,
+			invokeGetStructuredContentImageResponse(
+				structuredContentImage.getId()));
 	}
 
 	@Test
-	public void testGetStructuredContentContentDocument() throws Exception {
-		Assert.assertTrue(true);
+	public void testGetStructuredContentImage() throws Exception {
+		StructuredContentImage postStructuredContentImage =
+			testGetStructuredContentImage_addStructuredContentImage();
+
+		StructuredContentImage getStructuredContentImage =
+			invokeGetStructuredContentImage(postStructuredContentImage.getId());
+
+		assertEquals(postStructuredContentImage, getStructuredContentImage);
+		assertValid(getStructuredContentImage);
 	}
 
 	@Test
 	public void testGetStructuredContentStructuredContentImagesPage()
 		throws Exception {
 
-		Assert.assertTrue(true);
+		Long structuredContentId =
+			testGetStructuredContentStructuredContentImagesPage_getStructuredContentId();
+
+		StructuredContentImage structuredContentImage1 =
+			testGetStructuredContentStructuredContentImagesPage_addStructuredContentImage(
+				structuredContentId, randomStructuredContentImage());
+		StructuredContentImage structuredContentImage2 =
+			testGetStructuredContentStructuredContentImagesPage_addStructuredContentImage(
+				structuredContentId, randomStructuredContentImage());
+
+		Page<StructuredContentImage> page =
+			invokeGetStructuredContentStructuredContentImagesPage(
+				structuredContentId);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(structuredContentImage1, structuredContentImage2),
+			(List<StructuredContentImage>)page.getItems());
+		assertValid(page);
 	}
 
 	protected void assertEquals(
@@ -187,6 +225,11 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(StructuredContentImage structuredContentImage) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(
 		StructuredContentImage structuredContentImage1,
 		StructuredContentImage structuredContentImage2) {
@@ -207,7 +250,8 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_structuredContentImageResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -298,6 +342,11 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
+		if (entityFieldName.equals("structuredContentId")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
 		if (entityFieldName.equals("title")) {
 			sb.append("'");
 			sb.append(String.valueOf(structuredContentImage.getTitle()));
@@ -310,8 +359,8 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected boolean invokeDeleteStructuredContentContentDocument(
-			Long structuredContentId, Long contentDocumentId)
+	protected boolean invokeDeleteStructuredContentImage(
+			Long structuredContentImageId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -321,16 +370,15 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		options.setLocation(
 			_resourceURL +
 				_toPath(
-					"/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}",
-					structuredContentId));
+					"/structured-content-images/{structured-content-image-id}",
+					structuredContentImageId));
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Boolean.class);
 	}
 
-	protected Http.Response
-			invokeDeleteStructuredContentContentDocumentResponse(
-				Long structuredContentId, Long contentDocumentId)
+	protected Http.Response invokeDeleteStructuredContentImageResponse(
+			Long structuredContentImageId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -340,16 +388,16 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		options.setLocation(
 			_resourceURL +
 				_toPath(
-					"/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}",
-					structuredContentId));
+					"/structured-content-images/{structured-content-image-id}",
+					structuredContentImageId));
 
 		HttpUtil.URLtoString(options);
 
 		return options.getResponse();
 	}
 
-	protected StructuredContentImage invokeGetStructuredContentContentDocument(
-			Long structuredContentId, Long contentDocumentId)
+	protected StructuredContentImage invokeGetStructuredContentImage(
+			Long structuredContentImageId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -357,15 +405,15 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		options.setLocation(
 			_resourceURL +
 				_toPath(
-					"/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}",
-					structuredContentId));
+					"/structured-content-images/{structured-content-image-id}",
+					structuredContentImageId));
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), StructuredContentImage.class);
 	}
 
-	protected Http.Response invokeGetStructuredContentContentDocumentResponse(
-			Long structuredContentId, Long contentDocumentId)
+	protected Http.Response invokeGetStructuredContentImageResponse(
+			Long structuredContentImageId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -373,8 +421,8 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		options.setLocation(
 			_resourceURL +
 				_toPath(
-					"/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}",
-					structuredContentId));
+					"/structured-content-images/{structured-content-image-id}",
+					structuredContentImageId));
 
 		HttpUtil.URLtoString(options);
 
@@ -427,9 +475,44 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 				encodingFormat = RandomTestUtil.randomString();
 				fileExtension = RandomTestUtil.randomString();
 				id = RandomTestUtil.randomLong();
+				structuredContentId = RandomTestUtil.randomLong();
 				title = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected StructuredContentImage
+			testDeleteStructuredContentImage_addStructuredContentImage()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContentImage
+			testGetStructuredContentImage_addStructuredContentImage()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContentImage
+			testGetStructuredContentStructuredContentImagesPage_addStructuredContentImage(
+				Long structuredContentId,
+				StructuredContentImage structuredContentImage)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetStructuredContentStructuredContentImagesPage_getStructuredContentId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

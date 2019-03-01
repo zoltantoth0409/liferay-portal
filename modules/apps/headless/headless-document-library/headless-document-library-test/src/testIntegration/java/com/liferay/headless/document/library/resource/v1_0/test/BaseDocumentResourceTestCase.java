@@ -43,7 +43,9 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -51,6 +53,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -93,22 +99,415 @@ public abstract class BaseDocumentResourceTestCase {
 
 	@Test
 	public void testDeleteDocument() throws Exception {
-		Assert.assertTrue(true);
+		Document document = testDeleteDocument_addDocument();
+
+		assertResponseCode(200, invokeDeleteDocumentResponse(document.getId()));
+
+		assertResponseCode(404, invokeGetDocumentResponse(document.getId()));
 	}
 
 	@Test
 	public void testGetContentSpaceDocumentsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long contentSpaceId =
+			testGetContentSpaceDocumentsPage_getContentSpaceId();
+
+		Document document1 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+		Document document2 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+
+		Page<Document> page = invokeGetContentSpaceDocumentsPage(
+			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(document1, document2),
+			(List<Document>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceDocumentsPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceDocumentsPage_getContentSpaceId();
+
+		Document document1 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+
+		Thread.sleep(1000);
+
+		Document document2 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+
+		for (EntityField entityField : entityFields) {
+			Page<Document> page = invokeGetContentSpaceDocumentsPage(
+				contentSpaceId, getFilterString(entityField, "eq", document1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(document1),
+				(List<Document>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceDocumentsPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceDocumentsPage_getContentSpaceId();
+
+		Document document1 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+		Document document2 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+
+		for (EntityField entityField : entityFields) {
+			Page<Document> page = invokeGetContentSpaceDocumentsPage(
+				contentSpaceId, getFilterString(entityField, "eq", document1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(document1),
+				(List<Document>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceDocumentsPageWithPagination()
+		throws Exception {
+
+		Long contentSpaceId =
+			testGetContentSpaceDocumentsPage_getContentSpaceId();
+
+		Document document1 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+		Document document2 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+		Document document3 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+
+		Page<Document> page1 = invokeGetContentSpaceDocumentsPage(
+			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+
+		List<Document> documents1 = (List<Document>)page1.getItems();
+
+		Assert.assertEquals(documents1.toString(), 2, documents1.size());
+
+		Page<Document> page2 = invokeGetContentSpaceDocumentsPage(
+			contentSpaceId, (String)null, Pagination.of(2, 2), (String)null);
+
+		List<Document> documents2 = (List<Document>)page2.getItems();
+
+		Assert.assertEquals(documents2.toString(), 1, documents2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(document1, document2, document3),
+			new ArrayList<Document>() {
+				{
+					addAll(documents1);
+					addAll(documents2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetContentSpaceDocumentsPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceDocumentsPage_getContentSpaceId();
+
+		Document document1 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+		Document document2 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, randomDocument());
+
+		for (EntityField entityField : entityFields) {
+			Page<Document> ascPage = invokeGetContentSpaceDocumentsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(document1, document2),
+				(List<Document>)ascPage.getItems());
+
+			Page<Document> descPage = invokeGetContentSpaceDocumentsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(document2, document1),
+				(List<Document>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceDocumentsPageWithSortString()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceDocumentsPage_getContentSpaceId();
+
+		Document document1 = randomDocument();
+		Document document2 = randomDocument();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(document1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(document2, entityField.getName(), "Bbb");
+		}
+
+		document1 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, document1);
+		document2 = testGetContentSpaceDocumentsPage_addDocument(
+			contentSpaceId, document2);
+
+		for (EntityField entityField : entityFields) {
+			Page<Document> ascPage = invokeGetContentSpaceDocumentsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(document1, document2),
+				(List<Document>)ascPage.getItems());
+
+			Page<Document> descPage = invokeGetContentSpaceDocumentsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(document2, document1),
+				(List<Document>)descPage.getItems());
+		}
 	}
 
 	@Test
 	public void testGetDocument() throws Exception {
-		Assert.assertTrue(true);
+		Document postDocument = testGetDocument_addDocument();
+
+		Document getDocument = invokeGetDocument(postDocument.getId());
+
+		assertEquals(postDocument, getDocument);
+		assertValid(getDocument);
 	}
 
 	@Test
 	public void testGetFolderDocumentsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long folderId = testGetFolderDocumentsPage_getFolderId();
+
+		Document document1 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+		Document document2 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+
+		Page<Document> page = invokeGetFolderDocumentsPage(
+			folderId, (String)null, Pagination.of(2, 1), (String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(document1, document2),
+			(List<Document>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetFolderDocumentsPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long folderId = testGetFolderDocumentsPage_getFolderId();
+
+		Document document1 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+
+		Thread.sleep(1000);
+
+		Document document2 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+
+		for (EntityField entityField : entityFields) {
+			Page<Document> page = invokeGetFolderDocumentsPage(
+				folderId, getFilterString(entityField, "eq", document1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(document1),
+				(List<Document>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetFolderDocumentsPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long folderId = testGetFolderDocumentsPage_getFolderId();
+
+		Document document1 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+		Document document2 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+
+		for (EntityField entityField : entityFields) {
+			Page<Document> page = invokeGetFolderDocumentsPage(
+				folderId, getFilterString(entityField, "eq", document1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(document1),
+				(List<Document>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetFolderDocumentsPageWithPagination() throws Exception {
+		Long folderId = testGetFolderDocumentsPage_getFolderId();
+
+		Document document1 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+		Document document2 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+		Document document3 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+
+		Page<Document> page1 = invokeGetFolderDocumentsPage(
+			folderId, (String)null, Pagination.of(2, 1), (String)null);
+
+		List<Document> documents1 = (List<Document>)page1.getItems();
+
+		Assert.assertEquals(documents1.toString(), 2, documents1.size());
+
+		Page<Document> page2 = invokeGetFolderDocumentsPage(
+			folderId, (String)null, Pagination.of(2, 2), (String)null);
+
+		List<Document> documents2 = (List<Document>)page2.getItems();
+
+		Assert.assertEquals(documents2.toString(), 1, documents2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(document1, document2, document3),
+			new ArrayList<Document>() {
+				{
+					addAll(documents1);
+					addAll(documents2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetFolderDocumentsPageWithSortDateTime() throws Exception {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long folderId = testGetFolderDocumentsPage_getFolderId();
+
+		Document document1 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+		Document document2 = testGetFolderDocumentsPage_addDocument(
+			folderId, randomDocument());
+
+		for (EntityField entityField : entityFields) {
+			Page<Document> ascPage = invokeGetFolderDocumentsPage(
+				folderId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(document1, document2),
+				(List<Document>)ascPage.getItems());
+
+			Page<Document> descPage = invokeGetFolderDocumentsPage(
+				folderId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(document2, document1),
+				(List<Document>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetFolderDocumentsPageWithSortString() throws Exception {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long folderId = testGetFolderDocumentsPage_getFolderId();
+
+		Document document1 = randomDocument();
+		Document document2 = randomDocument();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(document1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(document2, entityField.getName(), "Bbb");
+		}
+
+		document1 = testGetFolderDocumentsPage_addDocument(folderId, document1);
+		document2 = testGetFolderDocumentsPage_addDocument(folderId, document2);
+
+		for (EntityField entityField : entityFields) {
+			Page<Document> ascPage = invokeGetFolderDocumentsPage(
+				folderId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(document1, document2),
+				(List<Document>)ascPage.getItems());
+
+			Page<Document> descPage = invokeGetFolderDocumentsPage(
+				folderId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(document2, document1),
+				(List<Document>)descPage.getItems());
+		}
 	}
 
 	@Test
@@ -178,6 +577,11 @@ public abstract class BaseDocumentResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Document document) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<Document> page) {
 		boolean valid = false;
 
@@ -212,7 +616,8 @@ public abstract class BaseDocumentResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_documentResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -604,6 +1009,63 @@ public abstract class BaseDocumentResourceTestCase {
 				title = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected Document testDeleteDocument_addDocument() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Document testGetContentSpaceDocumentsPage_addDocument(
+			Long contentSpaceId, Document document)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetContentSpaceDocumentsPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
+	}
+
+	protected Document testGetDocument_addDocument() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Document testGetFolderDocumentsPage_addDocument(
+			Long folderId, Document document)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetFolderDocumentsPage_getFolderId() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Document testPostContentSpaceDocument_addDocument(
+			Document document)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Document testPostFolderDocument_addDocument(Document document)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Document testPutDocument_addDocument() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

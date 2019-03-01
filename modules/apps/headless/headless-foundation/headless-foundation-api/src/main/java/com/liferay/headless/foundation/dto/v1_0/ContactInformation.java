@@ -36,14 +36,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "ContactInformation")
 public class ContactInformation {
 
-	public PostalAddress[] getAddress() {
-		return address;
-	}
-
-	public Long[] getAddressIds() {
-		return addressIds;
-	}
-
 	public Email[] getEmail() {
 		return email;
 	}
@@ -62,6 +54,14 @@ public class ContactInformation {
 
 	public String getJabber() {
 		return jabber;
+	}
+
+	public PostalAddress[] getPostalAddress() {
+		return postalAddress;
+	}
+
+	public Long[] getPostalAddressIds() {
+		return postalAddressIds;
 	}
 
 	public String getSkype() {
@@ -90,38 +90,6 @@ public class ContactInformation {
 
 	public Long[] getWebUrlIds() {
 		return webUrlIds;
-	}
-
-	public void setAddress(PostalAddress[] address) {
-		this.address = address;
-	}
-
-	@JsonIgnore
-	public void setAddress(
-		UnsafeSupplier<PostalAddress[], Exception> addressUnsafeSupplier) {
-
-		try {
-			address = addressUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	public void setAddressIds(Long[] addressIds) {
-		this.addressIds = addressIds;
-	}
-
-	@JsonIgnore
-	public void setAddressIds(
-		UnsafeSupplier<Long[], Exception> addressIdsUnsafeSupplier) {
-
-		try {
-			addressIds = addressIdsUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	public void setEmail(Email[] email) {
@@ -196,6 +164,39 @@ public class ContactInformation {
 
 		try {
 			jabber = jabberUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void setPostalAddress(PostalAddress[] postalAddress) {
+		this.postalAddress = postalAddress;
+	}
+
+	@JsonIgnore
+	public void setPostalAddress(
+		UnsafeSupplier<PostalAddress[], Exception>
+			postalAddressUnsafeSupplier) {
+
+		try {
+			postalAddress = postalAddressUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void setPostalAddressIds(Long[] postalAddressIds) {
+		this.postalAddressIds = postalAddressIds;
+	}
+
+	@JsonIgnore
+	public void setPostalAddressIds(
+		UnsafeSupplier<Long[], Exception> postalAddressIdsUnsafeSupplier) {
+
+		try {
+			postalAddressIds = postalAddressIdsUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -317,13 +318,7 @@ public class ContactInformation {
 
 		sb.append("{");
 
-		sb.append("address=");
-
-		sb.append(address);
-		sb.append(", addressIds=");
-
-		sb.append(addressIds);
-		sb.append(", email=");
+		sb.append("email=");
 
 		sb.append(email);
 		sb.append(", emailIds=");
@@ -338,6 +333,12 @@ public class ContactInformation {
 		sb.append(", jabber=");
 
 		sb.append(jabber);
+		sb.append(", postalAddress=");
+
+		sb.append(postalAddress);
+		sb.append(", postalAddressIds=");
+
+		sb.append(postalAddressIds);
 		sb.append(", skype=");
 
 		sb.append(skype);
@@ -367,14 +368,6 @@ public class ContactInformation {
 
 	@GraphQLField
 	@JsonProperty
-	protected PostalAddress[] address;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long[] addressIds;
-
-	@GraphQLField
-	@JsonProperty
 	protected Email[] email;
 
 	@GraphQLField
@@ -392,6 +385,14 @@ public class ContactInformation {
 	@GraphQLField
 	@JsonProperty
 	protected String jabber;
+
+	@GraphQLField
+	@JsonProperty
+	protected PostalAddress[] postalAddress;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] postalAddressIds;
 
 	@GraphQLField
 	@JsonProperty

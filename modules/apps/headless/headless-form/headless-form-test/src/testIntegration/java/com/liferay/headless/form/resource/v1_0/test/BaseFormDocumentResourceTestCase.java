@@ -49,6 +49,8 @@ import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.MultivaluedHashMap;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -89,12 +91,24 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 	@Test
 	public void testDeleteFormDocument() throws Exception {
-		Assert.assertTrue(true);
+		FormDocument formDocument = testDeleteFormDocument_addFormDocument();
+
+		assertResponseCode(
+			200, invokeDeleteFormDocumentResponse(formDocument.getId()));
+
+		assertResponseCode(
+			404, invokeGetFormDocumentResponse(formDocument.getId()));
 	}
 
 	@Test
 	public void testGetFormDocument() throws Exception {
-		Assert.assertTrue(true);
+		FormDocument postFormDocument = testGetFormDocument_addFormDocument();
+
+		FormDocument getFormDocument = invokeGetFormDocument(
+			postFormDocument.getId());
+
+		assertEquals(postFormDocument, getFormDocument);
+		assertValid(getFormDocument);
 	}
 
 	protected void assertEquals(
@@ -147,6 +161,11 @@ public abstract class BaseFormDocumentResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(FormDocument formDocument) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<FormDocument> page) {
 		boolean valid = false;
 
@@ -183,7 +202,8 @@ public abstract class BaseFormDocumentResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_formDocumentResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -333,6 +353,20 @@ public abstract class BaseFormDocumentResourceTestCase {
 				title = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected FormDocument testDeleteFormDocument_addFormDocument()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected FormDocument testGetFormDocument_addFormDocument()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

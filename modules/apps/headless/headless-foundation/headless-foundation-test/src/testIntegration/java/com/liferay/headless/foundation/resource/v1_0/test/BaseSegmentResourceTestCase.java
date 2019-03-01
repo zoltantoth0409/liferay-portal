@@ -41,6 +41,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -91,7 +94,54 @@ public abstract class BaseSegmentResourceTestCase {
 
 	@Test
 	public void testGetUserSegmentsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long userId = testGetUserSegmentsPage_getUserId();
+
+		Segment segment1 = testGetUserSegmentsPage_addSegment(
+			userId, randomSegment());
+		Segment segment2 = testGetUserSegmentsPage_addSegment(
+			userId, randomSegment());
+
+		Page<Segment> page = invokeGetUserSegmentsPage(
+			userId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(segment1, segment2), (List<Segment>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetUserSegmentsPageWithPagination() throws Exception {
+		Long userId = testGetUserSegmentsPage_getUserId();
+
+		Segment segment1 = testGetUserSegmentsPage_addSegment(
+			userId, randomSegment());
+		Segment segment2 = testGetUserSegmentsPage_addSegment(
+			userId, randomSegment());
+		Segment segment3 = testGetUserSegmentsPage_addSegment(
+			userId, randomSegment());
+
+		Page<Segment> page1 = invokeGetUserSegmentsPage(
+			userId, Pagination.of(2, 1));
+
+		List<Segment> segments1 = (List<Segment>)page1.getItems();
+
+		Assert.assertEquals(segments1.toString(), 2, segments1.size());
+
+		Page<Segment> page2 = invokeGetUserSegmentsPage(
+			userId, Pagination.of(2, 2));
+
+		List<Segment> segments2 = (List<Segment>)page2.getItems();
+
+		Assert.assertEquals(segments2.toString(), 1, segments2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(segment1, segment2, segment3),
+			new ArrayList<Segment>() {
+				{
+					addAll(segments1);
+					addAll(segments2);
+				}
+			});
 	}
 
 	protected void assertEquals(
@@ -158,6 +208,11 @@ public abstract class BaseSegmentResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(Segment segment) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(Segment segment1, Segment segment2) {
 		if (segment1 == segment2) {
 			return true;
@@ -175,7 +230,8 @@ public abstract class BaseSegmentResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_segmentResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -303,6 +359,19 @@ public abstract class BaseSegmentResourceTestCase {
 				source = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected Segment testGetUserSegmentsPage_addSegment(
+			Long userId, Segment segment)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetUserSegmentsPage_getUserId() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

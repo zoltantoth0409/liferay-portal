@@ -41,6 +41,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -90,13 +93,81 @@ public abstract class BasePostalAddressResourceTestCase {
 	}
 
 	@Test
-	public void testGetAddress() throws Exception {
-		Assert.assertTrue(true);
+	public void testGetGenericParentPostalAddressesPage() throws Exception {
+		Object genericParentId =
+			testGetGenericParentPostalAddressesPage_getGenericParentId();
+
+		PostalAddress postalAddress1 =
+			testGetGenericParentPostalAddressesPage_addPostalAddress(
+				genericParentId, randomPostalAddress());
+		PostalAddress postalAddress2 =
+			testGetGenericParentPostalAddressesPage_addPostalAddress(
+				genericParentId, randomPostalAddress());
+
+		Page<PostalAddress> page = invokeGetGenericParentPostalAddressesPage(
+			genericParentId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(postalAddress1, postalAddress2),
+			(List<PostalAddress>)page.getItems());
+		assertValid(page);
 	}
 
 	@Test
-	public void testGetGenericParentPostalAddressesPage() throws Exception {
-		Assert.assertTrue(true);
+	public void testGetGenericParentPostalAddressesPageWithPagination()
+		throws Exception {
+
+		Object genericParentId =
+			testGetGenericParentPostalAddressesPage_getGenericParentId();
+
+		PostalAddress postalAddress1 =
+			testGetGenericParentPostalAddressesPage_addPostalAddress(
+				genericParentId, randomPostalAddress());
+		PostalAddress postalAddress2 =
+			testGetGenericParentPostalAddressesPage_addPostalAddress(
+				genericParentId, randomPostalAddress());
+		PostalAddress postalAddress3 =
+			testGetGenericParentPostalAddressesPage_addPostalAddress(
+				genericParentId, randomPostalAddress());
+
+		Page<PostalAddress> page1 = invokeGetGenericParentPostalAddressesPage(
+			genericParentId, Pagination.of(2, 1));
+
+		List<PostalAddress> postalAddresses1 =
+			(List<PostalAddress>)page1.getItems();
+
+		Assert.assertEquals(
+			postalAddresses1.toString(), 2, postalAddresses1.size());
+
+		Page<PostalAddress> page2 = invokeGetGenericParentPostalAddressesPage(
+			genericParentId, Pagination.of(2, 2));
+
+		List<PostalAddress> postalAddresses2 =
+			(List<PostalAddress>)page2.getItems();
+
+		Assert.assertEquals(
+			postalAddresses2.toString(), 1, postalAddresses2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(postalAddress1, postalAddress2, postalAddress3),
+			new ArrayList<PostalAddress>() {
+				{
+					addAll(postalAddresses1);
+					addAll(postalAddresses2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetPostalAddress() throws Exception {
+		PostalAddress postPostalAddress =
+			testGetPostalAddress_addPostalAddress();
+
+		PostalAddress getPostalAddress = invokeGetPostalAddress(
+			postPostalAddress.getId());
+
+		assertEquals(postPostalAddress, getPostalAddress);
+		assertValid(getPostalAddress);
 	}
 
 	protected void assertEquals(
@@ -168,6 +239,11 @@ public abstract class BasePostalAddressResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(PostalAddress postalAddress) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(
 		PostalAddress postalAddress1, PostalAddress postalAddress2) {
 
@@ -187,7 +263,8 @@ public abstract class BasePostalAddressResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_postalAddressResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -295,29 +372,6 @@ public abstract class BasePostalAddressResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected PostalAddress invokeGetAddress(Long addressId) throws Exception {
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL + _toPath("/addresses/{address-id}", addressId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), PostalAddress.class);
-	}
-
-	protected Http.Response invokeGetAddressResponse(Long addressId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL + _toPath("/addresses/{address-id}", addressId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
 	protected Page<PostalAddress> invokeGetGenericParentPostalAddressesPage(
 			Object genericParentId, Pagination pagination)
 		throws Exception {
@@ -325,7 +379,7 @@ public abstract class BasePostalAddressResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL + _toPath("/addresses", genericParentId));
+			_resourceURL + _toPath("/postal-addresses", genericParentId));
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -340,7 +394,36 @@ public abstract class BasePostalAddressResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL + _toPath("/addresses", genericParentId));
+			_resourceURL + _toPath("/postal-addresses", genericParentId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected PostalAddress invokeGetPostalAddress(Long postalAddressId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/postal-addresses/{postal-address-id}", postalAddressId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), PostalAddress.class);
+	}
+
+	protected Http.Response invokeGetPostalAddressResponse(Long postalAddressId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/postal-addresses/{postal-address-id}", postalAddressId));
 
 		HttpUtil.URLtoString(options);
 
@@ -361,6 +444,30 @@ public abstract class BasePostalAddressResourceTestCase {
 				streetAddressLine3 = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected PostalAddress
+			testGetGenericParentPostalAddressesPage_addPostalAddress(
+				Object genericParentId, PostalAddress postalAddress)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Object
+			testGetGenericParentPostalAddressesPage_getGenericParentId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected PostalAddress testGetPostalAddress_addPostalAddress()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

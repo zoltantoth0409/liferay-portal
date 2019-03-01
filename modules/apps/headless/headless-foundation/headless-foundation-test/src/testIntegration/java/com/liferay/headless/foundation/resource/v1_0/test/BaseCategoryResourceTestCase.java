@@ -44,7 +44,9 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -52,6 +54,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -94,37 +100,453 @@ public abstract class BaseCategoryResourceTestCase {
 
 	@Test
 	public void testDeleteCategory() throws Exception {
-		Assert.assertTrue(true);
+		Category category = testDeleteCategory_addCategory();
+
+		assertResponseCode(200, invokeDeleteCategoryResponse(category.getId()));
+
+		assertResponseCode(404, invokeGetCategoryResponse(category.getId()));
 	}
 
 	@Test
 	public void testGetCategory() throws Exception {
-		Assert.assertTrue(true);
+		Category postCategory = testGetCategory_addCategory();
+
+		Category getCategory = invokeGetCategory(postCategory.getId());
+
+		assertEquals(postCategory, getCategory);
+		assertValid(getCategory);
 	}
 
 	@Test
 	public void testGetCategoryCategoriesPage() throws Exception {
-		Assert.assertTrue(true);
+		Long categoryId = testGetCategoryCategoriesPage_getCategoryId();
+
+		Category category1 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+		Category category2 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+
+		Page<Category> page = invokeGetCategoryCategoriesPage(
+			categoryId, (String)null, Pagination.of(2, 1), (String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(category1, category2),
+			(List<Category>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetCategoryCategoriesPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long categoryId = testGetCategoryCategoriesPage_getCategoryId();
+
+		Category category1 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+
+		Thread.sleep(1000);
+
+		Category category2 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+
+		for (EntityField entityField : entityFields) {
+			Page<Category> page = invokeGetCategoryCategoriesPage(
+				categoryId, getFilterString(entityField, "eq", category1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(category1),
+				(List<Category>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetCategoryCategoriesPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long categoryId = testGetCategoryCategoriesPage_getCategoryId();
+
+		Category category1 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+		Category category2 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+
+		for (EntityField entityField : entityFields) {
+			Page<Category> page = invokeGetCategoryCategoriesPage(
+				categoryId, getFilterString(entityField, "eq", category1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(category1),
+				(List<Category>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetCategoryCategoriesPageWithPagination() throws Exception {
+		Long categoryId = testGetCategoryCategoriesPage_getCategoryId();
+
+		Category category1 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+		Category category2 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+		Category category3 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+
+		Page<Category> page1 = invokeGetCategoryCategoriesPage(
+			categoryId, (String)null, Pagination.of(2, 1), (String)null);
+
+		List<Category> categories1 = (List<Category>)page1.getItems();
+
+		Assert.assertEquals(categories1.toString(), 2, categories1.size());
+
+		Page<Category> page2 = invokeGetCategoryCategoriesPage(
+			categoryId, (String)null, Pagination.of(2, 2), (String)null);
+
+		List<Category> categories2 = (List<Category>)page2.getItems();
+
+		Assert.assertEquals(categories2.toString(), 1, categories2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(category1, category2, category3),
+			new ArrayList<Category>() {
+				{
+					addAll(categories1);
+					addAll(categories2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetCategoryCategoriesPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long categoryId = testGetCategoryCategoriesPage_getCategoryId();
+
+		Category category1 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+		Category category2 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, randomCategory());
+
+		for (EntityField entityField : entityFields) {
+			Page<Category> ascPage = invokeGetCategoryCategoriesPage(
+				categoryId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(category1, category2),
+				(List<Category>)ascPage.getItems());
+
+			Page<Category> descPage = invokeGetCategoryCategoriesPage(
+				categoryId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(category2, category1),
+				(List<Category>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetCategoryCategoriesPageWithSortString() throws Exception {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long categoryId = testGetCategoryCategoriesPage_getCategoryId();
+
+		Category category1 = randomCategory();
+		Category category2 = randomCategory();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(category1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(category2, entityField.getName(), "Bbb");
+		}
+
+		category1 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, category1);
+		category2 = testGetCategoryCategoriesPage_addCategory(
+			categoryId, category2);
+
+		for (EntityField entityField : entityFields) {
+			Page<Category> ascPage = invokeGetCategoryCategoriesPage(
+				categoryId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(category1, category2),
+				(List<Category>)ascPage.getItems());
+
+			Page<Category> descPage = invokeGetCategoryCategoriesPage(
+				categoryId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(category2, category1),
+				(List<Category>)descPage.getItems());
+		}
 	}
 
 	@Test
 	public void testGetVocabularyCategoriesPage() throws Exception {
-		Assert.assertTrue(true);
+		Long vocabularyId = testGetVocabularyCategoriesPage_getVocabularyId();
+
+		Category category1 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+		Category category2 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+
+		Page<Category> page = invokeGetVocabularyCategoriesPage(
+			vocabularyId, (String)null, Pagination.of(2, 1), (String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(category1, category2),
+			(List<Category>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetVocabularyCategoriesPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long vocabularyId = testGetVocabularyCategoriesPage_getVocabularyId();
+
+		Category category1 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+
+		Thread.sleep(1000);
+
+		Category category2 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+
+		for (EntityField entityField : entityFields) {
+			Page<Category> page = invokeGetVocabularyCategoriesPage(
+				vocabularyId, getFilterString(entityField, "eq", category1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(category1),
+				(List<Category>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetVocabularyCategoriesPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long vocabularyId = testGetVocabularyCategoriesPage_getVocabularyId();
+
+		Category category1 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+		Category category2 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+
+		for (EntityField entityField : entityFields) {
+			Page<Category> page = invokeGetVocabularyCategoriesPage(
+				vocabularyId, getFilterString(entityField, "eq", category1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(category1),
+				(List<Category>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetVocabularyCategoriesPageWithPagination()
+		throws Exception {
+
+		Long vocabularyId = testGetVocabularyCategoriesPage_getVocabularyId();
+
+		Category category1 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+		Category category2 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+		Category category3 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+
+		Page<Category> page1 = invokeGetVocabularyCategoriesPage(
+			vocabularyId, (String)null, Pagination.of(2, 1), (String)null);
+
+		List<Category> categories1 = (List<Category>)page1.getItems();
+
+		Assert.assertEquals(categories1.toString(), 2, categories1.size());
+
+		Page<Category> page2 = invokeGetVocabularyCategoriesPage(
+			vocabularyId, (String)null, Pagination.of(2, 2), (String)null);
+
+		List<Category> categories2 = (List<Category>)page2.getItems();
+
+		Assert.assertEquals(categories2.toString(), 1, categories2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(category1, category2, category3),
+			new ArrayList<Category>() {
+				{
+					addAll(categories1);
+					addAll(categories2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetVocabularyCategoriesPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long vocabularyId = testGetVocabularyCategoriesPage_getVocabularyId();
+
+		Category category1 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+		Category category2 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, randomCategory());
+
+		for (EntityField entityField : entityFields) {
+			Page<Category> ascPage = invokeGetVocabularyCategoriesPage(
+				vocabularyId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(category1, category2),
+				(List<Category>)ascPage.getItems());
+
+			Page<Category> descPage = invokeGetVocabularyCategoriesPage(
+				vocabularyId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(category2, category1),
+				(List<Category>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetVocabularyCategoriesPageWithSortString()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long vocabularyId = testGetVocabularyCategoriesPage_getVocabularyId();
+
+		Category category1 = randomCategory();
+		Category category2 = randomCategory();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(category1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(category2, entityField.getName(), "Bbb");
+		}
+
+		category1 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, category1);
+		category2 = testGetVocabularyCategoriesPage_addCategory(
+			vocabularyId, category2);
+
+		for (EntityField entityField : entityFields) {
+			Page<Category> ascPage = invokeGetVocabularyCategoriesPage(
+				vocabularyId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(category1, category2),
+				(List<Category>)ascPage.getItems());
+
+			Page<Category> descPage = invokeGetVocabularyCategoriesPage(
+				vocabularyId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(category2, category1),
+				(List<Category>)descPage.getItems());
+		}
 	}
 
 	@Test
 	public void testPostCategoryCategory() throws Exception {
-		Assert.assertTrue(true);
+		Category randomCategory = randomCategory();
+
+		Category postCategory = testPostCategoryCategory_addCategory(
+			randomCategory);
+
+		assertEquals(randomCategory, postCategory);
+		assertValid(postCategory);
 	}
 
 	@Test
 	public void testPostVocabularyCategory() throws Exception {
-		Assert.assertTrue(true);
+		Category randomCategory = randomCategory();
+
+		Category postCategory = testPostVocabularyCategory_addCategory(
+			randomCategory);
+
+		assertEquals(randomCategory, postCategory);
+		assertValid(postCategory);
 	}
 
 	@Test
 	public void testPutCategory() throws Exception {
-		Assert.assertTrue(true);
+		Category postCategory = testPutCategory_addCategory();
+
+		Category randomCategory = randomCategory();
+
+		Category putCategory = invokePutCategory(
+			postCategory.getId(), randomCategory);
+
+		assertEquals(randomCategory, putCategory);
+		assertValid(putCategory);
+
+		Category getCategory = invokeGetCategory(putCategory.getId());
+
+		assertEquals(randomCategory, getCategory);
+		assertValid(getCategory);
 	}
 
 	protected void assertEquals(Category category1, Category category2) {
@@ -174,6 +596,11 @@ public abstract class BaseCategoryResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Category category) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<Category> page) {
 		boolean valid = false;
 
@@ -208,7 +635,8 @@ public abstract class BaseCategoryResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_categoryResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -560,6 +988,65 @@ public abstract class BaseCategoryResourceTestCase {
 				parentVocabularyId = RandomTestUtil.randomLong();
 			}
 		};
+	}
+
+	protected Category testDeleteCategory_addCategory() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Category testGetCategory_addCategory() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Category testGetCategoryCategoriesPage_addCategory(
+			Long categoryId, Category category)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetCategoryCategoriesPage_getCategoryId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Category testGetVocabularyCategoriesPage_addCategory(
+			Long vocabularyId, Category category)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetVocabularyCategoriesPage_getVocabularyId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Category testPostCategoryCategory_addCategory(Category category)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Category testPostVocabularyCategory_addCategory(Category category)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Category testPutCategory_addCategory() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

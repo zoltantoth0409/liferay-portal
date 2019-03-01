@@ -42,6 +42,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +51,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -91,12 +94,80 @@ public abstract class BaseFormStructureResourceTestCase {
 
 	@Test
 	public void testGetContentSpaceFormStructuresPage() throws Exception {
-		Assert.assertTrue(true);
+		Long contentSpaceId =
+			testGetContentSpaceFormStructuresPage_getContentSpaceId();
+
+		FormStructure formStructure1 =
+			testGetContentSpaceFormStructuresPage_addFormStructure(
+				contentSpaceId, randomFormStructure());
+		FormStructure formStructure2 =
+			testGetContentSpaceFormStructuresPage_addFormStructure(
+				contentSpaceId, randomFormStructure());
+
+		Page<FormStructure> page = invokeGetContentSpaceFormStructuresPage(
+			contentSpaceId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(formStructure1, formStructure2),
+			(List<FormStructure>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceFormStructuresPageWithPagination()
+		throws Exception {
+
+		Long contentSpaceId =
+			testGetContentSpaceFormStructuresPage_getContentSpaceId();
+
+		FormStructure formStructure1 =
+			testGetContentSpaceFormStructuresPage_addFormStructure(
+				contentSpaceId, randomFormStructure());
+		FormStructure formStructure2 =
+			testGetContentSpaceFormStructuresPage_addFormStructure(
+				contentSpaceId, randomFormStructure());
+		FormStructure formStructure3 =
+			testGetContentSpaceFormStructuresPage_addFormStructure(
+				contentSpaceId, randomFormStructure());
+
+		Page<FormStructure> page1 = invokeGetContentSpaceFormStructuresPage(
+			contentSpaceId, Pagination.of(2, 1));
+
+		List<FormStructure> formStructures1 =
+			(List<FormStructure>)page1.getItems();
+
+		Assert.assertEquals(
+			formStructures1.toString(), 2, formStructures1.size());
+
+		Page<FormStructure> page2 = invokeGetContentSpaceFormStructuresPage(
+			contentSpaceId, Pagination.of(2, 2));
+
+		List<FormStructure> formStructures2 =
+			(List<FormStructure>)page2.getItems();
+
+		Assert.assertEquals(
+			formStructures2.toString(), 1, formStructures2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(formStructure1, formStructure2, formStructure3),
+			new ArrayList<FormStructure>() {
+				{
+					addAll(formStructures1);
+					addAll(formStructures2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetFormStructure() throws Exception {
-		Assert.assertTrue(true);
+		FormStructure postFormStructure =
+			testGetFormStructure_addFormStructure();
+
+		FormStructure getFormStructure = invokeGetFormStructure(
+			postFormStructure.getId());
+
+		assertEquals(postFormStructure, getFormStructure);
+		assertValid(getFormStructure);
 	}
 
 	protected void assertEquals(
@@ -151,6 +222,11 @@ public abstract class BaseFormStructureResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(FormStructure formStructure) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<FormStructure> page) {
 		boolean valid = false;
 
@@ -187,7 +263,8 @@ public abstract class BaseFormStructureResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_formStructureResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -359,6 +436,28 @@ public abstract class BaseFormStructureResourceTestCase {
 				name = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected FormStructure
+			testGetContentSpaceFormStructuresPage_addFormStructure(
+				Long contentSpaceId, FormStructure formStructure)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetContentSpaceFormStructuresPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
+	}
+
+	protected FormStructure testGetFormStructure_addFormStructure()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

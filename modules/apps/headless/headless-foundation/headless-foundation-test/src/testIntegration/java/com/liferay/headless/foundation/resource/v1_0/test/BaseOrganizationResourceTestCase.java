@@ -41,6 +41,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -91,17 +94,145 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	@Test
 	public void testGetMyUserAccountOrganizationsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long myUserAccountId =
+			testGetMyUserAccountOrganizationsPage_getMyUserAccountId();
+
+		Organization organization1 =
+			testGetMyUserAccountOrganizationsPage_addOrganization(
+				myUserAccountId, randomOrganization());
+		Organization organization2 =
+			testGetMyUserAccountOrganizationsPage_addOrganization(
+				myUserAccountId, randomOrganization());
+
+		Page<Organization> page = invokeGetMyUserAccountOrganizationsPage(
+			myUserAccountId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(organization1, organization2),
+			(List<Organization>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetMyUserAccountOrganizationsPageWithPagination()
+		throws Exception {
+
+		Long myUserAccountId =
+			testGetMyUserAccountOrganizationsPage_getMyUserAccountId();
+
+		Organization organization1 =
+			testGetMyUserAccountOrganizationsPage_addOrganization(
+				myUserAccountId, randomOrganization());
+		Organization organization2 =
+			testGetMyUserAccountOrganizationsPage_addOrganization(
+				myUserAccountId, randomOrganization());
+		Organization organization3 =
+			testGetMyUserAccountOrganizationsPage_addOrganization(
+				myUserAccountId, randomOrganization());
+
+		Page<Organization> page1 = invokeGetMyUserAccountOrganizationsPage(
+			myUserAccountId, Pagination.of(2, 1));
+
+		List<Organization> organizations1 =
+			(List<Organization>)page1.getItems();
+
+		Assert.assertEquals(
+			organizations1.toString(), 2, organizations1.size());
+
+		Page<Organization> page2 = invokeGetMyUserAccountOrganizationsPage(
+			myUserAccountId, Pagination.of(2, 2));
+
+		List<Organization> organizations2 =
+			(List<Organization>)page2.getItems();
+
+		Assert.assertEquals(
+			organizations2.toString(), 1, organizations2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(organization1, organization2, organization3),
+			new ArrayList<Organization>() {
+				{
+					addAll(organizations1);
+					addAll(organizations2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetOrganization() throws Exception {
-		Assert.assertTrue(true);
+		Organization postOrganization = testGetOrganization_addOrganization();
+
+		Organization getOrganization = invokeGetOrganization(
+			postOrganization.getId());
+
+		assertEquals(postOrganization, getOrganization);
+		assertValid(getOrganization);
 	}
 
 	@Test
 	public void testGetOrganizationOrganizationsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long organizationId =
+			testGetOrganizationOrganizationsPage_getOrganizationId();
+
+		Organization organization1 =
+			testGetOrganizationOrganizationsPage_addOrganization(
+				organizationId, randomOrganization());
+		Organization organization2 =
+			testGetOrganizationOrganizationsPage_addOrganization(
+				organizationId, randomOrganization());
+
+		Page<Organization> page = invokeGetOrganizationOrganizationsPage(
+			organizationId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(organization1, organization2),
+			(List<Organization>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetOrganizationOrganizationsPageWithPagination()
+		throws Exception {
+
+		Long organizationId =
+			testGetOrganizationOrganizationsPage_getOrganizationId();
+
+		Organization organization1 =
+			testGetOrganizationOrganizationsPage_addOrganization(
+				organizationId, randomOrganization());
+		Organization organization2 =
+			testGetOrganizationOrganizationsPage_addOrganization(
+				organizationId, randomOrganization());
+		Organization organization3 =
+			testGetOrganizationOrganizationsPage_addOrganization(
+				organizationId, randomOrganization());
+
+		Page<Organization> page1 = invokeGetOrganizationOrganizationsPage(
+			organizationId, Pagination.of(2, 1));
+
+		List<Organization> organizations1 =
+			(List<Organization>)page1.getItems();
+
+		Assert.assertEquals(
+			organizations1.toString(), 2, organizations1.size());
+
+		Page<Organization> page2 = invokeGetOrganizationOrganizationsPage(
+			organizationId, Pagination.of(2, 2));
+
+		List<Organization> organizations2 =
+			(List<Organization>)page2.getItems();
+
+		Assert.assertEquals(
+			organizations2.toString(), 1, organizations2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(organization1, organization2, organization3),
+			new ArrayList<Organization>() {
+				{
+					addAll(organizations1);
+					addAll(organizations2);
+				}
+			});
 	}
 
 	@Test
@@ -111,7 +242,68 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	@Test
 	public void testGetUserAccountOrganizationsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long userAccountId =
+			testGetUserAccountOrganizationsPage_getUserAccountId();
+
+		Organization organization1 =
+			testGetUserAccountOrganizationsPage_addOrganization(
+				userAccountId, randomOrganization());
+		Organization organization2 =
+			testGetUserAccountOrganizationsPage_addOrganization(
+				userAccountId, randomOrganization());
+
+		Page<Organization> page = invokeGetUserAccountOrganizationsPage(
+			userAccountId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(organization1, organization2),
+			(List<Organization>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetUserAccountOrganizationsPageWithPagination()
+		throws Exception {
+
+		Long userAccountId =
+			testGetUserAccountOrganizationsPage_getUserAccountId();
+
+		Organization organization1 =
+			testGetUserAccountOrganizationsPage_addOrganization(
+				userAccountId, randomOrganization());
+		Organization organization2 =
+			testGetUserAccountOrganizationsPage_addOrganization(
+				userAccountId, randomOrganization());
+		Organization organization3 =
+			testGetUserAccountOrganizationsPage_addOrganization(
+				userAccountId, randomOrganization());
+
+		Page<Organization> page1 = invokeGetUserAccountOrganizationsPage(
+			userAccountId, Pagination.of(2, 1));
+
+		List<Organization> organizations1 =
+			(List<Organization>)page1.getItems();
+
+		Assert.assertEquals(
+			organizations1.toString(), 2, organizations1.size());
+
+		Page<Organization> page2 = invokeGetUserAccountOrganizationsPage(
+			userAccountId, Pagination.of(2, 2));
+
+		List<Organization> organizations2 =
+			(List<Organization>)page2.getItems();
+
+		Assert.assertEquals(
+			organizations2.toString(), 1, organizations2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(organization1, organization2, organization3),
+			new ArrayList<Organization>() {
+				{
+					addAll(organizations1);
+					addAll(organizations2);
+				}
+			});
 	}
 
 	protected void assertEquals(
@@ -164,6 +356,11 @@ public abstract class BaseOrganizationResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Organization organization) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<Organization> page) {
 		boolean valid = false;
 
@@ -200,7 +397,8 @@ public abstract class BaseOrganizationResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_organizationResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -484,6 +682,59 @@ public abstract class BaseOrganizationResourceTestCase {
 				parentOrganizationId = RandomTestUtil.randomLong();
 			}
 		};
+	}
+
+	protected Organization
+			testGetMyUserAccountOrganizationsPage_addOrganization(
+				Long myUserAccountId, Organization organization)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetMyUserAccountOrganizationsPage_getMyUserAccountId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Organization testGetOrganization_addOrganization()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Organization testGetOrganizationOrganizationsPage_addOrganization(
+			Long organizationId, Organization organization)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetOrganizationOrganizationsPage_getOrganizationId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Organization testGetUserAccountOrganizationsPage_addOrganization(
+			Long userAccountId, Organization organization)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetUserAccountOrganizationsPage_getUserAccountId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

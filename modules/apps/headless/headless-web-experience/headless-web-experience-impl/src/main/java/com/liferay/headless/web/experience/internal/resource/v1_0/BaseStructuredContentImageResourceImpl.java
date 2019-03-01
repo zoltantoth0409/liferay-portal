@@ -51,14 +51,12 @@ public abstract class BaseStructuredContentImageResourceImpl
 
 	@DELETE
 	@Override
-	@Path(
-		"/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}"
-	)
+	@Path("/structured-content-images/{structured-content-image-id}")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
-	public boolean deleteStructuredContentContentDocument(
-			@PathParam("structured-content-id") Long structuredContentId,
-			@PathParam("content-document-id") Long contentDocumentId)
+	public boolean deleteStructuredContentImage(
+			@PathParam("structured-content-image-id") Long
+				structuredContentImageId)
 		throws Exception {
 
 		return false;
@@ -66,14 +64,12 @@ public abstract class BaseStructuredContentImageResourceImpl
 
 	@GET
 	@Override
-	@Path(
-		"/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}"
-	)
+	@Path("/structured-content-images/{structured-content-image-id}")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
-	public StructuredContentImage getStructuredContentContentDocument(
-			@PathParam("structured-content-id") Long structuredContentId,
-			@PathParam("content-document-id") Long contentDocumentId)
+	public StructuredContentImage getStructuredContentImage(
+			@PathParam("structured-content-image-id") Long
+				structuredContentImageId)
 		throws Exception {
 
 		return new StructuredContentImage();

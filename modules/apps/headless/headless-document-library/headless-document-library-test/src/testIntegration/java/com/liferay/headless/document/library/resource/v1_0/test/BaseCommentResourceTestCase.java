@@ -44,7 +44,9 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -52,6 +54,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -94,37 +100,437 @@ public abstract class BaseCommentResourceTestCase {
 
 	@Test
 	public void testDeleteComment() throws Exception {
-		Assert.assertTrue(true);
+		Comment comment = testDeleteComment_addComment();
+
+		assertResponseCode(200, invokeDeleteCommentResponse(comment.getId()));
+
+		assertResponseCode(404, invokeGetCommentResponse(comment.getId()));
 	}
 
 	@Test
 	public void testGetComment() throws Exception {
-		Assert.assertTrue(true);
+		Comment postComment = testGetComment_addComment();
+
+		Comment getComment = invokeGetComment(postComment.getId());
+
+		assertEquals(postComment, getComment);
+		assertValid(getComment);
 	}
 
 	@Test
 	public void testGetCommentCommentsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long commentId = testGetCommentCommentsPage_getCommentId();
+
+		Comment comment1 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+		Comment comment2 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+
+		Page<Comment> page = invokeGetCommentCommentsPage(
+			commentId, (String)null, Pagination.of(2, 1), (String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(comment1, comment2), (List<Comment>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetCommentCommentsPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long commentId = testGetCommentCommentsPage_getCommentId();
+
+		Comment comment1 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+
+		Thread.sleep(1000);
+
+		Comment comment2 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+
+		for (EntityField entityField : entityFields) {
+			Page<Comment> page = invokeGetCommentCommentsPage(
+				commentId, getFilterString(entityField, "eq", comment1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(comment1),
+				(List<Comment>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetCommentCommentsPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long commentId = testGetCommentCommentsPage_getCommentId();
+
+		Comment comment1 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+		Comment comment2 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+
+		for (EntityField entityField : entityFields) {
+			Page<Comment> page = invokeGetCommentCommentsPage(
+				commentId, getFilterString(entityField, "eq", comment1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(comment1),
+				(List<Comment>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetCommentCommentsPageWithPagination() throws Exception {
+		Long commentId = testGetCommentCommentsPage_getCommentId();
+
+		Comment comment1 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+		Comment comment2 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+		Comment comment3 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+
+		Page<Comment> page1 = invokeGetCommentCommentsPage(
+			commentId, (String)null, Pagination.of(2, 1), (String)null);
+
+		List<Comment> comments1 = (List<Comment>)page1.getItems();
+
+		Assert.assertEquals(comments1.toString(), 2, comments1.size());
+
+		Page<Comment> page2 = invokeGetCommentCommentsPage(
+			commentId, (String)null, Pagination.of(2, 2), (String)null);
+
+		List<Comment> comments2 = (List<Comment>)page2.getItems();
+
+		Assert.assertEquals(comments2.toString(), 1, comments2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(comment1, comment2, comment3),
+			new ArrayList<Comment>() {
+				{
+					addAll(comments1);
+					addAll(comments2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetCommentCommentsPageWithSortDateTime() throws Exception {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long commentId = testGetCommentCommentsPage_getCommentId();
+
+		Comment comment1 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+		Comment comment2 = testGetCommentCommentsPage_addComment(
+			commentId, randomComment());
+
+		for (EntityField entityField : entityFields) {
+			Page<Comment> ascPage = invokeGetCommentCommentsPage(
+				commentId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(comment1, comment2),
+				(List<Comment>)ascPage.getItems());
+
+			Page<Comment> descPage = invokeGetCommentCommentsPage(
+				commentId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(comment2, comment1),
+				(List<Comment>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetCommentCommentsPageWithSortString() throws Exception {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long commentId = testGetCommentCommentsPage_getCommentId();
+
+		Comment comment1 = randomComment();
+		Comment comment2 = randomComment();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(comment1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(comment2, entityField.getName(), "Bbb");
+		}
+
+		comment1 = testGetCommentCommentsPage_addComment(commentId, comment1);
+		comment2 = testGetCommentCommentsPage_addComment(commentId, comment2);
+
+		for (EntityField entityField : entityFields) {
+			Page<Comment> ascPage = invokeGetCommentCommentsPage(
+				commentId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(comment1, comment2),
+				(List<Comment>)ascPage.getItems());
+
+			Page<Comment> descPage = invokeGetCommentCommentsPage(
+				commentId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(comment2, comment1),
+				(List<Comment>)descPage.getItems());
+		}
 	}
 
 	@Test
 	public void testGetDocumentCommentsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long documentId = testGetDocumentCommentsPage_getDocumentId();
+
+		Comment comment1 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+		Comment comment2 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+
+		Page<Comment> page = invokeGetDocumentCommentsPage(
+			documentId, (String)null, Pagination.of(2, 1), (String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(comment1, comment2), (List<Comment>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetDocumentCommentsPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long documentId = testGetDocumentCommentsPage_getDocumentId();
+
+		Comment comment1 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+
+		Thread.sleep(1000);
+
+		Comment comment2 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+
+		for (EntityField entityField : entityFields) {
+			Page<Comment> page = invokeGetDocumentCommentsPage(
+				documentId, getFilterString(entityField, "eq", comment1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(comment1),
+				(List<Comment>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetDocumentCommentsPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long documentId = testGetDocumentCommentsPage_getDocumentId();
+
+		Comment comment1 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+		Comment comment2 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+
+		for (EntityField entityField : entityFields) {
+			Page<Comment> page = invokeGetDocumentCommentsPage(
+				documentId, getFilterString(entityField, "eq", comment1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(comment1),
+				(List<Comment>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetDocumentCommentsPageWithPagination() throws Exception {
+		Long documentId = testGetDocumentCommentsPage_getDocumentId();
+
+		Comment comment1 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+		Comment comment2 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+		Comment comment3 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+
+		Page<Comment> page1 = invokeGetDocumentCommentsPage(
+			documentId, (String)null, Pagination.of(2, 1), (String)null);
+
+		List<Comment> comments1 = (List<Comment>)page1.getItems();
+
+		Assert.assertEquals(comments1.toString(), 2, comments1.size());
+
+		Page<Comment> page2 = invokeGetDocumentCommentsPage(
+			documentId, (String)null, Pagination.of(2, 2), (String)null);
+
+		List<Comment> comments2 = (List<Comment>)page2.getItems();
+
+		Assert.assertEquals(comments2.toString(), 1, comments2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(comment1, comment2, comment3),
+			new ArrayList<Comment>() {
+				{
+					addAll(comments1);
+					addAll(comments2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetDocumentCommentsPageWithSortDateTime() throws Exception {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long documentId = testGetDocumentCommentsPage_getDocumentId();
+
+		Comment comment1 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+		Comment comment2 = testGetDocumentCommentsPage_addComment(
+			documentId, randomComment());
+
+		for (EntityField entityField : entityFields) {
+			Page<Comment> ascPage = invokeGetDocumentCommentsPage(
+				documentId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(comment1, comment2),
+				(List<Comment>)ascPage.getItems());
+
+			Page<Comment> descPage = invokeGetDocumentCommentsPage(
+				documentId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(comment2, comment1),
+				(List<Comment>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetDocumentCommentsPageWithSortString() throws Exception {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long documentId = testGetDocumentCommentsPage_getDocumentId();
+
+		Comment comment1 = randomComment();
+		Comment comment2 = randomComment();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(comment1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(comment2, entityField.getName(), "Bbb");
+		}
+
+		comment1 = testGetDocumentCommentsPage_addComment(documentId, comment1);
+		comment2 = testGetDocumentCommentsPage_addComment(documentId, comment2);
+
+		for (EntityField entityField : entityFields) {
+			Page<Comment> ascPage = invokeGetDocumentCommentsPage(
+				documentId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(comment1, comment2),
+				(List<Comment>)ascPage.getItems());
+
+			Page<Comment> descPage = invokeGetDocumentCommentsPage(
+				documentId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(comment2, comment1),
+				(List<Comment>)descPage.getItems());
+		}
 	}
 
 	@Test
 	public void testPostCommentComment() throws Exception {
-		Assert.assertTrue(true);
+		Comment randomComment = randomComment();
+
+		Comment postComment = testPostCommentComment_addComment(randomComment);
+
+		assertEquals(randomComment, postComment);
+		assertValid(postComment);
 	}
 
 	@Test
 	public void testPostDocumentComment() throws Exception {
-		Assert.assertTrue(true);
+		Comment randomComment = randomComment();
+
+		Comment postComment = testPostDocumentComment_addComment(randomComment);
+
+		assertEquals(randomComment, postComment);
+		assertValid(postComment);
 	}
 
 	@Test
 	public void testPutComment() throws Exception {
-		Assert.assertTrue(true);
+		Comment postComment = testPutComment_addComment();
+
+		Comment randomComment = randomComment();
+
+		Comment putComment = invokePutComment(
+			postComment.getId(), randomComment);
+
+		assertEquals(randomComment, putComment);
+		assertValid(putComment);
+
+		Comment getComment = invokeGetComment(putComment.getId());
+
+		assertEquals(randomComment, getComment);
+		assertValid(getComment);
 	}
 
 	protected void assertEquals(Comment comment1, Comment comment2) {
@@ -174,6 +580,11 @@ public abstract class BaseCommentResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Comment comment) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<Comment> page) {
 		boolean valid = false;
 
@@ -208,7 +619,8 @@ public abstract class BaseCommentResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_commentResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -532,6 +944,63 @@ public abstract class BaseCommentResourceTestCase {
 				text = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected Comment testDeleteComment_addComment() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Comment testGetComment_addComment() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Comment testGetCommentCommentsPage_addComment(
+			Long commentId, Comment comment)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetCommentCommentsPage_getCommentId() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Comment testGetDocumentCommentsPage_addComment(
+			Long documentId, Comment comment)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetDocumentCommentsPage_getDocumentId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Comment testPostCommentComment_addComment(Comment comment)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Comment testPostDocumentComment_addComment(Comment comment)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Comment testPutComment_addComment() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

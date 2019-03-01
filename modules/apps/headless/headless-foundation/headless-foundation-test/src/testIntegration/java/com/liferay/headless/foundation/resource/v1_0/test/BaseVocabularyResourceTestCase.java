@@ -44,7 +44,9 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -52,6 +54,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -94,27 +100,267 @@ public abstract class BaseVocabularyResourceTestCase {
 
 	@Test
 	public void testDeleteVocabulary() throws Exception {
-		Assert.assertTrue(true);
+		Vocabulary vocabulary = testDeleteVocabulary_addVocabulary();
+
+		assertResponseCode(
+			200, invokeDeleteVocabularyResponse(vocabulary.getId()));
+
+		assertResponseCode(
+			404, invokeGetVocabularyResponse(vocabulary.getId()));
 	}
 
 	@Test
 	public void testGetContentSpaceVocabulariesPage() throws Exception {
-		Assert.assertTrue(true);
+		Long contentSpaceId =
+			testGetContentSpaceVocabulariesPage_getContentSpaceId();
+
+		Vocabulary vocabulary1 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+		Vocabulary vocabulary2 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+
+		Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
+			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(vocabulary1, vocabulary2),
+			(List<Vocabulary>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceVocabulariesPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceVocabulariesPage_getContentSpaceId();
+
+		Vocabulary vocabulary1 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+
+		Thread.sleep(1000);
+
+		Vocabulary vocabulary2 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+
+		for (EntityField entityField : entityFields) {
+			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
+				contentSpaceId, getFilterString(entityField, "eq", vocabulary1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(vocabulary1),
+				(List<Vocabulary>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceVocabulariesPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceVocabulariesPage_getContentSpaceId();
+
+		Vocabulary vocabulary1 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+		Vocabulary vocabulary2 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+
+		for (EntityField entityField : entityFields) {
+			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
+				contentSpaceId, getFilterString(entityField, "eq", vocabulary1),
+				Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(vocabulary1),
+				(List<Vocabulary>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceVocabulariesPageWithPagination()
+		throws Exception {
+
+		Long contentSpaceId =
+			testGetContentSpaceVocabulariesPage_getContentSpaceId();
+
+		Vocabulary vocabulary1 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+		Vocabulary vocabulary2 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+		Vocabulary vocabulary3 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+
+		Page<Vocabulary> page1 = invokeGetContentSpaceVocabulariesPage(
+			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+
+		List<Vocabulary> vocabularies1 = (List<Vocabulary>)page1.getItems();
+
+		Assert.assertEquals(vocabularies1.toString(), 2, vocabularies1.size());
+
+		Page<Vocabulary> page2 = invokeGetContentSpaceVocabulariesPage(
+			contentSpaceId, (String)null, Pagination.of(2, 2), (String)null);
+
+		List<Vocabulary> vocabularies2 = (List<Vocabulary>)page2.getItems();
+
+		Assert.assertEquals(vocabularies2.toString(), 1, vocabularies2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(vocabulary1, vocabulary2, vocabulary3),
+			new ArrayList<Vocabulary>() {
+				{
+					addAll(vocabularies1);
+					addAll(vocabularies2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetContentSpaceVocabulariesPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceVocabulariesPage_getContentSpaceId();
+
+		Vocabulary vocabulary1 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+		Vocabulary vocabulary2 =
+			testGetContentSpaceVocabulariesPage_addVocabulary(
+				contentSpaceId, randomVocabulary());
+
+		for (EntityField entityField : entityFields) {
+			Page<Vocabulary> ascPage = invokeGetContentSpaceVocabulariesPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(vocabulary1, vocabulary2),
+				(List<Vocabulary>)ascPage.getItems());
+
+			Page<Vocabulary> descPage = invokeGetContentSpaceVocabulariesPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(vocabulary2, vocabulary1),
+				(List<Vocabulary>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceVocabulariesPageWithSortString()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceVocabulariesPage_getContentSpaceId();
+
+		Vocabulary vocabulary1 = randomVocabulary();
+		Vocabulary vocabulary2 = randomVocabulary();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(vocabulary1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(vocabulary2, entityField.getName(), "Bbb");
+		}
+
+		vocabulary1 = testGetContentSpaceVocabulariesPage_addVocabulary(
+			contentSpaceId, vocabulary1);
+		vocabulary2 = testGetContentSpaceVocabulariesPage_addVocabulary(
+			contentSpaceId, vocabulary2);
+
+		for (EntityField entityField : entityFields) {
+			Page<Vocabulary> ascPage = invokeGetContentSpaceVocabulariesPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(vocabulary1, vocabulary2),
+				(List<Vocabulary>)ascPage.getItems());
+
+			Page<Vocabulary> descPage = invokeGetContentSpaceVocabulariesPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(vocabulary2, vocabulary1),
+				(List<Vocabulary>)descPage.getItems());
+		}
 	}
 
 	@Test
 	public void testGetVocabulary() throws Exception {
-		Assert.assertTrue(true);
+		Vocabulary postVocabulary = testGetVocabulary_addVocabulary();
+
+		Vocabulary getVocabulary = invokeGetVocabulary(postVocabulary.getId());
+
+		assertEquals(postVocabulary, getVocabulary);
+		assertValid(getVocabulary);
 	}
 
 	@Test
 	public void testPostContentSpaceVocabulary() throws Exception {
-		Assert.assertTrue(true);
+		Vocabulary randomVocabulary = randomVocabulary();
+
+		Vocabulary postVocabulary =
+			testPostContentSpaceVocabulary_addVocabulary(randomVocabulary);
+
+		assertEquals(randomVocabulary, postVocabulary);
+		assertValid(postVocabulary);
 	}
 
 	@Test
 	public void testPutVocabulary() throws Exception {
-		Assert.assertTrue(true);
+		Vocabulary postVocabulary = testPutVocabulary_addVocabulary();
+
+		Vocabulary randomVocabulary = randomVocabulary();
+
+		Vocabulary putVocabulary = invokePutVocabulary(
+			postVocabulary.getId(), randomVocabulary);
+
+		assertEquals(randomVocabulary, putVocabulary);
+		assertValid(putVocabulary);
+
+		Vocabulary getVocabulary = invokeGetVocabulary(putVocabulary.getId());
+
+		assertEquals(randomVocabulary, getVocabulary);
+		assertValid(getVocabulary);
 	}
 
 	protected void assertEquals(
@@ -183,6 +429,11 @@ public abstract class BaseVocabularyResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(Vocabulary vocabulary) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(Vocabulary vocabulary1, Vocabulary vocabulary2) {
 		if (vocabulary1 == vocabulary2) {
 			return true;
@@ -200,7 +451,8 @@ public abstract class BaseVocabularyResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_vocabularyResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -481,6 +733,43 @@ public abstract class BaseVocabularyResourceTestCase {
 				name = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected Vocabulary testDeleteVocabulary_addVocabulary() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Vocabulary testGetContentSpaceVocabulariesPage_addVocabulary(
+			Long contentSpaceId, Vocabulary vocabulary)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetContentSpaceVocabulariesPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
+	}
+
+	protected Vocabulary testGetVocabulary_addVocabulary() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Vocabulary testPostContentSpaceVocabulary_addVocabulary(
+			Vocabulary vocabulary)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Vocabulary testPutVocabulary_addVocabulary() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

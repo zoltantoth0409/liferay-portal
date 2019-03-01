@@ -211,9 +211,9 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public StructuredContentImage getStructuredContentContentDocument(
-			@GraphQLName("structured-content-id") Long structuredContentId,
-			@GraphQLName("content-document-id") Long contentDocumentId)
+	public StructuredContentImage getStructuredContentImage(
+			@GraphQLName("structured-content-image-id") Long
+				structuredContentImageId)
 		throws Exception {
 
 		StructuredContentImageResource structuredContentImageResource =
@@ -223,9 +223,8 @@ public class Query {
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
 
-		return structuredContentImageResource.
-			getStructuredContentContentDocument(
-				structuredContentId, contentDocumentId);
+		return structuredContentImageResource.getStructuredContentImage(
+			structuredContentImageId);
 	}
 
 	@GraphQLField

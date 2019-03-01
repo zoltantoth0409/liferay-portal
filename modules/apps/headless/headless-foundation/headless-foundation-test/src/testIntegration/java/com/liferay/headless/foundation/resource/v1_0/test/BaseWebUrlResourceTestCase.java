@@ -41,6 +41,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -91,12 +94,68 @@ public abstract class BaseWebUrlResourceTestCase {
 
 	@Test
 	public void testGetGenericParentWebUrlsPage() throws Exception {
-		Assert.assertTrue(true);
+		Object genericParentId =
+			testGetGenericParentWebUrlsPage_getGenericParentId();
+
+		WebUrl webUrl1 = testGetGenericParentWebUrlsPage_addWebUrl(
+			genericParentId, randomWebUrl());
+		WebUrl webUrl2 = testGetGenericParentWebUrlsPage_addWebUrl(
+			genericParentId, randomWebUrl());
+
+		Page<WebUrl> page = invokeGetGenericParentWebUrlsPage(
+			genericParentId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(webUrl1, webUrl2), (List<WebUrl>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetGenericParentWebUrlsPageWithPagination()
+		throws Exception {
+
+		Object genericParentId =
+			testGetGenericParentWebUrlsPage_getGenericParentId();
+
+		WebUrl webUrl1 = testGetGenericParentWebUrlsPage_addWebUrl(
+			genericParentId, randomWebUrl());
+		WebUrl webUrl2 = testGetGenericParentWebUrlsPage_addWebUrl(
+			genericParentId, randomWebUrl());
+		WebUrl webUrl3 = testGetGenericParentWebUrlsPage_addWebUrl(
+			genericParentId, randomWebUrl());
+
+		Page<WebUrl> page1 = invokeGetGenericParentWebUrlsPage(
+			genericParentId, Pagination.of(2, 1));
+
+		List<WebUrl> webUrls1 = (List<WebUrl>)page1.getItems();
+
+		Assert.assertEquals(webUrls1.toString(), 2, webUrls1.size());
+
+		Page<WebUrl> page2 = invokeGetGenericParentWebUrlsPage(
+			genericParentId, Pagination.of(2, 2));
+
+		List<WebUrl> webUrls2 = (List<WebUrl>)page2.getItems();
+
+		Assert.assertEquals(webUrls2.toString(), 1, webUrls2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(webUrl1, webUrl2, webUrl3),
+			new ArrayList<WebUrl>() {
+				{
+					addAll(webUrls1);
+					addAll(webUrls2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetWebUrl() throws Exception {
-		Assert.assertTrue(true);
+		WebUrl postWebUrl = testGetWebUrl_addWebUrl();
+
+		WebUrl getWebUrl = invokeGetWebUrl(postWebUrl.getId());
+
+		assertEquals(postWebUrl, getWebUrl);
+		assertValid(getWebUrl);
 	}
 
 	protected void assertEquals(List<WebUrl> webUrls1, List<WebUrl> webUrls2) {
@@ -160,6 +219,11 @@ public abstract class BaseWebUrlResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(WebUrl webUrl) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(WebUrl webUrl1, WebUrl webUrl2) {
 		if (webUrl1 == webUrl2) {
 			return true;
@@ -177,7 +241,8 @@ public abstract class BaseWebUrlResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_webUrlResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -297,6 +362,26 @@ public abstract class BaseWebUrlResourceTestCase {
 				urlType = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected WebUrl testGetGenericParentWebUrlsPage_addWebUrl(
+			Object genericParentId, WebUrl webUrl)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Object testGetGenericParentWebUrlsPage_getGenericParentId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected WebUrl testGetWebUrl_addWebUrl() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

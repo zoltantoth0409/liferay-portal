@@ -41,6 +41,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -91,12 +94,66 @@ public abstract class BaseRoleResourceTestCase {
 
 	@Test
 	public void testGetMyUserAccountRolesPage() throws Exception {
-		Assert.assertTrue(true);
+		Long myUserAccountId =
+			testGetMyUserAccountRolesPage_getMyUserAccountId();
+
+		Role role1 = testGetMyUserAccountRolesPage_addRole(
+			myUserAccountId, randomRole());
+		Role role2 = testGetMyUserAccountRolesPage_addRole(
+			myUserAccountId, randomRole());
+
+		Page<Role> page = invokeGetMyUserAccountRolesPage(
+			myUserAccountId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(role1, role2), (List<Role>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetMyUserAccountRolesPageWithPagination() throws Exception {
+		Long myUserAccountId =
+			testGetMyUserAccountRolesPage_getMyUserAccountId();
+
+		Role role1 = testGetMyUserAccountRolesPage_addRole(
+			myUserAccountId, randomRole());
+		Role role2 = testGetMyUserAccountRolesPage_addRole(
+			myUserAccountId, randomRole());
+		Role role3 = testGetMyUserAccountRolesPage_addRole(
+			myUserAccountId, randomRole());
+
+		Page<Role> page1 = invokeGetMyUserAccountRolesPage(
+			myUserAccountId, Pagination.of(2, 1));
+
+		List<Role> roles1 = (List<Role>)page1.getItems();
+
+		Assert.assertEquals(roles1.toString(), 2, roles1.size());
+
+		Page<Role> page2 = invokeGetMyUserAccountRolesPage(
+			myUserAccountId, Pagination.of(2, 2));
+
+		List<Role> roles2 = (List<Role>)page2.getItems();
+
+		Assert.assertEquals(roles2.toString(), 1, roles2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(role1, role2, role3),
+			new ArrayList<Role>() {
+				{
+					addAll(roles1);
+					addAll(roles2);
+				}
+			});
 	}
 
 	@Test
 	public void testGetRole() throws Exception {
-		Assert.assertTrue(true);
+		Role postRole = testGetRole_addRole();
+
+		Role getRole = invokeGetRole(postRole.getId());
+
+		assertEquals(postRole, getRole);
+		assertValid(getRole);
 	}
 
 	@Test
@@ -106,7 +163,54 @@ public abstract class BaseRoleResourceTestCase {
 
 	@Test
 	public void testGetUserAccountRolesPage() throws Exception {
-		Assert.assertTrue(true);
+		Long userAccountId = testGetUserAccountRolesPage_getUserAccountId();
+
+		Role role1 = testGetUserAccountRolesPage_addRole(
+			userAccountId, randomRole());
+		Role role2 = testGetUserAccountRolesPage_addRole(
+			userAccountId, randomRole());
+
+		Page<Role> page = invokeGetUserAccountRolesPage(
+			userAccountId, Pagination.of(2, 1));
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(role1, role2), (List<Role>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetUserAccountRolesPageWithPagination() throws Exception {
+		Long userAccountId = testGetUserAccountRolesPage_getUserAccountId();
+
+		Role role1 = testGetUserAccountRolesPage_addRole(
+			userAccountId, randomRole());
+		Role role2 = testGetUserAccountRolesPage_addRole(
+			userAccountId, randomRole());
+		Role role3 = testGetUserAccountRolesPage_addRole(
+			userAccountId, randomRole());
+
+		Page<Role> page1 = invokeGetUserAccountRolesPage(
+			userAccountId, Pagination.of(2, 1));
+
+		List<Role> roles1 = (List<Role>)page1.getItems();
+
+		Assert.assertEquals(roles1.toString(), 2, roles1.size());
+
+		Page<Role> page2 = invokeGetUserAccountRolesPage(
+			userAccountId, Pagination.of(2, 2));
+
+		List<Role> roles2 = (List<Role>)page2.getItems();
+
+		Assert.assertEquals(roles2.toString(), 1, roles2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(role1, role2, role3),
+			new ArrayList<Role>() {
+				{
+					addAll(roles1);
+					addAll(roles2);
+				}
+			});
 	}
 
 	protected void assertEquals(List<Role> roles1, List<Role> roles2) {
@@ -169,6 +273,11 @@ public abstract class BaseRoleResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(Role role) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(Role role1, Role role2) {
 		if (role1 == role2) {
 			return true;
@@ -186,7 +295,8 @@ public abstract class BaseRoleResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_roleResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -401,6 +511,41 @@ public abstract class BaseRoleResourceTestCase {
 				roleType = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected Role testGetMyUserAccountRolesPage_addRole(
+			Long myUserAccountId, Role role)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetMyUserAccountRolesPage_getMyUserAccountId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Role testGetRole_addRole() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Role testGetUserAccountRolesPage_addRole(
+			Long userAccountId, Role role)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetUserAccountRolesPage_getUserAccountId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;

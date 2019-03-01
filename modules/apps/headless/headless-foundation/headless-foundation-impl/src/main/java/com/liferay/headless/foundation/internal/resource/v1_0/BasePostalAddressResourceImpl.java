@@ -51,18 +51,7 @@ public abstract class BasePostalAddressResourceImpl
 
 	@GET
 	@Override
-	@Path("/addresses/{address-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public PostalAddress getAddress(@PathParam("address-id") Long addressId)
-		throws Exception {
-
-		return new PostalAddress();
-	}
-
-	@GET
-	@Override
-	@Path("/addresses")
+	@Path("/postal-addresses")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	public Page<PostalAddress> getGenericParentPostalAddressesPage(
@@ -71,6 +60,18 @@ public abstract class BasePostalAddressResourceImpl
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
+	}
+
+	@GET
+	@Override
+	@Path("/postal-addresses/{postal-address-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	public PostalAddress getPostalAddress(
+			@PathParam("postal-address-id") Long postalAddressId)
+		throws Exception {
+
+		return new PostalAddress();
 	}
 
 	public void setContextCompany(Company contextCompany) {

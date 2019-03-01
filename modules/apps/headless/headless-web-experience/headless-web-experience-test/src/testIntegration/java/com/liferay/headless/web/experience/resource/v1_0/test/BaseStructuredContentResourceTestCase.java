@@ -45,7 +45,9 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -53,6 +55,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -95,24 +101,505 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	@Test
 	public void testDeleteStructuredContent() throws Exception {
-		Assert.assertTrue(true);
+		StructuredContent structuredContent =
+			testDeleteStructuredContent_addStructuredContent();
+
+		assertResponseCode(
+			200,
+			invokeDeleteStructuredContentResponse(structuredContent.getId()));
+
+		assertResponseCode(
+			404, invokeGetStructuredContentResponse(structuredContent.getId()));
 	}
 
 	@Test
 	public void testGetContentSpaceStructuredContentsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long contentSpaceId =
+			testGetContentSpaceStructuredContentsPage_getContentSpaceId();
+
+		StructuredContent structuredContent1 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+		StructuredContent structuredContent2 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+
+		Page<StructuredContent> page =
+			invokeGetContentSpaceStructuredContentsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				(String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(structuredContent1, structuredContent2),
+			(List<StructuredContent>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceStructuredContentsPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceStructuredContentsPage_getContentSpaceId();
+
+		StructuredContent structuredContent1 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+
+		Thread.sleep(1000);
+
+		StructuredContent structuredContent2 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+
+		for (EntityField entityField : entityFields) {
+			Page<StructuredContent> page =
+				invokeGetContentSpaceStructuredContentsPage(
+					contentSpaceId,
+					getFilterString(entityField, "eq", structuredContent1),
+					Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(structuredContent1),
+				(List<StructuredContent>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceStructuredContentsPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceStructuredContentsPage_getContentSpaceId();
+
+		StructuredContent structuredContent1 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+		StructuredContent structuredContent2 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+
+		for (EntityField entityField : entityFields) {
+			Page<StructuredContent> page =
+				invokeGetContentSpaceStructuredContentsPage(
+					contentSpaceId,
+					getFilterString(entityField, "eq", structuredContent1),
+					Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(structuredContent1),
+				(List<StructuredContent>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceStructuredContentsPageWithPagination()
+		throws Exception {
+
+		Long contentSpaceId =
+			testGetContentSpaceStructuredContentsPage_getContentSpaceId();
+
+		StructuredContent structuredContent1 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+		StructuredContent structuredContent2 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+		StructuredContent structuredContent3 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+
+		Page<StructuredContent> page1 =
+			invokeGetContentSpaceStructuredContentsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 1),
+				(String)null);
+
+		List<StructuredContent> structuredContents1 =
+			(List<StructuredContent>)page1.getItems();
+
+		Assert.assertEquals(
+			structuredContents1.toString(), 2, structuredContents1.size());
+
+		Page<StructuredContent> page2 =
+			invokeGetContentSpaceStructuredContentsPage(
+				contentSpaceId, (String)null, Pagination.of(2, 2),
+				(String)null);
+
+		List<StructuredContent> structuredContents2 =
+			(List<StructuredContent>)page2.getItems();
+
+		Assert.assertEquals(
+			structuredContents2.toString(), 1, structuredContents2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(
+				structuredContent1, structuredContent2, structuredContent3),
+			new ArrayList<StructuredContent>() {
+				{
+					addAll(structuredContents1);
+					addAll(structuredContents2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetContentSpaceStructuredContentsPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceStructuredContentsPage_getContentSpaceId();
+
+		StructuredContent structuredContent1 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+		StructuredContent structuredContent2 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, randomStructuredContent());
+
+		for (EntityField entityField : entityFields) {
+			Page<StructuredContent> ascPage =
+				invokeGetContentSpaceStructuredContentsPage(
+					contentSpaceId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(structuredContent1, structuredContent2),
+				(List<StructuredContent>)ascPage.getItems());
+
+			Page<StructuredContent> descPage =
+				invokeGetContentSpaceStructuredContentsPage(
+					contentSpaceId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(structuredContent2, structuredContent1),
+				(List<StructuredContent>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceStructuredContentsPageWithSortString()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceStructuredContentsPage_getContentSpaceId();
+
+		StructuredContent structuredContent1 = randomStructuredContent();
+		StructuredContent structuredContent2 = randomStructuredContent();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				structuredContent1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(
+				structuredContent2, entityField.getName(), "Bbb");
+		}
+
+		structuredContent1 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, structuredContent1);
+		structuredContent2 =
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				contentSpaceId, structuredContent2);
+
+		for (EntityField entityField : entityFields) {
+			Page<StructuredContent> ascPage =
+				invokeGetContentSpaceStructuredContentsPage(
+					contentSpaceId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(structuredContent1, structuredContent2),
+				(List<StructuredContent>)ascPage.getItems());
+
+			Page<StructuredContent> descPage =
+				invokeGetContentSpaceStructuredContentsPage(
+					contentSpaceId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(structuredContent2, structuredContent1),
+				(List<StructuredContent>)descPage.getItems());
+		}
 	}
 
 	@Test
 	public void testGetContentStructureStructuredContentsPage()
 		throws Exception {
 
-		Assert.assertTrue(true);
+		Long contentStructureId =
+			testGetContentStructureStructuredContentsPage_getContentStructureId();
+
+		StructuredContent structuredContent1 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+		StructuredContent structuredContent2 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+
+		Page<StructuredContent> page =
+			invokeGetContentStructureStructuredContentsPage(
+				contentStructureId, (String)null, Pagination.of(2, 1),
+				(String)null);
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(structuredContent1, structuredContent2),
+			(List<StructuredContent>)page.getItems());
+		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentStructureStructuredContentsPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentStructureId =
+			testGetContentStructureStructuredContentsPage_getContentStructureId();
+
+		StructuredContent structuredContent1 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+
+		Thread.sleep(1000);
+
+		StructuredContent structuredContent2 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+
+		for (EntityField entityField : entityFields) {
+			Page<StructuredContent> page =
+				invokeGetContentStructureStructuredContentsPage(
+					contentStructureId,
+					getFilterString(entityField, "eq", structuredContent1),
+					Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(structuredContent1),
+				(List<StructuredContent>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentStructureStructuredContentsPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentStructureId =
+			testGetContentStructureStructuredContentsPage_getContentStructureId();
+
+		StructuredContent structuredContent1 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+		StructuredContent structuredContent2 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+
+		for (EntityField entityField : entityFields) {
+			Page<StructuredContent> page =
+				invokeGetContentStructureStructuredContentsPage(
+					contentStructureId,
+					getFilterString(entityField, "eq", structuredContent1),
+					Pagination.of(2, 1), (String)null);
+
+			assertEquals(
+				Collections.singletonList(structuredContent1),
+				(List<StructuredContent>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentStructureStructuredContentsPageWithPagination()
+		throws Exception {
+
+		Long contentStructureId =
+			testGetContentStructureStructuredContentsPage_getContentStructureId();
+
+		StructuredContent structuredContent1 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+		StructuredContent structuredContent2 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+		StructuredContent structuredContent3 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+
+		Page<StructuredContent> page1 =
+			invokeGetContentStructureStructuredContentsPage(
+				contentStructureId, (String)null, Pagination.of(2, 1),
+				(String)null);
+
+		List<StructuredContent> structuredContents1 =
+			(List<StructuredContent>)page1.getItems();
+
+		Assert.assertEquals(
+			structuredContents1.toString(), 2, structuredContents1.size());
+
+		Page<StructuredContent> page2 =
+			invokeGetContentStructureStructuredContentsPage(
+				contentStructureId, (String)null, Pagination.of(2, 2),
+				(String)null);
+
+		List<StructuredContent> structuredContents2 =
+			(List<StructuredContent>)page2.getItems();
+
+		Assert.assertEquals(
+			structuredContents2.toString(), 1, structuredContents2.size());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(
+				structuredContent1, structuredContent2, structuredContent3),
+			new ArrayList<StructuredContent>() {
+				{
+					addAll(structuredContents1);
+					addAll(structuredContents2);
+				}
+			});
+	}
+
+	@Test
+	public void testGetContentStructureStructuredContentsPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentStructureId =
+			testGetContentStructureStructuredContentsPage_getContentStructureId();
+
+		StructuredContent structuredContent1 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+		StructuredContent structuredContent2 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, randomStructuredContent());
+
+		for (EntityField entityField : entityFields) {
+			Page<StructuredContent> ascPage =
+				invokeGetContentStructureStructuredContentsPage(
+					contentStructureId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(structuredContent1, structuredContent2),
+				(List<StructuredContent>)ascPage.getItems());
+
+			Page<StructuredContent> descPage =
+				invokeGetContentStructureStructuredContentsPage(
+					contentStructureId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(structuredContent2, structuredContent1),
+				(List<StructuredContent>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentStructureStructuredContentsPageWithSortString()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentStructureId =
+			testGetContentStructureStructuredContentsPage_getContentStructureId();
+
+		StructuredContent structuredContent1 = randomStructuredContent();
+		StructuredContent structuredContent2 = randomStructuredContent();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				structuredContent1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(
+				structuredContent2, entityField.getName(), "Bbb");
+		}
+
+		structuredContent1 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, structuredContent1);
+		structuredContent2 =
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				contentStructureId, structuredContent2);
+
+		for (EntityField entityField : entityFields) {
+			Page<StructuredContent> ascPage =
+				invokeGetContentStructureStructuredContentsPage(
+					contentStructureId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(structuredContent1, structuredContent2),
+				(List<StructuredContent>)ascPage.getItems());
+
+			Page<StructuredContent> descPage =
+				invokeGetContentStructureStructuredContentsPage(
+					contentStructureId, (String)null, Pagination.of(2, 1),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(structuredContent2, structuredContent1),
+				(List<StructuredContent>)descPage.getItems());
+		}
 	}
 
 	@Test
 	public void testGetStructuredContent() throws Exception {
-		Assert.assertTrue(true);
+		StructuredContent postStructuredContent =
+			testGetStructuredContent_addStructuredContent();
+
+		StructuredContent getStructuredContent = invokeGetStructuredContent(
+			postStructuredContent.getId());
+
+		assertEquals(postStructuredContent, getStructuredContent);
+		assertValid(getStructuredContent);
 	}
 
 	@Test
@@ -127,12 +614,34 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	@Test
 	public void testPostContentSpaceStructuredContent() throws Exception {
-		Assert.assertTrue(true);
+		StructuredContent randomStructuredContent = randomStructuredContent();
+
+		StructuredContent postStructuredContent =
+			testPostContentSpaceStructuredContent_addStructuredContent(
+				randomStructuredContent);
+
+		assertEquals(randomStructuredContent, postStructuredContent);
+		assertValid(postStructuredContent);
 	}
 
 	@Test
 	public void testPutStructuredContent() throws Exception {
-		Assert.assertTrue(true);
+		StructuredContent postStructuredContent =
+			testPutStructuredContent_addStructuredContent();
+
+		StructuredContent randomStructuredContent = randomStructuredContent();
+
+		StructuredContent putStructuredContent = invokePutStructuredContent(
+			postStructuredContent.getId(), randomStructuredContent);
+
+		assertEquals(randomStructuredContent, putStructuredContent);
+		assertValid(putStructuredContent);
+
+		StructuredContent getStructuredContent = invokeGetStructuredContent(
+			putStructuredContent.getId());
+
+		assertEquals(randomStructuredContent, getStructuredContent);
+		assertValid(getStructuredContent);
 	}
 
 	protected void assertEquals(
@@ -207,6 +716,11 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
+	protected void assertValid(StructuredContent structuredContent) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected boolean equals(
 		StructuredContent structuredContent1,
 		StructuredContent structuredContent2) {
@@ -227,7 +741,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		EntityModelResource entityModelResource =
 			(EntityModelResource)_structuredContentResource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(
+			new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
@@ -669,6 +1184,69 @@ public abstract class BaseStructuredContentResourceTestCase {
 				title = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	protected StructuredContent
+			testDeleteStructuredContent_addStructuredContent()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContent
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				Long contentSpaceId, StructuredContent structuredContent)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetContentSpaceStructuredContentsPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
+	}
+
+	protected StructuredContent
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				Long contentStructureId, StructuredContent structuredContent)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetContentStructureStructuredContentsPage_getContentStructureId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContent testGetStructuredContent_addStructuredContent()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContent
+			testPostContentSpaceStructuredContent_addStructuredContent(
+				StructuredContent structuredContent)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContent testPutStructuredContent_addStructuredContent()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Group testGroup;
