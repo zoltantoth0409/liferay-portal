@@ -747,15 +747,9 @@ paths:
                                 type: array
                     description: ""
             tags: ["StructuredContentImage"]
-    "/structured-contents/{structured-content-id}/structured-content-images/{structured-content-image-id}":
+    "/structured-content-images/{structured-content-image-id}":
         delete:
             parameters:
-                - in: path
-                  name: structured-content-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
                 - in: path
                   name: structured-content-image-id
                   required: true
@@ -770,12 +764,6 @@ paths:
             tags: ["StructuredContentImage"]
         get:
             parameters:
-                - in: path
-                  name: structured-content-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
                 - in: path
                   name: structured-content-image-id
                   required: true
