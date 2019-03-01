@@ -2077,8 +2077,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	@BeanReference(type = PortletFileRepository.class)
 	protected PortletFileRepository portletFileRepository;
 
-	private static final int[] _STATUSES =
-		{WorkflowConstants.STATUS_APPROVED, WorkflowConstants.STATUS_PENDING};
+	private static final int[] _STATUSES = {
+		WorkflowConstants.STATUS_APPROVED, WorkflowConstants.STATUS_PENDING
+	};
 
 	private static final long _TICKET_EXPIRATION = Time.HOUR;
 

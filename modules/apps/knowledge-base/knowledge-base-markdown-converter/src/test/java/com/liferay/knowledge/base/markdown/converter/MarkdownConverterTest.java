@@ -31,8 +31,8 @@ public class MarkdownConverterTest {
 				"[](id=the-liferay-uilogo-selector-tag-requires-parameter-" +
 					"changes)";
 
-		String html =
-			MarkdownConverterFactoryUtil.create().convert(markdownString);
+		String html = MarkdownConverterFactoryUtil.create().convert(
+			markdownString);
 
 		int index = html.indexOf(
 			"id=\"the-liferay-uilogo-selector-tag-requires-parameter-" +
