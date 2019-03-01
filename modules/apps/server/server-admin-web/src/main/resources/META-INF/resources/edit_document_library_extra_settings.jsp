@@ -115,16 +115,16 @@ if (!dlFileEntries.isEmpty()) {
 
 <aui:script>
 	function <portlet:namespace />convertDocumentLibraryExtraSettings() {
-	var form = document.getElementById('<portlet:namespace />fm');
+		var form = document.getElementById('<portlet:namespace />fm');
 
-	if (form) {
-	var cmd = form.querySelector('#<portlet:namespace /><%= Constants.CMD %>');
+		if (form) {
+			var cmd = form.querySelector('#<portlet:namespace /><%= Constants.CMD %>');
 
-	if (cmd) {
-	cmd.setAttribute('value', 'convert');
-	}
+			if (cmd) {
+				cmd.setAttribute('value', 'convert');
+			}
 
-	submitForm(form);
-	}
+			submitForm(form);
+		}
 	}
 </aui:script>
