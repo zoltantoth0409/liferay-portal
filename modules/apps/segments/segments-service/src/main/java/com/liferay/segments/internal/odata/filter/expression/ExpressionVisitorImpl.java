@@ -246,6 +246,12 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		return expression.accept(this);
 	}
 
+	private Predicate<Context> _getANDPredicate(
+		Predicate<Context> leftPredicate, Predicate<Context> rightPredicate) {
+
+		return leftPredicate.and(rightPredicate);
+	}
+
 	private Predicate<Context> _getContainsPredicate(
 		EntityField entityField, Object fieldValue) {
 
@@ -260,12 +266,6 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		throw new UnsupportedOperationException(
 			"Unsupported method _contains with entity field type " +
 				entityField.getType());
-	}
-
-	private Predicate<Context> _getANDPredicate(
-		Predicate<Context> leftPredicate, Predicate<Context> rightPredicate) {
-
-		return leftPredicate.and(rightPredicate);
 	}
 
 	private Predicate<Context> _getEQPredicate(
@@ -328,6 +328,25 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 
 		throw new UnsupportedOperationException(
 			"Unsupported method _getGTPredicate with entity field type " +
+				entityField.getType());
+	}
+
+	private Predicate<Context> _getLambdaContainsPredicate(
+		EntityField entityField, Object fieldValue) {
+
+		if (Objects.equals(entityField.getType(), EntityField.Type.STRING)) {
+			Predicate<Context> predicate = p -> Stream.of(
+				(String[])p.get(_lambdaCollectionEntityField.getName())
+			).anyMatch(
+				c -> StringUtils.containsIgnoreCase(
+					String.valueOf(c), String.valueOf(fieldValue))
+			);
+
+			return predicate;
+		}
+
+		throw new UnsupportedOperationException(
+			"Unsupported method _lambdaContains with entity field type " +
 				entityField.getType());
 	}
 
@@ -468,25 +487,6 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		}
 
 		return Optional.of(predicate);
-	}
-
-	private Predicate<Context> _getLambdaContainsPredicate(
-		EntityField entityField, Object fieldValue) {
-
-		if (Objects.equals(entityField.getType(), EntityField.Type.STRING)) {
-			Predicate<Context> predicate = p -> Stream.of(
-				(String[])p.get(_lambdaCollectionEntityField.getName())
-			).anyMatch(
-				c -> StringUtils.containsIgnoreCase(
-					String.valueOf(c), String.valueOf(fieldValue))
-			);
-
-			return predicate;
-		}
-
-		throw new UnsupportedOperationException(
-			"Unsupported method _lambdaContains with entity field type " +
-				entityField.getType());
 	}
 
 	private Object _normalizeStringLiteral(String literal) {
