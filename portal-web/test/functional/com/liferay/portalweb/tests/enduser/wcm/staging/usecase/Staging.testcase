@@ -1649,7 +1649,6 @@ definition {
 		);
 	}
 
-	@ignore = "true"
 	@priority = "4"
 	test StagingRemoteLiveWebContent {
 		property custom.properties = "tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelAuthVerifier.hosts.allowed=";
