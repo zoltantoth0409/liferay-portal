@@ -44,7 +44,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -94,71 +93,6 @@ public class StructuredContentResourceTest
 		registry.ungetService(_serviceReference);
 
 		super.tearDown();
-	}
-
-	@Override
-	@Test
-	public void testDeleteStructuredContent() throws Exception {
-		StructuredContent structuredContent =
-			invokePostContentSpaceStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent());
-
-		assertResponseCode(
-			200,
-			invokeDeleteStructuredContentResponse(structuredContent.getId()));
-
-		assertResponseCode(
-			404, invokeGetStructuredContentResponse(structuredContent.getId()));
-
-	}
-
-	@Override
-	@Test
-	public void testGetStructuredContent() throws Exception {
-		StructuredContent postStructuredContent =
-			invokePostContentSpaceStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent());
-
-		StructuredContent getStructuredContent = invokeGetStructuredContent(
-			postStructuredContent.getId());
-
-		assertEquals(postStructuredContent, getStructuredContent);
-		assertValid(getStructuredContent);
-	}
-
-	@Override
-	@Test
-	public void testPostContentSpaceStructuredContent() throws Exception {
-		StructuredContent randomStructuredContent = randomStructuredContent();
-
-		StructuredContent postStructuredContent =
-			invokePostContentSpaceStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent);
-
-		assertEquals(randomStructuredContent, postStructuredContent);
-		assertValid(postStructuredContent);
-	}
-
-	@Override
-	@Test
-	public void testPutStructuredContent() throws Exception {
-		StructuredContent postStructuredContent =
-			invokePostContentSpaceStructuredContent(
-				testGroup.getGroupId(), randomStructuredContent());
-
-		StructuredContent randomStructuredContent = randomStructuredContent();
-
-		StructuredContent putStructuredContent = invokePutStructuredContent(
-			postStructuredContent.getId(), randomStructuredContent);
-
-		assertEquals(randomStructuredContent, putStructuredContent);
-		assertValid(putStructuredContent);
-
-		StructuredContent getStructuredContent = invokeGetStructuredContent(
-			putStructuredContent.getId());
-
-		assertEquals(randomStructuredContent, getStructuredContent);
-		assertValid(getStructuredContent);
 	}
 
 	protected void assertValid(StructuredContent structuredContent) {
@@ -211,6 +145,77 @@ public class StructuredContentResourceTest
 				title = RandomTestUtil.randomString();
 			}
 		};
+	}
+
+	@Override
+	protected StructuredContent
+			testDeleteStructuredContent_addStructuredContent()
+		throws Exception {
+
+		return invokePostContentSpaceStructuredContent(
+			testGroup.getGroupId(), randomStructuredContent());
+	}
+
+	@Override
+	protected StructuredContent
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				Long contentSpaceId, StructuredContent structuredContent)
+		throws Exception {
+
+		return invokePostContentSpaceStructuredContent(
+			contentSpaceId, structuredContent);
+	}
+
+	@Override
+	protected StructuredContent
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				Long contentStructureId, StructuredContent structuredContent)
+		throws Exception {
+
+		// TODO This is wrong, but that is because the implementation of
+		// StructuredContentResourceImpl#getContentSpaceStructuredContentsPage
+		// is wrong
+
+		return invokePostContentSpaceStructuredContent(
+			contentStructureId, structuredContent);
+	}
+
+	@Override
+	protected Long
+			testGetContentStructureStructuredContentsPage_getContentStructureId()
+		throws Exception {
+
+		// TODO This is wrong, but that is because the implementation of
+		// StructuredContentResourceImpl#getContentSpaceStructuredContentsPage
+		// is wrong
+
+		return testGroup.getGroupId();
+	}
+
+	@Override
+	protected StructuredContent testGetStructuredContent_addStructuredContent()
+		throws Exception {
+
+		return invokePostContentSpaceStructuredContent(
+			testGroup.getGroupId(), randomStructuredContent());
+	}
+
+	@Override
+	protected StructuredContent
+			testPostContentSpaceStructuredContent_addStructuredContent(
+				StructuredContent structuredContent)
+		throws Exception {
+
+		return invokePostContentSpaceStructuredContent(
+			testGroup.getGroupId(), structuredContent);
+	}
+
+	@Override
+	protected StructuredContent testPutStructuredContent_addStructuredContent()
+		throws Exception {
+
+		return invokePostContentSpaceStructuredContent(
+			testGroup.getGroupId(), randomStructuredContent());
 	}
 
 	private DDMForm _deserialize(String content) {

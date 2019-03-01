@@ -39,7 +39,9 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +50,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -86,29 +92,384 @@ public abstract class Base${schemaName}ResourceTestCase {
 	}
 
 	<#list freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName, false) as javaMethodSignature>
-		@Test
-		public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
-			Assert.assertTrue(true);
-		}
-
 		<#assign
 			arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters)
-			hasFilterAndSorts = false
+			firstJavaParameter = javaMethodSignature.javaParameters[0]
 			parameters = freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)
 		/>
 
-		<#if parameters?contains("Filter filter") && parameters?contains("Sort[] sorts")>
+		<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
+			@Test
+			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
+				${schemaName} ${schemaVarName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
+
+				assertResponseCode(200, invoke${javaMethodSignature.methodName?cap_first}Response(${schemaVarName}.getId()));
+
+				assertResponseCode(404, invokeGet${javaMethodSignature.methodName?remove_beginning("delete")}Response(${schemaVarName}.getId()));
+			}
+
+			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
+				throw new UnsupportedOperationException("This method needs to be implemented");
+			}
+		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "get") && javaMethodSignature.returnType?contains("Page<")>
+			<#if stringUtil.equals(firstJavaParameter.parameterName, "filter") || stringUtil.equals(firstJavaParameter.parameterName, "pagination") || stringUtil.equals(firstJavaParameter.parameterName, "sorts")>
+				@Test
+				public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
+					Assert.assertTrue(true);
+				}
+			<#else>
+				@Test
+				public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
+					${firstJavaParameter.parameterType} ${firstJavaParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaParameter.parameterName?cap_first}();
+
+					${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+					${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+
+					Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaParameter.parameterName}
+
+					<#if parameters?contains("Filter filter")>
+						, (String)null
+					</#if>
+
+					<#if parameters?contains("Pagination pagination")>
+						, Pagination.of(2, 1)
+					</#if>
+
+					<#if parameters?contains("Sort[] sorts")>
+						, (String)null
+					</#if>
+
+					);
+
+					assertEqualsIgnoringOrder(Arrays.asList(${schemaVarName}1, ${schemaVarName}2), (List<${schemaName}>)page.getItems());
+					assertValid(page);
+				}
+
+				<#if parameters?contains("Filter filter")>
+					@Test
+					public void test${javaMethodSignature.methodName?cap_first}WithFilterDateTimeEquals() throws Exception {
+						List<EntityField> entityFields = getEntityFields(EntityField.Type.DATE_TIME);
+
+						if (entityFields.isEmpty()) {
+							return;
+						}
+
+						${firstJavaParameter.parameterType} ${firstJavaParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaParameter.parameterName?cap_first}();
+
+						${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+
+						Thread.sleep(1000);
+
+						${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+
+						for (EntityField entityField : entityFields) {
+							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaParameter.parameterName}
+
+							, getFilterString(entityField, "eq", ${schemaVarName}1)
+
+							<#if parameters?contains("Pagination pagination")>
+								, Pagination.of(2, 1)
+							</#if>
+
+							<#if parameters?contains("Sort[] sorts")>
+								, (String)null
+							</#if>
+
+							);
+
+							assertEquals(Collections.singletonList(${schemaVarName}1), (List<${schemaName}>)page.getItems());
+						}
+					}
+
+					@Test
+					public void test${javaMethodSignature.methodName?cap_first}WithFilterStringEquals() throws Exception {
+						List<EntityField> entityFields = getEntityFields(EntityField.Type.STRING);
+
+						if (entityFields.isEmpty()) {
+							return;
+						}
+
+						${firstJavaParameter.parameterType} ${firstJavaParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaParameter.parameterName?cap_first}();
+
+						${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+						${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+
+						for (EntityField entityField : entityFields) {
+							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaParameter.parameterName}
+
+							, getFilterString(entityField, "eq", ${schemaVarName}1)
+
+							<#if parameters?contains("Pagination pagination")>
+								, Pagination.of(2, 1)
+							</#if>
+
+							<#if parameters?contains("Sort[] sorts")>
+								, (String)null
+							</#if>
+
+							);
+
+							assertEquals(Collections.singletonList(${schemaVarName}1), (List<${schemaName}>)page.getItems());
+						}
+					}
+				</#if>
+
+				<#if parameters?contains("Pagination pagination")>
+					@Test
+					public void test${javaMethodSignature.methodName?cap_first}WithPagination() throws Exception {
+						${firstJavaParameter.parameterType} ${firstJavaParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaParameter.parameterName?cap_first}();
+
+						${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+						${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+						${schemaName} ${schemaVarName}3 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+
+						Page<${schemaName}> page1 = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaParameter.parameterName}
+
+						<#if parameters?contains("Filter filter")>
+							, (String)null
+						</#if>
+
+						, Pagination.of(2, 1)
+
+						<#if parameters?contains("Sort[] sorts")>
+							, (String)null
+						</#if>
+
+						);
+
+						List<${schemaName}> ${schemaVarNames}1 = (List<${schemaName}>)page1.getItems();
+
+						Assert.assertEquals(${schemaVarNames}1.toString(), 2, ${schemaVarNames}1.size());
+
+						Page<${schemaName}> page2 = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaParameter.parameterName}
+
+						<#if parameters?contains("Filter filter")>
+							, (String)null
+						</#if>
+
+						, Pagination.of(2, 2)
+
+						<#if parameters?contains("Sort[] sorts")>
+							, (String)null
+						</#if>
+
+						);
+
+						List<${schemaName}> ${schemaVarNames}2 = (List<${schemaName}>)page2.getItems();
+
+						Assert.assertEquals(${schemaVarNames}2.toString(), 1, ${schemaVarNames}2.size());
+
+						assertEqualsIgnoringOrder(
+							Arrays.asList(${schemaVarName}1, ${schemaVarName}2, ${schemaVarName}3),
+							new ArrayList<${schemaName}>() {
+								{
+									addAll(${schemaVarNames}1);
+									addAll(${schemaVarNames}2);
+								}
+							});
+					}
+				</#if>
+
+				<#if parameters?contains("Sort[] sorts")>
+					@Test
+					public void test${javaMethodSignature.methodName?cap_first}WithSortDateTime() throws Exception {
+						List<EntityField> entityFields = getEntityFields(EntityField.Type.DATE_TIME);
+
+						if (entityFields.isEmpty()) {
+							return;
+						}
+
+						${firstJavaParameter.parameterType} ${firstJavaParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaParameter.parameterName?cap_first}();
+
+						${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+						${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, random${schemaName}());
+
+						for (EntityField entityField : entityFields) {
+							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaParameter.parameterName}
+
+							<#if parameters?contains("Filter filter")>
+								, (String)null
+							</#if>
+
+							<#if parameters?contains("Pagination pagination")>
+								, Pagination.of(2, 1)
+							</#if>
+
+							, entityField.getName() + ":asc"
+
+							);
+
+							assertEquals(Arrays.asList(${schemaVarName}1, ${schemaVarName}2), (List<${schemaName}>)ascPage.getItems());
+
+							Page<${schemaName}> descPage = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaParameter.parameterName}
+
+							<#if parameters?contains("Filter filter")>
+								, (String)null
+							</#if>
+
+							<#if parameters?contains("Pagination pagination")>
+								, Pagination.of(2, 1)
+							</#if>
+
+							, entityField.getName() + ":desc"
+
+							);
+
+							assertEquals(Arrays.asList(${schemaVarName}2, ${schemaVarName}1), (List<${schemaName}>)descPage.getItems());
+						}
+					}
+
+					@Test
+					public void test${javaMethodSignature.methodName?cap_first}WithSortString() throws Exception {
+						List<EntityField> entityFields = getEntityFields(EntityField.Type.STRING);
+
+						if (entityFields.isEmpty()) {
+							return;
+						}
+
+						${firstJavaParameter.parameterType} ${firstJavaParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaParameter.parameterName?cap_first}();
+
+						${schemaName} ${schemaVarName}1 = random${schemaName}();
+						${schemaName} ${schemaVarName}2 = random${schemaName}();
+
+						for (EntityField entityField : entityFields) {
+							BeanUtils.setProperty(${schemaVarName}1, entityField.getName(), "Aaa");
+							BeanUtils.setProperty(${schemaVarName}2, entityField.getName(), "Bbb");
+						}
+
+						${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, ${schemaVarName}1);
+						${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterName}, ${schemaVarName}2);
+
+						for (EntityField entityField : entityFields) {
+							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaParameter.parameterName}
+
+							<#if parameters?contains("Filter filter")>
+								, (String)null
+							</#if>
+
+							<#if parameters?contains("Pagination pagination")>
+								, Pagination.of(2, 1)
+							</#if>
+
+							, entityField.getName() + ":asc"
+
+							);
+
+							assertEquals(Arrays.asList(${schemaVarName}1, ${schemaVarName}2), (List<${schemaName}>)ascPage.getItems());
+
+							Page<${schemaName}> descPage = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaParameter.parameterName}
+
+							<#if parameters?contains("Filter filter")>
+								, (String)null
+							</#if>
+
+							<#if parameters?contains("Pagination pagination")>
+								, Pagination.of(2, 1)
+							</#if>
+
+							, entityField.getName() + ":desc"
+
+							);
+
+							assertEquals(Arrays.asList(${schemaVarName}2, ${schemaVarName}1), (List<${schemaName}>)descPage.getItems());
+						}
+					}
+				</#if>
+
+				protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaParameter.parameterType} ${firstJavaParameter.parameterName}, ${schemaName} ${schemaVarName}) throws Exception {
+					throw new UnsupportedOperationException("This method needs to be implemented");
+				}
+
+				protected ${firstJavaParameter.parameterType} test${javaMethodSignature.methodName?cap_first}_get${firstJavaParameter.parameterName?cap_first}() throws Exception {
+					<#if stringUtil.equals(firstJavaParameter.parameterName, "contentSpaceId")>
+						return testGroup.getGroupId();
+					<#else>
+						throw new UnsupportedOperationException("This method needs to be implemented");
+					</#if>
+				}
+			</#if>
+		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "get") && javaMethodSignature.returnType?matches(schemaName)>
+			@Test
+			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
+				${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
+
+				${schemaName} get${schemaName} = invoke${javaMethodSignature.methodName?cap_first}(post${schemaName}.getId());
+
+				assertEquals(post${schemaName}, get${schemaName});
+				assertValid(get${schemaName});
+			}
+
+			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
+				throw new UnsupportedOperationException("This method needs to be implemented");
+			}
+		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
+			@Test
+			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
+				<#if arguments?ends_with(",multipartBody")>
+					Assert.assertTrue(true);
+				<#else>
+					${schemaName} random${schemaName} = random${schemaName}();
+
+					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(random${schemaName});
+
+					assertEquals(random${schemaName}, post${schemaName});
+					assertValid(post${schemaName});
+				</#if>
+			}
+
+			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${schemaName} ${schemaVarName}) throws Exception {
+				throw new UnsupportedOperationException("This method needs to be implemented");
+			}
+		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "put")>
+			@Test
+			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
+				<#if arguments?ends_with(",multipartBody")>
+					Assert.assertTrue(true);
+				<#else>
+					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
+
+					${schemaName} random${schemaName} = random${schemaName}();
+
+					${schemaName} put${schemaName} = invokePut${schemaName}(post${schemaName}.getId(), random${schemaName});
+
+					assertEquals(random${schemaName}, put${schemaName});
+					assertValid(put${schemaName});
+
+					${schemaName} get${schemaName} = invokeGet${schemaName}(put${schemaName}.getId());
+
+					assertEquals(random${schemaName}, get${schemaName});
+					assertValid(get${schemaName});
+				</#if>
+			}
+
+			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
+				throw new UnsupportedOperationException("This method needs to be implemented");
+			}
+		<#else>
+			@Test
+			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
+				Assert.assertTrue(true);
+			}
+		</#if>
+
+		<#assign
+			hasFilterAndSorts = false
+			invokeArguments = arguments
+			invokeParameters = parameters
+		/>
+
+		<#if invokeParameters?contains("Filter filter") && invokeParameters?contains("Sort[] sorts")>
 			<#assign
-				arguments = arguments?replace("filter", "filterString")?replace("sorts", "sortString")
 				hasFilterAndSorts = true
-				parameters = parameters?replace("Filter filter", "String filterString")?replace("Sort[] sorts", "String sortString")
+				invokeArguments = invokeArguments?replace("filter", "filterString")?replace("sorts", "sortString")
+				invokeParameters = invokeParameters?replace("Filter filter", "String filterString")?replace("Sort[] sorts", "String sortString")
 			/>
 		</#if>
 
-		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(${parameters}) throws Exception {
+		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(${invokeParameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaVarName}")>
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && invokeArguments?ends_with(",${schemaVarName}")>
 				options.setBody(_inputObjectMapper.writeValueAsString(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 			</#if>
 
@@ -117,9 +478,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 
 			<#if hasFilterAndSorts>
-				options.setLocation(_${javaMethodSignature.methodName?remove_ending("Page")}Location(${arguments}));
+				options.setLocation(_${javaMethodSignature.methodName?remove_ending("Page")}Location(${invokeArguments}));
 			<#else>
-				options.setLocation(_resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaParameters[0].parameterName}));
+				options.setLocation(_resourceURL + _toPath("${javaMethodSignature.path}", ${firstJavaParameter.parameterName}));
 			</#if>
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
@@ -139,10 +500,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 		}
 
-		protected Http.Response invoke${javaMethodSignature.methodName?cap_first}Response(${parameters}) throws Exception {
+		protected Http.Response invoke${javaMethodSignature.methodName?cap_first}Response(${invokeParameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaVarName}")>
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && invokeArguments?ends_with(",${schemaVarName}")>
 				options.setBody(_inputObjectMapper.writeValueAsString(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 			</#if>
 
@@ -151,9 +512,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 
 			<#if hasFilterAndSorts>
-				options.setLocation(_${javaMethodSignature.methodName?remove_ending("Page")}Location(${arguments}));
+				options.setLocation(_${javaMethodSignature.methodName?remove_ending("Page")}Location(${invokeArguments}));
 			<#else>
-				options.setLocation(_resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaParameters[0].parameterName}));
+				options.setLocation(_resourceURL + _toPath("${javaMethodSignature.path}", ${firstJavaParameter.parameterName}));
 			</#if>
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
@@ -168,8 +529,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 		}
 
 		<#if hasFilterAndSorts>
-			private String _${javaMethodSignature.methodName?remove_ending("Page")}Location(${parameters}) {
-				String url = _resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaParameters[0].parameterName});
+			private String _${javaMethodSignature.methodName?remove_ending("Page")}Location(${invokeParameters}) {
+				String url = _resourceURL + _toPath("${javaMethodSignature.path}", ${firstJavaParameter.parameterName});
 
 				url += "?filter=" + URLCodec.encodeURL(filterString);
 				url += "&page=" + pagination.getPageNumber();
@@ -218,6 +579,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 		}
 	}
 
+	protected void assertValid(${schemaName} ${schemaVarName}) {
+		throw new UnsupportedOperationException("This method needs to be implemented");
+	}
+
 	protected void assertValid(Page<${schemaName}> page) {
 		boolean valid = false;
 
@@ -250,7 +615,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 		EntityModelResource entityModelResource = (EntityModelResource)_${schemaVarName}Resource;
 
-		EntityModel entityModel = entityModelResource.getEntityModel(null);
+		EntityModel entityModel = entityModelResource.getEntityModel(new MultivaluedHashMap());
 
 		Map<String, EntityField> entityFieldsMap = entityModel.getEntityFieldsMap();
 
