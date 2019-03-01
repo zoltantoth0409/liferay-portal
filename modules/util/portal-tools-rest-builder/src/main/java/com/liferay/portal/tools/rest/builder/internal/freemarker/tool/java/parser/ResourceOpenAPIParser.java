@@ -325,9 +325,7 @@ public class ResourceOpenAPIParser {
 				continue;
 			}
 
-			List<String> curMediaTypes = new ArrayList<>(contents.keySet());
-
-			mediaTypes.addAll(curMediaTypes);
+			mediaTypes.addAll(new ArrayList<>(contents.keySet()));
 		}
 
 		if (mediaTypes.isEmpty()) {
