@@ -57,8 +57,9 @@ public class LayoutXStreamConfigurator implements XStreamConfigurator {
 
 	@Activate
 	protected void activate() {
-		_xStreamAliases =
-			new XStreamAlias[] {new XStreamAlias(LayoutImpl.class, "Layout")};
+		_xStreamAliases = new XStreamAlias[] {
+			new XStreamAlias(LayoutImpl.class, "Layout")
+		};
 
 		_xStreamTypes = new XStreamType[] {
 			new XStreamType(LayoutBranchImpl.class),

@@ -72,8 +72,8 @@ public class MyPagesPortlet extends LayoutAdminPortlet {
 				(RenderRequestImpl)renderRequest;
 
 			DynamicServletRequest dynamicRequest =
-				(DynamicServletRequest)renderRequestImpl.
-					getHttpServletRequest();
+				(DynamicServletRequest)
+					renderRequestImpl.getHttpServletRequest();
 
 			dynamicRequest.setParameter(
 				"p_u_i_d", String.valueOf(user.getUserId()));
