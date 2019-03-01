@@ -17,12 +17,12 @@ package com.liferay.configuration.admin.internal.util.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.configuration.admin.definition.ConfigurationDDMFormDeclaration;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.osgi.util.test.OSGiServiceUtil;
 
 import java.lang.reflect.Method;
 
 import java.util.Dictionary;
-import java.util.Hashtable;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -105,7 +105,7 @@ public class ConfigurationDDMFormDeclarationUtilTest {
 			ConfigurationDDMFormDeclaration configurationDDMFormDeclaration,
 			String configurationPid) {
 
-		Dictionary<String, Object> properties = new Hashtable<>();
+		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put("configurationPid", configurationPid);
 
