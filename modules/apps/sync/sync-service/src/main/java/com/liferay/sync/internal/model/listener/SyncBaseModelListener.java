@@ -72,8 +72,8 @@ public abstract class SyncBaseModelListener<T extends BaseModel<T>>
 			_getActionableDynamicQuery(roleId);
 
 		actionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.
-				PerformActionMethod<ResourcePermission>() {
+			new ActionableDynamicQuery.PerformActionMethod
+				<ResourcePermission>() {
 
 				@Override
 				public void performAction(
@@ -118,8 +118,8 @@ public abstract class SyncBaseModelListener<T extends BaseModel<T>>
 			_getActionableDynamicQuery(roleId);
 
 		actionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.
-				PerformActionMethod<ResourcePermission>() {
+			new ActionableDynamicQuery.PerformActionMethod
+				<ResourcePermission>() {
 
 				@Override
 				public void performAction(

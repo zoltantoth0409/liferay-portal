@@ -296,8 +296,8 @@ public class FileEventUtil {
 		getAllFolderSyncDLObjectsEvent.run();
 
 		GetAllFolderSyncDLObjectsHandler getAllFolderSyncDLObjectsHandler =
-			(GetAllFolderSyncDLObjectsHandler)getAllFolderSyncDLObjectsEvent.
-				getHandler();
+			(GetAllFolderSyncDLObjectsHandler)
+				getAllFolderSyncDLObjectsEvent.getHandler();
 
 		return getAllFolderSyncDLObjectsHandler.getSyncFiles();
 	}

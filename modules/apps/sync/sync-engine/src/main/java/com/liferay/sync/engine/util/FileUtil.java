@@ -447,10 +447,9 @@ public class FileUtil {
 				Date lastSavedDate = MSOfficeFileUtil.getLastSavedDate(
 					filePath);
 
-				if ((lastSavedDate != null) && (lastSavedDate.getTime() ==
-						GetterUtil.getLong(
-							syncFile.getLocalExtraSettingValue(
-								"lastSavedDate")))) {
+				if ((lastSavedDate != null) &&
+					(lastSavedDate.getTime() == GetterUtil.getLong(
+						syncFile.getLocalExtraSettingValue("lastSavedDate")))) {
 
 					return false;
 				}

@@ -112,14 +112,14 @@ public class ServerInfo {
 		}
 
 		for (String pluginMinimumVersion : pluginMinimumVersions) {
-			if (getPluginMajorVersion(pluginVersion) !=
-					getPluginMajorVersion(pluginMinimumVersion)) {
+			if (getPluginMajorVersion(pluginVersion) != getPluginMajorVersion(
+					pluginMinimumVersion)) {
 
 				continue;
 			}
 
-			if (getPluginPatchVersion(pluginVersion) >=
-					getPluginPatchVersion(pluginMinimumVersion)) {
+			if (getPluginPatchVersion(pluginVersion) >= getPluginPatchVersion(
+					pluginMinimumVersion)) {
 
 				_compatibilityMap.put(key, true);
 
