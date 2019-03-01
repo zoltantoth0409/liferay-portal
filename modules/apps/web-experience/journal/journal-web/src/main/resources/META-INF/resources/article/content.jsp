@@ -93,23 +93,19 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 			<%
 			int index = message.indexOf(": ");
 
-			String[] messageArgs;
-
-			String messageKey;
+			String[] messageArgs = null;
+			String messageKey = null;
 
 			if (message.contains("with url: ")) {
 				messageArgs = new String[] {message.substring(index + 2)};
-
 				messageKey = "unable-to-validate-referenced-page-because-it-cannot-be-found-with-url-x";
 			}
 			else if (message.contains("group cannot be found: ")) {
 				messageArgs = new String[] {message.substring(index + 2)};
-
 				messageKey = "unable-to-validate-referenced-page-because-the-page-group-with-id-x-cannot-be-found";
 			}
 			else {
 				messageArgs = new String[0];
-
 				messageKey = "the-content-references-a-missing-page";
 			}
 			%>
