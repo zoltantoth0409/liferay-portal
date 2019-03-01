@@ -110,17 +110,6 @@ components:
                 contactInformation:
                     description: https://www.schema.org/ContactInformation
                     properties:
-                        address:
-                            items:
-                                $ref: "#/components/schemas/PostalAddress"
-                            readOnly: true
-                            type: array
-                        addressIds:
-                            items:
-                                format: int64
-                                type: integer
-                            type: array
-                            writeOnly: true
                         email:
                             items:
                                 $ref: "#/components/schemas/Email"
@@ -135,6 +124,17 @@ components:
                         id:
                             format: int64
                             type: integer
+                        postalAddress:
+                            items:
+                                $ref: "#/components/schemas/PostalAddress"
+                            readOnly: true
+                            type: array
+                        postalAddressIds:
+                            items:
+                                format: int64
+                                type: integer
+                            type: array
+                            writeOnly: true
                         telephone:
                             items:
                                 $ref: "#/components/schemas/Phone"
@@ -329,17 +329,6 @@ components:
                 contactInformation:
                     description: https://www.schema.org/ContactInformation
                     properties:
-                        address:
-                            items:
-                                $ref: "#/components/schemas/PostalAddress"
-                            readOnly: true
-                            type: array
-                        addressIds:
-                            items:
-                                format: int64
-                                type: integer
-                            type: array
-                            writeOnly: true
                         email:
                             items:
                                 $ref: "#/components/schemas/Email"
@@ -358,6 +347,17 @@ components:
                             type: integer
                         jabber:
                             type: string
+                        postalAddress:
+                            items:
+                                $ref: "#/components/schemas/PostalAddress"
+                            readOnly: true
+                            type: array
+                        postalAddressIds:
+                            items:
+                                format: int64
+                                type: integer
+                            type: array
+                            writeOnly: true
                         skype:
                             type: string
                         sms:
@@ -489,7 +489,7 @@ info:
     version: v1.0
 openapi: 3.0.1
 paths:
-    "/addresses":
+    "/postal-addresses":
         get:
             parameters:
                 - in: query
@@ -515,11 +515,11 @@ paths:
                                 type: array
                     description: ""
             tags: ["PostalAddress"]
-    "/addresses/{address-id}":
+    "/postal-addresses/{postal-address-id}":
         get:
             parameters:
                 - in: path
-                  name: address-id
+                  name: postal-address-id
                   required: true
                   schema:
                       format: int64
