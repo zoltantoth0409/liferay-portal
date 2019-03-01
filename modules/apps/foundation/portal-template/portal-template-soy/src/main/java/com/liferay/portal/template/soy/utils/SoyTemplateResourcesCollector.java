@@ -170,8 +170,13 @@ public class SoyTemplateResourcesCollector {
 	}
 
 	protected String getTemplateId(long bundleId, URL url) {
-		return String.valueOf(bundleId).concat(
-			TemplateConstants.BUNDLE_SEPARATOR).concat(url.getPath());
+		return String.valueOf(
+			bundleId
+		).concat(
+			TemplateConstants.BUNDLE_SEPARATOR
+		).concat(
+			url.getPath()
+		);
 	}
 
 	/**
@@ -180,7 +185,10 @@ public class SoyTemplateResourcesCollector {
 	@Deprecated
 	protected String getTemplateId(String capabilityPrefix, URL url) {
 		return capabilityPrefix.concat(
-			TemplateConstants.BUNDLE_SEPARATOR).concat(url.getPath());
+			TemplateConstants.BUNDLE_SEPARATOR
+		).concat(
+			url.getPath()
+		);
 	}
 
 	private TemplateResource _getTemplateResource(String templateId, URL url)

@@ -221,8 +221,8 @@ public class PasswordPoliciesAdminPortlet extends MVCPortlet {
 					renderRequest,
 					DuplicatePasswordPolicyException.class.getName()) ||
 				 SessionErrors.contains(
-					renderRequest,
-					PasswordPolicyNameException.class.getName())) {
+					 renderRequest,
+					 PasswordPolicyNameException.class.getName())) {
 
 			include("/edit_password_policy.jsp", renderRequest, renderResponse);
 		}

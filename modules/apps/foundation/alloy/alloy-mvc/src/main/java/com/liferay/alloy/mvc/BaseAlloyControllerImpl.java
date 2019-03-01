@@ -604,7 +604,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected String getMessageListenerGroupName() {
 		String rootPortletId = portlet.getRootPortletId();
 
-		return rootPortletId.concat(StringPool.SLASH).concat(controllerPath);
+		return rootPortletId.concat(
+			StringPool.SLASH
+		).concat(
+			controllerPath
+		);
 	}
 
 	protected Method getMethod(String methodName, Class<?>... parameterTypes) {
@@ -1187,8 +1191,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				data = toJSONArray(documents);
 			}
 			else if (object instanceof Collection) {
-				Object[] objects =
-					((Collection)object).toArray(new BaseModel[0]);
+				Object[] objects = ((Collection)object).toArray(
+					new BaseModel[0]);
 
 				data = toJSONArray(objects);
 			}

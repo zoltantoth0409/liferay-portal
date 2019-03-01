@@ -40,8 +40,7 @@ public class AuditStorageServiceUpgrade implements UpgradeStepRegistrator {
 
 					@Override
 					protected String getNewBundleSymbolicName() {
-						return
-							"com.liferay.portal.security.audit.storage.service";
+						return "com.liferay.portal.security.audit.storage.service";
 					}
 
 					@Override

@@ -147,7 +147,8 @@ public class FreeMarkerTemplate extends AbstractSingleResourceTemplate {
 	}
 
 	private static final TemplateModel _NULL_TEMPLATE_MODEL =
-		new TemplateModel() {};
+		new TemplateModel() {
+		};
 
 	private final Configuration _configuration;
 	private final boolean _privileged;

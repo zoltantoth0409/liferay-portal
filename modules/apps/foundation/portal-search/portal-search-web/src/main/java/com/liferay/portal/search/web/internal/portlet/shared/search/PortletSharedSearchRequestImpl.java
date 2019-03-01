@@ -166,8 +166,8 @@ public class PortletSharedSearchRequestImpl
 
 		ThemeDisplay themeDisplay = getThemeDisplay(renderRequest);
 
-		SearchContextBuilder searchContextBuilder =
-			() -> buildSearchContext(themeDisplay);
+		SearchContextBuilder searchContextBuilder = () -> buildSearchContext(
+			themeDisplay);
 
 		SearchContainerBuilder searchContainerBuilder =
 			searchSettings -> buildSearchContainer(
