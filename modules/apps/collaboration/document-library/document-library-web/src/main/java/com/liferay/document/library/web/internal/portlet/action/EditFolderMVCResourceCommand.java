@@ -142,7 +142,11 @@ public class EditFolderMVCResourceCommand implements MVCResourceCommand {
 
 				zipFolder(
 					folder.getRepositoryId(), folder.getFolderId(),
-					path.concat(StringPool.SLASH).concat(folder.getName()),
+					path.concat(
+						StringPool.SLASH
+					).concat(
+						folder.getName()
+					),
 					zipWriter);
 			}
 			else if (entry instanceof FileEntry) {

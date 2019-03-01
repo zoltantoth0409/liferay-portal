@@ -783,7 +783,10 @@ public class FileEntryStagedModelDataHandler
 			Element structureFieldsElement =
 				(Element)fileEntryElement.selectSingleNode(
 					"structure-fields[@structureUuid='".concat(
-						ddmStructure.getUuid()).concat("']"));
+						ddmStructure.getUuid()
+					).concat(
+						"']"
+					));
 
 			if (structureFieldsElement == null) {
 				continue;

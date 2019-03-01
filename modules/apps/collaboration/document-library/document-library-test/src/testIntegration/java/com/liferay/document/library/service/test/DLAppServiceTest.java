@@ -1675,8 +1675,8 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 
 			User user = UserTestUtil.addGroupUser(group, "User");
 
-			try (ContextUserReplace contextUserReplace =
-					new ContextUserReplace(user)) {
+			try (ContextUserReplace contextUserReplace = new ContextUserReplace(
+					user)) {
 
 				int foldersAndFileEntriesAndFileShortcutsCount =
 					DLAppServiceUtil.
@@ -1716,8 +1716,8 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 
 			User user = UserTestUtil.addGroupUser(group, "User");
 
-			try (ContextUserReplace contextUserReplace =
-					new ContextUserReplace(user)) {
+			try (ContextUserReplace contextUserReplace = new ContextUserReplace(
+					user)) {
 
 				List<Object> foldersAndFileEntriesAndFileShortcuts =
 					DLAppServiceUtil.getFoldersAndFileEntriesAndFileShortcuts(
