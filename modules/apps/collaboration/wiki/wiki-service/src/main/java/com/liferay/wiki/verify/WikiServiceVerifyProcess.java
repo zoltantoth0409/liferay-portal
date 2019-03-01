@@ -74,8 +74,8 @@ public class WikiServiceVerifyProcess extends VerifyProcess {
 				_wikiPageResourceLocalService.getActionableDynamicQuery();
 
 			actionableDynamicQuery.setPerformActionMethod(
-				new ActionableDynamicQuery.
-					PerformActionMethod<WikiPageResource>() {
+				new ActionableDynamicQuery.PerformActionMethod
+					<WikiPageResource>() {
 
 					@Override
 					public void performAction(WikiPageResource pageResource) {

@@ -63,7 +63,12 @@ public class MentionsTopHeadDynamicInclude extends BaseDynamicInclude {
 		String cdnBaseURL = themeDisplay.getCDNBaseURL();
 
 		String staticResourceURL = _portal.getStaticResourceURL(
-			request, cdnBaseURL.concat(_postfix).concat("/css/mentions.css"));
+			request,
+			cdnBaseURL.concat(
+				_postfix
+			).concat(
+				"/css/mentions.css"
+			));
 
 		String content = "<link href=\"".concat(staticResourceURL);
 

@@ -139,8 +139,9 @@ public class MicroblogsActivityInterpreter
 		_resourceBundleLoader = resourceBundleLoader;
 	}
 
-	private static final String[] _CLASS_NAMES =
-		{MicroblogsEntry.class.getName()};
+	private static final String[] _CLASS_NAMES = {
+		MicroblogsEntry.class.getName()
+	};
 
 	private MicroblogsEntryLocalService _microblogsEntryLocalService;
 	private ResourceBundleLoader _resourceBundleLoader;

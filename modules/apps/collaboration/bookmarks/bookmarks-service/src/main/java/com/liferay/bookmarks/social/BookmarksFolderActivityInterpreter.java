@@ -107,8 +107,9 @@ public class BookmarksFolderActivityInterpreter
 		_resourceBundleLoader = resourceBundleLoader;
 	}
 
-	private static final String[] _CLASS_NAMES =
-		{BookmarksFolder.class.getName()};
+	private static final String[] _CLASS_NAMES = {
+		BookmarksFolder.class.getName()
+	};
 
 	private ResourceBundleLoader _resourceBundleLoader;
 

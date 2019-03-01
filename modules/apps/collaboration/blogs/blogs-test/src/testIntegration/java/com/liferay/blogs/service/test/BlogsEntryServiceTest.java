@@ -217,8 +217,8 @@ public class BlogsEntryServiceTest {
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(_groupUser);
 
-		try (ContextUserReplace contextUserReplace =
-				new ContextUserReplace(_groupUser, permissionChecker)) {
+		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
+				_groupUser, permissionChecker)) {
 
 			BlogsEntryServiceUtil.getEntriesPrevAndNext(entry2.getEntryId());
 		}
@@ -257,8 +257,8 @@ public class BlogsEntryServiceTest {
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(_groupUser);
 
-		try (ContextUserReplace contextUserReplace =
-				new ContextUserReplace(_groupUser, permissionChecker)) {
+		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
+				_groupUser, permissionChecker)) {
 
 			BlogsEntry[] prevAndNext =
 				BlogsEntryServiceUtil.getEntriesPrevAndNext(
@@ -315,8 +315,8 @@ public class BlogsEntryServiceTest {
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(_groupUser);
 
-		try (ContextUserReplace contextUserReplace =
-				new ContextUserReplace(_groupUser, permissionChecker)) {
+		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
+				_groupUser, permissionChecker)) {
 
 			BlogsEntry[] prevAndNext =
 				BlogsEntryServiceUtil.getEntriesPrevAndNext(

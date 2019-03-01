@@ -123,8 +123,9 @@ public class BookmarksEntryActivityInterpreter
 		_resourceBundleLoader = resourceBundleLoader;
 	}
 
-	private static final String[] _CLASS_NAMES =
-		{BookmarksEntry.class.getName()};
+	private static final String[] _CLASS_NAMES = {
+		BookmarksEntry.class.getName()
+	};
 
 	private ResourceBundleLoader _resourceBundleLoader;
 
