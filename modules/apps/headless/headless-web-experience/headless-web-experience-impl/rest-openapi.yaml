@@ -744,7 +744,7 @@ paths:
                                 type: array
                     description: ""
             tags: ["StructuredContentImage"]
-    "/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}":
+    "/structured-contents/{structured-content-id}/structured-content-images/{structured-content-image-id}":
         delete:
             parameters:
                 - in: path
@@ -754,7 +754,7 @@ paths:
                       format: int64
                       type: integer
                 - in: path
-                  name: content-document-id
+                  name: structured-content-image-id
                   required: true
                   schema:
                       format: int64
@@ -774,7 +774,7 @@ paths:
                       format: int64
                       type: integer
                 - in: path
-                  name: content-document-id
+                  name: structured-content-image-id
                   required: true
                   schema:
                       format: int64
