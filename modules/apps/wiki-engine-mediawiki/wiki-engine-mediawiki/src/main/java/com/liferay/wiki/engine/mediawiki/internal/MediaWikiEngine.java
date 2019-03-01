@@ -376,8 +376,8 @@ public class MediaWikiEngine extends BaseWikiEngine {
 
 					ClassLoader parentClassLoader = getParent();
 
-					try (InputStream in =
-							parentClassLoader.getResourceAsStream(name)) {
+					try (InputStream in = parentClassLoader.getResourceAsStream(
+							name)) {
 
 						Files.copy(in, tempPath);
 					}
