@@ -790,8 +790,8 @@ public class KaleoTaskInstanceTokenIndexer
 		indexableActionableDynamicQuery.setCompanyId(companyId);
 
 		indexableActionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.
-				PerformActionMethod<KaleoTaskInstanceToken>() {
+			new ActionableDynamicQuery.PerformActionMethod
+				<KaleoTaskInstanceToken>() {
 
 				@Override
 				public void performAction(
