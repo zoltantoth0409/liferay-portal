@@ -59,17 +59,29 @@ definition {
 
 		SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		AssertChecked(locator1 = "Checkbox#ANY_CHECKBOX", checkboxName = "Enable Score Explanation");
+		AssertChecked(
+			locator1 = "Checkbox#ANY_CHECKBOX",
+			checkboxName = "Enable Score Explanation"
+		);
 
 		IFrame.closeFrame();
 
 		SearchPortlets.searchEmbedded(searchTerm = "apple");
 
-		AssertTextEquals.assertPartialText(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_STRING_QUERY", value1 = "&quot;explain&quot;:true");
+		AssertTextEquals.assertPartialText(
+			locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_STRING_QUERY",
+			value1 = "&quot;explain&quot;:true"
+		);
 
-		AssertTextEquals.assertPartialText(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_RESPONSE_QUERY", value1 = "buckets");
+		AssertTextEquals.assertPartialText(
+			locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_RESPONSE_QUERY",
+			value1 = "buckets"
+		);
 
-		AssertTextEquals.assertPartialText(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_RESPONSE_QUERY", value1 = "_explanation");
+		AssertTextEquals.assertPartialText(
+			locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_RESPONSE_QUERY",
+			value1 = "_explanation"
+		);
 
 		Portlet.gotoPortletOptions(
 			portletName = "Search Insights",
@@ -89,9 +101,15 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "apple");
 
-		AssertTextEquals.assertPartialText(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_STRING_QUERY", value1 = "&quot;explain&quot;:false");
+		AssertTextEquals.assertPartialText(
+			locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_STRING_QUERY",
+			value1 = "&quot;explain&quot;:false"
+		);
 
-		AssertTextNotEquals.assertNotPartialText(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_RESPONSE_QUERY", value1 = "_explanation");
+		AssertTextNotEquals.assertNotPartialText(
+			locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_RESPONSE_QUERY",
+			value1 = "_explanation"
+		);
 	}
 
 	@description = "This is a use case for LPS-90078."
