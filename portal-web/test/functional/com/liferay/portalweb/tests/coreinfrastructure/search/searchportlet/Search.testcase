@@ -40,6 +40,12 @@ definition {
 
 	@priority = "4"
 	test AssertSearchInsightsExplain {
+		JSONWebcontent.addWebContent(
+			content = "WC Content",
+			groupName = "Guest",
+			title = "apple"
+		);
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
@@ -57,13 +63,13 @@ definition {
 
 		IFrame.closeFrame();
 
-		SearchPortlets.searchEmbedded(searchTerm = "test");
+		SearchPortlets.searchEmbedded(searchTerm = "apple");
 
-		AssertTextPresent(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_STRING_QUERY", value1 = "&quot;explain&quot;:true");
+		AssertTextEquals.assertPartialText(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_STRING_QUERY", value1 = "&quot;explain&quot;:true");
 
-		AssertTextPresent(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_STRING_QUERY", value1 = "bucket");
+		AssertTextEquals.assertPartialText(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_RESPONSE_QUERY", value1 = "buckets");
 
-		AssertTextPresent(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_STRING_QUERY", value1 = "_explanation");
+		AssertTextEquals.assertPartialText(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_RESPONSE_QUERY", value1 = "_explanation");
 
 		Portlet.gotoPortletOptions(
 			portletName = "Search Insights",
@@ -72,17 +78,20 @@ definition {
 
 		SelectFrame(locator1 = "IFrame#CONFIGURATION");
 
-		SearchFacetPortlet.uncheckFacet(
-			facetValueName = "Enable Score Explanation"
+		Uncheck(
+			locator1 = "Checkbox#ANY_CHECKBOX",
+			checkboxName = "Enable Score Explanation"
 		);
 
 		PortletEntry.save();
 
 		IFrame.closeFrame();
 
-		SearchPortlets.searchEmbedded(searchTerm = "test");
+		SearchPortlets.searchEmbedded(searchTerm = "apple");
 
-		AssertTextNotPresent(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_STRING_QUERY", value1 = "_explanation");
+		AssertTextEquals.assertPartialText(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_STRING_QUERY", value1 = "&quot;explain&quot;:false");
+
+		AssertTextNotEquals.assertNotPartialText(locator1 = "SearchResults#SEARCH_INSIGHTS_PORTLET_RESPONSE_QUERY", value1 = "_explanation");
 	}
 
 	@description = "This is a use case for LPS-90078."
