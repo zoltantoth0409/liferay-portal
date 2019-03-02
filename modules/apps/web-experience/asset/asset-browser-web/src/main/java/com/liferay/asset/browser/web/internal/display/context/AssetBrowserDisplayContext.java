@@ -157,8 +157,9 @@ public class AssetBrowserDisplayContext {
 				AssetEntryLocalServiceUtil.getEntries(
 					getFilterGroupIds(),
 					new long[] {assetRendererFactory.getClassNameId()},
-					getKeywords(), getKeywords(), getKeywords(), getKeywords(),
-					getListable(), false, false, assetBrowserSearch.getStart(),
+					new long[] {getSubtypeSelectionId()}, getKeywords(),
+					getKeywords(), getKeywords(), getKeywords(), getListable(),
+					false, false, assetBrowserSearch.getStart(),
 					assetBrowserSearch.getEnd(), "modifiedDate",
 					StringPool.BLANK, getOrderByType(), StringPool.BLANK);
 
