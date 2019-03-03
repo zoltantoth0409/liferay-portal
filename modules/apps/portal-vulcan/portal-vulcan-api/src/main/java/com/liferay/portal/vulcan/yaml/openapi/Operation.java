@@ -73,7 +73,7 @@ public class Operation {
 
 	private String _description;
 	private String _operationId;
-	private List<Parameter> _parameters;
+	private List<Parameter> _parameters = new ArrayList<>();
 	private RequestBody _requestBody;
 	private Map<String, Response> _responses;
 	private List<String> _tags = new ArrayList<>();
