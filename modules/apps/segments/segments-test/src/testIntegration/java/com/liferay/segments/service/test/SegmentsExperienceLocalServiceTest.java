@@ -180,7 +180,7 @@ public class SegmentsExperienceLocalServiceTest {
 
 		if (segmentsEntry == null) {
 			throw new SegmentsExperienceSegmentsEntryException(
-				"Unable to find default segment");
+				"Unable to get default segments entry");
 		}
 
 		return segmentsEntry;
