@@ -57,12 +57,9 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 
 		User user = _userService.getUserById(userId);
 
-		MultivaluedMap<String, String> requestHeaders =
-			_httpHeaders.getRequestHeaders();
-
 		long[] segmentsEntryIds = _segmentsEntryProvider.getSegmentsEntryIds(
 			user.getModelClassName(), user.getPrimaryKey(),
-			_create(requestHeaders));
+			_createSegmentsContext());
 
 		List<SegmentsEntry> segmentsEntries = new ArrayList<>(
 			segmentsEntryIds.length);
@@ -79,8 +76,11 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 			segmentsEntries.size());
 	}
 
-	private Context _create(MultivaluedMap<String, String> requestHeaders) {
+	private Context _createSegmentsContext() {
 		Context context = new Context();
+
+		MultivaluedMap<String, String> requestHeaders =
+			_httpHeaders.getRequestHeaders();
 
 		Set<Map.Entry<String, List<String>>> requestHeadersEntrySet =
 			requestHeaders.entrySet();
