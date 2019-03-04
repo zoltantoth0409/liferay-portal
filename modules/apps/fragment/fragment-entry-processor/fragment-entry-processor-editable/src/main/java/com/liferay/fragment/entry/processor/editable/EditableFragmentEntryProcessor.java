@@ -258,8 +258,8 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 			Objects.equals(mode, FragmentEntryLinkConstants.VIEW)) {
 
 			for (Element element : document.select("lfr-editable")) {
-				element.removeAttr("type");
 				element.removeAttr("id");
+				element.removeAttr("type");
 				element.tagName("div");
 			}
 		}
