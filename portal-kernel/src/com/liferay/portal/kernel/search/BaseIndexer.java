@@ -972,7 +972,11 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 			}
 
 			document.addText(
-				field.concat(StringPool.UNDERLINE).concat(locale.toString()),
+				field.concat(
+					StringPool.UNDERLINE
+				).concat(
+					locale.toString()
+				),
 				titlesArray);
 		}
 	}
