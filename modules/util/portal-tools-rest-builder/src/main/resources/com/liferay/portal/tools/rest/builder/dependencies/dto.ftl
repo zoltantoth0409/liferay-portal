@@ -90,7 +90,7 @@ public class ${schemaName} {
 						sb.append(${javaMethodParameter.parameterName}[i]);
 					</#if>
 
-					if (i < (keywords.length -1)) {
+					if ((i + 1) > keywords.length) {
 						sb.append(",");
 					}
 				}
