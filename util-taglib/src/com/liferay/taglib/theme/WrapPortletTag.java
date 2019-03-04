@@ -79,8 +79,11 @@ public class WrapPortletTag
 				servletContext, request, response, wrapPage, theme, false);
 		}
 
-		return _CONTENT_WRAPPER_PRE.concat(content).concat(
-			_CONTENT_WRAPPER_POST);
+		return _CONTENT_WRAPPER_PRE.concat(
+			content
+		).concat(
+			_CONTENT_WRAPPER_POST
+		);
 	}
 
 	@Override
