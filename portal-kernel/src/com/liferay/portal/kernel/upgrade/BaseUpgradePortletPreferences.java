@@ -125,8 +125,9 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 				boolean privateLayout = rs.getBoolean("privateLayout");
 				long layoutId = rs.getLong("layoutId");
 
-				layout =
-					new Object[] {groupId, companyId, privateLayout, layoutId};
+				layout = new Object[] {
+					groupId, companyId, privateLayout, layoutId
+				};
 			}
 		}
 		finally {
@@ -163,8 +164,9 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 				boolean privateLayout = rs.getBoolean("privateLayout");
 				long layoutId = rs.getLong("layoutRevisionId");
 
-				layoutRevision =
-					new Object[] {groupId, companyId, privateLayout, layoutId};
+				layoutRevision = new Object[] {
+					groupId, companyId, privateLayout, layoutId
+				};
 			}
 		}
 		finally {

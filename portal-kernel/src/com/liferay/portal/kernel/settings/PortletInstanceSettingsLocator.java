@@ -66,8 +66,8 @@ public class PortletInstanceSettingsLocator implements SettingsLocator {
 				_layout.getGroupId(), _portletInstanceKey,
 				companyPortletPreferencesSettings);
 
-		return
-			_settingsLocatorHelper.getPortletInstancePortletPreferencesSettings(
+		return _settingsLocatorHelper.
+			getPortletInstancePortletPreferencesSettings(
 				_layout.getCompanyId(), getOwnerId(),
 				PortletKeys.PREFS_OWNER_TYPE_LAYOUT, getPlid(),
 				_portletInstanceKey, groupPortletPreferencesSettings);

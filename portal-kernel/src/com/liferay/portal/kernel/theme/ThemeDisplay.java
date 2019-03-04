@@ -465,7 +465,10 @@ public class ThemeDisplay
 				Group group = layout.getGroup();
 
 				return VirtualLayoutConstants.CANONICAL_URL_SEPARATOR.concat(
-					group.getFriendlyURL()).concat(_getFriendlyURL(layout));
+					group.getFriendlyURL()
+				).concat(
+					_getFriendlyURL(layout)
+				);
 			}
 			catch (PortalException pe) {
 				ReflectionUtil.throwException(pe);
