@@ -43,13 +43,13 @@ public class FieldsQueryParamContextProvider
 		HttpServletRequest request = ContextProviderUtil.getHttpServletRequest(
 			message);
 
-		String fieldsValue = request.getParameter("fields");
+		String fieldNames = request.getParameter("fields");
 
-		if (fieldsValue == null) {
+		if (fieldNames == null) {
 			return () -> null;
 		}
 
-		return () -> new HashSet<>(Arrays.asList(fieldsValue.split(",")));
+		return () -> new HashSet<>(Arrays.asList(fieldNames.split(",")));
 	}
 
 }
