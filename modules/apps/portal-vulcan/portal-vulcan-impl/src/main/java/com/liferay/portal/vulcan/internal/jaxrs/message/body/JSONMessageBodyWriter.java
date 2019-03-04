@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonStreamContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.PropertyFilter;
 import com.fasterxml.jackson.databind.ser.PropertyWriter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
@@ -77,22 +78,25 @@ public class JSONMessageBodyWriter implements MessageBodyWriter<Object> {
 	}
 
 	private ObjectMapper _addFilter(ObjectMapper objectMapper) {
-		Set<String> fieldNames = _fieldsQueryParam.getFieldNames();
+		objectMapper.setFilterProvider(
+			new SimpleFilterProvider() {
+				{
+					Set<String> fieldNames = _fieldsQueryParam.getFieldNames();
 
-		PropertyFilter propertyFilter;
+					PropertyFilter propertyFilter = null;
 
-		if (fieldNames == null) {
-			propertyFilter = SimpleBeanPropertyFilter.serializeAll();
-		}
-		else {
-			propertyFilter = new VulcanSimpleBeanPropertyFilter(fieldNames);
-		}
+					if (fieldNames == null) {
+						propertyFilter =
+							SimpleBeanPropertyFilter.serializeAll();
+					}
+					else {
+						propertyFilter = new VulcanSimpleBeanPropertyFilter(
+							fieldNames);
+					}
 
-		SimpleFilterProvider filterProvider = new SimpleFilterProvider();
-
-		filterProvider.addFilter("Liferay.Vulcan", propertyFilter);
-
-		objectMapper.setFilterProvider(filterProvider);
+					addFilter("Liferay.Vulcan", propertyFilter);
+				}
+			});
 
 		return objectMapper;
 	}
