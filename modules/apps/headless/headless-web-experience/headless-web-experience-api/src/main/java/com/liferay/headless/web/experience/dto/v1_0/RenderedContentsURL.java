@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("RenderedContentsURL")
-@JsonFilter("VulcanFilter")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "RenderedContentsURL")
 public class RenderedContentsURL {
 
