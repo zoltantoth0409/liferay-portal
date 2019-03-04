@@ -68,7 +68,7 @@ public class StreamUtilTest {
 					return super.transferTo(position, _data.length / 4, target);
 				}
 
-				};
+			};
 
 			FileChannel toFileChannel = FileChannel.open(
 				_toFilePath, StandardOpenOption.CREATE,
