@@ -84,33 +84,27 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 		for (Map.Entry<String, List<String>> entry :
 				multivaluedMap.entrySet()) {
 
-			List<String> values = entry.getValue();
-
-			String contextValue = values.get(0);
-
 			String key = StringUtil.toLowerCase(entry.getKey());
 
+			List<String> values = entry.getValue();
+
+			String value = values.get(0);
+
 			if (key.startsWith("x-")) {
-				String contextKey = key.replace("x-", "");
-
-				String contextKeyCamelCase = CamelCaseUtil.toCamelCase(
-					contextKey);
-
-				context.put(contextKeyCamelCase, contextValue);
+				context.put(
+					CamelCaseUtil.toCamelCase(key.replace("x-", "")), value);
 			}
 			else if (key.equals("accept-language")) {
-				String value = contextValue.replace("-", "_");
-
-				context.put(Context.LANGUAGE_ID, value);
+				context.put(Context.LANGUAGE_ID, value.replace("-", "_"));
 			}
 			else if (key.equals("host")) {
-				context.put(Context.URL, contextValue);
+				context.put(Context.URL, value);
 			}
 			else if (key.equals("user-agent")) {
-				context.put(Context.USER_AGENT, contextValue);
+				context.put(Context.USER_AGENT, value);
 			}
 			else {
-				context.put(key, contextValue);
+				context.put(key, value);
 			}
 		}
 
