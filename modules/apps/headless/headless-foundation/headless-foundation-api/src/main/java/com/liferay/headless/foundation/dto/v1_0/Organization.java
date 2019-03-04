@@ -296,7 +296,7 @@ public class Organization {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(56);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -331,16 +331,32 @@ public class Organization {
 
 		sb.append("\"members\": ");
 
-		sb.append("\"");
-		sb.append(members);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < members.length; i++) {
+			sb.append(members[i]);
+
+			if ((i + 1) > members.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"membersIds\": ");
 
-		sb.append("\"");
-		sb.append(membersIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < membersIds.length; i++) {
+			sb.append(membersIds[i]);
+
+			if ((i + 1) > membersIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"name\": ");
@@ -362,23 +378,47 @@ public class Organization {
 
 		sb.append("\"services\": ");
 
-		sb.append("\"");
-		sb.append(services);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < services.length; i++) {
+			sb.append(services[i]);
+
+			if ((i + 1) > services.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"subOrganization\": ");
 
-		sb.append("\"");
-		sb.append(subOrganization);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < subOrganization.length; i++) {
+			sb.append(subOrganization[i]);
+
+			if ((i + 1) > subOrganization.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"subOrganizationIds\": ");
 
-		sb.append("\"");
-		sb.append(subOrganizationIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < subOrganizationIds.length; i++) {
+			sb.append(subOrganizationIds[i]);
+
+			if ((i + 1) > subOrganizationIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 
 		sb.append("}");
 

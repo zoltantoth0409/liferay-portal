@@ -257,7 +257,7 @@ public class Fields {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -301,9 +301,17 @@ public class Fields {
 
 		sb.append("\"options\": ");
 
-		sb.append("\"");
-		sb.append(options);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < options.length; i++) {
+			sb.append(options[i]);
+
+			if ((i + 1) > options.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"predefinedValue\": ");

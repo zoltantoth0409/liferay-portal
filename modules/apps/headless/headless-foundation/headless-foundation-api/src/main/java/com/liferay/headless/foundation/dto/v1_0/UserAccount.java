@@ -460,7 +460,7 @@ public class UserAccount {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(102);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -553,16 +553,32 @@ public class UserAccount {
 
 		sb.append("\"myOrganizations\": ");
 
-		sb.append("\"");
-		sb.append(myOrganizations);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < myOrganizations.length; i++) {
+			sb.append(myOrganizations[i]);
+
+			if ((i + 1) > myOrganizations.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"myOrganizationsIds\": ");
 
-		sb.append("\"");
-		sb.append(myOrganizationsIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < myOrganizationsIds.length; i++) {
+			sb.append(myOrganizationsIds[i]);
+
+			if ((i + 1) > myOrganizationsIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"name\": ");
@@ -581,30 +597,66 @@ public class UserAccount {
 
 		sb.append("\"roles\": ");
 
-		sb.append("\"");
-		sb.append(roles);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < roles.length; i++) {
+			sb.append(roles[i]);
+
+			if ((i + 1) > roles.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"rolesIds\": ");
 
-		sb.append("\"");
-		sb.append(rolesIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < rolesIds.length; i++) {
+			sb.append(rolesIds[i]);
+
+			if ((i + 1) > rolesIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"tasksAssignedToMe\": ");
 
-		sb.append("\"");
-		sb.append(tasksAssignedToMe);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < tasksAssignedToMe.length; i++) {
+			sb.append("\"");
+			sb.append(tasksAssignedToMe[i]);
+			sb.append("\"");
+
+			if ((i + 1) > tasksAssignedToMe.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"tasksAssignedToMyRoles\": ");
 
-		sb.append("\"");
-		sb.append(tasksAssignedToMyRoles);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < tasksAssignedToMyRoles.length; i++) {
+			sb.append("\"");
+			sb.append(tasksAssignedToMyRoles[i]);
+			sb.append("\"");
+
+			if ((i + 1) > tasksAssignedToMyRoles.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 
 		sb.append("}");
 

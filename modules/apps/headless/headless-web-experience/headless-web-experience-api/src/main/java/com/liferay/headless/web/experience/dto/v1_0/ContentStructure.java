@@ -217,15 +217,25 @@ public class ContentStructure {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"availableLanguages\": ");
 
-		sb.append("\"");
-		sb.append(availableLanguages);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < availableLanguages.length; i++) {
+			sb.append("\"");
+			sb.append(availableLanguages[i]);
+			sb.append("\"");
+
+			if ((i + 1) > availableLanguages.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"contentSpace\": ");
@@ -261,9 +271,17 @@ public class ContentStructure {
 
 		sb.append("\"fields\": ");
 
-		sb.append("\"");
-		sb.append(fields);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < fields.length; i++) {
+			sb.append(fields[i]);
+
+			if ((i + 1) > fields.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"id\": ");

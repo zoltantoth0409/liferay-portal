@@ -217,7 +217,7 @@ public class FormRecord {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(36);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -254,9 +254,17 @@ public class FormRecord {
 
 		sb.append("\"fieldValues\": ");
 
-		sb.append("\"");
-		sb.append(fieldValues);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < fieldValues.length; i++) {
+			sb.append(fieldValues[i]);
+
+			if ((i + 1) > fieldValues.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"form\": ");

@@ -316,22 +316,38 @@ public class ContactInformation {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(69);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"email\": ");
 
-		sb.append("\"");
-		sb.append(email);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < email.length; i++) {
+			sb.append(email[i]);
+
+			if ((i + 1) > email.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"emailIds\": ");
 
-		sb.append("\"");
-		sb.append(emailIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < emailIds.length; i++) {
+			sb.append(emailIds[i]);
+
+			if ((i + 1) > emailIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"facebook\": ");
@@ -355,16 +371,32 @@ public class ContactInformation {
 
 		sb.append("\"postalAddress\": ");
 
-		sb.append("\"");
-		sb.append(postalAddress);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < postalAddress.length; i++) {
+			sb.append(postalAddress[i]);
+
+			if ((i + 1) > postalAddress.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"postalAddressIds\": ");
 
-		sb.append("\"");
-		sb.append(postalAddressIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < postalAddressIds.length; i++) {
+			sb.append(postalAddressIds[i]);
+
+			if ((i + 1) > postalAddressIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"skype\": ");
@@ -383,16 +415,32 @@ public class ContactInformation {
 
 		sb.append("\"telephone\": ");
 
-		sb.append("\"");
-		sb.append(telephone);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < telephone.length; i++) {
+			sb.append(telephone[i]);
+
+			if ((i + 1) > telephone.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"telephoneIds\": ");
 
-		sb.append("\"");
-		sb.append(telephoneIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < telephoneIds.length; i++) {
+			sb.append(telephoneIds[i]);
+
+			if ((i + 1) > telephoneIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"twitter\": ");
@@ -404,16 +452,32 @@ public class ContactInformation {
 
 		sb.append("\"webUrl\": ");
 
-		sb.append("\"");
-		sb.append(webUrl);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < webUrl.length; i++) {
+			sb.append(webUrl[i]);
+
+			if ((i + 1) > webUrl.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"webUrlIds\": ");
 
-		sb.append("\"");
-		sb.append(webUrlIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < webUrlIds.length; i++) {
+			sb.append(webUrlIds[i]);
+
+			if ((i + 1) > webUrlIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 
 		sb.append("}");
 

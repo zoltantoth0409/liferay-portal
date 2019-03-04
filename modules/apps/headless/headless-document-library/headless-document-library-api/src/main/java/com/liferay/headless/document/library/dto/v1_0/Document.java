@@ -361,15 +361,23 @@ public class Document {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(71);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"adaptedImages\": ");
 
-		sb.append("\"");
-		sb.append(adaptedImages);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < adaptedImages.length; i++) {
+			sb.append(adaptedImages[i]);
+
+			if ((i + 1) > adaptedImages.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"aggregateRating\": ");
@@ -379,16 +387,32 @@ public class Document {
 
 		sb.append("\"categories\": ");
 
-		sb.append("\"");
-		sb.append(categories);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < categories.length; i++) {
+			sb.append(categories[i]);
+
+			if ((i + 1) > categories.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"categoryIds\": ");
 
-		sb.append("\"");
-		sb.append(categoryIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < categoryIds.length; i++) {
+			sb.append(categoryIds[i]);
+
+			if ((i + 1) > categoryIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"contentUrl\": ");
@@ -450,9 +474,19 @@ public class Document {
 
 		sb.append("\"keywords\": ");
 
-		sb.append("\"");
-		sb.append(keywords);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < keywords.length; i++) {
+			sb.append("\"");
+			sb.append(keywords[i]);
+			sb.append("\"");
+
+			if ((i + 1) > keywords.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"sizeInBytes\": ");

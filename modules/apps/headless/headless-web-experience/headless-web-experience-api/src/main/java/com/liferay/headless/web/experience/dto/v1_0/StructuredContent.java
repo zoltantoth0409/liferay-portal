@@ -383,7 +383,7 @@ public class StructuredContent {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(76);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -394,30 +394,64 @@ public class StructuredContent {
 
 		sb.append("\"availableLanguages\": ");
 
-		sb.append("\"");
-		sb.append(availableLanguages);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < availableLanguages.length; i++) {
+			sb.append("\"");
+			sb.append(availableLanguages[i]);
+			sb.append("\"");
+
+			if ((i + 1) > availableLanguages.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"categories\": ");
 
-		sb.append("\"");
-		sb.append(categories);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < categories.length; i++) {
+			sb.append(categories[i]);
+
+			if ((i + 1) > categories.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"categoryIds\": ");
 
-		sb.append("\"");
-		sb.append(categoryIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < categoryIds.length; i++) {
+			sb.append(categoryIds[i]);
+
+			if ((i + 1) > categoryIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"contentFields\": ");
 
-		sb.append("\"");
-		sb.append(contentFields);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < contentFields.length; i++) {
+			sb.append(contentFields[i]);
+
+			if ((i + 1) > contentFields.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"contentSpace\": ");
@@ -470,9 +504,19 @@ public class StructuredContent {
 
 		sb.append("\"keywords\": ");
 
-		sb.append("\"");
-		sb.append(keywords);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < keywords.length; i++) {
+			sb.append("\"");
+			sb.append(keywords[i]);
+			sb.append("\"");
+
+			if ((i + 1) > keywords.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"lastReviewed\": ");
@@ -484,9 +528,17 @@ public class StructuredContent {
 
 		sb.append("\"renderedContentsURL\": ");
 
-		sb.append("\"");
-		sb.append(renderedContentsURL);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < renderedContentsURL.length; i++) {
+			sb.append(renderedContentsURL[i]);
+
+			if ((i + 1) > renderedContentsURL.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"title\": ");

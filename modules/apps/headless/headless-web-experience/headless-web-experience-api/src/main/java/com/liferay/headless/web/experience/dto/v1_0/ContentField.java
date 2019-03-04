@@ -173,7 +173,7 @@ public class ContentField {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(32);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -212,9 +212,17 @@ public class ContentField {
 
 		sb.append("\"nestedFields\": ");
 
-		sb.append("\"");
-		sb.append(nestedFields);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < nestedFields.length; i++) {
+			sb.append(nestedFields[i]);
+
+			if ((i + 1) > nestedFields.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"value\": ");

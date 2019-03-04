@@ -317,15 +317,25 @@ public class Form {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(61);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"availableLanguages\": ");
 
-		sb.append("\"");
-		sb.append(availableLanguages);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < availableLanguages.length; i++) {
+			sb.append("\"");
+			sb.append(availableLanguages[i]);
+			sb.append("\"");
+
+			if ((i + 1) > availableLanguages.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"contentSpace\": ");
@@ -375,16 +385,32 @@ public class Form {
 
 		sb.append("\"formRecords\": ");
 
-		sb.append("\"");
-		sb.append(formRecords);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < formRecords.length; i++) {
+			sb.append(formRecords[i]);
+
+			if ((i + 1) > formRecords.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"formRecordsIds\": ");
 
-		sb.append("\"");
-		sb.append(formRecordsIds);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < formRecordsIds.length; i++) {
+			sb.append(formRecordsIds[i]);
+
+			if ((i + 1) > formRecordsIds.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"id\": ");

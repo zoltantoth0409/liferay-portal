@@ -237,15 +237,25 @@ public class FormStructure {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"availableLanguages\": ");
 
-		sb.append("\"");
-		sb.append(availableLanguages);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < availableLanguages.length; i++) {
+			sb.append("\"");
+			sb.append(availableLanguages[i]);
+			sb.append("\"");
+
+			if ((i + 1) > availableLanguages.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"contentSpace\": ");
@@ -281,9 +291,17 @@ public class FormStructure {
 
 		sb.append("\"formPages\": ");
 
-		sb.append("\"");
-		sb.append(formPages);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < formPages.length; i++) {
+			sb.append(formPages[i]);
+
+			if ((i + 1) > formPages.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"id\": ");

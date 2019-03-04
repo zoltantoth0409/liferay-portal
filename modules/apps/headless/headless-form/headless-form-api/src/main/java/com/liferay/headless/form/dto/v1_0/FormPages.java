@@ -115,15 +115,23 @@ public class FormPages {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"fields\": ");
 
-		sb.append("\"");
-		sb.append(fields);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < fields.length; i++) {
+			sb.append(fields[i]);
+
+			if ((i + 1) > fields.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"headline\": ");

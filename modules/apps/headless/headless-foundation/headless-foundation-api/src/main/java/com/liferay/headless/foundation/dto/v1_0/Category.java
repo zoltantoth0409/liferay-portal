@@ -259,15 +259,25 @@ public class Category {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(44);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"availableLanguages\": ");
 
-		sb.append("\"");
-		sb.append(availableLanguages);
-		sb.append("\"");
+		sb.append("[");
+
+		for (int i = 0; i < availableLanguages.length; i++) {
+			sb.append("\"");
+			sb.append(availableLanguages[i]);
+			sb.append("\"");
+
+			if ((i + 1) > availableLanguages.length) {
+				sb.append(",");
+			}
+		}
+
+		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"creator\": ");
