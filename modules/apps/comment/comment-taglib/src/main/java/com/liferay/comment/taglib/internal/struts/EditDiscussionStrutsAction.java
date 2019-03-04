@@ -194,8 +194,19 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 		DiscussionPermission discussionPermission = _getDiscussionPermission(
 			themeDisplay);
 
-		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
-			className, classPK);
+		AssetEntry assetEntry = null;
+
+		if (Validator.isNotNull(className) && (classPK != 0)) {
+			assetEntry = _assetEntryLocalService.getEntry(className, classPK);
+		}
+
+		long companyId = themeDisplay.getCompanyId();
+		long groupId = themeDisplay.getScopeGroupId();
+
+		if (assetEntry != null) {
+			companyId = assetEntry.getCompanyId();
+			groupId = assetEntry.getGroupId();
+		}
 
 		if (commentId <= 0) {
 
@@ -226,8 +237,7 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 
 			try {
 				discussionPermission.checkAddPermission(
-					assetEntry.getCompanyId(), assetEntry.getGroupId(),
-					className, classPK);
+					companyId, groupId, className, classPK);
 
 				commentId = _commentManager.addComment(
 					user.getUserId(), className, classPK, user.getFullName(),
@@ -263,8 +273,7 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 
 		if (subscribe) {
 			_commentManager.subscribeDiscussion(
-				themeDisplay.getUserId(), assetEntry.getGroupId(), className,
-				classPK);
+				themeDisplay.getUserId(), groupId, className, classPK);
 		}
 
 		return commentId;
