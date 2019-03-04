@@ -40,10 +40,10 @@ public class FieldsQueryParamContextProvider
 
 	@Override
 	public FieldsQueryParam createContext(Message message) {
-		HttpServletRequest request = ContextProviderUtil.getHttpServletRequest(
-			message);
+		HttpServletRequest httpServletRequest =
+			ContextProviderUtil.getHttpServletRequest(message);
 
-		String fieldNames = request.getParameter("fields");
+		String fieldNames = httpServletRequest.getParameter("fields");
 
 		if (fieldNames == null) {
 			return () -> null;
