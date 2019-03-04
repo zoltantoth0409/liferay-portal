@@ -15,20 +15,26 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Segment;
-import com.liferay.headless.foundation.internal.mapper.HeaderContextMapper;
 import com.liferay.headless.foundation.resource.v1_0.SegmentResource;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserService;
+import com.liferay.portal.kernel.util.CamelCaseUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+import com.liferay.segments.context.Context;
 import com.liferay.segments.model.SegmentsEntry;
 import com.liferay.segments.provider.SegmentsEntryProvider;
 import com.liferay.segments.service.SegmentsEntryService;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -56,7 +62,7 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 
 		long[] segmentsEntryIds = _segmentsEntryProvider.getSegmentsEntryIds(
 			user.getModelClassName(), user.getPrimaryKey(),
-			_headerContextMapper.create(requestHeaders));
+			_create(requestHeaders));
 
 		List<SegmentsEntry> segmentsEntries = new ArrayList<>(
 			segmentsEntryIds.length);
@@ -71,6 +77,48 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 		return Page.of(
 			transform(segmentsEntries, this::_toSegment), pagination,
 			segmentsEntries.size());
+	}
+
+	private Context _create(MultivaluedMap<String, String> requestHeaders) {
+		Context context = new Context();
+
+		Set<Map.Entry<String, List<String>>> requestHeadersEntrySet =
+			requestHeaders.entrySet();
+
+		for (Map.Entry<String, List<String>> header : requestHeadersEntrySet) {
+			List<String> values = header.getValue();
+
+			String contextValue = values.get(0);
+
+			String key = StringUtil.toLowerCase(header.getKey());
+
+			if (key.startsWith("x-")) {
+				String contextKey = key.replace("x-", "");
+
+				String contextKeyCamelCase = CamelCaseUtil.toCamelCase(
+					contextKey);
+
+				context.put(contextKeyCamelCase, contextValue);
+			}
+			else if (key.equals("accept-language")) {
+				String value = contextValue.replace("-", "_");
+
+				context.put(Context.LANGUAGE_ID, value);
+			}
+			else if (key.equals("host")) {
+				context.put(Context.URL, contextValue);
+			}
+			else if (key.equals("user-agent")) {
+				context.put(Context.USER_AGENT, contextValue);
+			}
+			else {
+				context.put(key, contextValue);
+			}
+		}
+
+		context.put(Context.LOCAL_DATE, LocalDate.from(ZonedDateTime.now()));
+
+		return context;
 	}
 
 	private Segment _toSegment(SegmentsEntry segmentsEntry) {
@@ -88,10 +136,7 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 		};
 	}
 
-	@Reference
-	private HeaderContextMapper _headerContextMapper;
-
-	@Context
+	@javax.ws.rs.core.Context
 	private HttpHeaders _httpHeaders;
 
 	@Reference
