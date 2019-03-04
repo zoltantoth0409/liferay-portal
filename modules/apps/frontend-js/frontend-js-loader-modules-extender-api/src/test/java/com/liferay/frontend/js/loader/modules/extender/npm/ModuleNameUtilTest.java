@@ -35,15 +35,12 @@ public class ModuleNameUtilTest {
 	public void testGetDependencyPath() {
 		Assert.assertEquals(
 			"dep", ModuleNameUtil.getDependencyPath("a-dir/a-module", "dep"));
-
-		Assert.assertEquals(
-			"a-dir/dep",
-			ModuleNameUtil.getDependencyPath("a-dir/a-module", "./dep"));
-
 		Assert.assertEquals(
 			"dep",
 			ModuleNameUtil.getDependencyPath("a-dir/a-module", "../dep"));
-
+		Assert.assertEquals(
+			"a-dir/dep",
+			ModuleNameUtil.getDependencyPath("a-dir/a-module", "./dep"));
 		Assert.assertEquals(
 			"a-dir/dep",
 			ModuleNameUtil.getDependencyPath(
