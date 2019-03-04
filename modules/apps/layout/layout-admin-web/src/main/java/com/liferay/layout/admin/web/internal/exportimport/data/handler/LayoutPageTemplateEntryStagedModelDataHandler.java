@@ -31,6 +31,7 @@ import com.liferay.layout.page.template.model.LayoutPageTemplateCollection;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateCollectionLocalService;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalService;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.LayoutPrototype;
 import com.liferay.portal.kernel.service.LayoutPrototypeLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
@@ -134,6 +135,55 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 			entryElement,
 			ExportImportPathUtil.getModelPath(layoutPageTemplateEntry),
 			layoutPageTemplateEntry);
+	}
+
+	@Override
+	protected void doImportMissingReference(
+			PortletDataContext portletDataContext, Element referenceElement)
+		throws PortletDataException {
+
+		importMissingGroupReference(portletDataContext, referenceElement);
+
+		String uuid = referenceElement.attributeValue("uuid");
+
+		Map<Long, Long> groupIds =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				Group.class);
+
+		long groupId = GetterUtil.getLong(
+			referenceElement.attributeValue("group-id"));
+
+		groupId = MapUtil.getLong(groupIds, groupId);
+
+		long layoutPageTemplateEntryId = GetterUtil.getLong(
+			referenceElement.attributeValue("class-pk"));
+		String name = GetterUtil.getString(
+			referenceElement.attributeValue("name"));
+		boolean preloaded = GetterUtil.getBoolean(
+			referenceElement.attributeValue("preloaded"));
+
+		LayoutPageTemplateEntry existingLayoutPageTemplateEntry = null;
+
+		if (!preloaded) {
+			existingLayoutPageTemplateEntry = fetchMissingReference(
+				uuid, groupId);
+		}
+		else {
+			existingLayoutPageTemplateEntry = fetchExistingTemplate(
+				uuid, groupId, name, preloaded);
+		}
+
+		if (existingLayoutPageTemplateEntry == null) {
+			return;
+		}
+
+		Map<Long, Long> layoutPageTemplateEntryIds =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				LayoutPageTemplateEntry.class);
+
+		layoutPageTemplateEntryIds.put(
+			layoutPageTemplateEntryId,
+			existingLayoutPageTemplateEntry.getLayoutPageTemplateEntryId());
 	}
 
 	@Override
