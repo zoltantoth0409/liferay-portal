@@ -438,7 +438,7 @@ public class Table {
 		}
 		else if (t == Types.DECIMAL) {
 			try {
-				value = _getBigDecimal(rs.getBigDecimal(name));
+				value = rs.getBigDecimal(name);
 			}
 			catch (SQLException sqle) {
 				value = _getBigDecimal(rs.getString(name));
@@ -698,27 +698,17 @@ public class Table {
 		}
 	}
 
-	private BigDecimal _getBigDecimal(Object value) {
-		if (value instanceof BigDecimal) {
-			return (BigDecimal)value;
+	private BigDecimal _getBigDecimal(String value) {
+		if (Validator.isNull(value)) {
+			return BigDecimal.ZERO;
 		}
 
-		if (value instanceof String) {
-			String valueString = (String)value;
-
-			if (Validator.isNull(valueString)) {
-				return BigDecimal.ZERO;
-			}
-
-			try {
-				return new BigDecimal(valueString.trim());
-			}
-			catch (NumberFormatException nfe) {
-				return BigDecimal.ZERO;
-			}
+		try {
+			return new BigDecimal(value.trim());
 		}
-
-		return BigDecimal.ZERO;
+		catch (NumberFormatException nfe) {
+			return BigDecimal.ZERO;
+		}
 	}
 
 	private static final String[][] _SAFE_TABLE_CHARS = {
