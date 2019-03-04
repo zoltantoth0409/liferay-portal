@@ -81,7 +81,7 @@ public class SearchContainer<R> {
 		PortletURL iteratorURL, List<String> headerNames,
 		String emptyResultsMessage) {
 
-		this (
+		this(
 			portletRequest, displayTerms, searchTerms, curParam, cur, delta,
 			iteratorURL, headerNames, emptyResultsMessage, StringPool.BLANK);
 	}
@@ -156,7 +156,7 @@ public class SearchContainer<R> {
 		PortletURL iteratorURL, List<String> headerNames,
 		String emptyResultsMessage) {
 
-		this (
+		this(
 			portletRequest, displayTerms, searchTerms, curParam, 0, delta,
 			iteratorURL, headerNames, emptyResultsMessage);
 	}
