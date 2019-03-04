@@ -239,6 +239,8 @@ components:
                     type: string
                 description:
                     type: string
+                hasComments:
+                    type: boolean
                 id:
                     format: int64
                     type: integer
