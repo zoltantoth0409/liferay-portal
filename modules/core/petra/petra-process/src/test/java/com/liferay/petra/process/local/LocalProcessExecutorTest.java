@@ -1171,8 +1171,7 @@ public class LocalProcessExecutorTest {
 
 		while (timeUnit.convert(
 					System.currentTimeMillis() - startTime,
-					TimeUnit.MILLISECONDS) <
-						time) {
+					TimeUnit.MILLISECONDS) < time) {
 
 			if (!supplier.get()) {
 				return;
@@ -1338,8 +1337,8 @@ public class LocalProcessExecutorTest {
 				return sb.toString();
 			};
 
-		public static final ProcessCallable<Boolean> IS_ATTACHED = () ->
-			ProcessContext.isAttached();
+		public static final ProcessCallable<Boolean> IS_ATTACHED =
+			() -> ProcessContext.isAttached();
 
 		public static final ProcessCallable<String> LEADING_LOG = () -> {
 			try {
