@@ -85,12 +85,12 @@ public class JSONMessageBodyWriter implements MessageBodyWriter<Object> {
 			propertyFilter = SimpleBeanPropertyFilter.serializeAll();
 		}
 		else {
-			propertyFilter = new VulcanFilter(fieldNames);
+			propertyFilter = new VulcanSimpleBeanPropertyFilter(fieldNames);
 		}
 
 		SimpleFilterProvider filterProvider = new SimpleFilterProvider();
 
-		filterProvider.addFilter("VulcanFilter", propertyFilter);
+		filterProvider.addFilter("Liferay.Vulcan", propertyFilter);
 
 		objectMapper.setFilterProvider(filterProvider);
 
@@ -119,7 +119,8 @@ public class JSONMessageBodyWriter implements MessageBodyWriter<Object> {
 	@Context
 	private Providers _providers;
 
-	private static class VulcanFilter extends SimpleBeanPropertyFilter {
+	private static class VulcanSimpleBeanPropertyFilter
+		extends SimpleBeanPropertyFilter {
 
 		@Override
 		public void serializeAsField(
@@ -140,7 +141,7 @@ public class JSONMessageBodyWriter implements MessageBodyWriter<Object> {
 			}
 		}
 
-		private VulcanFilter(Set<String> fieldNames) {
+		private VulcanSimpleBeanPropertyFilter(Set<String> fieldNames) {
 			_fieldNames = fieldNames;
 		}
 
