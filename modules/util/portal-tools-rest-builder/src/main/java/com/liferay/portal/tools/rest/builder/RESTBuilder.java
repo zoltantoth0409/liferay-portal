@@ -454,7 +454,7 @@ public class RESTBuilder {
 		sb.append("/../../../configs/");
 		sb.append(_configYAML.getApiPackagePath());
 		sb.append(".oauth2.rest.provider.rest.jaxrs.feature.configuration.");
-		sb.append(".ConfigurableScopeCheckerFeatureConfiguration.cfg");
+		sb.append(".ConfigurableScopeCheckerFeatureConfiguration.config");
 
 		File file = new File(sb.toString());
 
