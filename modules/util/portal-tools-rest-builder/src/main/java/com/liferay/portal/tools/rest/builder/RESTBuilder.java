@@ -462,8 +462,7 @@ public class RESTBuilder {
 
 		FileUtil.write(
 			file,
-			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "oauth2_config", context));
+			FreeMarkerUtil.processTemplate(null, "oauth2_config", context));
 	}
 
 	private void _createPropertiesFile(
