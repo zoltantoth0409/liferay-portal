@@ -77,15 +77,15 @@ public class JSONMessageBodyWriter implements MessageBodyWriter<Object> {
 	}
 
 	private ObjectMapper _addFilter(ObjectMapper objectMapper) {
-		Set<String> fields = _fieldsQueryParam.getFields();
+		Set<String> fieldNames = _fieldsQueryParam.getFieldNames();
 
 		PropertyFilter propertyFilter;
 
-		if (fields == null) {
+		if (fieldNames == null) {
 			propertyFilter = SimpleBeanPropertyFilter.serializeAll();
 		}
 		else {
-			propertyFilter = new VulcanFilter(fields);
+			propertyFilter = new VulcanFilter(fieldNames);
 		}
 
 		SimpleFilterProvider filterProvider = new SimpleFilterProvider();
@@ -134,14 +134,14 @@ public class JSONMessageBodyWriter implements MessageBodyWriter<Object> {
 
 			String path = _createPath(propertyWriter.getName(), jsonGenerator);
 
-			if (_fields.contains(path)) {
+			if (_fieldNames.contains(path)) {
 				propertyWriter.serializeAsField(
 					object, jsonGenerator, serializerProvider);
 			}
 		}
 
-		private VulcanFilter(Set<String> fields) {
-			_fields = fields;
+		private VulcanFilter(Set<String> fieldNames) {
+			_fieldNames = fieldNames;
 		}
 
 		private String _createPath(String name, JsonGenerator jsonGenerator) {
@@ -167,7 +167,7 @@ public class JSONMessageBodyWriter implements MessageBodyWriter<Object> {
 			return stringBuilder.toString();
 		}
 
-		private final Set<String> _fields;
+		private final Set<String> _fieldNames;
 
 	}
 

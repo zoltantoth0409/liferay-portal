@@ -31,6 +31,6 @@ public interface FieldsQueryParam {
 	 *
 	 * @review
 	 */
-	public Set<String> getFields();
+	public Set<String> getFieldNames();
 
 }
