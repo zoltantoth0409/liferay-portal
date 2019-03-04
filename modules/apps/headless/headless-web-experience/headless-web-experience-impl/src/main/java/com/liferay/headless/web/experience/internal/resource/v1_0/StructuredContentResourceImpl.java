@@ -76,7 +76,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.servlet.DummyHttpServletResponse;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
@@ -94,6 +93,7 @@ import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.ContentLanguageUtil;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
+import com.liferay.portal.vulcan.util.ServiceContextUtil;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.time.LocalDateTime;
@@ -273,7 +273,10 @@ public class StructuredContentResourceImpl
 				localDateTime.getDayOfMonth(), localDateTime.getYear(),
 				localDateTime.getHour(), localDateTime.getMinute(), 0, 0, 0, 0,
 				0, true, 0, 0, 0, 0, 0, true, true, null,
-				_createServiceContext(contentSpaceId, structuredContent)));
+				ServiceContextUtil.createServiceContext(
+					structuredContent.getKeywords(),
+					structuredContent.getCategoryIds(), contentSpaceId,
+					structuredContent.getViewableBy())));
 	}
 
 	@Override
@@ -320,8 +323,11 @@ public class StructuredContentResourceImpl
 				localDateTime.getHour(), localDateTime.getMinute(), 0, 0, 0, 0,
 				0, true, 0, 0, 0, 0, 0, true, true, false, null, null, null,
 				null,
-				_createServiceContext(
-					journalArticle.getGroupId(), structuredContent)));
+				ServiceContextUtil.createServiceContext(
+					structuredContent.getKeywords(),
+					structuredContent.getCategoryIds(),
+					journalArticle.getGroupId(),
+					structuredContent.getViewableBy())));
 	}
 
 	private String _createJournalArticleContent(
@@ -358,29 +364,6 @@ public class StructuredContentResourceImpl
 		finally {
 			LocaleThreadLocal.setSiteDefaultLocale(originalSiteDefaultLocale);
 		}
-	}
-
-	private ServiceContext _createServiceContext(
-		long contentSpaceId, StructuredContent structuredContent) {
-
-		return new ServiceContext() {
-			{
-				setAddGroupPermissions(true);
-				setAddGuestPermissions(true);
-
-				Long[] categoryIds = structuredContent.getCategoryIds();
-
-				if (ArrayUtil.isNotEmpty(categoryIds)) {
-					setAssetCategoryIds(ArrayUtil.toArray(categoryIds));
-				}
-
-				if (structuredContent.getKeywords() != null) {
-					setAssetTagNames(structuredContent.getKeywords());
-				}
-
-				setScopeGroupId(contentSpaceId);
-			}
-		};
 	}
 
 	private String _getDDMTemplateKey(DDMStructure ddmStructure) {
