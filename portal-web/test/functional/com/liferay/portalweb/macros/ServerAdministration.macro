@@ -176,6 +176,8 @@ definition {
 		Type(locator1 = "TextArea#SCRIPT", value1 = "${script}");
 
 		AssertClick(locator1 = "Button#EXECUTE", value1 = "Execute");
+
+		Alert.viewSuccessMessage();
 	}
 
 	macro executeServerResourcesActions {
