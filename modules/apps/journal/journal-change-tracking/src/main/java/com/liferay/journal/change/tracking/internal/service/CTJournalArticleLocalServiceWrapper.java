@@ -375,23 +375,23 @@ public class CTJournalArticleLocalServiceWrapper
 		OrderByComparator<JournalArticle> orderByComparator =
 			new ArticleVersionComparator();
 
-		DynamicQuery dynamicQueryWithStatus =
+		DynamicQuery withStatusDynamicQuery =
 			_getChangeTrackingAwareDynamicQuery();
 
 		Property resourcePrimKeyProperty = PropertyFactoryUtil.forName(
 			"resourcePrimKey");
 
-		dynamicQueryWithStatus.add(resourcePrimKeyProperty.eq(resourcePrimKey));
+		withStatusDynamicQuery.add(resourcePrimKeyProperty.eq(resourcePrimKey));
 
 		Property statusProperty = PropertyFactoryUtil.forName("status");
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			if (preferApproved) {
-				dynamicQueryWithStatus.add(
+				withStatusDynamicQuery.add(
 					statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
 
 				List<JournalArticle> journalArticles = dynamicQuery(
-					dynamicQueryWithStatus, 0, 1, orderByComparator);
+					withStatusDynamicQuery, 0, 1, orderByComparator);
 
 				if (!journalArticles.isEmpty()) {
 					journalArticle = journalArticles.get(0);
@@ -399,14 +399,14 @@ public class CTJournalArticleLocalServiceWrapper
 			}
 
 			if (journalArticle == null) {
-				DynamicQuery dynamicQueryWithoutStatus =
+				DynamicQuery withoutStatusDynamicQuery =
 					_getChangeTrackingAwareDynamicQuery();
 
-				dynamicQueryWithoutStatus.add(
+				withoutStatusDynamicQuery.add(
 					resourcePrimKeyProperty.eq(resourcePrimKey));
 
 				List<JournalArticle> journalArticles = dynamicQuery(
-					dynamicQueryWithoutStatus, 0, 1, orderByComparator);
+					withoutStatusDynamicQuery, 0, 1, orderByComparator);
 
 				if (!journalArticles.isEmpty()) {
 					journalArticle = journalArticles.get(0);
@@ -414,10 +414,10 @@ public class CTJournalArticleLocalServiceWrapper
 			}
 		}
 		else {
-			dynamicQueryWithStatus.add(statusProperty.eq(status));
+			withStatusDynamicQuery.add(statusProperty.eq(status));
 
 			List<JournalArticle> journalArticles = dynamicQuery(
-				dynamicQueryWithStatus, 0, 1, orderByComparator);
+				withStatusDynamicQuery, 0, 1, orderByComparator);
 
 			if (!journalArticles.isEmpty()) {
 				journalArticle = journalArticles.get(0);
@@ -1012,23 +1012,23 @@ public class CTJournalArticleLocalServiceWrapper
 		OrderByComparator<JournalArticle> orderByComparator =
 			new ArticleVersionComparator();
 
-		DynamicQuery dynamicQueryWithStatus =
+		DynamicQuery withStatusDynamicQuery =
 			_getChangeTrackingAwareDynamicQuery();
 
 		Property resourcePrimKeyProperty = PropertyFactoryUtil.forName(
 			"resourcePrimKey");
 
-		dynamicQueryWithStatus.add(resourcePrimKeyProperty.eq(resourcePrimKey));
+		withStatusDynamicQuery.add(resourcePrimKeyProperty.eq(resourcePrimKey));
 
 		Property statusProperty = PropertyFactoryUtil.forName("status");
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			if (preferApproved) {
-				dynamicQueryWithStatus.add(
+				withStatusDynamicQuery.add(
 					statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
 
 				List<JournalArticle> journalArticles = dynamicQuery(
-					dynamicQueryWithStatus, 0, 1, orderByComparator);
+					withStatusDynamicQuery, 0, 1, orderByComparator);
 
 				if (!journalArticles.isEmpty()) {
 					journalArticle = journalArticles.get(0);
@@ -1036,14 +1036,14 @@ public class CTJournalArticleLocalServiceWrapper
 			}
 
 			if (journalArticle == null) {
-				DynamicQuery dynamicQueryWithoutStatus =
+				DynamicQuery withoutStatusDynamicQuery =
 					_getChangeTrackingAwareDynamicQuery();
 
-				dynamicQueryWithoutStatus.add(
+				withoutStatusDynamicQuery.add(
 					resourcePrimKeyProperty.eq(resourcePrimKey));
 
 				List<JournalArticle> journalArticles = dynamicQuery(
-					dynamicQueryWithoutStatus, 0, 1, orderByComparator);
+					withoutStatusDynamicQuery, 0, 1, orderByComparator);
 
 				if (!journalArticles.isEmpty()) {
 					journalArticle = journalArticles.get(0);
@@ -1051,10 +1051,10 @@ public class CTJournalArticleLocalServiceWrapper
 			}
 		}
 		else {
-			dynamicQueryWithStatus.add(statusProperty.eq(status));
+			withStatusDynamicQuery.add(statusProperty.eq(status));
 
 			List<JournalArticle> journalArticles = dynamicQuery(
-				dynamicQueryWithStatus, 0, 1, orderByComparator);
+				withStatusDynamicQuery, 0, 1, orderByComparator);
 
 			if (!journalArticles.isEmpty()) {
 				journalArticle = journalArticles.get(0);
