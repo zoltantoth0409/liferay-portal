@@ -109,7 +109,7 @@ public class JSONMessageBodyWriter implements MessageBodyWriter<Object> {
 			this::_addFilter
 		).orElseThrow(
 			() -> new InternalServerErrorException(
-				"Unable to generate ObjectMapper for class " + clazz)
+				"Unable to generate object mapper for class " + clazz)
 		);
 	}
 
