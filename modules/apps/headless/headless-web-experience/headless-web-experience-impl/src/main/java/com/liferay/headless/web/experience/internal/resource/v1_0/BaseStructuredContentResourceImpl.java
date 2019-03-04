@@ -173,6 +173,11 @@ public abstract class BaseStructuredContentResourceImpl
 				structuredContent.getDescription());
 		}
 
+		if (Validator.isNotNull(structuredContent.getHasComments())) {
+			existingStructuredContent.setHasComments(
+				structuredContent.getHasComments());
+		}
+
 		if (Validator.isNotNull(structuredContent.getKeywords())) {
 			existingStructuredContent.setKeywords(
 				structuredContent.getKeywords());
@@ -185,6 +190,11 @@ public abstract class BaseStructuredContentResourceImpl
 
 		if (Validator.isNotNull(structuredContent.getTitle())) {
 			existingStructuredContent.setTitle(structuredContent.getTitle());
+		}
+
+		if (Validator.isNotNull(structuredContent.getViewableBy())) {
+			existingStructuredContent.setViewableBy(
+				structuredContent.getViewableBy());
 		}
 
 		return putStructuredContent(

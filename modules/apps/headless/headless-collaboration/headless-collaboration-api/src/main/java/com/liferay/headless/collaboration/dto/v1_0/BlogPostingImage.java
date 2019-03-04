@@ -62,6 +62,10 @@ public class BlogPostingImage {
 		return title;
 	}
 
+	public String getViewableBy() {
+		return viewableBy;
+	}
+
 	public void setContentUrl(String contentUrl) {
 		this.contentUrl = contentUrl;
 	}
@@ -156,8 +160,24 @@ public class BlogPostingImage {
 		}
 	}
 
+	public void setViewableBy(String viewableBy) {
+		this.viewableBy = viewableBy;
+	}
+
+	@JsonIgnore
+	public void setViewableBy(
+		UnsafeSupplier<String, Exception> viewableByUnsafeSupplier) {
+
+		try {
+			viewableBy = viewableByUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(32);
 
 		sb.append("{");
 
@@ -197,6 +217,13 @@ public class BlogPostingImage {
 		sb.append("\"");
 		sb.append(title);
 		sb.append("\"");
+		sb.append(", ");
+
+		sb.append("\"viewableBy\": ");
+
+		sb.append("\"");
+		sb.append(viewableBy);
+		sb.append("\"");
 
 		sb.append("}");
 
@@ -226,5 +253,9 @@ public class BlogPostingImage {
 	@GraphQLField
 	@JsonProperty
 	protected String title;
+
+	@GraphQLField
+	@JsonProperty
+	protected String viewableBy;
 
 }

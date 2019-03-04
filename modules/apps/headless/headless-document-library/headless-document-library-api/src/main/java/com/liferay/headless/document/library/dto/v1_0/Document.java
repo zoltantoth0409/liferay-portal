@@ -104,6 +104,10 @@ public class Document {
 		return title;
 	}
 
+	public String getViewableBy() {
+		return viewableBy;
+	}
+
 	public void setAdaptedImages(AdaptedImages[] adaptedImages) {
 		this.adaptedImages = adaptedImages;
 	}
@@ -360,6 +364,22 @@ public class Document {
 		}
 	}
 
+	public void setViewableBy(String viewableBy) {
+		this.viewableBy = viewableBy;
+	}
+
+	@JsonIgnore
+	public void setViewableBy(
+		UnsafeSupplier<String, Exception> viewableByUnsafeSupplier) {
+
+		try {
+			viewableBy = viewableByUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	public String toString() {
 		StringBundler sb = new StringBundler();
 
@@ -499,6 +519,13 @@ public class Document {
 		sb.append("\"");
 		sb.append(title);
 		sb.append("\"");
+		sb.append(", ");
+
+		sb.append("\"viewableBy\": ");
+
+		sb.append("\"");
+		sb.append(viewableBy);
+		sb.append("\"");
 
 		sb.append("}");
 
@@ -568,5 +595,9 @@ public class Document {
 	@GraphQLField
 	@JsonProperty
 	protected String title;
+
+	@GraphQLField
+	@JsonProperty
+	protected String viewableBy;
 
 }

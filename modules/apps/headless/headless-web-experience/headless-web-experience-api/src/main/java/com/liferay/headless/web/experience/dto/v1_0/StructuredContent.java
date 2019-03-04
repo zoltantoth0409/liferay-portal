@@ -88,6 +88,10 @@ public class StructuredContent {
 		return description;
 	}
 
+	public Boolean getHasComments() {
+		return hasComments;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -106,6 +110,10 @@ public class StructuredContent {
 
 	public String getTitle() {
 		return title;
+	}
+
+	public String getViewableBy() {
+		return viewableBy;
 	}
 
 	public void setAggregateRating(AggregateRating aggregateRating) {
@@ -301,6 +309,22 @@ public class StructuredContent {
 		}
 	}
 
+	public void setHasComments(Boolean hasComments) {
+		this.hasComments = hasComments;
+	}
+
+	@JsonIgnore
+	public void setHasComments(
+		UnsafeSupplier<Boolean, Exception> hasCommentsUnsafeSupplier) {
+
+		try {
+			hasComments = hasCommentsUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -376,6 +400,22 @@ public class StructuredContent {
 
 		try {
 			title = titleUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void setViewableBy(String viewableBy) {
+		this.viewableBy = viewableBy;
+	}
+
+	@JsonIgnore
+	public void setViewableBy(
+		UnsafeSupplier<String, Exception> viewableByUnsafeSupplier) {
+
+		try {
+			viewableBy = viewableByUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -497,6 +537,11 @@ public class StructuredContent {
 		sb.append("\"");
 		sb.append(", ");
 
+		sb.append("\"hasComments\": ");
+
+		sb.append(hasComments);
+		sb.append(", ");
+
 		sb.append("\"id\": ");
 
 		sb.append(id);
@@ -545,6 +590,13 @@ public class StructuredContent {
 
 		sb.append("\"");
 		sb.append(title);
+		sb.append("\"");
+		sb.append(", ");
+
+		sb.append("\"viewableBy\": ");
+
+		sb.append("\"");
+		sb.append(viewableBy);
 		sb.append("\"");
 
 		sb.append("}");
@@ -602,6 +654,10 @@ public class StructuredContent {
 
 	@GraphQLField
 	@JsonProperty
+	protected Boolean hasComments;
+
+	@GraphQLField
+	@JsonProperty
 	protected Long id;
 
 	@GraphQLField
@@ -619,5 +675,9 @@ public class StructuredContent {
 	@GraphQLField
 	@JsonProperty
 	protected String title;
+
+	@GraphQLField
+	@JsonProperty
+	protected String viewableBy;
 
 }

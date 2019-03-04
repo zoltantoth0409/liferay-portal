@@ -72,6 +72,10 @@ public class Folder {
 		return name;
 	}
 
+	public String getViewableBy() {
+		return viewableBy;
+	}
+
 	public void setContentSpaceId(Long contentSpaceId) {
 		this.contentSpaceId = contentSpaceId;
 	}
@@ -196,8 +200,24 @@ public class Folder {
 		}
 	}
 
+	public void setViewableBy(String viewableBy) {
+		this.viewableBy = viewableBy;
+	}
+
+	@JsonIgnore
+	public void setViewableBy(
+		UnsafeSupplier<String, Exception> viewableByUnsafeSupplier) {
+
+		try {
+			viewableBy = viewableByUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		StringBundler sb = new StringBundler(38);
 
 		sb.append("{");
 
@@ -247,6 +267,13 @@ public class Folder {
 		sb.append("\"");
 		sb.append(name);
 		sb.append("\"");
+		sb.append(", ");
+
+		sb.append("\"viewableBy\": ");
+
+		sb.append("\"");
+		sb.append(viewableBy);
+		sb.append("\"");
 
 		sb.append("}");
 
@@ -284,5 +311,9 @@ public class Folder {
 	@GraphQLField
 	@JsonProperty
 	protected String name;
+
+	@GraphQLField
+	@JsonProperty
+	protected String viewableBy;
 
 }

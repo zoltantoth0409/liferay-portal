@@ -897,6 +897,11 @@ public abstract class BaseStructuredContentResourceTestCase {
 			return sb.toString();
 		}
 
+		if (entityFieldName.equals("hasComments")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
 		if (entityFieldName.equals("id")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
@@ -921,6 +926,14 @@ public abstract class BaseStructuredContentResourceTestCase {
 		if (entityFieldName.equals("title")) {
 			sb.append("'");
 			sb.append(String.valueOf(structuredContent.getTitle()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("viewableBy")) {
+			sb.append("'");
+			sb.append(String.valueOf(structuredContent.getViewableBy()));
 			sb.append("'");
 
 			return sb.toString();
@@ -1232,9 +1245,11 @@ public abstract class BaseStructuredContentResourceTestCase {
 				dateModified = RandomTestUtil.nextDate();
 				datePublished = RandomTestUtil.nextDate();
 				description = RandomTestUtil.randomString();
+				hasComments = RandomTestUtil.randomBoolean();
 				id = RandomTestUtil.randomLong();
 				lastReviewed = RandomTestUtil.nextDate();
 				title = RandomTestUtil.randomString();
+				viewableBy = RandomTestUtil.randomString();
 			}
 		};
 	}
