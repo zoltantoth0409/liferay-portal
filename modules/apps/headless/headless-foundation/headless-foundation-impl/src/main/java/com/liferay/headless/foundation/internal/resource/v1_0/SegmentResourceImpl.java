@@ -33,7 +33,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MultivaluedMap;
@@ -79,18 +78,17 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 	private Context _createSegmentsContext() {
 		Context context = new Context();
 
-		MultivaluedMap<String, String> requestHeaders =
+		MultivaluedMap<String, String> multivaluedMap =
 			_httpHeaders.getRequestHeaders();
 
-		Set<Map.Entry<String, List<String>>> requestHeadersEntrySet =
-			requestHeaders.entrySet();
+		for (Map.Entry<String, List<String>> entry :
+				multivaluedMap.entrySet()) {
 
-		for (Map.Entry<String, List<String>> header : requestHeadersEntrySet) {
-			List<String> values = header.getValue();
+			List<String> values = entry.getValue();
 
 			String contextValue = values.get(0);
 
-			String key = StringUtil.toLowerCase(header.getKey());
+			String key = StringUtil.toLowerCase(entry.getKey());
 
 			if (key.startsWith("x-")) {
 				String contextKey = key.replace("x-", "");
