@@ -239,7 +239,6 @@ public class DLAppHelperLocalServiceImpl
 		actionableDynamicQuery.setAddCriteriaMethod(
 			dynamicQuery -> dynamicQuery.add(
 				RestrictionsFactoryUtil.eq("repositoryId", repositoryId)));
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(DLFileEntry dlFileEntry) -> _deleteFileEntry(
 				dlFileEntry.getFileEntryId()));
