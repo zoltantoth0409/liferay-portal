@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
@@ -478,18 +477,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 		</#if>
 
 		<#assign
-			hasFilterAndSorts = false
-			invokeArguments = arguments
-			invokeParameters = parameters
+			invokeArguments = arguments?replace("filter", "filterString")?replace("sorts", "sortString")
+			invokeParameters = parameters?replace("com.liferay.portal.kernel.search.filter.Filter filter", "String filterString")?replace("com.liferay.portal.kernel.search.Sort[] sorts", "String sortString")
 		/>
-
-		<#if invokeParameters?contains("Filter filter") && invokeParameters?contains("Sort[] sorts")>
-			<#assign
-				hasFilterAndSorts = true
-				invokeArguments = invokeArguments?replace("filter", "filterString")?replace("sorts", "sortString")
-				invokeParameters = invokeParameters?replace("com.liferay.portal.kernel.search.filter.Filter filter", "String filterString")?replace("com.liferay.portal.kernel.search.Sort[] sorts", "String sortString")
-			/>
-		</#if>
 
 		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(${invokeParameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
@@ -502,11 +492,22 @@ public abstract class Base${schemaName}ResourceTestCase {
 				options.setDelete(true);
 			</#if>
 
-			<#if hasFilterAndSorts>
-				options.setLocation(_${javaMethodSignature.methodName?remove_ending("Page")}Location(${invokeArguments}));
-			<#else>
-				options.setLocation(_resourceURL + _toPath("${javaMethodSignature.path}", ${firstJavaMethodParameter.parameterName}));
+			String location = _resourceURL + _toPath("${javaMethodSignature.path}", ${firstJavaMethodParameter.parameterName});
+
+			<#if parameters?contains("Filter filter")>
+				location = HttpUtil.addParameter(location, "filter", filterString);
 			</#if>
+
+			<#if parameters?contains("Pagination pagination")>
+				location = HttpUtil.addParameter(location, "page", pagination.getPageNumber());
+				location = HttpUtil.addParameter(location, "pageSize", pagination.getItemsPerPage());
+			</#if>
+
+			<#if parameters?contains("Sort[] sorts")>
+				location = HttpUtil.addParameter(location, "sort", sortString);
+			</#if>
+
+			options.setLocation(location);
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
 				options.setPost(true);
@@ -536,11 +537,22 @@ public abstract class Base${schemaName}ResourceTestCase {
 				options.setDelete(true);
 			</#if>
 
-			<#if hasFilterAndSorts>
-				options.setLocation(_${javaMethodSignature.methodName?remove_ending("Page")}Location(${invokeArguments}));
-			<#else>
-				options.setLocation(_resourceURL + _toPath("${javaMethodSignature.path}", ${firstJavaMethodParameter.parameterName}));
+			String location = _resourceURL + _toPath("${javaMethodSignature.path}", ${firstJavaMethodParameter.parameterName});
+
+			<#if parameters?contains("Filter filter")>
+				location = HttpUtil.addParameter(location, "filter", filterString);
 			</#if>
+
+			<#if parameters?contains("Pagination pagination")>
+				location = HttpUtil.addParameter(location, "page", pagination.getPageNumber());
+				location = HttpUtil.addParameter(location, "pageSize", pagination.getItemsPerPage());
+			</#if>
+
+			<#if parameters?contains("Sort[] sorts")>
+				location = HttpUtil.addParameter(location, "sort", sortString);
+			</#if>
+
+			options.setLocation(location);
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
 				options.setPost(true);
@@ -552,19 +564,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 			return options.getResponse();
 		}
-
-		<#if hasFilterAndSorts>
-			private String _${javaMethodSignature.methodName?remove_ending("Page")}Location(${invokeParameters}) {
-				String url = _resourceURL + _toPath("${javaMethodSignature.path}", ${firstJavaMethodParameter.parameterName});
-
-				url += "?filter=" + URLCodec.encodeURL(filterString);
-				url += "&page=" + pagination.getPageNumber();
-				url += "&pageSize=" + pagination.getItemsPerPage();
-				url += "&sort=" + URLCodec.encodeURL(sortString);
-
-				return url;
-			}
-		</#if>
 	</#list>
 
 	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
