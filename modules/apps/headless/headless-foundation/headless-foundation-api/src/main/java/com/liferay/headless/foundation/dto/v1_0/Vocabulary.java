@@ -14,7 +14,6 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -36,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("Vocabulary")
-@JsonFilter("Liferay.Vulcan")
+//@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Vocabulary")
 public class Vocabulary {
 
