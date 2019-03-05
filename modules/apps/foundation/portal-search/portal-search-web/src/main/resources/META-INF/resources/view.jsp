@@ -67,6 +67,7 @@ pageContext.setAttribute("portletURL", portletURL);
 			<liferay-ui:icon
 				cssClass="icon-monospaced"
 				icon="search"
+				linkTitle='<%= LanguageUtil.get(request, "search") %>'
 				markupView="lexicon"
 				onClick='<%= renderResponse.getNamespace() + "search();" %>'
 				url="javascript:;"
