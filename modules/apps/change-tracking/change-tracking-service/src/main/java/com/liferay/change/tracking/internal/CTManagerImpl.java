@@ -412,13 +412,13 @@ public class CTManagerImpl implements CTManager {
 			Optional<CTEntry> previousModelChangeCTEntryOptional =
 				getLatestModelChangeCTEntryOptional(userId, resourcePrimKey);
 
-			// Creating a new change entry
+			// Creating a new change tracking entry
 
 			CTEntry ctEntry = _ctEntryLocalService.addCTEntry(
 				userId, classNameId, classPK, resourcePrimKey, changeType,
 				ctCollection.getCtCollectionId(), serviceContext);
 
-			// Updating existing related change entry aggregate
+			// Updating existing related change tracking entry aggregate
 
 			previousModelChangeCTEntryOptional.flatMap(
 				latestModelChangeCTEntry -> getCTEntryAggregateOptional(
