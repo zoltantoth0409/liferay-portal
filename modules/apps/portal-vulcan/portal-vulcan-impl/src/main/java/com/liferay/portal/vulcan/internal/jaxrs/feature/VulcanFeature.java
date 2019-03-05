@@ -75,7 +75,7 @@ public class VulcanFeature implements Feature {
 		featureContext.register(FieldsQueryParamContextProvider.class);
 		featureContext.register(JacksonJsonProvider.class);
 		featureContext.register(JsonMappingExceptionMapper.class);
-		featureContext.register(JSONMessageBodyWriter.class);
+		//featureContext.register(JSONMessageBodyWriter.class);
 		featureContext.register(JsonParseExceptionMapper.class);
 		featureContext.register(InvalidFormatExceptionMapper.class);
 		featureContext.register(MultipartBodyMessageBodyReader.class);
