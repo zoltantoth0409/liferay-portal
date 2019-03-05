@@ -49,6 +49,11 @@ public class CTProcessModel {
 	}
 
 	@XmlElement
+	public long getCTProcessId() {
+		return _ctProcessId;
+	}
+
+	@XmlElement
 	public Date getDate() {
 		return _date;
 	}
@@ -106,6 +111,12 @@ public class CTProcessModel {
 			return this;
 		}
 
+		public Builder setCTProcessId(long ctProcessId) {
+			_ctProcessModel._ctProcessId = ctProcessId;
+
+			return this;
+		}
+
 		public Builder setDate(Date date) {
 			_ctProcessModel._date = date;
 
@@ -151,6 +162,7 @@ public class CTProcessModel {
 
 	private long _companyId;
 	private CTCollectionModel _ctCollection;
+	private long _ctProcessId;
 	private Date _date;
 	private int _percentage;
 	private String _status;

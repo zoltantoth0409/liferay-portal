@@ -182,6 +182,8 @@ public class CTProcessResource {
 
 		return builder.setCTCollection(
 			ctCollection
+		).setCTProcessId(
+			ctProcess.getCtProcessId()
 		).setDate(
 			ctProcess.getCreateDate()
 		).setStatus(
