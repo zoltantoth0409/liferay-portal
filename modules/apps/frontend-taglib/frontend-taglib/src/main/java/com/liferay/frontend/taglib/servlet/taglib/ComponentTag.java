@@ -213,7 +213,7 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 		String containerId = getContainerId();
 
 		if (Validator.isNotNull(containerId)) {
-			sb.append(",'");
+			sb.append(", '");
 			sb.append(containerId);
 			sb.append("'");
 		}
