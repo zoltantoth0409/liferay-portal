@@ -260,26 +260,34 @@ public class BeanPortletInvokerPortlet
 			beanMethod.invoke(args);
 		}
 
+		if (Validator.isNull(include)) {
+			return;
+		}
+
 		PortletMode beanMethodPortletMode = beanMethod.getPortletMode();
 
-		if (Validator.isNotNull(include) &&
-			((beanMethodPortletMode == null) ||
-			 beanMethodPortletMode.equals(
-				 ((PortletRequest)args[0]).getPortletMode()))) {
+		if (beanMethodPortletMode != null) {
+			PortletRequest portletRequest = (PortletRequest)args[0];
 
-			PortletContext portletContext = _portletConfig.getPortletContext();
+			if (!beanMethodPortletMode.equals(
+					portletRequest.getPortletMode())) {
 
-			PortletRequestDispatcher portletRequestDispatcher =
-				portletContext.getRequestDispatcher(include);
-
-			if (portletRequestDispatcher == null) {
-				_log.error(
-					"Unable to acquire dispatcher for include=" + include);
+				return;
 			}
-			else {
-				portletRequestDispatcher.include(
-					(PortletRequest)args[0], (PortletResponse)args[1]);
-			}
+		}
+
+		PortletContext portletContext = _portletConfig.getPortletContext();
+
+		PortletRequestDispatcher portletRequestDispatcher =
+			portletContext.getRequestDispatcher(include);
+
+		if (portletRequestDispatcher == null) {
+			_log.error(
+				"Unable to acquire dispatcher to include " + include);
+		}
+		else {
+			portletRequestDispatcher.include(
+				(PortletRequest)args[0], (PortletResponse)args[1]);
 		}
 	}
 
