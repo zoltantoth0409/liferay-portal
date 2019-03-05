@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
@@ -585,9 +584,11 @@ public abstract class BaseVocabularyResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/vocabularies/{vocabulary-id}", vocabularyId));
+				_toPath("/vocabularies/{vocabulary-id}", vocabularyId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Boolean.class);
@@ -600,9 +601,11 @@ public abstract class BaseVocabularyResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/vocabularies/{vocabulary-id}", vocabularyId));
+				_toPath("/vocabularies/{vocabulary-id}", vocabularyId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -616,9 +619,22 @@ public abstract class BaseVocabularyResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_getContentSpaceVocabulariesLocation(
-				contentSpaceId, filterString, pagination, sortString));
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/vocabularies",
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -633,9 +649,22 @@ public abstract class BaseVocabularyResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_getContentSpaceVocabulariesLocation(
-				contentSpaceId, filterString, pagination, sortString));
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/vocabularies",
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -647,9 +676,11 @@ public abstract class BaseVocabularyResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/vocabularies/{vocabulary-id}", vocabularyId));
+				_toPath("/vocabularies/{vocabulary-id}", vocabularyId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Vocabulary.class);
@@ -660,9 +691,11 @@ public abstract class BaseVocabularyResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/vocabularies/{vocabulary-id}", vocabularyId));
+				_toPath("/vocabularies/{vocabulary-id}", vocabularyId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -679,11 +712,13 @@ public abstract class BaseVocabularyResourceTestCase {
 			_inputObjectMapper.writeValueAsString(vocabulary),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/vocabularies",
-					contentSpaceId));
+					contentSpaceId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -701,11 +736,13 @@ public abstract class BaseVocabularyResourceTestCase {
 			_inputObjectMapper.writeValueAsString(vocabulary),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/vocabularies",
-					contentSpaceId));
+					contentSpaceId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -724,9 +761,11 @@ public abstract class BaseVocabularyResourceTestCase {
 			_inputObjectMapper.writeValueAsString(vocabulary),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/vocabularies/{vocabulary-id}", vocabularyId));
+				_toPath("/vocabularies/{vocabulary-id}", vocabularyId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -744,9 +783,11 @@ public abstract class BaseVocabularyResourceTestCase {
 			_inputObjectMapper.writeValueAsString(vocabulary),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/vocabularies/{vocabulary-id}", vocabularyId));
+				_toPath("/vocabularies/{vocabulary-id}", vocabularyId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -864,24 +905,6 @@ public abstract class BaseVocabularyResourceTestCase {
 		options.addHeader("Content-Type", "application/json");
 
 		return options;
-	}
-
-	private String _getContentSpaceVocabulariesLocation(
-		Long contentSpaceId, String filterString, Pagination pagination,
-		String sortString) {
-
-		String url =
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/vocabularies",
-					contentSpaceId);
-
-		url += "?filter=" + URLCodec.encodeURL(filterString);
-		url += "&page=" + pagination.getPageNumber();
-		url += "&pageSize=" + pagination.getItemsPerPage();
-		url += "&sort=" + URLCodec.encodeURL(sortString);
-
-		return url;
 	}
 
 	private String _toPath(String template, Object value) {

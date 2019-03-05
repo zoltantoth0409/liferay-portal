@@ -624,9 +624,11 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/user-accounts/{user-account-id}", userAccountId));
+				_toPath("/user-accounts/{user-account-id}", userAccountId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Boolean.class);
@@ -639,9 +641,11 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/user-accounts/{user-account-id}", userAccountId));
+				_toPath("/user-accounts/{user-account-id}", userAccountId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -653,10 +657,12 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
-					"/my-user-accounts/{my-user-account-id}", myUserAccountId));
+					"/my-user-accounts/{my-user-account-id}", myUserAccountId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), UserAccount.class);
@@ -667,10 +673,12 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
-					"/my-user-accounts/{my-user-account-id}", myUserAccountId));
+					"/my-user-accounts/{my-user-account-id}", myUserAccountId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -683,11 +691,18 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/organizations/{organization-id}/user-accounts",
-					organizationId));
+					organizationId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -701,11 +716,18 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/organizations/{organization-id}/user-accounts",
-					organizationId));
+					organizationId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -717,9 +739,11 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/user-accounts/{user-account-id}", userAccountId));
+				_toPath("/user-accounts/{user-account-id}", userAccountId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), UserAccount.class);
@@ -730,9 +754,11 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/user-accounts/{user-account-id}", userAccountId));
+				_toPath("/user-accounts/{user-account-id}", userAccountId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -745,8 +771,15 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/user-accounts", fullnamequery));
+		String location =
+			_resourceURL + _toPath("/user-accounts", fullnamequery);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -760,8 +793,15 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/user-accounts", fullnamequery));
+		String location =
+			_resourceURL + _toPath("/user-accounts", fullnamequery);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -774,9 +814,16 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/web-sites/{web-site-id}/user-accounts", webSiteId));
+				_toPath("/web-sites/{web-site-id}/user-accounts", webSiteId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -790,9 +837,16 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/web-sites/{web-site-id}/user-accounts", webSiteId));
+				_toPath("/web-sites/{web-site-id}/user-accounts", webSiteId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -804,8 +858,9 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/user-accounts", userAccount));
+		String location = _resourceURL + _toPath("/user-accounts", userAccount);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -819,8 +874,9 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/user-accounts", userAccount));
+		String location = _resourceURL + _toPath("/user-accounts", userAccount);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -839,9 +895,11 @@ public abstract class BaseUserAccountResourceTestCase {
 			_inputObjectMapper.writeValueAsString(userAccount),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/user-accounts/{user-account-id}", userAccountId));
+				_toPath("/user-accounts/{user-account-id}", userAccountId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -859,9 +917,11 @@ public abstract class BaseUserAccountResourceTestCase {
 			_inputObjectMapper.writeValueAsString(userAccount),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/user-accounts/{user-account-id}", userAccountId));
+				_toPath("/user-accounts/{user-account-id}", userAccountId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 

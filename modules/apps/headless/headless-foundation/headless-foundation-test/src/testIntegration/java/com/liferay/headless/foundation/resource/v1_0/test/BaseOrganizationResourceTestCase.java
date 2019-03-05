@@ -530,11 +530,18 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/my-user-accounts/{my-user-account-id}/organizations",
-					myUserAccountId));
+					myUserAccountId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -548,11 +555,18 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/my-user-accounts/{my-user-account-id}/organizations",
-					myUserAccountId));
+					myUserAccountId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -564,9 +578,11 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/organizations/{organization-id}", organizationId));
+				_toPath("/organizations/{organization-id}", organizationId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Organization.class);
@@ -578,11 +594,18 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/organizations/{organization-id}/organizations",
-					organizationId));
+					organizationId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -596,11 +619,18 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/organizations/{organization-id}/organizations",
-					organizationId));
+					organizationId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -612,9 +642,11 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/organizations/{organization-id}", organizationId));
+				_toPath("/organizations/{organization-id}", organizationId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -627,8 +659,14 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/organizations", pagination));
+		String location = _resourceURL + _toPath("/organizations", pagination);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -642,8 +680,14 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/organizations", pagination));
+		String location = _resourceURL + _toPath("/organizations", pagination);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -656,11 +700,18 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/user-accounts/{user-account-id}/organizations",
-					userAccountId));
+					userAccountId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -674,11 +725,18 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/user-accounts/{user-account-id}/organizations",
-					userAccountId));
+					userAccountId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

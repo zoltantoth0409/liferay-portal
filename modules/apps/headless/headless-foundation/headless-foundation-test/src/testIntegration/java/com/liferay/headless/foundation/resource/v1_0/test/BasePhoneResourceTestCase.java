@@ -321,7 +321,14 @@ public abstract class BasePhoneResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(_resourceURL + _toPath("/phones", genericParentId));
+		String location = _resourceURL + _toPath("/phones", genericParentId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -335,7 +342,14 @@ public abstract class BasePhoneResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(_resourceURL + _toPath("/phones", genericParentId));
+		String location = _resourceURL + _toPath("/phones", genericParentId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -345,8 +359,9 @@ public abstract class BasePhoneResourceTestCase {
 	protected Phone invokeGetPhone(Long phoneId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/phones/{phone-id}", phoneId));
+		String location = _resourceURL + _toPath("/phones/{phone-id}", phoneId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Phone.class);
@@ -357,8 +372,9 @@ public abstract class BasePhoneResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/phones/{phone-id}", phoneId));
+		String location = _resourceURL + _toPath("/phones/{phone-id}", phoneId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

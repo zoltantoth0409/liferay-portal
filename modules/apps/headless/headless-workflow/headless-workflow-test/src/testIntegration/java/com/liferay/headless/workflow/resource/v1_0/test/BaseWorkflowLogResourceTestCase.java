@@ -382,9 +382,11 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/workflow-logs/{workflow-log-id}", workflowLogId));
+				_toPath("/workflow-logs/{workflow-log-id}", workflowLogId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), WorkflowLog.class);
@@ -395,9 +397,11 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/workflow-logs/{workflow-log-id}", workflowLogId));
+				_toPath("/workflow-logs/{workflow-log-id}", workflowLogId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -410,11 +414,18 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/workflow-logs",
-					workflowTaskId));
+					workflowTaskId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -428,11 +439,18 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/workflow-logs",
-					workflowTaskId));
+					workflowTaskId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

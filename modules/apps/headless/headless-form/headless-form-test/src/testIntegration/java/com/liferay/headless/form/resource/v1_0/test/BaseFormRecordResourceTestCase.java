@@ -373,8 +373,15 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/forms/{form-id}/form-records", formId));
+		String location =
+			_resourceURL + _toPath("/forms/{form-id}/form-records", formId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -388,8 +395,15 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/forms/{form-id}/form-records", formId));
+		String location =
+			_resourceURL + _toPath("/forms/{form-id}/form-records", formId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -401,9 +415,11 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/form-records/{form-record-id}", formRecordId));
+				_toPath("/form-records/{form-record-id}", formRecordId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), FormRecord.class);
@@ -414,9 +430,11 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/form-records/{form-record-id}", formRecordId));
+				_toPath("/form-records/{form-record-id}", formRecordId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -433,8 +451,10 @@ public abstract class BaseFormRecordResourceTestCase {
 			_inputObjectMapper.writeValueAsString(formRecord),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/forms/{form-id}/form-records", formId));
+		String location =
+			_resourceURL + _toPath("/forms/{form-id}/form-records", formId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -452,8 +472,10 @@ public abstract class BaseFormRecordResourceTestCase {
 			_inputObjectMapper.writeValueAsString(formRecord),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/forms/{form-id}/form-records", formId));
+		String location =
+			_resourceURL + _toPath("/forms/{form-id}/form-records", formId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -472,9 +494,11 @@ public abstract class BaseFormRecordResourceTestCase {
 			_inputObjectMapper.writeValueAsString(formRecord),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/form-records/{form-record-id}", formRecordId));
+				_toPath("/form-records/{form-record-id}", formRecordId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -492,9 +516,11 @@ public abstract class BaseFormRecordResourceTestCase {
 			_inputObjectMapper.writeValueAsString(formRecord),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/form-records/{form-record-id}", formRecordId));
+				_toPath("/form-records/{form-record-id}", formRecordId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 

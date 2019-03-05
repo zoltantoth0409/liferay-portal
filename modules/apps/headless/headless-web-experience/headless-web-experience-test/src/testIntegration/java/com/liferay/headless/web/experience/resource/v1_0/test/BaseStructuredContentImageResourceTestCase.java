@@ -370,11 +370,13 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/structured-content-images/{structured-content-image-id}",
-					structuredContentImageId));
+					structuredContentImageId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Boolean.class);
@@ -388,11 +390,13 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/structured-content-images/{structured-content-image-id}",
-					structuredContentImageId));
+					structuredContentImageId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -405,11 +409,13 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/structured-content-images/{structured-content-image-id}",
-					structuredContentImageId));
+					structuredContentImageId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), StructuredContentImage.class);
@@ -421,11 +427,13 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/structured-content-images/{structured-content-image-id}",
-					structuredContentImageId));
+					structuredContentImageId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -439,11 +447,13 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/structured-contents/{structured-content-id}/structured-content-images",
-					structuredContentId));
+					structuredContentId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -458,11 +468,13 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/structured-contents/{structured-content-id}/structured-content-images",
-					structuredContentId));
+					structuredContentId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

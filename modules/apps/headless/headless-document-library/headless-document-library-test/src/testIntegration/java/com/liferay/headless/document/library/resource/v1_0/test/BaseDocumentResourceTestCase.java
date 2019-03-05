@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
@@ -819,8 +818,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
-			_resourceURL + _toPath("/documents/{document-id}", documentId));
+		String location =
+			_resourceURL + _toPath("/documents/{document-id}", documentId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Boolean.class);
@@ -833,8 +834,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
-			_resourceURL + _toPath("/documents/{document-id}", documentId));
+		String location =
+			_resourceURL + _toPath("/documents/{document-id}", documentId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -848,9 +851,22 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_getContentSpaceDocumentsLocation(
-				contentSpaceId, filterString, pagination, sortString));
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/documents",
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -865,9 +881,22 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_getContentSpaceDocumentsLocation(
-				contentSpaceId, filterString, pagination, sortString));
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/documents",
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -877,8 +906,10 @@ public abstract class BaseDocumentResourceTestCase {
 	protected Document invokeGetDocument(Long documentId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/documents/{document-id}", documentId));
+		String location =
+			_resourceURL + _toPath("/documents/{document-id}", documentId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Document.class);
@@ -889,8 +920,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/documents/{document-id}", documentId));
+		String location =
+			_resourceURL + _toPath("/documents/{document-id}", documentId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -904,9 +937,19 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_getFolderDocumentsLocation(
-				folderId, filterString, pagination, sortString));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}/documents", folderId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -921,9 +964,19 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_getFolderDocumentsLocation(
-				folderId, filterString, pagination, sortString));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}/documents", folderId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -936,8 +989,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/documents/{document-id}", documentId));
+		String location =
+			_resourceURL + _toPath("/documents/{document-id}", documentId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Document.class);
@@ -949,8 +1004,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/documents/{document-id}", documentId));
+		String location =
+			_resourceURL + _toPath("/documents/{document-id}", documentId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -963,11 +1020,13 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/documents",
-					contentSpaceId));
+					contentSpaceId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -981,11 +1040,13 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/documents",
-					contentSpaceId));
+					contentSpaceId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -1000,8 +1061,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}/documents", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}/documents", folderId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -1015,8 +1078,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}/documents", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}/documents", folderId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -1031,8 +1096,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/documents/{document-id}", documentId));
+		String location =
+			_resourceURL + _toPath("/documents/{document-id}", documentId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -1046,8 +1113,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/documents/{document-id}", documentId));
+		String location =
+			_resourceURL + _toPath("/documents/{document-id}", documentId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -1187,39 +1256,6 @@ public abstract class BaseDocumentResourceTestCase {
 		options.addHeader("Content-Type", "application/json");
 
 		return options;
-	}
-
-	private String _getContentSpaceDocumentsLocation(
-		Long contentSpaceId, String filterString, Pagination pagination,
-		String sortString) {
-
-		String url =
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/documents",
-					contentSpaceId);
-
-		url += "?filter=" + URLCodec.encodeURL(filterString);
-		url += "&page=" + pagination.getPageNumber();
-		url += "&pageSize=" + pagination.getItemsPerPage();
-		url += "&sort=" + URLCodec.encodeURL(sortString);
-
-		return url;
-	}
-
-	private String _getFolderDocumentsLocation(
-		Long folderId, String filterString, Pagination pagination,
-		String sortString) {
-
-		String url =
-			_resourceURL + _toPath("/folders/{folder-id}/documents", folderId);
-
-		url += "?filter=" + URLCodec.encodeURL(filterString);
-		url += "&page=" + pagination.getPageNumber();
-		url += "&pageSize=" + pagination.getItemsPerPage();
-		url += "&sort=" + URLCodec.encodeURL(sortString);
-
-		return url;
 	}
 
 	private String _toPath(String template, Object value) {

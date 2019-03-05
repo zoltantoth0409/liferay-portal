@@ -313,8 +313,14 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/web-urls", genericParentId));
+		String location = _resourceURL + _toPath("/web-urls", genericParentId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -328,8 +334,14 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/web-urls", genericParentId));
+		String location = _resourceURL + _toPath("/web-urls", genericParentId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -339,8 +351,10 @@ public abstract class BaseWebUrlResourceTestCase {
 	protected WebUrl invokeGetWebUrl(Long webUrlId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId));
+		String location =
+			_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), WebUrl.class);
@@ -351,8 +365,10 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId));
+		String location =
+			_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

@@ -372,11 +372,18 @@ public abstract class BaseFormStructureResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/form-structures",
-					contentSpaceId));
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -390,11 +397,18 @@ public abstract class BaseFormStructureResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/form-structures",
-					contentSpaceId));
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -406,10 +420,12 @@ public abstract class BaseFormStructureResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
-					"/form-structures/{form-structure-id}", formStructureId));
+					"/form-structures/{form-structure-id}", formStructureId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), FormStructure.class);
@@ -420,10 +436,12 @@ public abstract class BaseFormStructureResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
-					"/form-structures/{form-structure-id}", formStructureId));
+					"/form-structures/{form-structure-id}", formStructureId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

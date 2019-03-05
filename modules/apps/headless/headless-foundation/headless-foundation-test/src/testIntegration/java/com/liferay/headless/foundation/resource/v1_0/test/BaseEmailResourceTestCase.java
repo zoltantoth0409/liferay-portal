@@ -310,8 +310,9 @@ public abstract class BaseEmailResourceTestCase {
 	protected Email invokeGetEmail(Long emailId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/emails/{email-id}", emailId));
+		String location = _resourceURL + _toPath("/emails/{email-id}", emailId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Email.class);
@@ -322,8 +323,9 @@ public abstract class BaseEmailResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/emails/{email-id}", emailId));
+		String location = _resourceURL + _toPath("/emails/{email-id}", emailId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -336,7 +338,14 @@ public abstract class BaseEmailResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(_resourceURL + _toPath("/emails", genericParentId));
+		String location = _resourceURL + _toPath("/emails", genericParentId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -350,7 +359,14 @@ public abstract class BaseEmailResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(_resourceURL + _toPath("/emails", genericParentId));
+		String location = _resourceURL + _toPath("/emails", genericParentId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

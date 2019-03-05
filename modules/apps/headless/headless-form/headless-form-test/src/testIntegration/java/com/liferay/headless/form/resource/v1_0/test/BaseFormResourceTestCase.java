@@ -401,10 +401,17 @@ public abstract class BaseFormResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/form", contentSpaceId));
+					"/content-spaces/{content-space-id}/form", contentSpaceId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -418,10 +425,17 @@ public abstract class BaseFormResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/form", contentSpaceId));
+					"/content-spaces/{content-space-id}/form", contentSpaceId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -431,7 +445,9 @@ public abstract class BaseFormResourceTestCase {
 	protected Form invokeGetForm(Long formId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(_resourceURL + _toPath("/forms/{form-id}", formId));
+		String location = _resourceURL + _toPath("/forms/{form-id}", formId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Form.class);
@@ -440,9 +456,11 @@ public abstract class BaseFormResourceTestCase {
 	protected Form invokeGetFormFetchLatestDraft(Long formId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/forms/{form-id}/fetch-latest-draft", formId));
+				_toPath("/forms/{form-id}/fetch-latest-draft", formId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Form.class);
@@ -453,9 +471,11 @@ public abstract class BaseFormResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/forms/{form-id}/fetch-latest-draft", formId));
+				_toPath("/forms/{form-id}/fetch-latest-draft", formId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -467,7 +487,9 @@ public abstract class BaseFormResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(_resourceURL + _toPath("/forms/{form-id}", formId));
+		String location = _resourceURL + _toPath("/forms/{form-id}", formId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -483,9 +505,10 @@ public abstract class BaseFormResourceTestCase {
 			_inputObjectMapper.writeValueAsString(form),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL +
-				_toPath("/forms/{form-id}/evaluate-context", formId));
+		String location =
+			_resourceURL + _toPath("/forms/{form-id}/evaluate-context", formId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -503,9 +526,10 @@ public abstract class BaseFormResourceTestCase {
 			_inputObjectMapper.writeValueAsString(form),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL +
-				_toPath("/forms/{form-id}/evaluate-context", formId));
+		String location =
+			_resourceURL + _toPath("/forms/{form-id}/evaluate-context", formId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -523,8 +547,10 @@ public abstract class BaseFormResourceTestCase {
 			_inputObjectMapper.writeValueAsString(form),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/forms/{form-id}/upload-file", formId));
+		String location =
+			_resourceURL + _toPath("/forms/{form-id}/upload-file", formId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -542,8 +568,10 @@ public abstract class BaseFormResourceTestCase {
 			_inputObjectMapper.writeValueAsString(form),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/forms/{form-id}/upload-file", formId));
+		String location =
+			_resourceURL + _toPath("/forms/{form-id}/upload-file", formId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 

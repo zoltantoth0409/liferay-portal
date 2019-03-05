@@ -433,8 +433,15 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/roles/{role-id}/workflow-tasks", roleId));
+		String location =
+			_resourceURL + _toPath("/roles/{role-id}/workflow-tasks", roleId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -448,8 +455,15 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/roles/{role-id}/workflow-tasks", roleId));
+		String location =
+			_resourceURL + _toPath("/roles/{role-id}/workflow-tasks", roleId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -461,9 +475,11 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/workflow-tasks/{workflow-task-id}", workflowTaskId));
+				_toPath("/workflow-tasks/{workflow-task-id}", workflowTaskId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), WorkflowTask.class);
@@ -474,9 +490,11 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/workflow-tasks/{workflow-task-id}", workflowTaskId));
+				_toPath("/workflow-tasks/{workflow-task-id}", workflowTaskId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -489,8 +507,14 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/workflow-tasks", pagination));
+		String location = _resourceURL + _toPath("/workflow-tasks", pagination);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -504,8 +528,14 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/workflow-tasks", pagination));
+		String location = _resourceURL + _toPath("/workflow-tasks", pagination);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -522,11 +552,13 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_inputObjectMapper.writeValueAsString(workflowTask),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-me",
-					workflowTaskId));
+					workflowTaskId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -544,11 +576,13 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_inputObjectMapper.writeValueAsString(workflowTask),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-me",
-					workflowTaskId));
+					workflowTaskId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -567,11 +601,13 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_inputObjectMapper.writeValueAsString(workflowTask),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-user",
-					workflowTaskId));
+					workflowTaskId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -589,11 +625,13 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_inputObjectMapper.writeValueAsString(workflowTask),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-user",
-					workflowTaskId));
+					workflowTaskId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -612,11 +650,13 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_inputObjectMapper.writeValueAsString(workflowTask),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/change-transition",
-					workflowTaskId));
+					workflowTaskId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -634,11 +674,13 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_inputObjectMapper.writeValueAsString(workflowTask),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/change-transition",
-					workflowTaskId));
+					workflowTaskId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -657,11 +699,13 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_inputObjectMapper.writeValueAsString(workflowTask),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/update-due-date",
-					workflowTaskId));
+					workflowTaskId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -679,11 +723,13 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_inputObjectMapper.writeValueAsString(workflowTask),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/update-due-date",
-					workflowTaskId));
+					workflowTaskId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 

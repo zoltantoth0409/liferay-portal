@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
@@ -550,8 +549,10 @@ public abstract class BaseKeywordResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
-			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
+		String location =
+			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Boolean.class);
@@ -564,8 +565,10 @@ public abstract class BaseKeywordResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
-			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
+		String location =
+			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -579,9 +582,22 @@ public abstract class BaseKeywordResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_getContentSpaceKeywordsLocation(
-				contentSpaceId, filterString, pagination, sortString));
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/keywords",
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -596,9 +612,22 @@ public abstract class BaseKeywordResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_getContentSpaceKeywordsLocation(
-				contentSpaceId, filterString, pagination, sortString));
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/keywords",
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -608,8 +637,10 @@ public abstract class BaseKeywordResourceTestCase {
 	protected Keyword invokeGetKeyword(Long keywordId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
+		String location =
+			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Keyword.class);
@@ -620,8 +651,10 @@ public abstract class BaseKeywordResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
+		String location =
+			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -638,11 +671,13 @@ public abstract class BaseKeywordResourceTestCase {
 			_inputObjectMapper.writeValueAsString(keyword),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/keywords",
-					contentSpaceId));
+					contentSpaceId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -660,11 +695,13 @@ public abstract class BaseKeywordResourceTestCase {
 			_inputObjectMapper.writeValueAsString(keyword),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/keywords",
-					contentSpaceId));
+					contentSpaceId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -682,8 +719,10 @@ public abstract class BaseKeywordResourceTestCase {
 			_inputObjectMapper.writeValueAsString(keyword),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
+		String location =
+			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -701,8 +740,10 @@ public abstract class BaseKeywordResourceTestCase {
 			_inputObjectMapper.writeValueAsString(keyword),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
+		String location =
+			_resourceURL + _toPath("/keywords/{keyword-id}", keywordId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -816,24 +857,6 @@ public abstract class BaseKeywordResourceTestCase {
 		options.addHeader("Content-Type", "application/json");
 
 		return options;
-	}
-
-	private String _getContentSpaceKeywordsLocation(
-		Long contentSpaceId, String filterString, Pagination pagination,
-		String sortString) {
-
-		String url =
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/keywords",
-					contentSpaceId);
-
-		url += "?filter=" + URLCodec.encodeURL(filterString);
-		url += "&page=" + pagination.getPageNumber();
-		url += "&pageSize=" + pagination.getItemsPerPage();
-		url += "&sort=" + URLCodec.encodeURL(sortString);
-
-		return url;
 	}
 
 	private String _toPath(String template, Object value) {

@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
@@ -600,11 +599,13 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/blog-posting-images/{blog-posting-image-id}",
-					blogPostingImageId));
+					blogPostingImageId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Boolean.class);
@@ -618,11 +619,13 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/blog-posting-images/{blog-posting-image-id}",
-					blogPostingImageId));
+					blogPostingImageId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -635,11 +638,13 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/blog-posting-images/{blog-posting-image-id}",
-					blogPostingImageId));
+					blogPostingImageId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), BlogPostingImage.class);
@@ -651,11 +656,13 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/blog-posting-images/{blog-posting-image-id}",
-					blogPostingImageId));
+					blogPostingImageId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -669,9 +676,22 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_getContentSpaceBlogPostingImagesLocation(
-				contentSpaceId, filterString, pagination, sortString));
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/blog-posting-images",
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -686,9 +706,22 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_getContentSpaceBlogPostingImagesLocation(
-				contentSpaceId, filterString, pagination, sortString));
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/blog-posting-images",
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -701,11 +734,13 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/blog-posting-images/{blog-posting-image-id}",
-					blogPostingImageId));
+					blogPostingImageId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), BlogPostingImage.class);
@@ -717,11 +752,13 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/blog-posting-images/{blog-posting-image-id}",
-					blogPostingImageId));
+					blogPostingImageId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -734,11 +771,13 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/blog-posting-images",
-					contentSpaceId));
+					contentSpaceId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -752,11 +791,13 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/blog-posting-images",
-					contentSpaceId));
+					contentSpaceId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -771,11 +812,13 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/blog-posting-images/{blog-posting-image-id}",
-					blogPostingImageId));
+					blogPostingImageId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -789,11 +832,13 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/blog-posting-images/{blog-posting-image-id}",
-					blogPostingImageId));
+					blogPostingImageId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -917,24 +962,6 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		options.addHeader("Content-Type", "application/json");
 
 		return options;
-	}
-
-	private String _getContentSpaceBlogPostingImagesLocation(
-		Long contentSpaceId, String filterString, Pagination pagination,
-		String sortString) {
-
-		String url =
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/blog-posting-images",
-					contentSpaceId);
-
-		url += "?filter=" + URLCodec.encodeURL(filterString);
-		url += "&page=" + pagination.getPageNumber();
-		url += "&pageSize=" + pagination.getItemsPerPage();
-		url += "&sort=" + URLCodec.encodeURL(sortString);
-
-		return url;
 	}
 
 	private String _toPath(String template, Object value) {

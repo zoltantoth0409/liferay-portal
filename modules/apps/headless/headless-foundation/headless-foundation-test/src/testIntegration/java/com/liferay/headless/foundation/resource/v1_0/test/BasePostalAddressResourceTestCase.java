@@ -383,8 +383,15 @@ public abstract class BasePostalAddressResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/postal-addresses", genericParentId));
+		String location =
+			_resourceURL + _toPath("/postal-addresses", genericParentId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -398,8 +405,15 @@ public abstract class BasePostalAddressResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/postal-addresses", genericParentId));
+		String location =
+			_resourceURL + _toPath("/postal-addresses", genericParentId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -411,10 +425,12 @@ public abstract class BasePostalAddressResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
-					"/postal-addresses/{postal-address-id}", postalAddressId));
+					"/postal-addresses/{postal-address-id}", postalAddressId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), PostalAddress.class);
@@ -425,10 +441,12 @@ public abstract class BasePostalAddressResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
-					"/postal-addresses/{postal-address-id}", postalAddressId));
+					"/postal-addresses/{postal-address-id}", postalAddressId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

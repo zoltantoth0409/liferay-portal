@@ -456,8 +456,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}", folderId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Boolean.class);
@@ -470,8 +472,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}", folderId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -484,11 +488,18 @@ public abstract class BaseFolderResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/folders",
-					contentSpaceId));
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -502,11 +513,18 @@ public abstract class BaseFolderResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/folders",
-					contentSpaceId));
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -516,8 +534,10 @@ public abstract class BaseFolderResourceTestCase {
 	protected Folder invokeGetFolder(Long folderId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}", folderId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Folder.class);
@@ -529,8 +549,15 @@ public abstract class BaseFolderResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -544,8 +571,15 @@ public abstract class BaseFolderResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -557,8 +591,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}", folderId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -570,8 +606,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}", folderId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Folder.class);
@@ -583,8 +621,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}", folderId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -601,11 +641,13 @@ public abstract class BaseFolderResourceTestCase {
 			_inputObjectMapper.writeValueAsString(folder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/folders",
-					contentSpaceId));
+					contentSpaceId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -623,11 +665,13 @@ public abstract class BaseFolderResourceTestCase {
 			_inputObjectMapper.writeValueAsString(folder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/folders",
-					contentSpaceId));
+					contentSpaceId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -645,8 +689,10 @@ public abstract class BaseFolderResourceTestCase {
 			_inputObjectMapper.writeValueAsString(folder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -664,8 +710,10 @@ public abstract class BaseFolderResourceTestCase {
 			_inputObjectMapper.writeValueAsString(folder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId);
+
+		options.setLocation(location);
 
 		options.setPost(true);
 
@@ -683,8 +731,10 @@ public abstract class BaseFolderResourceTestCase {
 			_inputObjectMapper.writeValueAsString(folder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}", folderId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 
@@ -702,8 +752,10 @@ public abstract class BaseFolderResourceTestCase {
 			_inputObjectMapper.writeValueAsString(folder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}", folderId);
+
+		options.setLocation(location);
 
 		options.setPut(true);
 

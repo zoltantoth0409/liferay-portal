@@ -327,9 +327,15 @@ public abstract class BaseSegmentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL +
-				_toPath("/user-accounts/{user-id}/segments", userId));
+		String location =
+			_resourceURL + _toPath("/user-accounts/{user-id}/segments", userId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -343,9 +349,15 @@ public abstract class BaseSegmentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
-			_resourceURL +
-				_toPath("/user-accounts/{user-id}/segments", userId));
+		String location =
+			_resourceURL + _toPath("/user-accounts/{user-id}/segments", userId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

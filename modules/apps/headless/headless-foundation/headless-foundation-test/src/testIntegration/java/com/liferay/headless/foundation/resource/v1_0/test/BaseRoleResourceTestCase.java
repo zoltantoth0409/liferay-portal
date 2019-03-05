@@ -401,11 +401,18 @@ public abstract class BaseRoleResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/my-user-accounts/{my-user-account-id}/roles",
-					myUserAccountId));
+					myUserAccountId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -419,11 +426,18 @@ public abstract class BaseRoleResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
 					"/my-user-accounts/{my-user-account-id}/roles",
-					myUserAccountId));
+					myUserAccountId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -433,7 +447,9 @@ public abstract class BaseRoleResourceTestCase {
 	protected Role invokeGetRole(Long roleId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(_resourceURL + _toPath("/roles/{role-id}", roleId));
+		String location = _resourceURL + _toPath("/roles/{role-id}", roleId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Role.class);
@@ -444,7 +460,9 @@ public abstract class BaseRoleResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(_resourceURL + _toPath("/roles/{role-id}", roleId));
+		String location = _resourceURL + _toPath("/roles/{role-id}", roleId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -456,7 +474,14 @@ public abstract class BaseRoleResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(_resourceURL + _toPath("/roles", pagination));
+		String location = _resourceURL + _toPath("/roles", pagination);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -469,7 +494,14 @@ public abstract class BaseRoleResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(_resourceURL + _toPath("/roles", pagination));
+		String location = _resourceURL + _toPath("/roles", pagination);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -482,10 +514,17 @@ public abstract class BaseRoleResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
-					"/user-accounts/{user-account-id}/roles", userAccountId));
+					"/user-accounts/{user-account-id}/roles", userAccountId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -499,10 +538,17 @@ public abstract class BaseRoleResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
 				_toPath(
-					"/user-accounts/{user-account-id}/roles", userAccountId));
+					"/user-accounts/{user-account-id}/roles", userAccountId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPageNumber());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getItemsPerPage());
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

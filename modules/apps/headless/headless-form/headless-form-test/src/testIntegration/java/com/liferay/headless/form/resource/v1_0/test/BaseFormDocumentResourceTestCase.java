@@ -292,9 +292,11 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/form-documents/{form-document-id}", formDocumentId));
+				_toPath("/form-documents/{form-document-id}", formDocumentId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Boolean.class);
@@ -308,9 +310,11 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 		options.setDelete(true);
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/form-documents/{form-document-id}", formDocumentId));
+				_toPath("/form-documents/{form-document-id}", formDocumentId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
@@ -322,9 +326,11 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/form-documents/{form-document-id}", formDocumentId));
+				_toPath("/form-documents/{form-document-id}", formDocumentId);
+
+		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), FormDocument.class);
@@ -335,9 +341,11 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.setLocation(
+		String location =
 			_resourceURL +
-				_toPath("/form-documents/{form-document-id}", formDocumentId));
+				_toPath("/form-documents/{form-document-id}", formDocumentId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 
