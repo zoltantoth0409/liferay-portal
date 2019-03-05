@@ -28,6 +28,7 @@ import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLVersionNumberIncrease;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.util.DLURLHelper;
+import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.headless.document.library.dto.v1_0.AdaptedImages;
 import com.liferay.headless.document.library.dto.v1_0.Categories;
 import com.liferay.headless.document.library.dto.v1_0.Document;
@@ -60,7 +61,6 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
-import com.liferay.portal.vulcan.util.ServiceContextUtil;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.util.Optional;

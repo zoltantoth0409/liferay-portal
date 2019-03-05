@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.util;
+package com.liferay.headless.common.spi.service.context;
 
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ArrayUtil;

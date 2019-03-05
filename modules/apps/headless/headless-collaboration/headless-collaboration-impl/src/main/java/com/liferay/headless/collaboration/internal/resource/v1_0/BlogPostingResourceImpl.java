@@ -30,6 +30,7 @@ import com.liferay.headless.collaboration.internal.dto.v1_0.util.AggregateRating
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.collaboration.internal.odata.entity.v1_0.BlogPostingEntityModel;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
+import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.portal.kernel.comment.CommentManager;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.search.Field;
@@ -47,7 +48,6 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
-import com.liferay.portal.vulcan.util.ServiceContextUtil;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.time.LocalDateTime;

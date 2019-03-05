@@ -16,12 +16,12 @@ package com.liferay.headless.document.library.internal.resource.v1_0;
 
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppService;
+import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.headless.document.library.dto.v1_0.Folder;
 import com.liferay.headless.document.library.resource.v1_0.FolderResource;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-import com.liferay.portal.vulcan.util.ServiceContextUtil;
 
 import java.util.Optional;
 
