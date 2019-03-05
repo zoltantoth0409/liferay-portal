@@ -79,23 +79,28 @@ public class ${schemaName} {
 			sb.append("\"${javaMethodParameter.parameterName}\": ");
 
 			<#if javaMethodParameter.parameterType?starts_with("[")>
-				sb.append("[");
-
-				for (int i=0; i<${javaMethodParameter.parameterName}.length; i++){
-					<#if javaMethodParameter.parameterType?ends_with("Date;") || javaMethodParameter.parameterType?ends_with("String;")>
-						sb.append("\"");
-						sb.append(${javaMethodParameter.parameterName}[i]);
-						sb.append("\"");
-					<#else>
-						sb.append(${javaMethodParameter.parameterName}[i]);
-					</#if>
-
-					if ((i + 1) > ${javaMethodParameter.parameterName}.length) {
-						sb.append(",");
-					}
+				if (${javaMethodParameter.parameterName} == null) {
+					sb.append("null");
 				}
+				else {
+					sb.append("[");
 
-				sb.append("]");
+					for (int i = 0; i < ${javaMethodParameter.parameterName}.length; i++){
+						<#if javaMethodParameter.parameterType?ends_with("Date;") || javaMethodParameter.parameterType?ends_with("String;")>
+							sb.append("\"");
+							sb.append(${javaMethodParameter.parameterName}[i]);
+							sb.append("\"");
+						<#else>
+							sb.append(${javaMethodParameter.parameterName}[i]);
+						</#if>
+
+						if ((i + 1) > ${javaMethodParameter.parameterName}.length) {
+							sb.append(",");
+						}
+					}
+
+					sb.append("]");
+				}
 			<#else>
 				<#if javaMethodParameter.parameterType?ends_with("Date") || javaMethodParameter.parameterType?ends_with("String")>
 					sb.append("\"");
