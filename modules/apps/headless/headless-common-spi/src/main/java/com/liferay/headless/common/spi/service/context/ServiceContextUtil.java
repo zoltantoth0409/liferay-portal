@@ -32,7 +32,7 @@ public class ServiceContextUtil {
 	}
 
 	public static ServiceContext createServiceContext(
-		String[] assetTags, Long[] categoryIds, long groupId,
+		String[] assetTagNames, Long[] assetCategoryIds, long groupId,
 		String viewableBy) {
 
 		return new ServiceContext() {
@@ -50,12 +50,12 @@ public class ServiceContextUtil {
 					setAddGroupPermissions(false);
 				}
 
-				if (categoryIds != null) {
-					setAssetCategoryIds(ArrayUtil.toArray(categoryIds));
+				if (assetCategoryIds != null) {
+					setAssetCategoryIds(ArrayUtil.toArray(assetCategoryIds));
 				}
 
-				if (assetTags != null) {
-					setAssetTagNames(assetTags);
+				if (assetTagNames != null) {
+					setAssetTagNames(assetTagNames);
 				}
 
 				setScopeGroupId(groupId);
