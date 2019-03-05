@@ -50,9 +50,7 @@ public class DocumentationResourceImpl {
 			resourceClasses.add(${schemaName}ResourceImpl.class);
 		</#list>
 
-		return _documentationResource.getOpenApi(
-			resourceClasses, headers, _servletConfig, _application, uriInfo,
-			type);
+		return _documentationResource.getOpenApi(resourceClasses, headers, _servletConfig, _application, uriInfo, type);
 	}
 
 	@Context
