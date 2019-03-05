@@ -8,6 +8,8 @@ Import-Package:\
 	!com.sun.jdi.*,\
 	!com.sun.tools.*,\
 	\
+	!javax.validation.*,\
+	\
 	!org.checkerframework.checker.nullness.qual.*,\
 	\
 	graphql.annotations.annotationTypes;version="5.4",\
