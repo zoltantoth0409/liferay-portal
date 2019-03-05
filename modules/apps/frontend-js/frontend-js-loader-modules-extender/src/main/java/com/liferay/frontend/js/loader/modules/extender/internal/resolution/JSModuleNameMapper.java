@@ -112,7 +112,6 @@ public class JSModuleNameMapper {
 			for (JSModuleAlias jsModuleAlias : jsPackage.getJSModuleAliases()) {
 				String aliasResolvedId = ModuleNameUtil.getModuleResolvedId(
 					jsPackage, jsModuleAlias.getAlias());
-
 				String moduleResolvedId = ModuleNameUtil.getModuleResolvedId(
 					jsPackage, jsModuleAlias.getModuleName());
 
