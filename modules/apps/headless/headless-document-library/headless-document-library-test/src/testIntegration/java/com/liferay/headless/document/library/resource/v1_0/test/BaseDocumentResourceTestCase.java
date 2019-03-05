@@ -188,6 +188,8 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Document document1 = testGetContentSpaceDocumentsPage_addDocument(
 			contentSpaceId, randomDocument());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		Document document2 = testGetContentSpaceDocumentsPage_addDocument(
 			contentSpaceId, randomDocument());
 
@@ -422,6 +424,8 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Document document1 = testGetFolderDocumentsPage_addDocument(
 			folderId, randomDocument());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		Document document2 = testGetFolderDocumentsPage_addDocument(
 			folderId, randomDocument());
 

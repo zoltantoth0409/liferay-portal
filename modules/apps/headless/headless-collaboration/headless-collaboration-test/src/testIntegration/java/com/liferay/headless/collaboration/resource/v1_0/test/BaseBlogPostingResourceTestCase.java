@@ -206,6 +206,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 		BlogPosting blogPosting1 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		BlogPosting blogPosting2 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());

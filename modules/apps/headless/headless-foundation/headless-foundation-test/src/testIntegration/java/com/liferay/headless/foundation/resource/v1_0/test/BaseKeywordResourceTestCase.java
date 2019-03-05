@@ -188,6 +188,8 @@ public abstract class BaseKeywordResourceTestCase {
 
 		Keyword keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
 			contentSpaceId, randomKeyword());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		Keyword keyword2 = testGetContentSpaceKeywordsPage_addKeyword(
 			contentSpaceId, randomKeyword());
 

@@ -188,6 +188,8 @@ public abstract class BaseContentStructureResourceTestCase {
 		ContentStructure contentStructure1 =
 			testGetContentSpaceContentStructuresPage_addContentStructure(
 				contentSpaceId, randomContentStructure());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		ContentStructure contentStructure2 =
 			testGetContentSpaceContentStructuresPage_addContentStructure(
 				contentSpaceId, randomContentStructure());

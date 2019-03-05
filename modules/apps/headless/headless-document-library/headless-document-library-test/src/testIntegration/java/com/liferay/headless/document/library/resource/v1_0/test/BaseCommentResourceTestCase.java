@@ -193,6 +193,8 @@ public abstract class BaseCommentResourceTestCase {
 
 		Comment comment1 = testGetCommentCommentsPage_addComment(
 			commentId, randomComment());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		Comment comment2 = testGetCommentCommentsPage_addComment(
 			commentId, randomComment());
 
@@ -403,6 +405,8 @@ public abstract class BaseCommentResourceTestCase {
 
 		Comment comment1 = testGetDocumentCommentsPage_addComment(
 			documentId, randomComment());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		Comment comment2 = testGetDocumentCommentsPage_addComment(
 			documentId, randomComment());
 

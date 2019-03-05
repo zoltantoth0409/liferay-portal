@@ -194,6 +194,8 @@ public abstract class BaseVocabularyResourceTestCase {
 		Vocabulary vocabulary1 =
 			testGetContentSpaceVocabulariesPage_addVocabulary(
 				contentSpaceId, randomVocabulary());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		Vocabulary vocabulary2 =
 			testGetContentSpaceVocabulariesPage_addVocabulary(
 				contentSpaceId, randomVocabulary());

@@ -213,6 +213,8 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		BlogPostingImage blogPostingImage1 =
 			testGetContentSpaceBlogPostingImagesPage_addBlogPostingImage(
 				contentSpaceId, randomBlogPostingImage());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		BlogPostingImage blogPostingImage2 =
 			testGetContentSpaceBlogPostingImagesPage_addBlogPostingImage(
 				contentSpaceId, randomBlogPostingImage());

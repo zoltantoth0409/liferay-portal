@@ -203,6 +203,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		StructuredContent structuredContent2 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
@@ -468,6 +470,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		StructuredContent structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());

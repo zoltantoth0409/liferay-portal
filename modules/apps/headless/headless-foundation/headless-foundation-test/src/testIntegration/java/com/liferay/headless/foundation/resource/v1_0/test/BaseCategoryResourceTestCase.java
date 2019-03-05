@@ -196,6 +196,8 @@ public abstract class BaseCategoryResourceTestCase {
 
 		Category category1 = testGetCategoryCategoriesPage_addCategory(
 			categoryId, randomCategory());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		Category category2 = testGetCategoryCategoriesPage_addCategory(
 			categoryId, randomCategory());
 
@@ -415,6 +417,8 @@ public abstract class BaseCategoryResourceTestCase {
 
 		Category category1 = testGetVocabularyCategoriesPage_addCategory(
 			vocabularyId, randomCategory());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		Category category2 = testGetVocabularyCategoriesPage_addCategory(
 			vocabularyId, randomCategory());
 
