@@ -322,19 +322,25 @@ public class Form {
 
 		sb.append("\"availableLanguages\": ");
 
-		sb.append("[");
+		if (availableLanguages == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < availableLanguages.length; i++) {
-			sb.append("\"");
-			sb.append(availableLanguages[i]);
-			sb.append("\"");
+			for (int i = 0; i < availableLanguages.length; i++) {
+				sb.append("\"");
+				sb.append(availableLanguages[i]);
+				sb.append("\"");
 
-			if ((i + 1) > availableLanguages.length) {
-				sb.append(",");
+				if ((i + 1) > availableLanguages.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"contentSpace\": ");
@@ -384,32 +390,44 @@ public class Form {
 
 		sb.append("\"formRecords\": ");
 
-		sb.append("[");
+		if (formRecords == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < formRecords.length; i++) {
-			sb.append(formRecords[i]);
+			for (int i = 0; i < formRecords.length; i++) {
+				sb.append(formRecords[i]);
 
-			if ((i + 1) > formRecords.length) {
-				sb.append(",");
+				if ((i + 1) > formRecords.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"formRecordsIds\": ");
 
-		sb.append("[");
+		if (formRecordsIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < formRecordsIds.length; i++) {
-			sb.append(formRecordsIds[i]);
+			for (int i = 0; i < formRecordsIds.length; i++) {
+				sb.append(formRecordsIds[i]);
 
-			if ((i + 1) > formRecordsIds.length) {
-				sb.append(",");
+				if ((i + 1) > formRecordsIds.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"id\": ");

@@ -300,17 +300,23 @@ public class Fields {
 
 		sb.append("\"options\": ");
 
-		sb.append("[");
+		if (options == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < options.length; i++) {
-			sb.append(options[i]);
+			for (int i = 0; i < options.length; i++) {
+				sb.append(options[i]);
 
-			if ((i + 1) > options.length) {
-				sb.append(",");
+				if ((i + 1) > options.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"predefinedValue\": ");

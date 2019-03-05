@@ -552,32 +552,44 @@ public class UserAccount {
 
 		sb.append("\"myOrganizations\": ");
 
-		sb.append("[");
+		if (myOrganizations == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < myOrganizations.length; i++) {
-			sb.append(myOrganizations[i]);
+			for (int i = 0; i < myOrganizations.length; i++) {
+				sb.append(myOrganizations[i]);
 
-			if ((i + 1) > myOrganizations.length) {
-				sb.append(",");
+				if ((i + 1) > myOrganizations.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"myOrganizationsIds\": ");
 
-		sb.append("[");
+		if (myOrganizationsIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < myOrganizationsIds.length; i++) {
-			sb.append(myOrganizationsIds[i]);
+			for (int i = 0; i < myOrganizationsIds.length; i++) {
+				sb.append(myOrganizationsIds[i]);
 
-			if ((i + 1) > myOrganizationsIds.length) {
-				sb.append(",");
+				if ((i + 1) > myOrganizationsIds.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"name\": ");
@@ -596,66 +608,89 @@ public class UserAccount {
 
 		sb.append("\"roles\": ");
 
-		sb.append("[");
+		if (roles == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < roles.length; i++) {
-			sb.append(roles[i]);
+			for (int i = 0; i < roles.length; i++) {
+				sb.append(roles[i]);
 
-			if ((i + 1) > roles.length) {
-				sb.append(",");
+				if ((i + 1) > roles.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"rolesIds\": ");
 
-		sb.append("[");
+		if (rolesIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < rolesIds.length; i++) {
-			sb.append(rolesIds[i]);
+			for (int i = 0; i < rolesIds.length; i++) {
+				sb.append(rolesIds[i]);
 
-			if ((i + 1) > rolesIds.length) {
-				sb.append(",");
+				if ((i + 1) > rolesIds.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"tasksAssignedToMe\": ");
 
-		sb.append("[");
+		if (tasksAssignedToMe == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < tasksAssignedToMe.length; i++) {
-			sb.append("\"");
-			sb.append(tasksAssignedToMe[i]);
-			sb.append("\"");
+			for (int i = 0; i < tasksAssignedToMe.length; i++) {
+				sb.append("\"");
+				sb.append(tasksAssignedToMe[i]);
+				sb.append("\"");
 
-			if ((i + 1) > tasksAssignedToMe.length) {
-				sb.append(",");
+				if ((i + 1) > tasksAssignedToMe.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"tasksAssignedToMyRoles\": ");
 
-		sb.append("[");
-
-		for (int i = 0; i < tasksAssignedToMyRoles.length; i++) {
-			sb.append("\"");
-			sb.append(tasksAssignedToMyRoles[i]);
-			sb.append("\"");
-
-			if ((i + 1) > tasksAssignedToMyRoles.length) {
-				sb.append(",");
-			}
+		if (tasksAssignedToMyRoles == null) {
+			sb.append("null");
 		}
+		else {
+			sb.append("[");
 
-		sb.append("]");
+			for (int i = 0; i < tasksAssignedToMyRoles.length; i++) {
+				sb.append("\"");
+				sb.append(tasksAssignedToMyRoles[i]);
+				sb.append("\"");
+
+				if ((i + 1) > tasksAssignedToMyRoles.length) {
+					sb.append(",");
+				}
+			}
+
+			sb.append("]");
+		}
 
 		sb.append("}");
 

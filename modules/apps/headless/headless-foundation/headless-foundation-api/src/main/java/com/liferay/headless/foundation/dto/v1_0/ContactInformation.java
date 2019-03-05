@@ -321,32 +321,44 @@ public class ContactInformation {
 
 		sb.append("\"email\": ");
 
-		sb.append("[");
+		if (email == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < email.length; i++) {
-			sb.append(email[i]);
+			for (int i = 0; i < email.length; i++) {
+				sb.append(email[i]);
 
-			if ((i + 1) > email.length) {
-				sb.append(",");
+				if ((i + 1) > email.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"emailIds\": ");
 
-		sb.append("[");
+		if (emailIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < emailIds.length; i++) {
-			sb.append(emailIds[i]);
+			for (int i = 0; i < emailIds.length; i++) {
+				sb.append(emailIds[i]);
 
-			if ((i + 1) > emailIds.length) {
-				sb.append(",");
+				if ((i + 1) > emailIds.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"facebook\": ");
@@ -370,32 +382,44 @@ public class ContactInformation {
 
 		sb.append("\"postalAddress\": ");
 
-		sb.append("[");
+		if (postalAddress == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < postalAddress.length; i++) {
-			sb.append(postalAddress[i]);
+			for (int i = 0; i < postalAddress.length; i++) {
+				sb.append(postalAddress[i]);
 
-			if ((i + 1) > postalAddress.length) {
-				sb.append(",");
+				if ((i + 1) > postalAddress.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"postalAddressIds\": ");
 
-		sb.append("[");
+		if (postalAddressIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < postalAddressIds.length; i++) {
-			sb.append(postalAddressIds[i]);
+			for (int i = 0; i < postalAddressIds.length; i++) {
+				sb.append(postalAddressIds[i]);
 
-			if ((i + 1) > postalAddressIds.length) {
-				sb.append(",");
+				if ((i + 1) > postalAddressIds.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"skype\": ");
@@ -414,32 +438,44 @@ public class ContactInformation {
 
 		sb.append("\"telephone\": ");
 
-		sb.append("[");
+		if (telephone == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < telephone.length; i++) {
-			sb.append(telephone[i]);
+			for (int i = 0; i < telephone.length; i++) {
+				sb.append(telephone[i]);
 
-			if ((i + 1) > telephone.length) {
-				sb.append(",");
+				if ((i + 1) > telephone.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"telephoneIds\": ");
 
-		sb.append("[");
+		if (telephoneIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < telephoneIds.length; i++) {
-			sb.append(telephoneIds[i]);
+			for (int i = 0; i < telephoneIds.length; i++) {
+				sb.append(telephoneIds[i]);
 
-			if ((i + 1) > telephoneIds.length) {
-				sb.append(",");
+				if ((i + 1) > telephoneIds.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"twitter\": ");
@@ -451,32 +487,43 @@ public class ContactInformation {
 
 		sb.append("\"webUrl\": ");
 
-		sb.append("[");
+		if (webUrl == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < webUrl.length; i++) {
-			sb.append(webUrl[i]);
+			for (int i = 0; i < webUrl.length; i++) {
+				sb.append(webUrl[i]);
 
-			if ((i + 1) > webUrl.length) {
-				sb.append(",");
+				if ((i + 1) > webUrl.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"webUrlIds\": ");
 
-		sb.append("[");
-
-		for (int i = 0; i < webUrlIds.length; i++) {
-			sb.append(webUrlIds[i]);
-
-			if ((i + 1) > webUrlIds.length) {
-				sb.append(",");
-			}
+		if (webUrlIds == null) {
+			sb.append("null");
 		}
+		else {
+			sb.append("[");
 
-		sb.append("]");
+			for (int i = 0; i < webUrlIds.length; i++) {
+				sb.append(webUrlIds[i]);
+
+				if ((i + 1) > webUrlIds.length) {
+					sb.append(",");
+				}
+			}
+
+			sb.append("]");
+		}
 
 		sb.append("}");
 

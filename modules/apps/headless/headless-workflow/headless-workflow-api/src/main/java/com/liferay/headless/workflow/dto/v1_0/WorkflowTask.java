@@ -328,32 +328,44 @@ public class WorkflowTask {
 
 		sb.append("\"logs\": ");
 
-		sb.append("[");
+		if (logs == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < logs.length; i++) {
-			sb.append(logs[i]);
+			for (int i = 0; i < logs.length; i++) {
+				sb.append(logs[i]);
 
-			if ((i + 1) > logs.length) {
-				sb.append(",");
+				if ((i + 1) > logs.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"logsIds\": ");
 
-		sb.append("[");
+		if (logsIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < logsIds.length; i++) {
-			sb.append(logsIds[i]);
+			for (int i = 0; i < logsIds.length; i++) {
+				sb.append(logsIds[i]);
 
-			if ((i + 1) > logsIds.length) {
-				sb.append(",");
+				if ((i + 1) > logsIds.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"name\": ");
@@ -370,19 +382,24 @@ public class WorkflowTask {
 
 		sb.append("\"transitions\": ");
 
-		sb.append("[");
-
-		for (int i = 0; i < transitions.length; i++) {
-			sb.append("\"");
-			sb.append(transitions[i]);
-			sb.append("\"");
-
-			if ((i + 1) > transitions.length) {
-				sb.append(",");
-			}
+		if (transitions == null) {
+			sb.append("null");
 		}
+		else {
+			sb.append("[");
 
-		sb.append("]");
+			for (int i = 0; i < transitions.length; i++) {
+				sb.append("\"");
+				sb.append(transitions[i]);
+				sb.append("\"");
+
+				if ((i + 1) > transitions.length) {
+					sb.append(",");
+				}
+			}
+
+			sb.append("]");
+		}
 
 		sb.append("}");
 

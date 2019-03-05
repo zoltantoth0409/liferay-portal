@@ -103,17 +103,23 @@ public class Services {
 
 		sb.append("\"hoursAvailable\": ");
 
-		sb.append("[");
+		if (hoursAvailable == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < hoursAvailable.length; i++) {
-			sb.append(hoursAvailable[i]);
+			for (int i = 0; i < hoursAvailable.length; i++) {
+				sb.append(hoursAvailable[i]);
 
-			if ((i + 1) > hoursAvailable.length) {
-				sb.append(",");
+				if ((i + 1) > hoursAvailable.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"id\": ");

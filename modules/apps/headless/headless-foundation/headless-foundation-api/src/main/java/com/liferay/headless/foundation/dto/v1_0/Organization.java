@@ -330,32 +330,44 @@ public class Organization {
 
 		sb.append("\"members\": ");
 
-		sb.append("[");
+		if (members == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < members.length; i++) {
-			sb.append(members[i]);
+			for (int i = 0; i < members.length; i++) {
+				sb.append(members[i]);
 
-			if ((i + 1) > members.length) {
-				sb.append(",");
+				if ((i + 1) > members.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"membersIds\": ");
 
-		sb.append("[");
+		if (membersIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < membersIds.length; i++) {
-			sb.append(membersIds[i]);
+			for (int i = 0; i < membersIds.length; i++) {
+				sb.append(membersIds[i]);
 
-			if ((i + 1) > membersIds.length) {
-				sb.append(",");
+				if ((i + 1) > membersIds.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"name\": ");
@@ -377,47 +389,64 @@ public class Organization {
 
 		sb.append("\"services\": ");
 
-		sb.append("[");
+		if (services == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < services.length; i++) {
-			sb.append(services[i]);
+			for (int i = 0; i < services.length; i++) {
+				sb.append(services[i]);
 
-			if ((i + 1) > services.length) {
-				sb.append(",");
+				if ((i + 1) > services.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"subOrganization\": ");
 
-		sb.append("[");
+		if (subOrganization == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < subOrganization.length; i++) {
-			sb.append(subOrganization[i]);
+			for (int i = 0; i < subOrganization.length; i++) {
+				sb.append(subOrganization[i]);
 
-			if ((i + 1) > subOrganization.length) {
-				sb.append(",");
+				if ((i + 1) > subOrganization.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"subOrganizationIds\": ");
 
-		sb.append("[");
-
-		for (int i = 0; i < subOrganizationIds.length; i++) {
-			sb.append(subOrganizationIds[i]);
-
-			if ((i + 1) > subOrganizationIds.length) {
-				sb.append(",");
-			}
+		if (subOrganizationIds == null) {
+			sb.append("null");
 		}
+		else {
+			sb.append("[");
 
-		sb.append("]");
+			for (int i = 0; i < subOrganizationIds.length; i++) {
+				sb.append(subOrganizationIds[i]);
+
+				if ((i + 1) > subOrganizationIds.length) {
+					sb.append(",");
+				}
+			}
+
+			sb.append("]");
+		}
 
 		sb.append("}");
 

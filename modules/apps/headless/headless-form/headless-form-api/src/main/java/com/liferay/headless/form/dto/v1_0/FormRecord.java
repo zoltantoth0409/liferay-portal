@@ -253,17 +253,23 @@ public class FormRecord {
 
 		sb.append("\"fieldValues\": ");
 
-		sb.append("[");
+		if (fieldValues == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < fieldValues.length; i++) {
-			sb.append(fieldValues[i]);
+			for (int i = 0; i < fieldValues.length; i++) {
+				sb.append(fieldValues[i]);
 
-			if ((i + 1) > fieldValues.length) {
-				sb.append(",");
+				if ((i + 1) > fieldValues.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"form\": ");

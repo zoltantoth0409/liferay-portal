@@ -489,32 +489,44 @@ public class BlogPosting {
 
 		sb.append("\"categories\": ");
 
-		sb.append("[");
+		if (categories == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < categories.length; i++) {
-			sb.append(categories[i]);
+			for (int i = 0; i < categories.length; i++) {
+				sb.append(categories[i]);
 
-			if ((i + 1) > categories.length) {
-				sb.append(",");
+				if ((i + 1) > categories.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"categoryIds\": ");
 
-		sb.append("[");
+		if (categoryIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < categoryIds.length; i++) {
-			sb.append(categoryIds[i]);
+			for (int i = 0; i < categoryIds.length; i++) {
+				sb.append(categoryIds[i]);
 
-			if ((i + 1) > categoryIds.length) {
-				sb.append(",");
+				if ((i + 1) > categoryIds.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"contentSpace\": ");
@@ -598,19 +610,25 @@ public class BlogPosting {
 
 		sb.append("\"keywords\": ");
 
-		sb.append("[");
+		if (keywords == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < keywords.length; i++) {
-			sb.append("\"");
-			sb.append(keywords[i]);
-			sb.append("\"");
+			for (int i = 0; i < keywords.length; i++) {
+				sb.append("\"");
+				sb.append(keywords[i]);
+				sb.append("\"");
 
-			if ((i + 1) > keywords.length) {
-				sb.append(",");
+				if ((i + 1) > keywords.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"viewableBy\": ");

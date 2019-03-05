@@ -211,17 +211,23 @@ public class ContentField {
 
 		sb.append("\"nestedFields\": ");
 
-		sb.append("[");
+		if (nestedFields == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < nestedFields.length; i++) {
-			sb.append(nestedFields[i]);
+			for (int i = 0; i < nestedFields.length; i++) {
+				sb.append(nestedFields[i]);
 
-			if ((i + 1) > nestedFields.length) {
-				sb.append(",");
+				if ((i + 1) > nestedFields.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"value\": ");

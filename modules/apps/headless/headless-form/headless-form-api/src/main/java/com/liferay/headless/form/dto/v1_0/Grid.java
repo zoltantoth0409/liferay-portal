@@ -100,17 +100,23 @@ public class Grid {
 
 		sb.append("\"columns\": ");
 
-		sb.append("[");
+		if (columns == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
 
-		for (int i = 0; i < columns.length; i++) {
-			sb.append(columns[i]);
+			for (int i = 0; i < columns.length; i++) {
+				sb.append(columns[i]);
 
-			if ((i + 1) > columns.length) {
-				sb.append(",");
+				if ((i + 1) > columns.length) {
+					sb.append(",");
+				}
 			}
+
+			sb.append("]");
 		}
 
-		sb.append("]");
 		sb.append(", ");
 
 		sb.append("\"id\": ");
@@ -120,17 +126,22 @@ public class Grid {
 
 		sb.append("\"rows\": ");
 
-		sb.append("[");
-
-		for (int i = 0; i < rows.length; i++) {
-			sb.append(rows[i]);
-
-			if ((i + 1) > rows.length) {
-				sb.append(",");
-			}
+		if (rows == null) {
+			sb.append("null");
 		}
+		else {
+			sb.append("[");
 
-		sb.append("]");
+			for (int i = 0; i < rows.length; i++) {
+				sb.append(rows[i]);
+
+				if ((i + 1) > rows.length) {
+					sb.append(",");
+				}
+			}
+
+			sb.append("]");
+		}
 
 		sb.append("}");
 
