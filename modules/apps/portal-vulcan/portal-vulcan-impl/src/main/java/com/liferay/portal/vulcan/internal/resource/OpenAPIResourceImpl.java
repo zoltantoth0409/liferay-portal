@@ -15,7 +15,7 @@
 package com.liferay.portal.vulcan.internal.resource;
 
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.vulcan.resource.DocumentationResource;
+import com.liferay.portal.vulcan.resource.OpenAPIResource;
 
 import io.swagger.v3.core.util.Json;
 import io.swagger.v3.core.util.Yaml;
@@ -43,8 +43,8 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Javier Gamarra
  */
-@Component(service = DocumentationResource.class)
-public class DocumentationResourceImpl implements DocumentationResource {
+@Component(service = OpenAPIResource.class)
+public class OpenAPIResourceImpl implements OpenAPIResource {
 
 	@Override
 	public Response getOpenAPI(

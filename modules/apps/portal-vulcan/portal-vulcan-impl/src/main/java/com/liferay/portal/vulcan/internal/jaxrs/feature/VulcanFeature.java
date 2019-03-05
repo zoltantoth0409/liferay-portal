@@ -38,7 +38,6 @@ import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.PortalException
 import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.PrincipalExceptionMapper;
 import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.UnrecognizedPropertyExceptionMapper;
 import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.WebApplicationExceptionMapper;
-import com.liferay.portal.vulcan.internal.jaxrs.message.body.JSONMessageBodyWriter;
 import com.liferay.portal.vulcan.internal.jaxrs.message.body.MultipartBodyMessageBodyReader;
 import com.liferay.portal.vulcan.internal.resource.EntityModelResourceRegistry;
 

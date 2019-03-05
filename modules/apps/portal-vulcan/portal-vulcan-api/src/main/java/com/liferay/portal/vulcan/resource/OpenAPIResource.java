@@ -26,7 +26,7 @@ import javax.ws.rs.core.UriInfo;
 /**
  * @author Javier Gamarra
  */
-public interface DocumentationResource {
+public interface OpenAPIResource {
 
 	public Response getOpenAPI(
 			Application application, HttpHeaders httpHeaders,
