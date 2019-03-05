@@ -166,6 +166,27 @@ public class DocumentResourceImpl
 				multipartBody.getValueAsInstance("document", Document.class));
 		}
 
+		String[] keywords = optional.map(
+			Document::getKeywords
+		).orElseGet(
+			() -> _assetTagLocalService.getTagNames(
+				DLFileEntry.class.getName(), documentId)
+		);
+
+		Long[] categoryIds = optional.map(
+			Document::getCategoryIds
+		).orElseGet(
+			() -> ArrayUtil.toArray(
+				_assetCategoryLocalService.getCategoryIds(
+					DLFileEntry.class.getName(), documentId))
+		);
+
+		String viewableBy = optional.map(
+			Document::getViewableBy
+		).orElse(
+			null
+		);
+
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
 			documentId, binaryFile.getFileName(), binaryFile.getContentType(),
 			optional.map(
@@ -181,25 +202,8 @@ public class DocumentResourceImpl
 			null, DLVersionNumberIncrease.AUTOMATIC,
 			binaryFile.getInputStream(), binaryFile.getSize(),
 			ServiceContextUtil.createServiceContext(
-				optional.map(
-					Document::getKeywords
-				).orElseGet(
-					() -> _assetTagLocalService.getTagNames(
-						DLFileEntry.class.getName(), documentId)
-				),
-				optional.map(
-					Document::getCategoryIds
-				).orElseGet(
-					() -> ArrayUtil.toArray(
-						_assetCategoryLocalService.getCategoryIds(
-							DLFileEntry.class.getName(), documentId))
-				),
-				existingFileEntry.getGroupId(),
-				optional.map(
-					Document::getViewableBy
-				).orElse(
-					null
-				)));
+				keywords, categoryIds, existingFileEntry.getGroupId(),
+				viewableBy));
 
 		return _toDocument(
 			fileEntry, fileEntry.getFileVersion(),
