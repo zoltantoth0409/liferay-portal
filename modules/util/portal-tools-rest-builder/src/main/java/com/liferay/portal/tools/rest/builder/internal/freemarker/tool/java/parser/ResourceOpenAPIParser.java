@@ -297,7 +297,7 @@ public class ResourceOpenAPIParser {
 			sb.append(StringUtil.quote(mediaTypes.get(i), "\""));
 
 			if (i < (mediaTypes.size() - 1)) {
-				sb.append(",");
+				sb.append(", ");
 			}
 		}
 
@@ -339,7 +339,7 @@ public class ResourceOpenAPIParser {
 			sb.append(StringUtil.quote(mediaTypes.get(i), "\""));
 
 			if (i < (mediaTypes.size() - 1)) {
-				sb.append(",");
+				sb.append(", ");
 			}
 		}
 
