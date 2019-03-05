@@ -39,8 +39,7 @@ public class DocumentationResourceImpl {
 	@GET
 	@Path("/openapi.{type:json|yaml}")
 	@Produces({MediaType.APPLICATION_JSON, "application/yaml"})
-	public Response getOpenApi(@Context HttpHeaders httpHeaders, @Context UriInfo uriInfo, @PathParam("type") String type) throws Exception {
-
+	public Response getOpenAPI(@Context HttpHeaders httpHeaders, @Context UriInfo uriInfo, @PathParam("type") String type) throws Exception {
 		return _documentationResource.getOpenAPI(_application, httpHeaders, _resourceClasses, _servletConfig, type, uriInfo);
 	}
 
