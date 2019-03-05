@@ -60,27 +60,38 @@ class ChangeListsHistory extends PortletBase {
 	}
 
 	_populateProcessEntries(processEntries) {
-		this.processEntries = [];
+		AUI().use(
+			'liferay-portlet-url',
+			A => {
+				this.processEntries = [];
 
-		processEntries.forEach(
-			processEntry => {
-				this.processEntries.push(
-					{
-						description: processEntry.ctcollection.description,
-						name: processEntry.ctcollection.name,
-						percentage: processEntry.percentage,
-						state: ChangeListsHistory._getState(processEntry.status),
-						timestamp: new Intl.DateTimeFormat(
-							Liferay.ThemeDisplay.getBCP47LanguageId(),
+				processEntries.forEach(
+					processEntry => {
+						const detailsLink = Liferay.PortletURL.createURL(this.baseURL);
+
+						detailsLink.setParameter('mvcRenderCommandName', '/change_lists_history/view_details');
+						detailsLink.setParameter('ctProcessId', processEntry.ctprocessId);
+
+						this.processEntries.push(
 							{
-								day: 'numeric',
-								hour: 'numeric',
-								minute: 'numeric',
-								month: 'numeric',
-								year: 'numeric'
-							}).format(new Date(processEntry.date)),
-						userInitials: processEntry.userInitials,
-						userName: processEntry.userName
+								description: processEntry.ctcollection.description,
+								detailsLink: detailsLink.toString(),
+								name: processEntry.ctcollection.name,
+								percentage: processEntry.percentage,
+								state: ChangeListsHistory._getState(processEntry.status),
+								timestamp: new Intl.DateTimeFormat(
+									Liferay.ThemeDisplay.getBCP47LanguageId(),
+									{
+										day: 'numeric',
+										hour: 'numeric',
+										minute: 'numeric',
+										month: 'numeric',
+										year: 'numeric'
+									}).format(new Date(processEntry.date)),
+								userInitials: processEntry.userInitials,
+								userName: processEntry.userName
+							}
+						);
 					}
 				);
 			}
@@ -99,6 +110,8 @@ class ChangeListsHistory extends PortletBase {
  */
 ChangeListsHistory.STATE = {
 
+	baseURL: Config.string(),
+
 	filterStatus: Config.string(),
 
 	filterUser: Config.string(),
@@ -113,6 +126,7 @@ ChangeListsHistory.STATE = {
 		Config.shapeOf(
 			{
 				description: Config.string(),
+				detailsLink: Config.string(),
 				name: Config.string(),
 				percentage: Config.number(),
 				state: Config.string(),

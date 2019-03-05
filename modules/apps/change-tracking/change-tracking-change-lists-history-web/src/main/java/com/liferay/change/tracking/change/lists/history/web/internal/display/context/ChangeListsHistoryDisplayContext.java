@@ -53,6 +53,7 @@ public class ChangeListsHistoryDisplayContext {
 	public SoyContext getChangeListsHistoryContext() {
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
+		soyContext.put("baseURL", _getPortletURL().toString());
 		soyContext.put("filterStatus", _getFilterByStatus());
 		soyContext.put("filterUser", _getFilterByUser());
 		soyContext.put("orderByCol", _getOrderByCol());
