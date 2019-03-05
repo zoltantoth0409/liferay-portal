@@ -5672,14 +5672,14 @@ go</echo>
 			</or>
 		</condition>
 
-		<echo>This is deploy dir ${deploy.dir}</echo>
+		<echo>Deploy directory is ${deploy.dir}.</echo>
 
 		<if>
 			<isset property="liferay.dependency.jars" />
-
 			<then>
 				<property name="liferay.dependency.jars" value="${liferay.dependency.jars}" />
-				<echo>Copying ${project.dir}/portal-web/test/functional/com/liferay/portalweb/dependencies/${liferay.dependency.jars} to ${deploy.dir}/${liferay.dependency.jars}</echo>
+
+				<echo>Copying ${project.dir}/portal-web/test/functional/com/liferay/portalweb/dependencies/${liferay.dependency.jars} to ${deploy.dir}/${liferay.dependency.jars}.</echo>
 
 				<copy
 					file="${project.dir}/portal-web/test/functional/com/liferay/portalweb/dependencies/${liferay.dependency.jars}"
@@ -5687,7 +5687,7 @@ go</echo>
 				/>
 			</then>
 			<else>
-				<echo>This is dependancy name in else block ${liferay.dependency.jars}</echo>
+				<echo>The property "liferay.dependency.jars" is not set.</echo>
 			</else>
 		</if>
 	</target>
