@@ -123,11 +123,11 @@ public class RESTBuilder {
 
 			context.put("escapedVersion", escapedVersion);
 
-			_createDocumentationResourceFile(context, escapedVersion);
-			_createPropertiesFile(context, escapedVersion, "documentation");
 			_createGraphQLMutationFile(context, escapedVersion);
 			_createGraphQLQueryFile(context, escapedVersion);
 			_createGraphQLServletDataFile(context, escapedVersion);
+			_createOpenAPIResourceFile(context, escapedVersion);
+			_createPropertiesFile(context, escapedVersion, "openapi");
 
 			for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
 				String schemaName = entry.getKey();
@@ -337,7 +337,7 @@ public class RESTBuilder {
 				_copyrightFileName, "client_resource", context));
 	}
 
-	private void _createDocumentationResourceFile(
+	private void _createOpenAPIResourceFile(
 			Map<String, Object> context, String escapedVersion)
 		throws Exception {
 
@@ -352,7 +352,7 @@ public class RESTBuilder {
 
 		sb.append("/internal/resource/");
 		sb.append(escapedVersion);
-		sb.append("/DocumentationResourceImpl.java");
+		sb.append("/OpenAPIResourceImpl.java");
 
 		File file = new File(sb.toString());
 
@@ -361,7 +361,7 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "documentation_resource_impl", context));
+				_copyrightFileName, "openapi_resource_impl", context));
 	}
 
 	private void _createDTOFile(

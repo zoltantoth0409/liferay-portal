@@ -1,6 +1,6 @@
 package ${configYAML.apiPackagePath}.internal.resource.${escapedVersion};
 
-import com.liferay.portal.vulcan.resource.DocumentationResource;
+import com.liferay.portal.vulcan.resource.OpenAPIResource;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,25 +29,25 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @generated
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/${escapedVersion}/documentation.properties",
-	service = DocumentationResourceImpl.class
+	properties = "OSGI-INF/liferay/rest/${escapedVersion}/openapi.properties",
+	service = OpenAPIResourceImpl.class
 )
 @Generated("")
 @Path("/${openAPIYAML.info.version}")
-public class DocumentationResourceImpl {
+public class OpenAPIResourceImpl {
 
 	@GET
 	@Path("/openapi.{type:json|yaml}")
 	@Produces({MediaType.APPLICATION_JSON, "application/yaml"})
 	public Response getOpenAPI(@Context HttpHeaders httpHeaders, @Context UriInfo uriInfo, @PathParam("type") String type) throws Exception {
-		return _documentationResource.getOpenAPI(_application, httpHeaders, _resourceClasses, _servletConfig, type, uriInfo);
+		return _openAPIResource.getOpenAPI(_application, httpHeaders, _resourceClasses, _servletConfig, type, uriInfo);
 	}
 
 	@Context
 	private Application _application;
 
 	@Reference
-	private DocumentationResource _documentationResource;
+	private OpenAPIResource _openAPIResource;
 
 	private final Set<Class<?>> _resourceClasses = new HashSet<Class<?>>() {
 		{
