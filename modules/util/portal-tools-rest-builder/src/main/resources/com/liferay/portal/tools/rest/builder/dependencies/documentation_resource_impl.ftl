@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  */
 @Component(
 	properties = "OSGI-INF/liferay/rest/${escapedVersion}/documentation.properties",
-	scope = ServiceScope.PROTOTYPE, service = DocumentationResourceImpl.class
+	service = DocumentationResourceImpl.class
 )
 @Generated("")
 @Path("/${openAPIYAML.info.version}")
@@ -40,13 +40,8 @@ public class DocumentationResourceImpl {
 	@Path("/openapi.{type:json|yaml}")
 	@Produces({MediaType.APPLICATION_JSON, "application/yaml"})
 	public Response getOpenApi(@Context HttpHeaders httpHeaders, @Context UriInfo uriInfo, @PathParam("type") String type) throws Exception {
-		Set<Class<?>> resourceClasses = new HashSet<>();
 
-		<#list filteredSchemas as schemaName>
-			resourceClasses.add(${schemaName}ResourceImpl.class);
-		</#list>
-
-		return _documentationResource.getOpenAPI(_application, httpHeaders, resourceClasses, _servletConfig, type, uriInfo);
+		return _documentationResource.getOpenAPI(_application, httpHeaders, _resourceClasses, _servletConfig, type, uriInfo);
 	}
 
 	@Context
@@ -54,6 +49,14 @@ public class DocumentationResourceImpl {
 
 	@Reference
 	private DocumentationResource _documentationResource;
+
+	private final Set<Class<?>> _resourceClasses = new HashSet<Class<?>>() {
+		{
+			<#list filteredSchemas as schemaName>
+				add(${schemaName}ResourceImpl.class);
+			</#list>
+		}
+	};
 
 	@Context
 	private ServletConfig _servletConfig;
