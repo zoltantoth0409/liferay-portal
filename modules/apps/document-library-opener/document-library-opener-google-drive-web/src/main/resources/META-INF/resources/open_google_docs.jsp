@@ -45,13 +45,13 @@ String googleDocsRedirect = ParamUtil.getString(request, "googleDocsRedirect");
 					</portlet:actionURL>
 
 					<form action="<%= checkInURL %>" method="post">
-					<clay:button
-						icon="angle-left"
-						id="closeAndCheckinBtn"
-						label='<%= LanguageUtil.format(resourceBundle, "save-and-return-to-x", themeDisplay.getSiteGroupName()) %>'
-						size="sm"
-						type="submit"
-					/>
+						<clay:button
+							icon="angle-left"
+							id="closeAndCheckinBtn"
+							label='<%= LanguageUtil.format(resourceBundle, "save-and-return-to-x", themeDisplay.getSiteGroupName()) %>'
+							size="sm"
+							type="submit"
+						/>
 					</form>
 				</div>
 			</div>
@@ -64,12 +64,12 @@ String googleDocsRedirect = ParamUtil.getString(request, "googleDocsRedirect");
 				</portlet:actionURL>
 
 				<form action="<%= cancelCheckoutURL %>" method="post">
-				<clay:button
-					id="discardChangesBtn"
-					label='<%= LanguageUtil.get(resourceBundle, "discard-changes") %>'
-					size="sm"
-					type="submit"
-				/>
+					<clay:button
+						id="discardChangesBtn"
+						label='<%= LanguageUtil.get(resourceBundle, "discard-changes") %>'
+						size="sm"
+						type="submit"
+					/>
 				</form>
 			</div>
 		</div>
