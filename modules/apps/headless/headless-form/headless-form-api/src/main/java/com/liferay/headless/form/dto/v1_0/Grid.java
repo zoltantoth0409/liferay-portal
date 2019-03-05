@@ -109,8 +109,8 @@ public class Grid {
 			for (int i = 0; i < columns.length; i++) {
 				sb.append(columns[i]);
 
-				if ((i + 1) > columns.length) {
-					sb.append(",");
+				if ((i + 1) < columns.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -135,8 +135,8 @@ public class Grid {
 			for (int i = 0; i < rows.length; i++) {
 				sb.append(rows[i]);
 
-				if ((i + 1) > rows.length) {
-					sb.append(",");
+				if ((i + 1) < rows.length) {
+					sb.append(", ");
 				}
 			}
 

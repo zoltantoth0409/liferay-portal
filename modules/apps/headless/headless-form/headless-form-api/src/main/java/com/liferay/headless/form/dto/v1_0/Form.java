@@ -333,8 +333,8 @@ public class Form {
 				sb.append(availableLanguages[i]);
 				sb.append("\"");
 
-				if ((i + 1) > availableLanguages.length) {
-					sb.append(",");
+				if ((i + 1) < availableLanguages.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -399,8 +399,8 @@ public class Form {
 			for (int i = 0; i < formRecords.length; i++) {
 				sb.append(formRecords[i]);
 
-				if ((i + 1) > formRecords.length) {
-					sb.append(",");
+				if ((i + 1) < formRecords.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -420,8 +420,8 @@ public class Form {
 			for (int i = 0; i < formRecordsIds.length; i++) {
 				sb.append(formRecordsIds[i]);
 
-				if ((i + 1) > formRecordsIds.length) {
-					sb.append(",");
+				if ((i + 1) < formRecordsIds.length) {
+					sb.append(", ");
 				}
 			}
 

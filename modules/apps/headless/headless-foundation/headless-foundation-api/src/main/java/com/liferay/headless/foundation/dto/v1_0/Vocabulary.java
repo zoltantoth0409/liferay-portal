@@ -253,8 +253,8 @@ public class Vocabulary {
 				sb.append(availableLanguages[i]);
 				sb.append("\"");
 
-				if ((i + 1) > availableLanguages.length) {
-					sb.append(",");
+				if ((i + 1) < availableLanguages.length) {
+					sb.append(", ");
 				}
 			}
 

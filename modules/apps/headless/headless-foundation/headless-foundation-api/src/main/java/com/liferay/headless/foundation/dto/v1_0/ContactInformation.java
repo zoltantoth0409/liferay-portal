@@ -330,8 +330,8 @@ public class ContactInformation {
 			for (int i = 0; i < email.length; i++) {
 				sb.append(email[i]);
 
-				if ((i + 1) > email.length) {
-					sb.append(",");
+				if ((i + 1) < email.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -351,8 +351,8 @@ public class ContactInformation {
 			for (int i = 0; i < emailIds.length; i++) {
 				sb.append(emailIds[i]);
 
-				if ((i + 1) > emailIds.length) {
-					sb.append(",");
+				if ((i + 1) < emailIds.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -391,8 +391,8 @@ public class ContactInformation {
 			for (int i = 0; i < postalAddress.length; i++) {
 				sb.append(postalAddress[i]);
 
-				if ((i + 1) > postalAddress.length) {
-					sb.append(",");
+				if ((i + 1) < postalAddress.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -412,8 +412,8 @@ public class ContactInformation {
 			for (int i = 0; i < postalAddressIds.length; i++) {
 				sb.append(postalAddressIds[i]);
 
-				if ((i + 1) > postalAddressIds.length) {
-					sb.append(",");
+				if ((i + 1) < postalAddressIds.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -447,8 +447,8 @@ public class ContactInformation {
 			for (int i = 0; i < telephone.length; i++) {
 				sb.append(telephone[i]);
 
-				if ((i + 1) > telephone.length) {
-					sb.append(",");
+				if ((i + 1) < telephone.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -468,8 +468,8 @@ public class ContactInformation {
 			for (int i = 0; i < telephoneIds.length; i++) {
 				sb.append(telephoneIds[i]);
 
-				if ((i + 1) > telephoneIds.length) {
-					sb.append(",");
+				if ((i + 1) < telephoneIds.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -496,8 +496,8 @@ public class ContactInformation {
 			for (int i = 0; i < webUrl.length; i++) {
 				sb.append(webUrl[i]);
 
-				if ((i + 1) > webUrl.length) {
-					sb.append(",");
+				if ((i + 1) < webUrl.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -517,8 +517,8 @@ public class ContactInformation {
 			for (int i = 0; i < webUrlIds.length; i++) {
 				sb.append(webUrlIds[i]);
 
-				if ((i + 1) > webUrlIds.length) {
-					sb.append(",");
+				if ((i + 1) < webUrlIds.length) {
+					sb.append(", ");
 				}
 			}
 

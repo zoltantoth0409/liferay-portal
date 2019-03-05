@@ -444,8 +444,8 @@ public class StructuredContent {
 				sb.append(availableLanguages[i]);
 				sb.append("\"");
 
-				if ((i + 1) > availableLanguages.length) {
-					sb.append(",");
+				if ((i + 1) < availableLanguages.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -465,8 +465,8 @@ public class StructuredContent {
 			for (int i = 0; i < categories.length; i++) {
 				sb.append(categories[i]);
 
-				if ((i + 1) > categories.length) {
-					sb.append(",");
+				if ((i + 1) < categories.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -486,8 +486,8 @@ public class StructuredContent {
 			for (int i = 0; i < categoryIds.length; i++) {
 				sb.append(categoryIds[i]);
 
-				if ((i + 1) > categoryIds.length) {
-					sb.append(",");
+				if ((i + 1) < categoryIds.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -507,8 +507,8 @@ public class StructuredContent {
 			for (int i = 0; i < contentFields.length; i++) {
 				sb.append(contentFields[i]);
 
-				if ((i + 1) > contentFields.length) {
-					sb.append(",");
+				if ((i + 1) < contentFields.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -583,8 +583,8 @@ public class StructuredContent {
 				sb.append(keywords[i]);
 				sb.append("\"");
 
-				if ((i + 1) > keywords.length) {
-					sb.append(",");
+				if ((i + 1) < keywords.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -611,8 +611,8 @@ public class StructuredContent {
 			for (int i = 0; i < renderedContentsURL.length; i++) {
 				sb.append(renderedContentsURL[i]);
 
-				if ((i + 1) > renderedContentsURL.length) {
-					sb.append(",");
+				if ((i + 1) < renderedContentsURL.length) {
+					sb.append(", ");
 				}
 			}
 

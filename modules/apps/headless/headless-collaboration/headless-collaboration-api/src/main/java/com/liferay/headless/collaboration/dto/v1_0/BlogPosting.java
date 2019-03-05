@@ -498,8 +498,8 @@ public class BlogPosting {
 			for (int i = 0; i < categories.length; i++) {
 				sb.append(categories[i]);
 
-				if ((i + 1) > categories.length) {
-					sb.append(",");
+				if ((i + 1) < categories.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -519,8 +519,8 @@ public class BlogPosting {
 			for (int i = 0; i < categoryIds.length; i++) {
 				sb.append(categoryIds[i]);
 
-				if ((i + 1) > categoryIds.length) {
-					sb.append(",");
+				if ((i + 1) < categoryIds.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -621,8 +621,8 @@ public class BlogPosting {
 				sb.append(keywords[i]);
 				sb.append("\"");
 
-				if ((i + 1) > keywords.length) {
-					sb.append(",");
+				if ((i + 1) < keywords.length) {
+					sb.append(", ");
 				}
 			}
 

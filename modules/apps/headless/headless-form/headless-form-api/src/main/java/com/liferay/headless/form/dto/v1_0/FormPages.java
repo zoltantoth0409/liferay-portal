@@ -129,8 +129,8 @@ public class FormPages {
 			for (int i = 0; i < fields.length; i++) {
 				sb.append(fields[i]);
 
-				if ((i + 1) > fields.length) {
-					sb.append(",");
+				if ((i + 1) < fields.length) {
+					sb.append(", ");
 				}
 			}
 

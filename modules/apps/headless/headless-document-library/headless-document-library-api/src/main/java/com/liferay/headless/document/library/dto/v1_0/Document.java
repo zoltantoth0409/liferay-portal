@@ -395,8 +395,8 @@ public class Document {
 			for (int i = 0; i < adaptedImages.length; i++) {
 				sb.append(adaptedImages[i]);
 
-				if ((i + 1) > adaptedImages.length) {
-					sb.append(",");
+				if ((i + 1) < adaptedImages.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -421,8 +421,8 @@ public class Document {
 			for (int i = 0; i < categories.length; i++) {
 				sb.append(categories[i]);
 
-				if ((i + 1) > categories.length) {
-					sb.append(",");
+				if ((i + 1) < categories.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -442,8 +442,8 @@ public class Document {
 			for (int i = 0; i < categoryIds.length; i++) {
 				sb.append(categoryIds[i]);
 
-				if ((i + 1) > categoryIds.length) {
-					sb.append(",");
+				if ((i + 1) < categoryIds.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -522,8 +522,8 @@ public class Document {
 				sb.append(keywords[i]);
 				sb.append("\"");
 
-				if ((i + 1) > keywords.length) {
-					sb.append(",");
+				if ((i + 1) < keywords.length) {
+					sb.append(", ");
 				}
 			}
 

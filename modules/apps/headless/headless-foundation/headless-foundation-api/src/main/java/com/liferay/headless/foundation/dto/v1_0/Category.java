@@ -295,8 +295,8 @@ public class Category {
 				sb.append(availableLanguages[i]);
 				sb.append("\"");
 
-				if ((i + 1) > availableLanguages.length) {
-					sb.append(",");
+				if ((i + 1) < availableLanguages.length) {
+					sb.append(", ");
 				}
 			}
 

@@ -561,8 +561,8 @@ public class UserAccount {
 			for (int i = 0; i < myOrganizations.length; i++) {
 				sb.append(myOrganizations[i]);
 
-				if ((i + 1) > myOrganizations.length) {
-					sb.append(",");
+				if ((i + 1) < myOrganizations.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -582,8 +582,8 @@ public class UserAccount {
 			for (int i = 0; i < myOrganizationsIds.length; i++) {
 				sb.append(myOrganizationsIds[i]);
 
-				if ((i + 1) > myOrganizationsIds.length) {
-					sb.append(",");
+				if ((i + 1) < myOrganizationsIds.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -617,8 +617,8 @@ public class UserAccount {
 			for (int i = 0; i < roles.length; i++) {
 				sb.append(roles[i]);
 
-				if ((i + 1) > roles.length) {
-					sb.append(",");
+				if ((i + 1) < roles.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -638,8 +638,8 @@ public class UserAccount {
 			for (int i = 0; i < rolesIds.length; i++) {
 				sb.append(rolesIds[i]);
 
-				if ((i + 1) > rolesIds.length) {
-					sb.append(",");
+				if ((i + 1) < rolesIds.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -661,8 +661,8 @@ public class UserAccount {
 				sb.append(tasksAssignedToMe[i]);
 				sb.append("\"");
 
-				if ((i + 1) > tasksAssignedToMe.length) {
-					sb.append(",");
+				if ((i + 1) < tasksAssignedToMe.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -684,8 +684,8 @@ public class UserAccount {
 				sb.append(tasksAssignedToMyRoles[i]);
 				sb.append("\"");
 
-				if ((i + 1) > tasksAssignedToMyRoles.length) {
-					sb.append(",");
+				if ((i + 1) < tasksAssignedToMyRoles.length) {
+					sb.append(", ");
 				}
 			}
 

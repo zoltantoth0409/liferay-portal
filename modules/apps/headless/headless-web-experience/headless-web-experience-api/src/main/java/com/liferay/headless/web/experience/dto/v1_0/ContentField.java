@@ -220,8 +220,8 @@ public class ContentField {
 			for (int i = 0; i < nestedFields.length; i++) {
 				sb.append(nestedFields[i]);
 
-				if ((i + 1) > nestedFields.length) {
-					sb.append(",");
+				if ((i + 1) < nestedFields.length) {
+					sb.append(", ");
 				}
 			}
 

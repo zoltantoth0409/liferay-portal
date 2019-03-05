@@ -112,8 +112,8 @@ public class Services {
 			for (int i = 0; i < hoursAvailable.length; i++) {
 				sb.append(hoursAvailable[i]);
 
-				if ((i + 1) > hoursAvailable.length) {
-					sb.append(",");
+				if ((i + 1) < hoursAvailable.length) {
+					sb.append(", ");
 				}
 			}
 

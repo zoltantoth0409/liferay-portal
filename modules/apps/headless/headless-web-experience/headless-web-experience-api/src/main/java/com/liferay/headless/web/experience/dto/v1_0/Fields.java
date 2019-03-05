@@ -309,8 +309,8 @@ public class Fields {
 			for (int i = 0; i < options.length; i++) {
 				sb.append(options[i]);
 
-				if ((i + 1) > options.length) {
-					sb.append(",");
+				if ((i + 1) < options.length) {
+					sb.append(", ");
 				}
 			}
 

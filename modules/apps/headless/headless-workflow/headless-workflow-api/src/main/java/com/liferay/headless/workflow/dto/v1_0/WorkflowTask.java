@@ -337,8 +337,8 @@ public class WorkflowTask {
 			for (int i = 0; i < logs.length; i++) {
 				sb.append(logs[i]);
 
-				if ((i + 1) > logs.length) {
-					sb.append(",");
+				if ((i + 1) < logs.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -358,8 +358,8 @@ public class WorkflowTask {
 			for (int i = 0; i < logsIds.length; i++) {
 				sb.append(logsIds[i]);
 
-				if ((i + 1) > logsIds.length) {
-					sb.append(",");
+				if ((i + 1) < logsIds.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -393,8 +393,8 @@ public class WorkflowTask {
 				sb.append(transitions[i]);
 				sb.append("\"");
 
-				if ((i + 1) > transitions.length) {
-					sb.append(",");
+				if ((i + 1) < transitions.length) {
+					sb.append(", ");
 				}
 			}
 

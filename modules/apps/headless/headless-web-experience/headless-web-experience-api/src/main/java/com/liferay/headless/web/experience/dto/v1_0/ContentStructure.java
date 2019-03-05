@@ -233,8 +233,8 @@ public class ContentStructure {
 				sb.append(availableLanguages[i]);
 				sb.append("\"");
 
-				if ((i + 1) > availableLanguages.length) {
-					sb.append(",");
+				if ((i + 1) < availableLanguages.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -285,8 +285,8 @@ public class ContentStructure {
 			for (int i = 0; i < fields.length; i++) {
 				sb.append(fields[i]);
 
-				if ((i + 1) > fields.length) {
-					sb.append(",");
+				if ((i + 1) < fields.length) {
+					sb.append(", ");
 				}
 			}
 

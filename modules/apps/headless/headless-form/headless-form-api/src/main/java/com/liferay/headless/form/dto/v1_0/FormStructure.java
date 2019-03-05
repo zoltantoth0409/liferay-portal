@@ -253,8 +253,8 @@ public class FormStructure {
 				sb.append(availableLanguages[i]);
 				sb.append("\"");
 
-				if ((i + 1) > availableLanguages.length) {
-					sb.append(",");
+				if ((i + 1) < availableLanguages.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -305,8 +305,8 @@ public class FormStructure {
 			for (int i = 0; i < formPages.length; i++) {
 				sb.append(formPages[i]);
 
-				if ((i + 1) > formPages.length) {
-					sb.append(",");
+				if ((i + 1) < formPages.length) {
+					sb.append(", ");
 				}
 			}
 

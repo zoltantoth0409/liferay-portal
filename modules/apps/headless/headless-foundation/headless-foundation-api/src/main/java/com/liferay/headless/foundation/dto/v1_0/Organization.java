@@ -339,8 +339,8 @@ public class Organization {
 			for (int i = 0; i < members.length; i++) {
 				sb.append(members[i]);
 
-				if ((i + 1) > members.length) {
-					sb.append(",");
+				if ((i + 1) < members.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -360,8 +360,8 @@ public class Organization {
 			for (int i = 0; i < membersIds.length; i++) {
 				sb.append(membersIds[i]);
 
-				if ((i + 1) > membersIds.length) {
-					sb.append(",");
+				if ((i + 1) < membersIds.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -398,8 +398,8 @@ public class Organization {
 			for (int i = 0; i < services.length; i++) {
 				sb.append(services[i]);
 
-				if ((i + 1) > services.length) {
-					sb.append(",");
+				if ((i + 1) < services.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -419,8 +419,8 @@ public class Organization {
 			for (int i = 0; i < subOrganization.length; i++) {
 				sb.append(subOrganization[i]);
 
-				if ((i + 1) > subOrganization.length) {
-					sb.append(",");
+				if ((i + 1) < subOrganization.length) {
+					sb.append(", ");
 				}
 			}
 
@@ -440,8 +440,8 @@ public class Organization {
 			for (int i = 0; i < subOrganizationIds.length; i++) {
 				sb.append(subOrganizationIds[i]);
 
-				if ((i + 1) > subOrganizationIds.length) {
-					sb.append(",");
+				if ((i + 1) < subOrganizationIds.length) {
+					sb.append(", ");
 				}
 			}
 
