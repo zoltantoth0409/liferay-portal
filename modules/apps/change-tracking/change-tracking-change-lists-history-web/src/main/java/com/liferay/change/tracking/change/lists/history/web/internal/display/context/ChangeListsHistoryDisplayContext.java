@@ -80,7 +80,6 @@ public class ChangeListsHistoryDisplayContext {
 							LanguageUtil.get(
 								_httpServletRequest, "filter-by-status"));
 					});
-
 				addGroup(
 					dropdownGroupItem -> {
 						dropdownGroupItem.setDropdownItems(
@@ -89,7 +88,6 @@ public class ChangeListsHistoryDisplayContext {
 							LanguageUtil.get(
 								_httpServletRequest, "filter-by-user"));
 					});
-
 				addGroup(
 					dropdownGroupItem -> {
 						dropdownGroupItem.setDropdownItems(
