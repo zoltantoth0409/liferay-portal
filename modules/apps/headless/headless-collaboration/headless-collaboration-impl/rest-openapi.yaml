@@ -88,11 +88,11 @@ components:
                         type: string
                     type: array
                 viewableBy:
-                    type: string
                     enum:
                         - anyone
-                        - members
-                        - owner
+                          - members
+                              - owner
+                    type: string
                     writeOnly: true
             type: object
         BlogPostingImage:
@@ -112,11 +112,11 @@ components:
                 title:
                     type: string
                 viewableBy:
-                    type: string
                     enum:
                         - anyone
-                        - members
-                        - owner
+                          - members
+                              - owner
+                    type: string
                     writeOnly: true
             type: object
         Comment:

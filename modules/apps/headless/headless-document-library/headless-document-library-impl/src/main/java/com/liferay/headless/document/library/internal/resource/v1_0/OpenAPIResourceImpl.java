@@ -14,7 +14,7 @@
 
 package com.liferay.headless.document.library.internal.resource.v1_0;
 
-import com.liferay.portal.vulcan.resource.DocumentationResource;
+import com.liferay.portal.vulcan.resource.OpenAPIResource;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -42,12 +42,12 @@ import org.osgi.service.component.annotations.Reference;
  * @generated
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/v1_0/documentation.properties",
-	service = DocumentationResourceImpl.class
+	properties = "OSGI-INF/liferay/rest/v1_0/openapi.properties",
+	service = OpenAPIResourceImpl.class
 )
 @Generated("")
 @Path("/v1.0")
-public class DocumentationResourceImpl {
+public class OpenAPIResourceImpl {
 
 	@GET
 	@Path("/openapi.{type:json|yaml}")
@@ -57,7 +57,7 @@ public class DocumentationResourceImpl {
 			@PathParam("type") String type)
 		throws Exception {
 
-		return _documentationResource.getOpenAPI(
+		return _openAPIResource.getOpenAPI(
 			_application, httpHeaders, _resourceClasses, _servletConfig, type,
 			uriInfo);
 	}
@@ -66,7 +66,7 @@ public class DocumentationResourceImpl {
 	private Application _application;
 
 	@Reference
-	private DocumentationResource _documentationResource;
+	private OpenAPIResource _openAPIResource;
 
 	private final Set<Class<?>> _resourceClasses = new HashSet<Class<?>>() {
 		{
