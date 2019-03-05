@@ -49,17 +49,17 @@ public class JSModuleNameMapper {
 	public String mapModuleName(
 		String moduleName, Map<String, String> dependenciesMap) {
 
-		JSModuleNameMapperCache cache = _cache.get();
+		JSModuleNameMapperCache jsModuleNameMapperCache = _jsModuleNameMapperCache.get();
 
-		if (cache.isOlderThan(
+		if (jsModuleNameMapperCache.isOlderThan(
 				_jsConfigGeneratorPackagesTracker.getLastModified())) {
 
 			_clearCache();
 
-			cache = _cache.get();
+			jsModuleNameMapperCache = _jsModuleNameMapperCache.get();
 		}
 
-		String mappedModuleName = cache.get(moduleName, dependenciesMap);
+		String mappedModuleName = jsModuleNameMapperCache.get(moduleName, dependenciesMap);
 
 		if (mappedModuleName != null) {
 			return mappedModuleName;
@@ -73,10 +73,10 @@ public class JSModuleNameMapper {
 		}
 
 		mappedModuleName = _map(
-			mappedModuleName, cache.getExactMatchMap(),
-			cache.getPartialMatchMap());
+			mappedModuleName, jsModuleNameMapperCache.getExactMatchMap(),
+			jsModuleNameMapperCache.getPartialMatchMap());
 
-		cache.put(moduleName, dependenciesMap, mappedModuleName);
+		jsModuleNameMapperCache.put(moduleName, dependenciesMap, mappedModuleName);
 
 		return mappedModuleName;
 	}
@@ -92,7 +92,7 @@ public class JSModuleNameMapper {
 	}
 
 	private void _clearCache() {
-		_cache.set(
+		_jsModuleNameMapperCache.set(
 			new JSModuleNameMapperCache(
 				_getExactMatchMap(), _getPartialMatchMap()));
 	}
@@ -167,7 +167,7 @@ public class JSModuleNameMapper {
 		return moduleName;
 	}
 
-	private final AtomicReference<JSModuleNameMapperCache> _cache =
+	private final AtomicReference<JSModuleNameMapperCache> _jsModuleNameMapperCache =
 		new AtomicReference<>();
 
 	private JSBundleTracker _jsBundleTracker = new JSBundleTracker() {
