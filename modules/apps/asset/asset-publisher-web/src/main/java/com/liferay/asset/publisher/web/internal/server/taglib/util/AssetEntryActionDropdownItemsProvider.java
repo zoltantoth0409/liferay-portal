@@ -116,11 +116,11 @@ public class AssetEntryActionDropdownItemsProvider {
 						add(
 							SafeConsumer.ignore(
 								dropdownItem -> {
-									dropdownItem.setIcon(
-										assetEntryAction.getIcon());
 									dropdownItem.setHref(
 										assetEntryAction.getDialogURL(
 											_request, _assetRenderer));
+									dropdownItem.setIcon(
+										assetEntryAction.getIcon());
 									dropdownItem.putData(
 										"destroyOnHide",
 										Boolean.TRUE.toString());
