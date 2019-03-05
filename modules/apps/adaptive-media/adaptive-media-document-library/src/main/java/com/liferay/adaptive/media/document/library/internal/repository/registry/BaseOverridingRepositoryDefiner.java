@@ -178,8 +178,8 @@ public abstract class BaseOverridingRepositoryDefiner
 
 			return (T)field.get(repositoryClassDefinitionCatalog);
 		}
-		catch (IllegalAccessException | NoSuchFieldException |
-			   SecurityException e) {
+		catch (IllegalAccessException | NoSuchFieldException | SecurityException
+					e) {
 
 			throw new RepositoryException(e);
 		}
