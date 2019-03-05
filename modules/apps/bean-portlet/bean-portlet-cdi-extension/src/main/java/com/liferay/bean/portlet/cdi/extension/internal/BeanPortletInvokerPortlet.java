@@ -148,9 +148,8 @@ public class BeanPortletInvokerPortlet
 	private void _invokeBeanMethod(BeanMethod beanMethod, Object... args)
 		throws IOException, PortletException, ReflectiveOperationException {
 
-		Method method = beanMethod.getMethod();
-
 		String include = null;
+		Method method = beanMethod.getMethod();
 
 		MethodType methodType = beanMethod.getMethodType();
 
