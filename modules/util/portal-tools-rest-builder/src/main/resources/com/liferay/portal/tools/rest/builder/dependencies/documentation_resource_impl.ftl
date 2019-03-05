@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.annotation.Generated;
+
 import javax.servlet.ServletConfig;
 
 import javax.ws.rs.GET;
@@ -25,11 +27,13 @@ import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author ${configYAML.author}
+ * @generated
  */
 @Component(
 	properties = "OSGI-INF/liferay/rest/${escapedVersion}/documentation.properties",
 	scope = ServiceScope.PROTOTYPE, service = DocumentationResourceImpl.class
 )
+@Generated("")
 @Path("/${openAPIYAML.info.version}")
 public class DocumentationResourceImpl {
 

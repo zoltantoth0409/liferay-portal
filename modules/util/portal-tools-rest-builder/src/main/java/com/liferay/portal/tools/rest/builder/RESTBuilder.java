@@ -351,10 +351,6 @@ public class RESTBuilder {
 
 		_files.add(file);
 
-		if (file.exists()) {
-			return;
-		}
-
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(
