@@ -337,33 +337,6 @@ public class RESTBuilder {
 				_copyrightFileName, "client_resource", context));
 	}
 
-	private void _createOpenAPIResourceFile(
-			Map<String, Object> context, String escapedVersion)
-		throws Exception {
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_configYAML.getImplDir());
-		sb.append("/");
-
-		String apiPackagePath = _configYAML.getApiPackagePath();
-
-		sb.append(apiPackagePath.replace('.', '/'));
-
-		sb.append("/internal/resource/");
-		sb.append(escapedVersion);
-		sb.append("/OpenAPIResourceImpl.java");
-
-		File file = new File(sb.toString());
-
-		_files.add(file);
-
-		FileUtil.write(
-			file,
-			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "openapi_resource_impl", context));
-	}
-
 	private void _createDTOFile(
 			Map<String, Object> context, String escapedVersion,
 			String schemaName)
@@ -492,6 +465,33 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(null, "oauth2_config", context));
+	}
+
+	private void _createOpenAPIResourceFile(
+			Map<String, Object> context, String escapedVersion)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getImplDir());
+		sb.append("/");
+
+		String apiPackagePath = _configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/internal/resource/");
+		sb.append(escapedVersion);
+		sb.append("/OpenAPIResourceImpl.java");
+
+		File file = new File(sb.toString());
+
+		_files.add(file);
+
+		FileUtil.write(
+			file,
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "openapi_resource_impl", context));
 	}
 
 	private void _createPropertiesFile(
