@@ -2,7 +2,6 @@ package ${configYAML.apiPackagePath}.internal.resource.${escapedVersion};
 
 import com.liferay.portal.vulcan.resource.DocumentationResource;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
