@@ -48,11 +48,11 @@ components:
                     type: integer
                     writeOnly: true
                 viewableBy:
-                    type: string
                     enum:
                         - anyone
-                        - members
-                        - owner
+                          - members
+                              - owner
+                    type: string
                     writeOnly: true
             type: object
         Creator:
@@ -479,11 +479,11 @@ components:
                 name:
                     type: string
                 viewableBy:
-                    type: string
                     enum:
                         - anyone
-                        - members
-                        - owner
+                          - members
+                              - owner
+                    type: string
                     writeOnly: true
             type: object
         WebUrl:

@@ -265,11 +265,11 @@ components:
                 title:
                     type: string
                 viewableBy:
-                    type: string
                     enum:
                         - anyone
-                        - members
-                        - owner
+                          - members
+                              - owner
+                    type: string
                     writeOnly: true
         StructuredContentImage:
             description: https://www.schema.org/StructuredContentImage
