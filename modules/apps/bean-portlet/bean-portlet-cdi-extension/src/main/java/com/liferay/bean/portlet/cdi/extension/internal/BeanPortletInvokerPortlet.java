@@ -282,8 +282,7 @@ public class BeanPortletInvokerPortlet
 			portletContext.getRequestDispatcher(include);
 
 		if (portletRequestDispatcher == null) {
-			_log.error(
-				"Unable to acquire dispatcher to include " + include);
+			_log.error("Unable to acquire dispatcher to include " + include);
 		}
 		else {
 			portletRequestDispatcher.include(
