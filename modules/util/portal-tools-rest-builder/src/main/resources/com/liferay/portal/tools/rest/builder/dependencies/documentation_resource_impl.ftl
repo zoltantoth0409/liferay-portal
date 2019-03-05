@@ -51,8 +51,12 @@ public class DocumentationResourceImpl {
 
 	private final Set<Class<?>> _resourceClasses = new HashSet<Class<?>>() {
 		{
-			<#list filteredSchemas as schemaName>
-				add(${schemaName}ResourceImpl.class);
+			<#list openAPIYAML.components.schemas?keys as schemaName>
+				<#assign javaMethodSignatures = freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName) />
+
+				<#if javaMethodSignatures?has_content>
+					add(${schemaName}ResourceImpl.class);
+				</#if>
 			</#list>
 		}
 	};

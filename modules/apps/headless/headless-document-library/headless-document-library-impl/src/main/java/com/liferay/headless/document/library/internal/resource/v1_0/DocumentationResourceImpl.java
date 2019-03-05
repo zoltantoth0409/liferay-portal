@@ -71,7 +71,9 @@ public class DocumentationResourceImpl {
 	private final Set<Class<?>> _resourceClasses = new HashSet<Class<?>>() {
 		{
 			add(CommentResourceImpl.class);
+
 			add(DocumentResourceImpl.class);
+
 			add(FolderResourceImpl.class);
 		}
 	};
