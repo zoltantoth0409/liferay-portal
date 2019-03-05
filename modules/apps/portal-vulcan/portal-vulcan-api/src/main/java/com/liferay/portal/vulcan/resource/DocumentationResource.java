@@ -28,9 +28,10 @@ import javax.ws.rs.core.UriInfo;
  */
 public interface DocumentationResource {
 
-	public Response getOpenApi(
-			Set<Class<?>> resourceClasses, HttpHeaders headers,
-			ServletConfig config, Application app, UriInfo uriInfo, String type)
+	public Response getOpenAPI(
+			Application application, HttpHeaders httpHeaders,
+			Set<Class<?>> resourceClasses, ServletConfig servletConfig,
+			String type, UriInfo uriInfo)
 		throws Exception;
 
 }

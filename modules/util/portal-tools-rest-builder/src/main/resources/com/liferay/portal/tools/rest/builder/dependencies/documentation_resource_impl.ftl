@@ -39,18 +39,14 @@ public class DocumentationResourceImpl {
 	@GET
 	@Path("/openapi.{type:json|yaml}")
 	@Produces({MediaType.APPLICATION_JSON, "application/yaml"})
-	public Response getOpenApi(
-		@Context HttpHeaders headers, @Context UriInfo uriInfo,
-		@PathParam("type") String type)
-	throws Exception {
-
+	public Response getOpenApi(@Context HttpHeaders httpHeaders, @Context UriInfo uriInfo, @PathParam("type") String type) throws Exception {
 		Set<Class<?>> resourceClasses = new HashSet<>();
 
 		<#list filteredSchemas as schemaName>
 			resourceClasses.add(${schemaName}ResourceImpl.class);
 		</#list>
 
-		return _documentationResource.getOpenApi(resourceClasses, headers, _servletConfig, _application, uriInfo, type);
+		return _documentationResource.getOpenAPI(_application, httpHeaders, resourceClasses, _servletConfig, type, uriInfo);
 	}
 
 	@Context
@@ -61,4 +57,5 @@ public class DocumentationResourceImpl {
 
 	@Context
 	private ServletConfig _servletConfig;
+
 }

@@ -14,14 +14,13 @@
 
 package com.liferay.portal.vulcan.internal.resource;
 
-import static io.swagger.v3.jaxrs2.integration.ServletConfigContextUtils.getContextIdFromServletConfig;
-
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.vulcan.resource.DocumentationResource;
 
 import io.swagger.v3.core.util.Json;
 import io.swagger.v3.core.util.Yaml;
 import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
+import io.swagger.v3.jaxrs2.integration.ServletConfigContextUtils;
 import io.swagger.v3.oas.integration.api.OpenAPIConfiguration;
 import io.swagger.v3.oas.integration.api.OpenApiContext;
 import io.swagger.v3.oas.integration.api.OpenApiScanner;
@@ -48,24 +47,28 @@ import org.osgi.service.component.annotations.Component;
 public class DocumentationResourceImpl implements DocumentationResource {
 
 	@Override
-	public Response getOpenApi(
-			Set<Class<?>> resourceClasses, HttpHeaders headers,
-			ServletConfig servletConfig, Application app, UriInfo uriInfo,
-			String type)
+	public Response getOpenAPI(
+			Application application, HttpHeaders httpHeaders,
+			Set<Class<?>> resourceClasses, ServletConfig servletConfig,
+			String type, UriInfo uriInfo)
 		throws Exception {
 
-		String contextId = getContextIdFromServletConfig(servletConfig);
+		String contextId =
+			ServletConfigContextUtils.getContextIdFromServletConfig(
+				servletConfig);
 
-		OpenApiContext openApiContext =
-			new JaxrsOpenApiContextBuilder().servletConfig(
-				servletConfig
-			).application(
-				app
-			).ctxId(
-				contextId
-			).buildContext(
-				true
-			);
+		JaxrsOpenApiContextBuilder jaxrsOpenApiContextBuilder =
+			new JaxrsOpenApiContextBuilder();
+
+		OpenApiContext openApiContext = jaxrsOpenApiContextBuilder.application(
+			application
+		).servletConfig(
+			servletConfig
+		).ctxId(
+			contextId
+		).buildContext(
+			true
+		);
 
 		openApiContext.setOpenApiScanner(
 			new OpenApiScanner() {
