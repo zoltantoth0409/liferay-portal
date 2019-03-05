@@ -23,6 +23,32 @@ definition {
 		}
 	}
 
+	@description = "This is a use case for LPS-83566."
+	@priority = "5"
+	test EscapeUrlRedirectWithGroovyScript {
+		property test.name.skip.portal.instance = "SecurityTestingUsecase#EscapeUrlRedirectWithGroovyScript";
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Server Administration"
+		);
+
+		ServerAdministration.executeScriptCP(
+			script = '''
+import com.liferay.portal.kernel.util.PortalUtil;
+
+out.println(PortalUtil.escapeRedirect("/"));
+''',
+			scriptLanguage = "Groovy"
+		);
+
+		AssertTextEquals(
+			locator1 = "ServerAdministrationScript#OUTPUT_FIELD",
+			value1 = "/"
+		);
+	}
+
 	@priority = "5"
 	test NoGuestRoleFromWCDArticleHistoryURL {
 		property portal.acceptance = "true";
