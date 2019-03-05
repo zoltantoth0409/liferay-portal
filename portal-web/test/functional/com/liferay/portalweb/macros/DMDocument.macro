@@ -345,7 +345,7 @@ definition {
 	macro addPGViaMG {
 		Portlet.clickPortletPlusIconPG(portletName = "Media Gallery");
 
-		MenuItem.click(menuItem = "Basic Document");
+		MenuItem.click(menuItem = "File Upload");
 
 		UploadCommonFile(locator1 = "TextInput#FILE", value1 = "${mgDocumentFile}");
 
