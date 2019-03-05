@@ -203,6 +203,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 						${firstJavaMethodParameter.parameterType} ${firstJavaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaMethodParameter.parameterName?cap_first}();
 
 						${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
+
+						@SuppressWarnings("PMD.UnusedLocalVariable")
 						${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
 
 						for (EntityField entityField : entityFields) {
