@@ -14,6 +14,7 @@
 
 package com.liferay.frontend.js.loader.modules.extender.internal.resolution;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.json.JSONFactory;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class JSModulesResolution {
 			return;
 		}
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler(_explainIndentation);
 
 		for (int i = 0; i < _explainIndentation; i++) {
 			sb.append("  ");
