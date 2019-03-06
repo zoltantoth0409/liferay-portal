@@ -78,7 +78,6 @@ public class AssetTagsSelectorTag extends ComponentRendererTag {
 			putValue("selectedItems", selectedItems);
 
 			putValue("showSelectButton", _showSelectButton);
-
 			putValue(
 				"spritemap",
 				themeDisplay.getPathThemeImages().concat("/clay/icons.svg"));
