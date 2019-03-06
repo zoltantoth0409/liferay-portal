@@ -214,7 +214,7 @@ public class CTDDMStructureLocalServiceWrapper
 	protected void setDDMStructureLocalService(
 		DDMStructureLocalService ddmStructureLocalService) {
 
-		// This is needed because of synchronization
+		// Needed for synchronization
 
 	}
 

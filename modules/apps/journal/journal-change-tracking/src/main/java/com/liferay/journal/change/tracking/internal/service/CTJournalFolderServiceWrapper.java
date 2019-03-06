@@ -142,7 +142,7 @@ public class CTJournalFolderServiceWrapper extends JournalFolderServiceWrapper {
 	protected void setJournalFolderService(
 		JournalFolderService journalFolderService) {
 
-		// This is needed because of synchronization
+		// Needed for synchronization
 
 	}
 
