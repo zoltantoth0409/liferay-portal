@@ -306,7 +306,7 @@ public class WabProcessorTest {
 
 	@Test
 	public void testSampleStrutsWab() throws Exception {
-		File file = getFile("sample-struts-portlet.autodeployed.war");
+		File file = getFile("/sample-struts-portlet.autodeployed.war");
 
 		Assert.assertNotNull(file);
 
@@ -735,6 +735,12 @@ public class WabProcessorTest {
 		return null;
 	}
 
+	protected ClassLoader getClassLoader() {
+		Class<?> clazz = getClass();
+
+		return clazz.getClassLoader();
+	}
+
 	protected File getFile(String fileName) throws URISyntaxException {
 		URL url = WabProcessor.class.getResource(fileName);
 
@@ -747,6 +753,15 @@ public class WabProcessorTest {
 	}
 
 	private static class TestWabProcessor extends WabProcessor {
+
+		public TestWabProcessor(
+			ClassLoader classLoader, File file,
+			Map<String, String[]> parameters) {
+
+			super(classLoader, file, parameters);
+
+			_file = file;
+		}
 
 		@Override
 		protected void executeAutoDeployers(
