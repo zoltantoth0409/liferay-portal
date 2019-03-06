@@ -130,9 +130,6 @@ public class AssetBrowserDisplayContext {
 	}
 
 	public AssetBrowserSearch getAssetBrowserSearch() throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		AssetBrowserSearch assetBrowserSearch = new AssetBrowserSearch(
 			_renderRequest, getPortletURL());
 
@@ -166,6 +163,9 @@ public class AssetBrowserDisplayContext {
 			assetBrowserSearch.setResults(assetEntries);
 		}
 		else {
+			ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
 			Sort sort = null;
 
 			boolean orderByAsc = false;
