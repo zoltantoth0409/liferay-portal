@@ -365,8 +365,8 @@ public class SegmentsExperienceLocalServiceImpl
 
 		throw new DefaultSegmentsExperienceException(
 			StringBundler.concat(
-				"A default segments experience for the group ", groupId,
-				", classNameId ", classNameId, " and classPK ", classPK,
+				"A default segments experience with the group ", groupId,
+				", class name ID ", classNameId, " and class PK ", classPK,
 				" already exists"));
 	}
 
