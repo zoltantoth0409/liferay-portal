@@ -398,9 +398,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 		location = HttpUtil.addParameter(location, "filter", filterString);
 
 		location = HttpUtil.addParameter(
-			location, "page", pagination.getPageNumber());
+			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getItemsPerPage());
+			location, "pageSize", pagination.getPageSize());
 
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
@@ -428,9 +428,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 		location = HttpUtil.addParameter(location, "filter", filterString);
 
 		location = HttpUtil.addParameter(
-			location, "page", pagination.getPageNumber());
+			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getItemsPerPage());
+			location, "pageSize", pagination.getPageSize());
 
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
@@ -812,9 +812,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 		location = HttpUtil.addParameter(location, "filter", filterString);
 
 		location = HttpUtil.addParameter(
-			location, "page", pagination.getPageNumber());
+			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getItemsPerPage());
+			location, "pageSize", pagination.getPageSize());
 
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
@@ -843,9 +843,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 		location = HttpUtil.addParameter(location, "filter", filterString);
 
 		location = HttpUtil.addParameter(
-			location, "page", pagination.getPageNumber());
+			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getItemsPerPage());
+			location, "pageSize", pagination.getPageSize());
 
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
@@ -1199,8 +1199,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		int size = structuredContents.size();
 
-		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
-			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+		if ((page.getLastPage() > 0) && (page.getPage() > 0) &&
+			(page.getPageSize() > 0) && (page.getTotalCount() > 0) &&
 			(size > 0)) {
 
 			valid = true;
@@ -1404,16 +1404,16 @@ public abstract class BaseStructuredContentResourceTestCase {
 			return new ArrayList<>(items);
 		}
 
-		public long getItemsPerPage() {
-			return itemsPerPage;
+		public long getLastPage() {
+			return lastPage;
 		}
 
-		public long getLastPageNumber() {
-			return lastPageNumber;
+		public long getPage() {
+			return page;
 		}
 
-		public long getPageNumber() {
-			return pageNumber;
+		public long getPageSize() {
+			return pageSize;
 		}
 
 		public long getTotalCount() {
@@ -1423,14 +1423,14 @@ public abstract class BaseStructuredContentResourceTestCase {
 		@JsonProperty
 		protected Collection<T> items;
 
-		@JsonProperty("pageSize")
-		protected long itemsPerPage;
+		@JsonProperty
+		protected long lastPage;
 
 		@JsonProperty
-		protected long lastPageNumber;
+		protected long page;
 
-		@JsonProperty("page")
-		protected long pageNumber;
+		@JsonProperty
+		protected long pageSize;
 
 		@JsonProperty
 		protected long totalCount;
