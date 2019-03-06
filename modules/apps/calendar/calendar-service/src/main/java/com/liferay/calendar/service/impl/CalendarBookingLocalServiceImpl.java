@@ -1612,6 +1612,7 @@ public class CalendarBookingLocalServiceImpl
 		User user = userLocalService.getUser(userId);
 		Date now = new Date();
 
+		Date oldModifiedDate = calendarBooking.getModifiedDate();
 		int oldStatus = calendarBooking.getStatus();
 
 		calendarBooking.setModifiedDate(serviceContext.getModifiedDate(now));
@@ -1682,10 +1683,43 @@ public class CalendarBookingLocalServiceImpl
 						calendarBooking.getUuid(), null,
 						WorkflowConstants.STATUS_PENDING, null, null);
 				}
+			}
+		}
 
-				sendNotification(
-					calendarBooking, NotificationTemplateType.MOVED_TO_TRASH,
-					serviceContext);
+		if (calendarBooking.isMasterBooking()) {
+			Date createDate = calendarBooking.getCreateDate();
+
+			NotificationTemplateType notificationTemplateType =
+				NotificationTemplateType.INVITE;
+
+			if (createDate.getTime() != oldModifiedDate.getTime()) {
+				notificationTemplateType = NotificationTemplateType.UPDATE;
+			}
+
+			for (CalendarBooking childCalendarBooking : childCalendarBookings) {
+				if (childCalendarBooking.equals(calendarBooking)) {
+					continue;
+				}
+
+				if (childCalendarBooking.isDenied()) {
+					notificationTemplateType = NotificationTemplateType.DECLINE;
+				}
+
+				if (calendarBooking.isApproved()) {
+					sendNotification(
+						childCalendarBooking, notificationTemplateType,
+						serviceContext);
+				}
+				else if ((oldStatus == WorkflowConstants.STATUS_APPROVED) &&
+						 (status == WorkflowConstants.STATUS_IN_TRASH)) {
+
+					notificationTemplateType =
+						NotificationTemplateType.MOVED_TO_TRASH;
+
+					sendNotification(
+						childCalendarBooking, notificationTemplateType,
+						serviceContext);
+				}
 			}
 		}
 
@@ -1819,21 +1853,6 @@ public class CalendarBookingLocalServiceImpl
 						oldChildCalendarBooking.getStatus(), serviceContext);
 				}
 			}
-
-			NotificationTemplateType notificationTemplateType =
-				NotificationTemplateType.INVITE;
-
-			if (childCalendarBooking.isDenied()) {
-				notificationTemplateType = NotificationTemplateType.DECLINE;
-			}
-			else if (childCalendarBookingMap.containsKey(
-						childCalendarBooking.getCalendarId())) {
-
-				notificationTemplateType = NotificationTemplateType.UPDATE;
-			}
-
-			sendNotification(
-				childCalendarBooking, notificationTemplateType, serviceContext);
 		}
 	}
 
