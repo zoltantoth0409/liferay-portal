@@ -23,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -61,6 +63,7 @@ public class Organization  {
 	@JsonProperty
 	protected String comment;
 
+	@Schema(description = "https://www.schema.org/ContactInformation")
 	public ContactInformation getContactInformation() {
 		return contactInformation;
 	}
@@ -108,6 +111,7 @@ public class Organization  {
 	@JsonProperty
 	protected Long id;
 
+	@Schema(description = "https://www.schema.org/PostalAddress")
 	public Location getLocation() {
 		return location;
 	}
@@ -273,6 +277,7 @@ public class Organization  {
 	@JsonProperty
 	protected Long parentOrganizationId;
 
+	@Schema(description = "https://www.schema.org/Service")
 	public Services[] getServices() {
 		return services;
 	}

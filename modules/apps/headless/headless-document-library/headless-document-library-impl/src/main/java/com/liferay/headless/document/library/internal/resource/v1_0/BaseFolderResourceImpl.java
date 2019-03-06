@@ -25,6 +25,10 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 import java.net.URI;
 
 import java.util.Collections;
@@ -55,6 +59,12 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/content-spaces/{content-space-id}/folders")
 	@Produces("application/json")
 	public Page<Folder> getContentSpaceFoldersPage(
@@ -159,6 +169,12 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/folders/{folder-id}/folders")
 	@Produces("application/json")
 	public Page<Folder> getFolderFoldersPage(

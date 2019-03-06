@@ -23,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.Date;
 
 import javax.annotation.Generated;
@@ -422,6 +424,7 @@ public class StructuredContent  {
 	@JsonProperty
 	protected Date lastReviewed;
 
+	@Schema(description = "https://www.schema.org/templates")
 	public RenderedContentsURL[] getRenderedContentsURL() {
 		return renderedContentsURL;
 	}

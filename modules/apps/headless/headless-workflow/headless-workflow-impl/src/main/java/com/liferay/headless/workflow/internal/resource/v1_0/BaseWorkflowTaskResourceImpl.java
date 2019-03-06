@@ -24,6 +24,10 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 import java.net.URI;
 
 import java.util.Collections;
@@ -52,6 +56,12 @@ public abstract class BaseWorkflowTaskResourceImpl
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/roles/{role-id}/workflow-tasks")
 	@Produces("application/json")
 	public Page<WorkflowTask> getRoleWorkflowTasksPage(
@@ -63,6 +73,12 @@ public abstract class BaseWorkflowTaskResourceImpl
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/workflow-tasks")
 	@Produces("application/json")
 	public Page<WorkflowTask> getWorkflowTasksPage(

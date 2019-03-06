@@ -23,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.Date;
 
 import javax.annotation.Generated;
@@ -159,6 +161,7 @@ public class FormRecord  {
 	@JsonProperty
 	protected Boolean draft;
 
+	@Schema(description = "https://www.schema.org/FormFieldValue")
 	public FieldValues[] getFieldValues() {
 		return fieldValues;
 	}

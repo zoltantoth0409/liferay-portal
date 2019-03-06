@@ -23,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.Date;
 
 import javax.annotation.Generated;
@@ -183,6 +185,7 @@ public class FormStructure  {
 	@JsonProperty
 	protected String description;
 
+	@Schema(description = "https://www.schema.org/FormLayoutPage")
 	public FormPages[] getFormPages() {
 		return formPages;
 	}
@@ -251,6 +254,7 @@ public class FormStructure  {
 	@JsonProperty
 	protected String name;
 
+	@Schema(description = "https://www.schema.org/FormSuccessPageSettings")
 	public SuccessPage getSuccessPage() {
 		return successPage;
 	}

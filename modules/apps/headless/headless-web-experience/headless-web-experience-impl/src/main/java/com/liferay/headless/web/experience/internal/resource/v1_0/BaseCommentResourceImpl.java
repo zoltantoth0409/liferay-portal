@@ -26,6 +26,11 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 import java.net.URI;
 
 import java.util.Collections;
@@ -87,6 +92,15 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 
 	@Override
 	@GET
+	@Operation(description = "retrieve the child comments of a comment thread")
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "filter"),
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
+			@Parameter(in = ParameterIn.QUERY, name = "sorts")
+		}
+	)
 	@Path("/comments/{comment-id}/comments")
 	@Produces("application/json")
 	public Page<Comment> getCommentCommentsPage(
@@ -111,6 +125,14 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "filter"),
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
+			@Parameter(in = ParameterIn.QUERY, name = "sorts")
+		}
+	)
 	@Path("/structured-contents/{structured-content-id}/comments")
 	@Produces("application/json")
 	public Page<Comment> getStructuredContentCommentsPage(

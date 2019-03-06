@@ -24,6 +24,10 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 import java.net.URI;
 
 import java.util.Collections;
@@ -66,6 +70,12 @@ public abstract class BaseUserAccountResourceImpl
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/organizations/{organization-id}/user-accounts")
 	@Produces("application/json")
 	public Page<UserAccount> getOrganizationUserAccountsPage(
@@ -78,6 +88,12 @@ public abstract class BaseUserAccountResourceImpl
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/user-accounts")
 	@Produces("application/json")
 	public Page<UserAccount> getUserAccountsPage(
@@ -136,6 +152,12 @@ public abstract class BaseUserAccountResourceImpl
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/web-sites/{web-site-id}/user-accounts")
 	@Produces("application/json")
 	public Page<UserAccount> getWebSiteUserAccountsPage(

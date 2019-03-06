@@ -24,6 +24,10 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 import java.net.URI;
 
 import java.util.Collections;
@@ -50,6 +54,12 @@ public abstract class BaseOrganizationResourceImpl
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/my-user-accounts/{my-user-account-id}/organizations")
 	@Produces("application/json")
 	public Page<Organization> getMyUserAccountOrganizationsPage(
@@ -62,6 +72,12 @@ public abstract class BaseOrganizationResourceImpl
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/organizations")
 	@Produces("application/json")
 	public Page<Organization> getOrganizationsPage(
@@ -84,6 +100,12 @@ public abstract class BaseOrganizationResourceImpl
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/organizations/{organization-id}/organizations")
 	@Produces("application/json")
 	public Page<Organization> getOrganizationOrganizationsPage(
@@ -96,6 +118,12 @@ public abstract class BaseOrganizationResourceImpl
 
 	@Override
 	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/user-accounts/{user-account-id}/organizations")
 	@Produces("application/json")
 	public Page<Organization> getUserAccountOrganizationsPage(

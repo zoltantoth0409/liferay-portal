@@ -23,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -107,6 +109,7 @@ public class Value  {
 	@JsonProperty
 	protected Long documentId;
 
+	@Schema(description = "https://www.schema.org/GeoCoordinates")
 	public Geo getGeo() {
 		return geo;
 	}
