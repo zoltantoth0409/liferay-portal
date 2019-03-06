@@ -12,6 +12,8 @@ import com.liferay.petra.string.StringBundler;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.Date;
 
 import javax.annotation.Generated;
@@ -61,6 +63,7 @@ public class ${schemaName} <#if freeMarkerTool.getDTOParentClassName(openAPIYAML
 			<#assign javaDataType = javaDataType[2..(javaDataType?length - 2)] + "[]" />
 		</#if>
 
+		<#if javaMethodParameter.description??>@Schema(description = "${javaMethodParameter.description}")</#if>
 		public ${javaDataType} get${javaMethodParameter.parameterName?cap_first}() {
 			return ${javaMethodParameter.parameterName};
 		}
