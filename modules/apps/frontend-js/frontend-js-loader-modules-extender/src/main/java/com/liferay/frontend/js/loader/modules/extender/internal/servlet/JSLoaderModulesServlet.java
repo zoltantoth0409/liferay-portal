@@ -60,7 +60,7 @@ import org.osgi.service.component.annotations.Reference;
 	configurationPid = "com.liferay.frontend.js.loader.modules.extender.internal.Details",
 	immediate = true,
 	property = {
-		"osgi.http.whiteboard.servlet.name=com.liferay.frontend.js.loader.modules.extender.internal.JSLoaderModulesServlet",
+		"osgi.http.whiteboard.servlet.name=com.liferay.frontend.js.loader.modules.extender.internal.servlet.JSLoaderModulesServlet",
 		"osgi.http.whiteboard.servlet.pattern=/js_loader_modules",
 		"service.ranking:Integer=" + Details.MAX_VALUE_LESS_1K
 	},
