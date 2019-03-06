@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("ContentField")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "ContentField")
-public class ContentField {
+public class ContentField  {
 
 	public String getDataType() {
 		return dataType;

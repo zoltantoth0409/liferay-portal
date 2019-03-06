@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Vocabulary")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Vocabulary")
-public class Vocabulary {
+public class Vocabulary  {
 
 	public String[] getAvailableLanguages() {
 		return availableLanguages;

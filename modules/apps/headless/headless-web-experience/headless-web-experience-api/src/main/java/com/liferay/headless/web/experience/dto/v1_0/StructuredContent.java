@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("StructuredContent")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "StructuredContent")
-public class StructuredContent {
+public class StructuredContent  {
 
 	public AggregateRating getAggregateRating() {
 		return aggregateRating;

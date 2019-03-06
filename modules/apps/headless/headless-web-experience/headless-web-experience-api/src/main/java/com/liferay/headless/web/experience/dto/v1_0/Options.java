@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Options")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Options")
-public class Options {
+public class Options  {
 
 	public String getLabel() {
 		return label;

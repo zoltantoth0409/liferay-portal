@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Services")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Services")
-public class Services {
+public class Services  {
 
 	public HoursAvailable[] getHoursAvailable() {
 		return hoursAvailable;

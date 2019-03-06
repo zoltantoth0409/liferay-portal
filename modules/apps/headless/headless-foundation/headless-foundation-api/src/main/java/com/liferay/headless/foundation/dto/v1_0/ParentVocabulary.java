@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("ParentVocabulary")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "ParentVocabulary")
-public class ParentVocabulary {
+public class ParentVocabulary  {
 
 	public Long getId() {
 		return id;

@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("FormDocument")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "FormDocument")
-public class FormDocument {
+public class FormDocument  {
 
 	public String getContentUrl() {
 		return contentUrl;

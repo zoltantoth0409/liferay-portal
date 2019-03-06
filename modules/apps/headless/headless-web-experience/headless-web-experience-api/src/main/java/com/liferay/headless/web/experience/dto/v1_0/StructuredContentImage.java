@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("StructuredContentImage")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "StructuredContentImage")
-public class StructuredContentImage {
+public class StructuredContentImage  {
 
 	public String getContentUrl() {
 		return contentUrl;

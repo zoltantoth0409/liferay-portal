@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Segment")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Segment")
-public class Segment {
+public class Segment  {
 
 	public Boolean getActive() {
 		return active;

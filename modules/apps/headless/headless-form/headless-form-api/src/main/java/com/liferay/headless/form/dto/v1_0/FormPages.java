@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("FormPages")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "FormPages")
-public class FormPages {
+public class FormPages  {
 
 	public Fields[] getFields() {
 		return fields;

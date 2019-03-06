@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("WebUrl")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "WebUrl")
-public class WebUrl {
+public class WebUrl  {
 
 	public Long getId() {
 		return id;

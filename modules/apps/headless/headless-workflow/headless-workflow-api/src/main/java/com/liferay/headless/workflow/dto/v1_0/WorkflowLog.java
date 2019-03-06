@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("WorkflowLog")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "WorkflowLog")
-public class WorkflowLog {
+public class WorkflowLog  {
 
 	public String getAuditPerson() {
 		return auditPerson;

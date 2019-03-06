@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Columns")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Columns")
-public class Columns {
+public class Columns  {
 
 	public Long getId() {
 		return id;

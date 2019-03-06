@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Form")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Form")
-public class Form {
+public class Form  {
 
 	public String[] getAvailableLanguages() {
 		return availableLanguages;

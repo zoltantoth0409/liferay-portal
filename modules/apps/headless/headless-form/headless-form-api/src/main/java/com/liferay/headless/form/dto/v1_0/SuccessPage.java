@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("SuccessPage")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "SuccessPage")
-public class SuccessPage {
+public class SuccessPage  {
 
 	public String getDescription() {
 		return description;

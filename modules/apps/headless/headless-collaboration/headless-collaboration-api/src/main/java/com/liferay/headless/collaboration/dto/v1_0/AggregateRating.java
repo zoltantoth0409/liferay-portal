@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("AggregateRating")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "AggregateRating")
-public class AggregateRating {
+public class AggregateRating  {
 
 	public Number getBestRating() {
 		return bestRating;

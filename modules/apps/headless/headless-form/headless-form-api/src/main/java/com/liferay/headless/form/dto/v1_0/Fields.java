@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Fields")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Fields")
-public class Fields {
+public class Fields  {
 
 	public Boolean getAutocomplete() {
 		return autocomplete;

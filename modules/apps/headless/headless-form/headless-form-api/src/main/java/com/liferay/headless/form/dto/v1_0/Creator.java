@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Creator")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Creator")
-public class Creator {
+public class Creator  {
 
 	public String getAdditionalName() {
 		return additionalName;

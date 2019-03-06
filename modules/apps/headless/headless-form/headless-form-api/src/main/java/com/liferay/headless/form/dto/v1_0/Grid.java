@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Grid")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Grid")
-public class Grid {
+public class Grid  {
 
 	public Columns[] getColumns() {
 		return columns;

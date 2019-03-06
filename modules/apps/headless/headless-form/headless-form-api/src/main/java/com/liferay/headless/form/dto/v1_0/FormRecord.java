@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("FormRecord")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "FormRecord")
-public class FormRecord {
+public class FormRecord  {
 
 	public Creator getCreator() {
 		return creator;

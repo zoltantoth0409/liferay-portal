@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("WorkflowTask")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "WorkflowTask")
-public class WorkflowTask {
+public class WorkflowTask  {
 
 	public Boolean getCompleted() {
 		return completed;

@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Image")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Image")
-public class Image {
+public class Image  {
 
 	public String getContentUrl() {
 		return contentUrl;

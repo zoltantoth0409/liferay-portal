@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Keyword")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Keyword")
-public class Keyword {
+public class Keyword  {
 
 	public Long getContentSpace() {
 		return contentSpace;

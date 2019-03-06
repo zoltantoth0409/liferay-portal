@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Validation")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Validation")
-public class Validation {
+public class Validation  {
 
 	public String getErrorMessage() {
 		return errorMessage;

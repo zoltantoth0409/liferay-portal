@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Location")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Location")
-public class Location {
+public class Location  {
 
 	public String getAddressCountry() {
 		return addressCountry;

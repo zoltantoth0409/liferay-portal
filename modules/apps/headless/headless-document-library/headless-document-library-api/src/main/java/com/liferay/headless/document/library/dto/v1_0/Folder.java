@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("Folder")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Folder")
-public class Folder {
+public class Folder  {
 
 	public Long getContentSpaceId() {
 		return contentSpaceId;

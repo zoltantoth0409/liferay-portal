@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("ParentCategory")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "ParentCategory")
-public class ParentCategory {
+public class ParentCategory  {
 
 	public Long getId() {
 		return id;
