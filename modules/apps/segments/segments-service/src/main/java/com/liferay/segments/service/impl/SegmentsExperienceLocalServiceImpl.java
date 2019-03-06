@@ -66,7 +66,7 @@ public class SegmentsExperienceLocalServiceImpl
 
 		long groupId = serviceContext.getScopeGroupId();
 
-		_validate(groupId, segmentsEntryId, classNameId, classPK);
+		_validate(segmentsEntryId, groupId, classNameId, classPK);
 
 		long segmentsExperienceId = counterLocalService.increment();
 
@@ -347,7 +347,7 @@ public class SegmentsExperienceLocalServiceImpl
 	}
 
 	private void _validate(
-			long groupId, long segmentsEntryId, long classNameId, long classPK)
+			long segmentsEntryId, long groupId, long classNameId, long classPK)
 		throws PortalException {
 
 		SegmentsEntry defaultSegmentsEntry = _getDefaultSegmentsEntry(groupId);
