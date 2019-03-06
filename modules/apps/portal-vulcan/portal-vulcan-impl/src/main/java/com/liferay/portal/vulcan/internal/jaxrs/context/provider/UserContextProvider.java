@@ -18,8 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.Portal;
 
-import javax.servlet.http.HttpServletRequest;
-
+import javax.ws.rs.ServerErrorException;
 import javax.ws.rs.ext.Provider;
 
 import org.apache.cxf.jaxrs.ext.ContextProvider;
@@ -39,11 +38,10 @@ public class UserContextProvider implements ContextProvider<User> {
 	public User createContext(Message message) {
 		try {
 			return _portal.getUser(
-				(HttpServletRequest)message.getContextualProperty(
-					"HTTP.REQUEST"));
+				ContextProviderUtil.getHttpServletRequest(message));
 		}
 		catch (PortalException pe) {
-			throw new RuntimeException(pe);
+			throw new ServerErrorException(500, pe);
 		}
 	}
 
