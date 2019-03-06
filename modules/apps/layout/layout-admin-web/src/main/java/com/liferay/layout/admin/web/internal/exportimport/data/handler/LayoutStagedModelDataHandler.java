@@ -583,8 +583,8 @@ public class LayoutStagedModelDataHandler
 		portletDataContext.setPlid(importedLayout.getPlid());
 		portletDataContext.setOldPlid(layout.getPlid());
 
-		long parentLayoutId = layout.getParentLayoutId();
 		long parentPlid = layout.getParentPlid();
+		long parentLayoutId = layout.getParentLayoutId();
 
 		String parentLayoutUuid = GetterUtil.getString(
 			layoutElement.attributeValue("parent-layout-uuid"));
@@ -610,8 +610,8 @@ public class LayoutStagedModelDataHandler
 
 			Layout importedParentLayout = layouts.get(parentLayoutId);
 
-			parentLayoutId = importedParentLayout.getLayoutId();
 			parentPlid = importedParentLayout.getPlid();
+			parentLayoutId = importedParentLayout.getLayoutId();
 		}
 
 		if (_log.isDebugEnabled()) {
