@@ -778,21 +778,23 @@ public abstract class Base${schemaName}ResourceTestCase {
 	private static DateFormat _dateFormat;
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter("Liferay.Vulcan", SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-			setFilterProvider(new SimpleFilterProvider() {
-				{
-					addFilter("Liferay.Vulcan", SimpleBeanPropertyFilter.serializeAll());
-				}
-			});
 		}
 	};
 	private final static ObjectMapper _outputObjectMapper = new ObjectMapper() {
 		{
-			setFilterProvider(new SimpleFilterProvider() {
-				{
-					addFilter("Liferay.Vulcan", SimpleBeanPropertyFilter.serializeAll());
-				}
-			});
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter("Liferay.Vulcan", SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
 		}
 	};
 
