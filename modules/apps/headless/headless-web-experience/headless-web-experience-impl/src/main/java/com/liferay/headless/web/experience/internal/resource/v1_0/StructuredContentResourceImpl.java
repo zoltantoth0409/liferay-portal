@@ -200,7 +200,7 @@ public class StructuredContentResourceImpl
 	}
 
 	@Override
-	public String getStructuredContentTemplate(
+	public String getStructuredContentRenderedContentTemplate(
 			Long structuredContentId, Long templateId)
 		throws Exception {
 

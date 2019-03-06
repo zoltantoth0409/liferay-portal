@@ -51,7 +51,8 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 
 	@Override
-	public Page<Segment> getUserSegmentsPage(Long userId, Pagination pagination)
+	public Page<Segment> getUserAccountUserSegmentsPage(
+			Long userId, Pagination pagination)
 		throws Exception {
 
 		User user = _userService.getUserById(userId);
