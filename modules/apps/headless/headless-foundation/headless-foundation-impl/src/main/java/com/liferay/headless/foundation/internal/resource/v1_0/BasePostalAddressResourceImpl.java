@@ -24,6 +24,10 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 import java.net.URI;
 
 import java.util.Collections;
@@ -48,8 +52,14 @@ import javax.ws.rs.core.UriInfo;
 public abstract class BasePostalAddressResourceImpl
 	implements PostalAddressResource {
 
-	@GET
 	@Override
+	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/postal-addresses")
 	@Produces("application/json")
 	public Page<PostalAddress> getGenericParentPostalAddressesPage(
@@ -60,8 +70,8 @@ public abstract class BasePostalAddressResourceImpl
 		return Page.of(Collections.emptyList());
 	}
 
-	@GET
 	@Override
+	@GET
 	@Path("/postal-addresses/{postal-address-id}")
 	@Produces("application/json")
 	public PostalAddress getPostalAddress(

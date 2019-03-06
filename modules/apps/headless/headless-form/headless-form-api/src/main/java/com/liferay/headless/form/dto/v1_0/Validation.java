@@ -14,6 +14,7 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,19 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("Validation")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Validation")
 public class Validation {
 
 	public String getErrorMessage() {
 		return errorMessage;
-	}
-
-	public String getExpression() {
-		return expression;
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public void setErrorMessage(String errorMessage) {
@@ -64,6 +58,14 @@ public class Validation {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String errorMessage;
+
+	public String getExpression() {
+		return expression;
+	}
+
 	public void setExpression(String expression) {
 		this.expression = expression;
 	}
@@ -80,6 +82,14 @@ public class Validation {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String expression;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -94,8 +104,12 @@ public class Validation {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(14);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -121,17 +135,5 @@ public class Validation {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String errorMessage;
-
-	@GraphQLField
-	@JsonProperty
-	protected String expression;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
 
 }

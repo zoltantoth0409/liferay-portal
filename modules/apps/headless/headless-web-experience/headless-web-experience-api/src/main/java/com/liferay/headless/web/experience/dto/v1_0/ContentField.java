@@ -14,6 +14,7 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,35 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("ContentField")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "ContentField")
 public class ContentField {
 
 	public String getDataType() {
 		return dataType;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getInputControl() {
-		return inputControl;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public ContentField[] getNestedFields() {
-		return nestedFields;
-	}
-
-	public Value getValue() {
-		return value;
 	}
 
 	public void setDataType(String dataType) {
@@ -80,6 +58,14 @@ public class ContentField {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String dataType;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -92,6 +78,14 @@ public class ContentField {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String getInputControl() {
+		return inputControl;
 	}
 
 	public void setInputControl(String inputControl) {
@@ -110,6 +104,14 @@ public class ContentField {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String inputControl;
+
+	public String getLabel() {
+		return label;
+	}
+
 	public void setLabel(String label) {
 		this.label = label;
 	}
@@ -126,6 +128,14 @@ public class ContentField {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String label;
+
+	public String getName() {
+		return name;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -138,6 +148,14 @@ public class ContentField {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	public ContentField[] getNestedFields() {
+		return nestedFields;
 	}
 
 	public void setNestedFields(ContentField[] nestedFields) {
@@ -156,6 +174,18 @@ public class ContentField {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected ContentField[] nestedFields;
+
+	public Value getValue() {
+		return value;
+	}
+
+	public void setValue(Value value) {
+		this.value = value;
+	}
+
 	@JsonIgnore
 	public void setValue(UnsafeSupplier<Value, Exception> valueUnsafeSupplier) {
 		try {
@@ -166,12 +196,12 @@ public class ContentField {
 		}
 	}
 
-	public void setValue(Value value) {
-		this.value = value;
-	}
+	@GraphQLField
+	@JsonProperty
+	protected Value value;
 
 	public String toString() {
-		StringBundler sb = new StringBundler(32);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -210,9 +240,23 @@ public class ContentField {
 
 		sb.append("\"nestedFields\": ");
 
-		sb.append("\"");
-		sb.append(nestedFields);
-		sb.append("\"");
+		if (nestedFields == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < nestedFields.length; i++) {
+				sb.append(nestedFields[i]);
+
+				if ((i + 1) < nestedFields.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"value\": ");
@@ -223,33 +267,5 @@ public class ContentField {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String dataType;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String inputControl;
-
-	@GraphQLField
-	@JsonProperty
-	protected String label;
-
-	@GraphQLField
-	@JsonProperty
-	protected String name;
-
-	@GraphQLField
-	@JsonProperty
-	protected ContentField[] nestedFields;
-
-	@GraphQLField
-	@JsonProperty
-	protected Value value;
 
 }

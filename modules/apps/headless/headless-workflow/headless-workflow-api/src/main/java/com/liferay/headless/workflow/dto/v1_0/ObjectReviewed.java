@@ -14,6 +14,7 @@
 
 package com.liferay.headless.workflow.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,19 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("ObjectReviewed")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "ObjectReviewed")
 public class ObjectReviewed {
 
 	public Long getId() {
 		return id;
-	}
-
-	public String getIdentifier() {
-		return identifier;
-	}
-
-	public String getResourceType() {
-		return resourceType;
 	}
 
 	public void setId(Long id) {
@@ -60,6 +54,14 @@ public class ObjectReviewed {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String getIdentifier() {
+		return identifier;
 	}
 
 	public void setIdentifier(String identifier) {
@@ -78,6 +80,14 @@ public class ObjectReviewed {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String identifier;
+
+	public String getResourceType() {
+		return resourceType;
+	}
+
 	public void setResourceType(String resourceType) {
 		this.resourceType = resourceType;
 	}
@@ -94,8 +104,12 @@ public class ObjectReviewed {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String resourceType;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(14);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -121,17 +135,5 @@ public class ObjectReviewed {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String identifier;
-
-	@GraphQLField
-	@JsonProperty
-	protected String resourceType;
 
 }

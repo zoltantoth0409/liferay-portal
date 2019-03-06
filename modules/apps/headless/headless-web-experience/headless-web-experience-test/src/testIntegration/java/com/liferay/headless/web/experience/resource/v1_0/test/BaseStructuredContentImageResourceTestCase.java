@@ -18,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.headless.web.experience.dto.v1_0.Options;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContentImage;
@@ -109,6 +111,55 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 				structuredContentImage.getId()));
 	}
 
+	protected StructuredContentImage
+			testDeleteStructuredContentImage_addStructuredContentImage()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected boolean invokeDeleteStructuredContentImage(
+			Long structuredContentImageId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-content-images/{structured-content-image-id}",
+					structuredContentImageId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), Boolean.class);
+	}
+
+	protected Http.Response invokeDeleteStructuredContentImageResponse(
+			Long structuredContentImageId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-content-images/{structured-content-image-id}",
+					structuredContentImageId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
 	@Test
 	public void testGetStructuredContentImage() throws Exception {
 		StructuredContentImage postStructuredContentImage =
@@ -119,6 +170,51 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		assertEquals(postStructuredContentImage, getStructuredContentImage);
 		assertValid(getStructuredContentImage);
+	}
+
+	protected StructuredContentImage
+			testGetStructuredContentImage_addStructuredContentImage()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContentImage invokeGetStructuredContentImage(
+			Long structuredContentImageId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-content-images/{structured-content-image-id}",
+					structuredContentImageId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), StructuredContentImage.class);
+	}
+
+	protected Http.Response invokeGetStructuredContentImageResponse(
+			Long structuredContentImageId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-content-images/{structured-content-image-id}",
+					structuredContentImageId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	@Test
@@ -147,6 +243,82 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		assertValid(page);
 	}
 
+	protected StructuredContentImage
+			testGetStructuredContentStructuredContentImagesPage_addStructuredContentImage(
+				Long structuredContentId,
+				StructuredContentImage structuredContentImage)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetStructuredContentStructuredContentImagesPage_getStructuredContentId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Page<StructuredContentImage>
+			invokeGetStructuredContentStructuredContentImagesPage(
+				Long structuredContentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/structured-content-images",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<StructuredContentImage>>() {
+			});
+	}
+
+	protected Http.Response
+			invokeGetStructuredContentStructuredContentImagesPageResponse(
+				Long structuredContentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/structured-content-images",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected void assertResponseCode(
+		int expectedResponseCode, Http.Response actualResponse) {
+
+		Assert.assertEquals(
+			expectedResponseCode, actualResponse.getResponseCode());
+	}
+
+	protected void assertEquals(
+		StructuredContentImage structuredContentImage1,
+		StructuredContentImage structuredContentImage2) {
+
+		Assert.assertTrue(
+			structuredContentImage1 + " does not equal " +
+				structuredContentImage2,
+			equals(structuredContentImage1, structuredContentImage2));
+	}
+
 	protected void assertEquals(
 		List<StructuredContentImage> structuredContentImages1,
 		List<StructuredContentImage> structuredContentImages2) {
@@ -162,16 +334,6 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 			assertEquals(structuredContentImage1, structuredContentImage2);
 		}
-	}
-
-	protected void assertEquals(
-		StructuredContentImage structuredContentImage1,
-		StructuredContentImage structuredContentImage2) {
-
-		Assert.assertTrue(
-			structuredContentImage1 + " does not equal " +
-				structuredContentImage2,
-			equals(structuredContentImage1, structuredContentImage2));
 	}
 
 	protected void assertEqualsIgnoringOrder(
@@ -203,11 +365,9 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		}
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
-
-		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+	protected void assertValid(StructuredContentImage structuredContentImage) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected void assertValid(Page<StructuredContentImage> page) {
@@ -218,19 +378,14 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		int size = structuredContentImages.size();
 
-		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
-			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+		if ((page.getLastPage() > 0) && (page.getPage() > 0) &&
+			(page.getPageSize() > 0) && (page.getTotalCount() > 0) &&
 			(size > 0)) {
 
 			valid = true;
 		}
 
 		Assert.assertTrue(valid);
-	}
-
-	protected void assertValid(StructuredContentImage structuredContentImage) {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
 	}
 
 	protected boolean equals(
@@ -362,113 +517,6 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected boolean invokeDeleteStructuredContentImage(
-			Long structuredContentImageId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-content-images/{structured-content-image-id}",
-					structuredContentImageId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
-	}
-
-	protected Http.Response invokeDeleteStructuredContentImageResponse(
-			Long structuredContentImageId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-content-images/{structured-content-image-id}",
-					structuredContentImageId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected StructuredContentImage invokeGetStructuredContentImage(
-			Long structuredContentImageId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-content-images/{structured-content-image-id}",
-					structuredContentImageId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), StructuredContentImage.class);
-	}
-
-	protected Http.Response invokeGetStructuredContentImageResponse(
-			Long structuredContentImageId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-content-images/{structured-content-image-id}",
-					structuredContentImageId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected Page<StructuredContentImage>
-			invokeGetStructuredContentStructuredContentImagesPage(
-				Long structuredContentId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}/structured-content-images",
-					structuredContentId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
-			new TypeReference<Page<StructuredContentImage>>() {
-			});
-	}
-
-	protected Http.Response
-			invokeGetStructuredContentStructuredContentImagesPageResponse(
-				Long structuredContentId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}/structured-content-images",
-					structuredContentId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
 	protected StructuredContentImage randomStructuredContentImage() {
 		return new StructuredContentImage() {
 			{
@@ -484,40 +532,6 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		};
 	}
 
-	protected StructuredContentImage
-			testDeleteStructuredContentImage_addStructuredContentImage()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected StructuredContentImage
-			testGetStructuredContentImage_addStructuredContentImage()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected StructuredContentImage
-			testGetStructuredContentStructuredContentImagesPage_addStructuredContentImage(
-				Long structuredContentId,
-				StructuredContentImage structuredContentImage)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long
-			testGetStructuredContentStructuredContentImagesPage_getStructuredContentId()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -526,16 +540,16 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 			return new ArrayList<>(items);
 		}
 
-		public long getItemsPerPage() {
-			return itemsPerPage;
+		public long getLastPage() {
+			return lastPage;
 		}
 
-		public long getLastPageNumber() {
-			return lastPageNumber;
+		public long getPage() {
+			return page;
 		}
 
-		public long getPageNumber() {
-			return pageNumber;
+		public long getPageSize() {
+			return pageSize;
 		}
 
 		public long getTotalCount() {
@@ -545,14 +559,14 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		@JsonProperty
 		protected Collection<T> items;
 
-		@JsonProperty("pageSize")
-		protected long itemsPerPage;
+		@JsonProperty
+		protected long lastPage;
 
 		@JsonProperty
-		protected long lastPageNumber;
+		protected long page;
 
-		@JsonProperty("page")
-		protected long pageNumber;
+		@JsonProperty
+		protected long pageSize;
 
 		@JsonProperty
 		protected long totalCount;
@@ -582,16 +596,35 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 	}
 
 	private static DateFormat _dateFormat;
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter(
+							"Liferay.Vulcan",
+							SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
-
-	private URL _resourceURL;
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper() {
+		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter(
+							"Liferay.Vulcan",
+							SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
+		}
+	};
 
 	@Inject
 	private StructuredContentImageResource _structuredContentImageResource;
+
+	private URL _resourceURL;
 
 }

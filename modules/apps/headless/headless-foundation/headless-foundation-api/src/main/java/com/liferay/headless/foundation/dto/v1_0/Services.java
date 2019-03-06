@@ -14,6 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.annotation.Generated;
 
@@ -33,19 +36,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("Services")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Services")
 public class Services {
 
+	@Schema(description = "https://www.schema.org/OpeningHoursSpecification")
 	public HoursAvailable[] getHoursAvailable() {
 		return hoursAvailable;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getServiceType() {
-		return serviceType;
 	}
 
 	public void setHoursAvailable(HoursAvailable[] hoursAvailable) {
@@ -65,6 +62,14 @@ public class Services {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected HoursAvailable[] hoursAvailable;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -77,6 +82,14 @@ public class Services {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String getServiceType() {
+		return serviceType;
 	}
 
 	public void setServiceType(String serviceType) {
@@ -95,16 +108,34 @@ public class Services {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String serviceType;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(14);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"hoursAvailable\": ");
 
-		sb.append("\"");
-		sb.append(hoursAvailable);
-		sb.append("\"");
+		if (hoursAvailable == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < hoursAvailable.length; i++) {
+				sb.append(hoursAvailable[i]);
+
+				if ((i + 1) < hoursAvailable.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"id\": ");
@@ -122,17 +153,5 @@ public class Services {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected HoursAvailable[] hoursAvailable;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String serviceType;
 
 }

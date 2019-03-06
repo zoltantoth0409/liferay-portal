@@ -18,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
 import com.liferay.headless.web.experience.dto.v1_0.Options;
@@ -32,7 +34,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
@@ -111,6 +112,42 @@ public abstract class BaseCommentResourceTestCase {
 		assertResponseCode(404, invokeGetCommentResponse(comment.getId()));
 	}
 
+	protected Comment testDeleteComment_addComment() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected boolean invokeDeleteComment(Long commentId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL + _toPath("/comments/{comment-id}", commentId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), Boolean.class);
+	}
+
+	protected Http.Response invokeDeleteCommentResponse(Long commentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL + _toPath("/comments/{comment-id}", commentId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
 	@Test
 	public void testGetComment() throws Exception {
 		Comment postComment = testGetComment_addComment();
@@ -119,6 +156,103 @@ public abstract class BaseCommentResourceTestCase {
 
 		assertEquals(postComment, getComment);
 		assertValid(getComment);
+	}
+
+	protected Comment testGetComment_addComment() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Comment invokeGetComment(Long commentId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL + _toPath("/comments/{comment-id}", commentId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), Comment.class);
+	}
+
+	protected Http.Response invokeGetCommentResponse(Long commentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL + _toPath("/comments/{comment-id}", commentId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPutComment() throws Exception {
+		Comment postComment = testPutComment_addComment();
+
+		Comment randomComment = randomComment();
+
+		Comment putComment = invokePutComment(
+			postComment.getId(), randomComment);
+
+		assertEquals(randomComment, putComment);
+		assertValid(putComment);
+
+		Comment getComment = invokeGetComment(putComment.getId());
+
+		assertEquals(randomComment, getComment);
+		assertValid(getComment);
+	}
+
+	protected Comment testPutComment_addComment() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Comment invokePutComment(Long commentId, Comment comment)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(comment),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL + _toPath("/comments/{comment-id}", commentId);
+
+		options.setLocation(location);
+
+		options.setPut(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), Comment.class);
+	}
+
+	protected Http.Response invokePutCommentResponse(
+			Long commentId, Comment comment)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(comment),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL + _toPath("/comments/{comment-id}", commentId);
+
+		options.setLocation(location);
+
+		options.setPut(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	@Test
@@ -194,6 +328,8 @@ public abstract class BaseCommentResourceTestCase {
 
 		Comment comment1 = testGetCommentCommentsPage_addComment(
 			commentId, randomComment());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		Comment comment2 = testGetCommentCommentsPage_addComment(
 			commentId, randomComment());
 
@@ -331,6 +467,135 @@ public abstract class BaseCommentResourceTestCase {
 		}
 	}
 
+	protected Comment testGetCommentCommentsPage_addComment(
+			Long commentId, Comment comment)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetCommentCommentsPage_getCommentId() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Page<Comment> invokeGetCommentCommentsPage(
+			Long commentId, String filterString, Pagination pagination,
+			String sortString)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath("/comments/{comment-id}/comments", commentId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPage());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<Comment>>() {
+			});
+	}
+
+	protected Http.Response invokeGetCommentCommentsPageResponse(
+			Long commentId, String filterString, Pagination pagination,
+			String sortString)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath("/comments/{comment-id}/comments", commentId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPage());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPostCommentComment() throws Exception {
+		Comment randomComment = randomComment();
+
+		Comment postComment = testPostCommentComment_addComment(randomComment);
+
+		assertEquals(randomComment, postComment);
+		assertValid(postComment);
+	}
+
+	protected Comment testPostCommentComment_addComment(Comment comment)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Comment invokePostCommentComment(Long commentId, Comment comment)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(comment),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath("/comments/{comment-id}/comments", commentId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), Comment.class);
+	}
+
+	protected Http.Response invokePostCommentCommentResponse(
+			Long commentId, Comment comment)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(comment),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath("/comments/{comment-id}/comments", commentId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
 	@Test
 	public void testGetStructuredContentCommentsPage() throws Exception {
 		Long structuredContentId =
@@ -411,6 +676,8 @@ public abstract class BaseCommentResourceTestCase {
 
 		Comment comment1 = testGetStructuredContentCommentsPage_addComment(
 			structuredContentId, randomComment());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		Comment comment2 = testGetStructuredContentCommentsPage_addComment(
 			structuredContentId, randomComment());
 
@@ -564,14 +831,78 @@ public abstract class BaseCommentResourceTestCase {
 		}
 	}
 
-	@Test
-	public void testPostCommentComment() throws Exception {
-		Comment randomComment = randomComment();
+	protected Comment testGetStructuredContentCommentsPage_addComment(
+			Long structuredContentId, Comment comment)
+		throws Exception {
 
-		Comment postComment = testPostCommentComment_addComment(randomComment);
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
 
-		assertEquals(randomComment, postComment);
-		assertValid(postComment);
+	protected Long testGetStructuredContentCommentsPage_getStructuredContentId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Page<Comment> invokeGetStructuredContentCommentsPage(
+			Long structuredContentId, String filterString,
+			Pagination pagination, String sortString)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/comments",
+					structuredContentId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPage());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<Comment>>() {
+			});
+	}
+
+	protected Http.Response invokeGetStructuredContentCommentsPageResponse(
+			Long structuredContentId, String filterString,
+			Pagination pagination, String sortString)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/comments",
+					structuredContentId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPage());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	@Test
@@ -585,22 +916,68 @@ public abstract class BaseCommentResourceTestCase {
 		assertValid(postComment);
 	}
 
-	@Test
-	public void testPutComment() throws Exception {
-		Comment postComment = testPutComment_addComment();
+	protected Comment testPostStructuredContentComment_addComment(
+			Comment comment)
+		throws Exception {
 
-		Comment randomComment = randomComment();
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
 
-		Comment putComment = invokePutComment(
-			postComment.getId(), randomComment);
+	protected Comment invokePostStructuredContentComment(
+			Long structuredContentId, Comment comment)
+		throws Exception {
 
-		assertEquals(randomComment, putComment);
-		assertValid(putComment);
+		Http.Options options = _createHttpOptions();
 
-		Comment getComment = invokeGetComment(putComment.getId());
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(comment),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		assertEquals(randomComment, getComment);
-		assertValid(getComment);
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/comments",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), Comment.class);
+	}
+
+	protected Http.Response invokePostStructuredContentCommentResponse(
+			Long structuredContentId, Comment comment)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(comment),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/comments",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected void assertResponseCode(
+		int expectedResponseCode, Http.Response actualResponse) {
+
+		Assert.assertEquals(
+			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
 	protected void assertEquals(Comment comment1, Comment comment2) {
@@ -643,13 +1020,6 @@ public abstract class BaseCommentResourceTestCase {
 		}
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
-
-		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
-	}
-
 	protected void assertValid(Comment comment) {
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
@@ -662,8 +1032,8 @@ public abstract class BaseCommentResourceTestCase {
 
 		int size = comments.size();
 
-		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
-			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+		if ((page.getLastPage() > 0) && (page.getPage() > 0) &&
+			(page.getPageSize() > 0) && (page.getTotalCount() > 0) &&
 			(size > 0)) {
 
 			valid = true;
@@ -764,245 +1134,6 @@ public abstract class BaseCommentResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected boolean invokeDeleteComment(Long commentId) throws Exception {
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		options.setLocation(
-			_resourceURL + _toPath("/comments/{comment-id}", commentId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
-	}
-
-	protected Http.Response invokeDeleteCommentResponse(Long commentId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		options.setLocation(
-			_resourceURL + _toPath("/comments/{comment-id}", commentId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected Comment invokeGetComment(Long commentId) throws Exception {
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL + _toPath("/comments/{comment-id}", commentId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Comment.class);
-	}
-
-	protected Page<Comment> invokeGetCommentCommentsPage(
-			Long commentId, String filterString, Pagination pagination,
-			String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_getCommentCommentsLocation(
-				commentId, filterString, pagination, sortString));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
-			new TypeReference<Page<Comment>>() {
-			});
-	}
-
-	protected Http.Response invokeGetCommentCommentsPageResponse(
-			Long commentId, String filterString, Pagination pagination,
-			String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_getCommentCommentsLocation(
-				commentId, filterString, pagination, sortString));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected Http.Response invokeGetCommentResponse(Long commentId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL + _toPath("/comments/{comment-id}", commentId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected Page<Comment> invokeGetStructuredContentCommentsPage(
-			Long structuredContentId, String filterString,
-			Pagination pagination, String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_getStructuredContentCommentsLocation(
-				structuredContentId, filterString, pagination, sortString));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
-			new TypeReference<Page<Comment>>() {
-			});
-	}
-
-	protected Http.Response invokeGetStructuredContentCommentsPageResponse(
-			Long structuredContentId, String filterString,
-			Pagination pagination, String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_getStructuredContentCommentsLocation(
-				structuredContentId, filterString, pagination, sortString));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected Comment invokePostCommentComment(Long commentId, Comment comment)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath("/comments/{comment-id}/comments", commentId));
-
-		options.setPost(true);
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Comment.class);
-	}
-
-	protected Http.Response invokePostCommentCommentResponse(
-			Long commentId, Comment comment)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath("/comments/{comment-id}/comments", commentId));
-
-		options.setPost(true);
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected Comment invokePostStructuredContentComment(
-			Long structuredContentId, Comment comment)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}/comments",
-					structuredContentId));
-
-		options.setPost(true);
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Comment.class);
-	}
-
-	protected Http.Response invokePostStructuredContentCommentResponse(
-			Long structuredContentId, Comment comment)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}/comments",
-					structuredContentId));
-
-		options.setPost(true);
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected Comment invokePutComment(Long commentId, Comment comment)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		options.setLocation(
-			_resourceURL + _toPath("/comments/{comment-id}", commentId));
-
-		options.setPut(true);
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Comment.class);
-	}
-
-	protected Http.Response invokePutCommentResponse(
-			Long commentId, Comment comment)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		options.setLocation(
-			_resourceURL + _toPath("/comments/{comment-id}", commentId));
-
-		options.setPut(true);
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
 	protected Comment randomComment() {
 		return new Comment() {
 			{
@@ -1015,64 +1146,6 @@ public abstract class BaseCommentResourceTestCase {
 		};
 	}
 
-	protected Comment testDeleteComment_addComment() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Comment testGetComment_addComment() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Comment testGetCommentCommentsPage_addComment(
-			Long commentId, Comment comment)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long testGetCommentCommentsPage_getCommentId() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Comment testGetStructuredContentCommentsPage_addComment(
-			Long structuredContentId, Comment comment)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long testGetStructuredContentCommentsPage_getStructuredContentId()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Comment testPostCommentComment_addComment(Comment comment)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Comment testPostStructuredContentComment_addComment(
-			Comment comment)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Comment testPutComment_addComment() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -1081,16 +1154,16 @@ public abstract class BaseCommentResourceTestCase {
 			return new ArrayList<>(items);
 		}
 
-		public long getItemsPerPage() {
-			return itemsPerPage;
+		public long getLastPage() {
+			return lastPage;
 		}
 
-		public long getLastPageNumber() {
-			return lastPageNumber;
+		public long getPage() {
+			return page;
 		}
 
-		public long getPageNumber() {
-			return pageNumber;
+		public long getPageSize() {
+			return pageSize;
 		}
 
 		public long getTotalCount() {
@@ -1100,14 +1173,14 @@ public abstract class BaseCommentResourceTestCase {
 		@JsonProperty
 		protected Collection<T> items;
 
-		@JsonProperty("pageSize")
-		protected long itemsPerPage;
+		@JsonProperty
+		protected long lastPage;
 
 		@JsonProperty
-		protected long lastPageNumber;
+		protected long page;
 
-		@JsonProperty("page")
-		protected long pageNumber;
+		@JsonProperty
+		protected long pageSize;
 
 		@JsonProperty
 		protected long totalCount;
@@ -1132,51 +1205,36 @@ public abstract class BaseCommentResourceTestCase {
 		return options;
 	}
 
-	private String _getCommentCommentsLocation(
-		Long commentId, String filterString, Pagination pagination,
-		String sortString) {
-
-		String url =
-			_resourceURL +
-				_toPath("/comments/{comment-id}/comments", commentId);
-
-		url += "?filter=" + URLCodec.encodeURL(filterString);
-		url += "&page=" + pagination.getPageNumber();
-		url += "&pageSize=" + pagination.getItemsPerPage();
-		url += "&sort=" + URLCodec.encodeURL(sortString);
-
-		return url;
-	}
-
-	private String _getStructuredContentCommentsLocation(
-		Long structuredContentId, String filterString, Pagination pagination,
-		String sortString) {
-
-		String url =
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}/comments",
-					structuredContentId);
-
-		url += "?filter=" + URLCodec.encodeURL(filterString);
-		url += "&page=" + pagination.getPageNumber();
-		url += "&pageSize=" + pagination.getItemsPerPage();
-		url += "&sort=" + URLCodec.encodeURL(sortString);
-
-		return url;
-	}
-
 	private String _toPath(String template, Object value) {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
 	private static DateFormat _dateFormat;
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter(
+							"Liferay.Vulcan",
+							SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper() {
+		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter(
+							"Liferay.Vulcan",
+							SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
+		}
+	};
 
 	@Inject
 	private CommentResource _commentResource;

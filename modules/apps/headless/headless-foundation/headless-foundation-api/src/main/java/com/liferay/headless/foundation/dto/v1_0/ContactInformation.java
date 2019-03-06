@@ -14,6 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,63 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("ContactInformation")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "ContactInformation")
 public class ContactInformation {
 
 	public Email[] getEmail() {
 		return email;
-	}
-
-	public Long[] getEmailIds() {
-		return emailIds;
-	}
-
-	public String getFacebook() {
-		return facebook;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getJabber() {
-		return jabber;
-	}
-
-	public PostalAddress[] getPostalAddress() {
-		return postalAddress;
-	}
-
-	public Long[] getPostalAddressIds() {
-		return postalAddressIds;
-	}
-
-	public String getSkype() {
-		return skype;
-	}
-
-	public String getSms() {
-		return sms;
-	}
-
-	public Phone[] getTelephone() {
-		return telephone;
-	}
-
-	public Long[] getTelephoneIds() {
-		return telephoneIds;
-	}
-
-	public String getTwitter() {
-		return twitter;
-	}
-
-	public WebUrl[] getWebUrl() {
-		return webUrl;
-	}
-
-	public Long[] getWebUrlIds() {
-		return webUrlIds;
 	}
 
 	public void setEmail(Email[] email) {
@@ -108,6 +58,14 @@ public class ContactInformation {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Email[] email;
+
+	public Long[] getEmailIds() {
+		return emailIds;
+	}
+
 	public void setEmailIds(Long[] emailIds) {
 		this.emailIds = emailIds;
 	}
@@ -122,6 +80,14 @@ public class ContactInformation {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] emailIds;
+
+	public String getFacebook() {
+		return facebook;
 	}
 
 	public void setFacebook(String facebook) {
@@ -140,6 +106,14 @@ public class ContactInformation {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String facebook;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -152,6 +126,14 @@ public class ContactInformation {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String getJabber() {
+		return jabber;
 	}
 
 	public void setJabber(String jabber) {
@@ -168,6 +150,14 @@ public class ContactInformation {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String jabber;
+
+	public PostalAddress[] getPostalAddress() {
+		return postalAddress;
 	}
 
 	public void setPostalAddress(PostalAddress[] postalAddress) {
@@ -187,6 +177,14 @@ public class ContactInformation {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected PostalAddress[] postalAddress;
+
+	public Long[] getPostalAddressIds() {
+		return postalAddressIds;
+	}
+
 	public void setPostalAddressIds(Long[] postalAddressIds) {
 		this.postalAddressIds = postalAddressIds;
 	}
@@ -201,6 +199,14 @@ public class ContactInformation {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] postalAddressIds;
+
+	public String getSkype() {
+		return skype;
 	}
 
 	public void setSkype(String skype) {
@@ -219,6 +225,14 @@ public class ContactInformation {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String skype;
+
+	public String getSms() {
+		return sms;
+	}
+
 	public void setSms(String sms) {
 		this.sms = sms;
 	}
@@ -231,6 +245,14 @@ public class ContactInformation {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String sms;
+
+	public Phone[] getTelephone() {
+		return telephone;
 	}
 
 	public void setTelephone(Phone[] telephone) {
@@ -249,6 +271,14 @@ public class ContactInformation {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Phone[] telephone;
+
+	public Long[] getTelephoneIds() {
+		return telephoneIds;
+	}
+
 	public void setTelephoneIds(Long[] telephoneIds) {
 		this.telephoneIds = telephoneIds;
 	}
@@ -263,6 +293,14 @@ public class ContactInformation {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] telephoneIds;
+
+	public String getTwitter() {
+		return twitter;
 	}
 
 	public void setTwitter(String twitter) {
@@ -281,6 +319,18 @@ public class ContactInformation {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String twitter;
+
+	public WebUrl[] getWebUrl() {
+		return webUrl;
+	}
+
+	public void setWebUrl(WebUrl[] webUrl) {
+		this.webUrl = webUrl;
+	}
+
 	@JsonIgnore
 	public void setWebUrl(
 		UnsafeSupplier<WebUrl[], Exception> webUrlUnsafeSupplier) {
@@ -293,8 +343,12 @@ public class ContactInformation {
 		}
 	}
 
-	public void setWebUrl(WebUrl[] webUrl) {
-		this.webUrl = webUrl;
+	@GraphQLField
+	@JsonProperty
+	protected WebUrl[] webUrl;
+
+	public Long[] getWebUrlIds() {
+		return webUrlIds;
 	}
 
 	public void setWebUrlIds(Long[] webUrlIds) {
@@ -313,23 +367,55 @@ public class ContactInformation {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Long[] webUrlIds;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(69);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"email\": ");
 
-		sb.append("\"");
-		sb.append(email);
-		sb.append("\"");
+		if (email == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < email.length; i++) {
+				sb.append(email[i]);
+
+				if ((i + 1) < email.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"emailIds\": ");
 
-		sb.append("\"");
-		sb.append(emailIds);
-		sb.append("\"");
+		if (emailIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < emailIds.length; i++) {
+				sb.append(emailIds[i]);
+
+				if ((i + 1) < emailIds.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"facebook\": ");
@@ -353,16 +439,44 @@ public class ContactInformation {
 
 		sb.append("\"postalAddress\": ");
 
-		sb.append("\"");
-		sb.append(postalAddress);
-		sb.append("\"");
+		if (postalAddress == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < postalAddress.length; i++) {
+				sb.append(postalAddress[i]);
+
+				if ((i + 1) < postalAddress.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"postalAddressIds\": ");
 
-		sb.append("\"");
-		sb.append(postalAddressIds);
-		sb.append("\"");
+		if (postalAddressIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < postalAddressIds.length; i++) {
+				sb.append(postalAddressIds[i]);
+
+				if ((i + 1) < postalAddressIds.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"skype\": ");
@@ -381,16 +495,44 @@ public class ContactInformation {
 
 		sb.append("\"telephone\": ");
 
-		sb.append("\"");
-		sb.append(telephone);
-		sb.append("\"");
+		if (telephone == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < telephone.length; i++) {
+				sb.append(telephone[i]);
+
+				if ((i + 1) < telephone.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"telephoneIds\": ");
 
-		sb.append("\"");
-		sb.append(telephoneIds);
-		sb.append("\"");
+		if (telephoneIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < telephoneIds.length; i++) {
+				sb.append(telephoneIds[i]);
+
+				if ((i + 1) < telephoneIds.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"twitter\": ");
@@ -402,76 +544,47 @@ public class ContactInformation {
 
 		sb.append("\"webUrl\": ");
 
-		sb.append("\"");
-		sb.append(webUrl);
-		sb.append("\"");
+		if (webUrl == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < webUrl.length; i++) {
+				sb.append(webUrl[i]);
+
+				if ((i + 1) < webUrl.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"webUrlIds\": ");
 
-		sb.append("\"");
-		sb.append(webUrlIds);
-		sb.append("\"");
+		if (webUrlIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < webUrlIds.length; i++) {
+				sb.append(webUrlIds[i]);
+
+				if ((i + 1) < webUrlIds.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
 
 		sb.append("}");
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected Email[] email;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long[] emailIds;
-
-	@GraphQLField
-	@JsonProperty
-	protected String facebook;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String jabber;
-
-	@GraphQLField
-	@JsonProperty
-	protected PostalAddress[] postalAddress;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long[] postalAddressIds;
-
-	@GraphQLField
-	@JsonProperty
-	protected String skype;
-
-	@GraphQLField
-	@JsonProperty
-	protected String sms;
-
-	@GraphQLField
-	@JsonProperty
-	protected Phone[] telephone;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long[] telephoneIds;
-
-	@GraphQLField
-	@JsonProperty
-	protected String twitter;
-
-	@GraphQLField
-	@JsonProperty
-	protected WebUrl[] webUrl;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long[] webUrlIds;
 
 }

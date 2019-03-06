@@ -14,6 +14,7 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,15 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("RenderedContentsURL")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "RenderedContentsURL")
 public class RenderedContentsURL {
 
 	public String getRenderedContentURL() {
 		return renderedContentURL;
-	}
-
-	public String getTemplateName() {
-		return templateName;
 	}
 
 	public void setRenderedContentURL(String renderedContentURL) {
@@ -60,6 +58,14 @@ public class RenderedContentsURL {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String renderedContentURL;
+
+	public String getTemplateName() {
+		return templateName;
+	}
+
 	public void setTemplateName(String templateName) {
 		this.templateName = templateName;
 	}
@@ -76,8 +82,12 @@ public class RenderedContentsURL {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String templateName;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -98,13 +108,5 @@ public class RenderedContentsURL {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String renderedContentURL;
-
-	@GraphQLField
-	@JsonProperty
-	protected String templateName;
 
 }

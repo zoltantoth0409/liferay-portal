@@ -14,6 +14,7 @@
 
 package com.liferay.headless.collaboration.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -35,91 +36,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("BlogPosting")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "BlogPosting")
 public class BlogPosting {
 
 	public AggregateRating getAggregateRating() {
 		return aggregateRating;
-	}
-
-	public String getAlternativeHeadline() {
-		return alternativeHeadline;
-	}
-
-	public String getArticleBody() {
-		return articleBody;
-	}
-
-	public String getCaption() {
-		return caption;
-	}
-
-	public Categories[] getCategories() {
-		return categories;
-	}
-
-	public Long[] getCategoryIds() {
-		return categoryIds;
-	}
-
-	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public Date getDatePublished() {
-		return datePublished;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public String getEncodingFormat() {
-		return encodingFormat;
-	}
-
-	public String getFriendlyUrlPath() {
-		return friendlyUrlPath;
-	}
-
-	public Boolean getHasComments() {
-		return hasComments;
-	}
-
-	public String getHeadline() {
-		return headline;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public Image getImage() {
-		return image;
-	}
-
-	public Long getImageId() {
-		return imageId;
-	}
-
-	public String[] getKeywords() {
-		return keywords;
-	}
-
-	public String getViewableBy() {
-		return viewableBy;
 	}
 
 	public void setAggregateRating(AggregateRating aggregateRating) {
@@ -139,6 +61,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected AggregateRating aggregateRating;
+
+	public String getAlternativeHeadline() {
+		return alternativeHeadline;
+	}
+
 	public void setAlternativeHeadline(String alternativeHeadline) {
 		this.alternativeHeadline = alternativeHeadline;
 	}
@@ -153,6 +83,14 @@ public class BlogPosting {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String alternativeHeadline;
+
+	public String getArticleBody() {
+		return articleBody;
 	}
 
 	public void setArticleBody(String articleBody) {
@@ -171,6 +109,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String articleBody;
+
+	public String getCaption() {
+		return caption;
+	}
+
 	public void setCaption(String caption) {
 		this.caption = caption;
 	}
@@ -185,6 +131,14 @@ public class BlogPosting {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String caption;
+
+	public Categories[] getCategories() {
+		return categories;
 	}
 
 	public void setCategories(Categories[] categories) {
@@ -203,6 +157,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Categories[] categories;
+
+	public Long[] getCategoryIds() {
+		return categoryIds;
+	}
+
 	public void setCategoryIds(Long[] categoryIds) {
 		this.categoryIds = categoryIds;
 	}
@@ -217,6 +179,14 @@ public class BlogPosting {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] categoryIds;
+
+	public Long getContentSpace() {
+		return contentSpace;
 	}
 
 	public void setContentSpace(Long contentSpace) {
@@ -235,6 +205,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Long contentSpace;
+
+	public Creator getCreator() {
+		return creator;
+	}
+
 	public void setCreator(Creator creator) {
 		this.creator = creator;
 	}
@@ -249,6 +227,14 @@ public class BlogPosting {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
@@ -267,6 +253,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
 	public void setDateModified(Date dateModified) {
 		this.dateModified = dateModified;
 	}
@@ -281,6 +275,14 @@ public class BlogPosting {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	public Date getDatePublished() {
+		return datePublished;
 	}
 
 	public void setDatePublished(Date datePublished) {
@@ -299,6 +301,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Date datePublished;
+
+	public String getDescription() {
+		return description;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -313,6 +323,14 @@ public class BlogPosting {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
+	public String getEncodingFormat() {
+		return encodingFormat;
 	}
 
 	public void setEncodingFormat(String encodingFormat) {
@@ -331,6 +349,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String encodingFormat;
+
+	public String getFriendlyUrlPath() {
+		return friendlyUrlPath;
+	}
+
 	public void setFriendlyUrlPath(String friendlyUrlPath) {
 		this.friendlyUrlPath = friendlyUrlPath;
 	}
@@ -345,6 +371,14 @@ public class BlogPosting {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String friendlyUrlPath;
+
+	public Boolean getHasComments() {
+		return hasComments;
 	}
 
 	public void setHasComments(Boolean hasComments) {
@@ -363,6 +397,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Boolean hasComments;
+
+	public String getHeadline() {
+		return headline;
+	}
+
 	public void setHeadline(String headline) {
 		this.headline = headline;
 	}
@@ -379,6 +421,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String headline;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -393,6 +443,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public Image getImage() {
+		return image;
+	}
+
 	public void setImage(Image image) {
 		this.image = image;
 	}
@@ -405,6 +463,14 @@ public class BlogPosting {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Image image;
+
+	public Long getImageId() {
+		return imageId;
 	}
 
 	public void setImageId(Long imageId) {
@@ -423,6 +489,14 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Long imageId;
+
+	public String[] getKeywords() {
+		return keywords;
+	}
+
 	public void setKeywords(String[] keywords) {
 		this.keywords = keywords;
 	}
@@ -437,6 +511,14 @@ public class BlogPosting {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String[] keywords;
+
+	public String getViewableBy() {
+		return viewableBy;
 	}
 
 	public void setViewableBy(String viewableBy) {
@@ -455,8 +537,12 @@ public class BlogPosting {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String viewableBy;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(92);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -488,16 +574,44 @@ public class BlogPosting {
 
 		sb.append("\"categories\": ");
 
-		sb.append("\"");
-		sb.append(categories);
-		sb.append("\"");
+		if (categories == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < categories.length; i++) {
+				sb.append(categories[i]);
+
+				if ((i + 1) < categories.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"categoryIds\": ");
 
-		sb.append("\"");
-		sb.append(categoryIds);
-		sb.append("\"");
+		if (categoryIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < categoryIds.length; i++) {
+				sb.append(categoryIds[i]);
+
+				if ((i + 1) < categoryIds.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"contentSpace\": ");
@@ -581,9 +695,25 @@ public class BlogPosting {
 
 		sb.append("\"keywords\": ");
 
-		sb.append("\"");
-		sb.append(keywords);
-		sb.append("\"");
+		if (keywords == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < keywords.length; i++) {
+				sb.append("\"");
+				sb.append(keywords[i]);
+				sb.append("\"");
+
+				if ((i + 1) < keywords.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"viewableBy\": ");
@@ -596,89 +726,5 @@ public class BlogPosting {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected AggregateRating aggregateRating;
-
-	@GraphQLField
-	@JsonProperty
-	protected String alternativeHeadline;
-
-	@GraphQLField
-	@JsonProperty
-	protected String articleBody;
-
-	@GraphQLField
-	@JsonProperty
-	protected String caption;
-
-	@GraphQLField
-	@JsonProperty
-	protected Categories[] categories;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long[] categoryIds;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long contentSpace;
-
-	@GraphQLField
-	@JsonProperty
-	protected Creator creator;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date dateCreated;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date dateModified;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date datePublished;
-
-	@GraphQLField
-	@JsonProperty
-	protected String description;
-
-	@GraphQLField
-	@JsonProperty
-	protected String encodingFormat;
-
-	@GraphQLField
-	@JsonProperty
-	protected String friendlyUrlPath;
-
-	@GraphQLField
-	@JsonProperty
-	protected Boolean hasComments;
-
-	@GraphQLField
-	@JsonProperty
-	protected String headline;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected Image image;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long imageId;
-
-	@GraphQLField
-	@JsonProperty
-	protected String[] keywords;
-
-	@GraphQLField
-	@JsonProperty
-	protected String viewableBy;
 
 }

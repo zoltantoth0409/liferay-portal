@@ -14,6 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,23 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("HoursAvailable")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "HoursAvailable")
 public class HoursAvailable {
 
 	public String getCloses() {
 		return closes;
-	}
-
-	public String getDayOfWeek() {
-		return dayOfWeek;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getOpens() {
-		return opens;
 	}
 
 	public void setCloses(String closes) {
@@ -68,6 +58,14 @@ public class HoursAvailable {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String closes;
+
+	public String getDayOfWeek() {
+		return dayOfWeek;
+	}
+
 	public void setDayOfWeek(String dayOfWeek) {
 		this.dayOfWeek = dayOfWeek;
 	}
@@ -84,6 +82,14 @@ public class HoursAvailable {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String dayOfWeek;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -96,6 +102,14 @@ public class HoursAvailable {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String getOpens() {
+		return opens;
 	}
 
 	public void setOpens(String opens) {
@@ -114,8 +128,12 @@ public class HoursAvailable {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String opens;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -148,21 +166,5 @@ public class HoursAvailable {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String closes;
-
-	@GraphQLField
-	@JsonProperty
-	protected String dayOfWeek;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String opens;
 
 }

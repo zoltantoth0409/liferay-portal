@@ -14,6 +14,7 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Date;
 
@@ -35,47 +38,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("FormStructure")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "FormStructure")
 public class FormStructure {
 
 	public String[] getAvailableLanguages() {
 		return availableLanguages;
-	}
-
-	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public FormPages[] getFormPages() {
-		return formPages;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public SuccessPage getSuccessPage() {
-		return successPage;
 	}
 
 	public void setAvailableLanguages(String[] availableLanguages) {
@@ -94,6 +62,14 @@ public class FormStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String[] availableLanguages;
+
+	public Long getContentSpace() {
+		return contentSpace;
+	}
+
 	public void setContentSpace(Long contentSpace) {
 		this.contentSpace = contentSpace;
 	}
@@ -108,6 +84,14 @@ public class FormStructure {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long contentSpace;
+
+	public Creator getCreator() {
+		return creator;
 	}
 
 	public void setCreator(Creator creator) {
@@ -126,6 +110,14 @@ public class FormStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
@@ -140,6 +132,14 @@ public class FormStructure {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	public Date getDateModified() {
+		return dateModified;
 	}
 
 	public void setDateModified(Date dateModified) {
@@ -158,6 +158,14 @@ public class FormStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	public String getDescription() {
+		return description;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -172,6 +180,15 @@ public class FormStructure {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
+	@Schema(description = "https://www.schema.org/FormLayoutPage")
+	public FormPages[] getFormPages() {
+		return formPages;
 	}
 
 	public void setFormPages(FormPages[] formPages) {
@@ -190,6 +207,14 @@ public class FormStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected FormPages[] formPages;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -204,6 +229,14 @@ public class FormStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String getName() {
+		return name;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -216,6 +249,15 @@ public class FormStructure {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	@Schema(description = "https://www.schema.org/FormSuccessPageSettings")
+	public SuccessPage getSuccessPage() {
+		return successPage;
 	}
 
 	public void setSuccessPage(SuccessPage successPage) {
@@ -234,16 +276,36 @@ public class FormStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected SuccessPage successPage;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"availableLanguages\": ");
 
-		sb.append("\"");
-		sb.append(availableLanguages);
-		sb.append("\"");
+		if (availableLanguages == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < availableLanguages.length; i++) {
+				sb.append("\"");
+				sb.append(availableLanguages[i]);
+				sb.append("\"");
+
+				if ((i + 1) < availableLanguages.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"contentSpace\": ");
@@ -279,9 +341,23 @@ public class FormStructure {
 
 		sb.append("\"formPages\": ");
 
-		sb.append("\"");
-		sb.append(formPages);
-		sb.append("\"");
+		if (formPages == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < formPages.length; i++) {
+				sb.append(formPages[i]);
+
+				if ((i + 1) < formPages.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"id\": ");
@@ -304,45 +380,5 @@ public class FormStructure {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long contentSpace;
-
-	@GraphQLField
-	@JsonProperty
-	protected Creator creator;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date dateCreated;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date dateModified;
-
-	@GraphQLField
-	@JsonProperty
-	protected String description;
-
-	@GraphQLField
-	@JsonProperty
-	protected FormPages[] formPages;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String name;
-
-	@GraphQLField
-	@JsonProperty
-	protected SuccessPage successPage;
 
 }

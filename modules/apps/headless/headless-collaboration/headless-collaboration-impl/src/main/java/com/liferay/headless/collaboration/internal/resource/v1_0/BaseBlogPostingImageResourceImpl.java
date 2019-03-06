@@ -27,6 +27,10 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 import java.net.URI;
 
 import java.util.Collections;
@@ -56,8 +60,8 @@ import javax.ws.rs.core.UriInfo;
 public abstract class BaseBlogPostingImageResourceImpl
 	implements BlogPostingImageResource {
 
-	@DELETE
 	@Override
+	@DELETE
 	@Path("/blog-posting-images/{blog-posting-image-id}")
 	@Produces("application/json")
 	public boolean deleteBlogPostingImage(
@@ -67,8 +71,8 @@ public abstract class BaseBlogPostingImageResourceImpl
 		return false;
 	}
 
-	@GET
 	@Override
+	@GET
 	@Path("/blog-posting-images/{blog-posting-image-id}")
 	@Produces("application/json")
 	public BlogPostingImage getBlogPostingImage(
@@ -78,21 +82,8 @@ public abstract class BaseBlogPostingImageResourceImpl
 		return new BlogPostingImage();
 	}
 
-	@GET
 	@Override
-	@Path("/content-spaces/{content-space-id}/blog-posting-images")
-	@Produces("application/json")
-	public Page<BlogPostingImage> getContentSpaceBlogPostingImagesPage(
-			@PathParam("content-space-id") Long contentSpaceId,
-			@Context Filter filter, @Context Pagination pagination,
-			@Context Sort[] sorts)
-		throws Exception {
-
-		return Page.of(Collections.emptyList());
-	}
-
 	@Consumes("multipart/form-data")
-	@Override
 	@PATCH
 	@Path("/blog-posting-images/{blog-posting-image-id}")
 	@Produces("application/json")
@@ -104,26 +95,47 @@ public abstract class BaseBlogPostingImageResourceImpl
 		return new BlogPostingImage();
 	}
 
-	@Consumes("multipart/form-data")
 	@Override
-	@Path("/content-spaces/{content-space-id}/blog-posting-images")
-	@POST
+	@Consumes("multipart/form-data")
+	@PUT
+	@Path("/blog-posting-images/{blog-posting-image-id}")
 	@Produces("application/json")
-	public BlogPostingImage postContentSpaceBlogPostingImage(
-			@PathParam("content-space-id") Long contentSpaceId,
+	public BlogPostingImage putBlogPostingImage(
+			@PathParam("blog-posting-image-id") Long blogPostingImageId,
 			MultipartBody multipartBody)
 		throws Exception {
 
 		return new BlogPostingImage();
 	}
 
-	@Consumes("multipart/form-data")
 	@Override
-	@Path("/blog-posting-images/{blog-posting-image-id}")
+	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "filter"),
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
+			@Parameter(in = ParameterIn.QUERY, name = "sorts")
+		}
+	)
+	@Path("/content-spaces/{content-space-id}/blog-posting-images")
 	@Produces("application/json")
-	@PUT
-	public BlogPostingImage putBlogPostingImage(
-			@PathParam("blog-posting-image-id") Long blogPostingImageId,
+	public Page<BlogPostingImage> getContentSpaceBlogPostingImagesPage(
+			@PathParam("content-space-id") Long contentSpaceId,
+			@Context Filter filter, @Context Pagination pagination,
+			@Context Sort[] sorts)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	@Consumes("multipart/form-data")
+	@POST
+	@Path("/content-spaces/{content-space-id}/blog-posting-images")
+	@Produces("application/json")
+	public BlogPostingImage postContentSpaceBlogPostingImage(
+			@PathParam("content-space-id") Long contentSpaceId,
 			MultipartBody multipartBody)
 		throws Exception {
 

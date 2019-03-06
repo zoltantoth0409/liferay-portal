@@ -14,6 +14,7 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Date;
 
@@ -35,83 +38,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("StructuredContent")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "StructuredContent")
 public class StructuredContent {
 
 	public AggregateRating getAggregateRating() {
 		return aggregateRating;
-	}
-
-	public String[] getAvailableLanguages() {
-		return availableLanguages;
-	}
-
-	public Categories[] getCategories() {
-		return categories;
-	}
-
-	public Long[] getCategoryIds() {
-		return categoryIds;
-	}
-
-	public ContentField[] getContentFields() {
-		return contentFields;
-	}
-
-	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public Long getContentStructureId() {
-		return contentStructureId;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public Date getDatePublished() {
-		return datePublished;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Boolean getHasComments() {
-		return hasComments;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String[] getKeywords() {
-		return keywords;
-	}
-
-	public Date getLastReviewed() {
-		return lastReviewed;
-	}
-
-	public RenderedContentsURL[] getRenderedContentsURL() {
-		return renderedContentsURL;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getViewableBy() {
-		return viewableBy;
 	}
 
 	public void setAggregateRating(AggregateRating aggregateRating) {
@@ -131,6 +63,14 @@ public class StructuredContent {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected AggregateRating aggregateRating;
+
+	public String[] getAvailableLanguages() {
+		return availableLanguages;
+	}
+
 	public void setAvailableLanguages(String[] availableLanguages) {
 		this.availableLanguages = availableLanguages;
 	}
@@ -145,6 +85,14 @@ public class StructuredContent {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String[] availableLanguages;
+
+	public Categories[] getCategories() {
+		return categories;
 	}
 
 	public void setCategories(Categories[] categories) {
@@ -163,6 +111,14 @@ public class StructuredContent {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Categories[] categories;
+
+	public Long[] getCategoryIds() {
+		return categoryIds;
+	}
+
 	public void setCategoryIds(Long[] categoryIds) {
 		this.categoryIds = categoryIds;
 	}
@@ -177,6 +133,14 @@ public class StructuredContent {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] categoryIds;
+
+	public ContentField[] getContentFields() {
+		return contentFields;
 	}
 
 	public void setContentFields(ContentField[] contentFields) {
@@ -195,6 +159,14 @@ public class StructuredContent {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected ContentField[] contentFields;
+
+	public Long getContentSpace() {
+		return contentSpace;
+	}
+
 	public void setContentSpace(Long contentSpace) {
 		this.contentSpace = contentSpace;
 	}
@@ -209,6 +181,14 @@ public class StructuredContent {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long contentSpace;
+
+	public Long getContentStructureId() {
+		return contentStructureId;
 	}
 
 	public void setContentStructureId(Long contentStructureId) {
@@ -227,6 +207,14 @@ public class StructuredContent {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Long contentStructureId;
+
+	public Creator getCreator() {
+		return creator;
+	}
+
 	public void setCreator(Creator creator) {
 		this.creator = creator;
 	}
@@ -241,6 +229,14 @@ public class StructuredContent {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
@@ -259,6 +255,14 @@ public class StructuredContent {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
 	public void setDateModified(Date dateModified) {
 		this.dateModified = dateModified;
 	}
@@ -273,6 +277,14 @@ public class StructuredContent {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	public Date getDatePublished() {
+		return datePublished;
 	}
 
 	public void setDatePublished(Date datePublished) {
@@ -291,6 +303,14 @@ public class StructuredContent {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Date datePublished;
+
+	public String getDescription() {
+		return description;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -305,6 +325,14 @@ public class StructuredContent {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
+	public Boolean getHasComments() {
+		return hasComments;
 	}
 
 	public void setHasComments(Boolean hasComments) {
@@ -323,6 +351,14 @@ public class StructuredContent {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Boolean hasComments;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -335,6 +371,14 @@ public class StructuredContent {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String[] getKeywords() {
+		return keywords;
 	}
 
 	public void setKeywords(String[] keywords) {
@@ -353,6 +397,14 @@ public class StructuredContent {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String[] keywords;
+
+	public Date getLastReviewed() {
+		return lastReviewed;
+	}
+
 	public void setLastReviewed(Date lastReviewed) {
 		this.lastReviewed = lastReviewed;
 	}
@@ -367,6 +419,15 @@ public class StructuredContent {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Date lastReviewed;
+
+	@Schema(description = "https://www.schema.org/templates")
+	public RenderedContentsURL[] getRenderedContentsURL() {
+		return renderedContentsURL;
 	}
 
 	public void setRenderedContentsURL(
@@ -388,6 +449,14 @@ public class StructuredContent {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected RenderedContentsURL[] renderedContentsURL;
+
+	public String getTitle() {
+		return title;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -402,6 +471,14 @@ public class StructuredContent {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String title;
+
+	public String getViewableBy() {
+		return viewableBy;
 	}
 
 	public void setViewableBy(String viewableBy) {
@@ -420,8 +497,12 @@ public class StructuredContent {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String viewableBy;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(84);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -432,30 +513,88 @@ public class StructuredContent {
 
 		sb.append("\"availableLanguages\": ");
 
-		sb.append("\"");
-		sb.append(availableLanguages);
-		sb.append("\"");
+		if (availableLanguages == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < availableLanguages.length; i++) {
+				sb.append("\"");
+				sb.append(availableLanguages[i]);
+				sb.append("\"");
+
+				if ((i + 1) < availableLanguages.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"categories\": ");
 
-		sb.append("\"");
-		sb.append(categories);
-		sb.append("\"");
+		if (categories == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < categories.length; i++) {
+				sb.append(categories[i]);
+
+				if ((i + 1) < categories.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"categoryIds\": ");
 
-		sb.append("\"");
-		sb.append(categoryIds);
-		sb.append("\"");
+		if (categoryIds == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < categoryIds.length; i++) {
+				sb.append(categoryIds[i]);
+
+				if ((i + 1) < categoryIds.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"contentFields\": ");
 
-		sb.append("\"");
-		sb.append(contentFields);
-		sb.append("\"");
+		if (contentFields == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < contentFields.length; i++) {
+				sb.append(contentFields[i]);
+
+				if ((i + 1) < contentFields.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"contentSpace\": ");
@@ -513,9 +652,25 @@ public class StructuredContent {
 
 		sb.append("\"keywords\": ");
 
-		sb.append("\"");
-		sb.append(keywords);
-		sb.append("\"");
+		if (keywords == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < keywords.length; i++) {
+				sb.append("\"");
+				sb.append(keywords[i]);
+				sb.append("\"");
+
+				if ((i + 1) < keywords.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"lastReviewed\": ");
@@ -527,9 +682,23 @@ public class StructuredContent {
 
 		sb.append("\"renderedContentsURL\": ");
 
-		sb.append("\"");
-		sb.append(renderedContentsURL);
-		sb.append("\"");
+		if (renderedContentsURL == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < renderedContentsURL.length; i++) {
+				sb.append(renderedContentsURL[i]);
+
+				if ((i + 1) < renderedContentsURL.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"title\": ");
@@ -549,81 +718,5 @@ public class StructuredContent {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected AggregateRating aggregateRating;
-
-	@GraphQLField
-	@JsonProperty
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	@JsonProperty
-	protected Categories[] categories;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long[] categoryIds;
-
-	@GraphQLField
-	@JsonProperty
-	protected ContentField[] contentFields;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long contentSpace;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long contentStructureId;
-
-	@GraphQLField
-	@JsonProperty
-	protected Creator creator;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date dateCreated;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date dateModified;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date datePublished;
-
-	@GraphQLField
-	@JsonProperty
-	protected String description;
-
-	@GraphQLField
-	@JsonProperty
-	protected Boolean hasComments;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String[] keywords;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date lastReviewed;
-
-	@GraphQLField
-	@JsonProperty
-	protected RenderedContentsURL[] renderedContentsURL;
-
-	@GraphQLField
-	@JsonProperty
-	protected String title;
-
-	@GraphQLField
-	@JsonProperty
-	protected String viewableBy;
 
 }

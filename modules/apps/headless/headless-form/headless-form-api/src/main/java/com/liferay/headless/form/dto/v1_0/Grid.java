@@ -14,6 +14,7 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.annotation.Generated;
 
@@ -33,19 +36,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("Grid")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Grid")
 public class Grid {
 
+	@Schema(description = "https://www.schema.org/FormFieldOptions")
 	public Columns[] getColumns() {
 		return columns;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public Rows[] getRows() {
-		return rows;
 	}
 
 	public void setColumns(Columns[] columns) {
@@ -64,6 +61,14 @@ public class Grid {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Columns[] columns;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -76,6 +81,15 @@ public class Grid {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@Schema(description = "https://www.schema.org/FormFieldOptions")
+	public Rows[] getRows() {
+		return rows;
 	}
 
 	public void setRows(Rows[] rows) {
@@ -92,16 +106,34 @@ public class Grid {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Rows[] rows;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(14);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"columns\": ");
 
-		sb.append("\"");
-		sb.append(columns);
-		sb.append("\"");
+		if (columns == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < columns.length; i++) {
+				sb.append(columns[i]);
+
+				if ((i + 1) < columns.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"id\": ");
@@ -111,25 +143,26 @@ public class Grid {
 
 		sb.append("\"rows\": ");
 
-		sb.append("\"");
-		sb.append(rows);
-		sb.append("\"");
+		if (rows == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < rows.length; i++) {
+				sb.append(rows[i]);
+
+				if ((i + 1) < rows.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
 
 		sb.append("}");
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected Columns[] columns;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected Rows[] rows;
 
 }

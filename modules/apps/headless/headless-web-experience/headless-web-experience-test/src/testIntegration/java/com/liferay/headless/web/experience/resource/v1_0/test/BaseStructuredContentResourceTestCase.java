@@ -18,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.headless.web.experience.dto.v1_0.Options;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
@@ -32,7 +34,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
@@ -100,19 +101,6 @@ public abstract class BaseStructuredContentResourceTestCase {
 	@After
 	public void tearDown() throws Exception {
 		GroupTestUtil.deleteGroup(testGroup);
-	}
-
-	@Test
-	public void testDeleteStructuredContent() throws Exception {
-		StructuredContent structuredContent =
-			testDeleteStructuredContent_addStructuredContent();
-
-		assertResponseCode(
-			200,
-			invokeDeleteStructuredContentResponse(structuredContent.getId()));
-
-		assertResponseCode(
-			404, invokeGetStructuredContentResponse(structuredContent.getId()));
 	}
 
 	@Test
@@ -203,6 +191,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		StructuredContent structuredContent2 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
@@ -378,6 +368,151 @@ public abstract class BaseStructuredContentResourceTestCase {
 		}
 	}
 
+	protected StructuredContent
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				Long contentSpaceId, StructuredContent structuredContent)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetContentSpaceStructuredContentsPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
+	}
+
+	protected Page<StructuredContent>
+			invokeGetContentSpaceStructuredContentsPage(
+				Long contentSpaceId, String filterString, Pagination pagination,
+				String sortString)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/structured-contents",
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPage());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<StructuredContent>>() {
+			});
+	}
+
+	protected Http.Response invokeGetContentSpaceStructuredContentsPageResponse(
+			Long contentSpaceId, String filterString, Pagination pagination,
+			String sortString)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/structured-contents",
+					contentSpaceId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPage());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPostContentSpaceStructuredContent() throws Exception {
+		StructuredContent randomStructuredContent = randomStructuredContent();
+
+		StructuredContent postStructuredContent =
+			testPostContentSpaceStructuredContent_addStructuredContent(
+				randomStructuredContent);
+
+		assertEquals(randomStructuredContent, postStructuredContent);
+		assertValid(postStructuredContent);
+	}
+
+	protected StructuredContent
+			testPostContentSpaceStructuredContent_addStructuredContent(
+				StructuredContent structuredContent)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContent invokePostContentSpaceStructuredContent(
+			Long contentSpaceId, StructuredContent structuredContent)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(structuredContent),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/structured-contents",
+					contentSpaceId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), StructuredContent.class);
+	}
+
+	protected Http.Response invokePostContentSpaceStructuredContentResponse(
+			Long contentSpaceId, StructuredContent structuredContent)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(structuredContent),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/structured-contents",
+					contentSpaceId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
 	@Test
 	public void testGetContentStructureStructuredContentsPage()
 		throws Exception {
@@ -468,6 +603,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
 		StructuredContent structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
@@ -643,6 +780,145 @@ public abstract class BaseStructuredContentResourceTestCase {
 		}
 	}
 
+	protected StructuredContent
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				Long contentStructureId, StructuredContent structuredContent)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetContentStructureStructuredContentsPage_getContentStructureId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Page<StructuredContent>
+			invokeGetContentStructureStructuredContentsPage(
+				Long contentStructureId, String filterString,
+				Pagination pagination, String sortString)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-structures/{content-structure-id}/structured-contents",
+					contentStructureId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPage());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<StructuredContent>>() {
+			});
+	}
+
+	protected Http.Response
+			invokeGetContentStructureStructuredContentsPageResponse(
+				Long contentStructureId, String filterString,
+				Pagination pagination, String sortString)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-structures/{content-structure-id}/structured-contents",
+					contentStructureId);
+
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPage());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testDeleteStructuredContent() throws Exception {
+		StructuredContent structuredContent =
+			testDeleteStructuredContent_addStructuredContent();
+
+		assertResponseCode(
+			200,
+			invokeDeleteStructuredContentResponse(structuredContent.getId()));
+
+		assertResponseCode(
+			404, invokeGetStructuredContentResponse(structuredContent.getId()));
+	}
+
+	protected StructuredContent
+			testDeleteStructuredContent_addStructuredContent()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected boolean invokeDeleteStructuredContent(Long structuredContentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), Boolean.class);
+	}
+
+	protected Http.Response invokeDeleteStructuredContentResponse(
+			Long structuredContentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
 	@Test
 	public void testGetStructuredContent() throws Exception {
 		StructuredContent postStructuredContent =
@@ -655,9 +931,48 @@ public abstract class BaseStructuredContentResourceTestCase {
 		assertValid(getStructuredContent);
 	}
 
-	@Test
-	public void testGetStructuredContentTemplate() throws Exception {
-		Assert.assertTrue(true);
+	protected StructuredContent testGetStructuredContent_addStructuredContent()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContent invokeGetStructuredContent(
+			Long structuredContentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), StructuredContent.class);
+	}
+
+	protected Http.Response invokeGetStructuredContentResponse(
+			Long structuredContentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	@Test
@@ -665,16 +980,41 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	@Test
-	public void testPostContentSpaceStructuredContent() throws Exception {
-		StructuredContent randomStructuredContent = randomStructuredContent();
+	protected StructuredContent invokePatchStructuredContent(
+			Long structuredContentId, StructuredContent structuredContent)
+		throws Exception {
 
-		StructuredContent postStructuredContent =
-			testPostContentSpaceStructuredContent_addStructuredContent(
-				randomStructuredContent);
+		Http.Options options = _createHttpOptions();
 
-		assertEquals(randomStructuredContent, postStructuredContent);
-		assertValid(postStructuredContent);
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), StructuredContent.class);
+	}
+
+	protected Http.Response invokePatchStructuredContentResponse(
+			Long structuredContentId, StructuredContent structuredContent)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	@Test
@@ -697,6 +1037,119 @@ public abstract class BaseStructuredContentResourceTestCase {
 		assertValid(getStructuredContent);
 	}
 
+	protected StructuredContent testPutStructuredContent_addStructuredContent()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContent invokePutStructuredContent(
+			Long structuredContentId, StructuredContent structuredContent)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(structuredContent),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		options.setPut(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), StructuredContent.class);
+	}
+
+	protected Http.Response invokePutStructuredContentResponse(
+			Long structuredContentId, StructuredContent structuredContent)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(structuredContent),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		options.setPut(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testGetStructuredContentTemplate() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	protected String invokeGetStructuredContentTemplate(
+			Long structuredContentId, Long templateId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/rendered-content/{template-id}",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		return HttpUtil.URLtoString(options);
+	}
+
+	protected Http.Response invokeGetStructuredContentTemplateResponse(
+			Long structuredContentId, Long templateId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/rendered-content/{template-id}",
+					structuredContentId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected void assertResponseCode(
+		int expectedResponseCode, Http.Response actualResponse) {
+
+		Assert.assertEquals(
+			expectedResponseCode, actualResponse.getResponseCode());
+	}
+
+	protected void assertEquals(
+		StructuredContent structuredContent1,
+		StructuredContent structuredContent2) {
+
+		Assert.assertTrue(
+			structuredContent1 + " does not equal " + structuredContent2,
+			equals(structuredContent1, structuredContent2));
+	}
+
 	protected void assertEquals(
 		List<StructuredContent> structuredContents1,
 		List<StructuredContent> structuredContents2) {
@@ -710,15 +1163,6 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 			assertEquals(structuredContent1, structuredContent2);
 		}
-	}
-
-	protected void assertEquals(
-		StructuredContent structuredContent1,
-		StructuredContent structuredContent2) {
-
-		Assert.assertTrue(
-			structuredContent1 + " does not equal " + structuredContent2,
-			equals(structuredContent1, structuredContent2));
 	}
 
 	protected void assertEqualsIgnoringOrder(
@@ -745,11 +1189,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 		}
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
-
-		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+	protected void assertValid(StructuredContent structuredContent) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected void assertValid(Page<StructuredContent> page) {
@@ -759,19 +1201,14 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		int size = structuredContents.size();
 
-		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
-			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+		if ((page.getLastPage() > 0) && (page.getPage() > 0) &&
+			(page.getPageSize() > 0) && (page.getTotalCount() > 0) &&
 			(size > 0)) {
 
 			valid = true;
 		}
 
 		Assert.assertTrue(valid);
-	}
-
-	protected void assertValid(StructuredContent structuredContent) {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
 	}
 
 	protected boolean equals(
@@ -943,299 +1380,6 @@ public abstract class BaseStructuredContentResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected boolean invokeDeleteStructuredContent(Long structuredContentId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}",
-					structuredContentId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
-	}
-
-	protected Http.Response invokeDeleteStructuredContentResponse(
-			Long structuredContentId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}",
-					structuredContentId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected Page<StructuredContent>
-			invokeGetContentSpaceStructuredContentsPage(
-				Long contentSpaceId, String filterString, Pagination pagination,
-				String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_getContentSpaceStructuredContentsLocation(
-				contentSpaceId, filterString, pagination, sortString));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
-			new TypeReference<Page<StructuredContent>>() {
-			});
-	}
-
-	protected Http.Response invokeGetContentSpaceStructuredContentsPageResponse(
-			Long contentSpaceId, String filterString, Pagination pagination,
-			String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_getContentSpaceStructuredContentsLocation(
-				contentSpaceId, filterString, pagination, sortString));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected Page<StructuredContent>
-			invokeGetContentStructureStructuredContentsPage(
-				Long contentStructureId, String filterString,
-				Pagination pagination, String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_getContentStructureStructuredContentsLocation(
-				contentStructureId, filterString, pagination, sortString));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
-			new TypeReference<Page<StructuredContent>>() {
-			});
-	}
-
-	protected Http.Response
-			invokeGetContentStructureStructuredContentsPageResponse(
-				Long contentStructureId, String filterString,
-				Pagination pagination, String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_getContentStructureStructuredContentsLocation(
-				contentStructureId, filterString, pagination, sortString));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected StructuredContent invokeGetStructuredContent(
-			Long structuredContentId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}",
-					structuredContentId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), StructuredContent.class);
-	}
-
-	protected Http.Response invokeGetStructuredContentResponse(
-			Long structuredContentId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}",
-					structuredContentId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected String invokeGetStructuredContentTemplate(
-			Long structuredContentId, Long templateId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}/rendered-content/{template-id}",
-					structuredContentId));
-
-		return HttpUtil.URLtoString(options);
-	}
-
-	protected Http.Response invokeGetStructuredContentTemplateResponse(
-			Long structuredContentId, Long templateId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}/rendered-content/{template-id}",
-					structuredContentId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected StructuredContent invokePatchStructuredContent(
-			Long structuredContentId, StructuredContent structuredContent)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}",
-					structuredContentId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), StructuredContent.class);
-	}
-
-	protected Http.Response invokePatchStructuredContentResponse(
-			Long structuredContentId, StructuredContent structuredContent)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}",
-					structuredContentId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected StructuredContent invokePostContentSpaceStructuredContent(
-			Long contentSpaceId, StructuredContent structuredContent)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/structured-contents",
-					contentSpaceId));
-
-		options.setPost(true);
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), StructuredContent.class);
-	}
-
-	protected Http.Response invokePostContentSpaceStructuredContentResponse(
-			Long contentSpaceId, StructuredContent structuredContent)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/structured-contents",
-					contentSpaceId));
-
-		options.setPost(true);
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected StructuredContent invokePutStructuredContent(
-			Long structuredContentId, StructuredContent structuredContent)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}",
-					structuredContentId));
-
-		options.setPut(true);
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), StructuredContent.class);
-	}
-
-	protected Http.Response invokePutStructuredContentResponse(
-			Long structuredContentId, StructuredContent structuredContent)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/structured-contents/{structured-content-id}",
-					structuredContentId));
-
-		options.setPut(true);
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
 	protected StructuredContent randomStructuredContent() {
 		return new StructuredContent() {
 			{
@@ -1254,69 +1398,6 @@ public abstract class BaseStructuredContentResourceTestCase {
 		};
 	}
 
-	protected StructuredContent
-			testDeleteStructuredContent_addStructuredContent()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected StructuredContent
-			testGetContentSpaceStructuredContentsPage_addStructuredContent(
-				Long contentSpaceId, StructuredContent structuredContent)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long testGetContentSpaceStructuredContentsPage_getContentSpaceId()
-		throws Exception {
-
-		return testGroup.getGroupId();
-	}
-
-	protected StructuredContent
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				Long contentStructureId, StructuredContent structuredContent)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long
-			testGetContentStructureStructuredContentsPage_getContentStructureId()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected StructuredContent testGetStructuredContent_addStructuredContent()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected StructuredContent
-			testPostContentSpaceStructuredContent_addStructuredContent(
-				StructuredContent structuredContent)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected StructuredContent testPutStructuredContent_addStructuredContent()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -1325,16 +1406,16 @@ public abstract class BaseStructuredContentResourceTestCase {
 			return new ArrayList<>(items);
 		}
 
-		public long getItemsPerPage() {
-			return itemsPerPage;
+		public long getLastPage() {
+			return lastPage;
 		}
 
-		public long getLastPageNumber() {
-			return lastPageNumber;
+		public long getPage() {
+			return page;
 		}
 
-		public long getPageNumber() {
-			return pageNumber;
+		public long getPageSize() {
+			return pageSize;
 		}
 
 		public long getTotalCount() {
@@ -1344,14 +1425,14 @@ public abstract class BaseStructuredContentResourceTestCase {
 		@JsonProperty
 		protected Collection<T> items;
 
-		@JsonProperty("pageSize")
-		protected long itemsPerPage;
+		@JsonProperty
+		protected long lastPage;
 
 		@JsonProperty
-		protected long lastPageNumber;
+		protected long page;
 
-		@JsonProperty("page")
-		protected long pageNumber;
+		@JsonProperty
+		protected long pageSize;
 
 		@JsonProperty
 		protected long totalCount;
@@ -1376,57 +1457,40 @@ public abstract class BaseStructuredContentResourceTestCase {
 		return options;
 	}
 
-	private String _getContentSpaceStructuredContentsLocation(
-		Long contentSpaceId, String filterString, Pagination pagination,
-		String sortString) {
-
-		String url =
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/structured-contents",
-					contentSpaceId);
-
-		url += "?filter=" + URLCodec.encodeURL(filterString);
-		url += "&page=" + pagination.getPageNumber();
-		url += "&pageSize=" + pagination.getItemsPerPage();
-		url += "&sort=" + URLCodec.encodeURL(sortString);
-
-		return url;
-	}
-
-	private String _getContentStructureStructuredContentsLocation(
-		Long contentStructureId, String filterString, Pagination pagination,
-		String sortString) {
-
-		String url =
-			_resourceURL +
-				_toPath(
-					"/content-structures/{content-structure-id}/structured-contents",
-					contentStructureId);
-
-		url += "?filter=" + URLCodec.encodeURL(filterString);
-		url += "&page=" + pagination.getPageNumber();
-		url += "&pageSize=" + pagination.getItemsPerPage();
-		url += "&sort=" + URLCodec.encodeURL(sortString);
-
-		return url;
-	}
-
 	private String _toPath(String template, Object value) {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
 	private static DateFormat _dateFormat;
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter(
+							"Liferay.Vulcan",
+							SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
-
-	private URL _resourceURL;
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper() {
+		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter(
+							"Liferay.Vulcan",
+							SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
+		}
+	};
 
 	@Inject
 	private StructuredContentResource _structuredContentResource;
+
+	private URL _resourceURL;
 
 }

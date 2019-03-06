@@ -14,6 +14,7 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,51 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("Fields")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Fields")
 public class Fields {
 
 	public String getDataType() {
 		return dataType;
-	}
-
-	public String getInputControl() {
-		return inputControl;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public Boolean getLocalizable() {
-		return localizable;
-	}
-
-	public Boolean getMultiple() {
-		return multiple;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Options[] getOptions() {
-		return options;
-	}
-
-	public String getPredefinedValue() {
-		return predefinedValue;
-	}
-
-	public Boolean getRepeatable() {
-		return repeatable;
-	}
-
-	public Boolean getRequired() {
-		return required;
-	}
-
-	public Boolean getShowLabel() {
-		return showLabel;
 	}
 
 	public void setDataType(String dataType) {
@@ -96,6 +58,14 @@ public class Fields {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String dataType;
+
+	public String getInputControl() {
+		return inputControl;
+	}
+
 	public void setInputControl(String inputControl) {
 		this.inputControl = inputControl;
 	}
@@ -110,6 +80,14 @@ public class Fields {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String inputControl;
+
+	public String getLabel() {
+		return label;
 	}
 
 	public void setLabel(String label) {
@@ -128,6 +106,14 @@ public class Fields {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String label;
+
+	public Boolean getLocalizable() {
+		return localizable;
+	}
+
 	public void setLocalizable(Boolean localizable) {
 		this.localizable = localizable;
 	}
@@ -142,6 +128,14 @@ public class Fields {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean localizable;
+
+	public Boolean getMultiple() {
+		return multiple;
 	}
 
 	public void setMultiple(Boolean multiple) {
@@ -160,6 +154,14 @@ public class Fields {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Boolean multiple;
+
+	public String getName() {
+		return name;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -172,6 +174,14 @@ public class Fields {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	public Options[] getOptions() {
+		return options;
 	}
 
 	public void setOptions(Options[] options) {
@@ -190,6 +200,14 @@ public class Fields {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Options[] options;
+
+	public String getPredefinedValue() {
+		return predefinedValue;
+	}
+
 	public void setPredefinedValue(String predefinedValue) {
 		this.predefinedValue = predefinedValue;
 	}
@@ -204,6 +222,14 @@ public class Fields {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String predefinedValue;
+
+	public Boolean getRepeatable() {
+		return repeatable;
 	}
 
 	public void setRepeatable(Boolean repeatable) {
@@ -222,6 +248,14 @@ public class Fields {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Boolean repeatable;
+
+	public Boolean getRequired() {
+		return required;
+	}
+
 	public void setRequired(Boolean required) {
 		this.required = required;
 	}
@@ -236,6 +270,14 @@ public class Fields {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean required;
+
+	public Boolean getShowLabel() {
+		return showLabel;
 	}
 
 	public void setShowLabel(Boolean showLabel) {
@@ -254,8 +296,12 @@ public class Fields {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Boolean showLabel;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -299,9 +345,23 @@ public class Fields {
 
 		sb.append("\"options\": ");
 
-		sb.append("\"");
-		sb.append(options);
-		sb.append("\"");
+		if (options == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < options.length; i++) {
+				sb.append(options[i]);
+
+				if ((i + 1) < options.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"predefinedValue\": ");
@@ -329,49 +389,5 @@ public class Fields {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String dataType;
-
-	@GraphQLField
-	@JsonProperty
-	protected String inputControl;
-
-	@GraphQLField
-	@JsonProperty
-	protected String label;
-
-	@GraphQLField
-	@JsonProperty
-	protected Boolean localizable;
-
-	@GraphQLField
-	@JsonProperty
-	protected Boolean multiple;
-
-	@GraphQLField
-	@JsonProperty
-	protected String name;
-
-	@GraphQLField
-	@JsonProperty
-	protected Options[] options;
-
-	@GraphQLField
-	@JsonProperty
-	protected String predefinedValue;
-
-	@GraphQLField
-	@JsonProperty
-	protected Boolean repeatable;
-
-	@GraphQLField
-	@JsonProperty
-	protected Boolean required;
-
-	@GraphQLField
-	@JsonProperty
-	protected Boolean showLabel;
 
 }

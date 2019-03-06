@@ -18,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowLogResource;
@@ -104,6 +106,42 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		assertValid(getWorkflowLog);
 	}
 
+	protected WorkflowLog testGetWorkflowLog_addWorkflowLog() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected WorkflowLog invokeGetWorkflowLog(Long workflowLogId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath("/workflow-logs/{workflow-log-id}", workflowLogId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), WorkflowLog.class);
+	}
+
+	protected Http.Response invokeGetWorkflowLogResponse(Long workflowLogId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath("/workflow-logs/{workflow-log-id}", workflowLogId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
 	@Test
 	public void testGetWorkflowTaskWorkflowLogsPage() throws Exception {
 		Long workflowTaskId =
@@ -170,6 +208,85 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			});
 	}
 
+	protected WorkflowLog testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
+			Long workflowTaskId, WorkflowLog workflowLog)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetWorkflowTaskWorkflowLogsPage_getWorkflowTaskId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Page<WorkflowLog> invokeGetWorkflowTaskWorkflowLogsPage(
+			Long workflowTaskId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/workflow-tasks/{workflow-task-id}/workflow-logs",
+					workflowTaskId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPage());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getPageSize());
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<WorkflowLog>>() {
+			});
+	}
+
+	protected Http.Response invokeGetWorkflowTaskWorkflowLogsPageResponse(
+			Long workflowTaskId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/workflow-tasks/{workflow-task-id}/workflow-logs",
+					workflowTaskId);
+
+		location = HttpUtil.addParameter(
+			location, "page", pagination.getPage());
+		location = HttpUtil.addParameter(
+			location, "pageSize", pagination.getPageSize());
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected void assertResponseCode(
+		int expectedResponseCode, Http.Response actualResponse) {
+
+		Assert.assertEquals(
+			expectedResponseCode, actualResponse.getResponseCode());
+	}
+
+	protected void assertEquals(
+		WorkflowLog workflowLog1, WorkflowLog workflowLog2) {
+
+		Assert.assertTrue(
+			workflowLog1 + " does not equal " + workflowLog2,
+			equals(workflowLog1, workflowLog2));
+	}
+
 	protected void assertEquals(
 		List<WorkflowLog> workflowLogs1, List<WorkflowLog> workflowLogs2) {
 
@@ -181,14 +298,6 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 			assertEquals(workflowLog1, workflowLog2);
 		}
-	}
-
-	protected void assertEquals(
-		WorkflowLog workflowLog1, WorkflowLog workflowLog2) {
-
-		Assert.assertTrue(
-			workflowLog1 + " does not equal " + workflowLog2,
-			equals(workflowLog1, workflowLog2));
 	}
 
 	protected void assertEqualsIgnoringOrder(
@@ -212,11 +321,9 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		}
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
-
-		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+	protected void assertValid(WorkflowLog workflowLog) {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected void assertValid(Page<WorkflowLog> page) {
@@ -226,19 +333,14 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		int size = workflowLogs.size();
 
-		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
-			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+		if ((page.getLastPage() > 0) && (page.getPage() > 0) &&
+			(page.getPageSize() > 0) && (page.getTotalCount() > 0) &&
 			(size > 0)) {
 
 			valid = true;
 		}
 
 		Assert.assertTrue(valid);
-	}
-
-	protected void assertValid(WorkflowLog workflowLog) {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
 	}
 
 	protected boolean equals(
@@ -377,68 +479,6 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected WorkflowLog invokeGetWorkflowLog(Long workflowLogId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath("/workflow-logs/{workflow-log-id}", workflowLogId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), WorkflowLog.class);
-	}
-
-	protected Http.Response invokeGetWorkflowLogResponse(Long workflowLogId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath("/workflow-logs/{workflow-log-id}", workflowLogId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	protected Page<WorkflowLog> invokeGetWorkflowTaskWorkflowLogsPage(
-			Long workflowTaskId, Pagination pagination)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/workflow-tasks/{workflow-task-id}/workflow-logs",
-					workflowTaskId));
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
-			new TypeReference<Page<WorkflowLog>>() {
-			});
-	}
-
-	protected Http.Response invokeGetWorkflowTaskWorkflowLogsPageResponse(
-			Long workflowTaskId, Pagination pagination)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/workflow-tasks/{workflow-task-id}/workflow-logs",
-					workflowTaskId));
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
 	protected WorkflowLog randomWorkflowLog() {
 		return new WorkflowLog() {
 			{
@@ -456,26 +496,6 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		};
 	}
 
-	protected WorkflowLog testGetWorkflowLog_addWorkflowLog() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected WorkflowLog testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
-			Long workflowTaskId, WorkflowLog workflowLog)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long testGetWorkflowTaskWorkflowLogsPage_getWorkflowTaskId()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -484,16 +504,16 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			return new ArrayList<>(items);
 		}
 
-		public long getItemsPerPage() {
-			return itemsPerPage;
+		public long getLastPage() {
+			return lastPage;
 		}
 
-		public long getLastPageNumber() {
-			return lastPageNumber;
+		public long getPage() {
+			return page;
 		}
 
-		public long getPageNumber() {
-			return pageNumber;
+		public long getPageSize() {
+			return pageSize;
 		}
 
 		public long getTotalCount() {
@@ -503,14 +523,14 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		@JsonProperty
 		protected Collection<T> items;
 
-		@JsonProperty("pageSize")
-		protected long itemsPerPage;
+		@JsonProperty
+		protected long lastPage;
 
 		@JsonProperty
-		protected long lastPageNumber;
+		protected long page;
 
-		@JsonProperty("page")
-		protected long pageNumber;
+		@JsonProperty
+		protected long pageSize;
 
 		@JsonProperty
 		protected long totalCount;
@@ -540,16 +560,35 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	}
 
 	private static DateFormat _dateFormat;
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter(
+							"Liferay.Vulcan",
+							SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
-
-	private URL _resourceURL;
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper() {
+		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter(
+							"Liferay.Vulcan",
+							SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
+		}
+	};
 
 	@Inject
 	private WorkflowLogResource _workflowLogResource;
+
+	private URL _resourceURL;
 
 }

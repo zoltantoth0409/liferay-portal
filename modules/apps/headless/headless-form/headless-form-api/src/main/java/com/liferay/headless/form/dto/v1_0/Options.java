@@ -14,6 +14,7 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,19 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("Options")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Options")
 public class Options {
 
 	public Long getId() {
 		return id;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public String getValue() {
-		return value;
 	}
 
 	public void setId(Long id) {
@@ -60,6 +54,14 @@ public class Options {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String getLabel() {
+		return label;
 	}
 
 	public void setLabel(String label) {
@@ -78,6 +80,14 @@ public class Options {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String label;
+
+	public String getValue() {
+		return value;
+	}
+
 	public void setValue(String value) {
 		this.value = value;
 	}
@@ -94,8 +104,12 @@ public class Options {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String value;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(14);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -121,17 +135,5 @@ public class Options {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String label;
-
-	@GraphQLField
-	@JsonProperty
-	protected String value;
 
 }

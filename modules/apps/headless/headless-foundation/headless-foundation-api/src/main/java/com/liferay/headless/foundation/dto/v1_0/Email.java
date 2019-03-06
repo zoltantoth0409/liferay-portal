@@ -14,6 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,19 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("Email")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Email")
 public class Email {
 
 	public String getEmail() {
 		return email;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getType() {
-		return type;
 	}
 
 	public void setEmail(String email) {
@@ -64,6 +58,14 @@ public class Email {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String email;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -76,6 +78,14 @@ public class Email {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String getType() {
+		return type;
 	}
 
 	public void setType(String type) {
@@ -92,8 +102,12 @@ public class Email {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String type;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(14);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -119,17 +133,5 @@ public class Email {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String email;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String type;
 
 }

@@ -14,6 +14,7 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -35,43 +36,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("ContentStructure")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "ContentStructure")
 public class ContentStructure {
 
 	public String[] getAvailableLanguages() {
 		return availableLanguages;
-	}
-
-	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Fields[] getFields() {
-		return fields;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public void setAvailableLanguages(String[] availableLanguages) {
@@ -90,6 +60,14 @@ public class ContentStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String[] availableLanguages;
+
+	public Long getContentSpace() {
+		return contentSpace;
+	}
+
 	public void setContentSpace(Long contentSpace) {
 		this.contentSpace = contentSpace;
 	}
@@ -104,6 +82,14 @@ public class ContentStructure {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long contentSpace;
+
+	public Creator getCreator() {
+		return creator;
 	}
 
 	public void setCreator(Creator creator) {
@@ -122,6 +108,14 @@ public class ContentStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
@@ -136,6 +130,14 @@ public class ContentStructure {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	public Date getDateModified() {
+		return dateModified;
 	}
 
 	public void setDateModified(Date dateModified) {
@@ -154,6 +156,14 @@ public class ContentStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	public String getDescription() {
+		return description;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -168,6 +178,14 @@ public class ContentStructure {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
+	public Fields[] getFields() {
+		return fields;
 	}
 
 	public void setFields(Fields[] fields) {
@@ -186,6 +204,14 @@ public class ContentStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Fields[] fields;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -198,6 +224,14 @@ public class ContentStructure {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
@@ -214,16 +248,36 @@ public class ContentStructure {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"availableLanguages\": ");
 
-		sb.append("\"");
-		sb.append(availableLanguages);
-		sb.append("\"");
+		if (availableLanguages == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < availableLanguages.length; i++) {
+				sb.append("\"");
+				sb.append(availableLanguages[i]);
+				sb.append("\"");
+
+				if ((i + 1) < availableLanguages.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"contentSpace\": ");
@@ -259,9 +313,23 @@ public class ContentStructure {
 
 		sb.append("\"fields\": ");
 
-		sb.append("\"");
-		sb.append(fields);
-		sb.append("\"");
+		if (fields == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < fields.length; i++) {
+				sb.append(fields[i]);
+
+				if ((i + 1) < fields.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"id\": ");
@@ -279,41 +347,5 @@ public class ContentStructure {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long contentSpace;
-
-	@GraphQLField
-	@JsonProperty
-	protected Creator creator;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date dateCreated;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date dateModified;
-
-	@GraphQLField
-	@JsonProperty
-	protected String description;
-
-	@GraphQLField
-	@JsonProperty
-	protected Fields[] fields;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String name;
 
 }

@@ -24,6 +24,10 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 import java.net.URI;
 
 import java.util.Collections;
@@ -47,18 +51,14 @@ import javax.ws.rs.core.UriInfo;
 @Path("/v1.0")
 public abstract class BaseEmailResourceImpl implements EmailResource {
 
-	@GET
 	@Override
-	@Path("/emails/{email-id}")
-	@Produces("application/json")
-	public Email getEmail(@PathParam("email-id") Long emailId)
-		throws Exception {
-
-		return new Email();
-	}
-
 	@GET
-	@Override
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/emails")
 	@Produces("application/json")
 	public Page<Email> getGenericParentEmailsPage(
@@ -67,6 +67,16 @@ public abstract class BaseEmailResourceImpl implements EmailResource {
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	@GET
+	@Path("/emails/{email-id}")
+	@Produces("application/json")
+	public Email getEmail(@PathParam("email-id") Long emailId)
+		throws Exception {
+
+		return new Email();
 	}
 
 	public void setContextCompany(Company contextCompany) {

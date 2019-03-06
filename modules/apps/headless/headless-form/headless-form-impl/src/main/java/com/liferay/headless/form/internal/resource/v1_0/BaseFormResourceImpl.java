@@ -24,6 +24,10 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 import java.net.URI;
 
 import java.util.Collections;
@@ -49,8 +53,14 @@ import javax.ws.rs.core.UriInfo;
 @Path("/v1.0")
 public abstract class BaseFormResourceImpl implements FormResource {
 
-	@GET
 	@Override
+	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/content-spaces/{content-space-id}/forms")
 	@Produces("application/json")
 	public Page<Form> getContentSpaceFormsPage(
@@ -61,28 +71,18 @@ public abstract class BaseFormResourceImpl implements FormResource {
 		return Page.of(Collections.emptyList());
 	}
 
-	@GET
 	@Override
+	@GET
 	@Path("/forms/{form-id}")
 	@Produces("application/json")
 	public Form getForm(@PathParam("form-id") Long formId) throws Exception {
 		return new Form();
 	}
 
-	@GET
 	@Override
-	@Path("/forms/{form-id}/fetch-latest-draft")
-	@Produces("application/json")
-	public Form getFormFetchLatestDraft(@PathParam("form-id") Long formId)
-		throws Exception {
-
-		return new Form();
-	}
-
 	@Consumes("application/json")
-	@Override
-	@Path("/forms/{form-id}/evaluate-context")
 	@POST
+	@Path("/forms/{form-id}/evaluate-context")
 	@Produces("application/json")
 	public Form postFormEvaluateContext(
 			@PathParam("form-id") Long formId, Form form)
@@ -91,10 +91,20 @@ public abstract class BaseFormResourceImpl implements FormResource {
 		return new Form();
 	}
 
-	@Consumes("application/json")
 	@Override
-	@Path("/forms/{form-id}/upload-file")
+	@GET
+	@Path("/forms/{form-id}/fetch-latest-draft")
+	@Produces("application/json")
+	public Form getFormFetchLatestDraft(@PathParam("form-id") Long formId)
+		throws Exception {
+
+		return new Form();
+	}
+
+	@Override
+	@Consumes("application/json")
 	@POST
+	@Path("/forms/{form-id}/upload-file")
 	@Produces("application/json")
 	public Form postFormUploadFile(@PathParam("form-id") Long formId, Form form)
 		throws Exception {

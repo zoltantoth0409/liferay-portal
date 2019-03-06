@@ -14,6 +14,7 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -35,43 +36,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("ContentDocument")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "ContentDocument")
 public class ContentDocument {
 
 	public String getContentUrl() {
 		return contentUrl;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getEncodingFormat() {
-		return encodingFormat;
-	}
-
-	public String getFileExtension() {
-		return fileExtension;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public Number getSizeInBytes() {
-		return sizeInBytes;
-	}
-
-	public String getTitle() {
-		return title;
 	}
 
 	public void setContentUrl(String contentUrl) {
@@ -90,6 +60,14 @@ public class ContentDocument {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String contentUrl;
+
+	public Creator getCreator() {
+		return creator;
+	}
+
 	public void setCreator(Creator creator) {
 		this.creator = creator;
 	}
@@ -104,6 +82,14 @@ public class ContentDocument {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
@@ -122,6 +108,14 @@ public class ContentDocument {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
 	public void setDateModified(Date dateModified) {
 		this.dateModified = dateModified;
 	}
@@ -136,6 +130,14 @@ public class ContentDocument {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	public String getEncodingFormat() {
+		return encodingFormat;
 	}
 
 	public void setEncodingFormat(String encodingFormat) {
@@ -154,6 +156,14 @@ public class ContentDocument {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String encodingFormat;
+
+	public String getFileExtension() {
+		return fileExtension;
+	}
+
 	public void setFileExtension(String fileExtension) {
 		this.fileExtension = fileExtension;
 	}
@@ -170,6 +180,14 @@ public class ContentDocument {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String fileExtension;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -182,6 +200,14 @@ public class ContentDocument {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public Number getSizeInBytes() {
+		return sizeInBytes;
 	}
 
 	public void setSizeInBytes(Number sizeInBytes) {
@@ -200,6 +226,14 @@ public class ContentDocument {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Number sizeInBytes;
+
+	public String getTitle() {
+		return title;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -216,8 +250,12 @@ public class ContentDocument {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String title;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -281,41 +319,5 @@ public class ContentDocument {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String contentUrl;
-
-	@GraphQLField
-	@JsonProperty
-	protected Creator creator;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date dateCreated;
-
-	@GraphQLField
-	@JsonProperty
-	protected Date dateModified;
-
-	@GraphQLField
-	@JsonProperty
-	protected String encodingFormat;
-
-	@GraphQLField
-	@JsonProperty
-	protected String fileExtension;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected Number sizeInBytes;
-
-	@GraphQLField
-	@JsonProperty
-	protected String title;
 
 }

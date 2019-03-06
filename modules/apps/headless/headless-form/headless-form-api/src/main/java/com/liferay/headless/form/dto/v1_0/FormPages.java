@@ -14,6 +14,7 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.annotation.Generated;
 
@@ -33,23 +36,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("FormPages")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "FormPages")
 public class FormPages {
 
+	@Schema(description = "https://www.schema.org/FormField")
 	public Fields[] getFields() {
 		return fields;
-	}
-
-	public String getHeadline() {
-		return headline;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getText() {
-		return text;
 	}
 
 	public void setFields(Fields[] fields) {
@@ -68,6 +61,14 @@ public class FormPages {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Fields[] fields;
+
+	public String getHeadline() {
+		return headline;
+	}
+
 	public void setHeadline(String headline) {
 		this.headline = headline;
 	}
@@ -84,6 +85,14 @@ public class FormPages {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String headline;
+
+	public Long getId() {
+		return id;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -96,6 +105,14 @@ public class FormPages {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	public String getText() {
+		return text;
 	}
 
 	public void setText(String text) {
@@ -112,16 +129,34 @@ public class FormPages {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String text;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
 		sb.append("\"fields\": ");
 
-		sb.append("\"");
-		sb.append(fields);
-		sb.append("\"");
+		if (fields == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < fields.length; i++) {
+				sb.append(fields[i]);
+
+				if ((i + 1) < fields.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
 		sb.append(", ");
 
 		sb.append("\"headline\": ");
@@ -146,21 +181,5 @@ public class FormPages {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected Fields[] fields;
-
-	@GraphQLField
-	@JsonProperty
-	protected String headline;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
-	@GraphQLField
-	@JsonProperty
-	protected String text;
 
 }

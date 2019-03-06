@@ -14,6 +14,7 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +23,8 @@ import com.liferay.petra.string.StringBundler;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.annotation.Generated;
 
@@ -33,35 +36,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("Value")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Value")
 public class Value {
 
 	public String getData() {
 		return data;
-	}
-
-	public ContentDocument getDocument() {
-		return document;
-	}
-
-	public Long getDocumentId() {
-		return documentId;
-	}
-
-	public Geo getGeo() {
-		return geo;
-	}
-
-	public String getLink() {
-		return link;
-	}
-
-	public StructuredContent getStructuredContent() {
-		return structuredContent;
-	}
-
-	public Long getStructuredContentId() {
-		return structuredContentId;
 	}
 
 	public void setData(String data) {
@@ -76,6 +56,14 @@ public class Value {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String data;
+
+	public ContentDocument getDocument() {
+		return document;
 	}
 
 	public void setDocument(ContentDocument document) {
@@ -94,6 +82,14 @@ public class Value {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected ContentDocument document;
+
+	public Long getDocumentId() {
+		return documentId;
+	}
+
 	public void setDocumentId(Long documentId) {
 		this.documentId = documentId;
 	}
@@ -110,6 +106,15 @@ public class Value {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Long documentId;
+
+	@Schema(description = "https://www.schema.org/GeoCoordinates")
+	public Geo getGeo() {
+		return geo;
+	}
+
 	public void setGeo(Geo geo) {
 		this.geo = geo;
 	}
@@ -124,6 +129,14 @@ public class Value {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Geo geo;
+
+	public String getLink() {
+		return link;
+	}
+
 	public void setLink(String link) {
 		this.link = link;
 	}
@@ -136,6 +149,14 @@ public class Value {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String link;
+
+	public StructuredContent getStructuredContent() {
+		return structuredContent;
 	}
 
 	public void setStructuredContent(StructuredContent structuredContent) {
@@ -155,6 +176,14 @@ public class Value {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected StructuredContent structuredContent;
+
+	public Long getStructuredContentId() {
+		return structuredContentId;
+	}
+
 	public void setStructuredContentId(Long structuredContentId) {
 		this.structuredContentId = structuredContentId;
 	}
@@ -171,8 +200,12 @@ public class Value {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Long structuredContentId;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(26);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -218,33 +251,5 @@ public class Value {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String data;
-
-	@GraphQLField
-	@JsonProperty
-	protected ContentDocument document;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long documentId;
-
-	@GraphQLField
-	@JsonProperty
-	protected Geo geo;
-
-	@GraphQLField
-	@JsonProperty
-	protected String link;
-
-	@GraphQLField
-	@JsonProperty
-	protected StructuredContent structuredContent;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long structuredContentId;
 
 }

@@ -27,6 +27,10 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 import java.net.URI;
 
 import java.util.Collections;
@@ -56,8 +60,8 @@ import javax.ws.rs.core.UriInfo;
 public abstract class BaseBlogPostingResourceImpl
 	implements BlogPostingResource {
 
-	@DELETE
 	@Override
+	@DELETE
 	@Path("/blog-postings/{blog-posting-id}")
 	@Produces("application/json")
 	public boolean deleteBlogPosting(
@@ -67,8 +71,8 @@ public abstract class BaseBlogPostingResourceImpl
 		return false;
 	}
 
-	@GET
 	@Override
+	@GET
 	@Path("/blog-postings/{blog-posting-id}")
 	@Produces("application/json")
 	public BlogPosting getBlogPosting(
@@ -78,21 +82,8 @@ public abstract class BaseBlogPostingResourceImpl
 		return new BlogPosting();
 	}
 
-	@GET
 	@Override
-	@Path("/content-spaces/{content-space-id}/blog-postings")
-	@Produces("application/json")
-	public Page<BlogPosting> getContentSpaceBlogPostingsPage(
-			@PathParam("content-space-id") Long contentSpaceId,
-			@Context Filter filter, @Context Pagination pagination,
-			@Context Sort[] sorts)
-		throws Exception {
-
-		return Page.of(Collections.emptyList());
-	}
-
 	@Consumes("application/json")
-	@Override
 	@PATCH
 	@Path("/blog-postings/{blog-posting-id}")
 	@Produces("application/json")
@@ -176,26 +167,47 @@ public abstract class BaseBlogPostingResourceImpl
 		return putBlogPosting(blogPostingId, existingBlogPosting);
 	}
 
-	@Consumes("application/json")
 	@Override
-	@Path("/content-spaces/{content-space-id}/blog-postings")
-	@POST
+	@Consumes("application/json")
+	@PUT
+	@Path("/blog-postings/{blog-posting-id}")
 	@Produces("application/json")
-	public BlogPosting postContentSpaceBlogPosting(
-			@PathParam("content-space-id") Long contentSpaceId,
+	public BlogPosting putBlogPosting(
+			@PathParam("blog-posting-id") Long blogPostingId,
 			BlogPosting blogPosting)
 		throws Exception {
 
 		return new BlogPosting();
 	}
 
-	@Consumes("application/json")
 	@Override
-	@Path("/blog-postings/{blog-posting-id}")
+	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "filter"),
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
+			@Parameter(in = ParameterIn.QUERY, name = "sorts")
+		}
+	)
+	@Path("/content-spaces/{content-space-id}/blog-postings")
 	@Produces("application/json")
-	@PUT
-	public BlogPosting putBlogPosting(
-			@PathParam("blog-posting-id") Long blogPostingId,
+	public Page<BlogPosting> getContentSpaceBlogPostingsPage(
+			@PathParam("content-space-id") Long contentSpaceId,
+			@Context Filter filter, @Context Pagination pagination,
+			@Context Sort[] sorts)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	@Consumes("application/json")
+	@POST
+	@Path("/content-spaces/{content-space-id}/blog-postings")
+	@Produces("application/json")
+	public BlogPosting postContentSpaceBlogPosting(
+			@PathParam("content-space-id") Long contentSpaceId,
 			BlogPosting blogPosting)
 		throws Exception {
 

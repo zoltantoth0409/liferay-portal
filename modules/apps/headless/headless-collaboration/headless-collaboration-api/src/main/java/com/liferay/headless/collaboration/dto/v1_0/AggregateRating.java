@@ -14,6 +14,7 @@
 
 package com.liferay.headless.collaboration.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,23 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("AggregateRating")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "AggregateRating")
 public class AggregateRating {
 
 	public Number getBestRating() {
 		return bestRating;
-	}
-
-	public Number getRatingCount() {
-		return ratingCount;
-	}
-
-	public Number getRatingValue() {
-		return ratingValue;
-	}
-
-	public Number getWorstRating() {
-		return worstRating;
 	}
 
 	public void setBestRating(Number bestRating) {
@@ -68,6 +58,14 @@ public class AggregateRating {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Number bestRating;
+
+	public Number getRatingCount() {
+		return ratingCount;
+	}
+
 	public void setRatingCount(Number ratingCount) {
 		this.ratingCount = ratingCount;
 	}
@@ -82,6 +80,14 @@ public class AggregateRating {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Number ratingCount;
+
+	public Number getRatingValue() {
+		return ratingValue;
 	}
 
 	public void setRatingValue(Number ratingValue) {
@@ -100,6 +106,14 @@ public class AggregateRating {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Number ratingValue;
+
+	public Number getWorstRating() {
+		return worstRating;
+	}
+
 	public void setWorstRating(Number worstRating) {
 		this.worstRating = worstRating;
 	}
@@ -116,8 +130,12 @@ public class AggregateRating {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Number worstRating;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -144,21 +162,5 @@ public class AggregateRating {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected Number bestRating;
-
-	@GraphQLField
-	@JsonProperty
-	protected Number ratingCount;
-
-	@GraphQLField
-	@JsonProperty
-	protected Number ratingValue;
-
-	@GraphQLField
-	@JsonProperty
-	protected Number worstRating;
 
 }

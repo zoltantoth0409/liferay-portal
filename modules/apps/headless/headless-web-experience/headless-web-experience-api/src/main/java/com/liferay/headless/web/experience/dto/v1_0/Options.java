@@ -14,6 +14,7 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,15 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("Options")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Options")
 public class Options {
 
 	public String getLabel() {
 		return label;
-	}
-
-	public String getValue() {
-		return value;
 	}
 
 	public void setLabel(String label) {
@@ -60,6 +58,14 @@ public class Options {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String label;
+
+	public String getValue() {
+		return value;
+	}
+
 	public void setValue(String value) {
 		this.value = value;
 	}
@@ -76,8 +82,12 @@ public class Options {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String value;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -98,13 +108,5 @@ public class Options {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String label;
-
-	@GraphQLField
-	@JsonProperty
-	protected String value;
 
 }

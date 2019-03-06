@@ -14,6 +14,7 @@
 
 package com.liferay.headless.collaboration.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,15 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Generated("")
 @GraphQLName("Categories")
+@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "Categories")
 public class Categories {
 
 	public Long getCategoryId() {
 		return categoryId;
-	}
-
-	public String getCategoryName() {
-		return categoryName;
 	}
 
 	public void setCategoryId(Long categoryId) {
@@ -60,6 +58,14 @@ public class Categories {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected Long categoryId;
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
@@ -76,8 +82,12 @@ public class Categories {
 		}
 	}
 
+	@GraphQLField
+	@JsonProperty
+	protected String categoryName;
+
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler();
 
 		sb.append("{");
 
@@ -96,13 +106,5 @@ public class Categories {
 
 		return sb.toString();
 	}
-
-	@GraphQLField
-	@JsonProperty
-	protected Long categoryId;
-
-	@GraphQLField
-	@JsonProperty
-	protected String categoryName;
 
 }
