@@ -96,16 +96,15 @@ public abstract class BaseWebUrlResourceTestCase {
 	}
 
 	@Test
-	public void testGetGenericParentWebUrlsPage() throws Exception {
-		Object genericParentId =
-			testGetGenericParentWebUrlsPage_getGenericParentId();
+	public void testGetWebUrlsPage() throws Exception {
+		Object genericParentId = testGetWebUrlsPage_getGenericParentId();
 
-		WebUrl webUrl1 = testGetGenericParentWebUrlsPage_addWebUrl(
+		WebUrl webUrl1 = testGetWebUrlsPage_addWebUrl(
 			genericParentId, randomWebUrl());
-		WebUrl webUrl2 = testGetGenericParentWebUrlsPage_addWebUrl(
+		WebUrl webUrl2 = testGetWebUrlsPage_addWebUrl(
 			genericParentId, randomWebUrl());
 
-		Page<WebUrl> page = invokeGetGenericParentWebUrlsPage(
+		Page<WebUrl> page = invokeGetWebUrlsPage(
 			genericParentId, Pagination.of(2, 1));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -116,27 +115,24 @@ public abstract class BaseWebUrlResourceTestCase {
 	}
 
 	@Test
-	public void testGetGenericParentWebUrlsPageWithPagination()
-		throws Exception {
+	public void testGetWebUrlsPageWithPagination() throws Exception {
+		Object genericParentId = testGetWebUrlsPage_getGenericParentId();
 
-		Object genericParentId =
-			testGetGenericParentWebUrlsPage_getGenericParentId();
-
-		WebUrl webUrl1 = testGetGenericParentWebUrlsPage_addWebUrl(
+		WebUrl webUrl1 = testGetWebUrlsPage_addWebUrl(
 			genericParentId, randomWebUrl());
-		WebUrl webUrl2 = testGetGenericParentWebUrlsPage_addWebUrl(
+		WebUrl webUrl2 = testGetWebUrlsPage_addWebUrl(
 			genericParentId, randomWebUrl());
-		WebUrl webUrl3 = testGetGenericParentWebUrlsPage_addWebUrl(
+		WebUrl webUrl3 = testGetWebUrlsPage_addWebUrl(
 			genericParentId, randomWebUrl());
 
-		Page<WebUrl> page1 = invokeGetGenericParentWebUrlsPage(
+		Page<WebUrl> page1 = invokeGetWebUrlsPage(
 			genericParentId, Pagination.of(2, 1));
 
 		List<WebUrl> webUrls1 = (List<WebUrl>)page1.getItems();
 
 		Assert.assertEquals(webUrls1.toString(), 2, webUrls1.size());
 
-		Page<WebUrl> page2 = invokeGetGenericParentWebUrlsPage(
+		Page<WebUrl> page2 = invokeGetWebUrlsPage(
 			genericParentId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -155,7 +151,7 @@ public abstract class BaseWebUrlResourceTestCase {
 			});
 	}
 
-	protected WebUrl testGetGenericParentWebUrlsPage_addWebUrl(
+	protected WebUrl testGetWebUrlsPage_addWebUrl(
 			Object genericParentId, WebUrl webUrl)
 		throws Exception {
 
@@ -163,14 +159,12 @@ public abstract class BaseWebUrlResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected Object testGetGenericParentWebUrlsPage_getGenericParentId()
-		throws Exception {
-
+	protected Object testGetWebUrlsPage_getGenericParentId() throws Exception {
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Page<WebUrl> invokeGetGenericParentWebUrlsPage(
+	protected Page<WebUrl> invokeGetWebUrlsPage(
 			Object genericParentId, Pagination pagination)
 		throws Exception {
 
@@ -191,7 +185,7 @@ public abstract class BaseWebUrlResourceTestCase {
 			});
 	}
 
-	protected Http.Response invokeGetGenericParentWebUrlsPageResponse(
+	protected Http.Response invokeGetWebUrlsPageResponse(
 			Object genericParentId, Pagination pagination)
 		throws Exception {
 

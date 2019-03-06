@@ -61,7 +61,7 @@ public abstract class BaseSegmentResourceImpl implements SegmentResource {
 	)
 	@Path("/user-accounts/{user-id}/segments")
 	@Produces("application/json")
-	public Page<Segment> getUserSegmentsPage(
+	public Page<Segment> getUserAccountUserSegmentsPage(
 			@PathParam("user-id") Long userId, @Context Pagination pagination)
 		throws Exception {
 

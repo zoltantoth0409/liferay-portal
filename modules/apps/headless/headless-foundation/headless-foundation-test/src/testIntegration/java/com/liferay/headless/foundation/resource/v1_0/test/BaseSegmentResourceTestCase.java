@@ -96,15 +96,15 @@ public abstract class BaseSegmentResourceTestCase {
 	}
 
 	@Test
-	public void testGetUserSegmentsPage() throws Exception {
-		Long userId = testGetUserSegmentsPage_getUserId();
+	public void testGetUserAccountUserSegmentsPage() throws Exception {
+		Long userId = testGetUserAccountUserSegmentsPage_getUserId();
 
-		Segment segment1 = testGetUserSegmentsPage_addSegment(
+		Segment segment1 = testGetUserAccountUserSegmentsPage_addSegment(
 			userId, randomSegment());
-		Segment segment2 = testGetUserSegmentsPage_addSegment(
+		Segment segment2 = testGetUserAccountUserSegmentsPage_addSegment(
 			userId, randomSegment());
 
-		Page<Segment> page = invokeGetUserSegmentsPage(
+		Page<Segment> page = invokeGetUserAccountUserSegmentsPage(
 			userId, Pagination.of(2, 1));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -115,24 +115,26 @@ public abstract class BaseSegmentResourceTestCase {
 	}
 
 	@Test
-	public void testGetUserSegmentsPageWithPagination() throws Exception {
-		Long userId = testGetUserSegmentsPage_getUserId();
+	public void testGetUserAccountUserSegmentsPageWithPagination()
+		throws Exception {
 
-		Segment segment1 = testGetUserSegmentsPage_addSegment(
+		Long userId = testGetUserAccountUserSegmentsPage_getUserId();
+
+		Segment segment1 = testGetUserAccountUserSegmentsPage_addSegment(
 			userId, randomSegment());
-		Segment segment2 = testGetUserSegmentsPage_addSegment(
+		Segment segment2 = testGetUserAccountUserSegmentsPage_addSegment(
 			userId, randomSegment());
-		Segment segment3 = testGetUserSegmentsPage_addSegment(
+		Segment segment3 = testGetUserAccountUserSegmentsPage_addSegment(
 			userId, randomSegment());
 
-		Page<Segment> page1 = invokeGetUserSegmentsPage(
+		Page<Segment> page1 = invokeGetUserAccountUserSegmentsPage(
 			userId, Pagination.of(2, 1));
 
 		List<Segment> segments1 = (List<Segment>)page1.getItems();
 
 		Assert.assertEquals(segments1.toString(), 2, segments1.size());
 
-		Page<Segment> page2 = invokeGetUserSegmentsPage(
+		Page<Segment> page2 = invokeGetUserAccountUserSegmentsPage(
 			userId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -151,7 +153,7 @@ public abstract class BaseSegmentResourceTestCase {
 			});
 	}
 
-	protected Segment testGetUserSegmentsPage_addSegment(
+	protected Segment testGetUserAccountUserSegmentsPage_addSegment(
 			Long userId, Segment segment)
 		throws Exception {
 
@@ -159,12 +161,14 @@ public abstract class BaseSegmentResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected Long testGetUserSegmentsPage_getUserId() throws Exception {
+	protected Long testGetUserAccountUserSegmentsPage_getUserId()
+		throws Exception {
+
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Page<Segment> invokeGetUserSegmentsPage(
+	protected Page<Segment> invokeGetUserAccountUserSegmentsPage(
 			Long userId, Pagination pagination)
 		throws Exception {
 
@@ -186,7 +190,7 @@ public abstract class BaseSegmentResourceTestCase {
 			});
 	}
 
-	protected Http.Response invokeGetUserSegmentsPageResponse(
+	protected Http.Response invokeGetUserAccountUserSegmentsPageResponse(
 			Long userId, Pagination pagination)
 		throws Exception {
 

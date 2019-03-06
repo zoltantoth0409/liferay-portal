@@ -127,7 +127,7 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<Email> getGenericParentEmailsPage(
+	public Collection<Email> getEmailsPage(
 			@GraphQLName("generic-parent-id") Object genericParentId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
@@ -139,7 +139,7 @@ public class Query {
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
 
-		Page paginationPage = emailResource.getGenericParentEmailsPage(
+		Page paginationPage = emailResource.getEmailsPage(
 			genericParentId, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
@@ -298,7 +298,7 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<Phone> getGenericParentPhonesPage(
+	public Collection<Phone> getPhonesPage(
 			@GraphQLName("generic-parent-id") Object genericParentId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
@@ -310,7 +310,7 @@ public class Query {
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
 
-		Page paginationPage = phoneResource.getGenericParentPhonesPage(
+		Page paginationPage = phoneResource.getPhonesPage(
 			genericParentId, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
@@ -332,7 +332,7 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<PostalAddress> getGenericParentPostalAddressesPage(
+	public Collection<PostalAddress> getPostalAddressesPage(
 			@GraphQLName("generic-parent-id") Object genericParentId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
@@ -345,9 +345,8 @@ public class Query {
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
 
-		Page paginationPage =
-			postalAddressResource.getGenericParentPostalAddressesPage(
-				genericParentId, Pagination.of(pageSize, page));
+		Page paginationPage = postalAddressResource.getPostalAddressesPage(
+			genericParentId, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
 	}
@@ -441,7 +440,7 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<Segment> getUserSegmentsPage(
+	public Collection<Segment> getUserAccountUserSegmentsPage(
 			@GraphQLName("user-id") Long userId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
@@ -453,7 +452,7 @@ public class Query {
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
 
-		Page paginationPage = segmentResource.getUserSegmentsPage(
+		Page paginationPage = segmentResource.getUserAccountUserSegmentsPage(
 			userId, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
@@ -589,7 +588,7 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<WebUrl> getGenericParentWebUrlsPage(
+	public Collection<WebUrl> getWebUrlsPage(
 			@GraphQLName("generic-parent-id") Object genericParentId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
@@ -601,7 +600,7 @@ public class Query {
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
 
-		Page paginationPage = webUrlResource.getGenericParentWebUrlsPage(
+		Page paginationPage = webUrlResource.getWebUrlsPage(
 			genericParentId, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();

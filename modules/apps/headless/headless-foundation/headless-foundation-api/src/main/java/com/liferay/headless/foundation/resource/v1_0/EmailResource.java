@@ -32,7 +32,7 @@ import javax.annotation.Generated;
 @Generated("")
 public interface EmailResource {
 
-	public Page<Email> getGenericParentEmailsPage(
+	public Page<Email> getEmailsPage(
 			Object genericParentId, Pagination pagination)
 		throws Exception;
 

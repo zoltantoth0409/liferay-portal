@@ -96,16 +96,15 @@ public abstract class BasePhoneResourceTestCase {
 	}
 
 	@Test
-	public void testGetGenericParentPhonesPage() throws Exception {
-		Object genericParentId =
-			testGetGenericParentPhonesPage_getGenericParentId();
+	public void testGetPhonesPage() throws Exception {
+		Object genericParentId = testGetPhonesPage_getGenericParentId();
 
-		Phone phone1 = testGetGenericParentPhonesPage_addPhone(
+		Phone phone1 = testGetPhonesPage_addPhone(
 			genericParentId, randomPhone());
-		Phone phone2 = testGetGenericParentPhonesPage_addPhone(
+		Phone phone2 = testGetPhonesPage_addPhone(
 			genericParentId, randomPhone());
 
-		Page<Phone> page = invokeGetGenericParentPhonesPage(
+		Page<Phone> page = invokeGetPhonesPage(
 			genericParentId, Pagination.of(2, 1));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -116,27 +115,24 @@ public abstract class BasePhoneResourceTestCase {
 	}
 
 	@Test
-	public void testGetGenericParentPhonesPageWithPagination()
-		throws Exception {
+	public void testGetPhonesPageWithPagination() throws Exception {
+		Object genericParentId = testGetPhonesPage_getGenericParentId();
 
-		Object genericParentId =
-			testGetGenericParentPhonesPage_getGenericParentId();
-
-		Phone phone1 = testGetGenericParentPhonesPage_addPhone(
+		Phone phone1 = testGetPhonesPage_addPhone(
 			genericParentId, randomPhone());
-		Phone phone2 = testGetGenericParentPhonesPage_addPhone(
+		Phone phone2 = testGetPhonesPage_addPhone(
 			genericParentId, randomPhone());
-		Phone phone3 = testGetGenericParentPhonesPage_addPhone(
+		Phone phone3 = testGetPhonesPage_addPhone(
 			genericParentId, randomPhone());
 
-		Page<Phone> page1 = invokeGetGenericParentPhonesPage(
+		Page<Phone> page1 = invokeGetPhonesPage(
 			genericParentId, Pagination.of(2, 1));
 
 		List<Phone> phones1 = (List<Phone>)page1.getItems();
 
 		Assert.assertEquals(phones1.toString(), 2, phones1.size());
 
-		Page<Phone> page2 = invokeGetGenericParentPhonesPage(
+		Page<Phone> page2 = invokeGetPhonesPage(
 			genericParentId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -155,7 +151,7 @@ public abstract class BasePhoneResourceTestCase {
 			});
 	}
 
-	protected Phone testGetGenericParentPhonesPage_addPhone(
+	protected Phone testGetPhonesPage_addPhone(
 			Object genericParentId, Phone phone)
 		throws Exception {
 
@@ -163,14 +159,12 @@ public abstract class BasePhoneResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected Object testGetGenericParentPhonesPage_getGenericParentId()
-		throws Exception {
-
+	protected Object testGetPhonesPage_getGenericParentId() throws Exception {
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Page<Phone> invokeGetGenericParentPhonesPage(
+	protected Page<Phone> invokeGetPhonesPage(
 			Object genericParentId, Pagination pagination)
 		throws Exception {
 
@@ -191,7 +185,7 @@ public abstract class BasePhoneResourceTestCase {
 			});
 	}
 
-	protected Http.Response invokeGetGenericParentPhonesPageResponse(
+	protected Http.Response invokeGetPhonesPageResponse(
 			Object genericParentId, Pagination pagination)
 		throws Exception {
 

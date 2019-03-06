@@ -1094,11 +1094,13 @@ public abstract class BaseStructuredContentResourceTestCase {
 	}
 
 	@Test
-	public void testGetStructuredContentTemplate() throws Exception {
+	public void testGetStructuredContentRenderedContentTemplate()
+		throws Exception {
+
 		Assert.assertTrue(true);
 	}
 
-	protected String invokeGetStructuredContentTemplate(
+	protected String invokeGetStructuredContentRenderedContentTemplate(
 			Long structuredContentId, Long templateId)
 		throws Exception {
 
@@ -1115,8 +1117,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 		return HttpUtil.URLtoString(options);
 	}
 
-	protected Http.Response invokeGetStructuredContentTemplateResponse(
-			Long structuredContentId, Long templateId)
+	protected Http.Response
+			invokeGetStructuredContentRenderedContentTemplateResponse(
+				Long structuredContentId, Long templateId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

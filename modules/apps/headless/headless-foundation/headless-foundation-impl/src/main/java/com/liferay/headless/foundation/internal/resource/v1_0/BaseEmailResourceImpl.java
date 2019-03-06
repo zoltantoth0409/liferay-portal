@@ -61,7 +61,7 @@ public abstract class BaseEmailResourceImpl implements EmailResource {
 	)
 	@Path("/emails")
 	@Produces("application/json")
-	public Page<Email> getGenericParentEmailsPage(
+	public Page<Email> getEmailsPage(
 			@PathParam("generic-parent-id") Object genericParentId,
 			@Context Pagination pagination)
 		throws Exception {

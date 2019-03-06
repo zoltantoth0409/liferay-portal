@@ -96,18 +96,18 @@ public abstract class BasePostalAddressResourceTestCase {
 	}
 
 	@Test
-	public void testGetGenericParentPostalAddressesPage() throws Exception {
+	public void testGetPostalAddressesPage() throws Exception {
 		Object genericParentId =
-			testGetGenericParentPostalAddressesPage_getGenericParentId();
+			testGetPostalAddressesPage_getGenericParentId();
 
 		PostalAddress postalAddress1 =
-			testGetGenericParentPostalAddressesPage_addPostalAddress(
+			testGetPostalAddressesPage_addPostalAddress(
 				genericParentId, randomPostalAddress());
 		PostalAddress postalAddress2 =
-			testGetGenericParentPostalAddressesPage_addPostalAddress(
+			testGetPostalAddressesPage_addPostalAddress(
 				genericParentId, randomPostalAddress());
 
-		Page<PostalAddress> page = invokeGetGenericParentPostalAddressesPage(
+		Page<PostalAddress> page = invokeGetPostalAddressesPage(
 			genericParentId, Pagination.of(2, 1));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -119,23 +119,21 @@ public abstract class BasePostalAddressResourceTestCase {
 	}
 
 	@Test
-	public void testGetGenericParentPostalAddressesPageWithPagination()
-		throws Exception {
-
+	public void testGetPostalAddressesPageWithPagination() throws Exception {
 		Object genericParentId =
-			testGetGenericParentPostalAddressesPage_getGenericParentId();
+			testGetPostalAddressesPage_getGenericParentId();
 
 		PostalAddress postalAddress1 =
-			testGetGenericParentPostalAddressesPage_addPostalAddress(
+			testGetPostalAddressesPage_addPostalAddress(
 				genericParentId, randomPostalAddress());
 		PostalAddress postalAddress2 =
-			testGetGenericParentPostalAddressesPage_addPostalAddress(
+			testGetPostalAddressesPage_addPostalAddress(
 				genericParentId, randomPostalAddress());
 		PostalAddress postalAddress3 =
-			testGetGenericParentPostalAddressesPage_addPostalAddress(
+			testGetPostalAddressesPage_addPostalAddress(
 				genericParentId, randomPostalAddress());
 
-		Page<PostalAddress> page1 = invokeGetGenericParentPostalAddressesPage(
+		Page<PostalAddress> page1 = invokeGetPostalAddressesPage(
 			genericParentId, Pagination.of(2, 1));
 
 		List<PostalAddress> postalAddresses1 =
@@ -144,7 +142,7 @@ public abstract class BasePostalAddressResourceTestCase {
 		Assert.assertEquals(
 			postalAddresses1.toString(), 2, postalAddresses1.size());
 
-		Page<PostalAddress> page2 = invokeGetGenericParentPostalAddressesPage(
+		Page<PostalAddress> page2 = invokeGetPostalAddressesPage(
 			genericParentId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -165,24 +163,22 @@ public abstract class BasePostalAddressResourceTestCase {
 			});
 	}
 
-	protected PostalAddress
-			testGetGenericParentPostalAddressesPage_addPostalAddress(
-				Object genericParentId, PostalAddress postalAddress)
+	protected PostalAddress testGetPostalAddressesPage_addPostalAddress(
+			Object genericParentId, PostalAddress postalAddress)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Object
-			testGetGenericParentPostalAddressesPage_getGenericParentId()
+	protected Object testGetPostalAddressesPage_getGenericParentId()
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Page<PostalAddress> invokeGetGenericParentPostalAddressesPage(
+	protected Page<PostalAddress> invokeGetPostalAddressesPage(
 			Object genericParentId, Pagination pagination)
 		throws Exception {
 
@@ -204,7 +200,7 @@ public abstract class BasePostalAddressResourceTestCase {
 			});
 	}
 
-	protected Http.Response invokeGetGenericParentPostalAddressesPageResponse(
+	protected Http.Response invokeGetPostalAddressesPageResponse(
 			Object genericParentId, Pagination pagination)
 		throws Exception {
 

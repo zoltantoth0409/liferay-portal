@@ -61,7 +61,7 @@ public abstract class BasePhoneResourceImpl implements PhoneResource {
 	)
 	@Path("/phones")
 	@Produces("application/json")
-	public Page<Phone> getGenericParentPhonesPage(
+	public Page<Phone> getPhonesPage(
 			@PathParam("generic-parent-id") Object genericParentId,
 			@Context Pagination pagination)
 		throws Exception {

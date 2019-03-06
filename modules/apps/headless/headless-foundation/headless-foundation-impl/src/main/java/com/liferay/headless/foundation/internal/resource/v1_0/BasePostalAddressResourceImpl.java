@@ -62,7 +62,7 @@ public abstract class BasePostalAddressResourceImpl
 	)
 	@Path("/postal-addresses")
 	@Produces("application/json")
-	public Page<PostalAddress> getGenericParentPostalAddressesPage(
+	public Page<PostalAddress> getPostalAddressesPage(
 			@PathParam("generic-parent-id") Object genericParentId,
 			@Context Pagination pagination)
 		throws Exception {

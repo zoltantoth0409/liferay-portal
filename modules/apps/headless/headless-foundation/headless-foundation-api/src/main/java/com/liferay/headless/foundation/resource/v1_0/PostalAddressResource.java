@@ -32,7 +32,7 @@ import javax.annotation.Generated;
 @Generated("")
 public interface PostalAddressResource {
 
-	public Page<PostalAddress> getGenericParentPostalAddressesPage(
+	public Page<PostalAddress> getPostalAddressesPage(
 			Object genericParentId, Pagination pagination)
 		throws Exception;
 

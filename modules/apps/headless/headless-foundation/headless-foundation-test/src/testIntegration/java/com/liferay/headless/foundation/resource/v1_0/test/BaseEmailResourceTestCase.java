@@ -96,16 +96,15 @@ public abstract class BaseEmailResourceTestCase {
 	}
 
 	@Test
-	public void testGetGenericParentEmailsPage() throws Exception {
-		Object genericParentId =
-			testGetGenericParentEmailsPage_getGenericParentId();
+	public void testGetEmailsPage() throws Exception {
+		Object genericParentId = testGetEmailsPage_getGenericParentId();
 
-		Email email1 = testGetGenericParentEmailsPage_addEmail(
+		Email email1 = testGetEmailsPage_addEmail(
 			genericParentId, randomEmail());
-		Email email2 = testGetGenericParentEmailsPage_addEmail(
+		Email email2 = testGetEmailsPage_addEmail(
 			genericParentId, randomEmail());
 
-		Page<Email> page = invokeGetGenericParentEmailsPage(
+		Page<Email> page = invokeGetEmailsPage(
 			genericParentId, Pagination.of(2, 1));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -116,27 +115,24 @@ public abstract class BaseEmailResourceTestCase {
 	}
 
 	@Test
-	public void testGetGenericParentEmailsPageWithPagination()
-		throws Exception {
+	public void testGetEmailsPageWithPagination() throws Exception {
+		Object genericParentId = testGetEmailsPage_getGenericParentId();
 
-		Object genericParentId =
-			testGetGenericParentEmailsPage_getGenericParentId();
-
-		Email email1 = testGetGenericParentEmailsPage_addEmail(
+		Email email1 = testGetEmailsPage_addEmail(
 			genericParentId, randomEmail());
-		Email email2 = testGetGenericParentEmailsPage_addEmail(
+		Email email2 = testGetEmailsPage_addEmail(
 			genericParentId, randomEmail());
-		Email email3 = testGetGenericParentEmailsPage_addEmail(
+		Email email3 = testGetEmailsPage_addEmail(
 			genericParentId, randomEmail());
 
-		Page<Email> page1 = invokeGetGenericParentEmailsPage(
+		Page<Email> page1 = invokeGetEmailsPage(
 			genericParentId, Pagination.of(2, 1));
 
 		List<Email> emails1 = (List<Email>)page1.getItems();
 
 		Assert.assertEquals(emails1.toString(), 2, emails1.size());
 
-		Page<Email> page2 = invokeGetGenericParentEmailsPage(
+		Page<Email> page2 = invokeGetEmailsPage(
 			genericParentId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -155,7 +151,7 @@ public abstract class BaseEmailResourceTestCase {
 			});
 	}
 
-	protected Email testGetGenericParentEmailsPage_addEmail(
+	protected Email testGetEmailsPage_addEmail(
 			Object genericParentId, Email email)
 		throws Exception {
 
@@ -163,14 +159,12 @@ public abstract class BaseEmailResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected Object testGetGenericParentEmailsPage_getGenericParentId()
-		throws Exception {
-
+	protected Object testGetEmailsPage_getGenericParentId() throws Exception {
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Page<Email> invokeGetGenericParentEmailsPage(
+	protected Page<Email> invokeGetEmailsPage(
 			Object genericParentId, Pagination pagination)
 		throws Exception {
 
@@ -191,7 +185,7 @@ public abstract class BaseEmailResourceTestCase {
 			});
 	}
 
-	protected Http.Response invokeGetGenericParentEmailsPageResponse(
+	protected Http.Response invokeGetEmailsPageResponse(
 			Object genericParentId, Pagination pagination)
 		throws Exception {
 

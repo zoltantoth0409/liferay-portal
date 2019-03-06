@@ -62,7 +62,7 @@ public interface StructuredContentResource {
 			Long structuredContentId, StructuredContent structuredContent)
 		throws Exception;
 
-	public String getStructuredContentTemplate(
+	public String getStructuredContentRenderedContentTemplate(
 			Long structuredContentId, Long templateId)
 		throws Exception;
 

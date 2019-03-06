@@ -239,7 +239,7 @@ public abstract class BaseStructuredContentResourceImpl
 		"/structured-contents/{structured-content-id}/rendered-content/{template-id}"
 	)
 	@Produces("text/html")
-	public String getStructuredContentTemplate(
+	public String getStructuredContentRenderedContentTemplate(
 			@PathParam("structured-content-id") Long structuredContentId,
 			@PathParam("template-id") Long templateId)
 		throws Exception {

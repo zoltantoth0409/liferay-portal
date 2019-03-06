@@ -61,7 +61,7 @@ public abstract class BaseWebUrlResourceImpl implements WebUrlResource {
 	)
 	@Path("/web-urls")
 	@Produces("application/json")
-	public Page<WebUrl> getGenericParentWebUrlsPage(
+	public Page<WebUrl> getWebUrlsPage(
 			@PathParam("generic-parent-id") Object genericParentId,
 			@Context Pagination pagination)
 		throws Exception {

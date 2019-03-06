@@ -32,7 +32,7 @@ import javax.annotation.Generated;
 @Generated("")
 public interface PhoneResource {
 
-	public Page<Phone> getGenericParentPhonesPage(
+	public Page<Phone> getPhonesPage(
 			Object genericParentId, Pagination pagination)
 		throws Exception;
 

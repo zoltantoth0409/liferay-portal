@@ -211,7 +211,7 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public String getStructuredContentTemplate(
+	public String getStructuredContentRenderedContentTemplate(
 			@GraphQLName("structured-content-id") Long structuredContentId,
 			@GraphQLName("template-id") Long templateId)
 		throws Exception {
@@ -223,8 +223,9 @@ public class Query {
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
 
-		return structuredContentResource.getStructuredContentTemplate(
-			structuredContentId, templateId);
+		return structuredContentResource.
+			getStructuredContentRenderedContentTemplate(
+				structuredContentId, templateId);
 	}
 
 	@GraphQLField
