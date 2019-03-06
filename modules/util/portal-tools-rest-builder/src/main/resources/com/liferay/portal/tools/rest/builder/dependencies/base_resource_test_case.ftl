@@ -623,10 +623,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 		int size = ${schemaVarNames}.size();
 
-		if ((page.getPageSize() > 0) && (page.getLastPage() > 0) &&
-			(page.getPage() > 0) && (page.getTotalCount() > 0) &&
-			(size > 0)) {
-
+		if ((page.getLastPage() > 0) && (page.getPage() > 0) && (page.getPageSize() > 0) && (page.getTotalCount() > 0) && (size > 0)) {
 			valid = true;
 		}
 
@@ -723,16 +720,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 			return new ArrayList<>(items);
 		}
 
-		public long getPageSize() {
-			return pageSize;
-		}
-
 		public long getLastPage() {
 			return lastPage;
 		}
 
 		public long getPage() {
 			return page;
+		}
+
+		public long getPageSize() {
+			return pageSize;
 		}
 
 		public long getTotalCount() {
@@ -743,13 +740,13 @@ public abstract class Base${schemaName}ResourceTestCase {
 		protected Collection<T> items;
 
 		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
 		protected long lastPage;
 
 		@JsonProperty
 		protected long page;
+
+		@JsonProperty
+		protected long pageSize;
 
 		@JsonProperty
 		protected long totalCount;

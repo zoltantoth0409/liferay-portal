@@ -20,8 +20,8 @@ package com.liferay.portal.vulcan.pagination;
  */
 public class Pagination {
 
-	public static Pagination of(int pageSize, int page) {
-		return new Pagination(pageSize, page);
+	public static Pagination of(int page, int pageSize) {
+		return new Pagination(page, pageSize);
 	}
 
 	public int getEndPosition() {
@@ -40,9 +40,9 @@ public class Pagination {
 		return (_page - 1) * _pageSize;
 	}
 
-	private Pagination(int pageSize, int page) {
-		_pageSize = pageSize;
+	private Pagination(int page, int pageSize) {
 		_page = page;
+		_pageSize = pageSize;
 	}
 
 	private final int _page;
