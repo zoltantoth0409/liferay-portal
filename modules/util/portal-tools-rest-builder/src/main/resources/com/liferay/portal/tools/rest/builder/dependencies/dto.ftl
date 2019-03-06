@@ -42,7 +42,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @GraphQLName("${schemaName}")
 //@JsonFilter("Liferay.Vulcan")
 @XmlRootElement(name = "${schemaName}")
-public class ${schemaName} <#if freeMarkerTool.getDTOParentClass(openAPIYAML, schemaName)??>extends ${freeMarkerTool.getParentClass(openAPIYAML, schemaName)}</#if> {
+public class ${schemaName} <#if freeMarkerTool.getDTOParentClassName(openAPIYAML, schemaName)??>extends ${freeMarkerTool.getParentClass(openAPIYAML, schemaName)}</#if> {
 
 	<#list freeMarkerTool.getDTOJavaMethodParameters(configYAML, openAPIYAML, schema) as javaMethodParameter>
 		<#assign javaDataType = javaMethodParameter.parameterType />

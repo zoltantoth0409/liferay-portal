@@ -56,7 +56,7 @@ public class FreeMarkerTool {
 			configYAML, openAPIYAML, schemaName);
 	}
 
-	public String getDTOParentClass(
+	public String getDTOParentClassName(
 		OpenAPIYAML openAPIYAML, String schemaName) {
 
 		Components components = openAPIYAML.getComponents();
