@@ -62,28 +62,6 @@ public class ContentField {
 	@JsonProperty
 	protected String dataType;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
-		try {
-			id = idUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
-
 	public String getInputControl() {
 		return inputControl;
 	}
@@ -178,6 +156,54 @@ public class ContentField {
 	@JsonProperty
 	protected ContentField[] nestedFields;
 
+	public Boolean getRepeatable() {
+		return repeatable;
+	}
+
+	public void setRepeatable(Boolean repeatable) {
+		this.repeatable = repeatable;
+	}
+
+	@JsonIgnore
+	public void setRepeatable(
+		UnsafeSupplier<Boolean, Exception> repeatableUnsafeSupplier) {
+
+		try {
+			repeatable = repeatableUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean repeatable;
+
+	public String getRepeatableId() {
+		return repeatableId;
+	}
+
+	public void setRepeatableId(String repeatableId) {
+		this.repeatableId = repeatableId;
+	}
+
+	@JsonIgnore
+	public void setRepeatableId(
+		UnsafeSupplier<String, Exception> repeatableIdUnsafeSupplier) {
+
+		try {
+			repeatableId = repeatableIdUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String repeatableId;
+
 	public Value getValue() {
 		return value;
 	}
@@ -210,11 +236,6 @@ public class ContentField {
 		sb.append("\"");
 		sb.append(dataType);
 		sb.append("\"");
-		sb.append(", ");
-
-		sb.append("\"id\": ");
-
-		sb.append(id);
 		sb.append(", ");
 
 		sb.append("\"inputControl\": ");
@@ -257,6 +278,18 @@ public class ContentField {
 			sb.append("]");
 		}
 
+		sb.append(", ");
+
+		sb.append("\"repeatable\": ");
+
+		sb.append(repeatable);
+		sb.append(", ");
+
+		sb.append("\"repeatableId\": ");
+
+		sb.append("\"");
+		sb.append(repeatableId);
+		sb.append("\"");
 		sb.append(", ");
 
 		sb.append("\"value\": ");

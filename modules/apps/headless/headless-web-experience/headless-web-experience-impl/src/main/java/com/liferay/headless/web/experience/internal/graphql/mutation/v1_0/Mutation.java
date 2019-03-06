@@ -17,10 +17,8 @@ package com.liferay.headless.web.experience.internal.graphql.mutation.v1_0;
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.internal.resource.v1_0.CommentResourceImpl;
-import com.liferay.headless.web.experience.internal.resource.v1_0.StructuredContentImageResourceImpl;
 import com.liferay.headless.web.experience.internal.resource.v1_0.StructuredContentResourceImpl;
 import com.liferay.headless.web.experience.resource.v1_0.CommentResource;
-import com.liferay.headless.web.experience.resource.v1_0.StructuredContentImageResource;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -136,19 +134,6 @@ public class Mutation {
 			structuredContentId, structuredContent);
 	}
 
-	@GraphQLInvokeDetached
-	public boolean deleteStructuredContentImage(
-			@GraphQLName("structured-content-image-id") Long
-				structuredContentImageId)
-		throws Exception {
-
-		StructuredContentImageResource structuredContentImageResource =
-			_createStructuredContentImageResource();
-
-		return structuredContentImageResource.deleteStructuredContentImage(
-			structuredContentImageId);
-	}
-
 	private static CommentResource _createCommentResource() {
 		return new CommentResourceImpl();
 	}
@@ -157,12 +142,6 @@ public class Mutation {
 		_createStructuredContentResource() {
 
 		return new StructuredContentResourceImpl();
-	}
-
-	private static StructuredContentImageResource
-		_createStructuredContentImageResource() {
-
-		return new StructuredContentImageResourceImpl();
 	}
 
 }

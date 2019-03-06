@@ -136,6 +136,30 @@ public class StructuredContentImage {
 	@JsonProperty
 	protected Date dateModified;
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@JsonIgnore
+	public void setDescription(
+		UnsafeSupplier<String, Exception> descriptionUnsafeSupplier) {
+
+		try {
+			description = descriptionUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
 	public String getEncodingFormat() {
 		return encodingFormat;
 	}
@@ -306,6 +330,13 @@ public class StructuredContentImage {
 
 		sb.append("\"");
 		sb.append(dateModified);
+		sb.append("\"");
+		sb.append(", ");
+
+		sb.append("\"description\": ");
+
+		sb.append("\"");
+		sb.append(description);
 		sb.append("\"");
 		sb.append(", ");
 

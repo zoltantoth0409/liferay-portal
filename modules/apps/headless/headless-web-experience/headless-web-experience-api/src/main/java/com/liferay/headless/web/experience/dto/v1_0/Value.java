@@ -133,6 +133,30 @@ public class Value {
 	@JsonProperty
 	protected Geo geo;
 
+	public StructuredContentImage getImage() {
+		return image;
+	}
+
+	public void setImage(StructuredContentImage image) {
+		this.image = image;
+	}
+
+	@JsonIgnore
+	public void setImage(
+		UnsafeSupplier<StructuredContentImage, Exception> imageUnsafeSupplier) {
+
+		try {
+			image = imageUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected StructuredContentImage image;
+
 	public String getLink() {
 		return link;
 	}
@@ -154,31 +178,6 @@ public class Value {
 	@GraphQLField
 	@JsonProperty
 	protected String link;
-
-	public StructuredContent getStructuredContent() {
-		return structuredContent;
-	}
-
-	public void setStructuredContent(StructuredContent structuredContent) {
-		this.structuredContent = structuredContent;
-	}
-
-	@JsonIgnore
-	public void setStructuredContent(
-		UnsafeSupplier<StructuredContent, Exception>
-			structuredContentUnsafeSupplier) {
-
-		try {
-			structuredContent = structuredContentUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty
-	protected StructuredContent structuredContent;
 
 	public Long getStructuredContentId() {
 		return structuredContentId;
@@ -203,6 +202,33 @@ public class Value {
 	@GraphQLField
 	@JsonProperty
 	protected Long structuredContentId;
+
+	public StructuredContentLink getStructuredContentLink() {
+		return structuredContentLink;
+	}
+
+	public void setStructuredContentLink(
+		StructuredContentLink structuredContentLink) {
+
+		this.structuredContentLink = structuredContentLink;
+	}
+
+	@JsonIgnore
+	public void setStructuredContentLink(
+		UnsafeSupplier<StructuredContentLink, Exception>
+			structuredContentLinkUnsafeSupplier) {
+
+		try {
+			structuredContentLink = structuredContentLinkUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected StructuredContentLink structuredContentLink;
 
 	public String toString() {
 		StringBundler sb = new StringBundler();
@@ -231,6 +257,11 @@ public class Value {
 		sb.append(geo);
 		sb.append(", ");
 
+		sb.append("\"image\": ");
+
+		sb.append(image);
+		sb.append(", ");
+
 		sb.append("\"link\": ");
 
 		sb.append("\"");
@@ -238,14 +269,14 @@ public class Value {
 		sb.append("\"");
 		sb.append(", ");
 
-		sb.append("\"structuredContent\": ");
-
-		sb.append(structuredContent);
-		sb.append(", ");
-
 		sb.append("\"structuredContentId\": ");
 
 		sb.append(structuredContentId);
+		sb.append(", ");
+
+		sb.append("\"structuredContentLink\": ");
+
+		sb.append(structuredContentLink);
 
 		sb.append("}");
 

@@ -426,23 +426,21 @@ public class StructuredContent {
 	protected Date lastReviewed;
 
 	@Schema(description = "https://www.schema.org/templates")
-	public RenderedContentsURL[] getRenderedContentsURL() {
-		return renderedContentsURL;
+	public RenderedContents[] getRenderedContents() {
+		return renderedContents;
 	}
 
-	public void setRenderedContentsURL(
-		RenderedContentsURL[] renderedContentsURL) {
-
-		this.renderedContentsURL = renderedContentsURL;
+	public void setRenderedContents(RenderedContents[] renderedContents) {
+		this.renderedContents = renderedContents;
 	}
 
 	@JsonIgnore
-	public void setRenderedContentsURL(
-		UnsafeSupplier<RenderedContentsURL[], Exception>
-			renderedContentsURLUnsafeSupplier) {
+	public void setRenderedContents(
+		UnsafeSupplier<RenderedContents[], Exception>
+			renderedContentsUnsafeSupplier) {
 
 		try {
-			renderedContentsURL = renderedContentsURLUnsafeSupplier.get();
+			renderedContents = renderedContentsUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -451,7 +449,7 @@ public class StructuredContent {
 
 	@GraphQLField
 	@JsonProperty
-	protected RenderedContentsURL[] renderedContentsURL;
+	protected RenderedContents[] renderedContents;
 
 	public String getTitle() {
 		return title;
@@ -680,18 +678,18 @@ public class StructuredContent {
 		sb.append("\"");
 		sb.append(", ");
 
-		sb.append("\"renderedContentsURL\": ");
+		sb.append("\"renderedContents\": ");
 
-		if (renderedContentsURL == null) {
+		if (renderedContents == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < renderedContentsURL.length; i++) {
-				sb.append(renderedContentsURL[i]);
+			for (int i = 0; i < renderedContents.length; i++) {
+				sb.append(renderedContents[i]);
 
-				if ((i + 1) < renderedContentsURL.length) {
+				if ((i + 1) < renderedContents.length) {
 					sb.append(", ");
 				}
 			}
