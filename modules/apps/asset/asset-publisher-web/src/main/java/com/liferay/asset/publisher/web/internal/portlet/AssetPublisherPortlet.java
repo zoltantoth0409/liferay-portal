@@ -238,9 +238,9 @@ public class AssetPublisherPortlet extends MVCPortlet {
 			AssetPublisherDisplayContext assetPublisherDisplayContext =
 				new AssetPublisherDisplayContext(
 					assetEntryActionRegistry, assetHelper,
-					assetPublisherCustomizer, assetPublisherHelper,
-					assetPublisherWebConfiguration, assetPublisherWebUtil,
-					assetListProviderTracker, resourceRequest, resourceResponse,
+					assetListProviderTracker, assetPublisherCustomizer,
+					assetPublisherHelper, assetPublisherWebConfiguration,
+					assetPublisherWebUtil, resourceRequest, resourceResponse,
 					resourceRequest.getPreferences());
 
 			resourceRequest.setAttribute(
@@ -337,9 +337,9 @@ public class AssetPublisherPortlet extends MVCPortlet {
 			AssetPublisherDisplayContext assetPublisherDisplayContext =
 				new AssetPublisherDisplayContext(
 					assetEntryActionRegistry, assetHelper,
-					assetPublisherCustomizer, assetPublisherHelper,
-					assetPublisherWebConfiguration, assetPublisherWebUtil,
-					assetListProviderTracker, renderRequest, renderResponse,
+					assetListProviderTracker, assetPublisherCustomizer,
+					assetPublisherHelper, assetPublisherWebConfiguration,
+					assetPublisherWebUtil, renderRequest, renderResponse,
 					renderRequest.getPreferences());
 
 			renderRequest.setAttribute(
