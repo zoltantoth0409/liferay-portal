@@ -16,7 +16,7 @@ package com.liferay.frontend.js.loader.modules.extender.internal.config.generato
 
 import aQute.bnd.osgi.Constants;
 
-import com.liferay.frontend.js.loader.modules.extender.internal.Details;
+import com.liferay.frontend.js.loader.modules.extender.internal.configuration.Details;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;

@@ -14,10 +14,10 @@
 
 package com.liferay.frontend.js.loader.modules.extender.internal.resolution;
 
-import com.liferay.frontend.js.loader.modules.extender.internal.Details;
 import com.liferay.frontend.js.loader.modules.extender.internal.config.generator.JSConfigGeneratorModule;
 import com.liferay.frontend.js.loader.modules.extender.internal.config.generator.JSConfigGeneratorPackage;
 import com.liferay.frontend.js.loader.modules.extender.internal.config.generator.JSConfigGeneratorPackagesTracker;
+import com.liferay.frontend.js.loader.modules.extender.internal.configuration.Details;
 import com.liferay.frontend.js.loader.modules.extender.internal.resolution.adapter.JSBrowserModule;
 import com.liferay.frontend.js.loader.modules.extender.internal.resolution.adapter.JSConfigGeneratorBrowserModule;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSModule;
