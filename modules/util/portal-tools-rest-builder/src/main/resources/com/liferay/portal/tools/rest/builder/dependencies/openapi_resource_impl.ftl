@@ -38,9 +38,9 @@ import org.osgi.service.component.annotations.ServiceScope;
 @Generated("")
 @OpenAPIDefinition(
 	info = @Info(
+		description = "${openAPIYAML.info.description}",
 		title = "${openAPIYAML.info.title}",
-		version = "${openAPIYAML.info.version}",
-		description = "${openAPIYAML.info.description}"
+		version = "${openAPIYAML.info.version}"
 	)
 )
 @Path("/${openAPIYAML.info.version}")
