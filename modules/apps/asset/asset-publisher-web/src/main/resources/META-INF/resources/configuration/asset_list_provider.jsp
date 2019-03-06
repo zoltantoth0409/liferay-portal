@@ -39,6 +39,6 @@ List<AssetListProvider> assetListProviders = assetPublisherDisplayContext.getAss
 		</aui:select>
 	</c:when>
 	<c:otherwise>
-		<liferay-ui:message key="you-do-not-have-any-asset-list-provider" />
+		<liferay-ui:message key="you-do-not-have-any-asset-list-providers" />
 	</c:otherwise>
 </c:choose>
