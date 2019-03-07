@@ -79,10 +79,11 @@ public class NestedRepresentorTransformerTest {
 
 		assertThat(nestedDummyList.size(), is(1));
 
+		NestedFieldFunction<DummyWithNested, ?> nestedDummy =
+			nestedDummyList.get(0);
+
 		NestedRepresentor<NestedDummy> nestedRepresentor = unsafeCast(
-			nestedDummyList.get(
-				0
-			).getNestedRepresentor());
+			nestedDummy.getNestedRepresentor());
 
 		_testRelatedModels(nestedRepresentor);
 
@@ -111,10 +112,11 @@ public class NestedRepresentorTransformerTest {
 
 		assertThat(nestedDummyList.size(), is(1));
 
+		NestedListFieldFunction<DummyWithNested, ?> nestedDummy =
+			nestedDummyList.get(0);
+
 		NestedRepresentor<NestedDummy> nestedRepresentor = unsafeCast(
-			nestedDummyList.get(
-				0
-			).getNestedRepresentor());
+			nestedDummy.getNestedRepresentor());
 
 		_testRelatedModels(nestedRepresentor);
 

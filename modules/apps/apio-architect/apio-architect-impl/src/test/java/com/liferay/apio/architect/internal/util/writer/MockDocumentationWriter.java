@@ -37,6 +37,7 @@ import com.liferay.apio.architect.single.model.SingleModel;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -104,11 +105,11 @@ public class MockDocumentationWriter {
 	private static Stream<ActionSemantics> _getActionSemantics(
 		Resource resource) {
 
-		if (Paged.of("root").equals(resource)) {
+		if (Objects.equals(Paged.of("root"), resource)) {
 			return _rootActionSemantics.stream();
 		}
 
-		if (Item.of("root").equals(resource)) {
+		if (Objects.equals(Item.of("root"), resource)) {
 			return _itemActionSemantics.stream();
 		}
 

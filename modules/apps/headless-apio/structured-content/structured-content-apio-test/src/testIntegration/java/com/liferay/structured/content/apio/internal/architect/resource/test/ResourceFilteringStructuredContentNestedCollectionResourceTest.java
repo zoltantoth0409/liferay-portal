@@ -798,6 +798,8 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 	@Test
 	public void testGetPageItemsFilterByDateStructureField() throws Throwable {
+		User user = TestPropsValues.getUser();
+
 		DDMStructureTestHelper ddmStructureTestHelper =
 			new DDMStructureTestHelper(
 				PortalUtil.getClassNameId(JournalArticle.class), _group);
@@ -822,7 +824,7 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
+				user.getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
 				null, read("test-journal-all-fields-content-1.xml"),
 				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
@@ -852,6 +854,8 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 	public void testGetPageItemsFilterByDecimalStructureField()
 		throws Throwable {
 
+		User user = TestPropsValues.getUser();
+
 		DDMStructureTestHelper ddmStructureTestHelper =
 			new DDMStructureTestHelper(
 				PortalUtil.getClassNameId(JournalArticle.class), _group);
@@ -876,7 +880,7 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
+				user.getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
 				null, read("test-journal-all-fields-content-1.xml"),
 				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
@@ -906,6 +910,8 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 	public void testGetPageItemsFilterByFalseCheckboxStructureField()
 		throws Throwable {
 
+		User user = TestPropsValues.getUser();
+
 		DDMStructureTestHelper ddmStructureTestHelper =
 			new DDMStructureTestHelper(
 				PortalUtil.getClassNameId(JournalArticle.class), _group);
@@ -930,7 +936,7 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
+				user.getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
 				null, read("test-journal-all-fields-content-2.xml"),
 				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
@@ -960,6 +966,8 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 	public void testGetPageItemsFilterByIntegerStructureField()
 		throws Throwable {
 
+		User user = TestPropsValues.getUser();
+
 		DDMStructureTestHelper ddmStructureTestHelper =
 			new DDMStructureTestHelper(
 				PortalUtil.getClassNameId(JournalArticle.class), _group);
@@ -984,7 +992,7 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
+				user.getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
 				null, read("test-journal-all-fields-content-1.xml"),
 				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
@@ -1086,6 +1094,8 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 	public void testGetPageItemsFilterByNumberStructureField()
 		throws Throwable {
 
+		User user = TestPropsValues.getUser();
+
 		DDMStructureTestHelper ddmStructureTestHelper =
 			new DDMStructureTestHelper(
 				PortalUtil.getClassNameId(JournalArticle.class), _group);
@@ -1110,7 +1120,7 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
+				user.getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
 				null, read("test-journal-all-fields-content-1.xml"),
 				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
@@ -1243,6 +1253,8 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 	@Test
 	public void testGetPageItemsFilterByRadioStructureField() throws Throwable {
+		User user = TestPropsValues.getUser();
+
 		DDMStructureTestHelper ddmStructureTestHelper =
 			new DDMStructureTestHelper(
 				PortalUtil.getClassNameId(JournalArticle.class), _group);
@@ -1267,7 +1279,7 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
+				user.getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
 				null, read("test-journal-all-fields-content-1.xml"),
 				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
@@ -1297,6 +1309,8 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 	public void testGetPageItemsFilterByStringStructureField()
 		throws Throwable {
 
+		User user = TestPropsValues.getUser();
+
 		DDMStructureTestHelper ddmStructureTestHelper =
 			new DDMStructureTestHelper(
 				PortalUtil.getClassNameId(JournalArticle.class), _group);
@@ -1321,7 +1335,7 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
+				user.getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
 				null, read("test-journal-all-fields-content-1.xml"),
 				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
@@ -2048,6 +2062,8 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 	public void testGetPageItemsFilterByTrueCheckboxStructureField()
 		throws Throwable {
 
+		User user = TestPropsValues.getUser();
+
 		DDMStructureTestHelper ddmStructureTestHelper =
 			new DDMStructureTestHelper(
 				PortalUtil.getClassNameId(JournalArticle.class), _group);
@@ -2072,7 +2088,7 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
+				user.getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
 				null, read("test-journal-all-fields-content-1.xml"),
 				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
@@ -2102,6 +2118,8 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 	public void testGetPageItemsFilterByTrueCheckboxStructureFieldInNoDefaultLocale()
 		throws Throwable {
 
+		User user = TestPropsValues.getUser();
+
 		DDMStructureTestHelper ddmStructureTestHelper =
 			new DDMStructureTestHelper(
 				PortalUtil.getClassNameId(JournalArticle.class), _group);
@@ -2126,7 +2144,7 @@ public class ResourceFilteringStructuredContentNestedCollectionResourceTest
 
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
-				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
+				user.getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
 				null, read("test-journal-all-fields-content-1.xml"),
 				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),

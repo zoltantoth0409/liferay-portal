@@ -191,7 +191,9 @@ public class ModelPermissionsFactoryTest {
 
 		Assert.assertEquals(roleNames.toString(), 1, roleNames.size());
 
-		String roleName = roleNames.iterator().next();
+		Iterator<String> iterator = roleNames.iterator();
+
+		String roleName = iterator.next();
 
 		Assert.assertEquals(RoleConstants.GUEST, roleName);
 		Assert.assertArrayEquals(
@@ -220,7 +222,9 @@ public class ModelPermissionsFactoryTest {
 
 		Assert.assertEquals(roleNames.toString(), 2, roleNames.size());
 
-		String roleName = roleNames.iterator().next();
+		Iterator<String> iterator = roleNames.iterator();
+
+		String roleName = iterator.next();
 
 		Assert.assertArrayEquals(
 			permissions, modelPermissions.getActionIds(roleName));

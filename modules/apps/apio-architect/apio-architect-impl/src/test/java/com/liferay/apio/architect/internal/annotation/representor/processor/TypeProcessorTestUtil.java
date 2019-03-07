@@ -67,7 +67,9 @@ public class TypeProcessorTestUtil {
 
 		assertThat(bidirectionalModel.modelClass(), equalTo(identifierClass));
 
-		assertThat(bidirectionalModel.field().value(), is(bidirectionalName));
+		Field field = bidirectionalModel.field();
+
+		assertThat(field.value(), is(bidirectionalName));
 
 		testFieldData(bidirectionalFieldData, fieldName, identifierType);
 	}
