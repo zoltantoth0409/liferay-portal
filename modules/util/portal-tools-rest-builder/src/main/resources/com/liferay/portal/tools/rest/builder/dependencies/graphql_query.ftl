@@ -3,7 +3,6 @@ package ${configYAML.apiPackagePath}.internal.graphql.query.${escapedVersion};
 <#compress>
 	<#list openAPIYAML.components.schemas?keys as schemaName>
 		import ${configYAML.apiPackagePath}.dto.${escapedVersion}.${schemaName};
-		import ${configYAML.apiPackagePath}.internal.resource.${escapedVersion}.${schemaName}ResourceImpl;
 		import ${configYAML.apiPackagePath}.resource.${escapedVersion}.${schemaName}Resource;
 	</#list>
 </#compress>
@@ -27,6 +26,10 @@ import javax.annotation.Generated;
 
 import javax.ws.rs.core.Response;
 
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
+
 /**
  * @author ${configYAML.author}
  * @generated
@@ -48,8 +51,6 @@ public class Query {
 			<#elseif javaMethodSignature.returnType?contains("Collection<")>
 				${schemaName}Resource ${schemaName?uncap_first}Resource = _create${schemaName}Resource();
 
-				${schemaName?uncap_first}Resource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
-
 				<#assign arguments = freeMarkerTool.getGraphQLArguments(javaMethodSignature.javaMethodParameters) />
 
 				Page paginationPage = ${schemaName?uncap_first}Resource.${javaMethodSignature.methodName}(${arguments?replace("pageSize,page", "Pagination.of(pageSize, page)")});
@@ -57,8 +58,6 @@ public class Query {
 				return paginationPage.getItems();
 			<#else>
 				${schemaName}Resource ${schemaName?uncap_first}Resource = _create${schemaName}Resource();
-
-				${schemaName?uncap_first}Resource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				return ${schemaName?uncap_first}Resource.${javaMethodSignature.methodName}(${freeMarkerTool.getGraphQLArguments(javaMethodSignature.javaMethodParameters)});
 			</#if>
@@ -68,9 +67,29 @@ public class Query {
 	<#assign schemaNames = freeMarkerTool.getGraphQLSchemaNames(javaMethodSignatures) />
 
 	<#list schemaNames as schemaName>
-		private static ${schemaName}Resource _create${schemaName}Resource() {
-			return new ${schemaName}ResourceImpl();
+		private static ${schemaName}Resource _create${schemaName}Resource() throws Exception {
+			${schemaName}Resource ${schemaName?uncap_first}Resource = _${schemaName?uncap_first}ResourceServiceTracker.getService();
+
+			${schemaName?uncap_first}Resource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+
+			return ${schemaName?uncap_first}Resource;
 		}
+
+		private static final ServiceTracker<${schemaName}Resource, ${schemaName}Resource> _${schemaName?uncap_first}ResourceServiceTracker;
 	</#list>
+
+	<#if schemaNames?size != 0>
+		static {
+			Bundle bundle = FrameworkUtil.getBundle(Query.class);
+
+			<#list schemaNames as schemaName>
+				ServiceTracker<${schemaName}Resource, ${schemaName}Resource> ${schemaName?uncap_first}ResourceServiceTracker = new ServiceTracker<>(bundle.getBundleContext(), ${schemaName}Resource.class, null);
+
+				${schemaName?uncap_first}ResourceServiceTracker.open();
+
+				_${schemaName?uncap_first}ResourceServiceTracker = ${schemaName?uncap_first}ResourceServiceTracker;
+			</#list>
+		}
+	</#if>
 
 }
