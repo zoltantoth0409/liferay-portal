@@ -136,7 +136,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 					</#if>
 
 					<#if parameters?contains("Pagination pagination")>
-						, Pagination.of(2, 1)
+						, Pagination.of(1, 2)
 					</#if>
 
 					<#if parameters?contains("Sort[] sorts")>
@@ -181,7 +181,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							, getFilterString(entityField, "eq", ${schemaVarName}1)
 
 							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(2, 1)
+								, Pagination.of(1, 2)
 							</#if>
 
 							<#if parameters?contains("Sort[] sorts")>
@@ -215,7 +215,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							, getFilterString(entityField, "eq", ${schemaVarName}1)
 
 							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(2, 1)
+								, Pagination.of(1, 2)
 							</#if>
 
 							<#if parameters?contains("Sort[] sorts")>
@@ -244,7 +244,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							, (String)null
 						</#if>
 
-						, Pagination.of(2, 1)
+						, Pagination.of(1, 2)
 
 						<#if parameters?contains("Sort[] sorts")>
 							, (String)null
@@ -319,7 +319,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							</#if>
 
 							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(2, 1)
+								, Pagination.of(1, 2)
 							</#if>
 
 							, entityField.getName() + ":asc"
@@ -335,7 +335,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							</#if>
 
 							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(2, 1)
+								, Pagination.of(1, 2)
 							</#if>
 
 							, entityField.getName() + ":desc"
@@ -375,7 +375,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							</#if>
 
 							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(2, 1)
+								, Pagination.of(1, 2)
 							</#if>
 
 							, entityField.getName() + ":asc"
@@ -391,7 +391,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							</#if>
 
 							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(2, 1)
+								, Pagination.of(1, 2)
 							</#if>
 
 							, entityField.getName() + ":desc"
