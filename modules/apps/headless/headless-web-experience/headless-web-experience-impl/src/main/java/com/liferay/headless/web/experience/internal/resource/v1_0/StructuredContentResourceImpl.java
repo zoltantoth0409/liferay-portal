@@ -474,7 +474,7 @@ public class StructuredContentResourceImpl
 	}
 
 	private ContentField _toContentField(
-			Field field, DDMFormField ddmFormField, DDMStructure ddmStructure,
+			DDMFormField ddmFormField, DDMStructure ddmStructure, Field field,
 			List<String> fieldDisplayValues, Fields fields)
 		throws Exception {
 
@@ -519,7 +519,7 @@ public class StructuredContentResourceImpl
 
 		return new ContentField[] {
 			_toContentField(
-				field, ddmFormField, ddmStructure, fieldDisplayValues, fields)
+				ddmFormField, ddmStructure, field, fieldDisplayValues, fields)
 		};
 	}
 
@@ -687,9 +687,9 @@ public class StructuredContentResourceImpl
 		for (List<String> substring : fieldsDisplaySubstrings) {
 			contentFields.add(
 				_toContentField(
-					fields.get(ddmFormField.getName()), ddmFormField,
-					ddmStructure, substring.subList(1, substring.size()),
-					fields));
+					ddmFormField, ddmStructure,
+					fields.get(ddmFormField.getName()),
+					substring.subList(1, substring.size()), fields));
 		}
 
 		return contentFields.toArray(new ContentField[0]);
