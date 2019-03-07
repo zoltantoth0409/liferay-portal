@@ -37,6 +37,7 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateService;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
+import com.liferay.dynamic.data.mapping.storage.Field;
 import com.liferay.dynamic.data.mapping.storage.Fields;
 import com.liferay.dynamic.data.mapping.util.DDM;
 import com.liferay.dynamic.data.mapping.util.DDMFieldsCounter;
@@ -70,7 +71,6 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
-import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -385,8 +385,7 @@ public class StructuredContentResourceImpl
 	}
 
 	private List<String> _getFieldDisplayValue(Fields fields) {
-		com.liferay.dynamic.data.mapping.storage.Field field = fields.get(
-			DDM.FIELDS_DISPLAY_NAME);
+		Field field = fields.get(DDM.FIELDS_DISPLAY_NAME);
 
 		String fieldDisplayValue = (String)field.getValue();
 
@@ -429,16 +428,20 @@ public class StructuredContentResourceImpl
 
 					booleanFilter.add(
 						new TermFilter(
-							Field.CLASS_TYPE_ID, contentStructureId.toString()),
+							com.liferay.portal.kernel.search.Field.
+								CLASS_TYPE_ID,
+							contentStructureId.toString()),
 						BooleanClauseOccur.MUST);
 				}
 			},
 			filter, JournalArticle.class, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
-				Field.ARTICLE_ID, Field.SCOPE_GROUP_ID),
+				com.liferay.portal.kernel.search.Field.ARTICLE_ID,
+				com.liferay.portal.kernel.search.Field.SCOPE_GROUP_ID),
 			searchContext -> {
 				searchContext.setAttribute(
-					Field.STATUS, WorkflowConstants.STATUS_APPROVED);
+					com.liferay.portal.kernel.search.Field.STATUS,
+					WorkflowConstants.STATUS_APPROVED);
 				searchContext.setAttribute("head", Boolean.TRUE);
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 
@@ -448,8 +451,12 @@ public class StructuredContentResourceImpl
 			},
 			document -> _toStructuredContent(
 				_journalArticleService.getLatestArticle(
-					GetterUtil.getLong(document.get(Field.SCOPE_GROUP_ID)),
-					document.get(Field.ARTICLE_ID),
+					GetterUtil.getLong(
+						document.get(
+							com.liferay.portal.kernel.search.Field.
+								SCOPE_GROUP_ID)),
+					document.get(
+						com.liferay.portal.kernel.search.Field.ARTICLE_ID),
 					WorkflowConstants.STATUS_APPROVED)),
 			sorts);
 	}
@@ -467,8 +474,7 @@ public class StructuredContentResourceImpl
 	}
 
 	private ContentField _toContentField(
-			com.liferay.dynamic.data.mapping.storage.Field ddmField,
-			DDMFormField ddmFormField, DDMStructure ddmStructure,
+			Field field, DDMFormField ddmFormField, DDMStructure ddmStructure,
 			List<String> fieldDisplayValues, Fields fields)
 		throws Exception {
 
@@ -477,14 +483,14 @@ public class StructuredContentResourceImpl
 				dataType = ContentStructureUtil.toDataType(ddmFormField);
 				inputControl = ContentStructureUtil.toInputControl(
 					ddmFormField);
-				name = ddmField.getName();
+				name = field.getName();
 				nestedFields = _transformToArrayFlattening(
 					ddmFormField.getNestedDDMFormFields(),
 					ddmFormField -> _toContentFields(
 						ddmStructure, fields, ddmFormField.getName(),
 						fieldDisplayValues));
 				value = _toValue(
-					ddmField, contextAcceptLanguage.getPreferredLocale());
+					field, contextAcceptLanguage.getPreferredLocale());
 			}
 		};
 	}
@@ -494,10 +500,9 @@ public class StructuredContentResourceImpl
 			List<String> fieldDisplayValues)
 		throws Exception {
 
-		com.liferay.dynamic.data.mapping.storage.Field ddmField = fields.get(
-			fieldName);
+		Field field = fields.get(fieldName);
 
-		if (ddmField == null) {
+		if (field == null) {
 			return null;
 		}
 
@@ -514,8 +519,7 @@ public class StructuredContentResourceImpl
 
 		return new ContentField[] {
 			_toContentField(
-				ddmField, ddmFormField, ddmStructure, fieldDisplayValues,
-				fields)
+				field, ddmFormField, ddmStructure, fieldDisplayValues, fields)
 		};
 	}
 
@@ -524,45 +528,43 @@ public class StructuredContentResourceImpl
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
-		Fields ddmFields = _journalConverter.getDDMFields(
+		Fields fields = _journalConverter.getDDMFields(
 			ddmStructure, journalArticle.getContent());
 
 		return _transformToArrayFlattening(
 			ddmStructure.getRootFieldNames(),
 			fieldName -> _toContentFields(
-				ddmStructure, ddmFields, fieldName, Collections.emptyList()));
+				ddmStructure, fields, fieldName, Collections.emptyList()));
 	}
 
 	private Fields _toDDMFields(
 			ContentField[] contentFields, JournalArticle journalArticle)
 		throws Exception {
 
-		Fields ddmFields = _journalConverter.getDDMFields(
+		Fields fields = _journalConverter.getDDMFields(
 			journalArticle.getDDMStructure(), journalArticle.getContent());
 
 		List<DDMFormFieldValue> ddmFormFieldValues = _toDDMFormFieldValues(
 			contentFields, journalArticle.getDDMStructure(),
 			contextAcceptLanguage.getPreferredLocale());
 
-		Iterator<com.liferay.dynamic.data.mapping.storage.Field> iterator =
-			ddmFields.iterator();
+		Iterator<Field> iterator = fields.iterator();
 
 		while (iterator.hasNext()) {
-			com.liferay.dynamic.data.mapping.storage.Field ddmField =
-				iterator.next();
+			Field field = iterator.next();
 
 			for (DDMFormFieldValue ddmFormFieldValue : ddmFormFieldValues) {
 				if (Objects.equals(
-						ddmFormFieldValue.getName(), ddmField.getName())) {
+						ddmFormFieldValue.getName(), field.getName())) {
 
-					ddmField.addValue(
+					field.addValue(
 						contextAcceptLanguage.getPreferredLocale(),
 						ddmFormFieldValue.getValue());
 				}
 			}
 		}
 
-		return ddmFields;
+		return fields;
 	}
 
 	private List<DDMFormFieldValue> _toDDMFormFieldValues(
@@ -773,21 +775,16 @@ public class StructuredContentResourceImpl
 		};
 	}
 
-	private Value _toValue(
-			com.liferay.dynamic.data.mapping.storage.Field ddmField,
-			Locale locale)
-		throws Exception {
-
-		DDMStructure ddmStructure = ddmField.getDDMStructure();
+	private Value _toValue(Field field, Locale locale) throws Exception {
+		DDMStructure ddmStructure = field.getDDMStructure();
 
 		DDMFormField ddmFormField = ddmStructure.getDDMFormField(
-			ddmField.getName());
+			field.getName());
 
 		String value = String.valueOf(
-			ddmField.getValue(
-				locale, _ddmFieldsCounter.get(ddmField.getName())));
+			field.getValue(locale, _ddmFieldsCounter.get(field.getName())));
 
-		_ddmFieldsCounter.incrementKey(ddmField.getName());
+		_ddmFieldsCounter.incrementKey(field.getName());
 
 		if (Objects.equals(
 				DDMFormFieldType.DOCUMENT_LIBRARY, ddmFormField.getType())) {
