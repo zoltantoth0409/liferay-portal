@@ -50,7 +50,6 @@ import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.model.LayoutSetPrototype;
 import com.liferay.portal.kernel.model.MembershipRequest;
 import com.liferay.portal.kernel.model.MembershipRequestConstants;
-import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.Team;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
@@ -466,10 +465,10 @@ public class SiteAdminPortlet extends MVCPortlet {
 		return refererGroupId;
 	}
 
-	protected List<Role> getRoles(PortletRequest portletRequest)
+	protected List<Long> getRoleIds(PortletRequest portletRequest)
 		throws Exception {
 
-		List<Role> roles = new ArrayList<>();
+		List<Long> roleIds = new ArrayList<>();
 
 		long[] siteRolesRoleIds = ArrayUtil.unique(
 			ParamUtil.getLongValues(
@@ -480,12 +479,10 @@ public class SiteAdminPortlet extends MVCPortlet {
 				continue;
 			}
 
-			Role role = roleLocalService.getRole(siteRolesRoleId);
-
-			roles.add(role);
+			roleIds.add(siteRolesRoleId);
 		}
 
-		return roles;
+		return roleIds;
 	}
 
 	protected PortletURL getSiteAdministrationURL(
@@ -796,9 +793,7 @@ public class SiteAdminPortlet extends MVCPortlet {
 
 		typeSettingsProperties.setProperty(
 			"defaultSiteRoleIds",
-			ListUtil.toString(
-				getRoles(actionRequest), Role.ROLE_ID_ACCESSOR,
-				StringPool.COMMA));
+			ListUtil.toString(getRoleIds(actionRequest), StringPool.BLANK));
 		typeSettingsProperties.setProperty(
 			"defaultTeamIds",
 			ListUtil.toString(
