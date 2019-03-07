@@ -75,8 +75,8 @@ public class LocalizedMapUtilTest {
 			new AbstractMap.SimpleEntry<>(Locale.UK, "anotherValue"));
 
 		Assert.assertEquals(map.toString(), 2, map.size());
-		Assert.assertEquals("value", map.get(Locale.US));
 		Assert.assertEquals("anotherValue", map.get(Locale.UK));
+		Assert.assertEquals("value", map.get(Locale.US));
 	}
 
 }
