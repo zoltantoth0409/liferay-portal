@@ -45,8 +45,7 @@ public class DefaultSegmentsEntryException extends PortalException {
 		public MustNotDeleteDefaultSegmentsEntry(long segmentsEntryId) {
 			super(
 				String.format(
-					"Segments entry %s cannot be deleted because it is the " +
-						"default experience",
+					"The default segments entry %s cannot be deleted",
 					segmentsEntryId));
 		}
 
@@ -58,8 +57,7 @@ public class DefaultSegmentsEntryException extends PortalException {
 		public MustNotUpdateDefaultSegmentsEntry(long segmentsEntryId) {
 			super(
 				String.format(
-					"Segments entry %s cannot be updated because it is the " +
-						"default experience",
+					"The default segments entry %s cannot be updated",
 					segmentsEntryId));
 		}
 
