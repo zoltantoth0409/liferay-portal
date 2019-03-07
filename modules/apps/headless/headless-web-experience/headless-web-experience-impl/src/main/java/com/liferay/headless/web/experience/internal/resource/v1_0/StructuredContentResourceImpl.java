@@ -319,7 +319,7 @@ public class StructuredContentResourceImpl
 						structuredContent.getTitle())),
 				_journalConverter.getContent(
 					ddmStructure,
-					_toDDMFields(
+					_toFields(
 						structuredContent.getContentFields(), journalArticle)),
 				journalArticle.getDDMStructureKey(),
 				_getDDMTemplateKey(ddmStructure),
@@ -544,7 +544,7 @@ public class StructuredContentResourceImpl
 				Collections.emptyList()));
 	}
 
-	private Fields _toDDMFields(
+	private Fields _toFields(
 			ContentField[] contentFields, JournalArticle journalArticle)
 		throws Exception {
 
