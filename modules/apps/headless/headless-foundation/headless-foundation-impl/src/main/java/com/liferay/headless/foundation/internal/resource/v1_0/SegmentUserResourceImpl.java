@@ -49,7 +49,8 @@ public class SegmentUserResourceImpl extends BaseSegmentUserResourceImpl {
 		return Page.of(
 			transformToList(
 				ArrayUtil.toArray(segmentsEntryClassPKs), this::_toSegmentUser),
-			pagination, segmentsEntryClassPKs.length);
+			pagination,
+			_segmentsEntryProvider.getSegmentsEntryClassPKsCount(segmentId));
 	}
 
 	private SegmentUser _toSegmentUser(long segmentsEntryClassPK)
