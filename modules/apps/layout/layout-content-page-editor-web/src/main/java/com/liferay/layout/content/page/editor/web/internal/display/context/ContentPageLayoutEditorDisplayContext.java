@@ -42,19 +42,19 @@ public class ContentPageLayoutEditorDisplayContext
 	}
 
 	@Override
-	public SoyContext getEditorContext() throws Exception {
+	public SoyContext getEditorSoyContext() throws Exception {
 		if (_editorSoyContext != null) {
 			return _editorSoyContext;
 		}
 
-		SoyContext soyContext = super.getEditorContext();
+		SoyContext soyContext = super.getEditorSoyContext();
 
 		soyContext.put(
 			"availableSegmentsEntries",
-			_getSoyContextAvailableSegmentsEntries());
+			_getAvailableSegmentsEntriesSoyContext());
 		soyContext.put(
 			"availableSegmentsExperiences",
-			_getSoyContextAvailableSegmentsExperiences());
+			_getAvailableSegmentsExperiencesSoyContext());
 		soyContext.put("sidebarPanels", getSidebarPanelSoyContexts(false));
 
 		_editorSoyContext = soyContext;
@@ -63,28 +63,28 @@ public class ContentPageLayoutEditorDisplayContext
 	}
 
 	@Override
-	public SoyContext getFragmentsEditorToolbarContext()
+	public SoyContext getFragmentsEditorToolbarSoyContext()
 		throws PortalException {
 
 		if (_fragmentsEditorToolbarSoyContext != null) {
 			return _fragmentsEditorToolbarSoyContext;
 		}
 
-		SoyContext soyContext = super.getFragmentsEditorToolbarContext();
+		SoyContext soyContext = super.getFragmentsEditorToolbarSoyContext();
 
 		soyContext.put(
 			"availableSegmentsEntries",
-			_getSoyContextAvailableSegmentsEntries());
+			_getAvailableSegmentsEntriesSoyContext());
 		soyContext.put(
 			"availableSegmentsExperiences",
-			_getSoyContextAvailableSegmentsExperiences());
+			_getAvailableSegmentsExperiencesSoyContext());
 
 		_fragmentsEditorToolbarSoyContext = soyContext;
 
 		return _fragmentsEditorToolbarSoyContext;
 	}
 
-	private SoyContext _getSoyContextAvailableSegmentsEntries() {
+	private SoyContext _getAvailableSegmentsEntriesSoyContext() {
 		SoyContext availableSegmentsEntriesSoyContext =
 			SoyContextFactoryUtil.createSoyContext();
 
@@ -110,7 +110,7 @@ public class ContentPageLayoutEditorDisplayContext
 		return availableSegmentsEntriesSoyContext;
 	}
 
-	private SoyContext _getSoyContextAvailableSegmentsExperiences()
+	private SoyContext _getAvailableSegmentsExperiencesSoyContext()
 		throws PortalException {
 
 		SoyContext availableSegmentsEntriesSoyContext =

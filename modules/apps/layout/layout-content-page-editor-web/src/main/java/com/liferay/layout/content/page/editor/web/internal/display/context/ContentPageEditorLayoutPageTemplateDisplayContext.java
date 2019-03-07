@@ -55,12 +55,12 @@ public class ContentPageEditorLayoutPageTemplateDisplayContext
 	}
 
 	@Override
-	public SoyContext getEditorContext() throws Exception {
+	public SoyContext getEditorSoyContext() throws Exception {
 		if (_editorSoyContext != null) {
 			return _editorSoyContext;
 		}
 
-		SoyContext soyContext = super.getEditorContext();
+		SoyContext soyContext = super.getEditorSoyContext();
 
 		soyContext.put(
 			"getAssetDisplayContributorsURL",
@@ -119,7 +119,7 @@ public class ContentPageEditorLayoutPageTemplateDisplayContext
 	}
 
 	@Override
-	public SoyContext getFragmentsEditorToolbarContext()
+	public SoyContext getFragmentsEditorToolbarSoyContext()
 		throws PortalException {
 
 		if (_fragmentsEditorToolbarSoyContext != null) {
@@ -127,7 +127,7 @@ public class ContentPageEditorLayoutPageTemplateDisplayContext
 		}
 
 		_fragmentsEditorToolbarSoyContext =
-			super.getFragmentsEditorToolbarContext();
+			super.getFragmentsEditorToolbarSoyContext();
 
 		return _fragmentsEditorToolbarSoyContext;
 	}

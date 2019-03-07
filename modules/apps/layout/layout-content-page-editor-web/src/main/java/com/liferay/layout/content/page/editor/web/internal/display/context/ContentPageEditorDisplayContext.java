@@ -128,7 +128,7 @@ public class ContentPageEditorDisplayContext {
 			ContentPageEditorWebKeys.ITEM_SELECTOR);
 	}
 
-	public SoyContext getEditorContext() throws Exception {
+	public SoyContext getEditorSoyContext() throws Exception {
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
 		soyContext.put(
@@ -188,7 +188,7 @@ public class ContentPageEditorDisplayContext {
 		return soyContext;
 	}
 
-	public SoyContext getFragmentsEditorToolbarContext()
+	public SoyContext getFragmentsEditorToolbarSoyContext()
 		throws PortalException {
 
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
