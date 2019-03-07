@@ -536,7 +536,8 @@ public class StructuredContentResourceImpl
 		return new ContentField[] {
 			_toContentField(
 				ddmFieldsCounter, ddmFormField, ddmStructure, field,
-				fieldDisplayValues, fields)
+				fieldDisplayValues.subList(1, fieldDisplayValues.size()),
+				fields)
 		};
 	}
 
