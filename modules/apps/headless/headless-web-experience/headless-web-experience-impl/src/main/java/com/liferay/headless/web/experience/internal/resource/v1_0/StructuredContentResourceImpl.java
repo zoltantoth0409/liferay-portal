@@ -485,7 +485,7 @@ public class StructuredContentResourceImpl
 				inputControl = ContentStructureUtil.toInputControl(
 					ddmFormField);
 				name = field.getName();
-				nestedFields = _transformToArrayFlattening(
+				nestedFields = _toContentFields(
 					ddmFormField.getNestedDDMFormFields(),
 					ddmFormField -> _toContentFields(
 						ddmFieldsCounter, ddmStructure, fields,
@@ -537,7 +537,7 @@ public class StructuredContentResourceImpl
 		Fields fields = _journalConverter.getDDMFields(
 			ddmStructure, journalArticle.getContent());
 
-		return _transformToArrayFlattening(
+		return _toContentFields(
 			ddmStructure.getRootFieldNames(),
 			fieldName -> _toContentFields(
 				ddmFieldsCounter, ddmStructure, fields, fieldName,
@@ -900,7 +900,7 @@ public class StructuredContentResourceImpl
 		};
 	}
 
-	private <T> ContentField[] _transformToArrayFlattening(
+	private <T> ContentField[] _toContentFields(
 		List<T> list,
 		UnsafeFunction<T, ContentField[], Exception> unsafeFunction) {
 
