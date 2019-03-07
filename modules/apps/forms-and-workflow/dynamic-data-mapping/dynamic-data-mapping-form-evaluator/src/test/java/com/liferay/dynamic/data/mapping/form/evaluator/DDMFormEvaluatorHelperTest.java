@@ -106,7 +106,9 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		List<DDMFormFieldEvaluationResult> ddmFormFieldEvaluationResults =
 			ddmFormEvaluationResult.getDDMFormFieldEvaluationResults();
 
-		Assert.assertEquals(1, ddmFormFieldEvaluationResults.size());
+		Assert.assertEquals(
+			ddmFormFieldEvaluationResults.toString(), 1,
+			ddmFormFieldEvaluationResults.size());
 
 		DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult =
 			ddmFormFieldEvaluationResults.get(0);
@@ -157,7 +159,9 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		List<DDMFormFieldEvaluationResult> ddmFormFieldEvaluationResults =
 			ddmFormEvaluationResult.getDDMFormFieldEvaluationResults();
 
-		Assert.assertEquals(1, ddmFormFieldEvaluationResults.size());
+		Assert.assertEquals(
+			ddmFormFieldEvaluationResults.toString(), 1,
+			ddmFormFieldEvaluationResults.size());
 
 		DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult =
 			ddmFormFieldEvaluationResults.get(0);
