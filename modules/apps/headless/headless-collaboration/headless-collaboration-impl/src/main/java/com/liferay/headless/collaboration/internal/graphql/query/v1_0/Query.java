@@ -17,9 +17,6 @@ package com.liferay.headless.collaboration.internal.graphql.query.v1_0;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
-import com.liferay.headless.collaboration.internal.resource.v1_0.BlogPostingImageResourceImpl;
-import com.liferay.headless.collaboration.internal.resource.v1_0.BlogPostingResourceImpl;
-import com.liferay.headless.collaboration.internal.resource.v1_0.CommentResourceImpl;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.headless.collaboration.resource.v1_0.CommentResource;
@@ -38,6 +35,10 @@ import java.util.Collection;
 
 import javax.annotation.Generated;
 
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -53,10 +54,6 @@ public class Query {
 
 		BlogPostingResource blogPostingResource = _createBlogPostingResource();
 
-		blogPostingResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return blogPostingResource.getBlogPosting(blogPostingId);
 	}
 
@@ -70,10 +67,6 @@ public class Query {
 		throws Exception {
 
 		BlogPostingResource blogPostingResource = _createBlogPostingResource();
-
-		blogPostingResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage =
 			blogPostingResource.getContentSpaceBlogPostingsPage(
@@ -91,10 +84,6 @@ public class Query {
 		BlogPostingImageResource blogPostingImageResource =
 			_createBlogPostingImageResource();
 
-		blogPostingImageResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return blogPostingImageResource.getBlogPostingImage(blogPostingImageId);
 	}
 
@@ -109,10 +98,6 @@ public class Query {
 
 		BlogPostingImageResource blogPostingImageResource =
 			_createBlogPostingImageResource();
-
-		blogPostingImageResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage =
 			blogPostingImageResource.getContentSpaceBlogPostingImagesPage(
@@ -132,10 +117,6 @@ public class Query {
 
 		CommentResource commentResource = _createCommentResource();
 
-		commentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = commentResource.getBlogPostingCommentsPage(
 			blogPostingId, filter, Pagination.of(pageSize, page), sorts);
 
@@ -148,10 +129,6 @@ public class Query {
 		throws Exception {
 
 		CommentResource commentResource = _createCommentResource();
-
-		commentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		return commentResource.getComment(commentId);
 	}
@@ -167,26 +144,86 @@ public class Query {
 
 		CommentResource commentResource = _createCommentResource();
 
-		commentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = commentResource.getCommentCommentsPage(
 			commentId, filter, Pagination.of(pageSize, page), sorts);
 
 		return paginationPage.getItems();
 	}
 
-	private static BlogPostingResource _createBlogPostingResource() {
-		return new BlogPostingResourceImpl();
+	private static BlogPostingResource _createBlogPostingResource()
+		throws Exception {
+
+		BlogPostingResource blogPostingResource =
+			_blogPostingResourceServiceTracker.getService();
+
+		blogPostingResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return blogPostingResource;
 	}
 
-	private static BlogPostingImageResource _createBlogPostingImageResource() {
-		return new BlogPostingImageResourceImpl();
+	private static final ServiceTracker
+		<BlogPostingResource, BlogPostingResource>
+			_blogPostingResourceServiceTracker;
+
+	private static BlogPostingImageResource _createBlogPostingImageResource()
+		throws Exception {
+
+		BlogPostingImageResource blogPostingImageResource =
+			_blogPostingImageResourceServiceTracker.getService();
+
+		blogPostingImageResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return blogPostingImageResource;
 	}
 
-	private static CommentResource _createCommentResource() {
-		return new CommentResourceImpl();
+	private static final ServiceTracker
+		<BlogPostingImageResource, BlogPostingImageResource>
+			_blogPostingImageResourceServiceTracker;
+
+	private static CommentResource _createCommentResource() throws Exception {
+		CommentResource commentResource =
+			_commentResourceServiceTracker.getService();
+
+		commentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return commentResource;
+	}
+
+	private static final ServiceTracker<CommentResource, CommentResource>
+		_commentResourceServiceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Query.class);
+
+		ServiceTracker<BlogPostingResource, BlogPostingResource>
+			blogPostingResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), BlogPostingResource.class, null);
+
+		blogPostingResourceServiceTracker.open();
+
+		_blogPostingResourceServiceTracker = blogPostingResourceServiceTracker;
+		ServiceTracker<BlogPostingImageResource, BlogPostingImageResource>
+			blogPostingImageResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), BlogPostingImageResource.class,
+				null);
+
+		blogPostingImageResourceServiceTracker.open();
+
+		_blogPostingImageResourceServiceTracker =
+			blogPostingImageResourceServiceTracker;
+		ServiceTracker<CommentResource, CommentResource>
+			commentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), CommentResource.class, null);
+
+		commentResourceServiceTracker.open();
+
+		_commentResourceServiceTracker = commentResourceServiceTracker;
 	}
 
 }

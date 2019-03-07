@@ -25,17 +25,6 @@ import com.liferay.headless.foundation.dto.v1_0.Segment;
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
-import com.liferay.headless.foundation.internal.resource.v1_0.CategoryResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.EmailResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.KeywordResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.OrganizationResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.PhoneResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.PostalAddressResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.RoleResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.SegmentResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.UserAccountResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.VocabularyResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.WebUrlResourceImpl;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
 import com.liferay.headless.foundation.resource.v1_0.EmailResource;
 import com.liferay.headless.foundation.resource.v1_0.KeywordResource;
@@ -62,6 +51,10 @@ import java.util.Collection;
 
 import javax.annotation.Generated;
 
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -76,10 +69,6 @@ public class Query {
 
 		CategoryResource categoryResource = _createCategoryResource();
 
-		categoryResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return categoryResource.getCategory(categoryId);
 	}
 
@@ -93,10 +82,6 @@ public class Query {
 		throws Exception {
 
 		CategoryResource categoryResource = _createCategoryResource();
-
-		categoryResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = categoryResource.getCategoryCategoriesPage(
 			categoryId, filter, Pagination.of(pageSize, page), sorts);
@@ -115,10 +100,6 @@ public class Query {
 
 		CategoryResource categoryResource = _createCategoryResource();
 
-		categoryResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = categoryResource.getVocabularyCategoriesPage(
 			vocabularyId, filter, Pagination.of(pageSize, page), sorts);
 
@@ -135,10 +116,6 @@ public class Query {
 
 		EmailResource emailResource = _createEmailResource();
 
-		emailResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = emailResource.getEmailsPage(
 			genericParentId, Pagination.of(pageSize, page));
 
@@ -151,10 +128,6 @@ public class Query {
 		throws Exception {
 
 		EmailResource emailResource = _createEmailResource();
-
-		emailResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		return emailResource.getEmail(emailId);
 	}
@@ -170,10 +143,6 @@ public class Query {
 
 		KeywordResource keywordResource = _createKeywordResource();
 
-		keywordResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = keywordResource.getContentSpaceKeywordsPage(
 			contentSpaceId, filter, Pagination.of(pageSize, page), sorts);
 
@@ -186,10 +155,6 @@ public class Query {
 		throws Exception {
 
 		KeywordResource keywordResource = _createKeywordResource();
-
-		keywordResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		return keywordResource.getKeyword(keywordId);
 	}
@@ -204,10 +169,6 @@ public class Query {
 
 		OrganizationResource organizationResource =
 			_createOrganizationResource();
-
-		organizationResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage =
 			organizationResource.getMyUserAccountOrganizationsPage(
@@ -226,10 +187,6 @@ public class Query {
 		OrganizationResource organizationResource =
 			_createOrganizationResource();
 
-		organizationResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = organizationResource.getOrganizationsPage(
 			Pagination.of(pageSize, page));
 
@@ -245,10 +202,6 @@ public class Query {
 		OrganizationResource organizationResource =
 			_createOrganizationResource();
 
-		organizationResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return organizationResource.getOrganization(organizationId);
 	}
 
@@ -262,10 +215,6 @@ public class Query {
 
 		OrganizationResource organizationResource =
 			_createOrganizationResource();
-
-		organizationResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage =
 			organizationResource.getOrganizationOrganizationsPage(
@@ -285,10 +234,6 @@ public class Query {
 		OrganizationResource organizationResource =
 			_createOrganizationResource();
 
-		organizationResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage =
 			organizationResource.getUserAccountOrganizationsPage(
 				userAccountId, Pagination.of(pageSize, page));
@@ -306,10 +251,6 @@ public class Query {
 
 		PhoneResource phoneResource = _createPhoneResource();
 
-		phoneResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = phoneResource.getPhonesPage(
 			genericParentId, Pagination.of(pageSize, page));
 
@@ -322,10 +263,6 @@ public class Query {
 		throws Exception {
 
 		PhoneResource phoneResource = _createPhoneResource();
-
-		phoneResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		return phoneResource.getPhone(phoneId);
 	}
@@ -340,10 +277,6 @@ public class Query {
 
 		PostalAddressResource postalAddressResource =
 			_createPostalAddressResource();
-
-		postalAddressResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = postalAddressResource.getPostalAddressesPage(
 			genericParentId, Pagination.of(pageSize, page));
@@ -360,10 +293,6 @@ public class Query {
 		PostalAddressResource postalAddressResource =
 			_createPostalAddressResource();
 
-		postalAddressResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return postalAddressResource.getPostalAddress(postalAddressId);
 	}
 
@@ -376,10 +305,6 @@ public class Query {
 		throws Exception {
 
 		RoleResource roleResource = _createRoleResource();
-
-		roleResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = roleResource.getMyUserAccountRolesPage(
 			myUserAccountId, Pagination.of(pageSize, page));
@@ -396,10 +321,6 @@ public class Query {
 
 		RoleResource roleResource = _createRoleResource();
 
-		roleResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = roleResource.getRolesPage(
 			Pagination.of(pageSize, page));
 
@@ -410,10 +331,6 @@ public class Query {
 	@GraphQLInvokeDetached
 	public Role getRole(@GraphQLName("role-id") Long roleId) throws Exception {
 		RoleResource roleResource = _createRoleResource();
-
-		roleResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		return roleResource.getRole(roleId);
 	}
@@ -427,10 +344,6 @@ public class Query {
 		throws Exception {
 
 		RoleResource roleResource = _createRoleResource();
-
-		roleResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = roleResource.getUserAccountRolesPage(
 			userAccountId, Pagination.of(pageSize, page));
@@ -448,10 +361,6 @@ public class Query {
 
 		SegmentResource segmentResource = _createSegmentResource();
 
-		segmentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = segmentResource.getUserAccountUserSegmentsPage(
 			userId, Pagination.of(pageSize, page));
 
@@ -466,10 +375,6 @@ public class Query {
 
 		UserAccountResource userAccountResource = _createUserAccountResource();
 
-		userAccountResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return userAccountResource.getMyUserAccount(myUserAccountId);
 	}
 
@@ -482,10 +387,6 @@ public class Query {
 		throws Exception {
 
 		UserAccountResource userAccountResource = _createUserAccountResource();
-
-		userAccountResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage =
 			userAccountResource.getOrganizationUserAccountsPage(
@@ -504,10 +405,6 @@ public class Query {
 
 		UserAccountResource userAccountResource = _createUserAccountResource();
 
-		userAccountResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = userAccountResource.getUserAccountsPage(
 			fullnamequery, Pagination.of(pageSize, page));
 
@@ -522,10 +419,6 @@ public class Query {
 
 		UserAccountResource userAccountResource = _createUserAccountResource();
 
-		userAccountResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return userAccountResource.getUserAccount(userAccountId);
 	}
 
@@ -538,10 +431,6 @@ public class Query {
 		throws Exception {
 
 		UserAccountResource userAccountResource = _createUserAccountResource();
-
-		userAccountResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = userAccountResource.getWebSiteUserAccountsPage(
 			webSiteId, Pagination.of(pageSize, page));
@@ -560,10 +449,6 @@ public class Query {
 
 		VocabularyResource vocabularyResource = _createVocabularyResource();
 
-		vocabularyResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage =
 			vocabularyResource.getContentSpaceVocabulariesPage(
 				contentSpaceId, filter, Pagination.of(pageSize, page), sorts);
@@ -579,10 +464,6 @@ public class Query {
 
 		VocabularyResource vocabularyResource = _createVocabularyResource();
 
-		vocabularyResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return vocabularyResource.getVocabulary(vocabularyId);
 	}
 
@@ -595,10 +476,6 @@ public class Query {
 		throws Exception {
 
 		WebUrlResource webUrlResource = _createWebUrlResource();
-
-		webUrlResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = webUrlResource.getWebUrlsPage(
 			genericParentId, Pagination.of(pageSize, page));
@@ -613,55 +490,253 @@ public class Query {
 
 		WebUrlResource webUrlResource = _createWebUrlResource();
 
+		return webUrlResource.getWebUrl(webUrlId);
+	}
+
+	private static CategoryResource _createCategoryResource() throws Exception {
+		CategoryResource categoryResource =
+			_categoryResourceServiceTracker.getService();
+
+		categoryResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return categoryResource;
+	}
+
+	private static final ServiceTracker<CategoryResource, CategoryResource>
+		_categoryResourceServiceTracker;
+
+	private static EmailResource _createEmailResource() throws Exception {
+		EmailResource emailResource = _emailResourceServiceTracker.getService();
+
+		emailResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return emailResource;
+	}
+
+	private static final ServiceTracker<EmailResource, EmailResource>
+		_emailResourceServiceTracker;
+
+	private static KeywordResource _createKeywordResource() throws Exception {
+		KeywordResource keywordResource =
+			_keywordResourceServiceTracker.getService();
+
+		keywordResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return keywordResource;
+	}
+
+	private static final ServiceTracker<KeywordResource, KeywordResource>
+		_keywordResourceServiceTracker;
+
+	private static OrganizationResource _createOrganizationResource()
+		throws Exception {
+
+		OrganizationResource organizationResource =
+			_organizationResourceServiceTracker.getService();
+
+		organizationResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return organizationResource;
+	}
+
+	private static final ServiceTracker
+		<OrganizationResource, OrganizationResource>
+			_organizationResourceServiceTracker;
+
+	private static PhoneResource _createPhoneResource() throws Exception {
+		PhoneResource phoneResource = _phoneResourceServiceTracker.getService();
+
+		phoneResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return phoneResource;
+	}
+
+	private static final ServiceTracker<PhoneResource, PhoneResource>
+		_phoneResourceServiceTracker;
+
+	private static PostalAddressResource _createPostalAddressResource()
+		throws Exception {
+
+		PostalAddressResource postalAddressResource =
+			_postalAddressResourceServiceTracker.getService();
+
+		postalAddressResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return postalAddressResource;
+	}
+
+	private static final ServiceTracker
+		<PostalAddressResource, PostalAddressResource>
+			_postalAddressResourceServiceTracker;
+
+	private static RoleResource _createRoleResource() throws Exception {
+		RoleResource roleResource = _roleResourceServiceTracker.getService();
+
+		roleResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return roleResource;
+	}
+
+	private static final ServiceTracker<RoleResource, RoleResource>
+		_roleResourceServiceTracker;
+
+	private static SegmentResource _createSegmentResource() throws Exception {
+		SegmentResource segmentResource =
+			_segmentResourceServiceTracker.getService();
+
+		segmentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return segmentResource;
+	}
+
+	private static final ServiceTracker<SegmentResource, SegmentResource>
+		_segmentResourceServiceTracker;
+
+	private static UserAccountResource _createUserAccountResource()
+		throws Exception {
+
+		UserAccountResource userAccountResource =
+			_userAccountResourceServiceTracker.getService();
+
+		userAccountResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return userAccountResource;
+	}
+
+	private static final ServiceTracker
+		<UserAccountResource, UserAccountResource>
+			_userAccountResourceServiceTracker;
+
+	private static VocabularyResource _createVocabularyResource()
+		throws Exception {
+
+		VocabularyResource vocabularyResource =
+			_vocabularyResourceServiceTracker.getService();
+
+		vocabularyResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return vocabularyResource;
+	}
+
+	private static final ServiceTracker<VocabularyResource, VocabularyResource>
+		_vocabularyResourceServiceTracker;
+
+	private static WebUrlResource _createWebUrlResource() throws Exception {
+		WebUrlResource webUrlResource =
+			_webUrlResourceServiceTracker.getService();
+
 		webUrlResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
 
-		return webUrlResource.getWebUrl(webUrlId);
+		return webUrlResource;
 	}
 
-	private static CategoryResource _createCategoryResource() {
-		return new CategoryResourceImpl();
-	}
+	private static final ServiceTracker<WebUrlResource, WebUrlResource>
+		_webUrlResourceServiceTracker;
 
-	private static EmailResource _createEmailResource() {
-		return new EmailResourceImpl();
-	}
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Query.class);
 
-	private static KeywordResource _createKeywordResource() {
-		return new KeywordResourceImpl();
-	}
+		ServiceTracker<CategoryResource, CategoryResource>
+			categoryResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), CategoryResource.class, null);
 
-	private static OrganizationResource _createOrganizationResource() {
-		return new OrganizationResourceImpl();
-	}
+		categoryResourceServiceTracker.open();
 
-	private static PhoneResource _createPhoneResource() {
-		return new PhoneResourceImpl();
-	}
+		_categoryResourceServiceTracker = categoryResourceServiceTracker;
+		ServiceTracker<EmailResource, EmailResource>
+			emailResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), EmailResource.class, null);
 
-	private static PostalAddressResource _createPostalAddressResource() {
-		return new PostalAddressResourceImpl();
-	}
+		emailResourceServiceTracker.open();
 
-	private static RoleResource _createRoleResource() {
-		return new RoleResourceImpl();
-	}
+		_emailResourceServiceTracker = emailResourceServiceTracker;
+		ServiceTracker<KeywordResource, KeywordResource>
+			keywordResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), KeywordResource.class, null);
 
-	private static SegmentResource _createSegmentResource() {
-		return new SegmentResourceImpl();
-	}
+		keywordResourceServiceTracker.open();
 
-	private static UserAccountResource _createUserAccountResource() {
-		return new UserAccountResourceImpl();
-	}
+		_keywordResourceServiceTracker = keywordResourceServiceTracker;
+		ServiceTracker<OrganizationResource, OrganizationResource>
+			organizationResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), OrganizationResource.class, null);
 
-	private static VocabularyResource _createVocabularyResource() {
-		return new VocabularyResourceImpl();
-	}
+		organizationResourceServiceTracker.open();
 
-	private static WebUrlResource _createWebUrlResource() {
-		return new WebUrlResourceImpl();
+		_organizationResourceServiceTracker =
+			organizationResourceServiceTracker;
+		ServiceTracker<PhoneResource, PhoneResource>
+			phoneResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), PhoneResource.class, null);
+
+		phoneResourceServiceTracker.open();
+
+		_phoneResourceServiceTracker = phoneResourceServiceTracker;
+		ServiceTracker<PostalAddressResource, PostalAddressResource>
+			postalAddressResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), PostalAddressResource.class, null);
+
+		postalAddressResourceServiceTracker.open();
+
+		_postalAddressResourceServiceTracker =
+			postalAddressResourceServiceTracker;
+		ServiceTracker<RoleResource, RoleResource> roleResourceServiceTracker =
+			new ServiceTracker<>(
+				bundle.getBundleContext(), RoleResource.class, null);
+
+		roleResourceServiceTracker.open();
+
+		_roleResourceServiceTracker = roleResourceServiceTracker;
+		ServiceTracker<SegmentResource, SegmentResource>
+			segmentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), SegmentResource.class, null);
+
+		segmentResourceServiceTracker.open();
+
+		_segmentResourceServiceTracker = segmentResourceServiceTracker;
+		ServiceTracker<UserAccountResource, UserAccountResource>
+			userAccountResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), UserAccountResource.class, null);
+
+		userAccountResourceServiceTracker.open();
+
+		_userAccountResourceServiceTracker = userAccountResourceServiceTracker;
+		ServiceTracker<VocabularyResource, VocabularyResource>
+			vocabularyResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), VocabularyResource.class, null);
+
+		vocabularyResourceServiceTracker.open();
+
+		_vocabularyResourceServiceTracker = vocabularyResourceServiceTracker;
+		ServiceTracker<WebUrlResource, WebUrlResource>
+			webUrlResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), WebUrlResource.class, null);
+
+		webUrlResourceServiceTracker.open();
+
+		_webUrlResourceServiceTracker = webUrlResourceServiceTracker;
 	}
 
 }

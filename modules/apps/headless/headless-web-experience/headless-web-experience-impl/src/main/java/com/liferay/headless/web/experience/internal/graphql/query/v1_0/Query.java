@@ -17,9 +17,6 @@ package com.liferay.headless.web.experience.internal.graphql.query.v1_0;
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
 import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
-import com.liferay.headless.web.experience.internal.resource.v1_0.CommentResourceImpl;
-import com.liferay.headless.web.experience.internal.resource.v1_0.ContentStructureResourceImpl;
-import com.liferay.headless.web.experience.internal.resource.v1_0.StructuredContentResourceImpl;
 import com.liferay.headless.web.experience.resource.v1_0.CommentResource;
 import com.liferay.headless.web.experience.resource.v1_0.ContentStructureResource;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
@@ -38,6 +35,10 @@ import java.util.Collection;
 
 import javax.annotation.Generated;
 
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -52,10 +53,6 @@ public class Query {
 
 		CommentResource commentResource = _createCommentResource();
 
-		commentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return commentResource.getComment(commentId);
 	}
 
@@ -69,10 +66,6 @@ public class Query {
 		throws Exception {
 
 		CommentResource commentResource = _createCommentResource();
-
-		commentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = commentResource.getCommentCommentsPage(
 			commentId, filter, Pagination.of(pageSize, page), sorts);
@@ -90,10 +83,6 @@ public class Query {
 		throws Exception {
 
 		CommentResource commentResource = _createCommentResource();
-
-		commentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = commentResource.getStructuredContentCommentsPage(
 			structuredContentId, filter, Pagination.of(pageSize, page), sorts);
@@ -113,10 +102,6 @@ public class Query {
 		ContentStructureResource contentStructureResource =
 			_createContentStructureResource();
 
-		contentStructureResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage =
 			contentStructureResource.getContentSpaceContentStructuresPage(
 				contentSpaceId, filter, Pagination.of(pageSize, page), sorts);
@@ -133,10 +118,6 @@ public class Query {
 		ContentStructureResource contentStructureResource =
 			_createContentStructureResource();
 
-		contentStructureResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return contentStructureResource.getContentStructure(contentStructureId);
 	}
 
@@ -151,10 +132,6 @@ public class Query {
 
 		StructuredContentResource structuredContentResource =
 			_createStructuredContentResource();
-
-		structuredContentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage =
 			structuredContentResource.getContentSpaceStructuredContentsPage(
@@ -177,10 +154,6 @@ public class Query {
 		StructuredContentResource structuredContentResource =
 			_createStructuredContentResource();
 
-		structuredContentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage =
 			structuredContentResource.getContentStructureStructuredContentsPage(
 				contentStructureId, filter, Pagination.of(pageSize, page),
@@ -198,10 +171,6 @@ public class Query {
 		StructuredContentResource structuredContentResource =
 			_createStructuredContentResource();
 
-		structuredContentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return structuredContentResource.getStructuredContent(
 			structuredContentId);
 	}
@@ -216,27 +185,87 @@ public class Query {
 		StructuredContentResource structuredContentResource =
 			_createStructuredContentResource();
 
-		structuredContentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return structuredContentResource.
 			getStructuredContentRenderedContentTemplate(
 				structuredContentId, templateId);
 	}
 
-	private static CommentResource _createCommentResource() {
-		return new CommentResourceImpl();
+	private static CommentResource _createCommentResource() throws Exception {
+		CommentResource commentResource =
+			_commentResourceServiceTracker.getService();
+
+		commentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return commentResource;
 	}
 
-	private static ContentStructureResource _createContentStructureResource() {
-		return new ContentStructureResourceImpl();
+	private static final ServiceTracker<CommentResource, CommentResource>
+		_commentResourceServiceTracker;
+
+	private static ContentStructureResource _createContentStructureResource()
+		throws Exception {
+
+		ContentStructureResource contentStructureResource =
+			_contentStructureResourceServiceTracker.getService();
+
+		contentStructureResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return contentStructureResource;
 	}
 
-	private static StructuredContentResource
-		_createStructuredContentResource() {
+	private static final ServiceTracker
+		<ContentStructureResource, ContentStructureResource>
+			_contentStructureResourceServiceTracker;
 
-		return new StructuredContentResourceImpl();
+	private static StructuredContentResource _createStructuredContentResource()
+		throws Exception {
+
+		StructuredContentResource structuredContentResource =
+			_structuredContentResourceServiceTracker.getService();
+
+		structuredContentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return structuredContentResource;
+	}
+
+	private static final ServiceTracker
+		<StructuredContentResource, StructuredContentResource>
+			_structuredContentResourceServiceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Query.class);
+
+		ServiceTracker<CommentResource, CommentResource>
+			commentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), CommentResource.class, null);
+
+		commentResourceServiceTracker.open();
+
+		_commentResourceServiceTracker = commentResourceServiceTracker;
+		ServiceTracker<ContentStructureResource, ContentStructureResource>
+			contentStructureResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), ContentStructureResource.class,
+				null);
+
+		contentStructureResourceServiceTracker.open();
+
+		_contentStructureResourceServiceTracker =
+			contentStructureResourceServiceTracker;
+		ServiceTracker<StructuredContentResource, StructuredContentResource>
+			structuredContentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), StructuredContentResource.class,
+				null);
+
+		structuredContentResourceServiceTracker.open();
+
+		_structuredContentResourceServiceTracker =
+			structuredContentResourceServiceTracker;
 	}
 
 }

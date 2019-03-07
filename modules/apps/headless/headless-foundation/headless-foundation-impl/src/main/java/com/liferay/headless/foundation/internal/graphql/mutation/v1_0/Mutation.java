@@ -18,20 +18,22 @@ import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
-import com.liferay.headless.foundation.internal.resource.v1_0.CategoryResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.KeywordResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.UserAccountResourceImpl;
-import com.liferay.headless.foundation.internal.resource.v1_0.VocabularyResourceImpl;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
 import com.liferay.headless.foundation.resource.v1_0.KeywordResource;
 import com.liferay.headless.foundation.resource.v1_0.UserAccountResource;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
+import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
 import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Javier Gamarra
@@ -182,20 +184,98 @@ public class Mutation {
 		return vocabularyResource.putVocabulary(vocabularyId, vocabulary);
 	}
 
-	private static CategoryResource _createCategoryResource() {
-		return new CategoryResourceImpl();
+	private static CategoryResource _createCategoryResource() throws Exception {
+		CategoryResource categoryResource =
+			_categoryResourceServiceTracker.getService();
+
+		categoryResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return categoryResource;
 	}
 
-	private static KeywordResource _createKeywordResource() {
-		return new KeywordResourceImpl();
+	private static final ServiceTracker<CategoryResource, CategoryResource>
+		_categoryResourceServiceTracker;
+
+	private static KeywordResource _createKeywordResource() throws Exception {
+		KeywordResource keywordResource =
+			_keywordResourceServiceTracker.getService();
+
+		keywordResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return keywordResource;
 	}
 
-	private static UserAccountResource _createUserAccountResource() {
-		return new UserAccountResourceImpl();
+	private static final ServiceTracker<KeywordResource, KeywordResource>
+		_keywordResourceServiceTracker;
+
+	private static UserAccountResource _createUserAccountResource()
+		throws Exception {
+
+		UserAccountResource userAccountResource =
+			_userAccountResourceServiceTracker.getService();
+
+		userAccountResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return userAccountResource;
 	}
 
-	private static VocabularyResource _createVocabularyResource() {
-		return new VocabularyResourceImpl();
+	private static final ServiceTracker
+		<UserAccountResource, UserAccountResource>
+			_userAccountResourceServiceTracker;
+
+	private static VocabularyResource _createVocabularyResource()
+		throws Exception {
+
+		VocabularyResource vocabularyResource =
+			_vocabularyResourceServiceTracker.getService();
+
+		vocabularyResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return vocabularyResource;
+	}
+
+	private static final ServiceTracker<VocabularyResource, VocabularyResource>
+		_vocabularyResourceServiceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+
+		ServiceTracker<CategoryResource, CategoryResource>
+			categoryResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), CategoryResource.class, null);
+
+		categoryResourceServiceTracker.open();
+
+		_categoryResourceServiceTracker = categoryResourceServiceTracker;
+		ServiceTracker<KeywordResource, KeywordResource>
+			keywordResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), KeywordResource.class, null);
+
+		keywordResourceServiceTracker.open();
+
+		_keywordResourceServiceTracker = keywordResourceServiceTracker;
+		ServiceTracker<UserAccountResource, UserAccountResource>
+			userAccountResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), UserAccountResource.class, null);
+
+		userAccountResourceServiceTracker.open();
+
+		_userAccountResourceServiceTracker = userAccountResourceServiceTracker;
+		ServiceTracker<VocabularyResource, VocabularyResource>
+			vocabularyResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), VocabularyResource.class, null);
+
+		vocabularyResourceServiceTracker.open();
+
+		_vocabularyResourceServiceTracker = vocabularyResourceServiceTracker;
 	}
 
 }

@@ -16,16 +16,20 @@ package com.liferay.headless.web.experience.internal.graphql.mutation.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
-import com.liferay.headless.web.experience.internal.resource.v1_0.CommentResourceImpl;
-import com.liferay.headless.web.experience.internal.resource.v1_0.StructuredContentResourceImpl;
 import com.liferay.headless.web.experience.resource.v1_0.CommentResource;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
+import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
 import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Javier Gamarra
@@ -134,14 +138,56 @@ public class Mutation {
 			structuredContentId, structuredContent);
 	}
 
-	private static CommentResource _createCommentResource() {
-		return new CommentResourceImpl();
+	private static CommentResource _createCommentResource() throws Exception {
+		CommentResource commentResource =
+			_commentResourceServiceTracker.getService();
+
+		commentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return commentResource;
 	}
 
-	private static StructuredContentResource
-		_createStructuredContentResource() {
+	private static final ServiceTracker<CommentResource, CommentResource>
+		_commentResourceServiceTracker;
 
-		return new StructuredContentResourceImpl();
+	private static StructuredContentResource _createStructuredContentResource()
+		throws Exception {
+
+		StructuredContentResource structuredContentResource =
+			_structuredContentResourceServiceTracker.getService();
+
+		structuredContentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return structuredContentResource;
+	}
+
+	private static final ServiceTracker
+		<StructuredContentResource, StructuredContentResource>
+			_structuredContentResourceServiceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+
+		ServiceTracker<CommentResource, CommentResource>
+			commentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), CommentResource.class, null);
+
+		commentResourceServiceTracker.open();
+
+		_commentResourceServiceTracker = commentResourceServiceTracker;
+		ServiceTracker<StructuredContentResource, StructuredContentResource>
+			structuredContentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), StructuredContentResource.class,
+				null);
+
+		structuredContentResourceServiceTracker.open();
+
+		_structuredContentResourceServiceTracker =
+			structuredContentResourceServiceTracker;
 	}
 
 }

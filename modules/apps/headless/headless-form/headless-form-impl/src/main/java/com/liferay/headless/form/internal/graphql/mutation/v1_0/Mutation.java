@@ -16,18 +16,21 @@ package com.liferay.headless.form.internal.graphql.mutation.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.Form;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
-import com.liferay.headless.form.internal.resource.v1_0.FormDocumentResourceImpl;
-import com.liferay.headless.form.internal.resource.v1_0.FormRecordResourceImpl;
-import com.liferay.headless.form.internal.resource.v1_0.FormResourceImpl;
 import com.liferay.headless.form.resource.v1_0.FormDocumentResource;
 import com.liferay.headless.form.resource.v1_0.FormRecordResource;
 import com.liferay.headless.form.resource.v1_0.FormResource;
+import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
 import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Javier Gamarra
@@ -92,16 +95,77 @@ public class Mutation {
 		return formRecordResource.postFormFormRecord(formId, formRecord);
 	}
 
-	private static FormResource _createFormResource() {
-		return new FormResourceImpl();
+	private static FormResource _createFormResource() throws Exception {
+		FormResource formResource = _formResourceServiceTracker.getService();
+
+		formResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return formResource;
 	}
 
-	private static FormDocumentResource _createFormDocumentResource() {
-		return new FormDocumentResourceImpl();
+	private static final ServiceTracker<FormResource, FormResource>
+		_formResourceServiceTracker;
+
+	private static FormDocumentResource _createFormDocumentResource()
+		throws Exception {
+
+		FormDocumentResource formDocumentResource =
+			_formDocumentResourceServiceTracker.getService();
+
+		formDocumentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return formDocumentResource;
 	}
 
-	private static FormRecordResource _createFormRecordResource() {
-		return new FormRecordResourceImpl();
+	private static final ServiceTracker
+		<FormDocumentResource, FormDocumentResource>
+			_formDocumentResourceServiceTracker;
+
+	private static FormRecordResource _createFormRecordResource()
+		throws Exception {
+
+		FormRecordResource formRecordResource =
+			_formRecordResourceServiceTracker.getService();
+
+		formRecordResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return formRecordResource;
+	}
+
+	private static final ServiceTracker<FormRecordResource, FormRecordResource>
+		_formRecordResourceServiceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+
+		ServiceTracker<FormResource, FormResource> formResourceServiceTracker =
+			new ServiceTracker<>(
+				bundle.getBundleContext(), FormResource.class, null);
+
+		formResourceServiceTracker.open();
+
+		_formResourceServiceTracker = formResourceServiceTracker;
+		ServiceTracker<FormDocumentResource, FormDocumentResource>
+			formDocumentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), FormDocumentResource.class, null);
+
+		formDocumentResourceServiceTracker.open();
+
+		_formDocumentResourceServiceTracker =
+			formDocumentResourceServiceTracker;
+		ServiceTracker<FormRecordResource, FormRecordResource>
+			formRecordResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), FormRecordResource.class, null);
+
+		formRecordResourceServiceTracker.open();
+
+		_formRecordResourceServiceTracker = formRecordResourceServiceTracker;
 	}
 
 }

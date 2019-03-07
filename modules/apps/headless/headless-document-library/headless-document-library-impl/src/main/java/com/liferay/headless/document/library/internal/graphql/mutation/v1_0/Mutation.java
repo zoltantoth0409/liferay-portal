@@ -17,12 +17,11 @@ package com.liferay.headless.document.library.internal.graphql.mutation.v1_0;
 import com.liferay.headless.document.library.dto.v1_0.Comment;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.headless.document.library.dto.v1_0.Folder;
-import com.liferay.headless.document.library.internal.resource.v1_0.CommentResourceImpl;
-import com.liferay.headless.document.library.internal.resource.v1_0.DocumentResourceImpl;
-import com.liferay.headless.document.library.internal.resource.v1_0.FolderResourceImpl;
 import com.liferay.headless.document.library.resource.v1_0.CommentResource;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.headless.document.library.resource.v1_0.FolderResource;
+import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -30,6 +29,10 @@ import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
 import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Javier Gamarra
@@ -193,16 +196,72 @@ public class Mutation {
 		return folderResource.postFolderFolder(folderId, folder);
 	}
 
-	private static CommentResource _createCommentResource() {
-		return new CommentResourceImpl();
+	private static CommentResource _createCommentResource() throws Exception {
+		CommentResource commentResource =
+			_commentResourceServiceTracker.getService();
+
+		commentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return commentResource;
 	}
 
-	private static DocumentResource _createDocumentResource() {
-		return new DocumentResourceImpl();
+	private static final ServiceTracker<CommentResource, CommentResource>
+		_commentResourceServiceTracker;
+
+	private static DocumentResource _createDocumentResource() throws Exception {
+		DocumentResource documentResource =
+			_documentResourceServiceTracker.getService();
+
+		documentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return documentResource;
 	}
 
-	private static FolderResource _createFolderResource() {
-		return new FolderResourceImpl();
+	private static final ServiceTracker<DocumentResource, DocumentResource>
+		_documentResourceServiceTracker;
+
+	private static FolderResource _createFolderResource() throws Exception {
+		FolderResource folderResource =
+			_folderResourceServiceTracker.getService();
+
+		folderResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return folderResource;
+	}
+
+	private static final ServiceTracker<FolderResource, FolderResource>
+		_folderResourceServiceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+
+		ServiceTracker<CommentResource, CommentResource>
+			commentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), CommentResource.class, null);
+
+		commentResourceServiceTracker.open();
+
+		_commentResourceServiceTracker = commentResourceServiceTracker;
+		ServiceTracker<DocumentResource, DocumentResource>
+			documentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), DocumentResource.class, null);
+
+		documentResourceServiceTracker.open();
+
+		_documentResourceServiceTracker = documentResourceServiceTracker;
+		ServiceTracker<FolderResource, FolderResource>
+			folderResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), FolderResource.class, null);
+
+		folderResourceServiceTracker.open();
+
+		_folderResourceServiceTracker = folderResourceServiceTracker;
 	}
 
 }

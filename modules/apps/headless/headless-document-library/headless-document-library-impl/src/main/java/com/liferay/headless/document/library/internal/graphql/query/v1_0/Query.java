@@ -17,9 +17,6 @@ package com.liferay.headless.document.library.internal.graphql.query.v1_0;
 import com.liferay.headless.document.library.dto.v1_0.Comment;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.headless.document.library.dto.v1_0.Folder;
-import com.liferay.headless.document.library.internal.resource.v1_0.CommentResourceImpl;
-import com.liferay.headless.document.library.internal.resource.v1_0.DocumentResourceImpl;
-import com.liferay.headless.document.library.internal.resource.v1_0.FolderResourceImpl;
 import com.liferay.headless.document.library.resource.v1_0.CommentResource;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.headless.document.library.resource.v1_0.FolderResource;
@@ -38,6 +35,10 @@ import java.util.Collection;
 
 import javax.annotation.Generated;
 
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -52,10 +53,6 @@ public class Query {
 
 		CommentResource commentResource = _createCommentResource();
 
-		commentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return commentResource.getComment(commentId);
 	}
 
@@ -69,10 +66,6 @@ public class Query {
 		throws Exception {
 
 		CommentResource commentResource = _createCommentResource();
-
-		commentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = commentResource.getCommentCommentsPage(
 			commentId, filter, Pagination.of(pageSize, page), sorts);
@@ -91,10 +84,6 @@ public class Query {
 
 		CommentResource commentResource = _createCommentResource();
 
-		commentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = commentResource.getDocumentCommentsPage(
 			documentId, filter, Pagination.of(pageSize, page), sorts);
 
@@ -112,10 +101,6 @@ public class Query {
 
 		DocumentResource documentResource = _createDocumentResource();
 
-		documentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = documentResource.getContentSpaceDocumentsPage(
 			contentSpaceId, filter, Pagination.of(pageSize, page), sorts);
 
@@ -128,10 +113,6 @@ public class Query {
 		throws Exception {
 
 		DocumentResource documentResource = _createDocumentResource();
-
-		documentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		return documentResource.getDocument(documentId);
 	}
@@ -146,10 +127,6 @@ public class Query {
 		throws Exception {
 
 		DocumentResource documentResource = _createDocumentResource();
-
-		documentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = documentResource.getFolderDocumentsPage(
 			folderId, filter, Pagination.of(pageSize, page), sorts);
@@ -167,10 +144,6 @@ public class Query {
 
 		FolderResource folderResource = _createFolderResource();
 
-		folderResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = folderResource.getContentSpaceFoldersPage(
 			contentSpaceId, Pagination.of(pageSize, page));
 
@@ -183,10 +156,6 @@ public class Query {
 		throws Exception {
 
 		FolderResource folderResource = _createFolderResource();
-
-		folderResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		return folderResource.getFolder(folderId);
 	}
@@ -201,26 +170,78 @@ public class Query {
 
 		FolderResource folderResource = _createFolderResource();
 
-		folderResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = folderResource.getFolderFoldersPage(
 			folderId, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
 	}
 
-	private static CommentResource _createCommentResource() {
-		return new CommentResourceImpl();
+	private static CommentResource _createCommentResource() throws Exception {
+		CommentResource commentResource =
+			_commentResourceServiceTracker.getService();
+
+		commentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return commentResource;
 	}
 
-	private static DocumentResource _createDocumentResource() {
-		return new DocumentResourceImpl();
+	private static final ServiceTracker<CommentResource, CommentResource>
+		_commentResourceServiceTracker;
+
+	private static DocumentResource _createDocumentResource() throws Exception {
+		DocumentResource documentResource =
+			_documentResourceServiceTracker.getService();
+
+		documentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return documentResource;
 	}
 
-	private static FolderResource _createFolderResource() {
-		return new FolderResourceImpl();
+	private static final ServiceTracker<DocumentResource, DocumentResource>
+		_documentResourceServiceTracker;
+
+	private static FolderResource _createFolderResource() throws Exception {
+		FolderResource folderResource =
+			_folderResourceServiceTracker.getService();
+
+		folderResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return folderResource;
+	}
+
+	private static final ServiceTracker<FolderResource, FolderResource>
+		_folderResourceServiceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Query.class);
+
+		ServiceTracker<CommentResource, CommentResource>
+			commentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), CommentResource.class, null);
+
+		commentResourceServiceTracker.open();
+
+		_commentResourceServiceTracker = commentResourceServiceTracker;
+		ServiceTracker<DocumentResource, DocumentResource>
+			documentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), DocumentResource.class, null);
+
+		documentResourceServiceTracker.open();
+
+		_documentResourceServiceTracker = documentResourceServiceTracker;
+		ServiceTracker<FolderResource, FolderResource>
+			folderResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), FolderResource.class, null);
+
+		folderResourceServiceTracker.open();
+
+		_folderResourceServiceTracker = folderResourceServiceTracker;
 	}
 
 }

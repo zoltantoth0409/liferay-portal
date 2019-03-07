@@ -18,10 +18,6 @@ import com.liferay.headless.form.dto.v1_0.Form;
 import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.headless.form.dto.v1_0.FormStructure;
-import com.liferay.headless.form.internal.resource.v1_0.FormDocumentResourceImpl;
-import com.liferay.headless.form.internal.resource.v1_0.FormRecordResourceImpl;
-import com.liferay.headless.form.internal.resource.v1_0.FormResourceImpl;
-import com.liferay.headless.form.internal.resource.v1_0.FormStructureResourceImpl;
 import com.liferay.headless.form.resource.v1_0.FormDocumentResource;
 import com.liferay.headless.form.resource.v1_0.FormRecordResource;
 import com.liferay.headless.form.resource.v1_0.FormResource;
@@ -38,6 +34,10 @@ import graphql.annotations.annotationTypes.GraphQLName;
 import java.util.Collection;
 
 import javax.annotation.Generated;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Javier Gamarra
@@ -56,10 +56,6 @@ public class Query {
 
 		FormResource formResource = _createFormResource();
 
-		formResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = formResource.getContentSpaceFormsPage(
 			contentSpaceId, Pagination.of(pageSize, page));
 
@@ -71,10 +67,6 @@ public class Query {
 	public Form getForm(@GraphQLName("form-id") Long formId) throws Exception {
 		FormResource formResource = _createFormResource();
 
-		formResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return formResource.getForm(formId);
 	}
 
@@ -84,10 +76,6 @@ public class Query {
 		throws Exception {
 
 		FormResource formResource = _createFormResource();
-
-		formResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		return formResource.getFormFetchLatestDraft(formId);
 	}
@@ -101,10 +89,6 @@ public class Query {
 		FormDocumentResource formDocumentResource =
 			_createFormDocumentResource();
 
-		formDocumentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		return formDocumentResource.getFormDocument(formDocumentId);
 	}
 
@@ -115,10 +99,6 @@ public class Query {
 		throws Exception {
 
 		FormRecordResource formRecordResource = _createFormRecordResource();
-
-		formRecordResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		return formRecordResource.getFormRecord(formRecordId);
 	}
@@ -132,10 +112,6 @@ public class Query {
 		throws Exception {
 
 		FormRecordResource formRecordResource = _createFormRecordResource();
-
-		formRecordResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
 
 		Page paginationPage = formRecordResource.getFormFormRecordsPage(
 			formId, Pagination.of(pageSize, page));
@@ -154,10 +130,6 @@ public class Query {
 		FormStructureResource formStructureResource =
 			_createFormStructureResource();
 
-		formStructureResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage =
 			formStructureResource.getContentSpaceFormStructuresPage(
 				contentSpaceId, Pagination.of(pageSize, page));
@@ -174,27 +146,105 @@ public class Query {
 		FormStructureResource formStructureResource =
 			_createFormStructureResource();
 
+		return formStructureResource.getFormStructure(formStructureId);
+	}
+
+	private static FormResource _createFormResource() throws Exception {
+		FormResource formResource = _formResourceServiceTracker.getService();
+
+		formResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return formResource;
+	}
+
+	private static final ServiceTracker<FormResource, FormResource>
+		_formResourceServiceTracker;
+
+	private static FormDocumentResource _createFormDocumentResource()
+		throws Exception {
+
+		FormDocumentResource formDocumentResource =
+			_formDocumentResourceServiceTracker.getService();
+
+		formDocumentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return formDocumentResource;
+	}
+
+	private static final ServiceTracker
+		<FormDocumentResource, FormDocumentResource>
+			_formDocumentResourceServiceTracker;
+
+	private static FormRecordResource _createFormRecordResource()
+		throws Exception {
+
+		FormRecordResource formRecordResource =
+			_formRecordResourceServiceTracker.getService();
+
+		formRecordResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return formRecordResource;
+	}
+
+	private static final ServiceTracker<FormRecordResource, FormRecordResource>
+		_formRecordResourceServiceTracker;
+
+	private static FormStructureResource _createFormStructureResource()
+		throws Exception {
+
+		FormStructureResource formStructureResource =
+			_formStructureResourceServiceTracker.getService();
+
 		formStructureResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
 
-		return formStructureResource.getFormStructure(formStructureId);
+		return formStructureResource;
 	}
 
-	private static FormResource _createFormResource() {
-		return new FormResourceImpl();
-	}
+	private static final ServiceTracker
+		<FormStructureResource, FormStructureResource>
+			_formStructureResourceServiceTracker;
 
-	private static FormDocumentResource _createFormDocumentResource() {
-		return new FormDocumentResourceImpl();
-	}
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Query.class);
 
-	private static FormRecordResource _createFormRecordResource() {
-		return new FormRecordResourceImpl();
-	}
+		ServiceTracker<FormResource, FormResource> formResourceServiceTracker =
+			new ServiceTracker<>(
+				bundle.getBundleContext(), FormResource.class, null);
 
-	private static FormStructureResource _createFormStructureResource() {
-		return new FormStructureResourceImpl();
+		formResourceServiceTracker.open();
+
+		_formResourceServiceTracker = formResourceServiceTracker;
+		ServiceTracker<FormDocumentResource, FormDocumentResource>
+			formDocumentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), FormDocumentResource.class, null);
+
+		formDocumentResourceServiceTracker.open();
+
+		_formDocumentResourceServiceTracker =
+			formDocumentResourceServiceTracker;
+		ServiceTracker<FormRecordResource, FormRecordResource>
+			formRecordResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), FormRecordResource.class, null);
+
+		formRecordResourceServiceTracker.open();
+
+		_formRecordResourceServiceTracker = formRecordResourceServiceTracker;
+		ServiceTracker<FormStructureResource, FormStructureResource>
+			formStructureResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), FormStructureResource.class, null);
+
+		formStructureResourceServiceTracker.open();
+
+		_formStructureResourceServiceTracker =
+			formStructureResourceServiceTracker;
 	}
 
 }
