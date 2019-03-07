@@ -152,6 +152,8 @@ public class SegmentsEntryLocalServiceImpl
 	public SegmentsEntry deleteSegmentsEntry(SegmentsEntry segmentsEntry)
 		throws PortalException {
 
+		// Segments entry
+
 		if (!GroupThreadLocal.isDeleteInProcess()) {
 			if (segmentsEntry.isDefaultSegment()) {
 				throw new DefaultSegmentsEntryException.
@@ -167,8 +169,6 @@ public class SegmentsEntryLocalServiceImpl
 						segmentsEntry.getSegmentsEntryId());
 			}
 		}
-
-		// Segments entry
 
 		segmentsEntryPersistence.remove(segmentsEntry);
 
