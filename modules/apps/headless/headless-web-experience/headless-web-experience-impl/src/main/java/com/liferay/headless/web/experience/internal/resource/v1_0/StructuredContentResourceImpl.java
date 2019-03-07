@@ -544,34 +544,28 @@ public class StructuredContentResourceImpl
 				Collections.emptyList()));
 	}
 
-	private Fields _toFields(
-			ContentField[] contentFields, JournalArticle journalArticle)
-		throws Exception {
+	private <T> ContentField[] _toContentFields(
+		List<T> list,
+		UnsafeFunction<T, ContentField[], Exception> unsafeFunction) {
 
-		Fields fields = _journalConverter.getDDMFields(
-			journalArticle.getDDMStructure(), journalArticle.getContent());
+		Stream<T> stream = list.stream();
 
-		List<DDMFormFieldValue> ddmFormFieldValues = _toDDMFormFieldValues(
-			contentFields, journalArticle.getDDMStructure(),
-			contextAcceptLanguage.getPreferredLocale());
-
-		Iterator<Field> iterator = fields.iterator();
-
-		while (iterator.hasNext()) {
-			Field field = iterator.next();
-
-			for (DDMFormFieldValue ddmFormFieldValue : ddmFormFieldValues) {
-				if (Objects.equals(
-						ddmFormFieldValue.getName(), field.getName())) {
-
-					field.addValue(
-						contextAcceptLanguage.getPreferredLocale(),
-						ddmFormFieldValue.getValue());
+		return stream.map(
+			t -> {
+				try {
+					return unsafeFunction.apply(t);
+				}
+				catch (Exception e) {
+					throw new RuntimeException(e);
 				}
 			}
-		}
-
-		return fields;
+		).filter(
+			Objects::nonNull
+		).flatMap(
+			Stream::of
+		).toArray(
+			ContentField[]::new
+		);
 	}
 
 	private List<DDMFormFieldValue> _toDDMFormFieldValues(
@@ -678,6 +672,36 @@ public class StructuredContentResourceImpl
 		}
 
 		return new UnlocalizedValue(value.getData());
+	}
+
+	private Fields _toFields(
+			ContentField[] contentFields, JournalArticle journalArticle)
+		throws Exception {
+
+		Fields fields = _journalConverter.getDDMFields(
+			journalArticle.getDDMStructure(), journalArticle.getContent());
+
+		List<DDMFormFieldValue> ddmFormFieldValues = _toDDMFormFieldValues(
+			contentFields, journalArticle.getDDMStructure(),
+			contextAcceptLanguage.getPreferredLocale());
+
+		Iterator<Field> iterator = fields.iterator();
+
+		while (iterator.hasNext()) {
+			Field field = iterator.next();
+
+			for (DDMFormFieldValue ddmFormFieldValue : ddmFormFieldValues) {
+				if (Objects.equals(
+						ddmFormFieldValue.getName(), field.getName())) {
+
+					field.addValue(
+						contextAcceptLanguage.getPreferredLocale(),
+						ddmFormFieldValue.getValue());
+				}
+			}
+		}
+
+		return fields;
 	}
 
 	private ContentField[] _toRepeatableContentField(
@@ -898,30 +922,6 @@ public class StructuredContentResourceImpl
 				data = value;
 			}
 		};
-	}
-
-	private <T> ContentField[] _toContentFields(
-		List<T> list,
-		UnsafeFunction<T, ContentField[], Exception> unsafeFunction) {
-
-		Stream<T> stream = list.stream();
-
-		return stream.map(
-			t -> {
-				try {
-					return unsafeFunction.apply(t);
-				}
-				catch (Exception e) {
-					throw new RuntimeException(e);
-				}
-			}
-		).filter(
-			Objects::nonNull
-		).flatMap(
-			Stream::of
-		).toArray(
-			ContentField[]::new
-		);
 	}
 
 	@Reference
