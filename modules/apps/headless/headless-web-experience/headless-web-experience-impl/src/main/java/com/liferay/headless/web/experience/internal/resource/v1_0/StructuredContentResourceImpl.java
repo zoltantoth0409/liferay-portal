@@ -259,11 +259,12 @@ public class StructuredContentResourceImpl
 				LocaleUtil.fromLanguageId(ddmStructure.getDefaultLanguageId()),
 				contextAcceptLanguage.getPreferredLocale())) {
 
+			String w3cLanguageId = LocaleUtil.toW3cLanguageId(
+				ddmStructure.getDefaultLanguageId());
+
 			throw new BadRequestException(
-				"You have to use the default language of the structure to " +
-					"create. The default language is " +
-						LocaleUtil.toW3cLanguageId(
-							ddmStructure.getDefaultLanguageId()));
+				"Structured contents can only be created with the default " +
+					"language " + w3cLanguageId);
 		}
 
 		return _toStructuredContent(
@@ -543,8 +544,8 @@ public class StructuredContentResourceImpl
 						String[] fieldsDisplayValues = StringUtil.split(
 							(String)field.getValue());
 
-						String fieldsDisplayValue = fieldsDisplayValues[
-							ddmFieldsCounter.get(field.getName())];
+						String fieldsDisplayValue = fieldsDisplayValues
+							[ddmFieldsCounter.get(field.getName())];
 
 						return StringUtil.extractLast(
 							fieldsDisplayValue, DDM.INSTANCE_SEPARATOR);
