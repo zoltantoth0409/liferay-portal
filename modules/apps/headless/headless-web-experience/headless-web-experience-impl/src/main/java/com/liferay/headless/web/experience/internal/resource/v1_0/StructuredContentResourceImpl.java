@@ -741,10 +741,6 @@ public class StructuredContentResourceImpl
 			ContentField[] contentFields, JournalArticle journalArticle)
 		throws Exception {
 
-		List<DDMFormFieldValue> ddmFormFieldValues = _toDDMFormFieldValues(
-			contentFields, journalArticle.getDDMStructure(),
-			contextAcceptLanguage.getPreferredLocale());
-
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
 		DDMForm ddmForm = ddmStructure.getDDMForm();
@@ -757,7 +753,10 @@ public class StructuredContentResourceImpl
 				new DDMFormValues(ddmForm) {
 					{
 						setAvailableLocales(ddmForm.getAvailableLocales());
-						setDDMFormFieldValues(ddmFormFieldValues);
+						setDDMFormFieldValues(
+							_toDDMFormFieldValues(
+								contentFields, journalArticle.getDDMStructure(),
+								contextAcceptLanguage.getPreferredLocale()));
 						setDefaultLocale(ddmForm.getDefaultLocale());
 					}
 				}));
