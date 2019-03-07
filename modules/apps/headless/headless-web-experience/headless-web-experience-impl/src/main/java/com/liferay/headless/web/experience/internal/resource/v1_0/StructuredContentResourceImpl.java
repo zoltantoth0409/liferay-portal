@@ -474,7 +474,8 @@ public class StructuredContentResourceImpl
 	}
 
 	private ContentField _toContentField(
-			DDMFormField ddmFormField, DDMStructure ddmStructure, Field field,
+			DDMFieldsCounter ddmFieldsCounter, DDMFormField ddmFormField,
+			DDMStructure ddmStructure, Field field,
 			List<String> fieldDisplayValues, Fields fields)
 		throws Exception {
 
@@ -487,17 +488,18 @@ public class StructuredContentResourceImpl
 				nestedFields = _transformToArrayFlattening(
 					ddmFormField.getNestedDDMFormFields(),
 					ddmFormField -> _toContentFields(
-						ddmStructure, fields, ddmFormField.getName(),
-						fieldDisplayValues));
+						ddmFieldsCounter, ddmStructure, fields,
+						ddmFormField.getName(), fieldDisplayValues));
 				value = _toValue(
-					field, contextAcceptLanguage.getPreferredLocale());
+					ddmFieldsCounter, field,
+					contextAcceptLanguage.getPreferredLocale());
 			}
 		};
 	}
 
 	private ContentField[] _toContentFields(
-			DDMStructure ddmStructure, Fields fields, String fieldName,
-			List<String> fieldDisplayValues)
+			DDMFieldsCounter ddmFieldsCounter, DDMStructure ddmStructure,
+			Fields fields, String fieldName, List<String> fieldDisplayValues)
 		throws Exception {
 
 		Field field = fields.get(fieldName);
@@ -514,17 +516,21 @@ public class StructuredContentResourceImpl
 			}
 
 			return _toRepeatableContentField(
-				ddmStructure, ddmFormField, fields, fieldDisplayValues);
+				ddmFieldsCounter, ddmStructure, ddmFormField, fields,
+				fieldDisplayValues);
 		}
 
 		return new ContentField[] {
 			_toContentField(
-				ddmFormField, ddmStructure, field, fieldDisplayValues, fields)
+				ddmFieldsCounter, ddmFormField, ddmStructure, field,
+				fieldDisplayValues, fields)
 		};
 	}
 
 	private ContentField[] _toContentFields(JournalArticle journalArticle)
 		throws Exception {
+
+		DDMFieldsCounter ddmFieldsCounter = new DDMFieldsCounter();
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
@@ -534,7 +540,8 @@ public class StructuredContentResourceImpl
 		return _transformToArrayFlattening(
 			ddmStructure.getRootFieldNames(),
 			fieldName -> _toContentFields(
-				ddmStructure, fields, fieldName, Collections.emptyList()));
+				ddmFieldsCounter, ddmStructure, fields, fieldName,
+				Collections.emptyList()));
 	}
 
 	private Fields _toDDMFields(
@@ -674,7 +681,8 @@ public class StructuredContentResourceImpl
 	}
 
 	private ContentField[] _toRepeatableContentField(
-			DDMStructure ddmStructure, DDMFormField ddmFormField, Fields fields,
+			DDMFieldsCounter ddmFieldsCounter, DDMStructure ddmStructure,
+			DDMFormField ddmFormField, Fields fields,
 			List<String> fieldDisplayValues)
 		throws Exception {
 
@@ -687,7 +695,7 @@ public class StructuredContentResourceImpl
 		for (List<String> substring : fieldsDisplaySubstrings) {
 			contentFields.add(
 				_toContentField(
-					ddmFormField, ddmStructure,
+					ddmFieldsCounter, ddmFormField, ddmStructure,
 					fields.get(ddmFormField.getName()),
 					substring.subList(1, substring.size()), fields));
 		}
@@ -715,8 +723,6 @@ public class StructuredContentResourceImpl
 		throws Exception {
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
-
-		_ddmFieldsCounter = new DDMFieldsCounter();
 
 		return new StructuredContent() {
 			{
@@ -775,16 +781,19 @@ public class StructuredContentResourceImpl
 		};
 	}
 
-	private Value _toValue(Field field, Locale locale) throws Exception {
+	private Value _toValue(
+			DDMFieldsCounter ddmFieldsCounter, Field field, Locale locale)
+		throws Exception {
+
 		DDMStructure ddmStructure = field.getDDMStructure();
 
 		DDMFormField ddmFormField = ddmStructure.getDDMFormField(
 			field.getName());
 
 		String value = String.valueOf(
-			field.getValue(locale, _ddmFieldsCounter.get(field.getName())));
+			field.getValue(locale, ddmFieldsCounter.get(field.getName())));
 
-		_ddmFieldsCounter.incrementKey(field.getName());
+		ddmFieldsCounter.incrementKey(field.getName());
 
 		if (Objects.equals(
 				DDMFormFieldType.DOCUMENT_LIBRARY, ddmFormField.getType())) {
@@ -932,8 +941,6 @@ public class StructuredContentResourceImpl
 
 	@Reference
 	private DDM _ddm;
-
-	private DDMFieldsCounter _ddmFieldsCounter = new DDMFieldsCounter();
 
 	@Reference
 	private DDMFormValuesSerializerTracker _ddmFormValuesSerializerTracker;
