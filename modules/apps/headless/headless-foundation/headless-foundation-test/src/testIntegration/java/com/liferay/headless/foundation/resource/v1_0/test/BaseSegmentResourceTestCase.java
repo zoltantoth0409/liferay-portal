@@ -105,7 +105,7 @@ public abstract class BaseSegmentResourceTestCase {
 			userId, randomSegment());
 
 		Page<Segment> page = invokeGetUserAccountUserSegmentsPage(
-			userId, Pagination.of(2, 1));
+			userId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -128,7 +128,7 @@ public abstract class BaseSegmentResourceTestCase {
 			userId, randomSegment());
 
 		Page<Segment> page1 = invokeGetUserAccountUserSegmentsPage(
-			userId, Pagination.of(2, 1));
+			userId, Pagination.of(1, 2));
 
 		List<Segment> segments1 = (List<Segment>)page1.getItems();
 

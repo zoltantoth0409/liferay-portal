@@ -109,7 +109,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 				roleId, randomWorkflowTask());
 
 		Page<WorkflowTask> page = invokeGetRoleWorkflowTasksPage(
-			roleId, Pagination.of(2, 1));
+			roleId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -134,7 +134,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 				roleId, randomWorkflowTask());
 
 		Page<WorkflowTask> page1 = invokeGetRoleWorkflowTasksPage(
-			roleId, Pagination.of(2, 1));
+			roleId, Pagination.of(1, 2));
 
 		List<WorkflowTask> workflowTasks1 =
 			(List<WorkflowTask>)page1.getItems();

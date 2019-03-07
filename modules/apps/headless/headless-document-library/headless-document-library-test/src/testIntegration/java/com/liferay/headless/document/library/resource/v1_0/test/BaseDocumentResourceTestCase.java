@@ -112,7 +112,7 @@ public abstract class BaseDocumentResourceTestCase {
 			contentSpaceId, randomDocument());
 
 		Page<Document> page = invokeGetContentSpaceDocumentsPage(
-			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+			contentSpaceId, (String)null, Pagination.of(1, 2), (String)null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -156,7 +156,7 @@ public abstract class BaseDocumentResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Document> page = invokeGetContentSpaceDocumentsPage(
 				contentSpaceId, getFilterString(entityField, "eq", document1),
-				Pagination.of(2, 1), (String)null);
+				Pagination.of(1, 2), (String)null);
 
 			assertEquals(
 				Collections.singletonList(document1),
@@ -188,7 +188,7 @@ public abstract class BaseDocumentResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Document> page = invokeGetContentSpaceDocumentsPage(
 				contentSpaceId, getFilterString(entityField, "eq", document1),
-				Pagination.of(2, 1), (String)null);
+				Pagination.of(1, 2), (String)null);
 
 			assertEquals(
 				Collections.singletonList(document1),
@@ -211,7 +211,7 @@ public abstract class BaseDocumentResourceTestCase {
 			contentSpaceId, randomDocument());
 
 		Page<Document> page1 = invokeGetContentSpaceDocumentsPage(
-			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+			contentSpaceId, (String)null, Pagination.of(1, 2), (String)null);
 
 		List<Document> documents1 = (List<Document>)page1.getItems();
 
@@ -269,7 +269,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Document> ascPage = invokeGetContentSpaceDocumentsPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -277,7 +277,7 @@ public abstract class BaseDocumentResourceTestCase {
 				(List<Document>)ascPage.getItems());
 
 			Page<Document> descPage = invokeGetContentSpaceDocumentsPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -315,7 +315,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Document> ascPage = invokeGetContentSpaceDocumentsPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -323,7 +323,7 @@ public abstract class BaseDocumentResourceTestCase {
 				(List<Document>)ascPage.getItems());
 
 			Page<Document> descPage = invokeGetContentSpaceDocumentsPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -637,7 +637,7 @@ public abstract class BaseDocumentResourceTestCase {
 			folderId, randomDocument());
 
 		Page<Document> page = invokeGetFolderDocumentsPage(
-			folderId, (String)null, Pagination.of(2, 1), (String)null);
+			folderId, (String)null, Pagination.of(1, 2), (String)null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -678,7 +678,7 @@ public abstract class BaseDocumentResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Document> page = invokeGetFolderDocumentsPage(
 				folderId, getFilterString(entityField, "eq", document1),
-				Pagination.of(2, 1), (String)null);
+				Pagination.of(1, 2), (String)null);
 
 			assertEquals(
 				Collections.singletonList(document1),
@@ -709,7 +709,7 @@ public abstract class BaseDocumentResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Document> page = invokeGetFolderDocumentsPage(
 				folderId, getFilterString(entityField, "eq", document1),
-				Pagination.of(2, 1), (String)null);
+				Pagination.of(1, 2), (String)null);
 
 			assertEquals(
 				Collections.singletonList(document1),
@@ -729,7 +729,7 @@ public abstract class BaseDocumentResourceTestCase {
 			folderId, randomDocument());
 
 		Page<Document> page1 = invokeGetFolderDocumentsPage(
-			folderId, (String)null, Pagination.of(2, 1), (String)null);
+			folderId, (String)null, Pagination.of(1, 2), (String)null);
 
 		List<Document> documents1 = (List<Document>)page1.getItems();
 
@@ -782,7 +782,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Document> ascPage = invokeGetFolderDocumentsPage(
-				folderId, (String)null, Pagination.of(2, 1),
+				folderId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -790,7 +790,7 @@ public abstract class BaseDocumentResourceTestCase {
 				(List<Document>)ascPage.getItems());
 
 			Page<Document> descPage = invokeGetFolderDocumentsPage(
-				folderId, (String)null, Pagination.of(2, 1),
+				folderId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -823,7 +823,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Document> ascPage = invokeGetFolderDocumentsPage(
-				folderId, (String)null, Pagination.of(2, 1),
+				folderId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -831,7 +831,7 @@ public abstract class BaseDocumentResourceTestCase {
 				(List<Document>)ascPage.getItems());
 
 			Page<Document> descPage = invokeGetFolderDocumentsPage(
-				folderId, (String)null, Pagination.of(2, 1),
+				folderId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(

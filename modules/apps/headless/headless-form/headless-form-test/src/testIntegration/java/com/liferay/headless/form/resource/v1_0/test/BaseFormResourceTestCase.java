@@ -107,7 +107,7 @@ public abstract class BaseFormResourceTestCase {
 			contentSpaceId, randomForm());
 
 		Page<Form> page = invokeGetContentSpaceFormsPage(
-			contentSpaceId, Pagination.of(2, 1));
+			contentSpaceId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -128,7 +128,7 @@ public abstract class BaseFormResourceTestCase {
 			contentSpaceId, randomForm());
 
 		Page<Form> page1 = invokeGetContentSpaceFormsPage(
-			contentSpaceId, Pagination.of(2, 1));
+			contentSpaceId, Pagination.of(1, 2));
 
 		List<Form> forms1 = (List<Form>)page1.getItems();
 

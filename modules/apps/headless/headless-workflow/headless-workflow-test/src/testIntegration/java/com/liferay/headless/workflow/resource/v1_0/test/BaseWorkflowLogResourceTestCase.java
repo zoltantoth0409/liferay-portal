@@ -155,7 +155,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 				workflowTaskId, randomWorkflowLog());
 
 		Page<WorkflowLog> page = invokeGetWorkflowTaskWorkflowLogsPage(
-			workflowTaskId, Pagination.of(2, 1));
+			workflowTaskId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -183,7 +183,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 				workflowTaskId, randomWorkflowLog());
 
 		Page<WorkflowLog> page1 = invokeGetWorkflowTaskWorkflowLogsPage(
-			workflowTaskId, Pagination.of(2, 1));
+			workflowTaskId, Pagination.of(1, 2));
 
 		List<WorkflowLog> workflowLogs1 = (List<WorkflowLog>)page1.getItems();
 

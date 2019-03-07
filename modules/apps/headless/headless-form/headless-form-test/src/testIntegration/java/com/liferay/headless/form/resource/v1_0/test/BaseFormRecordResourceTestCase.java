@@ -221,7 +221,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			formId, randomFormRecord());
 
 		Page<FormRecord> page = invokeGetFormFormRecordsPage(
-			formId, Pagination.of(2, 1));
+			formId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -243,7 +243,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			formId, randomFormRecord());
 
 		Page<FormRecord> page1 = invokeGetFormFormRecordsPage(
-			formId, Pagination.of(2, 1));
+			formId, Pagination.of(1, 2));
 
 		List<FormRecord> formRecords1 = (List<FormRecord>)page1.getItems();
 

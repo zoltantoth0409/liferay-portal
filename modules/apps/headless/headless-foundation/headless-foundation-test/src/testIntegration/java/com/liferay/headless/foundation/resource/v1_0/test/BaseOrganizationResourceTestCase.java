@@ -108,7 +108,7 @@ public abstract class BaseOrganizationResourceTestCase {
 				myUserAccountId, randomOrganization());
 
 		Page<Organization> page = invokeGetMyUserAccountOrganizationsPage(
-			myUserAccountId, Pagination.of(2, 1));
+			myUserAccountId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -136,7 +136,7 @@ public abstract class BaseOrganizationResourceTestCase {
 				myUserAccountId, randomOrganization());
 
 		Page<Organization> page1 = invokeGetMyUserAccountOrganizationsPage(
-			myUserAccountId, Pagination.of(2, 1));
+			myUserAccountId, Pagination.of(1, 2));
 
 		List<Organization> organizations1 =
 			(List<Organization>)page1.getItems();
@@ -338,7 +338,7 @@ public abstract class BaseOrganizationResourceTestCase {
 				organizationId, randomOrganization());
 
 		Page<Organization> page = invokeGetOrganizationOrganizationsPage(
-			organizationId, Pagination.of(2, 1));
+			organizationId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -366,7 +366,7 @@ public abstract class BaseOrganizationResourceTestCase {
 				organizationId, randomOrganization());
 
 		Page<Organization> page1 = invokeGetOrganizationOrganizationsPage(
-			organizationId, Pagination.of(2, 1));
+			organizationId, Pagination.of(1, 2));
 
 		List<Organization> organizations1 =
 			(List<Organization>)page1.getItems();
@@ -472,7 +472,7 @@ public abstract class BaseOrganizationResourceTestCase {
 				userAccountId, randomOrganization());
 
 		Page<Organization> page = invokeGetUserAccountOrganizationsPage(
-			userAccountId, Pagination.of(2, 1));
+			userAccountId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -500,7 +500,7 @@ public abstract class BaseOrganizationResourceTestCase {
 				userAccountId, randomOrganization());
 
 		Page<Organization> page1 = invokeGetUserAccountOrganizationsPage(
-			userAccountId, Pagination.of(2, 1));
+			userAccountId, Pagination.of(1, 2));
 
 		List<Organization> organizations1 =
 			(List<Organization>)page1.getItems();

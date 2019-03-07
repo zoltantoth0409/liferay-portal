@@ -115,7 +115,7 @@ public abstract class BaseContentStructureResourceTestCase {
 
 		Page<ContentStructure> page =
 			invokeGetContentSpaceContentStructuresPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				(String)null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -164,7 +164,7 @@ public abstract class BaseContentStructureResourceTestCase {
 				invokeGetContentSpaceContentStructuresPage(
 					contentSpaceId,
 					getFilterString(entityField, "eq", contentStructure1),
-					Pagination.of(2, 1), (String)null);
+					Pagination.of(1, 2), (String)null);
 
 			assertEquals(
 				Collections.singletonList(contentStructure1),
@@ -200,7 +200,7 @@ public abstract class BaseContentStructureResourceTestCase {
 				invokeGetContentSpaceContentStructuresPage(
 					contentSpaceId,
 					getFilterString(entityField, "eq", contentStructure1),
-					Pagination.of(2, 1), (String)null);
+					Pagination.of(1, 2), (String)null);
 
 			assertEquals(
 				Collections.singletonList(contentStructure1),
@@ -227,7 +227,7 @@ public abstract class BaseContentStructureResourceTestCase {
 
 		Page<ContentStructure> page1 =
 			invokeGetContentSpaceContentStructuresPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				(String)null);
 
 		List<ContentStructure> contentStructures1 =
@@ -296,7 +296,7 @@ public abstract class BaseContentStructureResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<ContentStructure> ascPage =
 				invokeGetContentSpaceContentStructuresPage(
-					contentSpaceId, (String)null, Pagination.of(2, 1),
+					contentSpaceId, (String)null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
 			assertEquals(
@@ -305,7 +305,7 @@ public abstract class BaseContentStructureResourceTestCase {
 
 			Page<ContentStructure> descPage =
 				invokeGetContentSpaceContentStructuresPage(
-					contentSpaceId, (String)null, Pagination.of(2, 1),
+					contentSpaceId, (String)null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
 			assertEquals(
@@ -348,7 +348,7 @@ public abstract class BaseContentStructureResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<ContentStructure> ascPage =
 				invokeGetContentSpaceContentStructuresPage(
-					contentSpaceId, (String)null, Pagination.of(2, 1),
+					contentSpaceId, (String)null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
 			assertEquals(
@@ -357,7 +357,7 @@ public abstract class BaseContentStructureResourceTestCase {
 
 			Page<ContentStructure> descPage =
 				invokeGetContentSpaceContentStructuresPage(
-					contentSpaceId, (String)null, Pagination.of(2, 1),
+					contentSpaceId, (String)null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
 			assertEquals(

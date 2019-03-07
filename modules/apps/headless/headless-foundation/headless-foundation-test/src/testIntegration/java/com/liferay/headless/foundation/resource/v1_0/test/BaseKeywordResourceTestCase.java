@@ -113,7 +113,7 @@ public abstract class BaseKeywordResourceTestCase {
 			contentSpaceId, randomKeyword());
 
 		Page<Keyword> page = invokeGetContentSpaceKeywordsPage(
-			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+			contentSpaceId, (String)null, Pagination.of(1, 2), (String)null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -156,7 +156,7 @@ public abstract class BaseKeywordResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Keyword> page = invokeGetContentSpaceKeywordsPage(
 				contentSpaceId, getFilterString(entityField, "eq", keyword1),
-				Pagination.of(2, 1), (String)null);
+				Pagination.of(1, 2), (String)null);
 
 			assertEquals(
 				Collections.singletonList(keyword1),
@@ -188,7 +188,7 @@ public abstract class BaseKeywordResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Keyword> page = invokeGetContentSpaceKeywordsPage(
 				contentSpaceId, getFilterString(entityField, "eq", keyword1),
-				Pagination.of(2, 1), (String)null);
+				Pagination.of(1, 2), (String)null);
 
 			assertEquals(
 				Collections.singletonList(keyword1),
@@ -211,7 +211,7 @@ public abstract class BaseKeywordResourceTestCase {
 			contentSpaceId, randomKeyword());
 
 		Page<Keyword> page1 = invokeGetContentSpaceKeywordsPage(
-			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+			contentSpaceId, (String)null, Pagination.of(1, 2), (String)null);
 
 		List<Keyword> keywords1 = (List<Keyword>)page1.getItems();
 
@@ -269,7 +269,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Keyword> ascPage = invokeGetContentSpaceKeywordsPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -277,7 +277,7 @@ public abstract class BaseKeywordResourceTestCase {
 				(List<Keyword>)ascPage.getItems());
 
 			Page<Keyword> descPage = invokeGetContentSpaceKeywordsPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -315,7 +315,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Keyword> ascPage = invokeGetContentSpaceKeywordsPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -323,7 +323,7 @@ public abstract class BaseKeywordResourceTestCase {
 				(List<Keyword>)ascPage.getItems());
 
 			Page<Keyword> descPage = invokeGetContentSpaceKeywordsPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(

@@ -105,7 +105,7 @@ public abstract class BaseWebUrlResourceTestCase {
 			genericParentId, randomWebUrl());
 
 		Page<WebUrl> page = invokeGetWebUrlsPage(
-			genericParentId, Pagination.of(2, 1));
+			genericParentId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -126,7 +126,7 @@ public abstract class BaseWebUrlResourceTestCase {
 			genericParentId, randomWebUrl());
 
 		Page<WebUrl> page1 = invokeGetWebUrlsPage(
-			genericParentId, Pagination.of(2, 1));
+			genericParentId, Pagination.of(1, 2));
 
 		List<WebUrl> webUrls1 = (List<WebUrl>)page1.getItems();
 

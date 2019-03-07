@@ -115,7 +115,7 @@ public abstract class BaseVocabularyResourceTestCase {
 				contentSpaceId, randomVocabulary());
 
 		Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
-			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+			contentSpaceId, (String)null, Pagination.of(1, 2), (String)null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -159,7 +159,7 @@ public abstract class BaseVocabularyResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
 				contentSpaceId, getFilterString(entityField, "eq", vocabulary1),
-				Pagination.of(2, 1), (String)null);
+				Pagination.of(1, 2), (String)null);
 
 			assertEquals(
 				Collections.singletonList(vocabulary1),
@@ -193,7 +193,7 @@ public abstract class BaseVocabularyResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
 				contentSpaceId, getFilterString(entityField, "eq", vocabulary1),
-				Pagination.of(2, 1), (String)null);
+				Pagination.of(1, 2), (String)null);
 
 			assertEquals(
 				Collections.singletonList(vocabulary1),
@@ -219,7 +219,7 @@ public abstract class BaseVocabularyResourceTestCase {
 				contentSpaceId, randomVocabulary());
 
 		Page<Vocabulary> page1 = invokeGetContentSpaceVocabulariesPage(
-			contentSpaceId, (String)null, Pagination.of(2, 1), (String)null);
+			contentSpaceId, (String)null, Pagination.of(1, 2), (String)null);
 
 		List<Vocabulary> vocabularies1 = (List<Vocabulary>)page1.getItems();
 
@@ -277,7 +277,7 @@ public abstract class BaseVocabularyResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Vocabulary> ascPage = invokeGetContentSpaceVocabulariesPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -285,7 +285,7 @@ public abstract class BaseVocabularyResourceTestCase {
 				(List<Vocabulary>)ascPage.getItems());
 
 			Page<Vocabulary> descPage = invokeGetContentSpaceVocabulariesPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -323,7 +323,7 @@ public abstract class BaseVocabularyResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Vocabulary> ascPage = invokeGetContentSpaceVocabulariesPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -331,7 +331,7 @@ public abstract class BaseVocabularyResourceTestCase {
 				(List<Vocabulary>)ascPage.getItems());
 
 			Page<Vocabulary> descPage = invokeGetContentSpaceVocabulariesPage(
-				contentSpaceId, (String)null, Pagination.of(2, 1),
+				contentSpaceId, (String)null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(

@@ -161,7 +161,7 @@ public abstract class BaseUserAccountResourceTestCase {
 				organizationId, randomUserAccount());
 
 		Page<UserAccount> page = invokeGetOrganizationUserAccountsPage(
-			organizationId, Pagination.of(2, 1));
+			organizationId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -189,7 +189,7 @@ public abstract class BaseUserAccountResourceTestCase {
 				organizationId, randomUserAccount());
 
 		Page<UserAccount> page1 = invokeGetOrganizationUserAccountsPage(
-			organizationId, Pagination.of(2, 1));
+			organizationId, Pagination.of(1, 2));
 
 		List<UserAccount> userAccounts1 = (List<UserAccount>)page1.getItems();
 
@@ -288,7 +288,7 @@ public abstract class BaseUserAccountResourceTestCase {
 			fullnamequery, randomUserAccount());
 
 		Page<UserAccount> page = invokeGetUserAccountsPage(
-			fullnamequery, Pagination.of(2, 1));
+			fullnamequery, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -310,7 +310,7 @@ public abstract class BaseUserAccountResourceTestCase {
 			fullnamequery, randomUserAccount());
 
 		Page<UserAccount> page1 = invokeGetUserAccountsPage(
-			fullnamequery, Pagination.of(2, 1));
+			fullnamequery, Pagination.of(1, 2));
 
 		List<UserAccount> userAccounts1 = (List<UserAccount>)page1.getItems();
 
@@ -625,7 +625,7 @@ public abstract class BaseUserAccountResourceTestCase {
 				webSiteId, randomUserAccount());
 
 		Page<UserAccount> page = invokeGetWebSiteUserAccountsPage(
-			webSiteId, Pagination.of(2, 1));
+			webSiteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -652,7 +652,7 @@ public abstract class BaseUserAccountResourceTestCase {
 				webSiteId, randomUserAccount());
 
 		Page<UserAccount> page1 = invokeGetWebSiteUserAccountsPage(
-			webSiteId, Pagination.of(2, 1));
+			webSiteId, Pagination.of(1, 2));
 
 		List<UserAccount> userAccounts1 = (List<UserAccount>)page1.getItems();
 
