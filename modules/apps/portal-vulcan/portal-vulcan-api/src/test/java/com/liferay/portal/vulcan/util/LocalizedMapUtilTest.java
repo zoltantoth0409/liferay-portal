@@ -33,30 +33,30 @@ public class LocalizedMapUtilTest {
 		// Null map
 
 		Map<Locale, String> map = LocalizedMapUtil.merge(
-			null, new AbstractMap.SimpleEntry<>(Locale.US, "value"));
+			null, new AbstractMap.SimpleEntry<>(Locale.US, "hello"));
 
 		Assert.assertEquals(map.toString(), 1, map.size());
-		Assert.assertEquals("value", map.get(Locale.US));
+		Assert.assertEquals("hello", map.get(Locale.US));
 
 		// Null entry
 
 		map = LocalizedMapUtil.merge(
 			new HashMap<Locale, String>() {
 				{
-					put(Locale.US, "value");
+					put(Locale.US, "hello");
 				}
 			},
 			null);
 
 		Assert.assertEquals(map.toString(), 1, map.size());
-		Assert.assertEquals("value", map.get(Locale.US));
+		Assert.assertEquals("hello", map.get(Locale.US));
 
-		// Entry value null
+		// Entry hello null
 
 		map = LocalizedMapUtil.merge(
 			new HashMap<Locale, String>() {
 				{
-					put(Locale.US, "value");
+					put(Locale.US, "hello");
 				}
 			},
 			new AbstractMap.SimpleEntry<>(Locale.US, null));
@@ -69,14 +69,14 @@ public class LocalizedMapUtilTest {
 		map = LocalizedMapUtil.merge(
 			new HashMap<Locale, String>() {
 				{
-					put(Locale.US, "value");
+					put(Locale.US, "hello");
 				}
 			},
-			new AbstractMap.SimpleEntry<>(Locale.UK, "anotherValue"));
+			new AbstractMap.SimpleEntry<>(Locale.FRANCE, "bonjour"));
 
 		Assert.assertEquals(map.toString(), 2, map.size());
-		Assert.assertEquals("anotherValue", map.get(Locale.UK));
-		Assert.assertEquals("value", map.get(Locale.US));
+		Assert.assertEquals("bonjour", map.get(Locale.FRANCE));
+		Assert.assertEquals("hello", map.get(Locale.US));
 	}
 
 }
