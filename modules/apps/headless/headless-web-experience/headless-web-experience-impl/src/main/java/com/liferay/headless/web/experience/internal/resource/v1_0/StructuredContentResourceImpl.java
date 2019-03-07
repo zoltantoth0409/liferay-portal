@@ -678,11 +678,11 @@ public class StructuredContentResourceImpl
 			List<String> fieldDisplayValues)
 		throws Exception {
 
+		List<ContentField> contentFields = new ArrayList<>();
+
 		List<List<String>> fieldsDisplaySubstrings =
 			_getFieldsDisplaySubstrings(
 				ddmFormField.getName(), fieldDisplayValues);
-
-		List<ContentField> contentFields = new ArrayList<>();
 
 		for (List<String> substring : fieldsDisplaySubstrings) {
 			contentFields.add(
