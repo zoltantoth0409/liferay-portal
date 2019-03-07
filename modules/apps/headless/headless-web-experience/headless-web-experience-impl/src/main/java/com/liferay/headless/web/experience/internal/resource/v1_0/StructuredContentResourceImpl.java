@@ -743,16 +743,17 @@ public class StructuredContentResourceImpl
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
-		DDMForm ddmForm = ddmStructure.getDDMForm();
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAttribute(
 			"ddmFormValues",
 			_toString(
-				new DDMFormValues(ddmForm) {
+				new DDMFormValues(ddmStructure.getDDMForm()) {
 					{
+						DDMForm ddmForm = getDDMForm();
+
 						setAvailableLocales(ddmForm.getAvailableLocales());
+
 						setDDMFormFieldValues(
 							_toDDMFormFieldValues(
 								contentFields, journalArticle.getDDMStructure(),
