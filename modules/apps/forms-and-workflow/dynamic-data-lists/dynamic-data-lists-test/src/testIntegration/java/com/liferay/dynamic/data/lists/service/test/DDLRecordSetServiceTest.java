@@ -102,7 +102,9 @@ public class DDLRecordSetServiceTest {
 		DDLRecordSet ddlRecordSet = addRecordSet(
 			ddmStructureDDMForm, FailStorageAdapter.STORAGE_TYPE);
 
-		String storageAdpater = ddlRecordSet.getDDMStructure().getStorageType();
+		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
+
+		String storageAdpater = ddmStructure.getStorageType();
 
 		DDMFormTestUtil.addTextDDMFormFields(ddmStructureDDMForm, "Name");
 

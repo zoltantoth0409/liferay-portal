@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.registry.BasicRegistryImpl;
 import com.liferay.registry.RegistryUtil;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -102,12 +103,13 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		DDMFormEvaluationResult ddmFormEvaluationResult =
 			ddmFormEvaluatorHelper.evaluate();
 
-		Assert.assertEquals(
-			1,
-			ddmFormEvaluationResult.getDDMFormFieldEvaluationResults().size());
+		List<DDMFormFieldEvaluationResult> ddmFormFieldEvaluationResults =
+			ddmFormEvaluationResult.getDDMFormFieldEvaluationResults();
+
+		Assert.assertEquals(1, ddmFormFieldEvaluationResults.size());
 
 		DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult =
-			ddmFormEvaluationResult.getDDMFormFieldEvaluationResults().get(0);
+			ddmFormFieldEvaluationResults.get(0);
 
 		Assert.assertFalse(ddmFormFieldEvaluationResult.isValid());
 
@@ -152,12 +154,13 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		DDMFormEvaluationResult ddmFormEvaluationResult =
 			ddmFormEvaluatorHelper.evaluate();
 
-		Assert.assertEquals(
-			1,
-			ddmFormEvaluationResult.getDDMFormFieldEvaluationResults().size());
+		List<DDMFormFieldEvaluationResult> ddmFormFieldEvaluationResults =
+			ddmFormEvaluationResult.getDDMFormFieldEvaluationResults();
+
+		Assert.assertEquals(1, ddmFormFieldEvaluationResults.size());
 
 		DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult =
-			ddmFormEvaluationResult.getDDMFormFieldEvaluationResults().get(0);
+			ddmFormFieldEvaluationResults.get(0);
 
 		Assert.assertFalse(ddmFormFieldEvaluationResult.isValid());
 

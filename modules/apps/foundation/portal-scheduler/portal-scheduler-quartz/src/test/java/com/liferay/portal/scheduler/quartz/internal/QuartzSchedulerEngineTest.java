@@ -993,7 +993,7 @@ public class QuartzSchedulerEngineTest {
 			Set<JobKey> jobKeys = new HashSet<>();
 
 			for (JobKey jobKey : _jobs.keySet()) {
-				if (jobKey.getGroup().equals(groupName)) {
+				if (Objects.equals(jobKey.getGroup(), groupName)) {
 					jobKeys.add(jobKey);
 				}
 			}
@@ -1117,7 +1117,7 @@ public class QuartzSchedulerEngineTest {
 			String groupName = groupMatcher.getCompareToValue();
 
 			for (JobKey jobKey : _jobs.keySet()) {
-				if (jobKey.getGroup().equals(groupName)) {
+				if (Objects.equals(jobKey.getGroup(), groupName)) {
 					pauseJob(jobKey);
 				}
 			}
@@ -1175,7 +1175,7 @@ public class QuartzSchedulerEngineTest {
 			String groupName = groupMatcher.getCompareToValue();
 
 			for (JobKey jobKey : _jobs.keySet()) {
-				if (jobKey.getGroup().equals(groupName)) {
+				if (Objects.equals(jobKey.getGroup(), groupName)) {
 					resumeJob(jobKey);
 				}
 			}

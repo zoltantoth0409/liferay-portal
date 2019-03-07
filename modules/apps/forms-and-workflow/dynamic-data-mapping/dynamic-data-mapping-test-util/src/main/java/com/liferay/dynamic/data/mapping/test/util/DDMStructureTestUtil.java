@@ -379,7 +379,7 @@ public class DDMStructureTestUtil {
 
 		while (true) {
 			if ((parentElement == null) ||
-				parentElement.getName().equals("root")) {
+				Objects.equals(parentElement.getName(), "root")) {
 
 				break;
 			}
