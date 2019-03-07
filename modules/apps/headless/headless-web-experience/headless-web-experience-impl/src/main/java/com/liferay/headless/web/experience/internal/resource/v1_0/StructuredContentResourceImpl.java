@@ -791,7 +791,7 @@ public class StructuredContentResourceImpl
 					ddmTemplate -> new RenderedContents() {
 						{
 							renderedContentURL = getJAXRSLink(
-								"getStructuredContentTemplate",
+								"getStructuredContentRenderedContentTemplate",
 								journalArticle.getResourcePrimKey(),
 								ddmTemplate.getTemplateId());
 							templateName = ddmTemplate.getName(
