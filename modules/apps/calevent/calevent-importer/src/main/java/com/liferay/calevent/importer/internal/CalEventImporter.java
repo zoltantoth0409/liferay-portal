@@ -543,8 +543,8 @@ public class CalEventImporter {
 				continue;
 			}
 
-			actionIds = actionIds | getActionId(
-				oldResourceAction, newClassName);
+			actionIds =
+				actionIds | getActionId(oldResourceAction, newClassName);
 		}
 
 		return actionIds;

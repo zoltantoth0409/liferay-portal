@@ -15,6 +15,7 @@
 package com.liferay.portal.kernel.util;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringPool;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -702,8 +703,9 @@ public class Validator {
 		}
 
 		if (normalizedPath.contains(
-				StringPool.SLASH.concat(
-					StringPool.DOUBLE_PERIOD).concat(StringPool.SLASH))) {
+				StringBundler.concat(
+					StringPool.SLASH, StringPool.DOUBLE_PERIOD,
+					StringPool.SLASH))) {
 
 			return false;
 		}

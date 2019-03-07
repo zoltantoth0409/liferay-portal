@@ -94,8 +94,8 @@ public class JSPWikiEngine extends BaseWikiEngine {
 
 	@Override
 	public String getHelpURL() {
-		return
-			"https://jspwiki-wiki.apache.org/Wiki.jsp?page=TextFormattingRules";
+		return "https://jspwiki-wiki.apache.org/Wiki.jsp?page=" +
+			"TextFormattingRules";
 	}
 
 	@Override
