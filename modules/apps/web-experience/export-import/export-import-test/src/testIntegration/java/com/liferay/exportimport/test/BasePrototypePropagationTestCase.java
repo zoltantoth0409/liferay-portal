@@ -164,7 +164,8 @@ public abstract class BasePrototypePropagationTestCase {
 
 			portlets = LayoutTestUtil.getPortlets(layout);
 
-			Assert.assertEquals(initialPortletCount, portlets.size());
+			Assert.assertEquals(
+				portlets.toString(), initialPortletCount, portlets.size());
 		}
 
 		prototypeLayout = updateModifiedDate(
@@ -182,7 +183,8 @@ public abstract class BasePrototypePropagationTestCase {
 
 			portlets = LayoutTestUtil.getPortlets(layout);
 
-			Assert.assertEquals(initialPortletCount + 1, portlets.size());
+			Assert.assertEquals(
+				portlets.toString(), initialPortletCount + 1, portlets.size());
 		}
 		else {
 			Assert.assertEquals(
@@ -194,7 +196,8 @@ public abstract class BasePrototypePropagationTestCase {
 
 			portlets = LayoutTestUtil.getPortlets(layout);
 
-			Assert.assertEquals(initialPortletCount, portlets.size());
+			Assert.assertEquals(
+				portlets.toString(), initialPortletCount, portlets.size());
 		}
 	}
 
