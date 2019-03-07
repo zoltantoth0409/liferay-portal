@@ -30,6 +30,8 @@ String type = ParamUtil.getString(request, "type");
 long groupId = ParamUtil.getLong(request, "groupId", scopeGroupId);
 String urlTitle = ParamUtil.getString(request, "urlTitle");
 
+boolean workflowPreview = GetterUtil.getBoolean(request.getAttribute(WebKeys.WORKFLOW_ASSET_PREVIEW));
+
 boolean print = ParamUtil.getString(request, "viewMode").equals(Constants.PRINT);
 
 AssetEntry assetEntry = null;
@@ -39,6 +41,12 @@ AssetRenderer<?> assetRenderer = null;
 
 if (Validator.isNotNull(urlTitle)) {
 	assetRenderer = assetRendererFactory.getAssetRenderer(groupId, urlTitle);
+
+	if(workflowPreview) {
+		long classPK = assetRenderer.getClassPK();
+
+		assetRenderer = assetRendererFactory.getAssetRenderer(classPK, AssetRendererFactory.TYPE_LATEST);
+	}
 
 	assetEntry = assetRendererFactory.getAssetEntry(assetRendererFactory.getClassName(), assetRenderer.getClassPK());
 }
