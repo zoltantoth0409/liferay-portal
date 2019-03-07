@@ -57,15 +57,9 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		LiferayPortletURL liferayPortletURL = PortletURLFactoryUtil.create(
-			actionRequest, UserAssociatedDataPortletKeys.USER_ASSOCIATED_DATA,
-			PortletRequest.RENDER_PHASE);
+		String mvcRenderCommandName = null;
 
 		long selectedUserId = getSelectedUserId(actionRequest);
-
-		liferayPortletURL.setParameter("p_u_i_d", String.valueOf(selectedUserId));
-
-		String mvcRenderCommandName = null;
 
 		if (uadApplicationSummaryHelper.getTotalNonreviewableUADEntitiesCount(
 				selectedUserId) == 0) {
@@ -80,26 +74,30 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 			}
 		}
 
-		if (Validator.isNotNull(mvcRenderCommandName)) {
-			liferayPortletURL.setParameter("mvcRenderCommandName", mvcRenderCommandName);
-
-			sendRedirect(actionRequest, actionResponse, liferayPortletURL.toString());
+		if (Validator.isNull(mvcRenderCommandName)) {
+			return;
 		}
+
+		LiferayPortletURL liferayPortletURL = PortletURLFactoryUtil.create(
+			actionRequest, UserAssociatedDataPortletKeys.USER_ASSOCIATED_DATA,
+			PortletRequest.RENDER_PHASE);
+
+		liferayPortletURL.setParameter(
+			"p_u_i_d", String.valueOf(selectedUserId));
+		liferayPortletURL.setParameter(
+			"mvcRenderCommandName", mvcRenderCommandName);
+
+		sendRedirect(
+			actionRequest, actionResponse, liferayPortletURL.toString());
 	}
 
 	protected void doReviewableRedirect(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		LiferayPortletURL liferayPortletURL = PortletURLFactoryUtil.create(
-			actionRequest, UserAssociatedDataPortletKeys.USER_ASSOCIATED_DATA,
-			PortletRequest.RENDER_PHASE);
+		String mvcRenderCommandName = null;
 
 		long selectedUserId = getSelectedUserId(actionRequest);
-
-		liferayPortletURL.setParameter("p_u_i_d", String.valueOf(selectedUserId));
-
-		String mvcRenderCommandName = null;
 
 		if (uadApplicationSummaryHelper.getTotalReviewableUADEntitiesCount(
 				selectedUserId) == 0) {
@@ -115,11 +113,21 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 			}
 		}
 
-		if (Validator.isNotNull(mvcRenderCommandName)) {
-			liferayPortletURL.setParameter("mvcRenderCommandName", mvcRenderCommandName);
-
-			sendRedirect(actionRequest, actionResponse, liferayPortletURL.toString());
+		if (Validator.isNull(mvcRenderCommandName)) {
+			return;
 		}
+
+		LiferayPortletURL liferayPortletURL = PortletURLFactoryUtil.create(
+			actionRequest, UserAssociatedDataPortletKeys.USER_ASSOCIATED_DATA,
+			PortletRequest.RENDER_PHASE);
+
+		liferayPortletURL.setParameter(
+			"p_u_i_d", String.valueOf(selectedUserId));
+		liferayPortletURL.setParameter(
+			"mvcRenderCommandName", mvcRenderCommandName);
+
+		sendRedirect(
+			actionRequest, actionResponse, liferayPortletURL.toString());
 	}
 
 	protected List<Object> getEntities(ActionRequest actionRequest)
