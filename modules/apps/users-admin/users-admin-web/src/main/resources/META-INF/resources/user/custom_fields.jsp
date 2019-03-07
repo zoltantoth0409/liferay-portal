@@ -41,8 +41,8 @@ User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 
 			PortletURL customFieldsURL = PortletProviderUtil.getPortletURL(request, ExpandoColumn.class.getName(), action);
 
-			customFieldsURL.setParameter("modelResource", User.class.getName());
 			customFieldsURL.setParameter("redirect", currentURL);
+			customFieldsURL.setParameter("modelResource", User.class.getName());
 			%>
 
 			<liferay-ui:icon
