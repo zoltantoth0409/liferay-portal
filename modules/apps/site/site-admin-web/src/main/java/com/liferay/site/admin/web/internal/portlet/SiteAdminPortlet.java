@@ -50,7 +50,6 @@ import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.model.LayoutSetPrototype;
 import com.liferay.portal.kernel.model.MembershipRequest;
 import com.liferay.portal.kernel.model.MembershipRequestConstants;
-import com.liferay.portal.kernel.model.Team;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
@@ -500,10 +499,10 @@ public class SiteAdminPortlet extends MVCPortlet {
 			actionRequest, group, portletId, 0, 0, PortletRequest.RENDER_PHASE);
 	}
 
-	protected List<Team> getTeams(PortletRequest portletRequest)
+	protected List<Long> getTeamIds(PortletRequest portletRequest)
 		throws Exception {
 
-		List<Team> teams = new ArrayList<>();
+		List<Long> teamIds = new ArrayList<>();
 
 		long[] teamsTeamIds = ArrayUtil.unique(
 			ParamUtil.getLongValues(
@@ -514,12 +513,10 @@ public class SiteAdminPortlet extends MVCPortlet {
 				continue;
 			}
 
-			Team team = teamLocalService.getTeam(teamsTeamId);
-
-			teams.add(team);
+			teamIds.add(teamsTeamId);
 		}
 
-		return teams;
+		return teamIds;
 	}
 
 	@Override
@@ -796,9 +793,7 @@ public class SiteAdminPortlet extends MVCPortlet {
 			ListUtil.toString(getRoleIds(actionRequest), StringPool.BLANK));
 		typeSettingsProperties.setProperty(
 			"defaultTeamIds",
-			ListUtil.toString(
-				getTeams(actionRequest), Team.TEAM_ID_ACCESSOR,
-				StringPool.COMMA));
+			ListUtil.toString(getTeamIds(actionRequest), StringPool.BLANK));
 
 		String[] analyticsTypes = PrefsPropsUtil.getStringArray(
 			themeDisplay.getCompanyId(), PropsKeys.ADMIN_ANALYTICS_TYPES,
