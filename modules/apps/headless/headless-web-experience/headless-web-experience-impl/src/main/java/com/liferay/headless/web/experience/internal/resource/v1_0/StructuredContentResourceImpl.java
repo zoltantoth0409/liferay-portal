@@ -457,23 +457,6 @@ public class StructuredContentResourceImpl
 		return substrings;
 	}
 
-	private String _getRepeatableId(
-		DDMFieldsCounter ddmFieldsCounter, Fields fields, String fieldName) {
-
-		Field field = fields.get(DDM.FIELDS_DISPLAY_NAME);
-
-		String fieldDisplayValue = (String)field.getValue();
-
-		int offset = ddmFieldsCounter.get(fieldName);
-
-		String[] fieldsDisplayValues = StringUtil.split(fieldDisplayValue);
-
-		String fieldsDisplayValue = fieldsDisplayValues[offset];
-
-		return StringUtil.extractLast(
-			fieldsDisplayValue, DDM.INSTANCE_SEPARATOR);
-	}
-
 	private Page<StructuredContent> _getStructuredContentsPage(
 			Long contentSpaceId, Long contentStructureId, Filter filter,
 			Pagination pagination, Sort[] sorts)
@@ -549,11 +532,23 @@ public class StructuredContentResourceImpl
 					ddmFormField -> _toContentFields(
 						ddmFieldsCounter, ddmStructure, fields,
 						ddmFormField.getName(), fieldDisplayValues));
-				repeatableId = _getRepeatableId(
-					ddmFieldsCounter, fields, field.getName());
 				value = _toValue(
 					ddmFieldsCounter, field,
 					contextAcceptLanguage.getPreferredLocale());
+
+				setRepeatableId(
+					() -> {
+						Field field = fields.get(DDM.FIELDS_DISPLAY_NAME);
+
+						String[] fieldsDisplayValues = StringUtil.split(
+							(String)field.getValue());
+
+						String fieldsDisplayValue = fieldsDisplayValues[
+							ddmFieldsCounter.get(field.getName())];
+
+						return StringUtil.extractLast(
+							fieldsDisplayValue, DDM.INSTANCE_SEPARATOR);
+					});
 			}
 		};
 	}
