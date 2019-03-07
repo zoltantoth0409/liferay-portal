@@ -57,13 +57,13 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		LiferayPortletURL redirect = PortletURLFactoryUtil.create(
+		LiferayPortletURL liferayPortletURL = PortletURLFactoryUtil.create(
 			actionRequest, UserAssociatedDataPortletKeys.USER_ASSOCIATED_DATA,
 			PortletRequest.RENDER_PHASE);
 
 		long selectedUserId = getSelectedUserId(actionRequest);
 
-		redirect.setParameter("p_u_i_d", String.valueOf(selectedUserId));
+		liferayPortletURL.setParameter("p_u_i_d", String.valueOf(selectedUserId));
 
 		String mvcRenderCommandName = null;
 
@@ -81,9 +81,9 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 		}
 
 		if (Validator.isNotNull(mvcRenderCommandName)) {
-			redirect.setParameter("mvcRenderCommandName", mvcRenderCommandName);
+			liferayPortletURL.setParameter("mvcRenderCommandName", mvcRenderCommandName);
 
-			sendRedirect(actionRequest, actionResponse, redirect.toString());
+			sendRedirect(actionRequest, actionResponse, liferayPortletURL.toString());
 		}
 	}
 
@@ -91,13 +91,13 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		LiferayPortletURL redirect = PortletURLFactoryUtil.create(
+		LiferayPortletURL liferayPortletURL = PortletURLFactoryUtil.create(
 			actionRequest, UserAssociatedDataPortletKeys.USER_ASSOCIATED_DATA,
 			PortletRequest.RENDER_PHASE);
 
 		long selectedUserId = getSelectedUserId(actionRequest);
 
-		redirect.setParameter("p_u_i_d", String.valueOf(selectedUserId));
+		liferayPortletURL.setParameter("p_u_i_d", String.valueOf(selectedUserId));
 
 		String mvcRenderCommandName = null;
 
@@ -116,9 +116,9 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 		}
 
 		if (Validator.isNotNull(mvcRenderCommandName)) {
-			redirect.setParameter("mvcRenderCommandName", mvcRenderCommandName);
+			liferayPortletURL.setParameter("mvcRenderCommandName", mvcRenderCommandName);
 
-			sendRedirect(actionRequest, actionResponse, redirect.toString());
+			sendRedirect(actionRequest, actionResponse, liferayPortletURL.toString());
 		}
 	}
 
