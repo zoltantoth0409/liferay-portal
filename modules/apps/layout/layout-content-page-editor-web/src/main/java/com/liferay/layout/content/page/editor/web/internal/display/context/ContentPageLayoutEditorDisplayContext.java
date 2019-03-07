@@ -92,19 +92,19 @@ public class ContentPageLayoutEditorDisplayContext
 			SegmentsEntryServiceUtil.getSegmentsEntries(getGroupId(), true);
 
 		for (SegmentsEntry segmentsEntry : segmentsEntries) {
-			SoyContext segmentsEntriesSoyContext =
+			SoyContext segmentsEntrySoyContext =
 				SoyContextFactoryUtil.createSoyContext();
 
-			segmentsEntriesSoyContext.put(
+			segmentsEntrySoyContext.put(
 				"segmentsEntryId",
 				String.valueOf(segmentsEntry.getSegmentsEntryId()));
-			segmentsEntriesSoyContext.put(
+			segmentsEntrySoyContext.put(
 				"segmentsEntryLabel",
 				segmentsEntry.getName(themeDisplay.getLocale()));
 
 			availableSegmentsEntriesSoyContext.put(
 				String.valueOf(segmentsEntry.getSegmentsEntryId()),
-				segmentsEntriesSoyContext);
+				segmentsEntrySoyContext);
 		}
 
 		return availableSegmentsEntriesSoyContext;
@@ -121,22 +121,22 @@ public class ContentPageLayoutEditorDisplayContext
 				getGroupId(), classNameId, classPK, true);
 
 		for (SegmentsExperience segmentsExperience : segmentsExperiences) {
-			SoyContext segmentsExperiencesSoyContext =
+			SoyContext segmentsExperienceSoyContext =
 				SoyContextFactoryUtil.createSoyContext();
 
-			segmentsExperiencesSoyContext.put(
+			segmentsExperienceSoyContext.put(
 				"segmentsExperienceId",
 				String.valueOf(segmentsExperience.getSegmentsExperienceId()));
-			segmentsExperiencesSoyContext.put(
+			segmentsExperienceSoyContext.put(
 				"segmentsExperienceLabel",
 				segmentsExperience.getName(themeDisplay.getLocale()));
-			segmentsExperiencesSoyContext.put(
+			segmentsExperienceSoyContext.put(
 				"segmentsEntryId",
 				String.valueOf(segmentsExperience.getSegmentsEntryId()));
 
 			availableSegmentsEntriesSoyContext.put(
 				String.valueOf(segmentsExperience.getSegmentsExperienceId()),
-				segmentsExperiencesSoyContext);
+				segmentsExperienceSoyContext);
 		}
 
 		return availableSegmentsEntriesSoyContext;
