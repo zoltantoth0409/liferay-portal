@@ -33,12 +33,12 @@ public class DataDefinitionSerializer {
 
 		return JSONUtil.put(
 			"fields",
-			_getDEDataDefinitionFieldsJSONArray(
+			_toJSONArray(
 				dataDefinition.getDataDefinitionFields())
 		).toString();
 	}
 
-	private static JSONObject _getDataDefinitionFieldJSONObject(
+	private static JSONObject _toJSONObject(
 			DataDefinitionField dataDefinitionField)
 		throws Exception {
 
@@ -87,7 +87,7 @@ public class DataDefinitionSerializer {
 		return jsonObject;
 	}
 
-	private static JSONArray _getDEDataDefinitionFieldsJSONArray(
+	private static JSONArray _toJSONArray(
 			DataDefinitionField[] dataDefinitionFields)
 		throws Exception {
 
@@ -95,7 +95,7 @@ public class DataDefinitionSerializer {
 
 		for (DataDefinitionField dataDefinitionField : dataDefinitionFields) {
 			jsonArray.put(
-				_getDataDefinitionFieldJSONObject(dataDefinitionField));
+				_toJSONObject(dataDefinitionField));
 		}
 
 		return jsonArray;
