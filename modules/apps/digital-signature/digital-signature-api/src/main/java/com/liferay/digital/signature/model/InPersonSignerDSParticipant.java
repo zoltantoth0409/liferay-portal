@@ -22,13 +22,13 @@ import aQute.bnd.annotation.ProviderType;
 @ProviderType
 public interface InPersonSignerDSParticipant extends SignerDSParticipant {
 
-	public String getHostEmail();
+	public String getHostEmailAddress();
 
 	public String getHostName();
 
-	public DSInPersonSignerType getInPersonSignerType();
+	public DSInPersonSignerType getDSInPersonSignerType();
 
-	public String getSignerEmail();
+	public String getSignerEmailAddress();
 
 	public String getSignerName();
 
