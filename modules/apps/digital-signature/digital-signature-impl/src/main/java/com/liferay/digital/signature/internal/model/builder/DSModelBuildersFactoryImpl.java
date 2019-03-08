@@ -120,10 +120,10 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 
 	@Override
 	public SealDSParticipantBuilder createSealDSParticipantBuilder(
-		String participantId, String name, String emailAddress, int routingOrder) {
+		String participantKey, String name, String emailAddress, int routingOrder) {
 
 		return new SealDSParticipantBuilderImpl(
-			participantId, name, emailAddress, routingOrder);
+			participantKey, name, emailAddress, routingOrder);
 	}
 
 	@Override
