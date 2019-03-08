@@ -69,10 +69,6 @@ public class DataDefinitionDeserializer {
 			}
 		}
 
-		if (!jsonObject.has("name")) {
-			throw new Exception("Name property is required");
-		}
-
 		if (!jsonObject.has("type")) {
 			throw new Exception("Type property is required");
 		}
@@ -108,9 +104,18 @@ public class DataDefinitionDeserializer {
 				indexable = jsonObject.getBoolean("indexable", true);
 				label = labels.toArray(new LocalizedValue[0]);
 				localizable = jsonObject.getBoolean("localizable", false);
-				name = jsonObject.getString("name");
 				repeatable = jsonObject.getBoolean("repeatable", false);
 				tip = tips.toArray(new LocalizedValue[0]);
+
+				setName(
+					() -> {
+						if (!jsonObject.has("name")) {
+							throw new Exception("Name property is required");
+						}
+
+						return jsonObject.getString("name");
+					});
+
 			}
 		};
 	}
