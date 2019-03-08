@@ -150,7 +150,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			localizedValues.add(localizedValue);
 		}
 
-		return localizedValues.toArray(new LocalizedValue[0]);
+		return localizedValues.toArray(new LocalizedValue[map.size()]);
 	}
 
 	private String _serialize(DataDefinition dataDefinition) throws Exception {
