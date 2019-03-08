@@ -26,6 +26,6 @@ public interface DSSealProviderOptions {
 
 	public String getOneTimePassword();
 
-	public String getRole();
+	public String getRoleName();
 
 }

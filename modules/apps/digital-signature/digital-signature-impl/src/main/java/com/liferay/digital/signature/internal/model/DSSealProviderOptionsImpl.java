@@ -32,8 +32,8 @@ public class DSSealProviderOptionsImpl implements DSSealProviderOptions {
 	}
 
 	@Override
-	public String getRole() {
-		return _role;
+	public String getRoleName() {
+		return _roleName;
 	}
 
 	public void setMobilePhoneNumber(String mobilePhoneNumber) {
@@ -45,11 +45,11 @@ public class DSSealProviderOptionsImpl implements DSSealProviderOptions {
 	}
 
 	public void setRole(String role) {
-		_role = role;
+		_roleName = role;
 	}
 
 	private String _mobilePhoneNumber;
 	private String _oneTimePassword;
-	private String _role;
+	private String _roleName;
 
 }
