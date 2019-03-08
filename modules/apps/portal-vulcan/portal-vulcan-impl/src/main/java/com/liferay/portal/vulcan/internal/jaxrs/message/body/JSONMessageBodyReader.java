@@ -17,6 +17,9 @@ package com.liferay.portal.vulcan.internal.jaxrs.message.body;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -94,19 +97,21 @@ public class JSONMessageBodyReader implements MessageBodyReader {
 		Set<ConstraintViolation<Object>> constraintViolations =
 			validator.validate(value);
 
-		StringBuilder sb = new StringBuilder("");
+		if (constraintViolations.isEmpty()) {
+			return;
+		}
+
+		StringBundler sb = new StringBundler(constraintViolations.size() * 3);
 
 		for (ConstraintViolation<Object> constraintViolation :
 				constraintViolations) {
 
 			sb.append(constraintViolation.getPropertyPath());
-			sb.append(" ");
+			sb.append(StringPool.SPACE);
 			sb.append(constraintViolation.getMessage());
 		}
 
-		if (sb.length() > 0) {
-			throw new ValidationException(sb.toString());
-		}
+		throw new ValidationException(sb.toString());
 	}
 
 	@Context
