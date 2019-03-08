@@ -16,8 +16,8 @@ package com.liferay.data.engine.rest.internal.resource.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
-import com.liferay.data.engine.rest.internal.io.DataDefinitionDeserializer;
-import com.liferay.data.engine.rest.internal.io.DataDefinitionSerializer;
+import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionDeserializer;
+import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionSerializer;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
