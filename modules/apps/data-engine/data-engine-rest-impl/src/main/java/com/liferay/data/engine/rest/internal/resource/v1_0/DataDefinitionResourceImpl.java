@@ -49,6 +49,23 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 	@Override
+	public boolean deleteDataDefinition(Long dataDefinitionId)
+		throws Exception {
+
+		_ddmStructureService.deleteStructure(dataDefinitionId);
+
+		return true;
+	}
+
+	@Override
+	public DataDefinition getDataDefinition(Long dataDefinitionId)
+		throws Exception {
+
+		return _toDataDefinition(
+			_ddmStructureService.getStructure(dataDefinitionId));
+	}
+
+	@Override
 	public Page<DataDefinition> getDataDefinitionsPage(
 			Long groupId, Pagination pagination)
 		throws Exception {
@@ -104,11 +121,11 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		DataDefinition dataDefinition = DataDefinitionUtil.toDataDefinition(
 			ddmStructure.getDefinition());
 
-		dataDefinition.setCreateDate(ddmStructure.getCreateDate());
+		dataDefinition.setDateCreated(ddmStructure.getCreateDate());
+		dataDefinition.setDateModified(ddmStructure.getModifiedDate());
 		dataDefinition.setDescription(
 			_toLocalizedValues(ddmStructure.getDescriptionMap()));
 		dataDefinition.setId(ddmStructure.getStructureId());
-		dataDefinition.setModifiedDate(ddmStructure.getModifiedDate());
 		dataDefinition.setName(_toLocalizedValues(ddmStructure.getNameMap()));
 		dataDefinition.setStorageType(ddmStructure.getStorageType());
 		dataDefinition.setUserId(ddmStructure.getUserId());
