@@ -26,7 +26,7 @@ public interface DSParticipant {
 
 	public String getAccessCode();
 
-	public String getClientUserId();
+	public String getClientUserKey();
 
 	public Collection<String> getCustomFields();
 
@@ -34,13 +34,13 @@ public interface DSParticipant {
 
 	public DSParticipantRole getDSParticipantRole();
 
-	public String getEmail();
+	public String getEmailAddress();
 
 	public String getName();
 
 	public String getNote();
 
-	public String getParticipantId();
+	public String getParticipantKey();
 
 	public String getRoleName();
 

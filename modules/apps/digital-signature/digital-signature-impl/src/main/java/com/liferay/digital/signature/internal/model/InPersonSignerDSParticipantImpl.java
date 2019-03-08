@@ -53,7 +53,7 @@ public class InPersonSignerDSParticipantImpl
 
 	@Override
 	public String getSignerEmail() {
-		return getEmail();
+		return getEmailAddress();
 	}
 
 	@Override

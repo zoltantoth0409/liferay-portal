@@ -37,7 +37,7 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 	}
 
 	@Override
-	public String getClientUserId() {
+	public String getClientUserKey() {
 		return _clientUserId;
 	}
 
@@ -57,7 +57,7 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 	}
 
 	@Override
-	public String getEmail() {
+	public String getEmailAddress() {
 		return _email;
 	}
 
@@ -72,7 +72,7 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 	}
 
 	@Override
-	public String getParticipantId() {
+	public String getParticipantKey() {
 		return _participantId;
 	}
 
