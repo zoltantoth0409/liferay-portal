@@ -52,40 +52,29 @@ public class DataDefinitionDeserializer {
 				localizable = jsonObject.getBoolean("localizable", false);
 				repeatable = jsonObject.getBoolean("repeatable", false);
 
-				setFieldType(
-					() -> {
-						if (!jsonObject.has("type")) {
-							throw new Exception("Type property is required");
-						}
+				if (!jsonObject.has("type")) {
+					throw new Exception("Type property is required");
+				}
 
-						return jsonObject.getString("type");
-					});
-				setLabel(
-					() -> {
-						if (!jsonObject.has("label")) {
-							throw new Exception(
-								"Label property must contain localized values");
-						}
+				fieldType = jsonObject.getString("type");
 
-						return _toLocalizedValues(jsonObject.getJSONObject("label"));
-					});
-				setName(
-					() -> {
-						if (!jsonObject.has("name")) {
-							throw new Exception("Name property is required");
-						}
+				if (!jsonObject.has("label")) {
+					throw new Exception("Label property is required");
+				}
 
-						return jsonObject.getString("name");
-					});
-				setTip(
-					() -> {
-						if (!jsonObject.has("tip")) {
-							throw new Exception(
-								"Tip property must contain localized values");
-						}
+				label = _toLocalizedValues(jsonObject.getJSONObject("label"));
 
-						return _toLocalizedValues(jsonObject.getJSONObject("tip"));
-					});
+				if (!jsonObject.has("name")) {
+					throw new Exception("Name property is required");
+				}
+
+				name = jsonObject.getString("name");
+
+				if (!jsonObject.has("tip")) {
+					throw new Exception("Tip property is required");
+				}
+
+				tip = _toLocalizedValues(jsonObject.getJSONObject("tip"));
 			}
 		};
 	}
