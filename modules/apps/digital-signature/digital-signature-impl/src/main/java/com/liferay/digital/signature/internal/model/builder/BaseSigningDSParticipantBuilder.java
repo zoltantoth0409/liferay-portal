@@ -109,12 +109,11 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 		SignerDSParticipantImpl dsSignerParticipantImpl =
 			createDSSignerParticipantImpl();
 
+		dsSignerParticipantImpl.addDSFields(getDSFields());
 		dsSignerParticipantImpl.setAutoNavigation(getAutoNavigation());
 		dsSignerParticipantImpl.setDefaultParticipant(getDefaultParticipant());
 		dsSignerParticipantImpl.setDSSignatureInfo(getDSSignatureInfo());
 		dsSignerParticipantImpl.setSignInEachLocation(getSignInEachLocation());
-
-		dsSignerParticipantImpl.addDSFields(getDSFields());
 
 		return (T)dsSignerParticipantImpl;
 	}
