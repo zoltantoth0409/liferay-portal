@@ -141,13 +141,11 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 		List<LocalizedValue> localizedValues = new ArrayList<>();
 
-		Set<Locale> keys = map.keySet();
-
-		for (Locale locale : keys) {
+		for (Map.Entry<Locale, String> entry : map.entrySet()) {
 			LocalizedValue localizedValue = new LocalizedValue();
 
-			localizedValue.setKey(locale.toString());
-			localizedValue.setValue(map.get(locale));
+			localizedValue.setKey(String.valueOf(entry.getKey()));
+			localizedValue.setValue(entry.getValue());
 
 			localizedValues.add(localizedValue);
 		}
