@@ -27,23 +27,21 @@ public abstract class BaseParticipantModifyingDSParticipantBuilder
 		implements ParticipantModifyingDSParticipantBuilder {
 
 	public BaseParticipantModifyingDSParticipantBuilder(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		super(name, email, routingOrder);
+		super(name, emailAddress, routingOrder);
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
-	public <S extends DSParticipantBuilder> S setCanEditParticipantEmails(
-		Boolean canEditParticipantEmails) {
+	public <S extends DSParticipantBuilder> S setCanEditParticipantEmailAddresses(
+		Boolean canEditParticipantEmailAddresses) {
 
-		_canEditParticipantEmails = canEditParticipantEmails;
+		_canEditParticipantEmailAddresses = canEditParticipantEmailAddresses;
 
 		return (S)this;
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public <S extends DSParticipantBuilder> S setCanEditParticipantNames(
 		Boolean canEditParticipantNames) {
 
@@ -53,14 +51,14 @@ public abstract class BaseParticipantModifyingDSParticipantBuilder
 	}
 
 	protected Boolean getCanEditParticipantEmailAddresses() {
-		return _canEditParticipantEmails;
+		return _canEditParticipantEmailAddresses;
 	}
 
 	protected Boolean getCanEditParticipantNames() {
 		return _canEditParticipantNames;
 	}
 
-	private Boolean _canEditParticipantEmails;
+	private Boolean _canEditParticipantEmailAddresses;
 	private Boolean _canEditParticipantNames;
 
 }

@@ -34,13 +34,12 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	extends BaseDSParticipantBuilder<T> implements SigningDSParticipantBuilder {
 
 	public BaseSigningDSParticipantBuilder(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		super(name, email, routingOrder);
+		super(name, emailAddress, routingOrder);
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public <S extends DSParticipantBuilder> S addDSField(DSField<?> dsField) {
 		_dsFields.add(dsField);
 
@@ -48,7 +47,6 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public <S extends DSParticipantBuilder> S addDSFields(
 		Collection<DSField<?>> dsFields) {
 
@@ -58,7 +56,6 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public <S extends DSParticipantBuilder> S addDSFields(DSField<?>... dsFields) {
 		Collections.addAll(_dsFields, dsFields);
 
@@ -66,7 +63,6 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public <S extends DSParticipantBuilder> S setAutoNavigation(
 		Boolean autoNavigation) {
 
@@ -76,7 +72,6 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public <S extends DSParticipantBuilder> S setDefaultParticipant(
 		Boolean defaultParticipant) {
 
@@ -86,7 +81,6 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public <S extends DSParticipantBuilder> S setSignatureInfo(
 		String signatureName, String signatureInitials, String signatureFont) {
 
@@ -102,7 +96,6 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public <S extends DSParticipantBuilder> S setSignInEachLocation(
 		Boolean signInEachLocation) {
 
@@ -112,7 +105,6 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	protected T createDSParticipant() {
 		SignerDSParticipantImpl dsSignerParticipantImpl =
 			createDSSignerParticipantImpl();
