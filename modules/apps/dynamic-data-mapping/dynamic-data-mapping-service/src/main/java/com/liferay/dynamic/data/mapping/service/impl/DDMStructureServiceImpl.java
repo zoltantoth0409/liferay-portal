@@ -55,22 +55,6 @@ public class DDMStructureServiceImpl extends DDMStructureServiceBaseImpl {
 
 	@Override
 	public DDMStructure addStructure(
-			long groupId, long classNameId,
-			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
-			DDMForm ddmForm, DDMFormLayout ddmFormLayout, String storageType,
-			ServiceContext serviceContext)
-		throws PortalException {
-
-		_ddmPermissionSupport.checkAddStructurePermission(
-			getPermissionChecker(), groupId, classNameId);
-
-		return ddmStructureLocalService.addStructure(
-			getUserId(), groupId, classNameId, nameMap, descriptionMap, ddmForm,
-			ddmFormLayout, storageType, serviceContext);
-	}
-
-	@Override
-	public DDMStructure addStructure(
 			long groupId, long parentStructureId, long classNameId,
 			String structureKey, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, DDMForm ddmForm,
@@ -89,8 +73,24 @@ public class DDMStructureServiceImpl extends DDMStructureServiceBaseImpl {
 
 	@Override
 	public DDMStructure addStructure(
-			long groupId, String parentStructureKey,
-			long classNameId, String structureKey, Map<Locale, String> nameMap,
+			long groupId, long classNameId, Map<Locale, String> nameMap,
+			Map<Locale, String> descriptionMap, DDMForm ddmForm,
+			DDMFormLayout ddmFormLayout, String storageType,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		_ddmPermissionSupport.checkAddStructurePermission(
+			getPermissionChecker(), groupId, classNameId);
+
+		return ddmStructureLocalService.addStructure(
+			getUserId(), groupId, classNameId, nameMap, descriptionMap, ddmForm,
+			ddmFormLayout, storageType, serviceContext);
+	}
+
+	@Override
+	public DDMStructure addStructure(
+			long groupId, String parentStructureKey, long classNameId,
+			String structureKey, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, DDMForm ddmForm,
 			DDMFormLayout ddmFormLayout, String storageType, int type,
 			ServiceContext serviceContext)
