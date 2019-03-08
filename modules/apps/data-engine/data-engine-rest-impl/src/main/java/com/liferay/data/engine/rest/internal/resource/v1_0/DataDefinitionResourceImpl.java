@@ -139,12 +139,12 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				ddmStructure.getDefinition());
 
 		dataDefinition.setCreateDate(
-			String.valueOf(ddmStructure.getCreateDate()));
+			ddmStructure.getCreateDate());
 		dataDefinition.setDescription(
 			mapToLocalizedValueArray(ddmStructure.getDescriptionMap()));
 		dataDefinition.setId(ddmStructure.getStructureId());
 		dataDefinition.setModifiedDate(
-			String.valueOf(ddmStructure.getModifiedDate()));
+			ddmStructure.getModifiedDate());
 		dataDefinition.setName(
 			mapToLocalizedValueArray(ddmStructure.getNameMap()));
 		dataDefinition.setStorageType(ddmStructure.getStorageType());
