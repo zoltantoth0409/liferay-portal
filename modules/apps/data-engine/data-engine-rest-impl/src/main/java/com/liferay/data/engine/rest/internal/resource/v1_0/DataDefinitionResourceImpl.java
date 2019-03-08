@@ -26,7 +26,6 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -37,7 +36,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -78,8 +76,11 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 		return _toDataDefinition(
 			_ddmStructureLocalService.addStructure(
-				PrincipalThreadLocal.getUserId(), groupId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
-				_portal.getClassNameId(DataDefinition.class), null, _toLocalizationMap(dataDefinition.getName()), _toLocalizationMap(dataDefinition.getDescription()),
+				PrincipalThreadLocal.getUserId(), groupId,
+				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
+				_portal.getClassNameId(DataDefinition.class), null,
+				_toLocalizationMap(dataDefinition.getName()),
+				_toLocalizationMap(dataDefinition.getDescription()),
 				_serialize(dataDefinition), dataDefinition.getStorageType(),
 				new ServiceContext()));
 	}
@@ -92,9 +93,39 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		return _toDataDefinition(
 			_ddmStructureLocalService.updateStructure(
 				PrincipalThreadLocal.getUserId(), dataDefinition.getId(),
-				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID, _toLocalizationMap(dataDefinition.getName()),
-				_toLocalizationMap(dataDefinition.getDescription()), _serialize(dataDefinition),
-				new ServiceContext()));
+				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
+				_toLocalizationMap(dataDefinition.getName()),
+				_toLocalizationMap(dataDefinition.getDescription()),
+				_serialize(dataDefinition), new ServiceContext()));
+	}
+
+	private String _serialize(DataDefinition dataDefinition) throws Exception {
+		DataDefinitionJSONSerializer dataDefinitionJSONSerializer =
+			new DataDefinitionJSONSerializer(_jsonFactory);
+
+		return dataDefinitionJSONSerializer.serialize(dataDefinition);
+	}
+
+	private DataDefinition _toDataDefinition(DDMStructure ddmStructure)
+		throws Exception {
+
+		DataDefinitionJSONDeserializer dataDefinitionJSONDeserializer =
+			new DataDefinitionJSONDeserializer(_jsonFactory);
+
+		DataDefinition dataDefinition =
+			dataDefinitionJSONDeserializer.deserialize(
+				ddmStructure.getDefinition());
+
+		dataDefinition.setCreateDate(ddmStructure.getCreateDate());
+		dataDefinition.setDescription(
+			_toLocalizedValues(ddmStructure.getDescriptionMap()));
+		dataDefinition.setId(ddmStructure.getStructureId());
+		dataDefinition.setModifiedDate(ddmStructure.getModifiedDate());
+		dataDefinition.setName(_toLocalizedValues(ddmStructure.getNameMap()));
+		dataDefinition.setStorageType(ddmStructure.getStorageType());
+		dataDefinition.setUserId(ddmStructure.getUserId());
+
+		return dataDefinition;
 	}
 
 	private Map<Locale, String> _toLocalizationMap(
@@ -111,34 +142,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		return localizationMap;
 	}
 
-	private DataDefinition _toDataDefinition(DDMStructure ddmStructure)
-		throws Exception {
-
-		DataDefinitionJSONDeserializer dataDefinitionJSONDeserializer =
-			new DataDefinitionJSONDeserializer(_jsonFactory);
-
-		DataDefinition dataDefinition =
-			dataDefinitionJSONDeserializer.deserialize(
-				ddmStructure.getDefinition());
-
-		dataDefinition.setCreateDate(
-			ddmStructure.getCreateDate());
-		dataDefinition.setDescription(
-			_toLocalizedValues(ddmStructure.getDescriptionMap()));
-		dataDefinition.setId(ddmStructure.getStructureId());
-		dataDefinition.setModifiedDate(
-			ddmStructure.getModifiedDate());
-		dataDefinition.setName(
-			_toLocalizedValues(ddmStructure.getNameMap()));
-		dataDefinition.setStorageType(ddmStructure.getStorageType());
-		dataDefinition.setUserId(ddmStructure.getUserId());
-
-		return dataDefinition;
-	}
-
-	private LocalizedValue[] _toLocalizedValues(
-		Map<Locale, String> map) {
-
+	private LocalizedValue[] _toLocalizedValues(Map<Locale, String> map) {
 		List<LocalizedValue> localizedValues = new ArrayList<>();
 
 		for (Map.Entry<Locale, String> entry : map.entrySet()) {
@@ -151,13 +155,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		}
 
 		return localizedValues.toArray(new LocalizedValue[map.size()]);
-	}
-
-	private String _serialize(DataDefinition dataDefinition) throws Exception {
-		DataDefinitionJSONSerializer dataDefinitionJSONSerializer =
-			new DataDefinitionJSONSerializer(_jsonFactory);
-
-		return dataDefinitionJSONSerializer.serialize(dataDefinition);
 	}
 
 	@Reference
