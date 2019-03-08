@@ -39,7 +39,7 @@ public interface DSDocumentBuilder {
 	public DSDocumentBuilder setExtension(String extension);
 
 	public DSDocumentBuilder setSupplementalDocumentInfo(
-		DSDocumentDisplay dsDocumentDisplay, Boolean includeInDownload,
-		DSSignerAcknowledgement dsSignerAcknowledgement);
+		DSDocumentDisplay dsDocumentDisplay, DSSignerAcknowledgement dsSignerAcknowledgement,
+		Boolean includeInDownload);
 
 }
