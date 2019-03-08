@@ -88,9 +88,9 @@ public class DataDefinitionDeserializer {
 		Iterator<String> keys = jsonObject.keys();
 
 		while (keys.hasNext()) {
-			String key = keys.next();
-
 			LocalizedValue localizedValue = new LocalizedValue();
+
+			String key = keys.next();
 
 			localizedValue.setKey(key);
 			localizedValue.setValue(jsonObject.getString(key));
