@@ -106,7 +106,6 @@ public class LinkEditableElementParser implements EditableElementParser {
 
 		EditableElementParserUtil.addAttribute(
 			replaceableElement, configJSONObject, "target", "target");
-
 		EditableElementParserUtil.addClass(
 			replaceableElement, configJSONObject, "btn btn-", "buttonType");
 
