@@ -54,7 +54,7 @@ public class DataDefinitionSerializer {
 
 		LocalizedValue[] label = dataDefinitionField.getLabel();
 
-		if (!(label.length == 0)) {
+		if (label.length > 0) {
 			_put(jsonObject, "label", label);
 		}
 
@@ -72,7 +72,7 @@ public class DataDefinitionSerializer {
 
 		LocalizedValue[] tip = dataDefinitionField.getTip();
 
-		if (!(tip.length == 0)) {
+		if (tip.length > 0) {
 			_put(jsonObject, "tip", tip);
 		}
 
