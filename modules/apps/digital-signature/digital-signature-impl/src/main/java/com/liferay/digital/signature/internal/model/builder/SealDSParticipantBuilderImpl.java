@@ -36,7 +36,7 @@ public class SealDSParticipantBuilderImpl
 
 		super(name, email, routingOrder);
 
-		setParticipantId(participantId);
+		setParticipantKey(participantId);
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class SealDSParticipantBuilderImpl
 	@Override
 	protected SealDSParticipant createDSParticipant() {
 		SealDSParticipantImpl sealDSParticipantImpl = new SealDSParticipantImpl(
-			getParticipantId(), getName(), getEmail(), getRoutingOrder());
+			getParticipantKey(), getName(), getEmailAddress(), getRoutingOrder());
 
 		sealDSParticipantImpl.addDSSealInfos(_dsSealInfos.values());
 

@@ -44,7 +44,7 @@ public class InPersonSignerNotaryDSParticipantBuilderImpl
 			_notaryParticipantId, _notaryName, _notaryEmail);
 
 		return new InPersonSignerNotaryDSParticipantImpl(
-			getName(), getEmail(), getRoutingOrder(), dsNotaryInfoImpl);
+			getName(), getEmailAddress(), getRoutingOrder(), dsNotaryInfoImpl);
 	}
 
 	private final String _notaryEmail;

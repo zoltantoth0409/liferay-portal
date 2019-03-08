@@ -30,10 +30,10 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 	implements DSParticipantBuilder {
 
 	public BaseDSParticipantBuilder(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
 		_name = name;
-		_email = email;
+		_emailAddress = emailAddress;
 		_routingOrder = routingOrder;
 	}
 
@@ -41,12 +41,12 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 		return _accessCode;
 	}
 
-	public String getClientUserId() {
-		return _clientUserId;
+	public String getClientUserKey() {
+		return _clientUserKey;
 	}
 
-	public Collection<String> getCustomFields() {
-		return _customFields;
+	public Collection<String> getCustomFieldNames() {
+		return _customFieldNames;
 	}
 
 	public DSEmailNotification getDSEmailNotification() {
@@ -54,24 +54,23 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public T getDSParticipant() {
 		BaseDSParticipantImpl baseDSParticipantImpl =
 			(BaseDSParticipantImpl)createDSParticipant();
 
 		baseDSParticipantImpl.setAccessCode(getAccessCode());
-		baseDSParticipantImpl.setClientUserKey(getClientUserId());
-		baseDSParticipantImpl.setCustomFieldNames(getCustomFields());
+		baseDSParticipantImpl.setClientUserKey(getClientUserKey());
+		baseDSParticipantImpl.setCustomFieldNames(getCustomFieldNames());
 		baseDSParticipantImpl.setDSEmailNotification(getDSEmailNotification());
 		baseDSParticipantImpl.setNote(getNote());
-		baseDSParticipantImpl.setParticipantKey(getParticipantId());
+		baseDSParticipantImpl.setParticipantKey(getParticipantKey());
 		baseDSParticipantImpl.setRoleName(getRoleName());
 
 		return (T)baseDSParticipantImpl;
 	}
 
-	public String getEmail() {
-		return _email;
+	public String getEmailAddress() {
+		return _emailAddress;
 	}
 
 	public String getName() {
@@ -82,8 +81,8 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 		return _note;
 	}
 
-	public String getParticipantId() {
-		return _participantId;
+	public String getParticipantKey() {
+		return _participantKey;
 	}
 
 	public String getRoleName() {
@@ -102,15 +101,15 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	public DSParticipantBuilder setClientUserId(String clientUserId) {
-		_clientUserId = clientUserId;
+	public DSParticipantBuilder setClientUserKey(String clientUserKey) {
+		_clientUserKey = clientUserKey;
 
 		return this;
 	}
 
 	@Override
-	public DSParticipantBuilder setCustomFields(String... customFields) {
-		Collections.addAll(_customFields, customFields);
+	public DSParticipantBuilder setCustomFieldNames(String... customFieldNames) {
+		Collections.addAll(_customFieldNames, customFieldNames);
 
 		return this;
 	}
@@ -132,8 +131,8 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	public DSParticipantBuilder setParticipantId(String participantId) {
-		_participantId = participantId;
+	public DSParticipantBuilder setParticipantKey(String participantKey) {
+		_participantKey = participantKey;
 
 		return this;
 	}
@@ -148,13 +147,13 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 	protected abstract T createDSParticipant();
 
 	private String _accessCode;
-	private String _clientUserId;
-	private Collection<String> _customFields = new HashSet<>();
+	private String _clientUserKey;
+	private Collection<String> _customFieldNames = new HashSet<>();
 	private DSEmailNotification _dsEmailNotification;
-	private final String _email;
+	private final String _emailAddress;
 	private final String _name;
 	private String _note;
-	private String _participantId;
+	private String _participantKey;
 	private String _roleName;
 	private final int _routingOrder;
 

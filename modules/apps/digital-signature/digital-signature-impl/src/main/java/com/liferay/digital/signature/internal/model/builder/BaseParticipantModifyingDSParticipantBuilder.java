@@ -52,7 +52,7 @@ public abstract class BaseParticipantModifyingDSParticipantBuilder
 		return (S)this;
 	}
 
-	protected Boolean getCanEditParticipantEmails() {
+	protected Boolean getCanEditParticipantEmailAddresses() {
 		return _canEditParticipantEmails;
 	}
 

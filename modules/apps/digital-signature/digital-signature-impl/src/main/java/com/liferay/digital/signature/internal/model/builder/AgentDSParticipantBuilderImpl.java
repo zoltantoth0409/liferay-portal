@@ -26,20 +26,19 @@ public class AgentDSParticipantBuilderImpl
 	implements AgentDSParticipantBuilder {
 
 	public AgentDSParticipantBuilderImpl(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		super(name, email, routingOrder);
+		super(name, emailAddress, routingOrder);
 	}
 
 	@Override
 	protected AgentDSParticipant createDSParticipant() {
 		AgentDSParticipantImpl agentDSParticipantImpl =
 			new AgentDSParticipantImpl(
-				getName(), getEmail(), getRoutingOrder());
+				getName(), getEmailAddress(), getRoutingOrder());
 
 		agentDSParticipantImpl.setCanEditParticipantEmailAddresses(
-			getCanEditParticipantEmails());
-
+			getCanEditParticipantEmailAddresses());
 		agentDSParticipantImpl.setCanEditParticipantNames(
 			getCanEditParticipantNames());
 

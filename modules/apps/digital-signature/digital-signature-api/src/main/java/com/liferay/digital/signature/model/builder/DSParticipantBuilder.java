@@ -29,16 +29,16 @@ public interface DSParticipantBuilder {
 
 	public DSParticipantBuilder setAccessCode(String accessCode);
 
-	public DSParticipantBuilder setClientUserId(String clientId);
+	public DSParticipantBuilder setClientUserKey(String clientId);
 
-	public DSParticipantBuilder setCustomFields(String... customFields);
+	public DSParticipantBuilder setCustomFieldNames(String... customFields);
 
 	public DSParticipantBuilder setDSEmailNotification(
 		DSEmailNotification dsEmailNotification);
 
 	public DSParticipantBuilder setNote(String note);
 
-	public DSParticipantBuilder setParticipantId(String participantId);
+	public DSParticipantBuilder setParticipantKey(String participantId);
 
 	public DSParticipantBuilder setRoleName(String roleName);
 

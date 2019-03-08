@@ -39,7 +39,7 @@ public class InPersonSignerDSParticipantBuilderImpl
 	@Override
 	protected SignerDSParticipantImpl createDSSignerParticipantImpl() {
 		return new InPersonSignerDSParticipantImpl(
-			_hostName, _hostEmail, getName(), getEmail(), getRoutingOrder());
+			_hostName, _hostEmail, getName(), getEmailAddress(), getRoutingOrder());
 	}
 
 	private final String _hostEmail;

@@ -34,7 +34,7 @@ public class CertifiedDeliveryDSParticipantBuilderImpl
 	@Override
 	protected CertifiedDeliveryDSParticipant createDSParticipant() {
 		return new CertifiedDeliveryDSParticipantImpl(
-			getName(), getEmail(), getRoutingOrder());
+			getName(), getEmailAddress(), getRoutingOrder());
 	}
 
 }

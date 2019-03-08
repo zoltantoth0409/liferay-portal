@@ -35,10 +35,10 @@ public class EditorDSParticipantBuilderImpl
 	protected EditorDSParticipant createDSParticipant() {
 		EditorDSParticipantImpl editorDSParticipantImpl =
 			new EditorDSParticipantImpl(
-				getName(), getEmail(), getRoutingOrder());
+				getName(), getEmailAddress(), getRoutingOrder());
 
 		editorDSParticipantImpl.setCanEditParticipantEmailAddresses(
-			getCanEditParticipantEmails());
+			getCanEditParticipantEmailAddresses());
 
 		editorDSParticipantImpl.setCanEditParticipantNames(
 			getCanEditParticipantNames());
