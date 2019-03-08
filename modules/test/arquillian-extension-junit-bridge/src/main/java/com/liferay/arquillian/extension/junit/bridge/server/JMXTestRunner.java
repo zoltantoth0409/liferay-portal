@@ -59,8 +59,8 @@ public class JMXTestRunner implements JMXTestRunnerMBean {
 	private static byte[] _toByteArray(Throwable throwable) {
 		if (throwable instanceof AssumptionViolatedException) {
 
-			// To neutralize the non-serializable Matcher field
-			// inside AssumptionViolatedException
+			// To neutralize the nonserializable Matcher field inside
+			// AssumptionViolatedException
 
 			AssumptionViolatedException ave = new AssumptionViolatedException(
 				throwable.getMessage());

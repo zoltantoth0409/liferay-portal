@@ -107,8 +107,7 @@ public class Arquillian extends Runner implements Filterable {
 
 		try (Closeable closeable = _installBundle()) {
 
-			// Enfore client side test class initialization, in case it has
-			// static blocks to do preparation setup before server tests start.
+			// Enforce client side test class initialization
 
 			Class.forName(_clazz.getName(), true, _clazz.getClassLoader());
 
