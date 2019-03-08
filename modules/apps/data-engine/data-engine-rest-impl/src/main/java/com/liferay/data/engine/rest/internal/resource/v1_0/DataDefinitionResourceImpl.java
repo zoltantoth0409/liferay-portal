@@ -76,7 +76,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			Long groupId, DataDefinition dataDefinition)
 		throws Exception {
 
-		long userId = PrincipalThreadLocal.getUserId();
 		Map<Locale, String> nameMap = createLocalizedMap(
 			dataDefinition.getName());
 		Map<Locale, String> descriptionMap = createLocalizedMap(
@@ -84,7 +83,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 		return _toDataDefinition(
 			_ddmStructureLocalService.addStructure(
-				userId, groupId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
+				PrincipalThreadLocal.getUserId(), groupId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 				_portal.getClassNameId(DataDefinition.class), null, nameMap, descriptionMap,
 				serialize(dataDefinition), dataDefinition.getStorageType(),
 				new ServiceContext()));
@@ -95,7 +94,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			Long groupId, DataDefinition dataDefinition)
 		throws Exception {
 
-		long userId = PrincipalThreadLocal.getUserId();
 		Map<Locale, String> nameMap = createLocalizedMap(
 			dataDefinition.getName());
 		Map<Locale, String> descriptionMap = createLocalizedMap(
@@ -103,7 +101,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 		return _toDataDefinition(
 			_ddmStructureLocalService.updateStructure(
-				userId, dataDefinition.getId(),
+				PrincipalThreadLocal.getUserId(), dataDefinition.getId(),
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID, nameMap,
 				descriptionMap, serialize(dataDefinition),
 				new ServiceContext()));
