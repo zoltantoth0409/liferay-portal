@@ -22,7 +22,7 @@ import aQute.bnd.annotation.ProviderType;
 @ProviderType
 public interface DSNotaryInfo {
 
-	public String getEmail();
+	public String getEmailAddress();
 
 	public String getName();
 
