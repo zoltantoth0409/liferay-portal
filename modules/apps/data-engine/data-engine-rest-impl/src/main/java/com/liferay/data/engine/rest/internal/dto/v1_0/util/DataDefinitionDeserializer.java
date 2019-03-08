@@ -104,13 +104,13 @@ public class DataDefinitionDeserializer {
 		return new DataDefinitionField() {
 			{
 				defaultValue = jsonObject.getString("defaultValue");
+				fieldType = jsonObject.getString("type");
 				indexable = jsonObject.getBoolean("indexable", true);
 				label = labels.toArray(new LocalizedValue[0]);
 				localizable = jsonObject.getBoolean("localizable", false);
 				name = jsonObject.getString("name");
 				repeatable = jsonObject.getBoolean("repeatable", false);
 				tip = tips.toArray(new LocalizedValue[0]);
-				fieldType = jsonObject.getString("type");
 			}
 		};
 	}
