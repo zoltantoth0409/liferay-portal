@@ -30,7 +30,7 @@ public interface DSDocument {
 
 	public String getDescription();
 
-	public String getDocumentId();
+	public String getDocumentKey();
 
 	public String getDocumentURL();
 

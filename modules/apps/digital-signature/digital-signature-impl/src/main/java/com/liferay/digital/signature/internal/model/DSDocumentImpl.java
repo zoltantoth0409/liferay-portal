@@ -43,7 +43,7 @@ public class DSDocumentImpl implements DSDocument {
 	}
 
 	@Override
-	public String getDocumentId() {
+	public String getDocumentKey() {
 		return _documentId;
 	}
 
