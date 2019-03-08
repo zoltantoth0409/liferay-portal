@@ -33,16 +33,14 @@ public class AgentDSParticipantBuilderImpl
 
 	@Override
 	protected AgentDSParticipant createDSParticipant() {
-		AgentDSParticipantImpl agentDSParticipantImpl =
-			new AgentDSParticipantImpl(
-				getName(), getEmailAddress(), getRoutingOrder());
-
-		agentDSParticipantImpl.setCanEditParticipantEmailAddresses(
-			getCanEditParticipantEmailAddresses());
-		agentDSParticipantImpl.setCanEditParticipantNames(
-			getCanEditParticipantNames());
-
-		return agentDSParticipantImpl;
+		return new AgentDSParticipantImpl(
+			getName(), getEmailAddress(), getRoutingOrder()) {
+			
+			{
+				setCanEditParticipantEmailAddresses(getCanEditParticipantEmailAddresses());
+				setCanEditParticipantNames(getCanEditParticipantNames());
+			}
+		};
 	}
 
 }

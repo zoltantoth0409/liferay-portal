@@ -34,17 +34,16 @@ public class DSDocumentBuilderImpl implements DSDocumentBuilder {
 
 	@Override
 	public DSDocument getDSDocument() {
-		DSDocumentImpl dsDocumentImpl = new DSDocumentImpl(_documentKey, _name);
-
-		dsDocumentImpl.setAuthoritative(_authoritative);
-		dsDocumentImpl.setBase64String(_base64String);
-		dsDocumentImpl.setDescription(_description);
-		dsDocumentImpl.setDocumentURL(_documentURL);
-		dsDocumentImpl.setDSSupplementalDocumentInfo(
-			_dsSupplementalDocumentInfo);
-		dsDocumentImpl.setExtension(_extension);
-
-		return dsDocumentImpl;
+		return new DSDocumentImpl(_documentKey, _name) {
+			{
+				setAuthoritative(_authoritative);
+				setBase64String(_base64String);
+				setDescription(_description);
+				setDocumentURL(_documentURL);
+				setDSSupplementalDocumentInfo(_dsSupplementalDocumentInfo);
+				setExtension(_extension);
+			}
+		};
 	}
 
 	@Override
@@ -87,15 +86,13 @@ public class DSDocumentBuilderImpl implements DSDocumentBuilder {
 		DSDocumentDisplay dsDocumentDisplay, DSSignerAcknowledgement dsSignerAcknowledgement,
 		Boolean includeInDownload) {
 
-		DSSupplementalDocumentInfoImpl dsSupplementalDocumentInfoImpl =
-			new DSSupplementalDocumentInfoImpl();
-
-		dsSupplementalDocumentInfoImpl.setDSDocumentDisplay(dsDocumentDisplay);
-		dsSupplementalDocumentInfoImpl.setDSSignerAcknowledgement(
-			dsSignerAcknowledgement);
-		dsSupplementalDocumentInfoImpl.setIncludeInDownload(includeInDownload);
-
-		_dsSupplementalDocumentInfo = dsSupplementalDocumentInfoImpl;
+		_dsSupplementalDocumentInfo = new DSSupplementalDocumentInfoImpl() {
+			{
+				setDSDocumentDisplay(dsDocumentDisplay);
+				setDSSignerAcknowledgement(dsSignerAcknowledgement);
+				setIncludeInDownload(includeInDownload);
+			}
+		};
 
 		return this;
 	}

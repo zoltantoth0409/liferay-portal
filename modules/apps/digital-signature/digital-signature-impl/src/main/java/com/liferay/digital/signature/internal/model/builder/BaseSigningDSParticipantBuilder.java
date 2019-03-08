@@ -84,13 +84,13 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	public <S extends DSParticipantBuilder> S setSignatureInfo(
 		String signatureFont, String signatureInitials, String signatureName) {
 
-		DSSignatureInfoImpl dsSignatureInfoImpl = new DSSignatureInfoImpl();
-
-		dsSignatureInfoImpl.setSignatureFont(signatureFont);
-		dsSignatureInfoImpl.setSignatureInitials(signatureInitials);
-		dsSignatureInfoImpl.setSignatureName(signatureName);
-
-		_dsSignatureInfo = dsSignatureInfoImpl;
+		_dsSignatureInfo = new DSSignatureInfoImpl() {
+			{
+				setSignatureFont(signatureFont);
+				setSignatureInitials(signatureInitials);
+				setSignatureName(signatureName);
+			}
+		};
 
 		return (S)this;
 	}
