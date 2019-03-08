@@ -1,4 +1,4 @@
-Bundle-Name: Liferay Data Engine Rest API
+Bundle-Name: Liferay Data Engine REST API
 Bundle-SymbolicName: com.liferay.data.engine.rest.api
 Bundle-Version: 1.0.0
 Export-Package:\
