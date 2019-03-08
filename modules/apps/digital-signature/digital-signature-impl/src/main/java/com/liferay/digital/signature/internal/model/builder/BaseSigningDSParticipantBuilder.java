@@ -86,9 +86,9 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 
 		DSSignatureInfoImpl dsSignatureInfoImpl = new DSSignatureInfoImpl();
 
-		dsSignatureInfoImpl.setSignatureName(signatureName);
-		dsSignatureInfoImpl.setSignatureInitials(signatureInitials);
 		dsSignatureInfoImpl.setSignatureFont(signatureFont);
+		dsSignatureInfoImpl.setSignatureInitials(signatureInitials);
+		dsSignatureInfoImpl.setSignatureName(signatureName);
 
 		_dsSignatureInfo = dsSignatureInfoImpl;
 
