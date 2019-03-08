@@ -58,18 +58,14 @@ public class DSEmailNotificationBuilderImpl
 		DSEmailNotificationImpl dsEmailNotificationImpl =
 			new DSEmailNotificationImpl(_subject, _message);
 
-		DSEmailNotificationSettingsImpl dsEmailNotificationSettingsImpl =
-			new DSEmailNotificationSettingsImpl();
-
 		dsEmailNotificationImpl.setDSEmailNotificationSettings(
-			dsEmailNotificationSettingsImpl);
-
-		dsEmailNotificationSettingsImpl.addBccEmailAddresses(
-			_bccEmailAddresses);
-		dsEmailNotificationSettingsImpl.setOverrideReplyName(
-			_replyEmailNameOverride);
-		dsEmailNotificationSettingsImpl.setOverrideReplyEmailAddress(
-			_replyEmailAddressOverride);
+			new DSEmailNotificationSettingsImpl() {
+				{
+					addBccEmailAddresses(_bccEmailAddresses);
+					setOverrideReplyEmailAddress(_overrideReplyEmailAddress);
+					setOverrideReplyName(_overrideReplyEmailName);
+				}
+			});
 
 		return dsEmailNotificationImpl;
 	}
@@ -78,7 +74,7 @@ public class DSEmailNotificationBuilderImpl
 	public DSEmailNotificationBuilder setReplyEmailAddressNameOverride(
 		String replyEmailAddressNameOverride) {
 
-		_replyEmailNameOverride = replyEmailAddressNameOverride;
+		_overrideReplyEmailName = replyEmailAddressNameOverride;
 
 		return this;
 	}
@@ -87,7 +83,7 @@ public class DSEmailNotificationBuilderImpl
 	public DSEmailNotificationBuilder setReplyEmailAddressOverride(
 		String replyEmailAddressOverride) {
 
-		_replyEmailAddressOverride = replyEmailAddressOverride;
+		_overrideReplyEmailAddress = replyEmailAddressOverride;
 
 		return this;
 	}
@@ -103,8 +99,8 @@ public class DSEmailNotificationBuilderImpl
 
 	private final Set<String> _bccEmailAddresses = new HashSet<>();
 	private final String _message;
-	private String _replyEmailAddressOverride;
-	private String _replyEmailNameOverride;
+	private String _overrideReplyEmailAddress;
+	private String _overrideReplyEmailName;
 	private final String _subject;
 	private String _supportedLanguage;
 
