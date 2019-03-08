@@ -36,13 +36,13 @@ public class DataDefinitionDeserializer {
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 					json);
 
-				dataDefinitionFields = _getDataDefinitionFields(
+				dataDefinitionFields = _toDataDefinitionFields(
 					jsonObject.getJSONArray("fields"));
 			}
 		};
 	}
 
-	private static DataDefinitionField _getDataDefinitionField(JSONObject jsonObject)
+	private static DataDefinitionField _toDataDefinitionField(JSONObject jsonObject)
 		throws Exception {
 
 		List<LocalizedValue> labels = new ArrayList<>();
@@ -115,14 +115,14 @@ public class DataDefinitionDeserializer {
 		};
 	}
 
-	private static DataDefinitionField[] _getDataDefinitionFields(JSONArray jsonArray)
+	private static DataDefinitionField[] _toDataDefinitionFields(JSONArray jsonArray)
 		throws Exception {
 
 		List<DataDefinitionField> dataDefinitionFields = new ArrayList<>(
 			jsonArray.length());
 
 		for (int i = 0; i < jsonArray.length(); i++) {
-			DataDefinitionField dataDefinitionField = _getDataDefinitionField(
+			DataDefinitionField dataDefinitionField = _toDataDefinitionField(
 				jsonArray.getJSONObject(i));
 
 			dataDefinitionFields.add(dataDefinitionField);
