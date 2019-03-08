@@ -40,20 +40,25 @@ import org.osgi.service.component.annotations.ServiceScope;
  */
 @Component(
 	properties = "OSGI-INF/liferay/rest/v1_0/comment.properties",
-	scope = ServiceScope.PROTOTYPE,
-	service = {CommentResource.class}
+	scope = ServiceScope.PROTOTYPE, service = CommentResource.class
 )
 public class CommentResourceImpl
 	extends BaseCommentResourceImpl implements EntityModelResource {
 
 	@Override
 	public boolean deleteComment(Long commentId) throws Exception {
-		return _getSPICommentResource().deleteComment(commentId);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.deleteComment(commentId);
 	}
 
 	@Override
 	public Comment getComment(Long commentId) throws Exception {
-		return _getSPICommentResource().getComment(commentId);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.getComment(commentId);
 	}
 
 	@Override
@@ -61,7 +66,10 @@ public class CommentResourceImpl
 			Long commentId, Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		return _getSPICommentResource().getCommentCommentsPage(
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.getCommentCommentsPage(
 			commentId, filter, pagination, sorts);
 	}
 
@@ -70,22 +78,31 @@ public class CommentResourceImpl
 			Long documentId, Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
 		DLFileEntry dlFileEntry = _dlFileEntryService.getFileEntry(documentId);
 
-		return _getSPICommentResource().getEntityCommentsPage(
+		return spiCommentResource.getEntityCommentsPage(
 			dlFileEntry.getGroupId(), documentId, filter, pagination, sorts);
 	}
 
 	@Override
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
-		return _getSPICommentResource().getEntityModel(multivaluedMap);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.getEntityModel(multivaluedMap);
 	}
 
 	@Override
 	public Comment postCommentComment(Long parentCommentId, Comment comment)
 		throws Exception {
 
-		return _getSPICommentResource().postCommentComment(
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.postCommentComment(
 			parentCommentId, comment.getText());
 	}
 
@@ -93,9 +110,12 @@ public class CommentResourceImpl
 	public Comment postDocumentComment(Long documentId, Comment comment)
 		throws Exception {
 
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
 		DLFileEntry fileEntry = _dlFileEntryService.getFileEntry(documentId);
 
-		return _getSPICommentResource().postEntityComment(
+		return spiCommentResource.postEntityComment(
 			fileEntry.getGroupId(), documentId, comment.getText());
 	}
 
@@ -103,8 +123,10 @@ public class CommentResourceImpl
 	public Comment putComment(Long commentId, Comment comment)
 		throws Exception {
 
-		return _getSPICommentResource().putComment(
-			commentId, comment.getText());
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.putComment(commentId, comment.getText());
 	}
 
 	private SPICommentResource<Comment> _getSPICommentResource() {

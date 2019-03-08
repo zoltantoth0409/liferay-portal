@@ -40,15 +40,17 @@ import org.osgi.service.component.annotations.ServiceScope;
  */
 @Component(
 	properties = "OSGI-INF/liferay/rest/v1_0/comment.properties",
-	scope = ServiceScope.PROTOTYPE,
-	service = {CommentResource.class}
+	scope = ServiceScope.PROTOTYPE, service = CommentResource.class
 )
 public class CommentResourceImpl
 	extends BaseCommentResourceImpl implements EntityModelResource {
 
 	@Override
 	public boolean deleteComment(Long commentId) throws Exception {
-		return _getSPICommentResource().deleteComment(commentId);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.deleteComment(commentId);
 	}
 
 	@Override
@@ -57,15 +59,21 @@ public class CommentResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
 		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogPostingId);
 
-		return _getSPICommentResource().getEntityCommentsPage(
+		return spiCommentResource.getEntityCommentsPage(
 			blogsEntry.getGroupId(), blogPostingId, filter, pagination, sorts);
 	}
 
 	@Override
 	public Comment getComment(Long commentId) throws Exception {
-		return _getSPICommentResource().getComment(commentId);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.getComment(commentId);
 	}
 
 	@Override
@@ -73,22 +81,31 @@ public class CommentResourceImpl
 			Long commentId, Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		return _getSPICommentResource().getCommentCommentsPage(
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.getCommentCommentsPage(
 			commentId, filter, pagination, sorts);
 	}
 
 	@Override
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
-		return _getSPICommentResource().getEntityModel(multivaluedMap);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.getEntityModel(multivaluedMap);
 	}
 
 	@Override
 	public Comment postBlogPostingComment(Long blogPostingId, Comment comment)
 		throws Exception {
 
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
 		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogPostingId);
 
-		return _getSPICommentResource().postEntityComment(
+		return spiCommentResource.postEntityComment(
 			blogsEntry.getGroupId(), blogPostingId, comment.getText());
 	}
 
@@ -96,7 +113,10 @@ public class CommentResourceImpl
 	public Comment postCommentComment(Long parentCommentId, Comment comment)
 		throws Exception {
 
-		return _getSPICommentResource().postCommentComment(
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.postCommentComment(
 			parentCommentId, comment.getText());
 	}
 
@@ -104,8 +124,10 @@ public class CommentResourceImpl
 	public Comment putComment(Long commentId, Comment comment)
 		throws Exception {
 
-		return _getSPICommentResource().putComment(
-			commentId, comment.getText());
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
+
+		return spiCommentResource.putComment(commentId, comment.getText());
 	}
 
 	private SPICommentResource<Comment> _getSPICommentResource() {
