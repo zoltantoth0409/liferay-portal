@@ -15,6 +15,7 @@ import graphql.annotations.annotationTypes.GraphQLName;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Date;
+import java.util.Map;
 
 import javax.annotation.Generated;
 
@@ -66,6 +67,8 @@ public class ${schemaName} <#if freeMarkerTool.getDTOParentClassName(openAPIYAML
 			<#assign javaDataType = "long[]" />
 		<#elseif javaDataType?starts_with("[L")>
 			<#assign javaDataType = javaDataType[2..(javaDataType?length - 2)] + "[]" />
+		<#elseif stringUtil.equals(javaDataType, "java.util.Map")>
+			<#assign javaDataType = "Map<String, String>" />
 		</#if>
 
 		<#if propertySchema.description??>

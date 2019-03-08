@@ -156,7 +156,13 @@ public class OpenAPIParserUtil {
 			}
 
 			if ((javaDataType == null) && Objects.equals(type, "object")) {
-				javaDataType = Object.class.getName();
+				if (schema.getAdditionalProperties() != null) {
+					javaDataType = Map.class.getName();
+				}
+
+				if (javaDataType == null) {
+					javaDataType = Object.class.getName();
+				}
 			}
 
 			return javaDataType;
