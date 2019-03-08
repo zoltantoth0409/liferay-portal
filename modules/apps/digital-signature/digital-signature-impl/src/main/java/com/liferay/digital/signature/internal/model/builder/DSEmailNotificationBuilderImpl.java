@@ -64,6 +64,7 @@ public class DSEmailNotificationBuilderImpl
 					addBccEmailAddresses(_bccEmailAddresses);
 					setOverrideReplyEmailAddress(_overrideReplyEmailAddress);
 					setOverrideReplyName(_overrideReplyName);
+					setSupportedLanguage(_supportedLanguage);
 				}
 			});
 
