@@ -55,7 +55,7 @@ public class DataDefinitionSerializer {
 		LocalizedValue[] label = dataDefinitionField.getLabel();
 
 		if (!(label.length == 0)) {
-			_setProperty("label", jsonObject, label);
+			_put(jsonObject, "label", label);
 		}
 
 		jsonObject.put("localizable", dataDefinitionField.getLocalizable());
@@ -73,7 +73,7 @@ public class DataDefinitionSerializer {
 		LocalizedValue[] tip = dataDefinitionField.getTip();
 
 		if (!(tip.length == 0)) {
-			_setProperty("tip", jsonObject, tip);
+			_put(jsonObject, "tip", tip);
 		}
 
 		String type = dataDefinitionField.getFieldType();
@@ -101,18 +101,18 @@ public class DataDefinitionSerializer {
 		return jsonArray;
 	}
 
-	private static void _setProperty(
-		String propertyKey, JSONObject jsonObject,
+	private static void _put(
+		JSONObject jsonObject, String key,
 		LocalizedValue[] localizedValues) {
 
-		JSONObject languageJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject localziedValueJSONObject = JSONFactoryUtil.createJSONObject();
 
 		for (LocalizedValue localizedValue : localizedValues) {
-			languageJSONObject.put(
+			localziedValueJSONObject.put(
 				localizedValue.getKey(), localizedValue.getValue());
 		}
 
-		jsonObject.put(propertyKey, languageJSONObject);
+		jsonObject.put(key, localziedValueJSONObject);
 	}
 
 }
