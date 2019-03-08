@@ -20,6 +20,7 @@ import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
@@ -30,14 +31,11 @@ public class DataDefinitionSerializer {
 	public static String toJSON(DataDefinition dataDefinition)
 		throws Exception {
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put(
+		return JSONUtil.put(
 			"fields",
 			_getDEDataDefinitionFieldsJSONArray(
-				dataDefinition.getDataDefinitionFields()));
-
-		return jsonObject.toJSONString();
+				dataDefinition.getDataDefinitionFields())
+		).toString();
 	}
 
 	private static JSONObject _getDataDefinitionFieldJSONObject(
