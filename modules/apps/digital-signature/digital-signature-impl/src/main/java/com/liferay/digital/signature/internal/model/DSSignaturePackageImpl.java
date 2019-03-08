@@ -60,7 +60,7 @@ public class DSSignaturePackageImpl implements DSSignaturePackage {
 
 	@Override
 	public String getDSSignaturePackageKey() {
-		return _dsSignaturePackageId;
+		return _dsSignaturePackageKey;
 	}
 
 	public void setAuthoritative(Boolean authoritative) {
@@ -79,8 +79,8 @@ public class DSSignaturePackageImpl implements DSSignaturePackage {
 		_dsParticipantsMap = dsParticipantMap;
 	}
 
-	public void setDSSignatureRequestId(String dsSignatureRequestId) {
-		_dsSignaturePackageId = dsSignatureRequestId;
+	public void setDSSignatureRequestKey(String dsSignatureRequestKey) {
+		_dsSignaturePackageKey = dsSignatureRequestKey;
 	}
 
 	private Boolean _authoritative;
@@ -88,6 +88,6 @@ public class DSSignaturePackageImpl implements DSSignaturePackage {
 	private DSEmailNotification _dsEmailNotification;
 	private Map<DSParticipantRole, Collection<DSParticipant>>
 		_dsParticipantsMap = new HashMap<>();
-	private String _dsSignaturePackageId;
+	private String _dsSignaturePackageKey;
 
 }

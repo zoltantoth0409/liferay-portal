@@ -44,8 +44,8 @@ public class DSSealProviderOptionsImpl implements DSSealProviderOptions {
 		_oneTimePassword = oneTimePassword;
 	}
 
-	public void setRole(String role) {
-		_roleName = role;
+	public void setRoleName(String roleName) {
+		_roleName = roleName;
 	}
 
 	private String _mobilePhoneNumber;

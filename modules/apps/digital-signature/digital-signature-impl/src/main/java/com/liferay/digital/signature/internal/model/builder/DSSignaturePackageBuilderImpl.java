@@ -93,7 +93,7 @@ public class DSSignaturePackageBuilderImpl
 			_dsSignatureRequestId = _portalUUID.generate();
 		}
 
-		dsSignatureRequest.setDSSignatureRequestId(_dsSignatureRequestId);
+		dsSignatureRequest.setDSSignatureRequestKey(_dsSignatureRequestId);
 
 		return dsSignatureRequest;
 	}

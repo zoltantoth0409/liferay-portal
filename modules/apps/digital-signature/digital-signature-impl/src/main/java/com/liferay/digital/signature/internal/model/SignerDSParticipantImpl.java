@@ -32,9 +32,9 @@ public class SignerDSParticipantImpl
 	extends BaseDSParticipantImpl implements SignerDSParticipant {
 
 	public SignerDSParticipantImpl(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		super(name, email, routingOrder);
+		super(name, emailAddress, routingOrder);
 
 		setDSParticipantRole(DSParticipantRole.SIGNER);
 	}

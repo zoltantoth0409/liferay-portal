@@ -102,7 +102,7 @@ public class SealDSParticipantBuilderImpl
 		DSSealProviderOptionsImpl dsSealProviderOptionsImpl =
 			new DSSealProviderOptionsImpl();
 
-		dsSealProviderOptionsImpl.setRole(signerRole);
+		dsSealProviderOptionsImpl.setRoleName(signerRole);
 
 		dsSealInfoImpl.setDSSealProviderOptions(dsSealProviderOptionsImpl);
 
