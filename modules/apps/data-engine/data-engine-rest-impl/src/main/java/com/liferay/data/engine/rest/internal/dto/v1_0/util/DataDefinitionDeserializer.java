@@ -45,68 +45,49 @@ public class DataDefinitionDeserializer {
 	private static DataDefinitionField _toDataDefinitionField(JSONObject jsonObject)
 		throws Exception {
 
-		List<LocalizedValue> labels = new ArrayList<>();
-
-		if (jsonObject.has("label")) {
-			JSONObject labelJSONObject = jsonObject.getJSONObject("label");
-
-			if (labelJSONObject == null) {
-				throw new Exception(
-					"Label property must contain localized values");
-			}
-
-			Iterator<String> keys = labelJSONObject.keys();
-
-			while (keys.hasNext()) {
-				String key = keys.next();
-
-				LocalizedValue localizedValue = new LocalizedValue();
-
-				localizedValue.setKey(key);
-				localizedValue.setValue(labelJSONObject.getString(key));
-
-				labels.add(localizedValue);
-			}
-		}
-
-		if (!jsonObject.has("type")) {
-			throw new Exception("Type property is required");
-		}
-
-		List<LocalizedValue> tips = new ArrayList<>();
-
-		if (jsonObject.has("tip")) {
-			JSONObject tipJSONObject = jsonObject.getJSONObject("tip");
-
-			if (tipJSONObject == null) {
-				throw new Exception(
-					"Tip property must contain localized values");
-			}
-
-			Iterator<String> keys = tipJSONObject.keys();
-
-			while (keys.hasNext()) {
-				String key = keys.next();
-
-				LocalizedValue localizedValue = new LocalizedValue();
-
-				localizedValue.setKey(key);
-				localizedValue.setValue(tipJSONObject.getString(key));
-
-				tips.add(localizedValue);
-			}
-		}
-
 		return new DataDefinitionField() {
 			{
 				defaultValue = jsonObject.getString("defaultValue");
-				fieldType = jsonObject.getString("type");
 				indexable = jsonObject.getBoolean("indexable", true);
-				label = labels.toArray(new LocalizedValue[0]);
 				localizable = jsonObject.getBoolean("localizable", false);
 				repeatable = jsonObject.getBoolean("repeatable", false);
-				tip = tips.toArray(new LocalizedValue[0]);
 
+				setFieldType(
+					() -> {
+						if (!jsonObject.has("type")) {
+							throw new Exception("Type property is required");
+						}
+
+						return jsonObject.getString("type");
+					});
+				setLabel(
+					() -> {
+						List<LocalizedValue> labels = new ArrayList<>();
+
+						if (jsonObject.has("label")) {
+							JSONObject labelJSONObject = jsonObject.getJSONObject("label");
+
+							if (labelJSONObject == null) {
+								throw new Exception(
+									"Label property must contain localized values");
+							}
+
+							Iterator<String> keys = labelJSONObject.keys();
+
+							while (keys.hasNext()) {
+								String key = keys.next();
+
+								LocalizedValue localizedValue = new LocalizedValue();
+
+								localizedValue.setKey(key);
+								localizedValue.setValue(labelJSONObject.getString(key));
+
+								labels.add(localizedValue);
+							}
+						}
+
+						return labels.toArray(new LocalizedValue[0]);
+					});
 				setName(
 					() -> {
 						if (!jsonObject.has("name")) {
@@ -115,7 +96,34 @@ public class DataDefinitionDeserializer {
 
 						return jsonObject.getString("name");
 					});
+				setTip(
+					() -> {
+						List<LocalizedValue> tips = new ArrayList<>();
 
+						if (jsonObject.has("tip")) {
+							JSONObject tipJSONObject = jsonObject.getJSONObject("tip");
+
+							if (tipJSONObject == null) {
+								throw new Exception(
+									"Tip property must contain localized values");
+							}
+
+							Iterator<String> keys = tipJSONObject.keys();
+
+							while (keys.hasNext()) {
+								String key = keys.next();
+
+								LocalizedValue localizedValue = new LocalizedValue();
+
+								localizedValue.setKey(key);
+								localizedValue.setValue(tipJSONObject.getString(key));
+
+								tips.add(localizedValue);
+							}
+						}
+
+						return tips.toArray(new LocalizedValue[0]);
+					});
 			}
 		};
 	}
