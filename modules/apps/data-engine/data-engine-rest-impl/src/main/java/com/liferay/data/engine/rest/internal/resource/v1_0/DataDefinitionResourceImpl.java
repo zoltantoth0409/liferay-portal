@@ -80,7 +80,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			_ddmStructureLocalService.addStructure(
 				PrincipalThreadLocal.getUserId(), groupId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 				_portal.getClassNameId(DataDefinition.class), null, _toLocalizationMap(dataDefinition.getName()), _toLocalizationMap(dataDefinition.getDescription()),
-				serialize(dataDefinition), dataDefinition.getStorageType(),
+				_serialize(dataDefinition), dataDefinition.getStorageType(),
 				new ServiceContext()));
 	}
 
@@ -93,11 +93,11 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			_ddmStructureLocalService.updateStructure(
 				PrincipalThreadLocal.getUserId(), dataDefinition.getId(),
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID, _toLocalizationMap(dataDefinition.getName()),
-				_toLocalizationMap(dataDefinition.getDescription()), serialize(dataDefinition),
+				_toLocalizationMap(dataDefinition.getDescription()), _serialize(dataDefinition),
 				new ServiceContext()));
 	}
 
-	protected Map<Locale, String> _toLocalizationMap(
+	private Map<Locale, String> _toLocalizationMap(
 		LocalizedValue[] localizedValues) {
 
 		Map<Locale, String> localizationMap = new HashMap<>();
@@ -111,7 +111,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		return localizationMap;
 	}
 
-	protected DataDefinition _toDataDefinition(DDMStructure ddmStructure)
+	private DataDefinition _toDataDefinition(DDMStructure ddmStructure)
 		throws Exception {
 
 		DataDefinitionJSONDeserializer dataDefinitionJSONDeserializer =
@@ -136,7 +136,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		return dataDefinition;
 	}
 
-	protected LocalizedValue[] _toLocalizedValues(
+	private LocalizedValue[] _toLocalizedValues(
 		Map<Locale, String> map) {
 
 		List<LocalizedValue> localizedValues = new ArrayList<>();
@@ -155,7 +155,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		return localizedValues.toArray(new LocalizedValue[0]);
 	}
 
-	protected String serialize(DataDefinition dataDefinition) throws Exception {
+	private String _serialize(DataDefinition dataDefinition) throws Exception {
 		DataDefinitionJSONSerializer dataDefinitionJSONSerializer =
 			new DataDefinitionJSONSerializer(_jsonFactory);
 
