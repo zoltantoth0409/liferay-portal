@@ -31,10 +31,10 @@ public interface DSParticipantVisitor<T> {
 
 	public T visit(EditorDSParticipant editorDSParticipant);
 
-	public T visit(InPersonSignerDSParticipant dsInPersonSignerParticipant);
+	public T visit(InPersonSignerDSParticipant inPersonSignerDSParticipant);
 
 	public T visit(
-		InPersonSignerNotaryDSParticipant dsInPersonSignerNotaryParticipant);
+		InPersonSignerNotaryDSParticipant inPersonSignerNotaryDSParticipant);
 
 	public T visit(IntermediaryDSParticipant intermediaryDSParticipant);
 
