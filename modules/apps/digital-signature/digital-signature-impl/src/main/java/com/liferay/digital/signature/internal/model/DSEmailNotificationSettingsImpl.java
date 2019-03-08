@@ -41,7 +41,7 @@ public class DSEmailNotificationSettingsImpl
 	}
 
 	@Override
-	public String getReplyEmailNameOverride() {
+	public String getReplyNameOverride() {
 		return _replyEmailNameOverride;
 	}
 

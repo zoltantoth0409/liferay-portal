@@ -34,6 +34,6 @@ public interface DSSignaturePackage {
 	public Map<DSParticipantRole, Collection<DSParticipant>>
 		getDSParticipants();
 
-	public String getDSSignaturePackageId();
+	public String getDSSignaturePackageKey();
 
 }

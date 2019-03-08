@@ -59,7 +59,7 @@ public class DSSignaturePackageImpl implements DSSignaturePackage {
 	}
 
 	@Override
-	public String getDSSignaturePackageId() {
+	public String getDSSignaturePackageKey() {
 		return _dsSignaturePackageId;
 	}
 

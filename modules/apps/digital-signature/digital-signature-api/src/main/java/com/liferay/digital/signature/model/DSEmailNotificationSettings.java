@@ -28,6 +28,6 @@ public interface DSEmailNotificationSettings {
 
 	public String getReplyEmailAddressOverride();
 
-	public String getReplyEmailNameOverride();
+	public String getReplyNameOverride();
 
 }
