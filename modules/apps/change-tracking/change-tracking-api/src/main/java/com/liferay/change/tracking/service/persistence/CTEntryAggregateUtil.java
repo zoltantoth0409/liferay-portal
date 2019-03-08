@@ -132,10 +132,10 @@ public class CTEntryAggregateUtil {
 	 * @param ownerCTEntryId the owner ct entry ID
 	 * @return the matching ct entry aggregates
 	 */
-	public static List<CTEntryAggregate> findByOwnerCTEntryID(
+	public static List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId) {
 
-		return getPersistence().findByOwnerCTEntryID(ownerCTEntryId);
+		return getPersistence().findByOwnerCTEntryId(ownerCTEntryId);
 	}
 
 	/**
@@ -150,10 +150,10 @@ public class CTEntryAggregateUtil {
 	 * @param end the upper bound of the range of ct entry aggregates (not inclusive)
 	 * @return the range of matching ct entry aggregates
 	 */
-	public static List<CTEntryAggregate> findByOwnerCTEntryID(
+	public static List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId, int start, int end) {
 
-		return getPersistence().findByOwnerCTEntryID(
+		return getPersistence().findByOwnerCTEntryId(
 			ownerCTEntryId, start, end);
 	}
 
@@ -170,11 +170,11 @@ public class CTEntryAggregateUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching ct entry aggregates
 	 */
-	public static List<CTEntryAggregate> findByOwnerCTEntryID(
+	public static List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId, int start, int end,
 		OrderByComparator<CTEntryAggregate> orderByComparator) {
 
-		return getPersistence().findByOwnerCTEntryID(
+		return getPersistence().findByOwnerCTEntryId(
 			ownerCTEntryId, start, end, orderByComparator);
 	}
 
@@ -192,12 +192,12 @@ public class CTEntryAggregateUtil {
 	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching ct entry aggregates
 	 */
-	public static List<CTEntryAggregate> findByOwnerCTEntryID(
+	public static List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId, int start, int end,
 		OrderByComparator<CTEntryAggregate> orderByComparator,
 		boolean retrieveFromCache) {
 
-		return getPersistence().findByOwnerCTEntryID(
+		return getPersistence().findByOwnerCTEntryId(
 			ownerCTEntryId, start, end, orderByComparator, retrieveFromCache);
 	}
 
@@ -209,13 +209,13 @@ public class CTEntryAggregateUtil {
 	 * @return the first matching ct entry aggregate
 	 * @throws NoSuchEntryAggregateException if a matching ct entry aggregate could not be found
 	 */
-	public static CTEntryAggregate findByOwnerCTEntryID_First(
+	public static CTEntryAggregate findByOwnerCTEntryId_First(
 			long ownerCTEntryId,
 			OrderByComparator<CTEntryAggregate> orderByComparator)
 		throws com.liferay.change.tracking.exception.
 			NoSuchEntryAggregateException {
 
-		return getPersistence().findByOwnerCTEntryID_First(
+		return getPersistence().findByOwnerCTEntryId_First(
 			ownerCTEntryId, orderByComparator);
 	}
 
@@ -226,11 +226,11 @@ public class CTEntryAggregateUtil {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching ct entry aggregate, or <code>null</code> if a matching ct entry aggregate could not be found
 	 */
-	public static CTEntryAggregate fetchByOwnerCTEntryID_First(
+	public static CTEntryAggregate fetchByOwnerCTEntryId_First(
 		long ownerCTEntryId,
 		OrderByComparator<CTEntryAggregate> orderByComparator) {
 
-		return getPersistence().fetchByOwnerCTEntryID_First(
+		return getPersistence().fetchByOwnerCTEntryId_First(
 			ownerCTEntryId, orderByComparator);
 	}
 
@@ -242,13 +242,13 @@ public class CTEntryAggregateUtil {
 	 * @return the last matching ct entry aggregate
 	 * @throws NoSuchEntryAggregateException if a matching ct entry aggregate could not be found
 	 */
-	public static CTEntryAggregate findByOwnerCTEntryID_Last(
+	public static CTEntryAggregate findByOwnerCTEntryId_Last(
 			long ownerCTEntryId,
 			OrderByComparator<CTEntryAggregate> orderByComparator)
 		throws com.liferay.change.tracking.exception.
 			NoSuchEntryAggregateException {
 
-		return getPersistence().findByOwnerCTEntryID_Last(
+		return getPersistence().findByOwnerCTEntryId_Last(
 			ownerCTEntryId, orderByComparator);
 	}
 
@@ -259,11 +259,11 @@ public class CTEntryAggregateUtil {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching ct entry aggregate, or <code>null</code> if a matching ct entry aggregate could not be found
 	 */
-	public static CTEntryAggregate fetchByOwnerCTEntryID_Last(
+	public static CTEntryAggregate fetchByOwnerCTEntryId_Last(
 		long ownerCTEntryId,
 		OrderByComparator<CTEntryAggregate> orderByComparator) {
 
-		return getPersistence().fetchByOwnerCTEntryID_Last(
+		return getPersistence().fetchByOwnerCTEntryId_Last(
 			ownerCTEntryId, orderByComparator);
 	}
 
@@ -276,13 +276,13 @@ public class CTEntryAggregateUtil {
 	 * @return the previous, current, and next ct entry aggregate
 	 * @throws NoSuchEntryAggregateException if a ct entry aggregate with the primary key could not be found
 	 */
-	public static CTEntryAggregate[] findByOwnerCTEntryID_PrevAndNext(
+	public static CTEntryAggregate[] findByOwnerCTEntryId_PrevAndNext(
 			long ctEntryAggregateId, long ownerCTEntryId,
 			OrderByComparator<CTEntryAggregate> orderByComparator)
 		throws com.liferay.change.tracking.exception.
 			NoSuchEntryAggregateException {
 
-		return getPersistence().findByOwnerCTEntryID_PrevAndNext(
+		return getPersistence().findByOwnerCTEntryId_PrevAndNext(
 			ctEntryAggregateId, ownerCTEntryId, orderByComparator);
 	}
 
@@ -291,8 +291,8 @@ public class CTEntryAggregateUtil {
 	 *
 	 * @param ownerCTEntryId the owner ct entry ID
 	 */
-	public static void removeByOwnerCTEntryID(long ownerCTEntryId) {
-		getPersistence().removeByOwnerCTEntryID(ownerCTEntryId);
+	public static void removeByOwnerCTEntryId(long ownerCTEntryId) {
+		getPersistence().removeByOwnerCTEntryId(ownerCTEntryId);
 	}
 
 	/**
@@ -301,8 +301,8 @@ public class CTEntryAggregateUtil {
 	 * @param ownerCTEntryId the owner ct entry ID
 	 * @return the number of matching ct entry aggregates
 	 */
-	public static int countByOwnerCTEntryID(long ownerCTEntryId) {
-		return getPersistence().countByOwnerCTEntryID(ownerCTEntryId);
+	public static int countByOwnerCTEntryId(long ownerCTEntryId) {
+		return getPersistence().countByOwnerCTEntryId(ownerCTEntryId);
 	}
 
 	/**

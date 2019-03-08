@@ -47,7 +47,7 @@ public interface CTEntryAggregatePersistence
 	 * @param ownerCTEntryId the owner ct entry ID
 	 * @return the matching ct entry aggregates
 	 */
-	public java.util.List<CTEntryAggregate> findByOwnerCTEntryID(
+	public java.util.List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId);
 
 	/**
@@ -62,7 +62,7 @@ public interface CTEntryAggregatePersistence
 	 * @param end the upper bound of the range of ct entry aggregates (not inclusive)
 	 * @return the range of matching ct entry aggregates
 	 */
-	public java.util.List<CTEntryAggregate> findByOwnerCTEntryID(
+	public java.util.List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId, int start, int end);
 
 	/**
@@ -78,7 +78,7 @@ public interface CTEntryAggregatePersistence
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching ct entry aggregates
 	 */
-	public java.util.List<CTEntryAggregate> findByOwnerCTEntryID(
+	public java.util.List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CTEntryAggregate>
 			orderByComparator);
@@ -97,7 +97,7 @@ public interface CTEntryAggregatePersistence
 	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching ct entry aggregates
 	 */
-	public java.util.List<CTEntryAggregate> findByOwnerCTEntryID(
+	public java.util.List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CTEntryAggregate>
 			orderByComparator,
@@ -111,7 +111,7 @@ public interface CTEntryAggregatePersistence
 	 * @return the first matching ct entry aggregate
 	 * @throws NoSuchEntryAggregateException if a matching ct entry aggregate could not be found
 	 */
-	public CTEntryAggregate findByOwnerCTEntryID_First(
+	public CTEntryAggregate findByOwnerCTEntryId_First(
 			long ownerCTEntryId,
 			com.liferay.portal.kernel.util.OrderByComparator<CTEntryAggregate>
 				orderByComparator)
@@ -124,7 +124,7 @@ public interface CTEntryAggregatePersistence
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching ct entry aggregate, or <code>null</code> if a matching ct entry aggregate could not be found
 	 */
-	public CTEntryAggregate fetchByOwnerCTEntryID_First(
+	public CTEntryAggregate fetchByOwnerCTEntryId_First(
 		long ownerCTEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator<CTEntryAggregate>
 			orderByComparator);
@@ -137,7 +137,7 @@ public interface CTEntryAggregatePersistence
 	 * @return the last matching ct entry aggregate
 	 * @throws NoSuchEntryAggregateException if a matching ct entry aggregate could not be found
 	 */
-	public CTEntryAggregate findByOwnerCTEntryID_Last(
+	public CTEntryAggregate findByOwnerCTEntryId_Last(
 			long ownerCTEntryId,
 			com.liferay.portal.kernel.util.OrderByComparator<CTEntryAggregate>
 				orderByComparator)
@@ -150,7 +150,7 @@ public interface CTEntryAggregatePersistence
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching ct entry aggregate, or <code>null</code> if a matching ct entry aggregate could not be found
 	 */
-	public CTEntryAggregate fetchByOwnerCTEntryID_Last(
+	public CTEntryAggregate fetchByOwnerCTEntryId_Last(
 		long ownerCTEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator<CTEntryAggregate>
 			orderByComparator);
@@ -164,7 +164,7 @@ public interface CTEntryAggregatePersistence
 	 * @return the previous, current, and next ct entry aggregate
 	 * @throws NoSuchEntryAggregateException if a ct entry aggregate with the primary key could not be found
 	 */
-	public CTEntryAggregate[] findByOwnerCTEntryID_PrevAndNext(
+	public CTEntryAggregate[] findByOwnerCTEntryId_PrevAndNext(
 			long ctEntryAggregateId, long ownerCTEntryId,
 			com.liferay.portal.kernel.util.OrderByComparator<CTEntryAggregate>
 				orderByComparator)
@@ -175,7 +175,7 @@ public interface CTEntryAggregatePersistence
 	 *
 	 * @param ownerCTEntryId the owner ct entry ID
 	 */
-	public void removeByOwnerCTEntryID(long ownerCTEntryId);
+	public void removeByOwnerCTEntryId(long ownerCTEntryId);
 
 	/**
 	 * Returns the number of ct entry aggregates where ownerCTEntryId = &#63;.
@@ -183,7 +183,7 @@ public interface CTEntryAggregatePersistence
 	 * @param ownerCTEntryId the owner ct entry ID
 	 * @return the number of matching ct entry aggregates
 	 */
-	public int countByOwnerCTEntryID(long ownerCTEntryId);
+	public int countByOwnerCTEntryId(long ownerCTEntryId);
 
 	/**
 	 * Caches the ct entry aggregate in the entity cache if it is enabled.

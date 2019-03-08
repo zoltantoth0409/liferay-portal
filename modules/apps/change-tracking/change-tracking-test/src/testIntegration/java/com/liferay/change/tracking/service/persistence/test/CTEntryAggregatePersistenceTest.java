@@ -163,10 +163,10 @@ public class CTEntryAggregatePersistenceTest {
 	}
 
 	@Test
-	public void testCountByOwnerCTEntryID() throws Exception {
-		_persistence.countByOwnerCTEntryID(RandomTestUtil.nextLong());
+	public void testCountByOwnerCTEntryId() throws Exception {
+		_persistence.countByOwnerCTEntryId(RandomTestUtil.nextLong());
 
-		_persistence.countByOwnerCTEntryID(0L);
+		_persistence.countByOwnerCTEntryId(0L);
 	}
 
 	@Test

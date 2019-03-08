@@ -91,9 +91,9 @@ public class CTEntryAggregatePersistenceImpl
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
-	private FinderPath _finderPathWithPaginationFindByOwnerCTEntryID;
-	private FinderPath _finderPathWithoutPaginationFindByOwnerCTEntryID;
-	private FinderPath _finderPathCountByOwnerCTEntryID;
+	private FinderPath _finderPathWithPaginationFindByOwnerCTEntryId;
+	private FinderPath _finderPathWithoutPaginationFindByOwnerCTEntryId;
+	private FinderPath _finderPathCountByOwnerCTEntryId;
 
 	/**
 	 * Returns all the ct entry aggregates where ownerCTEntryId = &#63;.
@@ -102,8 +102,8 @@ public class CTEntryAggregatePersistenceImpl
 	 * @return the matching ct entry aggregates
 	 */
 	@Override
-	public List<CTEntryAggregate> findByOwnerCTEntryID(long ownerCTEntryId) {
-		return findByOwnerCTEntryID(
+	public List<CTEntryAggregate> findByOwnerCTEntryId(long ownerCTEntryId) {
+		return findByOwnerCTEntryId(
 			ownerCTEntryId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -120,10 +120,10 @@ public class CTEntryAggregatePersistenceImpl
 	 * @return the range of matching ct entry aggregates
 	 */
 	@Override
-	public List<CTEntryAggregate> findByOwnerCTEntryID(
+	public List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId, int start, int end) {
 
-		return findByOwnerCTEntryID(ownerCTEntryId, start, end, null);
+		return findByOwnerCTEntryId(ownerCTEntryId, start, end, null);
 	}
 
 	/**
@@ -140,11 +140,11 @@ public class CTEntryAggregatePersistenceImpl
 	 * @return the ordered range of matching ct entry aggregates
 	 */
 	@Override
-	public List<CTEntryAggregate> findByOwnerCTEntryID(
+	public List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId, int start, int end,
 		OrderByComparator<CTEntryAggregate> orderByComparator) {
 
-		return findByOwnerCTEntryID(
+		return findByOwnerCTEntryId(
 			ownerCTEntryId, start, end, orderByComparator, true);
 	}
 
@@ -163,7 +163,7 @@ public class CTEntryAggregatePersistenceImpl
 	 * @return the ordered range of matching ct entry aggregates
 	 */
 	@Override
-	public List<CTEntryAggregate> findByOwnerCTEntryID(
+	public List<CTEntryAggregate> findByOwnerCTEntryId(
 		long ownerCTEntryId, int start, int end,
 		OrderByComparator<CTEntryAggregate> orderByComparator,
 		boolean retrieveFromCache) {
@@ -176,11 +176,11 @@ public class CTEntryAggregatePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByOwnerCTEntryID;
+			finderPath = _finderPathWithoutPaginationFindByOwnerCTEntryId;
 			finderArgs = new Object[] {ownerCTEntryId};
 		}
 		else {
-			finderPath = _finderPathWithPaginationFindByOwnerCTEntryID;
+			finderPath = _finderPathWithPaginationFindByOwnerCTEntryId;
 			finderArgs = new Object[] {
 				ownerCTEntryId, start, end, orderByComparator
 			};
@@ -280,12 +280,12 @@ public class CTEntryAggregatePersistenceImpl
 	 * @throws NoSuchEntryAggregateException if a matching ct entry aggregate could not be found
 	 */
 	@Override
-	public CTEntryAggregate findByOwnerCTEntryID_First(
+	public CTEntryAggregate findByOwnerCTEntryId_First(
 			long ownerCTEntryId,
 			OrderByComparator<CTEntryAggregate> orderByComparator)
 		throws NoSuchEntryAggregateException {
 
-		CTEntryAggregate ctEntryAggregate = fetchByOwnerCTEntryID_First(
+		CTEntryAggregate ctEntryAggregate = fetchByOwnerCTEntryId_First(
 			ownerCTEntryId, orderByComparator);
 
 		if (ctEntryAggregate != null) {
@@ -312,11 +312,11 @@ public class CTEntryAggregatePersistenceImpl
 	 * @return the first matching ct entry aggregate, or <code>null</code> if a matching ct entry aggregate could not be found
 	 */
 	@Override
-	public CTEntryAggregate fetchByOwnerCTEntryID_First(
+	public CTEntryAggregate fetchByOwnerCTEntryId_First(
 		long ownerCTEntryId,
 		OrderByComparator<CTEntryAggregate> orderByComparator) {
 
-		List<CTEntryAggregate> list = findByOwnerCTEntryID(
+		List<CTEntryAggregate> list = findByOwnerCTEntryId(
 			ownerCTEntryId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -335,12 +335,12 @@ public class CTEntryAggregatePersistenceImpl
 	 * @throws NoSuchEntryAggregateException if a matching ct entry aggregate could not be found
 	 */
 	@Override
-	public CTEntryAggregate findByOwnerCTEntryID_Last(
+	public CTEntryAggregate findByOwnerCTEntryId_Last(
 			long ownerCTEntryId,
 			OrderByComparator<CTEntryAggregate> orderByComparator)
 		throws NoSuchEntryAggregateException {
 
-		CTEntryAggregate ctEntryAggregate = fetchByOwnerCTEntryID_Last(
+		CTEntryAggregate ctEntryAggregate = fetchByOwnerCTEntryId_Last(
 			ownerCTEntryId, orderByComparator);
 
 		if (ctEntryAggregate != null) {
@@ -367,17 +367,17 @@ public class CTEntryAggregatePersistenceImpl
 	 * @return the last matching ct entry aggregate, or <code>null</code> if a matching ct entry aggregate could not be found
 	 */
 	@Override
-	public CTEntryAggregate fetchByOwnerCTEntryID_Last(
+	public CTEntryAggregate fetchByOwnerCTEntryId_Last(
 		long ownerCTEntryId,
 		OrderByComparator<CTEntryAggregate> orderByComparator) {
 
-		int count = countByOwnerCTEntryID(ownerCTEntryId);
+		int count = countByOwnerCTEntryId(ownerCTEntryId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<CTEntryAggregate> list = findByOwnerCTEntryID(
+		List<CTEntryAggregate> list = findByOwnerCTEntryId(
 			ownerCTEntryId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -397,7 +397,7 @@ public class CTEntryAggregatePersistenceImpl
 	 * @throws NoSuchEntryAggregateException if a ct entry aggregate with the primary key could not be found
 	 */
 	@Override
-	public CTEntryAggregate[] findByOwnerCTEntryID_PrevAndNext(
+	public CTEntryAggregate[] findByOwnerCTEntryId_PrevAndNext(
 			long ctEntryAggregateId, long ownerCTEntryId,
 			OrderByComparator<CTEntryAggregate> orderByComparator)
 		throws NoSuchEntryAggregateException {
@@ -412,13 +412,13 @@ public class CTEntryAggregatePersistenceImpl
 
 			CTEntryAggregate[] array = new CTEntryAggregateImpl[3];
 
-			array[0] = getByOwnerCTEntryID_PrevAndNext(
+			array[0] = getByOwnerCTEntryId_PrevAndNext(
 				session, ctEntryAggregate, ownerCTEntryId, orderByComparator,
 				true);
 
 			array[1] = ctEntryAggregate;
 
-			array[2] = getByOwnerCTEntryID_PrevAndNext(
+			array[2] = getByOwnerCTEntryId_PrevAndNext(
 				session, ctEntryAggregate, ownerCTEntryId, orderByComparator,
 				false);
 
@@ -432,7 +432,7 @@ public class CTEntryAggregatePersistenceImpl
 		}
 	}
 
-	protected CTEntryAggregate getByOwnerCTEntryID_PrevAndNext(
+	protected CTEntryAggregate getByOwnerCTEntryId_PrevAndNext(
 		Session session, CTEntryAggregate ctEntryAggregate, long ownerCTEntryId,
 		OrderByComparator<CTEntryAggregate> orderByComparator,
 		boolean previous) {
@@ -548,9 +548,9 @@ public class CTEntryAggregatePersistenceImpl
 	 * @param ownerCTEntryId the owner ct entry ID
 	 */
 	@Override
-	public void removeByOwnerCTEntryID(long ownerCTEntryId) {
+	public void removeByOwnerCTEntryId(long ownerCTEntryId) {
 		for (CTEntryAggregate ctEntryAggregate :
-				findByOwnerCTEntryID(
+				findByOwnerCTEntryId(
 					ownerCTEntryId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null)) {
 
@@ -565,8 +565,8 @@ public class CTEntryAggregatePersistenceImpl
 	 * @return the number of matching ct entry aggregates
 	 */
 	@Override
-	public int countByOwnerCTEntryID(long ownerCTEntryId) {
-		FinderPath finderPath = _finderPathCountByOwnerCTEntryID;
+	public int countByOwnerCTEntryId(long ownerCTEntryId) {
+		FinderPath finderPath = _finderPathCountByOwnerCTEntryId;
 
 		Object[] finderArgs = new Object[] {ownerCTEntryId};
 
@@ -892,9 +892,9 @@ public class CTEntryAggregatePersistenceImpl
 				ctEntryAggregateModelImpl.getOwnerCTEntryId()
 			};
 
-			finderCache.removeResult(_finderPathCountByOwnerCTEntryID, args);
+			finderCache.removeResult(_finderPathCountByOwnerCTEntryId, args);
 			finderCache.removeResult(
-				_finderPathWithoutPaginationFindByOwnerCTEntryID, args);
+				_finderPathWithoutPaginationFindByOwnerCTEntryId, args);
 
 			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 			finderCache.removeResult(
@@ -902,7 +902,7 @@ public class CTEntryAggregatePersistenceImpl
 		}
 		else {
 			if ((ctEntryAggregateModelImpl.getColumnBitmask() &
-				 _finderPathWithoutPaginationFindByOwnerCTEntryID.
+				 _finderPathWithoutPaginationFindByOwnerCTEntryId.
 					 getColumnBitmask()) != 0) {
 
 				Object[] args = new Object[] {
@@ -910,18 +910,18 @@ public class CTEntryAggregatePersistenceImpl
 				};
 
 				finderCache.removeResult(
-					_finderPathCountByOwnerCTEntryID, args);
+					_finderPathCountByOwnerCTEntryId, args);
 				finderCache.removeResult(
-					_finderPathWithoutPaginationFindByOwnerCTEntryID, args);
+					_finderPathWithoutPaginationFindByOwnerCTEntryId, args);
 
 				args = new Object[] {
 					ctEntryAggregateModelImpl.getOwnerCTEntryId()
 				};
 
 				finderCache.removeResult(
-					_finderPathCountByOwnerCTEntryID, args);
+					_finderPathCountByOwnerCTEntryId, args);
 				finderCache.removeResult(
-					_finderPathWithoutPaginationFindByOwnerCTEntryID, args);
+					_finderPathWithoutPaginationFindByOwnerCTEntryId, args);
 			}
 		}
 
@@ -1891,28 +1891,28 @@ public class CTEntryAggregatePersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
 			new String[0]);
 
-		_finderPathWithPaginationFindByOwnerCTEntryID = new FinderPath(
+		_finderPathWithPaginationFindByOwnerCTEntryId = new FinderPath(
 			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
 			CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED,
 			CTEntryAggregateImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByOwnerCTEntryID",
+			"findByOwnerCTEntryId",
 			new String[] {
 				Long.class.getName(), Integer.class.getName(),
 				Integer.class.getName(), OrderByComparator.class.getName()
 			});
 
-		_finderPathWithoutPaginationFindByOwnerCTEntryID = new FinderPath(
+		_finderPathWithoutPaginationFindByOwnerCTEntryId = new FinderPath(
 			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
 			CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED,
 			CTEntryAggregateImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByOwnerCTEntryID",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByOwnerCTEntryId",
 			new String[] {Long.class.getName()},
 			CTEntryAggregateModelImpl.OWNERCTENTRYID_COLUMN_BITMASK);
 
-		_finderPathCountByOwnerCTEntryID = new FinderPath(
+		_finderPathCountByOwnerCTEntryId = new FinderPath(
 			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
 			CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByOwnerCTEntryID",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByOwnerCTEntryId",
 			new String[] {Long.class.getName()});
 	}
 
