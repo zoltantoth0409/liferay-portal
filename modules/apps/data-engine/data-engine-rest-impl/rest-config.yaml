@@ -5,3 +5,4 @@ application:
     className: "DataEngineRestApplication"
     name: "Liferay.Data.Engine"
 author: "Jeyvison Nascimento"
+testDir: "../data-engine-rest-test/src/testIntegration/java"
