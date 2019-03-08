@@ -42,7 +42,7 @@ public class ClassNameClassPKContextProvider
 		String[] fieldNames = StringUtil.split(
 			requestURI.substring(requestURI.lastIndexOf("/") + 1), ":");
 
-		return ClassNameClassPK.create(
+		return ClassNameClassPK.of(
 			fieldNames[0], GetterUtil.getLong(fieldNames[1]));
 	}
 

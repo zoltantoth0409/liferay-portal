@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.model.ClassedModel;
  */
 public interface ClassNameClassPK {
 
-	public static ClassNameClassPK create(String className, long classPK) {
+	public static ClassNameClassPK of(String className, long classPK) {
 		return new ClassNameClassPK() {
 
 			@Override
@@ -37,8 +37,10 @@ public interface ClassNameClassPK {
 		};
 	}
 
-	public static <T extends ClassedModel> ClassNameClassPK create(T t) {
-		return create(t.getModelClassName(), (long)t.getPrimaryKeyObj());
+	public static <T extends ClassedModel> ClassNameClassPK of(T classedModel) {
+		return of(
+			classedModel.getModelClassName(),
+			(long)classedModel.getPrimaryKeyObj());
 	}
 
 	public String getClassName();
