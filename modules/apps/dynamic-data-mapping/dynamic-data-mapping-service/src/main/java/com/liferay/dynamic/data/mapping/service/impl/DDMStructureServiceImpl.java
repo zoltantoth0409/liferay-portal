@@ -55,7 +55,7 @@ public class DDMStructureServiceImpl extends DDMStructureServiceBaseImpl {
 
 	@Override
 	public DDMStructure addStructure(
-			long userId, long groupId, long classNameId,
+			long groupId, long classNameId,
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
 			DDMForm ddmForm, DDMFormLayout ddmFormLayout, String storageType,
 			ServiceContext serviceContext)
@@ -89,7 +89,7 @@ public class DDMStructureServiceImpl extends DDMStructureServiceBaseImpl {
 
 	@Override
 	public DDMStructure addStructure(
-			long userId, long groupId, String parentStructureKey,
+			long groupId, String parentStructureKey,
 			long classNameId, String structureKey, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, DDMForm ddmForm,
 			DDMFormLayout ddmFormLayout, String storageType, int type,
@@ -100,7 +100,7 @@ public class DDMStructureServiceImpl extends DDMStructureServiceBaseImpl {
 			getPermissionChecker(), groupId, classNameId);
 
 		return ddmStructureLocalService.addStructure(
-			userId, groupId, parentStructureKey, classNameId, structureKey,
+			getUserId(), groupId, parentStructureKey, classNameId, structureKey,
 			nameMap, descriptionMap, ddmForm, ddmFormLayout, storageType, type,
 			serviceContext);
 	}
