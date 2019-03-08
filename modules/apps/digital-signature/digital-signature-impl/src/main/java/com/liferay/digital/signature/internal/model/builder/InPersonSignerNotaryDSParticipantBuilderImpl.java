@@ -28,8 +28,8 @@ public class InPersonSignerNotaryDSParticipantBuilderImpl
 	implements InPersonSignerNotaryDSParticipantBuilder {
 
 	public InPersonSignerNotaryDSParticipantBuilderImpl(
-		String name, String emailAddress, int routingOrder, String notaryParticipantKey,
-		String notaryName, String notaryEmailAddress) {
+		String emailAddress, String name, String notaryEmailAddress, String notaryName,
+		String notaryParticipantKey, int routingOrder) {
 
 		super(name, emailAddress, routingOrder);
 

@@ -101,12 +101,12 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 	@Override
 	public InPersonSignerNotaryDSParticipantBuilder
 		createInPersonSignerNotaryDSParticipantBuilder(
-			String name, String emailAddress, int routingOrder,
-			String notaryParticipantKey, String notaryName, String notaryEmailAddress) {
+			String emailAddress, String name, String notaryEmailAddress,
+			String notaryName, String notaryParticipantKey, int routingOrder) {
 
 		return new InPersonSignerNotaryDSParticipantBuilderImpl(
-			name, emailAddress, routingOrder, notaryParticipantKey, notaryName,
-			notaryEmailAddress);
+			emailAddress, name, notaryEmailAddress, notaryName, notaryParticipantKey,
+			routingOrder);
 	}
 
 	@Override

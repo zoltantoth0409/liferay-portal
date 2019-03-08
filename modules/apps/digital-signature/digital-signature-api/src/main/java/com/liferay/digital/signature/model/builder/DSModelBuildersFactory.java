@@ -50,8 +50,8 @@ public interface DSModelBuildersFactory {
 
 	public InPersonSignerNotaryDSParticipantBuilder
 		createInPersonSignerNotaryDSParticipantBuilder(
-			String name, String email, int routingOrder,
-			String notaryParticipantId, String notaryName, String notaryEmail);
+			String email, String name, String notaryEmail,
+			String notaryName, String notaryParticipantId, int routingOrder);
 
 	public IntermediaryDSParticipantBuilder
 		createIntermediaryDSParticipantBuilder(
