@@ -79,14 +79,14 @@ public class ImageEditableElementParser implements EditableElementParser {
 			return;
 		}
 
-		Element link = new Element("a");
+		Element linkElement = new Element("a");
 
-		link.attr("href", imageLink);
-		link.attr("target", imageTarget);
+		linkElement.attr("href", imageLink);
+		linkElement.attr("target", imageTarget);
 
-		link.html(element.html());
+		linkElement.html(element.html());
 
-		element.html(link.outerHtml());
+		element.html(linkElement.outerHtml());
 	}
 
 	@Override
