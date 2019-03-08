@@ -51,8 +51,19 @@ public class Mutation {
 	}
 
 	@GraphQLInvokeDetached
+	public boolean deleteDataDefinition(
+			@GraphQLName("data-definition-id") Long dataDefinitionId)
+		throws Exception {
+
+		DataDefinitionResource dataDefinitionResource =
+			_createDataDefinitionResource();
+
+		return dataDefinitionResource.deleteDataDefinition(dataDefinitionId);
+	}
+
+	@GraphQLInvokeDetached
 	public DataDefinition putDataDefinition(
-			@GraphQLName("groupId") Long groupId,
+			@GraphQLName("data-definition-id") Long dataDefinitionId,
 			@GraphQLName("DataDefinition") DataDefinition dataDefinition)
 		throws Exception {
 
@@ -60,7 +71,7 @@ public class Mutation {
 			_createDataDefinitionResource();
 
 		return dataDefinitionResource.putDataDefinition(
-			groupId, dataDefinition);
+			dataDefinitionId, dataDefinition);
 	}
 
 	private static DataDefinitionResource _createDataDefinitionResource()

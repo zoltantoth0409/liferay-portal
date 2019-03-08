@@ -40,30 +40,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "DataDefinition")
 public class DataDefinition {
 
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	@JsonIgnore
-	public void setCreateDate(
-		UnsafeSupplier<Date, Exception> createDateUnsafeSupplier) {
-
-		try {
-			createDate = createDateUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected Date createDate;
-
 	public DataDefinitionField[] getDataDefinitionFields() {
 		return dataDefinitionFields;
 	}
@@ -91,6 +67,54 @@ public class DataDefinition {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected DataDefinitionField[] dataDefinitionFields;
 
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	@JsonIgnore
+	public void setDateCreated(
+		UnsafeSupplier<Date, Exception> dateCreatedUnsafeSupplier) {
+
+		try {
+			dateCreated = dateCreatedUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected Date dateCreated;
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	@JsonIgnore
+	public void setDateModified(
+		UnsafeSupplier<Date, Exception> dateModifiedUnsafeSupplier) {
+
+		try {
+			dateModified = dateModifiedUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected Date dateModified;
+
 	public LocalizedValue[] getDescription() {
 		return description;
 	}
@@ -115,6 +139,30 @@ public class DataDefinition {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected LocalizedValue[] description;
 
+	public Long getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
+	}
+
+	@JsonIgnore
+	public void setGroupId(
+		UnsafeSupplier<Long, Exception> groupIdUnsafeSupplier) {
+
+		try {
+			groupId = groupIdUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected Long groupId;
+
 	public Long getId() {
 		return id;
 	}
@@ -136,30 +184,6 @@ public class DataDefinition {
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Long id;
-
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
-
-	@JsonIgnore
-	public void setModifiedDate(
-		UnsafeSupplier<Date, Exception> modifiedDateUnsafeSupplier) {
-
-		try {
-			modifiedDate = modifiedDateUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected Date modifiedDate;
 
 	public LocalizedValue[] getName() {
 		return name;
@@ -238,13 +262,6 @@ public class DataDefinition {
 
 		sb.append("{");
 
-		sb.append("\"createDate\": ");
-
-		sb.append("\"");
-		sb.append(createDate);
-		sb.append("\"");
-		sb.append(", ");
-
 		sb.append("\"dataDefinitionFields\": ");
 
 		if (dataDefinitionFields == null) {
@@ -264,6 +281,20 @@ public class DataDefinition {
 			sb.append("]");
 		}
 
+		sb.append(", ");
+
+		sb.append("\"dateCreated\": ");
+
+		sb.append("\"");
+		sb.append(dateCreated);
+		sb.append("\"");
+		sb.append(", ");
+
+		sb.append("\"dateModified\": ");
+
+		sb.append("\"");
+		sb.append(dateModified);
+		sb.append("\"");
 		sb.append(", ");
 
 		sb.append("\"description\": ");
@@ -287,16 +318,14 @@ public class DataDefinition {
 
 		sb.append(", ");
 
+		sb.append("\"groupId\": ");
+
+		sb.append(groupId);
+		sb.append(", ");
+
 		sb.append("\"id\": ");
 
 		sb.append(id);
-		sb.append(", ");
-
-		sb.append("\"modifiedDate\": ");
-
-		sb.append("\"");
-		sb.append(modifiedDate);
-		sb.append("\"");
 		sb.append(", ");
 
 		sb.append("\"name\": ");

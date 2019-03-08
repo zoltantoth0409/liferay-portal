@@ -38,10 +38,12 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
@@ -89,13 +91,38 @@ public abstract class BaseDataDefinitionResourceImpl
 	}
 
 	@Override
+	@DELETE
+	@Path("/data-definitions/{data-definition-id}")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "DataDefinition")})
+	public boolean deleteDataDefinition(
+			@PathParam("data-definition-id") Long dataDefinitionId)
+		throws Exception {
+
+		return false;
+	}
+
+	@Override
+	@GET
+	@Path("/data-definitions/{data-definition-id}")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "DataDefinition")})
+	public DataDefinition getDataDefinition(
+			@PathParam("data-definition-id") Long dataDefinitionId)
+		throws Exception {
+
+		return new DataDefinition();
+	}
+
+	@Override
 	@Consumes("application/json")
 	@PUT
-	@Path("/data-definitions")
+	@Path("/data-definitions/{data-definition-id}")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public DataDefinition putDataDefinition(
-			@QueryParam("groupId") Long groupId, DataDefinition dataDefinition)
+			@PathParam("data-definition-id") Long dataDefinitionId,
+			DataDefinition dataDefinition)
 		throws Exception {
 
 		return new DataDefinition();

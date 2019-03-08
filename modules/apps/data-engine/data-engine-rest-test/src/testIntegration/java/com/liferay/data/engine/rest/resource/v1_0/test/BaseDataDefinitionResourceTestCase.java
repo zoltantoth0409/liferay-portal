@@ -277,6 +277,116 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	@Test
+	public void testDeleteDataDefinition() throws Exception {
+		DataDefinition dataDefinition =
+			testDeleteDataDefinition_addDataDefinition();
+
+		assertResponseCode(
+			200, invokeDeleteDataDefinitionResponse(dataDefinition.getId()));
+
+		assertResponseCode(
+			404, invokeGetDataDefinitionResponse(dataDefinition.getId()));
+	}
+
+	protected DataDefinition testDeleteDataDefinition_addDataDefinition()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected boolean invokeDeleteDataDefinition(Long dataDefinitionId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/data-definitions/{data-definition-id}", dataDefinitionId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), Boolean.class);
+	}
+
+	protected Http.Response invokeDeleteDataDefinitionResponse(
+			Long dataDefinitionId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/data-definitions/{data-definition-id}", dataDefinitionId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testGetDataDefinition() throws Exception {
+		DataDefinition postDataDefinition =
+			testGetDataDefinition_addDataDefinition();
+
+		DataDefinition getDataDefinition = invokeGetDataDefinition(
+			postDataDefinition.getId());
+
+		assertEquals(postDataDefinition, getDataDefinition);
+		assertValid(getDataDefinition);
+	}
+
+	protected DataDefinition testGetDataDefinition_addDataDefinition()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected DataDefinition invokeGetDataDefinition(Long dataDefinitionId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/data-definitions/{data-definition-id}", dataDefinitionId);
+
+		options.setLocation(location);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), DataDefinition.class);
+	}
+
+	protected Http.Response invokeGetDataDefinitionResponse(
+			Long dataDefinitionId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/data-definitions/{data-definition-id}", dataDefinitionId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	@Test
 	public void testPutDataDefinition() throws Exception {
 		DataDefinition postDataDefinition =
 			testPutDataDefinition_addDataDefinition();
@@ -304,7 +414,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected DataDefinition invokePutDataDefinition(
-			Long groupId, DataDefinition dataDefinition)
+			Long dataDefinitionId, DataDefinition dataDefinition)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -313,7 +423,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			_inputObjectMapper.writeValueAsString(dataDefinition),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		String location = _resourceURL + _toPath("/data-definitions", groupId);
+		String location =
+			_resourceURL +
+				_toPath(
+					"/data-definitions/{data-definition-id}", dataDefinitionId);
 
 		options.setLocation(location);
 
@@ -324,7 +437,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected Http.Response invokePutDataDefinitionResponse(
-			Long groupId, DataDefinition dataDefinition)
+			Long dataDefinitionId, DataDefinition dataDefinition)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -333,7 +446,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			_inputObjectMapper.writeValueAsString(dataDefinition),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		String location = _resourceURL + _toPath("/data-definitions", groupId);
+		String location =
+			_resourceURL +
+				_toPath(
+					"/data-definitions/{data-definition-id}", dataDefinitionId);
 
 		options.setLocation(location);
 
@@ -474,15 +590,21 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		sb.append(operator);
 		sb.append(" ");
 
-		if (entityFieldName.equals("createDate")) {
-			sb.append(_dateFormat.format(dataDefinition.getCreateDate()));
+		if (entityFieldName.equals("dataDefinitionFields")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("dateCreated")) {
+			sb.append(_dateFormat.format(dataDefinition.getDateCreated()));
 
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("dataDefinitionFields")) {
-			throw new IllegalArgumentException(
-				"Invalid entity field " + entityFieldName);
+		if (entityFieldName.equals("dateModified")) {
+			sb.append(_dateFormat.format(dataDefinition.getDateModified()));
+
+			return sb.toString();
 		}
 
 		if (entityFieldName.equals("description")) {
@@ -490,15 +612,14 @@ public abstract class BaseDataDefinitionResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("id")) {
+		if (entityFieldName.equals("groupId")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("modifiedDate")) {
-			sb.append(_dateFormat.format(dataDefinition.getModifiedDate()));
-
-			return sb.toString();
+		if (entityFieldName.equals("id")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
 		}
 
 		if (entityFieldName.equals("name")) {
@@ -526,9 +647,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	protected DataDefinition randomDataDefinition() {
 		return new DataDefinition() {
 			{
-				createDate = RandomTestUtil.nextDate();
+				dateCreated = RandomTestUtil.nextDate();
+				dateModified = RandomTestUtil.nextDate();
+				groupId = RandomTestUtil.randomLong();
 				id = RandomTestUtil.randomLong();
-				modifiedDate = RandomTestUtil.nextDate();
 				storageType = RandomTestUtil.randomString();
 				userId = RandomTestUtil.randomLong();
 			}

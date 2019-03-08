@@ -57,6 +57,18 @@ public class Query {
 		return paginationPage.getItems();
 	}
 
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public DataDefinition getDataDefinition(
+			@GraphQLName("data-definition-id") Long dataDefinitionId)
+		throws Exception {
+
+		DataDefinitionResource dataDefinitionResource =
+			_createDataDefinitionResource();
+
+		return dataDefinitionResource.getDataDefinition(dataDefinitionId);
+	}
+
 	private static DataDefinitionResource _createDataDefinitionResource()
 		throws Exception {
 
