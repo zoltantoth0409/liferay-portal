@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 @Component(
 	properties = "OSGI-INF/liferay/rest/v1_0/content-structure.properties",
 	scope = ServiceScope.PROTOTYPE,
-	service = {ContentStructureResource.class, EntityModelResource.class}
+	service = {ContentStructureResource.class}
 )
 public class ContentStructureResourceImpl
 	extends BaseContentStructureResourceImpl implements EntityModelResource {

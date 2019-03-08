@@ -67,7 +67,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 @Component(
 	properties = "OSGI-INF/liferay/rest/v1_0/blog-posting.properties",
 	scope = ServiceScope.PROTOTYPE,
-	service = {BlogPostingResource.class, EntityModelResource.class}
+	service = {BlogPostingResource.class}
 )
 public class BlogPostingResourceImpl
 	extends BaseBlogPostingResourceImpl implements EntityModelResource {
