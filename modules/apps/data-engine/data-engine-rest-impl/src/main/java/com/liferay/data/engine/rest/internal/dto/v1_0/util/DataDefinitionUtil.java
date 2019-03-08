@@ -20,6 +20,8 @@ import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,7 +30,7 @@ import java.util.List;
 /**
  * @author Jeyvison Nascimento
  */
-public class DataDefinitionDeserializer {
+public class DataDefinitionUtil {
 
 	public static DataDefinition toDataDefinition(String json)
 		throws Exception {
@@ -41,6 +43,28 @@ public class DataDefinitionDeserializer {
 					jsonObject.getJSONArray("fields"));
 			}
 		};
+	}
+
+	public static String toJSON(DataDefinition dataDefinition)
+		throws Exception {
+
+		return JSONUtil.put(
+			"fields", _toJSONArray(dataDefinition.getDataDefinitionFields())
+		).toString();
+	}
+
+	private static void _put(
+		JSONObject jsonObject, String key, LocalizedValue[] localizedValues) {
+
+		JSONObject localziedValueJSONObject =
+			JSONFactoryUtil.createJSONObject();
+
+		for (LocalizedValue localizedValue : localizedValues) {
+			localziedValueJSONObject.put(
+				localizedValue.getKey(), localizedValue.getValue());
+		}
+
+		jsonObject.put(key, localziedValueJSONObject);
 	}
 
 	private static DataDefinitionField _toDataDefinitionField(
@@ -100,6 +124,68 @@ public class DataDefinitionDeserializer {
 
 		return dataDefinitionFields.toArray(
 			new DataDefinitionField[dataDefinitionFields.size()]);
+	}
+
+	private static JSONArray _toJSONArray(
+			DataDefinitionField[] dataDefinitionFields)
+		throws Exception {
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (DataDefinitionField dataDefinitionField : dataDefinitionFields) {
+			jsonArray.put(_toJSONObject(dataDefinitionField));
+		}
+
+		return jsonArray;
+	}
+
+	private static JSONObject _toJSONObject(
+			DataDefinitionField dataDefinitionField)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		Object defaultValue = dataDefinitionField.getDefaultValue();
+
+		if (defaultValue != null) {
+			jsonObject.put("defaultValue", defaultValue);
+		}
+
+		jsonObject.put("indexable", dataDefinitionField.getIndexable());
+
+		LocalizedValue[] label = dataDefinitionField.getLabel();
+
+		if (label.length > 0) {
+			_put(jsonObject, "label", label);
+		}
+
+		jsonObject.put("localizable", dataDefinitionField.getLocalizable());
+
+		String name = dataDefinitionField.getName();
+
+		if (Validator.isNull(name)) {
+			throw new Exception("Name is required");
+		}
+
+		jsonObject.put("name", name);
+
+		jsonObject.put("repeatable", dataDefinitionField.getRepeatable());
+
+		LocalizedValue[] tip = dataDefinitionField.getTip();
+
+		if (tip.length > 0) {
+			_put(jsonObject, "tip", tip);
+		}
+
+		String type = dataDefinitionField.getFieldType();
+
+		if ((type == null) || type.isEmpty()) {
+			throw new Exception("Type is required");
+		}
+
+		jsonObject.put("type", type);
+
+		return jsonObject;
 	}
 
 	private static LocalizedValue[] _toLocalizedValues(JSONObject jsonObject) {

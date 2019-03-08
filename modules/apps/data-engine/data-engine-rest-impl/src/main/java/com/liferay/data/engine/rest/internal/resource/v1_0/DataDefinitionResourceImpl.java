@@ -16,8 +16,7 @@ package com.liferay.data.engine.rest.internal.resource.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
-import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionDeserializer;
-import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionSerializer;
+import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionUtil;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
@@ -80,7 +79,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				_portal.getClassNameId(DataDefinition.class), null,
 				_toLocalizationMap(dataDefinition.getName()),
 				_toLocalizationMap(dataDefinition.getDescription()),
-				DataDefinitionSerializer.toJSON(dataDefinition),
+				DataDefinitionUtil.toJSON(dataDefinition),
 				dataDefinition.getStorageType(), new ServiceContext()));
 	}
 
@@ -95,16 +94,15 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 				_toLocalizationMap(dataDefinition.getName()),
 				_toLocalizationMap(dataDefinition.getDescription()),
-				DataDefinitionSerializer.toJSON(dataDefinition),
+				DataDefinitionUtil.toJSON(dataDefinition),
 				new ServiceContext()));
 	}
 
 	private DataDefinition _toDataDefinition(DDMStructure ddmStructure)
 		throws Exception {
 
-		DataDefinition dataDefinition =
-			DataDefinitionDeserializer.toDataDefinition(
-				ddmStructure.getDefinition());
+		DataDefinition dataDefinition = DataDefinitionUtil.toDataDefinition(
+			ddmStructure.getDefinition());
 
 		dataDefinition.setCreateDate(ddmStructure.getCreateDate());
 		dataDefinition.setDescription(
