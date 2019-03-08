@@ -22,8 +22,8 @@ import com.liferay.digital.signature.model.DSSupplementalDocumentInfo;
  */
 public class DSDocumentImpl implements DSDocument {
 
-	public DSDocumentImpl(String documentId, String name) {
-		_documentId = documentId;
+	public DSDocumentImpl(String documentKey, String name) {
+		_documentKey = documentKey;
 		_name = name;
 	}
 
@@ -44,7 +44,7 @@ public class DSDocumentImpl implements DSDocument {
 
 	@Override
 	public String getDocumentKey() {
-		return _documentId;
+		return _documentKey;
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class DSDocumentImpl implements DSDocument {
 	private Boolean _authoritative;
 	private String _base64String;
 	private String _description;
-	private final String _documentId;
+	private final String _documentKey;
 	private String _documentURL;
 	private DSSupplementalDocumentInfo _dsSupplementalDocumentInfo;
 	private String _extension = PDF_EXTENSION;

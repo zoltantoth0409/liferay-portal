@@ -37,7 +37,7 @@ public class EditorDSParticipantBuilderImpl
 			new EditorDSParticipantImpl(
 				getName(), getEmail(), getRoutingOrder());
 
-		editorDSParticipantImpl.setCanEditParticipantEmails(
+		editorDSParticipantImpl.setCanEditParticipantEmailAddresses(
 			getCanEditParticipantEmails());
 
 		editorDSParticipantImpl.setCanEditParticipantNames(

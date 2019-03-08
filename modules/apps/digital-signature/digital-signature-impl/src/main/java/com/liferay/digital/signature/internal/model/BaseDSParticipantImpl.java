@@ -25,9 +25,9 @@ import java.util.Collection;
  */
 public abstract class BaseDSParticipantImpl implements DSParticipant {
 
-	public BaseDSParticipantImpl(String name, String email, int routingOrder) {
+	public BaseDSParticipantImpl(String name, String emailAddress, int routingOrder) {
 		_name = name;
-		_email = email;
+		_emailAddress = emailAddress;
 		_routingOrder = routingOrder;
 	}
 
@@ -38,12 +38,12 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 
 	@Override
 	public String getClientUserKey() {
-		return _clientUserId;
+		return _clientUserKey;
 	}
 
 	@Override
 	public Collection<String> getCustomFieldNames() {
-		return _customFields;
+		return _customFieldNames;
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 
 	@Override
 	public String getEmailAddress() {
-		return _email;
+		return _emailAddress;
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 
 	@Override
 	public String getParticipantKey() {
-		return _participantId;
+		return _participantKey;
 	}
 
 	@Override
@@ -81,6 +81,7 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 		return _roleName;
 	}
 
+	@Override
 	public int getRoutingOrder() {
 		return _routingOrder;
 	}
@@ -89,12 +90,12 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 		_accessCode = accessCode;
 	}
 
-	public void setClientUserId(String clientUserId) {
-		_clientUserId = clientUserId;
+	public void setClientUserKey(String clientUserKey) {
+		_clientUserKey = clientUserKey;
 	}
 
-	public void setCustomFields(Collection<String> customFields) {
-		_customFields = customFields;
+	public void setCustomFieldNames(Collection<String> customFieldNames) {
+		_customFieldNames = customFieldNames;
 	}
 
 	public void setDSEmailNotification(
@@ -107,8 +108,8 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 		_note = note;
 	}
 
-	public void setParticipantId(String participantId) {
-		_participantId = participantId;
+	public void setParticipantKey(String participantKey) {
+		_participantKey = participantKey;
 	}
 
 	public void setRoleName(String roleName) {
@@ -120,14 +121,14 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 	}
 
 	private String _accessCode;
-	private String _clientUserId;
-	private Collection<String> _customFields;
+	private String _clientUserKey;
+	private Collection<String> _customFieldNames;
 	private DSEmailNotification _dsEmailNotification;
 	private DSParticipantRole _dsParticipantRole;
-	private final String _email;
+	private final String _emailAddress;
 	private final String _name;
 	private String _note;
-	private String _participantId;
+	private String _participantKey;
 	private String _roleName;
 	private final int _routingOrder;
 

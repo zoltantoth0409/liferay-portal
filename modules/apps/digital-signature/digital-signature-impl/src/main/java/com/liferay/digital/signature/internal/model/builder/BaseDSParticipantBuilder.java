@@ -60,11 +60,11 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 			(BaseDSParticipantImpl)createDSParticipant();
 
 		baseDSParticipantImpl.setAccessCode(getAccessCode());
-		baseDSParticipantImpl.setClientUserId(getClientUserId());
-		baseDSParticipantImpl.setCustomFields(getCustomFields());
+		baseDSParticipantImpl.setClientUserKey(getClientUserId());
+		baseDSParticipantImpl.setCustomFieldNames(getCustomFields());
 		baseDSParticipantImpl.setDSEmailNotification(getDSEmailNotification());
 		baseDSParticipantImpl.setNote(getNote());
-		baseDSParticipantImpl.setParticipantId(getParticipantId());
+		baseDSParticipantImpl.setParticipantKey(getParticipantId());
 		baseDSParticipantImpl.setRoleName(getRoleName());
 
 		return (T)baseDSParticipantImpl;

@@ -36,7 +36,7 @@ public class SealDSParticipantImpl
 		super(name, email, routingOrder);
 
 		setDSParticipantRole(DSParticipantRole.SEAL);
-		setParticipantId(participantId);
+		setParticipantKey(participantId);
 	}
 
 	public void addDSSealInfos(Collection<DSSealInfo> dsSealInfos) {

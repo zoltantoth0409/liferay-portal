@@ -37,7 +37,7 @@ public class AgentDSParticipantBuilderImpl
 			new AgentDSParticipantImpl(
 				getName(), getEmail(), getRoutingOrder());
 
-		agentDSParticipantImpl.setCanEditParticipantEmails(
+		agentDSParticipantImpl.setCanEditParticipantEmailAddresses(
 			getCanEditParticipantEmails());
 
 		agentDSParticipantImpl.setCanEditParticipantNames(

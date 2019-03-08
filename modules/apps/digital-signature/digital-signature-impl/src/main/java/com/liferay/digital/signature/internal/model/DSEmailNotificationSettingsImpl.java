@@ -42,19 +42,19 @@ public class DSEmailNotificationSettingsImpl
 
 	@Override
 	public String getReplyNameOverride() {
-		return _replyEmailNameOverride;
+		return _replyNameOverride;
 	}
 
 	public void setReplyEmailAddressOverride(String replyEmailAddressOverride) {
 		_replyEmailAddressOverride = replyEmailAddressOverride;
 	}
 
-	public void setReplyEmailNameOverride(String replyEmailNameOverride) {
-		_replyEmailNameOverride = replyEmailNameOverride;
+	public void setReplyNameOverride(String replyNameOverride) {
+		_replyNameOverride = replyNameOverride;
 	}
 
 	private final Set<String> _bccEmailAddresses = new HashSet<>();
 	private String _replyEmailAddressOverride;
-	private String _replyEmailNameOverride;
+	private String _replyNameOverride;
 
 }

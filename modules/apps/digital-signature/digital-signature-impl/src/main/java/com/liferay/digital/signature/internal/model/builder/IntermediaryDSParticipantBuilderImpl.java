@@ -38,7 +38,7 @@ public class IntermediaryDSParticipantBuilderImpl
 			new IntermediaryDSParticipantImpl(
 				getName(), getEmail(), getRoutingOrder());
 
-		intermediaryDSParticipantImpl.setCanEditParticipantEmails(
+		intermediaryDSParticipantImpl.setCanEditParticipantEmailAddresses(
 			getCanEditParticipantEmails());
 
 		intermediaryDSParticipantImpl.setCanEditParticipantNames(

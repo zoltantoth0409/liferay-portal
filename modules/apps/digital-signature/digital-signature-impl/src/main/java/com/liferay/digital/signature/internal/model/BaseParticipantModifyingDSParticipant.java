@@ -21,28 +21,28 @@ public abstract class BaseParticipantModifyingDSParticipant
 	extends BaseDSParticipantImpl {
 
 	public BaseParticipantModifyingDSParticipant(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		super(name, email, routingOrder);
+		super(name, emailAddress, routingOrder);
 	}
 
 	public Boolean getCanEditParticipantEmailAddresses() {
-		return _canEditParticipantEmails;
+		return _canEditParticipantEmailAddresses;
 	}
 
 	public Boolean getCanEditParticipantNames() {
 		return _canEditParticipantNames;
 	}
 
-	public void setCanEditParticipantEmails(Boolean canEditParticipantEmails) {
-		_canEditParticipantEmails = canEditParticipantEmails;
+	public void setCanEditParticipantEmailAddresses(Boolean canEditParticipantEmailAddresses) {
+		_canEditParticipantEmailAddresses = canEditParticipantEmailAddresses;
 	}
 
 	public void setCanEditParticipantNames(Boolean canEditParticipantNames) {
 		_canEditParticipantNames = canEditParticipantNames;
 	}
 
-	private Boolean _canEditParticipantEmails;
+	private Boolean _canEditParticipantEmailAddresses;
 	private Boolean _canEditParticipantNames;
 
 }
