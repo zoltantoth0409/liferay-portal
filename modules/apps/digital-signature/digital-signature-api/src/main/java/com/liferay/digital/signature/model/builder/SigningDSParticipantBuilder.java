@@ -40,7 +40,7 @@ public interface SigningDSParticipantBuilder {
 		Boolean defaultParticipant);
 
 	public <S extends DSParticipantBuilder> S setSignatureInfo(
-		String signatureName, String signatureInitials, String signatureFont);
+		String signatureFont, String signatureInitials, String signatureName);
 
 	public <S extends DSParticipantBuilder> S setSignInEachLocation(
 		Boolean signInEachLocation);

@@ -82,7 +82,7 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 
 	@Override
 	public <S extends DSParticipantBuilder> S setSignatureInfo(
-		String signatureName, String signatureInitials, String signatureFont) {
+		String signatureFont, String signatureInitials, String signatureName) {
 
 		DSSignatureInfoImpl dsSignatureInfoImpl = new DSSignatureInfoImpl();
 
