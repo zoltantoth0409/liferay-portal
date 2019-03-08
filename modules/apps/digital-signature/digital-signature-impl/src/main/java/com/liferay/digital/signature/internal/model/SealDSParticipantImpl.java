@@ -31,12 +31,12 @@ public class SealDSParticipantImpl
 	extends BaseDSParticipantImpl implements SealDSParticipant {
 
 	public SealDSParticipantImpl(
-		String participantId, String name, String email, int routingOrder) {
+		String participantKey, String name, String emailAddress, int routingOrder) {
 
-		super(name, email, routingOrder);
+		super(name, emailAddress, routingOrder);
 
 		setDSParticipantRole(DSParticipantRole.SEAL);
-		setParticipantKey(participantId);
+		setParticipantKey(participantKey);
 	}
 
 	public void addDSSealInfos(Collection<DSSealInfo> dsSealInfos) {

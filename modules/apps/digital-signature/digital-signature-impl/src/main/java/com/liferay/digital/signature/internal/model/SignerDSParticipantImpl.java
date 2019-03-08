@@ -91,7 +91,7 @@ public class SignerDSParticipantImpl
 
 	private Boolean _autoNavigation;
 	private Boolean _defaultParticipant;
-	private Set<DSField> _dsFields = new HashSet<>();
+	private Set<DSField<?>> _dsFields = new HashSet<>();
 	private DSSignatureInfo _dsSignatureInfo;
 	private Boolean _signInEachLocation;
 
