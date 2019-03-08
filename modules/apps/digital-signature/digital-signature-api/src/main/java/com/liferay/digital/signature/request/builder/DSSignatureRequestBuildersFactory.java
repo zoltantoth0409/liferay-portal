@@ -16,7 +16,7 @@ package com.liferay.digital.signature.request.builder;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.digital.signature.model.DSSessionId;
+import com.liferay.digital.signature.model.DSSessionKey;
 
 /**
  * @author Michael C. Han
@@ -25,9 +25,9 @@ import com.liferay.digital.signature.model.DSSessionId;
 public interface DSSignatureRequestBuildersFactory {
 
 	public CreatePackageDSSignatureRequestBuilder
-		createCreatePackageDSSignatureRequestBuilder(DSSessionId dsSessionId);
+		createCreatePackageDSSignatureRequestBuilder(DSSessionKey dsSessionId);
 
 	public VoidPackageDSSignatureRequestBuilder
-		createVoidPackageDSSignatureRequestBuilder(DSSessionId dsSessionId);
+		createVoidPackageDSSignatureRequestBuilder(DSSessionKey dsSessionId);
 
 }

@@ -24,12 +24,12 @@ import java.util.Objects;
  * @author Michael C. Han
  */
 @ProviderType
-public class DSSessionId {
+public class DSSessionKey {
 
-	public DSSessionId(long companyId, String userName, String accountId) {
+	public DSSessionKey(long companyId, String userName, String accountKey) {
 		_companyId = companyId;
 		_userName = userName;
-		_accountId = accountId;
+		_accountKey = accountKey;
 	}
 
 	@Override
@@ -42,25 +42,25 @@ public class DSSessionId {
 			return false;
 		}
 
-		final DSSessionId dsSessionId = (DSSessionId)object;
+		final DSSessionKey dsSessionKey = (DSSessionKey)object;
 
-		if (getCompanyId() != dsSessionId.getCompanyId()) {
+		if (getCompanyId() != dsSessionKey.getCompanyId()) {
 			return false;
 		}
 
-		if (!Objects.equals(getAccountId(), dsSessionId.getAccountId())) {
+		if (!Objects.equals(getAccountKey(), dsSessionKey.getAccountKey())) {
 			return false;
 		}
 
-		if (!Objects.equals(getUserName(), dsSessionId.getUserName())) {
+		if (!Objects.equals(getUserName(), dsSessionKey.getUserName())) {
 			return false;
 		}
 
 		return true;
 	}
 
-	public String getAccountId() {
-		return _accountId;
+	public String getAccountKey() {
+		return _accountKey;
 	}
 
 	public long getCompanyId() {
@@ -73,7 +73,7 @@ public class DSSessionId {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(_companyId, _accountId, _userName);
+		return Objects.hash(_companyId, _accountKey, _userName);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class DSSessionId {
 		sb.append(clazz.getSimpleName());
 
 		sb.append(", accountId=");
-		sb.append(_accountId);
+		sb.append(_accountKey);
 		sb.append(", companyId=");
 		sb.append(_companyId);
 		sb.append(", userName=");
@@ -97,7 +97,7 @@ public class DSSessionId {
 		return sb.toString();
 	}
 
-	private final String _accountId;
+	private final String _accountKey;
 	private final long _companyId;
 	private final String _userName;
 

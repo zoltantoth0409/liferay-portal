@@ -15,7 +15,7 @@
 package com.liferay.digital.signature.internal.request;
 
 import com.liferay.digital.signature.common.DSSignaturePackageStatus;
-import com.liferay.digital.signature.model.DSSessionId;
+import com.liferay.digital.signature.model.DSSessionKey;
 import com.liferay.digital.signature.model.DSSignaturePackage;
 import com.liferay.digital.signature.request.CreatePackageDSSignatureRequest;
 
@@ -26,7 +26,7 @@ public class CreatePackageDSSignatureRequestImpl
 	implements CreatePackageDSSignatureRequest {
 
 	public CreatePackageDSSignatureRequestImpl(
-		DSSessionId dsSessionId, DSSignaturePackage dsSignaturePackage,
+		DSSessionKey dsSessionId, DSSignaturePackage dsSignaturePackage,
 		DSSignaturePackageStatus dsSignaturePackageStatus) {
 
 		_dsSessionId = dsSessionId;
@@ -35,7 +35,7 @@ public class CreatePackageDSSignatureRequestImpl
 	}
 
 	@Override
-	public DSSessionId getDSSessionId() {
+	public DSSessionKey getDSSessionId() {
 		return _dsSessionId;
 	}
 
@@ -48,7 +48,7 @@ public class CreatePackageDSSignatureRequestImpl
 		return _dsSignaturePackageStatus;
 	}
 
-	private final DSSessionId _dsSessionId;
+	private final DSSessionKey _dsSessionId;
 	private final DSSignaturePackage _dsSignaturePackage;
 	private final DSSignaturePackageStatus _dsSignaturePackageStatus;
 

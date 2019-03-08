@@ -16,7 +16,7 @@ package com.liferay.digital.signature.internal.request.builder;
 
 import com.liferay.digital.signature.common.DSSignaturePackageStatus;
 import com.liferay.digital.signature.internal.request.CreatePackageDSSignatureRequestImpl;
-import com.liferay.digital.signature.model.DSSessionId;
+import com.liferay.digital.signature.model.DSSessionKey;
 import com.liferay.digital.signature.model.DSSignaturePackage;
 import com.liferay.digital.signature.request.CreatePackageDSSignatureRequest;
 import com.liferay.digital.signature.request.builder.CreatePackageDSSignatureRequestBuilder;
@@ -27,7 +27,7 @@ import com.liferay.digital.signature.request.builder.CreatePackageDSSignatureReq
 public class CreatePackageDSSignatureRequestBuilderImpl
 	implements CreatePackageDSSignatureRequestBuilder {
 
-	public CreatePackageDSSignatureRequestBuilderImpl(DSSessionId dsSessionId) {
+	public CreatePackageDSSignatureRequestBuilderImpl(DSSessionKey dsSessionId) {
 		_dsSessionId = dsSessionId;
 	}
 
@@ -57,7 +57,7 @@ public class CreatePackageDSSignatureRequestBuilderImpl
 		return this;
 	}
 
-	private final DSSessionId _dsSessionId;
+	private final DSSessionKey _dsSessionId;
 	private DSSignaturePackage _dsSignaturePackage;
 
 }

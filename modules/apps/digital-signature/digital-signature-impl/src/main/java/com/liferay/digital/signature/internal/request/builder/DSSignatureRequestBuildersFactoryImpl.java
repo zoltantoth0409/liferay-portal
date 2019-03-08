@@ -14,7 +14,7 @@
 
 package com.liferay.digital.signature.internal.request.builder;
 
-import com.liferay.digital.signature.model.DSSessionId;
+import com.liferay.digital.signature.model.DSSessionKey;
 import com.liferay.digital.signature.request.builder.CreatePackageDSSignatureRequestBuilder;
 import com.liferay.digital.signature.request.builder.DSSignatureRequestBuildersFactory;
 import com.liferay.digital.signature.request.builder.VoidPackageDSSignatureRequestBuilder;
@@ -30,14 +30,14 @@ public class DSSignatureRequestBuildersFactoryImpl
 
 	@Override
 	public CreatePackageDSSignatureRequestBuilder
-		createCreatePackageDSSignatureRequestBuilder(DSSessionId dsSessionId) {
+		createCreatePackageDSSignatureRequestBuilder(DSSessionKey dsSessionId) {
 
 		return new CreatePackageDSSignatureRequestBuilderImpl(dsSessionId);
 	}
 
 	@Override
 	public VoidPackageDSSignatureRequestBuilder
-		createVoidPackageDSSignatureRequestBuilder(DSSessionId dsSessionId) {
+		createVoidPackageDSSignatureRequestBuilder(DSSessionKey dsSessionId) {
 
 		return new VoidPackageDSSignatureRequestBuilderImpl(dsSessionId);
 	}

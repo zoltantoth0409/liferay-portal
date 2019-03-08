@@ -16,7 +16,7 @@ package com.liferay.digital.signature.request;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.digital.signature.model.DSSessionId;
+import com.liferay.digital.signature.model.DSSessionKey;
 
 /**
  * @author Michael C. Han
@@ -24,6 +24,6 @@ import com.liferay.digital.signature.model.DSSessionId;
 @ProviderType
 public interface DSSignatureRequest {
 
-	public DSSessionId getDSSessionId();
+	public DSSessionKey getDSSessionId();
 
 }

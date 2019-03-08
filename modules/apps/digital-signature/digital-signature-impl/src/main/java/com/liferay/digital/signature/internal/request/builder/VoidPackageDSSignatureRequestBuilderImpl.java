@@ -15,7 +15,7 @@
 package com.liferay.digital.signature.internal.request.builder;
 
 import com.liferay.digital.signature.internal.request.VoidPackageDSSignatureRequestImpl;
-import com.liferay.digital.signature.model.DSSessionId;
+import com.liferay.digital.signature.model.DSSessionKey;
 import com.liferay.digital.signature.request.VoidPackageDSSignatureRequest;
 import com.liferay.digital.signature.request.builder.VoidPackageDSSignatureRequestBuilder;
 
@@ -25,7 +25,7 @@ import com.liferay.digital.signature.request.builder.VoidPackageDSSignatureReque
 public class VoidPackageDSSignatureRequestBuilderImpl
 	implements VoidPackageDSSignatureRequestBuilder {
 
-	public VoidPackageDSSignatureRequestBuilderImpl(DSSessionId dsSessionId) {
+	public VoidPackageDSSignatureRequestBuilderImpl(DSSessionKey dsSessionId) {
 		_dsSessionId = dsSessionId;
 	}
 
@@ -68,7 +68,7 @@ public class VoidPackageDSSignatureRequestBuilderImpl
 		return this;
 	}
 
-	private final DSSessionId _dsSessionId;
+	private final DSSessionKey _dsSessionId;
 	private String _dsSignaturePackageId;
 	private String _externalReferenceId;
 	private String _voidReason;
