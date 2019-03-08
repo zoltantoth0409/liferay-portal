@@ -32,9 +32,9 @@ public class SealDSParticipantBuilderImpl
 	implements SealDSParticipantBuilder {
 
 	public SealDSParticipantBuilderImpl(
-		String participantId, String name, String email, int routingOrder) {
+		String participantId, String name, String emailAddress, int routingOrder) {
 
-		super(name, email, routingOrder);
+		super(name, emailAddress, routingOrder);
 
 		setParticipantKey(participantId);
 	}

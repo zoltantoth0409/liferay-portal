@@ -26,9 +26,9 @@ public class SignerDSParticipantBuilderImpl
 	implements SignerDSParticipantBuilder {
 
 	public SignerDSParticipantBuilderImpl(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		super(name, email, routingOrder);
+		super(name, emailAddress, routingOrder);
 	}
 
 	@Override

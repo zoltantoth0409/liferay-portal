@@ -40,33 +40,33 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 
 	@Override
 	public AgentDSParticipantBuilder createAgentDSParticipantBuilder(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		return new AgentDSParticipantBuilderImpl(name, email, routingOrder);
+		return new AgentDSParticipantBuilderImpl(name, emailAddress, routingOrder);
 	}
 
 	@Override
 	public CarbonCopyDSParticipantBuilder createCarbonCopyDSParticipantBuilder(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
 		return new CarbonCopyDSParticipantBuilderImpl(
-			name, email, routingOrder);
+			name, emailAddress, routingOrder);
 	}
 
 	@Override
 	public CertifiedDeliveryDSParticipantBuilder
 		createCertifiedDeliveryDSParticipantBuilder(
-			String name, String email, int routingOrder) {
+			String name, String emailAddress, int routingOrder) {
 
 		return new CertifiedDeliveryDSParticipantBuilderImpl(
-			name, email, routingOrder);
+			name, emailAddress, routingOrder);
 	}
 
 	@Override
 	public DSDocumentBuilder createDSDocumentBuilder(
-		String documentId, String name) {
+		String documentKey, String name) {
 
-		return new DSDocumentBuilderImpl(documentId, name);
+		return new DSDocumentBuilderImpl(documentKey, name);
 	}
 
 	@Override
@@ -83,54 +83,54 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 
 	@Override
 	public EditorDSParticipantBuilder createEditorDSParticipantBuilder(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		return new EditorDSParticipantBuilderImpl(name, email, routingOrder);
+		return new EditorDSParticipantBuilderImpl(name, emailAddress, routingOrder);
 	}
 
 	@Override
 	public InPersonSignerDSParticipantBuilder
 		createInPersonSignerDSParticipantBuilder(
-			String hostName, String hostEmail, String signerName,
-			String signerEmail, int routingOrder) {
+			String hostName, String hostEmailAddress, String signerName,
+			String signerEmailAddress, int routingOrder) {
 
 		return new InPersonSignerDSParticipantBuilderImpl(
-			hostName, hostEmail, signerName, signerEmail, routingOrder);
+			hostName, hostEmailAddress, signerName, signerEmailAddress, routingOrder);
 	}
 
 	@Override
 	public InPersonSignerNotaryDSParticipantBuilder
 		createInPersonSignerNotaryDSParticipantBuilder(
-			String name, String email, int routingOrder,
-			String notaryParticipantId, String notaryName, String notaryEmail) {
+			String name, String emailAddress, int routingOrder,
+			String notaryParticipantKey, String notaryName, String notaryEmailAddress) {
 
 		return new InPersonSignerNotaryDSParticipantBuilderImpl(
-			name, email, routingOrder, notaryParticipantId, notaryName,
-			notaryEmail);
+			name, emailAddress, routingOrder, notaryParticipantKey, notaryName,
+			notaryEmailAddress);
 	}
 
 	@Override
 	public IntermediaryDSParticipantBuilder
 		createIntermediaryDSParticipantBuilder(
-			String name, String email, int routingOrder) {
+			String name, String emailAddress, int routingOrder) {
 
 		return new IntermediaryDSParticipantBuilderImpl(
-			name, email, routingOrder);
+			name, emailAddress, routingOrder);
 	}
 
 	@Override
 	public SealDSParticipantBuilder createSealDSParticipantBuilder(
-		String participantId, String name, String email, int routingOrder) {
+		String participantId, String name, String emailAddress, int routingOrder) {
 
 		return new SealDSParticipantBuilderImpl(
-			participantId, name, email, routingOrder);
+			participantId, name, emailAddress, routingOrder);
 	}
 
 	@Override
 	public SignerDSParticipantBuilder createSignerDSParticipantBuilder(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		return new SignerDSParticipantBuilderImpl(name, email, routingOrder);
+		return new SignerDSParticipantBuilderImpl(name, emailAddress, routingOrder);
 	}
 
 	protected void setPortalUUID(PortalUUID portalUUID) {
