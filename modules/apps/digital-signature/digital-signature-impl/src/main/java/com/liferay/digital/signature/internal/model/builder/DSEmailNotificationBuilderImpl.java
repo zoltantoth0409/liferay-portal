@@ -55,20 +55,20 @@ public class DSEmailNotificationBuilderImpl
 
 	@Override
 	public DSEmailNotification getDSEmailNotification() {
-		DSEmailNotificationImpl dsEmailNotificationImpl =
-			new DSEmailNotificationImpl(_subject, _message);
-
-		dsEmailNotificationImpl.setDSEmailNotificationSettings(
-			new DSEmailNotificationSettingsImpl() {
-				{
-					addBccEmailAddresses(_bccEmailAddresses);
-					setOverrideReplyEmailAddress(_overrideReplyEmailAddress);
-					setOverrideReplyName(_overrideReplyName);
-					setSupportedLanguage(_supportedLanguage);
-				}
-			});
-
-		return dsEmailNotificationImpl;
+		return new DSEmailNotificationImpl(_subject, _message) {
+			{
+				setDSEmailNotificationSettings(
+					new DSEmailNotificationSettingsImpl() {
+						{
+							addBccEmailAddresses(_bccEmailAddresses);
+							setOverrideReplyEmailAddress(
+								_overrideReplyEmailAddress);
+							setOverrideReplyName(_overrideReplyName);
+							setSupportedLanguage(_supportedLanguage);
+						}
+					});
+			}
+		};
 	}
 
 	@Override
