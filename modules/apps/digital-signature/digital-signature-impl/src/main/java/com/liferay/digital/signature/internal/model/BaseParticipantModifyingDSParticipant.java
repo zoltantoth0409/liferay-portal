@@ -26,7 +26,7 @@ public abstract class BaseParticipantModifyingDSParticipant
 		super(name, email, routingOrder);
 	}
 
-	public Boolean getCanEditParticipantEmails() {
+	public Boolean getCanEditParticipantEmailAddresses() {
 		return _canEditParticipantEmails;
 	}
 

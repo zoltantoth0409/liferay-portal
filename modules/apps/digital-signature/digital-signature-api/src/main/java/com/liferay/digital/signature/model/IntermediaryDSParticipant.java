@@ -22,7 +22,7 @@ import aQute.bnd.annotation.ProviderType;
 @ProviderType
 public interface IntermediaryDSParticipant extends DSParticipant {
 
-	public Boolean getCanEditParticipantEmails();
+	public Boolean getCanEditParticipantEmailAddresses();
 
 	public Boolean getCanEditParticipantNames();
 
