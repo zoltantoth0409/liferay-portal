@@ -15,14 +15,19 @@
 package com.liferay.data.engine.rest.internal.graphql.mutation.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
-import com.liferay.data.engine.rest.internal.resource.v1_0.DataDefinitionResourceImpl;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
+import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
 import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Jeyvison Nascimento
@@ -45,8 +50,34 @@ public class Mutation {
 			groupId, dataDefinition);
 	}
 
-	private static DataDefinitionResource _createDataDefinitionResource() {
-		return new DataDefinitionResourceImpl();
+	private static DataDefinitionResource _createDataDefinitionResource()
+		throws Exception {
+
+		DataDefinitionResource dataDefinitionResource =
+			_dataDefinitionResourceServiceTracker.getService();
+
+		dataDefinitionResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return dataDefinitionResource;
+	}
+
+	private static final ServiceTracker
+		<DataDefinitionResource, DataDefinitionResource>
+			_dataDefinitionResourceServiceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+
+		ServiceTracker<DataDefinitionResource, DataDefinitionResource>
+			dataDefinitionResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), DataDefinitionResource.class, null);
+
+		dataDefinitionResourceServiceTracker.open();
+
+		_dataDefinitionResourceServiceTracker =
+			dataDefinitionResourceServiceTracker;
 	}
 
 }

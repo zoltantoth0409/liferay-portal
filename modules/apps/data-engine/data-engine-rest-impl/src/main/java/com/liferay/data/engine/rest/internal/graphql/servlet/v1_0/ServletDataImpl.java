@@ -37,7 +37,7 @@ public class ServletDataImpl implements ServletData {
 
 	@Override
 	public String getPath() {
-		return "/data-engine-rest-graphql/v1_0";
+		return "/data-engine-graphql/v1_0";
 	}
 
 	@Override

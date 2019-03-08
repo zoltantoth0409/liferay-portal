@@ -26,10 +26,9 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	property = {
-		"oauth2.scope.checker.type=annotations",
-		"osgi.jaxrs.application.base=/data-engine-rest",
+		"osgi.jaxrs.application.base=/data-engine",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan)",
-		"osgi.jaxrs.name=data-engine-rest-application"
+		"osgi.jaxrs.name=Liferay.Data.Engine"
 	},
 	service = Application.class
 )

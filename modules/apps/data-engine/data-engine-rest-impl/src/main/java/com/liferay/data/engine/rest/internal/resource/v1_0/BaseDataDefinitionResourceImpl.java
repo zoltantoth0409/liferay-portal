@@ -16,7 +16,6 @@ package com.liferay.data.engine.rest.internal.resource.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -24,6 +23,12 @@ import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
+
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 
 import java.net.URI;
 
@@ -51,11 +56,17 @@ import javax.ws.rs.core.UriInfo;
 public abstract class BaseDataDefinitionResourceImpl
 	implements DataDefinitionResource {
 
-	@GET
 	@Override
+	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
 	@Path("/data-definitions")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
+	@Tags(value = {@Tag(name = "DataDefinition")})
 	public Page<DataDefinition> getDataDefinitionsPage(
 			@QueryParam("groupId") Long groupId, @Context Pagination pagination)
 		throws Exception {
@@ -63,12 +74,12 @@ public abstract class BaseDataDefinitionResourceImpl
 		return Page.of(Collections.emptyList());
 	}
 
-	@Consumes("application/json")
 	@Override
-	@Path("/data-definitions")
+	@Consumes("application/json")
 	@POST
+	@Path("/data-definitions")
 	@Produces("application/json")
-	@RequiresScope("everything.read")
+	@Tags(value = {@Tag(name = "DataDefinition")})
 	public DataDefinition postDataDefinition(
 			@QueryParam("groupId") Long groupId, DataDefinition dataDefinition)
 		throws Exception {
