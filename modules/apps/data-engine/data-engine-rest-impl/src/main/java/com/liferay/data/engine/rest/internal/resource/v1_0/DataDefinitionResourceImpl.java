@@ -56,20 +56,18 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			Long groupId, Pagination pagination)
 		throws Exception {
 
-		List<DDMStructure> ddmStructures =
-			_ddmStructureLocalService.getStructures(
+		return Page.of(
+			transform(
+				_ddmStructureLocalService.getStructures(
+					contextCompany.getCompanyId(), new long[] {groupId},
+					_portal.getClassNameId(DataDefinition.class),
+					pagination.getStartPosition(), pagination.getEndPosition(),
+					null),
+				this::_toDataDefinition),
+			pagination,
+			_ddmStructureLocalService.getStructuresCount(
 				contextCompany.getCompanyId(), new long[] {groupId},
-				_portal.getClassNameId(DataDefinition.class),
-				pagination.getStartPosition(), pagination.getEndPosition(),
-				null);
-
-		List<DataDefinition> deDataDefinitions = new ArrayList<>();
-
-		for (DDMStructure ddmStructure : ddmStructures) {
-			deDataDefinitions.add(_toDataDefinition(ddmStructure));
-		}
-
-		return Page.of(deDataDefinitions);
+				_portal.getClassNameId(DataDefinition.class)));
 	}
 
 	@Override
