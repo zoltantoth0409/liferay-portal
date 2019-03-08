@@ -30,15 +30,16 @@ import java.util.List;
  */
 public class DataDefinitionDeserializer {
 
-	public static DataDefinition toDataDefinition(String content) throws Exception {
-		DataDefinition dataDefinition = new DataDefinition();
+	public static DataDefinition toDataDefinition(String json) throws Exception {
+		return new DataDefinition() {
+			{
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+					json);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(content);
-
-		dataDefinition.setDataDefinitionFields(
-			_getDataDefinitionFields(jsonObject.getJSONArray("fields")));
-
-		return dataDefinition;
+				dataDefinitionFields = _getDataDefinitionFields(
+					jsonObject.getJSONArray("fields"));
+			}
+		};
 	}
 
 	private static DataDefinitionField _getDataDefinitionField(JSONObject jsonObject)
@@ -100,22 +101,18 @@ public class DataDefinitionDeserializer {
 			}
 		}
 
-		DataDefinitionField dataDefinitionField = new DataDefinitionField();
-
-		dataDefinitionField.setDefaultValue(
-			jsonObject.getString("defaultValue"));
-		dataDefinitionField.setIndexable(
-			jsonObject.getBoolean("indexable", true));
-		dataDefinitionField.setLabel(labels.toArray(new LocalizedValue[0]));
-		dataDefinitionField.setLocalizable(
-			jsonObject.getBoolean("localizable", false));
-		dataDefinitionField.setName(jsonObject.getString("name"));
-		dataDefinitionField.setRepeatable(
-			jsonObject.getBoolean("repeatable", false));
-		dataDefinitionField.setTip(tips.toArray(new LocalizedValue[0]));
-		dataDefinitionField.setFieldType(jsonObject.getString("type"));
-
-		return dataDefinitionField;
+		return new DataDefinitionField() {
+			{
+				defaultValue = jsonObject.getString("defaultValue");
+				indexable = jsonObject.getBoolean("indexable", true);
+				label = labels.toArray(new LocalizedValue[0]);
+				localizable = jsonObject.getBoolean("localizable", false);
+				name = jsonObject.getString("name");
+				repeatable = jsonObject.getBoolean("repeatable", false);
+				tip = tips.toArray(new LocalizedValue[0]);
+				fieldType = jsonObject.getString("type");
+			}
+		};
 	}
 
 	private static DataDefinitionField[] _getDataDefinitionFields(JSONArray jsonArray)
