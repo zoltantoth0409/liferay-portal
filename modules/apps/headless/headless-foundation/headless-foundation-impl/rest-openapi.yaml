@@ -1,8 +1,6 @@
 components:
     schemas:
         Category:
-            required:
-                - name
             description: https://www.schema.org/Category
             properties:
                 availableLanguages:
@@ -53,9 +51,11 @@ components:
                     enum:
                         - anyone
                           - members
-                              - owner
+                            - owner
                     type: string
                     writeOnly: true
+            required:
+                - name
             type: object
         Creator:
             description: https://www.schema.org/Creator
@@ -495,7 +495,7 @@ components:
                     enum:
                         - anyone
                           - members
-                              - owner
+                            - owner
                     type: string
                     writeOnly: true
             type: object
