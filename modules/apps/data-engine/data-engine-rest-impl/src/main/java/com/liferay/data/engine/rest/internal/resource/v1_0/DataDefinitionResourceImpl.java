@@ -66,7 +66,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		List<DataDefinition> deDataDefinitions = new ArrayList<>();
 
 		for (DDMStructure ddmStructure : ddmStructures) {
-			deDataDefinitions.add(mapToDataDefinition(ddmStructure));
+			deDataDefinitions.add(_toDataDefinition(ddmStructure));
 		}
 
 		return Page.of(deDataDefinitions);
@@ -94,7 +94,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				serviceContext);
 		}
 
-		return mapToDataDefinition(ddmStructure);
+		return _toDataDefinition(ddmStructure);
 	}
 
 	protected DDMStructure createDDMStructure(
@@ -128,7 +128,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		return localeMap;
 	}
 
-	protected DataDefinition mapToDataDefinition(DDMStructure ddmStructure)
+	protected DataDefinition _toDataDefinition(DDMStructure ddmStructure)
 		throws Exception {
 
 		DataDefinitionJSONDeserializer dataDefinitionJSONDeserializer =
