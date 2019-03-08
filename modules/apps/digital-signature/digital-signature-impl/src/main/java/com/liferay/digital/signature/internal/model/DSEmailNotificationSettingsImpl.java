@@ -36,25 +36,25 @@ public class DSEmailNotificationSettingsImpl
 	}
 
 	@Override
-	public String getReplyEmailAddressOverride() {
-		return _replyEmailAddressOverride;
+	public String getOverrideReplyEmailAddress() {
+		return _overrideReplyEmailAddress;
 	}
 
 	@Override
-	public String getReplyNameOverride() {
-		return _replyNameOverride;
+	public String getOverrideReplyName() {
+		return _overrideReplyName;
 	}
 
-	public void setReplyEmailAddressOverride(String replyEmailAddressOverride) {
-		_replyEmailAddressOverride = replyEmailAddressOverride;
+	public void setOverrideReplyEmailAddress(String overrideReplyEmailAddress) {
+		_overrideReplyEmailAddress = overrideReplyEmailAddress;
 	}
 
-	public void setReplyNameOverride(String replyNameOverride) {
-		_replyNameOverride = replyNameOverride;
+	public void setOverrideReplyName(String overrideReplyName) {
+		_overrideReplyName = overrideReplyName;
 	}
 
 	private final Set<String> _bccEmailAddresses = new HashSet<>();
-	private String _replyEmailAddressOverride;
-	private String _replyNameOverride;
+	private String _overrideReplyEmailAddress;
+	private String _overrideReplyName;
 
 }

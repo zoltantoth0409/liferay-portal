@@ -66,9 +66,9 @@ public class DSEmailNotificationBuilderImpl
 
 		dsEmailNotificationSettingsImpl.addBccEmailAddresses(
 			_bccEmailAddresses);
-		dsEmailNotificationSettingsImpl.setReplyNameOverride(
+		dsEmailNotificationSettingsImpl.setOverrideReplyName(
 			_replyEmailNameOverride);
-		dsEmailNotificationSettingsImpl.setReplyEmailAddressOverride(
+		dsEmailNotificationSettingsImpl.setOverrideReplyEmailAddress(
 			_replyEmailAddressOverride);
 
 		return dsEmailNotificationImpl;

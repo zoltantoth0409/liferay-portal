@@ -26,8 +26,8 @@ public interface DSEmailNotificationSettings {
 
 	public Collection<String> getBccEmailAddresses();
 
-	public String getReplyEmailAddressOverride();
+	public String getOverrideReplyEmailAddress();
 
-	public String getReplyNameOverride();
+	public String getOverrideReplyName();
 
 }
