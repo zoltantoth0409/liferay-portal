@@ -63,17 +63,13 @@ public class DataDefinitionDeserializer {
 				setLabel(
 					() -> {
 						if (!jsonObject.has("label")) {
-							return new LocalizedValue[0];
+							throw new Exception(
+								"Label property must contain localized values");
 						}
 
 						List<LocalizedValue> labels = new ArrayList<>();
 
 						JSONObject labelJSONObject = jsonObject.getJSONObject("label");
-
-						if (labelJSONObject == null) {
-							throw new Exception(
-								"Label property must contain localized values");
-						}
 
 						Iterator<String> keys = labelJSONObject.keys();
 
@@ -101,17 +97,13 @@ public class DataDefinitionDeserializer {
 				setTip(
 					() -> {
 						if (!jsonObject.has("tip")) {
-							return new LocalizedValue[0];
+							throw new Exception(
+								"Tip property must contain localized values");
 						}
 
 						List<LocalizedValue> tips = new ArrayList<>();
 
 						JSONObject tipJSONObject = jsonObject.getJSONObject("tip");
-
-						if (tipJSONObject == null) {
-							throw new Exception(
-								"Tip property must contain localized values");
-						}
 
 						Iterator<String> keys = tipJSONObject.keys();
 
