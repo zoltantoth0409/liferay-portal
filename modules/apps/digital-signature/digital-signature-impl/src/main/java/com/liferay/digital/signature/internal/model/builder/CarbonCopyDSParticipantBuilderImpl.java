@@ -26,9 +26,9 @@ public class CarbonCopyDSParticipantBuilderImpl
 	implements CarbonCopyDSParticipantBuilder {
 
 	public CarbonCopyDSParticipantBuilderImpl(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		super(name, email, routingOrder);
+		super(name, emailAddress, routingOrder);
 	}
 
 	@Override

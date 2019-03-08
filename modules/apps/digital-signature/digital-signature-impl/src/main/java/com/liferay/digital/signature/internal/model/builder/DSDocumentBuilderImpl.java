@@ -27,14 +27,14 @@ import com.liferay.digital.signature.model.builder.DSDocumentBuilder;
  */
 public class DSDocumentBuilderImpl implements DSDocumentBuilder {
 
-	public DSDocumentBuilderImpl(String documentId, String name) {
-		_documentId = documentId;
+	public DSDocumentBuilderImpl(String documentKey, String name) {
+		_documentKey = documentKey;
 		_name = name;
 	}
 
 	@Override
 	public DSDocument getDSDocument() {
-		DSDocumentImpl dsDocumentImpl = new DSDocumentImpl(_documentId, _name);
+		DSDocumentImpl dsDocumentImpl = new DSDocumentImpl(_documentKey, _name);
 
 		dsDocumentImpl.setAuthoritative(_authoritative);
 		dsDocumentImpl.setBase64String(_base64String);
@@ -103,7 +103,7 @@ public class DSDocumentBuilderImpl implements DSDocumentBuilder {
 	private Boolean _authoritative;
 	private String _base64String;
 	private String _description;
-	private final String _documentId;
+	private final String _documentKey;
 	private String _documentURL;
 	private DSSupplementalDocumentInfo _dsSupplementalDocumentInfo;
 	private String _extension;
