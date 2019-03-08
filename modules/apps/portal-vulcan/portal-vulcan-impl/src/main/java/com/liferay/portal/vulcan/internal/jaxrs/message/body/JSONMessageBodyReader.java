@@ -68,7 +68,7 @@ public class JSONMessageBodyReader implements MessageBodyReader {
 
 		Object value = objectMapper.readValue(inputStream);
 
-		_validateValue(value);
+		_validate(value);
 
 		return value;
 	}
@@ -87,7 +87,7 @@ public class JSONMessageBodyReader implements MessageBodyReader {
 		);
 	}
 
-	private void _validateValue(Object value) {
+	private void _validate(Object value) {
 		Validator validator =
 			ApacheValidatorFactory.SINGLE_INSTANCE.getValidator();
 
