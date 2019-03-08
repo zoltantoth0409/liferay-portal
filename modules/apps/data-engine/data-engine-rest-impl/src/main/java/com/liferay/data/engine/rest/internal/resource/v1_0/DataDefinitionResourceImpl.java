@@ -87,7 +87,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				userId, groupId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 				_portal.getClassNameId(DataDefinition.class), null, nameMap, descriptionMap,
 				serialize(dataDefinition), dataDefinition.getStorageType(),
-				ServiceContextThreadLocal.getServiceContext()));
+				new ServiceContext()));
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				userId, dataDefinition.getId(),
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID, nameMap,
 				descriptionMap, serialize(dataDefinition),
-				ServiceContextThreadLocal.getServiceContext()));
+				new ServiceContext()));
 	}
 
 	protected Map<Locale, String> createLocalizedMap(
