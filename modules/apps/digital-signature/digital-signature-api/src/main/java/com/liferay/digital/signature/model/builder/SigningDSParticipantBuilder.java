@@ -26,12 +26,12 @@ import java.util.Collection;
 @ProviderType
 public interface SigningDSParticipantBuilder {
 
-	public <S extends DSParticipantBuilder> S addDSField(DSField dsField);
+	public <S extends DSParticipantBuilder> S addDSField(DSField<?> dsField);
 
 	public <S extends DSParticipantBuilder> S addDSFields(
-		Collection<DSField> dsFields);
+		Collection<DSField<?>> dsFields);
 
-	public <S extends DSParticipantBuilder> S addDSFields(DSField... dsFields);
+	public <S extends DSParticipantBuilder> S addDSFields(DSField<?>... dsFields);
 
 	public <S extends DSParticipantBuilder> S setAutoNavigation(
 		Boolean autoNavigation);

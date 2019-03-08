@@ -31,7 +31,7 @@ import java.util.Set;
  * @author Michael C. Han
  */
 public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
-	extends BaseDSParticipantBuilder implements SigningDSParticipantBuilder {
+	extends BaseDSParticipantBuilder<T> implements SigningDSParticipantBuilder {
 
 	public BaseSigningDSParticipantBuilder(
 		String name, String email, int routingOrder) {
@@ -41,7 +41,7 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <S extends DSParticipantBuilder> S addDSField(DSField dsField) {
+	public <S extends DSParticipantBuilder> S addDSField(DSField<?> dsField) {
 		_dsFields.add(dsField);
 
 		return (S)this;
@@ -50,7 +50,7 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	@Override
 	@SuppressWarnings("unchecked")
 	public <S extends DSParticipantBuilder> S addDSFields(
-		Collection<DSField> dsFields) {
+		Collection<DSField<?>> dsFields) {
 
 		_dsFields.addAll(dsFields);
 
@@ -59,7 +59,7 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <S extends DSParticipantBuilder> S addDSFields(DSField... dsFields) {
+	public <S extends DSParticipantBuilder> S addDSFields(DSField<?>... dsFields) {
 		Collections.addAll(_dsFields, dsFields);
 
 		return (S)this;
@@ -137,7 +137,7 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 		return _defaultParticipant;
 	}
 
-	protected Set<DSField> getDSFields() {
+	protected Set<DSField<?>> getDSFields() {
 		return _dsFields;
 	}
 
@@ -151,7 +151,7 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 
 	private Boolean _autoNavigation;
 	private Boolean _defaultParticipant;
-	private Set<DSField> _dsFields = new HashSet<>();
+	private Set<DSField<?>> _dsFields = new HashSet<>();
 	private DSSignatureInfo _dsSignatureInfo;
 	private Boolean _signInEachLocation;
 

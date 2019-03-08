@@ -30,7 +30,7 @@ public interface SignerDSParticipant extends DSParticipant {
 
 	public Boolean getDefaultParticipant();
 
-	public Collection<DSField> getDSFields();
+	public Collection<DSField<?>> getDSFields();
 
 	public DSSignatureInfo getDSSignatureInfo();
 

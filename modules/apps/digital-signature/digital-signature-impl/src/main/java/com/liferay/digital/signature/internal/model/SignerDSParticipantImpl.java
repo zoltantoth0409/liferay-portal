@@ -39,7 +39,7 @@ public class SignerDSParticipantImpl
 		setDSParticipantRole(DSParticipantRole.SIGNER);
 	}
 
-	public void addDSFields(Collection<DSField> dsfields) {
+	public void addDSFields(Collection<DSField<?>> dsfields) {
 		_dsFields.addAll(dsfields);
 	}
 
@@ -54,7 +54,7 @@ public class SignerDSParticipantImpl
 	}
 
 	@Override
-	public Collection<DSField> getDSFields() {
+	public Collection<DSField<?>> getDSFields() {
 		return Collections.unmodifiableCollection(_dsFields);
 	}
 
