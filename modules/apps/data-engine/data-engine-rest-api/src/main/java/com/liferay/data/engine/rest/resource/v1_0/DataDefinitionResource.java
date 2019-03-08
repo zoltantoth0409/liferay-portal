@@ -40,6 +40,10 @@ public interface DataDefinitionResource {
 			Long groupId, DataDefinition dataDefinition)
 		throws Exception;
 
+	public DataDefinition putDataDefinition(
+			Long groupId, DataDefinition dataDefinition)
+		throws Exception;
+
 	public void setContextCompany(Company contextCompany);
 
 }

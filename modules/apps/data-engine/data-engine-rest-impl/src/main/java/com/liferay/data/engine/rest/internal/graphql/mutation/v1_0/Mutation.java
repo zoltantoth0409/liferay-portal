@@ -50,6 +50,19 @@ public class Mutation {
 			groupId, dataDefinition);
 	}
 
+	@GraphQLInvokeDetached
+	public DataDefinition putDataDefinition(
+			@GraphQLName("groupId") Long groupId,
+			@GraphQLName("DataDefinition") DataDefinition dataDefinition)
+		throws Exception {
+
+		DataDefinitionResource dataDefinitionResource =
+			_createDataDefinitionResource();
+
+		return dataDefinitionResource.putDataDefinition(
+			groupId, dataDefinition);
+	}
+
 	private static DataDefinitionResource _createDataDefinitionResource()
 		throws Exception {
 

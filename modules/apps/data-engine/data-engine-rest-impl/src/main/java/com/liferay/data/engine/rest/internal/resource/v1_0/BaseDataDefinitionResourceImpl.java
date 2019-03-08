@@ -40,6 +40,7 @@ import javax.annotation.Generated;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -81,6 +82,19 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public DataDefinition postDataDefinition(
+			@QueryParam("groupId") Long groupId, DataDefinition dataDefinition)
+		throws Exception {
+
+		return new DataDefinition();
+	}
+
+	@Override
+	@Consumes("application/json")
+	@PUT
+	@Path("/data-definitions")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "DataDefinition")})
+	public DataDefinition putDataDefinition(
 			@QueryParam("groupId") Long groupId, DataDefinition dataDefinition)
 		throws Exception {
 
