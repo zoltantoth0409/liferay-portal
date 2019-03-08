@@ -52,6 +52,13 @@ public class ChangeListsIndicatorDisplayContext {
 		soyContext.put(
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			_httpServletRequest, CTPortletKeys.CHANGE_LISTS,
+			PortletRequest.RENDER_PHASE);
+
+		soyContext.put("urlChangeListsOverview", portletURL.toString());
+
 		soyContext.put(
 			"urlCollectionsBase",
 			_themeDisplay.getPortalURL() + "/o/change-tracking/collections");
@@ -61,12 +68,6 @@ public class ChangeListsIndicatorDisplayContext {
 				_themeDisplay.getPortalURL(),
 				"/o/change-tracking/processes?companyId=",
 				_themeDisplay.getCompanyId(), "&published=true"));
-
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			_httpServletRequest, CTPortletKeys.CHANGE_LISTS,
-			PortletRequest.RENDER_PHASE);
-
-		soyContext.put("urlChangeListsOverview", portletURL.toString());
 
 		return soyContext;
 	}
