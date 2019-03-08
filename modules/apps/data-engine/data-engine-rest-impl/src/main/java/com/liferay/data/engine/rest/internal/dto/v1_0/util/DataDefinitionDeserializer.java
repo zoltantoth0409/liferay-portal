@@ -62,31 +62,33 @@ public class DataDefinitionDeserializer {
 					});
 				setLabel(
 					() -> {
-						List<LocalizedValue> labels = new ArrayList<>();
-
-						if (jsonObject.has("label")) {
-							JSONObject labelJSONObject = jsonObject.getJSONObject("label");
-
-							if (labelJSONObject == null) {
-								throw new Exception(
-									"Label property must contain localized values");
-							}
-
-							Iterator<String> keys = labelJSONObject.keys();
-
-							while (keys.hasNext()) {
-								String key = keys.next();
-
-								LocalizedValue localizedValue = new LocalizedValue();
-
-								localizedValue.setKey(key);
-								localizedValue.setValue(labelJSONObject.getString(key));
-
-								labels.add(localizedValue);
-							}
+						if (!jsonObject.has("label")) {
+							return new LocalizedValue[0];
 						}
 
-						return labels.toArray(new LocalizedValue[0]);
+						List<LocalizedValue> labels = new ArrayList<>();
+
+						JSONObject labelJSONObject = jsonObject.getJSONObject("label");
+
+						if (labelJSONObject == null) {
+							throw new Exception(
+								"Label property must contain localized values");
+						}
+
+						Iterator<String> keys = labelJSONObject.keys();
+
+						while (keys.hasNext()) {
+							String key = keys.next();
+
+							LocalizedValue localizedValue = new LocalizedValue();
+
+							localizedValue.setKey(key);
+							localizedValue.setValue(labelJSONObject.getString(key));
+
+							labels.add(localizedValue);
+						}
+
+						return labels.toArray(new LocalizedValue[labels.size()]);
 					});
 				setName(
 					() -> {
@@ -98,31 +100,33 @@ public class DataDefinitionDeserializer {
 					});
 				setTip(
 					() -> {
-						List<LocalizedValue> tips = new ArrayList<>();
-
-						if (jsonObject.has("tip")) {
-							JSONObject tipJSONObject = jsonObject.getJSONObject("tip");
-
-							if (tipJSONObject == null) {
-								throw new Exception(
-									"Tip property must contain localized values");
-							}
-
-							Iterator<String> keys = tipJSONObject.keys();
-
-							while (keys.hasNext()) {
-								String key = keys.next();
-
-								LocalizedValue localizedValue = new LocalizedValue();
-
-								localizedValue.setKey(key);
-								localizedValue.setValue(tipJSONObject.getString(key));
-
-								tips.add(localizedValue);
-							}
+						if (!jsonObject.has("tip")) {
+							return new LocalizedValue[0];
 						}
 
-						return tips.toArray(new LocalizedValue[0]);
+						List<LocalizedValue> tips = new ArrayList<>();
+
+						JSONObject tipJSONObject = jsonObject.getJSONObject("tip");
+
+						if (tipJSONObject == null) {
+							throw new Exception(
+								"Tip property must contain localized values");
+						}
+
+						Iterator<String> keys = tipJSONObject.keys();
+
+						while (keys.hasNext()) {
+							String key = keys.next();
+
+							LocalizedValue localizedValue = new LocalizedValue();
+
+							localizedValue.setKey(key);
+							localizedValue.setValue(tipJSONObject.getString(key));
+
+							tips.add(localizedValue);
+						}
+
+						return tips.toArray(new LocalizedValue[tips.size()]);
 					});
 			}
 		};
