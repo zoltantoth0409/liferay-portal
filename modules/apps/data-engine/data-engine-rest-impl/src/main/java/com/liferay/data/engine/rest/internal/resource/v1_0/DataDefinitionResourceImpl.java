@@ -124,19 +124,19 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		dataDefinition.setCreateDate(
 			ddmStructure.getCreateDate());
 		dataDefinition.setDescription(
-			mapToLocalizedValueArray(ddmStructure.getDescriptionMap()));
+			_toLocalizedValues(ddmStructure.getDescriptionMap()));
 		dataDefinition.setId(ddmStructure.getStructureId());
 		dataDefinition.setModifiedDate(
 			ddmStructure.getModifiedDate());
 		dataDefinition.setName(
-			mapToLocalizedValueArray(ddmStructure.getNameMap()));
+			_toLocalizedValues(ddmStructure.getNameMap()));
 		dataDefinition.setStorageType(ddmStructure.getStorageType());
 		dataDefinition.setUserId(ddmStructure.getUserId());
 
 		return dataDefinition;
 	}
 
-	protected LocalizedValue[] mapToLocalizedValueArray(
+	protected LocalizedValue[] _toLocalizedValues(
 		Map<Locale, String> map) {
 
 		List<LocalizedValue> localizedValues = new ArrayList<>();
