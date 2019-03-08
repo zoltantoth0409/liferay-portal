@@ -48,9 +48,6 @@ public class DataDefinitionDeserializer {
 		return new DataDefinitionField() {
 			{
 				defaultValue = jsonObject.getString("defaultValue");
-				indexable = jsonObject.getBoolean("indexable", true);
-				localizable = jsonObject.getBoolean("localizable", false);
-				repeatable = jsonObject.getBoolean("repeatable", false);
 
 				if (!jsonObject.has("type")) {
 					throw new Exception("Type property is required");
@@ -58,17 +55,23 @@ public class DataDefinitionDeserializer {
 
 				fieldType = jsonObject.getString("type");
 
+				indexable = jsonObject.getBoolean("indexable", true);
+
 				if (!jsonObject.has("label")) {
 					throw new Exception("Label property is required");
 				}
 
 				label = _toLocalizedValues(jsonObject.getJSONObject("label"));
 
+				localizable = jsonObject.getBoolean("localizable", false);
+
 				if (!jsonObject.has("name")) {
 					throw new Exception("Name property is required");
 				}
 
 				name = jsonObject.getString("name");
+
+				repeatable = jsonObject.getBoolean("repeatable", false);
 
 				if (!jsonObject.has("tip")) {
 					throw new Exception("Tip property is required");
