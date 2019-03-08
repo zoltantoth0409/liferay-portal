@@ -30,8 +30,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.Produces;
@@ -41,6 +43,8 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.Provider;
 import javax.ws.rs.ext.Providers;
+
+import org.apache.bval.jsr.ApacheValidationProvider;
 
 /**
  * @author Javier Gamarra
@@ -91,8 +95,7 @@ public class JSONMessageBodyReader implements MessageBodyReader {
 	}
 
 	private void _validate(Object value) {
-		Validator validator =
-			ApacheValidatorFactory.SINGLE_INSTANCE.getValidator();
+		Validator validator = _validatorFactory.getValidator();
 
 		Set<ConstraintViolation<Object>> constraintViolations =
 			validator.validate(value);
@@ -112,6 +115,15 @@ public class JSONMessageBodyReader implements MessageBodyReader {
 		}
 
 		throw new ValidationException(sb.toString());
+	}
+
+	private static final ValidatorFactory _validatorFactory;
+
+	static {
+		_validatorFactory = Validation.byProvider(
+			ApacheValidationProvider.class
+		).configure(
+		).buildValidatorFactory();
 	}
 
 	@Context
