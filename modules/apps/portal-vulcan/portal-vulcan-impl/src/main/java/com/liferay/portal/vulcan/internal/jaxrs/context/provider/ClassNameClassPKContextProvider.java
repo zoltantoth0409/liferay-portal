@@ -14,6 +14,8 @@
 
 package com.liferay.portal.vulcan.internal.jaxrs.context.provider;
 
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.vulcan.provider.ClassNameClassPK;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,13 +39,11 @@ public class ClassNameClassPKContextProvider
 
 		String requestURI = httpServletRequest.getRequestURI();
 
-		String lastSegment = requestURI.substring(
-			requestURI.lastIndexOf("/") + 1);
-
-		String[] fieldNames = lastSegment.split(":");
+		String[] fieldNames = StringUtil.split(
+			requestURI.substring(requestURI.lastIndexOf("/") + 1), ":");
 
 		return ClassNameClassPK.create(
-			fieldNames[0], Long.valueOf(fieldNames[1]));
+			fieldNames[0], GetterUtil.getLong(fieldNames[1]));
 	}
 
 }
