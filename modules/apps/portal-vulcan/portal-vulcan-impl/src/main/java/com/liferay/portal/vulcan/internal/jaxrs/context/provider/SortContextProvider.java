@@ -28,7 +28,6 @@ import com.liferay.portal.odata.sort.SortParser;
 import com.liferay.portal.odata.sort.SortParserProvider;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.internal.accept.language.AcceptLanguageImpl;
-import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.util.List;
 
@@ -82,18 +81,7 @@ public class SortContextProvider implements ContextProvider<Sort[]> {
 			return null;
 		}
 
-		EntityModel entityModel = null;
-
-		Object matchedResource = ContextProviderUtil.getMatchedResource(
-			message);
-
-		if (matchedResource instanceof EntityModelResource) {
-			EntityModelResource entityModelResource =
-				(EntityModelResource)matchedResource;
-
-			entityModel = entityModelResource.getEntityModel(
-				ContextProviderUtil.getQueryParameters(message));
-		}
+		EntityModel entityModel = ContextProviderUtil.getEntityModel(message);
 
 		if (entityModel == null) {
 			return null;

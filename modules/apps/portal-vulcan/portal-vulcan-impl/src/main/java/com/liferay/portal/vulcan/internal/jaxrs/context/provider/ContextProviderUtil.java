@@ -14,6 +14,9 @@
 
 package com.liferay.portal.vulcan.internal.jaxrs.context.provider;
 
+import com.liferay.portal.odata.entity.EntityModel;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,12 +38,26 @@ import org.apache.cxf.message.Message;
  */
 public class ContextProviderUtil {
 
+	public static EntityModel getEntityModel(Message message) throws Exception {
+		Object matchedResource = _getMatchedResource(message);
+
+		if (matchedResource instanceof EntityModelResource) {
+			EntityModelResource entityModelResource =
+				(EntityModelResource)matchedResource;
+
+			return entityModelResource.getEntityModel(
+				_getQueryParameters(message));
+		}
+
+		return null;
+	}
+
 	public static HttpServletRequest getHttpServletRequest(Message message) {
 		return (HttpServletRequest)message.getContextualProperty(
 			"HTTP.REQUEST");
 	}
 
-	public static Object getMatchedResource(Message message) {
+	private static Object _getMatchedResource(Message message) {
 		Exchange exchange = message.getExchange();
 
 		ResourceContext resourceContext = new ResourceContextImpl(
@@ -55,7 +72,7 @@ public class ContextProviderUtil {
 		return resourceContext.getResource(matchedResourceClass);
 	}
 
-	public static MultivaluedMap<String, String> getQueryParameters(
+	private static MultivaluedMap<String, String> _getQueryParameters(
 		Message message) {
 
 		UriInfoImpl uriInfo = new UriInfoImpl(message);
