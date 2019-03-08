@@ -430,7 +430,7 @@ public class UpgradeContentTargetingTest {
 			Criteria.Conjunction.AND,
 			Criteria.Conjunction.parse(criterion.getConjunction()));
 		Assert.assertEquals(
-			"contains(referrerUrl, 'liferay')", criterion.getFilterString());
+			"contains(referrerURL, 'liferay')", criterion.getFilterString());
 	}
 
 	@Test
