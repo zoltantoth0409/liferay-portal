@@ -16,14 +16,13 @@ package com.liferay.data.engine.rest.internal.resource.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
-import com.liferay.data.engine.rest.internal.io.DataDefinitionJSONDeserializer;
-import com.liferay.data.engine.rest.internal.io.DataDefinitionJSONSerializer;
+import com.liferay.data.engine.rest.internal.io.DataDefinitionDeserializer;
+import com.liferay.data.engine.rest.internal.io.DataDefinitionSerializer;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureService;
-import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -81,7 +80,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				_portal.getClassNameId(DataDefinition.class), null,
 				_toLocalizationMap(dataDefinition.getName()),
 				_toLocalizationMap(dataDefinition.getDescription()),
-				DataDefinitionJSONSerializer.serialize(dataDefinition),
+				DataDefinitionSerializer.serialize(dataDefinition),
 				dataDefinition.getStorageType(),
 				new ServiceContext()));
 	}
@@ -97,7 +96,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 				_toLocalizationMap(dataDefinition.getName()),
 				_toLocalizationMap(dataDefinition.getDescription()),
-				DataDefinitionJSONSerializer.serialize(dataDefinition),
+				DataDefinitionSerializer.serialize(dataDefinition),
 				new ServiceContext()));
 	}
 
@@ -105,7 +104,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		throws Exception {
 
 		DataDefinition dataDefinition =
-			DataDefinitionJSONDeserializer.deserialize(
+			DataDefinitionDeserializer.deserialize(
 				ddmStructure.getDefinition());
 
 		dataDefinition.setCreateDate(ddmStructure.getCreateDate());
@@ -154,9 +153,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 	@Reference
 	private DDMStructureService _ddmStructureService;
-
-	@Reference
-	private JSONFactory _jsonFactory;
 
 	@Reference
 	private Portal _portal;

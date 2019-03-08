@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * @author Jeyvison Nascimento
  */
-public class DataDefinitionJSONDeserializer {
+public class DataDefinitionDeserializer {
 
 	public static DataDefinition deserialize(String content) throws Exception {
 		DataDefinition dataDefinition = new DataDefinition();
