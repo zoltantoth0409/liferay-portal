@@ -23,7 +23,7 @@ import com.liferay.digital.signature.model.builder.ParticipantModifyingDSPartici
  */
 public abstract class BaseParticipantModifyingDSParticipantBuilder
 	<T extends DSParticipant>
-		extends BaseDSParticipantBuilder
+		extends BaseDSParticipantBuilder<T>
 		implements ParticipantModifyingDSParticipantBuilder {
 
 	public BaseParticipantModifyingDSParticipantBuilder(
