@@ -22,6 +22,7 @@ import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
+import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -58,14 +59,14 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 		return Page.of(
 			transform(
-				_ddmStructureLocalService.getStructures(
+				_ddmStructureService.getStructures(
 					contextCompany.getCompanyId(), new long[] {groupId},
 					_portal.getClassNameId(DataDefinition.class),
 					pagination.getStartPosition(), pagination.getEndPosition(),
 					null),
 				this::_toDataDefinition),
 			pagination,
-			_ddmStructureLocalService.getStructuresCount(
+			_ddmStructureService.getStructuresCount(
 				contextCompany.getCompanyId(), new long[] {groupId},
 				_portal.getClassNameId(DataDefinition.class)));
 	}
@@ -195,6 +196,9 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 	@Reference
 	private DDMStructureLocalService _ddmStructureLocalService;
+
+	@Reference
+	private DDMStructureService _ddmStructureService;
 
 	@Reference
 	private JSONFactory _jsonFactory;
