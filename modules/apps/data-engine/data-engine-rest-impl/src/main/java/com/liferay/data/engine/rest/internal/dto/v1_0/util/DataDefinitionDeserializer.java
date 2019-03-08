@@ -128,7 +128,8 @@ public class DataDefinitionDeserializer {
 			dataDefinitionFields.add(dataDefinitionField);
 		}
 
-		return dataDefinitionFields.toArray(new DataDefinitionField[0]);
+		return dataDefinitionFields.toArray(
+			new DataDefinitionField[dataDefinitionFields.size()]);
 	}
 
 }
