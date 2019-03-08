@@ -18,7 +18,7 @@ import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONFactory;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 
 import java.util.ArrayList;
@@ -30,22 +30,18 @@ import java.util.List;
  */
 public class DataDefinitionJSONDeserializer {
 
-	public DataDefinitionJSONDeserializer(JSONFactory jsonFactory) {
-		this.jsonFactory = jsonFactory;
-	}
-
-	public DataDefinition deserialize(String content) throws Exception {
+	public static DataDefinition deserialize(String content) throws Exception {
 		DataDefinition dataDefinition = new DataDefinition();
 
-		JSONObject jsonObject = jsonFactory.createJSONObject(content);
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(content);
 
 		dataDefinition.setDataDefinitionFields(
-			getDataDefinitionFields(jsonObject.getJSONArray("fields")));
+			_getDataDefinitionFields(jsonObject.getJSONArray("fields")));
 
 		return dataDefinition;
 	}
 
-	protected DataDefinitionField getDataDefinitionField(JSONObject jsonObject)
+	private static DataDefinitionField _getDataDefinitionField(JSONObject jsonObject)
 		throws Exception {
 
 		List<LocalizedValue> labels = new ArrayList<>();
@@ -122,14 +118,14 @@ public class DataDefinitionJSONDeserializer {
 		return dataDefinitionField;
 	}
 
-	protected DataDefinitionField[] getDataDefinitionFields(JSONArray jsonArray)
+	private static DataDefinitionField[] _getDataDefinitionFields(JSONArray jsonArray)
 		throws Exception {
 
 		List<DataDefinitionField> dataDefinitionFields = new ArrayList<>(
 			jsonArray.length());
 
 		for (int i = 0; i < jsonArray.length(); i++) {
-			DataDefinitionField dataDefinitionField = getDataDefinitionField(
+			DataDefinitionField dataDefinitionField = _getDataDefinitionField(
 				jsonArray.getJSONObject(i));
 
 			dataDefinitionFields.add(dataDefinitionField);
@@ -137,7 +133,5 @@ public class DataDefinitionJSONDeserializer {
 
 		return dataDefinitionFields.toArray(new DataDefinitionField[0]);
 	}
-
-	protected JSONFactory jsonFactory;
 
 }

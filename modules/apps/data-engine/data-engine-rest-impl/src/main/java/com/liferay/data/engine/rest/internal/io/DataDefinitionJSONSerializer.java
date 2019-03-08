@@ -18,7 +18,7 @@ import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONFactory;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -27,26 +27,22 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class DataDefinitionJSONSerializer {
 
-	public DataDefinitionJSONSerializer(JSONFactory jsonFactory) {
-		this.jsonFactory = jsonFactory;
-	}
-
-	public String serialize(DataDefinition dataDefinition) throws Exception {
-		JSONObject jsonObject = jsonFactory.createJSONObject();
+	public static String serialize(DataDefinition dataDefinition) throws Exception {
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put(
 			"fields",
-			getDEDataDefinitionFieldsJSONArray(
+			_getDEDataDefinitionFieldsJSONArray(
 				dataDefinition.getDataDefinitionFields()));
 
 		return jsonObject.toJSONString();
 	}
 
-	protected JSONObject getDataDefinitionFieldJSONObject(
+	private static JSONObject _getDataDefinitionFieldJSONObject(
 			DataDefinitionField dataDefinitionField)
 		throws Exception {
 
-		JSONObject jsonObject = jsonFactory.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		Object defaultValue = dataDefinitionField.getDefaultValue();
 
@@ -59,7 +55,7 @@ public class DataDefinitionJSONSerializer {
 		LocalizedValue[] label = dataDefinitionField.getLabel();
 
 		if (!(label.length == 0)) {
-			setProperty("label", jsonObject, label);
+			_setProperty("label", jsonObject, label);
 		}
 
 		jsonObject.put("localizable", dataDefinitionField.getLocalizable());
@@ -77,7 +73,7 @@ public class DataDefinitionJSONSerializer {
 		LocalizedValue[] tip = dataDefinitionField.getTip();
 
 		if (!(tip.length == 0)) {
-			setProperty("tip", jsonObject, tip);
+			_setProperty("tip", jsonObject, tip);
 		}
 
 		String type = dataDefinitionField.getFieldType();
@@ -91,25 +87,25 @@ public class DataDefinitionJSONSerializer {
 		return jsonObject;
 	}
 
-	protected JSONArray getDEDataDefinitionFieldsJSONArray(
+	private static JSONArray _getDEDataDefinitionFieldsJSONArray(
 			DataDefinitionField[] dataDefinitionFields)
 		throws Exception {
 
-		JSONArray jsonArray = jsonFactory.createJSONArray();
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (DataDefinitionField dataDefinitionField : dataDefinitionFields) {
 			jsonArray.put(
-				getDataDefinitionFieldJSONObject(dataDefinitionField));
+				_getDataDefinitionFieldJSONObject(dataDefinitionField));
 		}
 
 		return jsonArray;
 	}
 
-	protected void setProperty(
+	private static void _setProperty(
 		String propertyKey, JSONObject jsonObject,
 		LocalizedValue[] localizedValues) {
 
-		JSONObject languageJSONObject = jsonFactory.createJSONObject();
+		JSONObject languageJSONObject = JSONFactoryUtil.createJSONObject();
 
 		for (LocalizedValue localizedValue : localizedValues) {
 			languageJSONObject.put(
@@ -118,7 +114,5 @@ public class DataDefinitionJSONSerializer {
 
 		jsonObject.put(propertyKey, languageJSONObject);
 	}
-
-	protected JSONFactory jsonFactory;
 
 }
