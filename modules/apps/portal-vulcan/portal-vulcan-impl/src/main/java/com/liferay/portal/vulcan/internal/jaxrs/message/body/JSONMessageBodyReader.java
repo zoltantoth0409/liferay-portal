@@ -112,7 +112,9 @@ public class JSONMessageBodyReader implements MessageBodyReader {
 	}
 
 	private void _validate(Object value) {
-		Validator validator = _getValidatorFactory().getValidator();
+		ValidatorFactory validatorFactory = _getValidatorFactory();
+
+		Validator validator = validatorFactory.getValidator();
 
 		Set<ConstraintViolation<Object>> constraintViolations =
 			validator.validate(value);
