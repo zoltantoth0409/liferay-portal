@@ -40,28 +40,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "DataDefinition")
 public class DataDefinition {
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
-		try {
-			id = idUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected Long id;
-
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -136,6 +114,28 @@ public class DataDefinition {
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected LocalizedValue[] description;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected Long id;
 
 	public Date getModifiedDate() {
 		return modifiedDate;
@@ -238,11 +238,6 @@ public class DataDefinition {
 
 		sb.append("{");
 
-		sb.append("\"id\": ");
-
-		sb.append(id);
-		sb.append(", ");
-
 		sb.append("\"createDate\": ");
 
 		sb.append("\"");
@@ -290,6 +285,11 @@ public class DataDefinition {
 			sb.append("]");
 		}
 
+		sb.append(", ");
+
+		sb.append("\"id\": ");
+
+		sb.append(id);
 		sb.append(", ");
 
 		sb.append("\"modifiedDate\": ");
