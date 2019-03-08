@@ -3,23 +3,26 @@ components:
         DataDefinition:
             description: https://www.schema.org/DataDefinition
             properties:
-                createDate:
-                    format: date
-                    type: string
                 dataDefinitionFields:
                     items:
                         $ref: '#/components/schemas/DataDefinitionField'
                     type: array
+                dateCreated:
+                    format: date-time
+                    type: string
+                dateModified:
+                    format: date-time
+                    type: string
                 description:
                     items:
                         $ref: '#/components/schemas/LocalizedValue'
                     type: array
+                groupId:
+                    format: int64
+                    type: integer
                 id:
                     format: int64
                     type: integer
-                modifiedDate:
-                    format: date
-                    type: string
                 name:
                     items:
                         $ref: '#/components/schemas/LocalizedValue'
@@ -118,11 +121,42 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/DataDefinition"
             tags: ["DataDefinition"]
+    "/data-definitions/{data-definition-id}":
+        delete:
+            parameters:
+                - in: path
+                  name: data-definition-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            responses:
+                204:
+                    content:
+                        application/json: {}
+                    description: ""
+            tags: ["DataDefinition"]
+        get:
+            parameters:
+                - in: path
+                  name: data-definition-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/DataDefinition"
+                    description: ""
+            tags: ["DataDefinition"]
         put:
             parameters:
-                - in: query
-                  name: groupId
-                  reqired: true
+                - in: path
+                  name: data-definition-id
+                  required: true
                   schema:
                       format: int64
                       type: integer
@@ -137,4 +171,5 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/DataDefinition"
+                    description: ""
             tags: ["DataDefinition"]
