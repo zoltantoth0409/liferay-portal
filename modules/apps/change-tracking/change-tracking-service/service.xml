@@ -115,7 +115,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="OwnerCTEntryID" return-type="Collection">
+		<finder name="OwnerCTEntryId" return-type="Collection">
 			<finder-column name="ownerCTEntryId" />
 		</finder>
 
