@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class DataDefinitionSerializer {
 
-	public static String serialize(DataDefinition dataDefinition) throws Exception {
+	public static String toJSON(DataDefinition dataDefinition) throws Exception {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put(

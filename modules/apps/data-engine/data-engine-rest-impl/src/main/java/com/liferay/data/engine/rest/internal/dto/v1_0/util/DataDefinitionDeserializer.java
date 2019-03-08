@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class DataDefinitionDeserializer {
 
-	public static DataDefinition deserialize(String content) throws Exception {
+	public static DataDefinition toDataDefinition(String content) throws Exception {
 		DataDefinition dataDefinition = new DataDefinition();
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(content);

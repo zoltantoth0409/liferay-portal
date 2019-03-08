@@ -80,7 +80,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				_portal.getClassNameId(DataDefinition.class), null,
 				_toLocalizationMap(dataDefinition.getName()),
 				_toLocalizationMap(dataDefinition.getDescription()),
-				DataDefinitionSerializer.serialize(dataDefinition),
+				DataDefinitionSerializer.toJSON(dataDefinition),
 				dataDefinition.getStorageType(),
 				new ServiceContext()));
 	}
@@ -96,7 +96,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 				_toLocalizationMap(dataDefinition.getName()),
 				_toLocalizationMap(dataDefinition.getDescription()),
-				DataDefinitionSerializer.serialize(dataDefinition),
+				DataDefinitionSerializer.toJSON(dataDefinition),
 				new ServiceContext()));
 	}
 
@@ -104,7 +104,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		throws Exception {
 
 		DataDefinition dataDefinition =
-			DataDefinitionDeserializer.deserialize(
+			DataDefinitionDeserializer.toDataDefinition(
 				ddmStructure.getDefinition());
 
 		dataDefinition.setCreateDate(ddmStructure.getCreateDate());
