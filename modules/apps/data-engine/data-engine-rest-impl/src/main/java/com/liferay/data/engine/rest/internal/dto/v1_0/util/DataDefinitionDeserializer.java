@@ -67,24 +67,7 @@ public class DataDefinitionDeserializer {
 								"Label property must contain localized values");
 						}
 
-						List<LocalizedValue> labels = new ArrayList<>();
-
-						JSONObject labelJSONObject = jsonObject.getJSONObject("label");
-
-						Iterator<String> keys = labelJSONObject.keys();
-
-						while (keys.hasNext()) {
-							String key = keys.next();
-
-							LocalizedValue localizedValue = new LocalizedValue();
-
-							localizedValue.setKey(key);
-							localizedValue.setValue(labelJSONObject.getString(key));
-
-							labels.add(localizedValue);
-						}
-
-						return labels.toArray(new LocalizedValue[labels.size()]);
+						return _toLocalizedValues(jsonObject.getJSONObject("label"));
 					});
 				setName(
 					() -> {
@@ -101,27 +84,29 @@ public class DataDefinitionDeserializer {
 								"Tip property must contain localized values");
 						}
 
-						List<LocalizedValue> tips = new ArrayList<>();
-
-						JSONObject tipJSONObject = jsonObject.getJSONObject("tip");
-
-						Iterator<String> keys = tipJSONObject.keys();
-
-						while (keys.hasNext()) {
-							String key = keys.next();
-
-							LocalizedValue localizedValue = new LocalizedValue();
-
-							localizedValue.setKey(key);
-							localizedValue.setValue(tipJSONObject.getString(key));
-
-							tips.add(localizedValue);
-						}
-
-						return tips.toArray(new LocalizedValue[tips.size()]);
+						return _toLocalizedValues(jsonObject.getJSONObject("tip"));
 					});
 			}
 		};
+	}
+
+	private static LocalizedValue[] _toLocalizedValues(JSONObject jsonObject) {
+		List<LocalizedValue> localizedValues = new ArrayList<>();
+
+		Iterator<String> keys = jsonObject.keys();
+
+		while (keys.hasNext()) {
+			String key = keys.next();
+
+			LocalizedValue localizedValue = new LocalizedValue();
+
+			localizedValue.setKey(key);
+			localizedValue.setValue(jsonObject.getString(key));
+
+			localizedValues.add(localizedValue);
+		}
+
+		return localizedValues.toArray(new LocalizedValue[localizedValues.size()]);
 	}
 
 	private static DataDefinitionField[] _toDataDefinitionFields(JSONArray jsonArray)
