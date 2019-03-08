@@ -118,5 +118,23 @@ paths:
               schema:
                 $ref: "#/components/schemas/DataDefinition"
       tags: ["DataDefinition"]
-
-
+    put:
+      parameters:
+        - in: query
+          name: groupId
+          reqired: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DataDefinition"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DataDefinition"
+      tags: ["DataDefinition"]

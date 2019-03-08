@@ -79,19 +79,25 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
-		DDMStructure ddmStructure = null;
+		DDMStructure ddmStructure = createDDMStructure(
+			PrincipalThreadLocal.getUserId(), groupId,
+			_portal.getClassNameId(DataDefinition.class), dataDefinition,
+			serviceContext);
 
-		if (dataDefinition.getId() == 0) {
-			ddmStructure = createDDMStructure(
-				PrincipalThreadLocal.getUserId(), groupId,
-				_portal.getClassNameId(DataDefinition.class), dataDefinition,
-				serviceContext);
-		}
-		else {
-			ddmStructure = updateDDMStructure(
-				PrincipalThreadLocal.getUserId(), dataDefinition,
-				serviceContext);
-		}
+		return _toDataDefinition(ddmStructure);
+	}
+
+	@Override
+	public DataDefinition putDataDefinition(
+			Long groupId, DataDefinition dataDefinition)
+		throws Exception {
+
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
+
+		DDMStructure ddmStructure = updateDDMStructure(
+			PrincipalThreadLocal.getUserId(), dataDefinition,
+			serviceContext);
 
 		return _toDataDefinition(ddmStructure);
 	}
