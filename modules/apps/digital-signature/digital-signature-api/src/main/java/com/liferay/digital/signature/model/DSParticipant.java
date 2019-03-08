@@ -28,7 +28,7 @@ public interface DSParticipant {
 
 	public String getClientUserKey();
 
-	public Collection<String> getCustomFields();
+	public Collection<String> getCustomFieldNames();
 
 	public DSEmailNotification getDSEmailNotification();
 

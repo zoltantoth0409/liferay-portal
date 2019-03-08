@@ -42,7 +42,7 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 	}
 
 	@Override
-	public Collection<String> getCustomFields() {
+	public Collection<String> getCustomFieldNames() {
 		return _customFields;
 	}
 
