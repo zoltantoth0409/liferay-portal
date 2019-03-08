@@ -26,6 +26,6 @@ public interface DSNotaryInfo {
 
 	public String getName();
 
-	public String getParticipantId();
+	public String getParticipantKey();
 
 }

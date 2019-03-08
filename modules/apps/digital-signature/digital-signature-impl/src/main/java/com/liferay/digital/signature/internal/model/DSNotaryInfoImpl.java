@@ -40,7 +40,7 @@ public class DSNotaryInfoImpl implements DSNotaryInfo {
 	}
 
 	@Override
-	public String getParticipantId() {
+	public String getParticipantKey() {
 		return _participantId;
 	}
 
