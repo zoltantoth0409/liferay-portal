@@ -76,9 +76,9 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			Long groupId, DataDefinition dataDefinition)
 		throws Exception {
 
-		Map<Locale, String> nameMap = createLocalizedMap(
+		Map<Locale, String> nameMap = _toLocalizationMap(
 			dataDefinition.getName());
-		Map<Locale, String> descriptionMap = createLocalizedMap(
+		Map<Locale, String> descriptionMap = _toLocalizationMap(
 			dataDefinition.getDescription());
 
 		return _toDataDefinition(
@@ -94,9 +94,9 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			Long groupId, DataDefinition dataDefinition)
 		throws Exception {
 
-		Map<Locale, String> nameMap = createLocalizedMap(
+		Map<Locale, String> nameMap = _toLocalizationMap(
 			dataDefinition.getName());
-		Map<Locale, String> descriptionMap = createLocalizedMap(
+		Map<Locale, String> descriptionMap = _toLocalizationMap(
 			dataDefinition.getDescription());
 
 		return _toDataDefinition(
@@ -107,18 +107,18 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				new ServiceContext()));
 	}
 
-	protected Map<Locale, String> createLocalizedMap(
+	protected Map<Locale, String> _toLocalizationMap(
 		LocalizedValue[] localizedValues) {
 
-		Map<Locale, String> localeMap = new HashMap<>();
+		Map<Locale, String> localizationMap = new HashMap<>();
 
 		for (LocalizedValue localizedValue : localizedValues) {
-			localeMap.put(
+			localizationMap.put(
 				LocaleUtil.fromLanguageId(localizedValue.getKey()),
 				localizedValue.getValue());
 		}
 
-		return localeMap;
+		return localizationMap;
 	}
 
 	protected DataDefinition _toDataDefinition(DDMStructure ddmStructure)
