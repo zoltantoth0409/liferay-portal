@@ -81,8 +81,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				_toLocalizationMap(dataDefinition.getName()),
 				_toLocalizationMap(dataDefinition.getDescription()),
 				DataDefinitionSerializer.toJSON(dataDefinition),
-				dataDefinition.getStorageType(),
-				new ServiceContext()));
+				dataDefinition.getStorageType(), new ServiceContext()));
 	}
 
 	@Override

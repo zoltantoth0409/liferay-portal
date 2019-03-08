@@ -30,11 +30,12 @@ import java.util.List;
  */
 public class DataDefinitionDeserializer {
 
-	public static DataDefinition toDataDefinition(String json) throws Exception {
+	public static DataDefinition toDataDefinition(String json)
+		throws Exception {
+
 		return new DataDefinition() {
 			{
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-					json);
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(json);
 
 				dataDefinitionFields = _toDataDefinitionFields(
 					jsonObject.getJSONArray("fields"));
@@ -42,7 +43,8 @@ public class DataDefinitionDeserializer {
 		};
 	}
 
-	private static DataDefinitionField _toDataDefinitionField(JSONObject jsonObject)
+	private static DataDefinitionField _toDataDefinitionField(
+			JSONObject jsonObject)
 		throws Exception {
 
 		return new DataDefinitionField() {
@@ -82,6 +84,24 @@ public class DataDefinitionDeserializer {
 		};
 	}
 
+	private static DataDefinitionField[] _toDataDefinitionFields(
+			JSONArray jsonArray)
+		throws Exception {
+
+		List<DataDefinitionField> dataDefinitionFields = new ArrayList<>(
+			jsonArray.length());
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			DataDefinitionField dataDefinitionField = _toDataDefinitionField(
+				jsonArray.getJSONObject(i));
+
+			dataDefinitionFields.add(dataDefinitionField);
+		}
+
+		return dataDefinitionFields.toArray(
+			new DataDefinitionField[dataDefinitionFields.size()]);
+	}
+
 	private static LocalizedValue[] _toLocalizedValues(JSONObject jsonObject) {
 		List<LocalizedValue> localizedValues = new ArrayList<>();
 
@@ -98,24 +118,8 @@ public class DataDefinitionDeserializer {
 			localizedValues.add(localizedValue);
 		}
 
-		return localizedValues.toArray(new LocalizedValue[localizedValues.size()]);
-	}
-
-	private static DataDefinitionField[] _toDataDefinitionFields(JSONArray jsonArray)
-		throws Exception {
-
-		List<DataDefinitionField> dataDefinitionFields = new ArrayList<>(
-			jsonArray.length());
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			DataDefinitionField dataDefinitionField = _toDataDefinitionField(
-				jsonArray.getJSONObject(i));
-
-			dataDefinitionFields.add(dataDefinitionField);
-		}
-
-		return dataDefinitionFields.toArray(
-			new DataDefinitionField[dataDefinitionFields.size()]);
+		return localizedValues.toArray(
+			new LocalizedValue[localizedValues.size()]);
 	}
 
 }
