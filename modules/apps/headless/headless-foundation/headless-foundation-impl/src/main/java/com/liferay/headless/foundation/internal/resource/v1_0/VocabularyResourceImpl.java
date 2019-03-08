@@ -55,8 +55,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  */
 @Component(
 	properties = "OSGI-INF/liferay/rest/v1_0/vocabulary.properties",
-	scope = ServiceScope.PROTOTYPE,
-	service = {VocabularyResource.class}
+	scope = ServiceScope.PROTOTYPE, service = VocabularyResource.class
 )
 public class VocabularyResourceImpl
 	extends BaseVocabularyResourceImpl implements EntityModelResource {

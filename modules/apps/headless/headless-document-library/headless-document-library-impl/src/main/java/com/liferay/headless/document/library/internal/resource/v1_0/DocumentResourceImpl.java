@@ -77,8 +77,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  */
 @Component(
 	properties = "OSGI-INF/liferay/rest/v1_0/document.properties",
-	scope = ServiceScope.PROTOTYPE,
-	service = {DocumentResource.class}
+	scope = ServiceScope.PROTOTYPE, service = DocumentResource.class
 )
 public class DocumentResourceImpl
 	extends BaseDocumentResourceImpl implements EntityModelResource {

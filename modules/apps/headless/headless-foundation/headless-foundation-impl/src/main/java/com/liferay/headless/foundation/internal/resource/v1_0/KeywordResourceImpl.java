@@ -47,8 +47,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  */
 @Component(
 	properties = "OSGI-INF/liferay/rest/v1_0/keyword.properties",
-	scope = ServiceScope.PROTOTYPE,
-	service = {KeywordResource.class}
+	scope = ServiceScope.PROTOTYPE, service = KeywordResource.class
 )
 public class KeywordResourceImpl
 	extends BaseKeywordResourceImpl implements EntityModelResource {
