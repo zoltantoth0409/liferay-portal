@@ -43,13 +43,17 @@ public class DSSealInfoImpl implements DSSealInfo {
 			return true;
 		}
 
-		if ((object == null) || (getClass() != object.getClass())) {
+		if (!(object instanceof DSSealInfoImpl)) {
 			return false;
 		}
 
-		final DSSealInfoImpl dsSealInfoImpl = (DSSealInfoImpl)object;
+		DSSealInfoImpl dsSealInfoImpl = (DSSealInfoImpl)object;
 
-		return Objects.equals(_sealName, dsSealInfoImpl._sealName);
+		if (Objects.equals(_sealName, dsSealInfoImpl._sealName)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override

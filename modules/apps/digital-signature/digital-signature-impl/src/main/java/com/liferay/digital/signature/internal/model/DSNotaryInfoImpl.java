@@ -22,9 +22,9 @@ import com.liferay.digital.signature.model.DSNotaryInfo;
 public class DSNotaryInfoImpl implements DSNotaryInfo {
 
 	public DSNotaryInfoImpl(
-		String participantId, String name, String emailAddress) {
+		String participantKey, String name, String emailAddress) {
 
-		_participantId = participantId;
+		_participantKey = participantKey;
 		_name = name;
 		_emailAddress = emailAddress;
 	}
@@ -41,11 +41,11 @@ public class DSNotaryInfoImpl implements DSNotaryInfo {
 
 	@Override
 	public String getParticipantKey() {
-		return _participantId;
+		return _participantKey;
 	}
 
 	private final String _emailAddress;
 	private final String _name;
-	private final String _participantId;
+	private final String _participantKey;
 
 }
