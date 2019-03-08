@@ -40,14 +40,14 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 
 	@Override
 	public AgentDSParticipantBuilder createAgentDSParticipantBuilder(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
 		return new AgentDSParticipantBuilderImpl(name, emailAddress, routingOrder);
 	}
 
 	@Override
 	public CarbonCopyDSParticipantBuilder createCarbonCopyDSParticipantBuilder(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
 		return new CarbonCopyDSParticipantBuilderImpl(
 			name, emailAddress, routingOrder);
@@ -56,7 +56,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 	@Override
 	public CertifiedDeliveryDSParticipantBuilder
 		createCertifiedDeliveryDSParticipantBuilder(
-			String name, String emailAddress, int routingOrder) {
+			String emailAddress, String name, int routingOrder) {
 
 		return new CertifiedDeliveryDSParticipantBuilderImpl(
 			name, emailAddress, routingOrder);
@@ -71,7 +71,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 
 	@Override
 	public DSEmailNotificationBuilder createDSEmailNotificationBuilder(
-		String subject, String message) {
+		String message, String subject) {
 
 		return new DSEmailNotificationBuilderImpl(subject, message);
 	}
@@ -83,7 +83,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 
 	@Override
 	public EditorDSParticipantBuilder createEditorDSParticipantBuilder(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
 		return new EditorDSParticipantBuilderImpl(name, emailAddress, routingOrder);
 	}
@@ -91,8 +91,8 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 	@Override
 	public InPersonSignerDSParticipantBuilder
 		createInPersonSignerDSParticipantBuilder(
-			String hostName, String hostEmailAddress, String signerName,
-			String signerEmailAddress, int routingOrder) {
+			String hostEmailAddress, String hostName, int routingOrder,
+			String signerEmailAddress, String signerName) {
 
 		return new InPersonSignerDSParticipantBuilderImpl(
 			hostName, hostEmailAddress, signerName, signerEmailAddress, routingOrder);
@@ -112,7 +112,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 	@Override
 	public IntermediaryDSParticipantBuilder
 		createIntermediaryDSParticipantBuilder(
-			String name, String emailAddress, int routingOrder) {
+			String emailAddress, String name, int routingOrder) {
 
 		return new IntermediaryDSParticipantBuilderImpl(
 			name, emailAddress, routingOrder);
@@ -120,7 +120,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 
 	@Override
 	public SealDSParticipantBuilder createSealDSParticipantBuilder(
-		String participantKey, String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, String participantKey, int routingOrder) {
 
 		return new SealDSParticipantBuilderImpl(
 			participantKey, name, emailAddress, routingOrder);
@@ -128,7 +128,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 
 	@Override
 	public SignerDSParticipantBuilder createSignerDSParticipantBuilder(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, int routingOrder, String name) {
 
 		return new SignerDSParticipantBuilderImpl(name, emailAddress, routingOrder);
 	}
