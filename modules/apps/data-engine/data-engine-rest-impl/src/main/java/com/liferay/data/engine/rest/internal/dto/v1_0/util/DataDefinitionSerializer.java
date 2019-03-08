@@ -63,7 +63,7 @@ public class DataDefinitionSerializer {
 		String name = dataDefinitionField.getName();
 
 		if (Validator.isNull(name)) {
-			throw new Exception("Name property is required");
+			throw new Exception("Name is required");
 		}
 
 		jsonObject.put("name", name);
@@ -79,7 +79,7 @@ public class DataDefinitionSerializer {
 		String type = dataDefinitionField.getFieldType();
 
 		if ((type == null) || type.isEmpty()) {
-			throw new Exception("Type property is required");
+			throw new Exception("Type is required");
 		}
 
 		jsonObject.put("type", type);
