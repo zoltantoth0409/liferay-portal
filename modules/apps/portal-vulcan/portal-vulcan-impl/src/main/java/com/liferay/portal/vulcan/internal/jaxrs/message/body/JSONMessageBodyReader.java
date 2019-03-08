@@ -96,14 +96,16 @@ public class JSONMessageBodyReader implements MessageBodyReader {
 		);
 	}
 
-	private synchronized ValidatorFactory _getValidatorFactory() {
+	private ValidatorFactory _getValidatorFactory() {
 		if (_validatorFactory == null) {
-			ProviderSpecificBootstrap providerSpecificBootstrap =
-				Validation.byProvider(ApacheValidationProvider.class);
+			synchronized (JSONMessageBodyReader.class) {
+				ProviderSpecificBootstrap providerSpecificBootstrap =
+					Validation.byProvider(ApacheValidationProvider.class);
 
-			Configuration configure = providerSpecificBootstrap.configure();
+				Configuration configure = providerSpecificBootstrap.configure();
 
-			_validatorFactory = configure.buildValidatorFactory();
+				_validatorFactory = configure.buildValidatorFactory();
+			}
 		}
 
 		return _validatorFactory;
