@@ -29,8 +29,6 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
-import javax.ws.rs.container.ResourceContext;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 
 import org.osgi.service.component.annotations.Component;
@@ -114,9 +112,6 @@ public class CommentResourceImpl
 		return _getSPICommentResource().putComment(
 			commentId, comment.getText());
 	}
-
-	@Context
-	protected ResourceContext resourceContext;
 
 	private SPICommentResource<Comment> _getSPICommentResource() {
 		return new SPICommentResource<>(
