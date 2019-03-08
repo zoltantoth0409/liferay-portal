@@ -38,25 +38,20 @@ public class DSSessionKey {
 			return true;
 		}
 
-		if ((object == null) || (getClass() != object.getClass())) {
+		if (!(object instanceof DSSessionKey)) {
 			return false;
 		}
 
-		final DSSessionKey dsSessionKey = (DSSessionKey)object;
+		DSSessionKey dsSessionKey = (DSSessionKey)object;
 
-		if (getCompanyId() != dsSessionKey.getCompanyId()) {
-			return false;
+		if (Objects.equals(_accountKey, dsSessionKey._accountKey) &&
+			Objects.equals(_companyId, dsSessionKey._companyId) &&
+			Objects.equals(_userName, dsSessionKey._userName)) {
+
+			return true;
 		}
 
-		if (!Objects.equals(getAccountKey(), dsSessionKey.getAccountKey())) {
-			return false;
-		}
-
-		if (!Objects.equals(getUserName(), dsSessionKey.getUserName())) {
-			return false;
-		}
-
-		return true;
+		return false;
 	}
 
 	public String getAccountKey() {
@@ -73,21 +68,21 @@ public class DSSessionKey {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(_companyId, _accountKey, _userName);
+		return Objects.hash(_accountKey, _companyId, _userName);
 	}
 
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(9);
 
-		sb.append("{className=");
+		sb.append("{accountKey=");
+		sb.append(_accountKey);
+		sb.append(", className=");
 
 		Class<?> clazz = getClass();
 
 		sb.append(clazz.getSimpleName());
 
-		sb.append(", accountId=");
-		sb.append(_accountKey);
 		sb.append(", companyId=");
 		sb.append(_companyId);
 		sb.append(", userName=");
