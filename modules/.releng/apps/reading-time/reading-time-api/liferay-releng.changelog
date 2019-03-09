@@ -27,3 +27,8 @@
 # Bundle Version 1.0.6
 #
 f14f2a094427d2d5437d49747cd74ef24e9fa792^..feabbe35b57853916ebf61fef7246f9624bbdf6e=LRDOCS-6300
+
+#
+# Bundle Version 1.0.7
+#
+feabbe35b57853916ebf61fef7246f9624bbdf6e^..13bd744969f04d5e5c333cf25e5875af4b911417=LPS-91343
