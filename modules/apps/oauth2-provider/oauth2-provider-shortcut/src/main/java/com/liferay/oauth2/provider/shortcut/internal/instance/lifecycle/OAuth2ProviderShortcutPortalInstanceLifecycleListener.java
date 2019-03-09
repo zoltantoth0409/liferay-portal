@@ -307,8 +307,6 @@ public class OAuth2ProviderShortcutPortalInstanceLifecycleListener
 
 	private static final Pattern _baseIdPattern = Pattern.compile(
 		"(.{8})(.{4})(.{4})(.{4})(.*)");
-	private static final PrefixHandler _prefixHandler =
-		input -> "liferay-json-web-services-analytics." + input;
 
 	@Reference(
 		target = "(indexer.class.name=com.liferay.document.library.kernel.model.DLFileEntry)"
