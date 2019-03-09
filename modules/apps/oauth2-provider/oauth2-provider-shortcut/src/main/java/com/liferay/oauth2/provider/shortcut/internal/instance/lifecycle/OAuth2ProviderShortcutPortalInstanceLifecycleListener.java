@@ -107,7 +107,7 @@ public class OAuth2ProviderShortcutPortalInstanceLifecycleListener
 		return GetterUtil.getString(
 			ResourceBundleUtil.getString(
 				ResourceBundleUtil.getBundle(
-					locale,
+					"content.Language", locale,
 					OAuth2ProviderShortcutPortalInstanceLifecycleListener.
 						class),
 				"liferay-json-web-services-analytics-name"),
