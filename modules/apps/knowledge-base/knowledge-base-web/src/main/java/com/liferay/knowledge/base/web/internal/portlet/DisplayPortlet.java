@@ -108,17 +108,15 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 		KBFolder kbFolder = null;
 
-		long kbFolderGroupId = _portal.getScopeGroupId(actionRequest);
-
 		long kbFolderId = ParamUtil.getLong(actionRequest, "rootKBFolderId");
 
+		long kbFolderGroupId = _portal.getScopeGroupId(actionRequest);
 		String kbFolderURLTitle = StringPool.BLANK;
 
 		if (kbFolderId != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			kbFolder = kbFolderService.getKBFolder(kbFolderId);
 
 			kbFolderGroupId = kbFolder.getGroupId();
-
 			kbFolderURLTitle = kbFolder.getUrlTitle();
 		}
 
