@@ -26,7 +26,6 @@ String currentKBFolderURLTitle = kbNavigationDisplayContext.getCurrentKBFolderUR
 long rootResourcePrimKey = kbDisplayPortletInstanceConfiguration.resourcePrimKey();
 
 long rootKBFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
-
 String rootKBFolderName = LanguageUtil.get(resourceBundle, "home");
 String rootKBFolderURLTitle = StringPool.BLANK;
 
