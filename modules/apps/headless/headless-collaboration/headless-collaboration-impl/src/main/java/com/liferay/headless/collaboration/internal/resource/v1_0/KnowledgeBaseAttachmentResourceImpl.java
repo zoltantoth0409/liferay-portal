@@ -89,7 +89,6 @@ public class KnowledgeBaseAttachmentResourceImpl
 
 		KBArticle kbArticle = _kbArticleService.fetchLatestKBArticle(
 			knowledgeBaseArticleId, WorkflowConstants.STATUS_APPROVED);
-
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
 		return _toKnowledgeBaseAttachment(
