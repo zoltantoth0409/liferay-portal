@@ -85,12 +85,9 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 
 		User user = _userService.getUserById(classNameClassPK.getClassPK());
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
 		CommonPermissionUtil.check(
-			permissionChecker, user.getModelClassName(), user.getUserId(),
-			ActionKeys.VIEW);
+			PermissionThreadLocal.getPermissionChecker(),
+			user.getModelClassName(), user.getUserId(), ActionKeys.VIEW);
 
 		return _addressLocalService.getAddresses(
 			user.getCompanyId(), Contact.class.getName(), user.getContactId());
