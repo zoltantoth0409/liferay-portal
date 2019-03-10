@@ -278,12 +278,12 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 
 	private String _getOrElse(
 		ContactInformation contactInformation,
-		Function<ContactInformation, String> contactInformationStringFunction) {
+		Function<ContactInformation, String> function) {
 
 		return Optional.ofNullable(
 			contactInformation
 		).map(
-			contactInformationStringFunction
+			function
 		).orElse(
 			null
 		);
