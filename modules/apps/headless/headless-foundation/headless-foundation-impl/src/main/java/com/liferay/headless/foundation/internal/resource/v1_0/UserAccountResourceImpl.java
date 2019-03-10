@@ -184,7 +184,6 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 		throws Exception {
 
 		User user = _userService.getUserById(userAccountId);
-
 		long prefixId = _getListTypeId(
 			userAccount.getHonorificPrefix(), ListTypeConstants.CONTACT_PREFIX);
 		long suffixId = _getListTypeId(
