@@ -187,18 +187,7 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 						}
 					}
 				};
-
-				if (organization.getLogoId() != 0) {
-					long logoId = organization.getLogoId();
-
-					logo = StringBundler.concat(
-						_portal.getPathImage(), "/organization_logo?img_id=",
-						logoId, "&t=",
-						WebServerServletTokenUtil.getToken(logoId));
-				}
-
 				name = organization.getName();
-
 				parentOrganization = _toOrganization(
 					organization.getParentOrganization());
 
@@ -221,6 +210,19 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 								organization.getOrganizationId());
 
 						return organizationsCount > 0;
+					});
+				setLogo(
+					() -> {
+						if (organization.getLogoId() == 0) {
+							return null;
+						}
+
+						return StringBundler.concat(
+							_portal.getPathImage(),
+							"/organization_logo?img_id=",
+							organization.getLogoId(), "&t=",
+							WebServerServletTokenUtil.getToken(
+								organization.getLogoId()));
 					});
 			}
 		};
