@@ -19,7 +19,6 @@ import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.headless.foundation.resource.v1_0.UserAccountResource;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Contact;
 import com.liferay.portal.kernel.model.Group;
@@ -36,9 +35,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.service.UserService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.transaction.Propagation;
-import com.liferay.portal.kernel.transaction.TransactionConfig;
-import com.liferay.portal.kernel.transaction.TransactionInvokerUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StreamUtil;
@@ -158,11 +154,9 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 			"userAccount", UserAccount.class);
 
 		long prefixId = _getListTypeId(
-			userAccount.getHonorificPrefix(),
-			ListTypeConstants.CONTACT_PREFIX);
+			userAccount.getHonorificPrefix(), ListTypeConstants.CONTACT_PREFIX);
 		long suffixId = _getListTypeId(
-			userAccount.getHonorificSuffix(),
-			ListTypeConstants.CONTACT_SUFFIX);
+			userAccount.getHonorificSuffix(), ListTypeConstants.CONTACT_SUFFIX);
 
 		Calendar calendar = Calendar.getInstance();
 
@@ -174,20 +168,17 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 		}
 
 		User user = _userLocalService.addUser(
-			UserConstants.USER_ID_DEFAULT,
-			contextCompany.getCompanyId(), true, null, null,
-			Validator.isNull(userAccount.getAlternateName()),
-			userAccount.getAlternateName(), userAccount.getEmail(),
-			0, StringPool.BLANK, LocaleUtil.getDefault(),
+			UserConstants.USER_ID_DEFAULT, contextCompany.getCompanyId(), true,
+			null, null, Validator.isNull(userAccount.getAlternateName()),
+			userAccount.getAlternateName(), userAccount.getEmail(), 0,
+			StringPool.BLANK, LocaleUtil.getDefault(),
 			userAccount.getGivenName(), StringPool.BLANK,
 			userAccount.getFamilyName(), prefixId, suffixId, true,
-			calendar.get(Calendar.MONTH),
-			calendar.get(Calendar.DATE),
-			calendar.get(Calendar.YEAR), userAccount.getJobTitle(),
-			null, null, null, null, false, new ServiceContext());
+			calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE),
+			calendar.get(Calendar.YEAR), userAccount.getJobTitle(), null, null,
+			null, null, false, new ServiceContext());
 
-		byte[] bytes = _getImageBytes(
-			multipartBody.getBinaryFile("file"));
+		byte[] bytes = _getImageBytes(multipartBody.getBinaryFile("file"));
 
 		_userLocalService.updatePortrait(user.getUserId(), bytes);
 
@@ -239,6 +230,17 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 				user.getUserGroupIds(), new ServiceContext()));
 	}
 
+	private byte[] _getImageBytes(BinaryFile binaryFile) throws IOException {
+		InputStream inputStream = binaryFile.getInputStream();
+
+		ByteArrayOutputStream byteArrayOutputStream =
+			new ByteArrayOutputStream();
+
+		StreamUtil.transfer(inputStream, byteArrayOutputStream);
+
+		return byteArrayOutputStream.toByteArray();
+	}
+
 	private long _getListTypeId(String name, String type) {
 		if (name == null) {
 			return 0;
@@ -249,20 +251,8 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 		).map(
 			ListTypeModel::getListTypeId
 		).orElseThrow(
-			() -> new BadRequestException(
-				"Unable to get list type: " + name)
+			() -> new BadRequestException("Unable to get list type: " + name)
 		);
-	}
-
-	private byte[] _getImageBytes(BinaryFile binaryFile) throws IOException {
-		InputStream inputStream = binaryFile.getInputStream();
-
-		ByteArrayOutputStream byteArrayOutputStream =
-			new ByteArrayOutputStream();
-
-		StreamUtil.transfer(inputStream, byteArrayOutputStream);
-
-		return byteArrayOutputStream.toByteArray();
 	}
 
 	private String _getListTypeMessage(long listTypeId) throws PortalException {
