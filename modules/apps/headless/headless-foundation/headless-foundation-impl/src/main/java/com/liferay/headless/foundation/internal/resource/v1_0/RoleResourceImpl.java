@@ -79,12 +79,11 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 		return _getRolesPage(userAccountId);
 	}
 
-	private Page<Role> _getRolesPage(Long myUserAccountId)
+	private Page<Role> _getRolesPage(Long userAccountId)
 		throws PortalException {
 
 		return Page.of(
-			transform(
-				_roleService.getUserRoles(myUserAccountId), this::_toRole));
+			transform(_roleService.getUserRoles(userAccountId), this::_toRole));
 	}
 
 	private Role _toRole(com.liferay.portal.kernel.model.Role role)

@@ -114,10 +114,10 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 		};
 	}
 
-	private Page<Organization> _getOrganizationsPage(Long myUserAccountId)
+	private Page<Organization> _getOrganizationsPage(Long userAccountId)
 		throws PortalException {
 
-		User user = _userService.getUserById(myUserAccountId);
+		User user = _userService.getUserById(userAccountId);
 
 		return Page.of(
 			transform(user.getOrganizations(), this::_toOrganization));
