@@ -207,7 +207,7 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 					});
 				setLogo(
 					() -> {
-						if (organization.getLogoId() == 0) {
+						if (organization.getLogoId() <= 0) {
 							return null;
 						}
 
@@ -221,10 +221,10 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 				setParentOrganizationId(
 					() -> {
 						if (organization.getParentOrganizationId() <= 0) {
-							return organization.getParentOrganizationId();
+							return null;
 						}
 
-						return null;
+						return organization.getParentOrganizationId();
 					});
 			}
 		};
