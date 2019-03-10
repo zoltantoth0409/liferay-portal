@@ -32,7 +32,7 @@ import com.liferay.knowledge.base.service.KBFolderService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.service.ClassNameService;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -145,7 +145,7 @@ public class KnowledgeBaseArticleResourceImpl
 
 		return _getKnowledgeBaseArticle(
 			contentSpaceId, 0L,
-			_classNameService.fetchClassName(KBFolder.class.getName()),
+			_classNameLocalService.fetchClassName(KBFolder.class.getName()),
 			knowledgeBaseArticle);
 	}
 
@@ -160,7 +160,7 @@ public class KnowledgeBaseArticleResourceImpl
 
 		return _getKnowledgeBaseArticle(
 			kbArticle.getGroupId(), knowledgeBaseArticleId,
-			_classNameService.fetchClassName(KBArticle.class.getName()),
+			_classNameLocalService.fetchClassName(KBArticle.class.getName()),
 			knowledgeBaseArticle);
 	}
 
@@ -174,7 +174,7 @@ public class KnowledgeBaseArticleResourceImpl
 
 		return _getKnowledgeBaseArticle(
 			kbFolder.getGroupId(), knowledgeBaseFolderId,
-			_classNameService.fetchClassName(KBFolder.class.getName()),
+			_classNameLocalService.fetchClassName(KBFolder.class.getName()),
 			knowledgeBaseArticle);
 	}
 
@@ -276,7 +276,7 @@ public class KnowledgeBaseArticleResourceImpl
 	private AssetTagLocalService _assetTagLocalService;
 
 	@Reference
-	private ClassNameService _classNameService;
+	private ClassNameLocalService _classNameLocalService;
 
 	@Reference
 	private KBArticleService _kbArticleService;

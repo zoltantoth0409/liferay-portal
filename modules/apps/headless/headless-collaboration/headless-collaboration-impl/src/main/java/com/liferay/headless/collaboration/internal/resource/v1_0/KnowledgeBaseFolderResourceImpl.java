@@ -22,7 +22,7 @@ import com.liferay.knowledge.base.service.KBArticleService;
 import com.liferay.knowledge.base.service.KBFolderService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ClassName;
-import com.liferay.portal.kernel.service.ClassNameService;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -138,7 +138,7 @@ public class KnowledgeBaseFolderResourceImpl
 	}
 
 	private long _getClassNameId() {
-		ClassName className = _classNameService.fetchClassName(
+		ClassName className = _classNameLocalService.fetchClassName(
 			KBFolder.class.getName());
 
 		return className.getClassNameId();
@@ -181,7 +181,7 @@ public class KnowledgeBaseFolderResourceImpl
 	}
 
 	@Reference
-	private ClassNameService _classNameService;
+	private ClassNameLocalService _classNameLocalService;
 
 	@Reference
 	private KBArticleService _kbArticleService;
