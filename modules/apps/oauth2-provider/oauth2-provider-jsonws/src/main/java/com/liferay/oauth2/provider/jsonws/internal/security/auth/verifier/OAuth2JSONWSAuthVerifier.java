@@ -163,7 +163,7 @@ public class OAuth2JSONWSAuthVerifier implements AuthVerifier {
 		policyOption = ReferencePolicyOption.GREEDY,
 		target = "(&(osgi.jaxrs.name=*)(sap.scope.finder=true))"
 	)
-	protected void addJaxrsApplicationName(
+	protected void addJaxRsApplicationName(
 		ServiceReference<ScopeFinder> serviceReference) {
 
 		_jaxRsApplicationNames.add(
@@ -253,7 +253,7 @@ public class OAuth2JSONWSAuthVerifier implements AuthVerifier {
 		return accessToken;
 	}
 
-	protected void removeJaxrsApplicationName(
+	protected void removeJaxRsApplicationName(
 		ServiceReference<ScopeFinder> serviceReference) {
 
 		_jaxRsApplicationNames.remove(

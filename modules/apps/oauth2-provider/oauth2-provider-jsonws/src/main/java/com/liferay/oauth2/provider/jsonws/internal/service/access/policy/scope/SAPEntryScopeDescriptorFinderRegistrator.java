@@ -141,7 +141,7 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 		policyOption = ReferencePolicyOption.GREEDY,
 		target = "(&(osgi.jaxrs.name=*)(sap.scope.finder=true))"
 	)
-	protected void addJaxrsApplicationName(
+	protected void addJaxRsApplicationName(
 		ServiceReference<ScopeFinder> serviceReference) {
 
 		_jaxRsApplicationNames.add(
@@ -198,7 +198,7 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 		);
 	}
 
-	protected void removeJaxrsApplicationName(
+	protected void removeJaxRsApplicationName(
 		ServiceReference<ScopeFinder> serviceReference) {
 
 		_jaxRsApplicationNames.remove(
