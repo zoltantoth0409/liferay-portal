@@ -212,26 +212,26 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 			{
 				hoursAvailable = new HoursAvailable[] {
 					_createHoursAvailable(
-						"Friday", orgLabor.getFriOpen(),
-						orgLabor.getFriClose()),
+						"Sunday", orgLabor.getSunOpen(),
+						orgLabor.getSunClose()),
 					_createHoursAvailable(
 						"Monday", orgLabor.getMonOpen(),
 						orgLabor.getMonClose()),
 					_createHoursAvailable(
-						"Thursday", orgLabor.getThuOpen(),
-						orgLabor.getThuClose()),
-					_createHoursAvailable(
 						"Tuesday", orgLabor.getTueOpen(),
 						orgLabor.getTueClose()),
 					_createHoursAvailable(
-						"Saturday", orgLabor.getSatOpen(),
-						orgLabor.getSatClose()),
-					_createHoursAvailable(
-						"Sunday", orgLabor.getSunOpen(),
-						orgLabor.getSunClose()),
-					_createHoursAvailable(
 						"Wednesday", orgLabor.getWedOpen(),
-						orgLabor.getWedClose())
+						orgLabor.getWedClose()),
+					_createHoursAvailable(
+						"Thursday", orgLabor.getThuOpen(),
+						orgLabor.getThuClose()),
+					_createHoursAvailable(
+						"Friday", orgLabor.getFriOpen(),
+						orgLabor.getFriClose()),
+					_createHoursAvailable(
+						"Saturday", orgLabor.getSatOpen(),
+						orgLabor.getSatClose())
 				};
 				serviceType = listType.getName();
 			}
