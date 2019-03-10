@@ -16,6 +16,9 @@ package com.liferay.portal.vulcan.multipart;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.portal.kernel.util.StreamUtil;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import java.util.Map;
@@ -37,6 +40,17 @@ public class MultipartBody {
 
 	public BinaryFile getBinaryFile(String key) {
 		return _binaryFiles.get(key);
+	}
+
+	public byte[] getBinaryFileAsBytes(String key) throws IOException {
+		BinaryFile binaryFile = getBinaryFile(key);
+
+		ByteArrayOutputStream byteArrayOutputStream =
+			new ByteArrayOutputStream();
+
+		StreamUtil.transfer(binaryFile.getInputStream(), byteArrayOutputStream);
+
+		return byteArrayOutputStream.toByteArray();
 	}
 
 	public <T> T getValueAsInstance(String key, Class<T> clazz)

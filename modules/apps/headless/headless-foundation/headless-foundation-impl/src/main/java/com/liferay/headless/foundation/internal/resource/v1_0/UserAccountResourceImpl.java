@@ -37,18 +37,12 @@ import com.liferay.portal.kernel.service.UserService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.comparator.UserLastNameComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -171,9 +165,8 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 			birthDateCalendar.get(Calendar.YEAR), userAccount.getJobTitle(),
 			null, null, null, null, false, new ServiceContext());
 
-		byte[] bytes = _getImageBytes(multipartBody.getBinaryFile("file"));
-
-		_userLocalService.updatePortrait(user.getUserId(), bytes);
+		_userLocalService.updatePortrait(
+			user.getUserId(), multipartBody.getBinaryFileAsBytes("file"));
 
 		return _toUserAccount(user);
 	}
@@ -225,17 +218,6 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 		}
 
 		return calendar;
-	}
-
-	private byte[] _getImageBytes(BinaryFile binaryFile) throws IOException {
-		InputStream inputStream = binaryFile.getInputStream();
-
-		ByteArrayOutputStream byteArrayOutputStream =
-			new ByteArrayOutputStream();
-
-		StreamUtil.transfer(inputStream, byteArrayOutputStream);
-
-		return byteArrayOutputStream.toByteArray();
 	}
 
 	private long _getListTypeId(String name, String type) {
