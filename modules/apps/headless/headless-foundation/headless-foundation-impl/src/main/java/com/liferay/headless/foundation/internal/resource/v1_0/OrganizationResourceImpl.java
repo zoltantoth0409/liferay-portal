@@ -238,17 +238,11 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 						return organizationsCount > 0;
 					});
 
-				setServices(
-					() -> {
-						List<OrgLabor> orgLabors =
-							_orgLaborService.getOrgLabors(
-								organization.getOrganizationId());
-
-						return transformToArray(
-							orgLabors,
-							OrganizationResourceImpl.this::_getOrgLabor,
-							Services.class);
-					});
+				services = transformToArray(
+					_orgLaborService.getOrgLabors(
+						organization.getOrganizationId()),
+					OrganizationResourceImpl.this::_getOrgLabor,
+					Services.class);
 			}
 		};
 	}
