@@ -265,7 +265,7 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 		return byteArrayOutputStream.toByteArray();
 	}
 
-	private String _getListType(long listTypeId) throws PortalException {
+	private String _getListTypeMessage(long listTypeId) throws PortalException {
 		if (listTypeId == 0) {
 			return null;
 		}
@@ -326,8 +326,8 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 				email = user.getEmailAddress();
 				familyName = user.getLastName();
 				givenName = user.getFirstName();
-				honorificPrefix = _getListType(contact.getPrefixId());
-				honorificSuffix = _getListType(contact.getSuffixId());
+				honorificPrefix = _getListTypeMessage(contact.getPrefixId());
+				honorificSuffix = _getListTypeMessage(contact.getSuffixId());
 				id = user.getUserId();
 				jobTitle = user.getJobTitle();
 				name = user.getFullName();
