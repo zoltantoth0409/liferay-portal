@@ -1217,14 +1217,6 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("title")) {
-			sb.append("'");
-			sb.append(String.valueOf(knowledgeBaseArticle.getTitle()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
 		if (entityFieldName.equals("hasAttachments")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
@@ -1250,6 +1242,14 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
+		if (entityFieldName.equals("title")) {
+			sb.append("'");
+			sb.append(String.valueOf(knowledgeBaseArticle.getTitle()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
 		if (entityFieldName.equals("viewableBy")) {
 			sb.append("'");
 			sb.append(String.valueOf(knowledgeBaseArticle.getViewableBy()));
@@ -1271,10 +1271,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				dateModified = RandomTestUtil.nextDate();
 				description = RandomTestUtil.randomString();
 				friendlyUrlPath = RandomTestUtil.randomString();
-				title = RandomTestUtil.randomString();
 				hasAttachments = RandomTestUtil.randomBoolean();
 				id = RandomTestUtil.randomLong();
 				parentKnowledgeBaseFolderId = RandomTestUtil.randomLong();
+				title = RandomTestUtil.randomString();
 				viewableBy = RandomTestUtil.randomString();
 			}
 		};

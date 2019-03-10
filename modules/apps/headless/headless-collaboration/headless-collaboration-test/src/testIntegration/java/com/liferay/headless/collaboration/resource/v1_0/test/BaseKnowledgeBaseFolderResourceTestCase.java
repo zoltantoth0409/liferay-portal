@@ -935,16 +935,6 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("parentKnowledgeBaseFolder")) {
-			throw new IllegalArgumentException(
-				"Invalid entity field " + entityFieldName);
-		}
-
-		if (entityFieldName.equals("parentKnowledgeBaseFolderId")) {
-			throw new IllegalArgumentException(
-				"Invalid entity field " + entityFieldName);
-		}
-
 		if (entityFieldName.equals("hasKnowledgeBaseArticles")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
@@ -968,6 +958,16 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			return sb.toString();
 		}
 
+		if (entityFieldName.equals("parentKnowledgeBaseFolder")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("parentKnowledgeBaseFolderId")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
 		throw new IllegalArgumentException(
 			"Invalid entity field " + entityFieldName);
 	}
@@ -978,11 +978,11 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				dateCreated = RandomTestUtil.nextDate();
 				dateModified = RandomTestUtil.nextDate();
 				description = RandomTestUtil.randomString();
-				parentKnowledgeBaseFolderId = RandomTestUtil.randomLong();
 				hasKnowledgeBaseArticles = RandomTestUtil.randomBoolean();
 				hasKnowledgeBaseFolders = RandomTestUtil.randomBoolean();
 				id = RandomTestUtil.randomLong();
 				name = RandomTestUtil.randomString();
+				parentKnowledgeBaseFolderId = RandomTestUtil.randomLong();
 			}
 		};
 	}

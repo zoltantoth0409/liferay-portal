@@ -168,11 +168,6 @@ public abstract class BaseKnowledgeBaseArticleResourceImpl
 				knowledgeBaseArticle.getFriendlyUrlPath());
 		}
 
-		if (Validator.isNotNull(knowledgeBaseArticle.getTitle())) {
-			existingKnowledgeBaseArticle.setTitle(
-				knowledgeBaseArticle.getTitle());
-		}
-
 		if (Validator.isNotNull(knowledgeBaseArticle.getHasAttachments())) {
 			existingKnowledgeBaseArticle.setHasAttachments(
 				knowledgeBaseArticle.getHasAttachments());
@@ -188,6 +183,11 @@ public abstract class BaseKnowledgeBaseArticleResourceImpl
 
 			existingKnowledgeBaseArticle.setParentKnowledgeBaseFolderId(
 				knowledgeBaseArticle.getParentKnowledgeBaseFolderId());
+		}
+
+		if (Validator.isNotNull(knowledgeBaseArticle.getTitle())) {
+			existingKnowledgeBaseArticle.setTitle(
+				knowledgeBaseArticle.getTitle());
 		}
 
 		if (Validator.isNotNull(knowledgeBaseArticle.getViewableBy())) {

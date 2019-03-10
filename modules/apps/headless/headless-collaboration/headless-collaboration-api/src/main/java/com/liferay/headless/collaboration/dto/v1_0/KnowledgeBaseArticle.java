@@ -281,30 +281,6 @@ public class KnowledgeBaseArticle {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String friendlyUrlPath;
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	@JsonIgnore
-	public void setTitle(
-		UnsafeSupplier<String, Exception> titleUnsafeSupplier) {
-
-		try {
-			title = titleUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String title;
-
 	public Boolean getHasAttachments() {
 		return hasAttachments;
 	}
@@ -431,6 +407,30 @@ public class KnowledgeBaseArticle {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	protected Long parentKnowledgeBaseFolderId;
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@JsonIgnore
+	public void setTitle(
+		UnsafeSupplier<String, Exception> titleUnsafeSupplier) {
+
+		try {
+			title = titleUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected String title;
+
 	public String getViewableBy() {
 		return viewableBy;
 	}
@@ -552,13 +552,6 @@ public class KnowledgeBaseArticle {
 		sb.append("\"");
 		sb.append(", ");
 
-		sb.append("\"title\": ");
-
-		sb.append("\"");
-		sb.append(title);
-		sb.append("\"");
-		sb.append(", ");
-
 		sb.append("\"hasAttachments\": ");
 
 		sb.append(hasAttachments);
@@ -600,6 +593,13 @@ public class KnowledgeBaseArticle {
 		sb.append("\"parentKnowledgeBaseFolderId\": ");
 
 		sb.append(parentKnowledgeBaseFolderId);
+		sb.append(", ");
+
+		sb.append("\"title\": ");
+
+		sb.append("\"");
+		sb.append(title);
+		sb.append("\"");
 		sb.append(", ");
 
 		sb.append("\"viewableBy\": ");

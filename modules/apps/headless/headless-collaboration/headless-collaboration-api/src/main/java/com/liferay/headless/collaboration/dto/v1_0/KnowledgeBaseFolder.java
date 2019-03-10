@@ -112,62 +112,6 @@ public class KnowledgeBaseFolder {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String description;
 
-	public ParentKnowledgeBaseFolder getParentKnowledgeBaseFolder() {
-		return parentKnowledgeBaseFolder;
-	}
-
-	public void setParentKnowledgeBaseFolder(
-		ParentKnowledgeBaseFolder parentKnowledgeBaseFolder) {
-
-		this.parentKnowledgeBaseFolder = parentKnowledgeBaseFolder;
-	}
-
-	@JsonIgnore
-	public void setParentKnowledgeBaseFolder(
-		UnsafeSupplier<ParentKnowledgeBaseFolder, Exception>
-			parentKnowledgeBaseFolderUnsafeSupplier) {
-
-		try {
-			parentKnowledgeBaseFolder =
-				parentKnowledgeBaseFolderUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected ParentKnowledgeBaseFolder parentKnowledgeBaseFolder;
-
-	public Long getParentKnowledgeBaseFolderId() {
-		return parentKnowledgeBaseFolderId;
-	}
-
-	public void setParentKnowledgeBaseFolderId(
-		Long parentKnowledgeBaseFolderId) {
-
-		this.parentKnowledgeBaseFolderId = parentKnowledgeBaseFolderId;
-	}
-
-	@JsonIgnore
-	public void setParentKnowledgeBaseFolderId(
-		UnsafeSupplier<Long, Exception>
-			parentKnowledgeBaseFolderIdUnsafeSupplier) {
-
-		try {
-			parentKnowledgeBaseFolderId =
-				parentKnowledgeBaseFolderIdUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	protected Long parentKnowledgeBaseFolderId;
-
 	public Boolean getHasKnowledgeBaseArticles() {
 		return hasKnowledgeBaseArticles;
 	}
@@ -264,6 +208,62 @@ public class KnowledgeBaseFolder {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String name;
 
+	public ParentKnowledgeBaseFolder getParentKnowledgeBaseFolder() {
+		return parentKnowledgeBaseFolder;
+	}
+
+	public void setParentKnowledgeBaseFolder(
+		ParentKnowledgeBaseFolder parentKnowledgeBaseFolder) {
+
+		this.parentKnowledgeBaseFolder = parentKnowledgeBaseFolder;
+	}
+
+	@JsonIgnore
+	public void setParentKnowledgeBaseFolder(
+		UnsafeSupplier<ParentKnowledgeBaseFolder, Exception>
+			parentKnowledgeBaseFolderUnsafeSupplier) {
+
+		try {
+			parentKnowledgeBaseFolder =
+				parentKnowledgeBaseFolderUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected ParentKnowledgeBaseFolder parentKnowledgeBaseFolder;
+
+	public Long getParentKnowledgeBaseFolderId() {
+		return parentKnowledgeBaseFolderId;
+	}
+
+	public void setParentKnowledgeBaseFolderId(
+		Long parentKnowledgeBaseFolderId) {
+
+		this.parentKnowledgeBaseFolderId = parentKnowledgeBaseFolderId;
+	}
+
+	@JsonIgnore
+	public void setParentKnowledgeBaseFolderId(
+		UnsafeSupplier<Long, Exception>
+			parentKnowledgeBaseFolderIdUnsafeSupplier) {
+
+		try {
+			parentKnowledgeBaseFolderId =
+				parentKnowledgeBaseFolderIdUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	protected Long parentKnowledgeBaseFolderId;
+
 	public String toString() {
 		StringBundler sb = new StringBundler();
 
@@ -290,16 +290,6 @@ public class KnowledgeBaseFolder {
 		sb.append("\"");
 		sb.append(", ");
 
-		sb.append("\"parentKnowledgeBaseFolder\": ");
-
-		sb.append(parentKnowledgeBaseFolder);
-		sb.append(", ");
-
-		sb.append("\"parentKnowledgeBaseFolderId\": ");
-
-		sb.append(parentKnowledgeBaseFolderId);
-		sb.append(", ");
-
 		sb.append("\"hasKnowledgeBaseArticles\": ");
 
 		sb.append(hasKnowledgeBaseArticles);
@@ -320,6 +310,16 @@ public class KnowledgeBaseFolder {
 		sb.append("\"");
 		sb.append(name);
 		sb.append("\"");
+		sb.append(", ");
+
+		sb.append("\"parentKnowledgeBaseFolder\": ");
+
+		sb.append(parentKnowledgeBaseFolder);
+		sb.append(", ");
+
+		sb.append("\"parentKnowledgeBaseFolderId\": ");
+
+		sb.append(parentKnowledgeBaseFolderId);
 
 		sb.append("}");
 
