@@ -92,17 +92,17 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 
 		return new Role() {
 			{
-				id = role.getRoleId();
+				availableLanguages = LocaleUtil.toW3cLanguageIds(
+					role.getAvailableLanguageIds());
 				creator = CreatorUtil.toCreator(
 					_portal, _userLocalService.getUserById(role.getUserId()));
 				dateCreated = role.getCreateDate();
 				dateModified = role.getModifiedDate();
 				description = role.getDescription(
 					contextAcceptLanguage.getPreferredLocale());
+				id = role.getRoleId();
 				name = role.getName();
 				roleType = role.getTypeLabel();
-				availableLanguages = LocaleUtil.toW3cLanguageIds(
-					role.getAvailableLanguageIds());
 			}
 		};
 	}
