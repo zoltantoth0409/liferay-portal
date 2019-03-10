@@ -143,11 +143,10 @@ public class KnowledgeBaseArticleResourceImpl
 			Long contentSpaceId, KnowledgeBaseArticle knowledgeBaseArticle)
 		throws Exception {
 
-		ClassName className = _classNameService.fetchClassName(
-			KBFolder.class.getName());
-
 		return _getKnowledgeBaseArticle(
-			contentSpaceId, 0L, className, knowledgeBaseArticle);
+			contentSpaceId, 0L,
+			_classNameService.fetchClassName(KBFolder.class.getName()),
+			knowledgeBaseArticle);
 	}
 
 	@Override
@@ -159,11 +158,9 @@ public class KnowledgeBaseArticleResourceImpl
 		KBArticle kbArticle = _kbArticleService.fetchLatestKBArticle(
 			knowledgeBaseArticleId, WorkflowConstants.STATUS_APPROVED);
 
-		ClassName className = _classNameService.fetchClassName(
-			KBArticle.class.getName());
-
 		return _getKnowledgeBaseArticle(
-			kbArticle.getGroupId(), knowledgeBaseArticleId, className,
+			kbArticle.getGroupId(), knowledgeBaseArticleId,
+			_classNameService.fetchClassName(KBArticle.class.getName()),
 			knowledgeBaseArticle);
 	}
 
@@ -175,11 +172,9 @@ public class KnowledgeBaseArticleResourceImpl
 
 		KBFolder kbFolder = _kbFolderService.getKBFolder(knowledgeBaseFolderId);
 
-		ClassName className = _classNameService.fetchClassName(
-			KBFolder.class.getName());
-
 		return _getKnowledgeBaseArticle(
-			kbFolder.getGroupId(), knowledgeBaseFolderId, className,
+			kbFolder.getGroupId(), knowledgeBaseFolderId,
+			_classNameService.fetchClassName(KBFolder.class.getName()),
 			knowledgeBaseArticle);
 	}
 
