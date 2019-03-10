@@ -96,30 +96,37 @@ public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 	private PostalAddress _toPostalAddress(Address address) {
 		ListType listType = address.getType();
 
-		Country country = address.getCountry();
-
-		Region region = address.getRegion();
-
 		return new PostalAddress() {
 			{
-				id = address.getAddressId();
-
-				if (address.getCountryId() != 0) {
-					addressCountry = country.getName(
-						contextAcceptLanguage.getPreferredLocale());
-				}
-
 				addressLocality = address.getCity();
-
-				if (address.getRegionId() != 0) {
-					addressRegion = region.getName();
-				}
-
 				addressType = listType.getName();
+				id = address.getAddressId();
 				postalCode = address.getZip();
 				streetAddressLine1 = address.getStreet1();
 				streetAddressLine2 = address.getStreet2();
 				streetAddressLine3 = address.getStreet3();
+
+				setAddressCountry(
+					() -> {
+						if (address.getCountryId() <= 0) {
+							return null;
+						}
+
+						Country country = address.getCountry();
+
+						return country.getName(
+							contextAcceptLanguage.getPreferredLocale());
+					});
+				setAddressRegion(
+					() -> {
+						if (address.getRegionId() <= 0) {
+							return null;
+						}
+
+						Region region = address.getRegion();
+
+						return region.getName();
+					});
 			}
 		};
 	}
