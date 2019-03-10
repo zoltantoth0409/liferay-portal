@@ -124,7 +124,7 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 
 	}
 
-	private Services _getOrgLabor(OrgLabor orgLabor) throws PortalException {
+	private Services _toServices(OrgLabor orgLabor) throws PortalException {
 		ListType listType = orgLabor.getType();
 
 		OpeningHour[] openingHours = {
@@ -241,7 +241,7 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 				services = transformToArray(
 					_orgLaborService.getOrgLabors(
 						organization.getOrganizationId()),
-					OrganizationResourceImpl.this::_getOrgLabor,
+					OrganizationResourceImpl.this::_toServices,
 					Services.class);
 			}
 		};
