@@ -159,7 +159,7 @@ public class KnowledgeBaseFolderResourceImpl
 				id = kbFolder.getKbFolderId();
 				name = kbFolder.getName();
 				parentKnowledgeBaseFolder =
-					ParentKnowledgeBaseFolderUtil.toParentFolder(
+					ParentKnowledgeBaseFolderUtil.toParentKnowledgeBaseFolder(
 						kbFolder.getParentKBFolder());
 
 				setHasKnowledgeBaseArticles(

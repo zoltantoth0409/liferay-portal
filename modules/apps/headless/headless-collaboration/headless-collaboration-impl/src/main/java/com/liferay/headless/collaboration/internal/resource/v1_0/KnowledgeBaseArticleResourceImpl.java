@@ -263,7 +263,7 @@ public class KnowledgeBaseArticleResourceImpl
 
 				if (kbArticle.getKbFolderId() != 0) {
 					parentKnowledgeBaseFolder =
-						ParentKnowledgeBaseFolderUtil.toParentFolder(
+						ParentKnowledgeBaseFolderUtil.toParentKnowledgeBaseFolder(
 							_kbFolderService.getKBFolder(
 								kbArticle.getKbFolderId()));
 				}

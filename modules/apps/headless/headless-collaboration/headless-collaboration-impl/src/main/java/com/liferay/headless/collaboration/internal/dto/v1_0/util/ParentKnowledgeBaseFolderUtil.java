@@ -22,7 +22,9 @@ import com.liferay.knowledge.base.model.KBFolder;
  */
 public class ParentKnowledgeBaseFolderUtil {
 
-	public static ParentKnowledgeBaseFolder toParentFolder(KBFolder kbFolder) {
+	public static ParentKnowledgeBaseFolder toParentKnowledgeBaseFolder(
+		KBFolder kbFolder) {
+
 		if (kbFolder == null) {
 			return null;
 		}
