@@ -44,7 +44,7 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 			Long myUserAccountId, Pagination pagination)
 		throws Exception {
 
-		return _getRolPage(myUserAccountId);
+		return _getRolesPage(myUserAccountId);
 	}
 
 	@Override
@@ -76,10 +76,10 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 			Long userAccountId, Pagination pagination)
 		throws Exception {
 
-		return _getRolPage(userAccountId);
+		return _getRolesPage(userAccountId);
 	}
 
-	private Page<Role> _getRolPage(Long myUserAccountId)
+	private Page<Role> _getRolesPage(Long myUserAccountId)
 		throws PortalException {
 
 		return Page.of(
