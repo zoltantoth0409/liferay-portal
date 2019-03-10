@@ -268,10 +268,6 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 	}
 
 	private ContactInformation _toContactInformation(Contact contact) {
-		if (contact == null) {
-			return null;
-		}
-
 		return new ContactInformation() {
 			{
 				facebook = contact.getFacebookSn();
