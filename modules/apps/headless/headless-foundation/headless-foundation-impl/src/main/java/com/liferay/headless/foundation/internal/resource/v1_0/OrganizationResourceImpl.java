@@ -190,12 +190,6 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 				name = organization.getName();
 				parentOrganization = _toOrganization(
 					organization.getParentOrganization());
-
-				if (organization.getParentOrganizationId() <= 0) {
-					parentOrganizationId =
-						organization.getParentOrganizationId();
-				}
-
 				services = transformToArray(
 					_orgLaborService.getOrgLabors(
 						organization.getOrganizationId()),
@@ -223,6 +217,14 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 							organization.getLogoId(), "&t=",
 							WebServerServletTokenUtil.getToken(
 								organization.getLogoId()));
+					});
+				setParentOrganizationId(
+					() -> {
+						if (organization.getParentOrganizationId() <= 0) {
+							return organization.getParentOrganizationId();
+						}
+
+						return null;
 					});
 			}
 		};
