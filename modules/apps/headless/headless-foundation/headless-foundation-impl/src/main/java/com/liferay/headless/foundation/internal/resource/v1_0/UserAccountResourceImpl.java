@@ -157,15 +157,7 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 			userAccount.getHonorificPrefix(), ListTypeConstants.CONTACT_PREFIX);
 		long suffixId = _getListTypeId(
 			userAccount.getHonorificSuffix(), ListTypeConstants.CONTACT_SUFFIX);
-
-		Calendar calendar = Calendar.getInstance();
-
-		if (userAccount.getBirthDate() == null) {
-			calendar.setTime(new Date(0));
-		}
-		else {
-			calendar.setTime(userAccount.getBirthDate());
-		}
+		Calendar birthDateCalendar = _getBirthDateCalendar(userAccount);
 
 		User user = _userLocalService.addUser(
 			UserConstants.USER_ID_DEFAULT, contextCompany.getCompanyId(), true,
@@ -174,9 +166,10 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 			StringPool.BLANK, LocaleUtil.getDefault(),
 			userAccount.getGivenName(), StringPool.BLANK,
 			userAccount.getFamilyName(), prefixId, suffixId, true,
-			calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE),
-			calendar.get(Calendar.YEAR), userAccount.getJobTitle(), null, null,
-			null, null, false, new ServiceContext());
+			birthDateCalendar.get(Calendar.MONTH),
+			birthDateCalendar.get(Calendar.DATE),
+			birthDateCalendar.get(Calendar.YEAR), userAccount.getJobTitle(),
+			null, null, null, null, false, new ServiceContext());
 
 		byte[] bytes = _getImageBytes(multipartBody.getBinaryFile("file"));
 
@@ -196,16 +189,7 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 			userAccount.getHonorificPrefix(), ListTypeConstants.CONTACT_PREFIX);
 		long suffixId = _getListTypeId(
 			userAccount.getHonorificSuffix(), ListTypeConstants.CONTACT_SUFFIX);
-
-		Calendar calendar = Calendar.getInstance();
-
-		if (userAccount.getBirthDate() == null) {
-			calendar.setTime(new Date(0));
-		}
-		else {
-			calendar.setTime(userAccount.getBirthDate());
-		}
-
+		Calendar birthDateCalendar = _getBirthDateCalendar(userAccount);
 		ContactInformation contactInformation =
 			userAccount.getContactInformation();
 
@@ -218,8 +202,9 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 				user.getLanguageId(), user.getTimeZoneId(), user.getGreeting(),
 				user.getComments(), userAccount.getGivenName(),
 				user.getMiddleName(), userAccount.getFamilyName(), prefixId,
-				suffixId, true, calendar.get(Calendar.MONTH),
-				calendar.get(Calendar.DATE), calendar.get(Calendar.YEAR),
+				suffixId, true, birthDateCalendar.get(Calendar.MONTH),
+				birthDateCalendar.get(Calendar.DATE),
+				birthDateCalendar.get(Calendar.YEAR),
 				_getOrElse(contactInformation, ContactInformation::getSms),
 				_getOrElse(contactInformation, ContactInformation::getFacebook),
 				_getOrElse(contactInformation, ContactInformation::getJabber),
@@ -228,6 +213,19 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 				userAccount.getJobTitle(), user.getGroupIds(),
 				user.getOrganizationIds(), user.getRoleIds(), null,
 				user.getUserGroupIds(), new ServiceContext()));
+	}
+
+	private Calendar _getBirthDateCalendar(UserAccount userAccount) {
+		Calendar calendar = Calendar.getInstance();
+
+		if (userAccount.getBirthDate() == null) {
+			calendar.setTime(new Date(0));
+		}
+		else {
+			calendar.setTime(userAccount.getBirthDate());
+		}
+
+		return calendar;
 	}
 
 	private byte[] _getImageBytes(BinaryFile binaryFile) throws IOException {
