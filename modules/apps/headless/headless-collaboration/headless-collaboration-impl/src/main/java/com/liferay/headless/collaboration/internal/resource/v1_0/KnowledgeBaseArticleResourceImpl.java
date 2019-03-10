@@ -31,7 +31,6 @@ import com.liferay.knowledge.base.service.KBArticleService;
 import com.liferay.knowledge.base.service.KBFolderService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ClassName;
-import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -40,8 +39,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
-
-import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -262,11 +259,10 @@ public class KnowledgeBaseArticleResourceImpl
 							return null;
 						}
 
-						parentKnowledgeBaseFolder =
-							ParentKnowledgeBaseFolderUtil.
-								toParentKnowledgeBaseFolder(
-									_kbFolderService.getKBFolder(
-										kbArticle.getKbFolderId()));
+						return ParentKnowledgeBaseFolderUtil.
+							toParentKnowledgeBaseFolder(
+								_kbFolderService.getKBFolder(
+									kbArticle.getKbFolderId()));
 					});
 			}
 		};
