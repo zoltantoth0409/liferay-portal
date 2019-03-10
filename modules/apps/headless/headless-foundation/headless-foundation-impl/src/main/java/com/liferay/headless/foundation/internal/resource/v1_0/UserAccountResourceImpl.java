@@ -267,18 +267,6 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 		};
 	}
 
-	private ContactInformation _toContactInformation(Contact contact) {
-		return new ContactInformation() {
-			{
-				facebook = contact.getFacebookSn();
-				jabber = contact.getJabberSn();
-				skype = contact.getSkypeSn();
-				sms = contact.getSmsSn();
-				twitter = contact.getTwitterSn();
-			}
-		};
-	}
-
 	private UserAccount _toUserAccount(User user) throws PortalException {
 		Contact contact = user.getContact();
 
@@ -287,7 +275,15 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 				additionalName = user.getMiddleName();
 				alternateName = user.getScreenName();
 				birthDate = user.getBirthday();
-				contactInformation = _toContactInformation(contact);
+				contactInformation = new ContactInformation() {
+					{
+						facebook = contact.getFacebookSn();
+						jabber = contact.getJabberSn();
+						skype = contact.getSkypeSn();
+						sms = contact.getSmsSn();
+						twitter = contact.getTwitterSn();
+					}
+				};
 				email = user.getEmailAddress();
 				familyName = user.getLastName();
 				givenName = user.getFirstName();
