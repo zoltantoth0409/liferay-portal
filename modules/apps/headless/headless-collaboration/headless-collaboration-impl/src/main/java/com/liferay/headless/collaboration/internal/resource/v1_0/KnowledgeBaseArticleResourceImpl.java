@@ -223,9 +223,6 @@ public class KnowledgeBaseArticleResourceImpl
 			return null;
 		}
 
-		List<FileEntry> attachmentsFileEntries =
-			kbArticle.getAttachmentsFileEntries();
-
 		return new KnowledgeBaseArticle() {
 			{
 				aggregateRating = AggregateRatingUtil.toAggregateRating(
@@ -249,7 +246,8 @@ public class KnowledgeBaseArticleResourceImpl
 				dateModified = kbArticle.getModifiedDate();
 				description = kbArticle.getDescription();
 				friendlyUrlPath = kbArticle.getUrlTitle();
-				hasAttachments = !attachmentsFileEntries.isEmpty();
+				hasAttachments = ListUtil.isNotEmpty(
+					kbArticle.getAttachmentsFileEntries());
 				id = kbArticle.getKbArticleId();
 				keywords = ListUtil.toArray(
 					_assetTagLocalService.getTags(
