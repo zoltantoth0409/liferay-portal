@@ -54,7 +54,7 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 			Long myUserAccountId, Pagination pagination)
 		throws Exception {
 
-		return _getUserAccountOrganizationPage(myUserAccountId);
+		return _getOrganizationsPage(myUserAccountId);
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 			Long userAccountId, Pagination pagination)
 		throws Exception {
 
-		return _getUserAccountOrganizationPage(userAccountId);
+		return _getOrganizationsPage(userAccountId);
 	}
 
 	private HoursAvailable _createHoursAvailable(
@@ -114,7 +114,7 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 		};
 	}
 
-	private Page<Organization> _getUserAccountOrganizationPage(
+	private Page<Organization> _getOrganizationsPage(
 			Long myUserAccountId)
 		throws PortalException {
 
