@@ -207,6 +207,12 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 						organization.getParentOrganizationId();
 				}
 
+				services = transformToArray(
+					_orgLaborService.getOrgLabors(
+						organization.getOrganizationId()),
+					OrganizationResourceImpl.this::_toServices,
+					Services.class);
+
 				setHasOrganizations(
 					() -> {
 						int organizationsCount =
@@ -216,12 +222,6 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 
 						return organizationsCount > 0;
 					});
-
-				services = transformToArray(
-					_orgLaborService.getOrgLabors(
-						organization.getOrganizationId()),
-					OrganizationResourceImpl.this::_toServices,
-					Services.class);
 			}
 		};
 	}
