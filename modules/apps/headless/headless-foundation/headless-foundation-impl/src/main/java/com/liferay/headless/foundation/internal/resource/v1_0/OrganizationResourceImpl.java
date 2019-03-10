@@ -163,28 +163,30 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 				id = organization.getOrganizationId();
 				location = new Location() {
 					{
-						if (organization.getCountryId() != 0) {
-							setAddressCountry(
-								() -> {
-									Country country =
-										_countryService.getCountry(
-											organization.getCountryId());
+						setAddressCountry(
+							() -> {
+								if (organization.getCountryId() <= 0) {
+									return null;
+								}
 
-									return country.getName(
-										contextAcceptLanguage.
-											getPreferredLocale());
-								});
-						}
+								Country country = _countryService.getCountry(
+									organization.getCountryId());
 
-						if (organization.getRegionId() != 0) {
-							setAddressRegion(
-								() -> {
-									Region region = _regionService.getRegion(
-										organization.getRegionId());
+								return country.getName(
+									contextAcceptLanguage.
+										getPreferredLocale());
+							});
+						setAddressRegion(
+							() -> {
+								if (organization.getRegionId() <= 0) {
+									return null;
+								}
 
-									return region.getName();
-								});
-						}
+								Region region = _regionService.getRegion(
+									organization.getRegionId());
+
+								return region.getName();
+							});
 					}
 				};
 				name = organization.getName();
