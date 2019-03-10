@@ -250,7 +250,7 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 			ListTypeModel::getListTypeId
 		).orElseThrow(
 			() -> new BadRequestException(
-				"Unable to find honorific title: " + name)
+				"Unable to get list type: " + name)
 		);
 	}
 
