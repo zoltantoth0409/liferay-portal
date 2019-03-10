@@ -609,15 +609,15 @@ paths:
     "/content-space/{content-space-id}/knowledge-base-articles":
         get:
             parameters:
-                -   in: query
+                - in: query
                   name: page
                   schema:
                       type: integer
-                -   in: query
+                - in: query
                   name: pageSize
                   schema:
                       type: integer
-                -   in: path
+                - in: path
                   name: content-space-id
                   required: true
                   schema:
@@ -635,7 +635,7 @@ paths:
             tags: ["KnowledgeBaseArticle"]
         post:
             parameters:
-                -   in: path
+                - in: path
                   name: content-space-id
                   required: true
                   schema:
@@ -657,15 +657,15 @@ paths:
     "/content-space/{content-space-id}/knowledge-base-folders":
         get:
             parameters:
-                -   in: query
+                - in: query
                   name: page
                   schema:
                       type: integer
-                -   in: query
+                - in: query
                   name: pageSize
                   schema:
                       type: integer
-                -   in: path
+                - in: path
                   name: content-space-id
                   required: true
                   schema:
@@ -683,7 +683,7 @@ paths:
             tags: ["KnowledgeBaseFolder"]
         post:
             parameters:
-                -   in: path
+                - in: path
                   name: content-space-id
                   required: true
                   schema:
@@ -823,7 +823,7 @@ paths:
     "/knowledge-base-articles/{knowledge-base-article-id}":
         delete:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-article-id
                   required: true
                   schema:
@@ -837,7 +837,7 @@ paths:
             tags: ["KnowledgeBaseArticle"]
         get:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-article-id
                   required: true
                   schema:
@@ -853,7 +853,7 @@ paths:
             tags: ["KnowledgeBaseArticle"]
         patch:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-article-id
                   required: true
                   schema:
@@ -874,7 +874,7 @@ paths:
             tags: ["KnowledgeBaseArticle"]
         put:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-article-id
                   required: true
                   schema:
@@ -896,15 +896,15 @@ paths:
     "/knowledge-base-articles/{knowledge-base-article-id}/knowledge-base-articles":
         get:
             parameters:
-                -   in: query
+                - in: query
                   name: page
                   schema:
                       type: integer
-                -   in: query
+                - in: query
                   name: pageSize
                   schema:
                       type: integer
-                -   in: path
+                - in: path
                   name: knowledge-base-article-id
                   required: true
                   schema:
@@ -922,7 +922,7 @@ paths:
             tags: ["KnowledgeBaseArticle"]
         post:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-article-id
                   required: true
                   schema:
@@ -944,7 +944,7 @@ paths:
     "/knowledge-base-articles/{knowledge-base-article-id}/knowledge-base-attachments":
         get:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-article-id
                   required: true
                   schema:
@@ -962,7 +962,7 @@ paths:
             tags: ["KnowledgeBaseAttachment"]
         post:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-article-id
                   required: true
                   schema:
@@ -990,7 +990,7 @@ paths:
     "/knowledge-base-attachments/{knowledge-base-attachment-id}":
         delete:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-attachment-id
                   required: true
                   schema:
@@ -1004,7 +1004,7 @@ paths:
             tags: ["KnowledgeBaseAttachment"]
         get:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-attachment-id
                   required: true
                   schema:
@@ -1021,7 +1021,7 @@ paths:
     "/knowledge-base-folders/{knowledge-base-folder-id}":
         delete:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-folder-id
                   required: true
                   schema:
@@ -1035,7 +1035,7 @@ paths:
             tags: ["KnowledgeBaseFolder"]
         get:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-folder-id
                   required: true
                   schema:
@@ -1051,7 +1051,7 @@ paths:
             tags: ["KnowledgeBaseFolder"]
         patch:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-folder-id
                   required: true
                   schema:
@@ -1072,7 +1072,7 @@ paths:
             tags: ["KnowledgeBaseFolder"]
         put:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-folder-id
                   required: true
                   schema:
@@ -1094,15 +1094,15 @@ paths:
     "/knowledge-base-folders/{knowledge-base-folder-id}/knowledge-base-articles":
         get:
             parameters:
-                -   in: query
+                - in: query
                   name: page
                   schema:
                       type: integer
-                -   in: query
+                - in: query
                   name: pageSize
                   schema:
                       type: integer
-                -   in: path
+                - in: path
                   name: knowledge-base-folder-id
                   required: true
                   schema:
@@ -1120,7 +1120,7 @@ paths:
             tags: ["KnowledgeBaseArticle"]
         post:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-folder-id
                   required: true
                   schema:
@@ -1142,15 +1142,15 @@ paths:
     "/knowledge-base-folders/{knowledge-base-folder-id}/knowledge-base-folders":
         get:
             parameters:
-                -   in: query
+                - in: query
                   name: page
                   schema:
                       type: integer
-                -   in: query
+                - in: query
                   name: pageSize
                   schema:
                       type: integer
-                -   in: path
+                - in: path
                   name: knowledge-base-folder-id
                   required: true
                   schema:
@@ -1168,7 +1168,7 @@ paths:
             tags: ["KnowledgeBaseFolder"]
         post:
             parameters:
-                -   in: path
+                - in: path
                   name: knowledge-base-folder-id
                   required: true
                   schema:
