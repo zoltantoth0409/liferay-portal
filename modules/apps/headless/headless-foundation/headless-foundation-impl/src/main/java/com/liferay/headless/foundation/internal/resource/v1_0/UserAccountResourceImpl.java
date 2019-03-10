@@ -155,52 +155,61 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 		throws Exception {
 
 		try {
-			UserAccount userAccount = multipartBody.getValueAsInstance(
-				"userAccount", UserAccount.class);
-
-			return TransactionInvokerUtil.invoke(
-				_transactionConfig,
-				() -> {
-					long prefixId = _getHonorificTitleId(
-						userAccount.getHonorificPrefix(),
-						ListTypeConstants.CONTACT_PREFIX);
-					long suffixId = _getHonorificTitleId(
-						userAccount.getHonorificSuffix(),
-						ListTypeConstants.CONTACT_SUFFIX);
-
-					Calendar calendar = Calendar.getInstance();
-
-					if (userAccount.getBirthDate() == null) {
-						calendar.setTime(new Date(0));
-					}
-					else {
-						calendar.setTime(userAccount.getBirthDate());
-					}
-
-					User user = _userLocalService.addUser(
-						UserConstants.USER_ID_DEFAULT,
-						contextCompany.getCompanyId(), true, null, null,
-						Validator.isNull(userAccount.getAlternateName()),
-						userAccount.getAlternateName(), userAccount.getEmail(),
-						0, StringPool.BLANK, LocaleUtil.getDefault(),
-						userAccount.getGivenName(), StringPool.BLANK,
-						userAccount.getFamilyName(), prefixId, suffixId, true,
-						calendar.get(Calendar.MONTH),
-						calendar.get(Calendar.DATE),
-						calendar.get(Calendar.YEAR), userAccount.getJobTitle(),
-						null, null, null, null, false, new ServiceContext());
-
-					byte[] bytes = _getImageBytes(
-						multipartBody.getBinaryFile("file"));
-
-					_userLocalService.updatePortrait(user.getUserId(), bytes);
-
-					return _toUserAccount(user);
-				});
+			return _postUserAccount(multipartBody);
+		}
+		catch (Exception e) {
+			throw e;
 		}
 		catch (Throwable throwable) {
 			throw new SystemException(throwable);
 		}
+	}
+
+	private UserAccount _postUserAccount(MultipartBody multipartBody)
+		throws Throwable {
+
+		UserAccount userAccount = multipartBody.getValueAsInstance(
+			"userAccount", UserAccount.class);
+
+		return TransactionInvokerUtil.invoke(
+			_transactionConfig,
+			() -> {
+				long prefixId = _getHonorificTitleId(
+					userAccount.getHonorificPrefix(),
+					ListTypeConstants.CONTACT_PREFIX);
+				long suffixId = _getHonorificTitleId(
+					userAccount.getHonorificSuffix(),
+					ListTypeConstants.CONTACT_SUFFIX);
+
+				Calendar calendar = Calendar.getInstance();
+
+				if (userAccount.getBirthDate() == null) {
+					calendar.setTime(new Date(0));
+				}
+				else {
+					calendar.setTime(userAccount.getBirthDate());
+				}
+
+				User user = _userLocalService.addUser(
+					UserConstants.USER_ID_DEFAULT,
+					contextCompany.getCompanyId(), true, null, null,
+					Validator.isNull(userAccount.getAlternateName()),
+					userAccount.getAlternateName(), userAccount.getEmail(),
+					0, StringPool.BLANK, LocaleUtil.getDefault(),
+					userAccount.getGivenName(), StringPool.BLANK,
+					userAccount.getFamilyName(), prefixId, suffixId, true,
+					calendar.get(Calendar.MONTH),
+					calendar.get(Calendar.DATE),
+					calendar.get(Calendar.YEAR), userAccount.getJobTitle(),
+					null, null, null, null, false, new ServiceContext());
+
+				byte[] bytes = _getImageBytes(
+					multipartBody.getBinaryFile("file"));
+
+				_userLocalService.updatePortrait(user.getUserId(), bytes);
+
+				return _toUserAccount(user);
+			});
 	}
 
 	@Override
