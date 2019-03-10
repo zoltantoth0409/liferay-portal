@@ -253,16 +253,21 @@ public class KnowledgeBaseArticleResourceImpl
 					_assetTagLocalService.getTags(
 						KBArticle.class.getName(), kbArticle.getClassPK()),
 					AssetTag.NAME_ACCESSOR);
-
-				if (kbArticle.getKbFolderId() != 0) {
-					parentKnowledgeBaseFolder =
-						ParentKnowledgeBaseFolderUtil.toParentKnowledgeBaseFolder(
-							_kbFolderService.getKBFolder(
-								kbArticle.getKbFolderId()));
-				}
-
 				parentKnowledgeBaseFolderId = kbArticle.getKbFolderId();
 				title = kbArticle.getTitle();
+
+				setParentKnowledgeBaseFolder(
+					() -> {
+						if (kbArticle.getKbFolderId() <= 0) {
+							return null;
+						}
+
+						parentKnowledgeBaseFolder =
+							ParentKnowledgeBaseFolderUtil.
+								toParentKnowledgeBaseFolder(
+									_kbFolderService.getKBFolder(
+										kbArticle.getKbFolderId()));
+					});
 			}
 		};
 	}
