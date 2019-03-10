@@ -36,8 +36,6 @@ import com.liferay.portal.kernel.webserver.WebServerServletTokenUtil;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
-import java.util.List;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -104,7 +102,9 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 		return _getUserAccountOrganizationPage(userAccountId);
 	}
 
-	private HoursAvailable _createHoursAvailable(String closes, int dayOfWeek, int opens) {
+	private HoursAvailable _createHoursAvailable(
+		String closes, int dayOfWeek, int opens) {
+
 		return new HoursAvailable() {
 			{
 				setCloses(closes);
@@ -114,33 +114,8 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 		};
 	}
 
-	private Services _toServices(OrgLabor orgLabor) throws PortalException {
-		ListType listType = orgLabor.getType();
-
-		return new Services() {
-			{
-				hoursAvailable = new HoursAvailable[] {
-					_createHoursAvailable(
-						"Friday", orgLabor.getFriOpen(), orgLabor.getFriClose()),
-					_createHoursAvailable(
-						"Monday", orgLabor.getMonOpen(), orgLabor.getMonClose()),
-					_createHoursAvailable(
-						"Thursday", orgLabor.getThuOpen(), orgLabor.getThuClose()),
-					_createHoursAvailable(
-						"Tuesday", orgLabor.getTueOpen(), orgLabor.getTueClose()),
-					_createHoursAvailable(
-						"Saturday", orgLabor.getSatOpen(), orgLabor.getSatClose()),
-					_createHoursAvailable(
-						"Sunday", orgLabor.getSunOpen(), orgLabor.getSunClose()),
-					_createHoursAvailable(
-						"Wednesday", orgLabor.getWedOpen(), orgLabor.getWedClose())
-				};
-				serviceType = listType.getName();
-			}
-		};
-	}
-
-	private Page<Organization> _getUserAccountOrganizationPage(Long myUserAccountId)
+	private Page<Organization> _getUserAccountOrganizationPage(
+			Long myUserAccountId)
 		throws PortalException {
 
 		User user = _userService.getUserById(myUserAccountId);
@@ -173,8 +148,7 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 									organization.getCountryId());
 
 								return country.getName(
-									contextAcceptLanguage.
-										getPreferredLocale());
+									contextAcceptLanguage.getPreferredLocale());
 							});
 						setAddressRegion(
 							() -> {
@@ -195,8 +169,7 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 				services = transformToArray(
 					_orgLaborService.getOrgLabors(
 						organization.getOrganizationId()),
-					OrganizationResourceImpl.this::_toServices,
-					Services.class);
+					OrganizationResourceImpl.this::_toServices, Services.class);
 
 				setHasOrganizations(
 					() -> {
@@ -228,6 +201,39 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 
 						return organization.getParentOrganizationId();
 					});
+			}
+		};
+	}
+
+	private Services _toServices(OrgLabor orgLabor) throws PortalException {
+		ListType listType = orgLabor.getType();
+
+		return new Services() {
+			{
+				hoursAvailable = new HoursAvailable[] {
+					_createHoursAvailable(
+						"Friday", orgLabor.getFriOpen(),
+						orgLabor.getFriClose()),
+					_createHoursAvailable(
+						"Monday", orgLabor.getMonOpen(),
+						orgLabor.getMonClose()),
+					_createHoursAvailable(
+						"Thursday", orgLabor.getThuOpen(),
+						orgLabor.getThuClose()),
+					_createHoursAvailable(
+						"Tuesday", orgLabor.getTueOpen(),
+						orgLabor.getTueClose()),
+					_createHoursAvailable(
+						"Saturday", orgLabor.getSatOpen(),
+						orgLabor.getSatClose()),
+					_createHoursAvailable(
+						"Sunday", orgLabor.getSunOpen(),
+						orgLabor.getSunClose()),
+					_createHoursAvailable(
+						"Wednesday", orgLabor.getWedOpen(),
+						orgLabor.getWedClose())
+				};
+				serviceType = listType.getName();
 			}
 		};
 	}
