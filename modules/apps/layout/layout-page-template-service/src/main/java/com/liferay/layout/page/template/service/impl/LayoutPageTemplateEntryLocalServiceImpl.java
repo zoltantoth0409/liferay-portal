@@ -633,6 +633,10 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 		layoutPageTemplateEntry.setModifiedDate(new Date());
 		layoutPageTemplateEntry.setName(name);
 
+		layoutPageTemplateEntry =
+			layoutPageTemplateEntryLocalService.updateLayoutPageTemplateEntry(
+				layoutPageTemplateEntry);
+
 		Map<Locale, String> titleMap = Collections.singletonMap(
 			LocaleUtil.getSiteDefault(), name);
 
@@ -647,8 +651,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 			layout.getFriendlyURLMap(), layout.getIconImage(), null,
 			ServiceContextThreadLocal.getServiceContext());
 
-		return layoutPageTemplateEntryLocalService.
-			updateLayoutPageTemplateEntry(layoutPageTemplateEntry);
+		return layoutPageTemplateEntry;
 	}
 
 	@Override
