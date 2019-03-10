@@ -28,10 +28,10 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.application.base=/data-engine",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan)",
-		"osgi.jaxrs.name=Liferay.Data.Engine"
+		"osgi.jaxrs.name=Liferay.Data.Engine.REST"
 	},
 	service = Application.class
 )
 @Generated("")
-public class DataEngineRestApplication extends Application {
+public class DataEngineRESTApplication extends Application {
 }
