@@ -104,58 +104,37 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 		return _getUserAccountOrganizationPage(userAccountId);
 	}
 
-	public class OpeningHour {
-
-		public OpeningHour(String day, int open, int close) {
-			this.day = day;
-
-			if (open >= 0) {
-				this.open = String.valueOf(open);
+	private HoursAvailable _createHoursAvailable(String closes, int dayOfWeek, int opens) {
+		return new HoursAvailable() {
+			{
+				setCloses(closes);
+				setDayOfWeek(String.valueOf(dayOfWeek));
+				setOpens(String.valueOf(opens));
 			}
-
-			if (close >= 0) {
-				this.close = String.valueOf(close);
-			}
-		}
-
-		protected String close;
-		protected String day;
-		protected String open;
-
+		};
 	}
 
 	private Services _toServices(OrgLabor orgLabor) throws PortalException {
 		ListType listType = orgLabor.getType();
 
-		OpeningHour[] openingHours = {
-			new OpeningHour(
-				"Friday", orgLabor.getFriOpen(), orgLabor.getFriClose()),
-			new OpeningHour(
-				"Monday", orgLabor.getMonOpen(), orgLabor.getMonClose()),
-			new OpeningHour(
-				"Thursday", orgLabor.getThuOpen(), orgLabor.getThuClose()),
-			new OpeningHour(
-				"Tuesday", orgLabor.getTueOpen(), orgLabor.getTueClose()),
-			new OpeningHour(
-				"Saturday", orgLabor.getSatOpen(), orgLabor.getSatClose()),
-			new OpeningHour(
-				"Sunday", orgLabor.getSunOpen(), orgLabor.getSunClose()),
-			new OpeningHour(
-				"Wednesday", orgLabor.getWedOpen(), orgLabor.getWedClose())
-		};
-
 		return new Services() {
 			{
-				hoursAvailable = transform(
-					openingHours,
-					openingHour -> new HoursAvailable() {
-						{
-							closes = openingHour.close;
-							dayOfWeek = openingHour.day;
-							opens = openingHour.open;
-						}
-					},
-					HoursAvailable.class);
+				hoursAvailable = new HoursAvailable[] {
+					_createHoursAvailable(
+						"Friday", orgLabor.getFriOpen(), orgLabor.getFriClose()),
+					_createHoursAvailable(
+						"Monday", orgLabor.getMonOpen(), orgLabor.getMonClose()),
+					_createHoursAvailable(
+						"Thursday", orgLabor.getThuOpen(), orgLabor.getThuClose()),
+					_createHoursAvailable(
+						"Tuesday", orgLabor.getTueOpen(), orgLabor.getTueClose()),
+					_createHoursAvailable(
+						"Saturday", orgLabor.getSatOpen(), orgLabor.getSatClose()),
+					_createHoursAvailable(
+						"Sunday", orgLabor.getSunOpen(), orgLabor.getSunClose()),
+					_createHoursAvailable(
+						"Wednesday", orgLabor.getWedOpen(), orgLabor.getWedClose())
+				};
 				serviceType = listType.getName();
 			}
 		};
