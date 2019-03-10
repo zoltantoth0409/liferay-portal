@@ -157,10 +157,10 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 		UserAccount userAccount = multipartBody.getValueAsInstance(
 			"userAccount", UserAccount.class);
 
-		long prefixId = _getHonorificTitleId(
+		long prefixId = _getListTypeId(
 			userAccount.getHonorificPrefix(),
 			ListTypeConstants.CONTACT_PREFIX);
-		long suffixId = _getHonorificTitleId(
+		long suffixId = _getListTypeId(
 			userAccount.getHonorificSuffix(),
 			ListTypeConstants.CONTACT_SUFFIX);
 
@@ -201,9 +201,9 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 
 		User user = _userService.getUserById(userAccountId);
 
-		long prefixId = _getHonorificTitleId(
+		long prefixId = _getListTypeId(
 			userAccount.getHonorificPrefix(), ListTypeConstants.CONTACT_PREFIX);
-		long suffixId = _getHonorificTitleId(
+		long suffixId = _getListTypeId(
 			userAccount.getHonorificSuffix(), ListTypeConstants.CONTACT_SUFFIX);
 
 		Calendar calendar = Calendar.getInstance();
@@ -239,18 +239,18 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 				user.getUserGroupIds(), new ServiceContext()));
 	}
 
-	private long _getHonorificTitleId(String honorificTitle, String titleType) {
-		if (honorificTitle == null) {
+	private long _getListTypeId(String name, String type) {
+		if (name == null) {
 			return 0;
 		}
 
 		return Optional.ofNullable(
-			_listTypeService.getListType(honorificTitle, titleType)
+			_listTypeService.getListType(name, type)
 		).map(
 			ListTypeModel::getListTypeId
 		).orElseThrow(
 			() -> new BadRequestException(
-				"Unable to find honorific title: " + honorificTitle)
+				"Unable to find honorific title: " + name)
 		);
 	}
 
