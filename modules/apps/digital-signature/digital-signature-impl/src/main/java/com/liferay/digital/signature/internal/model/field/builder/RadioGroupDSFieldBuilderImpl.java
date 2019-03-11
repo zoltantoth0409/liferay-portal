@@ -38,14 +38,14 @@ public class RadioGroupDSFieldBuilderImpl
 	}
 
 	@Override
-	public RadioGroupDSFieldBuilder addDSRadioField(RadioDSField radioDSField) {
+	public RadioGroupDSFieldBuilder addRadioDSField(RadioDSField radioDSField) {
 		_radioDSFields.add(radioDSField);
 
 		return this;
 	}
 
 	@Override
-	public RadioGroupDSFieldBuilder addDSRadioFields(
+	public RadioGroupDSFieldBuilder addRadioDSFields(
 		RadioDSField... radioDSFields) {
 
 		Collections.addAll(_radioDSFields, radioDSFields);
@@ -58,7 +58,7 @@ public class RadioGroupDSFieldBuilderImpl
 		RadioGroupDSFieldImpl radioGroupDSFieldImpl = new RadioGroupDSFieldImpl(
 			getDocumentKey(), getFieldKey(), getPageNumber());
 
-		radioGroupDSFieldImpl.addDSRadioFields(_radioDSFields);
+		radioGroupDSFieldImpl.addRadioDSFields(_radioDSFields);
 		radioGroupDSFieldImpl.setGroupName(_groupName);
 
 		populateFields(radioGroupDSFieldImpl);

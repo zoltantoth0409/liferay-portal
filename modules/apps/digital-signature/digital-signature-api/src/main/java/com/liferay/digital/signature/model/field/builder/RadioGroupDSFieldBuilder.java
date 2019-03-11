@@ -26,9 +26,9 @@ import com.liferay.digital.signature.model.field.RadioGroupDSField;
 public interface RadioGroupDSFieldBuilder
 	extends UserEntryDSFieldBuilder<RadioGroupDSField> {
 
-	public RadioGroupDSFieldBuilder addDSRadioField(RadioDSField radioDSField);
+	public RadioGroupDSFieldBuilder addRadioDSField(RadioDSField radioDSField);
 
-	public RadioGroupDSFieldBuilder addDSRadioFields(
+	public RadioGroupDSFieldBuilder addRadioDSFields(
 		RadioDSField... radioDSFields);
 
 	public RadioGroupDSFieldBuilder setGroupName(String groupName);

@@ -36,11 +36,11 @@ public class RadioGroupDSFieldImpl
 		super(documentKey, fieldKey, pageNumber);
 	}
 
-	public void addDSRadioField(RadioDSField radioDSField) {
+	public void addRadioDSField(RadioDSField radioDSField) {
 		_radioDSFields.add(radioDSField);
 	}
 
-	public void addDSRadioFields(List<RadioDSField> radioDSFields) {
+	public void addRadioDSFields(List<RadioDSField> radioDSFields) {
 		_radioDSFields.addAll(radioDSFields);
 	}
 
