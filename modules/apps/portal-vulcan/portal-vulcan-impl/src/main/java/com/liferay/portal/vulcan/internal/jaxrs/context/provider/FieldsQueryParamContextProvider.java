@@ -32,12 +32,7 @@ import org.apache.cxf.jaxrs.ext.ContextProvider;
 import org.apache.cxf.message.Message;
 
 /**
- * Allows JAX-RS resources to provide {@link FieldsQueryParam} objects in method
- * parameters, fields or setters by annotating them with {@code
- * javax.ws.rs.core.Context}.
- *
  * @author Alejandro Hernández
- * @review
  */
 @Provider
 public class FieldsQueryParamContextProvider
