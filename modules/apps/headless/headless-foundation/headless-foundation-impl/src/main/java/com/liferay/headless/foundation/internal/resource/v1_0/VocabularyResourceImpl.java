@@ -145,7 +145,7 @@ public class VocabularyResourceImpl
 				Collections.singletonMap(
 					contextAcceptLanguage.getPreferredLocale(),
 					vocabulary.getDescription()),
-				_toSettings(vocabulary.getAssetTypes(), contentSpaceId),
+				_getSettings(vocabulary.getAssetTypes(), contentSpaceId),
 				ServiceContextUtil.createServiceContext(
 					contentSpaceId, vocabulary.getViewableByAsString())));
 	}
@@ -170,12 +170,12 @@ public class VocabularyResourceImpl
 					new AbstractMap.SimpleEntry<>(
 						contextAcceptLanguage.getPreferredLocale(),
 						vocabulary.getDescription())),
-				_toSettings(
+				_getSettings(
 					vocabulary.getAssetTypes(), assetVocabulary.getGroupId()),
 				new ServiceContext()));
 	}
 
-	private AssetType _toAssetType(
+	private AssetType _getAssetType(
 		long groupId, long classNameId, long classTypePK,
 		long[] requiredClassNameIds) {
 
@@ -236,7 +236,7 @@ public class VocabularyResourceImpl
 		};
 	}
 
-	private AssetType[] _toAssetTypes(
+	private AssetType[] _getAssetTypes(
 			AssetVocabularySettingsHelper assetVocabularySettingsHelper,
 			long groupId)
 		throws Exception {
@@ -257,14 +257,14 @@ public class VocabularyResourceImpl
 			long classNameId = classNameIds[i];
 			long classTypePK = classTypePKs[i];
 
-			assetTypes[i] = _toAssetType(
+			assetTypes[i] = _getAssetType(
 				groupId, classNameId, classTypePK, requiredClassNameIds);
 		}
 
 		return assetTypes;
 	}
 
-	private long _toClassNameId(AssetType.Type assetTypeType) {
+	private long _getClassNameId(AssetType.Type assetTypeType) {
 		if (!_assetTypeTypeToClassNames.containsKey(assetTypeType)) {
 			throw new BadRequestException(
 				"Invalid asset type: " + assetTypeType);
@@ -276,7 +276,7 @@ public class VocabularyResourceImpl
 		return className.getClassNameId();
 	}
 
-	private long _toClassTypePK(long classNameId, String subtype, long groupId)
+	private long _getClassTypePK(long classNameId, String subtype, long groupId)
 		throws Exception {
 
 		if (Objects.equals("AllAssetSubtypes", subtype)) {
@@ -310,7 +310,7 @@ public class VocabularyResourceImpl
 		throw new BadRequestException("Invalid subtype " + subtype);
 	}
 
-	private String _toSettings(AssetType[] assetTypes, long groupId)
+	private String _getSettings(AssetType[] assetTypes, long groupId)
 		throws Exception {
 
 		AssetVocabularySettingsHelper assetVocabularySettingsHelper =
@@ -327,11 +327,11 @@ public class VocabularyResourceImpl
 		for (int i = 0; i < assetTypes.length; i++) {
 			AssetType assetType = assetTypes[i];
 
-			long classNameId = _toClassNameId(assetType.getType());
+			long classNameId = _getClassNameId(assetType.getType());
 
 			classNameIds[i] = classNameId;
 
-			classTypePKs[i] = _toClassTypePK(
+			classTypePKs[i] = _getClassTypePK(
 				classNameId, assetType.getSubtype(), groupId);
 
 			requiredClassNameIds[i] = assetType.getRequired();
@@ -350,7 +350,7 @@ public class VocabularyResourceImpl
 
 		return new Vocabulary() {
 			{
-				assetTypes = _toAssetTypes(
+				assetTypes = _getAssetTypes(
 					new AssetVocabularySettingsHelper(
 						assetVocabulary.getSettings()),
 					assetVocabulary.getGroupId());
