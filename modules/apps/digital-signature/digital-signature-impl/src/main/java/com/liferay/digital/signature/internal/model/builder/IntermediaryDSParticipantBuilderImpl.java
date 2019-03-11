@@ -36,7 +36,7 @@ public class IntermediaryDSParticipantBuilderImpl
 	protected IntermediaryDSParticipant createDSParticipant() {
 		IntermediaryDSParticipantImpl intermediaryDSParticipantImpl =
 			new IntermediaryDSParticipantImpl(
-				getName(), getEmailAddress(), getRoutingOrder());
+				getEmailAddress(), getName(), getRoutingOrder());
 
 		intermediaryDSParticipantImpl.setCanEditParticipantEmailAddresses(
 			getCanEditParticipantEmailAddresses());

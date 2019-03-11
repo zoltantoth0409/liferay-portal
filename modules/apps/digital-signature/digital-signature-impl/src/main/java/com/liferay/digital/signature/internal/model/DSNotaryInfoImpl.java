@@ -22,11 +22,11 @@ import com.liferay.digital.signature.model.DSNotaryInfo;
 public class DSNotaryInfoImpl implements DSNotaryInfo {
 
 	public DSNotaryInfoImpl(
-		String participantKey, String name, String emailAddress) {
+		String emailAddress, String name, String participantKey) {
 
-		_participantKey = participantKey;
-		_name = name;
 		_emailAddress = emailAddress;
+		_name = name;
+		_participantKey = participantKey;
 	}
 
 	@Override

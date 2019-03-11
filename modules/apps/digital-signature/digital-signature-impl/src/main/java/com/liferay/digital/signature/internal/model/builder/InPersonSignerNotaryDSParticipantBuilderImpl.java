@@ -41,9 +41,9 @@ public class InPersonSignerNotaryDSParticipantBuilderImpl
 	@Override
 	protected SignerDSParticipantImpl createDSSignerParticipantImpl() {
 		return new InPersonSignerNotaryDSParticipantImpl(
-			getName(), getEmailAddress(), getRoutingOrder(),
 			new DSNotaryInfoImpl(
-				_notaryParticipantKey, _notaryName, _notaryEmailAddress));
+				_notaryEmailAddress, _notaryName, _notaryParticipantKey), getEmailAddress(), getName(),
+			getRoutingOrder());
 	}
 
 	private final String _notaryEmailAddress;

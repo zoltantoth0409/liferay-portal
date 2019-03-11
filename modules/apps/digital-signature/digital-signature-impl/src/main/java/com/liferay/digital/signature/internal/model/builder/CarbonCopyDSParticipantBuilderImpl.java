@@ -34,7 +34,7 @@ public class CarbonCopyDSParticipantBuilderImpl
 	@Override
 	protected CarbonCopyDSParticipant createDSParticipant() {
 		return new CarbonCopyDSParticipantImpl(
-			getName(), getEmailAddress(), getRoutingOrder());
+			getEmailAddress(), getName(), getRoutingOrder());
 	}
 
 }

@@ -46,7 +46,7 @@ public class SealDSParticipantBuilderImpl
 		String sealProviderName) {
 
 		DSSealInfoImpl dsSealInfoImpl = new DSSealInfoImpl(
-			sealName, sealProviderName, sealDocumentsWithFieldsOnly);
+			sealDocumentsWithFieldsOnly, sealName, sealProviderName);
 
 		_dsSealInfos.put(sealName, dsSealInfoImpl);
 
@@ -113,7 +113,7 @@ public class SealDSParticipantBuilderImpl
 	@Override
 	protected SealDSParticipant createDSParticipant() {
 		SealDSParticipantImpl sealDSParticipantImpl = new SealDSParticipantImpl(
-			getParticipantKey(), getName(), getEmailAddress(),
+			getEmailAddress(), getName(), getParticipantKey(),
 			getRoutingOrder());
 
 		sealDSParticipantImpl.addDSSealInfos(_dsSealInfos.values());

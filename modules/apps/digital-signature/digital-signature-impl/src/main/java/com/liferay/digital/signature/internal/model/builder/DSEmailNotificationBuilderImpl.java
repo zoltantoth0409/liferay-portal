@@ -55,7 +55,7 @@ public class DSEmailNotificationBuilderImpl
 
 	@Override
 	public DSEmailNotification getDSEmailNotification() {
-		return new DSEmailNotificationImpl(_subject, _message) {
+		return new DSEmailNotificationImpl(_message, _subject) {
 			{
 				setDSEmailNotificationSettings(
 					new DSEmailNotificationSettingsImpl() {

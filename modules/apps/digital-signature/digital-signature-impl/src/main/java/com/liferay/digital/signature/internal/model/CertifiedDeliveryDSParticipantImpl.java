@@ -25,7 +25,7 @@ public class CertifiedDeliveryDSParticipantImpl
 	extends BaseDSParticipantImpl implements CertifiedDeliveryDSParticipant {
 
 	public CertifiedDeliveryDSParticipantImpl(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
 		super(emailAddress, name, routingOrder);
 

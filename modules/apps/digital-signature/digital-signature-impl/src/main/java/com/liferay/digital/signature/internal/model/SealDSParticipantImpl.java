@@ -31,7 +31,7 @@ public class SealDSParticipantImpl
 	extends BaseDSParticipantImpl implements SealDSParticipant {
 
 	public SealDSParticipantImpl(
-		String participantKey, String name, String emailAddress,
+		String emailAddress, String name, String participantKey,
 		int routingOrder) {
 
 		super(emailAddress, name, routingOrder);

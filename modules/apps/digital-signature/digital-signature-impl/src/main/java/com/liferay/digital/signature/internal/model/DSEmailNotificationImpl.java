@@ -22,9 +22,9 @@ import com.liferay.digital.signature.model.DSEmailNotificationSettings;
  */
 public class DSEmailNotificationImpl implements DSEmailNotification {
 
-	public DSEmailNotificationImpl(String subject, String message) {
-		_subject = subject;
+	public DSEmailNotificationImpl(String message, String subject) {
 		_message = message;
+		_subject = subject;
 	}
 
 	@Override

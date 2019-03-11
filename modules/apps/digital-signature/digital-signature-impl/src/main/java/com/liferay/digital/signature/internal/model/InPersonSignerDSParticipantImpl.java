@@ -26,15 +26,15 @@ public class InPersonSignerDSParticipantImpl
 	extends SignerDSParticipantImpl implements InPersonSignerDSParticipant {
 
 	public InPersonSignerDSParticipantImpl(
-		String hostName, String hostEmailAddress, String signerName,
-		String signerEmailAddress, int routingOrder) {
+		String hostEmailAddress, String hostName, int routingOrder,
+		String signerEmailAddress, String signerName) {
 
-		super(signerName, signerEmailAddress, routingOrder);
+		super(signerEmailAddress, signerName, routingOrder);
 
 		setDSParticipantRole(DSParticipantRole.IN_PERSON_SIGNER);
 
-		_hostName = hostName;
 		_hostEmailAddress = hostEmailAddress;
+		_hostName = hostName;
 	}
 
 	@Override

@@ -28,14 +28,14 @@ public class InPersonSignerNotaryDSParticipantImpl
 	implements InPersonSignerNotaryDSParticipant {
 
 	public InPersonSignerNotaryDSParticipantImpl(
-		String name, String emailAddress, int routingOrder,
-		DSNotaryInfo dsNotaryInfo) {
+		DSNotaryInfo dsNotaryInfo, String emailAddress, String name,
+		int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
-
-		setDSParticipantRole(DSParticipantRole.IN_PERSON_SIGNER);
+		super(emailAddress, name, routingOrder);
 
 		_dsNotaryInfo = dsNotaryInfo;
+
+		setDSParticipantRole(DSParticipantRole.IN_PERSON_SIGNER);
 	}
 
 	@Override

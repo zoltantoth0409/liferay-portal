@@ -25,7 +25,7 @@ public class EditorDSParticipantImpl
 	implements EditorDSParticipant {
 
 	public EditorDSParticipantImpl(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
 		super(emailAddress, name, routingOrder);
 	}

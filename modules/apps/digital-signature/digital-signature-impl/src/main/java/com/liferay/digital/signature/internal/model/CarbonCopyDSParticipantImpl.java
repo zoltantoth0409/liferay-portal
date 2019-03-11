@@ -25,7 +25,7 @@ public class CarbonCopyDSParticipantImpl
 	extends BaseDSParticipantImpl implements CarbonCopyDSParticipant {
 
 	public CarbonCopyDSParticipantImpl(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
 		super(emailAddress, name, routingOrder);
 

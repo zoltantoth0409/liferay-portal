@@ -34,7 +34,7 @@ public class EditorDSParticipantBuilderImpl
 	@Override
 	protected EditorDSParticipant createDSParticipant() {
 		return new EditorDSParticipantImpl(
-			getName(), getEmailAddress(), getRoutingOrder()) {
+			getEmailAddress(), getName(), getRoutingOrder()) {
 
 			{
 				setCanEditParticipantEmailAddresses(
