@@ -20,7 +20,7 @@ import aQute.bnd.annotation.ProviderType;
  * @author Michael C. Han
  */
 @ProviderType
-public interface SenderInputRequiredDSField<T extends DSField>
+public interface SenderInputRequiredDSField<T extends DSField<?>>
 	extends DSField<T> {
 
 	public Boolean getSenderRequired();
