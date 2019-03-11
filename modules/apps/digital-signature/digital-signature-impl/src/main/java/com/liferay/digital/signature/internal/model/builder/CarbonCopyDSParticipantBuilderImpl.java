@@ -28,7 +28,7 @@ public class CarbonCopyDSParticipantBuilderImpl
 	public CarbonCopyDSParticipantBuilderImpl(
 		String name, String emailAddress, int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 	}
 
 	@Override

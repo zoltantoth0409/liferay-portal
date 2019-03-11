@@ -36,7 +36,7 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	public BaseSigningDSParticipantBuilder(
 		String emailAddress, String name, int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 	}
 
 	@Override

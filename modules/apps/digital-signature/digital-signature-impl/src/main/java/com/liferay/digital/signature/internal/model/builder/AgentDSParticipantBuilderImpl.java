@@ -26,9 +26,9 @@ public class AgentDSParticipantBuilderImpl
 	implements AgentDSParticipantBuilder {
 
 	public AgentDSParticipantBuilderImpl(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 	}
 
 	@Override

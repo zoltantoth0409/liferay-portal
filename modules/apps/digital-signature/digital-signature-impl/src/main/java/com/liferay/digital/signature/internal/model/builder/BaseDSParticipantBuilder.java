@@ -30,10 +30,10 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 	implements DSParticipantBuilder {
 
 	public BaseDSParticipantBuilder(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
-		_name = name;
 		_emailAddress = emailAddress;
+		_name = name;
 		_routingOrder = routingOrder;
 	}
 

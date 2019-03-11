@@ -35,7 +35,7 @@ public class SealDSParticipantBuilderImpl
 		String participantKey, String name, String emailAddress,
 		int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 
 		setParticipantKey(participantKey);
 	}

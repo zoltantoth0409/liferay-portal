@@ -29,7 +29,7 @@ public class IntermediaryDSParticipantBuilderImpl
 	public IntermediaryDSParticipantBuilderImpl(
 		String name, String emailAddress, int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 	}
 
 	@Override

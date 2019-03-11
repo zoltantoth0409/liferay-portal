@@ -43,7 +43,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 		String emailAddress, String name, int routingOrder) {
 
 		return new AgentDSParticipantBuilderImpl(
-			name, emailAddress, routingOrder);
+			emailAddress, name, routingOrder);
 	}
 
 	@Override
