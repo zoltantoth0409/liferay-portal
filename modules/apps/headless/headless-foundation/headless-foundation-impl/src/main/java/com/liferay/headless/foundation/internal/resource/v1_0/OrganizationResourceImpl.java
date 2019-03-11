@@ -103,7 +103,7 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 	}
 
 	private HoursAvailable _createHoursAvailable(
-		String day, int openHour, int closeHour) {
+		int closeHour, String day, int openHour) {
 
 		return new HoursAvailable() {
 			{
@@ -217,26 +217,26 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 			{
 				hoursAvailable = new HoursAvailable[] {
 					_createHoursAvailable(
-						"Sunday", orgLabor.getSunOpen(),
-						orgLabor.getSunClose()),
+						orgLabor.getSunClose(), "Sunday",
+						orgLabor.getSunOpen()),
 					_createHoursAvailable(
-						"Monday", orgLabor.getMonOpen(),
-						orgLabor.getMonClose()),
+						orgLabor.getMonClose(), "Monday",
+						orgLabor.getMonOpen()),
 					_createHoursAvailable(
-						"Tuesday", orgLabor.getTueOpen(),
-						orgLabor.getTueClose()),
+						orgLabor.getTueClose(), "Tuesday",
+						orgLabor.getTueOpen()),
 					_createHoursAvailable(
-						"Wednesday", orgLabor.getWedOpen(),
-						orgLabor.getWedClose()),
+						orgLabor.getWedClose(), "Wednesday",
+						orgLabor.getWedOpen()),
 					_createHoursAvailable(
-						"Thursday", orgLabor.getThuOpen(),
-						orgLabor.getThuClose()),
+						orgLabor.getThuClose(), "Thursday",
+						orgLabor.getThuOpen()),
 					_createHoursAvailable(
-						"Friday", orgLabor.getFriOpen(),
-						orgLabor.getFriClose()),
+						orgLabor.getFriClose(), "Friday",
+						orgLabor.getFriOpen()),
 					_createHoursAvailable(
-						"Saturday", orgLabor.getSatOpen(),
-						orgLabor.getSatClose())
+						orgLabor.getSatClose(), "Saturday",
+						orgLabor.getSatOpen())
 				};
 				serviceType = listType.getName();
 			}
