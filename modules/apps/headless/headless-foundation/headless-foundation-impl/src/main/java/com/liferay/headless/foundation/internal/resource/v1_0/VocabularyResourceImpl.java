@@ -54,7 +54,6 @@ import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.portlet.asset.util.AssetVocabularySettingsHelper;
 
 import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -176,34 +175,6 @@ public class VocabularyResourceImpl
 				new ServiceContext()));
 	}
 
-	private AssetType[] _toAssetTypes(
-			AssetVocabularySettingsHelper assetVocabularySettingsHelper,
-			long groupId)
-		throws Exception {
-
-		long[] classNameIds = assetVocabularySettingsHelper.getClassNameIds();
-
-		if (ArrayUtil.isEmpty(classNameIds)) {
-			return new AssetType[0];
-		}
-
-		AssetType[] assetTypes = new AssetType[classNameIds.length];
-
-		long[] classTypePKs = assetVocabularySettingsHelper.getClassTypePKs();
-		long[] requiredClassNameIds =
-			assetVocabularySettingsHelper.getRequiredClassNameIds();
-
-		for (int i = 0; i < classNameIds.length; i++) {
-			long classNameId = classNameIds[i];
-			long classTypePK = classTypePKs[i];
-
-			assetTypes[i] = _toAssetType(
-				groupId, classNameId, classTypePK, requiredClassNameIds);
-		}
-
-		return assetTypes;
-	}
-
 	private AssetType _toAssetType(
 		long groupId, long classNameId, long classTypePK,
 		long[] requiredClassNameIds) {
@@ -249,7 +220,7 @@ public class VocabularyResourceImpl
 						}
 
 						throw new InternalServerErrorException();
-					});				
+					});
 				setType(
 					() -> {
 						if (classNameId ==
@@ -263,6 +234,34 @@ public class VocabularyResourceImpl
 					});
 			}
 		};
+	}
+
+	private AssetType[] _toAssetTypes(
+			AssetVocabularySettingsHelper assetVocabularySettingsHelper,
+			long groupId)
+		throws Exception {
+
+		long[] classNameIds = assetVocabularySettingsHelper.getClassNameIds();
+
+		if (ArrayUtil.isEmpty(classNameIds)) {
+			return new AssetType[0];
+		}
+
+		AssetType[] assetTypes = new AssetType[classNameIds.length];
+
+		long[] classTypePKs = assetVocabularySettingsHelper.getClassTypePKs();
+		long[] requiredClassNameIds =
+			assetVocabularySettingsHelper.getRequiredClassNameIds();
+
+		for (int i = 0; i < classNameIds.length; i++) {
+			long classNameId = classNameIds[i];
+			long classTypePK = classTypePKs[i];
+
+			assetTypes[i] = _toAssetType(
+				groupId, classNameId, classTypePK, requiredClassNameIds);
+		}
+
+		return assetTypes;
 	}
 
 	private long _toClassNameId(AssetType.Type assetTypeType) {
