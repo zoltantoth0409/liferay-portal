@@ -21,8 +21,8 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface DateDSField
-	extends UserEntryDSField<DateDSField>,
-			SenderInputRequiredDSField<DateDSField> {
+	extends SenderInputRequiredDSField<DateDSField>,
+			UserEntryDSField<DateDSField> {
 
 	@Override
 	public default <S> S visit(DSFieldVisitor<S> dsFieldVisitor) {
