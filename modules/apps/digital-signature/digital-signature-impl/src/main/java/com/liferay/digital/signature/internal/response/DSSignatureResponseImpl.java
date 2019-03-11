@@ -93,7 +93,9 @@ public class DSSignatureResponseImpl implements DSSignatureResponse {
 		_externalReferenceURI = externalReferenceURI;
 	}
 
-	public void setTimestampZonedDateTime(ZonedDateTime timestampZonedDateTime) {
+	public void setTimestampZonedDateTime(
+		ZonedDateTime timestampZonedDateTime) {
+
 		_timestampZonedDateTime = timestampZonedDateTime;
 	}
 

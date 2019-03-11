@@ -43,7 +43,8 @@ public class DSSignatureResponseBuilderImpl
 		dsSignatureResponseImpl.setErrorDebugMessage(_errorDebugMessage);
 		dsSignatureResponseImpl.setErrorMessage(_errorMessage);
 		dsSignatureResponseImpl.setExternalReferenceURI(_externalReferenceURI);
-		dsSignatureResponseImpl.setTimestampZonedDateTime(_timestampZonedDateTime);
+		dsSignatureResponseImpl.setTimestampZonedDateTime(
+			_timestampZonedDateTime);
 
 		return dsSignatureResponseImpl;
 	}
@@ -99,7 +100,9 @@ public class DSSignatureResponseBuilderImpl
 	}
 
 	@Override
-	public DSSignatureResponseBuilder setTimestampZonedDateTime(ZonedDateTime timestampZonedDateTime) {
+	public DSSignatureResponseBuilder setTimestampZonedDateTime(
+		ZonedDateTime timestampZonedDateTime) {
+
 		_timestampZonedDateTime = timestampZonedDateTime;
 
 		return this;

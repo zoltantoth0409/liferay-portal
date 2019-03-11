@@ -45,6 +45,7 @@ public interface DSSignatureResponseBuilder {
 	public DSSignatureResponseBuilder setExternalReferenceURI(
 		String externalReferenceURI);
 
-	public DSSignatureResponseBuilder setTimestampZonedDateTime(ZonedDateTime timestampZonedDateTime);
+	public DSSignatureResponseBuilder setTimestampZonedDateTime(
+		ZonedDateTime timestampZonedDateTime);
 
 }
