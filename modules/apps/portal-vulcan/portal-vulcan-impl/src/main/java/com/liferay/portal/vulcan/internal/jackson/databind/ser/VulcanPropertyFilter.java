@@ -77,7 +77,7 @@ public class VulcanPropertyFilter
 	private boolean _shouldWrite(
 		JsonGenerator jsonGenerator, PropertyWriter propertyWriter) {
 
-		List<String> paths = _toPaths(propertyWriter.getName(), jsonGenerator);
+		List<String> paths = _toPaths(jsonGenerator, propertyWriter.getName());
 
 		String firstPath = paths.get(0);
 
@@ -98,7 +98,7 @@ public class VulcanPropertyFilter
 		return false;
 	}
 
-	private List<String> _toPaths(String name, JsonGenerator jsonGenerator) {
+	private List<String> _toPaths(JsonGenerator jsonGenerator, String name) {
 		List<String> paths = new ArrayList<>();
 
 		paths.add(name);
