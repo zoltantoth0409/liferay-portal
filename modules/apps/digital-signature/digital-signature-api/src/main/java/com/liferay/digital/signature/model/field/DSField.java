@@ -20,7 +20,7 @@ import aQute.bnd.annotation.ProviderType;
  * @author Michael C. Han
  */
 @ProviderType
-public interface DSField<T extends DSField> {
+public interface DSField<T extends DSField<?>> {
 
 	public Boolean getAnchorIgnoreIfNotPresent();
 
