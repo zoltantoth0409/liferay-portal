@@ -27,7 +27,6 @@ import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.VocabularyEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
@@ -176,7 +175,7 @@ public class VocabularyResourceImpl
 	private AssetType[] _toAssetTypes(
 			AssetVocabularySettingsHelper assetVocabularySettingsHelper,
 			long groupId)
-		throws PortalException {
+		throws Exception {
 
 		long[] classNameIds = assetVocabularySettingsHelper.getClassNameIds();
 
@@ -254,7 +253,7 @@ public class VocabularyResourceImpl
 	}
 
 	private long _toClassTypePK(long classNameId, String subtype, long groupId)
-		throws PortalException {
+		throws Exception {
 
 		if (Objects.equals("AllAssetSubtypes", subtype)) {
 			return AssetCategoryConstants.ALL_CLASS_TYPE_PK;
@@ -301,7 +300,7 @@ public class VocabularyResourceImpl
 	}
 
 	private String _toSettings(AssetType[] assetTypes, long groupId)
-		throws PortalException {
+		throws Exception {
 
 		AssetVocabularySettingsHelper assetVocabularySettingsHelper =
 			new AssetVocabularySettingsHelper();
@@ -336,7 +335,7 @@ public class VocabularyResourceImpl
 	}
 
 	private String _toSubtype(long classNameId, long classTypePK, long groupId)
-		throws PortalException {
+		throws Exception {
 
 		if (classTypePK == AssetCategoryConstants.ALL_CLASS_TYPE_PK) {
 			return "AllAssetSubtypes";
