@@ -40,6 +40,6 @@ public interface DSSignatureResponse {
 
 	public String getExternalReferenceURI();
 
-	public ZonedDateTime getTimestamp();
+	public ZonedDateTime getTimestampZonedDateTime();
 
 }

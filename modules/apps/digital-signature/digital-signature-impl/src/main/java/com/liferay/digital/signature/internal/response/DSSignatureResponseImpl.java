@@ -67,8 +67,8 @@ public class DSSignatureResponseImpl implements DSSignatureResponse {
 	}
 
 	@Override
-	public ZonedDateTime getTimestamp() {
-		return _timestamp;
+	public ZonedDateTime getTimestampZonedDateTime() {
+		return _timestampZonedDateTime;
 	}
 
 	public void setDSSignatureRequestStatus(
@@ -93,8 +93,8 @@ public class DSSignatureResponseImpl implements DSSignatureResponse {
 		_externalReferenceURI = externalReferenceURI;
 	}
 
-	public void setTimestamp(ZonedDateTime timestamp) {
-		_timestamp = timestamp;
+	public void setTimestampZonedDateTime(ZonedDateTime timestampZonedDateTime) {
+		_timestampZonedDateTime = timestampZonedDateTime;
 	}
 
 	private DSSignaturePackageStatus _dsSignaturePackageStatus;
@@ -104,6 +104,6 @@ public class DSSignatureResponseImpl implements DSSignatureResponse {
 	private String _errorMessage;
 	private final String _externalReferenceKey;
 	private String _externalReferenceURI;
-	private ZonedDateTime _timestamp;
+	private ZonedDateTime _timestampZonedDateTime;
 
 }
