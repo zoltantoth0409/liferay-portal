@@ -63,7 +63,7 @@ public abstract class StyledDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setBold(Boolean bold) {
 		_bold = bold;
 
@@ -71,7 +71,7 @@ public abstract class StyledDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setFont(String font) {
 		_font = font;
 
@@ -79,7 +79,7 @@ public abstract class StyledDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setFontColor(String fontColor) {
 		_fontColor = fontColor;
 
@@ -87,7 +87,7 @@ public abstract class StyledDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setFontSize(String fontSize) {
 		_fontSize = fontSize;
 
@@ -95,7 +95,7 @@ public abstract class StyledDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setHeight(Integer height) {
 		_height = height;
 
@@ -103,7 +103,7 @@ public abstract class StyledDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setItalic(Boolean italic) {
 		_italic = italic;
 
@@ -111,7 +111,7 @@ public abstract class StyledDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setUnderline(Boolean underline) {
 		_underline = underline;
 
@@ -119,7 +119,7 @@ public abstract class StyledDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setWidth(Integer width) {
 		_width = width;
 

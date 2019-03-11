@@ -118,7 +118,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setAnchorIgnoreIfNotPresent(Boolean anchorIgnoreIfNotPresent) {
 		_anchorIgnoreIfNotPresent = anchorIgnoreIfNotPresent;
 
@@ -126,7 +126,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setAnchorString(String anchorString) {
 		_anchorString = anchorString;
 
@@ -134,7 +134,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setAnchorUnits(AnchorUnits anchorUnits) {
 		_anchorUnits = anchorUnits;
 
@@ -142,7 +142,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setAnchorXOffset(Float anchorXOffset) {
 		_anchorXOffset = anchorXOffset;
 
@@ -150,7 +150,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setAnchorYOffset(Float anchorYOffset) {
 		_anchorYOffset = anchorYOffset;
 
@@ -158,7 +158,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setConditionalParentLabel(String conditionalParentLabel) {
 		_conditionalParentLabel = conditionalParentLabel;
 
@@ -166,7 +166,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setConditionalParentValue(String conditionalParentValue) {
 		_conditionalParentValue = conditionalParentValue;
 
@@ -174,7 +174,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setFieldLabel(String fieldLabel) {
 		_fieldLabel = fieldLabel;
 
@@ -182,7 +182,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setFieldOrder(Integer fieldOrder) {
 		_fieldOrder = fieldOrder;
 
@@ -190,7 +190,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setLocked(Boolean locked) {
 		_locked = locked;
 
@@ -198,7 +198,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setName(String name) {
 		_name = name;
 
@@ -206,7 +206,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setParticipantKey(String participantKey) {
 		_participantKey = participantKey;
 
@@ -214,7 +214,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setRequireAll(Boolean requireAll) {
 		_requireAll = requireAll;
 
@@ -222,7 +222,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setRequired(Boolean required) {
 		_required = required;
 
@@ -230,7 +230,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setShared(Boolean shared) {
 		_shared = shared;
 
@@ -238,7 +238,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setTemplateLocked(Boolean templateLocked) {
 		_templateLocked = templateLocked;
 
@@ -246,7 +246,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setTemplateRequired(Boolean templateRequired) {
 		_templateRequired = templateRequired;
 
@@ -254,7 +254,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setXPosition(Float xPosition) {
 		_xPosition = xPosition;
 
@@ -262,7 +262,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	
 	public <S> S setYPosition(Float yPosition) {
 		_yPosition = yPosition;
 
