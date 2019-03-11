@@ -108,9 +108,7 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	public DSParticipantBuilder setCustomFieldKeys(
-		String... customFieldKeys) {
-
+	public DSParticipantBuilder setCustomFieldKeys(String... customFieldKeys) {
 		Collections.addAll(_customFieldKeys, customFieldKeys);
 
 		return this;

@@ -23,11 +23,11 @@ import aQute.bnd.annotation.ProviderType;
 public interface SealDSParticipantBuilder extends DSParticipantBuilder {
 
 	public SealDSParticipantBuilder addDSSealInfo(
-		String sealName, String sealProviderName);
-
-	public SealDSParticipantBuilder addDSSealInfo(
 		Boolean sealDocumentsWithFieldsOnly, String sealName,
 		String sealProviderName);
+
+	public SealDSParticipantBuilder addDSSealInfo(
+		String sealName, String sealProviderName);
 
 	public SealDSParticipantBuilder addMobilePhoneNumber(
 		String mobilePhoneNumber, String sealName, String signerRole);

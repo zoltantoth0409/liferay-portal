@@ -27,9 +27,9 @@ public interface ListDSFieldBuilder
 	extends SenderInputRequiredDSFieldBuilder<ListDSFieldBuilder>,
 			UserEntryDSFieldBuilder<ListDSField> {
 
-	public DSListItem addDSListItem(String text, String value);
-
 	public DSListItem addDSListItem(
 		boolean selected, String text, String value);
+
+	public DSListItem addDSListItem(String text, String value);
 
 }

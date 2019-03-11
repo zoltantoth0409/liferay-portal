@@ -23,7 +23,8 @@ import aQute.bnd.annotation.ProviderType;
 public interface ParticipantModifyingDSParticipantBuilder {
 
 	public <S extends DSParticipantBuilder> S
-		setCanEditParticipantEmailAddresses(Boolean canEditParticipantEmailAddresses);
+		setCanEditParticipantEmailAddresses(
+			Boolean canEditParticipantEmailAddresses);
 
 	public <S extends DSParticipantBuilder> S setCanEditParticipantNames(
 		Boolean canEditParticipantNames);

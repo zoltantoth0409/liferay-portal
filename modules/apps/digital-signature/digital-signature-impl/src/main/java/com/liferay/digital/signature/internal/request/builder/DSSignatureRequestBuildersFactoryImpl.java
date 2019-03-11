@@ -30,7 +30,8 @@ public class DSSignatureRequestBuildersFactoryImpl
 
 	@Override
 	public CreatePackageDSSignatureRequestBuilder
-		createCreatePackageDSSignatureRequestBuilder(DSSessionKey dsSessionKey) {
+		createCreatePackageDSSignatureRequestBuilder(
+			DSSessionKey dsSessionKey) {
 
 		return new CreatePackageDSSignatureRequestBuilderImpl(dsSessionKey);
 	}

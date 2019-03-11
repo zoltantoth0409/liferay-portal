@@ -42,10 +42,11 @@ public class SealDSParticipantBuilderImpl
 
 	@Override
 	public SealDSParticipantBuilder addDSSealInfo(
-		String sealName, String sealProviderName) {
+		Boolean sealDocumentsWithFieldsOnly, String sealName,
+		String sealProviderName) {
 
 		DSSealInfoImpl dsSealInfoImpl = new DSSealInfoImpl(
-			sealName, sealProviderName);
+			sealName, sealProviderName, sealDocumentsWithFieldsOnly);
 
 		_dsSealInfos.put(sealName, dsSealInfoImpl);
 
@@ -54,11 +55,10 @@ public class SealDSParticipantBuilderImpl
 
 	@Override
 	public SealDSParticipantBuilder addDSSealInfo(
-		Boolean sealDocumentsWithFieldsOnly, String sealName,
-		String sealProviderName) {
+		String sealName, String sealProviderName) {
 
 		DSSealInfoImpl dsSealInfoImpl = new DSSealInfoImpl(
-			sealName, sealProviderName, sealDocumentsWithFieldsOnly);
+			sealName, sealProviderName);
 
 		_dsSealInfos.put(sealName, dsSealInfoImpl);
 

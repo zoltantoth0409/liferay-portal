@@ -22,7 +22,9 @@ import com.liferay.digital.signature.model.field.DSField;
  */
 public abstract class DSFieldImpl<T extends DSField<?>> implements DSField<T> {
 
-	public DSFieldImpl(String documentKey, String fieldKey, Integer pageNumber) {
+	public DSFieldImpl(
+		String documentKey, String fieldKey, Integer pageNumber) {
+
 		_documentKey = documentKey;
 		_fieldKey = fieldKey;
 		_pageNumber = pageNumber;

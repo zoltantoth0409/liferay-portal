@@ -20,7 +20,8 @@ import aQute.bnd.annotation.ProviderType;
  * @author Michael C. Han
  */
 @ProviderType
-public interface UserEntryDSField<T extends DSField<?>> extends StyledDSField<T> {
+public interface UserEntryDSField<T extends DSField<?>>
+	extends StyledDSField<T> {
 
 	public Boolean getConcealValue();
 
