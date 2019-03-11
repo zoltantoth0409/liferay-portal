@@ -30,16 +30,16 @@ public class SignaturePackageKeyDSFieldBuilderImpl
 	implements SignaturePackageKeyDSFieldBuilder {
 
 	public SignaturePackageKeyDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<SignaturePackageKeyDSField> getDSField() {
 		SignaturePackageKeyDSFieldImpl signaturePackageKeyDSFieldImpl =
 			new SignaturePackageKeyDSFieldImpl(
-				getDocumentId(), getFieldId(), getPageNumber());
+				getdocumentKey(), getfieldKey(), getPageNumber());
 
 		populateFields(signaturePackageKeyDSFieldImpl);
 

@@ -27,16 +27,16 @@ public class InitialHereDSFieldBuilderImpl
 	implements InitialHereDSFieldBuilder {
 
 	public InitialHereDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<InitialHereDSField> getDSField() {
 		InitialHereDSFieldImpl initialHereDSFieldImpl =
 			new InitialHereDSFieldImpl(
-				getDocumentId(), getFieldId(), getPageNumber());
+				getdocumentKey(), getfieldKey(), getPageNumber());
 
 		initialHereDSFieldImpl.setScaleValue(_scaleValue);
 

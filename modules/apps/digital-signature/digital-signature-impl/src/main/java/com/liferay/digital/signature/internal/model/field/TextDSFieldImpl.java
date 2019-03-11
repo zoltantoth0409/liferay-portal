@@ -26,9 +26,9 @@ public class TextDSFieldImpl
 	extends UserEntryDSFieldImpl<TextDSField> implements TextDSField {
 
 	public TextDSFieldImpl(
-		String documentId, String fieldId, Integer pageText) {
+		String documentKey, String fieldKey, Integer pageText) {
 
-		super(documentId, fieldId, pageText);
+		super(documentKey, fieldKey, pageText);
 	}
 
 	@Override

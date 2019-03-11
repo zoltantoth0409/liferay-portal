@@ -27,15 +27,15 @@ public class NoteDSFieldBuilderImpl
 	implements NoteDSFieldBuilder {
 
 	public NoteDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<NoteDSField> getDSField() {
 		NoteDSFieldImpl noteDSFieldImpl = new NoteDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		noteDSFieldImpl.setSenderRequired(_senderRequired);
 

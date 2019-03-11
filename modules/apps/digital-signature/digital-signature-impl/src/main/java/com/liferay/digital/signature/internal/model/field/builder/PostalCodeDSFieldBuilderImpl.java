@@ -27,15 +27,15 @@ public class PostalCodeDSFieldBuilderImpl
 	implements PostalCodeDSFieldBuilder {
 
 	public PostalCodeDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<PostalCodeDSField> getDSField() {
 		PostalCodeDSFieldImpl postalCodeDSFieldImpl = new PostalCodeDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		postalCodeDSFieldImpl.setSenderRequired(_senderRequired);
 

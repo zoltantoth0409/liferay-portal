@@ -27,15 +27,15 @@ public class SignHereDSFieldBuilderImpl
 	implements SignHereDSFieldBuilder {
 
 	public SignHereDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<SignHereDSField> getDSField() {
 		SignHereDSFieldImpl signHereDSFieldImpl = new SignHereDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		signHereDSFieldImpl.setOptional(_optional);
 

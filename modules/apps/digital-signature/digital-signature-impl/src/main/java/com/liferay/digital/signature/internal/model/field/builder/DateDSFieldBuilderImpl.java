@@ -27,15 +27,15 @@ public class DateDSFieldBuilderImpl
 	implements DateDSFieldBuilder {
 
 	public DateDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<DateDSField> getDSField() {
 		DateDSFieldImpl dateDSFieldImpl = new DateDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		dateDSFieldImpl.setSenderRequired(_senderRequired);
 

@@ -31,9 +31,9 @@ public class RadioGroupDSFieldImpl
 	implements RadioGroupDSField {
 
 	public RadioGroupDSFieldImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	public void addDSRadioField(RadioDSField radioDSField) {

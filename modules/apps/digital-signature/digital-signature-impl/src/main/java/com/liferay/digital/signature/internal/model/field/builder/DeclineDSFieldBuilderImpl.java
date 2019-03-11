@@ -30,15 +30,15 @@ public class DeclineDSFieldBuilderImpl
 	implements DeclineDSFieldBuilder {
 
 	public DeclineDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<DeclineDSField> getDSField() {
 		DeclineDSFieldImpl declineDSFieldImpl = new DeclineDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		declineDSFieldImpl.setDeclineText(_declineText);
 

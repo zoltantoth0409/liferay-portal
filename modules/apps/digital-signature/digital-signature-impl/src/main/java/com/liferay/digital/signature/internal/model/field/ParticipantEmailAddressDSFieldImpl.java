@@ -27,9 +27,9 @@ public class ParticipantEmailAddressDSFieldImpl
 	implements ParticipantEmailAddressDSField {
 
 	public ParticipantEmailAddressDSFieldImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 }

@@ -30,15 +30,15 @@ public class TextDSFieldBuilderImpl
 	implements TextDSFieldBuilder {
 
 	public TextDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageText) {
+		String documentKey, String fieldKey, Integer pageText) {
 
-		super(documentId, fieldId, pageText);
+		super(documentKey, fieldKey, pageText);
 	}
 
 	@Override
 	public DSField<TextDSField> getDSField() {
 		TextDSFieldImpl textDSFieldImpl = new TextDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		textDSFieldImpl.setFormula(_formula);
 		textDSFieldImpl.setSenderRequired(_senderRequired);

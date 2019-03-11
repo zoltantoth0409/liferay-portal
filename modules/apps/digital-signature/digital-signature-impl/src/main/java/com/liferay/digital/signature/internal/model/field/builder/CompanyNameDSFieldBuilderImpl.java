@@ -27,16 +27,16 @@ public class CompanyNameDSFieldBuilderImpl
 	implements CompanyNameDSFieldBuilder {
 
 	public CompanyNameDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<CompanyNameDSField> getDSField() {
 		CompanyNameDSFieldImpl companyNameDSFieldImpl =
 			new CompanyNameDSFieldImpl(
-				getDocumentId(), getFieldId(), getPageNumber());
+				getdocumentKey(), getfieldKey(), getPageNumber());
 
 		populateFields(companyNameDSFieldImpl);
 

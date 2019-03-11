@@ -23,9 +23,9 @@ public class ViewDSFieldImpl
 	extends StyledDSFieldImpl<ViewDSField> implements ViewDSField {
 
 	public ViewDSFieldImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override

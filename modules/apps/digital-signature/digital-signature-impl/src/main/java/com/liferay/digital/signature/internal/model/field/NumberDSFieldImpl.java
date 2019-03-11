@@ -26,9 +26,9 @@ public class NumberDSFieldImpl
 	extends UserEntryDSFieldImpl<NumberDSField> implements NumberDSField {
 
 	public NumberDSFieldImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override

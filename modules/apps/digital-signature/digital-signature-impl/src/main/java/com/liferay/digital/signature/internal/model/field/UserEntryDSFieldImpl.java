@@ -24,9 +24,9 @@ public abstract class UserEntryDSFieldImpl<T extends DSField>
 	extends StyledDSFieldImpl<T> implements UserEntryDSField<T> {
 
 	public UserEntryDSFieldImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override

@@ -30,15 +30,15 @@ public class FormulaDSFieldBuilderImpl
 	implements FormulaDSFieldBuilder {
 
 	public FormulaDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<FormulaDSField> getDSField() {
 		FormulaDSFieldImpl formulaDSFieldImpl = new FormulaDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		formulaDSFieldImpl.setFormula(_formula);
 		formulaDSFieldImpl.setRoundDecimalPlaces(_roundDecimalPlaces);

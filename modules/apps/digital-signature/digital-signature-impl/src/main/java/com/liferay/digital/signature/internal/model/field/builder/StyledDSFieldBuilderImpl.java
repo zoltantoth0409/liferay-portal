@@ -25,9 +25,9 @@ public abstract class StyledDSFieldBuilderImpl<T extends DSField>
 	extends DSFieldBuilderImpl<T> implements StyledDSFieldBuilder<T> {
 
 	public StyledDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	public Boolean getBold() {

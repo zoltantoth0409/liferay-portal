@@ -30,15 +30,15 @@ public class NumberDSFieldBuilderImpl
 	implements NumberDSFieldBuilder {
 
 	public NumberDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<NumberDSField> getDSField() {
 		NumberDSFieldImpl numberDSFieldImpl = new NumberDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		numberDSFieldImpl.setFormula(_formula);
 		numberDSFieldImpl.setSenderRequired(_senderRequired);

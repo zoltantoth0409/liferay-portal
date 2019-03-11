@@ -25,9 +25,9 @@ public abstract class UserEntryDSFieldBuilderImpl<T extends DSField>
 	extends StyledDSFieldBuilderImpl<T> implements UserEntryDSFieldBuilder<T> {
 
 	public UserEntryDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	public Boolean getConcealValue() {

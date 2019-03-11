@@ -22,9 +22,9 @@ import com.liferay.digital.signature.model.field.DSField;
  */
 public abstract class DSFieldImpl<T extends DSField> implements DSField<T> {
 
-	public DSFieldImpl(String documentId, String fieldId, Integer pageNumber) {
-		_documentId = documentId;
-		_fieldId = fieldId;
+	public DSFieldImpl(String documentKey, String fieldKey, Integer pageNumber) {
+		_documentKey = documentKey;
+		_fieldKey = fieldKey;
 		_pageNumber = pageNumber;
 	}
 
@@ -65,12 +65,12 @@ public abstract class DSFieldImpl<T extends DSField> implements DSField<T> {
 
 	@Override
 	public String getDocumentKey() {
-		return _documentId;
+		return _documentKey;
 	}
 
 	@Override
 	public String getFieldKey() {
-		return _fieldId;
+		return _fieldKey;
 	}
 
 	@Override
@@ -221,8 +221,8 @@ public abstract class DSFieldImpl<T extends DSField> implements DSField<T> {
 	private Float _anchorYOffset;
 	private String _conditionalParentLabel;
 	private String _conditionalParentValue;
-	private final String _documentId;
-	private final String _fieldId;
+	private final String _documentKey;
+	private final String _fieldKey;
 	private String _fieldLabel;
 	private Integer _fieldOrder;
 	private Boolean _locked;

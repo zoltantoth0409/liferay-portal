@@ -32,9 +32,9 @@ public class RadioGroupDSFieldBuilderImpl
 	implements RadioGroupDSFieldBuilder {
 
 	public RadioGroupDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class RadioGroupDSFieldBuilderImpl
 	@Override
 	public DSField<RadioGroupDSField> getDSField() {
 		RadioGroupDSFieldImpl radioGroupDSFieldImpl = new RadioGroupDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		radioGroupDSFieldImpl.addDSRadioFields(_radioDSFields);
 		radioGroupDSFieldImpl.setGroupName(_groupName);

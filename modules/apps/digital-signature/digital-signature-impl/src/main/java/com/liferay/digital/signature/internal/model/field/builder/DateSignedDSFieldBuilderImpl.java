@@ -30,15 +30,15 @@ public class DateSignedDSFieldBuilderImpl
 	implements DateSignedDSFieldBuilder {
 
 	public DateSignedDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<DateSignedDSField> getDSField() {
 		DateSignedDSFieldImpl dateSignedDSFieldImpl = new DateSignedDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		populateFields(dateSignedDSFieldImpl);
 

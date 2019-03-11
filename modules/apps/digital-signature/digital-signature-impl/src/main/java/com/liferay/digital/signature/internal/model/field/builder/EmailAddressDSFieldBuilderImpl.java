@@ -27,16 +27,16 @@ public class EmailAddressDSFieldBuilderImpl
 	implements EmailAddressDSFieldBuilder {
 
 	public EmailAddressDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<EmailAddressDSField> getDSField() {
 		EmailAddressDSFieldImpl emailAddressDSFieldImpl =
 			new EmailAddressDSFieldImpl(
-				getDocumentId(), getFieldId(), getPageNumber());
+				getdocumentKey(), getfieldKey(), getPageNumber());
 
 		emailAddressDSFieldImpl.setSenderRequired(_senderRequired);
 

@@ -27,16 +27,16 @@ public class SignerAttachmentDSFieldBuilderImpl
 	implements SignerAttachmentDSFieldBuilder {
 
 	public SignerAttachmentDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<SignerAttachmentDSField> getDSField() {
 		SignerAttachmentDSFieldImpl signerAttachmentDSFieldImpl =
 			new SignerAttachmentDSFieldImpl(
-				getDocumentId(), getFieldId(), getPageNumber());
+				getdocumentKey(), getfieldKey(), getPageNumber());
 
 		signerAttachmentDSFieldImpl.setOptional(_optional);
 

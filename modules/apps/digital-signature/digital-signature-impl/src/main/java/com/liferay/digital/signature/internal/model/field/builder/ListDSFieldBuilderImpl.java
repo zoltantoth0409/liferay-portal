@@ -35,9 +35,9 @@ public class ListDSFieldBuilderImpl
 	implements ListDSFieldBuilder {
 
 	public ListDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class ListDSFieldBuilderImpl
 	@Override
 	public DSField<ListDSField> getDSField() {
 		ListDSFieldImpl listDSFieldImpl = new ListDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		listDSFieldImpl.addDSListItems(_dsListItems);
 		listDSFieldImpl.setSenderRequired(_senderRequired);

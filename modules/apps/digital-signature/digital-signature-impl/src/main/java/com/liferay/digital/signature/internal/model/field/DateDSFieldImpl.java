@@ -26,9 +26,9 @@ public class DateDSFieldImpl
 	extends UserEntryDSFieldImpl<DateDSField> implements DateDSField {
 
 	public DateDSFieldImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override

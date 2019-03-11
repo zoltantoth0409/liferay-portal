@@ -27,15 +27,15 @@ public class ApproveDSFieldBuilderImpl
 	implements ApproveDSFieldBuilder {
 
 	public ApproveDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<ApproveDSField> getDSField() {
 		ApproveDSFieldImpl approveDSFieldImpl = new ApproveDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		approveDSFieldImpl.setApprovalText(_approvalText);
 

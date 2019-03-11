@@ -26,10 +26,10 @@ public abstract class DSFieldBuilderImpl<T extends DSField>
 	implements DSFieldBuilder<T> {
 
 	public DSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		_documentId = documentId;
-		_fieldId = fieldId;
+		_documentKey = documentKey;
+		_fieldKey = fieldKey;
 		_pageNumber = pageNumber;
 	}
 
@@ -61,12 +61,12 @@ public abstract class DSFieldBuilderImpl<T extends DSField>
 		return _conditionalParentValue;
 	}
 
-	public String getDocumentId() {
-		return _documentId;
+	public String getdocumentKey() {
+		return _documentKey;
 	}
 
-	public String getFieldId() {
-		return _fieldId;
+	public String getfieldKey() {
+		return _fieldKey;
 	}
 
 	public String getFieldLabel() {
@@ -297,8 +297,8 @@ public abstract class DSFieldBuilderImpl<T extends DSField>
 	private Float _anchorYOffset;
 	private String _conditionalParentLabel;
 	private String _conditionalParentValue;
-	private final String _documentId;
-	private final String _fieldId;
+	private final String _documentKey;
+	private final String _fieldKey;
 	private String _fieldLabel;
 	private Integer _fieldOrder;
 	private Boolean _locked;

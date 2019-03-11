@@ -30,9 +30,9 @@ public class ListDSFieldImpl
 	extends UserEntryDSFieldImpl<ListDSField> implements ListDSField {
 
 	public ListDSFieldImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	public void addDSListItem(DSListItem dsListItem) {

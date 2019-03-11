@@ -27,9 +27,9 @@ public class SignaturePackageKeyDSFieldImpl
 	implements SignaturePackageKeyDSField {
 
 	public SignaturePackageKeyDSFieldImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 }

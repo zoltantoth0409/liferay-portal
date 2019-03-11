@@ -27,15 +27,15 @@ public class ViewDSFieldBuilderImpl
 	implements ViewDSFieldBuilder {
 
 	public ViewDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<ViewDSField> getDSField() {
 		ViewDSFieldImpl viewDSFieldImpl = new ViewDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		viewDSFieldImpl.setRequiredRead(_requiredRead);
 		viewDSFieldImpl.setViewText(_viewText);

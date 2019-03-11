@@ -27,15 +27,15 @@ public class CheckboxDSFieldBuilderImpl
 	implements CheckboxDSFieldBuilder {
 
 	public CheckboxDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<CheckboxDSField> getDSField() {
 		CheckboxDSFieldImpl checkboxDSFieldImpl = new CheckboxDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		checkboxDSFieldImpl.setSelected(_selected);
 

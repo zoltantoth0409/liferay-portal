@@ -27,9 +27,9 @@ public class PostalCodeDSFieldImpl
 	implements PostalCodeDSField {
 
 	public PostalCodeDSFieldImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override

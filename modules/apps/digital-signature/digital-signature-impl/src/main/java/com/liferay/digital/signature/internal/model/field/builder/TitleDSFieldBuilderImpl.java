@@ -27,15 +27,15 @@ public class TitleDSFieldBuilderImpl
 	implements TitleDSFieldBuilder {
 
 	public TitleDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<TitleDSField> getDSField() {
 		TitleDSFieldImpl titleDSFieldImpl = new TitleDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		populateFields(titleDSFieldImpl);
 

@@ -26,15 +26,15 @@ public class RadioDSFieldBuilderImpl
 	extends DSFieldBuilderImpl<RadioDSField> implements RadioDSFieldBuilder {
 
 	public RadioDSFieldBuilderImpl(
-		String documentId, String fieldId, Integer pageNumber) {
+		String documentKey, String fieldKey, Integer pageNumber) {
 
-		super(documentId, fieldId, pageNumber);
+		super(documentKey, fieldKey, pageNumber);
 	}
 
 	@Override
 	public DSField<RadioDSField> getDSField() {
 		RadioDSFieldImpl radioDSFieldImpl = new RadioDSFieldImpl(
-			getDocumentId(), getFieldId(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber());
 
 		radioDSFieldImpl.setValue(_value);
 
