@@ -22,7 +22,7 @@ import com.liferay.digital.signature.model.builder.CarbonCopyDSParticipantBuilde
  * @author Michael C. Han
  */
 public class CarbonCopyDSParticipantBuilderImpl
-	extends BaseDSParticipantBuilder<CarbonCopyDSParticipant>
+	extends BaseDSParticipantBuilderImpl<CarbonCopyDSParticipant>
 	implements CarbonCopyDSParticipantBuilder {
 
 	public CarbonCopyDSParticipantBuilderImpl(

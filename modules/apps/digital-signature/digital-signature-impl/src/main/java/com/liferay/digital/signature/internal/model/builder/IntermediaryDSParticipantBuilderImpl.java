@@ -22,7 +22,7 @@ import com.liferay.digital.signature.model.builder.IntermediaryDSParticipantBuil
  * @author Michael C. Han
  */
 public class IntermediaryDSParticipantBuilderImpl
-	extends BaseParticipantModifyingDSParticipantBuilder
+	extends BaseParticipantModifyingDSParticipantBuilderImpl
 		<IntermediaryDSParticipant>
 	implements IntermediaryDSParticipantBuilder {
 

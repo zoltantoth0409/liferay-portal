@@ -28,7 +28,7 @@ import java.util.Map;
  * @author Michael C. Han
  */
 public class SealDSParticipantBuilderImpl
-	extends BaseDSParticipantBuilder<SealDSParticipant>
+	extends BaseDSParticipantBuilderImpl<SealDSParticipant>
 	implements SealDSParticipantBuilder {
 
 	public SealDSParticipantBuilderImpl(

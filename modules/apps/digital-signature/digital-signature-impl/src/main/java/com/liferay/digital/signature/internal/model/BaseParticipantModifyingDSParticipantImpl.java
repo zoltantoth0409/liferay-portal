@@ -17,10 +17,10 @@ package com.liferay.digital.signature.internal.model;
 /**
  * @author Michael C. Han
  */
-public abstract class BaseParticipantModifyingDSParticipant
+public abstract class BaseParticipantModifyingDSParticipantImpl
 	extends BaseDSParticipantImpl {
 
-	public BaseParticipantModifyingDSParticipant(
+	public BaseParticipantModifyingDSParticipantImpl(
 		String emailAddress, String name, int routingOrder) {
 
 		super(emailAddress, name, routingOrder);

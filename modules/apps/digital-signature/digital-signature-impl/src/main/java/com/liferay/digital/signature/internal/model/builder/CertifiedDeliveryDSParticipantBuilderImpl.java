@@ -22,7 +22,7 @@ import com.liferay.digital.signature.model.builder.CertifiedDeliveryDSParticipan
  * @author Michael C. Han
  */
 public class CertifiedDeliveryDSParticipantBuilderImpl
-	extends BaseDSParticipantBuilder<CertifiedDeliveryDSParticipant>
+	extends BaseDSParticipantBuilderImpl<CertifiedDeliveryDSParticipant>
 	implements CertifiedDeliveryDSParticipantBuilder {
 
 	public CertifiedDeliveryDSParticipantBuilderImpl(

@@ -21,12 +21,12 @@ import com.liferay.digital.signature.model.builder.ParticipantModifyingDSPartici
 /**
  * @author Michael C. Han
  */
-public abstract class BaseParticipantModifyingDSParticipantBuilder
+public abstract class BaseParticipantModifyingDSParticipantBuilderImpl
 	<T extends DSParticipant>
-		extends BaseDSParticipantBuilder<T>
+		extends BaseDSParticipantBuilderImpl<T>
 		implements ParticipantModifyingDSParticipantBuilder {
 
-	public BaseParticipantModifyingDSParticipantBuilder(
+	public BaseParticipantModifyingDSParticipantBuilderImpl(
 		String emailAddress, String name, int routingOrder) {
 
 		super(emailAddress, name, routingOrder);

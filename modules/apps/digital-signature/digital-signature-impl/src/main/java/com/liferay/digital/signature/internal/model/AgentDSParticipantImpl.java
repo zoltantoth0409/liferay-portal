@@ -22,7 +22,7 @@ import com.liferay.digital.signature.model.DSParticipantVisitor;
  * @author Michael C. Han
  */
 public class AgentDSParticipantImpl
-	extends BaseParticipantModifyingDSParticipant
+	extends BaseParticipantModifyingDSParticipantImpl
 	implements AgentDSParticipant {
 
 	public AgentDSParticipantImpl(

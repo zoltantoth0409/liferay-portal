@@ -26,10 +26,10 @@ import java.util.HashSet;
 /**
  * @author Michael C. Han
  */
-public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
+public abstract class BaseDSParticipantBuilderImpl<T extends DSParticipant>
 	implements DSParticipantBuilder {
 
-	public BaseDSParticipantBuilder(
+	public BaseDSParticipantBuilderImpl(
 		String emailAddress, String name, int routingOrder) {
 
 		_emailAddress = emailAddress;

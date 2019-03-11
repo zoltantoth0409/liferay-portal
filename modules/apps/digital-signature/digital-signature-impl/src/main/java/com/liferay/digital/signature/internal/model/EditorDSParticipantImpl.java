@@ -21,7 +21,7 @@ import com.liferay.digital.signature.model.EditorDSParticipant;
  * @author Michael C. Han
  */
 public class EditorDSParticipantImpl
-	extends BaseParticipantModifyingDSParticipant
+	extends BaseParticipantModifyingDSParticipantImpl
 	implements EditorDSParticipant {
 
 	public EditorDSParticipantImpl(

@@ -24,7 +24,7 @@ import com.liferay.digital.signature.model.builder.InPersonSignerNotaryDSPartici
  * @author Michael C. Han
  */
 public class InPersonSignerNotaryDSParticipantBuilderImpl
-	extends BaseSigningDSParticipantBuilder<InPersonSignerNotaryDSParticipant>
+	extends BaseSigningDSParticipantBuilderImpl<InPersonSignerNotaryDSParticipant>
 	implements InPersonSignerNotaryDSParticipantBuilder {
 
 	public InPersonSignerNotaryDSParticipantBuilderImpl(

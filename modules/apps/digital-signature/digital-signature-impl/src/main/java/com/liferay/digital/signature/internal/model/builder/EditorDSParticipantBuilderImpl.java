@@ -22,7 +22,7 @@ import com.liferay.digital.signature.model.builder.EditorDSParticipantBuilder;
  * @author Michael C. Han
  */
 public class EditorDSParticipantBuilderImpl
-	extends BaseParticipantModifyingDSParticipantBuilder<EditorDSParticipant>
+	extends BaseParticipantModifyingDSParticipantBuilderImpl<EditorDSParticipant>
 	implements EditorDSParticipantBuilder {
 
 	public EditorDSParticipantBuilderImpl(

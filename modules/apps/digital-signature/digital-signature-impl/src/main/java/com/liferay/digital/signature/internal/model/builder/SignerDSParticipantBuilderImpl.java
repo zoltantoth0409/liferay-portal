@@ -22,7 +22,7 @@ import com.liferay.digital.signature.model.builder.SignerDSParticipantBuilder;
  * @author Michael C. Han
  */
 public class SignerDSParticipantBuilderImpl
-	extends BaseSigningDSParticipantBuilder<SignerDSParticipant>
+	extends BaseSigningDSParticipantBuilderImpl<SignerDSParticipant>
 	implements SignerDSParticipantBuilder {
 
 	public SignerDSParticipantBuilderImpl(
