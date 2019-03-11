@@ -80,7 +80,6 @@ public class UpgradeAssetDisplayPageEntry extends UpgradeProcess {
 
 		long journalArticleClassNameId = PortalUtil.getClassNameId(
 			JournalArticle.class);
-
 		User user = company.getDefaultUser();
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
