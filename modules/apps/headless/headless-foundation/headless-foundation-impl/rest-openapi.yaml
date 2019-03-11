@@ -1367,15 +1367,15 @@ paths:
     "/user-accounts/{user-account-id}/web-urls":
         get:
             parameters:
-                -   in: query
+                - in: query
                   name: page
                   schema:
                       type: integer
-                -   in: query
+                - in: query
                   name: pageSize
                   schema:
                       type: integer
-                -   in: path
+                - in: path
                   name: user-account-id
                   required: true
                   schema:
