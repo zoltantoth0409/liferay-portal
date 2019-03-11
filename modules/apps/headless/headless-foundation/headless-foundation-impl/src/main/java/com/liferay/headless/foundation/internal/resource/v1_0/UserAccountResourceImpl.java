@@ -156,7 +156,7 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 	}
 
 	@Override
-	public UserAccount postUserAccount(UserAccount userAccount)
+	public UserAccount postMediaTypeAUserAccount(UserAccount userAccount)
 		throws Exception {
 
 		return _toUserAccount(_addUser(userAccount));
