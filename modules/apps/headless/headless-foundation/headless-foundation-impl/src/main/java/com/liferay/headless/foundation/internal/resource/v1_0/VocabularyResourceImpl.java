@@ -197,29 +197,72 @@ public class VocabularyResourceImpl
 			long classNameId = classNameIds[i];
 			long classTypePK = classTypePKs[i];
 
-			assetTypes[i] =
-				new AssetType() {
-					{
-						required = ArrayUtil.contains(
-							requiredClassNameIds, classNameId);
-						subtype = _toSubtype(classNameId, classTypePK, groupId);
-						type = _toAssetTypeType(classNameId);
-					}
-				};
+			assetTypes[i] = _toAssetType(
+				groupId, classNameId, classTypePK, requiredClassNameIds);
 		}
 
 		return assetTypes;
 	}
 
-	private AssetType.Type _toAssetTypeType(long classNameId) {
-		if (classNameId == AssetCategoryConstants.ALL_CLASS_NAME_ID) {
-			return AssetType.Type.ALL_ASSET_TYPES;
-		}
+	private AssetType _toAssetType(
+		long groupId, long classNameId, long classTypePK,
+		long[] requiredClassNameIds) {
 
 		ClassName className = _classNameLocalService.fetchByClassNameId(
 			classNameId);
 
-		return _classNameToAssetTypeTypes.get(className.getClassName());
+		return new AssetType() {
+			{
+				required = ArrayUtil.contains(
+					requiredClassNameIds, classNameId);
+				setSubtype(
+					() -> {
+						if (classTypePK ==
+								AssetCategoryConstants.ALL_CLASS_TYPE_PK) {
+
+							return "AllAssetSubtypes";
+						}
+
+						AssetRendererFactory assetRendererFactory =
+							AssetRendererFactoryRegistryUtil.
+								getAssetRendererFactoryByClassName(
+									className.getClassName());
+
+						ClassTypeReader classTypeReader =
+							assetRendererFactory.getClassTypeReader();
+
+						List<ClassType> classTypes =
+							classTypeReader.getAvailableClassTypes(
+								new long[] {
+									groupId, contextCompany.getGroupId()
+								},
+								contextAcceptLanguage.getPreferredLocale());
+
+						if (ListUtil.isEmpty(classTypes)) {
+							return "All";
+						}
+
+						for (ClassType classType : classTypes) {
+							if (classType.getClassTypeId() == classTypePK) {
+								return classType.getName();
+							}
+						}
+
+						throw new InternalServerErrorException();
+					});				
+				setType(
+					() -> {
+						if (classNameId ==
+								AssetCategoryConstants.ALL_CLASS_NAME_ID) {
+
+							return AssetType.Type.ALL_ASSET_TYPES;
+						}
+
+						return _classNameToAssetTypeTypes.get(
+							className.getClassName());
+					});
+			}
+		};
 	}
 
 	private long _toClassNameId(AssetType.Type assetTypeType) {
@@ -301,40 +344,6 @@ public class VocabularyResourceImpl
 		assetVocabularySettingsHelper.setMultiValued(true);
 
 		return assetVocabularySettingsHelper.toString();
-	}
-
-	private String _toSubtype(long classNameId, long classTypePK, long groupId)
-		throws Exception {
-
-		if (classTypePK == AssetCategoryConstants.ALL_CLASS_TYPE_PK) {
-			return "AllAssetSubtypes";
-		}
-
-		ClassName className = _classNameLocalService.fetchByClassNameId(
-			classNameId);
-
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				className.getClassName());
-
-		ClassTypeReader classTypeReader =
-			assetRendererFactory.getClassTypeReader();
-
-		List<ClassType> classTypes = classTypeReader.getAvailableClassTypes(
-			new long[] {groupId, contextCompany.getGroupId()},
-			contextAcceptLanguage.getPreferredLocale());
-
-		if (ListUtil.isEmpty(classTypes)) {
-			return "All";
-		}
-
-		for (ClassType classType : classTypes) {
-			if (classType.getClassTypeId() == classTypePK) {
-				return classType.getName();
-			}
-		}
-
-		throw new InternalServerErrorException();
 	}
 
 	private Vocabulary _toVocabulary(AssetVocabulary assetVocabulary)
