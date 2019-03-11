@@ -33,16 +33,16 @@ public class EditorDSParticipantBuilderImpl
 
 	@Override
 	protected EditorDSParticipant createDSParticipant() {
-		EditorDSParticipantImpl editorDSParticipantImpl =
-			new EditorDSParticipantImpl(
-				getName(), getEmailAddress(), getRoutingOrder());
-
-		editorDSParticipantImpl.setCanEditParticipantEmailAddresses(
-			getCanEditParticipantEmailAddresses());
-		editorDSParticipantImpl.setCanEditParticipantNames(
-			getCanEditParticipantNames());
-
-		return editorDSParticipantImpl;
+		return new EditorDSParticipantImpl(
+			getName(), getEmailAddress(), getRoutingOrder()) {
+			
+			{
+				setCanEditParticipantEmailAddresses(
+					getCanEditParticipantEmailAddresses());
+				setCanEditParticipantNames(
+					getCanEditParticipantNames());
+			}
+		};
 	}
 
 }
