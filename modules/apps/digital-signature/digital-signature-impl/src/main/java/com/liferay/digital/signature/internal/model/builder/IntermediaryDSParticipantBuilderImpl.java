@@ -34,16 +34,15 @@ public class IntermediaryDSParticipantBuilderImpl
 
 	@Override
 	protected IntermediaryDSParticipant createDSParticipant() {
-		IntermediaryDSParticipantImpl intermediaryDSParticipantImpl =
-			new IntermediaryDSParticipantImpl(
-				getEmailAddress(), getName(), getRoutingOrder());
-
-		intermediaryDSParticipantImpl.setCanEditParticipantEmailAddresses(
-			getCanEditParticipantEmailAddresses());
-		intermediaryDSParticipantImpl.setCanEditParticipantNames(
-			getCanEditParticipantNames());
-
-		return intermediaryDSParticipantImpl;
+		return new IntermediaryDSParticipantImpl(
+				getEmailAddress(), getName(), getRoutingOrder()) {
+			{
+				setCanEditParticipantEmailAddresses(
+					getCanEditParticipantEmailAddresses());
+				setCanEditParticipantNames(
+					getCanEditParticipantNames());
+			}
+		};
 	}
 
 }
