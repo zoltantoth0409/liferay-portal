@@ -182,7 +182,8 @@ public class ContentPageEditorDisplayContext {
 		soyContext.put("languageId", themeDisplay.getLanguageId());
 		soyContext.put(
 			"layoutData", JSONFactoryUtil.createJSONObject(_getLayoutData()));
-		soyContext.put("mappedAssetEntries", _getMappedAssetEntries());
+		soyContext.put(
+			"mappedAssetEntries", _getMappedAssetEntriesSoyContexts());
 		soyContext.put("portletNamespace", _renderResponse.getNamespace());
 		soyContext.put(
 			"renderFragmentEntryURL",
@@ -509,8 +510,8 @@ public class ContentPageEditorDisplayContext {
 		return _layoutData;
 	}
 
-	private Set<SoyContext> _getMappedAssetEntries() throws Exception {
-		Set<SoyContext> mappedAssetEntries = new HashSet<>();
+	private Set<SoyContext> _getMappedAssetEntriesSoyContexts() throws Exception {
+		Set<SoyContext> mappedAssetEntriesSoyContexts = new HashSet<>();
 
 		List<Long> mappedClassPKs = new ArrayList<>();
 
@@ -574,12 +575,13 @@ public class ContentPageEditorDisplayContext {
 					mappedAssetEntrySoyContext.put(
 						"title", assetEntry.getTitle(themeDisplay.getLocale()));
 
-					mappedAssetEntries.add(mappedAssetEntrySoyContext);
+					mappedAssetEntriesSoyContexts.add(
+						mappedAssetEntrySoyContext);
 				}
 			}
 		}
 
-		return mappedAssetEntries;
+		return mappedAssetEntriesSoyContexts;
 	}
 
 	private String _getPortletCategoryTitle(PortletCategory portletCategory) {
