@@ -23,8 +23,8 @@ import com.liferay.digital.signature.model.field.TextDSField;
  */
 @ProviderType
 public interface TextDSFieldBuilder
-	extends UserEntryDSFieldBuilder<TextDSField>,
-			SenderInputRequiredDSFieldBuilder<TextDSFieldBuilder> {
+	extends SenderInputRequiredDSFieldBuilder<TextDSFieldBuilder>,
+			UserEntryDSFieldBuilder<TextDSField> {
 
 	public TextDSFieldBuilder setFormula(String formula);
 
