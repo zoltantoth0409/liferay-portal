@@ -64,12 +64,12 @@ public abstract class DSFieldImpl<T extends DSField> implements DSField<T> {
 	}
 
 	@Override
-	public String getDocumentId() {
+	public String getDocumentKey() {
 		return _documentId;
 	}
 
 	@Override
-	public String getFieldId() {
+	public String getFieldKey() {
 		return _fieldId;
 	}
 
@@ -99,7 +99,7 @@ public abstract class DSFieldImpl<T extends DSField> implements DSField<T> {
 	}
 
 	@Override
-	public String getParticipantId() {
+	public String getParticipantKey() {
 		return _participantId;
 	}
 

@@ -36,9 +36,9 @@ public interface DSField<T extends DSField<?>> {
 
 	public String getConditionalParentValue();
 
-	public String getDocumentId();
+	public String getDocumentKey();
 
-	public String getFieldId();
+	public String getFieldKey();
 
 	public String getFieldLabel();
 
@@ -50,7 +50,7 @@ public interface DSField<T extends DSField<?>> {
 
 	public Integer getPageNumber();
 
-	public String getParticipantId();
+	public String getParticipantKey();
 
 	public Boolean getRequireAll();
 
