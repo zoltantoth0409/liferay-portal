@@ -63,7 +63,7 @@ public class MockMessage implements Message {
 	}
 
 	public MockMessage(
-		HttpServletRequest httpServletRequest, Object resource, Method method) {
+		HttpServletRequest httpServletRequest, Method method, Object resource) {
 
 		_httpServletRequest = httpServletRequest;
 		_resource = resource;
