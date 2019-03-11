@@ -3635,7 +3635,7 @@ public class AssetListEntrySegmentsEntryRelPersistenceImpl
 
 	@Override
 	protected String getPKDBName() {
-		return "assetListSegmentRelId";
+		return "alEntrySegmentsEntryRelId";
 	}
 
 	@Override

@@ -31,7 +31,7 @@ create table AssetListEntryAssetEntryRel (
 
 create table AssetListEntrySegmentsEntryRel (
 	uuid_ VARCHAR(75) null,
-	assetListSegmentRelId LONG not null primary key,
+	alEntrySegmentsEntryRelId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
 	userId LONG,

@@ -75,7 +75,7 @@ public class AssetListEntrySegmentsEntryRelModelImpl
 	public static final String TABLE_NAME = "AssetListEntrySegmentsEntryRel";
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"uuid_", Types.VARCHAR}, {"assetListSegmentRelId", Types.BIGINT},
+		{"uuid_", Types.VARCHAR}, {"alEntrySegmentsEntryRelId", Types.BIGINT},
 		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
@@ -88,7 +88,7 @@ public class AssetListEntrySegmentsEntryRelModelImpl
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("assetListSegmentRelId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("alEntrySegmentsEntryRelId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
@@ -102,7 +102,7 @@ public class AssetListEntrySegmentsEntryRelModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table AssetListEntrySegmentsEntryRel (uuid_ VARCHAR(75) null,assetListSegmentRelId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,assetListEntryId LONG,segmentsEntryId LONG,typeSettings TEXT null,lastPublishDate DATE null)";
+		"create table AssetListEntrySegmentsEntryRel (uuid_ VARCHAR(75) null,alEntrySegmentsEntryRelId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,assetListEntryId LONG,segmentsEntryId LONG,typeSettings TEXT null,lastPublishDate DATE null)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table AssetListEntrySegmentsEntryRel";
@@ -111,7 +111,7 @@ public class AssetListEntrySegmentsEntryRelModelImpl
 		" ORDER BY assetListEntrySegmentsEntryRel.assetListEntrySegmentsEntryRelId ASC";
 
 	public static final String ORDER_BY_SQL =
-		" ORDER BY AssetListEntrySegmentsEntryRel.assetListSegmentRelId ASC";
+		" ORDER BY AssetListEntrySegmentsEntryRel.alEntrySegmentsEntryRelId ASC";
 
 	public static final String DATA_SOURCE = "liferayDataSource";
 
