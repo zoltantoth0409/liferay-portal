@@ -685,7 +685,7 @@ public class JournalPortlet extends MVCPortlet {
 			uploadPortletRequest, "expirationDateAmPm");
 
 		boolean neverExpire = ParamUtil.getBoolean(
-			uploadPortletRequest, "neverExpire");
+			uploadPortletRequest, "neverExpire", displayDateYear == 0);
 
 		if (!PropsValues.SCHEDULER_ENABLED) {
 			neverExpire = true;
@@ -709,7 +709,7 @@ public class JournalPortlet extends MVCPortlet {
 			uploadPortletRequest, "reviewDateAmPm");
 
 		boolean neverReview = ParamUtil.getBoolean(
-			uploadPortletRequest, "neverReview");
+			uploadPortletRequest, "neverReview", displayDateYear == 0);
 
 		if (!PropsValues.SCHEDULER_ENABLED) {
 			neverReview = true;
