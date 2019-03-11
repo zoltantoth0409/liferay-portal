@@ -67,7 +67,8 @@ public class DSSignatureServiceImpl implements DSSignatureService {
 				{
 					setDSSignatureRequestStatus(
 						DSSignaturePackageStatus.FAILED);
-					setErrorMessage("No DSSignatureAdapter configured");
+					setErrorMessage(
+						"No digital signature adapter is available");
 				}
 			});
 	}
