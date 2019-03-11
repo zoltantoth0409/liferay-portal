@@ -32,20 +32,20 @@ public interface DSSignaturePackageBuilder {
 	public DSSignaturePackageBuilder addDSDocuments(
 		Collection<DSDocument> documents);
 
-	public DSSignaturePackageBuilder addDSDocuments(DSDocument... documents);
+	public DSSignaturePackageBuilder addDSDocuments(DSDocument... dsDocuments);
 
 	public DSSignaturePackageBuilder addDSParticipants(
-		Collection<DSParticipant> participants);
+		Collection<DSParticipant> dsParticipants);
 
 	public DSSignaturePackageBuilder addDSParticipants(
-		DSParticipant... participants);
+		DSParticipant... dsParticipants);
 
 	public DSSignaturePackage getDSSignatureRequest();
 
 	public DSSignaturePackageBuilder setAuthoritative(Boolean authoritative);
 
 	public DSSignaturePackageBuilder setDSEmailNotification(
-		DSEmailNotification emailNotification);
+		DSEmailNotification dsEmailNotification);
 
 	public DSSignaturePackageBuilder setDSSignatureRequestId(
 		String dsSignatureRequestId);

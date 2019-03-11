@@ -31,14 +31,14 @@ public interface DSParticipantBuilder {
 
 	public DSParticipantBuilder setClientUserKey(String clientUserKey);
 
-	public DSParticipantBuilder setCustomFieldNames(String... customFields);
+	public DSParticipantBuilder setCustomFieldNames(String... customFieldNames);
 
 	public DSParticipantBuilder setDSEmailNotification(
 		DSEmailNotification dsEmailNotification);
 
 	public DSParticipantBuilder setNote(String note);
 
-	public DSParticipantBuilder setParticipantKey(String participantId);
+	public DSParticipantBuilder setParticipantKey(String participantKey);
 
 	public DSParticipantBuilder setRoleName(String roleName);
 
