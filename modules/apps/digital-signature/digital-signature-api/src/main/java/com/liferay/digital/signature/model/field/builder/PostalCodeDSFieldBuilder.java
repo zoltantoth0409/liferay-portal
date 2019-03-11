@@ -23,6 +23,6 @@ import com.liferay.digital.signature.model.field.PostalCodeDSField;
  */
 @ProviderType
 public interface PostalCodeDSFieldBuilder
-	extends UserEntryDSFieldBuilder<PostalCodeDSField>,
-			SenderInputRequiredDSFieldBuilder<PostalCodeDSFieldBuilder> {
+	extends SenderInputRequiredDSFieldBuilder<PostalCodeDSFieldBuilder>,
+			UserEntryDSFieldBuilder<PostalCodeDSField> {
 }

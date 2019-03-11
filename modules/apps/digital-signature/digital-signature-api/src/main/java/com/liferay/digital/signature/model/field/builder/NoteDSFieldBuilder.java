@@ -23,6 +23,6 @@ import com.liferay.digital.signature.model.field.NoteDSField;
  */
 @ProviderType
 public interface NoteDSFieldBuilder
-	extends UserEntryDSFieldBuilder<NoteDSField>,
-			SenderInputRequiredDSFieldBuilder<NoteDSFieldBuilder> {
+	extends SenderInputRequiredDSFieldBuilder<NoteDSFieldBuilder>,
+			UserEntryDSFieldBuilder<NoteDSField> {
 }
