@@ -54,13 +54,13 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 	public Page<Segment> getContentSpaceSegmentsPage(
 		Long contentSpaceId, Pagination pagination) {
 
-		List<SegmentsEntry> segmentsEntries =
-			_segmentsEntryService.getSegmentsEntries(
-				contentSpaceId, true, pagination.getStartPosition(),
-				pagination.getEndPosition(), null);
-
 		return Page.of(
-			transform(segmentsEntries, this::_toSegment), pagination,
+			transform(
+				_segmentsEntryService.getSegmentsEntries(
+					contentSpaceId, true, pagination.getStartPosition(),
+					pagination.getEndPosition(), null),
+				this::_toSegment),
+			pagination,
 			_segmentsEntryService.getSegmentsEntriesCount(
 				contentSpaceId, true));
 	}
