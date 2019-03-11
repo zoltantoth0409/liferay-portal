@@ -45,7 +45,7 @@ public class RadioGroupDSFieldImpl
 	}
 
 	@Override
-	public List<RadioDSField> getDSRadioFields() {
+	public List<RadioDSField> getRadioDSFields() {
 		return _radioDSFields;
 	}
 
