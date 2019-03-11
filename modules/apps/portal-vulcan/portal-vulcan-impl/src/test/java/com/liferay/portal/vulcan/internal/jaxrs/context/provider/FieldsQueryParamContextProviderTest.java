@@ -95,7 +95,7 @@ public class FieldsQueryParamContextProviderTest {
 			containsInAnyOrder("hello", "hi"));
 	}
 
-	private Message _getMessage(String fields) {
+	private Message _getMessage(String fieldNames) {
 		Message message = Mockito.mock(Message.class);
 
 		HttpServletRequest httpServletRequest = Mockito.mock(
@@ -110,7 +110,7 @@ public class FieldsQueryParamContextProviderTest {
 		Mockito.when(
 			httpServletRequest.getParameter("fields")
 		).thenReturn(
-			fields
+			fieldNames
 		);
 
 		return message;
