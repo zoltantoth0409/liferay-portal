@@ -23,8 +23,8 @@ import java.util.List;
  */
 @ProviderType
 public interface ListDSField
-	extends UserEntryDSField<ListDSField>,
-			SenderInputRequiredDSField<ListDSField> {
+	extends SenderInputRequiredDSField<ListDSField>,
+			UserEntryDSField<ListDSField> {
 
 	public List<DSListItem> getDSListItems();
 

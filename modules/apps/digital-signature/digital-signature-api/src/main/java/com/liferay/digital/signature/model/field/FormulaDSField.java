@@ -21,8 +21,8 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface FormulaDSField
-	extends UserEntryDSField<FormulaDSField>,
-			SenderInputRequiredDSField<FormulaDSField> {
+	extends SenderInputRequiredDSField<FormulaDSField>,
+			UserEntryDSField<FormulaDSField> {
 
 	public String getFormula();
 

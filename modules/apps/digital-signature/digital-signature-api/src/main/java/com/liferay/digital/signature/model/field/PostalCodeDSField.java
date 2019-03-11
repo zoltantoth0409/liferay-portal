@@ -21,8 +21,8 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface PostalCodeDSField
-	extends UserEntryDSField<PostalCodeDSField>,
-			SenderInputRequiredDSField<PostalCodeDSField> {
+	extends SenderInputRequiredDSField<PostalCodeDSField>,
+			UserEntryDSField<PostalCodeDSField> {
 
 	@Override
 	public default <S> S visit(DSFieldVisitor<S> dsFieldVisitor) {

@@ -21,8 +21,8 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface NoteDSField
-	extends UserEntryDSField<NoteDSField>,
-			SenderInputRequiredDSField<NoteDSField> {
+	extends SenderInputRequiredDSField<NoteDSField>,
+			UserEntryDSField<NoteDSField> {
 
 	@Override
 	public default <S> S visit(DSFieldVisitor<S> dsFieldVisitor) {
