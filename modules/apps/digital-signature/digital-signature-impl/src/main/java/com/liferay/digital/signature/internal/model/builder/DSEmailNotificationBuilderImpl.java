@@ -30,9 +30,9 @@ import java.util.Set;
 public class DSEmailNotificationBuilderImpl
 	implements DSEmailNotificationBuilder {
 
-	public DSEmailNotificationBuilderImpl(String subject, String message) {
-		_subject = subject;
+	public DSEmailNotificationBuilderImpl(String message, String subject) {
 		_message = message;
+		_subject = subject;
 	}
 
 	@Override

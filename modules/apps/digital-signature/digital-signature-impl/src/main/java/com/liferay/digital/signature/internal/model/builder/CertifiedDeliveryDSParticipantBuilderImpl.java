@@ -26,7 +26,7 @@ public class CertifiedDeliveryDSParticipantBuilderImpl
 	implements CertifiedDeliveryDSParticipantBuilder {
 
 	public CertifiedDeliveryDSParticipantBuilderImpl(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
 		super(emailAddress, name, routingOrder);
 	}

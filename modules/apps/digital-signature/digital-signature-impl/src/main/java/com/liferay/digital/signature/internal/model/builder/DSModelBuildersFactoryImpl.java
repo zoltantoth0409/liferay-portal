@@ -51,7 +51,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 		String emailAddress, String name, int routingOrder) {
 
 		return new CarbonCopyDSParticipantBuilderImpl(
-			name, emailAddress, routingOrder);
+			emailAddress, name, routingOrder);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 			String emailAddress, String name, int routingOrder) {
 
 		return new CertifiedDeliveryDSParticipantBuilderImpl(
-			name, emailAddress, routingOrder);
+			emailAddress, name, routingOrder);
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 	public DSEmailNotificationBuilder createDSEmailNotificationBuilder(
 		String message, String subject) {
 
-		return new DSEmailNotificationBuilderImpl(subject, message);
+		return new DSEmailNotificationBuilderImpl(message, subject);
 	}
 
 	@Override
