@@ -32,7 +32,7 @@ public class SealDSParticipantBuilderImpl
 	implements SealDSParticipantBuilder {
 
 	public SealDSParticipantBuilderImpl(
-		String participantKey, String name, String emailAddress,
+		String emailAddress, String name, String participantKey,
 		int routingOrder) {
 
 		super(emailAddress, name, routingOrder);
@@ -79,12 +79,12 @@ public class SealDSParticipantBuilderImpl
 
 	@Override
 	public SealDSParticipantBuilder addOneTimePassword(
-		String oneTimePasssword, String sealName, String signerRole) {
+		String oneTimePassword, String sealName, String signerRole) {
 
 		DSSealProviderOptionsImpl dsSealProviderOptionsImpl =
 			addDSSealProviderOptions(sealName, signerRole);
 
-		dsSealProviderOptionsImpl.setOneTimePassword(oneTimePasssword);
+		dsSealProviderOptionsImpl.setOneTimePassword(oneTimePassword);
 
 		return this;
 	}

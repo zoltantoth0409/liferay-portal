@@ -127,7 +127,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 		int routingOrder) {
 
 		return new SealDSParticipantBuilderImpl(
-			participantKey, name, emailAddress, routingOrder);
+			emailAddress, name, participantKey, routingOrder);
 	}
 
 	@Override
