@@ -106,7 +106,7 @@
 
 		<!-- PK fields -->
 
-		<column db-name="assetListSegmentRelId" name="assetListEntrySegmentsEntryRelId" primary="true" type="long" />
+		<column db-name="alEntrySegmentsEntryRelId" name="assetListEntrySegmentsEntryRelId" primary="true" type="long" />
 
 		<!-- Group instance -->
 
