@@ -34,9 +34,12 @@ public class RadioDSFieldBuilderImpl
 	@Override
 	public DSField<RadioDSField> getDSField() {
 		RadioDSFieldImpl radioDSFieldImpl = new RadioDSFieldImpl(
-			getDocumentKey(), getFieldKey(), getPageNumber());
-
-		radioDSFieldImpl.setValue(_value);
+			getDocumentKey(), getFieldKey(), getPageNumber()) {
+			
+			{
+				setValue(_value);
+			}
+		};
 
 		populateFields(radioDSFieldImpl);
 

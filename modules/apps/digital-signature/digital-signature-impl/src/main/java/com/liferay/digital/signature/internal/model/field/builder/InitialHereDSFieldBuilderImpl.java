@@ -36,9 +36,12 @@ public class InitialHereDSFieldBuilderImpl
 	public DSField<InitialHereDSField> getDSField() {
 		InitialHereDSFieldImpl initialHereDSFieldImpl =
 			new InitialHereDSFieldImpl(
-				getDocumentKey(), getFieldKey(), getPageNumber());
-
-		initialHereDSFieldImpl.setScaleValue(_scaleValue);
+				getDocumentKey(), getFieldKey(), getPageNumber()) {
+			
+			{
+				setScaleValue(_scaleValue);
+			}
+		};
 
 		populateFields(initialHereDSFieldImpl);
 

@@ -59,10 +59,13 @@ public class ListDSFieldBuilderImpl
 	@Override
 	public DSField<ListDSField> getDSField() {
 		ListDSFieldImpl listDSFieldImpl = new ListDSFieldImpl(
-			getDocumentKey(), getFieldKey(), getPageNumber());
-
-		listDSFieldImpl.addDSListItems(_dsListItems);
-		listDSFieldImpl.setSenderRequired(_senderRequired);
+			getDocumentKey(), getFieldKey(), getPageNumber()) {
+			
+			{
+				addDSListItems(_dsListItems);
+				setSenderRequired(_senderRequired);
+			}
+		};
 
 		populateFields(listDSFieldImpl);
 
