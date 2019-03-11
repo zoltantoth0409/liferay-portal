@@ -27,23 +27,23 @@ public class InPersonSignerDSParticipantBuilderImpl
 	implements InPersonSignerDSParticipantBuilder {
 
 	public InPersonSignerDSParticipantBuilderImpl(
-		String hostName, String hostEmail, String signerName,
-		String signerEmail, int routingOrder) {
+		String hostEmailAddress, String hostName, int routingOrder,
+		String signerEmailAddress, String signerName) {
 
-		super(signerEmail, signerName, routingOrder);
+		super(signerEmailAddress, signerName, routingOrder);
 
+		_hostEmailAddress = hostEmailAddress;
 		_hostName = hostName;
-		_hostEmail = hostEmail;
 	}
 
 	@Override
 	protected SignerDSParticipantImpl createSignerDSParticipantImpl() {
 		return new InPersonSignerDSParticipantImpl(
-			_hostEmail, _hostName, getRoutingOrder(), getEmailAddress(),
+			_hostEmailAddress, _hostName, getRoutingOrder(), getEmailAddress(),
 			getName());
 	}
 
-	private final String _hostEmail;
+	private final String _hostEmailAddress;
 	private final String _hostName;
 
 }

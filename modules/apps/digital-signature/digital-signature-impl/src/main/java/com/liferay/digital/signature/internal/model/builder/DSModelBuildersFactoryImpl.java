@@ -87,7 +87,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 		String emailAddress, String name, int routingOrder) {
 
 		return new EditorDSParticipantBuilderImpl(
-			name, emailAddress, routingOrder);
+			emailAddress, name, routingOrder);
 	}
 
 	@Override
@@ -97,8 +97,8 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 			String signerEmailAddress, String signerName) {
 
 		return new InPersonSignerDSParticipantBuilderImpl(
-			hostName, hostEmailAddress, signerName, signerEmailAddress,
-			routingOrder);
+			hostEmailAddress, hostName, routingOrder, signerEmailAddress,
+			signerName);
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 			String emailAddress, String name, int routingOrder) {
 
 		return new IntermediaryDSParticipantBuilderImpl(
-			name, emailAddress, routingOrder);
+			emailAddress, name, routingOrder);
 	}
 
 	@Override
