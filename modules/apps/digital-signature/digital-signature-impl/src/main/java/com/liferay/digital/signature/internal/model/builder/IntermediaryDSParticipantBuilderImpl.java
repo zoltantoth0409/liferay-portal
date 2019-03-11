@@ -35,12 +35,12 @@ public class IntermediaryDSParticipantBuilderImpl
 	@Override
 	protected IntermediaryDSParticipant createDSParticipant() {
 		return new IntermediaryDSParticipantImpl(
-				getEmailAddress(), getName(), getRoutingOrder()) {
+			getEmailAddress(), getName(), getRoutingOrder()) {
+
 			{
 				setCanEditParticipantEmailAddresses(
 					getCanEditParticipantEmailAddresses());
-				setCanEditParticipantNames(
-					getCanEditParticipantNames());
+				setCanEditParticipantNames(getCanEditParticipantNames());
 			}
 		};
 	}

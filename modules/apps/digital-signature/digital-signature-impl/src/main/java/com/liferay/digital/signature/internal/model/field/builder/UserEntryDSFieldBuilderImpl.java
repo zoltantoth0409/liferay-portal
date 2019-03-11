@@ -63,7 +63,6 @@ public abstract class UserEntryDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	
 	public <S> S setConcealValue(Boolean concealValue) {
 		_concealValue = concealValue;
 
@@ -71,7 +70,6 @@ public abstract class UserEntryDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	
 	public <S> S setDisableAutoSize(Boolean disableAutoSize) {
 		_disableAutoSize = disableAutoSize;
 
@@ -79,7 +77,6 @@ public abstract class UserEntryDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	
 	public <S> S setMaxLength(Integer maxLength) {
 		_maxLength = maxLength;
 
@@ -87,7 +84,6 @@ public abstract class UserEntryDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	
 	public <S> S setOriginalValue(String originalValue) {
 		_originalValue = originalValue;
 
@@ -95,7 +91,6 @@ public abstract class UserEntryDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	
 	public <S> S setRequireInitialOnSharedChange(
 		Boolean requireInitialOnSharedChange) {
 
@@ -105,7 +100,6 @@ public abstract class UserEntryDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	
 	public <S> S setValidationMessage(String validationMessage) {
 		_validationMessage = validationMessage;
 
@@ -113,7 +107,6 @@ public abstract class UserEntryDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	
 	public <S> S setValidationRegex(String validationRegex) {
 		_validationRegex = validationRegex;
 
@@ -121,7 +114,6 @@ public abstract class UserEntryDSFieldBuilderImpl<T extends DSField<?>>
 	}
 
 	@Override
-	
 	public <S> S setValue(String value) {
 		_value = value;
 

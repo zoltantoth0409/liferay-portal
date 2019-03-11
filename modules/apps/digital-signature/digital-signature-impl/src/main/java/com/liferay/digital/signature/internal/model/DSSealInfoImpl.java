@@ -24,10 +24,6 @@ import java.util.Objects;
  */
 public class DSSealInfoImpl implements DSSealInfo {
 
-	public DSSealInfoImpl(String sealName, String sealProviderName) {
-		this(false, sealName, sealProviderName);
-	}
-
 	public DSSealInfoImpl(
 		Boolean sealDocumentsWithFieldsOnly, String sealName,
 		String sealProviderName) {
@@ -35,6 +31,10 @@ public class DSSealInfoImpl implements DSSealInfo {
 		_sealDocumentsWithFieldsOnly = sealDocumentsWithFieldsOnly;
 		_sealName = sealName;
 		_sealProviderName = sealProviderName;
+	}
+
+	public DSSealInfoImpl(String sealName, String sealProviderName) {
+		this(false, sealName, sealProviderName);
 	}
 
 	@Override

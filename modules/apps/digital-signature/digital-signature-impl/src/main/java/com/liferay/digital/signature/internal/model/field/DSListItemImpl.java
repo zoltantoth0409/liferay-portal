@@ -21,14 +21,14 @@ import com.liferay.digital.signature.model.field.DSListItem;
  */
 public class DSListItemImpl implements DSListItem {
 
-	public DSListItemImpl(String text, String value) {
-		this(false, text, value);
-	}
-
 	public DSListItemImpl(boolean selected, String text, String value) {
 		_selected = selected;
 		_text = text;
 		_value = value;
+	}
+
+	public DSListItemImpl(String text, String value) {
+		this(false, text, value);
 	}
 
 	@Override

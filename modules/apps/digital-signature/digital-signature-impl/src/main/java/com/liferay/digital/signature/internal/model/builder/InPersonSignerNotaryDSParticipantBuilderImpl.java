@@ -24,7 +24,8 @@ import com.liferay.digital.signature.model.builder.InPersonSignerNotaryDSPartici
  * @author Michael C. Han
  */
 public class InPersonSignerNotaryDSParticipantBuilderImpl
-	extends BaseSigningDSParticipantBuilderImpl<InPersonSignerNotaryDSParticipant>
+	extends BaseSigningDSParticipantBuilderImpl
+		<InPersonSignerNotaryDSParticipant>
 	implements InPersonSignerNotaryDSParticipantBuilder {
 
 	public InPersonSignerNotaryDSParticipantBuilderImpl(
@@ -42,8 +43,8 @@ public class InPersonSignerNotaryDSParticipantBuilderImpl
 	protected SignerDSParticipantImpl createSignerDSParticipantImpl() {
 		return new InPersonSignerNotaryDSParticipantImpl(
 			new DSNotaryInfoImpl(
-				_notaryEmailAddress, _notaryName, _notaryParticipantKey), getEmailAddress(), getName(),
-			getRoutingOrder());
+				_notaryEmailAddress, _notaryName, _notaryParticipantKey),
+			getEmailAddress(), getName(), getRoutingOrder());
 	}
 
 	private final String _notaryEmailAddress;

@@ -22,8 +22,8 @@ import com.liferay.digital.signature.model.builder.EditorDSParticipantBuilder;
  * @author Michael C. Han
  */
 public class EditorDSParticipantBuilderImpl
-	extends BaseParticipantModifyingDSParticipantBuilderImpl<EditorDSParticipant>
-	implements EditorDSParticipantBuilder {
+	extends BaseParticipantModifyingDSParticipantBuilderImpl
+		<EditorDSParticipant> implements EditorDSParticipantBuilder {
 
 	public EditorDSParticipantBuilderImpl(
 		String emailAddress, String name, int routingOrder) {

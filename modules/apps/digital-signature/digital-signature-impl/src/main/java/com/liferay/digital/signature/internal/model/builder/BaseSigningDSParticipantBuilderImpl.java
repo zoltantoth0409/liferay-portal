@@ -30,8 +30,10 @@ import java.util.Set;
 /**
  * @author Michael C. Han
  */
-public abstract class BaseSigningDSParticipantBuilderImpl<T extends DSParticipant>
-	extends BaseDSParticipantBuilderImpl<T> implements SigningDSParticipantBuilder {
+public abstract class BaseSigningDSParticipantBuilderImpl
+	<T extends DSParticipant>
+		extends BaseDSParticipantBuilderImpl<T>
+		implements SigningDSParticipantBuilder {
 
 	public BaseSigningDSParticipantBuilderImpl(
 		String emailAddress, String name, int routingOrder) {

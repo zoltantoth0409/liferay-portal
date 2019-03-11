@@ -24,9 +24,9 @@ import java.util.List;
 @ProviderType
 public interface RadioGroupDSField extends UserEntryDSField<RadioGroupDSField> {
 
-	public List<RadioDSField> getRadioDSFields();
-
 	public String getGroupName();
+
+	public List<RadioDSField> getRadioDSFields();
 
 	@Override
 	public default <S> S visit(DSFieldVisitor<S> dsFieldVisitor) {

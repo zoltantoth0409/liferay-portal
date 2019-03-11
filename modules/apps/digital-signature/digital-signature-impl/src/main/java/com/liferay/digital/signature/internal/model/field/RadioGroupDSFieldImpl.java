@@ -45,13 +45,13 @@ public class RadioGroupDSFieldImpl
 	}
 
 	@Override
-	public List<RadioDSField> getRadioDSFields() {
-		return _radioDSFields;
+	public String getGroupName() {
+		return _groupName;
 	}
 
 	@Override
-	public String getGroupName() {
-		return _groupName;
+	public List<RadioDSField> getRadioDSFields() {
+		return _radioDSFields;
 	}
 
 	public void setGroupName(String groupName) {
