@@ -160,8 +160,9 @@ name = HtmlUtil.escapeJS(name);
 
 	var windowNode = A.getWin();
 
-	var instanceDataReady = false;
 	var instancePendingData;
+
+	window['<%= name %>']._dataReady = false;
 
 	var getInitialContent = function() {
 		var data;
@@ -311,8 +312,9 @@ name = HtmlUtil.escapeJS(name);
 
 			var win = window['<%= name %>'];
 
+			debugger;
 			var setHTML = function(data) {
-				if (instanceDataReady) {
+				if (win._dataReady) {
 					ckEditorInstance.setData(data);
 				}
 				else {
@@ -665,7 +667,7 @@ name = HtmlUtil.escapeJS(name);
 					ckEditor.setData(pendingData);
 				}
 				else {
-					instanceDataReady = true;
+					window['<%= name %>']._dataReady = true;
 				}
 
 				window['<%= name %>']._setStyles();
@@ -675,7 +677,7 @@ name = HtmlUtil.escapeJS(name);
 		ckEditor.on(
 			'setData',
 			function(event) {
-				instanceDataReady = false;
+				window['<%= name %>']._dataReady = false;
 			}
 		);
 

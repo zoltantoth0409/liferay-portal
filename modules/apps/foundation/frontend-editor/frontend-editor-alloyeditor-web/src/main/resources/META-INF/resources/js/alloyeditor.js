@@ -178,7 +178,7 @@ AUI.add(
 					setHTML: function(value) {
 						var instance = this;
 
-						if (instance._dataReady) {
+						if (window[instance.get('namespace')]._dataReady) {
 							instance.getNativeEditor().setData(value);
 						}
 						else {
@@ -265,7 +265,7 @@ AUI.add(
 							instance.getNativeEditor().setData(pendingData);
 						}
 						else {
-							instance._dataReady = true;
+							window[instance.get('namespace')]._dataReady = true;
 						}
 					},
 
@@ -361,7 +361,7 @@ AUI.add(
 					_onSetData: function(event) {
 						var instance = this;
 
-						instance._dataReady = false;
+						window[instance.get('namespace')]._dataReady = false;
 					},
 
 					_validateEditorMethod: function(method) {

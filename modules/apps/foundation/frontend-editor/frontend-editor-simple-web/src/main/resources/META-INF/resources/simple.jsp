@@ -93,6 +93,8 @@ name = HtmlUtil.escapeJS(name);
 
 				editorContainer.appendChild(editorNode);
 
+				window['<%= name %>']._dataReady = false;
+
 				window['<%= name %>'].initEditor();
 			}
 		},
@@ -186,6 +188,8 @@ name = HtmlUtil.escapeJS(name);
 		setHTML: function(value) {
 			if (window['<%= name %>'].instanceReady) {
 				document.getElementById('<%= name %>').value = value || '';
+
+				window['<%= name %>']._dataReady = true;
 			}
 		}
 	};

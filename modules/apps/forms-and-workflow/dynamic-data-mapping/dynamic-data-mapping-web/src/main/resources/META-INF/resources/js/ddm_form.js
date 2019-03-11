@@ -774,9 +774,15 @@ AUI.add(
 					updateLocalizationMap: function(locale) {
 						var instance = this;
 
+						var editor = instance.getEditor();
+
 						var localizationMap = instance.get('localizationMap');
 
 						var value = instance.getValue();
+
+						if (!editor._dataReady) {
+							return;
+						}
 
 						if (Lang.isObject(localizationMap)) {
 							if (AObject.keys(localizationMap).length != 0) {
