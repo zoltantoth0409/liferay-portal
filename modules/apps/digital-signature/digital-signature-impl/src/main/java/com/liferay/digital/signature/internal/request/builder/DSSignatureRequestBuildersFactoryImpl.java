@@ -30,16 +30,16 @@ public class DSSignatureRequestBuildersFactoryImpl
 
 	@Override
 	public CreatePackageDSSignatureRequestBuilder
-		createCreatePackageDSSignatureRequestBuilder(DSSessionKey dsSessionId) {
+		createCreatePackageDSSignatureRequestBuilder(DSSessionKey dsSessionKey) {
 
-		return new CreatePackageDSSignatureRequestBuilderImpl(dsSessionId);
+		return new CreatePackageDSSignatureRequestBuilderImpl(dsSessionKey);
 	}
 
 	@Override
 	public VoidPackageDSSignatureRequestBuilder
-		createVoidPackageDSSignatureRequestBuilder(DSSessionKey dsSessionId) {
+		createVoidPackageDSSignatureRequestBuilder(DSSessionKey dsSessionKey) {
 
-		return new VoidPackageDSSignatureRequestBuilderImpl(dsSessionId);
+		return new VoidPackageDSSignatureRequestBuilderImpl(dsSessionKey);
 	}
 
 }

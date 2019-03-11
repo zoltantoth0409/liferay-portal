@@ -49,7 +49,7 @@ public interface DSFieldBuilder<T extends DSField<?>> {
 
 	public <S> S setName(String name);
 
-	public <S> S setParticipantKey(String participantId);
+	public <S> S setParticipantKey(String participantKey);
 
 	public <S> S setRequireAll(Boolean requireAll);
 

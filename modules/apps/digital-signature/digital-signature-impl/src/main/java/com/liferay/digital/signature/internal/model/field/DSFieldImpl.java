@@ -100,7 +100,7 @@ public abstract class DSFieldImpl<T extends DSField<?>> implements DSField<T> {
 
 	@Override
 	public String getParticipantKey() {
-		return _participantId;
+		return _participantKey;
 	}
 
 	@Override
@@ -182,8 +182,8 @@ public abstract class DSFieldImpl<T extends DSField<?>> implements DSField<T> {
 		_name = name;
 	}
 
-	public void setParticipantKey(String participantId) {
-		_participantId = participantId;
+	public void setParticipantKey(String participantKey) {
+		_participantKey = participantKey;
 	}
 
 	public void setRequireAll(Boolean requireAll) {
@@ -228,7 +228,7 @@ public abstract class DSFieldImpl<T extends DSField<?>> implements DSField<T> {
 	private Boolean _locked;
 	private String _name;
 	private final Integer _pageNumber;
-	private String _participantId;
+	private String _participantKey;
 	private Boolean _requireAll;
 	private Boolean _required;
 	private Boolean _shared;

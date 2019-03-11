@@ -129,11 +129,11 @@ public class DSSignaturePackageBuilderImpl
 				dsParticipant.getDSParticipantRole(),
 				participantRole -> new ArrayList<>());
 
-		String participantId = dsParticipant.getParticipantKey();
+		String participantKey = dsParticipant.getParticipantKey();
 
-		if (Validator.isNull(participantId)) {
+		if (Validator.isNull(participantKey)) {
 			BeanPropertiesUtil.setPropertySilent(
-				dsParticipant, "participantId",
+				dsParticipant, "participantKey",
 				String.valueOf(_participantCounter));
 		}
 

@@ -25,9 +25,9 @@ import com.liferay.digital.signature.model.DSSessionKey;
 public interface DSSignatureRequestBuildersFactory {
 
 	public CreatePackageDSSignatureRequestBuilder
-		createCreatePackageDSSignatureRequestBuilder(DSSessionKey dsSessionId);
+		createCreatePackageDSSignatureRequestBuilder(DSSessionKey dsSessionKey);
 
 	public VoidPackageDSSignatureRequestBuilder
-		createVoidPackageDSSignatureRequestBuilder(DSSessionKey dsSessionId);
+		createVoidPackageDSSignatureRequestBuilder(DSSessionKey dsSessionKey);
 
 }
