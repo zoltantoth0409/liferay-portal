@@ -45,8 +45,8 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 		return _clientUserKey;
 	}
 
-	public Collection<String> getCustomFieldNames() {
-		return _customFieldNames;
+	public Collection<String> getCustomFieldKeys() {
+		return _customFieldKeys;
 	}
 
 	public DSEmailNotification getDSEmailNotification() {
@@ -60,7 +60,7 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 
 		baseDSParticipantImpl.setAccessCode(getAccessCode());
 		baseDSParticipantImpl.setClientUserKey(getClientUserKey());
-		baseDSParticipantImpl.setCustomFieldNames(getCustomFieldNames());
+		baseDSParticipantImpl.setCustomFieldKeys(getCustomFieldKeys());
 		baseDSParticipantImpl.setDSEmailNotification(getDSEmailNotification());
 		baseDSParticipantImpl.setNote(getNote());
 		baseDSParticipantImpl.setParticipantKey(getParticipantKey());
@@ -108,10 +108,10 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	public DSParticipantBuilder setCustomFieldNames(
-		String... customFieldNames) {
+	public DSParticipantBuilder setCustomFieldKeys(
+		String... customFieldKeys) {
 
-		Collections.addAll(_customFieldNames, customFieldNames);
+		Collections.addAll(_customFieldKeys, customFieldKeys);
 
 		return this;
 	}
@@ -150,7 +150,7 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 
 	private String _accessCode;
 	private String _clientUserKey;
-	private Collection<String> _customFieldNames = new HashSet<>();
+	private Collection<String> _customFieldKeys = new HashSet<>();
 	private DSEmailNotification _dsEmailNotification;
 	private final String _emailAddress;
 	private final String _name;

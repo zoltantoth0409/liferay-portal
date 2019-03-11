@@ -44,8 +44,8 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 	}
 
 	@Override
-	public Collection<String> getCustomFieldNames() {
-		return _customFieldNames;
+	public Collection<String> getCustomFieldKeys() {
+		return _customFieldKeys;
 	}
 
 	@Override
@@ -96,8 +96,8 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 		_clientUserKey = clientUserKey;
 	}
 
-	public void setCustomFieldNames(Collection<String> customFieldNames) {
-		_customFieldNames = customFieldNames;
+	public void setCustomFieldKeys(Collection<String> customFieldKeys) {
+		_customFieldKeys = customFieldKeys;
 	}
 
 	public void setDSEmailNotification(
@@ -124,7 +124,7 @@ public abstract class BaseDSParticipantImpl implements DSParticipant {
 
 	private String _accessCode;
 	private String _clientUserKey;
-	private Collection<String> _customFieldNames;
+	private Collection<String> _customFieldKeys;
 	private DSEmailNotification _dsEmailNotification;
 	private DSParticipantRole _dsParticipantRole;
 	private final String _emailAddress;

@@ -31,7 +31,7 @@ public interface DSParticipantBuilder {
 
 	public DSParticipantBuilder setClientUserKey(String clientUserKey);
 
-	public DSParticipantBuilder setCustomFieldNames(String... customFieldNames);
+	public DSParticipantBuilder setCustomFieldKeys(String... customFieldKeys);
 
 	public DSParticipantBuilder setDSEmailNotification(
 		DSEmailNotification dsEmailNotification);
