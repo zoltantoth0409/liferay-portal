@@ -98,18 +98,19 @@ public class FieldsQueryParamContextProviderTest {
 	private Message _getMessage(String fields) {
 		Message message = Mockito.mock(Message.class);
 
-		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
-
-		Mockito.when(
-			request.getParameter("fields")
-		).thenReturn(
-			fields
-		);
+		HttpServletRequest httpServletRequest = Mockito.mock(
+			HttpServletRequest.class);
 
 		Mockito.when(
 			message.getContextualProperty("HTTP.REQUEST")
 		).thenReturn(
-			request
+			httpServletRequest
+		);
+
+		Mockito.when(
+			httpServletRequest.getParameter("fields")
+		).thenReturn(
+			fields
 		);
 
 		return message;

@@ -43,19 +43,19 @@ public class FieldsQueryParamContextProvider
 		HttpServletRequest httpServletRequest =
 			ContextProviderUtil.getHttpServletRequest(message);
 
-		String fieldNames = httpServletRequest.getParameter("fields");
+		String fieldNamesString = httpServletRequest.getParameter("fields");
 
-		if (fieldNames == null) {
+		if (fieldNamesString == null) {
 			return () -> null;
 		}
 
-		if (fieldNames.isEmpty()) {
+		if (fieldNamesString.isEmpty()) {
 			return Collections::emptySet;
 		}
 
-		Stream<String> stream = Arrays.stream(fieldNames.split(","));
+		Stream<String> stream = Arrays.stream(fieldNamesString.split(","));
 
-		Set<String> fields = stream.map(
+		Set<String> fieldNames = stream.map(
 			this::_toPaths
 		).flatMap(
 			List::stream
@@ -63,7 +63,7 @@ public class FieldsQueryParamContextProvider
 			Collectors.toSet()
 		);
 
-		return () -> fields;
+		return () -> fieldNames;
 	}
 
 	private List<String> _toPaths(String string) {
