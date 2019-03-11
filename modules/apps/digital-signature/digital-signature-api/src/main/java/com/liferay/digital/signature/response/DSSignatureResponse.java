@@ -36,7 +36,7 @@ public interface DSSignatureResponse {
 
 	public String getErrorMessage();
 
-	public String getExternalReferenceId();
+	public String getExternalReferenceKey();
 
 	public String getExternalReferenceURI();
 

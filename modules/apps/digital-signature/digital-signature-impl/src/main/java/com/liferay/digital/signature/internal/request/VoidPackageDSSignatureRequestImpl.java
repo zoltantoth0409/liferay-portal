@@ -41,8 +41,8 @@ public class VoidPackageDSSignatureRequestImpl
 	}
 
 	@Override
-	public String getExternalReferenceId() {
-		return _externalReferenceId;
+	public String getExternalReferenceKey() {
+		return _externalReferenceKey;
 	}
 
 	@Override
@@ -50,8 +50,8 @@ public class VoidPackageDSSignatureRequestImpl
 		return _voidReason;
 	}
 
-	public void setExternalReferenceId(String externalReferenceId) {
-		_externalReferenceId = externalReferenceId;
+	public void setExternalReferenceKey(String externalReferenceKey) {
+		_externalReferenceKey = externalReferenceKey;
 	}
 
 	public void setVoidReason(String voidReason) {
@@ -60,7 +60,7 @@ public class VoidPackageDSSignatureRequestImpl
 
 	private final DSSessionKey _dsSessionId;
 	private final String _dsSignaturePackageKey;
-	private String _externalReferenceId;
+	private String _externalReferenceKey;
 	private String _voidReason;
 
 }

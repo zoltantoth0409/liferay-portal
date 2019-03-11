@@ -34,7 +34,7 @@ public interface VoidPackageDSSignatureRequest
 
 	public String getDSSignaturePackageKey();
 
-	public String getExternalReferenceId();
+	public String getExternalReferenceKey();
 
 	public String getVoidReason();
 

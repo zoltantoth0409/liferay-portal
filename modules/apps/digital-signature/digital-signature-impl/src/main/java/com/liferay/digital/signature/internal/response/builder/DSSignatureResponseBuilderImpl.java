@@ -35,7 +35,7 @@ public class DSSignatureResponseBuilderImpl
 	public DSSignatureResponse getDSSignatureResponse() {
 		DSSignatureResponseImpl dsSignatureResponseImpl =
 			new DSSignatureResponseImpl(
-				_dsSignatureRequestId, _externalReferenceId);
+				_dsSignatureRequestId, _externalReferenceKey);
 
 		dsSignatureResponseImpl.setDSSignatureRequestStatus(
 			_dsSignaturePackageStatus);
@@ -81,10 +81,10 @@ public class DSSignatureResponseBuilderImpl
 	}
 
 	@Override
-	public DSSignatureResponseBuilder setExternalReferenceId(
-		String externalReferenceId) {
+	public DSSignatureResponseBuilder setExternalReferenceKey(
+		String externalReferenceKey) {
 
-		_externalReferenceId = externalReferenceId;
+		_externalReferenceKey = externalReferenceKey;
 
 		return this;
 	}
@@ -110,7 +110,7 @@ public class DSSignatureResponseBuilderImpl
 	private String _errorCode;
 	private String _errorDebugMessage;
 	private String _errorMessage;
-	private String _externalReferenceId;
+	private String _externalReferenceKey;
 	private String _externalReferenceURI;
 	private ZonedDateTime _timestamp;
 

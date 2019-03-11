@@ -39,8 +39,8 @@ public interface DSSignatureResponseBuilder {
 
 	public DSSignatureResponseBuilder setErrorMessage(String errorMessage);
 
-	public DSSignatureResponseBuilder setExternalReferenceId(
-		String externalReferenceId);
+	public DSSignatureResponseBuilder setExternalReferenceKey(
+		String externalReferenceKey);
 
 	public DSSignatureResponseBuilder setExternalReferenceURI(
 		String externalReferenceURI);

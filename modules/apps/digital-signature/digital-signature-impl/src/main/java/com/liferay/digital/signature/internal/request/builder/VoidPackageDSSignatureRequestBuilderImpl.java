@@ -35,8 +35,8 @@ public class VoidPackageDSSignatureRequestBuilderImpl
 			new VoidPackageDSSignatureRequestImpl(
 				_dsSessionId, _dsSignaturePackageKey);
 
-		dsSignaturePackageVoidRequestImpl.setExternalReferenceId(
-			_externalReferenceId);
+		dsSignaturePackageVoidRequestImpl.setExternalReferenceKey(
+			_externalReferenceKey);
 		dsSignaturePackageVoidRequestImpl.setVoidReason(_voidReason);
 
 		return dsSignaturePackageVoidRequestImpl;
@@ -52,10 +52,10 @@ public class VoidPackageDSSignatureRequestBuilderImpl
 	}
 
 	@Override
-	public VoidPackageDSSignatureRequestBuilder setExternalReferenceId(
-		String externalReferenceId) {
+	public VoidPackageDSSignatureRequestBuilder setExternalReferenceKey(
+		String externalReferenceKey) {
 
-		_externalReferenceId = externalReferenceId;
+		_externalReferenceKey = externalReferenceKey;
 
 		return this;
 	}
@@ -71,7 +71,7 @@ public class VoidPackageDSSignatureRequestBuilderImpl
 
 	private final DSSessionKey _dsSessionId;
 	private String _dsSignaturePackageKey;
-	private String _externalReferenceId;
+	private String _externalReferenceKey;
 	private String _voidReason;
 
 }
