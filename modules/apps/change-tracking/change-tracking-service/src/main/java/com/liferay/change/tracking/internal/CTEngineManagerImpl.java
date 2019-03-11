@@ -529,11 +529,9 @@ public class CTEngineManagerImpl implements CTEngineManager {
 			userId, CTConstants.CT_COLLECTION_NAME_PRODUCTION,
 			StringPool.BLANK);
 
-		long companyId = _getCompanyId(userId);
-
 		CTCollection productionCTCollection = ctCollectionOptional.orElseThrow(
 			() -> new CTException(
-				companyId,
+				_getCompanyId(userId),
 				"Unable to create production change tracking collection"));
 
 		_productionCTCollections.put(companyId, productionCTCollection);
