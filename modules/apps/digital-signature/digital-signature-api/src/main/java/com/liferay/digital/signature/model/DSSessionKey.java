@@ -26,10 +26,10 @@ import java.util.Objects;
 @ProviderType
 public class DSSessionKey {
 
-	public DSSessionKey(long companyId, String userName, String accountKey) {
+	public DSSessionKey(String accountKey, long companyId, String userName) {
+		_accountKey = accountKey;
 		_companyId = companyId;
 		_userName = userName;
-		_accountKey = accountKey;
 	}
 
 	@Override
