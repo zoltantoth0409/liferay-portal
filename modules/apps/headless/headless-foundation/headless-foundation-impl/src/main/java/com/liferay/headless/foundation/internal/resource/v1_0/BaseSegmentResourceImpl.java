@@ -63,6 +63,7 @@ public abstract class BaseSegmentResourceImpl implements SegmentResource {
 	)
 	@Path("/content-spaces/{content-space-id}/segments")
 	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Segment")})
 	public Page<Segment> getContentSpaceSegmentsPage(
 			@PathParam("content-space-id") Long contentSpaceId,
 			@Context Pagination pagination)

@@ -414,10 +414,6 @@ public class Query {
 
 		SegmentResource segmentResource = _createSegmentResource();
 
-		segmentResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
-
 		Page paginationPage = segmentResource.getContentSpaceSegmentsPage(
 			contentSpaceId, Pagination.of(pageSize, page));
 
