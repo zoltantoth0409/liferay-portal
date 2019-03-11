@@ -135,7 +135,7 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 		String emailAddress, int routingOrder, String name) {
 
 		return new SignerDSParticipantBuilderImpl(
-			name, emailAddress, routingOrder);
+			emailAddress, name, routingOrder);
 	}
 
 	protected void setPortalUUID(PortalUUID portalUUID) {
