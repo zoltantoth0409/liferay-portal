@@ -97,7 +97,7 @@ public class SealDSParticipantBuilderImpl
 
 		if (dsSealInfoImpl == null) {
 			throw new IllegalArgumentException(
-				"No DSSealInfo found for: " + sealName);
+				"No digital signature info with seal name: " + sealName);
 		}
 
 		DSSealProviderOptionsImpl dsSealProviderOptionsImpl =
