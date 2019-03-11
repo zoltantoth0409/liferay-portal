@@ -31,15 +31,15 @@ public class VoidPackageDSSignatureRequestBuilderImpl
 
 	@Override
 	public VoidPackageDSSignatureRequest getVoidPackageDSSignatureRequest() {
-		VoidPackageDSSignatureRequestImpl dsSignaturePackageVoidRequestImpl =
+		VoidPackageDSSignatureRequestImpl voidPackageDSSignatureRequestImpl =
 			new VoidPackageDSSignatureRequestImpl(
 				_dsSessionKey, _dsSignaturePackageKey);
 
-		dsSignaturePackageVoidRequestImpl.setExternalReferenceKey(
+		voidPackageDSSignatureRequestImpl.setExternalReferenceKey(
 			_externalReferenceKey);
-		dsSignaturePackageVoidRequestImpl.setVoidReason(_voidReason);
+		voidPackageDSSignatureRequestImpl.setVoidReason(_voidReason);
 
-		return dsSignaturePackageVoidRequestImpl;
+		return voidPackageDSSignatureRequestImpl;
 	}
 
 	@Override
