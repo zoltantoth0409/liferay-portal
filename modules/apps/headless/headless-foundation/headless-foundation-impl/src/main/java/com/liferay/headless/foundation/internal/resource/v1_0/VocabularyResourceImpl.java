@@ -36,7 +36,7 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
-import com.liferay.portal.kernel.service.ClassNameService;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -211,37 +211,37 @@ public class VocabularyResourceImpl
 		ClassName className = null;
 
 		if (Objects.equals(AssetType.Type.BLOG_POSTING, type)) {
-			className = _classNameService.fetchClassName(
+			className = _classNameLocalService.fetchClassName(
 				"com.liferay.blogs.model.BlogsEntry");
 		}
 		else if (Objects.equals(AssetType.Type.DOCUMENT, type)) {
-			className = _classNameService.fetchClassName(
+			className = _classNameLocalService.fetchClassName(
 				FileEntry.class.getName());
 		}
 		else if (Objects.equals(AssetType.Type.KNOWLEDGE_BASE_ARTICLE, type)) {
-			className = _classNameService.fetchClassName(
+			className = _classNameLocalService.fetchClassName(
 				"com.liferay.knowledge.base.model.KBArticle");
 		}
 		else if (Objects.equals(AssetType.Type.ORGANIZATION, type)) {
-			className = _classNameService.fetchClassName(
+			className = _classNameLocalService.fetchClassName(
 				Organization.class.getName());
 		}
 		else if (Objects.equals(AssetType.Type.STRUCTURED_CONTENT, type)) {
-			className = _classNameService.fetchClassName(
+			className = _classNameLocalService.fetchClassName(
 				"com.liferay.journal.model.JournalArticle");
 		}
 		else if (Objects.equals(AssetType.Type.USER_ACCOUNT, type)) {
-			className = _classNameService.fetchClassName(User.class.getName());
+			className = _classNameLocalService.fetchClassName(User.class.getName());
 		}
 		else if (Objects.equals(AssetType.Type.WEB_PAGE, type)) {
-			className = _classNameService.fetchClassName(
+			className = _classNameLocalService.fetchClassName(
 				Layout.class.getName());
 		}
 		else if (Objects.equals(AssetType.Type.WEB_SITE, type)) {
-			className = _classNameService.fetchClassName(Group.class.getName());
+			className = _classNameLocalService.fetchClassName(Group.class.getName());
 		}
 		else if (Objects.equals(AssetType.Type.WIKI_PAGE, type)) {
-			className = _classNameService.fetchClassName(
+			className = _classNameLocalService.fetchClassName(
 				"com.liferay.wiki.model.WikiPage");
 		}
 
@@ -259,7 +259,7 @@ public class VocabularyResourceImpl
 			return AssetCategoryConstants.ALL_CLASS_TYPE_PK;
 		}
 
-		ClassName className = _classNameService.fetchByClassNameId(classNameId);
+		ClassName className = _classNameLocalService.fetchByClassNameId(classNameId);
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
@@ -341,7 +341,7 @@ public class VocabularyResourceImpl
 			return "AllAssetSubtypes";
 		}
 
-		ClassName className = _classNameService.fetchByClassNameId(classNameId);
+		ClassName className = _classNameLocalService.fetchByClassNameId(classNameId);
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
@@ -372,7 +372,7 @@ public class VocabularyResourceImpl
 			return AssetType.Type.ALL_ASSET_TYPES;
 		}
 
-		ClassName className = _classNameService.fetchByClassNameId(classNameId);
+		ClassName className = _classNameLocalService.fetchByClassNameId(classNameId);
 
 		if (Objects.equals(
 				FileEntry.class.getName(), className.getClassName())) {
@@ -461,7 +461,7 @@ public class VocabularyResourceImpl
 	private AssetVocabularyService _assetVocabularyService;
 
 	@Reference
-	private ClassNameService _classNameService;
+	private ClassNameLocalService _classNameLocalService;
 
 	@Context
 	private HttpServletResponse _contextHttpServletResponse;
