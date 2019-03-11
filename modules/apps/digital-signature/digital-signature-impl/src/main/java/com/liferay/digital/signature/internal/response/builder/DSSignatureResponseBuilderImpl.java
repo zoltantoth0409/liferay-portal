@@ -33,20 +33,19 @@ public class DSSignatureResponseBuilderImpl
 
 	@Override
 	public DSSignatureResponse getDSSignatureResponse() {
-		DSSignatureResponseImpl dsSignatureResponseImpl =
-			new DSSignatureResponseImpl(
-				_dsSignatureRequestKey, _externalReferenceKey);
-
-		dsSignatureResponseImpl.setDSSignatureRequestStatus(
-			_dsSignaturePackageStatus);
-		dsSignatureResponseImpl.setErrorCode(_errorCode);
-		dsSignatureResponseImpl.setErrorDebugMessage(_errorDebugMessage);
-		dsSignatureResponseImpl.setErrorMessage(_errorMessage);
-		dsSignatureResponseImpl.setExternalReferenceURI(_externalReferenceURI);
-		dsSignatureResponseImpl.setTimestampZonedDateTime(
-			_timestampZonedDateTime);
-
-		return dsSignatureResponseImpl;
+		return new DSSignatureResponseImpl(
+			_dsSignatureRequestKey, _externalReferenceKey) {
+			
+			{
+				setDSSignatureRequestStatus(
+					_dsSignaturePackageStatus);
+				setErrorCode(_errorCode);
+				setErrorDebugMessage(_errorDebugMessage);
+				setErrorMessage(_errorMessage);
+				setExternalReferenceURI(_externalReferenceURI);
+				setTimestampZonedDateTime(_timestampZonedDateTime);
+			}
+		};
 	}
 
 	@Override
