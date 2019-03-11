@@ -60,7 +60,7 @@ public class DSSignatureServiceImpl implements DSSignatureService {
 		}
 
 		if (_log.isWarnEnabled()) {
-			_log.warn("No DSSignatureAdapter configured");
+			_log.warn("No digital signature adapter is available");
 		}
 
 		DSSignatureResponseImpl dsSignatureResponseImpl =
