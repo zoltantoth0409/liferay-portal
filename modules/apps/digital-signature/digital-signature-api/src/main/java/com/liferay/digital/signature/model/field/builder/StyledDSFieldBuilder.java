@@ -22,7 +22,7 @@ import com.liferay.digital.signature.model.field.DSField;
  * @author Michael C. Han
  */
 @ProviderType
-public interface StyledDSFieldBuilder<T extends DSField>
+public interface StyledDSFieldBuilder<T extends DSField<?>>
 	extends DSFieldBuilder<T> {
 
 	public <S> S setBold(Boolean bold);

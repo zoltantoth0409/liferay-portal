@@ -41,6 +41,7 @@ public class DSListItemImpl implements DSListItem {
 		return _value;
 	}
 
+	@Override
 	public boolean isSelected() {
 		return _selected;
 	}

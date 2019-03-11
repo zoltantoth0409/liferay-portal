@@ -22,7 +22,7 @@ import com.liferay.digital.signature.model.field.DSField;
  * @author Michael C. Han
  */
 @ProviderType
-public interface UserEntryDSFieldBuilder<T extends DSField>
+public interface UserEntryDSFieldBuilder<T extends DSField<?>>
 	extends StyledDSFieldBuilder<T> {
 
 	public <S> S setConcealValue(Boolean concealValue);

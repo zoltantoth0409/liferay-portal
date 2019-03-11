@@ -20,7 +20,7 @@ import com.liferay.digital.signature.model.field.UserEntryDSField;
 /**
  * @author Michael C. Han
  */
-public abstract class UserEntryDSFieldImpl<T extends DSField>
+public abstract class UserEntryDSFieldImpl<T extends DSField<?>>
 	extends StyledDSFieldImpl<T> implements UserEntryDSField<T> {
 
 	public UserEntryDSFieldImpl(

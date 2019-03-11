@@ -20,7 +20,7 @@ import com.liferay.digital.signature.model.field.StyledDSField;
 /**
  * @author Michael C. Han
  */
-public abstract class StyledDSFieldImpl<T extends DSField>
+public abstract class StyledDSFieldImpl<T extends DSField<?>>
 	extends DSFieldImpl<T> implements StyledDSField<T> {
 
 	public StyledDSFieldImpl(

@@ -22,7 +22,7 @@ import com.liferay.digital.signature.model.field.builder.DSFieldBuilder;
 /**
  * @author Michael C. Han
  */
-public abstract class DSFieldBuilderImpl<T extends DSField>
+public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	implements DSFieldBuilder<T> {
 
 	public DSFieldBuilderImpl(

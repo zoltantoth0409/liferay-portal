@@ -21,7 +21,7 @@ import com.liferay.digital.signature.model.field.builder.UserEntryDSFieldBuilder
 /**
  * @author Michael C. Han
  */
-public abstract class UserEntryDSFieldBuilderImpl<T extends DSField>
+public abstract class UserEntryDSFieldBuilderImpl<T extends DSField<?>>
 	extends StyledDSFieldBuilderImpl<T> implements UserEntryDSFieldBuilder<T> {
 
 	public UserEntryDSFieldBuilderImpl(

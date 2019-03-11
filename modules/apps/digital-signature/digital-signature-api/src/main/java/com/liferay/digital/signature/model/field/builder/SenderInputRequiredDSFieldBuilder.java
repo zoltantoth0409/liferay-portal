@@ -20,7 +20,7 @@ import aQute.bnd.annotation.ProviderType;
  * @author Michael C. Han
  */
 @ProviderType
-public interface SenderInputRequiredDSFieldBuilder<S extends DSFieldBuilder> {
+public interface SenderInputRequiredDSFieldBuilder<S extends DSFieldBuilder<?>> {
 
 	public S setSenderRequired(Boolean senderRequired);
 

@@ -21,7 +21,7 @@ import com.liferay.digital.signature.model.field.builder.StyledDSFieldBuilder;
 /**
  * @author Michael C. Han
  */
-public abstract class StyledDSFieldBuilderImpl<T extends DSField>
+public abstract class StyledDSFieldBuilderImpl<T extends DSField<?>>
 	extends DSFieldBuilderImpl<T> implements StyledDSFieldBuilder<T> {
 
 	public StyledDSFieldBuilderImpl(
