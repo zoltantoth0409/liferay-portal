@@ -23,7 +23,7 @@ import com.liferay.digital.signature.model.field.SocialSecurityNumberDSField;
  */
 @ProviderType
 public interface SocialSecurityNumberDSFieldBuilder
-	extends SenderInputRequiredDSFieldBuilder
-				<SocialSecurityNumberDSFieldBuilder>,
-			UserEntryDSFieldBuilder<SocialSecurityNumberDSField> {
+	extends UserEntryDSFieldBuilder<SocialSecurityNumberDSField>,
+			SenderInputRequiredDSFieldBuilder
+				<SocialSecurityNumberDSFieldBuilder> {
 }
