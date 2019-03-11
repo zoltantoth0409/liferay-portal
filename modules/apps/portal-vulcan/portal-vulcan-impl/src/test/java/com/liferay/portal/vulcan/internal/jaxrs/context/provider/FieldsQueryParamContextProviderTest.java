@@ -18,10 +18,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 
 import com.liferay.portal.vulcan.fields.FieldsQueryParam;
+
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,61 +39,38 @@ import org.mockito.Mockito;
 public class FieldsQueryParamContextProviderTest {
 
 	@Test
-	public void testEmptyStringFieldsReturnValidObjectWithEmptyList() {
-		ContextProvider<FieldsQueryParam> contextProvider =
-			new FieldsQueryParamContextProvider();
+	public void test() {
 
-		Message message = _getMessage("");
+		// Null
 
-		FieldsQueryParam fieldsQueryParam = contextProvider.createContext(
-			message);
+		assertThat(_getFieldNames(null), is(nullValue()));
 
-		assertThat(fieldsQueryParam.getFieldNames(), is(empty()));
-	}
+		// Empty
 
-	@Test
-	public void testNestedFieldsAreExpandedIntoSet() {
-		ContextProvider<FieldsQueryParam> contextProvider =
-			new FieldsQueryParamContextProvider();
+		assertThat(_getFieldNames(""), is(empty()));
 
-		Message message = _getMessage("hello.hi.hello,potato");
-
-		FieldsQueryParam fieldsQueryParam = contextProvider.createContext(
-			message);
+		// Expanded
 
 		assertThat(
-			fieldsQueryParam.getFieldNames(),
+			_getFieldNames("hello.hi.hello,potato"),
 			containsInAnyOrder(
 				"hello", "hello.hi", "hello.hi.hello", "potato"));
-	}
 
-	@Test
-	public void testNullFieldsReturnValidObjectWithNullList() {
-		ContextProvider<FieldsQueryParam> contextProvider =
-			new FieldsQueryParamContextProvider();
-
-		Message message = _getMessage(null);
-
-		FieldsQueryParam fieldsQueryParam = contextProvider.createContext(
-			message);
-
-		assertThat(fieldsQueryParam, is(not(nullValue())));
-		assertThat(fieldsQueryParam.getFieldNames(), is(nullValue()));
-	}
-
-	@Test
-	public void testPlainFieldsAreProcessedIntoSet() {
-		ContextProvider<FieldsQueryParam> contextProvider =
-			new FieldsQueryParamContextProvider();
-
-		Message message = _getMessage("hello,hi,hello");
-
-		FieldsQueryParam fieldsQueryParam = contextProvider.createContext(
-			message);
+		// No duplicates
 
 		assertThat(
-			fieldsQueryParam.getFieldNames(),
+			_getFieldNames("hello,hi,hello"),
 			containsInAnyOrder("hello", "hi"));
+	}
+
+	private Set<String> _getFieldNames(String fieldNames) {
+		ContextProvider<FieldsQueryParam> contextProvider =
+			new FieldsQueryParamContextProvider();
+
+		FieldsQueryParam fieldsQueryParam = contextProvider.createContext(
+			_getMessage(fieldNames));
+
+		return fieldsQueryParam.getFieldNames();
 	}
 
 	private Message _getMessage(String fieldNames) {
