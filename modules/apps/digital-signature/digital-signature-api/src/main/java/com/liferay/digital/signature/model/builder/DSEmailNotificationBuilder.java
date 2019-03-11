@@ -35,10 +35,10 @@ public interface DSEmailNotificationBuilder {
 	public DSEmailNotification getDSEmailNotification();
 
 	public DSEmailNotificationBuilder setOverrideReplyEmailAddress(
-		String replyEmailAddressOverride);
+		String overrideReplyEmailAddress);
 
 	public DSEmailNotificationBuilder setOverrideReplyName(
-		String replyEmailAddressNameOverride);
+		String overrideReplyName);
 
 	public DSEmailNotificationBuilder setSupportedLanguage(
 		String supportedLanguage);
