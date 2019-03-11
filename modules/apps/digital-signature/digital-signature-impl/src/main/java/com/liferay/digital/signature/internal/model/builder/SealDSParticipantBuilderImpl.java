@@ -54,8 +54,8 @@ public class SealDSParticipantBuilderImpl
 
 	@Override
 	public SealDSParticipantBuilder addDSSealInfo(
-		String sealName, String sealProviderName,
-		Boolean sealDocumentsWithFieldsOnly) {
+		Boolean sealDocumentsWithFieldsOnly, String sealName,
+		String sealProviderName) {
 
 		DSSealInfoImpl dsSealInfoImpl = new DSSealInfoImpl(
 			sealName, sealProviderName, sealDocumentsWithFieldsOnly);
@@ -67,7 +67,7 @@ public class SealDSParticipantBuilderImpl
 
 	@Override
 	public SealDSParticipantBuilder addMobilePhoneNumber(
-		String sealName, String mobilePhoneNumber, String signerRole) {
+		String mobilePhoneNumber, String sealName, String signerRole) {
 
 		DSSealProviderOptionsImpl dsSealProviderOptionsImpl =
 			addDSSealProviderOptions(sealName, signerRole);
@@ -79,7 +79,7 @@ public class SealDSParticipantBuilderImpl
 
 	@Override
 	public SealDSParticipantBuilder addOneTimePassword(
-		String sealName, String oneTimePasssword, String signerRole) {
+		String oneTimePasssword, String sealName, String signerRole) {
 
 		DSSealProviderOptionsImpl dsSealProviderOptionsImpl =
 			addDSSealProviderOptions(sealName, signerRole);

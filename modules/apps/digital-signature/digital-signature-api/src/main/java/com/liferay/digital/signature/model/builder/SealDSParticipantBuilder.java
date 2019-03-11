@@ -26,13 +26,13 @@ public interface SealDSParticipantBuilder extends DSParticipantBuilder {
 		String sealName, String sealProviderName);
 
 	public SealDSParticipantBuilder addDSSealInfo(
-		String sealName, String sealProviderName,
-		Boolean sealDocumentsWithFieldsOnly);
+		Boolean sealDocumentsWithFieldsOnly, String sealName,
+		String sealProviderName);
 
 	public SealDSParticipantBuilder addMobilePhoneNumber(
-		String sealName, String mobilePhoneNumber, String signerRole);
+		String mobilePhoneNumber, String sealName, String signerRole);
 
 	public SealDSParticipantBuilder addOneTimePassword(
-		String sealName, String oneTimePasssword, String signerRole);
+		String oneTimePasssword, String sealName, String signerRole);
 
 }
