@@ -29,7 +29,7 @@ public interface RadioGroupDSFieldBuilder
 	public RadioGroupDSFieldBuilder addDSRadioField(RadioDSField radioDSField);
 
 	public RadioGroupDSFieldBuilder addDSRadioFields(
-		RadioDSField... radioDSField);
+		RadioDSField... radioDSFields);
 
 	public RadioGroupDSFieldBuilder setGroupName(String groupName);
 
