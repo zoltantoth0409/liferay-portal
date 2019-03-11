@@ -200,10 +200,10 @@ public class VocabularyResourceImpl
 			assetTypes.add(
 				new AssetType() {
 					{
-						subtype = _toSubtype(classNameId, classTypePK, groupId);
-						type = _toAssetTypeType(classNameId);
 						required = ArrayUtil.contains(
 							requiredClassNameIds, classNameId);
+						subtype = _toSubtype(classNameId, classTypePK, groupId);
+						type = _toAssetTypeType(classNameId);
 					}
 				});
 		}
