@@ -44,7 +44,7 @@ public class ListDSFieldBuilderImpl
 	public DSListItem addDSListItem(
 		boolean selected, String text, String value) {
 
-		DSListItem dsListItem = new DSListItemImpl(text, value, selected);
+		DSListItem dsListItem = new DSListItemImpl(selected, text, value);
 
 		_dsListItems.add(dsListItem);
 
