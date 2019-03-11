@@ -37,6 +37,6 @@ public interface UpdateDocumentPackageDSSignatureRequest
 
 	public List<DSDocument> getDSDocuments();
 
-	public String getDSSignaturePackageId();
+	public String getDSSignaturePackageKey();
 
 }

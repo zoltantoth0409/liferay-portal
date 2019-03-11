@@ -20,8 +20,8 @@ import aQute.bnd.annotation.ProviderType;
  * @author Michael C. Han
  */
 @ProviderType
-public interface SignaturePackageIdDSField
-	extends StyledDSField<SignaturePackageIdDSField> {
+public interface SignaturePackageKeyDSField
+	extends StyledDSField<SignaturePackageKeyDSField> {
 
 	@Override
 	public default <S> S visit(DSFieldVisitor<S> dsFieldVisitor) {

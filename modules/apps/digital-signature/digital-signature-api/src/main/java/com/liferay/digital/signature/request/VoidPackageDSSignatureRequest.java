@@ -32,7 +32,7 @@ public interface VoidPackageDSSignatureRequest
 		return packageDSSignatureRequestExecutor.execute(this);
 	}
 
-	public String getDSSignaturePackageId();
+	public String getDSSignaturePackageKey();
 
 	public String getExternalReferenceId();
 

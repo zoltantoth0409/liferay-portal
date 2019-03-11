@@ -36,7 +36,7 @@ import com.liferay.digital.signature.model.field.builder.PostalCodeDSFieldBuilde
 import com.liferay.digital.signature.model.field.builder.RadioDSFieldBuilder;
 import com.liferay.digital.signature.model.field.builder.RadioGroupDSFieldBuilder;
 import com.liferay.digital.signature.model.field.builder.SignHereDSFieldBuilder;
-import com.liferay.digital.signature.model.field.builder.SignaturePackageIdDSFieldBuilder;
+import com.liferay.digital.signature.model.field.builder.SignaturePackageKeyDSFieldBuilder;
 import com.liferay.digital.signature.model.field.builder.SignerAttachmentDSFieldBuilder;
 import com.liferay.digital.signature.model.field.builder.SocialSecurityNumberDSFieldBuilder;
 import com.liferay.digital.signature.model.field.builder.TextDSFieldBuilder;
@@ -200,11 +200,11 @@ public class DSFieldBuildersFactoryImpl implements DSFieldBuildersFactory {
 	}
 
 	@Override
-	public SignaturePackageIdDSFieldBuilder
-		createSignaturePackageIdDSFieldBuilder(
+	public SignaturePackageKeyDSFieldBuilder
+		createSignaturePackageKeyDSFieldBuilder(
 			String documentId, String fieldId, Integer pageNumber) {
 
-		return new SignaturePackageIdDSFieldBuilderImpl(
+		return new SignaturePackageKeyDSFieldBuilderImpl(
 			documentId, fieldId, pageNumber);
 	}
 

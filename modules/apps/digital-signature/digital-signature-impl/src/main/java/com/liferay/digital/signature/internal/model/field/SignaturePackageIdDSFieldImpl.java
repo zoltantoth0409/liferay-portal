@@ -16,17 +16,17 @@ package com.liferay.digital.signature.internal.model.field;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.digital.signature.model.field.SignaturePackageIdDSField;
+import com.liferay.digital.signature.model.field.SignaturePackageKeyDSField;
 
 /**
  * @author Michael C. Han
  */
 @ProviderType
-public class SignaturePackageIdDSFieldImpl
-	extends StyledDSFieldImpl<SignaturePackageIdDSField>
-	implements SignaturePackageIdDSField {
+public class SignaturePackageKeyDSFieldImpl
+	extends StyledDSFieldImpl<SignaturePackageKeyDSField>
+	implements SignaturePackageKeyDSField {
 
-	public SignaturePackageIdDSFieldImpl(
+	public SignaturePackageKeyDSFieldImpl(
 		String documentId, String fieldId, Integer pageNumber) {
 
 		super(documentId, fieldId, pageNumber);

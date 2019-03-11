@@ -16,34 +16,34 @@ package com.liferay.digital.signature.internal.model.field.builder;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.digital.signature.internal.model.field.SignaturePackageIdDSFieldImpl;
+import com.liferay.digital.signature.internal.model.field.SignaturePackageKeyDSFieldImpl;
 import com.liferay.digital.signature.model.field.DSField;
-import com.liferay.digital.signature.model.field.SignaturePackageIdDSField;
-import com.liferay.digital.signature.model.field.builder.SignaturePackageIdDSFieldBuilder;
+import com.liferay.digital.signature.model.field.SignaturePackageKeyDSField;
+import com.liferay.digital.signature.model.field.builder.SignaturePackageKeyDSFieldBuilder;
 
 /**
  * @author Michael C. Han
  */
 @ProviderType
-public class SignaturePackageIdDSFieldBuilderImpl
-	extends StyledDSFieldBuilderImpl<SignaturePackageIdDSField>
-	implements SignaturePackageIdDSFieldBuilder {
+public class SignaturePackageKeyDSFieldBuilderImpl
+	extends StyledDSFieldBuilderImpl<SignaturePackageKeyDSField>
+	implements SignaturePackageKeyDSFieldBuilder {
 
-	public SignaturePackageIdDSFieldBuilderImpl(
+	public SignaturePackageKeyDSFieldBuilderImpl(
 		String documentId, String fieldId, Integer pageNumber) {
 
 		super(documentId, fieldId, pageNumber);
 	}
 
 	@Override
-	public DSField<SignaturePackageIdDSField> getDSField() {
-		SignaturePackageIdDSFieldImpl signaturePackageIdDSFieldImpl =
-			new SignaturePackageIdDSFieldImpl(
+	public DSField<SignaturePackageKeyDSField> getDSField() {
+		SignaturePackageKeyDSFieldImpl signaturePackageKeyDSFieldImpl =
+			new SignaturePackageKeyDSFieldImpl(
 				getDocumentId(), getFieldId(), getPageNumber());
 
-		populateFields(signaturePackageIdDSFieldImpl);
+		populateFields(signaturePackageKeyDSFieldImpl);
 
-		return signaturePackageIdDSFieldImpl;
+		return signaturePackageKeyDSFieldImpl;
 	}
 
 }

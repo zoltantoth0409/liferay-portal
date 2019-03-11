@@ -26,8 +26,8 @@ public interface VoidPackageDSSignatureRequestBuilder {
 
 	public VoidPackageDSSignatureRequest getVoidPackageDSSignatureRequest();
 
-	public VoidPackageDSSignatureRequestBuilder setDSSignaturePackageId(
-		String dsSignaturePackageId);
+	public VoidPackageDSSignatureRequestBuilder setDSSignaturePackageKey(
+		String dsSignaturePackageKey);
 
 	public VoidPackageDSSignatureRequestBuilder setExternalReferenceId(
 		String externalReferenceId);

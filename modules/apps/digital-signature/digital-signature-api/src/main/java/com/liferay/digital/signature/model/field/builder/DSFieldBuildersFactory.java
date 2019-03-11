@@ -83,8 +83,8 @@ public interface DSFieldBuildersFactory {
 	public RadioGroupDSFieldBuilder createRadioGroupDSFieldBuilder(
 		String documentKey, String fieldKey, Integer pageNumber);
 
-	public SignaturePackageIdDSFieldBuilder
-		createSignaturePackageIdDSFieldBuilder(
+	public SignaturePackageKeyDSFieldBuilder
+		createSignaturePackageKeyDSFieldBuilder(
 			String documentKey, String fieldKey, Integer pageNumber);
 
 	public SignerAttachmentDSFieldBuilder createSignerAttachmentDSFieldBuilder(

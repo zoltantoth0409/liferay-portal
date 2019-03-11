@@ -65,13 +65,13 @@ public interface DSFieldVisitor<S> {
 
 	public S visit(RadioGroupDSField radioGroupDSField);
 
-	public S visit(SignaturePackageIdDSField signaturePackageIdDSField);
+	public S visit(SignaturePackageKeyDSField signaturePackageKeyDSField);
 
 	public S visit(SignerAttachmentDSField signerAttachmentDSField);
 
 	public S visit(SignHereDSField signHereDSField);
 
-	public S visit(SocialSecurityNumberDSField sSocialSecurityNumberDSField);
+	public S visit(SocialSecurityNumberDSField socialSecurityNumberDSField);
 
 	public S visit(TextDSField textDSField);
 
