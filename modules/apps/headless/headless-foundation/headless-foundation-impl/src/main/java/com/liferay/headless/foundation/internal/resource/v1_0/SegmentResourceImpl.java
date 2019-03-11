@@ -18,6 +18,7 @@ import com.liferay.headless.foundation.dto.v1_0.Segment;
 import com.liferay.headless.foundation.resource.v1_0.SegmentResource;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserService;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CamelCaseUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -30,7 +31,6 @@ import com.liferay.segments.service.SegmentsEntryService;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -76,19 +76,12 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 			user.getModelClassName(), user.getPrimaryKey(),
 			_createSegmentsContext());
 
-		List<SegmentsEntry> segmentsEntries = new ArrayList<>(
-			segmentsEntryIds.length);
-
-		for (long segmentsEntryId : segmentsEntryIds) {
-			SegmentsEntry segmentsEntry =
-				_segmentsEntryService.getSegmentsEntry(segmentsEntryId);
-
-			segmentsEntries.add(segmentsEntry);
-		}
-
 		return Page.of(
-			transform(segmentsEntries, this::_toSegment), pagination,
-			segmentsEntryIds.length);
+			transformToList(
+				ArrayUtil.toArray(segmentsEntryIds),
+				segmentsEntryId -> _toSegment(
+					_segmentsEntryService.getSegmentsEntry(segmentsEntryId))),
+			pagination, segmentsEntryIds.length);
 	}
 
 	private Context _createSegmentsContext() {
