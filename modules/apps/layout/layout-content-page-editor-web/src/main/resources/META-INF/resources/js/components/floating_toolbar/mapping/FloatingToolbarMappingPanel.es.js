@@ -185,8 +185,8 @@ class FloatingToolbarMappingPanel extends PortletBase {
 		this._selectedSourceTypeId = event.delegateTarget.value;
 
 		this._clearEditableValues();
-			this._loadFields();
-		}
+		this._loadFields();
+	}
 
 	/**
 	 * Handle unmap button click

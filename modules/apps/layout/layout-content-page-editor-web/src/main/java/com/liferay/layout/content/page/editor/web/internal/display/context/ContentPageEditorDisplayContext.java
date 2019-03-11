@@ -510,7 +510,9 @@ public class ContentPageEditorDisplayContext {
 		return _layoutData;
 	}
 
-	private Set<SoyContext> _getMappedAssetEntriesSoyContexts() throws Exception {
+	private Set<SoyContext> _getMappedAssetEntriesSoyContexts()
+		throws Exception {
+
 		Set<SoyContext> mappedAssetEntriesSoyContexts = new HashSet<>();
 
 		List<Long> mappedClassPKs = new ArrayList<>();
