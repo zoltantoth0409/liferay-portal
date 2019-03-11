@@ -27,15 +27,15 @@ import java.time.ZonedDateTime;
 public class DSSignatureResponseBuilderImpl
 	implements DSSignatureResponseBuilder {
 
-	public DSSignatureResponseBuilderImpl(String dsSignatureRequestId) {
-		_dsSignatureRequestId = dsSignatureRequestId;
+	public DSSignatureResponseBuilderImpl(String dsSignatureRequestKey) {
+		_dsSignatureRequestKey = dsSignatureRequestKey;
 	}
 
 	@Override
 	public DSSignatureResponse getDSSignatureResponse() {
 		DSSignatureResponseImpl dsSignatureResponseImpl =
 			new DSSignatureResponseImpl(
-				_dsSignatureRequestId, _externalReferenceKey);
+				_dsSignatureRequestKey, _externalReferenceKey);
 
 		dsSignatureResponseImpl.setDSSignatureRequestStatus(
 			_dsSignaturePackageStatus);
@@ -106,7 +106,7 @@ public class DSSignatureResponseBuilderImpl
 	}
 
 	private DSSignaturePackageStatus _dsSignaturePackageStatus;
-	private final String _dsSignatureRequestId;
+	private final String _dsSignatureRequestKey;
 	private String _errorCode;
 	private String _errorDebugMessage;
 	private String _errorMessage;

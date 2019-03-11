@@ -26,7 +26,7 @@ import java.time.ZonedDateTime;
 @ProviderType
 public interface DSSignatureResponse {
 
-	public String getDSSignatureRequestId();
+	public String getDSSignatureRequestKey();
 
 	public DSSignaturePackageStatus getDSSignatureRequestStatus();
 

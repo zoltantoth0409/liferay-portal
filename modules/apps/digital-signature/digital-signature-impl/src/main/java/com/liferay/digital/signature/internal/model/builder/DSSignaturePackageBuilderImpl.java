@@ -89,11 +89,11 @@ public class DSSignaturePackageBuilderImpl
 		dsSignatureRequest.addDSDocuments(_dsDocuments);
 		dsSignatureRequest.setDSParticipantMap(_dsParticipantsMap);
 
-		if (Validator.isNull(_dsSignatureRequestId)) {
-			_dsSignatureRequestId = _portalUUID.generate();
+		if (Validator.isNull(_dsSignatureRequestKey)) {
+			_dsSignatureRequestKey = _portalUUID.generate();
 		}
 
-		dsSignatureRequest.setDSSignatureRequestKey(_dsSignatureRequestId);
+		dsSignatureRequest.setDSSignatureRequestKey(_dsSignatureRequestKey);
 
 		return dsSignatureRequest;
 	}
@@ -115,10 +115,10 @@ public class DSSignaturePackageBuilderImpl
 	}
 
 	@Override
-	public DSSignaturePackageBuilder setDSSignatureRequestId(
-		String dsSignatureRequestId) {
+	public DSSignaturePackageBuilder setDSSignatureRequestKey(
+		String dsSignatureRequestKey) {
 
-		_dsSignatureRequestId = dsSignatureRequestId;
+		_dsSignatureRequestKey = dsSignatureRequestKey;
 
 		return this;
 	}
@@ -147,7 +147,7 @@ public class DSSignaturePackageBuilderImpl
 	private DSEmailNotification _dsEmailNotification;
 	private final Map<DSParticipantRole, Collection<DSParticipant>>
 		_dsParticipantsMap = new HashMap<>();
-	private String _dsSignatureRequestId;
+	private String _dsSignatureRequestKey;
 	private int _participantCounter;
 	private final PortalUUID _portalUUID;
 

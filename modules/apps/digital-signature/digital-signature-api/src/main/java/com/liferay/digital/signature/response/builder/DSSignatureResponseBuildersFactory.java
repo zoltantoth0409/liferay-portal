@@ -23,6 +23,6 @@ import aQute.bnd.annotation.ProviderType;
 public interface DSSignatureResponseBuildersFactory {
 
 	public DSSignatureResponseBuilder createDSSignatureResponseBuilder(
-		String dsSignatureRequestId);
+		String dsSignatureRequestKey);
 
 }

@@ -25,15 +25,15 @@ import java.time.ZonedDateTime;
 public class DSSignatureResponseImpl implements DSSignatureResponse {
 
 	public DSSignatureResponseImpl(
-		String dsSignatureRequestId, String externalReferenceKey) {
+		String dsSignatureRequestKey, String externalReferenceKey) {
 
-		_dsSignatureRequestId = dsSignatureRequestId;
+		_dsSignatureRequestKey = dsSignatureRequestKey;
 		_externalReferenceKey = externalReferenceKey;
 	}
 
 	@Override
-	public String getDSSignatureRequestId() {
-		return _dsSignatureRequestId;
+	public String getDSSignatureRequestKey() {
+		return _dsSignatureRequestKey;
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public class DSSignatureResponseImpl implements DSSignatureResponse {
 	}
 
 	private DSSignaturePackageStatus _dsSignaturePackageStatus;
-	private final String _dsSignatureRequestId;
+	private final String _dsSignatureRequestKey;
 	private String _errorCode;
 	private String _errorDebugMessage;
 	private String _errorMessage;

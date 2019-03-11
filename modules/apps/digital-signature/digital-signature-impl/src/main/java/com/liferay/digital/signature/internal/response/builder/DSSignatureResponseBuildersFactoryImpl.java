@@ -28,9 +28,9 @@ public class DSSignatureResponseBuildersFactoryImpl
 
 	@Override
 	public DSSignatureResponseBuilder createDSSignatureResponseBuilder(
-		String dsSignatureRequestId) {
+		String dsSignatureRequestKey) {
 
-		return new DSSignatureResponseBuilderImpl(dsSignatureRequestId);
+		return new DSSignatureResponseBuilderImpl(dsSignatureRequestKey);
 	}
 
 }

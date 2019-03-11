@@ -47,7 +47,7 @@ public interface DSSignaturePackageBuilder {
 	public DSSignaturePackageBuilder setDSEmailNotification(
 		DSEmailNotification dsEmailNotification);
 
-	public DSSignaturePackageBuilder setDSSignatureRequestId(
-		String dsSignatureRequestId);
+	public DSSignaturePackageBuilder setDSSignatureRequestKey(
+		String dsSignatureRequestKey);
 
 }
