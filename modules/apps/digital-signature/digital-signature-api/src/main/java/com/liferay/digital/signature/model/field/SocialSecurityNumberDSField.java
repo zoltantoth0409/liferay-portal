@@ -21,8 +21,8 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface SocialSecurityNumberDSField
-	extends UserEntryDSField<SocialSecurityNumberDSField>,
-			SenderInputRequiredDSField<SocialSecurityNumberDSField> {
+	extends SenderInputRequiredDSField<SocialSecurityNumberDSField>,
+			UserEntryDSField<SocialSecurityNumberDSField> {
 
 	@Override
 	public default <S> S visit(DSFieldVisitor<S> dsFieldVisitor) {
