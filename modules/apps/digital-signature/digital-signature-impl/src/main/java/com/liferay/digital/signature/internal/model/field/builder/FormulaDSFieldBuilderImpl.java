@@ -38,11 +38,14 @@ public class FormulaDSFieldBuilderImpl
 	@Override
 	public DSField<FormulaDSField> getDSField() {
 		FormulaDSFieldImpl formulaDSFieldImpl = new FormulaDSFieldImpl(
-			getDocumentKey(), getFieldKey(), getPageNumber());
-
-		formulaDSFieldImpl.setFormula(_formula);
-		formulaDSFieldImpl.setRoundDecimalPlaces(_roundDecimalPlaces);
-		formulaDSFieldImpl.setSenderRequired(_senderRequired);
+			getDocumentKey(), getFieldKey(), getPageNumber()) {
+			
+			{
+				setFormula(_formula);
+				setRoundDecimalPlaces(_roundDecimalPlaces);
+				setSenderRequired(_senderRequired);
+			}
+		};
 
 		populateFields(formulaDSFieldImpl);
 
