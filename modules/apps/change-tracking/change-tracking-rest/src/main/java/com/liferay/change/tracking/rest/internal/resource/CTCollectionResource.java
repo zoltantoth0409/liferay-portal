@@ -208,9 +208,9 @@ public class CTCollectionResource {
 					". The valid options are: all, active and production.");
 		}
 
-		Stream<CTCollection> ctCollectionStream = ctCollections.stream();
+		Stream<CTCollection> ctCollectionsStream = ctCollections.stream();
 
-		return ctCollectionStream.map(
+		return ctCollectionsStream.map(
 			this::_getCTCollectionModel
 		).collect(
 			Collectors.toList()
@@ -245,9 +245,9 @@ public class CTCollectionResource {
 		List<CTEntry> ctEntries = _ctEngineManager.getCTEntries(
 			ctCollection.getCtCollectionId());
 
-		Stream<CTEntry> ctEntryStream = ctEntries.stream();
+		Stream<CTEntry> ctEntriesStream = ctEntries.stream();
 
-		Map<Integer, Long> ctEntriesChangeTypes = ctEntryStream.collect(
+		Map<Integer, Long> ctEntriesChangeTypes = ctEntriesStream.collect(
 			Collectors.groupingBy(
 				CTEntry::getChangeType, Collectors.counting()));
 

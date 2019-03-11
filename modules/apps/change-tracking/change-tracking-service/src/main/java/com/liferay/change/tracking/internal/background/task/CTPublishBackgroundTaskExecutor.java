@@ -197,19 +197,19 @@ public class CTPublishBackgroundTaskExecutor
 				"Unable to find production the change tracking collection")
 		);
 
-		Stream<CTEntry> ctEntryStream = ctEntries.stream();
+		Stream<CTEntry> ctEntriesStream = ctEntries.stream();
 
-		ctEntryStream.peek(
+		ctEntriesStream.peek(
 			CTProcessMessageSenderUtil::logCTEntryPublished
 		).forEach(
 			ctEntry -> _publishCTEntry(ctEntry, productionCTCollectionId)
 		);
 
 		if (ListUtil.isNotEmpty(ctEntryAggregates)) {
-			Stream<CTEntryAggregate> ctEntryAggregateStream =
+			Stream<CTEntryAggregate> ctEntryAggregatesStream =
 				ctEntryAggregates.stream();
 
-			ctEntryAggregateStream.forEach(
+			ctEntryAggregatesStream.forEach(
 				ctEntryAggregate -> _publishCTEntryAggregate(
 					ctEntryAggregate, productionCTCollectionId));
 		}
