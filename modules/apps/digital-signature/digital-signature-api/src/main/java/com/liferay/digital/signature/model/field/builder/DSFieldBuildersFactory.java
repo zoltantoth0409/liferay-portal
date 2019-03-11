@@ -23,87 +23,87 @@ import aQute.bnd.annotation.ProviderType;
 public interface DSFieldBuildersFactory {
 
 	public ApproveDSFieldBuilder createApproveDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public CheckboxDSFieldBuilder createCheckboxDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public CompanyNameDSFieldBuilder createCompanyNameDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public DateDSFieldBuilder createDateDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public DateSignedDSFieldBuilder createDateSignedDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public DeclineDSFieldBuilder createDeclineDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public EmailAddressDSFieldBuilder createEmailAddressDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public FirstNameDSFieldBuilder createFirstNameDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public FormulaDSFieldBuilder createFormulaDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public FullNameDSFieldBuilder createFullNameDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public InitialHereDSFieldBuilder createInitialHereDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public LastNameDSFieldBuilder createLastNameDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public ListDSFieldBuilder createListDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public NotarizeDSFieldBuilder createNotarizeDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public NoteDSFieldBuilder createNoteDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public NumberDSFieldBuilder createNumberDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public ParticipantEmailAddressDSFieldBuilder
 		createParticipantEmailAddressDSFieldBuilder(
-			String documentId, String fieldId, Integer pageNumber);
+			String documentKey, String fieldKey, Integer pageNumber);
 
 	public PostalCodeDSFieldBuilder createPostalCodeDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public RadioDSFieldBuilder createRadioDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public RadioGroupDSFieldBuilder createRadioGroupDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public SignaturePackageIdDSFieldBuilder
 		createSignaturePackageIdDSFieldBuilder(
-			String documentId, String fieldId, Integer pageNumber);
+			String documentKey, String fieldKey, Integer pageNumber);
 
 	public SignerAttachmentDSFieldBuilder createSignerAttachmentDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public SignHereDSFieldBuilder createSignHereDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public SocialSecurityNumberDSFieldBuilder
 		createSocialSecurityNumberDSFieldBuilder(
-			String documentId, String fieldId, Integer pageNumber);
+			String documentKey, String fieldKey, Integer pageNumber);
 
 	public TextDSFieldBuilder createTextDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public TitleDSFieldBuilder createTitleDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 	public ViewDSFieldBuilder createViewDSFieldBuilder(
-		String documentId, String fieldId, Integer pageNumber);
+		String documentKey, String fieldKey, Integer pageNumber);
 
 }
