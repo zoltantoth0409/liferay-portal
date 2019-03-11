@@ -56,7 +56,9 @@ import com.liferay.portlet.asset.util.AssetVocabularySettingsHelper;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletResponse;
@@ -65,6 +67,8 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
+
+import org.apache.commons.collections.MapUtils;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -197,7 +201,7 @@ public class VocabularyResourceImpl
 				new AssetType() {
 					{
 						subtype = _toSubtype(classNameId, classTypePK, groupId);
-						type = _toType(classNameId);
+						type = _toAssetTypeType(classNameId);
 						required = _toRequired(
 							classNameId, requiredClassNameIds);
 					}
@@ -207,47 +211,25 @@ public class VocabularyResourceImpl
 		return assetTypes.toArray(new AssetType[assetTypes.size()]);
 	}
 
-	private long _toClassNameId(AssetType.Type type) {
-		ClassName className = null;
-
-		if (Objects.equals(AssetType.Type.BLOG_POSTING, type)) {
-			className = _classNameLocalService.fetchClassName(
-				"com.liferay.blogs.model.BlogsEntry");
-		}
-		else if (Objects.equals(AssetType.Type.DOCUMENT, type)) {
-			className = _classNameLocalService.fetchClassName(
-				FileEntry.class.getName());
-		}
-		else if (Objects.equals(AssetType.Type.KNOWLEDGE_BASE_ARTICLE, type)) {
-			className = _classNameLocalService.fetchClassName(
-				"com.liferay.knowledge.base.model.KBArticle");
-		}
-		else if (Objects.equals(AssetType.Type.ORGANIZATION, type)) {
-			className = _classNameLocalService.fetchClassName(
-				Organization.class.getName());
-		}
-		else if (Objects.equals(AssetType.Type.STRUCTURED_CONTENT, type)) {
-			className = _classNameLocalService.fetchClassName(
-				"com.liferay.journal.model.JournalArticle");
-		}
-		else if (Objects.equals(AssetType.Type.USER_ACCOUNT, type)) {
-			className = _classNameLocalService.fetchClassName(User.class.getName());
-		}
-		else if (Objects.equals(AssetType.Type.WEB_PAGE, type)) {
-			className = _classNameLocalService.fetchClassName(
-				Layout.class.getName());
-		}
-		else if (Objects.equals(AssetType.Type.WEB_SITE, type)) {
-			className = _classNameLocalService.fetchClassName(Group.class.getName());
-		}
-		else if (Objects.equals(AssetType.Type.WIKI_PAGE, type)) {
-			className = _classNameLocalService.fetchClassName(
-				"com.liferay.wiki.model.WikiPage");
+	private AssetType.Type _toAssetTypeType(long classNameId) {
+		if (classNameId == AssetCategoryConstants.ALL_CLASS_NAME_ID) {
+			return AssetType.Type.ALL_ASSET_TYPES;
 		}
 
-		if (className == null) {
-			throw new BadRequestException("Invalid AssetType " + type);
+		ClassName className = _classNameLocalService.fetchByClassNameId(
+			classNameId);
+
+		return _classNameToAssetTypeTypes.get(className.getClassName());
+	}
+
+	private long _toClassNameId(AssetType.Type assetTypeType) {
+		if (!_assetTypeTypeToClassNames.containsKey(assetTypeType)) {
+			throw new BadRequestException(
+				"Invalid asset type: " + assetTypeType);
 		}
+
+		ClassName className = _classNameLocalService.fetchClassName(
+			_assetTypeTypeToClassNames.get(assetTypeType));
 
 		return className.getClassNameId();
 	}
@@ -259,7 +241,8 @@ public class VocabularyResourceImpl
 			return AssetCategoryConstants.ALL_CLASS_TYPE_PK;
 		}
 
-		ClassName className = _classNameLocalService.fetchByClassNameId(classNameId);
+		ClassName className = _classNameLocalService.fetchByClassNameId(
+			classNameId);
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
@@ -341,7 +324,8 @@ public class VocabularyResourceImpl
 			return "AllAssetSubtypes";
 		}
 
-		ClassName className = _classNameLocalService.fetchByClassNameId(classNameId);
+		ClassName className = _classNameLocalService.fetchByClassNameId(
+			classNameId);
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
@@ -365,66 +349,6 @@ public class VocabularyResourceImpl
 		}
 
 		throw new InternalServerErrorException();
-	}
-
-	private AssetType.Type _toType(long classNameId) {
-		if (classNameId == AssetCategoryConstants.ALL_CLASS_NAME_ID) {
-			return AssetType.Type.ALL_ASSET_TYPES;
-		}
-
-		ClassName className = _classNameLocalService.fetchByClassNameId(classNameId);
-
-		if (Objects.equals(
-				FileEntry.class.getName(), className.getClassName())) {
-
-			return AssetType.Type.DOCUMENT;
-		}
-		else if (Objects.equals(
-					Group.class.getName(), className.getClassName())) {
-
-			return AssetType.Type.WEB_SITE;
-		}
-		else if (Objects.equals(
-					Layout.class.getName(), className.getClassName())) {
-
-			return AssetType.Type.WEB_PAGE;
-		}
-		else if (Objects.equals(
-					Organization.class.getName(), className.getClassName())) {
-
-			return AssetType.Type.ORGANIZATION;
-		}
-		else if (Objects.equals(
-					User.class.getName(), className.getClassName())) {
-
-			return AssetType.Type.USER_ACCOUNT;
-		}
-		else if (Objects.equals(
-					"com.liferay.blogs.model.BlogsEntry",
-					className.getClassName())) {
-
-			return AssetType.Type.BLOG_POSTING;
-		}
-		else if (Objects.equals(
-					"com.liferay.knowledge.base.model.KBArticle",
-					className.getClassName())) {
-
-			return AssetType.Type.KNOWLEDGE_BASE_ARTICLE;
-		}
-		else if (Objects.equals(
-					"com.liferay.journal.model.JournalArticle",
-					className.getClassName())) {
-
-			return AssetType.Type.STRUCTURED_CONTENT;
-		}
-		else if (Objects.equals(
-					"com.liferay.wiki.model.WikiPage",
-					className.getClassName())) {
-
-			return AssetType.Type.WIKI_PAGE;
-		}
-
-		return null;
 	}
 
 	private Vocabulary _toVocabulary(AssetVocabulary assetVocabulary)
@@ -455,6 +379,31 @@ public class VocabularyResourceImpl
 		};
 	}
 
+	private static final Map<AssetType.Type, String>
+		_assetTypeTypeToClassNames = new HashMap<AssetType.Type, String>() {
+			{
+				put(AssetType.Type.DOCUMENT, FileEntry.class.getName());
+				put(AssetType.Type.WEB_SITE, Group.class.getName());
+				put(AssetType.Type.WEB_PAGE, Layout.class.getName());
+				put(AssetType.Type.ORGANIZATION, Organization.class.getName());
+				put(AssetType.Type.USER_ACCOUNT, User.class.getName());
+				put(
+					AssetType.Type.BLOG_POSTING,
+					"com.liferay.blogs.model.BlogsEntry");
+				put(
+					AssetType.Type.KNOWLEDGE_BASE_ARTICLE,
+					"com.liferay.knowledge.base.model.KBArticle");
+				put(
+					AssetType.Type.STRUCTURED_CONTENT,
+					"com.liferay.journal.model.JournalArticle");
+				put(
+					AssetType.Type.WIKI_PAGE,
+					"com.liferay.wiki.model.WikiPage");
+			}
+		};
+	private static final Map<String, AssetType.Type>
+		_classNameToAssetTypeTypes = MapUtils.invertMap(
+			_assetTypeTypeToClassNames);
 	private static final EntityModel _entityModel = new VocabularyEntityModel();
 
 	@Reference
