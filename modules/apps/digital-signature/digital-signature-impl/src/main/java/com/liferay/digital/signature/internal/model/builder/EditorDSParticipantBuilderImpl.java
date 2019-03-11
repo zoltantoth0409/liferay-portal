@@ -26,9 +26,9 @@ public class EditorDSParticipantBuilderImpl
 	implements EditorDSParticipantBuilder {
 
 	public EditorDSParticipantBuilderImpl(
-		String name, String email, int routingOrder) {
+		String name, String emailAddress, int routingOrder) {
 
-		super(name, email, routingOrder);
+		super(name, emailAddress, routingOrder);
 	}
 
 	@Override
@@ -39,7 +39,6 @@ public class EditorDSParticipantBuilderImpl
 
 		editorDSParticipantImpl.setCanEditParticipantEmailAddresses(
 			getCanEditParticipantEmailAddresses());
-
 		editorDSParticipantImpl.setCanEditParticipantNames(
 			getCanEditParticipantNames());
 
