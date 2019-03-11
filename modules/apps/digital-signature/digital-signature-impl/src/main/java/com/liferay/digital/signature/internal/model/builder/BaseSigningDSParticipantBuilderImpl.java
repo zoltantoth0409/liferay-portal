@@ -108,19 +108,19 @@ public abstract class BaseSigningDSParticipantBuilderImpl<T extends DSParticipan
 
 	@Override
 	protected T createDSParticipant() {
-		SignerDSParticipantImpl dsSignerParticipantImpl =
-			createDSSignerParticipantImpl();
+		SignerDSParticipantImpl signerDSParticipantImpl =
+			createSignerDSParticipantImpl();
 
-		dsSignerParticipantImpl.addDSFields(getDSFields());
-		dsSignerParticipantImpl.setAutoNavigation(getAutoNavigation());
-		dsSignerParticipantImpl.setDefaultParticipant(getDefaultParticipant());
-		dsSignerParticipantImpl.setDSSignatureInfo(getDSSignatureInfo());
-		dsSignerParticipantImpl.setSignInEachLocation(getSignInEachLocation());
+		signerDSParticipantImpl.addDSFields(getDSFields());
+		signerDSParticipantImpl.setAutoNavigation(getAutoNavigation());
+		signerDSParticipantImpl.setDefaultParticipant(getDefaultParticipant());
+		signerDSParticipantImpl.setDSSignatureInfo(getDSSignatureInfo());
+		signerDSParticipantImpl.setSignInEachLocation(getSignInEachLocation());
 
-		return (T)dsSignerParticipantImpl;
+		return (T)signerDSParticipantImpl;
 	}
 
-	protected abstract SignerDSParticipantImpl createDSSignerParticipantImpl();
+	protected abstract SignerDSParticipantImpl createSignerDSParticipantImpl();
 
 	protected Boolean getAutoNavigation() {
 		return _autoNavigation;

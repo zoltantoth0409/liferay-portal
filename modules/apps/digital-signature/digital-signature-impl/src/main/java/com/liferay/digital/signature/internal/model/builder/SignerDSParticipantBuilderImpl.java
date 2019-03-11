@@ -32,7 +32,7 @@ public class SignerDSParticipantBuilderImpl
 	}
 
 	@Override
-	protected SignerDSParticipantImpl createDSSignerParticipantImpl() {
+	protected SignerDSParticipantImpl createSignerDSParticipantImpl() {
 		return new SignerDSParticipantImpl(
 			getEmailAddress(), getName(), getRoutingOrder());
 	}

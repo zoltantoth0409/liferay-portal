@@ -37,7 +37,7 @@ public class InPersonSignerDSParticipantBuilderImpl
 	}
 
 	@Override
-	protected SignerDSParticipantImpl createDSSignerParticipantImpl() {
+	protected SignerDSParticipantImpl createSignerDSParticipantImpl() {
 		return new InPersonSignerDSParticipantImpl(
 			_hostEmail, _hostName, getRoutingOrder(), getEmailAddress(),
 			getName());
