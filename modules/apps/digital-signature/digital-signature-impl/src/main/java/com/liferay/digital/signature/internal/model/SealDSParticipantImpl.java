@@ -34,7 +34,7 @@ public class SealDSParticipantImpl
 		String participantKey, String name, String emailAddress,
 		int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 
 		setDSParticipantRole(DSParticipantRole.SEAL);
 		setParticipantKey(participantKey);

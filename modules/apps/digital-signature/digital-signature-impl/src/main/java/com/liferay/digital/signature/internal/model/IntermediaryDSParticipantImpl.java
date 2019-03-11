@@ -28,7 +28,7 @@ public class IntermediaryDSParticipantImpl
 	public IntermediaryDSParticipantImpl(
 		String name, String emailAddress, int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 
 		setDSParticipantRole(DSParticipantRole.INTERMEDIARY);
 	}

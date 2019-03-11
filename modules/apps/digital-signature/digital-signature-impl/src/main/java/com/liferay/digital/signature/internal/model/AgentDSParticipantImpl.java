@@ -26,9 +26,9 @@ public class AgentDSParticipantImpl
 	implements AgentDSParticipant {
 
 	public AgentDSParticipantImpl(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 
 		setDSParticipantRole(DSParticipantRole.AGENT);
 	}

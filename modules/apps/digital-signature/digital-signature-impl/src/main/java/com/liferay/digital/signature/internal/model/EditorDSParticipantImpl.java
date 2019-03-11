@@ -27,7 +27,7 @@ public class EditorDSParticipantImpl
 	public EditorDSParticipantImpl(
 		String name, String emailAddress, int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 	}
 
 	@Override

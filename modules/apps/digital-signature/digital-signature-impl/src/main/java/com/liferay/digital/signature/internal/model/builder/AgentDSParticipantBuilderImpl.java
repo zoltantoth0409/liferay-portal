@@ -34,7 +34,7 @@ public class AgentDSParticipantBuilderImpl
 	@Override
 	protected AgentDSParticipant createDSParticipant() {
 		return new AgentDSParticipantImpl(
-			getName(), getEmailAddress(), getRoutingOrder()) {
+			getEmailAddress(), getName(), getRoutingOrder()) {
 
 			{
 				setCanEditParticipantEmailAddresses(

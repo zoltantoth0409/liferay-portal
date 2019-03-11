@@ -26,10 +26,10 @@ import java.util.Collection;
 public abstract class BaseDSParticipantImpl implements DSParticipant {
 
 	public BaseDSParticipantImpl(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
-		_name = name;
 		_emailAddress = emailAddress;
+		_name = name;
 		_routingOrder = routingOrder;
 	}
 

@@ -34,7 +34,7 @@ public class SignerDSParticipantImpl
 	public SignerDSParticipantImpl(
 		String name, String emailAddress, int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 
 		setDSParticipantRole(DSParticipantRole.SIGNER);
 	}

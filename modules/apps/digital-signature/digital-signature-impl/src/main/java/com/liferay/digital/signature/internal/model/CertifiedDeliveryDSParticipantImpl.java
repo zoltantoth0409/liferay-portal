@@ -27,7 +27,7 @@ public class CertifiedDeliveryDSParticipantImpl
 	public CertifiedDeliveryDSParticipantImpl(
 		String name, String emailAddress, int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 
 		setDSParticipantRole(DSParticipantRole.CERTIFIED_DELIVERY);
 	}
