@@ -187,9 +187,9 @@ public class VocabularyResourceImpl
 			return new AssetType[0];
 		}
 
+		long[] classTypePKs = assetVocabularySettingsHelper.getClassTypePKs();
 		long[] requiredClassNameIds =
 			assetVocabularySettingsHelper.getRequiredClassNameIds();
-		long[] classTypePKs = assetVocabularySettingsHelper.getClassTypePKs();
 
 		List<AssetType> assetTypes = new ArrayList<>();
 
