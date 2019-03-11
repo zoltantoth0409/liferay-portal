@@ -36,9 +36,12 @@ public class SignerAttachmentDSFieldBuilderImpl
 	public DSField<SignerAttachmentDSField> getDSField() {
 		SignerAttachmentDSFieldImpl signerAttachmentDSFieldImpl =
 			new SignerAttachmentDSFieldImpl(
-				getDocumentKey(), getFieldKey(), getPageNumber());
-
-		signerAttachmentDSFieldImpl.setOptional(_optional);
+				getDocumentKey(), getFieldKey(), getPageNumber()) {
+				
+			{
+				setOptional(_optional);
+			}
+		};
 
 		populateFields(signerAttachmentDSFieldImpl);
 

@@ -35,9 +35,12 @@ public class SignHereDSFieldBuilderImpl
 	@Override
 	public DSField<SignHereDSField> getDSField() {
 		SignHereDSFieldImpl signHereDSFieldImpl = new SignHereDSFieldImpl(
-			getDocumentKey(), getFieldKey(), getPageNumber());
-
-		signHereDSFieldImpl.setOptional(_optional);
+			getDocumentKey(), getFieldKey(), getPageNumber()) {
+				
+			{
+				setOptional(_optional);
+			}
+		};
 
 		populateFields(signHereDSFieldImpl);
 

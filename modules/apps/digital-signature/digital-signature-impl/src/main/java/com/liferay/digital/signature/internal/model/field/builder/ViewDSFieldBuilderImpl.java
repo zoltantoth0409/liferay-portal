@@ -35,10 +35,13 @@ public class ViewDSFieldBuilderImpl
 	@Override
 	public DSField<ViewDSField> getDSField() {
 		ViewDSFieldImpl viewDSFieldImpl = new ViewDSFieldImpl(
-			getDocumentKey(), getFieldKey(), getPageNumber());
-
-		viewDSFieldImpl.setRequiredRead(_requiredRead);
-		viewDSFieldImpl.setViewText(_viewText);
+			getDocumentKey(), getFieldKey(), getPageNumber()) {
+				
+			{
+				setRequiredRead(_requiredRead);
+				setViewText(_viewText);
+			}
+		};
 
 		populateFields(viewDSFieldImpl);
 

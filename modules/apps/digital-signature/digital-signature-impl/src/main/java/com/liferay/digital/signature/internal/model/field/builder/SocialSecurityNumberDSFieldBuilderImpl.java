@@ -36,9 +36,12 @@ public class SocialSecurityNumberDSFieldBuilderImpl
 	public DSField<SocialSecurityNumberDSField> getDSField() {
 		SocialSecurityNumberDSFieldImpl socialSecurityNumberDSFieldImpl =
 			new SocialSecurityNumberDSFieldImpl(
-				getDocumentKey(), getFieldKey(), getPageNumber());
-
-		socialSecurityNumberDSFieldImpl.setSenderRequired(_senderRequired);
+				getDocumentKey(), getFieldKey(), getPageNumber()) {
+				
+			{
+				setSenderRequired(_senderRequired);
+			}
+		};
 
 		populateFields(socialSecurityNumberDSFieldImpl);
 
