@@ -63,17 +63,16 @@ public class DSSignatureServiceImpl implements DSSignatureService {
 			_log.warn("No digital signature adapter is available");
 		}
 
-		DSSignatureResponseImpl dsSignatureResponseImpl =
-			new DSSignatureResponseImpl(null, null);
-
-		dsSignatureResponseImpl.setDSSignatureRequestStatus(
-			DSSignaturePackageStatus.FAILED);
-
-		dsSignatureResponseImpl.setErrorMessage(
-			"No DSSignatureAdapter configured");
-
-		return Optional.of(dsSignatureResponseImpl);
-	}
+		return Optional.of(
+			new DSSignatureResponseImpl(null, null) {			
+				{
+					setDSSignatureRequestStatus(
+						DSSignaturePackageStatus.FAILED);
+					setErrorMessage(
+						"No DSSignatureAdapter configured");
+				}
+			});
+		}
 
 	private static volatile Log _log = LogFactoryUtil.getLog(
 		DSSignatureServiceImpl.class);
