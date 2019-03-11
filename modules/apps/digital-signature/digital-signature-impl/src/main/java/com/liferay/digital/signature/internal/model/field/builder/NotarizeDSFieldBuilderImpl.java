@@ -35,7 +35,7 @@ public class NotarizeDSFieldBuilderImpl
 	@Override
 	public DSField<NotarizeDSField> getDSField() {
 		NotarizeDSFieldImpl notarizeDSFieldImpl = new NotarizeDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		populateFields(notarizeDSFieldImpl);
 

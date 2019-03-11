@@ -61,11 +61,11 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 		return _conditionalParentValue;
 	}
 
-	public String getdocumentKey() {
+	public String getDocumentKey() {
 		return _documentKey;
 	}
 
-	public String getfieldKey() {
+	public String getFieldKey() {
 		return _fieldKey;
 	}
 

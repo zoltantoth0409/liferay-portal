@@ -35,7 +35,7 @@ public class PostalCodeDSFieldBuilderImpl
 	@Override
 	public DSField<PostalCodeDSField> getDSField() {
 		PostalCodeDSFieldImpl postalCodeDSFieldImpl = new PostalCodeDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		postalCodeDSFieldImpl.setSenderRequired(_senderRequired);
 

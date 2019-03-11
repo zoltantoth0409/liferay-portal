@@ -38,7 +38,7 @@ public class DateSignedDSFieldBuilderImpl
 	@Override
 	public DSField<DateSignedDSField> getDSField() {
 		DateSignedDSFieldImpl dateSignedDSFieldImpl = new DateSignedDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		populateFields(dateSignedDSFieldImpl);
 

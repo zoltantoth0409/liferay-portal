@@ -56,7 +56,7 @@ public class RadioGroupDSFieldBuilderImpl
 	@Override
 	public DSField<RadioGroupDSField> getDSField() {
 		RadioGroupDSFieldImpl radioGroupDSFieldImpl = new RadioGroupDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		radioGroupDSFieldImpl.addDSRadioFields(_radioDSFields);
 		radioGroupDSFieldImpl.setGroupName(_groupName);

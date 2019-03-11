@@ -39,7 +39,7 @@ public class SignaturePackageKeyDSFieldBuilderImpl
 	public DSField<SignaturePackageKeyDSField> getDSField() {
 		SignaturePackageKeyDSFieldImpl signaturePackageKeyDSFieldImpl =
 			new SignaturePackageKeyDSFieldImpl(
-				getdocumentKey(), getfieldKey(), getPageNumber());
+				getDocumentKey(), getFieldKey(), getPageNumber());
 
 		populateFields(signaturePackageKeyDSFieldImpl);
 

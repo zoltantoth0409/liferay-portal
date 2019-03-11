@@ -38,7 +38,7 @@ public class NumberDSFieldBuilderImpl
 	@Override
 	public DSField<NumberDSField> getDSField() {
 		NumberDSFieldImpl numberDSFieldImpl = new NumberDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		numberDSFieldImpl.setFormula(_formula);
 		numberDSFieldImpl.setSenderRequired(_senderRequired);

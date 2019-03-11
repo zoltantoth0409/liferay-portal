@@ -35,7 +35,7 @@ public class DateDSFieldBuilderImpl
 	@Override
 	public DSField<DateDSField> getDSField() {
 		DateDSFieldImpl dateDSFieldImpl = new DateDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		dateDSFieldImpl.setSenderRequired(_senderRequired);
 

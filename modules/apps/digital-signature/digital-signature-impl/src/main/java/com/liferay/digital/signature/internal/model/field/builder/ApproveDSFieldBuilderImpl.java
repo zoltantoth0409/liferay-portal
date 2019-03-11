@@ -35,7 +35,7 @@ public class ApproveDSFieldBuilderImpl
 	@Override
 	public DSField<ApproveDSField> getDSField() {
 		ApproveDSFieldImpl approveDSFieldImpl = new ApproveDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber()) {
+			getDocumentKey(), getFieldKey(), getPageNumber()) {
 
 			{
 				setApprovalText(_approvalText);

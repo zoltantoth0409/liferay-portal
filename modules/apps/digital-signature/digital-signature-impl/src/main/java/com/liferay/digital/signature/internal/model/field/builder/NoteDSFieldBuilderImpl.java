@@ -35,7 +35,7 @@ public class NoteDSFieldBuilderImpl
 	@Override
 	public DSField<NoteDSField> getDSField() {
 		NoteDSFieldImpl noteDSFieldImpl = new NoteDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		noteDSFieldImpl.setSenderRequired(_senderRequired);
 

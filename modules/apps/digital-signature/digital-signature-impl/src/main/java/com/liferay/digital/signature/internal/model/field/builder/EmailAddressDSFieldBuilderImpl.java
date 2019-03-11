@@ -36,7 +36,7 @@ public class EmailAddressDSFieldBuilderImpl
 	public DSField<EmailAddressDSField> getDSField() {
 		EmailAddressDSFieldImpl emailAddressDSFieldImpl =
 			new EmailAddressDSFieldImpl(
-				getdocumentKey(), getfieldKey(), getPageNumber());
+				getDocumentKey(), getFieldKey(), getPageNumber());
 
 		emailAddressDSFieldImpl.setSenderRequired(_senderRequired);
 

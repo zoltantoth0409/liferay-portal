@@ -38,7 +38,7 @@ public class DeclineDSFieldBuilderImpl
 	@Override
 	public DSField<DeclineDSField> getDSField() {
 		DeclineDSFieldImpl declineDSFieldImpl = new DeclineDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		declineDSFieldImpl.setDeclineText(_declineText);
 

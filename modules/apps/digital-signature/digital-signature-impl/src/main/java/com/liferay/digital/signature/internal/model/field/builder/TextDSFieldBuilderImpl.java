@@ -38,7 +38,7 @@ public class TextDSFieldBuilderImpl
 	@Override
 	public DSField<TextDSField> getDSField() {
 		TextDSFieldImpl textDSFieldImpl = new TextDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		textDSFieldImpl.setFormula(_formula);
 		textDSFieldImpl.setSenderRequired(_senderRequired);

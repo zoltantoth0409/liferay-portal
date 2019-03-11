@@ -38,7 +38,7 @@ public class FormulaDSFieldBuilderImpl
 	@Override
 	public DSField<FormulaDSField> getDSField() {
 		FormulaDSFieldImpl formulaDSFieldImpl = new FormulaDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		formulaDSFieldImpl.setFormula(_formula);
 		formulaDSFieldImpl.setRoundDecimalPlaces(_roundDecimalPlaces);

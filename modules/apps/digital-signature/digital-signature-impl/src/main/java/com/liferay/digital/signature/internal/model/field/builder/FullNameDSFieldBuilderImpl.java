@@ -38,7 +38,7 @@ public class FullNameDSFieldBuilderImpl
 	@Override
 	public DSField<FullNameDSField> getDSField() {
 		FullNameDSFieldImpl fullNameDSFieldImpl = new FullNameDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		populateFields(fullNameDSFieldImpl);
 

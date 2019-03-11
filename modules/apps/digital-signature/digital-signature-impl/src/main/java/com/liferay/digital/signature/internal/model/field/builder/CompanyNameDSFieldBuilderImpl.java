@@ -36,7 +36,7 @@ public class CompanyNameDSFieldBuilderImpl
 	public DSField<CompanyNameDSField> getDSField() {
 		CompanyNameDSFieldImpl companyNameDSFieldImpl =
 			new CompanyNameDSFieldImpl(
-				getdocumentKey(), getfieldKey(), getPageNumber());
+				getDocumentKey(), getFieldKey(), getPageNumber());
 
 		populateFields(companyNameDSFieldImpl);
 

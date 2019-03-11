@@ -35,7 +35,7 @@ public class TitleDSFieldBuilderImpl
 	@Override
 	public DSField<TitleDSField> getDSField() {
 		TitleDSFieldImpl titleDSFieldImpl = new TitleDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getDocumentKey(), getFieldKey(), getPageNumber());
 
 		populateFields(titleDSFieldImpl);
 

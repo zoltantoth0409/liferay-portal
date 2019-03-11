@@ -39,7 +39,7 @@ public class ParticipantEmailAddressDSFieldBuilderImpl
 	public DSField<ParticipantEmailAddressDSField> getDSField() {
 		ParticipantEmailAddressDSFieldImpl participantEmailAddressDSFieldImpl =
 			new ParticipantEmailAddressDSFieldImpl(
-				getdocumentKey(), getfieldKey(), getPageNumber());
+				getDocumentKey(), getFieldKey(), getPageNumber());
 
 		populateFields(participantEmailAddressDSFieldImpl);
 
