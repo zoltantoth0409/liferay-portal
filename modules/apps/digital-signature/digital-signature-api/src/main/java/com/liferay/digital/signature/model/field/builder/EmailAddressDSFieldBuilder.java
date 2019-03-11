@@ -23,6 +23,6 @@ import com.liferay.digital.signature.model.field.EmailAddressDSField;
  */
 @ProviderType
 public interface EmailAddressDSFieldBuilder
-	extends UserEntryDSFieldBuilder<EmailAddressDSField>,
-			SenderInputRequiredDSFieldBuilder<EmailAddressDSFieldBuilder> {
+	extends SenderInputRequiredDSFieldBuilder<EmailAddressDSFieldBuilder>,
+			UserEntryDSFieldBuilder<EmailAddressDSField> {
 }

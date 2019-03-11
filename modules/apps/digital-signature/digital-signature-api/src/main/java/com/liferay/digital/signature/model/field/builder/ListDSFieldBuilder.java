@@ -24,8 +24,8 @@ import com.liferay.digital.signature.model.field.ListDSField;
  */
 @ProviderType
 public interface ListDSFieldBuilder
-	extends UserEntryDSFieldBuilder<ListDSField>,
-			SenderInputRequiredDSFieldBuilder<ListDSFieldBuilder> {
+	extends SenderInputRequiredDSFieldBuilder<ListDSFieldBuilder>,
+			UserEntryDSFieldBuilder<ListDSField> {
 
 	public DSListItem addDSListItem(String text, String value);
 
