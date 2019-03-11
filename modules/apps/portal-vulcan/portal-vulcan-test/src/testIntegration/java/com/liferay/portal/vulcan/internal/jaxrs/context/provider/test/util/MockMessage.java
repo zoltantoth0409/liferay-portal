@@ -351,7 +351,7 @@ public class MockMessage implements Message {
 					}
 
 					@Override
-					public void putAll(Map<? extends String, ?> m) {
+					public void putAll(Map<? extends String, ?> map) {
 					}
 
 					@Override
@@ -446,7 +446,7 @@ public class MockMessage implements Message {
 			}
 
 			@Override
-			public void putAll(Map<? extends String, ?> m) {
+			public void putAll(Map<? extends String, ?> map) {
 			}
 
 			@Override
@@ -476,7 +476,7 @@ public class MockMessage implements Message {
 			}
 
 			@Override
-			public void setOneWay(boolean b) {
+			public void setOneWay(boolean oneWay) {
 			}
 
 			@Override
@@ -488,7 +488,7 @@ public class MockMessage implements Message {
 			}
 
 			@Override
-			public void setSynchronous(boolean b) {
+			public void setSynchronous(boolean synchronous) {
 			}
 
 			@Override
