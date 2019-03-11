@@ -114,12 +114,16 @@ public class AssetCategoriesNavigationDisplayContext {
 			long[] configuredAssetVocabularyIds = StringUtil.split(
 				assetVocabularyIds, 0L);
 
-			LongStream stream = Arrays.stream(configuredAssetVocabularyIds);
+			LongStream longStream = Arrays.stream(configuredAssetVocabularyIds);
 
-			_assetVocabularyIds = stream.filter(
-				assetVocabularyId ->
-					AssetVocabularyLocalServiceUtil.fetchAssetVocabulary(
-						assetVocabularyId) != null
+			_assetVocabularyIds = longStream.filter(
+				assetVocabularyId -> {
+					AssetVocabulary assetVocabulary =
+						AssetVocabularyLocalServiceUtil.fetchAssetVocabulary(
+							assetVocabularyId);
+
+					return assetVocabulary != null;
+				}
 			).toArray();
 		}
 
