@@ -202,8 +202,8 @@ public class VocabularyResourceImpl
 					{
 						subtype = _toSubtype(classNameId, classTypePK, groupId);
 						type = _toAssetTypeType(classNameId);
-						required = _toRequired(
-							classNameId, requiredClassNameIds);
+						required = ArrayUtil.contains(
+							requiredClassNameIds, classNameId);
 					}
 				});
 		}
@@ -266,20 +266,6 @@ public class VocabularyResourceImpl
 		}
 
 		throw new BadRequestException("Invalid subtype " + subtype);
-	}
-
-	private boolean _toRequired(long classNameId, long[] requiredClassNameIds) {
-		if (ArrayUtil.isEmpty(requiredClassNameIds)) {
-			return false;
-		}
-
-		for (long requiredClassNameId : requiredClassNameIds) {
-			if (requiredClassNameId == classNameId) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	private String _toSettings(AssetType[] assetTypes, long groupId)
