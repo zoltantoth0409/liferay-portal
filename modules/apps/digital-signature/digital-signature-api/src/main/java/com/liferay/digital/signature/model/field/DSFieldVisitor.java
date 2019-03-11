@@ -71,12 +71,12 @@ public interface DSFieldVisitor<S> {
 
 	public S visit(SignHereDSField signHereDSField);
 
-	public S visit(SocialSecurityNumberDSField dsSocialSecurityNumberField);
+	public S visit(SocialSecurityNumberDSField sSocialSecurityNumberDSField);
 
-	public S visit(TextDSField dsTextField);
+	public S visit(TextDSField textDSField);
 
-	public S visit(TitleDSField dsTitleField);
+	public S visit(TitleDSField titleDSField);
 
-	public S visit(ViewDSField dsViewField);
+	public S visit(ViewDSField viewDSField);
 
 }
