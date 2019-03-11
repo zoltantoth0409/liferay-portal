@@ -35,9 +35,12 @@ public class CheckboxDSFieldBuilderImpl
 	@Override
 	public DSField<CheckboxDSField> getDSField() {
 		CheckboxDSFieldImpl checkboxDSFieldImpl = new CheckboxDSFieldImpl(
-			getdocumentKey(), getfieldKey(), getPageNumber());
+			getdocumentKey(), getfieldKey(), getPageNumber()) {
 
-		checkboxDSFieldImpl.setSelected(_selected);
+			{
+				setSelected(_selected);
+			}
+		};
 
 		populateFields(checkboxDSFieldImpl);
 
