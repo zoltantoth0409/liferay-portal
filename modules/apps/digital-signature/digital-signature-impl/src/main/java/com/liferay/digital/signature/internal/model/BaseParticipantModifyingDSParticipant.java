@@ -34,7 +34,9 @@ public abstract class BaseParticipantModifyingDSParticipant
 		return _canEditParticipantNames;
 	}
 
-	public void setCanEditParticipantEmailAddresses(Boolean canEditParticipantEmailAddresses) {
+	public void setCanEditParticipantEmailAddresses(
+		Boolean canEditParticipantEmailAddresses) {
+
 		_canEditParticipantEmailAddresses = canEditParticipantEmailAddresses;
 	}
 

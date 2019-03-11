@@ -34,7 +34,7 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	extends BaseDSParticipantBuilder<T> implements SigningDSParticipantBuilder {
 
 	public BaseSigningDSParticipantBuilder(
-		String name, String emailAddress, int routingOrder) {
+		String emailAddress, String name, int routingOrder) {
 
 		super(name, emailAddress, routingOrder);
 	}
@@ -56,7 +56,9 @@ public abstract class BaseSigningDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	public <S extends DSParticipantBuilder> S addDSFields(DSField<?>... dsFields) {
+	public <S extends DSParticipantBuilder> S addDSFields(
+		DSField<?>... dsFields) {
+
 		Collections.addAll(_dsFields, dsFields);
 
 		return (S)this;

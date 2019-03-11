@@ -25,7 +25,9 @@ public class AgentDSParticipantImpl
 	extends BaseParticipantModifyingDSParticipant
 	implements AgentDSParticipant {
 
-	public AgentDSParticipantImpl(String name, String emailAddress, int routingOrder) {
+	public AgentDSParticipantImpl(
+		String name, String emailAddress, int routingOrder) {
+
 		super(name, emailAddress, routingOrder);
 
 		setDSParticipantRole(DSParticipantRole.AGENT);

@@ -72,19 +72,19 @@ public class DSEmailNotificationBuilderImpl
 	}
 
 	@Override
-	public DSEmailNotificationBuilder setOverrideReplyName(
-		String overrideReplyName) {
+	public DSEmailNotificationBuilder setOverrideReplyEmailAddress(
+		String overrideReplyEmailAddress) {
 
-		_overrideReplyName = overrideReplyName;
+		_overrideReplyEmailAddress = overrideReplyEmailAddress;
 
 		return this;
 	}
 
 	@Override
-	public DSEmailNotificationBuilder setOverrideReplyEmailAddress(
-		String overrideReplyEmailAddress) {
+	public DSEmailNotificationBuilder setOverrideReplyName(
+		String overrideReplyName) {
 
-		_overrideReplyEmailAddress = overrideReplyEmailAddress;
+		_overrideReplyName = overrideReplyName;
 
 		return this;
 	}

@@ -108,7 +108,9 @@ public abstract class BaseDSParticipantBuilder<T extends DSParticipant>
 	}
 
 	@Override
-	public DSParticipantBuilder setCustomFieldNames(String... customFieldNames) {
+	public DSParticipantBuilder setCustomFieldNames(
+		String... customFieldNames) {
+
 		Collections.addAll(_customFieldNames, customFieldNames);
 
 		return this;

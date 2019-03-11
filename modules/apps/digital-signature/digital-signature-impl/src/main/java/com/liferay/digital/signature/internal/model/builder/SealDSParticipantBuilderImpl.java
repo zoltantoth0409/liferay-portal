@@ -32,7 +32,8 @@ public class SealDSParticipantBuilderImpl
 	implements SealDSParticipantBuilder {
 
 	public SealDSParticipantBuilderImpl(
-		String participantKey, String name, String emailAddress, int routingOrder) {
+		String participantKey, String name, String emailAddress,
+		int routingOrder) {
 
 		super(name, emailAddress, routingOrder);
 
@@ -112,7 +113,8 @@ public class SealDSParticipantBuilderImpl
 	@Override
 	protected SealDSParticipant createDSParticipant() {
 		SealDSParticipantImpl sealDSParticipantImpl = new SealDSParticipantImpl(
-			getParticipantKey(), getName(), getEmailAddress(), getRoutingOrder());
+			getParticipantKey(), getName(), getEmailAddress(),
+			getRoutingOrder());
 
 		sealDSParticipantImpl.addDSSealInfos(_dsSealInfos.values());
 

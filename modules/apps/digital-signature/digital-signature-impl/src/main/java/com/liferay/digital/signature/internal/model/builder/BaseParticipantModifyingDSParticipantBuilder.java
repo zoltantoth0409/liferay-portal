@@ -33,8 +33,9 @@ public abstract class BaseParticipantModifyingDSParticipantBuilder
 	}
 
 	@Override
-	public <S extends DSParticipantBuilder> S setCanEditParticipantEmailAddresses(
-		Boolean canEditParticipantEmailAddresses) {
+	public <S extends DSParticipantBuilder> S
+		setCanEditParticipantEmailAddresses(
+			Boolean canEditParticipantEmailAddresses) {
 
 		_canEditParticipantEmailAddresses = canEditParticipantEmailAddresses;
 

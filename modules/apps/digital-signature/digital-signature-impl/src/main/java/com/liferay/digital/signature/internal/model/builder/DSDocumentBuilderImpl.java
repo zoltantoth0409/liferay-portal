@@ -83,7 +83,8 @@ public class DSDocumentBuilderImpl implements DSDocumentBuilder {
 
 	@Override
 	public DSDocumentBuilder setSupplementalDocumentInfo(
-		DSDocumentDisplay dsDocumentDisplay, DSSignerAcknowledgement dsSignerAcknowledgement,
+		DSDocumentDisplay dsDocumentDisplay,
+		DSSignerAcknowledgement dsSignerAcknowledgement,
 		Boolean includeInDownload) {
 
 		_dsSupplementalDocumentInfo = new DSSupplementalDocumentInfoImpl() {

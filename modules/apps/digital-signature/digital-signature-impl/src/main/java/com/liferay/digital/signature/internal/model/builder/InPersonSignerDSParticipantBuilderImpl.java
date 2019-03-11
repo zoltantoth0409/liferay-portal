@@ -30,7 +30,7 @@ public class InPersonSignerDSParticipantBuilderImpl
 		String hostName, String hostEmail, String signerName,
 		String signerEmail, int routingOrder) {
 
-		super(signerName, signerEmail, routingOrder);
+		super(signerEmail, signerName, routingOrder);
 
 		_hostName = hostName;
 		_hostEmail = hostEmail;
@@ -39,7 +39,8 @@ public class InPersonSignerDSParticipantBuilderImpl
 	@Override
 	protected SignerDSParticipantImpl createDSSignerParticipantImpl() {
 		return new InPersonSignerDSParticipantImpl(
-			_hostName, _hostEmail, getName(), getEmailAddress(), getRoutingOrder());
+			_hostName, _hostEmail, getName(), getEmailAddress(),
+			getRoutingOrder());
 	}
 
 	private final String _hostEmail;

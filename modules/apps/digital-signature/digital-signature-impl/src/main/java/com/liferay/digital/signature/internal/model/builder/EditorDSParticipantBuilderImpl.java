@@ -35,12 +35,11 @@ public class EditorDSParticipantBuilderImpl
 	protected EditorDSParticipant createDSParticipant() {
 		return new EditorDSParticipantImpl(
 			getName(), getEmailAddress(), getRoutingOrder()) {
-			
+
 			{
 				setCanEditParticipantEmailAddresses(
 					getCanEditParticipantEmailAddresses());
-				setCanEditParticipantNames(
-					getCanEditParticipantNames());
+				setCanEditParticipantNames(getCanEditParticipantNames());
 			}
 		};
 	}

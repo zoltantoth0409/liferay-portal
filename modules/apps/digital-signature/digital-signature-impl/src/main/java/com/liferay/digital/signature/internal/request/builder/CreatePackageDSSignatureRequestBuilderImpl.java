@@ -27,7 +27,9 @@ import com.liferay.digital.signature.request.builder.CreatePackageDSSignatureReq
 public class CreatePackageDSSignatureRequestBuilderImpl
 	implements CreatePackageDSSignatureRequestBuilder {
 
-	public CreatePackageDSSignatureRequestBuilderImpl(DSSessionKey dsSessionId) {
+	public CreatePackageDSSignatureRequestBuilderImpl(
+		DSSessionKey dsSessionId) {
+
 		_dsSessionId = dsSessionId;
 	}
 

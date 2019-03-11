@@ -28,23 +28,22 @@ public class InPersonSignerNotaryDSParticipantBuilderImpl
 	implements InPersonSignerNotaryDSParticipantBuilder {
 
 	public InPersonSignerNotaryDSParticipantBuilderImpl(
-		String emailAddress, String name, String notaryEmailAddress, String notaryName,
-		String notaryParticipantKey, int routingOrder) {
+		String emailAddress, String name, String notaryEmailAddress,
+		String notaryName, String notaryParticipantKey, int routingOrder) {
 
-		super(name, emailAddress, routingOrder);
+		super(emailAddress, name, routingOrder);
 
-		_notaryParticipantKey = notaryParticipantKey;
-		_notaryName = notaryName;
 		_notaryEmailAddress = notaryEmailAddress;
+		_notaryName = notaryName;
+		_notaryParticipantKey = notaryParticipantKey;
 	}
 
 	@Override
 	protected SignerDSParticipantImpl createDSSignerParticipantImpl() {
-		DSNotaryInfoImpl dsNotaryInfoImpl = new DSNotaryInfoImpl(
-			_notaryParticipantKey, _notaryName, _notaryEmailAddress);
-
 		return new InPersonSignerNotaryDSParticipantImpl(
-			getName(), getEmailAddress(), getRoutingOrder(), dsNotaryInfoImpl);
+			getName(), getEmailAddress(), getRoutingOrder(),
+			new DSNotaryInfoImpl(
+				_notaryParticipantKey, _notaryName, _notaryEmailAddress));
 	}
 
 	private final String _notaryEmailAddress;

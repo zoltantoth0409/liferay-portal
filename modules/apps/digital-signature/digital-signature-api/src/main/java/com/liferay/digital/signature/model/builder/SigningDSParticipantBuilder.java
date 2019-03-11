@@ -31,7 +31,8 @@ public interface SigningDSParticipantBuilder {
 	public <S extends DSParticipantBuilder> S addDSFields(
 		Collection<DSField<?>> dsFields);
 
-	public <S extends DSParticipantBuilder> S addDSFields(DSField<?>... dsFields);
+	public <S extends DSParticipantBuilder> S addDSFields(
+		DSField<?>... dsFields);
 
 	public <S extends DSParticipantBuilder> S setAutoNavigation(
 		Boolean autoNavigation);

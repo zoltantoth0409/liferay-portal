@@ -38,6 +38,11 @@ public class InPersonSignerDSParticipantImpl
 	}
 
 	@Override
+	public DSInPersonSignerType getDSInPersonSignerType() {
+		return DSInPersonSignerType.IN_PERSON;
+	}
+
+	@Override
 	public String getHostEmailAddress() {
 		return _hostEmailAddress;
 	}
@@ -45,11 +50,6 @@ public class InPersonSignerDSParticipantImpl
 	@Override
 	public String getHostName() {
 		return _hostName;
-	}
-
-	@Override
-	public DSInPersonSignerType getDSInPersonSignerType() {
-		return DSInPersonSignerType.IN_PERSON;
 	}
 
 	@Override

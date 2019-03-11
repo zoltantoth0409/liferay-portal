@@ -35,9 +35,10 @@ public class AgentDSParticipantBuilderImpl
 	protected AgentDSParticipant createDSParticipant() {
 		return new AgentDSParticipantImpl(
 			getName(), getEmailAddress(), getRoutingOrder()) {
-			
+
 			{
-				setCanEditParticipantEmailAddresses(getCanEditParticipantEmailAddresses());
+				setCanEditParticipantEmailAddresses(
+					getCanEditParticipantEmailAddresses());
 				setCanEditParticipantNames(getCanEditParticipantNames());
 			}
 		};

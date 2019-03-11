@@ -58,7 +58,8 @@ public interface DSModelBuildersFactory {
 			String emailAddress, String name, int routingOrder);
 
 	public SealDSParticipantBuilder createSealDSParticipantBuilder(
-		String emailAddress, String name, String participantKey, int routingOrder);
+		String emailAddress, String name, String participantKey,
+		int routingOrder);
 
 	public SignerDSParticipantBuilder createSignerDSParticipantBuilder(
 		String emailAddress, int routingOrder, String name);

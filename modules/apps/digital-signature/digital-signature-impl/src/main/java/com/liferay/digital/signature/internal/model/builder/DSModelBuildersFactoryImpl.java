@@ -42,7 +42,8 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 	public AgentDSParticipantBuilder createAgentDSParticipantBuilder(
 		String emailAddress, String name, int routingOrder) {
 
-		return new AgentDSParticipantBuilderImpl(name, emailAddress, routingOrder);
+		return new AgentDSParticipantBuilderImpl(
+			name, emailAddress, routingOrder);
 	}
 
 	@Override
@@ -85,7 +86,8 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 	public EditorDSParticipantBuilder createEditorDSParticipantBuilder(
 		String emailAddress, String name, int routingOrder) {
 
-		return new EditorDSParticipantBuilderImpl(name, emailAddress, routingOrder);
+		return new EditorDSParticipantBuilderImpl(
+			name, emailAddress, routingOrder);
 	}
 
 	@Override
@@ -95,7 +97,8 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 			String signerEmailAddress, String signerName) {
 
 		return new InPersonSignerDSParticipantBuilderImpl(
-			hostName, hostEmailAddress, signerName, signerEmailAddress, routingOrder);
+			hostName, hostEmailAddress, signerName, signerEmailAddress,
+			routingOrder);
 	}
 
 	@Override
@@ -105,8 +108,8 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 			String notaryName, String notaryParticipantKey, int routingOrder) {
 
 		return new InPersonSignerNotaryDSParticipantBuilderImpl(
-			emailAddress, name, notaryEmailAddress, notaryName, notaryParticipantKey,
-			routingOrder);
+			emailAddress, name, notaryEmailAddress, notaryName,
+			notaryParticipantKey, routingOrder);
 	}
 
 	@Override
@@ -120,7 +123,8 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 
 	@Override
 	public SealDSParticipantBuilder createSealDSParticipantBuilder(
-		String emailAddress, String name, String participantKey, int routingOrder) {
+		String emailAddress, String name, String participantKey,
+		int routingOrder) {
 
 		return new SealDSParticipantBuilderImpl(
 			participantKey, name, emailAddress, routingOrder);
@@ -130,7 +134,8 @@ public class DSModelBuildersFactoryImpl implements DSModelBuildersFactory {
 	public SignerDSParticipantBuilder createSignerDSParticipantBuilder(
 		String emailAddress, int routingOrder, String name) {
 
-		return new SignerDSParticipantBuilderImpl(name, emailAddress, routingOrder);
+		return new SignerDSParticipantBuilderImpl(
+			name, emailAddress, routingOrder);
 	}
 
 	protected void setPortalUUID(PortalUUID portalUUID) {
