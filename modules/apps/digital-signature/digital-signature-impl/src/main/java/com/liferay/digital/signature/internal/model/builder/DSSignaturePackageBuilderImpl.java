@@ -124,7 +124,7 @@ public class DSSignaturePackageBuilderImpl
 	}
 
 	protected void addDSParticipant(DSParticipant dsParticipant) {
-		Collection<DSParticipant> dsParticipantsList =
+		Collection<DSParticipant> dsParticipants =
 			_dsParticipantsMap.computeIfAbsent(
 				dsParticipant.getDSParticipantRole(),
 				participantRole -> new ArrayList<>());
@@ -137,7 +137,7 @@ public class DSSignaturePackageBuilderImpl
 				String.valueOf(_participantCounter));
 		}
 
-		dsParticipantsList.add(dsParticipant);
+		dsParticipants.add(dsParticipant);
 
 		_participantCounter++;
 	}
