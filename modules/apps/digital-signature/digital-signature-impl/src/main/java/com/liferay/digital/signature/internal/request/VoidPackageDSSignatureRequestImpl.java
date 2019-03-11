@@ -31,7 +31,7 @@ public class VoidPackageDSSignatureRequestImpl
 	}
 
 	@Override
-	public DSSessionKey getDSSessionId() {
+	public DSSessionKey getDSSessionKey() {
 		return _dsSessionId;
 	}
 

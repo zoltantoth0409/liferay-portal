@@ -182,7 +182,7 @@ public abstract class DSFieldImpl<T extends DSField<?>> implements DSField<T> {
 		_name = name;
 	}
 
-	public void setParticipantId(String participantId) {
+	public void setParticipantKey(String participantId) {
 		_participantId = participantId;
 	}
 

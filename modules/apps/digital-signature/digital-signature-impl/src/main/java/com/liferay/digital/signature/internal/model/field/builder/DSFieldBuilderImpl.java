@@ -89,8 +89,8 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 		return _pageNumber;
 	}
 
-	public String getParticipantId() {
-		return _participantId;
+	public String getParticipantKey() {
+		return _participantKey;
 	}
 
 	public Boolean getRequired() {
@@ -207,8 +207,8 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <S> S setParticipantId(String participantId) {
-		_participantId = participantId;
+	public <S> S setParticipantKey(String participantKey) {
+		_participantKey = participantKey;
 
 		return (S)this;
 	}
@@ -280,7 +280,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 		dsFieldImpl.setFieldLabel(_fieldLabel);
 		dsFieldImpl.setFieldOrder(_fieldOrder);
 		dsFieldImpl.setLocked(_locked);
-		dsFieldImpl.setParticipantId(_participantId);
+		dsFieldImpl.setParticipantKey(_participantKey);
 		dsFieldImpl.setRequireAll(_requireAll);
 		dsFieldImpl.setRequired(_required);
 		dsFieldImpl.setShared(_shared);
@@ -304,7 +304,7 @@ public abstract class DSFieldBuilderImpl<T extends DSField<?>>
 	private Boolean _locked;
 	private String _name;
 	private final Integer _pageNumber;
-	private String _participantId;
+	private String _participantKey;
 	private Boolean _requireAll;
 	private Boolean _required;
 	private Boolean _shared;

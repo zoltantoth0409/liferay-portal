@@ -26,17 +26,17 @@ public class CreatePackageDSSignatureRequestImpl
 	implements CreatePackageDSSignatureRequest {
 
 	public CreatePackageDSSignatureRequestImpl(
-		DSSessionKey dsSessionId, DSSignaturePackage dsSignaturePackage,
+		DSSessionKey dsSessionKey, DSSignaturePackage dsSignaturePackage,
 		DSSignaturePackageStatus dsSignaturePackageStatus) {
 
-		_dsSessionId = dsSessionId;
+		_dsSessionKey = dsSessionKey;
 		_dsSignaturePackage = dsSignaturePackage;
 		_dsSignaturePackageStatus = dsSignaturePackageStatus;
 	}
 
 	@Override
-	public DSSessionKey getDSSessionId() {
-		return _dsSessionId;
+	public DSSessionKey getDSSessionKey() {
+		return _dsSessionKey;
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class CreatePackageDSSignatureRequestImpl
 		return _dsSignaturePackageStatus;
 	}
 
-	private final DSSessionKey _dsSessionId;
+	private final DSSessionKey _dsSessionKey;
 	private final DSSignaturePackage _dsSignaturePackage;
 	private final DSSignaturePackageStatus _dsSignaturePackageStatus;
 

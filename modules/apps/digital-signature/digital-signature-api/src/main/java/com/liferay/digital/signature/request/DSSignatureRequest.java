@@ -24,6 +24,6 @@ import com.liferay.digital.signature.model.DSSessionKey;
 @ProviderType
 public interface DSSignatureRequest {
 
-	public DSSessionKey getDSSessionId();
+	public DSSessionKey getDSSessionKey();
 
 }
