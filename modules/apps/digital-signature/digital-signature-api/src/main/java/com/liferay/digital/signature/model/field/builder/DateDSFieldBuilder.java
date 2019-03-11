@@ -23,6 +23,6 @@ import com.liferay.digital.signature.model.field.DateDSField;
  */
 @ProviderType
 public interface DateDSFieldBuilder
-	extends UserEntryDSFieldBuilder<DateDSField>,
-			SenderInputRequiredDSFieldBuilder<DateDSFieldBuilder> {
+	extends SenderInputRequiredDSFieldBuilder<DateDSFieldBuilder>,
+			UserEntryDSFieldBuilder<DateDSField> {
 }

@@ -23,7 +23,7 @@ import com.liferay.digital.signature.model.field.DSField;
  * @author Michael C. Han
  */
 @ProviderType
-public interface DSFieldBuilder<T extends DSField> {
+public interface DSFieldBuilder<T extends DSField<?>> {
 
 	public DSField<T> getDSField();
 
