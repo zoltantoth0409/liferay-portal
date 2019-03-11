@@ -57,7 +57,7 @@ public class RadioGroupDSFieldBuilderImpl
 	public DSField<RadioGroupDSField> getDSField() {
 		RadioGroupDSFieldImpl radioGroupDSFieldImpl = new RadioGroupDSFieldImpl(
 			getDocumentKey(), getFieldKey(), getPageNumber()) {
-			
+
 			{
 				addRadioDSFields(_radioDSFields);
 				setGroupName(_groupName);

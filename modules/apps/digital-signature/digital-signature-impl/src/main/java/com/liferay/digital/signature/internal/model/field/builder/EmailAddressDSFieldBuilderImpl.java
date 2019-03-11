@@ -38,10 +38,10 @@ public class EmailAddressDSFieldBuilderImpl
 			new EmailAddressDSFieldImpl(
 				getDocumentKey(), getFieldKey(), getPageNumber()) {
 
-			{
-				setSenderRequired(_senderRequired);
-			}
-		};
+				{
+					setSenderRequired(_senderRequired);
+				}
+			};
 
 		populateFields(emailAddressDSFieldImpl);
 

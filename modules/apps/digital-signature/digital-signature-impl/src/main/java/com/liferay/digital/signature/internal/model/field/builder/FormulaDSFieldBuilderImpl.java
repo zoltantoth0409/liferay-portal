@@ -39,7 +39,7 @@ public class FormulaDSFieldBuilderImpl
 	public DSField<FormulaDSField> getDSField() {
 		FormulaDSFieldImpl formulaDSFieldImpl = new FormulaDSFieldImpl(
 			getDocumentKey(), getFieldKey(), getPageNumber()) {
-			
+
 			{
 				setFormula(_formula);
 				setRoundDecimalPlaces(_roundDecimalPlaces);

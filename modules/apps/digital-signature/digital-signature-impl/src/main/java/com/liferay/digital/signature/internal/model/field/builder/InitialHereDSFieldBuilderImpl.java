@@ -37,11 +37,11 @@ public class InitialHereDSFieldBuilderImpl
 		InitialHereDSFieldImpl initialHereDSFieldImpl =
 			new InitialHereDSFieldImpl(
 				getDocumentKey(), getFieldKey(), getPageNumber()) {
-			
-			{
-				setScaleValue(_scaleValue);
-			}
-		};
+
+				{
+					setScaleValue(_scaleValue);
+				}
+			};
 
 		populateFields(initialHereDSFieldImpl);
 

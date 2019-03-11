@@ -35,10 +35,9 @@ public class DSSignatureResponseBuilderImpl
 	public DSSignatureResponse getDSSignatureResponse() {
 		return new DSSignatureResponseImpl(
 			_dsSignatureRequestKey, _externalReferenceKey) {
-			
+
 			{
-				setDSSignatureRequestStatus(
-					_dsSignaturePackageStatus);
+				setDSSignatureRequestStatus(_dsSignaturePackageStatus);
 				setErrorCode(_errorCode);
 				setErrorDebugMessage(_errorDebugMessage);
 				setErrorMessage(_errorMessage);

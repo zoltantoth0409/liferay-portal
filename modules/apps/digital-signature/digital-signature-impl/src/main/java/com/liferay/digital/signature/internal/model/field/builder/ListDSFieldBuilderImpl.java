@@ -60,7 +60,7 @@ public class ListDSFieldBuilderImpl
 	public DSField<ListDSField> getDSField() {
 		ListDSFieldImpl listDSFieldImpl = new ListDSFieldImpl(
 			getDocumentKey(), getFieldKey(), getPageNumber()) {
-			
+
 			{
 				addDSListItems(_dsListItems);
 				setSenderRequired(_senderRequired);

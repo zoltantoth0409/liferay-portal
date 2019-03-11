@@ -37,11 +37,11 @@ public class SocialSecurityNumberDSFieldBuilderImpl
 		SocialSecurityNumberDSFieldImpl socialSecurityNumberDSFieldImpl =
 			new SocialSecurityNumberDSFieldImpl(
 				getDocumentKey(), getFieldKey(), getPageNumber()) {
-				
-			{
-				setSenderRequired(_senderRequired);
-			}
-		};
+
+				{
+					setSenderRequired(_senderRequired);
+				}
+			};
 
 		populateFields(socialSecurityNumberDSFieldImpl);
 

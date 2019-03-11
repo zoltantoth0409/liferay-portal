@@ -36,7 +36,7 @@ public class ViewDSFieldBuilderImpl
 	public DSField<ViewDSField> getDSField() {
 		ViewDSFieldImpl viewDSFieldImpl = new ViewDSFieldImpl(
 			getDocumentKey(), getFieldKey(), getPageNumber()) {
-				
+
 			{
 				setRequiredRead(_requiredRead);
 				setViewText(_viewText);

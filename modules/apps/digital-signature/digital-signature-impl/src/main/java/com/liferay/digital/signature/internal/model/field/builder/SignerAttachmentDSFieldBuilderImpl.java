@@ -37,11 +37,11 @@ public class SignerAttachmentDSFieldBuilderImpl
 		SignerAttachmentDSFieldImpl signerAttachmentDSFieldImpl =
 			new SignerAttachmentDSFieldImpl(
 				getDocumentKey(), getFieldKey(), getPageNumber()) {
-				
-			{
-				setOptional(_optional);
-			}
-		};
+
+				{
+					setOptional(_optional);
+				}
+			};
 
 		populateFields(signerAttachmentDSFieldImpl);
 

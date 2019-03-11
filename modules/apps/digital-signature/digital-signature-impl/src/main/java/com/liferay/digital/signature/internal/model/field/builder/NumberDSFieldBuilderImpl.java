@@ -39,7 +39,7 @@ public class NumberDSFieldBuilderImpl
 	public DSField<NumberDSField> getDSField() {
 		NumberDSFieldImpl numberDSFieldImpl = new NumberDSFieldImpl(
 			getDocumentKey(), getFieldKey(), getPageNumber()) {
-			
+
 			{
 				setFormula(_formula);
 				setSenderRequired(_senderRequired);

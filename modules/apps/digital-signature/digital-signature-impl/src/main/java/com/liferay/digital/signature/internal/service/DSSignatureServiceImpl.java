@@ -41,8 +41,7 @@ public class DSSignatureServiceImpl implements DSSignatureService {
 	public DSSignatureResponse execute(
 		PackageDSSignatureRequest packageDSSignatureRequest) {
 
-		Optional<DSSignatureResponse> optional =
-			validateDSSignatureAdapter();
+		Optional<DSSignatureResponse> optional = validateDSSignatureAdapter();
 
 		return optional.orElse(
 			_dsSignatureAdapter.execute(packageDSSignatureRequest));
@@ -64,15 +63,14 @@ public class DSSignatureServiceImpl implements DSSignatureService {
 		}
 
 		return Optional.of(
-			new DSSignatureResponseImpl(null, null) {			
+			new DSSignatureResponseImpl(null, null) {
 				{
 					setDSSignatureRequestStatus(
 						DSSignaturePackageStatus.FAILED);
-					setErrorMessage(
-						"No DSSignatureAdapter configured");
+					setErrorMessage("No DSSignatureAdapter configured");
 				}
 			});
-		}
+	}
 
 	private static volatile Log _log = LogFactoryUtil.getLog(
 		DSSignatureServiceImpl.class);

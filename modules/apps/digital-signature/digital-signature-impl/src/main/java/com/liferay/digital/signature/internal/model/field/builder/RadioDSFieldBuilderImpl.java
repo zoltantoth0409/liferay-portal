@@ -35,7 +35,7 @@ public class RadioDSFieldBuilderImpl
 	public DSField<RadioDSField> getDSField() {
 		RadioDSFieldImpl radioDSFieldImpl = new RadioDSFieldImpl(
 			getDocumentKey(), getFieldKey(), getPageNumber()) {
-			
+
 			{
 				setValue(_value);
 			}
