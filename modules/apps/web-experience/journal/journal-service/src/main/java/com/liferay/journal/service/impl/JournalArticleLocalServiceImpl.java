@@ -7060,7 +7060,7 @@ public class JournalArticleLocalServiceImpl
 
 				dynamicContent.setText(StringPool.BLANK);
 
-				imageLocalService.deleteImage(imageId);
+				journalArticleImageLocalService.deleteArticleImage(imageId);
 
 				String defaultElLanguage = "";
 
@@ -7076,7 +7076,8 @@ public class JournalArticleLocalServiceImpl
 						groupId, articleId, version, elInstanceId, elName,
 						defaultElLanguage);
 
-				imageLocalService.deleteImage(defaultImageId);
+				journalArticleImageLocalService.deleteArticleImage(
+					defaultImageId);
 
 				continue;
 			}
