@@ -29,7 +29,7 @@ public interface DSParticipantBuilder {
 
 	public DSParticipantBuilder setAccessCode(String accessCode);
 
-	public DSParticipantBuilder setClientUserKey(String clientId);
+	public DSParticipantBuilder setClientUserKey(String clientUserKey);
 
 	public DSParticipantBuilder setCustomFieldNames(String... customFields);
 
