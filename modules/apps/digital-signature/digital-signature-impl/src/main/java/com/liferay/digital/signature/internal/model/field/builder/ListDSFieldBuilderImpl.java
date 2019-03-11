@@ -42,12 +42,12 @@ public class ListDSFieldBuilderImpl
 
 	@Override
 	public DSListItem addDSListItem(String text, String value) {
-		return addDSListItem(text, value, false);
+		return addDSListItem(false, text, value);
 	}
 
 	@Override
 	public DSListItem addDSListItem(
-		String text, String value, boolean selected) {
+		boolean selected, String text, String value) {
 
 		DSListItem dsListItem = new DSListItemImpl(text, value, selected);
 

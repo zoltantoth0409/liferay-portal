@@ -30,6 +30,6 @@ public interface ListDSFieldBuilder
 	public DSListItem addDSListItem(String text, String value);
 
 	public DSListItem addDSListItem(
-		String text, String value, boolean selected);
+		boolean selected, String text, String value);
 
 }
