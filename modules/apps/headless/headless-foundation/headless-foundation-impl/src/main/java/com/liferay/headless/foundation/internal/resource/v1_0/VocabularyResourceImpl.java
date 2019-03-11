@@ -187,17 +187,17 @@ public class VocabularyResourceImpl
 			return new AssetType[0];
 		}
 
+		AssetType[] assetTypes = new AssetType[classNameIds.length];
+
 		long[] classTypePKs = assetVocabularySettingsHelper.getClassTypePKs();
 		long[] requiredClassNameIds =
 			assetVocabularySettingsHelper.getRequiredClassNameIds();
 
-		List<AssetType> assetTypes = new ArrayList<>();
-
 		for (int i = 0; i < classNameIds.length; i++) {
 			long classNameId = classNameIds[i];
-			final long classTypePK = classTypePKs[i];
+			long classTypePK = classTypePKs[i];
 
-			assetTypes.add(
+			assetTypes[i] =
 				new AssetType() {
 					{
 						required = ArrayUtil.contains(
@@ -205,10 +205,10 @@ public class VocabularyResourceImpl
 						subtype = _toSubtype(classNameId, classTypePK, groupId);
 						type = _toAssetTypeType(classNameId);
 					}
-				});
+				};
 		}
 
-		return assetTypes.toArray(new AssetType[assetTypes.size()]);
+		return assetTypes;
 	}
 
 	private AssetType.Type _toAssetTypeType(long classNameId) {
