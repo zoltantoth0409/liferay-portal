@@ -191,6 +191,15 @@ public class StructuredContentResourceTest
 	}
 
 	@Override
+	protected StructuredContent testPatchStructuredContent_addStructuredContent(
+			StructuredContent structuredContent)
+		throws Exception {
+
+		return invokePostContentSpaceStructuredContent(
+			testGroup.getGroupId(), structuredContent);
+	}
+
+	@Override
 	protected StructuredContent
 			testPostContentSpaceStructuredContent_addStructuredContent(
 				StructuredContent structuredContent)
