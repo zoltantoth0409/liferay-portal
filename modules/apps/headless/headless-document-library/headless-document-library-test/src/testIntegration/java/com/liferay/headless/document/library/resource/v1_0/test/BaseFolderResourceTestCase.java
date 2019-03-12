@@ -37,10 +37,12 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
+
 import java.net.URL;
 
 import java.text.DateFormat;
@@ -60,6 +62,7 @@ import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -377,28 +380,25 @@ public abstract class BaseFolderResourceTestCase {
 
 	@Test
 	public void testPatchFolder() throws Exception {
-		Folder postFolder = invokePostContentSpaceFolder(
-			testGetContentSpaceFoldersPage_getContentSpaceId(),
-			randomFolder());
+		Folder postFolder = testPatchFolder_addFolder(randomFolder());
 
-		Folder randomPatchFolder = randomPatchFolder();
+		Folder randomPatchFolder = randomFolder();
 
-		Folder patchFolder = invokePatchFolder(
-			postFolder.getId(), randomPatchFolder);
+		Folder patchFolder = testPatchFolder_addFolder(randomPatchFolder);
 
-		Folder expectedPatchFolder =
-			(Folder)BeanUtils.cloneBean(postFolder);
+		Folder expectedPatchFolder = (Folder)BeanUtils.cloneBean(postFolder);
 
-		BeanUtilsBean beanUtilsBean = new NullAwareBeanUtilsBean();
+		_beanUtilsBean.copyProperties(expectedPatchFolder, randomPatchFolder);
 
-		beanUtilsBean.copyProperties(
-			expectedPatchFolder, randomPatchFolder);
-
-		Folder getFolder = invokeGetFolder(
-			patchFolder.getId());
+		Folder getFolder = invokeGetFolder(patchFolder.getId());
 
 		assertEquals(expectedPatchFolder, getFolder);
 		assertValid(getFolder);
+	}
+
+	protected Folder testPatchFolder_addFolder(Folder folder) throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Folder invokePatchFolder(Long folderId, Folder folder)
@@ -410,9 +410,10 @@ public abstract class BaseFolderResourceTestCase {
 			_inputObjectMapper.writeValueAsString(folder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}", folderId)
-		);
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}", folderId);
+
+		options.setLocation(location);
 
 		options.setPatch(true);
 
@@ -430,8 +431,10 @@ public abstract class BaseFolderResourceTestCase {
 			_inputObjectMapper.writeValueAsString(folder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		options.setLocation(
-			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+		String location =
+			_resourceURL + _toPath("/folders/{folder-id}", folderId);
+
+		options.setLocation(location);
 
 		options.setPatch(true);
 
@@ -872,21 +875,6 @@ public abstract class BaseFolderResourceTestCase {
 
 	protected Group testGroup;
 
-	protected static class NullAwareBeanUtilsBean extends BeanUtilsBean {
-
-		@Override
-		public void copyProperty(Object bean, String name, Object value)
-				throws IllegalAccessException, InvocationTargetException {
-
-			if(value == null) {
-				return;
-			}
-
-			super.copyProperty(bean, name, value);
-		}
-
-	}
-
 	protected static class Page<T> {
 
 		public Collection<T> getItems() {
@@ -948,6 +936,18 @@ public abstract class BaseFolderResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
+	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {
+
+		@Override
+		public void copyProperty(Object bean, String name, Object value)
+			throws IllegalAccessException, InvocationTargetException {
+
+			if (value != null) {
+				super.copyProperty(bean, name, value);
+			}
+		}
+
+	};
 	private static DateFormat _dateFormat;
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{

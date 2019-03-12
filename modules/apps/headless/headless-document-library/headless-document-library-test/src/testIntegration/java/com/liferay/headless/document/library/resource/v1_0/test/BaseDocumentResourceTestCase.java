@@ -40,6 +40,8 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
+import java.lang.reflect.InvocationTargetException;
+
 import java.net.URL;
 
 import java.text.DateFormat;
@@ -60,6 +62,7 @@ import javax.annotation.Generated;
 import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.lang.time.DateUtils;
 
 import org.junit.After;
@@ -551,6 +554,13 @@ public abstract class BaseDocumentResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
+	protected Document testPatchDocument_addDocument(Document document)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected Document invokePatchDocument(
 			Long documentId, MultipartBody multipartBody)
 		throws Exception {
@@ -561,6 +571,8 @@ public abstract class BaseDocumentResourceTestCase {
 			_resourceURL + _toPath("/documents/{document-id}", documentId);
 
 		options.setLocation(location);
+
+		options.setPatch(true);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), Document.class);
@@ -576,6 +588,8 @@ public abstract class BaseDocumentResourceTestCase {
 			_resourceURL + _toPath("/documents/{document-id}", documentId);
 
 		options.setLocation(location);
+
+		options.setPatch(true);
 
 		HttpUtil.URLtoString(options);
 
@@ -1197,6 +1211,10 @@ public abstract class BaseDocumentResourceTestCase {
 		};
 	}
 
+	protected Document randomPatchDocument() {
+		return randomDocument();
+	}
+
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -1260,6 +1278,18 @@ public abstract class BaseDocumentResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
+	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {
+
+		@Override
+		public void copyProperty(Object bean, String name, Object value)
+			throws IllegalAccessException, InvocationTargetException {
+
+			if (value != null) {
+				super.copyProperty(bean, name, value);
+			}
+		}
+
+	};
 	private static DateFormat _dateFormat;
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
