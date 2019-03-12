@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Jeyvison Nascimento
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/v1_0/Data-record-collection.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0/data-record-collection.properties",
 	scope = ServiceScope.PROTOTYPE, service = DataRecordCollectionResource.class
 )
 public class DataRecordCollectionResourceImpl
