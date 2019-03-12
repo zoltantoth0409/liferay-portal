@@ -41,7 +41,7 @@ public class Mutation {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public DataDefinition postDataDefinition(
-			@GraphQLName("groupId") Long groupId,
+			@GraphQLName("contentSpaceId") Long contentSpaceId,
 			@GraphQLName("DataDefinition") DataDefinition dataDefinition)
 		throws Exception {
 
@@ -49,7 +49,7 @@ public class Mutation {
 			_createDataDefinitionResource();
 
 		return dataDefinitionResource.postDataDefinition(
-			groupId, dataDefinition);
+			contentSpaceId, dataDefinition);
 	}
 
 	@GraphQLInvokeDetached
@@ -79,7 +79,7 @@ public class Mutation {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public DataRecordCollection postDataRecordCollection(
-			@GraphQLName("groupId") Long groupId,
+			@GraphQLName("contentSpaceId") Long contentSpaceId,
 			@GraphQLName("DataRecordCollection") DataRecordCollection
 				dataRecordCollection)
 		throws Exception {
@@ -88,7 +88,7 @@ public class Mutation {
 			_createDataRecordCollectionResource();
 
 		return dataRecordCollectionResource.postDataRecordCollection(
-			groupId, dataRecordCollection);
+			contentSpaceId, dataRecordCollection);
 	}
 
 	@GraphQLInvokeDetached

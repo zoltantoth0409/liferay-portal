@@ -71,7 +71,8 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public Page<DataDefinition> getDataDefinitionsPage(
-			@QueryParam("groupId") Long groupId, @Context Pagination pagination)
+			@QueryParam("contentSpaceId") Long contentSpaceId,
+			@Context Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -84,7 +85,8 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public DataDefinition postDataDefinition(
-			@QueryParam("groupId") Long groupId, DataDefinition dataDefinition)
+			@QueryParam("contentSpaceId") Long contentSpaceId,
+			DataDefinition dataDefinition)
 		throws Exception {
 
 		return new DataDefinition();
@@ -102,7 +104,7 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public Page<DataDefinition> getDataDefinitionSearchPage(
-			@QueryParam("groupId") Long groupId,
+			@QueryParam("contentSpaceId") Long contentSpaceId,
 			@QueryParam("keywords") String keywords,
 			@Context Pagination pagination)
 		throws Exception {

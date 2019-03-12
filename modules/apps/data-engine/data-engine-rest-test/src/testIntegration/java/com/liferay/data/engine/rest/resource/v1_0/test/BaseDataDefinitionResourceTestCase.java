@@ -98,17 +98,17 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 	@Test
 	public void testGetDataDefinitionsPage() throws Exception {
-		Long groupId = testGetDataDefinitionsPage_getGroupId();
+		Long contentSpaceId = testGetDataDefinitionsPage_getContentSpaceId();
 
 		DataDefinition dataDefinition1 =
 			testGetDataDefinitionsPage_addDataDefinition(
-				groupId, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 		DataDefinition dataDefinition2 =
 			testGetDataDefinitionsPage_addDataDefinition(
-				groupId, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 
 		Page<DataDefinition> page = invokeGetDataDefinitionsPage(
-			groupId, Pagination.of(1, 2));
+			contentSpaceId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -120,20 +120,20 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 	@Test
 	public void testGetDataDefinitionsPageWithPagination() throws Exception {
-		Long groupId = testGetDataDefinitionsPage_getGroupId();
+		Long contentSpaceId = testGetDataDefinitionsPage_getContentSpaceId();
 
 		DataDefinition dataDefinition1 =
 			testGetDataDefinitionsPage_addDataDefinition(
-				groupId, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 		DataDefinition dataDefinition2 =
 			testGetDataDefinitionsPage_addDataDefinition(
-				groupId, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 		DataDefinition dataDefinition3 =
 			testGetDataDefinitionsPage_addDataDefinition(
-				groupId, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 
 		Page<DataDefinition> page1 = invokeGetDataDefinitionsPage(
-			groupId, Pagination.of(1, 2));
+			contentSpaceId, Pagination.of(1, 2));
 
 		List<DataDefinition> dataDefinitions1 =
 			(List<DataDefinition>)page1.getItems();
@@ -142,7 +142,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			dataDefinitions1.toString(), 2, dataDefinitions1.size());
 
 		Page<DataDefinition> page2 = invokeGetDataDefinitionsPage(
-			groupId, Pagination.of(2, 2));
+			contentSpaceId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -163,25 +163,27 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected DataDefinition testGetDataDefinitionsPage_addDataDefinition(
-			Long groupId, DataDefinition dataDefinition)
+			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Long testGetDataDefinitionsPage_getGroupId() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+	protected Long testGetDataDefinitionsPage_getContentSpaceId()
+		throws Exception {
+
+		return testGroup.getGroupId();
 	}
 
 	protected Page<DataDefinition> invokeGetDataDefinitionsPage(
-			Long groupId, Pagination pagination)
+			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
-		String location = _resourceURL + _toPath("/data-definitions", groupId);
+		String location =
+			_resourceURL + _toPath("/data-definitions", contentSpaceId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -197,12 +199,13 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected Http.Response invokeGetDataDefinitionsPageResponse(
-			Long groupId, Pagination pagination)
+			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
-		String location = _resourceURL + _toPath("/data-definitions", groupId);
+		String location =
+			_resourceURL + _toPath("/data-definitions", contentSpaceId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -236,7 +239,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected DataDefinition invokePostDataDefinition(
-			Long groupId, DataDefinition dataDefinition)
+			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -245,7 +248,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			_inputObjectMapper.writeValueAsString(dataDefinition),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		String location = _resourceURL + _toPath("/data-definitions", groupId);
+		String location =
+			_resourceURL + _toPath("/data-definitions", contentSpaceId);
 
 		options.setLocation(location);
 
@@ -256,7 +260,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected Http.Response invokePostDataDefinitionResponse(
-			Long groupId, DataDefinition dataDefinition)
+			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -265,7 +269,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			_inputObjectMapper.writeValueAsString(dataDefinition),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
-		String location = _resourceURL + _toPath("/data-definitions", groupId);
+		String location =
+			_resourceURL + _toPath("/data-definitions", contentSpaceId);
 
 		options.setLocation(location);
 
@@ -278,17 +283,18 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 	@Test
 	public void testGetDataDefinitionSearchPage() throws Exception {
-		Long groupId = testGetDataDefinitionSearchPage_getGroupId();
+		Long contentSpaceId =
+			testGetDataDefinitionSearchPage_getContentSpaceId();
 
 		DataDefinition dataDefinition1 =
 			testGetDataDefinitionSearchPage_addDataDefinition(
-				groupId, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 		DataDefinition dataDefinition2 =
 			testGetDataDefinitionSearchPage_addDataDefinition(
-				groupId, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 
 		Page<DataDefinition> page = invokeGetDataDefinitionSearchPage(
-			groupId, Pagination.of(1, 2));
+			contentSpaceId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -302,20 +308,21 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	public void testGetDataDefinitionSearchPageWithPagination()
 		throws Exception {
 
-		Long groupId = testGetDataDefinitionSearchPage_getGroupId();
+		Long contentSpaceId =
+			testGetDataDefinitionSearchPage_getContentSpaceId();
 
 		DataDefinition dataDefinition1 =
 			testGetDataDefinitionSearchPage_addDataDefinition(
-				groupId, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 		DataDefinition dataDefinition2 =
 			testGetDataDefinitionSearchPage_addDataDefinition(
-				groupId, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 		DataDefinition dataDefinition3 =
 			testGetDataDefinitionSearchPage_addDataDefinition(
-				groupId, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 
 		Page<DataDefinition> page1 = invokeGetDataDefinitionSearchPage(
-			groupId, Pagination.of(1, 2));
+			contentSpaceId, Pagination.of(1, 2));
 
 		List<DataDefinition> dataDefinitions1 =
 			(List<DataDefinition>)page1.getItems();
@@ -324,7 +331,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			dataDefinitions1.toString(), 2, dataDefinitions1.size());
 
 		Page<DataDefinition> page2 = invokeGetDataDefinitionSearchPage(
-			groupId, Pagination.of(2, 2));
+			contentSpaceId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -345,28 +352,27 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected DataDefinition testGetDataDefinitionSearchPage_addDataDefinition(
-			Long groupId, DataDefinition dataDefinition)
+			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Long testGetDataDefinitionSearchPage_getGroupId()
+	protected Long testGetDataDefinitionSearchPage_getContentSpaceId()
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return testGroup.getGroupId();
 	}
 
 	protected Page<DataDefinition> invokeGetDataDefinitionSearchPage(
-			Long groupId, String keywords, Pagination pagination)
+			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		String location =
-			_resourceURL + _toPath("/data-definitions/search", groupId);
+			_resourceURL + _toPath("/data-definitions/search", contentSpaceId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -382,13 +388,13 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected Http.Response invokeGetDataDefinitionSearchPageResponse(
-			Long groupId, String keywords, Pagination pagination)
+			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		String location =
-			_resourceURL + _toPath("/data-definitions/search", groupId);
+			_resourceURL + _toPath("/data-definitions/search", contentSpaceId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -738,7 +744,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("groupId")) {
+		if (entityFieldName.equals("contentSpaceId")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
@@ -775,7 +781,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			{
 				dateCreated = RandomTestUtil.nextDate();
 				dateModified = RandomTestUtil.nextDate();
-				groupId = RandomTestUtil.randomLong();
+				contentSpaceId = RandomTestUtil.randomLong();
 				id = RandomTestUtil.randomLong();
 				storageType = RandomTestUtil.randomString();
 				userId = RandomTestUtil.randomLong();

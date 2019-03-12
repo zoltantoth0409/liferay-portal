@@ -45,7 +45,7 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<DataDefinition> getDataDefinitionsPage(
-			@GraphQLName("groupId") Long groupId,
+			@GraphQLName("contentSpaceId") Long contentSpaceId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
 		throws Exception {
@@ -54,7 +54,7 @@ public class Query {
 			_createDataDefinitionResource();
 
 		Page paginationPage = dataDefinitionResource.getDataDefinitionsPage(
-			groupId, Pagination.of(pageSize, page));
+			contentSpaceId, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
 	}
@@ -62,7 +62,7 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<DataDefinition> getDataDefinitionSearchPage(
-			@GraphQLName("groupId") Long groupId,
+			@GraphQLName("contentSpaceId") Long contentSpaceId,
 			@GraphQLName("keywords") String keywords,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
@@ -73,7 +73,7 @@ public class Query {
 
 		Page paginationPage =
 			dataDefinitionResource.getDataDefinitionSearchPage(
-				groupId, keywords, Pagination.of(pageSize, page));
+				contentSpaceId, keywords, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
 	}
@@ -93,7 +93,7 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<DataRecordCollection> getDataRecordCollectionsPage(
-			@GraphQLName("groupId") Long groupId,
+			@GraphQLName("contentSpaceId") Long contentSpaceId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
 		throws Exception {
@@ -103,7 +103,7 @@ public class Query {
 
 		Page paginationPage =
 			dataRecordCollectionResource.getDataRecordCollectionsPage(
-				groupId, Pagination.of(pageSize, page));
+				contentSpaceId, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
 	}
@@ -125,7 +125,7 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<DataRecordCollection> getDataRecordCollectionSearchPage(
-			@GraphQLName("groupId") Long groupId,
+			@GraphQLName("contentSpaceId") Long contentSpaceId,
 			@GraphQLName("keywords") String keywords,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
@@ -136,7 +136,7 @@ public class Query {
 
 		Page paginationPage =
 			dataRecordCollectionResource.getDataRecordCollectionSearchPage(
-				groupId, keywords, Pagination.of(pageSize, page));
+				contentSpaceId, keywords, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
 	}

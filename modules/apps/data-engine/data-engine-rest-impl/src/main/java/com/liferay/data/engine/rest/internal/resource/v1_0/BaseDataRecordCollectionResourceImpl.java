@@ -71,7 +71,8 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public Page<DataRecordCollection> getDataRecordCollectionsPage(
-			@QueryParam("groupId") Long groupId, @Context Pagination pagination)
+			@QueryParam("contentSpaceId") Long contentSpaceId,
+			@Context Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -84,7 +85,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public DataRecordCollection postDataRecordCollection(
-			@QueryParam("groupId") Long groupId,
+			@QueryParam("contentSpaceId") Long contentSpaceId,
 			DataRecordCollection dataRecordCollection)
 		throws Exception {
 
@@ -141,7 +142,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public Page<DataRecordCollection> getDataRecordCollectionSearchPage(
-			@QueryParam("groupId") Long groupId,
+			@QueryParam("contentSpaceId") Long contentSpaceId,
 			@QueryParam("keywords") String keywords,
 			@Context Pagination pagination)
 		throws Exception {

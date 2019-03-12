@@ -139,20 +139,20 @@ public class DataDefinition {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected LocalizedValue[] description;
 
-	public Long getGroupId() {
-		return groupId;
+	public Long getContentSpaceId() {
+		return contentSpaceId;
 	}
 
-	public void setGroupId(Long groupId) {
-		this.groupId = groupId;
+	public void setContentSpaceId(Long contentSpaceId) {
+		this.contentSpaceId = contentSpaceId;
 	}
 
 	@JsonIgnore
-	public void setGroupId(
-		UnsafeSupplier<Long, Exception> groupIdUnsafeSupplier) {
+	public void setContentSpaceId(
+		UnsafeSupplier<Long, Exception> contentSpaceIdUnsafeSupplier) {
 
 		try {
-			groupId = groupIdUnsafeSupplier.get();
+			contentSpaceId = contentSpaceIdUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -161,7 +161,7 @@ public class DataDefinition {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected Long groupId;
+	protected Long contentSpaceId;
 
 	public Long getId() {
 		return id;
@@ -318,9 +318,9 @@ public class DataDefinition {
 
 		sb.append(", ");
 
-		sb.append("\"groupId\": ");
+		sb.append("\"contentSpaceId\": ");
 
-		sb.append(groupId);
+		sb.append(contentSpaceId);
 		sb.append(", ");
 
 		sb.append("\"id\": ");

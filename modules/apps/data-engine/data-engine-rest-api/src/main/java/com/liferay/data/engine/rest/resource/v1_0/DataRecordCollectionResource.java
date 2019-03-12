@@ -33,11 +33,11 @@ import javax.annotation.Generated;
 public interface DataRecordCollectionResource {
 
 	public Page<DataRecordCollection> getDataRecordCollectionsPage(
-			Long groupId, Pagination pagination)
+			Long contentSpaceId, Pagination pagination)
 		throws Exception;
 
 	public DataRecordCollection postDataRecordCollection(
-			Long groupId, DataRecordCollection dataRecordCollection)
+			Long contentSpaceId, DataRecordCollection dataRecordCollection)
 		throws Exception;
 
 	public boolean deleteDataRecordCollection(Long dataRecordCollectionId)
@@ -53,7 +53,7 @@ public interface DataRecordCollectionResource {
 		throws Exception;
 
 	public Page<DataRecordCollection> getDataRecordCollectionSearchPage(
-			Long groupId, String keywords, Pagination pagination)
+			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception;
 
 	public void setContextCompany(Company contextCompany);
