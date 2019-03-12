@@ -118,17 +118,16 @@ public class DataRecordCollectionResourceImpl
 	private DataRecordCollection _toDataRecordCollection(
 		DDLRecordSet ddlRecordSet) {
 
-		DataRecordCollection dataRecordCollection = new DataRecordCollection();
-
-		dataRecordCollection.setDataDefinitionId(
-			ddlRecordSet.getDDMStructureId());
-		dataRecordCollection.setId(ddlRecordSet.getRecordSetId());
-		dataRecordCollection.setDescription(
-			DataEngineUtil.toLocalizedValues(ddlRecordSet.getDescriptionMap()));
-		dataRecordCollection.setName(
-			DataEngineUtil.toLocalizedValues(ddlRecordSet.getNameMap()));
-
-		return dataRecordCollection;
+		return new DataRecordCollection() {
+			{
+				dataDefinitionId = ddlRecordSet.getDDMStructureId();
+				id = ddlRecordSet.getRecordSetId();
+				description = DataEngineUtil.toLocalizedValues(
+					ddlRecordSet.getDescriptionMap());
+				name = DataEngineUtil.toLocalizedValues(
+					ddlRecordSet.getNameMap());
+			}
+		};
 	}
 
 	@Reference
