@@ -433,22 +433,6 @@ public class StructuredContentResourceImpl
 		}
 	}
 
-	private void _checkNoRepeatableFields(Fields fields)
-		throws PortalException {
-
-		Iterator<Field> iterator = fields.iterator();
-
-		while (iterator.hasNext()) {
-			Field field = iterator.next();
-
-			if (field.isRepeatable()) {
-				throw new BadRequestException(
-					"Patching in structured content with repeatable field is " +
-						"not supported, use PUT");
-			}
-		}
-	}
-
 	private void _createFieldsDisplayValue(
 		ContentField contentField, List<String> fieldsDisplayValue) {
 
@@ -907,7 +891,17 @@ public class StructuredContentResourceImpl
 			return fields;
 		}
 
-		_checkNoRepeatableFields(fields);
+		Iterator<Field> iterator = fields.iterator();
+
+		while (iterator.hasNext()) {
+			Field field = iterator.next();
+
+			if (field.isRepeatable()) {
+				throw new BadRequestException(
+					"Unable to PATCH a structured content with a " +
+						"repeatable field. Use PUT instead.");
+			}
+		}
 
 		for (ContentField contentField : contentFields) {
 			Field field = fields.get(contentField.getName());
@@ -920,8 +914,7 @@ public class StructuredContentResourceImpl
 				contextAcceptLanguage.getPreferredLocale(),
 				value.getString(contextAcceptLanguage.getPreferredLocale()));
 
-			ContentField[] nestedContentFields =
-				contentField.getNestedFields();
+			ContentField[] nestedContentFields = contentField.getNestedFields();
 
 			if (nestedContentFields != null) {
 				_toPatchedFields(nestedContentFields, journalArticle);
