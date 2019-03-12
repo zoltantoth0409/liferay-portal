@@ -97,19 +97,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 
 	@Override
 	public DDMForm getDDMForm() {
-		if (_ddmForm == null) {
-			try {
-				_ddmForm = DDMStructureLocalServiceUtil.getStructureDDMForm(
-					this);
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-
-				return new DDMForm();
-			}
-		}
-
-		return new DDMForm(_ddmForm);
+		return new DDMForm(_getDDMForm());
 	}
 
 	@Override
@@ -471,6 +459,22 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 
 		return DDMStructureLocalServiceUtil.getStructure(
 			getParentStructureId());
+	}
+
+	private DDMForm _getDDMForm() {
+		if (_ddmForm == null) {
+			try {
+				_ddmForm = DDMStructureLocalServiceUtil.getStructureDDMForm(
+					this);
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+
+				return new DDMForm();
+			}
+		}
+
+		return _ddmForm;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
