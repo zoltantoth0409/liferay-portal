@@ -310,7 +310,7 @@ public class StructuredContentResourceImpl
 					structuredContent.getKeywords(),
 					structuredContent.getCategoryIds(),
 					journalArticle.getGroupId(),
-					structuredContent.getViewableBy())));
+					structuredContent.getViewableByAsString())));
 	}
 
 	@Override
