@@ -453,11 +453,6 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("task")) {
-			throw new IllegalArgumentException(
-				"Invalid entity field " + entityFieldName);
-		}
-
 		if (entityFieldName.equals("taskId")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
