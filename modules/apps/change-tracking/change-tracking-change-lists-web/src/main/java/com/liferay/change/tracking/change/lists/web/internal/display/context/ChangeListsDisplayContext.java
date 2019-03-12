@@ -355,8 +355,6 @@ public class ChangeListsDisplayContext {
 			_renderRequest, CTPortletKeys.CHANGE_LISTS,
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("select", "true");
-
 		String displayStyle = ParamUtil.getString(
 			_httpServletRequest, "displayStyle");
 
@@ -375,6 +373,8 @@ public class ChangeListsDisplayContext {
 		if (Validator.isNotNull(orderByType)) {
 			portletURL.setParameter("orderByType", orderByType);
 		}
+
+		portletURL.setParameter("select", "true");
 
 		return portletURL;
 	}
