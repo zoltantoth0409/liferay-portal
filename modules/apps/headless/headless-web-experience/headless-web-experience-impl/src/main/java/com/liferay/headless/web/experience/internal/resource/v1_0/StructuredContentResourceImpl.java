@@ -529,7 +529,7 @@ public class StructuredContentResourceImpl
 		return ddmTemplate.getTemplateKey();
 	}
 
-	private List<String> _getFieldDisplayValue(Fields fields) {
+	private List<String> _getFieldDisplayValues(Fields fields) {
 		Field field = fields.get(DDM.FIELDS_DISPLAY_NAME);
 
 		String fieldDisplayValue = (String)field.getValue();
@@ -540,7 +540,7 @@ public class StructuredContentResourceImpl
 	private int _getFieldIndex(
 		String fieldDisplayName, String fieldName, Fields fields) {
 
-		List<String> fieldDisplayValues = _getFieldDisplayValue(fields);
+		List<String> fieldDisplayValues = _getFieldDisplayValues(fields);
 
 		Stream<String> stream = fieldDisplayValues.stream();
 
@@ -695,7 +695,7 @@ public class StructuredContentResourceImpl
 		Fields fields = _journalConverter.getDDMFields(
 			ddmStructure, journalArticle.getContent());
 
-		List<String> fieldDisplayValues = _getFieldDisplayValue(fields);
+		List<String> fieldDisplayValues = _getFieldDisplayValues(fields);
 
 		return _toContentFields(
 			ddmStructure.getRootFieldNames(),
