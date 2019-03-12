@@ -546,10 +546,10 @@ public class StructuredContentResourceImpl
 		int offset = 0;
 
 		for (int i = 1; i < fieldDisplayNames.size(); i++) {
-			if (fieldName.equals(
-					StringUtil.extractFirst(
-						fieldDisplayNames.get(i), DDM.INSTANCE_SEPARATOR))) {
+			String firstString = StringUtil.extractFirst(
+				fieldDisplayNames.get(i), DDM.INSTANCE_SEPARATOR));
 
+			if (fieldName.equals(firstString)) {
 				substrings.add(fieldDisplayNames.subList(offset, i));
 
 				offset = i;
