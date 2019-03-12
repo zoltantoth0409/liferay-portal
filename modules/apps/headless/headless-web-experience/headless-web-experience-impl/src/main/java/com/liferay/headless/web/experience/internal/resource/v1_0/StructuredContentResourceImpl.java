@@ -625,8 +625,6 @@ public class StructuredContentResourceImpl
 			List<String> fieldDisplayValues, Fields fields)
 		throws Exception {
 
-		String fieldDisplayValue = fieldDisplayValues.get(0);
-
 		return new ContentField() {
 			{
 				dataType = ContentStructureUtil.toDataType(ddmFormField);
@@ -641,7 +639,7 @@ public class StructuredContentResourceImpl
 							1, fieldDisplayValues.size())));
 				repeatable = field.isRepeatable();
 				value = _toValue(
-					field, fieldDisplayValue, fields,
+					field, fieldDisplayValues.get(0), fields,
 					contextAcceptLanguage.getPreferredLocale());
 			}
 		};
