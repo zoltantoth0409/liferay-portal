@@ -133,6 +133,7 @@ public class ${schemaName} <#if freeMarkerTool.getDTOParentClassName(openAPIYAML
 		}
 
 		<#if enumSimpleClassNames?seq_contains(javaMethodParameter.parameterType)>
+			@JsonIgnore
 			public String get${javaMethodParameter.parameterName?cap_first}AsString() {
 				if (${javaMethodParameter.parameterName} == null) {
 					return null;
