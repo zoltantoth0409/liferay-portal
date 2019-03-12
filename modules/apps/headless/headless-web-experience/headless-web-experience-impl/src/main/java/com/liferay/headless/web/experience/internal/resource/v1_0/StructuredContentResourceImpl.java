@@ -657,7 +657,7 @@ public class StructuredContentResourceImpl
 							1, fieldDisplayValues.size())));
 				repeatable = field.isRepeatable();
 				value = _toValue(
-					fieldDisplayValue, field, fields,
+					field, fieldDisplayValue, fields,
 					contextAcceptLanguage.getPreferredLocale());
 			}
 		};
@@ -1031,7 +1031,7 @@ public class StructuredContentResourceImpl
 	}
 
 	private Value _toValue(
-			String fieldDisplayValue, Field field, Fields fields, Locale locale)
+			Field field, String fieldDisplayValue, Fields fields, Locale locale)
 		throws Exception {
 
 		int fieldIndex = _getFieldIndex(
