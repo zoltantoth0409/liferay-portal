@@ -221,6 +221,7 @@ public class BlogPostingImage {
 		return viewableBy;
 	}
 
+	@JsonIgnore
 	public String getViewableByAsString() {
 		if (viewableBy == null) {
 			return null;

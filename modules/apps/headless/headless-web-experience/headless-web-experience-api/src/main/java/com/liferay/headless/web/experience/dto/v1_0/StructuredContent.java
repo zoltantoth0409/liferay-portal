@@ -515,6 +515,7 @@ public class StructuredContent {
 		return viewableBy;
 	}
 
+	@JsonIgnore
 	public String getViewableByAsString() {
 		if (viewableBy == null) {
 			return null;

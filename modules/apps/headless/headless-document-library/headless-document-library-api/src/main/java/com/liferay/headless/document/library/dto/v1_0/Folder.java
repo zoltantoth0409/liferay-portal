@@ -268,6 +268,7 @@ public class Folder {
 		return viewableBy;
 	}
 
+	@JsonIgnore
 	public String getViewableByAsString() {
 		if (viewableBy == null) {
 			return null;

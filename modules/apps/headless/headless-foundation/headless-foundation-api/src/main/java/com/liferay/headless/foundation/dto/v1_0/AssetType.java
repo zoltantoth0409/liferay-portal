@@ -131,6 +131,7 @@ public class AssetType {
 		return type;
 	}
 
+	@JsonIgnore
 	public String getTypeAsString() {
 		if (type == null) {
 			return null;
