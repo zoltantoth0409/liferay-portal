@@ -86,7 +86,7 @@ public class AcceptLanguageImpl implements AcceptLanguage {
 
 	@Override
 	public String getPreferredLanguageId() {
-		LocaleUtil.toLanguageId(getPreferredLocale());
+		return LocaleUtil.toLanguageId(getPreferredLocale());
 	}
 
 	@Override
