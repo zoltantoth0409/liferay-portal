@@ -903,26 +903,28 @@ public class StructuredContentResourceImpl
 		Fields fields = _journalConverter.getDDMFields(
 			journalArticle.getDDMStructure(), journalArticle.getContent());
 
-		if (!ArrayUtil.isEmpty(contentFields)) {
-			_checkNoRepeatableFields(fields);
+		if (ArrayUtil.isEmpty(contentFields)) {
+			return fields;
+		}
 
-			for (ContentField contentField : contentFields) {
-				Field field = fields.get(contentField.getName());
+		_checkNoRepeatableFields(fields);
 
-				com.liferay.dynamic.data.mapping.model.Value value = _toDDMValue(
-					contentField, ddmStructure,
-					contextAcceptLanguage.getPreferredLocale());
+		for (ContentField contentField : contentFields) {
+			Field field = fields.get(contentField.getName());
 
-				field.setValue(
-					contextAcceptLanguage.getPreferredLocale(),
-					value.getString(contextAcceptLanguage.getPreferredLocale()));
+			com.liferay.dynamic.data.mapping.model.Value value = _toDDMValue(
+				contentField, ddmStructure,
+				contextAcceptLanguage.getPreferredLocale());
 
-				ContentField[] nestedContentFields =
-					contentField.getNestedFields();
+			field.setValue(
+				contextAcceptLanguage.getPreferredLocale(),
+				value.getString(contextAcceptLanguage.getPreferredLocale()));
 
-				if (nestedContentFields != null) {
-					_toPatchedFields(nestedContentFields, journalArticle);
-				}
+			ContentField[] nestedContentFields =
+				contentField.getNestedFields();
+
+			if (nestedContentFields != null) {
+				_toPatchedFields(nestedContentFields, journalArticle);
 			}
 		}
 
