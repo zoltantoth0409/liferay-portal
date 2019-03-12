@@ -34,10 +34,10 @@ public class DataDefinitionResourceTest
 	protected void assertValid(DataDefinition dataDefinition) {
 		boolean valid = false;
 
-		if ((dataDefinition.getDateCreated() != null) &&
+		if (Objects.equals(
+				dataDefinition.getContentSpaceId(), testGroup.getGroupId()) &&
+			(dataDefinition.getDateCreated() != null) &&
 			(dataDefinition.getDateModified() != null) &&
-			Objects.equals(
-				dataDefinition.getGroupId(), testGroup.getGroupId()) &&
 			(dataDefinition.getId() != null)) {
 
 			valid = true;
