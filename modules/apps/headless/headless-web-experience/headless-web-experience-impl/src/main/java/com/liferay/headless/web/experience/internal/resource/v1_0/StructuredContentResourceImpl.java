@@ -265,12 +265,18 @@ public class StructuredContentResourceImpl
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
 			structuredContentId);
 
-		_checkLanguageAvailable(
-			journalArticle.getAvailableLanguageIds(),
-			contextAcceptLanguage.getPreferredLocale());
+		if (!ArrayUtil.contains(
+				journalArticle.getAvailableLanguageIds(),
+				LocaleUtil.toLanguageId(
+					contextAcceptLanguage.getPreferredLocale()))) {
+
+			throw new BadRequestException(
+				"Unable to PATCH structured content with language " + LocaleUtil.toLanguageId(contextAcceptLanguage.getPreferredLocale()) +
+					"because it is only configured to support: " +
+						journalArticle.getAvailableLanguageIds());
+		}
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
-
 		LocalDateTime localDateTime = toLocalDateTime(
 			structuredContent.getDatePublished(),
 			journalArticle.getDisplayDate());
@@ -378,7 +384,6 @@ public class StructuredContentResourceImpl
 			structuredContentId);
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
-
 		LocalDateTime localDateTime = toLocalDateTime(
 			structuredContent.getDatePublished(),
 			journalArticle.getDisplayDate());
@@ -419,18 +424,6 @@ public class StructuredContentResourceImpl
 					structuredContent.getCategoryIds(),
 					journalArticle.getGroupId(),
 					structuredContent.getViewableByAsString())));
-	}
-
-	private void _checkLanguageAvailable(
-		String[] availableLanguageIds, Locale locale) {
-
-		if (!ArrayUtil.contains(
-				availableLanguageIds, LocaleUtil.toLanguageId(locale))) {
-
-			throw new BadRequestException(
-				"Structured contents can only be patched with the existing " +
-					"languages " + availableLanguageIds);
-		}
 	}
 
 	private void _createFieldsDisplayValue(
@@ -546,7 +539,7 @@ public class StructuredContentResourceImpl
 
 		for (int i = 1; i < fieldDisplayNames.size(); i++) {
 			String firstString = StringUtil.extractFirst(
-				fieldDisplayNames.get(i), DDM.INSTANCE_SEPARATOR));
+				fieldDisplayNames.get(i), DDM.INSTANCE_SEPARATOR);
 
 			if (fieldName.equals(firstString)) {
 				substrings.add(fieldDisplayNames.subList(offset, i));
