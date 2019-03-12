@@ -47,7 +47,7 @@ public class LiferayFreeMarkerBeanModel extends BeanModel {
 				throw new InvalidPropertyException(
 					StringBundler.concat(
 						"Forbbiden access to property ", key, " of ",
-						object.getClass()));
+						object.getClass().getName()));
 			}
 		}
 
