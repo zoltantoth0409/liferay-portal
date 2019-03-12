@@ -603,7 +603,6 @@ public class StructuredContentResourceImpl
 				inputControl = ContentStructureUtil.toInputControl(
 					ddmFormField);
 				name = field.getName();
-
 				repeatable = field.isRepeatable();
 				value = _toValue(
 					field, fieldDisplayValues.get(0), fields,
