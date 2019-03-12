@@ -885,7 +885,7 @@ public class StructuredContentResourceImpl
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
 		Fields fields = _journalConverter.getDDMFields(
-			journalArticle.getDDMStructure(), journalArticle.getContent());
+			ddmStructure, journalArticle.getContent());
 
 		if (ArrayUtil.isEmpty(contentFields)) {
 			return fields;
