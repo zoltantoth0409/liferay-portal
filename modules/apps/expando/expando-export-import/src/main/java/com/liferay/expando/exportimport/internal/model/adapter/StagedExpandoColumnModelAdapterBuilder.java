@@ -12,11 +12,10 @@
  * details.
  */
 
-package com.liferay.expando.exportimport.internal.model.adapter.builder;
+package com.liferay.expando.exportimport.internal.model.adapter;
 
-import com.liferay.expando.exportimport.internal.model.adapter.StagedExpandoTableImpl;
-import com.liferay.expando.kernel.model.ExpandoTable;
-import com.liferay.expando.kernel.model.adapter.StagedExpandoTable;
+import com.liferay.expando.kernel.model.ExpandoColumn;
+import com.liferay.expando.kernel.model.adapter.StagedExpandoColumn;
 import com.liferay.portal.kernel.model.adapter.builder.ModelAdapterBuilder;
 
 import org.osgi.service.component.annotations.Component;
@@ -25,12 +24,12 @@ import org.osgi.service.component.annotations.Component;
  * @author Akos Thurzo
  */
 @Component(immediate = true, service = ModelAdapterBuilder.class)
-public class StagedExpandoTableModelAdapterBuilder
-	implements ModelAdapterBuilder<ExpandoTable, StagedExpandoTable> {
+public class StagedExpandoColumnModelAdapterBuilder
+	implements ModelAdapterBuilder<ExpandoColumn, StagedExpandoColumn> {
 
 	@Override
-	public StagedExpandoTable build(ExpandoTable expandoTable) {
-		return new StagedExpandoTableImpl(expandoTable);
+	public StagedExpandoColumn build(ExpandoColumn expandoColumn) {
+		return new StagedExpandoColumnImpl(expandoColumn);
 	}
 
 }
