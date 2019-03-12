@@ -49,9 +49,20 @@ public class DataRecordCollectionResourceImpl
 	}
 
 	@Override
-	public Page<DataRecordCollection> getDataRecordCollectionSearchPage(
+	public Page<DataRecordCollection> getDataRecordCollectionsPage(
 			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
+
+		if (keywords == null) {
+			return Page.of(
+				transform(
+					_ddlRecordSetLocalService.getRecordSets(
+						contentSpaceId, pagination.getStartPosition(),
+						pagination.getEndPosition()),
+					this::_toDataRecordCollection),
+				pagination,
+				_ddlRecordSetLocalService.getRecordSetsCount(contentSpaceId));
+		}
 
 		return Page.of(
 			transform(
@@ -65,21 +76,6 @@ public class DataRecordCollectionResourceImpl
 			_ddlRecordSetLocalService.searchCount(
 				contextCompany.getCompanyId(), contentSpaceId, keywords,
 				DDLRecordSetConstants.SCOPE_DATA_ENGINE));
-	}
-
-	@Override
-	public Page<DataRecordCollection> getDataRecordCollectionsPage(
-			Long contentSpaceId, Pagination pagination)
-		throws Exception {
-
-		return Page.of(
-			transform(
-				_ddlRecordSetLocalService.getRecordSets(
-					contentSpaceId, pagination.getStartPosition(),
-					pagination.getEndPosition()),
-				this::_toDataRecordCollection),
-			pagination,
-			_ddlRecordSetLocalService.getRecordSetsCount(contentSpaceId));
 	}
 
 	@Override

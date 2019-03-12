@@ -110,6 +110,10 @@ paths:
                   schema:
                       format: int64
                       type: integer
+                - in: query
+                  name: keywords
+                  schema:
+                      type: string
             responses:
                 200:
                     content:
@@ -139,41 +143,6 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/DataDefinition"
-                    description: ""
-            tags: ["DataDefinition"]
-    "/data-definitions/search":
-        get:
-            parameters:
-                - in: query
-                  name: page
-                  required: true
-                  schema:
-                      type: integer
-                - in: query
-                  name: pageSize
-                  required: true
-                  schema:
-                      type: integer
-                - in: query
-                  name: contentSpaceId
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-                - in: query
-                  name: keywords
-                  required: true
-                  schema:
-                      type: string
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/DataDefinition"
-                                type:
-                                    array
                     description: ""
             tags: ["DataDefinition"]
     "/data-definitions/{data-definition-id}":
@@ -247,6 +216,10 @@ paths:
                   schema:
                       format: int64
                       type: integer
+                - in: query
+                  name: keywords
+                  schema:
+                      type: string
             responses:
                 200:
                     content:
@@ -328,40 +301,5 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/DataRecordCollection"
-                    description: ""
-            tags: ["DataRecordCollection"]
-    "/data-record-collections/search":
-        get:
-            parameters:
-                - in: query
-                  name: page
-                  required: true
-                  schema:
-                      type: integer
-                - in: query
-                  name: pageSize
-                  required: true
-                  schema:
-                      type: integer
-                - in: query
-                  name: contentSpaceId
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-                - in: query
-                  name: keywords
-                  required: true
-                  schema:
-                      type: string
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/DataRecordCollection"
-                                type:
-                                    array
                     description: ""
             tags: ["DataRecordCollection"]
