@@ -132,19 +132,17 @@ public abstract class Base${schemaName}ResourceTestCase {
 					${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
 					${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
 
-					Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaMethodParameter.parameterName}
+					Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
 
-					<#if parameters?contains("Filter filter")>
-						, (String)null
-					</#if>
-
-					<#if parameters?contains("Pagination pagination")>
-						, Pagination.of(1, 2)
-					</#if>
-
-					<#if parameters?contains("Sort[] sorts")>
-						, (String)null
-					</#if>
+					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+						<#if javaMethodParameter?is_first>
+							${firstJavaMethodParameter.parameterName}
+						<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+							, Pagination.of(1, 2)
+						<#else>
+							, null
+						</#if>
+					</#list>
 
 					);
 
@@ -179,17 +177,19 @@ public abstract class Base${schemaName}ResourceTestCase {
 						${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, ${schemaVarName}2);
 
 						for (EntityField entityField : entityFields) {
-							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaMethodParameter.parameterName}
+							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
 
-							, getFilterString(entityField, "eq", ${schemaVarName}1)
-
-							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(1, 2)
-							</#if>
-
-							<#if parameters?contains("Sort[] sorts")>
-								, (String)null
-							</#if>
+							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+								<#if javaMethodParameter?is_first>
+									${firstJavaMethodParameter.parameterName}
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "filter")>
+									, getFilterString(entityField, "eq", ${schemaVarName}1)
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+									, Pagination.of(1, 2)
+								<#else>
+									, null
+								</#if>
+							</#list>
 
 							);
 
@@ -213,17 +213,19 @@ public abstract class Base${schemaName}ResourceTestCase {
 						${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
 
 						for (EntityField entityField : entityFields) {
-							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaMethodParameter.parameterName}
+							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
 
-							, getFilterString(entityField, "eq", ${schemaVarName}1)
-
-							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(1, 2)
-							</#if>
-
-							<#if parameters?contains("Sort[] sorts")>
-								, (String)null
-							</#if>
+							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+								<#if javaMethodParameter?is_first>
+									${firstJavaMethodParameter.parameterName}
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "filter")>
+									, getFilterString(entityField, "eq", ${schemaVarName}1)
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+									, Pagination.of(1, 2)
+								<#else>
+									, null
+								</#if>
+							</#list>
 
 							);
 
@@ -241,17 +243,17 @@ public abstract class Base${schemaName}ResourceTestCase {
 						${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
 						${schemaName} ${schemaVarName}3 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
 
-						Page<${schemaName}> page1 = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaMethodParameter.parameterName}
+						Page<${schemaName}> page1 = invoke${javaMethodSignature.methodName?cap_first}(
 
-						<#if parameters?contains("Filter filter")>
-							, (String)null
-						</#if>
-
-						, Pagination.of(1, 2)
-
-						<#if parameters?contains("Sort[] sorts")>
-							, (String)null
-						</#if>
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if javaMethodParameter?is_first>
+								${firstJavaMethodParameter.parameterName}
+							<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+								, Pagination.of(1, 2)
+							<#else>
+								, null
+							</#if>
+						</#list>
 
 						);
 
@@ -259,17 +261,17 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 						Assert.assertEquals(${schemaVarNames}1.toString(), 2, ${schemaVarNames}1.size());
 
-						Page<${schemaName}> page2 = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaMethodParameter.parameterName}
+						Page<${schemaName}> page2 = invoke${javaMethodSignature.methodName?cap_first}(
 
-						<#if parameters?contains("Filter filter")>
-							, (String)null
-						</#if>
-
-						, Pagination.of(2, 2)
-
-						<#if parameters?contains("Sort[] sorts")>
-							, (String)null
-						</#if>
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if javaMethodParameter?is_first>
+								${firstJavaMethodParameter.parameterName}
+							<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+								, Pagination.of(2, 2)
+							<#else>
+								, null
+							</#if>
+						</#list>
 
 						);
 
@@ -315,33 +317,37 @@ public abstract class Base${schemaName}ResourceTestCase {
 						${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, ${schemaVarName}2);
 
 						for (EntityField entityField : entityFields) {
-							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaMethodParameter.parameterName}
+							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(
 
-							<#if parameters?contains("Filter filter")>
-								, (String)null
-							</#if>
-
-							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(1, 2)
-							</#if>
-
-							, entityField.getName() + ":asc"
+							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+								<#if javaMethodParameter?is_first>
+									${firstJavaMethodParameter.parameterName}
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+									, Pagination.of(1, 2)
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+									, entityField.getName() + ":asc"
+								<#else>
+									, null
+								</#if>
+							</#list>
 
 							);
 
 							assertEquals(Arrays.asList(${schemaVarName}1, ${schemaVarName}2), (List<${schemaName}>)ascPage.getItems());
 
-							Page<${schemaName}> descPage = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaMethodParameter.parameterName}
+							Page<${schemaName}> descPage = invoke${javaMethodSignature.methodName?cap_first}(
 
-							<#if parameters?contains("Filter filter")>
-								, (String)null
-							</#if>
-
-							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(1, 2)
-							</#if>
-
-							, entityField.getName() + ":desc"
+							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+								<#if javaMethodParameter?is_first>
+									${firstJavaMethodParameter.parameterName}
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+									, Pagination.of(1, 2)
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+									, entityField.getName() + ":desc"
+								<#else>
+									, null
+								</#if>
+							</#list>
 
 							);
 
@@ -371,33 +377,37 @@ public abstract class Base${schemaName}ResourceTestCase {
 						${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, ${schemaVarName}2);
 
 						for (EntityField entityField : entityFields) {
-							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaMethodParameter.parameterName}
+							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(
 
-							<#if parameters?contains("Filter filter")>
-								, (String)null
-							</#if>
-
-							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(1, 2)
-							</#if>
-
-							, entityField.getName() + ":asc"
+							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+								<#if javaMethodParameter?is_first>
+									${firstJavaMethodParameter.parameterName}
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+									, Pagination.of(1, 2)
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+									, entityField.getName() + ":asc"
+								<#else>
+									, null
+								</#if>
+							</#list>
 
 							);
 
 							assertEquals(Arrays.asList(${schemaVarName}1, ${schemaVarName}2), (List<${schemaName}>)ascPage.getItems());
 
-							Page<${schemaName}> descPage = invoke${javaMethodSignature.methodName?cap_first}(${firstJavaMethodParameter.parameterName}
+							Page<${schemaName}> descPage = invoke${javaMethodSignature.methodName?cap_first}(
 
-							<#if parameters?contains("Filter filter")>
-								, (String)null
-							</#if>
-
-							<#if parameters?contains("Pagination pagination")>
-								, Pagination.of(1, 2)
-							</#if>
-
-							, entityField.getName() + ":desc"
+							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+								<#if javaMethodParameter?is_first>
+									${firstJavaMethodParameter.parameterName}
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+									, Pagination.of(1, 2)
+								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+									, entityField.getName() + ":desc"
+								<#else>
+									, null
+								</#if>
+							</#list>
 
 							);
 
