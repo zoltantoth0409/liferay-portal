@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * @author Jeyvison Nascimento
  */
-public class DataEngineUtil {
+public class LocalizedValueUtil {
 
 	public static Map<Locale, String> toLocalizationMap(
 		LocalizedValue[] localizedValues) {

@@ -16,7 +16,7 @@ package com.liferay.data.engine.rest.internal.resource.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionUtil;
-import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataEngineUtil;
+import com.liferay.data.engine.rest.internal.dto.v1_0.util.LocalizedValueUtil;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
@@ -105,8 +105,8 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				PrincipalThreadLocal.getUserId(), contentSpaceId,
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 				_portal.getClassNameId(DataDefinition.class), null,
-				DataEngineUtil.toLocalizationMap(dataDefinition.getName()),
-				DataEngineUtil.toLocalizationMap(
+				LocalizedValueUtil.toLocalizationMap(dataDefinition.getName()),
+				LocalizedValueUtil.toLocalizationMap(
 					dataDefinition.getDescription()),
 				DataDefinitionUtil.toJSON(dataDefinition),
 				dataDefinition.getStorageType(), new ServiceContext()));
@@ -121,8 +121,8 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			_ddmStructureLocalService.updateStructure(
 				PrincipalThreadLocal.getUserId(), dataDefinition.getId(),
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
-				DataEngineUtil.toLocalizationMap(dataDefinition.getName()),
-				DataEngineUtil.toLocalizationMap(
+				LocalizedValueUtil.toLocalizationMap(dataDefinition.getName()),
+				LocalizedValueUtil.toLocalizationMap(
 					dataDefinition.getDescription()),
 				DataDefinitionUtil.toJSON(dataDefinition),
 				new ServiceContext()));
@@ -137,10 +137,11 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		dataDefinition.setDateCreated(ddmStructure.getCreateDate());
 		dataDefinition.setDateModified(ddmStructure.getModifiedDate());
 		dataDefinition.setDescription(
-			DataEngineUtil.toLocalizedValues(ddmStructure.getDescriptionMap()));
+			LocalizedValueUtil.toLocalizedValues(
+				ddmStructure.getDescriptionMap()));
 		dataDefinition.setId(ddmStructure.getStructureId());
 		dataDefinition.setName(
-			DataEngineUtil.toLocalizedValues(ddmStructure.getNameMap()));
+			LocalizedValueUtil.toLocalizedValues(ddmStructure.getNameMap()));
 		dataDefinition.setStorageType(ddmStructure.getStorageType());
 		dataDefinition.setUserId(ddmStructure.getUserId());
 
