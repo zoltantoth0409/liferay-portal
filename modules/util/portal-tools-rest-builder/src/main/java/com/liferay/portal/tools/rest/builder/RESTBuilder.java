@@ -145,7 +145,9 @@ public class RESTBuilder {
 
 				_createBaseResourceImplFile(
 					context, escapedVersion, schemaName);
-				_createPropertiesFile(context, escapedVersion, schemaName);
+				_createPropertiesFile(
+					context, escapedVersion,
+					String.valueOf(context.get("schemaPath")));
 				_createResourceFile(context, escapedVersion, schemaName);
 				_createResourceImplFile(context, escapedVersion, schemaName);
 
@@ -475,7 +477,7 @@ public class RESTBuilder {
 
 	private void _createPropertiesFile(
 			Map<String, Object> context, String escapedVersion,
-			String schemaName)
+			String schemaPath)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
@@ -484,8 +486,7 @@ public class RESTBuilder {
 		sb.append("/../resources/OSGI-INF/liferay/rest/");
 		sb.append(escapedVersion);
 		sb.append("/");
-		sb.append(
-			StringUtil.toLowerCase(CamelCaseUtil.fromCamelCase(schemaName)));
+		sb.append(StringUtil.toLowerCase(schemaPath));
 		sb.append(".properties");
 
 		File file = new File(sb.toString());
