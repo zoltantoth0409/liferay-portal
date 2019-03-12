@@ -155,8 +155,7 @@ public class CTEntryAggregateLocalServiceImpl
 		if ((status != WorkflowConstants.STATUS_APPROVED) &&
 			(status != WorkflowConstants.STATUS_DRAFT)) {
 
-			throw new IllegalArgumentException(
-				"Change status value is invalid");
+			throw new IllegalArgumentException("Invalid status: " + status);
 		}
 
 		CTEntryAggregate ctEntryAggregate =
