@@ -72,6 +72,7 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public Page<DataDefinition> getDataDefinitionsPage(
 			@QueryParam("contentSpaceId") Long contentSpaceId,
+			@QueryParam("keywords") String keywords,
 			@Context Pagination pagination)
 		throws Exception {
 
@@ -90,26 +91,6 @@ public abstract class BaseDataDefinitionResourceImpl
 		throws Exception {
 
 		return new DataDefinition();
-	}
-
-	@Override
-	@GET
-	@Parameters(
-		value = {
-			@Parameter(in = ParameterIn.QUERY, name = "page"),
-			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
-		}
-	)
-	@Path("/data-definitions/search")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataDefinition")})
-	public Page<DataDefinition> getDataDefinitionSearchPage(
-			@QueryParam("contentSpaceId") Long contentSpaceId,
-			@QueryParam("keywords") String keywords,
-			@Context Pagination pagination)
-		throws Exception {
-
-		return Page.of(Collections.emptyList());
 	}
 
 	@Override

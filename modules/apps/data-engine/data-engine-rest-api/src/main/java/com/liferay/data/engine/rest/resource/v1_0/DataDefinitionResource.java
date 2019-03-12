@@ -33,15 +33,11 @@ import javax.annotation.Generated;
 public interface DataDefinitionResource {
 
 	public Page<DataDefinition> getDataDefinitionsPage(
-			Long contentSpaceId, Pagination pagination)
+			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception;
 
 	public DataDefinition postDataDefinition(
 			Long contentSpaceId, DataDefinition dataDefinition)
-		throws Exception;
-
-	public Page<DataDefinition> getDataDefinitionSearchPage(
-			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception;
 
 	public boolean deleteDataDefinition(Long dataDefinitionId) throws Exception;

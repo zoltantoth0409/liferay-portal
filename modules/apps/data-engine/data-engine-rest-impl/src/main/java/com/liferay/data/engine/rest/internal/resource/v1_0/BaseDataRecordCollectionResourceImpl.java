@@ -72,6 +72,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public Page<DataRecordCollection> getDataRecordCollectionsPage(
 			@QueryParam("contentSpaceId") Long contentSpaceId,
+			@QueryParam("keywords") String keywords,
 			@Context Pagination pagination)
 		throws Exception {
 
@@ -128,26 +129,6 @@ public abstract class BaseDataRecordCollectionResourceImpl
 		throws Exception {
 
 		return new DataRecordCollection();
-	}
-
-	@Override
-	@GET
-	@Parameters(
-		value = {
-			@Parameter(in = ParameterIn.QUERY, name = "page"),
-			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
-		}
-	)
-	@Path("/data-record-collections/search")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public Page<DataRecordCollection> getDataRecordCollectionSearchPage(
-			@QueryParam("contentSpaceId") Long contentSpaceId,
-			@QueryParam("keywords") String keywords,
-			@Context Pagination pagination)
-		throws Exception {
-
-		return Page.of(Collections.emptyList());
 	}
 
 	public void setContextCompany(Company contextCompany) {

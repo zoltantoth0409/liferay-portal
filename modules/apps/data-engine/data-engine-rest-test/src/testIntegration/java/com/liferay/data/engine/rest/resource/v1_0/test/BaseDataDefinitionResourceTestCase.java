@@ -177,7 +177,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected Page<DataDefinition> invokeGetDataDefinitionsPage(
-			Long contentSpaceId, Pagination pagination)
+			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -199,7 +199,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected Http.Response invokeGetDataDefinitionsPageResponse(
-			Long contentSpaceId, Pagination pagination)
+			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -275,133 +275,6 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		options.setLocation(location);
 
 		options.setPost(true);
-
-		HttpUtil.URLtoString(options);
-
-		return options.getResponse();
-	}
-
-	@Test
-	public void testGetDataDefinitionSearchPage() throws Exception {
-		Long contentSpaceId =
-			testGetDataDefinitionSearchPage_getContentSpaceId();
-
-		DataDefinition dataDefinition1 =
-			testGetDataDefinitionSearchPage_addDataDefinition(
-				contentSpaceId, randomDataDefinition());
-		DataDefinition dataDefinition2 =
-			testGetDataDefinitionSearchPage_addDataDefinition(
-				contentSpaceId, randomDataDefinition());
-
-		Page<DataDefinition> page = invokeGetDataDefinitionSearchPage(
-			contentSpaceId, Pagination.of(1, 2));
-
-		Assert.assertEquals(2, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(dataDefinition1, dataDefinition2),
-			(List<DataDefinition>)page.getItems());
-		assertValid(page);
-	}
-
-	@Test
-	public void testGetDataDefinitionSearchPageWithPagination()
-		throws Exception {
-
-		Long contentSpaceId =
-			testGetDataDefinitionSearchPage_getContentSpaceId();
-
-		DataDefinition dataDefinition1 =
-			testGetDataDefinitionSearchPage_addDataDefinition(
-				contentSpaceId, randomDataDefinition());
-		DataDefinition dataDefinition2 =
-			testGetDataDefinitionSearchPage_addDataDefinition(
-				contentSpaceId, randomDataDefinition());
-		DataDefinition dataDefinition3 =
-			testGetDataDefinitionSearchPage_addDataDefinition(
-				contentSpaceId, randomDataDefinition());
-
-		Page<DataDefinition> page1 = invokeGetDataDefinitionSearchPage(
-			contentSpaceId, Pagination.of(1, 2));
-
-		List<DataDefinition> dataDefinitions1 =
-			(List<DataDefinition>)page1.getItems();
-
-		Assert.assertEquals(
-			dataDefinitions1.toString(), 2, dataDefinitions1.size());
-
-		Page<DataDefinition> page2 = invokeGetDataDefinitionSearchPage(
-			contentSpaceId, Pagination.of(2, 2));
-
-		Assert.assertEquals(3, page2.getTotalCount());
-
-		List<DataDefinition> dataDefinitions2 =
-			(List<DataDefinition>)page2.getItems();
-
-		Assert.assertEquals(
-			dataDefinitions2.toString(), 1, dataDefinitions2.size());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(dataDefinition1, dataDefinition2, dataDefinition3),
-			new ArrayList<DataDefinition>() {
-				{
-					addAll(dataDefinitions1);
-					addAll(dataDefinitions2);
-				}
-			});
-	}
-
-	protected DataDefinition testGetDataDefinitionSearchPage_addDataDefinition(
-			Long contentSpaceId, DataDefinition dataDefinition)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long testGetDataDefinitionSearchPage_getContentSpaceId()
-		throws Exception {
-
-		return testGroup.getGroupId();
-	}
-
-	protected Page<DataDefinition> invokeGetDataDefinitionSearchPage(
-			Long contentSpaceId, String keywords, Pagination pagination)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/data-definitions/search", contentSpaceId);
-
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
-
-		options.setLocation(location);
-
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
-			new TypeReference<Page<DataDefinition>>() {
-			});
-	}
-
-	protected Http.Response invokeGetDataDefinitionSearchPageResponse(
-			Long contentSpaceId, String keywords, Pagination pagination)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/data-definitions/search", contentSpaceId);
-
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
-
-		options.setLocation(location);
 
 		HttpUtil.URLtoString(options);
 

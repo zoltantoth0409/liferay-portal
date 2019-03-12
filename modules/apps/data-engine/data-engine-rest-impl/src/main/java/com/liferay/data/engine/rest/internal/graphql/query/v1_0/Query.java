@@ -46,23 +46,6 @@ public class Query {
 	@GraphQLInvokeDetached
 	public Collection<DataDefinition> getDataDefinitionsPage(
 			@GraphQLName("contentSpaceId") Long contentSpaceId,
-			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page)
-		throws Exception {
-
-		DataDefinitionResource dataDefinitionResource =
-			_createDataDefinitionResource();
-
-		Page paginationPage = dataDefinitionResource.getDataDefinitionsPage(
-			contentSpaceId, Pagination.of(pageSize, page));
-
-		return paginationPage.getItems();
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Collection<DataDefinition> getDataDefinitionSearchPage(
-			@GraphQLName("contentSpaceId") Long contentSpaceId,
 			@GraphQLName("keywords") String keywords,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
@@ -71,9 +54,8 @@ public class Query {
 		DataDefinitionResource dataDefinitionResource =
 			_createDataDefinitionResource();
 
-		Page paginationPage =
-			dataDefinitionResource.getDataDefinitionSearchPage(
-				contentSpaceId, keywords, Pagination.of(pageSize, page));
+		Page paginationPage = dataDefinitionResource.getDataDefinitionsPage(
+			contentSpaceId, keywords, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
 	}
@@ -94,6 +76,7 @@ public class Query {
 	@GraphQLInvokeDetached
 	public Collection<DataRecordCollection> getDataRecordCollectionsPage(
 			@GraphQLName("contentSpaceId") Long contentSpaceId,
+			@GraphQLName("keywords") String keywords,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
 		throws Exception {
@@ -103,7 +86,7 @@ public class Query {
 
 		Page paginationPage =
 			dataRecordCollectionResource.getDataRecordCollectionsPage(
-				contentSpaceId, Pagination.of(pageSize, page));
+				contentSpaceId, keywords, Pagination.of(pageSize, page));
 
 		return paginationPage.getItems();
 	}
@@ -120,25 +103,6 @@ public class Query {
 
 		return dataRecordCollectionResource.getDataRecordCollection(
 			dataRecordCollectionId);
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Collection<DataRecordCollection> getDataRecordCollectionSearchPage(
-			@GraphQLName("contentSpaceId") Long contentSpaceId,
-			@GraphQLName("keywords") String keywords,
-			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page)
-		throws Exception {
-
-		DataRecordCollectionResource dataRecordCollectionResource =
-			_createDataRecordCollectionResource();
-
-		Page paginationPage =
-			dataRecordCollectionResource.getDataRecordCollectionSearchPage(
-				contentSpaceId, keywords, Pagination.of(pageSize, page));
-
-		return paginationPage.getItems();
 	}
 
 	private static DataDefinitionResource _createDataDefinitionResource()
