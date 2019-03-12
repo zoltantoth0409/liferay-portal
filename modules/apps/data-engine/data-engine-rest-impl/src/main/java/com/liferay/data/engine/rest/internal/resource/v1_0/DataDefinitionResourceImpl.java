@@ -61,51 +61,51 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 	@Override
 	public Page<DataDefinition> getDataDefinitionSearchPage(
-			Long groupId, String keywords, Pagination pagination)
+			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
 
 		return Page.of(
 			transform(
 				_ddmStructureService.search(
-					contextCompany.getCompanyId(), new long[] {groupId},
+					contextCompany.getCompanyId(), new long[] {contentSpaceId},
 					_portal.getClassNameId(DataDefinition.class), keywords,
 					WorkflowConstants.STATUS_ANY, pagination.getStartPosition(),
 					pagination.getEndPosition(), null),
 				this::_toDataDefinition),
 			pagination,
 			_ddmStructureService.searchCount(
-				contextCompany.getCompanyId(), new long[] {groupId},
+				contextCompany.getCompanyId(), new long[] {contentSpaceId},
 				_portal.getClassNameId(DataDefinition.class), keywords,
 				WorkflowConstants.STATUS_ANY));
 	}
 
 	@Override
 	public Page<DataDefinition> getDataDefinitionsPage(
-			Long groupId, Pagination pagination)
+			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(
 			transform(
 				_ddmStructureService.getStructures(
-					contextCompany.getCompanyId(), new long[] {groupId},
+					contextCompany.getCompanyId(), new long[] {contentSpaceId},
 					_portal.getClassNameId(DataDefinition.class),
 					pagination.getStartPosition(), pagination.getEndPosition(),
 					null),
 				this::_toDataDefinition),
 			pagination,
 			_ddmStructureService.getStructuresCount(
-				contextCompany.getCompanyId(), new long[] {groupId},
+				contextCompany.getCompanyId(), new long[] {contentSpaceId},
 				_portal.getClassNameId(DataDefinition.class)));
 	}
 
 	@Override
 	public DataDefinition postDataDefinition(
-			Long groupId, DataDefinition dataDefinition)
+			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
 		return _toDataDefinition(
 			_ddmStructureLocalService.addStructure(
-				PrincipalThreadLocal.getUserId(), groupId,
+				PrincipalThreadLocal.getUserId(), contentSpaceId,
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 				_portal.getClassNameId(DataDefinition.class), null,
 				DataEngineUtil.toLocalizationMap(dataDefinition.getName()),
@@ -117,7 +117,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 	@Override
 	public DataDefinition putDataDefinition(
-			Long groupId, DataDefinition dataDefinition)
+			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
 		return _toDataDefinition(

@@ -50,45 +50,45 @@ public class DataRecordCollectionResourceImpl
 
 	@Override
 	public Page<DataRecordCollection> getDataRecordCollectionSearchPage(
-			Long groupId, String keywords, Pagination pagination)
+			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
 
 		return Page.of(
 			transform(
 				_ddlRecordSetLocalService.search(
-					contextCompany.getCompanyId(), groupId, keywords,
+					contextCompany.getCompanyId(), contentSpaceId, keywords,
 					DDLRecordSetConstants.SCOPE_DATA_ENGINE,
 					pagination.getStartPosition(), pagination.getEndPosition(),
 					null),
 				this::_toDataRecordCollection),
 			pagination,
 			_ddlRecordSetLocalService.searchCount(
-				contextCompany.getCompanyId(), groupId, keywords,
+				contextCompany.getCompanyId(), contentSpaceId, keywords,
 				DDLRecordSetConstants.SCOPE_DATA_ENGINE));
 	}
 
 	@Override
 	public Page<DataRecordCollection> getDataRecordCollectionsPage(
-			Long groupId, Pagination pagination)
+			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(
 			transform(
 				_ddlRecordSetLocalService.getRecordSets(
-					groupId, pagination.getStartPosition(),
+					contentSpaceId, pagination.getStartPosition(),
 					pagination.getEndPosition()),
 				this::_toDataRecordCollection),
-			pagination, _ddlRecordSetLocalService.getRecordSetsCount(groupId));
+			pagination, _ddlRecordSetLocalService.getRecordSetsCount(contentSpaceId));
 	}
 
 	@Override
 	public DataRecordCollection postDataRecordCollection(
-			Long groupId, DataRecordCollection dataRecordCollection)
+			Long contentSpaceId, DataRecordCollection dataRecordCollection)
 		throws Exception {
 
 		return _toDataRecordCollection(
 			_ddlRecordSetLocalService.addRecordSet(
-				PrincipalThreadLocal.getUserId(), groupId,
+				PrincipalThreadLocal.getUserId(), contentSpaceId,
 				dataRecordCollection.getDataDefinitionId(), null,
 				DataEngineUtil.toLocalizationMap(
 					dataRecordCollection.getName()),
