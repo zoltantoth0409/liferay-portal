@@ -259,9 +259,10 @@ public class StructuredContentResourceImpl
 				contextAcceptLanguage.getPreferredLanguageId())) {
 
 			throw new BadRequestException(
-				"Unable to PATCH structured content with language " + contextAcceptLanguage.getPreferredLanguageId() +
-					"because it is only configured to support: " +
-						journalArticle.getAvailableLanguageIds());
+				"Unable to patch structured content with language " +
+					contextAcceptLanguage.getPreferredLanguageId() +
+						"because it is only configured to support " +
+							journalArticle.getAvailableLanguageIds());
 		}
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
@@ -873,8 +874,8 @@ public class StructuredContentResourceImpl
 
 			if (field.isRepeatable()) {
 				throw new BadRequestException(
-					"Unable to PATCH a structured content with a " +
-						"repeatable field. Use PUT instead.");
+					"Unable to patch a structured content with a repeatable " +
+						"field. Instead, update the structured content.");
 			}
 		}
 
