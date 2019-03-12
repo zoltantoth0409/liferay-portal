@@ -42,10 +42,12 @@ public class LocalizedValueUtil {
 		return localizationMap;
 	}
 
-	public static LocalizedValue[] toLocalizedValues(Map<Locale, String> map) {
+	public static LocalizedValue[] toLocalizedValues(
+		Map<Locale, String> localizationMap) {
+
 		List<LocalizedValue> localizedValues = new ArrayList<>();
 
-		for (Map.Entry<Locale, String> entry : map.entrySet()) {
+		for (Map.Entry<Locale, String> entry : localizationMap.entrySet()) {
 			LocalizedValue localizedValue = new LocalizedValue();
 
 			localizedValue.setKey(String.valueOf(entry.getKey()));
@@ -54,7 +56,8 @@ public class LocalizedValueUtil {
 			localizedValues.add(localizedValue);
 		}
 
-		return localizedValues.toArray(new LocalizedValue[map.size()]);
+		return localizedValues.toArray(
+			new LocalizedValue[localizationMap.size()]);
 	}
 
 }
