@@ -181,19 +181,19 @@ public class FriendlyURLEntryStagedModelRepository
 		String modelPath = ExportImportPathUtil.getModelPath(
 			friendlyURLEntry, friendlyURLEntry.getUuid());
 
-		Map<Locale, String> localeToUrlTitleMap =
+		Map<Locale, String> localeLocalizationMap =
 			LocalizationUtil.getLocalizationMap(
 				portletDataContext.getZipEntryAsString(modelPath));
 
-		Map<String, String> languageIdToUrlTitleMap = new HashMap<>(
-			localeToUrlTitleMap.size());
+		Map<String, String> languageIdLocalizationMap = new HashMap<>(
+			localeLocalizationMap.size());
 
-		for (Map.Entry<Locale, String> entry : localeToUrlTitleMap.entrySet()) {
-			languageIdToUrlTitleMap.put(
+		for (Map.Entry<Locale, String> entry : localeLocalizationMap.entrySet()) {
+			languageIdLocalizationMap.put(
 				_language.getLanguageId(entry.getKey()), entry.getValue());
 		}
 
-		return languageIdToUrlTitleMap;
+		return languageIdLocalizationMap;
 	}
 
 	@Reference
