@@ -25,6 +25,38 @@ import java.util.stream.Stream;
  */
 public class LocalizedMapUtil {
 
+	public static Map<Locale, String> merge(
+		Map<Locale, String> map, Map.Entry<Locale, String> entry) {
+
+		if (map == null) {
+			return Stream.of(
+				entry
+			).collect(
+				Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)
+			);
+		}
+
+		if (entry == null) {
+			return map;
+		}
+
+		if (entry.getValue() == null) {
+			map.remove(entry.getKey());
+
+			return map;
+		}
+
+		Set<Map.Entry<Locale, String>> mapEntries = map.entrySet();
+
+		return Stream.concat(
+			mapEntries.stream(), Stream.of(entry)
+		).collect(
+			Collectors.toMap(
+				Map.Entry::getKey, Map.Entry::getValue,
+				(value1, value2) -> value2)
+		);
+	}
+
 	public static Map<Locale, String> patch(
 		Map<Locale, String> map, Locale locale, String value) {
 
@@ -33,38 +65,6 @@ public class LocalizedMapUtil {
 		}
 
 		return map;
-	}
-
-	public static Map<Locale, String> merge(
-		Map<Locale, String> map, Map.Entry<Locale, String> mapEntry) {
-
-		if (map == null) {
-			return Stream.of(
-				mapEntry
-			).collect(
-				Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)
-			);
-		}
-
-		if (mapEntry == null) {
-			return map;
-		}
-
-		if (mapEntry.getValue() == null) {
-			map.remove(mapEntry.getKey());
-
-			return map;
-		}
-
-		Set<Map.Entry<Locale, String>> mapEntries = map.entrySet();
-
-		return Stream.concat(
-			mapEntries.stream(), Stream.of(mapEntry)
-		).collect(
-			Collectors.toMap(
-				Map.Entry::getKey, Map.Entry::getValue,
-				(value1, value2) -> value2)
-		);
 	}
 
 }
