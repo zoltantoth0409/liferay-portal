@@ -1034,15 +1034,15 @@ public class StructuredContentResourceImpl
 			Field field, String fieldDisplayValue, Fields fields, Locale locale)
 		throws Exception {
 
-		int fieldIndex = _getFieldIndex(
-			fieldDisplayValue, field.getName(), fields);
-
 		DDMStructure ddmStructure = field.getDDMStructure();
 
 		DDMFormField ddmFormField = ddmStructure.getDDMFormField(
 			field.getName());
 
-		String value = String.valueOf(field.getValue(locale, fieldIndex));
+		String value = String.valueOf(
+			field.getValue(
+				locale,
+				_getFieldIndex(fieldDisplayValue, field.getName(), fields)));
 
 		if (Objects.equals(
 				DDMFormFieldType.DOCUMENT_LIBRARY, ddmFormField.getType())) {
