@@ -121,9 +121,9 @@ public class DataRecordCollectionResourceImpl
 		return new DataRecordCollection() {
 			{
 				dataDefinitionId = ddlRecordSet.getDDMStructureId();
-				id = ddlRecordSet.getRecordSetId();
 				description = DataEngineUtil.toLocalizedValues(
 					ddlRecordSet.getDescriptionMap());
+				id = ddlRecordSet.getRecordSetId();
 				name = DataEngineUtil.toLocalizedValues(
 					ddlRecordSet.getNameMap());
 			}
