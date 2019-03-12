@@ -36,6 +36,8 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
+import java.lang.reflect.InvocationTargetException;
+
 import java.net.URL;
 
 import java.text.DateFormat;
@@ -56,6 +58,7 @@ import javax.annotation.Generated;
 import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.lang.time.DateUtils;
 
 import org.junit.After;
@@ -429,6 +432,32 @@ public abstract class Base${schemaName}ResourceTestCase {
 			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}() throws Exception {
 				throw new UnsupportedOperationException("This method needs to be implemented");
 			}
+		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch")>
+			@Test
+			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
+				<#if arguments?ends_with(",multipartBody")>
+					Assert.assertTrue(true);
+				<#else>
+					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(random${schemaName}());
+
+					${schemaName} randomPatch${schemaName} = random${schemaName}();
+
+					${schemaName} patch${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(randomPatch${schemaName});
+
+					${schemaName} expectedPatch${schemaName} = (${schemaName})BeanUtils.cloneBean(post${schemaName});
+
+					_beanUtilsBean.copyProperties(expectedPatch${schemaName}, randomPatch${schemaName});
+
+					${schemaName} get${schemaName} = invokeGet${schemaName}(patch${schemaName}.getId());
+
+					assertEquals(expectedPatch${schemaName}, get${schemaName});
+					assertValid(get${schemaName});
+				</#if>
+			}
+
+			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${schemaName} ${schemaVarName}) throws Exception {
+				throw new UnsupportedOperationException("This method needs to be implemented");
+			}
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
 			@Test
 			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
@@ -487,7 +516,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(${invokeParameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && invokeArguments?ends_with(",${schemaVarName}")>
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with(",${schemaVarName}")>
 				options.setBody(_inputObjectMapper.writeValueAsString(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 			</#if>
 
@@ -516,7 +545,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 			options.setLocation(location);
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch")>
+				options.setPatch(true);
+			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
 				options.setPost(true);
 			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "put")>
 				options.setPut(true);
@@ -536,7 +567,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		protected Http.Response invoke${javaMethodSignature.methodName?cap_first}Response(${invokeParameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && invokeArguments?ends_with(",${schemaVarName}")>
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with(",${schemaVarName}")>
 				options.setBody(_inputObjectMapper.writeValueAsString(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 			</#if>
 
@@ -565,7 +596,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 			options.setLocation(location);
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch")>
+				options.setPatch(true);
+			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
 				options.setPost(true);
 			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "put")>
 				options.setPut(true);
@@ -714,6 +747,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 		};
 	}
 
+	protected ${schemaName} randomPatch${schemaName}() {
+		return random${schemaName}();
+	}
+
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -775,6 +812,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
+	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {
+
+		@Override
+		public void copyProperty(Object bean, String name, Object value) throws IllegalAccessException, InvocationTargetException {
+			if (value != null) {
+				super.copyProperty(bean, name, value);
+			}
+		}
+
+	};
 	private static DateFormat _dateFormat;
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{

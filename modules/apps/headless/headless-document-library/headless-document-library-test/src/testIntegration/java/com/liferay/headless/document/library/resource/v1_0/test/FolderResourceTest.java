@@ -128,6 +128,11 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 	}
 
 	@Override
+	protected Folder testPatchFolder_addFolder(Folder folder) throws Exception {
+		return invokePostContentSpaceFolder(testGroup.getGroupId(), folder);
+	}
+
+	@Override
 	protected Folder testPostContentSpaceFolder_addFolder(Folder folder)
 		throws Exception {
 
