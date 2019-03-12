@@ -907,9 +907,15 @@ public class StructuredContentResourceImpl
 			_checkNoRepeatableFields(fields);
 
 			for (ContentField contentField : contentFields) {
-				_updateFields(
-					contentField, ddmStructure, fields,
+				Field field = fields.get(contentField.getName());
+
+				com.liferay.dynamic.data.mapping.model.Value value = _toDDMValue(
+					contentField, ddmStructure,
 					contextAcceptLanguage.getPreferredLocale());
+
+				field.setValue(
+					contextAcceptLanguage.getPreferredLocale(),
+					value.getString(contextAcceptLanguage.getPreferredLocale()));
 
 				ContentField[] nestedContentFields =
 					contentField.getNestedFields();
@@ -1169,19 +1175,6 @@ public class StructuredContentResourceImpl
 				data = value;
 			}
 		};
-	}
-
-	private void _updateFields(
-			ContentField contentField, DDMStructure ddmStructure, Fields fields,
-			Locale locale)
-		throws Exception {
-
-		Field field = fields.get(contentField.getName());
-
-		com.liferay.dynamic.data.mapping.model.Value value = _toDDMValue(
-			contentField, ddmStructure, locale);
-
-		field.setValue(locale, value.getString(locale));
 	}
 
 	@Reference
