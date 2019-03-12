@@ -247,16 +247,6 @@ public class StructuredContentResourceImpl
 		return content.replaceAll("[\\t\\n]", "");
 	}
 
-	public Map<Locale, String> patchLocalizedMap(
-		Map<Locale, String> map, Map.Entry<Locale, String> mapEntry) {
-
-		if (mapEntry.getValue() != null) {
-			map.put(mapEntry.getKey(), mapEntry.getValue());
-		}
-
-		return map;
-	}
-
 	@Override
 	public StructuredContent patchStructuredContent(
 			Long structuredContentId, StructuredContent structuredContent)
@@ -285,21 +275,18 @@ public class StructuredContentResourceImpl
 			_journalArticleService.updateArticle(
 				journalArticle.getGroupId(), journalArticle.getFolderId(),
 				journalArticle.getArticleId(), journalArticle.getVersion(),
-				patchLocalizedMap(
+				LocalizedMapUtil.patch(
 					journalArticle.getTitleMap(),
-					new AbstractMap.SimpleEntry<>(
-						contextAcceptLanguage.getPreferredLocale(),
-						structuredContent.getTitle())),
-				patchLocalizedMap(
+					contextAcceptLanguage.getPreferredLocale(),
+					structuredContent.getTitle()),
+				LocalizedMapUtil.patch(
 					journalArticle.getDescriptionMap(),
-					new AbstractMap.SimpleEntry<>(
-						contextAcceptLanguage.getPreferredLocale(),
-						structuredContent.getDescription())),
-				patchLocalizedMap(
+					contextAcceptLanguage.getPreferredLocale(),
+					structuredContent.getDescription()),
+				LocalizedMapUtil.patch(
 					journalArticle.getFriendlyURLMap(),
-					new AbstractMap.SimpleEntry<>(
-						contextAcceptLanguage.getPreferredLocale(),
-						structuredContent.getTitle())),
+					contextAcceptLanguage.getPreferredLocale(),
+					structuredContent.getTitle()),
 				_journalConverter.getContent(
 					ddmStructure,
 					_toPatchedFields(

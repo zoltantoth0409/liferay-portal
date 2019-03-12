@@ -25,6 +25,16 @@ import java.util.stream.Stream;
  */
 public class LocalizedMapUtil {
 
+	public static Map<Locale, String> patch(
+		Map<Locale, String> map, Locale locale, String value) {
+
+		if (value != null) {
+			map.put(locale, value);
+		}
+
+		return map;
+	}
+
 	public static Map<Locale, String> merge(
 		Map<Locale, String> map, Map.Entry<Locale, String> mapEntry) {
 
