@@ -95,7 +95,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 
 		queryDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
 
-		return ctEntryFinder.countRelatedCTEntries(ctEntryId, queryDefinition);
+		return ctEntryFinder.countByRelatedCTEntries(ctEntryId, queryDefinition);
 	}
 
 	@Override
@@ -148,7 +148,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		queryDefinition.setStart(start);
 		queryDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
 
-		return ctEntryFinder.findRelatedCTEntries(ctEntryId, queryDefinition);
+		return ctEntryFinder.findByRelatedCTEntries(ctEntryId, queryDefinition);
 	}
 
 	@Override

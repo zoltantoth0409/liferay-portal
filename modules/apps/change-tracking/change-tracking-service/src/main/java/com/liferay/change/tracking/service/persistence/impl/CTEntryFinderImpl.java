@@ -36,18 +36,18 @@ import java.util.List;
 public class CTEntryFinderImpl
 	extends CTEntryFinderBaseImpl implements CTEntryFinder {
 
-	public static final String COUNT_RELATED_CT_ENTRIES =
-		CTEntryFinder.class.getName() + ".countRelatedCTEntries";
+	public static final String COUNT_BY_RELATED_CT_ENTRIES =
+		CTEntryFinder.class.getName() + ".countByRelatedCTEntries";
 
 	public static final String FIND_BY_CT_COLLECTION_ID =
 		CTEntryFinder.class.getName() + ".findByCTCollectionId";
 
-	public static final String FIND_RELATED_CT_ENTRIES =
-		CTEntryFinder.class.getName() + ".findRelatedCTEntries";
+	public static final String FIND_BY_RELATED_CT_ENTRIES =
+		CTEntryFinder.class.getName() + ".findByRelatedCTEntries";
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public int countRelatedCTEntries(
+	public int countByRelatedCTEntries(
 		long ctEntryId, QueryDefinition<CTEntry> queryDefinition) {
 
 		Session session = null;
@@ -55,7 +55,7 @@ public class CTEntryFinderImpl
 		try {
 			session = openSession();
 
-			String sql = _customSQL.get(getClass(), COUNT_RELATED_CT_ENTRIES);
+			String sql = _customSQL.get(getClass(), COUNT_BY_RELATED_CT_ENTRIES);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
 				if (queryDefinition.isExcludeStatus()) {
@@ -240,7 +240,7 @@ public class CTEntryFinderImpl
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<CTEntry> findRelatedCTEntries(
+	public List<CTEntry> findByRelatedCTEntries(
 		long ctEntryId, QueryDefinition<CTEntry> queryDefinition) {
 
 		Session session = null;
@@ -248,7 +248,7 @@ public class CTEntryFinderImpl
 		try {
 			session = openSession();
 
-			String sql = _customSQL.get(getClass(), FIND_RELATED_CT_ENTRIES);
+			String sql = _customSQL.get(getClass(), FIND_BY_RELATED_CT_ENTRIES);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
 				if (queryDefinition.isExcludeStatus()) {
