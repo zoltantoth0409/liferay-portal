@@ -78,7 +78,8 @@ public class DataRecordCollectionResourceImpl
 					contentSpaceId, pagination.getStartPosition(),
 					pagination.getEndPosition()),
 				this::_toDataRecordCollection),
-			pagination, _ddlRecordSetLocalService.getRecordSetsCount(contentSpaceId));
+			pagination,
+			_ddlRecordSetLocalService.getRecordSetsCount(contentSpaceId));
 	}
 
 	@Override
