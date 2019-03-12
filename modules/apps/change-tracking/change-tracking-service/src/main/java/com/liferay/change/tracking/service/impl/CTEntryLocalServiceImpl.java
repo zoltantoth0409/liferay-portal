@@ -95,7 +95,8 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 
 		queryDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
 
-		return ctEntryFinder.countByRelatedCTEntries(ctEntryId, queryDefinition);
+		return ctEntryFinder.countByRelatedCTEntries(
+			ctEntryId, queryDefinition);
 	}
 
 	@Override
