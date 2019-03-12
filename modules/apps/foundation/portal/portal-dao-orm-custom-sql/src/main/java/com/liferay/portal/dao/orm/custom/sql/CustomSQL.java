@@ -482,16 +482,14 @@ public class CustomSQL {
 			int y = sql.indexOf(_ORDER_BY_CLAUSE);
 
 			if (y == -1) {
-				sql = sql.substring(
-					0, x + _GROUP_BY_CLAUSE.length()
-				).concat(
-					groupBy
-				);
+				sql = sql.substring(0, x + _GROUP_BY_CLAUSE.length());
+
+				sql = sql.concat(groupBy);
 			}
 			else {
-				sql = sql.substring(
-					0, x + _GROUP_BY_CLAUSE.length()
-				).concat(
+				sql = sql.substring(0, x + _GROUP_BY_CLAUSE.length());
+
+				sql = sql.concat(
 					groupBy
 				).concat(
 					sql.substring(y)
@@ -681,11 +679,9 @@ public class CustomSQL {
 		int pos = sql.indexOf(_ORDER_BY_CLAUSE);
 
 		if ((pos != -1) && (pos < sql.length())) {
-			sql = sql.substring(
-				0, pos + _ORDER_BY_CLAUSE.length()
-			).concat(
-				orderBy
-			);
+			sql = sql.substring(0, pos + _ORDER_BY_CLAUSE.length());
+
+			sql = sql.concat(orderBy);
 		}
 		else {
 			sql = sql.concat(
