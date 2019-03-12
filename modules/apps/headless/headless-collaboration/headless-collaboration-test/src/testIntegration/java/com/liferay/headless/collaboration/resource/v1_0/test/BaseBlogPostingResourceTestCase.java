@@ -41,6 +41,8 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
+import java.lang.reflect.InvocationTargetException;
+
 import java.net.URL;
 
 import java.text.DateFormat;
@@ -61,6 +63,7 @@ import javax.annotation.Generated;
 import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.lang.time.DateUtils;
 
 import org.junit.After;
@@ -204,7 +207,33 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	@Test
 	public void testPatchBlogPosting() throws Exception {
-		Assert.assertTrue(true);
+		BlogPosting postBlogPosting = testPatchBlogPosting_addBlogPosting(
+			randomBlogPosting());
+
+		BlogPosting randomPatchBlogPosting = randomBlogPosting();
+
+		BlogPosting patchBlogPosting = testPatchBlogPosting_addBlogPosting(
+			randomPatchBlogPosting);
+
+		BlogPosting expectedPatchBlogPosting = (BlogPosting)BeanUtils.cloneBean(
+			postBlogPosting);
+
+		_beanUtilsBean.copyProperties(
+			expectedPatchBlogPosting, randomPatchBlogPosting);
+
+		BlogPosting getBlogPosting = invokeGetBlogPosting(
+			patchBlogPosting.getId());
+
+		assertEquals(expectedPatchBlogPosting, getBlogPosting);
+		assertValid(getBlogPosting);
+	}
+
+	protected BlogPosting testPatchBlogPosting_addBlogPosting(
+			BlogPosting blogPosting)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected BlogPosting invokePatchBlogPosting(
@@ -213,11 +242,17 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(blogPosting),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath("/blog-postings/{blog-posting-id}", blogPostingId);
 
 		options.setLocation(location);
+
+		options.setPatch(true);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), BlogPosting.class);
@@ -229,11 +264,17 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(blogPosting),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath("/blog-postings/{blog-posting-id}", blogPostingId);
 
 		options.setLocation(location);
+
+		options.setPatch(true);
 
 		HttpUtil.URLtoString(options);
 
@@ -970,6 +1011,10 @@ public abstract class BaseBlogPostingResourceTestCase {
 		};
 	}
 
+	protected BlogPosting randomPatchBlogPosting() {
+		return randomBlogPosting();
+	}
+
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -1033,6 +1078,18 @@ public abstract class BaseBlogPostingResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
+	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {
+
+		@Override
+		public void copyProperty(Object bean, String name, Object value)
+			throws IllegalAccessException, InvocationTargetException {
+
+			if (value != null) {
+				super.copyProperty(bean, name, value);
+			}
+		}
+
+	};
 	private static DateFormat _dateFormat;
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{

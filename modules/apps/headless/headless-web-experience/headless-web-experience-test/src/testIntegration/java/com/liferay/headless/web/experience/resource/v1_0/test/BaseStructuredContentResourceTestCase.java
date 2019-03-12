@@ -42,6 +42,8 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
+import java.lang.reflect.InvocationTargetException;
+
 import java.net.URL;
 
 import java.text.DateFormat;
@@ -62,6 +64,7 @@ import javax.annotation.Generated;
 import javax.ws.rs.core.MultivaluedHashMap;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.lang.time.DateUtils;
 
 import org.junit.After;
@@ -977,7 +980,36 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	@Test
 	public void testPatchStructuredContent() throws Exception {
-		Assert.assertTrue(true);
+		StructuredContent postStructuredContent =
+			testPatchStructuredContent_addStructuredContent(
+				randomStructuredContent());
+
+		StructuredContent randomPatchStructuredContent =
+			randomStructuredContent();
+
+		StructuredContent patchStructuredContent =
+			testPatchStructuredContent_addStructuredContent(
+				randomPatchStructuredContent);
+
+		StructuredContent expectedPatchStructuredContent =
+			(StructuredContent)BeanUtils.cloneBean(postStructuredContent);
+
+		_beanUtilsBean.copyProperties(
+			expectedPatchStructuredContent, randomPatchStructuredContent);
+
+		StructuredContent getStructuredContent = invokeGetStructuredContent(
+			patchStructuredContent.getId());
+
+		assertEquals(expectedPatchStructuredContent, getStructuredContent);
+		assertValid(getStructuredContent);
+	}
+
+	protected StructuredContent testPatchStructuredContent_addStructuredContent(
+			StructuredContent structuredContent)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected StructuredContent invokePatchStructuredContent(
@@ -986,6 +1018,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(structuredContent),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -993,6 +1029,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 					structuredContentId);
 
 		options.setLocation(location);
+
+		options.setPatch(true);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), StructuredContent.class);
@@ -1004,6 +1042,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(structuredContent),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -1011,6 +1053,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 					structuredContentId);
 
 		options.setLocation(location);
+
+		options.setPatch(true);
 
 		HttpUtil.URLtoString(options);
 
@@ -1397,6 +1441,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 		};
 	}
 
+	protected StructuredContent randomPatchStructuredContent() {
+		return randomStructuredContent();
+	}
+
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -1460,6 +1508,18 @@ public abstract class BaseStructuredContentResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
+	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {
+
+		@Override
+		public void copyProperty(Object bean, String name, Object value)
+			throws IllegalAccessException, InvocationTargetException {
+
+			if (value != null) {
+				super.copyProperty(bean, name, value);
+			}
+		}
+
+	};
 	private static DateFormat _dateFormat;
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{

@@ -41,6 +41,8 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
+import java.lang.reflect.InvocationTargetException;
+
 import java.net.URL;
 
 import java.text.DateFormat;
@@ -57,6 +59,9 @@ import java.util.stream.Stream;
 import javax.annotation.Generated;
 
 import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -438,7 +443,38 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	@Test
 	public void testPatchKnowledgeBaseArticle() throws Exception {
-		Assert.assertTrue(true);
+		KnowledgeBaseArticle postKnowledgeBaseArticle =
+			testPatchKnowledgeBaseArticle_addKnowledgeBaseArticle(
+				randomKnowledgeBaseArticle());
+
+		KnowledgeBaseArticle randomPatchKnowledgeBaseArticle =
+			randomKnowledgeBaseArticle();
+
+		KnowledgeBaseArticle patchKnowledgeBaseArticle =
+			testPatchKnowledgeBaseArticle_addKnowledgeBaseArticle(
+				randomPatchKnowledgeBaseArticle);
+
+		KnowledgeBaseArticle expectedPatchKnowledgeBaseArticle =
+			(KnowledgeBaseArticle)BeanUtils.cloneBean(postKnowledgeBaseArticle);
+
+		_beanUtilsBean.copyProperties(
+			expectedPatchKnowledgeBaseArticle, randomPatchKnowledgeBaseArticle);
+
+		KnowledgeBaseArticle getKnowledgeBaseArticle =
+			invokeGetKnowledgeBaseArticle(patchKnowledgeBaseArticle.getId());
+
+		assertEquals(
+			expectedPatchKnowledgeBaseArticle, getKnowledgeBaseArticle);
+		assertValid(getKnowledgeBaseArticle);
+	}
+
+	protected KnowledgeBaseArticle
+			testPatchKnowledgeBaseArticle_addKnowledgeBaseArticle(
+				KnowledgeBaseArticle knowledgeBaseArticle)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected KnowledgeBaseArticle invokePatchKnowledgeBaseArticle(
@@ -448,6 +484,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(knowledgeBaseArticle),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -455,6 +495,8 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					knowledgeBaseArticleId);
 
 		options.setLocation(location);
+
+		options.setPatch(true);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), KnowledgeBaseArticle.class);
@@ -467,6 +509,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(knowledgeBaseArticle),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -474,6 +520,8 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					knowledgeBaseArticleId);
 
 		options.setLocation(location);
+
+		options.setPatch(true);
 
 		HttpUtil.URLtoString(options);
 
@@ -1276,6 +1324,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		};
 	}
 
+	protected KnowledgeBaseArticle randomPatchKnowledgeBaseArticle() {
+		return randomKnowledgeBaseArticle();
+	}
+
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -1339,6 +1391,18 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
+	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {
+
+		@Override
+		public void copyProperty(Object bean, String name, Object value)
+			throws IllegalAccessException, InvocationTargetException {
+
+			if (value != null) {
+				super.copyProperty(bean, name, value);
+			}
+		}
+
+	};
 	private static DateFormat _dateFormat;
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{

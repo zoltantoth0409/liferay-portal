@@ -41,6 +41,8 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
+import java.lang.reflect.InvocationTargetException;
+
 import java.net.URL;
 
 import java.text.DateFormat;
@@ -57,6 +59,9 @@ import java.util.stream.Stream;
 import javax.annotation.Generated;
 
 import javax.ws.rs.core.MultivaluedHashMap;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -433,7 +438,37 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 	@Test
 	public void testPatchKnowledgeBaseFolder() throws Exception {
-		Assert.assertTrue(true);
+		KnowledgeBaseFolder postKnowledgeBaseFolder =
+			testPatchKnowledgeBaseFolder_addKnowledgeBaseFolder(
+				randomKnowledgeBaseFolder());
+
+		KnowledgeBaseFolder randomPatchKnowledgeBaseFolder =
+			randomKnowledgeBaseFolder();
+
+		KnowledgeBaseFolder patchKnowledgeBaseFolder =
+			testPatchKnowledgeBaseFolder_addKnowledgeBaseFolder(
+				randomPatchKnowledgeBaseFolder);
+
+		KnowledgeBaseFolder expectedPatchKnowledgeBaseFolder =
+			(KnowledgeBaseFolder)BeanUtils.cloneBean(postKnowledgeBaseFolder);
+
+		_beanUtilsBean.copyProperties(
+			expectedPatchKnowledgeBaseFolder, randomPatchKnowledgeBaseFolder);
+
+		KnowledgeBaseFolder getKnowledgeBaseFolder =
+			invokeGetKnowledgeBaseFolder(patchKnowledgeBaseFolder.getId());
+
+		assertEquals(expectedPatchKnowledgeBaseFolder, getKnowledgeBaseFolder);
+		assertValid(getKnowledgeBaseFolder);
+	}
+
+	protected KnowledgeBaseFolder
+			testPatchKnowledgeBaseFolder_addKnowledgeBaseFolder(
+				KnowledgeBaseFolder knowledgeBaseFolder)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected KnowledgeBaseFolder invokePatchKnowledgeBaseFolder(
@@ -442,6 +477,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(knowledgeBaseFolder),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -449,6 +488,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 					knowledgeBaseFolderId);
 
 		options.setLocation(location);
+
+		options.setPatch(true);
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options), KnowledgeBaseFolder.class);
@@ -460,6 +501,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(knowledgeBaseFolder),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -467,6 +512,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 					knowledgeBaseFolderId);
 
 		options.setLocation(location);
+
+		options.setPatch(true);
 
 		HttpUtil.URLtoString(options);
 
@@ -987,6 +1034,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		};
 	}
 
+	protected KnowledgeBaseFolder randomPatchKnowledgeBaseFolder() {
+		return randomKnowledgeBaseFolder();
+	}
+
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -1050,6 +1101,18 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
+	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {
+
+		@Override
+		public void copyProperty(Object bean, String name, Object value)
+			throws IllegalAccessException, InvocationTargetException {
+
+			if (value != null) {
+				super.copyProperty(bean, name, value);
+			}
+		}
+
+	};
 	private static DateFormat _dateFormat;
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
