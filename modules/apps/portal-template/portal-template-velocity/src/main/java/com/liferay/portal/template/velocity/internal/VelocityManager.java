@@ -142,8 +142,8 @@ public class VelocityManager extends BaseSingleTemplateManager {
 
 			extendedProperties.setProperty(
 				"liferay." + RuntimeConstants.INTROSPECTOR_RESTRICT_CLASSES +
-					".properties",
-				_velocityEngineConfiguration.restrictedClassProperties());
+					".methods",
+				_velocityEngineConfiguration.restrictedMethods());
 
 			extendedProperties.setProperty(
 				RuntimeConstants.INTROSPECTOR_RESTRICT_PACKAGES,
