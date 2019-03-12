@@ -238,8 +238,7 @@ public class StructuredContentResourceImpl
 			_journalContent.getDisplay(
 				journalArticle.getGroupId(), journalArticle.getArticleId(),
 				ddmTemplate.getTemplateKey(), null,
-				LocaleUtil.toLanguageId(
-					contextAcceptLanguage.getPreferredLocale()),
+				contextAcceptLanguage.getPreferredLanguageId(),
 				themeDisplay);
 
 		String content = journalArticleDisplay.getContent();
@@ -257,11 +256,10 @@ public class StructuredContentResourceImpl
 
 		if (!ArrayUtil.contains(
 				journalArticle.getAvailableLanguageIds(),
-				LocaleUtil.toLanguageId(
-					contextAcceptLanguage.getPreferredLocale()))) {
+				contextAcceptLanguage.getPreferredLanguageId())) {
 
 			throw new BadRequestException(
-				"Unable to PATCH structured content with language " + LocaleUtil.toLanguageId(contextAcceptLanguage.getPreferredLocale()) +
+				"Unable to PATCH structured content with language " + contextAcceptLanguage.getPreferredLanguageId() +
 					"because it is only configured to support: " +
 						journalArticle.getAvailableLanguageIds());
 		}
