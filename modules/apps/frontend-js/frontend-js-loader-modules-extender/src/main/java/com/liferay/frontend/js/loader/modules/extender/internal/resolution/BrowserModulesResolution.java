@@ -86,7 +86,7 @@ public class BrowserModulesResolution {
 	public void putMappedModuleName(
 		String moduleName, String mappedModuleName, boolean exactMatch) {
 
-		Object value;
+		Object value = mappedModuleName;
 
 		if (exactMatch) {
 			Map<String, Object> map = new HashMap<>();
@@ -95,9 +95,6 @@ public class BrowserModulesResolution {
 			map.put("value", mappedModuleName);
 
 			value = map;
-		}
-		else {
-			value = mappedModuleName;
 		}
 
 		_mappedModuleNamesMap.put(moduleName, value);
