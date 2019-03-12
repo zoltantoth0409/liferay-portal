@@ -394,9 +394,9 @@ public class ResourceOpenAPIParser {
 			if (mediaTypes.size() > 1) {
 				Collections.sort(mediaTypes);
 
-				int i = mediaTypes.indexOf(requestBodyMediaType) + 1;
+				int count = mediaTypes.indexOf(requestBodyMediaType) + 1;
 
-				methodNameSegments.add("MediaType" + i);
+				methodNameSegments.add("MediaType" + count);
 			}
 		}
 
