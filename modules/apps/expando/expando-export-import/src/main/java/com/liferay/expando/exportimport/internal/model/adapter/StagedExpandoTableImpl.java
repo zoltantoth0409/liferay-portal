@@ -84,6 +84,10 @@ public class StagedExpandoTableImpl implements StagedExpandoTable {
 		return null;
 	}
 
+	public ExpandoTable getExpandoTable() {
+		return _expandoTable;
+	}
+
 	@Override
 	public Map<String, Object> getModelAttributes() {
 		return _expandoTable.getModelAttributes();
@@ -212,6 +216,10 @@ public class StagedExpandoTableImpl implements StagedExpandoTable {
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		_expandoTable.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	public void setExpandoTable(ExpandoTable expandoTable) {
+		_expandoTable = expandoTable;
 	}
 
 	@Override
