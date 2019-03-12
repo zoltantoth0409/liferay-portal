@@ -97,7 +97,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 	public List<String> getChildrenFieldNames(String fieldName)
 		throws PortalException {
 
-		DDMFormField ddmFormField = getDDMFormField(fieldName);
+		DDMFormField ddmFormField = _getDDMFormField(fieldName);
 
 		return getDDMFormFieldNames(ddmFormField.getNestedDDMFormFields());
 	}
@@ -150,7 +150,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 
 	@Override
 	public String getFieldDataType(String fieldName) throws PortalException {
-		DDMFormField ddmFormField = getDDMFormField(fieldName);
+		DDMFormField ddmFormField = _getDDMFormField(fieldName);
 
 		return ddmFormField.getDataType();
 	}
@@ -159,7 +159,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 	public String getFieldLabel(String fieldName, Locale locale)
 		throws PortalException {
 
-		DDMFormField ddmFormField = getDDMFormField(fieldName);
+		DDMFormField ddmFormField = _getDDMFormField(fieldName);
 
 		LocalizedValue label = ddmFormField.getLabel();
 
@@ -186,21 +186,21 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 	public String getFieldProperty(String fieldName, String property)
 		throws PortalException {
 
-		DDMFormField ddmFormField = getDDMFormField(fieldName);
+		DDMFormField ddmFormField = _getDDMFormField(fieldName);
 
 		return BeanPropertiesUtil.getString(ddmFormField, property);
 	}
 
 	@Override
 	public boolean getFieldRepeatable(String fieldName) throws PortalException {
-		DDMFormField ddmFormField = getDDMFormField(fieldName);
+		DDMFormField ddmFormField = _getDDMFormField(fieldName);
 
 		return ddmFormField.isRepeatable();
 	}
 
 	@Override
 	public boolean getFieldRequired(String fieldName) throws PortalException {
-		DDMFormField ddmFormField = getDDMFormField(fieldName);
+		DDMFormField ddmFormField = _getDDMFormField(fieldName);
 
 		return ddmFormField.isRequired();
 	}
@@ -209,7 +209,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 	public String getFieldTip(String fieldName, Locale locale)
 		throws PortalException {
 
-		DDMFormField ddmFormField = getDDMFormField(fieldName);
+		DDMFormField ddmFormField = _getDDMFormField(fieldName);
 
 		LocalizedValue tip = ddmFormField.getTip();
 
@@ -225,7 +225,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 
 	@Override
 	public String getFieldType(String fieldName) throws PortalException {
-		DDMFormField ddmFormField = getDDMFormField(fieldName);
+		DDMFormField ddmFormField = _getDDMFormField(fieldName);
 
 		return ddmFormField.getType();
 	}
@@ -370,14 +370,14 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 
 	@Override
 	public boolean isFieldRepeatable(String fieldName) throws PortalException {
-		DDMFormField ddmFormField = getDDMFormField(fieldName);
+		DDMFormField ddmFormField = _getDDMFormField(fieldName);
 
 		return ddmFormField.isRepeatable();
 	}
 
 	@Override
 	public boolean isFieldTransient(String fieldName) throws PortalException {
-		DDMFormField ddmFormField = getDDMFormField(fieldName);
+		DDMFormField ddmFormField = _getDDMFormField(fieldName);
 
 		if (Validator.isNull(ddmFormField.getDataType())) {
 			return true;
