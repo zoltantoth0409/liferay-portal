@@ -4241,11 +4241,9 @@ public class StringUtil {
 			return s;
 		}
 
-		return s.substring(
-			0, x - 1
-		).concat(
-			s.substring(y + 1)
-		);
+		String part = s.substring(0, x - 1);
+
+		return part.concat(s.substring(y + 1));
 	}
 
 	/**

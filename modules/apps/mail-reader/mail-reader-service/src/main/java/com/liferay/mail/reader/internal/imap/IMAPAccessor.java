@@ -975,11 +975,9 @@ public class IMAPAccessor {
 				continue;
 			}
 
-			String prefix = String.valueOf(
-				index
-			).concat(
-				StringPool.PERIOD
-			);
+			String indexValue = String.valueOf(index);
+
+			String prefix = indexValue.concat(StringPool.PERIOD);
 
 			return getPart(
 				multipart.getBodyPart(i),
