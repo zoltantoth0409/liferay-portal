@@ -78,7 +78,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 
 	@Override
 	public String[] getAvailableLanguageIds() {
-		DDMForm ddmForm = getDDMForm();
+		DDMForm ddmForm = _getDDMForm();
 
 		Set<Locale> availableLocales = ddmForm.getAvailableLocales();
 
@@ -146,7 +146,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 
 	@Override
 	public String getDefaultLanguageId() {
-		DDMForm ddmForm = getDDMForm();
+		DDMForm ddmForm = _getDDMForm();
 
 		return LocaleUtil.toLanguageId(ddmForm.getDefaultLocale());
 	}
