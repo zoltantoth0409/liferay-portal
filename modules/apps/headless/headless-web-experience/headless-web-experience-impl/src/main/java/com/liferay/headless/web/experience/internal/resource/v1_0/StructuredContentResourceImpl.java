@@ -445,13 +445,12 @@ public class StructuredContentResourceImpl
 		fieldsDisplayValue.add(
 			contentField.getName() + DDM.INSTANCE_SEPARATOR + repeatableId);
 
-		if (contentField.getNestedFields() != null) {
-			for (ContentField nestedContentField :
-					contentField.getNestedFields()) {
+		if (contentField.getNestedFields() == null) {
+			return;
+		}
 
-				_createFieldsDisplayValue(
-					nestedContentField, fieldsDisplayValue);
-			}
+		for (ContentField nestedContentField : contentField.getNestedFields()) {
+			_createFieldsDisplayValue(nestedContentField, fieldsDisplayValue);
 		}
 	}
 
