@@ -62,10 +62,10 @@ import com.liferay.journal.service.JournalArticleService;
 import com.liferay.journal.util.JournalContent;
 import com.liferay.journal.util.JournalConverter;
 import com.liferay.petra.function.UnsafeFunction;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.events.EventsProcessorUtil;
 import com.liferay.portal.kernel.comment.CommentManager;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -114,7 +114,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -238,8 +237,7 @@ public class StructuredContentResourceImpl
 			_journalContent.getDisplay(
 				journalArticle.getGroupId(), journalArticle.getArticleId(),
 				ddmTemplate.getTemplateKey(), null,
-				contextAcceptLanguage.getPreferredLanguageId(),
-				themeDisplay);
+				contextAcceptLanguage.getPreferredLanguageId(), themeDisplay);
 
 		String content = journalArticleDisplay.getContent();
 
@@ -259,10 +257,11 @@ public class StructuredContentResourceImpl
 				contextAcceptLanguage.getPreferredLanguageId())) {
 
 			throw new BadRequestException(
-				"Unable to patch structured content with language " +
-					contextAcceptLanguage.getPreferredLanguageId() +
-						"because it is only configured to support " +
-							journalArticle.getAvailableLanguageIds());
+				StringBundler.concat(
+					"Unable to patch structured content with language ",
+					contextAcceptLanguage.getPreferredLanguageId(),
+					"because it is only configured to support ",
+					journalArticle.getAvailableLanguageIds()));
 		}
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
