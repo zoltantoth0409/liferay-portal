@@ -316,8 +316,9 @@ public class JournalContentExportImportPortletPreferencesProcessor
 								getOwnerType();
 					}
 
-					if ((portletDataContext.getPlid() > 0) && (prefOwnerType !=
-						PortletKeys.PREFS_OWNER_TYPE_ARCHIVED)) {
+					if ((portletDataContext.getPlid() > 0) &&
+						(prefOwnerType !=
+							PortletKeys.PREFS_OWNER_TYPE_ARCHIVED)) {
 
 						Layout layout = _layoutLocalService.fetchLayout(
 							portletDataContext.getPlid());
