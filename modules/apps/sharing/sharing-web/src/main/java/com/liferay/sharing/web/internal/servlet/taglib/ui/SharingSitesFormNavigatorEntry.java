@@ -74,13 +74,6 @@ public class SharingSitesFormNavigatorEntry
 			HttpServletRequest request, HttpServletResponse response)
 		throws IOException {
 
-		Group liveGroup = (Group)request.getAttribute("site.liveGroup");
-
-		request.setAttribute(
-			SharingWebKeys.GROUP_SHARING_CONFIGURATION,
-			_sharingConfigurationFactory.getGroupSharingConfiguration(
-				liveGroup));
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -91,6 +84,13 @@ public class SharingSitesFormNavigatorEntry
 		request.setAttribute(
 			SharingWebKeys.COMPANY_SHARING_CONFIGURATION,
 			companySharingConfiguration);
+
+		Group liveGroup = (Group)request.getAttribute("site.liveGroup");
+
+		request.setAttribute(
+			SharingWebKeys.GROUP_SHARING_CONFIGURATION,
+			_sharingConfigurationFactory.getGroupSharingConfiguration(
+				liveGroup));
 
 		super.include(request, response);
 	}
