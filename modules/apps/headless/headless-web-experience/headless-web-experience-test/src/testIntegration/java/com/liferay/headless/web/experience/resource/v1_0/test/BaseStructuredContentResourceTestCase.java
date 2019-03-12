@@ -120,8 +120,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Page<StructuredContent> page =
 			invokeGetContentSpaceStructuredContentsPage(
-				contentSpaceId, (String)null, Pagination.of(1, 2),
-				(String)null);
+				contentSpaceId, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -169,7 +168,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 				invokeGetContentSpaceStructuredContentsPage(
 					contentSpaceId,
 					getFilterString(entityField, "eq", structuredContent1),
-					Pagination.of(1, 2), (String)null);
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(structuredContent1),
@@ -205,7 +204,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 				invokeGetContentSpaceStructuredContentsPage(
 					contentSpaceId,
 					getFilterString(entityField, "eq", structuredContent1),
-					Pagination.of(1, 2), (String)null);
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(structuredContent1),
@@ -232,8 +231,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Page<StructuredContent> page1 =
 			invokeGetContentSpaceStructuredContentsPage(
-				contentSpaceId, (String)null, Pagination.of(1, 2),
-				(String)null);
+				contentSpaceId, null, Pagination.of(1, 2), null);
 
 		List<StructuredContent> structuredContents1 =
 			(List<StructuredContent>)page1.getItems();
@@ -243,8 +241,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Page<StructuredContent> page2 =
 			invokeGetContentSpaceStructuredContentsPage(
-				contentSpaceId, (String)null, Pagination.of(2, 2),
-				(String)null);
+				contentSpaceId, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -301,7 +298,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContent> ascPage =
 				invokeGetContentSpaceStructuredContentsPage(
-					contentSpaceId, (String)null, Pagination.of(1, 2),
+					contentSpaceId, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
 			assertEquals(
@@ -310,7 +307,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 			Page<StructuredContent> descPage =
 				invokeGetContentSpaceStructuredContentsPage(
-					contentSpaceId, (String)null, Pagination.of(1, 2),
+					contentSpaceId, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
 			assertEquals(
@@ -353,7 +350,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContent> ascPage =
 				invokeGetContentSpaceStructuredContentsPage(
-					contentSpaceId, (String)null, Pagination.of(1, 2),
+					contentSpaceId, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
 			assertEquals(
@@ -362,7 +359,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 			Page<StructuredContent> descPage =
 				invokeGetContentSpaceStructuredContentsPage(
-					contentSpaceId, (String)null, Pagination.of(1, 2),
+					contentSpaceId, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
 			assertEquals(
@@ -532,8 +529,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Page<StructuredContent> page =
 			invokeGetContentStructureStructuredContentsPage(
-				contentStructureId, (String)null, Pagination.of(1, 2),
-				(String)null);
+				contentStructureId, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -581,7 +577,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 				invokeGetContentStructureStructuredContentsPage(
 					contentStructureId,
 					getFilterString(entityField, "eq", structuredContent1),
-					Pagination.of(1, 2), (String)null);
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(structuredContent1),
@@ -617,7 +613,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 				invokeGetContentStructureStructuredContentsPage(
 					contentStructureId,
 					getFilterString(entityField, "eq", structuredContent1),
-					Pagination.of(1, 2), (String)null);
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(structuredContent1),
@@ -644,8 +640,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Page<StructuredContent> page1 =
 			invokeGetContentStructureStructuredContentsPage(
-				contentStructureId, (String)null, Pagination.of(1, 2),
-				(String)null);
+				contentStructureId, null, Pagination.of(1, 2), null);
 
 		List<StructuredContent> structuredContents1 =
 			(List<StructuredContent>)page1.getItems();
@@ -655,8 +650,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Page<StructuredContent> page2 =
 			invokeGetContentStructureStructuredContentsPage(
-				contentStructureId, (String)null, Pagination.of(2, 2),
-				(String)null);
+				contentStructureId, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -713,7 +707,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContent> ascPage =
 				invokeGetContentStructureStructuredContentsPage(
-					contentStructureId, (String)null, Pagination.of(1, 2),
+					contentStructureId, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
 			assertEquals(
@@ -722,7 +716,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 			Page<StructuredContent> descPage =
 				invokeGetContentStructureStructuredContentsPage(
-					contentStructureId, (String)null, Pagination.of(1, 2),
+					contentStructureId, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
 			assertEquals(
@@ -765,7 +759,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContent> ascPage =
 				invokeGetContentStructureStructuredContentsPage(
-					contentStructureId, (String)null, Pagination.of(1, 2),
+					contentStructureId, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
 			assertEquals(
@@ -774,7 +768,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 			Page<StructuredContent> descPage =
 				invokeGetContentStructureStructuredContentsPage(
-					contentStructureId, (String)null, Pagination.of(1, 2),
+					contentStructureId, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
 			assertEquals(

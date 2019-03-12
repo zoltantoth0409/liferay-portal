@@ -363,7 +363,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 				contentSpaceId, randomBlogPosting());
 
 		Page<BlogPosting> page = invokeGetContentSpaceBlogPostingsPage(
-			contentSpaceId, (String)null, Pagination.of(1, 2), (String)null);
+			contentSpaceId, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -408,7 +408,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 			Page<BlogPosting> page = invokeGetContentSpaceBlogPostingsPage(
 				contentSpaceId,
 				getFilterString(entityField, "eq", blogPosting1),
-				Pagination.of(1, 2), (String)null);
+				Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(blogPosting1),
@@ -443,7 +443,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 			Page<BlogPosting> page = invokeGetContentSpaceBlogPostingsPage(
 				contentSpaceId,
 				getFilterString(entityField, "eq", blogPosting1),
-				Pagination.of(1, 2), (String)null);
+				Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(blogPosting1),
@@ -469,14 +469,14 @@ public abstract class BaseBlogPostingResourceTestCase {
 				contentSpaceId, randomBlogPosting());
 
 		Page<BlogPosting> page1 = invokeGetContentSpaceBlogPostingsPage(
-			contentSpaceId, (String)null, Pagination.of(1, 2), (String)null);
+			contentSpaceId, null, Pagination.of(1, 2), null);
 
 		List<BlogPosting> blogPostings1 = (List<BlogPosting>)page1.getItems();
 
 		Assert.assertEquals(blogPostings1.toString(), 2, blogPostings1.size());
 
 		Page<BlogPosting> page2 = invokeGetContentSpaceBlogPostingsPage(
-			contentSpaceId, (String)null, Pagination.of(2, 2), (String)null);
+			contentSpaceId, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -527,7 +527,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<BlogPosting> ascPage = invokeGetContentSpaceBlogPostingsPage(
-				contentSpaceId, (String)null, Pagination.of(1, 2),
+				contentSpaceId, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -535,7 +535,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 				(List<BlogPosting>)ascPage.getItems());
 
 			Page<BlogPosting> descPage = invokeGetContentSpaceBlogPostingsPage(
-				contentSpaceId, (String)null, Pagination.of(1, 2),
+				contentSpaceId, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -573,7 +573,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<BlogPosting> ascPage = invokeGetContentSpaceBlogPostingsPage(
-				contentSpaceId, (String)null, Pagination.of(1, 2),
+				contentSpaceId, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -581,7 +581,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 				(List<BlogPosting>)ascPage.getItems());
 
 			Page<BlogPosting> descPage = invokeGetContentSpaceBlogPostingsPage(
-				contentSpaceId, (String)null, Pagination.of(1, 2),
+				contentSpaceId, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(

@@ -267,7 +267,7 @@ public abstract class BaseCategoryResourceTestCase {
 			categoryId, randomCategory());
 
 		Page<Category> page = invokeGetCategoryCategoriesPage(
-			categoryId, (String)null, Pagination.of(1, 2), (String)null);
+			categoryId, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -310,7 +310,7 @@ public abstract class BaseCategoryResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Category> page = invokeGetCategoryCategoriesPage(
 				categoryId, getFilterString(entityField, "eq", category1),
-				Pagination.of(1, 2), (String)null);
+				Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(category1),
@@ -341,7 +341,7 @@ public abstract class BaseCategoryResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Category> page = invokeGetCategoryCategoriesPage(
 				categoryId, getFilterString(entityField, "eq", category1),
-				Pagination.of(1, 2), (String)null);
+				Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(category1),
@@ -361,14 +361,14 @@ public abstract class BaseCategoryResourceTestCase {
 			categoryId, randomCategory());
 
 		Page<Category> page1 = invokeGetCategoryCategoriesPage(
-			categoryId, (String)null, Pagination.of(1, 2), (String)null);
+			categoryId, null, Pagination.of(1, 2), null);
 
 		List<Category> categories1 = (List<Category>)page1.getItems();
 
 		Assert.assertEquals(categories1.toString(), 2, categories1.size());
 
 		Page<Category> page2 = invokeGetCategoryCategoriesPage(
-			categoryId, (String)null, Pagination.of(2, 2), (String)null);
+			categoryId, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -418,7 +418,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Category> ascPage = invokeGetCategoryCategoriesPage(
-				categoryId, (String)null, Pagination.of(1, 2),
+				categoryId, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -426,7 +426,7 @@ public abstract class BaseCategoryResourceTestCase {
 				(List<Category>)ascPage.getItems());
 
 			Page<Category> descPage = invokeGetCategoryCategoriesPage(
-				categoryId, (String)null, Pagination.of(1, 2),
+				categoryId, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -461,7 +461,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Category> ascPage = invokeGetCategoryCategoriesPage(
-				categoryId, (String)null, Pagination.of(1, 2),
+				categoryId, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -469,7 +469,7 @@ public abstract class BaseCategoryResourceTestCase {
 				(List<Category>)ascPage.getItems());
 
 			Page<Category> descPage = invokeGetCategoryCategoriesPage(
-				categoryId, (String)null, Pagination.of(1, 2),
+				categoryId, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -621,7 +621,7 @@ public abstract class BaseCategoryResourceTestCase {
 			vocabularyId, randomCategory());
 
 		Page<Category> page = invokeGetVocabularyCategoriesPage(
-			vocabularyId, (String)null, Pagination.of(1, 2), (String)null);
+			vocabularyId, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -664,7 +664,7 @@ public abstract class BaseCategoryResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Category> page = invokeGetVocabularyCategoriesPage(
 				vocabularyId, getFilterString(entityField, "eq", category1),
-				Pagination.of(1, 2), (String)null);
+				Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(category1),
@@ -695,7 +695,7 @@ public abstract class BaseCategoryResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Category> page = invokeGetVocabularyCategoriesPage(
 				vocabularyId, getFilterString(entityField, "eq", category1),
-				Pagination.of(1, 2), (String)null);
+				Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(category1),
@@ -717,14 +717,14 @@ public abstract class BaseCategoryResourceTestCase {
 			vocabularyId, randomCategory());
 
 		Page<Category> page1 = invokeGetVocabularyCategoriesPage(
-			vocabularyId, (String)null, Pagination.of(1, 2), (String)null);
+			vocabularyId, null, Pagination.of(1, 2), null);
 
 		List<Category> categories1 = (List<Category>)page1.getItems();
 
 		Assert.assertEquals(categories1.toString(), 2, categories1.size());
 
 		Page<Category> page2 = invokeGetVocabularyCategoriesPage(
-			vocabularyId, (String)null, Pagination.of(2, 2), (String)null);
+			vocabularyId, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -774,7 +774,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Category> ascPage = invokeGetVocabularyCategoriesPage(
-				vocabularyId, (String)null, Pagination.of(1, 2),
+				vocabularyId, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -782,7 +782,7 @@ public abstract class BaseCategoryResourceTestCase {
 				(List<Category>)ascPage.getItems());
 
 			Page<Category> descPage = invokeGetVocabularyCategoriesPage(
-				vocabularyId, (String)null, Pagination.of(1, 2),
+				vocabularyId, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -819,7 +819,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Category> ascPage = invokeGetVocabularyCategoriesPage(
-				vocabularyId, (String)null, Pagination.of(1, 2),
+				vocabularyId, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -827,7 +827,7 @@ public abstract class BaseCategoryResourceTestCase {
 				(List<Category>)ascPage.getItems());
 
 			Page<Category> descPage = invokeGetVocabularyCategoriesPage(
-				vocabularyId, (String)null, Pagination.of(1, 2),
+				vocabularyId, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(

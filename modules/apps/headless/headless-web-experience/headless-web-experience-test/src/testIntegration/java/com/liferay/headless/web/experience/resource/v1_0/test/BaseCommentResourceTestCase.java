@@ -268,7 +268,7 @@ public abstract class BaseCommentResourceTestCase {
 			commentId, randomComment());
 
 		Page<Comment> page = invokeGetCommentCommentsPage(
-			commentId, (String)null, Pagination.of(1, 2), (String)null);
+			commentId, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -308,7 +308,7 @@ public abstract class BaseCommentResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Comment> page = invokeGetCommentCommentsPage(
 				commentId, getFilterString(entityField, "eq", comment1),
-				Pagination.of(1, 2), (String)null);
+				Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(comment1),
@@ -339,7 +339,7 @@ public abstract class BaseCommentResourceTestCase {
 		for (EntityField entityField : entityFields) {
 			Page<Comment> page = invokeGetCommentCommentsPage(
 				commentId, getFilterString(entityField, "eq", comment1),
-				Pagination.of(1, 2), (String)null);
+				Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(comment1),
@@ -359,14 +359,14 @@ public abstract class BaseCommentResourceTestCase {
 			commentId, randomComment());
 
 		Page<Comment> page1 = invokeGetCommentCommentsPage(
-			commentId, (String)null, Pagination.of(1, 2), (String)null);
+			commentId, null, Pagination.of(1, 2), null);
 
 		List<Comment> comments1 = (List<Comment>)page1.getItems();
 
 		Assert.assertEquals(comments1.toString(), 2, comments1.size());
 
 		Page<Comment> page2 = invokeGetCommentCommentsPage(
-			commentId, (String)null, Pagination.of(2, 2), (String)null);
+			commentId, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -412,7 +412,7 @@ public abstract class BaseCommentResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Comment> ascPage = invokeGetCommentCommentsPage(
-				commentId, (String)null, Pagination.of(1, 2),
+				commentId, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -420,7 +420,7 @@ public abstract class BaseCommentResourceTestCase {
 				(List<Comment>)ascPage.getItems());
 
 			Page<Comment> descPage = invokeGetCommentCommentsPage(
-				commentId, (String)null, Pagination.of(1, 2),
+				commentId, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -453,7 +453,7 @@ public abstract class BaseCommentResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Comment> ascPage = invokeGetCommentCommentsPage(
-				commentId, (String)null, Pagination.of(1, 2),
+				commentId, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -461,7 +461,7 @@ public abstract class BaseCommentResourceTestCase {
 				(List<Comment>)ascPage.getItems());
 
 			Page<Comment> descPage = invokeGetCommentCommentsPage(
-				commentId, (String)null, Pagination.of(1, 2),
+				commentId, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -610,8 +610,7 @@ public abstract class BaseCommentResourceTestCase {
 			structuredContentId, randomComment());
 
 		Page<Comment> page = invokeGetStructuredContentCommentsPage(
-			structuredContentId, (String)null, Pagination.of(1, 2),
-			(String)null);
+			structuredContentId, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -655,7 +654,7 @@ public abstract class BaseCommentResourceTestCase {
 			Page<Comment> page = invokeGetStructuredContentCommentsPage(
 				structuredContentId,
 				getFilterString(entityField, "eq", comment1),
-				Pagination.of(1, 2), (String)null);
+				Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(comment1),
@@ -688,7 +687,7 @@ public abstract class BaseCommentResourceTestCase {
 			Page<Comment> page = invokeGetStructuredContentCommentsPage(
 				structuredContentId,
 				getFilterString(entityField, "eq", comment1),
-				Pagination.of(1, 2), (String)null);
+				Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(comment1),
@@ -711,16 +710,14 @@ public abstract class BaseCommentResourceTestCase {
 			structuredContentId, randomComment());
 
 		Page<Comment> page1 = invokeGetStructuredContentCommentsPage(
-			structuredContentId, (String)null, Pagination.of(1, 2),
-			(String)null);
+			structuredContentId, null, Pagination.of(1, 2), null);
 
 		List<Comment> comments1 = (List<Comment>)page1.getItems();
 
 		Assert.assertEquals(comments1.toString(), 2, comments1.size());
 
 		Page<Comment> page2 = invokeGetStructuredContentCommentsPage(
-			structuredContentId, (String)null, Pagination.of(2, 2),
-			(String)null);
+			structuredContentId, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -771,7 +768,7 @@ public abstract class BaseCommentResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Comment> ascPage = invokeGetStructuredContentCommentsPage(
-				structuredContentId, (String)null, Pagination.of(1, 2),
+				structuredContentId, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -779,7 +776,7 @@ public abstract class BaseCommentResourceTestCase {
 				(List<Comment>)ascPage.getItems());
 
 			Page<Comment> descPage = invokeGetStructuredContentCommentsPage(
-				structuredContentId, (String)null, Pagination.of(1, 2),
+				structuredContentId, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
@@ -817,7 +814,7 @@ public abstract class BaseCommentResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<Comment> ascPage = invokeGetStructuredContentCommentsPage(
-				structuredContentId, (String)null, Pagination.of(1, 2),
+				structuredContentId, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
 			assertEquals(
@@ -825,7 +822,7 @@ public abstract class BaseCommentResourceTestCase {
 				(List<Comment>)ascPage.getItems());
 
 			Page<Comment> descPage = invokeGetStructuredContentCommentsPage(
-				structuredContentId, (String)null, Pagination.of(1, 2),
+				structuredContentId, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
 			assertEquals(
