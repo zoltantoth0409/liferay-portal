@@ -378,11 +378,7 @@ definition {
 
 		Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		PortletEntry.publish();
 	}
@@ -436,11 +432,7 @@ definition {
 			key_threadReplyBody = "${threadReplyBody}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Mark as an Answer",
-			key_menuItem = "Mark as an Answer"
-		);
+		MenuItem.click(menuItem = "Mark as an Answer");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "MessageBoardsThread#MESSAGE_ANSWER_1",
@@ -454,11 +446,7 @@ definition {
 			key_threadReplyBody = "${threadReplyBody}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Mark as an Answer",
-			key_menuItem = "Mark as an Answer"
-		);
+		MenuItem.click(menuItem = "Mark as an Answer");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "MessageBoardsThread#MESSAGE_ANSWER_1",
@@ -478,11 +466,7 @@ definition {
 			key_threadSubject = "${threadSubject}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Move",
-			key_menuItem = "Move"
-		);
+		MenuItem.click(menuItem = "Move");
 
 		AssertClick(locator1 = "Button#SELECT", value1 = "Select");
 
@@ -691,11 +675,7 @@ definition {
 	macro splitThreadPG {
 		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS_2");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Split Thread",
-			key_menuItem = "Split Thread"
-		);
+		MenuItem.click(menuItem = "Split Thread");
 
 		AssertTextEquals(
 			locator1 = "Message#INFO",

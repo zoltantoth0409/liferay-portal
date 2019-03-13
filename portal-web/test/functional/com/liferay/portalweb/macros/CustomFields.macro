@@ -41,11 +41,7 @@ definition {
 
 		Click(locator1 = "CustomFieldsEditResource#CUSTOM_FIELDS_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		if (isSet(defaultValue)) {
 			if ("${customFieldType}" == "True/False") {

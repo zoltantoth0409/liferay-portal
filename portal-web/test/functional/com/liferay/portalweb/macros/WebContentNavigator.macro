@@ -65,11 +65,7 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${structureName}",
-			key_menuItem = "${structureName}"
-		);
+		MenuItem.click(menuItem = "${structureName}");
 	}
 
 	macro gotoEditCP {
@@ -78,11 +74,7 @@ definition {
 			webContentTitleEscapeCharacter = "${webContentTitleEscapeCharacter}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		AssertElementPresent(locator1 = "Icon#BACK");
 	}
@@ -154,11 +146,7 @@ definition {
 			webContentTitleEscapeCharacter = "${webContentTitleEscapeCharacter}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Preview",
-			key_menuItem = "Preview"
-		);
+		MenuItem.click(menuItem = "Preview");
 	}
 
 	macro gotoPreviewViaHeaderCP {

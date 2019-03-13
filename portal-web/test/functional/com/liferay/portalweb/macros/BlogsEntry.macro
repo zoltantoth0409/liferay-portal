@@ -465,11 +465,7 @@ definition {
 
 		Click(locator1 = "Icon#DESCRIPTIVE_HEADER_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Permissions",
-			key_menuItem = "Permissions"
-		);
+		MenuItem.click(menuItem = "Permissions");
 
 		IFrame.selectPermissionsFrame();
 

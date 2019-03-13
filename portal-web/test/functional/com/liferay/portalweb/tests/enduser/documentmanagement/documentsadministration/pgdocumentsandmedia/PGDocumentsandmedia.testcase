@@ -850,11 +850,7 @@ definition {
 
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Google Docs",
-			key_menuItem = "Google Docs"
-		);
+		MenuItem.click(menuItem = "Google Docs");
 
 		GoogleDoc.gotoDrive(
 			userEmailAddress = PropsUtil.get("email.address.3"),
@@ -1212,11 +1208,7 @@ definition {
 
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Google Docs",
-			key_menuItem = "Google Docs"
-		);
+		MenuItem.click(menuItem = "Google Docs");
 
 		GoogleDoc.gotoDrive(
 			userEmailAddress = PropsUtil.get("email.address.3"),

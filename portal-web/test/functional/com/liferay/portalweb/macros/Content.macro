@@ -18,11 +18,7 @@ definition {
 			value1 = "Add New"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${assetType}",
-			key_menuItem = "${assetType}"
-		);
+		MenuItem.click(menuItem = "${assetType}");
 	}
 
 	macro addPG {

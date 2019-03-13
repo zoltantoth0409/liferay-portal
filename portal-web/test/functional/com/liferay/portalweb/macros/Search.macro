@@ -55,11 +55,7 @@ definition {
 
 		Click.makeVisibleClickAt(locator1 = "Search#SEARCH_PORTLET_OPTIONS_WRENCH");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Configuration",
-			key_menuItem = "Configuration"
-		);
+		MenuItem.click(menuItem = "Configuration");
 
 		IFrame.selectConfigurationFrame();
 

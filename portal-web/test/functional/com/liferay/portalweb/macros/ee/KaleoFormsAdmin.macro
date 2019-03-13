@@ -278,11 +278,7 @@ definition {
 			Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 		}
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		Confirm(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -307,11 +303,7 @@ definition {
 
 		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		Confirm(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -366,11 +358,7 @@ definition {
 
 		var key_paginationNumber = "${paginationNumber}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${paginationNumber}",
-			key_menuItem = "${paginationNumber}"
-		);
+		MenuItem.click(menuItem = "${paginationNumber}");
 
 		AssertTextEquals(
 			locator1 = "KaleoFormsAdminEditProcess#FIELD_SET_PAGINATION_SELECTOR_BUTTON",

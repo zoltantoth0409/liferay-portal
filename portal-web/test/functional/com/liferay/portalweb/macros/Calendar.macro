@@ -464,11 +464,7 @@ definition {
 
 		Click(locator1 = "CalendarManageCalendars#CALENDAR_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Export",
-			key_menuItem = "Export"
-		);
+		MenuItem.click(menuItem = "Export");
 
 		Pause(locator1 = "5000");
 
@@ -507,11 +503,7 @@ definition {
 
 		Click(locator1 = "CalendarManageCalendars#CALENDAR_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Import",
-			key_menuItem = "Import"
-		);
+		MenuItem.click(menuItem = "Import");
 
 		UploadCommonFile(
 			locator1 = "CalendarImport#FILE_FIELD",

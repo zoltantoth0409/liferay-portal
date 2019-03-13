@@ -17,10 +17,6 @@ definition {
 			key_kfFieldSetName = "${kfFieldSetName}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Forms",
-			key_menuItem = "Manage Forms"
-		);
+		MenuItem.click(menuItem = "Manage Forms");
 	}
 }

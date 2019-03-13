@@ -195,11 +195,7 @@ definition {
 			key_portletName = "${portletName}"
 		);
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Remove",
-			key_menuItem = "Remove"
-		);
+		MenuItem.clickNoError(menuItem = "Remove");
 
 		Confirm(value1 = "Are you sure you want to remove this component?");
 	}

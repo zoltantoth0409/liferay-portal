@@ -609,11 +609,7 @@ definition {
 
 		Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Panel.expandPanel(panelHeading = "Roles");
 
@@ -653,11 +649,7 @@ definition {
 
 		Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Pause(locator1 = "5000");
 
@@ -701,11 +693,7 @@ definition {
 
 		Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Panel.expandPanel(panelHeading = "Roles");
 
@@ -1016,11 +1004,7 @@ definition {
 
 		Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Select(
 			locator1 = "LanguageConfiguration#DEFAULT_LANGUAGE_SELECT",
@@ -1473,11 +1457,7 @@ definition {
 
 		Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Impersonate User",
-			key_menuItem = "Impersonate User"
-		);
+		MenuItem.click(menuItem = "Impersonate User");
 
 		SelectWindow(locator1 = "title=Welcome - ${siteName}");
 

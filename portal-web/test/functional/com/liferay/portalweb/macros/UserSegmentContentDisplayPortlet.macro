@@ -59,11 +59,7 @@ definition {
 
 		var key_menuItem = "${contentType}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${contentType}",
-			key_menuItem = "${contentType}"
-		);
+		MenuItem.click(menuItem = "${contentType}");
 
 		SelectFrame(value1 = "relative=top");
 

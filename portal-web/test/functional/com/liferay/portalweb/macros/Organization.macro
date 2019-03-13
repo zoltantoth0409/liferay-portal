@@ -159,11 +159,7 @@ definition {
 
 		var key_orgName = "${orgName}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Assign Users",
-			key_menuItem = "Assign Users"
-		);
+		MenuItem.click(menuItem = "Assign Users");
 
 		Navigator.gotoNavTab(navTab = "Available");
 
@@ -305,11 +301,7 @@ definition {
 
 		var key_orgName = "${orgName}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Pause(locator1 = "3000");
 
@@ -351,11 +343,7 @@ definition {
 	macro addSiteCPWithPrivatePage {
 		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Pause(locator1 = "3000");
 
@@ -447,11 +435,7 @@ definition {
 
 		Pause(locator1 = "5000");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Assign Organization Roles",
-			key_menuItem = "Assign Organization Roles"
-		);
+		MenuItem.click(menuItem = "Assign Organization Roles");
 
 		SelectFrame(locator1 = "IFrame#DIALOG");
 
@@ -504,11 +488,7 @@ definition {
 
 		var key_orgName = "${orgName}";
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		Confirm(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -545,11 +525,7 @@ definition {
 
 		var key_orgName = "${orgName}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Organization.gotoOrganizationInformationCP(panelHeading = "${panelHeading}");
 	}
@@ -559,11 +535,7 @@ definition {
 
 		var key_orgName = "${orgName}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Type(locator1 = "TextInput#NAME", value1 = "${orgNameEdit}");
 
@@ -652,11 +624,7 @@ definition {
 
 		var key_orgName = "${orgName}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Site",
-			key_menuItem = "Manage Site"
-		);
+		MenuItem.click(menuItem = "Manage Site");
 
 		if ("${selectMembershipType}" == "true") {
 			AssertTextEquals(
@@ -684,11 +652,7 @@ definition {
 
 		var key_orgName = "${orgName}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Assign Users",
-			key_menuItem = "Assign Users"
-		);
+		MenuItem.click(menuItem = "Assign Users");
 
 		var key_userScreenName = "${userScreenName}";
 
@@ -735,11 +699,7 @@ definition {
 
 		Click(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		AssertClick(
 			locator1 = "UsersAndOrganizationsEditOrganization#PARENT_ORGANIZATION_SELECT_BUTTON",
@@ -845,11 +805,7 @@ definition {
 
 		Click(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		var key_orgType = "${orgType}";
 
@@ -875,11 +831,7 @@ definition {
 			key_orgName = "${orgName}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${editLocalized}",
-			key_menuItem = "${editLocalized}"
-		);
+		MenuItem.click(menuItem = "${editLocalized}");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "UsersAndOrganizations#ORGANIZATION_COUNTRY_NAME",
@@ -907,11 +859,7 @@ definition {
 
 		var key_orgName = "${orgName}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		AssertClick(
 			locator1 = "UsersAndOrganizationsEditOrganization#PARENT_ORGANIZATION_SELECT_BUTTON",

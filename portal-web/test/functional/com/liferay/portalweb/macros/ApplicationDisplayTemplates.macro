@@ -6,11 +6,7 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${adtType} Template",
-			key_menuItem = "${adtType} Template"
-		);
+		MenuItem.click(menuItem = "${adtType} Template");
 
 		SiteAdmin.viewPortletTitle(portletTitle = "New ${adtType} Template");
 

@@ -6,11 +6,7 @@ definition {
 
 		var key_dmDocumentTypeName = "${dmDocumentTypeName}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${dmDocumentTypeName}",
-			key_menuItem = "${dmDocumentTypeName}"
-		);
+		MenuItem.click(menuItem = "${dmDocumentTypeName}");
 	}
 
 	macro gotoAddRepositoryCP {
@@ -22,11 +18,7 @@ definition {
 	macro gotoAddRepositoryPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Repository",
-			key_menuItem = "Repository"
-		);
+		MenuItem.click(menuItem = "Repository");
 	}
 
 	macro gotoCheckedOutDocument {
@@ -82,11 +74,7 @@ definition {
 	macro gotoDocumentVersion {
 		DMNavigator.gotoDocumentDetails();
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Versions",
-			key_menuItem = "Versions"
-		);
+		MenuItem.click(menuItem = "Versions");
 	}
 
 	macro gotoEditDocument {
@@ -94,11 +82,7 @@ definition {
 
 		Click(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 	}
 
 	macro gotoFolder {
@@ -117,11 +101,7 @@ definition {
 
 		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Permissions",
-			key_menuItem = "Permissions"
-		);
+		MenuItem.click(menuItem = "Permissions");
 
 		IFrame.selectDialogFrame();
 	}

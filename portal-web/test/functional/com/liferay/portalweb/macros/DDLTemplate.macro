@@ -31,11 +31,7 @@ definition {
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Templates",
-			key_menuItem = "Manage Templates"
-		);
+		MenuItem.click(menuItem = "Manage Templates");
 
 		AssertElementPresent.assertVisible(
 			locator1 = "Portlet#HEADER",
@@ -134,11 +130,7 @@ definition {
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Templates",
-			key_menuItem = "Manage Templates"
-		);
+		MenuItem.click(menuItem = "Manage Templates");
 
 		AssertElementPresent.assertVisible(
 			locator1 = "Portlet#HEADER",
@@ -189,11 +181,7 @@ definition {
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Templates",
-			key_menuItem = "Manage Templates"
-		);
+		MenuItem.click(menuItem = "Manage Templates");
 
 		Type(locator1 = "NavBar#BASIC_SEARCH_FIELD", value1 = "${ddlTemplateName}");
 
@@ -230,11 +218,7 @@ definition {
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Templates",
-			key_menuItem = "Manage Templates"
-		);
+		MenuItem.click(menuItem = "Manage Templates");
 
 		Type(locator1 = "NavBar#BASIC_SEARCH_FIELD", value1 = "${ddlTemplateName}");
 
@@ -260,21 +244,13 @@ definition {
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Templates",
-			key_menuItem = "Manage Templates"
-		);
+		MenuItem.click(menuItem = "Manage Templates");
 
 		var key_ddlTemplateName = "${ddlDisplayTemplateName}";
 
 		Click(locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Pause(locator1 = "1000");
 
@@ -309,11 +285,7 @@ definition {
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Templates",
-			key_menuItem = "Manage Templates"
-		);
+		MenuItem.click(menuItem = "Manage Templates");
 
 		Type(
 			locator1 = "DDMSelectTemplate#TOOLBAR_SEARCH_FIELD",
@@ -324,11 +296,7 @@ definition {
 
 		Click(locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_ELLIPSIS_1");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		PortletEntry.inputName(name = "${ddlFormTemplateNameEdit}");
 	}
@@ -468,11 +436,7 @@ definition {
 
 		Click(locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		AssertTextEquals(
 			locator1 = "Portlet#HEADER",

@@ -190,11 +190,7 @@ definition {
 			workflowTask = "${workflowTask}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Assign to Me",
-			key_menuItem = "Assign to Me"
-		);
+		MenuItem.click(menuItem = "Assign to Me");
 
 		if (isSet(workflowActivityComment)) {
 			IFrame.selectDialogFrame();
@@ -347,11 +343,7 @@ definition {
 	}
 
 	macro deactivateWorkflowDefinitionCmd {
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Deactivate",
-			key_menuItem = "Deactivate"
-		);
+		MenuItem.clickNoError(menuItem = "Deactivate");
 
 		Confirm(value1 = "Are you sure you want to deactivate this?");
 
@@ -376,11 +368,7 @@ definition {
 	}
 
 	macro deleteWorkflowDefinitionCmd {
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		Confirm(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -480,11 +468,7 @@ definition {
 			locator1 = "WorkflowDefinition#DEFINITION_TABLE_DEACTIVATED_DEFINITION_ELLIPSIS"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Activate",
-			key_menuItem = "Activate"
-		);
+		MenuItem.click(menuItem = "Activate");
 
 		Alert.waitForSuccessMessageHide();
 
@@ -722,11 +706,7 @@ definition {
 			workflowTask = "${workflowTask}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Update Due Date",
-			key_menuItem = "Update Due Date"
-		);
+		MenuItem.click(menuItem = "Update Due Date");
 
 		Click(locator1 = "MyWorkflowTasks#DIALOG_BOX_DUE_DATE");
 
@@ -779,11 +759,7 @@ definition {
 			workflowTask = "${workflowTask}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Update Due Date",
-			key_menuItem = "Update Due Date"
-		);
+		MenuItem.click(menuItem = "Update Due Date");
 
 		Click(locator1 = "MyWorkflowTasks#DIALOG_BOX_DUE_DATE");
 

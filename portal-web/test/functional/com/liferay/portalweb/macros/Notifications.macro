@@ -15,11 +15,7 @@ definition {
 
 		Click(locator1 = "Notifications#NOTIFICATIONS_VERTICAL_ELLIPSIS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		AssertElementNotPresent(locator1 = "Notifications#NOTIFICATIONS_CONTENT");
 	}
@@ -77,11 +73,7 @@ definition {
 
 		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.click(menuItem = "${menuItem}");
 
 		IFrame.selectDialogFrame();
 

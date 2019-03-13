@@ -13,11 +13,7 @@ definition {
 			Click.waitForMenuToggleJSClick(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS");
 		}
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 	}
 
 	macro editSecurityCredential {
@@ -72,11 +68,7 @@ definition {
 			Click.waitForMenuToggleJSClick(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS");
 		}
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Reset Default Values",
-			key_menuItem = "Reset Default Values"
-		);
+		MenuItem.click(menuItem = "Reset Default Values");
 
 		Alert.viewSuccessMessage();
 	}

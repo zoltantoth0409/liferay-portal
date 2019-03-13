@@ -210,11 +210,7 @@ definition {
 	macro addLocale {
 		Click(locator1 = "Translation#ADD");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${language}",
-			key_menuItem = "${language}"
-		);
+		MenuItem.click(menuItem = "${language}");
 
 		WebContent.selectLocale(locale = "${locale}");
 	}
@@ -367,11 +363,7 @@ definition {
 
 		Click(locator1 = "Translation#ADD");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${localizedLanguage}",
-			key_menuItem = "${localizedLanguage}"
-		);
+		MenuItem.click(menuItem = "${localizedLanguage}");
 
 		if (!(IsElementPresent(locator1 = "Translation#SELECTED_LOCALE", value1 = "${localizedLanguage}", key_localizedLanguage = "${localizedLanguage}"))) {
 			Click(
@@ -1226,11 +1218,7 @@ definition {
 
 		Click(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS_N");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		AssertVisible(locator1 = "TextInput#TITLE");
 	}
@@ -1358,11 +1346,7 @@ definition {
 			value1 = "20 Entries"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${itemsPerPage}",
-			key_menuItem = "${itemsPerPage}"
-		);
+		MenuItem.click(menuItem = "${itemsPerPage}");
 	}
 
 	macro preview {

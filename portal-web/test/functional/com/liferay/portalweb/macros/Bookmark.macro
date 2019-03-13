@@ -89,11 +89,7 @@ definition {
 	macro addInvalidURLPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Bookmarks");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Bookmark",
-			key_menuItem = "Bookmark"
-		);
+		MenuItem.click(menuItem = "Bookmark");
 
 		PortletEntry.inputName(name = "${bookmarkName}");
 
@@ -141,11 +137,7 @@ definition {
 	macro addPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Bookmarks");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Bookmark",
-			key_menuItem = "Bookmark"
-		);
+		MenuItem.click(menuItem = "Bookmark");
 
 		if (isSet(bookmarkName)) {
 			PortletEntry.inputName(name = "${bookmarkName}");

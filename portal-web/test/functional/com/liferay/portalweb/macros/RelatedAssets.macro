@@ -10,11 +10,7 @@ definition {
 		var assetTypeLocator = StringUtil.replace("${assetType}", " ", "_");
 		var assetTypeLocator = StringUtil.upperCase("${assetTypeLocator}");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${assetType}",
-			key_menuItem = "${assetType}"
-		);
+		MenuItem.click(menuItem = "${assetType}");
 	}
 
 	macro configureFilterByCategories {
@@ -64,11 +60,7 @@ definition {
 	macro gotoBookmarksSelectionPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Bookmarks");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Bookmark",
-			key_menuItem = "Bookmark"
-		);
+		MenuItem.click(menuItem = "Bookmark");
 
 		Panel.expandPanel(panelHeading = "Related Assets");
 

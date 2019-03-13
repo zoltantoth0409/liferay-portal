@@ -1240,11 +1240,7 @@ definition {
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Templates",
-			key_menuItem = "Manage Templates"
-		);
+		MenuItem.click(menuItem = "Manage Templates");
 
 		Click(locator1 = "Icon#ANGLE_LEFT_BACK");
 

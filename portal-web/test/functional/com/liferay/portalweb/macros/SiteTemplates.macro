@@ -55,11 +55,7 @@ definition {
 
 		Click(locator1 = "SitePages#PRIVATE_PAGE_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Add Page",
-			key_menuItem = "Add Page"
-		);
+		MenuItem.click(menuItem = "Add Page");
 
 		if (isSet(pageType)) {
 			Select(locator1 = "SitePagesEditPage#PAGE_TYPE_SELECT", value1 = "${pageType}");
@@ -98,11 +94,7 @@ definition {
 
 		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		Confirm(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -167,11 +159,7 @@ definition {
 
 		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage",
-			key_menuItem = "Manage"
-		);
+		MenuItem.click(menuItem = "Manage");
 
 		ProductMenuHelper.openProductMenu();
 
@@ -318,11 +306,7 @@ definition {
 
 		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage",
-			key_menuItem = "Manage"
-		);
+		MenuItem.click(menuItem = "Manage");
 
 		ProductMenuHelper.expandPanel(panel = "Site Administration");
 

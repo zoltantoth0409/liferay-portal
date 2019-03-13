@@ -65,11 +65,7 @@ definition {
 	macro addPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Bookmarks");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Folder",
-			key_menuItem = "Folder"
-		);
+		MenuItem.click(menuItem = "Folder");
 
 		PortletEntry.inputName(name = "${folderName}");
 
@@ -114,11 +110,7 @@ definition {
 	macro addSubfolderPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Bookmarks");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Subfolder",
-			key_menuItem = "Subfolder"
-		);
+		MenuItem.click(menuItem = "Subfolder");
 
 		PortletEntry.inputName(name = "${folderName}");
 

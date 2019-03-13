@@ -9,11 +9,7 @@ definition {
 
 		Click(locator1 = "ReportsAdminViewReportEntry#ENTRY_FILE_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Download",
-			key_menuItem = "Download"
-		);
+		MenuItem.click(menuItem = "Download");
 
 		Pause(locator1 = "2000");
 

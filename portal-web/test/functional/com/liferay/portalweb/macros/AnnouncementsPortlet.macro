@@ -25,10 +25,6 @@ definition {
 
 		var key_itemsPerPage = "${itemsPerPage}";
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${itemsPerPage}",
-			key_menuItem = "${itemsPerPage}"
-		);
+		MenuItem.click(menuItem = "${itemsPerPage}");
 	}
 }

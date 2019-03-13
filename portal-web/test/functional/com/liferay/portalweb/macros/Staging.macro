@@ -640,11 +640,7 @@ definition {
 
 		Click(locator1 = "StagingManageVariations#SITE_PAGES_VARIATIONS_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Type(
 			locator1 = "StagingManageVariations#MANAGE_VARIATION",
@@ -1337,11 +1333,7 @@ definition {
 			Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 		}
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Publish Templates",
-			key_menuItem = "Publish Templates"
-		);
+		MenuItem.click(menuItem = "Publish Templates");
 
 		var key_publishTemplateName = "${publishTemplateName}";
 

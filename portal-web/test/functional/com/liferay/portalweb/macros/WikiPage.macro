@@ -424,11 +424,7 @@ definition {
 
 		AssertClick(locator1 = "NavBar#DETAILS", value1 = "Details");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Versions",
-			key_menuItem = "Versions"
-		);
+		MenuItem.click(menuItem = "Versions");
 
 		var key_wikiPageVersion = "${wikiPageVersionNew}";
 
@@ -657,11 +653,7 @@ definition {
 
 		Click(locator1 = "Comments#COMMENT_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Type.typeEditor(
 			locator1 = "Comments#EDIT_COMMENT_FIELD",
@@ -690,11 +682,7 @@ definition {
 
 		Click(locator1 = "Wiki#DESCRIPTIVE_VIEW_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Click(locator1 = "AlloyEditor#CONTENT_FIELD");
 
@@ -710,11 +698,7 @@ definition {
 
 		Click(locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		AlloyEditor.addContent(content = "${wikiPageContentEdit}");
 
@@ -894,11 +878,7 @@ definition {
 
 		Click(locator1 = "Wiki#HISTORY_VERSIONS_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Revert",
-			key_menuItem = "Revert"
-		);
+		MenuItem.click(menuItem = "Revert");
 
 		Alert.viewSuccessMessage();
 
@@ -927,11 +907,7 @@ definition {
 
 		Click(locator1 = "Wiki#HISTORY_VERSIONS_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Revert",
-			key_menuItem = "Revert"
-		);
+		MenuItem.click(menuItem = "Revert");
 
 		Alert.viewSuccessMessage();
 

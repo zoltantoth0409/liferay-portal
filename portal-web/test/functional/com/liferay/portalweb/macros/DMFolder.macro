@@ -29,11 +29,7 @@ definition {
 	macro addPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Folder",
-			key_menuItem = "Folder"
-		);
+		MenuItem.click(menuItem = "Folder");
 
 		Pause(locator1 = "1000");
 
@@ -73,11 +69,7 @@ definition {
 	macro addPGViaMG {
 		Portlet.clickPortletPlusIconPG(portletName = "Media Gallery");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Folder",
-			key_menuItem = "Folder"
-		);
+		MenuItem.click(menuItem = "Folder");
 
 		Pause(locator1 = "1000");
 
@@ -132,11 +124,7 @@ definition {
 	macro addSubfolderPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Subfolder",
-			key_menuItem = "Subfolder"
-		);
+		MenuItem.click(menuItem = "Subfolder");
 
 		Pause(locator1 = "1000");
 
@@ -172,11 +160,7 @@ definition {
 	macro addSubfolderPGViaMG {
 		Portlet.clickPortletPlusIconPG(portletName = "Media Gallery");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Subfolder",
-			key_menuItem = "Subfolder"
-		);
+		MenuItem.click(menuItem = "Subfolder");
 
 		Pause(locator1 = "1000");
 
@@ -314,11 +298,7 @@ definition {
 
 		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		PortletEntry.inputName(name = "${dmFolderNameEdit}");
 
@@ -344,11 +324,7 @@ definition {
 
 		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		PortletEntry.inputName(name = "${dmFolderNameEdit}");
 
@@ -418,11 +394,7 @@ definition {
 
 		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 	}
 
 	macro gotoPGViaMG {
@@ -453,11 +425,7 @@ definition {
 
 		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Move",
-			key_menuItem = "Move"
-		);
+		MenuItem.click(menuItem = "Move");
 
 		AssertClick(locator1 = "Button#SELECT", value1 = "Select");
 
@@ -683,11 +651,7 @@ definition {
 
 		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Permissions",
-			key_menuItem = "Permissions"
-		);
+		MenuItem.click(menuItem = "Permissions");
 
 		IFrame.selectPermissionsFrame();
 	}

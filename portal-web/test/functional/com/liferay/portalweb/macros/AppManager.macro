@@ -2,11 +2,7 @@ definition {
 	macro deactivateAppCP {
 		Click(locator1 = "AppManager#APP_ACTIONS", key_appName = "${appName}");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Deactivate",
-			key_menuItem = "Deactivate"
-		);
+		MenuItem.clickNoError(menuItem = "Deactivate");
 
 		Confirm(value1 = "Are you sure you want to deactivate this?");
 	}
@@ -26,11 +22,7 @@ definition {
 
 		Click(locator1 = "AppManager#APP_ACTIONS", key_appName = "${appName}");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Uninstall",
-			key_menuItem = "Uninstall"
-		);
+		MenuItem.clickNoError(menuItem = "Uninstall");
 
 		Confirm(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -42,11 +34,7 @@ definition {
 	macro uploadAppCP {
 		Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Upload",
-			key_menuItem = "Upload"
-		);
+		MenuItem.click(menuItem = "Upload");
 
 		SelectFrame(locator1 = "IFrame#DIALOG");
 

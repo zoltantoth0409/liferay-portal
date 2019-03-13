@@ -10,11 +10,7 @@ definition {
 
 		Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Configuration",
-			key_menuItem = "Configuration"
-		);
+		MenuItem.click(menuItem = "Configuration");
 
 		Pause(locator1 = "10000");
 
@@ -45,11 +41,7 @@ definition {
 
 		Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Configuration",
-			key_menuItem = "Configuration"
-		);
+		MenuItem.click(menuItem = "Configuration");
 
 		Pause(locator1 = "10000");
 
@@ -75,11 +67,7 @@ definition {
 
 		Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Configuration",
-			key_menuItem = "Configuration"
-		);
+		MenuItem.click(menuItem = "Configuration");
 
 		IFrame.selectConfigurationFrame();
 
@@ -113,11 +101,7 @@ definition {
 
 		Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Configuration",
-			key_menuItem = "Configuration"
-		);
+		MenuItem.click(menuItem = "Configuration");
 
 		IFrame.selectConfigurationFrame();
 
@@ -148,11 +132,7 @@ definition {
 
 		Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Configuration",
-			key_menuItem = "Configuration"
-		);
+		MenuItem.click(menuItem = "Configuration");
 
 		IFrame.selectConfigurationFrame();
 
@@ -223,11 +203,7 @@ definition {
 
 		Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Configuration",
-			key_menuItem = "Configuration"
-		);
+		MenuItem.click(menuItem = "Configuration");
 
 		IFrame.selectConfigurationFrame();
 
@@ -265,11 +241,7 @@ definition {
 
 		Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Configuration",
-			key_menuItem = "Configuration"
-		);
+		MenuItem.click(menuItem = "Configuration");
 
 		IFrame.selectConfigurationFrame();
 
@@ -344,11 +316,7 @@ definition {
 
 		Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Configuration",
-			key_menuItem = "Configuration"
-		);
+		MenuItem.click(menuItem = "Configuration");
 
 		IFrame.selectConfigurationFrame();
 

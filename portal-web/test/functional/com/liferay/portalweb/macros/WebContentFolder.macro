@@ -164,11 +164,7 @@ definition {
 
 		Click(locator1 = "WC#ENTRY_DESCRIPTIVE_MENULIST_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 	}
 
 	macro moveToRecycleBinCP {

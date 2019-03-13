@@ -24,11 +24,7 @@ definition {
 
 		Click(locator1 = "PortalInstances#INSTANCE_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Uncheck.uncheckToggleSwitch(locator1 = "Checkbox#ACTIVE");
 

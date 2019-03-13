@@ -1,10 +1,6 @@
 definition {
 	macro clickMoveToRecycleBin {
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Move to the Recycle Bin",
-			key_menuItem = "Move to the Recycle Bin"
-		);
+		MenuItem.click(menuItem = "Move to the Recycle Bin");
 	}
 
 	macro inputDescription {

@@ -20,11 +20,7 @@ definition {
 
 		Click(locator1 = "DocumentsAndMedia#ICON_DOCUMENT_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit With Image Editor",
-			key_menuItem = "Edit With Image Editor"
-		);
+		MenuItem.click(menuItem = "Edit With Image Editor");
 
 		SelectFrame(locator1 = "IFrame#IMAGE_EDITOR");
 	}
@@ -55,11 +51,7 @@ definition {
 	macro gotoRotateImage {
 		Click(locator1 = "Button#TRANSFORM");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Rotate",
-			key_menuItem = "Rotate"
-		);
+		MenuItem.click(menuItem = "Rotate");
 	}
 
 	macro rotateImage {

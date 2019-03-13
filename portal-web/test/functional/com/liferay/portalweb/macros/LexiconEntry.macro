@@ -6,31 +6,19 @@ definition {
 	macro gotoAddMenuItem {
 		LexiconEntry.gotoAdd();
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.click(menuItem = "${menuItem}");
 	}
 
 	macro gotoEllipsisMenuItem {
 		Click.waitForMenuToggleJSClick(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.click(menuItem = "${menuItem}");
 	}
 
 	macro gotoEllipsisMenuItemNoError {
 		Click.waitForMenuToggleJSClick(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.clickNoError(menuItem = "${menuItem}");
 	}
 
 	macro gotoEntry {
@@ -45,61 +33,37 @@ definition {
 	macro gotoEntryMenuItem {
 		LexiconEntry.openEntryMenu(rowEntry = "${rowEntry}");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.click(menuItem = "${menuItem}");
 	}
 
 	macro gotoEntryMenuItemNoError {
 		LexiconEntry.openEntryMenu(rowEntry = "${rowEntry}");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.clickNoError(menuItem = "${menuItem}");
 	}
 
 	macro gotoEntryMenuItemNoWait {
 		Click(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS", key_rowEntry = "${rowEntry}");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.click(menuItem = "${menuItem}");
 	}
 
 	macro gotoEntryMenuItemNoWaitNoError {
 		Click(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS", key_rowEntry = "${rowEntry}");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.clickNoError(menuItem = "${menuItem}");
 	}
 
 	macro gotoHeaderMenuItem {
 		Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.click(menuItem = "${menuItem}");
 	}
 
 	macro gotoHeaderMenuItemNoError {
 		Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.clickNoError(menuItem = "${menuItem}");
 	}
 
 	macro openEntryMenu {

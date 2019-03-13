@@ -1541,11 +1541,7 @@ definition {
 			key_dmDocumentTitle = "Document Title"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Panel.expandPanel(panelHeading = "Categorization");
 

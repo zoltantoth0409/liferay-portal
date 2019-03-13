@@ -346,11 +346,7 @@ definition {
 
 		Click(locator1 = "SiteMembershipsUserGroups#USER_GROUP_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Assign Site Roles",
-			key_menuItem = "Assign Site Roles"
-		);
+		MenuItem.click(menuItem = "Assign Site Roles");
 
 		IFrame.selectDialogFrame();
 
@@ -558,11 +554,7 @@ definition {
 
 		Click.waitForMenuToggleJSClick(locator1 = "Sites#SITE_TABLE_ACTIONS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Deactivate",
-			key_menuItem = "Deactivate"
-		);
+		MenuItem.clickNoError(menuItem = "Deactivate");
 
 		Confirm(value1 = "Are you sure you want to deactivate this?");
 
@@ -593,11 +585,7 @@ definition {
 
 		Click.waitForMenuToggleJSClick(locator1 = "Sites#SITE_TABLE_ACTIONS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		Confirm(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -958,11 +946,7 @@ definition {
 
 		Click(locator1 = "SiteMembershipsUserGroups#USER_GROUP_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Assign Site Roles",
-			key_menuItem = "Assign Site Roles"
-		);
+		MenuItem.click(menuItem = "Assign Site Roles");
 
 		IFrame.selectDialogFrame();
 

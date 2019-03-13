@@ -28,11 +28,7 @@ definition {
 			Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 		}
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Add Child Article",
-			key_menuItem = "Add Child Article"
-		);
+		MenuItem.click(menuItem = "Add Child Article");
 
 		AlloyEditor.addTitleAndContent(
 			content = "${kbChildArticleContent}",
@@ -290,11 +286,7 @@ definition {
 	macro configureEmailCP {
 		Click(locator1 = "Portlet#OPTIONS_ICON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Configuration",
-			key_menuItem = "Configuration"
-		);
+		MenuItem.click(menuItem = "Configuration");
 
 		SelectFrame(locator1 = "KnowledgeBaseConfiguration#IFRAME");
 
@@ -847,11 +839,7 @@ definition {
 			Click(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
 		}
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Move",
-			key_menuItem = "Move"
-		);
+		MenuItem.click(menuItem = "Move");
 
 		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "${kbArticleTitle}");
 
@@ -1094,11 +1082,7 @@ definition {
 			value1 = "Select"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${kbArticleRelatedAssetType}",
-			key_menuItem = "${kbArticleRelatedAssetType}"
-		);
+		MenuItem.click(menuItem = "${kbArticleRelatedAssetType}");
 
 		SelectFrame(locator1 = "AssetRelatedAssets#SELECT_ASSET_IFRAME");
 
@@ -1498,11 +1482,7 @@ definition {
 			key_rowEntry = "${kbArticleTitle}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Panel.expandPanel(panelHeading = "Configuration");
 
@@ -1706,11 +1686,7 @@ definition {
 			);
 		}
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Panel.expandPanel(panelHeading = "Configuration");
 

@@ -141,11 +141,7 @@ definition {
 			key_threadReplyBody = "${threadReplyBody}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Permissions",
-			key_menuItem = "Permissions"
-		);
+		MenuItem.click(menuItem = "Permissions");
 
 		IFrame.selectDialogFrame();
 	}
@@ -225,11 +221,7 @@ definition {
 			key_userGroupName = "${userGroupName}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "User Group Pages Permissions",
-			key_menuItem = "User Group Pages Permissions"
-		);
+		MenuItem.click(menuItem = "User Group Pages Permissions");
 	}
 
 	macro gotoWCArticle {

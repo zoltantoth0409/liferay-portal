@@ -14,11 +14,7 @@ definition {
 
 		Click(locator1 = "RecycleBin#RECYCLE_BIN_TABLE_ACTIONS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		Confirm.waitForConfirmation(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -145,11 +141,7 @@ definition {
 
 		Click(locator1 = "RecycleBin#RECYCLE_BIN_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Restore",
-			key_menuItem = "Restore"
-		);
+		MenuItem.click(menuItem = "Restore");
 
 		if (isSet(assetType)) {
 			AssertTextEquals.assertPartialText(
@@ -190,11 +182,7 @@ definition {
 			key_assetName = "${assetName}"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Restore",
-			key_menuItem = "Restore"
-		);
+		MenuItem.click(menuItem = "Restore");
 
 		Alert.viewErrorMessage(
 			errorMessage = "An entry with name ${assetName} already exists."

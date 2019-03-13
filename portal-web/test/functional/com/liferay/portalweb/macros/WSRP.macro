@@ -22,11 +22,7 @@ definition {
 
 		Click(locator1 = "WSRPAdmin#CONSUMER_TABLE_ACTIONS_BUTTON");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Portlets",
-			key_menuItem = "Manage Portlets"
-		);
+		MenuItem.click(menuItem = "Manage Portlets");
 
 		Click(locator1 = "Button#PLUS");
 

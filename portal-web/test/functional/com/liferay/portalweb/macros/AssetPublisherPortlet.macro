@@ -5,11 +5,7 @@ definition {
 			key_portletName = "Asset Publisher"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${assetType}",
-			key_menuItem = "${assetType}"
-		);
+		MenuItem.click(menuItem = "${assetType}");
 
 		SelectFrame(locator1 = "IFrame#DIALOG");
 	}
@@ -21,11 +17,7 @@ definition {
 
 		AssertClick(locator1 = "Configuration#SOURCE_SCOPE_SELECT", value1 = "Select");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Other Site...",
-			key_menuItem = "Other Site..."
-		);
+		MenuItem.click(menuItem = "Other Site...");
 
 		SelectFrame(value1 = "relative=top");
 

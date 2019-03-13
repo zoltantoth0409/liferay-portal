@@ -51,11 +51,7 @@ definition {
 
 		Click(locator1 = "ReportsAdmin#REPORTS_ENTRY_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Add Report",
-			key_menuItem = "Add Report"
-		);
+		MenuItem.click(menuItem = "Add Report");
 
 		Select(
 			locator1 = "ReportsAdminEditReportEntry#REPORT_FORMAT_SELECT",

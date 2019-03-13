@@ -24,11 +24,7 @@ definition {
 
 		Click(locator1 = "ReportsAdmin#REPORTS_ENTRY_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Add Report",
-			key_menuItem = "Add Report"
-		);
+		MenuItem.click(menuItem = "Add Report");
 
 		Select(
 			locator1 = "ReportsAdminEditReportEntry#REPORT_FORMAT_SELECT",
@@ -64,11 +60,7 @@ definition {
 
 		Click(locator1 = "ReportsAdmin#REPORTS_ENTRY_TABLE_ACTIONS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Add Schedule",
-			key_menuItem = "Add Schedule"
-		);
+		MenuItem.clickNoError(menuItem = "Add Schedule");
 
 		AssertElementPresent(
 			locator1 = "ReportsAdminEditScheduleEntry#START_DATE_TIME_FIELD"
@@ -221,11 +213,7 @@ definition {
 
 		Click(locator1 = "ReportsAdminViewReportEntry#ENTRY_FILE_TABLE_ACTIONS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		Confirm(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -248,11 +236,7 @@ definition {
 
 		Click(locator1 = "ReportsAdminViewReportEntry#ENTRY_FILE_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Deliver Report",
-			key_menuItem = "Deliver Report"
-		);
+		MenuItem.click(menuItem = "Deliver Report");
 
 		AssertTextEquals(
 			locator1 = "ReportsAdminDeliverReport#REPORT_NAME",
@@ -286,11 +270,7 @@ definition {
 
 		Click(locator1 = "ReportsAdminViewReportEntry#ENTRY_FILE_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Download",
-			key_menuItem = "Download"
-		);
+		MenuItem.click(menuItem = "Download");
 
 		Pause(locator1 = "2000");
 

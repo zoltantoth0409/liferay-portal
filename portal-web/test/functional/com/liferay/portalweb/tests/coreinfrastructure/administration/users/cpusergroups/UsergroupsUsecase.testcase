@@ -159,11 +159,7 @@ definition {
 
 		Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Pages",
-			key_menuItem = "Manage Pages"
-		);
+		MenuItem.click(menuItem = "Manage Pages");
 
 		var key_page = "Test User Group Page 1";
 

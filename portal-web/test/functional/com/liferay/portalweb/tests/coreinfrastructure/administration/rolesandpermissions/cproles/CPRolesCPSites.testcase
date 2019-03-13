@@ -400,11 +400,7 @@ definition {
 
 		Click.waitForMenuToggleJSClick(locator1 = "Sites#SITE_TABLE_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Add Child Site",
-			key_menuItem = "Add Child Site"
-		);
+		MenuItem.click(menuItem = "Add Child Site");
 
 		PortletEntry.inputName(name = "Child SiteName2");
 

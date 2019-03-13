@@ -1437,11 +1437,7 @@ definition {
 
 		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Assign to Me",
-			key_menuItem = "Assign to Me"
-		);
+		MenuItem.click(menuItem = "Assign to Me");
 
 		IFrame.selectDialogFrame();
 
@@ -1463,11 +1459,7 @@ definition {
 
 		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Mark as Graded",
-			key_menuItem = "Mark as Graded"
-		);
+		MenuItem.click(menuItem = "Mark as Graded");
 
 		SelectFrame(locator1 = "xpath=(//div[contains(@class,'modal-dialog')])");
 
@@ -1999,11 +1991,7 @@ How to Present:
 			key_dmDocumentTitle = "owain-unit-1-assignment.pdf"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		Panel.expandPanel(panelHeading = "Categorization");
 
@@ -2793,11 +2781,7 @@ Brainstorming:
 			key_rowEntry = "Basic Web Content Feed"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Apply",
-			key_menuItem = "Apply"
-		);
+		MenuItem.click(menuItem = "Apply");
 
 		Alert.viewSuccessMessage();
 

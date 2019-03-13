@@ -72,11 +72,7 @@ definition {
 
 		Click(locator1 = "DDL#RECORD_TABLE_ELLIPSIS");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		Confirm(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -100,11 +96,7 @@ definition {
 	macro deleteViaDDLDisplayPG {
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		AssertClickNoError(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Delete",
-			key_menuItem = "Delete"
-		);
+		MenuItem.clickNoError(menuItem = "Delete");
 
 		Confirm(
 			value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -132,21 +124,13 @@ definition {
 
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 	}
 
 	macro editPG {
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 	}
 
 	macro editTranslation {
@@ -173,11 +157,7 @@ definition {
 
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "View",
-			key_menuItem = "View"
-		);
+		MenuItem.click(menuItem = "View");
 
 		AssertClick(locator1 = "Button#EDIT", value1 = "Edit");
 	}
@@ -185,11 +165,7 @@ definition {
 	macro editViaRecordViewPG {
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "View",
-			key_menuItem = "View"
-		);
+		MenuItem.click(menuItem = "View");
 
 		AssertClick(locator1 = "Button#EDIT", value1 = "Edit");
 	}
@@ -947,11 +923,7 @@ definition {
 
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "View",
-			key_menuItem = "View"
-		);
+		MenuItem.click(menuItem = "View");
 
 		AssertTextEquals(
 			locator1 = "DDLRecord#FIELD_2",

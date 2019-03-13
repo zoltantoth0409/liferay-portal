@@ -2,11 +2,7 @@ definition {
 	macro gotoAddPageViaPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Wiki");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Add Page",
-			key_menuItem = "Add Page"
-		);
+		MenuItem.click(menuItem = "Add Page");
 	}
 
 	macro gotoAllPagesCP {
@@ -107,11 +103,7 @@ definition {
 
 		Click(locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Copy",
-			key_menuItem = "Copy"
-		);
+		MenuItem.click(menuItem = "Copy");
 	}
 
 	macro gotoEntryEditViaPGTable {
@@ -119,11 +111,7 @@ definition {
 
 		Click(locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 	}
 
 	macro gotoEntryMoveViaTable {
@@ -133,11 +121,7 @@ definition {
 
 		Click(locator1 = "WikiTable#ALL_PAGES_VERTICAL_ELLIPSIS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Move",
-			key_menuItem = "Move"
-		);
+		MenuItem.click(menuItem = "Move");
 	}
 
 	macro gotoEntryViaPGTable {

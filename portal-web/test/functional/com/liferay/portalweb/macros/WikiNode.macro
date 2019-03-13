@@ -58,11 +58,7 @@ definition {
 
 		Click(locator1 = "Wiki#NODE_TABLE_ACTIONS_DROPDOWN");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 
 		PortletEntry.inputName(name = "${wikiNodeNameEdit}");
 

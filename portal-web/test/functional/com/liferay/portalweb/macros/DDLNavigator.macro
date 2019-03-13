@@ -22,11 +22,7 @@ definition {
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Permissions",
-			key_menuItem = "Permissions"
-		);
+		MenuItem.click(menuItem = "Permissions");
 	}
 
 	macro gotoDDLRecordEditViaWorkflow {
@@ -45,11 +41,7 @@ definition {
 	macro gotoEdit {
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.click(menuItem = "Edit");
 	}
 
 	macro gotoListRecords {
@@ -84,11 +76,7 @@ definition {
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS"
 		);
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage Templates",
-			key_menuItem = "Manage Templates"
-		);
+		MenuItem.click(menuItem = "Manage Templates");
 	}
 
 	macro gotoOptionalConfiguration {
@@ -116,10 +104,6 @@ definition {
 	macro gotoView {
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "View",
-			key_menuItem = "View"
-		);
+		MenuItem.click(menuItem = "View");
 	}
 }

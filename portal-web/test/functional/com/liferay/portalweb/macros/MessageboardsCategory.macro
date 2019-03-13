@@ -214,11 +214,7 @@ definition {
 
 		Click(locator1 = "MessageBoards#CATEGORY_LIST_ACTIONS");
 
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Subscribe",
-			key_menuItem = "Subscribe"
-		);
+		MenuItem.click(menuItem = "Subscribe");
 
 		Alert.viewSuccessMessage();
 	}
