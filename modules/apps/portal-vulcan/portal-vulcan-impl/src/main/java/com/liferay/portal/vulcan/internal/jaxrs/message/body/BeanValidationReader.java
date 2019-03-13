@@ -119,7 +119,8 @@ public class BeanValidationReader
 			return;
 		}
 
-		Validator validator = _getValidator();
+		Validator validator =
+			ValidatorFactoryHolder.VALIDATOR_FACTORY.getValidator();
 
 		ExecutableValidator executableValidator = validator.forExecutables();
 
@@ -130,13 +131,6 @@ public class BeanValidationReader
 		if (!constraintViolations.isEmpty()) {
 			throw new ConstraintViolationException(constraintViolations);
 		}
-	}
-
-	private Validator _getValidator() {
-		ValidatorFactory validatorFactory =
-			ValidatorFactoryHolder.VALIDATOR_FACTORY;
-
-		return validatorFactory.getValidator();
 	}
 
 }
