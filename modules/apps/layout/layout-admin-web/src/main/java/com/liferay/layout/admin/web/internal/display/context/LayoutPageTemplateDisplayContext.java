@@ -156,7 +156,6 @@ public class LayoutPageTemplateDisplayContext {
 						dropdownItem.putData(
 							"addPageTemplateURL",
 							_getAddLayoutPageTemplateEntryURL());
-						dropdownItem.setHref("#");
 						dropdownItem.setLabel(
 							LanguageUtil.get(
 								_request, "content-page-template"));
@@ -172,7 +171,6 @@ public class LayoutPageTemplateDisplayContext {
 							dropdownItem.putData(
 								"addPageTemplateURL",
 								_getAddLayoutPrototypeURL());
-							dropdownItem.setHref("#");
 							dropdownItem.setLabel(
 								LanguageUtil.get(
 									_request, "widget-page-template"));
