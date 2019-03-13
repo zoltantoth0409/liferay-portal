@@ -290,10 +290,24 @@ public interface KaleoInstanceLocalService
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KaleoInstance> search(
+		Long userId, String assetDescription, String assetTitle,
+		String assetType, String nodeName, String kaleoDefinitionName,
+		Boolean completed, int start, int end,
+		OrderByComparator<KaleoInstance> orderByComparator,
+		ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(
 		Long userId, String assetType, String nodeName,
 		String kaleoDefinitionName, Boolean completed,
 		ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int searchCount(
+		Long userId, String assetDescription, String assetTitle,
+		String assetType, String nodeName, String kaleoDefinitionName,
+		Boolean completed, ServiceContext serviceContext);
 
 	/**
 	 * Updates the kaleo instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

@@ -413,6 +413,23 @@ public class KaleoInstanceLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance>
+		search(
+			Long userId, String assetDescription, String assetTitle,
+			String assetType, String nodeName, String kaleoDefinitionName,
+			Boolean completed, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.portal.workflow.kaleo.model.KaleoInstance>
+					orderByComparator,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		return _kaleoInstanceLocalService.search(
+			userId, assetDescription, assetTitle, assetType, nodeName,
+			kaleoDefinitionName, completed, start, end, orderByComparator,
+			serviceContext);
+	}
+
+	@Override
 	public int searchCount(
 		Long userId, String assetType, String nodeName,
 		String kaleoDefinitionName, Boolean completed,
@@ -421,6 +438,18 @@ public class KaleoInstanceLocalServiceWrapper
 		return _kaleoInstanceLocalService.searchCount(
 			userId, assetType, nodeName, kaleoDefinitionName, completed,
 			serviceContext);
+	}
+
+	@Override
+	public int searchCount(
+		Long userId, String assetDescription, String assetTitle,
+		String assetType, String nodeName, String kaleoDefinitionName,
+		Boolean completed,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+
+		return _kaleoInstanceLocalService.searchCount(
+			userId, assetDescription, assetTitle, assetType, nodeName,
+			kaleoDefinitionName, completed, serviceContext);
 	}
 
 	/**
