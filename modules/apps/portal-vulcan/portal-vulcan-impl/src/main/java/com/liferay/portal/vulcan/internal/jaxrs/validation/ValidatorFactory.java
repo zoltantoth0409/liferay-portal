@@ -12,22 +12,26 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.jaxrs.message.body;
+package com.liferay.portal.vulcan.internal.jaxrs.validation;
 
 import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
+import javax.validation.Validator;
 
 import org.hibernate.validator.HibernateValidator;
 
 /**
  * @author Javier Gamarra
  */
-public class ValidatorFactoryHolder {
+public class ValidatorFactory {
 
-	public static final ValidatorFactory VALIDATOR_FACTORY;
+	public static Validator getValidator() {
+		return _validatorFactory.getValidator();
+	}
+
+	private static final javax.validation.ValidatorFactory _validatorFactory;
 
 	static {
-		VALIDATOR_FACTORY = Validation.byProvider(
+		_validatorFactory = Validation.byProvider(
 			HibernateValidator.class
 		).configure(
 		).allowOverridingMethodAlterParameterConstraint(

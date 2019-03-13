@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.jaxrs.message.body;
+package com.liferay.portal.vulcan.internal.jaxrs.validation;
 
 import java.io.IOException;
 
@@ -24,7 +24,6 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import javax.validation.executable.ExecutableValidator;
 
 import javax.ws.rs.container.ContainerRequestContext;
@@ -46,14 +45,14 @@ import org.apache.cxf.validation.AbstractValidationInterceptor;
  * @author Javier Gamarra
  */
 @Provider
-public class BeanValidationReader
+public class BeanValidationInterceptor
 	extends AbstractValidationInterceptor implements ContainerRequestFilter {
 
-	public BeanValidationReader() {
+	public BeanValidationInterceptor() {
 		super("pre-invoke");
 	}
 
-	public BeanValidationReader(String phase) {
+	public BeanValidationInterceptor(String phase) {
 		super(phase);
 	}
 
@@ -119,8 +118,7 @@ public class BeanValidationReader
 			return;
 		}
 
-		Validator validator =
-			ValidatorFactoryHolder.VALIDATOR_FACTORY.getValidator();
+		Validator validator = ValidatorFactory.getValidator();
 
 		ExecutableValidator executableValidator = validator.forExecutables();
 

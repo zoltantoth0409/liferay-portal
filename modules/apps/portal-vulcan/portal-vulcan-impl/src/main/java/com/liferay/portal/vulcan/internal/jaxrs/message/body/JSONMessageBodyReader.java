@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectReader;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.vulcan.internal.jaxrs.validation.ValidatorFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +33,6 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.Produces;
@@ -92,10 +92,7 @@ public class JSONMessageBodyReader implements MessageBodyReader {
 	}
 
 	private void _validate(Object value) {
-		ValidatorFactory validatorFactory =
-			ValidatorFactoryHolder.VALIDATOR_FACTORY;
-
-		Validator validator = validatorFactory.getValidator();
+		Validator validator = ValidatorFactory.getValidator();
 
 		Set<ConstraintViolation<Object>> constraintViolations =
 			validator.validate(value);
