@@ -12,11 +12,7 @@ definition {
 		if (IsElementNotPresent(locator1 = "AdaptiveMediaTable#PROGRESS")) {
 			Click(locator1 = "AdaptiveMediaTable#IMAGE_RESOLUTION_OPTIONS");
 
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Adapt Remaining",
-				key_menuItem = "Adapt Remaining"
-			);
+			MenuItem.click(menuItem = "Adapt Remaining");
 		}
 
 		AssertVisible(locator1 = "AdaptiveMediaTable#PROGRESS");

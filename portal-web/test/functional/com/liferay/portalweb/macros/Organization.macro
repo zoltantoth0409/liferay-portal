@@ -122,18 +122,10 @@ definition {
 		LexiconEntry.gotoAdd();
 
 		if ("${orgType}" == "Location") {
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Location",
-				key_menuItem = "Location"
-			);
+			MenuItem.click(menuItem = "Location");
 		}
 		else if (IsElementPresent(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Organization")) {
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Organization",
-				key_menuItem = "Organization"
-			);
+			MenuItem.click(menuItem = "Organization");
 		}
 
 		Type(locator1 = "TextInput#NAME", value1 = "${orgName}");
@@ -428,11 +420,7 @@ definition {
 		LexiconEntry.gotoAdd();
 
 		if (IsElementPresent(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "${localizedOption}")) {
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "${localizedOption}",
-				key_menuItem = "${localizedOption}"
-			);
+			MenuItem.click(menuItem = "${localizedOption}");
 		}
 
 		Type(locator1 = "TextInput#NAME", value1 = "${orgName}");

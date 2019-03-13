@@ -515,18 +515,10 @@ definition {
 		AssertClick(locator1 = "Configuration#SOURCE_SCOPE_SELECT", value1 = "Select");
 
 		if ("${siteName}" == "Global") {
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "${siteName}",
-				key_menuItem = "${siteName}"
-			);
+			MenuItem.click(menuItem = "${siteName}");
 		}
 		else {
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Other Site...",
-				key_menuItem = "Other Site..."
-			);
+			MenuItem.click(menuItem = "Other Site...");
 
 			SelectFrame(value1 = "relative=top");
 
@@ -1109,11 +1101,7 @@ definition {
 				key_menuItem = "Global"
 			);
 
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Other Site...",
-				key_menuItem = "Other Site..."
-			);
+			MenuItem.click(menuItem = "Other Site...");
 
 			SelectFrame(value1 = "relative=top");
 

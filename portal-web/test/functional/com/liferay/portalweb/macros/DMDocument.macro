@@ -484,18 +484,10 @@ definition {
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
 		if (isSet(dmDocumentTypeName)) {
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "${dmDocumentTypeName}",
-				key_menuItem = "${dmDocumentTypeName}"
-			);
+			MenuItem.click(menuItem = "${dmDocumentTypeName}");
 		}
 		else {
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Basic Document",
-				key_menuItem = "Basic Document"
-			);
+			MenuItem.click(menuItem = "Basic Document");
 		}
 
 		DMDocument.editDocument(

@@ -430,11 +430,7 @@ definition {
 				locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS"
 			);
 
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Manage Templates",
-				key_menuItem = "Manage Templates"
-			);
+			MenuItem.click(menuItem = "Manage Templates");
 
 			if (IsElementPresent(locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_ELLIPSIS_1")) {
 				Check.checkAll(locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_ALL_CHECKBOX");

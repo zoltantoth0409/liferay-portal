@@ -1051,20 +1051,12 @@ definition {
 		if ("${userRole}" == "Guest") {
 			Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "View",
-				key_menuItem = "View"
-			);
+			MenuItem.click(menuItem = "View");
 		}
 		else {
 			Click(locator1 = "DDL#RECORD_TABLE_ELLIPSIS");
 
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "View",
-				key_menuItem = "View"
-			);
+			MenuItem.click(menuItem = "View");
 		}
 
 		if ("${field}" == "Boolean") {

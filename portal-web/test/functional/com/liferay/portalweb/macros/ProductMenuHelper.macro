@@ -3,18 +3,10 @@ definition {
 		ClickNoError.waitForMenuToggleJSClick(locator1 = "SitePages#PAGES_ELLIPSIS");
 
 		if ("${sitePagePrivacy}" == "Private") {
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Add Private Page",
-				key_menuItem = "Add Private Page"
-			);
+			MenuItem.click(menuItem = "Add Private Page");
 		}
 		else {
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Add Public Page",
-				key_menuItem = "Add Public Page"
-			);
+			MenuItem.click(menuItem = "Add Public Page");
 		}
 	}
 

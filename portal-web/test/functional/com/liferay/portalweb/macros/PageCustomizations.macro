@@ -47,11 +47,7 @@ definition {
 		if (isSet(viewDefaultPage)) {
 			var key_menuItem = "View Page without my customizations";
 
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "View Page without my customizations",
-				key_menuItem = "View Page without my customizations"
-			);
+			MenuItem.click(menuItem = "View Page without my customizations");
 		}
 		else {
 			var key_menuItem = "Reset My Customizations";

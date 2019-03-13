@@ -5,11 +5,7 @@ definition {
 		LexiconEntry.gotoAdd();
 
 		if (IsElementPresent(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Folder")) {
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Folder",
-				key_menuItem = "Folder"
-			);
+			MenuItem.click(menuItem = "Folder");
 		}
 
 		PortletEntry.inputName(name = "${folderName}");

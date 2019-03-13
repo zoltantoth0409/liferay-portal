@@ -3359,11 +3359,7 @@ Brainstorming:
 				workflowTask = "${workflowTask}"
 			);
 
-			AssertClick(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "${workflowTask}",
-				key_menuItem = "${workflowTask}"
-			);
+			MenuItem.click(menuItem = "${workflowTask}");
 
 			Workflow.confirmAndViewSucessMessageViaActions();
 
