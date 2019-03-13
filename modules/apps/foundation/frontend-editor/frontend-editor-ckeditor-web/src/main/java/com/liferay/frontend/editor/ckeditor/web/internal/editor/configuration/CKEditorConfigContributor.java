@@ -56,7 +56,6 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 			jsonObject, inputEditorTaglibAttributes, themeDisplay,
 			requestBackedPortletURLFactory);
 
-		jsonObject.put("autoParagraph", Boolean.FALSE);
 		jsonObject.put("autoSaveTimeout", 3000);
 
 		ColorScheme colorScheme = themeDisplay.getColorScheme();
