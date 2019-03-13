@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.portal.dao.orm;
+package com.liferay.portal.dao.orm.test;
 
+import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -33,6 +34,7 @@ import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * This test shows the SQL <code>Null</code> comparison differences across all
@@ -495,6 +497,7 @@ import org.junit.Test;
  *
  * @author Shuyang Zhou
  */
+@RunWith(Arquillian.class)
 public class SQLNullTest {
 
 	@ClassRule
