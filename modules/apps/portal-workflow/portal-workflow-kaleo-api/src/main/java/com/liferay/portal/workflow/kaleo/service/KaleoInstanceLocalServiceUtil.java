@@ -380,9 +380,15 @@ public class KaleoInstanceLocalServiceUtil {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
+	/**
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #search(Long,
+	 String, String, String, String, String, Boolean, int, int,
+	 OrderByComparator, ServiceContext)}
+	 */
+	@Deprecated
 	public static java.util.List
 		<com.liferay.portal.workflow.kaleo.model.KaleoInstance> search(
-			Long userId, String assetType, String nodeName,
+			Long userId, String assetClassName, String nodeName,
 			String kaleoDefinitionName, Boolean completed, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
 				<com.liferay.portal.workflow.kaleo.model.KaleoInstance>
@@ -390,44 +396,50 @@ public class KaleoInstanceLocalServiceUtil {
 			com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 
 		return getService().search(
-			userId, assetType, nodeName, kaleoDefinitionName, completed, start,
-			end, orderByComparator, serviceContext);
+			userId, assetClassName, nodeName, kaleoDefinitionName, completed,
+			start, end, orderByComparator, serviceContext);
 	}
 
 	public static java.util.List
 		<com.liferay.portal.workflow.kaleo.model.KaleoInstance> search(
-			Long userId, String assetDescription, String assetTitle,
-			String assetType, String nodeName, String kaleoDefinitionName,
-			Boolean completed, int start, int end,
+			Long userId, String assetClassName, String assetTitle,
+			String assetDescription, String nodeName,
+			String kaleoDefinitionName, Boolean completed, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
 				<com.liferay.portal.workflow.kaleo.model.KaleoInstance>
 					orderByComparator,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 
 		return getService().search(
-			userId, assetDescription, assetTitle, assetType, nodeName,
+			userId, assetClassName, assetTitle, assetDescription, nodeName,
 			kaleoDefinitionName, completed, start, end, orderByComparator,
 			serviceContext);
 	}
 
+	/**
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #searchCount(Long,
+	 String, String, String, String, String, Boolean,
+	 ServiceContext)}
+	 */
+	@Deprecated
 	public static int searchCount(
-		Long userId, String assetType, String nodeName,
+		Long userId, String assetClassName, String nodeName,
 		String kaleoDefinitionName, Boolean completed,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 
 		return getService().searchCount(
-			userId, assetType, nodeName, kaleoDefinitionName, completed,
+			userId, assetClassName, nodeName, kaleoDefinitionName, completed,
 			serviceContext);
 	}
 
 	public static int searchCount(
-		Long userId, String assetDescription, String assetTitle,
-		String assetType, String nodeName, String kaleoDefinitionName,
+		Long userId, String assetClassName, String assetTitle,
+		String assetDescription, String nodeName, String kaleoDefinitionName,
 		Boolean completed,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 
 		return getService().searchCount(
-			userId, assetDescription, assetTitle, assetType, nodeName,
+			userId, assetClassName, assetTitle, assetDescription, nodeName,
 			kaleoDefinitionName, completed, serviceContext);
 	}
 
@@ -443,6 +455,15 @@ public class KaleoInstanceLocalServiceUtil {
 				kaleoInstance) {
 
 		return getService().updateKaleoInstance(kaleoInstance);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance
+			updateKaleoInstance(
+				long kaleoInstanceId, long rootKaleoInstanceTokenId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().updateKaleoInstance(
+			kaleoInstanceId, rootKaleoInstanceTokenId);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoInstance
