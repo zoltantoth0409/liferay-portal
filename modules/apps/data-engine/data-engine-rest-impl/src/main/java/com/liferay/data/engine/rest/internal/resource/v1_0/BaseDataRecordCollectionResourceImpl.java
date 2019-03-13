@@ -37,6 +37,8 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.validation.constraints.NotNull;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -71,7 +73,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public Page<DataRecordCollection> getDataRecordCollectionsPage(
-			@QueryParam("contentSpaceId") Long contentSpaceId,
+			@NotNull @QueryParam("contentSpaceId") Long contentSpaceId,
 			@QueryParam("keywords") String keywords,
 			@Context Pagination pagination)
 		throws Exception {
@@ -86,7 +88,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public DataRecordCollection postDataRecordCollection(
-			@QueryParam("contentSpaceId") Long contentSpaceId,
+			@NotNull @QueryParam("contentSpaceId") Long contentSpaceId,
 			DataRecordCollection dataRecordCollection)
 		throws Exception {
 
@@ -99,7 +101,8 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public boolean deleteDataRecordCollection(
-			@PathParam("data-record-collection-id") Long dataRecordCollectionId)
+			@NotNull @PathParam("data-record-collection-id") Long
+				dataRecordCollectionId)
 		throws Exception {
 
 		return false;
@@ -111,7 +114,8 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public DataRecordCollection getDataRecordCollection(
-			@PathParam("data-record-collection-id") Long dataRecordCollectionId)
+			@NotNull @PathParam("data-record-collection-id") Long
+				dataRecordCollectionId)
 		throws Exception {
 
 		return new DataRecordCollection();
@@ -124,7 +128,8 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public DataRecordCollection putDataRecordCollection(
-			@PathParam("data-record-collection-id") Long dataRecordCollectionId,
+			@NotNull @PathParam("data-record-collection-id") Long
+				dataRecordCollectionId,
 			DataRecordCollection dataRecordCollection)
 		throws Exception {
 
