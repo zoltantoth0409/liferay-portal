@@ -108,6 +108,13 @@ definition {
 		);
 	}
 
+	macro openEntryMenu {
+		Click.waitForMenuToggleJSClick(
+			locator1 = "Icon#ROW_VERTICAL_ELLIPSIS",
+			key_rowEntry = "${rowEntry}"
+		);
+	}
+
 	macro viewEntryName {
 		AssertTextEquals(
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_NAME",
