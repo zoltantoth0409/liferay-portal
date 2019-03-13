@@ -61,33 +61,36 @@ public class BeanValidationReader
 	public void filter(ContainerRequestContext containerRequestContext)
 		throws IOException {
 
-		Message currentMessage = PhaseInterceptorChain.getCurrentMessage();
+		Message message = PhaseInterceptorChain.getCurrentMessage();
 
-		InterceptorChain chain = currentMessage.getInterceptorChain();
+		InterceptorChain interceptorChain = message.getInterceptorChain();
 
-		chain.add(this);
+		interceptorChain.add(this);
 	}
 
 	public void handleMessage(Message message) throws Fault {
 		Object serviceObject = getServiceObject(message);
 
-		if (serviceObject != null) {
-			Method method = getServiceMethod(message);
-
-			if (method != null) {
-				List<Object> arguments = MessageContentsList.getContentsList(
-					message);
-
-				handleValidation(message, serviceObject, method, arguments);
-			}
+		if (serviceObject == null) {
+			return;
 		}
+
+		Method method = getServiceMethod(message);
+
+		if (method == null) {
+			return;
+		}
+
+		List<Object> arguments = MessageContentsList.getContentsList(message);
+
+		handleValidation(message, serviceObject, method, arguments);
 	}
 
 	@Override
 	protected Object getServiceObject(Message message) {
 		Exchange exchange = message.getExchange();
 
-		final OperationResourceInfo operationResourceInfo = exchange.get(
+		OperationResourceInfo operationResourceInfo = exchange.get(
 			OperationResourceInfo.class);
 
 		if (operationResourceInfo == null) {
@@ -101,7 +104,7 @@ public class BeanValidationReader
 			return exchange.get("org.apache.cxf.service.object.last");
 		}
 
-		final ResourceProvider resourceProvider =
+		ResourceProvider resourceProvider =
 			classResourceInfo.getResourceProvider();
 
 		return resourceProvider.getInstance(message);
@@ -112,19 +115,20 @@ public class BeanValidationReader
 		Message message, Object resourceInstance, Method method,
 		List<Object> arguments) {
 
-		if (!arguments.isEmpty()) {
-			Validator validator = _getValidator();
+		if (arguments.isEmpty()) {
+			return;
+		}
 
-			ExecutableValidator executableValidator =
-				validator.forExecutables();
+		Validator validator = _getValidator();
 
-			Set<ConstraintViolation<Object>> constraintViolations =
-				executableValidator.validateParameters(
-					resourceInstance, method, arguments.toArray());
+		ExecutableValidator executableValidator = validator.forExecutables();
 
-			if (!constraintViolations.isEmpty()) {
-				throw new ConstraintViolationException(constraintViolations);
-			}
+		Set<ConstraintViolation<Object>> constraintViolations =
+			executableValidator.validateParameters(
+				resourceInstance, method, arguments.toArray());
+
+		if (!constraintViolations.isEmpty()) {
+			throw new ConstraintViolationException(constraintViolations);
 		}
 	}
 
