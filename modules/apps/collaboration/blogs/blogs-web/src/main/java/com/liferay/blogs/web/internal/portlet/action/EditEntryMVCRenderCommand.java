@@ -58,14 +58,18 @@ public class EditEntryMVCRenderCommand implements MVCRenderCommand {
 		try {
 			ActionUtil.getEntry(renderRequest);
 
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
 			BlogsEntry entry = (BlogsEntry)renderRequest.getAttribute(
 				WebKeys.BLOGS_ENTRY);
 
-			BlogsEntryPermission.check(
-				themeDisplay.getPermissionChecker(), entry, ActionKeys.UPDATE);
+			if (entry != null) {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)renderRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				BlogsEntryPermission.check(
+					themeDisplay.getPermissionChecker(), entry,
+					ActionKeys.UPDATE);
+			}
 
 			renderRequest.setAttribute(
 				BlogsWebKeys.BLOGS_ITEM_SELECTOR_HELPER,
