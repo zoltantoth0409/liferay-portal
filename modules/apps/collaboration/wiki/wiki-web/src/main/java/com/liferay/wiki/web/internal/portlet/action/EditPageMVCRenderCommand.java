@@ -17,10 +17,13 @@ package com.liferay.wiki.web.internal.portlet.action;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.wiki.configuration.WikiGroupServiceConfiguration;
 import com.liferay.wiki.constants.WikiPortletKeys;
 import com.liferay.wiki.constants.WikiWebKeys;
@@ -33,6 +36,8 @@ import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.model.WikiPage;
 import com.liferay.wiki.model.WikiPageConstants;
 import com.liferay.wiki.service.WikiPageService;
+import com.liferay.wiki.service.permission.WikiNodePermissionChecker;
+import com.liferay.wiki.service.permission.WikiPagePermissionChecker;
 import com.liferay.wiki.validator.WikiPageTitleValidator;
 import com.liferay.wiki.web.internal.util.WikiWebComponentProvider;
 
@@ -73,6 +78,12 @@ public class EditPageMVCRenderCommand implements MVCRenderCommand {
 
 			WikiNode node = ActionUtil.getNode(renderRequest);
 
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			WikiNodePermissionChecker.check(
+				themeDisplay.getPermissionChecker(), node, ActionKeys.UPDATE);
+
 			renderRequest.setAttribute(WikiWebKeys.WIKI_NODE, node);
 
 			if (!SessionErrors.contains(
@@ -87,6 +98,10 @@ public class EditPageMVCRenderCommand implements MVCRenderCommand {
 				e instanceof PrincipalException) {
 
 				SessionErrors.add(renderRequest, e.getClass());
+
+				if (e instanceof PrincipalException) {
+					return "/wiki/error.jsp";
+				}
 			}
 			else if (e instanceof NoSuchPageException) {
 
@@ -164,6 +179,12 @@ public class EditPageMVCRenderCommand implements MVCRenderCommand {
 			page.setContent(StringPool.BLANK);
 			page.setRedirectTitle(StringPool.BLANK);
 		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		WikiPagePermissionChecker.check(
+			themeDisplay.getPermissionChecker(), page, ActionKeys.UPDATE);
 
 		renderRequest.setAttribute(WikiWebKeys.WIKI_PAGE, page);
 	}
