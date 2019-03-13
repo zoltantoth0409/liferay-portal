@@ -400,8 +400,8 @@ public class ResourceOpenAPIParser {
 
 		if (requestBodyMediaType != null) {
 			if (requestBodyMediaTypes.size() > 1) {
-				int position = requestBodyMediaTypes.indexOf(
-					requestBodyMediaType) + 1;
+				int position =
+					requestBodyMediaTypes.indexOf(requestBodyMediaType) + 1;
 
 				methodNameSegments.add("MediaType" + position);
 			}
