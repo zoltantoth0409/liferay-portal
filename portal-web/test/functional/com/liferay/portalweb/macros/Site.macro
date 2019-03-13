@@ -67,7 +67,7 @@ definition {
 				);
 			}
 			else if ("${siteType}" == "Site Template") {
-				Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "${siteTemplateName}");
+				MenuItem.click(menuItem = "${siteTemplateName}");
 			}
 			else {
 				fail("Invalid var siteType. Must be (Blank|Community|Intranet|Site Template).");

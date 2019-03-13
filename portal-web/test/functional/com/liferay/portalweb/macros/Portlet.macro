@@ -266,9 +266,7 @@ definition {
 		}
 
 		if (isSet(portletOption)) {
-			var key_menuItem = "${portletOption}";
-
-			Click(locator1 = "MenuItem#ANY_MENU_ITEM");
+			MenuItem.click(menuItem = "${portletOption}");
 		}
 	}
 

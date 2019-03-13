@@ -594,10 +594,7 @@ definition {
 
 		var key_sitePagesVariationName = "${sitePagesVariationName}";
 
-		Click(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "${sitePagesVariationName}"
-		);
+		MenuItem.click(menuItem = "${sitePagesVariationName}");
 	}
 
 	@summary = "Delete all pages except the Welcome Page"

@@ -19,9 +19,7 @@ definition {
 
 		Click(locator1 = "UserSegmentContentDisplay#RULE_PANEL_DISPLAY_CONTENT_SELECT");
 
-		var key_menuItem = "${contentType}";
-
-		Click(locator1 = "MenuItem#ANY_MENU_ITEM");
+		MenuItem.click(menuItem = "${contentType}");
 
 		SelectFrame(value1 = "relative=top");
 
@@ -47,9 +45,7 @@ definition {
 
 		Click(locator1 = "ContentTargeting#OTHERWISE_PANEL_SELECT_CONTENT");
 
-		var key_menuItem = "${contentType}";
-
-		Click(locator1 = "MenuItem#ANY_MENU_ITEM");
+		MenuItem.click(menuItem = "${contentType}");
 
 		SelectFrame(value1 = "relative=top");
 

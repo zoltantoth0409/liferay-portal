@@ -6,10 +6,7 @@ definition {
 			locator1 = "EditUserSegment#USER_SEGMENT_RULE_BEHAVIOR_CONTENT_VISITED_SELECT_CONTENT_BUTTON"
 		);
 
-		Click(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "${contentVisitedContent}"
-		);
+		MenuItem.click(menuItem = "${contentVisitedContent}");
 
 		SelectFrame(locator1 = "IFrame#SELECT_CONTENT");
 

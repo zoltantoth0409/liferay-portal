@@ -151,7 +151,7 @@ definition {
 
 		Click(locator1 = "MessageBoards#CATEGORY_LIST_ACTIONS");
 
-		Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Edit");
+		MenuItem.click(menuItem = "Edit");
 
 		PortletEntry.inputName(name = "${categoryNameEdit}");
 

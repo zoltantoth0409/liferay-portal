@@ -2,6 +2,6 @@ definition {
 	macro gotoAddPage {
 		Portlet.clickPortletPlusIconPG(portletName = "Navigation Menu");
 
-		Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Add Page");
+		MenuItem.click(menuItem = "Add Page");
 	}
 }

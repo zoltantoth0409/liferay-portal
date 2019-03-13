@@ -728,7 +728,7 @@ definition {
 
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "View");
+		MenuItem.click(menuItem = "View");
 
 		if (isSet(workflowStatus)) {
 			AssertTextEquals(

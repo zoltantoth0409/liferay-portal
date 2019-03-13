@@ -90,9 +90,7 @@ definition {
 
 			ClickNoError(locator1 = "ContentTargeting#OTHERWISE_PANEL_SELECT_CONTENT");
 
-			var key_menuItem = "${otherwiseContentType}";
-
-			Click(locator1 = "MenuItem#ANY_MENU_ITEM");
+			MenuItem.click(menuItem = "${otherwiseContentType}");
 
 			SelectFrame(value1 = "relative=top");
 

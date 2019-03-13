@@ -4,7 +4,7 @@ definition {
 
 		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
 
-		Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Manage");
+		MenuItem.click(menuItem = "Manage");
 
 		ProductMenuHelper.openProductMenu();
 
@@ -45,7 +45,7 @@ definition {
 
 		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
 
-		Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Manage");
+		MenuItem.click(menuItem = "Manage");
 
 		ProductMenuHelper.openProductMenu();
 

@@ -252,10 +252,7 @@ definition {
 
 		Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
 
-		Click(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Move to the Recycle Bin"
-		);
+		MenuItem.click(menuItem = "Move to the Recycle Bin");
 
 		AssertElementPresent(locator1 = "Message#SUCCESS");
 

@@ -34,13 +34,13 @@ definition {
 		if (isSet(globalSite)) {
 			Click(locator1 = "Configuration#SOURCE_SCOPE_SELECT");
 
-			Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Global");
+			MenuItem.click(menuItem = "Global");
 		}
 
 		if (isSet(otherSite)) {
 			Click(locator1 = "Configuration#SOURCE_SCOPE_SELECT");
 
-			Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Other Site...");
+			MenuItem.click(menuItem = "Other Site...");
 
 			SelectFrame(value1 = "relative=top");
 
@@ -52,7 +52,7 @@ definition {
 		if (isSet(defaultSite)) {
 			Click(locator1 = "Configuration#SOURCE_SCOPE_SELECT");
 
-			Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Current Site");
+			MenuItem.click(menuItem = "Current Site");
 		}
 
 		SelectFrameTop();

@@ -73,7 +73,7 @@ definition {
 			locator1 = "EditCampaign#CAMPAIGN_TRACKING_ACTIONS_CONTENT_SELECT_CONTENT_BUTTON"
 		);
 
-		Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "${menulistContent}");
+		MenuItem.click(menuItem = "${menulistContent}");
 
 		SelectFrame(locator1 = "IFrame#SELECT_CONTENT");
 
@@ -363,7 +363,7 @@ definition {
 			key_rowEntry = "${reportName}"
 		);
 
-		Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Edit");
+		MenuItem.click(menuItem = "Edit");
 	}
 
 	macro saveCP {
