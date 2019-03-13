@@ -83,11 +83,7 @@ definition {
 
 			Click(locator1 = "Tags#TOOLBAR_ACTIONS");
 
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Delete",
-				key_menuItem = "Delete"
-			);
+			MenuItem.clickNoError(menuItem = "Delete");
 		}
 
 		Confirm(
@@ -252,11 +248,7 @@ definition {
 	macro viewTagMenuNotEditableOnLive {
 		LexiconEntry.openEntryMenu(rowEntry = "${rowEntry}");
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${menuItem}",
-			key_menuItem = "${menuItem}"
-		);
+		MenuItem.viewNotPresent(menuItem = "${menuItem}");
 	}
 
 	macro viewTagsCP {

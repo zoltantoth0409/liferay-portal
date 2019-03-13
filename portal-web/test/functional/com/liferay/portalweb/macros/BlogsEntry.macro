@@ -251,10 +251,7 @@ definition {
 
 		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Edit"
-		);
+		MenuItem.viewNotPresent(menuItem = "Edit");
 	}
 
 	macro editSubtitle {
@@ -832,10 +829,7 @@ definition {
 	macro viewPermissionsNoPermissionPG {
 		var key_entryTitle = "${entryTitle}";
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Permissions"
-		);
+		MenuItem.viewNotPresent(menuItem = "Permissions");
 	}
 
 	macro viewPermissionsPG {

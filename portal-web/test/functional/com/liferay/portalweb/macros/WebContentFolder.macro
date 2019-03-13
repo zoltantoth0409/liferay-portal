@@ -69,16 +69,10 @@ definition {
 		MouseOver(locator1 = "Button#PLUS");
 
 		if ("${subfolder}" == "false") {
-			AssertElementNotPresent(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				key_menuItem = "Subfolder"
-			);
+			MenuItem.viewNotPresent(menuItem = "Subfolder");
 		}
 		else {
-			AssertElementPresent(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				key_menuItem = "Subfolder"
-			);
+			MenuItem.viewPresent(menuItem = "Subfolder");
 		}
 	}
 

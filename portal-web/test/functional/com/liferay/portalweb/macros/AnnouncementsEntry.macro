@@ -174,11 +174,7 @@ definition {
 		while (IsElementPresent(locator1 = "AnnouncementsManageEntries#ENTRY_TABLE_ACTIONS_GENERIC")) {
 			Click(locator1 = "AnnouncementsManageEntries#ENTRY_TABLE_ACTIONS_GENERIC");
 
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Delete",
-				key_menuItem = "Delete"
-			);
+			MenuItem.clickNoError(menuItem = "Delete");
 
 			Confirm(
 				value1 = "Are you sure you want to delete this? It will be deleted immediately."

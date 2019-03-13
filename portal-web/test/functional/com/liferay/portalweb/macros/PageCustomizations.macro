@@ -52,11 +52,7 @@ definition {
 		else {
 			var key_menuItem = "Reset My Customizations";
 
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Reset My Customizations",
-				key_menuItem = "Reset My Customizations"
-			);
+			MenuItem.clickNoError(menuItem = "Reset My Customizations");
 
 			Confirm(
 				value1 = "Are you sure you want to reset your customizations to default?"

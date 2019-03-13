@@ -279,14 +279,8 @@ definition {
 
 		Click(locator1 = "RecycleBin#RECYCLE_BIN_TABLE_ACTIONS");
 
-		AssertElementPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Restore"
-		);
+		MenuItem.viewPresent(menuItem = "Restore");
 
-		AssertElementPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Delete"
-		);
+		MenuItem.viewPresent(menuItem = "Delete");
 	}
 }

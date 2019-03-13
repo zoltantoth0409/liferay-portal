@@ -744,10 +744,7 @@ definition {
 		else {
 			Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
-			AssertElementNotPresent(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				key_menuItem = "Impersonate User"
-			);
+			MenuItem.viewNotPresent(menuItem = "Impersonate User");
 		}
 	}
 
@@ -918,11 +915,7 @@ definition {
 
 			Click(locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_ELLIPSIS");
 
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Deactivate",
-				key_menuItem = "Deactivate"
-			);
+			MenuItem.clickNoError(menuItem = "Deactivate");
 
 			Confirm(value1 = "Are you sure you want to deactivate this?");
 

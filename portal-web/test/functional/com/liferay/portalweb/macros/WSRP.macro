@@ -70,11 +70,7 @@ definition {
 		while (IsElementPresent(locator1 = "WSRPAdmin#PRODUCER_TABLE_ACTIONS_BUTTON_GENERIC")) {
 			Click(locator1 = "WSRPAdmin#PRODUCER_TABLE_ACTIONS_BUTTON_GENERIC");
 
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Delete",
-				key_menuItem = "Delete"
-			);
+			MenuItem.clickNoError(menuItem = "Delete");
 
 			Confirm(
 				value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -88,11 +84,7 @@ definition {
 		while (IsElementPresent(locator1 = "WSRPAdmin#CONSUMER_TABLE_ACTIONS_BUTTON_GENERIC")) {
 			Click(locator1 = "WSRPAdmin#CONSUMER_TABLE_ACTIONS_BUTTON_GENERIC");
 
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Delete",
-				key_menuItem = "Delete"
-			);
+			MenuItem.clickNoError(menuItem = "Delete");
 
 			Confirm(
 				value1 = "Are you sure you want to delete this? It will be deleted immediately."

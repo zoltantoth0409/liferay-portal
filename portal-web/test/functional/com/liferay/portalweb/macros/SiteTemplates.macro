@@ -223,11 +223,7 @@ definition {
 		while (IsElementPresent(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS")) {
 			Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
 
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Delete",
-				key_menuItem = "Delete"
-			);
+			MenuItem.clickNoError(menuItem = "Delete");
 
 			Confirm(
 				value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -333,10 +329,7 @@ definition {
 
 		var key_siteTemplateName = "${siteTemplateName}";
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "${siteTemplateName}"
-		);
+		MenuItem.viewNotPresent(menuItem = "${siteTemplateName}");
 	}
 
 	macro viewResetPageChanges {

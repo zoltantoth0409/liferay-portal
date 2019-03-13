@@ -802,11 +802,7 @@ definition {
 		);
 
 		if (isSet(recycleBinDisabled)) {
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Delete",
-				key_menuItem = "Delete"
-			);
+			MenuItem.clickNoError(menuItem = "Delete");
 
 			Confirm(
 				value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -1316,10 +1312,7 @@ definition {
 				value1 = "Actions"
 			);
 
-			AssertElementPresent(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				key_menuItem = "Move to the Recycle Bin"
-			);
+			MenuItem.viewPresent(menuItem = "Move to the Recycle Bin");
 
 			PortletEntry.clickMoveToRecycleBin();
 		}

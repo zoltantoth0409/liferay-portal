@@ -171,10 +171,7 @@ definition {
 
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Basic Document"
-		);
+		MenuItem.viewNotPresent(menuItem = "Basic Document");
 
 		User.logoutAndLoginPG(
 			userLoginEmailAddress = "test@liferay.com",
@@ -248,10 +245,7 @@ definition {
 
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Basic Document"
-		);
+		MenuItem.viewNotPresent(menuItem = "Basic Document");
 
 		Permissions.definePermissionLoginUserCP(
 			permissionDefinitionKey = "SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_RESOURCE_PERMISSIONS_DOCUMENTS_ADD_DOCUMENT_CHECKBOX",
@@ -288,10 +282,7 @@ definition {
 
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Basic Document"
-		);
+		MenuItem.viewNotPresent(menuItem = "Basic Document");
 	}
 
 	@priority = "5"

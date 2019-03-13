@@ -101,10 +101,7 @@ definition {
 		if (IsElementPresent(locator1 = "Portlet#OPTIONS_ICON")) {
 			Click.mouseOverClick(locator1 = "Portlet#OPTIONS_ICON");
 
-			AssertElementNotPresent(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				key_menuItem = "Permissions"
-			);
+			MenuItem.viewNotPresent(menuItem = "Permissions");
 		}
 
 		AssertTextEquals(locator1 = "Link#SUBSCRIBE", value1 = "Subscribe");
@@ -197,20 +194,14 @@ definition {
 		if (IsElementPresent(locator1 = "Portlet#OPTIONS_ICON")) {
 			Click.mouseOverClick(locator1 = "Portlet#OPTIONS_ICON");
 
-			AssertElementNotPresent(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				key_menuItem = "Permissions"
-			);
+			MenuItem.viewNotPresent(menuItem = "Permissions");
 
 			if (IsElementPresent(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Configuration")) {
 				Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Configuration");
 
 				IFrame.selectConfigurationFrame();
 
-				AssertElementNotPresent(
-					locator1 = "MenuItem#ANY_MENU_ITEM",
-					key_menuItem = "Permissions"
-				);
+				MenuItem.viewNotPresent(menuItem = "Permissions");
 			}
 		}
 	}
@@ -228,10 +219,7 @@ definition {
 			IFrame.selectDialogFrame();
 		}
 
-		AssertElementPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Permissions"
-		);
+		MenuItem.viewPresent(menuItem = "Permissions");
 	}
 
 	macro viewScopeDefaultNoEntryCP {

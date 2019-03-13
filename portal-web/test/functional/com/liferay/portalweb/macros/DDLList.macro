@@ -53,12 +53,9 @@ definition {
 	macro assertCannotDeleteRecordViaDDLDisplayPG {
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Delete"
-		);
+		MenuItem.viewNotPresent(menuItem = "Delete");
 
-		AssertElementPresent(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "View");
+		MenuItem.viewPresent(menuItem = "View");
 	}
 
 	macro deleteCP {
@@ -192,10 +189,7 @@ definition {
 	macro viewDeleteRecordOptionViaDDLDisplayPG {
 		Click(locator1 = "DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1");
 
-		AssertElementPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Delete"
-		);
+		MenuItem.viewPresent(menuItem = "Delete");
 	}
 
 	macro viewViaDDLDisplayPG {

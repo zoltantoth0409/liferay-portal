@@ -398,11 +398,7 @@ Sincerely,<br />
 		while (IsElementPresent(locator1 = "ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1")) {
 			Click(locator1 = "ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1");
 
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Delete",
-				key_menuItem = "Delete"
-			);
+			MenuItem.clickNoError(menuItem = "Delete");
 
 			Confirm(
 				value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -429,11 +425,7 @@ Sincerely,<br />
 		while (IsElementPresent(locator1 = "ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1")) {
 			Click(locator1 = "ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1");
 
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Delete",
-				key_menuItem = "Delete"
-			);
+			MenuItem.clickNoError(menuItem = "Delete");
 
 			Confirm(
 				value1 = "Are you sure you want to delete this? It will be deleted immediately."
@@ -459,11 +451,7 @@ Sincerely,<br />
 		while (IsElementPresent(locator1 = "ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1")) {
 			Click(locator1 = "ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1");
 
-			AssertClickNoError(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Delete",
-				key_menuItem = "Delete"
-			);
+			MenuItem.clickNoError(menuItem = "Delete");
 
 			Confirm(
 				value1 = "Are you sure you want to delete this? It will be deleted immediately."

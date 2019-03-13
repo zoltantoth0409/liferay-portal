@@ -420,15 +420,9 @@ definition {
 
 		Click.waitForMenuToggleJSClick(locator1 = "Sites#SITE_TABLE_ACTIONS");
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Add Child Site"
-		);
+		MenuItem.viewNotPresent(menuItem = "Add Child Site");
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Delete"
-		);
+		MenuItem.viewNotPresent(menuItem = "Delete");
 
 		var key_site = "Child SiteName2";
 
@@ -503,15 +497,9 @@ definition {
 
 		Click.waitForMenuToggleJSClick(locator1 = "Sites#SITE_TABLE_ACTIONS");
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Add Child Site"
-		);
+		MenuItem.viewNotPresent(menuItem = "Add Child Site");
 
-		AssertElementNotPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Delete"
-		);
+		MenuItem.viewNotPresent(menuItem = "Delete");
 
 		var key_site = "Child SiteName2";
 

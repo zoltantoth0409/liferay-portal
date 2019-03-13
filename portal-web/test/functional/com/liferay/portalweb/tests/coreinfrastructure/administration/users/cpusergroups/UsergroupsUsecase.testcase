@@ -346,11 +346,7 @@ definition {
 
 		Click(locator1 = "SiteMemberships#USER_TABLE_ACTIONS");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Assign Site Roles",
-			key_menuItem = "Assign Site Roles"
-		);
+		MenuItem.viewNotPresent(menuItem = "Assign Site Roles");
 
 		User.logoutUserPG();
 

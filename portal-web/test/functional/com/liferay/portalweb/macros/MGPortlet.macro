@@ -28,10 +28,7 @@ definition {
 		Click.waitForMenuToggleJSClick(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
 		for (var menuItem : list "Permissions,Add Subfolder,Multiple Media,Add Shortcut,Access from Desktop") {
-			AssertElementPresent(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				key_menuItem = "${menuItem}"
-			);
+			MenuItem.viewPresent(menuItem = "${menuItem}");
 		}
 	}
 }
