@@ -43,10 +43,7 @@ definition {
 	}
 
 	macro gotoEntryMenuItem {
-		Click.waitForMenuToggleJSClick(
-			locator1 = "Icon#ROW_VERTICAL_ELLIPSIS",
-			key_rowEntry = "${rowEntry}"
-		);
+		LexiconEntry.openEntryMenu(rowEntry = "${rowEntry}");
 
 		AssertClick(
 			locator1 = "MenuItem#ANY_MENU_ITEM",
@@ -56,10 +53,7 @@ definition {
 	}
 
 	macro gotoEntryMenuItemNoError {
-		Click.waitForMenuToggleJSClick(
-			locator1 = "Icon#ROW_VERTICAL_ELLIPSIS",
-			key_rowEntry = "${rowEntry}"
-		);
+		LexiconEntry.openEntryMenu(rowEntry = "${rowEntry}");
 
 		AssertClickNoError(
 			locator1 = "MenuItem#ANY_MENU_ITEM",

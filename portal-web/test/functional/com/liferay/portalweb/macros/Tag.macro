@@ -250,10 +250,7 @@ definition {
 	}
 
 	macro viewTagMenuNotEditableOnLive {
-		Click.waitForMenuToggleJSClick(
-			locator1 = "Icon#ROW_VERTICAL_ELLIPSIS",
-			key_rowEntry = "${rowEntry}"
-		);
+		LexiconEntry.openEntryMenu(rowEntry = "${rowEntry}");
 
 		AssertElementNotPresent(
 			locator1 = "MenuItem#ANY_MENU_ITEM",
