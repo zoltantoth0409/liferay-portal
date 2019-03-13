@@ -222,11 +222,11 @@ public class JournalContentImpl
 
 			layoutSetId = layoutSet.getLayoutSetId();
 
-			secure = themeDisplay.isSecure();
-
 			if (portletRequestModel == null) {
 				lifecycleRender = themeDisplay.isLifecycleRender();
 			}
+
+			secure = themeDisplay.isSecure();
 		}
 
 		if (Validator.isNull(ddmTemplateKey)) {
