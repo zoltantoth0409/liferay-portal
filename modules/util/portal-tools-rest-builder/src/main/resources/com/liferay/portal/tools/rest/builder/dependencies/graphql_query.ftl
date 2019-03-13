@@ -44,7 +44,7 @@ public class Query {
 		public ${javaMethodSignature.returnType} ${javaMethodSignature.methodName}(${freeMarkerTool.getGraphQLParameters(javaMethodSignature.javaMethodParameters, javaMethodSignature.operation, true)}) throws Exception {
 			<#assign schemaName = javaMethodSignature.schemaName />
 
-			<#if stringUtil.equals(javaMethodSignature.returnType, "Response")>
+			<#if stringUtil.equals(javaMethodSignature.returnType, "javax.ws.rs.core.Response")>
 				Response.ResponseBuilder responseBuilder = Response.ok();
 
 				return responseBuilder.build();
