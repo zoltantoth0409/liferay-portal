@@ -402,9 +402,10 @@ public class ResourceOpenAPIParser {
 
 		if (requestBodyMediaType != null) {
 			if (requestBodyMediaTypes.size() > 1) {
-				int i = requestBodyMediaTypes.indexOf(requestBodyMediaType) + 1;
+				int position = requestBodyMediaTypes.indexOf(
+					requestBodyMediaType) + 1;
 
-				methodNameSegments.add("MediaType" + i);
+				methodNameSegments.add("MediaType" + position);
 			}
 		}
 
