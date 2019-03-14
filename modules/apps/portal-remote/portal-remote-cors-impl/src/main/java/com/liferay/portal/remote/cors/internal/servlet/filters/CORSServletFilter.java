@@ -46,12 +46,12 @@ public class CORSServletFilter implements Filter {
 			FilterChain filterChain)
 		throws IOException, ServletException {
 
-		HttpServletRequest request = (HttpServletRequest)servletRequest;
+		HttpServletRequest httpServletRequest = (HttpServletRequest)servletRequest;
 
-		if (corsSupport.isCORSRequest(request::getHeader)) {
+		if (corsSupport.isCORSRequest(httpServletRequest::getHeader)) {
 			try {
 				processCORSRequest(
-					request, (HttpServletResponse)servletResponse, filterChain);
+					httpServletRequest, (HttpServletResponse)servletResponse, filterChain);
 			}
 			catch (Exception e) {
 				throw new ServletException(e);
@@ -67,27 +67,27 @@ public class CORSServletFilter implements Filter {
 	}
 
 	public void processCORSRequest(
-			HttpServletRequest request, HttpServletResponse response,
+			HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
 			FilterChain filterChain)
 		throws Exception {
 
-		if (StringUtil.equals(HttpMethods.OPTIONS, request.getMethod())) {
-			if (corsSupport.isValidCORSPreflightRequest(request::getHeader)) {
+		if (StringUtil.equals(HttpMethods.OPTIONS, httpServletRequest.getMethod())) {
+			if (corsSupport.isValidCORSPreflightRequest(httpServletRequest::getHeader)) {
 				corsSupport.writeResponseHeaders(
-					request::getHeader, response::setHeader);
+					httpServletRequest::getHeader, httpServletResponse::setHeader);
 			}
 
 			return;
 		}
 
 		if (corsSupport.isValidCORSRequest(
-				request.getMethod(), request::getHeader)) {
+				httpServletRequest.getMethod(), httpServletRequest::getHeader)) {
 
 			corsSupport.writeResponseHeaders(
-				request::getHeader, response::setHeader);
+				httpServletRequest::getHeader, httpServletResponse::setHeader);
 		}
 
-		filterChain.doFilter(request, response);
+		filterChain.doFilter(httpServletRequest, httpServletResponse);
 	}
 
 	public void setCORSHeaders(Map<String, String> corsHeaders) {

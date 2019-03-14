@@ -205,8 +205,8 @@ public abstract class BaseTestPreparatorBundleActivator
 			properties = new HashMapDictionary<>();
 		}
 
-		properties.put("osgi.jaxrs.application.base", "/" + path);
 		properties.put("liferay.oauth2", false);
+		properties.put("osgi.jaxrs.application.base", "/" + path);
 
 		ServiceRegistration<Application> serviceRegistration =
 			bundleContext.registerService(
