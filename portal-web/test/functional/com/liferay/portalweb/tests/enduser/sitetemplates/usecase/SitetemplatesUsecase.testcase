@@ -719,7 +719,7 @@ definition {
 		Site.addCP(siteName = "New Site", siteType = "Template");
 
 		LAR.importSiteCP(
-			larFileName = "Export",
+			larFileName = "${larFileName}",
 			siteName = "New Site"
 		);
 
