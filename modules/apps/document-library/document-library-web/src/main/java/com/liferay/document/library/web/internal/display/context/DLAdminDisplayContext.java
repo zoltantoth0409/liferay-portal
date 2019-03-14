@@ -569,7 +569,7 @@ public class DLAdminDisplayContext {
 		return dlSearchContainer;
 	}
 
-	private List _getSearchResults(SearchContainer searchContainer)
+	private Hits _getHits(SearchContainer searchContainer)
 		throws PortalException {
 
 		SearchContext searchContext = SearchContextFactory.getInstance(
@@ -603,8 +603,10 @@ public class DLAdminDisplayContext {
 
 		searchContext.setStart(searchContainer.getStart());
 
-		Hits hits = DLAppServiceUtil.search(searchRepositoryId, searchContext);
+		return DLAppServiceUtil.search(searchRepositoryId, searchContext);
+	}
 
+	private List _getSearchResults(Hits hits) throws PortalException {
 		List<SearchResult> searchResults = SearchResultUtil.getSearchResults(
 			hits, _request.getLocale());
 
@@ -656,10 +658,10 @@ public class DLAdminDisplayContext {
 		SearchContainer searchContainer = new SearchContainer(
 			_liferayPortletRequest, getSearchSearchContainerURL(), null, null);
 
-		List results = _getSearchResults(searchContainer);
+		Hits hits = _getHits(searchContainer);
 
-		searchContainer.setResults(results);
-		searchContainer.setTotal(results.size());
+		searchContainer.setResults(_getSearchResults(hits));
+		searchContainer.setTotal(hits.getLength());
 
 		return searchContainer;
 	}
