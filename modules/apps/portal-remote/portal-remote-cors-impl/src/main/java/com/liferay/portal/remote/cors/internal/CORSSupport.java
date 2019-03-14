@@ -62,21 +62,19 @@ public class CORSSupport {
 		Map<String, String> headers = new HashMap<>();
 
 		for (String header : corsHeaderStrings) {
-			int pos = header.indexOf(CharPool.COLON);
+			int index = header.indexOf(CharPool.COLON);
 
-			if (pos < 1) {
+			if (index < 1) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Incorrect syntax of OAuth2CORSConfiguration header: " +
-							header);
+					_log.warn("Incorrect CORS header: " + header);
 				}
 
 				continue;
 			}
 
 			headers.put(
-				StringUtil.trim(header.substring(0, pos)),
-				StringUtil.trim(header.substring(pos + 1)));
+				StringUtil.trim(header.substring(0, index)),
+				StringUtil.trim(header.substring(index + 1)));
 		}
 
 		return headers;
@@ -182,12 +180,12 @@ public class CORSSupport {
 	}
 
 	public void writeResponseHeaders(
-		Function<String, String> requestHeadersAccessor,
-		BiConsumer<String, String> responseHeadersConsumer) {
+		Function<String, String> requestHeadersFunction,
+		BiConsumer<String, String> responseHeadersBiConsumer) {
 
-		String origin = requestHeadersAccessor.apply(ORIGIN);
+		String origin = requestHeadersFunction.apply(ORIGIN);
 
-		responseHeadersConsumer.accept(ACCESS_CONTROL_ALLOW_ORIGIN, origin);
+		responseHeadersBiConsumer.accept(ACCESS_CONTROL_ALLOW_ORIGIN, origin);
 
 		for (Map.Entry<String, String> entry : _corsHeaders.entrySet()) {
 			String key = entry.getKey();
@@ -196,7 +194,7 @@ public class CORSSupport {
 				continue;
 			}
 
-			responseHeadersConsumer.accept(key, entry.getValue());
+			responseHeadersBiConsumer.accept(key, entry.getValue());
 		}
 	}
 
