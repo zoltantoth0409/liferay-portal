@@ -124,8 +124,7 @@ public class CORSSupport {
 	}
 
 	public boolean isValidCORSRequest(
-		String httpMethod,
-		Function<String, String> requestHeadersFunction) {
+		String httpMethod, Function<String, String> requestHeadersFunction) {
 
 		if (!isValidOrigin(requestHeadersFunction.apply(ORIGIN))) {
 			return false;
