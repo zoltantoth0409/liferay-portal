@@ -24,9 +24,9 @@ import java.util.Optional;
 /**
  * @author Jorge Ferrer
  */
-public class SimpleInfoListProviderContext implements InfoListProviderContext {
+public class DefaultInfoListProviderContext implements InfoListProviderContext {
 
-	public SimpleInfoListProviderContext(Group group, User user) {
+	public DefaultInfoListProviderContext(Group group, User user) {
 		_group = group;
 		_user = user;
 	}

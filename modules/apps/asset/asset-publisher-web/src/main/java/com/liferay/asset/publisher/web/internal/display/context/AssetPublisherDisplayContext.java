@@ -46,7 +46,7 @@ import com.liferay.asset.util.AssetPublisherAddItemHolder;
 import com.liferay.document.library.kernel.document.conversion.DocumentConversionUtil;
 import com.liferay.info.provider.InfoListProvider;
 import com.liferay.info.provider.InfoListProviderTracker;
-import com.liferay.info.provider.SimpleInfoListProviderContext;
+import com.liferay.info.provider.DefaultInfoListProviderContext;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -277,18 +277,18 @@ public class AssetPublisherDisplayContext {
 				return Collections.emptyList();
 			}
 
-			SimpleInfoListProviderContext context =
-				new SimpleInfoListProviderContext(
+			DefaultInfoListProviderContext defaultInfoListProviderContext =
+				new DefaultInfoListProviderContext(
 					_themeDisplay.getScopeGroup(), _themeDisplay.getUser());
 
 			AssetEntry assetEntry = (AssetEntry)_portletRequest.getAttribute(
 				WebKeys.LAYOUT_ASSET_ENTRY);
 
-			context.setAssetEntry(assetEntry);
+			defaultInfoListProviderContext.setAssetEntry(assetEntry);
 
-			context.setLayout(_themeDisplay.getLayout());
+			defaultInfoListProviderContext.setLayout(_themeDisplay.getLayout());
 
-			return infoListProvider.getInfoList(context);
+			return infoListProvider.getInfoList(defaultInfoListProviderContext);
 		}
 
 		return Collections.emptyList();
