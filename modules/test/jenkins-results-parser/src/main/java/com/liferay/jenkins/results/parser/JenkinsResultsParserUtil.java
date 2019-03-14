@@ -1498,7 +1498,7 @@ public class JenkinsResultsParserUtil {
 	}
 
 	public static File getUserHomeDir() {
-		return _userHome;
+		return _userHomeDir;
 	}
 
 	public static boolean isCINode() {
@@ -2815,7 +2815,7 @@ public class JenkinsResultsParserUtil {
 	private static final File _sshKnownHostsFile = new File(
 		getSshDir(), "known_hosts");
 	private static final Set<String> _timeStamps = new HashSet<>();
-	private static final File _userHome = new File(
+	private static final File _userHomeDir = new File(
 		System.getProperty("user.home"));
 
 	static {
