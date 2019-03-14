@@ -791,9 +791,9 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			orderByComparator.getOrderByFields());
 
 		return stream.map(
-			orderByCol -> {
+			orderByFieldName -> {
 				String fieldName = _fieldNameOrderByCols.getOrDefault(
-					orderByCol, orderByCol);
+					orderByFieldName, orderByFieldName);
 
 				int sortType = _fieldNameSortTypes.getOrDefault(
 					fieldName, Sort.STRING_TYPE);
