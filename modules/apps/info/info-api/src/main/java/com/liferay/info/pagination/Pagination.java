@@ -21,7 +21,7 @@ public interface Pagination {
 
 	public int getEnd();
 
-	public int getItemsPerPage();
+	public int getDelta();
 
 	public int getStart();
 

@@ -30,7 +30,7 @@ public class PaginationImpl implements Pagination {
 	}
 
 	@Override
-	public int getItemsPerPage() {
+	public int getDelta() {
 		return _end - _start;
 	}
 
