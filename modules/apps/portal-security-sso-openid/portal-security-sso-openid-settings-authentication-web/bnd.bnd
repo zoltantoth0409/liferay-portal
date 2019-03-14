@@ -1,4 +1,4 @@
-Bundle-Name: Liferay Portal Security SSO OpenId Settings Authentication Web
+Bundle-Name: Liferay Portal Security SSO OpenID Settings Authentication Web
 Bundle-SymbolicName: com.liferay.portal.security.sso.openid.settings.authentication.web
 Bundle-Version: 1.0.0
 Provide-Capability:\
