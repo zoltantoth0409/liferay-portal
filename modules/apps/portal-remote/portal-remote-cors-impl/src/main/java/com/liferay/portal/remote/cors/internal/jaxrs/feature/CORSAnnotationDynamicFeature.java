@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.remote.cors.internal.jaxrs;
+package com.liferay.portal.remote.cors.internal.jaxrs.feature;
 
 import com.liferay.petra.reflect.AnnotationLocator;
 import com.liferay.petra.string.StringPool;
