@@ -144,14 +144,13 @@ public class LayoutPrototypeStagedModelDataHandler
 			boolean preloaded = GetterUtil.getBoolean(
 				element.attributeValue("preloaded"));
 
-			String defaultLanguageId = layoutPrototype.getDefaultLanguageId();
-
 			LayoutPrototype existingLayoutPrototype =
 				fetchExistingLayoutPrototype(
 					layoutPrototype.getUuid(),
 					portletDataContext.getCompanyId(),
-					layoutPrototype.getName(defaultLanguageId),
-					defaultLanguageId, preloaded);
+					layoutPrototype.getName(
+						layoutPrototype.getDefaultLanguageId()),
+					layoutPrototype.getDefaultLanguageId(), preloaded);
 
 			if (existingLayoutPrototype == null) {
 				serviceContext.setUuid(layoutPrototype.getUuid());

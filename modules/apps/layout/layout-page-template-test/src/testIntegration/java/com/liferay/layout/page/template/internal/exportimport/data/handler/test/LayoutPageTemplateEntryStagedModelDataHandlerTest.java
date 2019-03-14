@@ -132,7 +132,7 @@ public class LayoutPageTemplateEntryStagedModelDataHandlerTest
 			long companyId, long groupId, String name, long userId)
 		throws Exception {
 
-		HashMap<Locale, String> nameMap = new HashMap<>();
+		Map<Locale, String> nameMap = new HashMap<>();
 
 		nameMap.put(LocaleUtil.getDefault(), name);
 
