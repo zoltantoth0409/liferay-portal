@@ -1666,16 +1666,16 @@ public class KaleoNodePersistenceImpl
 	public KaleoNodePersistenceImpl() {
 		setModelClass(KaleoNode.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("type", "type_");
+		dbColumnNames.put("initial", "initial_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("type", "type_");
-			dbColumnNames.put("initial", "initial_");
 
 			field.set(this, dbColumnNames);
 		}

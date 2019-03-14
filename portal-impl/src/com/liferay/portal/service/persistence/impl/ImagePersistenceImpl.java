@@ -572,16 +572,16 @@ public class ImagePersistenceImpl
 	public ImagePersistenceImpl() {
 		setModelClass(Image.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("type", "type_");
+		dbColumnNames.put("size", "size_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("type", "type_");
-			dbColumnNames.put("size", "size_");
 
 			field.set(this, dbColumnNames);
 		}

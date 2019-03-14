@@ -594,15 +594,15 @@ public class ShoppingItemFieldPersistenceImpl
 	public ShoppingItemFieldPersistenceImpl() {
 		setModelClass(ShoppingItemField.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("values", "values_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("values", "values_");
 
 			field.set(this, dbColumnNames);
 		}

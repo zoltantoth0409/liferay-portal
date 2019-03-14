@@ -6315,16 +6315,16 @@ public class SocialRequestPersistenceImpl
 	public SocialRequestPersistenceImpl() {
 		setModelClass(SocialRequest.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("uuid", "uuid_");
+		dbColumnNames.put("type", "type_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("uuid", "uuid_");
-			dbColumnNames.put("type", "type_");
 
 			field.set(this, dbColumnNames);
 		}

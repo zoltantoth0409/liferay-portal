@@ -2460,15 +2460,15 @@ public class UserThreadPersistenceImpl
 	public UserThreadPersistenceImpl() {
 		setModelClass(UserThread.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("read", "read_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("read", "read_");
 
 			field.set(this, dbColumnNames);
 		}

@@ -2842,16 +2842,16 @@ public class ExportImportConfigurationPersistenceImpl
 	public ExportImportConfigurationPersistenceImpl() {
 		setModelClass(ExportImportConfiguration.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("type", "type_");
+		dbColumnNames.put("settings", "settings_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("type", "type_");
-			dbColumnNames.put("settings", "settings_");
 
 			field.set(this, dbColumnNames);
 		}

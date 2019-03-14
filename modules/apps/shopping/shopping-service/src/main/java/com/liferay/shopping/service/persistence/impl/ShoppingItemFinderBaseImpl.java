@@ -37,17 +37,17 @@ public class ShoppingItemFinderBaseImpl
 	public ShoppingItemFinderBaseImpl() {
 		setModelClass(ShoppingItem.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("fields", "fields_");
+		dbColumnNames.put("featured", "featured_");
+		dbColumnNames.put("sale", "sale_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("fields", "fields_");
-			dbColumnNames.put("featured", "featured_");
-			dbColumnNames.put("sale", "sale_");
 
 			field.set(this, dbColumnNames);
 		}

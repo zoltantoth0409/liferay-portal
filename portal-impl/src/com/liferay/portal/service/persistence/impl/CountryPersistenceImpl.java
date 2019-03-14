@@ -1243,17 +1243,17 @@ public class CountryPersistenceImpl
 	public CountryPersistenceImpl() {
 		setModelClass(Country.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("number", "number_");
+		dbColumnNames.put("idd", "idd_");
+		dbColumnNames.put("active", "active_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("number", "number_");
-			dbColumnNames.put("idd", "idd_");
-			dbColumnNames.put("active", "active_");
 
 			field.set(this, dbColumnNames);
 		}
