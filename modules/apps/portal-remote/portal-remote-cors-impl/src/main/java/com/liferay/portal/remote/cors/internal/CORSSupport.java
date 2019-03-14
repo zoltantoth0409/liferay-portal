@@ -81,9 +81,9 @@ public class CORSSupport {
 	}
 
 	public boolean isCORSRequest(
-		Function<String, String> requestHeaderAccessorFunction) {
+		Function<String, String> requestHeadersFunction) {
 
-		String origin = requestHeaderAccessorFunction.apply(ORIGIN);
+		String origin = requestHeadersFunction.apply(ORIGIN);
 
 		if (Validator.isBlank(origin)) {
 			return false;
@@ -93,15 +93,15 @@ public class CORSSupport {
 	}
 
 	public boolean isValidCORSPreflightRequest(
-		Function<String, String> requestHeaderAccessorFunction) {
+		Function<String, String> requestHeadersFunction) {
 
-		String origin = requestHeaderAccessorFunction.apply(ORIGIN);
+		String origin = requestHeadersFunction.apply(ORIGIN);
 
 		if (!isValidOrigin(origin)) {
 			return false;
 		}
 
-		String accessControlRequestMethod = requestHeaderAccessorFunction.apply(
+		String accessControlRequestMethod = requestHeadersFunction.apply(
 			ACCESS_CONTROL_REQUEST_METHOD);
 
 		if (Validator.isBlank(accessControlRequestMethod)) {
@@ -125,9 +125,9 @@ public class CORSSupport {
 
 	public boolean isValidCORSRequest(
 		String httpMethod,
-		Function<String, String> requestHeaderAccessorFunction) {
+		Function<String, String> requestHeadersFunction) {
 
-		if (!isValidOrigin(requestHeaderAccessorFunction.apply(ORIGIN))) {
+		if (!isValidOrigin(requestHeadersFunction.apply(ORIGIN))) {
 			return false;
 		}
 
