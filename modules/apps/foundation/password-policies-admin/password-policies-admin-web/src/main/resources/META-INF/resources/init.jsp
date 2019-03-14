@@ -73,7 +73,8 @@ page import="com.liferay.portlet.usersadmin.search.UserSearchTerms" %><%@
 page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.users.admin.kernel.util.UsersAdmin" %>
 
-<%@ page import="java.util.LinkedHashMap" %><%@
+<%@ page import="java.util.Arrays" %><%@
+page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletURL" %><%@
