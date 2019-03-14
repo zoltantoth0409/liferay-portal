@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.liferay</groupId>
 	<artifactId>com.liferay.portal.tools.service.builder</artifactId>
-	<version>1.0.277</version>
+	<version>1.0.278</version>
 	<dependencies>
 		<dependency>
 			<groupId>com.puppycrawl.tools</groupId>
@@ -117,7 +117,7 @@
 		<dependency>
 			<groupId>com.liferay</groupId>
 			<artifactId>com.liferay.portal.tools.java.parser</artifactId>
-			<version>1.0.4</version>
+			<version>1.0.9</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
