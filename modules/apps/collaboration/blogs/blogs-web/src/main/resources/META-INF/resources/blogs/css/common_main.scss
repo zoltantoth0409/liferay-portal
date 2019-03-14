@@ -56,7 +56,7 @@
 	}
 
 	.entry-body, .portlet-body {
-		img {
+		img, .cke_widget_image {
 			&[style*="float:"][style*="left;"] {
 				margin-right: 24px;
 			}
