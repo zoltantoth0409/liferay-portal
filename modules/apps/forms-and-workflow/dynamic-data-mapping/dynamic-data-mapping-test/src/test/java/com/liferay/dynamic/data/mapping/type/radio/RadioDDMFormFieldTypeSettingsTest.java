@@ -66,6 +66,7 @@ public class RadioDDMFormFieldTypeSettingsTest
 		DDMFormField inlineDDMFormField = ddmFormFieldsMap.get("inline");
 
 		Assert.assertNotNull(inlineDDMFormField);
+
 		Assert.assertNotNull(inlineDDMFormField.getLabel());
 		Assert.assertEquals(
 			"true", inlineDDMFormField.getProperty("showAsSwitcher"));
@@ -78,12 +79,10 @@ public class RadioDDMFormFieldTypeSettingsTest
 		Assert.assertTrue(optionsDDMFormField.isRequired());
 		Assert.assertEquals("options", optionsDDMFormField.getType());
 
-		DDMFormField validationDDMFormField = ddmFormFieldsMap.get(
-			"validation");
+		DDMFormField indexTypeDDMFormField = ddmFormFieldsMap.get("indexType");
 
-		Assert.assertNotNull(validationDDMFormField);
-		Assert.assertEquals(
-			"FALSE", validationDDMFormField.getVisibilityExpression());
+		Assert.assertNotNull(indexTypeDDMFormField);
+		Assert.assertNotNull(indexTypeDDMFormField.getLabel());
 	}
 
 	protected void setUpLanguageUtil() {
