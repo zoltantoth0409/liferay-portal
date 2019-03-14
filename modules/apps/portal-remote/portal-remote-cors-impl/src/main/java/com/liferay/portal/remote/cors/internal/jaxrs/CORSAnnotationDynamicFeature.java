@@ -69,19 +69,19 @@ public class CORSAnnotationDynamicFeature implements DynamicFeature {
 		CORSSupport corsSupport) {
 
 		return (containerRequestContext, containerResponseContext) -> {
-			MultivaluedMap<String, String> requestHeaders =
+			MultivaluedMap<String, String> headers =
 				containerRequestContext.getHeaders();
 
-			if (corsSupport.isCORSRequest(requestHeaders::getFirst)) {
+			if (corsSupport.isCORSRequest(headers::getFirst)) {
 				if (corsSupport.isValidCORSRequest(
 						containerRequestContext.getMethod(),
-						requestHeaders::getFirst)) {
+						headers::getFirst)) {
 
 					MultivaluedMap<String, Object> responseHeaders =
 						containerResponseContext.getHeaders();
 
 					corsSupport.writeResponseHeaders(
-						requestHeaders::getFirst, responseHeaders::addFirst);
+						headers::getFirst, responseHeaders::addFirst);
 				}
 			}
 		};
@@ -135,21 +135,21 @@ public class CORSAnnotationDynamicFeature implements DynamicFeature {
 		public void filter(ContainerRequestContext containerRequestContext)
 			throws IOException {
 
-			MultivaluedMap<String, String> requestHeaders =
+			MultivaluedMap<String, String> headers =
 				containerRequestContext.getHeaders();
 
-			if (_corsSupport.isCORSRequest(requestHeaders::getFirst)) {
+			if (_corsSupport.isCORSRequest(headers::getFirst)) {
 				if (StringUtil.equals(
 						containerRequestContext.getMethod(), "OPTIONS")) {
 
 					if (_corsSupport.isValidCORSPreflightRequest(
-							requestHeaders::getFirst)) {
+							headers::getFirst)) {
 
 						Response.ResponseBuilder responseBuilder =
 							Response.ok();
 
 						_corsSupport.writeResponseHeaders(
-							requestHeaders::getFirst, responseBuilder::header);
+							headers::getFirst, responseBuilder::header);
 
 						containerRequestContext.abortWith(
 							responseBuilder.build());
