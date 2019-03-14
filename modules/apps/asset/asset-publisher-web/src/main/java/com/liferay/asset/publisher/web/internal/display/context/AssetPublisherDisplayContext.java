@@ -374,7 +374,7 @@ public class AssetPublisherDisplayContext {
 		return _assetEntryResults;
 	}
 
-	public List<InfoListProvider> getAssetInfoListProviders() {
+	public List<InfoListProvider> getAssetEntryInfoListProviders() {
 		return _infoListProviderTracker.getInfoListProviders(AssetEntry.class);
 	}
 

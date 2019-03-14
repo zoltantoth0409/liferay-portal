@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-List<InfoListProvider> infoListProviders = assetPublisherDisplayContext.getAssetInfoListProviders();
+List<InfoListProvider> infoListProviders = assetPublisherDisplayContext.getAssetEntryInfoListProviders();
 %>
 
 <c:choose>
