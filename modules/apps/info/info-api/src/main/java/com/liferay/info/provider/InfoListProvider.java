@@ -64,7 +64,9 @@ public interface InfoListProvider<T> {
 
 	public String getLabel(Locale locale);
 
-	public default boolean isAvailable(InfoListProviderContext context) {
+	public default boolean isAvailable(
+		InfoListProviderContext infoListProviderContext) {
+
 		return true;
 	}
 

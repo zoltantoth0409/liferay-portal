@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public interface InfoItemRenderer<T> {
 
 	public void render(
-		T t, HttpServletRequest request, HttpServletResponse response);
+		T t, HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse);
 
 }

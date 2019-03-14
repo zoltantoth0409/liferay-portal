@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public interface InfoListRenderer<T> {
 
 	public void render(
-		List<T> list, HttpServletRequest request, HttpServletResponse response);
+		List<T> list, HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse);
 
 }
