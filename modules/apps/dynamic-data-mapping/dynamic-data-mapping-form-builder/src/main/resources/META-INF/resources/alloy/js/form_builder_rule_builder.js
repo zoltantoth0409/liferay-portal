@@ -487,6 +487,7 @@ AUI.add(
 									function(item) {
 										return item.value === fieldValue;
 									});
+
 								if (option) {
 									fieldLabel = option.label;
 								}
