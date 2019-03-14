@@ -60,8 +60,8 @@ public class DefaultInfoListProviderContext implements InfoListProviderContext {
 	}
 
 	private AssetEntry _assetEntry;
-	private Layout _layout;
 	private final Group _group;
+	private Layout _layout;
 	private final User _user;
 
 }

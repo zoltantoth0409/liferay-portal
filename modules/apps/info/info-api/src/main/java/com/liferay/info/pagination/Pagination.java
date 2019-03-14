@@ -17,12 +17,30 @@ package com.liferay.info.pagination;
 /**
  * @author Jorge Ferrer
  */
-public interface Pagination {
+public class Pagination {
 
-	public int getEnd();
+	public static Pagination of(int end, int start) {
+		return new Pagination(end, start);
+	}
 
-	public int getDelta();
+	public int getDelta() {
+		return _end - _start;
+	}
 
-	public int getStart();
+	public int getEnd() {
+		return _end;
+	}
+
+	public int getStart() {
+		return _start;
+	}
+
+	private Pagination(int end, int start) {
+		_end = end;
+		_start = start;
+	}
+
+	private final int _end;
+	private final int _start;
 
 }
