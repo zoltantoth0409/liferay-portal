@@ -27,6 +27,7 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.password.policies.admin.constants.PasswordPoliciesAdminPortletKeys" %><%@
+page import="com.liferay.password.policies.admin.web.internal.configuration.PasswordPoliciesConfiguration" %><%@
 page import="com.liferay.password.policies.admin.web.internal.search.AddOrganizationPasswordPolicyChecker" %><%@
 page import="com.liferay.password.policies.admin.web.internal.search.AddUserPasswordPolicyChecker" %><%@
 page import="com.liferay.password.policies.admin.web.internal.search.DeleteOrganizationPasswordPolicyChecker" %><%@
@@ -86,6 +87,8 @@ page import="javax.portlet.WindowState" %>
 
 <%
 PortalPreferences portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(liferayPortletRequest);
+
+PasswordPoliciesConfiguration passwordPoliciesConfiguration = (PasswordPoliciesConfiguration)request.getAttribute(PasswordPoliciesConfiguration.class.getName());
 %>
 
 <%@ include file="/init-ext.jsp" %>
