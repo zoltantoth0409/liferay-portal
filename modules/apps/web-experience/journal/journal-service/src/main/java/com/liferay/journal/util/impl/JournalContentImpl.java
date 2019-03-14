@@ -240,6 +240,10 @@ public class JournalContentImpl
 				portletRequestModel.getLifecycle());
 		}
 
+		if (!lifecycleRender && (themeDisplay != null)) {
+			lifecycleRender = themeDisplay.isLifecycleRender();
+		}
+
 		if ((articleDisplay == null) || !lifecycleRender) {
 			articleDisplay = getArticleDisplay(
 				article, ddmTemplateKey, viewMode, languageId, page,
