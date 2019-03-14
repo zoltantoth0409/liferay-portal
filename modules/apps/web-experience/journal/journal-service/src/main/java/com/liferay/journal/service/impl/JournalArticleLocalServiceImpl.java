@@ -1089,6 +1089,13 @@ public class JournalArticleLocalServiceImpl
 			updatePreviousApprovedArticle(article);
 		}
 
+		// Asset
+
+		if (article.isDraft() || article.isInTrash()) {
+			assetEntryLocalService.deleteEntry(
+				JournalArticle.class.getName(), article.getPrimaryKey());
+		}
+
 		// Email
 
 		if ((serviceContext != null) && Validator.isNotNull(articleURL) &&
