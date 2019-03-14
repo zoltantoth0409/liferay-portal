@@ -20,7 +20,6 @@ import com.liferay.headless.web.experience.resource.v1_0.CommentResource;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 
@@ -184,7 +183,7 @@ public class Mutation {
 	}
 
 	private void _populateResourceContext(CommentResource commentResource)
-		throws PortalException {
+		throws Exception {
 
 		commentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -193,7 +192,7 @@ public class Mutation {
 
 	private void _populateResourceContext(
 			StructuredContentResource structuredContentResource)
-		throws PortalException {
+		throws Exception {
 
 		structuredContentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(

@@ -22,7 +22,6 @@ import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.headless.document.library.resource.v1_0.FolderResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
@@ -244,7 +243,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(CommentResource commentResource)
-		throws PortalException {
+		throws Exception {
 
 		commentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -252,7 +251,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(DocumentResource documentResource)
-		throws PortalException {
+		throws Exception {
 
 		documentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -260,7 +259,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(FolderResource folderResource)
-		throws PortalException {
+		throws Exception {
 
 		folderResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(

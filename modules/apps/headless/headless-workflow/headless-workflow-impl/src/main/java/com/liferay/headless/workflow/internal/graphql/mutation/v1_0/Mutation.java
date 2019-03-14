@@ -18,7 +18,6 @@ import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 
@@ -126,7 +125,7 @@ public class Mutation {
 
 	private void _populateResourceContext(
 			WorkflowTaskResource workflowTaskResource)
-		throws PortalException {
+		throws Exception {
 
 		workflowTaskResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(

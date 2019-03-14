@@ -24,7 +24,6 @@ import com.liferay.headless.foundation.resource.v1_0.UserAccountResource;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
@@ -273,7 +272,7 @@ public class Mutation {
 	}
 
 	private void _populateResourceContext(CategoryResource categoryResource)
-		throws PortalException {
+		throws Exception {
 
 		categoryResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -281,7 +280,7 @@ public class Mutation {
 	}
 
 	private void _populateResourceContext(KeywordResource keywordResource)
-		throws PortalException {
+		throws Exception {
 
 		keywordResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -290,7 +289,7 @@ public class Mutation {
 
 	private void _populateResourceContext(
 			UserAccountResource userAccountResource)
-		throws PortalException {
+		throws Exception {
 
 		userAccountResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -298,7 +297,7 @@ public class Mutation {
 	}
 
 	private void _populateResourceContext(VocabularyResource vocabularyResource)
-		throws PortalException {
+		throws Exception {
 
 		vocabularyResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(

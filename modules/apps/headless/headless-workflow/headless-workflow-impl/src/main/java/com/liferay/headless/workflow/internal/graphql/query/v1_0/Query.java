@@ -20,7 +20,6 @@ import com.liferay.headless.workflow.resource.v1_0.WorkflowLogResource;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -164,7 +163,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			WorkflowLogResource workflowLogResource)
-		throws PortalException {
+		throws Exception {
 
 		workflowLogResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -173,7 +172,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			WorkflowTaskResource workflowTaskResource)
-		throws PortalException {
+		throws Exception {
 
 		workflowTaskResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(

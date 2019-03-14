@@ -18,6 +18,8 @@ import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
+import com.liferay.petra.function.UnsafeConsumer;
+import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -31,9 +33,7 @@ import java.util.Collection;
 
 import javax.annotation.Generated;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import org.osgi.service.component.ComponentServiceObjects;
 
 /**
  * @author Jeyvison Nascimento
@@ -41,6 +41,22 @@ import org.osgi.util.tracker.ServiceTracker;
  */
 @Generated("")
 public class Query {
+
+	public static void setDataDefinitionResourceComponentServiceObjects(
+		ComponentServiceObjects<DataDefinitionResource>
+			dataDefinitionResourceComponentServiceObjects) {
+
+		_dataDefinitionResourceComponentServiceObjects =
+			dataDefinitionResourceComponentServiceObjects;
+	}
+
+	public static void setDataRecordCollectionResourceComponentServiceObjects(
+		ComponentServiceObjects<DataRecordCollectionResource>
+			dataRecordCollectionResourceComponentServiceObjects) {
+
+		_dataRecordCollectionResourceComponentServiceObjects =
+			dataRecordCollectionResourceComponentServiceObjects;
+	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
@@ -51,13 +67,17 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		DataDefinitionResource dataDefinitionResource =
-			_createDataDefinitionResource();
+		return _applyComponentServiceObjects(
+			_dataDefinitionResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataDefinitionResource -> {
+				Page paginationPage =
+					dataDefinitionResource.getDataDefinitionsPage(
+						contentSpaceId, keywords,
+						Pagination.of(pageSize, page));
 
-		Page paginationPage = dataDefinitionResource.getDataDefinitionsPage(
-			contentSpaceId, keywords, Pagination.of(pageSize, page));
-
-		return paginationPage.getItems();
+				return paginationPage.getItems();
+			});
 	}
 
 	@GraphQLField
@@ -66,10 +86,11 @@ public class Query {
 			@GraphQLName("data-definition-id") Long dataDefinitionId)
 		throws Exception {
 
-		DataDefinitionResource dataDefinitionResource =
-			_createDataDefinitionResource();
-
-		return dataDefinitionResource.getDataDefinition(dataDefinitionId);
+		return _applyComponentServiceObjects(
+			_dataDefinitionResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataDefinitionResource -> dataDefinitionResource.getDataDefinition(
+				dataDefinitionId));
 	}
 
 	@GraphQLField
@@ -81,14 +102,17 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		DataRecordCollectionResource dataRecordCollectionResource =
-			_createDataRecordCollectionResource();
+		return _applyComponentServiceObjects(
+			_dataRecordCollectionResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataRecordCollectionResource -> {
+				Page paginationPage =
+					dataRecordCollectionResource.getDataRecordCollectionsPage(
+						contentSpaceId, keywords,
+						Pagination.of(pageSize, page));
 
-		Page paginationPage =
-			dataRecordCollectionResource.getDataRecordCollectionsPage(
-				contentSpaceId, keywords, Pagination.of(pageSize, page));
-
-		return paginationPage.getItems();
+				return paginationPage.getItems();
+			});
 	}
 
 	@GraphQLField
@@ -98,70 +122,54 @@ public class Query {
 				dataRecordCollectionId)
 		throws Exception {
 
-		DataRecordCollectionResource dataRecordCollectionResource =
-			_createDataRecordCollectionResource();
-
-		return dataRecordCollectionResource.getDataRecordCollection(
-			dataRecordCollectionId);
+		return _applyComponentServiceObjects(
+			_dataRecordCollectionResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataRecordCollectionResource ->
+				dataRecordCollectionResource.getDataRecordCollection(
+					dataRecordCollectionId));
 	}
 
-	private static DataDefinitionResource _createDataDefinitionResource()
-		throws Exception {
+	private <T, R, E1 extends Throwable, E2 extends Throwable> R
+			_applyComponentServiceObjects(
+				ComponentServiceObjects<T> componentServiceObjects,
+				UnsafeConsumer<T, E1> unsafeConsumer,
+				UnsafeFunction<T, R, E2> unsafeFunction)
+		throws E1, E2 {
 
-		DataDefinitionResource dataDefinitionResource =
-			_dataDefinitionResourceServiceTracker.getService();
+		T resource = componentServiceObjects.getService();
+
+		try {
+			unsafeConsumer.accept(resource);
+
+			return unsafeFunction.apply(resource);
+		}
+		finally {
+			componentServiceObjects.ungetService(resource);
+		}
+	}
+
+	private void _populateResourceContext(
+			DataDefinitionResource dataDefinitionResource)
+		throws Exception {
 
 		dataDefinitionResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
-
-		return dataDefinitionResource;
 	}
 
-	private static final ServiceTracker
-		<DataDefinitionResource, DataDefinitionResource>
-			_dataDefinitionResourceServiceTracker;
-
-	private static DataRecordCollectionResource
-			_createDataRecordCollectionResource()
+	private void _populateResourceContext(
+			DataRecordCollectionResource dataRecordCollectionResource)
 		throws Exception {
-
-		DataRecordCollectionResource dataRecordCollectionResource =
-			_dataRecordCollectionResourceServiceTracker.getService();
 
 		dataRecordCollectionResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
-
-		return dataRecordCollectionResource;
 	}
 
-	private static final ServiceTracker
-		<DataRecordCollectionResource, DataRecordCollectionResource>
-			_dataRecordCollectionResourceServiceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(Query.class);
-
-		ServiceTracker<DataDefinitionResource, DataDefinitionResource>
-			dataDefinitionResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), DataDefinitionResource.class, null);
-
-		dataDefinitionResourceServiceTracker.open();
-
-		_dataDefinitionResourceServiceTracker =
-			dataDefinitionResourceServiceTracker;
-		ServiceTracker
-			<DataRecordCollectionResource, DataRecordCollectionResource>
-				dataRecordCollectionResourceServiceTracker =
-					new ServiceTracker<>(
-						bundle.getBundleContext(),
-						DataRecordCollectionResource.class, null);
-
-		dataRecordCollectionResourceServiceTracker.open();
-
-		_dataRecordCollectionResourceServiceTracker =
-			dataRecordCollectionResourceServiceTracker;
-	}
+	private static ComponentServiceObjects<DataDefinitionResource>
+		_dataDefinitionResourceComponentServiceObjects;
+	private static ComponentServiceObjects<DataRecordCollectionResource>
+		_dataRecordCollectionResourceComponentServiceObjects;
 
 }

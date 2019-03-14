@@ -24,7 +24,6 @@ import com.liferay.headless.form.resource.v1_0.FormResource;
 import com.liferay.headless.form.resource.v1_0.FormStructureResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -216,7 +215,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(FormResource formResource)
-		throws PortalException {
+		throws Exception {
 
 		formResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -225,7 +224,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			FormDocumentResource formDocumentResource)
-		throws PortalException {
+		throws Exception {
 
 		formDocumentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -233,7 +232,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(FormRecordResource formRecordResource)
-		throws PortalException {
+		throws Exception {
 
 		formRecordResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -242,7 +241,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			FormStructureResource formStructureResource)
-		throws PortalException {
+		throws Exception {
 
 		formStructureResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(

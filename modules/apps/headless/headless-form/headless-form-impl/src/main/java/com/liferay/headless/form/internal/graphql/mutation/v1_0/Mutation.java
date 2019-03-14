@@ -21,7 +21,6 @@ import com.liferay.headless.form.resource.v1_0.FormRecordResource;
 import com.liferay.headless.form.resource.v1_0.FormResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 
@@ -147,7 +146,7 @@ public class Mutation {
 	}
 
 	private void _populateResourceContext(FormResource formResource)
-		throws PortalException {
+		throws Exception {
 
 		formResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -156,7 +155,7 @@ public class Mutation {
 
 	private void _populateResourceContext(
 			FormDocumentResource formDocumentResource)
-		throws PortalException {
+		throws Exception {
 
 		formDocumentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -164,7 +163,7 @@ public class Mutation {
 	}
 
 	private void _populateResourceContext(FormRecordResource formRecordResource)
-		throws PortalException {
+		throws Exception {
 
 		formRecordResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(

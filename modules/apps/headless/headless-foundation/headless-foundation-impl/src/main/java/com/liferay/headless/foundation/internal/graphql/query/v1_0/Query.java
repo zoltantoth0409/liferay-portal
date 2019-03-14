@@ -40,7 +40,6 @@ import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
 import com.liferay.headless.foundation.resource.v1_0.WebUrlResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
@@ -804,7 +803,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(CategoryResource categoryResource)
-		throws PortalException {
+		throws Exception {
 
 		categoryResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -812,7 +811,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(EmailResource emailResource)
-		throws PortalException {
+		throws Exception {
 
 		emailResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -820,7 +819,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(KeywordResource keywordResource)
-		throws PortalException {
+		throws Exception {
 
 		keywordResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -829,7 +828,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			OrganizationResource organizationResource)
-		throws PortalException {
+		throws Exception {
 
 		organizationResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -837,7 +836,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(PhoneResource phoneResource)
-		throws PortalException {
+		throws Exception {
 
 		phoneResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -846,7 +845,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			PostalAddressResource postalAddressResource)
-		throws PortalException {
+		throws Exception {
 
 		postalAddressResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -854,7 +853,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(RoleResource roleResource)
-		throws PortalException {
+		throws Exception {
 
 		roleResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -862,7 +861,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(SegmentResource segmentResource)
-		throws PortalException {
+		throws Exception {
 
 		segmentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -871,7 +870,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			SegmentUserResource segmentUserResource)
-		throws PortalException {
+		throws Exception {
 
 		segmentUserResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -880,7 +879,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			UserAccountResource userAccountResource)
-		throws PortalException {
+		throws Exception {
 
 		userAccountResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -888,7 +887,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(VocabularyResource vocabularyResource)
-		throws PortalException {
+		throws Exception {
 
 		vocabularyResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -896,7 +895,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(WebUrlResource webUrlResource)
-		throws PortalException {
+		throws Exception {
 
 		webUrlResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(

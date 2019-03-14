@@ -28,7 +28,6 @@ import com.liferay.headless.collaboration.resource.v1_0.KnowledgeBaseAttachmentR
 import com.liferay.headless.collaboration.resource.v1_0.KnowledgeBaseFolderResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
@@ -429,7 +428,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			BlogPostingResource blogPostingResource)
-		throws PortalException {
+		throws Exception {
 
 		blogPostingResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -438,7 +437,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			BlogPostingImageResource blogPostingImageResource)
-		throws PortalException {
+		throws Exception {
 
 		blogPostingImageResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -446,7 +445,7 @@ public class Query {
 	}
 
 	private void _populateResourceContext(CommentResource commentResource)
-		throws PortalException {
+		throws Exception {
 
 		commentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -455,7 +454,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			KnowledgeBaseArticleResource knowledgeBaseArticleResource)
-		throws PortalException {
+		throws Exception {
 
 		knowledgeBaseArticleResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -464,7 +463,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			KnowledgeBaseAttachmentResource knowledgeBaseAttachmentResource)
-		throws PortalException {
+		throws Exception {
 
 		knowledgeBaseAttachmentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -473,7 +472,7 @@ public class Query {
 
 	private void _populateResourceContext(
 			KnowledgeBaseFolderResource knowledgeBaseFolderResource)
-		throws PortalException {
+		throws Exception {
 
 		knowledgeBaseFolderResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
