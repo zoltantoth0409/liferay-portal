@@ -87,8 +87,6 @@ page import="javax.portlet.WindowState" %>
 
 <%
 PortalPreferences portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(liferayPortletRequest);
-
-PasswordPoliciesConfiguration passwordPoliciesConfiguration = (PasswordPoliciesConfiguration)request.getAttribute(PasswordPoliciesConfiguration.class.getName());
 %>
 
 <%@ include file="/init-ext.jsp" %>
