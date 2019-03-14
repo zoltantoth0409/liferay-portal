@@ -52,7 +52,7 @@ public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 	@Override
 	public List<InfoListProvider> getInfoListProviders(Class<?> itemClass) {
 		List<InfoListProvider> infoListProviders =
-			_infoListProvidersByItemClass.get(itemClass);
+			_itemClassInfoListProviders.get(itemClass);
 
 		if (infoListProviders != null) {
 			return new ArrayList<>(infoListProviders);
@@ -70,12 +70,12 @@ public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 
 		_infoListProviders.put(clazz.getName(), infoListProvider);
 
-		List<InfoListProvider> infoListProvidersByItemClass =
-			_infoListProvidersByItemClass.computeIfAbsent(
+		List<InfoListProvider> itemClassInfoListProviders =
+			_itemClassInfoListProviders.computeIfAbsent(
 				infoListProvider.getItemClass(),
 				itemClass -> new ArrayList<>());
 
-		infoListProvidersByItemClass.add(infoListProvider);
+		itemClassInfoListProviders.add(infoListProvider);
 	}
 
 	protected void unsetInfoListProvider(InfoListProvider infoListProvider) {
@@ -87,6 +87,6 @@ public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 	private final Map<String, InfoListProvider> _infoListProviders =
 		new ConcurrentHashMap<>();
 	private final Map<Class, List<InfoListProvider>>
-		_infoListProvidersByItemClass = new ConcurrentHashMap<>();
+		_itemClassInfoListProviders = new ConcurrentHashMap<>();
 
 }
