@@ -84,8 +84,7 @@ public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 		_infoListProviders.remove(clazz.getName());
 
 		List<InfoListProvider> itemClassInfoListProviders =
-			_itemClassInfoListProviders.get(
-				infoListProvider.getItemClass());
+			_itemClassInfoListProviders.get(infoListProvider.getItemClass());
 
 		if (itemClassInfoListProviders != null) {
 			_itemClassInfoListProviders.remove(infoListProvider);

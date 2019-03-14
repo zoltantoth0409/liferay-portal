@@ -44,9 +44,9 @@ import com.liferay.asset.publisher.web.internal.util.AssetPublisherWebUtil;
 import com.liferay.asset.util.AssetHelper;
 import com.liferay.asset.util.AssetPublisherAddItemHolder;
 import com.liferay.document.library.kernel.document.conversion.DocumentConversionUtil;
+import com.liferay.info.provider.DefaultInfoListProviderContext;
 import com.liferay.info.provider.InfoListProvider;
 import com.liferay.info.provider.InfoListProviderTracker;
-import com.liferay.info.provider.DefaultInfoListProviderContext;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -298,6 +298,10 @@ public class AssetPublisherDisplayContext {
 		return _assetEntryActionRegistry.getAssetEntryActions(className);
 	}
 
+	public List<InfoListProvider> getAssetEntryInfoListProviders() {
+		return _infoListProviderTracker.getInfoListProviders(AssetEntry.class);
+	}
+
 	public AssetEntryQuery getAssetEntryQuery() throws Exception {
 		if (_assetEntryQuery != null) {
 			return _assetEntryQuery;
@@ -372,10 +376,6 @@ public class AssetPublisherDisplayContext {
 		_assetEntryResults = assetEntryResults;
 
 		return _assetEntryResults;
-	}
-
-	public List<InfoListProvider> getAssetEntryInfoListProviders() {
-		return _infoListProviderTracker.getInfoListProviders(AssetEntry.class);
 	}
 
 	public String getAssetLinkBehavior() {
