@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.odata.util;
+package com.liferay.portal.odata.normalizer;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,7 +23,7 @@ import org.junit.Test;
 public class NormalizerTest {
 
 	@Test
-	public void testNormalizeIdentifierForNotNullValue() {
+	public void testNormalizeIdentifier() {
 		String identifier = Normalizer.normalizeIdentifier(
 			"Aaa Ááá Üüü B'bb (Ccc) Ñññ d_d _[]+-./&ªº!|\"·$=?¿¡`^*¨´Ç};:-");
 

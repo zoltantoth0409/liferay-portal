@@ -45,7 +45,7 @@ import com.liferay.portal.odata.entity.DateTimeEntityField;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.odata.entity.StringEntityField;
-import com.liferay.portal.odata.util.Normalizer;
+import com.liferay.portal.odata.normalizer.Normalizer;
 import com.liferay.segments.internal.odata.entity.OrganizationEntityModel;
 import com.liferay.segments.service.SegmentsEntryLocalService;
 
