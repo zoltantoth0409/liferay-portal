@@ -72,6 +72,10 @@ public interface ParagraphDDMFormFieldTypeSettings
 	)
 	public String dataType();
 
+	@DDMFormField(visibilityExpression = "FALSE")
+	@Override
+	public String indexType();
+
 	@DDMFormField(
 		label = "%title", properties = "placeholder=%enter-a-title",
 		required = true, type = "key-value"
