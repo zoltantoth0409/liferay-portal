@@ -234,19 +234,21 @@ public class TemplateProcessor implements ColumnProcessor {
 						String[] values = currentModifiableSettings.getValues(
 							key, null);
 
-						if (values != null) {
-							sb.append("<preference><name>");
-							sb.append(key);
-							sb.append("</name>");
-
-							for (String value : values) {
-								sb.append("<value>");
-								sb.append(XMLUtil.toCompactSafe(value));
-								sb.append("</value>");
-							}
-
-							sb.append("</preference>");
+						if (values == null) {
+							continue;
 						}
+
+						sb.append("<preference><name>");
+						sb.append(key);
+						sb.append("</name>");
+
+						for (String value : values) {
+							sb.append("<value>");
+							sb.append(XMLUtil.toCompactSafe(value));
+							sb.append("</value>");
+						}
+
+						sb.append("</preference>");
 					}
 
 					sb.append("</portlet-preferences>");
