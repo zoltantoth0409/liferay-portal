@@ -33,12 +33,12 @@ if (passwordPolicy == null) {
 
 boolean defaultPolicy = BeanParamUtil.getBoolean(passwordPolicy, request, "defaultPolicy");
 
+PasswordPoliciesConfiguration passwordPoliciesConfiguration = (PasswordPoliciesConfiguration)request.getAttribute(PasswordPoliciesConfiguration.class.getName());
+
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL.toString());
 
 renderResponse.setTitle(passwordPolicy.isNew() ? LanguageUtil.get(request, "new-password-policy") : passwordPolicy.getName());
-
-PasswordPoliciesConfiguration passwordPoliciesConfiguration = (PasswordPoliciesConfiguration)request.getAttribute(PasswordPoliciesConfiguration.class.getName());
 %>
 
 <portlet:actionURL name="editPasswordPolicy" var="editPasswordPolicyURL" />
@@ -82,7 +82,7 @@ PasswordPoliciesConfiguration passwordPoliciesConfiguration = (PasswordPoliciesC
 							<aui:option label="none" value="0" />
 
 							<%
-							for (long duration : _getSortedArray(passwordPoliciesConfiguration.minimumAgeDurations())) {
+							for (long duration : _sort(passwordPoliciesConfiguration.minimumAgeDurations())) {
 							%>
 
 								<aui:option label="<%= LanguageUtil.getTimeDescription(request, duration * 1000) %>" value="<%= duration %>" />
@@ -98,7 +98,7 @@ PasswordPoliciesConfiguration passwordPoliciesConfiguration = (PasswordPoliciesC
 						<aui:option label="eternal" value="0" />
 
 						<%
-						for (long duration : _getSortedArray(passwordPoliciesConfiguration.resetTicketMaxAgeDurations())) {
+						for (long duration : _sort(passwordPoliciesConfiguration.resetTicketMaxAgeDurations())) {
 						%>
 
 							<aui:option label="<%= LanguageUtil.getTimeDescription(request, duration * 1000) %>" value="<%= duration %>" />
@@ -190,7 +190,7 @@ PasswordPoliciesConfiguration passwordPoliciesConfiguration = (PasswordPoliciesC
 						<aui:select helpMessage="maximum-age-help" label="maximum-age" name="maxAge">
 
 							<%
-							for (long duration : _getSortedArray(passwordPoliciesConfiguration.maximumAgeDurations())) {
+							for (long duration : _sort(passwordPoliciesConfiguration.maximumAgeDurations())) {
 							%>
 
 								<aui:option label="<%= LanguageUtil.getTimeDescription(request, duration * 1000) %>" value="<%= duration %>" />
@@ -204,7 +204,7 @@ PasswordPoliciesConfiguration passwordPoliciesConfiguration = (PasswordPoliciesC
 						<aui:select helpMessage="warning-time-help" name="warningTime">
 
 							<%
-							for (long duration : _getSortedArray(passwordPoliciesConfiguration.expirationWarningTimeDurations())) {
+							for (long duration : _sort(passwordPoliciesConfiguration.expirationWarningTimeDurations())) {
 							%>
 
 								<aui:option label="<%= LanguageUtil.getTimeDescription(request, duration * 1000) %>" value="<%= duration %>" />
@@ -238,7 +238,7 @@ PasswordPoliciesConfiguration passwordPoliciesConfiguration = (PasswordPoliciesC
 						<aui:select helpMessage="reset-failure-count-help" name="resetFailureCount">
 
 							<%
-							for (long duration : _getSortedArray(passwordPoliciesConfiguration.resetFailureDurations())) {
+							for (long duration : _sort(passwordPoliciesConfiguration.resetFailureDurations())) {
 							%>
 
 								<aui:option label="<%= LanguageUtil.getTimeDescription(request, duration * 1000) %>" value="<%= duration %>" />
@@ -253,7 +253,7 @@ PasswordPoliciesConfiguration passwordPoliciesConfiguration = (PasswordPoliciesC
 							<aui:option label="until-unlocked-by-an-administrator" value="0" />
 
 							<%
-							for (long duration : _getSortedArray(passwordPoliciesConfiguration.lockoutDurations())) {
+							for (long duration : _sort(passwordPoliciesConfiguration.lockoutDurations())) {
 							%>
 
 								<aui:option label="<%= LanguageUtil.getTimeDescription(request, duration * 1000) %>" value="<%= duration %>" />
@@ -295,7 +295,7 @@ else {
 %>
 
 <%!
-private static long[] _getSortedArray(long[] array) {
+private static long[] _sort(long[] array) {
 	Arrays.sort(array);
 
 	return array;
