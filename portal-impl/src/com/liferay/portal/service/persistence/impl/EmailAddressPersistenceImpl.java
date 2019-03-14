@@ -4016,16 +4016,16 @@ public class EmailAddressPersistenceImpl
 	public EmailAddressPersistenceImpl() {
 		setModelClass(EmailAddress.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("uuid", "uuid_");
+		dbColumnNames.put("primary", "primary_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("uuid", "uuid_");
-			dbColumnNames.put("primary", "primary_");
 
 			field.set(this, dbColumnNames);
 		}

@@ -4410,16 +4410,16 @@ public class AMImageEntryPersistenceImpl
 	public AMImageEntryPersistenceImpl() {
 		setModelClass(AMImageEntry.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("uuid", "uuid_");
+		dbColumnNames.put("size", "size_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("uuid", "uuid_");
-			dbColumnNames.put("size", "size_");
 
 			field.set(this, dbColumnNames);
 		}

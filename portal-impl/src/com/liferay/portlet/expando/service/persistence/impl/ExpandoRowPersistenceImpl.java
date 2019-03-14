@@ -1310,15 +1310,15 @@ public class ExpandoRowPersistenceImpl
 	public ExpandoRowPersistenceImpl() {
 		setModelClass(ExpandoRow.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("rowId", "rowId_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("rowId", "rowId_");
 
 			field.set(this, dbColumnNames);
 		}

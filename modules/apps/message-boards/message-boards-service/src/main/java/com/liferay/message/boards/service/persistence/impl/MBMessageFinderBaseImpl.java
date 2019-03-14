@@ -36,15 +36,15 @@ public class MBMessageFinderBaseImpl extends BasePersistenceImpl<MBMessage> {
 	public MBMessageFinderBaseImpl() {
 		setModelClass(MBMessage.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("uuid", "uuid_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("uuid", "uuid_");
 
 			field.set(this, dbColumnNames);
 		}

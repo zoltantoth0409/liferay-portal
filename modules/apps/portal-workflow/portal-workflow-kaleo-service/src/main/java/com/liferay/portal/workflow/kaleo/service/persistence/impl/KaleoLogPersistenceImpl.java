@@ -3492,16 +3492,16 @@ public class KaleoLogPersistenceImpl
 	public KaleoLogPersistenceImpl() {
 		setModelClass(KaleoLog.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("type", "type_");
+		dbColumnNames.put("comment", "comment_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("type", "type_");
-			dbColumnNames.put("comment", "comment_");
 
 			field.set(this, dbColumnNames);
 		}

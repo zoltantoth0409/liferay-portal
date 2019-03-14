@@ -323,15 +323,15 @@ public class ReleasePersistenceImpl
 	public ReleasePersistenceImpl() {
 		setModelClass(Release.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("state", "state_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("state", "state_");
 
 			field.set(this, dbColumnNames);
 		}

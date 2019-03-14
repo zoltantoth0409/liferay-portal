@@ -12428,16 +12428,16 @@ public class DLFolderPersistenceImpl
 	public DLFolderPersistenceImpl() {
 		setModelClass(DLFolder.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("uuid", "uuid_");
+		dbColumnNames.put("hidden", "hidden_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("uuid", "uuid_");
-			dbColumnNames.put("hidden", "hidden_");
 
 			field.set(this, dbColumnNames);
 		}

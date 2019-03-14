@@ -3996,17 +3996,17 @@ public class PhonePersistenceImpl
 	public PhonePersistenceImpl() {
 		setModelClass(Phone.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("uuid", "uuid_");
+		dbColumnNames.put("number", "number_");
+		dbColumnNames.put("primary", "primary_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("uuid", "uuid_");
-			dbColumnNames.put("number", "number_");
-			dbColumnNames.put("primary", "primary_");
 
 			field.set(this, dbColumnNames);
 		}

@@ -36,16 +36,16 @@ public class UserFinderBaseImpl extends BasePersistenceImpl<User> {
 	public UserFinderBaseImpl() {
 		setModelClass(User.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put("uuid", "uuid_");
+		dbColumnNames.put("password", "password_");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put("uuid", "uuid_");
-			dbColumnNames.put("password", "password_");
 
 			field.set(this, dbColumnNames);
 		}

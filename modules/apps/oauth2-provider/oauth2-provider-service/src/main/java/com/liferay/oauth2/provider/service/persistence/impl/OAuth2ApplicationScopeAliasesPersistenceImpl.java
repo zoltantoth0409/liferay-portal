@@ -1724,16 +1724,16 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 	public OAuth2ApplicationScopeAliasesPersistenceImpl() {
 		setModelClass(OAuth2ApplicationScopeAliases.class);
 
+		Map<String, String> dbColumnNames = new HashMap<String, String>();
+
+		dbColumnNames.put(
+			"oAuth2ApplicationScopeAliasesId", "oA2AScopeAliasesId");
+
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
 				"_dbColumnNames");
 
 			field.setAccessible(true);
-
-			Map<String, String> dbColumnNames = new HashMap<String, String>();
-
-			dbColumnNames.put(
-				"oAuth2ApplicationScopeAliasesId", "oA2AScopeAliasesId");
 
 			field.set(this, dbColumnNames);
 		}
