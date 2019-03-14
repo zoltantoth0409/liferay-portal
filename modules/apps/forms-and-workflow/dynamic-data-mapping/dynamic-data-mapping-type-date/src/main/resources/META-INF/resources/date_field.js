@@ -2,6 +2,7 @@ AUI.add(
 	'liferay-ddm-form-field-date',
 	function(A) {
 		var isArray = Array.isArray;
+		var Lang = A.Lang;
 
 		var datePicker = new A.DatePicker(
 			{
@@ -134,7 +135,9 @@ AUI.add(
 								date = date[0];
 							}
 
-							instance.setValue(instance.getISODate(date));
+							if (Lang.isDate(date)) {
+								instance.setValue(instance.getISODate(date));
+							}
 
 							instance.validate();
 						}
