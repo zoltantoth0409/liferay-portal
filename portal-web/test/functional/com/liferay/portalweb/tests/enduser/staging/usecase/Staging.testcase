@@ -425,7 +425,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Settings"
+			portlet = "Site Settings"
 		);
 
 		var siteID = "siteID";
