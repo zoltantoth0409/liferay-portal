@@ -26,9 +26,9 @@ import java.util.Optional;
  */
 public class SimpleInfoListProviderContext implements InfoListProviderContext {
 
-	public SimpleInfoListProviderContext(User user, Group scopeGroup) {
+	public SimpleInfoListProviderContext(Group group, User user) {
+		_group = group;
 		_user = user;
-		_scopeGroup = scopeGroup;
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class SimpleInfoListProviderContext implements InfoListProviderContext {
 
 	@Override
 	public Group getGroup() {
-		return _scopeGroup;
+		return _group;
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class SimpleInfoListProviderContext implements InfoListProviderContext {
 
 	private AssetEntry _assetEntry;
 	private Layout _layout;
-	private final Group _scopeGroup;
+	private final Group _group;
 	private final User _user;
 
 }

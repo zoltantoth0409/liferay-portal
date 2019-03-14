@@ -279,7 +279,7 @@ public class AssetPublisherDisplayContext {
 
 			SimpleInfoListProviderContext context =
 				new SimpleInfoListProviderContext(
-					_themeDisplay.getUser(), _themeDisplay.getScopeGroup());
+					_themeDisplay.getScopeGroup(), _themeDisplay.getUser());
 
 			AssetEntry assetEntry = (AssetEntry)_portletRequest.getAttribute(
 				WebKeys.LAYOUT_ASSET_ENTRY);

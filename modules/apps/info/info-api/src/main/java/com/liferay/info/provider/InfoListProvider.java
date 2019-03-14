@@ -31,20 +31,22 @@ import java.util.Locale;
 @ConsumerType
 public interface InfoListProvider<T> {
 
-	public List<T> getInfoList(InfoListProviderContext context);
+	public List<T> getInfoList(InfoListProviderContext infoListProviderContext);
 
 	public List<T> getInfoList(
-		InfoListProviderContext context, Pagination pagination, Sort sort);
+		InfoListProviderContext infoListProviderContext, Pagination pagination,
+		Sort sort);
 
-	public int getInfoListCount(InfoListProviderContext context);
+	public int getInfoListCount(
+		InfoListProviderContext infoListProviderContext);
 
 	public default Class getItemClass() {
 		Class<?> infoListProviderClass = getClass();
 
-		Type[] genericInterfaceTypess =
+		Type[] genericInterfaceTypes =
 			infoListProviderClass.getGenericInterfaces();
 
-		for (Type genericInterfaceType : genericInterfaceTypess) {
+		for (Type genericInterfaceType : genericInterfaceTypes) {
 			ParameterizedType parameterizedType =
 				(ParameterizedType)genericInterfaceType;
 
