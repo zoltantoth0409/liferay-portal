@@ -71,15 +71,16 @@ definition {
 			workflowTask = "${workflowTask}"
 		);
 
+		var menuItem = "Approve";
+
 		if (isSet(workflowDefinitionTask)) {
-			MenuItem.click(menuItem = "${workflowDefinitionTask}");
+			var menuItem = "${workflowDefinitionTask}";
 		}
 		else if (isSet(boardWorkflowTask)) {
-			MenuItem.click(menuItem = "Approve ${boardWorkflowTask}");
+			var menuItem = "Approve ${boardWorkflowTask}";
 		}
-		else {
-			MenuItem.click(menuItem = "Approve");
-		}
+
+		MenuItem.click(menuItem = "${menuItem}");
 
 		if (isSet(workflowActivityComment)) {
 			Type.clickAtType(
