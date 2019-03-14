@@ -209,11 +209,11 @@ public class ChangeListsDisplayContext {
 
 		queryDefinition.setOrderByComparator(orderByComparator);
 
+		List<CTCollection> ctCollections = new ArrayList<>();
+
 		Optional<CTCollection> productionCTCollection =
 			ctEngineManager.getProductionCTCollectionOptional(
 				_themeDisplay.getCompanyId());
-
-		List<CTCollection> ctCollections = new ArrayList<>();
 
 		if (productionCTCollection.isPresent() && Validator.isNull(keywords)) {
 			ctCollections.add(productionCTCollection.get());
