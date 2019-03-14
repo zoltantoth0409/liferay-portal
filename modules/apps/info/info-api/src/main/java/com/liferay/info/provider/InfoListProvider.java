@@ -40,7 +40,7 @@ public interface InfoListProvider<T> {
 	public int getInfoListCount(
 		InfoListProviderContext infoListProviderContext);
 
-	public default Class getItemClass() {
+	public default<?> Class getItemClass() {
 		Class<?> infoListProviderClass = getClass();
 
 		Type[] genericInterfaceTypes =
