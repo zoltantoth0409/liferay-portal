@@ -136,10 +136,7 @@ definition {
 			key_threadSubject = "${threadSubject}"
 		);
 
-		Click.waitForMenuToggleJSClick(
-			locator1 = "MessageBoards#THREAD_REPLY_ACTIONS",
-			key_threadReplyBody = "${threadReplyBody}"
-		);
+		LexiconEntry.openEntryMenu(rowEntry = "${threadReplyBody}");
 
 		MenuItem.click(menuItem = "Permissions");
 
@@ -216,10 +213,7 @@ definition {
 			portlet = "User Groups"
 		);
 
-		Click(
-			locator1 = "UserGroups#USER_GROUP_TABLE_ACTIONS",
-			key_userGroupName = "${userGroupName}"
-		);
+		LexiconEntry.openEntryMenu(rowEntry = "${userGroupName}");
 
 		MenuItem.click(menuItem = "User Group Pages Permissions");
 	}

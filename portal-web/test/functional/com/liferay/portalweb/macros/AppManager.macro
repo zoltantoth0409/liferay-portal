@@ -1,6 +1,6 @@
 definition {
 	macro deactivateAppCP {
-		Click(locator1 = "AppManager#APP_ACTIONS", key_appName = "${appName}");
+		LexiconEntry.openEntryMenu(rowEntry = "${appName}");
 
 		MenuItem.clickNoError(menuItem = "Deactivate");
 
@@ -20,7 +20,7 @@ definition {
 	macro uninstallAppCP {
 		Search.searchCP(searchTerm = "${appName}");
 
-		Click(locator1 = "AppManager#APP_ACTIONS", key_appName = "${appName}");
+		LexiconEntry.openEntryMenu(rowEntry = "${appName}");
 
 		MenuItem.clickNoError(menuItem = "Uninstall");
 

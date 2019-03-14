@@ -33,7 +33,7 @@ definition {
 			value1 = "${calendarResourceName}"
 		);
 
-		Click(locator1 = "CalendarResources#RESOURCE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${calendarResourceName}");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
@@ -58,7 +58,7 @@ definition {
 			value1 = "${calendarResourceName}"
 		);
 
-		Click(locator1 = "CalendarResources#RESOURCE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${calendarResourceName}");
 
 		MenuItem.click(menuItem = "Edit");
 

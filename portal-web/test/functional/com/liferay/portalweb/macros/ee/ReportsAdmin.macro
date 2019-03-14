@@ -211,7 +211,7 @@ definition {
 			value1 = "${reportsFileName}"
 		);
 
-		Click(locator1 = "ReportsAdminViewReportEntry#ENTRY_FILE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${reportsFileName}");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
@@ -234,7 +234,7 @@ definition {
 			value1 = "${reportsFileName}"
 		);
 
-		Click(locator1 = "ReportsAdminViewReportEntry#ENTRY_FILE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${reportsFileName}");
 
 		MenuItem.click(menuItem = "Deliver Report");
 
@@ -268,7 +268,7 @@ definition {
 			value1 = "${reportsFileName}"
 		);
 
-		Click(locator1 = "ReportsAdminViewReportEntry#ENTRY_FILE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${reportsFileName}");
 
 		MenuItem.click(menuItem = "Download");
 

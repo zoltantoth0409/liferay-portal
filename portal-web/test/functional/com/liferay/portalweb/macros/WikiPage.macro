@@ -428,7 +428,7 @@ definition {
 
 		var key_wikiPageVersion = "${wikiPageVersionNew}";
 
-		Click(locator1 = "Wiki#COMPARE_VERSIONS_VERSION_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${wikiPageVersionNew}");
 
 		AssertClick(
 			locator1 = "Wiki#HISTORY_ACTIVITIES_TABLE_COMPARE_TO_LINK",
@@ -651,7 +651,7 @@ definition {
 			value1 = "${entryComment}"
 		);
 
-		Click(locator1 = "Comments#COMMENT_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${entryComment}");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -680,7 +680,7 @@ definition {
 	macro editPageCP {
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		Click(locator1 = "Wiki#DESCRIPTIVE_VIEW_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${wikiPageTitle}");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -768,7 +768,7 @@ definition {
 	macro moveToRecycleBinCP {
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		Click(locator1 = "Wiki#DESCRIPTIVE_VIEW_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${wikiPageTitle}");
 
 		PortletEntry.clickMoveToRecycleBin();
 
@@ -876,7 +876,7 @@ definition {
 		var key_wikiPageRevision = "1.0";
 		var key_wikiPageTitle = "${wikiPage2Title}";
 
-		Click(locator1 = "Wiki#HISTORY_VERSIONS_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${wikiPage2Title}");
 
 		MenuItem.click(menuItem = "Revert");
 
@@ -905,7 +905,7 @@ definition {
 		var key_wikiPageRevision = "${wikiPageRevisionOld}";
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		Click(locator1 = "Wiki#HISTORY_VERSIONS_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${wikiPageTitle}");
 
 		MenuItem.click(menuItem = "Revert");
 

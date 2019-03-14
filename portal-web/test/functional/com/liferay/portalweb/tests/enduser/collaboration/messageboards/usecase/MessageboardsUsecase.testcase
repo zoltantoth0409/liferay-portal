@@ -1577,11 +1577,7 @@ definition {
 
 		Click(locator1 = "MessageBoards#CATEGORY_LIST_ACTIONS");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Subscribe",
-			key_menuItem = "Subscribe"
-		);
+		MenuItem.viewPresent(menuItem = "Subscribe");
 
 		AssertClick(
 			locator1 = "MessageBoards#CATEGORY_LIST_CATEGORY",
@@ -1594,11 +1590,7 @@ definition {
 
 		Click(locator1 = "MessageBoards#VERTICAL_ELLIPSIS");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Unsubscribe",
-			key_menuItem = "Unsubscribe"
-		);
+		MenuItem.viewPresent(menuItem = "Unsubscribe");
 
 		AssertClick(
 			locator1 = "MessageBoards#THREAD_LIST_THREAD",

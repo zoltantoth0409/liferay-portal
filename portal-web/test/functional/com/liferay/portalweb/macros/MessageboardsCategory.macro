@@ -132,7 +132,7 @@ definition {
 			value1 = "${categoryName}"
 		);
 
-		Click(locator1 = "MessageBoards#CATEGORY_LIST_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${categoryName}");
 
 		PortletEntry.clickMoveToRecycleBin();
 
@@ -149,7 +149,7 @@ definition {
 			value1 = "${categoryName}"
 		);
 
-		Click(locator1 = "MessageBoards#CATEGORY_LIST_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${categoryName}");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -212,7 +212,7 @@ definition {
 			value1 = "${categoryName}"
 		);
 
-		Click(locator1 = "MessageBoards#CATEGORY_LIST_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${categoryName}");
 
 		MenuItem.click(menuItem = "Subscribe");
 

@@ -25,9 +25,7 @@ definition {
 
 		var key_suborgName = "${suborgName}";
 
-		Click(
-			locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_ACTIONS"
-		);
+		LexiconEntry.openEntryMenu(rowEntry = "${suborgName}");
 
 		MenuItem.click(menuItem = "Edit");
 

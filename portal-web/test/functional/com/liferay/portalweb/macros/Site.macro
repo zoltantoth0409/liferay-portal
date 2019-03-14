@@ -344,7 +344,7 @@ definition {
 			value1 = "${userGroupName}"
 		);
 
-		Click(locator1 = "SiteMembershipsUserGroups#USER_GROUP_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${userGroupName}");
 
 		MenuItem.click(menuItem = "Assign Site Roles");
 
@@ -552,7 +552,7 @@ definition {
 			value1 = "${siteName}"
 		);
 
-		Click.waitForMenuToggleJSClick(locator1 = "Sites#SITE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${siteName}");
 
 		MenuItem.clickNoError(menuItem = "Deactivate");
 
@@ -583,7 +583,7 @@ definition {
 			value1 = "${siteName}"
 		);
 
-		Click.waitForMenuToggleJSClick(locator1 = "Sites#SITE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${siteName}");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
@@ -944,7 +944,7 @@ definition {
 			value1 = "${userGroupName}"
 		);
 
-		Click(locator1 = "SiteMembershipsUserGroups#USER_GROUP_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${userGroupName}");
 
 		MenuItem.click(menuItem = "Assign Site Roles");
 
@@ -1394,7 +1394,7 @@ definition {
 
 		Click(locator1 = "Button#SUBMIT");
 
-		Click.waitForMenuToggleJSClick(locator1 = "Sites#SITE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${siteName}");
 
 		AssertTextEquals(
 			locator1 = "MenuItem#ANY_MENU_ITEM",

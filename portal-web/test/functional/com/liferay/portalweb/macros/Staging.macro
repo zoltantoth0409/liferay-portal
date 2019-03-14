@@ -638,7 +638,7 @@ definition {
 
 		var key_sitePagesVariationName = "${sitePagesVariationName}";
 
-		Click(locator1 = "StagingManageVariations#SITE_PAGES_VARIATIONS_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${sitePagesVariationName}");
 
 		MenuItem.click(menuItem = "Edit");
 

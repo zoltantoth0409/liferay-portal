@@ -128,9 +128,9 @@ definition {
 
 		Portlet.changeDisplayStyle(displayStyle = "List");
 
-		AssertTextEquals(locator1 = "SiteTeams#TEAM_TABLE_NAME", value1 = "${teamName}");
+		LexiconEntry.viewEntryName(rowEntry = "${teamName}");
 
-		Click(locator1 = "SiteTeams#TEAM_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${teamName}");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 

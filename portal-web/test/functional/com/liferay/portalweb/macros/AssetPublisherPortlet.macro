@@ -1540,11 +1540,7 @@ definition {
 			key_portletName = "Asset Publisher"
 		);
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${selectedAsset}",
-			key_menuItem = "${selectedAsset}"
-		);
+		MenuItem.viewPresent(menuItem = "${selectedAsset}");
 
 		Click(locator1 = "AP#BODY");
 

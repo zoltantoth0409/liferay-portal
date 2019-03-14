@@ -12,7 +12,7 @@ definition {
 			value1 = "${assetType}"
 		);
 
-		Click(locator1 = "RecycleBin#RECYCLE_BIN_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${assetName}");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
@@ -139,7 +139,7 @@ definition {
 			value1 = "${assetName}"
 		);
 
-		Click(locator1 = "RecycleBin#RECYCLE_BIN_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${assetName}");
 
 		MenuItem.click(menuItem = "Restore");
 
@@ -177,10 +177,7 @@ definition {
 	}
 
 	macro restoreOverwriteCP {
-		Click(
-			locator1 = "RecycleBin#RECYCLE_BIN_TABLE_ACTIONS",
-			key_assetName = "${assetName}"
-		);
+		LexiconEntry.openEntryMenu(rowEntry = "${assetName}");
 
 		MenuItem.click(menuItem = "Restore");
 
@@ -277,7 +274,7 @@ definition {
 			value1 = "${assetName}"
 		);
 
-		Click(locator1 = "RecycleBin#RECYCLE_BIN_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${assetName}");
 
 		MenuItem.viewPresent(menuItem = "Restore");
 

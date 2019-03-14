@@ -22,7 +22,7 @@ definition {
 	macro deactivatePortalInstance {
 		var key_virtualHost = "${virtualHost}";
 
-		Click(locator1 = "PortalInstances#INSTANCE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${virtualHost}");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -44,7 +44,7 @@ definition {
 			value1 = "${virtualHost}"
 		);
 
-		Click(locator1 = "PortalInstances#INSTANCE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${virtualHost}");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 

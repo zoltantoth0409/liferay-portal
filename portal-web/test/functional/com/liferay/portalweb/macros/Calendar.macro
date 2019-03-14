@@ -462,7 +462,7 @@ definition {
 			value1 = "${calendarName}"
 		);
 
-		Click(locator1 = "CalendarManageCalendars#CALENDAR_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${calendarName}");
 
 		MenuItem.click(menuItem = "Export");
 
@@ -501,7 +501,7 @@ definition {
 			value1 = "${calendarName}"
 		);
 
-		Click(locator1 = "CalendarManageCalendars#CALENDAR_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${calendarName}");
 
 		MenuItem.click(menuItem = "Import");
 

@@ -344,7 +344,7 @@ definition {
 			value1 = "usersn3"
 		);
 
-		Click(locator1 = "SiteMemberships#USER_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "userfn3 userln3");
 
 		MenuItem.viewNotPresent(menuItem = "Assign Site Roles");
 

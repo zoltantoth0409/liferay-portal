@@ -37,7 +37,7 @@ definition {
 			value1 = "${wikiNodeName}"
 		);
 
-		Click(locator1 = "Wiki#NODE_TABLE_ACTIONS_DROPDOWN");
+		LexiconEntry.openEntryMenu(rowEntry = "${wikiNodeName}");
 
 		PortletEntry.clickMoveToRecycleBin();
 
@@ -56,7 +56,7 @@ definition {
 			value1 = "${wikiNodeName}"
 		);
 
-		Click(locator1 = "Wiki#NODE_TABLE_ACTIONS_DROPDOWN");
+		LexiconEntry.openEntryMenu(rowEntry = "${wikiNodeName}");
 
 		MenuItem.click(menuItem = "Edit");
 

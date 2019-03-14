@@ -2,7 +2,7 @@ definition {
 	macro addChildPageViaSiteTemplateCP {
 		var key_siteTemplateName = "${siteTemplateName}";
 
-		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${siteTemplateName}");
 
 		MenuItem.click(menuItem = "Manage");
 
@@ -43,7 +43,7 @@ definition {
 	macro addSitePageViaSiteTemplateCP {
 		var key_siteTemplateName = "${siteTemplateName}";
 
-		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${siteTemplateName}");
 
 		MenuItem.click(menuItem = "Manage");
 
@@ -92,7 +92,7 @@ definition {
 	macro deleteCP {
 		var key_siteTemplateName = "${siteTemplateName}";
 
-		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${siteTemplateName}");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
@@ -157,7 +157,7 @@ definition {
 			value1 = "${siteTemplateName}"
 		);
 
-		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${siteTemplateName}");
 
 		MenuItem.click(menuItem = "Manage");
 
@@ -221,7 +221,7 @@ definition {
 		var key_siteTemplateName = "Site Template Name";
 
 		while (IsElementPresent(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS")) {
-			Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
+			LexiconEntry.openEntryMenu(rowEntry = "${siteTemplateName}");
 
 			MenuItem.clickNoError(menuItem = "Delete");
 
@@ -300,7 +300,7 @@ definition {
 			value1 = "Site Template Name"
 		);
 
-		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${siteTemplateName}");
 
 		MenuItem.click(menuItem = "Manage");
 

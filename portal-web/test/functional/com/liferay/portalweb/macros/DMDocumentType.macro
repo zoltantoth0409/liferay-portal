@@ -32,7 +32,7 @@ definition {
 
 		var key_dmDocumentTypeName = "${dmDocumentTypeName}";
 
-		Click(locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${dmDocumentTypeName}");
 
 		MenuItem.clickNoError(menuItem = "Delete");
 
@@ -53,7 +53,7 @@ definition {
 
 		var key_dmDocumentTypeName = "${dmDocumentTypeName}";
 
-		Click(locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${dmDocumentTypeName}");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -203,11 +203,7 @@ definition {
 	macro viewMenulistOption {
 		LexiconEntry.gotoAdd();
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "${dmDocumentTypeName}",
-			key_menuItem = "${dmDocumentTypeName}"
-		);
+		MenuItem.viewPresent(menuItem = "${dmDocumentTypeName}");
 	}
 
 	macro viewNoAvailableActionsViaDocumentTypesPG {

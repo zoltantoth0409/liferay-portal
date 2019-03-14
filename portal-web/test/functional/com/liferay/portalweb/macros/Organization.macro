@@ -566,7 +566,7 @@ definition {
 			value1 = "${orgName}"
 		);
 
-		Click(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${orgName}");
 	}
 
 	macro gotoCP {
@@ -697,7 +697,7 @@ definition {
 	macro selectParentOrganizationCP {
 		var key_orgName = "${orgName}";
 
-		Click(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${orgName}");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -803,7 +803,7 @@ definition {
 			value1 = "${orgType}"
 		);
 
-		Click(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS");
+		LexiconEntry.openEntryMenu(rowEntry = "${orgName}");
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -826,10 +826,7 @@ definition {
 			key_navItem = "${navItem}"
 		);
 
-		Click(
-			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS",
-			key_orgName = "${orgName}"
-		);
+		LexiconEntry.openEntryMenu(rowEntry = "${orgName}");
 
 		MenuItem.click(menuItem = "${editLocalized}");
 

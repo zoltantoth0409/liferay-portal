@@ -72,25 +72,13 @@ definition {
 		);
 
 		if (isSet(workflowDefinitionTask)) {
-			AssertClick.pauseAssertTextClickAt(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "${workflowDefinitionTask}",
-				key_menuItem = "${workflowDefinitionTask}"
-			);
+			MenuItem.click(menuItem = "${workflowDefinitionTask}");
 		}
 		else if (isSet(boardWorkflowTask)) {
-			AssertClick.pauseAssertTextClickAt(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Approve ${boardWorkflowTask}",
-				key_menuItem = "Approve ${boardWorkflowTask}"
-			);
+			MenuItem.click(menuItem = "Approve ${boardWorkflowTask}");
 		}
 		else {
-			AssertClick.pauseAssertTextClickAt(
-				locator1 = "MenuItem#ANY_MENU_ITEM",
-				value1 = "Approve",
-				key_menuItem = "Approve"
-			);
+			MenuItem.click(menuItem = "Approve");
 		}
 
 		if (isSet(workflowActivityComment)) {
@@ -491,11 +479,7 @@ definition {
 			workflowTask = "${workflowTask}"
 		);
 
-		AssertClick.pauseAssertTextClickAt(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Reject",
-			key_menuItem = "Reject"
-		);
+		MenuItem.click(menuItem = "Reject");
 
 		if (isSet(workflowActivityComment)) {
 			var key_workflowActivityComment = "${workflowActivityComment}";
@@ -560,11 +544,7 @@ definition {
 			workflowTask = "${workflowTask}"
 		);
 
-		AssertClick.pauseAssertTextClickAt(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Resubmit",
-			key_menuItem = "Resubmit"
-		);
+		MenuItem.click(menuItem = "Resubmit");
 
 		Workflow.confirmAndViewSucessMessageViaActions();
 

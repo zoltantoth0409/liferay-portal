@@ -424,10 +424,7 @@ definition {
 	}
 
 	macro markAsAnswerCP {
-		Click(
-			locator1 = "MessageBoards#THREAD_REPLY_ACTIONS",
-			key_threadReplyBody = "${threadReplyBody}"
-		);
+		LexiconEntry.openEntryMenu(rowEntry = "${threadReplyBody}");
 
 		MenuItem.click(menuItem = "Mark as an Answer");
 
@@ -438,10 +435,7 @@ definition {
 	}
 
 	macro markAsAnswerPG {
-		Click(
-			locator1 = "MessageBoards#THREAD_REPLY_ACTIONS",
-			key_threadReplyBody = "${threadReplyBody}"
-		);
+		LexiconEntry.openEntryMenu(rowEntry = "${threadReplyBody}");
 
 		MenuItem.click(menuItem = "Mark as an Answer");
 

@@ -41,11 +41,7 @@ definition {
 
 		Click.waitForMenuToggleJSClick(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Unsubscribe",
-			key_menuItem = "Unsubscribe"
-		);
+		MenuItem.viewPresent(menuItem = "Unsubscribe");
 	}
 
 	macro tearDownCP {
@@ -59,19 +55,15 @@ definition {
 
 		var key_wikiNodeName = "Main";
 
-		Click(locator1 = "Wiki#NODE_TABLE_ACTIONS_DROPDOWN");
+		LexiconEntry.openEntryMenu(rowEntry = "Main");
 
 		MenuItem.click(menuItem = "Unsubscribe");
 
 		Alert.viewSuccessMessage();
 
-		Click(locator1 = "Wiki#NODE_TABLE_ACTIONS_DROPDOWN");
+		LexiconEntry.openEntryMenu(rowEntry = "Main");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Subscribe",
-			key_menuItem = "Subscribe"
-		);
+		MenuItem.viewPresent(menuItem = "Subscribe");
 	}
 
 	macro viewConfigurationTabs {

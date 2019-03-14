@@ -18,15 +18,7 @@ definition {
 			key_rowEntry = "${siteName}"
 		);
 
-		AssertElementPresent(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Membership Requested"
-		);
-
-		AssertVisible(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			key_menuItem = "Membership Requested"
-		);
+		MenuItem.viewPresent(menuItem = "Membership Requested");
 	}
 
 	macro viewNoOptions {

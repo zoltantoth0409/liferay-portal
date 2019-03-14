@@ -2096,59 +2096,23 @@ definition {
 	macro viewStagingDetailsPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Documents and Media");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Folder",
-			key_menuItem = "Folder"
-		);
+		MenuItem.viewPresent(menuItem = "Folder");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Shortcut",
-			key_menuItem = "Shortcut"
-		);
+		MenuItem.viewPresent(menuItem = "Shortcut");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Repository",
-			key_menuItem = "Repository"
-		);
+		MenuItem.viewPresent(menuItem = "Repository");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Multiple Documents",
-			key_menuItem = "Multiple Documents"
-		);
+		MenuItem.viewPresent(menuItem = "Multiple Documents");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Basic Document",
-			key_menuItem = "Basic Document"
-		);
+		MenuItem.viewPresent(menuItem = "Basic Document");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Contract",
-			key_menuItem = "Contract"
-		);
+		MenuItem.viewPresent(menuItem = "Contract");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Marketing Banner",
-			key_menuItem = "Marketing Banner"
-		);
+		MenuItem.viewPresent(menuItem = "Marketing Banner");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Online Training",
-			key_menuItem = "Online Training"
-		);
+		MenuItem.viewPresent(menuItem = "Online Training");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Sales Presentation",
-			key_menuItem = "Sales Presentation"
-		);
+		MenuItem.viewPresent(menuItem = "Sales Presentation");
 
 		SelectFrameTop();
 
@@ -2165,35 +2129,15 @@ definition {
 			value1 = "Download"
 		);
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Edit",
-			key_menuItem = "Edit"
-		);
+		MenuItem.viewPresent(menuItem = "Edit");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Move",
-			key_menuItem = "Move"
-		);
+		MenuItem.viewPresent(menuItem = "Move");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Checkout",
-			key_menuItem = "Checkout"
-		);
+		MenuItem.viewPresent(menuItem = "Checkout");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Permissions",
-			key_menuItem = "Permissions"
-		);
+		MenuItem.viewPresent(menuItem = "Permissions");
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Move to the Recycle Bin",
-			key_menuItem = "Move to the Recycle Bin"
-		);
+		MenuItem.viewPresent(menuItem = "Move to the Recycle Bin");
 
 		Check(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
 
@@ -2218,11 +2162,7 @@ definition {
 			value1 = "Download"
 		);
 
-		AssertTextEquals(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Move to the Recycle Bin",
-			key_menuItem = "Move to the Recycle Bin"
-		);
+		MenuItem.viewPresent(menuItem = "Move to the Recycle Bin");
 
 		Click(locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_CHECKBOX");
 
