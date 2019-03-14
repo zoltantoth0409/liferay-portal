@@ -1497,7 +1497,7 @@ public class JenkinsResultsParserUtil {
 		return subdirectories;
 	}
 
-	public static File getUserHome() {
+	public static File getUserHomeDir() {
 		return _userHome;
 	}
 
@@ -2807,7 +2807,7 @@ public class JenkinsResultsParserUtil {
 		"https://test.liferay.com/([0-9]+)/");
 	private static final Pattern _remoteURLAuthorityPattern2 = Pattern.compile(
 		"https://(test-[0-9]+-[0-9]+).liferay.com/");
-	private static final File _sshDir = new File(getUserHome(), ".ssh") {
+	private static final File _sshDir = new File(getUserHomeDir(), ".ssh") {
 		{
 			if (!exists()) {
 				mkdirs();
