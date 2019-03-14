@@ -40,7 +40,6 @@ public class BulkAssetEntryCommonCategoriesModel {
 		long[] groupIds) {
 
 		_description = description;
-
 		_groupIds = groupIds;
 
 		Set<Map.Entry<AssetVocabulary, List<AssetCategory>>> entries =

@@ -106,9 +106,9 @@ class EditCategories extends Component {
 			bodyData,
 			response => {
 				if (response) {
-					this.loading = false;
 					this.description = response.description;
 					this.groupIds = response.groupIds;
+					this.loading = false;
 					this.multiple = (this.fileEntries.length > 1) || this.selectAll;
 					this.vocabularies = this._parseVocabularies(response.vocabularies);
 				}

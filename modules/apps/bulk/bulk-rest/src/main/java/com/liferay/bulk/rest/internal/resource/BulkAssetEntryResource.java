@@ -115,13 +115,10 @@ public class BulkAssetEntryResource {
 				Collections.emptySet()
 			);
 
-			long[] groupIds = _portal.getCurrentAndAncestorSiteGroupIds(
-				groupId);
-
 			return new BulkAssetEntryCommonCategoriesModel(
 				bulkSelection.describe(locale),
 				_groupByAssetVocabulary(groupId, classNameId, commonCategories),
-				groupIds);
+				_portal.getCurrentAndAncestorSiteGroupIds(groupId));
 		}
 		catch (Exception e) {
 			return new BulkAssetEntryCommonCategoriesModel(e);
