@@ -223,13 +223,13 @@ public class ContentPageEditorDisplayContext {
 
 		soyContext.put(
 			"availableLanguages", _getAvailableLanguagesSoyContext());
-		soyContext.put(
-			"draft", classNameId == PortalUtil.getClassNameId(Layout.class));
 		soyContext.put("classPK", themeDisplay.getPlid());
 		soyContext.put("defaultLanguageId", themeDisplay.getLanguageId());
 		soyContext.put("defaultSegmentsEntryId", _getDefaultSegmentsEntryId());
 		soyContext.put(
 			"defaultSegmentsExperienceId", _getDefaultSegmentsExperienceId());
+		soyContext.put(
+			"draft", classNameId == PortalUtil.getClassNameId(Layout.class));
 		soyContext.put("lastSaveDate", StringPool.BLANK);
 		soyContext.put("portletNamespace", _renderResponse.getNamespace());
 		soyContext.put(
