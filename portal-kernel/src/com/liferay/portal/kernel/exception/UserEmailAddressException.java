@@ -85,8 +85,8 @@ public class UserEmailAddressException extends PortalException {
 
 			super(
 				String.format(
-					"User %s with company %s and email address %s is already " +
-						"in use",
+					"User %s cannot be created because a user with company " +
+						"%s and email address %s is already in use",
 					userId, emailAddress, companyId));
 
 			this.companyId = companyId;
