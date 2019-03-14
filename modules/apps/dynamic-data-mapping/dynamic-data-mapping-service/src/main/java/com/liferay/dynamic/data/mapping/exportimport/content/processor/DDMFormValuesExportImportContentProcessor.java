@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Element;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -137,7 +138,7 @@ public class DDMFormValuesExportImportContentProcessor
 
 	private LayoutLocalService _layoutLocalService;
 
-	private static class LayoutImportDDMFormFieldValueTransformer
+	private class LayoutImportDDMFormFieldValueTransformer
 		implements DDMFormFieldValueTransformer {
 
 		public LayoutImportDDMFormFieldValueTransformer(
@@ -167,7 +168,30 @@ public class DDMFormValuesExportImportContentProcessor
 					_portletDataContext, jsonObject);
 
 				if (importedLayout == null) {
-					continue;
+					Element missingReferencesElement =
+						_portletDataContext.getMissingReferencesElement();
+
+					List<Element> elements =
+						missingReferencesElement.elements();
+
+					for (Element element : elements) {
+						String className = element.attributeValue("class-name");
+
+						if (className.equals(Layout.class.getName())) {
+							String uuid = element.attributeValue("uuid");
+							String privateLayout = element.attributeValue(
+								"private-layout");
+
+							importedLayout =
+								_layoutLocalService.fetchLayoutByUuidAndGroupId(
+									uuid, _portletDataContext.getScopeGroupId(),
+									Boolean.valueOf(privateLayout));
+						}
+					}
+
+					if (importedLayout == null) {
+						continue;
+					}
 				}
 
 				value.addString(locale, toJSON(importedLayout));
