@@ -207,15 +207,6 @@ public class AssetBrowserDisplayContext {
 				"selectedGroupId", String.valueOf(selectedGroupId));
 		}
 
-		if (isShowAddButton()) {
-			portletURL.setParameter("showAddButton", Boolean.TRUE.toString());
-		}
-
-		if (isMultipleSelection()) {
-			portletURL.setParameter(
-				"multipleSelection", Boolean.TRUE.toString());
-		}
-
 		long[] selectedGroupIds = getSelectedGroupIds();
 
 		if (selectedGroupIds.length > 0) {
@@ -233,11 +224,21 @@ public class AssetBrowserDisplayContext {
 			portletURL.setParameter("listable", String.valueOf(_getListable()));
 		}
 
+		if (isMultipleSelection()) {
+			portletURL.setParameter(
+				"multipleSelection", Boolean.TRUE.toString());
+		}
+
+		portletURL.setParameter("eventName", getEventName());
+
+		if (isShowAddButton()) {
+			portletURL.setParameter("showAddButton", Boolean.TRUE.toString());
+		}
+
 		portletURL.setParameter(
 			"showNonindexable", String.valueOf(_isShowNonindexable()));
 		portletURL.setParameter(
 			"showScheduled", String.valueOf(_isShowScheduled()));
-		portletURL.setParameter("eventName", getEventName());
 
 		return portletURL;
 	}
