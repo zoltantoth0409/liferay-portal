@@ -53,7 +53,7 @@ public class BuildingsSiteInitializer implements SiteInitializer {
 
 	@Override
 	public String getName(Locale locale) {
-		return _SITE_INITIALIZER_NAME;
+		return _NAME;
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class BuildingsSiteInitializer implements SiteInitializer {
 		_bundle = bundleContext.getBundle();
 	}
 
-	private static final String _SITE_INITIALIZER_NAME = "Buildings";
+	private static final String _NAME = "Buildings";
 
 	private Bundle _bundle;
 
