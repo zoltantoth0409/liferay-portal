@@ -1794,11 +1794,8 @@ public class JenkinsResultsParserUtil {
 		}
 
 		_sshIdRsaFile.setExecutable(false, false);
-
 		_sshIdRsaFile.setReadable(false, false);
-
 		_sshIdRsaFile.setReadable(true, true);
-
 		_sshIdRsaFile.setWritable(false, false);
 	}
 
