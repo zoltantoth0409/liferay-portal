@@ -6124,10 +6124,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		// Check if password has expired
 
-		if (PasswordModificationThreadLocal.isPasswordModified()) {
-			return user;
-		}
-
 		if (isPasswordExpired(user)) {
 			int graceLoginCount = user.getGraceLoginCount();
 
@@ -7131,7 +7127,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			user = doCheckLockout(user, passwordPolicy);
 
-			user = doCheckPasswordExpired(user, passwordPolicy);
+			if (PasswordModificationThreadLocal.isPasswordModified()) {
+				user = doCheckPasswordExpired(user, passwordPolicy);
+			}
 		}
 
 		return user;
