@@ -655,7 +655,7 @@ public class DDMStructureLocalServiceTest extends BaseDDMServiceTestCase {
 	public void testValidateIndexTypePropertyValue2() throws Exception {
 		DDMForm ddmForm = DDMFormTestUtil.createDDMForm("Field1");
 
-		DDMFormTestUtil.setIndexTypeProperty(ddmForm, StringPool.BLANK);
+		DDMFormTestUtil.setIndexTypeProperty(ddmForm, "none");
 
 		DDMStructure structure = ddmStructureTestHelper.addStructure(
 			ddmForm, StorageType.JSON.getValue());
@@ -669,8 +669,7 @@ public class DDMStructureLocalServiceTest extends BaseDDMServiceTestCase {
 
 		DDMFormField textFieldAfterUpdate = ddmFormFieldAfterUpdate.get(0);
 
-		Assert.assertEquals(
-			StringPool.BLANK, textFieldAfterUpdate.getIndexType());
+		Assert.assertEquals("none", textFieldAfterUpdate.getIndexType());
 	}
 
 	@Test(expected = InvalidParentStructureException.class)

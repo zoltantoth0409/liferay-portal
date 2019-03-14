@@ -22,7 +22,6 @@ import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutPage;
 import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutRow;
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldValidation;
 import com.liferay.dynamic.data.mapping.model.LocalizedValue;
-import com.liferay.petra.string.StringPool;
 
 /**
  * @author Marcellus Tavares
@@ -71,7 +70,7 @@ public interface DefaultDDMFormFieldTypeSettings
 
 	@DDMFormField(
 		label = "%searchable", optionLabels = {"%disable", "%keyword"},
-		optionValues = {StringPool.BLANK, "keyword"}, type = "select"
+		optionValues = {"none", "keyword"}, type = "select"
 	)
 	public String indexType();
 
