@@ -50,7 +50,7 @@ public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 	}
 
 	@Override
-	public List<InfoListProvider> getInfoListProviders(Class itemClass) {
+	public List<InfoListProvider> getInfoListProviders(Class<?> itemClass) {
 		List<InfoListProvider> infoListProviders =
 			_infoListProvidersByItemClass.get(itemClass);
 
