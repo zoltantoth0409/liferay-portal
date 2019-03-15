@@ -1335,7 +1335,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("contentSpace")) {
+		if (entityFieldName.equals("contentSpaceId")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
@@ -1422,7 +1422,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 	protected StructuredContent randomStructuredContent() {
 		return new StructuredContent() {
 			{
-				contentSpace = RandomTestUtil.randomLong();
+				contentSpaceId = RandomTestUtil.randomLong();
 				contentStructureId = RandomTestUtil.randomLong();
 				dateCreated = RandomTestUtil.nextDate();
 				dateModified = RandomTestUtil.nextDate();

@@ -120,8 +120,9 @@ public abstract class BaseBlogPostingResourceImpl
 			existingBlogPosting.setCategoryIds(blogPosting.getCategoryIds());
 		}
 
-		if (Validator.isNotNull(blogPosting.getContentSpace())) {
-			existingBlogPosting.setContentSpace(blogPosting.getContentSpace());
+		if (Validator.isNotNull(blogPosting.getContentSpaceId())) {
+			existingBlogPosting.setContentSpaceId(
+				blogPosting.getContentSpaceId());
 		}
 
 		if (Validator.isNotNull(blogPosting.getDateCreated())) {

@@ -199,20 +199,20 @@ public class StructuredContent {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected ContentField[] contentFields;
 
-	public Long getContentSpace() {
-		return contentSpace;
+	public Long getContentSpaceId() {
+		return contentSpaceId;
 	}
 
-	public void setContentSpace(Long contentSpace) {
-		this.contentSpace = contentSpace;
+	public void setContentSpaceId(Long contentSpaceId) {
+		this.contentSpaceId = contentSpaceId;
 	}
 
 	@JsonIgnore
-	public void setContentSpace(
-		UnsafeSupplier<Long, Exception> contentSpaceUnsafeSupplier) {
+	public void setContentSpaceId(
+		UnsafeSupplier<Long, Exception> contentSpaceIdUnsafeSupplier) {
 
 		try {
-			contentSpace = contentSpaceUnsafeSupplier.get();
+			contentSpaceId = contentSpaceIdUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -221,7 +221,7 @@ public class StructuredContent {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected Long contentSpace;
+	protected Long contentSpaceId;
 
 	public Long getContentStructureId() {
 		return contentStructureId;
@@ -640,9 +640,9 @@ public class StructuredContent {
 
 		sb.append(", ");
 
-		sb.append("\"contentSpace\": ");
+		sb.append("\"contentSpaceId\": ");
 
-		sb.append(contentSpace);
+		sb.append(contentSpaceId);
 		sb.append(", ");
 
 		sb.append("\"contentStructureId\": ");

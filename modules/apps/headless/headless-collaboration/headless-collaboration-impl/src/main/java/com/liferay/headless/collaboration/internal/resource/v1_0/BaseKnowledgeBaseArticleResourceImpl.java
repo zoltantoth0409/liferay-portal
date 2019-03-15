@@ -148,9 +148,9 @@ public abstract class BaseKnowledgeBaseArticleResourceImpl
 				knowledgeBaseArticle.getCategoryIds());
 		}
 
-		if (Validator.isNotNull(knowledgeBaseArticle.getContentSpace())) {
-			existingKnowledgeBaseArticle.setContentSpace(
-				knowledgeBaseArticle.getContentSpace());
+		if (Validator.isNotNull(knowledgeBaseArticle.getContentSpaceId())) {
+			existingKnowledgeBaseArticle.setContentSpaceId(
+				knowledgeBaseArticle.getContentSpaceId());
 		}
 
 		if (Validator.isNotNull(knowledgeBaseArticle.getDateCreated())) {

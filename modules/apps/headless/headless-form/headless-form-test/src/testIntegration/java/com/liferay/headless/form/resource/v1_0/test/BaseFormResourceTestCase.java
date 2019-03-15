@@ -542,7 +542,7 @@ public abstract class BaseFormResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("contentSpace")) {
+		if (entityFieldName.equals("contentSpaceId")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
@@ -626,7 +626,7 @@ public abstract class BaseFormResourceTestCase {
 	protected Form randomForm() {
 		return new Form() {
 			{
-				contentSpace = RandomTestUtil.randomLong();
+				contentSpaceId = RandomTestUtil.randomLong();
 				dateCreated = RandomTestUtil.nextDate();
 				dateModified = RandomTestUtil.nextDate();
 				datePublished = RandomTestUtil.nextDate();

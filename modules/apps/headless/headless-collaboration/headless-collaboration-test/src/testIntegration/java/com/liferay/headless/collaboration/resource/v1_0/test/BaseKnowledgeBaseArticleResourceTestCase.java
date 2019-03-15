@@ -1225,7 +1225,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("contentSpace")) {
+		if (entityFieldName.equals("contentSpaceId")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
@@ -1312,7 +1312,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		return new KnowledgeBaseArticle() {
 			{
 				articleBody = RandomTestUtil.randomString();
-				contentSpace = RandomTestUtil.randomLong();
+				contentSpaceId = RandomTestUtil.randomLong();
 				dateCreated = RandomTestUtil.nextDate();
 				dateModified = RandomTestUtil.nextDate();
 				description = RandomTestUtil.randomString();

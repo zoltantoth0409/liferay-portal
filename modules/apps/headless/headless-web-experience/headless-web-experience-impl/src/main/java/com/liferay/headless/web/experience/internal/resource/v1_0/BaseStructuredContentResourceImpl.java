@@ -175,9 +175,9 @@ public abstract class BaseStructuredContentResourceImpl
 				structuredContent.getCategoryIds());
 		}
 
-		if (Validator.isNotNull(structuredContent.getContentSpace())) {
-			existingStructuredContent.setContentSpace(
-				structuredContent.getContentSpace());
+		if (Validator.isNotNull(structuredContent.getContentSpaceId())) {
+			existingStructuredContent.setContentSpaceId(
+				structuredContent.getContentSpaceId());
 		}
 
 		if (Validator.isNotNull(structuredContent.getContentStructureId())) {

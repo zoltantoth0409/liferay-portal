@@ -750,7 +750,7 @@ public abstract class BaseKeywordResourceTestCase {
 		sb.append(operator);
 		sb.append(" ");
 
-		if (entityFieldName.equals("contentSpace")) {
+		if (entityFieldName.equals("contentSpaceId")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
@@ -797,7 +797,7 @@ public abstract class BaseKeywordResourceTestCase {
 	protected Keyword randomKeyword() {
 		return new Keyword() {
 			{
-				contentSpace = RandomTestUtil.randomLong();
+				contentSpaceId = RandomTestUtil.randomLong();
 				dateCreated = RandomTestUtil.nextDate();
 				dateModified = RandomTestUtil.nextDate();
 				id = RandomTestUtil.randomLong();

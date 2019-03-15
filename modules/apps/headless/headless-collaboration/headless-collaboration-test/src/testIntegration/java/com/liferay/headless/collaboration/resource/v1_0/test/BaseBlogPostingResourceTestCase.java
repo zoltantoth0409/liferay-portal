@@ -897,7 +897,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("contentSpace")) {
+		if (entityFieldName.equals("contentSpaceId")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
@@ -997,7 +997,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 				alternativeHeadline = RandomTestUtil.randomString();
 				articleBody = RandomTestUtil.randomString();
 				caption = RandomTestUtil.randomString();
-				contentSpace = RandomTestUtil.randomLong();
+				contentSpaceId = RandomTestUtil.randomLong();
 				dateCreated = RandomTestUtil.nextDate();
 				dateModified = RandomTestUtil.nextDate();
 				datePublished = RandomTestUtil.nextDate();

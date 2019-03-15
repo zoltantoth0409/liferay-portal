@@ -40,20 +40,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Keyword")
 public class Keyword {
 
-	public Long getContentSpace() {
-		return contentSpace;
+	public Long getContentSpaceId() {
+		return contentSpaceId;
 	}
 
-	public void setContentSpace(Long contentSpace) {
-		this.contentSpace = contentSpace;
+	public void setContentSpaceId(Long contentSpaceId) {
+		this.contentSpaceId = contentSpaceId;
 	}
 
 	@JsonIgnore
-	public void setContentSpace(
-		UnsafeSupplier<Long, Exception> contentSpaceUnsafeSupplier) {
+	public void setContentSpaceId(
+		UnsafeSupplier<Long, Exception> contentSpaceIdUnsafeSupplier) {
 
 		try {
-			contentSpace = contentSpaceUnsafeSupplier.get();
+			contentSpaceId = contentSpaceIdUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -62,7 +62,7 @@ public class Keyword {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected Long contentSpace;
+	protected Long contentSpaceId;
 
 	public Creator getCreator() {
 		return creator;
@@ -209,9 +209,9 @@ public class Keyword {
 
 		sb.append("{");
 
-		sb.append("\"contentSpace\": ");
+		sb.append("\"contentSpaceId\": ");
 
-		sb.append(contentSpace);
+		sb.append(contentSpaceId);
 		sb.append(", ");
 
 		sb.append("\"creator\": ");
