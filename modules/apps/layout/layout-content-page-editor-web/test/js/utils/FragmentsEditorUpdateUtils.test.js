@@ -47,9 +47,9 @@ describe(
 					'should add an encoded id to a given asset object',
 					() => {
 						const asset = {
+							assetEntryTitle: 'My asset',
 							classNameId: 11111,
-							classPK: 22222,
-							assetEntryTitle: 'My asset'
+							classPK: 22222
 						};
 
 						expect(encodeAssetId(asset)).toMatchSnapshot();
