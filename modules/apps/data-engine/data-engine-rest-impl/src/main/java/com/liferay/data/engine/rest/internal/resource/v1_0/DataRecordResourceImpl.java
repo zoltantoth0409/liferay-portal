@@ -96,14 +96,6 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			PrincipalThreadLocal.getUserId(), dataRecordId, storageId,
 			new ServiceContext());
 
-		_addDDMStorageLink(storageId, ddlRecord);
-
-		return dataRecord;
-	}
-
-	private void _addDDMStorageLink(long storageId, DDLRecord ddlRecord)
-		throws Exception {
-
 		DDLRecordSet ddlRecordSet = ddlRecord.getRecordSet();
 
 		DDLRecordSetVersion ddlRecordSetVersion =
@@ -115,6 +107,8 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		_ddmStorageLinkLocalService.addStorageLink(
 			_portal.getClassNameId(DataRecord.class.getName()), storageId,
 			ddmStructureVersion.getStructureVersionId(), new ServiceContext());
+
+		return dataRecord;
 	}
 
 	private long _store() {
