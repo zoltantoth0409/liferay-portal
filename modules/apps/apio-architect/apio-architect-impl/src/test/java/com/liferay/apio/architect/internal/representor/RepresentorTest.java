@@ -234,10 +234,15 @@ public class RepresentorTest {
 				relatedCollection.getIdentifierClass() ==
 					IntegerIdentifier.class
 		).filter(
-			relatedCollection -> relatedCollection.getKey(
-			).equals(
-				"relatedCollection"
-			)
+			relatedCollection -> {
+				String key = relatedCollection.getKey();
+
+				if (key.equals("relatedCollection")) {
+					return true;
+				}
+
+				return false;
+			}
 		).collect(
 			Collectors.toList()
 		);
