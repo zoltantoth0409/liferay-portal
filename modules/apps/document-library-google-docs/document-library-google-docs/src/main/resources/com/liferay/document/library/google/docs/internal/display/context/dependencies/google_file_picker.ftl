@@ -1,7 +1,8 @@
 function GoogleFilePicker(callback) {
 	if (window.gapi) {
 		callback();
-	} else {
+	}
+	else {
 		Liferay.once('googleAPILoaded', callback);
 	}
 }
