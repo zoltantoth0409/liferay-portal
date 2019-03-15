@@ -116,7 +116,7 @@ components:
                     items:
                         type: string
                     type: array
-                contentSpace:
+                contentSpaceId:
                     format: int64
                     type: integer
                 contentStructureFields:
@@ -226,7 +226,7 @@ components:
                     items:
                         $ref: "#/components/schemas/ContentField"
                     type: array
-                contentSpace:
+                contentSpaceId:
                     format: int64
                     type: integer
                 contentStructureId:

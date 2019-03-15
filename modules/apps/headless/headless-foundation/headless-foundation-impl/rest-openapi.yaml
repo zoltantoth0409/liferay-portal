@@ -100,7 +100,7 @@ components:
         Keyword:
             description: https://www.schema.org/Keyword
             properties:
-                contentSpace:
+                contentSpaceId:
                     format: int64
                     type: integer
                 creator:
@@ -416,7 +416,7 @@ components:
                     items:
                         type: string
                     type: array
-                contentSpace:
+                contentSpaceId:
                     format: int64
                     type: integer
                 creator:

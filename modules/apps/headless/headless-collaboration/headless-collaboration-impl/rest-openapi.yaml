@@ -40,7 +40,7 @@ components:
                         type: integer
                     type: array
                     writeOnly: true
-                contentSpace:
+                contentSpaceId:
                     format: int64
                     type: integer
                 creator:
@@ -176,7 +176,7 @@ components:
                         type: integer
                     type: array
                     writeOnly: true
-                contentSpace:
+                contentSpaceId:
                     format: int64
                     type: integer
                 creator:
