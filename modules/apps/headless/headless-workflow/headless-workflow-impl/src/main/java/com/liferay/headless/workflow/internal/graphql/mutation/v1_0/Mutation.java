@@ -14,10 +14,11 @@
 
 package com.liferay.headless.workflow.internal.graphql.mutation.v1_0;
 
+import com.liferay.headless.workflow.dto.v1_0.ChangeTransition;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
+import com.liferay.headless.workflow.dto.v1_0.WorkflowTaskAssignToMe;
+import com.liferay.headless.workflow.dto.v1_0.WorkflowTaskAssignToUser;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
-import com.liferay.petra.function.UnsafeConsumer;
-import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 
@@ -27,7 +28,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
 
-import org.osgi.service.component.ComponentServiceObjects;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Javier Gamarra
@@ -36,103 +39,93 @@ import org.osgi.service.component.ComponentServiceObjects;
 @Generated("")
 public class Mutation {
 
-	public static void setWorkflowTaskResourceComponentServiceObjects(
-		ComponentServiceObjects<WorkflowTaskResource>
-			workflowTaskResourceComponentServiceObjects) {
-
-		_workflowTaskResourceComponentServiceObjects =
-			workflowTaskResourceComponentServiceObjects;
-	}
-
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public WorkflowTask postWorkflowTaskAssignToMe(
 			@GraphQLName("workflow-task-id") Long workflowTaskId,
-			@GraphQLName("WorkflowTask") WorkflowTask workflowTask)
+			@GraphQLName("WorkflowTaskAssignToMe") WorkflowTaskAssignToMe
+				workflowTaskAssignToMe)
 		throws Exception {
 
-		return _applyComponentServiceObjects(
-			_workflowTaskResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			workflowTaskResource ->
-				workflowTaskResource.postWorkflowTaskAssignToMe(
-					workflowTaskId, workflowTask));
+		WorkflowTaskResource workflowTaskResource =
+			_createWorkflowTaskResource();
+
+		return workflowTaskResource.postWorkflowTaskAssignToMe(
+			workflowTaskId, workflowTaskAssignToMe);
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public WorkflowTask postWorkflowTaskAssignToUser(
 			@GraphQLName("workflow-task-id") Long workflowTaskId,
-			@GraphQLName("WorkflowTask") WorkflowTask workflowTask)
+			@GraphQLName("WorkflowTaskAssignToUser") WorkflowTaskAssignToUser
+				workflowTaskAssignToUser)
 		throws Exception {
 
-		return _applyComponentServiceObjects(
-			_workflowTaskResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			workflowTaskResource ->
-				workflowTaskResource.postWorkflowTaskAssignToUser(
-					workflowTaskId, workflowTask));
+		WorkflowTaskResource workflowTaskResource =
+			_createWorkflowTaskResource();
+
+		return workflowTaskResource.postWorkflowTaskAssignToUser(
+			workflowTaskId, workflowTaskAssignToUser);
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public WorkflowTask postWorkflowTaskChangeTransition(
 			@GraphQLName("workflow-task-id") Long workflowTaskId,
-			@GraphQLName("WorkflowTask") WorkflowTask workflowTask)
+			@GraphQLName("ChangeTransition") ChangeTransition changeTransition)
 		throws Exception {
 
-		return _applyComponentServiceObjects(
-			_workflowTaskResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			workflowTaskResource ->
-				workflowTaskResource.postWorkflowTaskChangeTransition(
-					workflowTaskId, workflowTask));
+		WorkflowTaskResource workflowTaskResource =
+			_createWorkflowTaskResource();
+
+		return workflowTaskResource.postWorkflowTaskChangeTransition(
+			workflowTaskId, changeTransition);
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public WorkflowTask postWorkflowTaskUpdateDueDate(
 			@GraphQLName("workflow-task-id") Long workflowTaskId,
-			@GraphQLName("WorkflowTask") WorkflowTask workflowTask)
+			@GraphQLName("WorkflowTaskAssignToMe") WorkflowTaskAssignToMe
+				workflowTaskAssignToMe)
 		throws Exception {
 
-		return _applyComponentServiceObjects(
-			_workflowTaskResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			workflowTaskResource ->
-				workflowTaskResource.postWorkflowTaskUpdateDueDate(
-					workflowTaskId, workflowTask));
+		WorkflowTaskResource workflowTaskResource =
+			_createWorkflowTaskResource();
+
+		return workflowTaskResource.postWorkflowTaskUpdateDueDate(
+			workflowTaskId, workflowTaskAssignToMe);
 	}
 
-	private <T, R, E1 extends Throwable, E2 extends Throwable> R
-			_applyComponentServiceObjects(
-				ComponentServiceObjects<T> componentServiceObjects,
-				UnsafeConsumer<T, E1> unsafeConsumer,
-				UnsafeFunction<T, R, E2> unsafeFunction)
-		throws E1, E2 {
-
-		T resource = componentServiceObjects.getService();
-
-		try {
-			unsafeConsumer.accept(resource);
-
-			return unsafeFunction.apply(resource);
-		}
-		finally {
-			componentServiceObjects.ungetService(resource);
-		}
-	}
-
-	private void _populateResourceContext(
-			WorkflowTaskResource workflowTaskResource)
+	private static WorkflowTaskResource _createWorkflowTaskResource()
 		throws Exception {
+
+		WorkflowTaskResource workflowTaskResource =
+			_workflowTaskResourceServiceTracker.getService();
 
 		workflowTaskResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
 				CompanyThreadLocal.getCompanyId()));
+
+		return workflowTaskResource;
 	}
 
-	private static ComponentServiceObjects<WorkflowTaskResource>
-		_workflowTaskResourceComponentServiceObjects;
+	private static final ServiceTracker
+		<WorkflowTaskResource, WorkflowTaskResource>
+			_workflowTaskResourceServiceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+
+		ServiceTracker<WorkflowTaskResource, WorkflowTaskResource>
+			workflowTaskResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), WorkflowTaskResource.class, null);
+
+		workflowTaskResourceServiceTracker.open();
+
+		_workflowTaskResourceServiceTracker =
+			workflowTaskResourceServiceTracker;
+	}
 
 }

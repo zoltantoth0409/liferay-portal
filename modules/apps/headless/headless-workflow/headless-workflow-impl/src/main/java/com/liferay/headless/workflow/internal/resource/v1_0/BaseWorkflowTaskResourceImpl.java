@@ -14,7 +14,10 @@
 
 package com.liferay.headless.workflow.internal.resource.v1_0;
 
+import com.liferay.headless.workflow.dto.v1_0.ChangeTransition;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
+import com.liferay.headless.workflow.dto.v1_0.WorkflowTaskAssignToMe;
+import com.liferay.headless.workflow.dto.v1_0.WorkflowTaskAssignToUser;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
@@ -36,8 +39,6 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Generated;
-
-import javax.validation.constraints.NotNull;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -70,7 +71,24 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "WorkflowTask")})
 	public Page<WorkflowTask> getRoleWorkflowTasksPage(
-			@NotNull @PathParam("role-id") Long roleId,
+			@PathParam("role-id") Long roleId, @Context Pagination pagination)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+		}
+	)
+	@Path("/workflow-tasks/assigned-to-me")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "WorkflowTask")})
+	public Page<WorkflowTask> getWorkflowTaskAssignedToMePage(
 			@Context Pagination pagination)
 		throws Exception {
 
@@ -85,10 +103,10 @@ public abstract class BaseWorkflowTaskResourceImpl
 			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
 		}
 	)
-	@Path("/workflow-tasks")
+	@Path("/workflow-tasks/assigned-to-my-roles")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "WorkflowTask")})
-	public Page<WorkflowTask> getWorkflowTasksPage(
+	public Page<WorkflowTask> getWorkflowTaskAssignedToMyRolesPage(
 			@Context Pagination pagination)
 		throws Exception {
 
@@ -101,7 +119,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "WorkflowTask")})
 	public WorkflowTask getWorkflowTask(
-			@NotNull @PathParam("workflow-task-id") Long workflowTaskId)
+			@PathParam("workflow-task-id") Long workflowTaskId)
 		throws Exception {
 
 		return new WorkflowTask();
@@ -114,8 +132,8 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "WorkflowTask")})
 	public WorkflowTask postWorkflowTaskAssignToMe(
-			@NotNull @PathParam("workflow-task-id") Long workflowTaskId,
-			WorkflowTask workflowTask)
+			@PathParam("workflow-task-id") Long workflowTaskId,
+			WorkflowTaskAssignToMe workflowTaskAssignToMe)
 		throws Exception {
 
 		return new WorkflowTask();
@@ -128,8 +146,8 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "WorkflowTask")})
 	public WorkflowTask postWorkflowTaskAssignToUser(
-			@NotNull @PathParam("workflow-task-id") Long workflowTaskId,
-			WorkflowTask workflowTask)
+			@PathParam("workflow-task-id") Long workflowTaskId,
+			WorkflowTaskAssignToUser workflowTaskAssignToUser)
 		throws Exception {
 
 		return new WorkflowTask();
@@ -142,8 +160,8 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "WorkflowTask")})
 	public WorkflowTask postWorkflowTaskChangeTransition(
-			@NotNull @PathParam("workflow-task-id") Long workflowTaskId,
-			WorkflowTask workflowTask)
+			@PathParam("workflow-task-id") Long workflowTaskId,
+			ChangeTransition changeTransition)
 		throws Exception {
 
 		return new WorkflowTask();
@@ -156,8 +174,8 @@ public abstract class BaseWorkflowTaskResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "WorkflowTask")})
 	public WorkflowTask postWorkflowTaskUpdateDueDate(
-			@NotNull @PathParam("workflow-task-id") Long workflowTaskId,
-			WorkflowTask workflowTask)
+			@PathParam("workflow-task-id") Long workflowTaskId,
+			WorkflowTaskAssignToMe workflowTaskAssignToMe)
 		throws Exception {
 
 		return new WorkflowTask();

@@ -37,8 +37,6 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
-import javax.validation.constraints.NotNull;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -62,7 +60,7 @@ public abstract class BaseWorkflowLogResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "WorkflowLog")})
 	public WorkflowLog getWorkflowLog(
-			@NotNull @PathParam("workflow-log-id") Long workflowLogId)
+			@PathParam("workflow-log-id") Long workflowLogId)
 		throws Exception {
 
 		return new WorkflowLog();
@@ -80,7 +78,7 @@ public abstract class BaseWorkflowLogResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "WorkflowLog")})
 	public Page<WorkflowLog> getWorkflowTaskWorkflowLogsPage(
-			@NotNull @PathParam("workflow-task-id") Long workflowTaskId,
+			@PathParam("workflow-task-id") Long workflowTaskId,
 			@Context Pagination pagination)
 		throws Exception {
 
