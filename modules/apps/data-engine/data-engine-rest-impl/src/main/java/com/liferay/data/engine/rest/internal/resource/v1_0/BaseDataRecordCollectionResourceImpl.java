@@ -37,8 +37,6 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
-import javax.validation.constraints.NotNull;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -74,7 +72,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public Page<DataRecordCollection>
 			getDataDefinitionDataRecordCollectionsPage(
-				@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
+				@PathParam("data-definition-id") Long dataDefinitionId,
 				@QueryParam("keywords") String keywords,
 				@Context Pagination pagination)
 		throws Exception {
@@ -89,7 +87,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public DataRecordCollection postDataDefinitionDataRecordCollection(
-			@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
+			@PathParam("data-definition-id") Long dataDefinitionId,
 			DataRecordCollection dataRecordCollection)
 		throws Exception {
 
@@ -104,11 +102,11 @@ public abstract class BaseDataRecordCollectionResourceImpl
 			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
 		}
 	)
-	@Path("/data-record-collections")
+	@Path("/content-spaces/{content-space-id}/data-record-collections")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public Page<DataRecordCollection> getDataRecordCollectionsPage(
-			@NotNull @QueryParam("contentSpaceId") Long contentSpaceId,
+	public Page<DataRecordCollection> getContentSpaceDataRecordCollectionsPage(
+			@PathParam("content-space-id") Long contentSpaceId,
 			@QueryParam("keywords") String keywords,
 			@Context Pagination pagination)
 		throws Exception {
@@ -122,8 +120,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public boolean deleteDataRecordCollection(
-			@NotNull @PathParam("data-record-collection-id") Long
-				dataRecordCollectionId)
+			@PathParam("data-record-collection-id") Long dataRecordCollectionId)
 		throws Exception {
 
 		return false;
@@ -135,8 +132,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public DataRecordCollection getDataRecordCollection(
-			@NotNull @PathParam("data-record-collection-id") Long
-				dataRecordCollectionId)
+			@PathParam("data-record-collection-id") Long dataRecordCollectionId)
 		throws Exception {
 
 		return new DataRecordCollection();
@@ -149,8 +145,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public DataRecordCollection putDataRecordCollection(
-			@NotNull @PathParam("data-record-collection-id") Long
-				dataRecordCollectionId,
+			@PathParam("data-record-collection-id") Long dataRecordCollectionId,
 			DataRecordCollection dataRecordCollection)
 		throws Exception {
 

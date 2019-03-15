@@ -31,8 +31,6 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
-import javax.validation.constraints.NotNull;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -60,7 +58,7 @@ public abstract class BaseDataLayoutResourceImpl implements DataLayoutResource {
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataLayout")})
 	public DataLayout postDataDefinitionDataLayout(
-			@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
+			@PathParam("data-definition-id") Long dataDefinitionId,
 			DataLayout dataLayout)
 		throws Exception {
 
@@ -73,7 +71,7 @@ public abstract class BaseDataLayoutResourceImpl implements DataLayoutResource {
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataLayout")})
 	public boolean deleteDataLayout(
-			@NotNull @PathParam("data-layout-id") Long dataLayoutId)
+			@PathParam("data-layout-id") Long dataLayoutId)
 		throws Exception {
 
 		return false;
@@ -85,7 +83,7 @@ public abstract class BaseDataLayoutResourceImpl implements DataLayoutResource {
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataLayout")})
 	public DataLayout getDataLayout(
-			@NotNull @PathParam("data-layout-id") Long dataLayoutId)
+			@PathParam("data-layout-id") Long dataLayoutId)
 		throws Exception {
 
 		return new DataLayout();
@@ -98,7 +96,7 @@ public abstract class BaseDataLayoutResourceImpl implements DataLayoutResource {
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataLayout")})
 	public DataLayout putDataLayout(
-			@NotNull @PathParam("data-layout-id") Long dataLayoutId,
+			@PathParam("data-layout-id") Long dataLayoutId,
 			DataLayout dataLayout)
 		throws Exception {
 
