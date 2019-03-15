@@ -534,12 +534,6 @@ paths:
                   schema:
                       format: int64
                       type: integer
-                - in: query
-                  name: contentSpaceId
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             requestBody:
                 content:
                     application/json:
