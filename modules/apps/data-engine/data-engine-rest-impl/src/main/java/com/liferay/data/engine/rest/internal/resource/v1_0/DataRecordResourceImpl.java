@@ -21,6 +21,7 @@ import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
 import com.liferay.dynamic.data.lists.model.DDLRecordSetVersion;
 import com.liferay.dynamic.data.lists.service.DDLRecordLocalService;
+import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
 import com.liferay.dynamic.data.mapping.service.DDMStorageLinkLocalService;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
@@ -72,13 +73,15 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 
 	@Override
 	public DataRecord postDataRecordCollectionDataRecord(
-			Long dataRecordCollectionId, Long contentSpaceId,
-			DataRecord dataRecord)
+			Long dataRecordCollectionId, DataRecord dataRecord)
 		throws Exception {
+
+		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
+			dataRecordCollectionId);
 
 		return _toDataRecord(
 			_ddlRecordLocalService.addRecord(
-				PrincipalThreadLocal.getUserId(), contentSpaceId,
+				PrincipalThreadLocal.getUserId(), ddlRecordSet.getGroupId(),
 				_saveDataRecordOnStorage(),
 				dataRecord.getDataRecordCollectionId(), new ServiceContext()));
 	}
@@ -139,6 +142,9 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 
 	@Reference
 	private DDLRecordLocalService _ddlRecordLocalService;
+
+	@Reference
+	private DDLRecordSetLocalService _ddlRecordSetLocalService;
 
 	@Reference
 	private DDMStorageLinkLocalService _ddmStorageLinkLocalService;
