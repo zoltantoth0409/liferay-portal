@@ -65,7 +65,7 @@ public class LayoutModelListenerTest {
 	}
 
 	@Test
-	public void testTheDefaultSegmentsExperienceIsAddedWhenAddingNewLayoutWithTypeContent()
+	public void testDefaultSegmentsExperienceIsAddedWhenAddingNewLayoutWithTypeContent()
 		throws Exception {
 
 		Layout layout = _addLayout(
@@ -79,7 +79,7 @@ public class LayoutModelListenerTest {
 	}
 
 	@Test
-	public void testTheDefaultSegmentsExperienceIsAddedWhenUpdatingNewLayoutWithTypeContent()
+	public void testDefaultSegmentsExperienceIsAddedWhenUpdatingNewLayoutWithTypeContent()
 		throws Exception {
 
 		Layout layout = _addLayout(
@@ -103,7 +103,7 @@ public class LayoutModelListenerTest {
 	}
 
 	@Test
-	public void testTheDefaultSegmentsExperienceIsNotAddedWhenAddingNewLayoutWithTypeDifferentToContent()
+	public void testDefaultSegmentsExperienceIsNotAddedWhenAddingNewLayoutWithTypeDifferentToContent()
 		throws Exception {
 
 		Layout layout = _addLayout(
@@ -117,7 +117,7 @@ public class LayoutModelListenerTest {
 	}
 
 	@Test
-	public void testTheDefaultSegmentsExperienceIsNotAddedWhenUpdatingNewLayoutWithTypeDifferentToContent()
+	public void testDefaultSegmentsExperienceIsNotAddedWhenUpdatingNewLayoutWithTypeDifferentToContent()
 		throws Exception {
 
 		Layout layout = _addLayout(
