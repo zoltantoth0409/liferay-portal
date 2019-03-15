@@ -121,8 +121,6 @@ public class RootResource {
 			});
 	}
 
-	// Skip JavaParser, will fix
-
 	private static final Response _noContentResponse = Response.noContent(
 	).build();
 	private static final Response _notFoundResponse = Response.status(

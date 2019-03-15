@@ -85,8 +85,6 @@ public class HALSingleModelMessageMapper<T>
 		FunctionalList<String> embeddedPathElements, String fieldName,
 		List<Boolean> value) {
 
-		// Skip JavaParser, will fix
-
 		_mapEmbeddedResourceField(
 			jsonObjectBuilder, embeddedPathElements, fieldName,
 			builder -> builder.arrayValue(
@@ -143,8 +141,6 @@ public class HALSingleModelMessageMapper<T>
 		FunctionalList<String> embeddedPathElements, String fieldName,
 		List<Number> value) {
 
-		// Skip JavaParser, will fix
-
 		_mapEmbeddedResourceField(
 			jsonObjectBuilder, embeddedPathElements, fieldName,
 			builder -> builder.arrayValue(
@@ -169,8 +165,6 @@ public class HALSingleModelMessageMapper<T>
 		JSONObjectBuilder jsonObjectBuilder,
 		FunctionalList<String> embeddedPathElements, String fieldName,
 		List<String> value) {
-
-		// Skip JavaParser, will fix
 
 		_mapEmbeddedResourceField(
 			jsonObjectBuilder, embeddedPathElements, fieldName,
