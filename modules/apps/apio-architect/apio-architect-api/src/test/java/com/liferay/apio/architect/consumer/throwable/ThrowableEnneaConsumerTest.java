@@ -64,7 +64,10 @@ public class ThrowableEnneaConsumerTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testOnInvokingAndThenWithNullAfterThrowsException() {
-		ThrowableEnneaConsumer.empty().andThen(null);
+		ThrowableEnneaConsumer.empty(
+		).andThen(
+			null
+		);
 	}
 
 }

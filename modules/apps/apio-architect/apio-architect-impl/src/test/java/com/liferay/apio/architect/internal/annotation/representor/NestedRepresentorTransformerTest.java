@@ -71,8 +71,10 @@ public class NestedRepresentorTransformerTest {
 
 		List<NestedFieldFunction<DummyWithNested, ?>> nestedDummyList =
 			stream.filter(
-				nestedFieldFunction -> nestedFieldFunction.getKey().equals(
-					"nestedDummy")
+				nestedFieldFunction -> nestedFieldFunction.getKey(
+				).equals(
+					"nestedDummy"
+				)
 			).collect(
 				Collectors.toList()
 			);
@@ -104,8 +106,10 @@ public class NestedRepresentorTransformerTest {
 
 		List<NestedListFieldFunction<DummyWithNested, ?>> nestedDummyList =
 			stream.filter(
-				nestedFieldFunction -> nestedFieldFunction.getKey().equals(
-					"nestedDummyList")
+				nestedFieldFunction -> nestedFieldFunction.getKey(
+				).equals(
+					"nestedDummyList"
+				)
 			).collect(
 				Collectors.toList()
 			);
@@ -150,8 +154,10 @@ public class NestedRepresentorTransformerTest {
 				relatedCollection.getIdentifierClass() ==
 					IntegerIdentifier.class
 		).filter(
-			relatedCollection -> relatedCollection.getKey().equals(
-				"linkToChildCollection")
+			relatedCollection -> relatedCollection.getKey(
+			).equals(
+				"linkToChildCollection"
+			)
 		).collect(
 			Collectors.toList()
 		);

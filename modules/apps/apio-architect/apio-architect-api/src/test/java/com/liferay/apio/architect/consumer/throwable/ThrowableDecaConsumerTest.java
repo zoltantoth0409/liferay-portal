@@ -65,7 +65,10 @@ public class ThrowableDecaConsumerTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testOnInvokingAndThenWithNullAfterThrowsException() {
-		ThrowableDecaConsumer.empty().andThen(null);
+		ThrowableDecaConsumer.empty(
+		).andThen(
+			null
+		);
 	}
 
 }

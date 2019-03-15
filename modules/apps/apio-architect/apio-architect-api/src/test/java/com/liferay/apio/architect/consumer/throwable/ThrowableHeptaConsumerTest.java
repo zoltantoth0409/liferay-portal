@@ -62,7 +62,10 @@ public class ThrowableHeptaConsumerTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testOnInvokingAndThenWithNullAfterThrowsException() {
-		ThrowableHeptaConsumer.empty().andThen(null);
+		ThrowableHeptaConsumer.empty(
+		).andThen(
+			null
+		);
 	}
 
 }

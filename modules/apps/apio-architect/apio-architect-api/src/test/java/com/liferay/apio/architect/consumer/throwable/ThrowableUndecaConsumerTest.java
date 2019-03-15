@@ -66,7 +66,10 @@ public class ThrowableUndecaConsumerTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testOnInvokingAndThenWithNullAfterThrowsException() {
-		ThrowableUndecaConsumer.empty().andThen(null);
+		ThrowableUndecaConsumer.empty(
+		).andThen(
+			null
+		);
 	}
 
 }
