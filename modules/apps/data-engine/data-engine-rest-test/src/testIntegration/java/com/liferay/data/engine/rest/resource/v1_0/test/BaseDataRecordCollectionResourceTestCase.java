@@ -105,19 +105,19 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	public void testGetDataDefinitionDataRecordCollectionsPage()
 		throws Exception {
 
-		String keywords =
-			testGetDataDefinitionDataRecordCollectionsPage_getKeywords();
+		Long dataDefinitionId =
+			testGetDataDefinitionDataRecordCollectionsPage_getDataDefinitionId();
 
 		DataRecordCollection dataRecordCollection1 =
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
-				keywords, randomDataRecordCollection());
+				dataDefinitionId, randomDataRecordCollection());
 		DataRecordCollection dataRecordCollection2 =
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
-				keywords, randomDataRecordCollection());
+				dataDefinitionId, randomDataRecordCollection());
 
 		Page<DataRecordCollection> page =
 			invokeGetDataDefinitionDataRecordCollectionsPage(
-				keywords, null, Pagination.of(1, 2));
+				dataDefinitionId, null, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -131,22 +131,22 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	public void testGetDataDefinitionDataRecordCollectionsPageWithPagination()
 		throws Exception {
 
-		String keywords =
-			testGetDataDefinitionDataRecordCollectionsPage_getKeywords();
+		Long dataDefinitionId =
+			testGetDataDefinitionDataRecordCollectionsPage_getDataDefinitionId();
 
 		DataRecordCollection dataRecordCollection1 =
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
-				keywords, randomDataRecordCollection());
+				dataDefinitionId, randomDataRecordCollection());
 		DataRecordCollection dataRecordCollection2 =
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
-				keywords, randomDataRecordCollection());
+				dataDefinitionId, randomDataRecordCollection());
 		DataRecordCollection dataRecordCollection3 =
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
-				keywords, randomDataRecordCollection());
+				dataDefinitionId, randomDataRecordCollection());
 
 		Page<DataRecordCollection> page1 =
 			invokeGetDataDefinitionDataRecordCollectionsPage(
-				keywords, null, Pagination.of(1, 2));
+				dataDefinitionId, null, Pagination.of(1, 2));
 
 		List<DataRecordCollection> dataRecordCollections1 =
 			(List<DataRecordCollection>)page1.getItems();
@@ -157,7 +157,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		Page<DataRecordCollection> page2 =
 			invokeGetDataDefinitionDataRecordCollectionsPage(
-				keywords, null, Pagination.of(2, 2));
+				dataDefinitionId, null, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -182,15 +182,16 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 	protected DataRecordCollection
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
-				String keywords, DataRecordCollection dataRecordCollection)
+				Long dataDefinitionId,
+				DataRecordCollection dataRecordCollection)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected String
-			testGetDataDefinitionDataRecordCollectionsPage_getKeywords()
+	protected Long
+			testGetDataDefinitionDataRecordCollectionsPage_getDataDefinitionId()
 		throws Exception {
 
 		throw new UnsupportedOperationException(
@@ -199,7 +200,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 	protected Page<DataRecordCollection>
 			invokeGetDataDefinitionDataRecordCollectionsPage(
-				String keywords, Long dataDefinitionId, Pagination pagination)
+				Long dataDefinitionId, String keywords, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -208,7 +209,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/data-definitions/{data-definition-id}/data-record-collections",
-					keywords);
+					dataDefinitionId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -225,7 +226,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 	protected Http.Response
 			invokeGetDataDefinitionDataRecordCollectionsPageResponse(
-				String keywords, Long dataDefinitionId, Pagination pagination)
+				Long dataDefinitionId, String keywords, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -234,7 +235,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/data-definitions/{data-definition-id}/data-record-collections",
-					keywords);
+					dataDefinitionId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -271,7 +272,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	}
 
 	protected DataRecordCollection invokePostDataDefinitionDataRecordCollection(
-			Long contentSpaceId, DataRecordCollection dataRecordCollection)
+			Long dataDefinitionId, DataRecordCollection dataRecordCollection)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -284,7 +285,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/data-definitions/{data-definition-id}/data-record-collections",
-					contentSpaceId);
+					dataDefinitionId);
 
 		options.setLocation(location);
 
@@ -296,7 +297,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 	protected Http.Response
 			invokePostDataDefinitionDataRecordCollectionResponse(
-				Long contentSpaceId, DataRecordCollection dataRecordCollection)
+				Long dataDefinitionId,
+				DataRecordCollection dataRecordCollection)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -309,7 +311,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/data-definitions/{data-definition-id}/data-record-collections",
-					contentSpaceId);
+					dataDefinitionId);
 
 		options.setLocation(location);
 

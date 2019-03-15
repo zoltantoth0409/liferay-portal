@@ -199,7 +199,7 @@ public class Mutation {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public DataRecordCollection postDataDefinitionDataRecordCollection(
-			@GraphQLName("content-space-id") Long contentSpaceId,
+			@GraphQLName("data-definition-id") Long dataDefinitionId,
 			@GraphQLName("DataRecordCollection") DataRecordCollection
 				dataRecordCollection)
 		throws Exception {
@@ -210,7 +210,7 @@ public class Mutation {
 			dataRecordCollectionResource ->
 				dataRecordCollectionResource.
 					postDataDefinitionDataRecordCollection(
-						contentSpaceId, dataRecordCollection));
+						dataDefinitionId, dataRecordCollection));
 	}
 
 	@GraphQLInvokeDetached

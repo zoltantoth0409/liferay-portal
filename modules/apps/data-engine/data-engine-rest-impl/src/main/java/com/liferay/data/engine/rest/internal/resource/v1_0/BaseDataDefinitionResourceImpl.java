@@ -73,8 +73,8 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public Page<DataDefinition> getContentSpaceDataDefinitionsPage(
-			@QueryParam("keywords") String keywords,
 			@NotNull @PathParam("content-space-id") Long contentSpaceId,
+			@QueryParam("keywords") String keywords,
 			@Context Pagination pagination)
 		throws Exception {
 

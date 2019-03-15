@@ -81,8 +81,8 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<DataDefinition> getContentSpaceDataDefinitionsPage(
-			@GraphQLName("keywords") String keywords,
 			@GraphQLName("content-space-id") Long contentSpaceId,
+			@GraphQLName("keywords") String keywords,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
 		throws Exception {
@@ -93,7 +93,7 @@ public class Query {
 			dataDefinitionResource -> {
 				Page paginationPage =
 					dataDefinitionResource.getContentSpaceDataDefinitionsPage(
-						keywords, contentSpaceId,
+						contentSpaceId, keywords,
 						Pagination.of(pageSize, page));
 
 				return paginationPage.getItems();
@@ -164,8 +164,8 @@ public class Query {
 	@GraphQLInvokeDetached
 	public Collection<DataRecordCollection>
 			getDataDefinitionDataRecordCollectionsPage(
-				@GraphQLName("keywords") String keywords,
 				@GraphQLName("data-definition-id") Long dataDefinitionId,
+				@GraphQLName("keywords") String keywords,
 				@GraphQLName("pageSize") int pageSize,
 				@GraphQLName("page") int page)
 		throws Exception {
@@ -177,7 +177,7 @@ public class Query {
 				Page paginationPage =
 					dataRecordCollectionResource.
 						getDataDefinitionDataRecordCollectionsPage(
-							keywords, dataDefinitionId,
+							dataDefinitionId, keywords,
 							Pagination.of(pageSize, page));
 
 				return paginationPage.getItems();

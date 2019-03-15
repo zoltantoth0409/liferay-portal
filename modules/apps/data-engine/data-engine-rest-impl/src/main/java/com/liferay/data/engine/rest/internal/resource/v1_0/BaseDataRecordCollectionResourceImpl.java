@@ -74,8 +74,8 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public Page<DataRecordCollection>
 			getDataDefinitionDataRecordCollectionsPage(
-				@QueryParam("keywords") String keywords,
 				@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
+				@QueryParam("keywords") String keywords,
 				@Context Pagination pagination)
 		throws Exception {
 
@@ -89,7 +89,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
 	public DataRecordCollection postDataDefinitionDataRecordCollection(
-			@NotNull @PathParam("content-space-id") Long contentSpaceId,
+			@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
 			DataRecordCollection dataRecordCollection)
 		throws Exception {
 

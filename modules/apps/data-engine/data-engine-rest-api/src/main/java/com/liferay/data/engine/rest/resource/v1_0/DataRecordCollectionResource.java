@@ -34,11 +34,11 @@ public interface DataRecordCollectionResource {
 
 	public Page<DataRecordCollection>
 			getDataDefinitionDataRecordCollectionsPage(
-				String keywords, Long dataDefinitionId, Pagination pagination)
+				Long dataDefinitionId, String keywords, Pagination pagination)
 		throws Exception;
 
 	public DataRecordCollection postDataDefinitionDataRecordCollection(
-			Long contentSpaceId, DataRecordCollection dataRecordCollection)
+			Long dataDefinitionId, DataRecordCollection dataRecordCollection)
 		throws Exception;
 
 	public boolean deleteDataRecordCollection(Long dataRecordCollectionId)

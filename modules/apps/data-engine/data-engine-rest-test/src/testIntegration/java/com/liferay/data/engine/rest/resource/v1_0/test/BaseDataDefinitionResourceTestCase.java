@@ -103,17 +103,18 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 	@Test
 	public void testGetContentSpaceDataDefinitionsPage() throws Exception {
-		String keywords = testGetContentSpaceDataDefinitionsPage_getKeywords();
+		Long contentSpaceId =
+			testGetContentSpaceDataDefinitionsPage_getContentSpaceId();
 
 		DataDefinition dataDefinition1 =
 			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				keywords, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 		DataDefinition dataDefinition2 =
 			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				keywords, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 
 		Page<DataDefinition> page = invokeGetContentSpaceDataDefinitionsPage(
-			keywords, null, Pagination.of(1, 2));
+			contentSpaceId, null, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -127,20 +128,21 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	public void testGetContentSpaceDataDefinitionsPageWithPagination()
 		throws Exception {
 
-		String keywords = testGetContentSpaceDataDefinitionsPage_getKeywords();
+		Long contentSpaceId =
+			testGetContentSpaceDataDefinitionsPage_getContentSpaceId();
 
 		DataDefinition dataDefinition1 =
 			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				keywords, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 		DataDefinition dataDefinition2 =
 			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				keywords, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 		DataDefinition dataDefinition3 =
 			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				keywords, randomDataDefinition());
+				contentSpaceId, randomDataDefinition());
 
 		Page<DataDefinition> page1 = invokeGetContentSpaceDataDefinitionsPage(
-			keywords, null, Pagination.of(1, 2));
+			contentSpaceId, null, Pagination.of(1, 2));
 
 		List<DataDefinition> dataDefinitions1 =
 			(List<DataDefinition>)page1.getItems();
@@ -149,7 +151,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			dataDefinitions1.toString(), 2, dataDefinitions1.size());
 
 		Page<DataDefinition> page2 = invokeGetContentSpaceDataDefinitionsPage(
-			keywords, null, Pagination.of(2, 2));
+			contentSpaceId, null, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -171,22 +173,21 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 	protected DataDefinition
 			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				String keywords, DataDefinition dataDefinition)
+				Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected String testGetContentSpaceDataDefinitionsPage_getKeywords()
+	protected Long testGetContentSpaceDataDefinitionsPage_getContentSpaceId()
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return testGroup.getGroupId();
 	}
 
 	protected Page<DataDefinition> invokeGetContentSpaceDataDefinitionsPage(
-			String keywords, Long contentSpaceId, Pagination pagination)
+			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -195,7 +196,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/data-definitions",
-					keywords);
+					contentSpaceId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -211,7 +212,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected Http.Response invokeGetContentSpaceDataDefinitionsPageResponse(
-			String keywords, Long contentSpaceId, Pagination pagination)
+			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -220,7 +221,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/content-spaces/{content-space-id}/data-definitions",
-					keywords);
+					contentSpaceId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
