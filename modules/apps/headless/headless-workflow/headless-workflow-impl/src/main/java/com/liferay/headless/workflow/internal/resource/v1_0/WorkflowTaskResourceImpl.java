@@ -231,6 +231,7 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 				name = workflowTask.getName();
 				objectReviewed = _toObjectReviewed(
 					workflowTask.getOptionalAttributes());
+
 				transitions = _getTaskTransitionsNames(
 					workflowTask
 				).toArray(
