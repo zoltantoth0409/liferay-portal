@@ -45,7 +45,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
@@ -85,7 +84,6 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 	@Tags(value = {@Tag(name = "DataRecord")})
 	public DataRecord postDataRecordCollectionDataRecord(
 			@PathParam("data-record-collection-id") Long dataRecordCollectionId,
-			@QueryParam("contentSpaceId") Long contentSpaceId,
 			DataRecord dataRecord)
 		throws Exception {
 

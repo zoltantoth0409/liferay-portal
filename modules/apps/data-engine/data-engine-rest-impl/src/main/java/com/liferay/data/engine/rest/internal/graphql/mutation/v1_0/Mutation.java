@@ -119,14 +119,13 @@ public class Mutation {
 	public DataRecord postDataRecordCollectionDataRecord(
 			@GraphQLName("data-record-collection-id") Long
 				dataRecordCollectionId,
-			@GraphQLName("contentSpaceId") Long contentSpaceId,
 			@GraphQLName("DataRecord") DataRecord dataRecord)
 		throws Exception {
 
 		DataRecordResource dataRecordResource = _createDataRecordResource();
 
 		return dataRecordResource.postDataRecordCollectionDataRecord(
-			dataRecordCollectionId, contentSpaceId, dataRecord);
+			dataRecordCollectionId, dataRecord);
 	}
 
 	@GraphQLInvokeDetached
