@@ -134,8 +134,8 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		return new DataRecord() {
 			{
 				dataRecordCollectionId = ddlRecordSet.getRecordSetId();
-				id = ddlRecord.getRecordId();
 				dataRecordValues = new DataRecordValue[0];
+				id = ddlRecord.getRecordId();
 			}
 		};
 	}
