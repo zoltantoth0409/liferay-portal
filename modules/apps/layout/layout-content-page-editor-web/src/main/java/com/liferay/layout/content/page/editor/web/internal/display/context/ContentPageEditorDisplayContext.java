@@ -171,6 +171,14 @@ public class ContentPageEditorDisplayContext {
 			"deleteFragmentEntryLinkURL",
 			getFragmentEntryActionURL(
 				"/content_layout/delete_fragment_entry_link"));
+
+		if (classNameId == PortalUtil.getClassNameId(Layout.class)) {
+			soyContext.put(
+				"discardDraftURL",
+				getFragmentEntryActionURL(
+					"/content_layout/discard_draft_layout"));
+		}
+
 		soyContext.put(
 			"editFragmentEntryLinkURL",
 			getFragmentEntryActionURL(
@@ -200,10 +208,6 @@ public class ContentPageEditorDisplayContext {
 		soyContext.put("portletNamespace", _renderResponse.getNamespace());
 
 		if (classNameId == PortalUtil.getClassNameId(Layout.class)) {
-			soyContext.put(
-				"discardDraftURL",
-				getFragmentEntryActionURL(
-					"/content_layout/discard_draft_layout"));
 			soyContext.put(
 				"publishURL",
 				getFragmentEntryActionURL("/content_layout/publish_layout"));
