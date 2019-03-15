@@ -412,11 +412,11 @@ paths:
                                 $ref: "#/components/schemas/DataLayout"
                     description: ""
             tags: ["DataLayout"]
-    "/data-record-collections":
+    "/content-spaces/{content-space-id}/data-record-collections":
         get:
             parameters:
-                - in: query
-                  name: contentSpaceId
+                - in: path
+                  name: content-space-id
                   required: true
                   schema:
                       format: int64
