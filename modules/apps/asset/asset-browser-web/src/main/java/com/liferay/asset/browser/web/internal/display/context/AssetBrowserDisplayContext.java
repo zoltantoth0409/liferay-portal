@@ -229,8 +229,6 @@ public class AssetBrowserDisplayContext {
 				"multipleSelection", Boolean.TRUE.toString());
 		}
 
-		portletURL.setParameter("eventName", getEventName());
-
 		if (isShowAddButton()) {
 			portletURL.setParameter("showAddButton", Boolean.TRUE.toString());
 		}
@@ -239,6 +237,7 @@ public class AssetBrowserDisplayContext {
 			"showNonindexable", String.valueOf(_isShowNonindexable()));
 		portletURL.setParameter(
 			"showScheduled", String.valueOf(_isShowScheduled()));
+		portletURL.setParameter("eventName", getEventName());
 
 		return portletURL;
 	}
