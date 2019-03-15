@@ -7127,7 +7127,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			user = doCheckLockout(user, passwordPolicy);
 
-			if (PasswordModificationThreadLocal.isPasswordModified()) {
+			if (!PasswordModificationThreadLocal.isPasswordModified()) {
 				user = doCheckPasswordExpired(user, passwordPolicy);
 			}
 		}
