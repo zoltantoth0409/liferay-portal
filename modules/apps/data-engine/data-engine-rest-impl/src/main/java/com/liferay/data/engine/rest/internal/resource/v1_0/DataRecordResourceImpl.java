@@ -96,8 +96,6 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			PrincipalThreadLocal.getUserId(), dataRecordId, storageId,
 			new ServiceContext());
 
-		dataRecord.setId(ddlRecord.getRecordId());
-
 		_addStorageLink(storageId, ddlRecord);
 
 		return dataRecord;
