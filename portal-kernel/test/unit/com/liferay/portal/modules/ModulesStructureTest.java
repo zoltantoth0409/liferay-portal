@@ -211,7 +211,9 @@ public class ModulesStructureTest {
 						}
 					}
 
-					if (Files.exists(dirPath.resolve("package.json"))) {
+					if (Files.exists(dirPath.resolve("package.json")) &&
+						!Files.exists(_modulesDirPath.resolve("yarn.lock"))) {
+
 						String dirAbsolutePath =
 							ModulesStructureTestUtil.getAbsolutePath(dirPath);
 						Path packageJSONPath = dirPath.resolve("package.json");
@@ -370,6 +372,10 @@ public class ModulesStructureTest {
 					if (dirName.equals("gradleTest") ||
 						dirName.equals("project-templates")) {
 
+						return FileVisitResult.SKIP_SUBTREE;
+					}
+
+					if (_excludedDirNames.contains(dirName)) {
 						return FileVisitResult.SKIP_SUBTREE;
 					}
 
