@@ -82,7 +82,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		return _toDataRecord(
 			_ddlRecordLocalService.addRecord(
 				PrincipalThreadLocal.getUserId(), ddlRecordSet.getGroupId(),
-				_saveDataRecordOnStorage(),
+				_store(),
 				dataRecord.getDataRecordCollectionId(), new ServiceContext()));
 	}
 
@@ -90,7 +90,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	public DataRecord putDataRecord(Long dataRecordId, DataRecord dataRecord)
 		throws Exception {
 
-		long storageId = _saveDataRecordOnStorage();
+		long storageId = _store();
 
 		DDLRecord ddlRecord = _ddlRecordLocalService.updateRecord(
 			PrincipalThreadLocal.getUserId(), dataRecordId, storageId,
@@ -119,9 +119,9 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			ddmStructureVersion.getStructureVersionId(), new ServiceContext());
 	}
 
-	private long _saveDataRecordOnStorage() {
+	private long _store() {
 
-		// TODO DataStorage
+		// TODO
 
 		return 0;
 	}
@@ -129,7 +129,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	private DataRecord _toDataRecord(DDLRecord ddlRecord) throws Exception {
 		DDLRecordSet ddlRecordSet = ddlRecord.getRecordSet();
 
-		//TODO DataStorage
+		// TODO
 
 		return new DataRecord() {
 			{
