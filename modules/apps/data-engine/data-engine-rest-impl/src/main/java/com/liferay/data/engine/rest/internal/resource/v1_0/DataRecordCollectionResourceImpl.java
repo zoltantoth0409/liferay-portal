@@ -96,7 +96,7 @@ public class DataRecordCollectionResourceImpl
 	}
 
 	@Override
-	public Page<DataRecordCollection> getDataRecordCollectionsPage(
+	public Page<DataRecordCollection> getContentSpaceDataRecordCollectionsPage(
 			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
 
