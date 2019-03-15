@@ -51,6 +51,36 @@ public class DataRecordCollectionResourceImpl
 	}
 
 	@Override
+	public Page<DataRecordCollection> getContentSpaceDataRecordCollectionsPage(
+			Long contentSpaceId, String keywords, Pagination pagination)
+		throws Exception {
+
+		if (keywords == null) {
+			return Page.of(
+				transform(
+					_ddlRecordSetLocalService.getRecordSets(
+						contentSpaceId, pagination.getStartPosition(),
+						pagination.getEndPosition()),
+					this::_toDataRecordCollection),
+				pagination,
+				_ddlRecordSetLocalService.getRecordSetsCount(contentSpaceId));
+		}
+
+		return Page.of(
+			transform(
+				_ddlRecordSetLocalService.search(
+					contextCompany.getCompanyId(), contentSpaceId, keywords,
+					DDLRecordSetConstants.SCOPE_DATA_ENGINE,
+					pagination.getStartPosition(), pagination.getEndPosition(),
+					null),
+				this::_toDataRecordCollection),
+			pagination,
+			_ddlRecordSetLocalService.searchCount(
+				contextCompany.getCompanyId(), contentSpaceId, keywords,
+				DDLRecordSetConstants.SCOPE_DATA_ENGINE));
+	}
+
+	@Override
 	public Page<DataRecordCollection>
 			getDataDefinitionDataRecordCollectionsPage(
 				Long dataDefinitionId, String keywords, Pagination pagination)
@@ -93,36 +123,6 @@ public class DataRecordCollectionResourceImpl
 
 		return _toDataRecordCollection(
 			_ddlRecordSetLocalService.getRecordSet(dataRecordCollectionId));
-	}
-
-	@Override
-	public Page<DataRecordCollection> getContentSpaceDataRecordCollectionsPage(
-			Long contentSpaceId, String keywords, Pagination pagination)
-		throws Exception {
-
-		if (keywords == null) {
-			return Page.of(
-				transform(
-					_ddlRecordSetLocalService.getRecordSets(
-						contentSpaceId, pagination.getStartPosition(),
-						pagination.getEndPosition()),
-					this::_toDataRecordCollection),
-				pagination,
-				_ddlRecordSetLocalService.getRecordSetsCount(contentSpaceId));
-		}
-
-		return Page.of(
-			transform(
-				_ddlRecordSetLocalService.search(
-					contextCompany.getCompanyId(), contentSpaceId, keywords,
-					DDLRecordSetConstants.SCOPE_DATA_ENGINE,
-					pagination.getStartPosition(), pagination.getEndPosition(),
-					null),
-				this::_toDataRecordCollection),
-			pagination,
-			_ddlRecordSetLocalService.searchCount(
-				contextCompany.getCompanyId(), contentSpaceId, keywords,
-				DDLRecordSetConstants.SCOPE_DATA_ENGINE));
 	}
 
 	@Override
