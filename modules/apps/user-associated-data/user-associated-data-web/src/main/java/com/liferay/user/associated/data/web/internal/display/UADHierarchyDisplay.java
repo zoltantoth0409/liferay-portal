@@ -310,8 +310,8 @@ public class UADHierarchyDisplay {
 
 		PortletURL renderURL = liferayPortletResponse.createRenderURL();
 
-		renderURL.setParameter("applicationKey", applicationKey);
 		renderURL.setParameter("mvcRenderCommandName", "/view_uad_hierarchy");
+		renderURL.setParameter("applicationKey", applicationKey);
 		renderURL.setParameter("parentContainerClass", typeClass.getName());
 		renderURL.setParameter(
 			"parentContainerId",
