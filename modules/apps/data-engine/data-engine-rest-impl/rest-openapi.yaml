@@ -181,6 +181,12 @@ paths:
     "/content-spaces/{content-space-id}/data-definitions":
         get:
             parameters:
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   required: true
@@ -195,12 +201,6 @@ paths:
                   name: keywords
                   schema:
                       type: string
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:
@@ -306,6 +306,60 @@ paths:
                                 $ref: "#/components/schemas/DataLayout"
                     description: ""
             tags: ["DataLayout"]
+    "/data-definitions/{data-definition-id}/data-record-collections":
+        get:
+            parameters:
+                - in: path
+                  name: data-definition-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+                - in: query
+                  name: page
+                  required: true
+                  schema:
+                      type: integer
+                - in: query
+                  name: pageSize
+                  required: true
+                  schema:
+                      type: integer
+                - in: query
+                  name: keywords
+                  schema:
+                      type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/DataRecordCollection"
+                                type: array
+                    description: ""
+            tags: ["DataRecordCollection"]
+        post:
+            parameters:
+                - in: path
+                  name: data-definition-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/DataRecordCollection"
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/DataRecordCollection"
+                    description: ""
+            tags: ["DataRecordCollection"]
     "/data-layouts/{data-layout-id}":
         delete:
             parameters:
@@ -358,60 +412,6 @@ paths:
                                 $ref: "#/components/schemas/DataLayout"
                     description: ""
             tags: ["DataLayout"]
-    "/data-definitions/{data-definition-id}/data-record-collections":
-        get:
-            parameters:
-                - in: query
-                  name: page
-                  required: true
-                  schema:
-                      type: integer
-                - in: query
-                  name: pageSize
-                  required: true
-                  schema:
-                      type: integer
-                - in: query
-                  name: keywords
-                  schema:
-                      type: string
-                - in: path
-                  name: data-definition-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/DataRecordCollection"
-                                type: array
-                    description: ""
-            tags: ["DataRecordCollection"]
-        post:
-            parameters:
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/DataRecordCollection"
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/DataRecordCollection"
-                    description: ""
-            tags: ["DataRecordCollection"]
     "/data-record-collections/{data-record-collection-id}":
         delete:
             parameters:
