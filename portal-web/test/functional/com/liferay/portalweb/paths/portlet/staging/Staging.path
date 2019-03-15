@@ -57,7 +57,12 @@
 </tr>
 <tr>
 	<td>COPY_FROM_LIVE</td>
-	<td>//button[contains(.,'Copy from Live')]</td>
+	<td>//button[contains(@type,'submit')]/span[contains(.,'Copy from Live')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>COPY_FROM_LIVE_TAB</td>
+	<td>//a[contains(.,'Copy from Live')]</td>
 	<td></td>
 </tr>
 <!--PG-->
