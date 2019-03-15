@@ -32,11 +32,11 @@ import javax.annotation.Generated;
 @Generated("")
 public interface DataDefinitionResource {
 
-	public Page<DataDefinition> getDataDefinitionsPage(
-			Long contentSpaceId, String keywords, Pagination pagination)
+	public Page<DataDefinition> getContentSpaceDataDefinitionsPage(
+			String keywords, Long contentSpaceId, Pagination pagination)
 		throws Exception;
 
-	public DataDefinition postDataDefinition(
+	public DataDefinition postContentSpaceDataDefinition(
 			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception;
 

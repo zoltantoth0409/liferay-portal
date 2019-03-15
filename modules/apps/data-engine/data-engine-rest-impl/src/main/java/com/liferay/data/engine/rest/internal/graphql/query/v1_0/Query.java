@@ -15,9 +15,13 @@
 package com.liferay.data.engine.rest.internal.graphql.query.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
+import com.liferay.data.engine.rest.dto.v1_0.DataLayout;
+import com.liferay.data.engine.rest.dto.v1_0.DataRecord;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
+import com.liferay.data.engine.rest.resource.v1_0.DataLayoutResource;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
+import com.liferay.data.engine.rest.resource.v1_0.DataRecordResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
@@ -50,6 +54,22 @@ public class Query {
 			dataDefinitionResourceComponentServiceObjects;
 	}
 
+	public static void setDataLayoutResourceComponentServiceObjects(
+		ComponentServiceObjects<DataLayoutResource>
+			dataLayoutResourceComponentServiceObjects) {
+
+		_dataLayoutResourceComponentServiceObjects =
+			dataLayoutResourceComponentServiceObjects;
+	}
+
+	public static void setDataRecordResourceComponentServiceObjects(
+		ComponentServiceObjects<DataRecordResource>
+			dataRecordResourceComponentServiceObjects) {
+
+		_dataRecordResourceComponentServiceObjects =
+			dataRecordResourceComponentServiceObjects;
+	}
+
 	public static void setDataRecordCollectionResourceComponentServiceObjects(
 		ComponentServiceObjects<DataRecordCollectionResource>
 			dataRecordCollectionResourceComponentServiceObjects) {
@@ -60,9 +80,9 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<DataDefinition> getDataDefinitionsPage(
-			@GraphQLName("contentSpaceId") Long contentSpaceId,
+	public Collection<DataDefinition> getContentSpaceDataDefinitionsPage(
 			@GraphQLName("keywords") String keywords,
+			@GraphQLName("content-space-id") Long contentSpaceId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
 		throws Exception {
@@ -72,8 +92,8 @@ public class Query {
 			this::_populateResourceContext,
 			dataDefinitionResource -> {
 				Page paginationPage =
-					dataDefinitionResource.getDataDefinitionsPage(
-						contentSpaceId, keywords,
+					dataDefinitionResource.getContentSpaceDataDefinitionsPage(
+						keywords, contentSpaceId,
 						Pagination.of(pageSize, page));
 
 				return paginationPage.getItems();
@@ -95,11 +115,59 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<DataRecordCollection> getDataRecordCollectionsPage(
-			@GraphQLName("contentSpaceId") Long contentSpaceId,
-			@GraphQLName("keywords") String keywords,
+	public DataLayout getDataLayout(
+			@GraphQLName("data-layout-id") Long dataLayoutId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_dataLayoutResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataLayoutResource -> dataLayoutResource.getDataLayout(
+				dataLayoutId));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<DataRecord> getDataRecordCollectionDataRecordsPage(
+			@GraphQLName("data-record-collection-id") Long
+				dataRecordCollectionId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_dataRecordResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataRecordResource -> {
+				Page paginationPage =
+					dataRecordResource.getDataRecordCollectionDataRecordsPage(
+						dataRecordCollectionId, Pagination.of(pageSize, page));
+
+				return paginationPage.getItems();
+			});
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public DataRecord getDataRecord(
+			@GraphQLName("data-record-id") Long dataRecordId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_dataRecordResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataRecordResource -> dataRecordResource.getDataRecord(
+				dataRecordId));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<DataRecordCollection>
+			getDataDefinitionDataRecordCollectionsPage(
+				@GraphQLName("keywords") String keywords,
+				@GraphQLName("data-definition-id") Long dataDefinitionId,
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -107,9 +175,10 @@ public class Query {
 			this::_populateResourceContext,
 			dataRecordCollectionResource -> {
 				Page paginationPage =
-					dataRecordCollectionResource.getDataRecordCollectionsPage(
-						contentSpaceId, keywords,
-						Pagination.of(pageSize, page));
+					dataRecordCollectionResource.
+						getDataDefinitionDataRecordCollectionsPage(
+							keywords, dataDefinitionId,
+							Pagination.of(pageSize, page));
 
 				return paginationPage.getItems();
 			});
@@ -158,6 +227,22 @@ public class Query {
 				CompanyThreadLocal.getCompanyId()));
 	}
 
+	private void _populateResourceContext(DataLayoutResource dataLayoutResource)
+		throws Exception {
+
+		dataLayoutResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+	}
+
+	private void _populateResourceContext(DataRecordResource dataRecordResource)
+		throws Exception {
+
+		dataRecordResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+	}
+
 	private void _populateResourceContext(
 			DataRecordCollectionResource dataRecordCollectionResource)
 		throws Exception {
@@ -169,6 +254,10 @@ public class Query {
 
 	private static ComponentServiceObjects<DataDefinitionResource>
 		_dataDefinitionResourceComponentServiceObjects;
+	private static ComponentServiceObjects<DataLayoutResource>
+		_dataLayoutResourceComponentServiceObjects;
+	private static ComponentServiceObjects<DataRecordResource>
+		_dataRecordResourceComponentServiceObjects;
 	private static ComponentServiceObjects<DataRecordCollectionResource>
 		_dataRecordCollectionResourceComponentServiceObjects;
 

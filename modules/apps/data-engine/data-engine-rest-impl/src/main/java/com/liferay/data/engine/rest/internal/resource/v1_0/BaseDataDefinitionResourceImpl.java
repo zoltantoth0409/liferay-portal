@@ -69,12 +69,12 @@ public abstract class BaseDataDefinitionResourceImpl
 			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
 		}
 	)
-	@Path("/data-definitions")
+	@Path("/content-spaces/{content-space-id}/data-definitions")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
-	public Page<DataDefinition> getDataDefinitionsPage(
-			@NotNull @QueryParam("contentSpaceId") Long contentSpaceId,
+	public Page<DataDefinition> getContentSpaceDataDefinitionsPage(
 			@QueryParam("keywords") String keywords,
+			@NotNull @PathParam("content-space-id") Long contentSpaceId,
 			@Context Pagination pagination)
 		throws Exception {
 
@@ -84,11 +84,11 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Override
 	@Consumes("application/json")
 	@POST
-	@Path("/data-definitions")
+	@Path("/content-spaces/{content-space-id}/data-definitions")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
-	public DataDefinition postDataDefinition(
-			@NotNull @QueryParam("contentSpaceId") Long contentSpaceId,
+	public DataDefinition postContentSpaceDataDefinition(
+			@NotNull @PathParam("content-space-id") Long contentSpaceId,
 			DataDefinition dataDefinition)
 		throws Exception {
 

@@ -14,25 +14,19 @@
 
 package com.liferay.data.engine.rest.internal.resource.v1_0;
 
-import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
-import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
+import com.liferay.data.engine.rest.dto.v1_0.DataLayout;
+import com.liferay.data.engine.rest.resource.v1_0.DataLayoutResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
-import com.liferay.portal.vulcan.pagination.Page;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 
 import java.net.URI;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -47,7 +41,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
@@ -58,52 +51,29 @@ import javax.ws.rs.core.UriInfo;
  */
 @Generated("")
 @Path("/v1.0")
-public abstract class BaseDataRecordCollectionResourceImpl
-	implements DataRecordCollectionResource {
-
-	@Override
-	@GET
-	@Parameters(
-		value = {
-			@Parameter(in = ParameterIn.QUERY, name = "page"),
-			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
-		}
-	)
-	@Path("/data-definitions/{data-definition-id}/data-record-collections")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public Page<DataRecordCollection>
-			getDataDefinitionDataRecordCollectionsPage(
-				@QueryParam("keywords") String keywords,
-				@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
-				@Context Pagination pagination)
-		throws Exception {
-
-		return Page.of(Collections.emptyList());
-	}
+public abstract class BaseDataLayoutResourceImpl implements DataLayoutResource {
 
 	@Override
 	@Consumes("application/json")
 	@POST
-	@Path("/data-definitions/{data-definition-id}/data-record-collections")
+	@Path("/data-definitions/{data-definition-id}/data-layouts")
 	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public DataRecordCollection postDataDefinitionDataRecordCollection(
-			@NotNull @PathParam("content-space-id") Long contentSpaceId,
-			DataRecordCollection dataRecordCollection)
+	@Tags(value = {@Tag(name = "DataLayout")})
+	public DataLayout postDataDefinitionDataLayout(
+			@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
+			DataLayout dataLayout)
 		throws Exception {
 
-		return new DataRecordCollection();
+		return new DataLayout();
 	}
 
 	@Override
 	@DELETE
-	@Path("/data-record-collections/{data-record-collection-id}")
+	@Path("/data-layouts/{data-layout-id}")
 	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public boolean deleteDataRecordCollection(
-			@NotNull @PathParam("data-record-collection-id") Long
-				dataRecordCollectionId)
+	@Tags(value = {@Tag(name = "DataLayout")})
+	public boolean deleteDataLayout(
+			@NotNull @PathParam("data-layout-id") Long dataLayoutId)
 		throws Exception {
 
 		return false;
@@ -111,30 +81,28 @@ public abstract class BaseDataRecordCollectionResourceImpl
 
 	@Override
 	@GET
-	@Path("/data-record-collections/{data-record-collection-id}")
+	@Path("/data-layouts/{data-layout-id}")
 	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public DataRecordCollection getDataRecordCollection(
-			@NotNull @PathParam("data-record-collection-id") Long
-				dataRecordCollectionId)
+	@Tags(value = {@Tag(name = "DataLayout")})
+	public DataLayout getDataLayout(
+			@NotNull @PathParam("data-layout-id") Long dataLayoutId)
 		throws Exception {
 
-		return new DataRecordCollection();
+		return new DataLayout();
 	}
 
 	@Override
 	@Consumes("application/json")
 	@PUT
-	@Path("/data-record-collections/{data-record-collection-id}")
+	@Path("/data-layouts/{data-layout-id}")
 	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public DataRecordCollection putDataRecordCollection(
-			@NotNull @PathParam("data-record-collection-id") Long
-				dataRecordCollectionId,
-			DataRecordCollection dataRecordCollection)
+	@Tags(value = {@Tag(name = "DataLayout")})
+	public DataLayout putDataLayout(
+			@NotNull @PathParam("data-layout-id") Long dataLayoutId,
+			DataLayout dataLayout)
 		throws Exception {
 
-		return new DataRecordCollection();
+		return new DataLayout();
 	}
 
 	public void setContextCompany(Company contextCompany) {
@@ -150,11 +118,11 @@ public abstract class BaseDataRecordCollectionResourceImpl
 		}
 
 		URI resourceURI = UriBuilder.fromResource(
-			BaseDataRecordCollectionResourceImpl.class
+			BaseDataLayoutResourceImpl.class
 		).build();
 
 		URI methodURI = UriBuilder.fromMethod(
-			BaseDataRecordCollectionResourceImpl.class, methodName
+			BaseDataLayoutResourceImpl.class, methodName
 		).build(
 			values
 		);
@@ -162,7 +130,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
-	protected void preparePatch(DataRecordCollection dataRecordCollection) {
+	protected void preparePatch(DataLayout dataLayout) {
 	}
 
 	protected <T, R> List<R> transform(

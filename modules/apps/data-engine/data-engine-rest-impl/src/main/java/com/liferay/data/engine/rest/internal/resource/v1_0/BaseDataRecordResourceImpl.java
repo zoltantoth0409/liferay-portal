@@ -14,8 +14,8 @@
 
 package com.liferay.data.engine.rest.internal.resource.v1_0;
 
-import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
-import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
+import com.liferay.data.engine.rest.dto.v1_0.DataRecord;
+import com.liferay.data.engine.rest.resource.v1_0.DataRecordResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
@@ -58,8 +58,7 @@ import javax.ws.rs.core.UriInfo;
  */
 @Generated("")
 @Path("/v1.0")
-public abstract class BaseDataRecordCollectionResourceImpl
-	implements DataRecordCollectionResource {
+public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 
 	@Override
 	@GET
@@ -69,14 +68,13 @@ public abstract class BaseDataRecordCollectionResourceImpl
 			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
 		}
 	)
-	@Path("/data-definitions/{data-definition-id}/data-record-collections")
+	@Path("/data-record-collections/{data-record-collection-id}/data-records")
 	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public Page<DataRecordCollection>
-			getDataDefinitionDataRecordCollectionsPage(
-				@QueryParam("keywords") String keywords,
-				@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
-				@Context Pagination pagination)
+	@Tags(value = {@Tag(name = "DataRecord")})
+	public Page<DataRecord> getDataRecordCollectionDataRecordsPage(
+			@NotNull @PathParam("data-record-collection-id") Long
+				dataRecordCollectionId,
+			@Context Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -85,25 +83,26 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Override
 	@Consumes("application/json")
 	@POST
-	@Path("/data-definitions/{data-definition-id}/data-record-collections")
+	@Path("/data-record-collections/{data-record-collection-id}/data-records")
 	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public DataRecordCollection postDataDefinitionDataRecordCollection(
-			@NotNull @PathParam("content-space-id") Long contentSpaceId,
-			DataRecordCollection dataRecordCollection)
+	@Tags(value = {@Tag(name = "DataRecord")})
+	public DataRecord postDataRecordCollectionDataRecord(
+			@NotNull @PathParam("data-record-collection-id") Long
+				dataRecordCollectionId,
+			@NotNull @QueryParam("contentSpaceId") Long contentSpaceId,
+			DataRecord dataRecord)
 		throws Exception {
 
-		return new DataRecordCollection();
+		return new DataRecord();
 	}
 
 	@Override
 	@DELETE
-	@Path("/data-record-collections/{data-record-collection-id}")
+	@Path("/data-records/{data-record-id}")
 	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public boolean deleteDataRecordCollection(
-			@NotNull @PathParam("data-record-collection-id") Long
-				dataRecordCollectionId)
+	@Tags(value = {@Tag(name = "DataRecord")})
+	public boolean deleteDataRecord(
+			@NotNull @PathParam("data-record-id") Long dataRecordId)
 		throws Exception {
 
 		return false;
@@ -111,30 +110,28 @@ public abstract class BaseDataRecordCollectionResourceImpl
 
 	@Override
 	@GET
-	@Path("/data-record-collections/{data-record-collection-id}")
+	@Path("/data-records/{data-record-id}")
 	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public DataRecordCollection getDataRecordCollection(
-			@NotNull @PathParam("data-record-collection-id") Long
-				dataRecordCollectionId)
+	@Tags(value = {@Tag(name = "DataRecord")})
+	public DataRecord getDataRecord(
+			@NotNull @PathParam("data-record-id") Long dataRecordId)
 		throws Exception {
 
-		return new DataRecordCollection();
+		return new DataRecord();
 	}
 
 	@Override
 	@Consumes("application/json")
 	@PUT
-	@Path("/data-record-collections/{data-record-collection-id}")
+	@Path("/data-records/{data-record-id}")
 	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public DataRecordCollection putDataRecordCollection(
-			@NotNull @PathParam("data-record-collection-id") Long
-				dataRecordCollectionId,
-			DataRecordCollection dataRecordCollection)
+	@Tags(value = {@Tag(name = "DataRecord")})
+	public DataRecord putDataRecord(
+			@NotNull @PathParam("data-record-id") Long dataRecordId,
+			DataRecord dataRecord)
 		throws Exception {
 
-		return new DataRecordCollection();
+		return new DataRecord();
 	}
 
 	public void setContextCompany(Company contextCompany) {
@@ -150,11 +147,11 @@ public abstract class BaseDataRecordCollectionResourceImpl
 		}
 
 		URI resourceURI = UriBuilder.fromResource(
-			BaseDataRecordCollectionResourceImpl.class
+			BaseDataRecordResourceImpl.class
 		).build();
 
 		URI methodURI = UriBuilder.fromMethod(
-			BaseDataRecordCollectionResourceImpl.class, methodName
+			BaseDataRecordResourceImpl.class, methodName
 		).build(
 			values
 		);
@@ -162,7 +159,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
-	protected void preparePatch(DataRecordCollection dataRecordCollection) {
+	protected void preparePatch(DataRecord dataRecord) {
 	}
 
 	protected <T, R> List<R> transform(

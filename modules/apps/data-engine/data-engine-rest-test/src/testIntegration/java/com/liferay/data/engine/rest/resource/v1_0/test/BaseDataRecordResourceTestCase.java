@@ -21,8 +21,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
-import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
+import com.liferay.data.engine.rest.dto.v1_0.DataRecord;
+import com.liferay.data.engine.rest.resource.v1_0.DataRecordResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
@@ -76,7 +76,7 @@ import org.junit.Test;
  * @generated
  */
 @Generated("")
-public abstract class BaseDataDefinitionResourceTestCase {
+public abstract class BaseDataRecordResourceTestCase {
 
 	@ClassRule
 	@Rule
@@ -102,91 +102,90 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	@Test
-	public void testGetContentSpaceDataDefinitionsPage() throws Exception {
-		String keywords = testGetContentSpaceDataDefinitionsPage_getKeywords();
+	public void testGetDataRecordCollectionDataRecordsPage() throws Exception {
+		Long dataRecordCollectionId =
+			testGetDataRecordCollectionDataRecordsPage_getDataRecordCollectionId();
 
-		DataDefinition dataDefinition1 =
-			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				keywords, randomDataDefinition());
-		DataDefinition dataDefinition2 =
-			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				keywords, randomDataDefinition());
+		DataRecord dataRecord1 =
+			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
+				dataRecordCollectionId, randomDataRecord());
+		DataRecord dataRecord2 =
+			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
+				dataRecordCollectionId, randomDataRecord());
 
-		Page<DataDefinition> page = invokeGetContentSpaceDataDefinitionsPage(
-			keywords, null, Pagination.of(1, 2));
+		Page<DataRecord> page = invokeGetDataRecordCollectionDataRecordsPage(
+			dataRecordCollectionId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
 		assertEqualsIgnoringOrder(
-			Arrays.asList(dataDefinition1, dataDefinition2),
-			(List<DataDefinition>)page.getItems());
+			Arrays.asList(dataRecord1, dataRecord2),
+			(List<DataRecord>)page.getItems());
 		assertValid(page);
 	}
 
 	@Test
-	public void testGetContentSpaceDataDefinitionsPageWithPagination()
+	public void testGetDataRecordCollectionDataRecordsPageWithPagination()
 		throws Exception {
 
-		String keywords = testGetContentSpaceDataDefinitionsPage_getKeywords();
+		Long dataRecordCollectionId =
+			testGetDataRecordCollectionDataRecordsPage_getDataRecordCollectionId();
 
-		DataDefinition dataDefinition1 =
-			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				keywords, randomDataDefinition());
-		DataDefinition dataDefinition2 =
-			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				keywords, randomDataDefinition());
-		DataDefinition dataDefinition3 =
-			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				keywords, randomDataDefinition());
+		DataRecord dataRecord1 =
+			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
+				dataRecordCollectionId, randomDataRecord());
+		DataRecord dataRecord2 =
+			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
+				dataRecordCollectionId, randomDataRecord());
+		DataRecord dataRecord3 =
+			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
+				dataRecordCollectionId, randomDataRecord());
 
-		Page<DataDefinition> page1 = invokeGetContentSpaceDataDefinitionsPage(
-			keywords, null, Pagination.of(1, 2));
+		Page<DataRecord> page1 = invokeGetDataRecordCollectionDataRecordsPage(
+			dataRecordCollectionId, Pagination.of(1, 2));
 
-		List<DataDefinition> dataDefinitions1 =
-			(List<DataDefinition>)page1.getItems();
+		List<DataRecord> dataRecords1 = (List<DataRecord>)page1.getItems();
 
-		Assert.assertEquals(
-			dataDefinitions1.toString(), 2, dataDefinitions1.size());
+		Assert.assertEquals(dataRecords1.toString(), 2, dataRecords1.size());
 
-		Page<DataDefinition> page2 = invokeGetContentSpaceDataDefinitionsPage(
-			keywords, null, Pagination.of(2, 2));
+		Page<DataRecord> page2 = invokeGetDataRecordCollectionDataRecordsPage(
+			dataRecordCollectionId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
-		List<DataDefinition> dataDefinitions2 =
-			(List<DataDefinition>)page2.getItems();
+		List<DataRecord> dataRecords2 = (List<DataRecord>)page2.getItems();
 
-		Assert.assertEquals(
-			dataDefinitions2.toString(), 1, dataDefinitions2.size());
+		Assert.assertEquals(dataRecords2.toString(), 1, dataRecords2.size());
 
 		assertEqualsIgnoringOrder(
-			Arrays.asList(dataDefinition1, dataDefinition2, dataDefinition3),
-			new ArrayList<DataDefinition>() {
+			Arrays.asList(dataRecord1, dataRecord2, dataRecord3),
+			new ArrayList<DataRecord>() {
 				{
-					addAll(dataDefinitions1);
-					addAll(dataDefinitions2);
+					addAll(dataRecords1);
+					addAll(dataRecords2);
 				}
 			});
 	}
 
-	protected DataDefinition
-			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
-				String keywords, DataDefinition dataDefinition)
+	protected DataRecord
+			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
+				Long dataRecordCollectionId, DataRecord dataRecord)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected String testGetContentSpaceDataDefinitionsPage_getKeywords()
+	protected Long
+			testGetDataRecordCollectionDataRecordsPage_getDataRecordCollectionId()
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Page<DataDefinition> invokeGetContentSpaceDataDefinitionsPage(
-			String keywords, Long contentSpaceId, Pagination pagination)
+	protected Page<DataRecord> invokeGetDataRecordCollectionDataRecordsPage(
+			Long dataRecordCollectionId, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -194,8 +193,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/data-definitions",
-					keywords);
+					"/data-record-collections/{data-record-collection-id}/data-records",
+					dataRecordCollectionId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -206,12 +205,13 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<DataDefinition>>() {
+			new TypeReference<Page<DataRecord>>() {
 			});
 	}
 
-	protected Http.Response invokeGetContentSpaceDataDefinitionsPageResponse(
-			String keywords, Long contentSpaceId, Pagination pagination)
+	protected Http.Response
+			invokeGetDataRecordCollectionDataRecordsPageResponse(
+				Long dataRecordCollectionId, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -219,8 +219,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/data-definitions",
-					keywords);
+					"/data-record-collections/{data-record-collection-id}/data-records",
+					dataRecordCollectionId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -235,65 +235,66 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	@Test
-	public void testPostContentSpaceDataDefinition() throws Exception {
-		DataDefinition randomDataDefinition = randomDataDefinition();
+	public void testPostDataRecordCollectionDataRecord() throws Exception {
+		DataRecord randomDataRecord = randomDataRecord();
 
-		DataDefinition postDataDefinition =
-			testPostContentSpaceDataDefinition_addDataDefinition(
-				randomDataDefinition);
+		DataRecord postDataRecord =
+			testPostDataRecordCollectionDataRecord_addDataRecord(
+				randomDataRecord);
 
-		assertEquals(randomDataDefinition, postDataDefinition);
-		assertValid(postDataDefinition);
+		assertEquals(randomDataRecord, postDataRecord);
+		assertValid(postDataRecord);
 	}
 
-	protected DataDefinition
-			testPostContentSpaceDataDefinition_addDataDefinition(
-				DataDefinition dataDefinition)
+	protected DataRecord testPostDataRecordCollectionDataRecord_addDataRecord(
+			DataRecord dataRecord)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected DataDefinition invokePostContentSpaceDataDefinition(
-			Long contentSpaceId, DataDefinition dataDefinition)
+	protected DataRecord invokePostDataRecordCollectionDataRecord(
+			Long dataRecordCollectionId, Long contentSpaceId,
+			DataRecord dataRecord)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			_inputObjectMapper.writeValueAsString(dataDefinition),
+			_inputObjectMapper.writeValueAsString(dataRecord),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/data-definitions",
-					contentSpaceId);
+					"/data-record-collections/{data-record-collection-id}/data-records",
+					dataRecordCollectionId);
 
 		options.setLocation(location);
 
 		options.setPost(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DataDefinition.class);
+			HttpUtil.URLtoString(options), DataRecord.class);
 	}
 
-	protected Http.Response invokePostContentSpaceDataDefinitionResponse(
-			Long contentSpaceId, DataDefinition dataDefinition)
+	protected Http.Response invokePostDataRecordCollectionDataRecordResponse(
+			Long dataRecordCollectionId, Long contentSpaceId,
+			DataRecord dataRecord)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			_inputObjectMapper.writeValueAsString(dataDefinition),
+			_inputObjectMapper.writeValueAsString(dataRecord),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/data-definitions",
-					contentSpaceId);
+					"/data-record-collections/{data-record-collection-id}/data-records",
+					dataRecordCollectionId);
 
 		options.setLocation(location);
 
@@ -305,25 +306,22 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	@Test
-	public void testDeleteDataDefinition() throws Exception {
-		DataDefinition dataDefinition =
-			testDeleteDataDefinition_addDataDefinition();
+	public void testDeleteDataRecord() throws Exception {
+		DataRecord dataRecord = testDeleteDataRecord_addDataRecord();
 
 		assertResponseCode(
-			200, invokeDeleteDataDefinitionResponse(dataDefinition.getId()));
+			200, invokeDeleteDataRecordResponse(dataRecord.getId()));
 
 		assertResponseCode(
-			404, invokeGetDataDefinitionResponse(dataDefinition.getId()));
+			404, invokeGetDataRecordResponse(dataRecord.getId()));
 	}
 
-	protected DataDefinition testDeleteDataDefinition_addDataDefinition()
-		throws Exception {
-
+	protected DataRecord testDeleteDataRecord_addDataRecord() throws Exception {
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected boolean invokeDeleteDataDefinition(Long dataDefinitionId)
+	protected boolean invokeDeleteDataRecord(Long dataRecordId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -332,8 +330,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		String location =
 			_resourceURL +
-				_toPath(
-					"/data-definitions/{data-definition-id}", dataDefinitionId);
+				_toPath("/data-records/{data-record-id}", dataRecordId);
 
 		options.setLocation(location);
 
@@ -341,8 +338,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			HttpUtil.URLtoString(options), Boolean.class);
 	}
 
-	protected Http.Response invokeDeleteDataDefinitionResponse(
-			Long dataDefinitionId)
+	protected Http.Response invokeDeleteDataRecordResponse(Long dataRecordId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -351,8 +347,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		String location =
 			_resourceURL +
-				_toPath(
-					"/data-definitions/{data-definition-id}", dataDefinitionId);
+				_toPath("/data-records/{data-record-id}", dataRecordId);
 
 		options.setLocation(location);
 
@@ -362,50 +357,43 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	@Test
-	public void testGetDataDefinition() throws Exception {
-		DataDefinition postDataDefinition =
-			testGetDataDefinition_addDataDefinition();
+	public void testGetDataRecord() throws Exception {
+		DataRecord postDataRecord = testGetDataRecord_addDataRecord();
 
-		DataDefinition getDataDefinition = invokeGetDataDefinition(
-			postDataDefinition.getId());
+		DataRecord getDataRecord = invokeGetDataRecord(postDataRecord.getId());
 
-		assertEquals(postDataDefinition, getDataDefinition);
-		assertValid(getDataDefinition);
+		assertEquals(postDataRecord, getDataRecord);
+		assertValid(getDataRecord);
 	}
 
-	protected DataDefinition testGetDataDefinition_addDataDefinition()
-		throws Exception {
-
+	protected DataRecord testGetDataRecord_addDataRecord() throws Exception {
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected DataDefinition invokeGetDataDefinition(Long dataDefinitionId)
+	protected DataRecord invokeGetDataRecord(Long dataRecordId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		String location =
 			_resourceURL +
-				_toPath(
-					"/data-definitions/{data-definition-id}", dataDefinitionId);
+				_toPath("/data-records/{data-record-id}", dataRecordId);
 
 		options.setLocation(location);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DataDefinition.class);
+			HttpUtil.URLtoString(options), DataRecord.class);
 	}
 
-	protected Http.Response invokeGetDataDefinitionResponse(
-			Long dataDefinitionId)
+	protected Http.Response invokeGetDataRecordResponse(Long dataRecordId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		String location =
 			_resourceURL +
-				_toPath(
-					"/data-definitions/{data-definition-id}", dataDefinitionId);
+				_toPath("/data-records/{data-record-id}", dataRecordId);
 
 		options.setLocation(location);
 
@@ -415,69 +403,63 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	@Test
-	public void testPutDataDefinition() throws Exception {
-		DataDefinition postDataDefinition =
-			testPutDataDefinition_addDataDefinition();
+	public void testPutDataRecord() throws Exception {
+		DataRecord postDataRecord = testPutDataRecord_addDataRecord();
 
-		DataDefinition randomDataDefinition = randomDataDefinition();
+		DataRecord randomDataRecord = randomDataRecord();
 
-		DataDefinition putDataDefinition = invokePutDataDefinition(
-			postDataDefinition.getId(), randomDataDefinition);
+		DataRecord putDataRecord = invokePutDataRecord(
+			postDataRecord.getId(), randomDataRecord);
 
-		assertEquals(randomDataDefinition, putDataDefinition);
-		assertValid(putDataDefinition);
+		assertEquals(randomDataRecord, putDataRecord);
+		assertValid(putDataRecord);
 
-		DataDefinition getDataDefinition = invokeGetDataDefinition(
-			putDataDefinition.getId());
+		DataRecord getDataRecord = invokeGetDataRecord(putDataRecord.getId());
 
-		assertEquals(randomDataDefinition, getDataDefinition);
-		assertValid(getDataDefinition);
+		assertEquals(randomDataRecord, getDataRecord);
+		assertValid(getDataRecord);
 	}
 
-	protected DataDefinition testPutDataDefinition_addDataDefinition()
-		throws Exception {
-
+	protected DataRecord testPutDataRecord_addDataRecord() throws Exception {
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected DataDefinition invokePutDataDefinition(
-			Long dataDefinitionId, DataDefinition dataDefinition)
+	protected DataRecord invokePutDataRecord(
+			Long dataRecordId, DataRecord dataRecord)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			_inputObjectMapper.writeValueAsString(dataDefinition),
+			_inputObjectMapper.writeValueAsString(dataRecord),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
-				_toPath(
-					"/data-definitions/{data-definition-id}", dataDefinitionId);
+				_toPath("/data-records/{data-record-id}", dataRecordId);
 
 		options.setLocation(location);
 
 		options.setPut(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DataDefinition.class);
+			HttpUtil.URLtoString(options), DataRecord.class);
 	}
 
-	protected Http.Response invokePutDataDefinitionResponse(
-			Long dataDefinitionId, DataDefinition dataDefinition)
+	protected Http.Response invokePutDataRecordResponse(
+			Long dataRecordId, DataRecord dataRecord)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			_inputObjectMapper.writeValueAsString(dataDefinition),
+			_inputObjectMapper.writeValueAsString(dataRecord),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
-				_toPath(
-					"/data-definitions/{data-definition-id}", dataDefinitionId);
+				_toPath("/data-records/{data-record-id}", dataRecordId);
 
 		options.setLocation(location);
 
@@ -496,38 +478,36 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected void assertEquals(
-		DataDefinition dataDefinition1, DataDefinition dataDefinition2) {
+		DataRecord dataRecord1, DataRecord dataRecord2) {
 
 		Assert.assertTrue(
-			dataDefinition1 + " does not equal " + dataDefinition2,
-			equals(dataDefinition1, dataDefinition2));
+			dataRecord1 + " does not equal " + dataRecord2,
+			equals(dataRecord1, dataRecord2));
 	}
 
 	protected void assertEquals(
-		List<DataDefinition> dataDefinitions1,
-		List<DataDefinition> dataDefinitions2) {
+		List<DataRecord> dataRecords1, List<DataRecord> dataRecords2) {
 
-		Assert.assertEquals(dataDefinitions1.size(), dataDefinitions2.size());
+		Assert.assertEquals(dataRecords1.size(), dataRecords2.size());
 
-		for (int i = 0; i < dataDefinitions1.size(); i++) {
-			DataDefinition dataDefinition1 = dataDefinitions1.get(i);
-			DataDefinition dataDefinition2 = dataDefinitions2.get(i);
+		for (int i = 0; i < dataRecords1.size(); i++) {
+			DataRecord dataRecord1 = dataRecords1.get(i);
+			DataRecord dataRecord2 = dataRecords2.get(i);
 
-			assertEquals(dataDefinition1, dataDefinition2);
+			assertEquals(dataRecord1, dataRecord2);
 		}
 	}
 
 	protected void assertEqualsIgnoringOrder(
-		List<DataDefinition> dataDefinitions1,
-		List<DataDefinition> dataDefinitions2) {
+		List<DataRecord> dataRecords1, List<DataRecord> dataRecords2) {
 
-		Assert.assertEquals(dataDefinitions1.size(), dataDefinitions2.size());
+		Assert.assertEquals(dataRecords1.size(), dataRecords2.size());
 
-		for (DataDefinition dataDefinition1 : dataDefinitions1) {
+		for (DataRecord dataRecord1 : dataRecords1) {
 			boolean contains = false;
 
-			for (DataDefinition dataDefinition2 : dataDefinitions2) {
-				if (equals(dataDefinition1, dataDefinition2)) {
+			for (DataRecord dataRecord2 : dataRecords2) {
+				if (equals(dataRecord1, dataRecord2)) {
 					contains = true;
 
 					break;
@@ -535,22 +515,21 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			}
 
 			Assert.assertTrue(
-				dataDefinitions2 + " does not contain " + dataDefinition1,
-				contains);
+				dataRecords2 + " does not contain " + dataRecord1, contains);
 		}
 	}
 
-	protected void assertValid(DataDefinition dataDefinition) {
+	protected void assertValid(DataRecord dataRecord) {
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected void assertValid(Page<DataDefinition> page) {
+	protected void assertValid(Page<DataRecord> page) {
 		boolean valid = false;
 
-		Collection<DataDefinition> dataDefinitions = page.getItems();
+		Collection<DataRecord> dataRecords = page.getItems();
 
-		int size = dataDefinitions.size();
+		int size = dataRecords.size();
 
 		if ((page.getLastPage() > 0) && (page.getPage() > 0) &&
 			(page.getPageSize() > 0) && (page.getTotalCount() > 0) &&
@@ -562,10 +541,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
-	protected boolean equals(
-		DataDefinition dataDefinition1, DataDefinition dataDefinition2) {
-
-		if (dataDefinition1 == dataDefinition2) {
+	protected boolean equals(DataRecord dataRecord1, DataRecord dataRecord2) {
+		if (dataRecord1 == dataRecord2) {
 			return true;
 		}
 
@@ -573,13 +550,13 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected Collection<EntityField> getEntityFields() throws Exception {
-		if (!(_dataDefinitionResource instanceof EntityModelResource)) {
+		if (!(_dataRecordResource instanceof EntityModelResource)) {
 			throw new UnsupportedOperationException(
 				"Resource is not an instance of EntityModelResource");
 		}
 
 		EntityModelResource entityModelResource =
-			(EntityModelResource)_dataDefinitionResource;
+			(EntityModelResource)_dataRecordResource;
 
 		EntityModel entityModel = entityModelResource.getEntityModel(
 			new MultivaluedHashMap());
@@ -605,8 +582,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected String getFilterString(
-		EntityField entityField, String operator,
-		DataDefinition dataDefinition) {
+		EntityField entityField, String operator, DataRecord dataRecord) {
 
 		StringBundler sb = new StringBundler();
 
@@ -618,29 +594,12 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		sb.append(operator);
 		sb.append(" ");
 
-		if (entityFieldName.equals("contentSpaceId")) {
+		if (entityFieldName.equals("dataRecordCollectionId")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("dataDefinitionFields")) {
-			throw new IllegalArgumentException(
-				"Invalid entity field " + entityFieldName);
-		}
-
-		if (entityFieldName.equals("dateCreated")) {
-			sb.append(_dateFormat.format(dataDefinition.getDateCreated()));
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("dateModified")) {
-			sb.append(_dateFormat.format(dataDefinition.getDateModified()));
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("description")) {
+		if (entityFieldName.equals("dataRecordValues")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}
@@ -650,43 +609,21 @@ public abstract class BaseDataDefinitionResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
-		if (entityFieldName.equals("name")) {
-			throw new IllegalArgumentException(
-				"Invalid entity field " + entityFieldName);
-		}
-
-		if (entityFieldName.equals("storageType")) {
-			sb.append("'");
-			sb.append(String.valueOf(dataDefinition.getStorageType()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("userId")) {
-			throw new IllegalArgumentException(
-				"Invalid entity field " + entityFieldName);
-		}
-
 		throw new IllegalArgumentException(
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected DataDefinition randomDataDefinition() {
-		return new DataDefinition() {
+	protected DataRecord randomDataRecord() {
+		return new DataRecord() {
 			{
-				contentSpaceId = RandomTestUtil.randomLong();
-				dateCreated = RandomTestUtil.nextDate();
-				dateModified = RandomTestUtil.nextDate();
+				dataRecordCollectionId = RandomTestUtil.randomLong();
 				id = RandomTestUtil.randomLong();
-				storageType = RandomTestUtil.randomString();
-				userId = RandomTestUtil.randomLong();
 			}
 		};
 	}
 
-	protected DataDefinition randomPatchDataDefinition() {
-		return randomDataDefinition();
+	protected DataRecord randomPatchDataRecord() {
+		return randomDataRecord();
 	}
 
 	protected Group testGroup;
@@ -792,7 +729,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	};
 
 	@Inject
-	private DataDefinitionResource _dataDefinitionResource;
+	private DataRecordResource _dataRecordResource;
 
 	private URL _resourceURL;
 
