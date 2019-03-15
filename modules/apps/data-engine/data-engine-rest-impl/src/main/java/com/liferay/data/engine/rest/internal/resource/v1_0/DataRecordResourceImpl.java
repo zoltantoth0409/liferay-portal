@@ -96,12 +96,12 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			PrincipalThreadLocal.getUserId(), dataRecordId, storageId,
 			new ServiceContext());
 
-		_addStorageLink(storageId, ddlRecord);
+		_addDDMStorageLink(storageId, ddlRecord);
 
 		return dataRecord;
 	}
 
-	private void _addStorageLink(long storageId, DDLRecord ddlRecord)
+	private void _addDDMStorageLink(long storageId, DDLRecord ddlRecord)
 		throws Exception {
 
 		DDLRecordSet ddlRecordSet = ddlRecord.getRecordSet();
