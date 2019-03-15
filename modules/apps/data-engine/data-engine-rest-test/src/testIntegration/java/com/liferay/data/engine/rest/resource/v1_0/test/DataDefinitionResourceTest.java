@@ -71,39 +71,45 @@ public class DataDefinitionResourceTest
 	protected DataDefinition testDeleteDataDefinition_addDataDefinition()
 		throws Exception {
 
-		return invokePostDataDefinition(
+		return invokePostContentSpaceDataDefinition(
 			testGroup.getGroupId(), randomDataDefinition());
+	}
+
+	protected DataDefinition
+			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
+				Long contentSpaceId, DataDefinition dataDefinition)
+		throws Exception {
+
+		return invokePostContentSpaceDataDefinition(
+			contentSpaceId, dataDefinition);
+	}
+
+	protected Long testGetContentSpaceDataDefinitionsPage_getGroupId()
+		throws Exception {
+
+		return testGroup.getGroupId();
 	}
 
 	protected DataDefinition testGetDataDefinition_addDataDefinition()
 		throws Exception {
 
-		return invokePostDataDefinition(
+		return invokePostContentSpaceDataDefinition(
 			testGroup.getGroupId(), randomDataDefinition());
 	}
 
-	protected DataDefinition testGetDataDefinitionsPage_addDataDefinition(
-			Long groupId, DataDefinition dataDefinition)
+	protected DataDefinition
+			testPostContentSpaceDataDefinition_addDataDefinition(
+				DataDefinition dataDefinition)
 		throws Exception {
 
-		return invokePostDataDefinition(groupId, dataDefinition);
-	}
-
-	protected Long testGetDataDefinitionsPage_getGroupId() throws Exception {
-		return testGroup.getGroupId();
-	}
-
-	protected DataDefinition testPostDataDefinition_addDataDefinition(
-			DataDefinition dataDefinition)
-		throws Exception {
-
-		return invokePostDataDefinition(testGroup.getGroupId(), dataDefinition);
+		return invokePostContentSpaceDataDefinition(
+			testGroup.getGroupId(), dataDefinition);
 	}
 
 	protected DataDefinition testPutDataDefinition_addDataDefinition()
 		throws Exception {
 
-		return invokePostDataDefinition(
+		return invokePostContentSpaceDataDefinition(
 			testGroup.getGroupId(), randomDataDefinition());
 	}
 

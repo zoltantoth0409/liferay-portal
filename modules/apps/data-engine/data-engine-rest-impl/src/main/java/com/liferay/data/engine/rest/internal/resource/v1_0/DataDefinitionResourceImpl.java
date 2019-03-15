@@ -52,15 +52,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 	}
 
 	@Override
-	public DataDefinition getDataDefinition(Long dataDefinitionId)
-		throws Exception {
-
-		return _toDataDefinition(
-			_ddmStructureService.getStructure(dataDefinitionId));
-	}
-
-	@Override
-	public Page<DataDefinition> getDataDefinitionsPage(
+	public Page<DataDefinition> getContentSpaceDataDefinitionsPage(
 			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception {
 
@@ -96,7 +88,15 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 	}
 
 	@Override
-	public DataDefinition postDataDefinition(
+	public DataDefinition getDataDefinition(Long dataDefinitionId)
+		throws Exception {
+
+		return _toDataDefinition(
+			_ddmStructureService.getStructure(dataDefinitionId));
+	}
+
+	@Override
+	public DataDefinition postContentSpaceDataDefinition(
 			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
