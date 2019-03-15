@@ -74,15 +74,14 @@ public class BuildingsSiteInitializer implements SiteInitializer {
 	@Override
 	public void initialize(long groupId) throws InitializationException {
 		try {
-			URL fragmentsZipUrl = _bundle.getEntry("/fragments.zip");
+			URL url = _bundle.getEntry("/fragments.zip");
 
-			File tempFile = FileUtil.createTempFile(
-				fragmentsZipUrl.openStream());
+			File file = FileUtil.createTempFile(url.openStream());
 
 			Group group = _groupLocalService.getGroup(groupId);
 
 			_fragmentsImporter.importFile(
-				group.getCreatorUserId(), groupId, 0, tempFile, false);
+				group.getCreatorUserId(), groupId, 0, file, false);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
