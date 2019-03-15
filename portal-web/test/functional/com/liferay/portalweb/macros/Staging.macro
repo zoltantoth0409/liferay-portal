@@ -521,6 +521,8 @@ definition {
 
 		SelectFrame(locator1 = "IFrame#DIALOG");
 
+		Click(locator1 = "Staging#COPY_FROM_LIVE_TAB");
+
 		ClickNoError(locator1 = "Staging#COPY_FROM_LIVE");
 
 		Confirm(
