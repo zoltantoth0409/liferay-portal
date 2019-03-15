@@ -80,7 +80,9 @@ public class MapUtilWhenFilteringByPredicateFilterTest {
 
 				@Override
 				public boolean filter(Map.Entry<?, Number> entry) {
-					if ((entry.getValue().intValue() % 2) == 0) {
+					Number number = entry.getValue();
+
+					if ((number.intValue() % 2) == 0) {
 						return true;
 					}
 

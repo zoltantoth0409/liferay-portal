@@ -164,7 +164,9 @@ public class FormMessageBodyWriter implements MessageBodyWriter<Form<?>> {
 		Form<?> form, AcceptLanguage acceptLanguage,
 		ApplicationURL applicationURL, boolean includeContext) {
 
-		return new JSONObject().putOpt(
+		JSONObject jsonObject = new JSONObject();
+
+		return jsonObject.putOpt(
 			"@context", includeContext ? _contextJSONArray : null
 		).put(
 			"@type", "Class"
@@ -190,7 +192,9 @@ public class FormMessageBodyWriter implements MessageBodyWriter<Form<?>> {
 	protected static JSONObject toJSONObject(
 		FormField formField, JSONObject valueJSONObject) {
 
-		return new JSONObject().put(
+		JSONObject jsonObject = new JSONObject();
+
+		return new jsonObject.put(
 			"@type", "SupportedProperty"
 		).put(
 			"property", formField.getName()
