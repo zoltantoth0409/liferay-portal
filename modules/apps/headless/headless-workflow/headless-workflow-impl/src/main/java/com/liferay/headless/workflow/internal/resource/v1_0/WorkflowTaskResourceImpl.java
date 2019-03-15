@@ -174,20 +174,18 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 	private String _getResourceType(
 		Map<String, Serializable> optionalAttributes) {
 
-		Map<String, String> map = new HashMap<String, String>() {
-			{
-				put(BlogsEntry.class.getName(), "BlogPosting");
-				put(MBDiscussion.class.getName(), "Comment");
-			}
-		};
+		String className = GetterUtil.getString(
+			optionalAttributes.get("entryClassName"));
 
-		String type = map.get(optionalAttributes.get("entryClassName"));
-
-		if (type == null) {
-			return null;
+		if (className.equals(BlogsEntry.class.getName())) {
+			return "BlogPosting";
 		}
 
-		return type;
+		if (className.equals(MBDiscussion.class.getName())) {
+			return "Comment";
+		}
+
+		return null;
 	}
 
 	private List<String> _getTaskTransitionsNames(
