@@ -301,7 +301,7 @@ definition {
 
 			AssertTextEquals.assertText(
 				locator1 = "SetupWizard#DATABASE_CHANGE_JDBC_URL_LABEL",
-				value1 = "JDBC URL asterisk Required"
+				value1 = "JDBC URL Required"
 			);
 
 			AssertTextEquals.assertText(

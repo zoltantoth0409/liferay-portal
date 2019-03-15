@@ -101,7 +101,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "TextInput#URL_REQUIRED",
-			value1 = "URL asterisk Required Please enter a valid URL."
+			value1 = "URL Required Please enter a valid URL."
 		);
 	}
 
