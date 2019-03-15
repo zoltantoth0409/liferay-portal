@@ -140,7 +140,7 @@ public class KeywordResourceImpl
 	private Keyword _toKeyword(AssetTag assetTag) throws Exception {
 		return new Keyword() {
 			{
-				contentSpace = assetTag.getGroupId();
+				contentSpaceId = assetTag.getGroupId();
 				creator = CreatorUtil.toCreator(
 					_portal,
 					_userLocalService.getUserById(assetTag.getUserId()));

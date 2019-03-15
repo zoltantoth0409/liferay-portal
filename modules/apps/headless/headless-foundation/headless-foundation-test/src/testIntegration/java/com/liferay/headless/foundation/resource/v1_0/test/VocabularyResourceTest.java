@@ -34,7 +34,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		boolean valid = false;
 
 		if (Objects.equals(
-				vocabulary.getContentSpace(), testGroup.getGroupId()) &&
+				vocabulary.getContentSpaceId(), testGroup.getGroupId()) &&
 			(vocabulary.getDateCreated() != null) &&
 			(vocabulary.getDateModified() != null) &&
 			(vocabulary.getId() != null)) {
@@ -72,7 +72,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 						}
 					}
 				};
-				contentSpace = testGroup.getGroupId();
+				contentSpaceId = testGroup.getGroupId();
 				description = RandomTestUtil.randomString();
 				name = RandomTestUtil.randomString();
 			}

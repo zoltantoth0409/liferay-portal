@@ -156,13 +156,13 @@ public class BlogPostingResourceImpl
 				_getImageSelector(blogPosting), null,
 				ServiceContextUtil.createServiceContext(
 					blogPosting.getKeywords(), blogPosting.getCategoryIds(),
-					blogPosting.getContentSpace(),
+					blogPosting.getContentSpaceId(),
 					blogPosting.getViewableByAsString())));
 	}
 
 	@Override
 	protected void preparePatch(BlogPosting blogPosting) {
-		blogPosting.setContentSpace((Long)null);
+		blogPosting.setContentSpaceId((Long)null);
 		blogPosting.setDateCreated((Date)null);
 		blogPosting.setDateModified((Date)null);
 		blogPosting.setEncodingFormat((String)null);
@@ -240,7 +240,7 @@ public class BlogPostingResourceImpl
 						}
 					},
 					Categories.class);
-				contentSpace = blogsEntry.getGroupId();
+				contentSpaceId = blogsEntry.getGroupId();
 				creator = CreatorUtil.toCreator(
 					_portal, _userLocalService.getUser(blogsEntry.getUserId()));
 				dateCreated = blogsEntry.getCreateDate();

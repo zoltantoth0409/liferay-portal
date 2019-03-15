@@ -833,7 +833,7 @@ public class StructuredContentResourceImpl
 					},
 					Categories.class);
 				contentFields = _toContentFields(journalArticle);
-				contentSpace = journalArticle.getGroupId();
+				contentSpaceId = journalArticle.getGroupId();
 				contentStructureId = ddmStructure.getStructureId();
 				creator = CreatorUtil.toCreator(
 					_portal,

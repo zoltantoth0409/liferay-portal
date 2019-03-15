@@ -97,7 +97,8 @@ public class StructuredContentResourceTest
 		boolean valid = false;
 
 		if (Objects.equals(
-				structuredContent.getContentSpace(), testGroup.getGroupId()) &&
+				structuredContent.getContentSpaceId(),
+				testGroup.getGroupId()) &&
 			(structuredContent.getDateCreated() != null) &&
 			(structuredContent.getDateModified() != null) &&
 			(structuredContent.getId() != null)) {
@@ -114,8 +115,8 @@ public class StructuredContentResourceTest
 		StructuredContent structuredContent2) {
 
 		if (Objects.equals(
-				structuredContent1.getContentSpace(),
-				structuredContent2.getContentSpace()) &&
+				structuredContent1.getContentSpaceId(),
+				structuredContent2.getContentSpaceId()) &&
 			Objects.equals(
 				structuredContent1.getContentStructureId(),
 				structuredContent2.getContentStructureId()) &&
@@ -135,7 +136,7 @@ public class StructuredContentResourceTest
 	protected StructuredContent randomStructuredContent() {
 		return new StructuredContent() {
 			{
-				contentSpace = testGroup.getGroupId();
+				contentSpaceId = testGroup.getGroupId();
 				contentStructureId = _ddmStructure.getStructureId();
 				datePublished = RandomTestUtil.nextDate();
 				description = RandomTestUtil.randomString();

@@ -189,7 +189,7 @@ public class KnowledgeBaseArticleResourceImpl
 				ServiceContextUtil.createServiceContext(
 					knowledgeBaseArticle.getKeywords(),
 					knowledgeBaseArticle.getCategoryIds(),
-					knowledgeBaseArticle.getContentSpace(),
+					knowledgeBaseArticle.getContentSpaceId(),
 					knowledgeBaseArticle.getViewableByAsString())));
 	}
 

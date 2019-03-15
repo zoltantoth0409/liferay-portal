@@ -362,7 +362,7 @@ public class VocabularyResourceImpl
 					assetVocabulary.getGroupId());
 				availableLanguages = LocaleUtil.toW3cLanguageIds(
 					assetVocabulary.getAvailableLanguageIds());
-				contentSpace = assetVocabulary.getGroupId();
+				contentSpaceId = assetVocabulary.getGroupId();
 				creator = CreatorUtil.toCreator(
 					_portal,
 					_userLocalService.getUser(assetVocabulary.getUserId()));
