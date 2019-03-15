@@ -82,8 +82,8 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		return _toDataRecord(
 			_ddlRecordLocalService.addRecord(
 				PrincipalThreadLocal.getUserId(), ddlRecordSet.getGroupId(),
-				_store(),
-				dataRecord.getDataRecordCollectionId(), new ServiceContext()));
+				_store(), dataRecord.getDataRecordCollectionId(),
+				new ServiceContext()));
 	}
 
 	@Override

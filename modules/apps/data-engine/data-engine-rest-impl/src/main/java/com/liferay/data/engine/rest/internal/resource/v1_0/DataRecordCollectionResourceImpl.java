@@ -22,7 +22,9 @@ import com.liferay.dynamic.data.lists.model.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureService;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -66,17 +68,19 @@ public class DataRecordCollectionResourceImpl
 				_ddlRecordSetLocalService.getRecordSetsCount(contentSpaceId));
 		}
 
+		Group group = _groupLocalService.getGroup(contentSpaceId);
+
 		return Page.of(
 			transform(
 				_ddlRecordSetLocalService.search(
-					contextCompany.getCompanyId(), contentSpaceId, keywords,
+					group.getCompanyId(), contentSpaceId, keywords,
 					DDLRecordSetConstants.SCOPE_DATA_ENGINE,
 					pagination.getStartPosition(), pagination.getEndPosition(),
 					null),
 				this::_toDataRecordCollection),
 			pagination,
 			_ddlRecordSetLocalService.searchCount(
-				contextCompany.getCompanyId(), contentSpaceId, keywords,
+				group.getCompanyId(), contentSpaceId, keywords,
 				DDLRecordSetConstants.SCOPE_DATA_ENGINE));
 	}
 
@@ -105,14 +109,14 @@ public class DataRecordCollectionResourceImpl
 		return Page.of(
 			transform(
 				_ddlRecordSetLocalService.search(
-					contextCompany.getCompanyId(), ddmStructure.getGroupId(),
+					ddmStructure.getCompanyId(), ddmStructure.getGroupId(),
 					keywords, DDLRecordSetConstants.SCOPE_DATA_ENGINE,
 					pagination.getStartPosition(), pagination.getEndPosition(),
 					null),
 				this::_toDataRecordCollection),
 			pagination,
 			_ddlRecordSetLocalService.searchCount(
-				contextCompany.getCompanyId(), ddmStructure.getGroupId(),
+				ddmStructure.getCompanyId(), ddmStructure.getGroupId(),
 				keywords, DDLRecordSetConstants.SCOPE_DATA_ENGINE));
 	}
 
@@ -184,5 +188,8 @@ public class DataRecordCollectionResourceImpl
 
 	@Reference
 	private DDMStructureService _ddmStructureService;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
 
 }
