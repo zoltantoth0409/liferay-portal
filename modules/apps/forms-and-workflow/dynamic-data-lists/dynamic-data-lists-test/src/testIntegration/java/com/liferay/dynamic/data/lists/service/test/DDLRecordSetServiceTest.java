@@ -110,7 +110,7 @@ public class DDLRecordSetServiceTest {
 
 		ddlRecordSet = updateRecordSet(ddlRecordSet, ddmStructureDDMForm);
 
-		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
+		ddmStructure = ddlRecordSet.getDDMStructure();
 
 		Assert.assertEquals(storageAdpater, ddmStructure.getStorageType());
 	}
