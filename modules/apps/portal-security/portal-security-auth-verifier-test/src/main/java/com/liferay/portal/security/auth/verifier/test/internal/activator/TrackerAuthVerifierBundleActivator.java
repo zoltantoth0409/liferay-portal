@@ -60,14 +60,14 @@ public class TrackerAuthVerifierBundleActivator
 		properties = new HashMapDictionary<>();
 
 		properties.put(
+			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
+			"(auth-verifier-tracker-test-servlet-context-helper=true)");
+		properties.put(
 			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
 			"cxf-servlet");
 		properties.put(
 			HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
 			"/remoteUser");
-		properties.put(
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-			"(auth-verifier-tracker-test-servlet-context-helper=true)");
 
 		registerServlet(properties, RemoteUserHttpServlet::new);
 
