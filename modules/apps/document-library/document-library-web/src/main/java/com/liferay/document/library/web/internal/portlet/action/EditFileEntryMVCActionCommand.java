@@ -1007,7 +1007,6 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		long assetDisplayPageId = ParamUtil.getLong(
 			actionRequest, "assetDisplayPageId");
-
 		int displayPageType = ParamUtil.getInteger(
 			actionRequest, "displayPageType");
 
