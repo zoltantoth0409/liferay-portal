@@ -194,7 +194,7 @@ public class FormMessageBodyWriter implements MessageBodyWriter<Form<?>> {
 
 		JSONObject jsonObject = new JSONObject();
 
-		return new jsonObject.put(
+		return jsonObject.put(
 			"@type", "SupportedProperty"
 		).put(
 			"property", formField.getName()
