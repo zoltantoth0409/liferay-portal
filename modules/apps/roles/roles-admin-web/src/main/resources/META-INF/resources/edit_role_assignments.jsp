@@ -148,9 +148,9 @@ renderResponse.setTitle(role.getTitle(locale));
 
 				<portlet:renderURL var="selectAssigneesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value="/select_assignees.jsp" />
+					<portlet:param name="tabs2" value="<%= tabs2 %>" />
 					<portlet:param name="roleId" value="<%= String.valueOf(roleId) %>" />
 					<portlet:param name="displayStyle" value="<%= displayStyle %>" />
-					<portlet:param name="tabs2" value="<%= tabs2 %>" />
 				</portlet:renderURL>
 
 				url: '<%= selectAssigneesURL %>'
