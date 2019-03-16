@@ -37,8 +37,9 @@ public class DSSessionKey {
 
 		if (dsSessionKeyTokens.size() != 3) {
 			throw new IllegalArgumentException(
-				"Invalid DSSessionKey format.  Format must be " +
-					"accountKey_companyId_userName: " + dsSessionKeyString);
+				"Digital signature session key does not match format " +
+					"${accountKey}_${companyId}_${userName}: " +
+						dsSessionKeyString);
 		}
 
 		_accountKey = dsSessionKeyTokens.get(0);
