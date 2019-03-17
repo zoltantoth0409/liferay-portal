@@ -84,7 +84,7 @@ public class PortletPreferencesLocalServiceTest {
 
 	@After
 	public void tearDown() {
-		_portlet.setPortletApp(_DUMMY_PORTLET_APP);
+		_portlet.setPortletApp(_portletApp);
 
 		PortletLocalServiceUtil.destroyPortlet(_portlet);
 	}
@@ -1539,7 +1539,7 @@ public class PortletPreferencesLocalServiceTest {
 		ServiceBeanAopCacheManagerUtil.reset();
 	}
 
-	private static final PortletApp _DUMMY_PORTLET_APP = new PortletAppImpl(
+	private static final PortletApp _portletApp = new PortletAppImpl(
 		StringPool.CONTENT);
 
 	private static final String[] _MULTIPLE_VALUES = {"value1", "value2"};
