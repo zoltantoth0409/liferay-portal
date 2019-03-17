@@ -561,31 +561,31 @@ public class PortletPreferencesLocalServiceImpl
 	}
 
 	private boolean _exists(long plid, long companyId, String portletId) {
-		if (plid != PortletKeys.PREFS_PLID_SHARED) {
-			if (portletLocalService.fetchPortletById(companyId, portletId) !=
-					null) {
-
-				return true;
-			}
-
-			return false;
+		if (plid == PortletKeys.PREFS_PLID_SHARED) {
+			return true;
 		}
 
-		return true;
+		if (portletLocalService.fetchPortletById(companyId, portletId) !=
+				null) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	private boolean _exists(long plid, String portletId) {
-		if (plid != PortletKeys.PREFS_PLID_SHARED) {
-			Layout layout = layoutPersistence.fetchByPrimaryKey(plid);
-
-			if (layout == null) {
-				return false;
-			}
-
-			return _exists(plid, layout.getCompanyId(), portletId);
+		if (plid == PortletKeys.PREFS_PLID_SHARED) {
+			return true;
 		}
 
-		return true;
+		Layout layout = layoutPersistence.fetchByPrimaryKey(plid);
+
+		if (layout == null) {
+			return false;
+		}
+
+		return _exists(plid, layout.getCompanyId(), portletId);
 	}
 
 	private LayoutRevision _getLayoutRevision(long plid) {
