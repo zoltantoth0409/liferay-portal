@@ -91,13 +91,13 @@ public class DataLayoutUtil {
 			pages.put(page);
 		}
 
-		JSONObject layout = JSONFactoryUtil.createJSONObject();
-
-		layout.put("defaultLanguageId", defaultLanguageId);
-		layout.put("pages", pages);
-		layout.put("paginationMode", paginationMode);
-
-		return layout.toString();
+		return JSONUtil.put(
+			"defaultLanguageId", defaultLanguageId
+		).put(
+			"pages", pages
+		).put(
+			"paginationMode", paginationMode
+		).toString();
 	}
 
 	private static DataLayoutColumn[] _toDataLayoutColumns(
