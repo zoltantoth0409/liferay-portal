@@ -87,7 +87,8 @@ public class DataDefinitionUtil {
 					throw new Exception("Label is required");
 				}
 
-				label = _toLocalizedValues(jsonObject.getJSONObject("label"));
+				label = LocalizedValueUtil.toLocalizedValues(
+					jsonObject.getJSONObject("label"));
 
 				localizable = jsonObject.getBoolean("localizable", false);
 
@@ -103,7 +104,8 @@ public class DataDefinitionUtil {
 					throw new Exception("Tip is required");
 				}
 
-				tip = _toLocalizedValues(jsonObject.getJSONObject("tip"));
+				tip = LocalizedValueUtil.toLocalizedValues(
+					jsonObject.getJSONObject("tip"));
 			}
 		};
 	}
@@ -186,26 +188,6 @@ public class DataDefinitionUtil {
 		jsonObject.put("type", type);
 
 		return jsonObject;
-	}
-
-	private static LocalizedValue[] _toLocalizedValues(JSONObject jsonObject) {
-		List<LocalizedValue> localizedValues = new ArrayList<>();
-
-		Iterator<String> keys = jsonObject.keys();
-
-		while (keys.hasNext()) {
-			LocalizedValue localizedValue = new LocalizedValue();
-
-			String key = keys.next();
-
-			localizedValue.setKey(key);
-			localizedValue.setValue(jsonObject.getString(key));
-
-			localizedValues.add(localizedValue);
-		}
-
-		return localizedValues.toArray(
-			new LocalizedValue[localizedValues.size()]);
 	}
 
 }

@@ -139,13 +139,15 @@ public class DataLayoutUtil {
 				DataLayoutPage dataLayoutPage = new DataLayoutPage();
 
 				dataLayoutPage.setDescription(
-					_toLocalizedValues(page.getJSONObject("description")));
+					LocalizedValueUtil.toLocalizedValues(
+						page.getJSONObject("description")));
 
 				dataLayoutPage.setDataLayoutRows(
 					_createDEDataLayoutRows(page.getJSONArray("rows")));
 
 				dataLayoutPage.setTitle(
-					_toLocalizedValues(page.getJSONObject("title")));
+					LocalizedValueUtil.toLocalizedValues(
+						page.getJSONObject("title")));
 
 				dataLayoutPages.add(dataLayoutPage);
 			}
@@ -171,26 +173,6 @@ public class DataLayoutUtil {
 		}
 
 		return dataLayoutRows.toArray(new DataLayoutRow[dataLayoutRows.size()]);
-	}
-
-	private static LocalizedValue[] _toLocalizedValues(JSONObject jsonObject) {
-		Iterator<String> keys = jsonObject.keys();
-
-		List<LocalizedValue> localizedValues = new ArrayList<>();
-
-		while (keys.hasNext()) {
-			String key = keys.next();
-
-			LocalizedValue localizedValue = new LocalizedValue();
-
-			localizedValue.setKey(key);
-			localizedValue.setValue(jsonObject.getString(key));
-
-			localizedValues.add(localizedValue);
-		}
-
-		return localizedValues.toArray(
-			new LocalizedValue[localizedValues.size()]);
 	}
 
 	private static JSONObject _toJSONObject(
