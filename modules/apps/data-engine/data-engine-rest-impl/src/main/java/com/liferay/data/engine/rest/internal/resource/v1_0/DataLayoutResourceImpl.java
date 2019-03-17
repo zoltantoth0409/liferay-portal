@@ -27,6 +27,7 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureVersionLocalService;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.ArrayUtil;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -60,9 +61,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			Long dataDefinitionId, DataLayout dataLayout)
 		throws Exception {
 
-		LocalizedValue[] name = dataLayout.getName();
-
-		if (name.length < 1) {
+		if (ArrayUtil.isEmpty(dataLayout.getName())) {
 			throw new Exception("Layout name cannot be null");
 		}
 
@@ -73,7 +72,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			_ddmStructureLayoutLocalService.addStructureLayout(
 				PrincipalThreadLocal.getUserId(), ddmStructure.getGroupId(),
 				_getDDMStructureVersionId(dataLayout.getDataDefinitionId()),
-				LocalizedValueUtil.toLocalizationMap(name),
+				LocalizedValueUtil.toLocalizationMap(dataLayout.getName()),
 				LocalizedValueUtil.toLocalizationMap(
 					dataLayout.getDescription()),
 				DataLayoutUtil.toJSONString(dataLayout), new ServiceContext());
@@ -87,9 +86,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 	public DataLayout putDataLayout(Long dataLayoutId, DataLayout dataLayout)
 		throws Exception {
 
-		LocalizedValue[] name = dataLayout.getName();
-
-		if (name.length < 1) {
+		if (ArrayUtil.isEmpty(dataLayout.getName())) {
 			throw new Exception("Layout name cannot be null");
 		}
 
@@ -97,7 +94,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			_ddmStructureLayoutLocalService.updateStructureLayout(
 				dataLayoutId,
 				_getDDMStructureVersionId(dataLayout.getDataDefinitionId()),
-				LocalizedValueUtil.toLocalizationMap(name),
+				LocalizedValueUtil.toLocalizationMap(dataLayout.getName()),
 				LocalizedValueUtil.toLocalizationMap(
 					dataLayout.getDescription()),
 				DataLayoutUtil.toJSONString(dataLayout), new ServiceContext()));
