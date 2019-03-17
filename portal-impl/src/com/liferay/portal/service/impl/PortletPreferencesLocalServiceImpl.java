@@ -633,9 +633,7 @@ public class PortletPreferencesLocalServiceImpl
 		return portletPreferences;
 	}
 
-	private boolean _exists(
-		long plid, long companyId, String portletId) {
-
+	private boolean _exists(long plid, long companyId, String portletId) {
 		if (plid != PortletKeys.PREFS_PLID_SHARED) {
 			if (portletLocalService.fetchPortletById(companyId, portletId) !=
 					null) {
@@ -657,8 +655,7 @@ public class PortletPreferencesLocalServiceImpl
 				return false;
 			}
 
-			return _exists(
-				plid, layout.getCompanyId(), portletId);
+			return _exists(plid, layout.getCompanyId(), portletId);
 		}
 
 		return true;
