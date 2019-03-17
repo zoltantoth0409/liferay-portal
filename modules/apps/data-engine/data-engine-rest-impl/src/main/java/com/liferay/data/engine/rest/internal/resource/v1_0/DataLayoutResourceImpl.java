@@ -75,7 +75,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 				LocalizedValueUtil.toLocalizationMap(dataLayout.getName()),
 				LocalizedValueUtil.toLocalizationMap(
 					dataLayout.getDescription()),
-				DataLayoutUtil.toJSONString(dataLayout), new ServiceContext());
+				DataLayoutUtil.toJSON(dataLayout), new ServiceContext());
 
 		dataLayout.setId(ddmStructureLayout.getStructureLayoutId());
 
@@ -97,7 +97,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 				LocalizedValueUtil.toLocalizationMap(dataLayout.getName()),
 				LocalizedValueUtil.toLocalizationMap(
 					dataLayout.getDescription()),
-				DataLayoutUtil.toJSONString(dataLayout), new ServiceContext()));
+				DataLayoutUtil.toJSON(dataLayout), new ServiceContext()));
 	}
 
 	private long _getDDMStructureId(DDMStructureLayout ddmStructureLayout)

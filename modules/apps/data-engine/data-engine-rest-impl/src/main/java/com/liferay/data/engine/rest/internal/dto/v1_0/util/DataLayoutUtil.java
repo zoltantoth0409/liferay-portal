@@ -51,7 +51,7 @@ public class DataLayoutUtil {
 		return dataLayout;
 	}
 
-	public static String toJSONString(DataLayout dataLayout) throws Exception {
+	public static String toJSON(DataLayout dataLayout) throws Exception {
 		String defaultLanguageId = dataLayout.getDefaultLanguageId();
 
 		if (Validator.isNull(defaultLanguageId)) {
@@ -97,7 +97,7 @@ public class DataLayoutUtil {
 		layout.put("pages", pages);
 		layout.put("paginationMode", paginationMode);
 
-		return layout.toJSONString();
+		return layout.toString();
 	}
 
 	private static DataLayoutColumn[] _createDEDataLayoutColumns(
