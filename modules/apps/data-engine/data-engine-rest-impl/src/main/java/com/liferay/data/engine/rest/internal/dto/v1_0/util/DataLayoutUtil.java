@@ -20,7 +20,6 @@ import com.liferay.data.engine.rest.dto.v1_0.DataLayoutPage;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutRow;
 import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -28,7 +27,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,8 +39,7 @@ public class DataLayoutUtil {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(json);
 
-		dataLayout.setPaginationMode(
-			jsonObject.getString("paginationMode"));
+		dataLayout.setPaginationMode(jsonObject.getString("paginationMode"));
 		dataLayout.setDefaultLanguageId(
 			jsonObject.getString("defaultLanguageId"));
 
@@ -82,9 +79,7 @@ public class DataLayoutUtil {
 
 			page.put("description", dataLayoutPage.getDescription());
 
-			page.put(
-				"rows",
-				_toJSONArray(dataLayoutPage.getDataLayoutRows()));
+			page.put("rows", _toJSONArray(dataLayoutPage.getDataLayoutRows()));
 
 			page.put("title", title);
 
@@ -98,31 +93,6 @@ public class DataLayoutUtil {
 		).put(
 			"paginationMode", paginationMode
 		).toString();
-	}
-
-	private static DataLayoutColumn[] _toDataLayoutColumns(
-		JSONArray jsonArray) {
-
-		List<DataLayoutColumn> dataLayoutColumns = new ArrayList<>();
-
-		for (Object columnObject : jsonArray) {
-			JSONObject column = (JSONObject)columnObject;
-
-			DataLayoutColumn dataLayoutColumn = new DataLayoutColumn();
-
-			dataLayoutColumn.setColumnSize(column.getInt("columnSize"));
-
-			List<String> fieldsNameList = JSONUtil.toStringList(
-				column.getJSONArray("fieldNames"));
-
-			dataLayoutColumn.setFieldsName(
-				fieldsNameList.toArray(new String[fieldsNameList.size()]));
-
-			dataLayoutColumns.add(dataLayoutColumn);
-		}
-
-		return dataLayoutColumns.toArray(
-			new DataLayoutColumn[dataLayoutColumns.size()]);
 	}
 
 	private static void _createDEDataLayoutPages(
@@ -158,6 +128,31 @@ public class DataLayoutUtil {
 		}
 	}
 
+	private static DataLayoutColumn[] _toDataLayoutColumns(
+		JSONArray jsonArray) {
+
+		List<DataLayoutColumn> dataLayoutColumns = new ArrayList<>();
+
+		for (Object columnObject : jsonArray) {
+			JSONObject column = (JSONObject)columnObject;
+
+			DataLayoutColumn dataLayoutColumn = new DataLayoutColumn();
+
+			dataLayoutColumn.setColumnSize(column.getInt("columnSize"));
+
+			List<String> fieldsNameList = JSONUtil.toStringList(
+				column.getJSONArray("fieldNames"));
+
+			dataLayoutColumn.setFieldsName(
+				fieldsNameList.toArray(new String[fieldsNameList.size()]));
+
+			dataLayoutColumns.add(dataLayoutColumn);
+		}
+
+		return dataLayoutColumns.toArray(
+			new DataLayoutColumn[dataLayoutColumns.size()]);
+	}
+
 	private static DataLayoutRow[] _toDataLayoutRows(JSONArray jsonArray) {
 		List<DataLayoutRow> dataLayoutRows = new ArrayList<>();
 
@@ -173,6 +168,16 @@ public class DataLayoutUtil {
 		}
 
 		return dataLayoutRows.toArray(new DataLayoutRow[dataLayoutRows.size()]);
+	}
+
+	private static JSONArray _toJSONArray(DataLayoutRow[] dataLayoutRows) {
+		JSONArray rowsArray = JSONFactoryUtil.createJSONArray();
+
+		for (DataLayoutRow dataLayoutRow : dataLayoutRows) {
+			rowsArray.put(_toJSONObject(dataLayoutRow.getDataLayoutColums()));
+		}
+
+		return rowsArray;
 	}
 
 	private static JSONObject _toJSONObject(
@@ -201,20 +206,6 @@ public class DataLayoutUtil {
 		columns.put("columns", columnsArray);
 
 		return columns;
-	}
-
-	private static JSONArray _toJSONArray(
-		DataLayoutRow[] dataLayoutRows) {
-
-		JSONArray rowsArray = JSONFactoryUtil.createJSONArray();
-
-		for (DataLayoutRow dataLayoutRow : dataLayoutRows) {
-			rowsArray.put(
-				_toJSONObject(
-					dataLayoutRow.getDataLayoutColums()));
-		}
-
-		return rowsArray;
 	}
 
 	private static final String[] _PAGINATION_MODES = {"wizard", "pagination"};
