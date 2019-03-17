@@ -62,7 +62,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 		throws Exception {
 
 		if (ArrayUtil.isEmpty(dataLayout.getName())) {
-			throw new Exception("Layout name cannot be null");
+			throw new Exception("Name is required");
 		}
 
 		DDMStructure ddmStructure = _ddmStructureService.getStructure(
@@ -87,7 +87,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 		throws Exception {
 
 		if (ArrayUtil.isEmpty(dataLayout.getName())) {
-			throw new Exception("Layout name cannot be null");
+			throw new Exception("Name is required");
 		}
 
 		return _toDataLayout(
