@@ -90,10 +90,10 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	public DataRecord putDataRecord(Long dataRecordId, DataRecord dataRecord)
 		throws Exception {
 
-		long storageId = _store();
+		long ddmStorageId = _store();
 
 		DDLRecord ddlRecord = _ddlRecordLocalService.updateRecord(
-			PrincipalThreadLocal.getUserId(), dataRecordId, storageId,
+			PrincipalThreadLocal.getUserId(), dataRecordId, ddmStorageId,
 			new ServiceContext());
 
 		DDLRecordSet ddlRecordSet = ddlRecord.getRecordSet();
@@ -105,7 +105,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			ddlRecordSetVersion.getDDMStructureVersion();
 
 		_ddmStorageLinkLocalService.addStorageLink(
-			_portal.getClassNameId(DataRecord.class.getName()), storageId,
+			_portal.getClassNameId(DataRecord.class.getName()), ddmStorageId,
 			ddmStructureVersion.getStructureVersionId(), new ServiceContext());
 
 		return dataRecord;
