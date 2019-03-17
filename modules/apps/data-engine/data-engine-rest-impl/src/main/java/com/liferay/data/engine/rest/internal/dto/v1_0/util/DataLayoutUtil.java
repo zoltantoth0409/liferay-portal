@@ -84,7 +84,7 @@ public class DataLayoutUtil {
 
 			page.put(
 				"rows",
-				_processDEDataLayoutRows(dataLayoutPage.getDataLayoutRows()));
+				_toJSONArray(dataLayoutPage.getDataLayoutRows()));
 
 			page.put("title", title);
 
@@ -221,7 +221,7 @@ public class DataLayoutUtil {
 		return columns;
 	}
 
-	private static JSONArray _processDEDataLayoutRows(
+	private static JSONArray _toJSONArray(
 		DataLayoutRow[] dataLayoutRows) {
 
 		JSONArray rowsArray = JSONFactoryUtil.createJSONArray();
