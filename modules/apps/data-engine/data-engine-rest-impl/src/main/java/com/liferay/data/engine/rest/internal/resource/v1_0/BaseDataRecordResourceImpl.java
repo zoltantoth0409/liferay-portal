@@ -37,6 +37,8 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.validation.constraints.NotNull;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -69,7 +71,8 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecord")})
 	public Page<DataRecord> getDataRecordCollectionDataRecordsPage(
-			@PathParam("data-record-collection-id") Long dataRecordCollectionId,
+			@NotNull @PathParam("data-record-collection-id") Long
+				dataRecordCollectionId,
 			@Context Pagination pagination)
 		throws Exception {
 
@@ -83,7 +86,8 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecord")})
 	public DataRecord postDataRecordCollectionDataRecord(
-			@PathParam("data-record-collection-id") Long dataRecordCollectionId,
+			@NotNull @PathParam("data-record-collection-id") Long
+				dataRecordCollectionId,
 			DataRecord dataRecord)
 		throws Exception {
 
@@ -96,7 +100,7 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecord")})
 	public boolean deleteDataRecord(
-			@PathParam("data-record-id") Long dataRecordId)
+			@NotNull @PathParam("data-record-id") Long dataRecordId)
 		throws Exception {
 
 		return false;
@@ -108,7 +112,7 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecord")})
 	public DataRecord getDataRecord(
-			@PathParam("data-record-id") Long dataRecordId)
+			@NotNull @PathParam("data-record-id") Long dataRecordId)
 		throws Exception {
 
 		return new DataRecord();
@@ -121,7 +125,7 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecord")})
 	public DataRecord putDataRecord(
-			@PathParam("data-record-id") Long dataRecordId,
+			@NotNull @PathParam("data-record-id") Long dataRecordId,
 			DataRecord dataRecord)
 		throws Exception {
 

@@ -37,6 +37,8 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.validation.constraints.NotNull;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -71,7 +73,7 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public Page<DataDefinition> getContentSpaceDataDefinitionsPage(
-			@PathParam("content-space-id") Long contentSpaceId,
+			@NotNull @PathParam("content-space-id") Long contentSpaceId,
 			@QueryParam("keywords") String keywords,
 			@Context Pagination pagination)
 		throws Exception {
@@ -86,7 +88,7 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public DataDefinition postContentSpaceDataDefinition(
-			@PathParam("content-space-id") Long contentSpaceId,
+			@NotNull @PathParam("content-space-id") Long contentSpaceId,
 			DataDefinition dataDefinition)
 		throws Exception {
 
@@ -99,7 +101,7 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public boolean deleteDataDefinition(
-			@PathParam("data-definition-id") Long dataDefinitionId)
+			@NotNull @PathParam("data-definition-id") Long dataDefinitionId)
 		throws Exception {
 
 		return false;
@@ -111,7 +113,7 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public DataDefinition getDataDefinition(
-			@PathParam("data-definition-id") Long dataDefinitionId)
+			@NotNull @PathParam("data-definition-id") Long dataDefinitionId)
 		throws Exception {
 
 		return new DataDefinition();
@@ -124,7 +126,7 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public DataDefinition putDataDefinition(
-			@PathParam("data-definition-id") Long dataDefinitionId,
+			@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
 			DataDefinition dataDefinition)
 		throws Exception {
 
