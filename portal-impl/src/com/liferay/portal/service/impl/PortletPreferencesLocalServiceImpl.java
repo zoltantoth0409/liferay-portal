@@ -170,7 +170,7 @@ public class PortletPreferencesLocalServiceImpl
 	public PortletPreferences fetchPortletPreferences(
 		long ownerId, int ownerType, long plid, String portletId) {
 
-		if (!_doesLayoutPortletExist(plid, portletId)) {
+		if (!_exists(plid, portletId)) {
 			return null;
 		}
 
@@ -357,7 +357,7 @@ public class PortletPreferencesLocalServiceImpl
 	public long getPortletPreferencesCount(
 		int ownerType, long plid, String portletId) {
 
-		if (!_doesLayoutPortletExist(plid, portletId)) {
+		if (!_exists(plid, portletId)) {
 			return 0;
 		}
 
@@ -542,7 +542,7 @@ public class PortletPreferencesLocalServiceImpl
 		long companyId, long ownerId, int ownerType, long plid,
 		String portletId) {
 
-		if (!_doesLayoutPortletExist(plid, companyId, portletId)) {
+		if (!_exists(plid, companyId, portletId)) {
 			return PortletPreferencesFactoryUtil.strictFromXML(
 				companyId, ownerId, ownerType, plid, portletId,
 				PortletConstants.DEFAULT_PREFERENCES);
@@ -633,7 +633,7 @@ public class PortletPreferencesLocalServiceImpl
 		return portletPreferences;
 	}
 
-	private boolean _doesLayoutPortletExist(
+	private boolean _exists(
 		long plid, long companyId, String portletId) {
 
 		if (plid != PortletKeys.PREFS_PLID_SHARED) {
@@ -649,7 +649,7 @@ public class PortletPreferencesLocalServiceImpl
 		return true;
 	}
 
-	private boolean _doesLayoutPortletExist(long plid, String portletId) {
+	private boolean _exists(long plid, String portletId) {
 		if (plid != PortletKeys.PREFS_PLID_SHARED) {
 			Layout layout = layoutPersistence.fetchByPrimaryKey(plid);
 
@@ -657,7 +657,7 @@ public class PortletPreferencesLocalServiceImpl
 				return false;
 			}
 
-			return _doesLayoutPortletExist(
+			return _exists(
 				plid, layout.getCompanyId(), portletId);
 		}
 
