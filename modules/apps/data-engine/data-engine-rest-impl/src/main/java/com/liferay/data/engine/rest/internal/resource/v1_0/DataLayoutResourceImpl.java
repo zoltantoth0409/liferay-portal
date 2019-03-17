@@ -103,7 +103,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 				DataLayoutUtil.toJSONString(dataLayout), new ServiceContext()));
 	}
 
-	private Long _getDDMStructureId(DDMStructureLayout ddmStructureLayout)
+	private long _getDDMStructureId(DDMStructureLayout ddmStructureLayout)
 		throws Exception {
 
 		DDMStructureVersion ddmStructureVersion =
@@ -115,7 +115,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 		return ddmStructure.getStructureId();
 	}
 
-	private Long _getDDMStructureVersionId(Long deDataDefinitionId)
+	private long _getDDMStructureVersionId(Long deDataDefinitionId)
 		throws Exception {
 
 		DDMStructureVersion ddmStructureVersion =
