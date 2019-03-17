@@ -100,12 +100,12 @@ public class DataLayoutUtil {
 		return layout.toString();
 	}
 
-	private static DataLayoutColumn[] _createDEDataLayoutColumns(
-		JSONArray columns) {
+	private static DataLayoutColumn[] _toDataLayoutColumns(
+		JSONArray jsonArray) {
 
 		List<DataLayoutColumn> dataLayoutColumns = new ArrayList<>();
 
-		for (Object columnObject : columns) {
+		for (Object columnObject : jsonArray) {
 			JSONObject column = (JSONObject)columnObject;
 
 			DataLayoutColumn dataLayoutColumn = new DataLayoutColumn();
@@ -143,7 +143,7 @@ public class DataLayoutUtil {
 						page.getJSONObject("description")));
 
 				dataLayoutPage.setDataLayoutRows(
-					_createDEDataLayoutRows(page.getJSONArray("rows")));
+					_toDataLayoutRows(page.getJSONArray("rows")));
 
 				dataLayoutPage.setTitle(
 					LocalizedValueUtil.toLocalizedValues(
@@ -158,16 +158,16 @@ public class DataLayoutUtil {
 		}
 	}
 
-	private static DataLayoutRow[] _createDEDataLayoutRows(JSONArray rows) {
+	private static DataLayoutRow[] _toDataLayoutRows(JSONArray jsonArray) {
 		List<DataLayoutRow> dataLayoutRows = new ArrayList<>();
 
-		for (Object rowObject : rows) {
+		for (Object rowObject : jsonArray) {
 			JSONObject row = (JSONObject)rowObject;
 
 			DataLayoutRow dataLayoutRow = new DataLayoutRow();
 
 			dataLayoutRow.setDataLayoutColums(
-				_createDEDataLayoutColumns(row.getJSONArray("columns")));
+				_toDataLayoutColumns(row.getJSONArray("columns")));
 
 			dataLayoutRows.add(dataLayoutRow);
 		}
