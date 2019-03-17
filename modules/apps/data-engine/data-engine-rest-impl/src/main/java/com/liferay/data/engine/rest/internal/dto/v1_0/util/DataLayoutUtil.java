@@ -139,13 +139,13 @@ public class DataLayoutUtil {
 				DataLayoutPage dataLayoutPage = new DataLayoutPage();
 
 				dataLayoutPage.setDescription(
-					_getLocalizedValues(page.getJSONObject("description")));
+					_toLocalizedValues(page.getJSONObject("description")));
 
 				dataLayoutPage.setDataLayoutRows(
 					_createDEDataLayoutRows(page.getJSONArray("rows")));
 
 				dataLayoutPage.setTitle(
-					_getLocalizedValues(page.getJSONObject("title")));
+					_toLocalizedValues(page.getJSONObject("title")));
 
 				dataLayoutPages.add(dataLayoutPage);
 			}
@@ -173,7 +173,7 @@ public class DataLayoutUtil {
 		return dataLayoutRows.toArray(new DataLayoutRow[dataLayoutRows.size()]);
 	}
 
-	private static LocalizedValue[] _getLocalizedValues(JSONObject jsonObject) {
+	private static LocalizedValue[] _toLocalizedValues(JSONObject jsonObject) {
 		Iterator<String> keys = jsonObject.keys();
 
 		List<LocalizedValue> localizedValues = new ArrayList<>();
@@ -193,7 +193,7 @@ public class DataLayoutUtil {
 			new LocalizedValue[localizedValues.size()]);
 	}
 
-	private static JSONObject _processDEDataLayoutColumns(
+	private static JSONObject _toJSONObject(
 		DataLayoutColumn[] dataLayoutColumns) {
 
 		JSONArray columnsArray = JSONFactoryUtil.createJSONArray();
@@ -228,7 +228,7 @@ public class DataLayoutUtil {
 
 		for (DataLayoutRow dataLayoutRow : dataLayoutRows) {
 			rowsArray.put(
-				_processDEDataLayoutColumns(
+				_toJSONObject(
 					dataLayoutRow.getDataLayoutColums()));
 		}
 
