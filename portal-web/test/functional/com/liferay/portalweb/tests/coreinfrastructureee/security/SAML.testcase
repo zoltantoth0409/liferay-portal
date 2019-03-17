@@ -588,10 +588,10 @@ definition {
 	}
 
 	@priority = "4"
-	test ViewSingleLogoutWithMultipleSPs {
+	test ViewSingleLogoutAndForceAuthWithMultipleSPs {
 		property app.server.bundles.size = "2";
 		property databases.size = "2";
-		property test.name.skip.portal.instance = "CPSAML#ViewSingleLogoutWithMultipleSPs";
+		property test.name.skip.portal.instance = "CPSAML#ViewSingleLogoutAndForceAuthWithMultipleSPs";
 
 		SAML.configureLiferaySAMLAsIdP(samlEntityID = "samlidp");
 
@@ -649,6 +649,58 @@ definition {
 		Navigator.openSpecificURL(url = "http://www.baker.com:10080");
 
 		User.viewLoggedOutPG();
+
+		User.loginPG(
+			specificURL = "http://www.able.com:9080",
+			password = "test",
+			userEmailAddress = "test@liferay.com"
+		);
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "SAML Admin"
+		);
+
+		SAMLNavigation.gotoIdentityProviderConnection();
+
+		SAMLPortlet.configureIdentityProviderConnection(
+			forceAuthn = "enable"
+		);
+
+		Navigator.openSpecificURL(url = "http://www.baker.com:10080");
+
+		Navigator.gotoLoginPage();
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "SAML Admin"
+		);
+
+		SAMLNavigation.gotoIdentityProviderConnection();
+
+		SAMLPortlet.configureIdentityProviderConnection(
+			forceAuthn = "enable"
+		);
+
+		User.logoutPG(specificURL = "http://www.baker.com:10080");
+
+		User.viewLoggedOutPG();
+
+		User.loginPG(
+			specificURL = "http://www.able.com:9080",
+			password = "test",
+			userEmailAddress = "test@liferay.com"
+		);
+
+		User.viewLoggedInPG(userFirstName = "Test");
+
+		Navigator.openSpecificURL(url = "http://www.baker.com:10080");
+
+		Navigator.gotoLoginPage();
+
+		AssertElementPresent(locator1 = "TextInput#EMAIL_ADDRESS");
 	}
 
 	@description = "Sign into portal by executing a SP initiated SSO login. This is done by clicking on the 'Sign In' link in the dockbar on the SP. After the SP is logged in, and if both instances has the same user and email address, the IdP will also be logged in."
