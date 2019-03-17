@@ -171,13 +171,13 @@ public class DataLayoutUtil {
 	}
 
 	private static JSONArray _toJSONArray(DataLayoutRow[] dataLayoutRows) {
-		JSONArray rowsArray = JSONFactoryUtil.createJSONArray();
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (DataLayoutRow dataLayoutRow : dataLayoutRows) {
-			rowsArray.put(_toJSONObject(dataLayoutRow.getDataLayoutColums()));
+			jsonArray.put(_toJSONObject(dataLayoutRow.getDataLayoutColums()));
 		}
 
-		return rowsArray;
+		return jsonArray;
 	}
 
 	private static JSONObject _toJSONObject(
