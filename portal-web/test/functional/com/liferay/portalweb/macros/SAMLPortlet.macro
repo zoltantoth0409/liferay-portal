@@ -89,4 +89,14 @@ definition {
 
 		PortletEntry.save();
 	}
+
+	macro configureIdentityProviderConnection {
+		if ("${forceAuthn}" == "enable") {
+			Check(
+				locator1 = "CPSAMLAdminIdentityProviderConnection#IDENTITY_PROVIDER_CONNECTION_FORCE_AUTHN_CHECKBOX"
+			);
+		}
+
+		PortletEntry.save();
+	}
 }
