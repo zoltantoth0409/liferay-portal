@@ -346,7 +346,7 @@ definition {
 
 		LexiconEntry.openEntryMenu(rowEntry = "userfn3 userln3");
 
-		MenuItem.viewNotPresent(menuItem = "Assign Site Roles");
+		MenuItem.viewPresent(menuItem = "Assign Site Roles");
 
 		User.logoutUserPG();
 
