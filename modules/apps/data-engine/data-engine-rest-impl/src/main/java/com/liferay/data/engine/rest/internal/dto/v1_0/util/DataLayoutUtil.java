@@ -39,9 +39,9 @@ public class DataLayoutUtil {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(json);
 
-		dataLayout.setPaginationMode(jsonObject.getString("paginationMode"));
 		dataLayout.setDefaultLanguageId(
 			jsonObject.getString("defaultLanguageId"));
+		dataLayout.setPaginationMode(jsonObject.getString("paginationMode"));
 
 		_createDEDataLayoutPages(dataLayout, jsonObject);
 
