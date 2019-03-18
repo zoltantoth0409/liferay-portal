@@ -182,17 +182,12 @@ public class DataLayoutUtil {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (DataLayoutColumn dataLayoutColumn : dataLayoutColumns) {
-			JSONArray fieldNames = JSONFactoryUtil.createJSONArray();
-
-			for (String fieldName : dataLayoutColumn.getFieldNames()) {
-				fieldNames.put(fieldName);
-			}
-
 			jsonArray.put(
 				JSONUtil.put(
 					"size", dataLayoutColumn.getColumnSize()
 				).put(
-					"fieldNames", fieldNames
+					"fieldNames",
+					JSONUtil.put(dataLayoutColumn.getFieldNames())
 				));
 		}
 
