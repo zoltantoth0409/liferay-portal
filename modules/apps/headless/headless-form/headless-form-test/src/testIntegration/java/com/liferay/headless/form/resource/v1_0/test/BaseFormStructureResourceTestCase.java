@@ -108,6 +108,7 @@ public abstract class BaseFormStructureResourceTestCase {
 		FormStructure formStructure1 =
 			testGetContentSpaceFormStructuresPage_addFormStructure(
 				contentSpaceId, randomFormStructure());
+
 		FormStructure formStructure2 =
 			testGetContentSpaceFormStructuresPage_addFormStructure(
 				contentSpaceId, randomFormStructure());
@@ -133,9 +134,11 @@ public abstract class BaseFormStructureResourceTestCase {
 		FormStructure formStructure1 =
 			testGetContentSpaceFormStructuresPage_addFormStructure(
 				contentSpaceId, randomFormStructure());
+
 		FormStructure formStructure2 =
 			testGetContentSpaceFormStructuresPage_addFormStructure(
 				contentSpaceId, randomFormStructure());
+
 		FormStructure formStructure3 =
 			testGetContentSpaceFormStructuresPage_addFormStructure(
 				contentSpaceId, randomFormStructure());

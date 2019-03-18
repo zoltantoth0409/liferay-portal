@@ -113,6 +113,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
 			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				contentSpaceId, randomKnowledgeBaseArticle());
+
 		KnowledgeBaseArticle knowledgeBaseArticle2 =
 			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				contentSpaceId, randomKnowledgeBaseArticle());
@@ -139,9 +140,11 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
 			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				contentSpaceId, randomKnowledgeBaseArticle());
+
 		KnowledgeBaseArticle knowledgeBaseArticle2 =
 			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				contentSpaceId, randomKnowledgeBaseArticle());
+
 		KnowledgeBaseArticle knowledgeBaseArticle3 =
 			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				contentSpaceId, randomKnowledgeBaseArticle());
@@ -620,6 +623,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
 			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				knowledgeBaseArticleId, randomKnowledgeBaseArticle());
+
 		KnowledgeBaseArticle knowledgeBaseArticle2 =
 			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				knowledgeBaseArticleId, randomKnowledgeBaseArticle());
@@ -646,9 +650,11 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
 			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				knowledgeBaseArticleId, randomKnowledgeBaseArticle());
+
 		KnowledgeBaseArticle knowledgeBaseArticle2 =
 			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				knowledgeBaseArticleId, randomKnowledgeBaseArticle());
+
 		KnowledgeBaseArticle knowledgeBaseArticle3 =
 			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				knowledgeBaseArticleId, randomKnowledgeBaseArticle());
@@ -845,6 +851,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
 			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				knowledgeBaseFolderId, randomKnowledgeBaseArticle());
+
 		KnowledgeBaseArticle knowledgeBaseArticle2 =
 			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				knowledgeBaseFolderId, randomKnowledgeBaseArticle());
@@ -871,9 +878,11 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
 			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				knowledgeBaseFolderId, randomKnowledgeBaseArticle());
+
 		KnowledgeBaseArticle knowledgeBaseArticle2 =
 			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				knowledgeBaseFolderId, randomKnowledgeBaseArticle());
+
 		KnowledgeBaseArticle knowledgeBaseArticle3 =
 			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
 				knowledgeBaseFolderId, randomKnowledgeBaseArticle());

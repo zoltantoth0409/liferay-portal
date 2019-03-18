@@ -359,6 +359,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 		BlogPosting blogPosting1 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
+
 		BlogPosting blogPosting2 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
@@ -462,9 +463,11 @@ public abstract class BaseBlogPostingResourceTestCase {
 		BlogPosting blogPosting1 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
+
 		BlogPosting blogPosting2 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
+
 		BlogPosting blogPosting3 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
@@ -569,6 +572,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		blogPosting1 = testGetContentSpaceBlogPostingsPage_addBlogPosting(
 			contentSpaceId, blogPosting1);
+
 		blogPosting2 = testGetContentSpaceBlogPostingsPage_addBlogPosting(
 			contentSpaceId, blogPosting2);
 

@@ -113,6 +113,7 @@ public abstract class BaseContentStructureResourceTestCase {
 		ContentStructure contentStructure1 =
 			testGetContentSpaceContentStructuresPage_addContentStructure(
 				contentSpaceId, randomContentStructure());
+
 		ContentStructure contentStructure2 =
 			testGetContentSpaceContentStructuresPage_addContentStructure(
 				contentSpaceId, randomContentStructure());
@@ -221,9 +222,11 @@ public abstract class BaseContentStructureResourceTestCase {
 		ContentStructure contentStructure1 =
 			testGetContentSpaceContentStructuresPage_addContentStructure(
 				contentSpaceId, randomContentStructure());
+
 		ContentStructure contentStructure2 =
 			testGetContentSpaceContentStructuresPage_addContentStructure(
 				contentSpaceId, randomContentStructure());
+
 		ContentStructure contentStructure3 =
 			testGetContentSpaceContentStructuresPage_addContentStructure(
 				contentSpaceId, randomContentStructure());
@@ -342,6 +345,7 @@ public abstract class BaseContentStructureResourceTestCase {
 		contentStructure1 =
 			testGetContentSpaceContentStructuresPage_addContentStructure(
 				contentSpaceId, contentStructure1);
+
 		contentStructure2 =
 			testGetContentSpaceContentStructuresPage_addContentStructure(
 				contentSpaceId, contentStructure2);

@@ -146,6 +146,7 @@ public abstract class BaseEmailResourceTestCase {
 
 		Email email1 = testGetOrganizationEmailsPage_addEmail(
 			organizationId, randomEmail());
+
 		Email email2 = testGetOrganizationEmailsPage_addEmail(
 			organizationId, randomEmail());
 
@@ -165,8 +166,10 @@ public abstract class BaseEmailResourceTestCase {
 
 		Email email1 = testGetOrganizationEmailsPage_addEmail(
 			organizationId, randomEmail());
+
 		Email email2 = testGetOrganizationEmailsPage_addEmail(
 			organizationId, randomEmail());
+
 		Email email3 = testGetOrganizationEmailsPage_addEmail(
 			organizationId, randomEmail());
 
@@ -264,6 +267,7 @@ public abstract class BaseEmailResourceTestCase {
 
 		Email email1 = testGetUserAccountEmailsPage_addEmail(
 			userAccountId, randomEmail());
+
 		Email email2 = testGetUserAccountEmailsPage_addEmail(
 			userAccountId, randomEmail());
 
@@ -283,8 +287,10 @@ public abstract class BaseEmailResourceTestCase {
 
 		Email email1 = testGetUserAccountEmailsPage_addEmail(
 			userAccountId, randomEmail());
+
 		Email email2 = testGetUserAccountEmailsPage_addEmail(
 			userAccountId, randomEmail());
+
 		Email email3 = testGetUserAccountEmailsPage_addEmail(
 			userAccountId, randomEmail());
 

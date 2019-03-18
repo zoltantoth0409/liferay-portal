@@ -113,6 +113,7 @@ public abstract class BaseFolderResourceTestCase {
 
 		Folder folder1 = testGetContentSpaceFoldersPage_addFolder(
 			contentSpaceId, randomFolder());
+
 		Folder folder2 = testGetContentSpaceFoldersPage_addFolder(
 			contentSpaceId, randomFolder());
 
@@ -209,8 +210,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		Folder folder1 = testGetContentSpaceFoldersPage_addFolder(
 			contentSpaceId, randomFolder());
+
 		Folder folder2 = testGetContentSpaceFoldersPage_addFolder(
 			contentSpaceId, randomFolder());
+
 		Folder folder3 = testGetContentSpaceFoldersPage_addFolder(
 			contentSpaceId, randomFolder());
 
@@ -314,6 +317,7 @@ public abstract class BaseFolderResourceTestCase {
 
 		folder1 = testGetContentSpaceFoldersPage_addFolder(
 			contentSpaceId, folder1);
+
 		folder2 = testGetContentSpaceFoldersPage_addFolder(
 			contentSpaceId, folder2);
 
@@ -697,6 +701,7 @@ public abstract class BaseFolderResourceTestCase {
 
 		Folder folder1 = testGetFolderFoldersPage_addFolder(
 			folderId, randomFolder());
+
 		Folder folder2 = testGetFolderFoldersPage_addFolder(
 			folderId, randomFolder());
 
@@ -786,8 +791,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		Folder folder1 = testGetFolderFoldersPage_addFolder(
 			folderId, randomFolder());
+
 		Folder folder2 = testGetFolderFoldersPage_addFolder(
 			folderId, randomFolder());
+
 		Folder folder3 = testGetFolderFoldersPage_addFolder(
 			folderId, randomFolder());
 
@@ -882,6 +889,7 @@ public abstract class BaseFolderResourceTestCase {
 		}
 
 		folder1 = testGetFolderFoldersPage_addFolder(folderId, folder1);
+
 		folder2 = testGetFolderFoldersPage_addFolder(folderId, folder2);
 
 		for (EntityField entityField : entityFields) {

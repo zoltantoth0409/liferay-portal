@@ -113,6 +113,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 		Keyword keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
 			contentSpaceId, randomKeyword());
+
 		Keyword keyword2 = testGetContentSpaceKeywordsPage_addKeyword(
 			contentSpaceId, randomKeyword());
 
@@ -209,8 +210,10 @@ public abstract class BaseKeywordResourceTestCase {
 
 		Keyword keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
 			contentSpaceId, randomKeyword());
+
 		Keyword keyword2 = testGetContentSpaceKeywordsPage_addKeyword(
 			contentSpaceId, randomKeyword());
+
 		Keyword keyword3 = testGetContentSpaceKeywordsPage_addKeyword(
 			contentSpaceId, randomKeyword());
 
@@ -314,6 +317,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 		keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
 			contentSpaceId, keyword1);
+
 		keyword2 = testGetContentSpaceKeywordsPage_addKeyword(
 			contentSpaceId, keyword2);
 

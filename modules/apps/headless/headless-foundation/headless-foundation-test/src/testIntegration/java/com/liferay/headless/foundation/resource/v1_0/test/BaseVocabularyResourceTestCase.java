@@ -114,6 +114,7 @@ public abstract class BaseVocabularyResourceTestCase {
 		Vocabulary vocabulary1 =
 			testGetContentSpaceVocabulariesPage_addVocabulary(
 				contentSpaceId, randomVocabulary());
+
 		Vocabulary vocabulary2 =
 			testGetContentSpaceVocabulariesPage_addVocabulary(
 				contentSpaceId, randomVocabulary());
@@ -215,9 +216,11 @@ public abstract class BaseVocabularyResourceTestCase {
 		Vocabulary vocabulary1 =
 			testGetContentSpaceVocabulariesPage_addVocabulary(
 				contentSpaceId, randomVocabulary());
+
 		Vocabulary vocabulary2 =
 			testGetContentSpaceVocabulariesPage_addVocabulary(
 				contentSpaceId, randomVocabulary());
+
 		Vocabulary vocabulary3 =
 			testGetContentSpaceVocabulariesPage_addVocabulary(
 				contentSpaceId, randomVocabulary());
@@ -322,6 +325,7 @@ public abstract class BaseVocabularyResourceTestCase {
 
 		vocabulary1 = testGetContentSpaceVocabulariesPage_addVocabulary(
 			contentSpaceId, vocabulary1);
+
 		vocabulary2 = testGetContentSpaceVocabulariesPage_addVocabulary(
 			contentSpaceId, vocabulary2);
 

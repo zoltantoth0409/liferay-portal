@@ -107,6 +107,7 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		WebUrl webUrl1 = testGetOrganizationWebUrlsPage_addWebUrl(
 			organizationId, randomWebUrl());
+
 		WebUrl webUrl2 = testGetOrganizationWebUrlsPage_addWebUrl(
 			organizationId, randomWebUrl());
 
@@ -129,8 +130,10 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		WebUrl webUrl1 = testGetOrganizationWebUrlsPage_addWebUrl(
 			organizationId, randomWebUrl());
+
 		WebUrl webUrl2 = testGetOrganizationWebUrlsPage_addWebUrl(
 			organizationId, randomWebUrl());
+
 		WebUrl webUrl3 = testGetOrganizationWebUrlsPage_addWebUrl(
 			organizationId, randomWebUrl());
 
@@ -230,6 +233,7 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		WebUrl webUrl1 = testGetUserAccountWebUrlsPage_addWebUrl(
 			userAccountId, randomWebUrl());
+
 		WebUrl webUrl2 = testGetUserAccountWebUrlsPage_addWebUrl(
 			userAccountId, randomWebUrl());
 
@@ -249,8 +253,10 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		WebUrl webUrl1 = testGetUserAccountWebUrlsPage_addWebUrl(
 			userAccountId, randomWebUrl());
+
 		WebUrl webUrl2 = testGetUserAccountWebUrlsPage_addWebUrl(
 			userAccountId, randomWebUrl());
+
 		WebUrl webUrl3 = testGetUserAccountWebUrlsPage_addWebUrl(
 			userAccountId, randomWebUrl());
 

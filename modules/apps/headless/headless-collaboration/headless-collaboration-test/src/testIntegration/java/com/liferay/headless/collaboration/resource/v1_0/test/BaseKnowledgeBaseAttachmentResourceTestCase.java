@@ -110,6 +110,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		KnowledgeBaseAttachment knowledgeBaseAttachment1 =
 			testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_addKnowledgeBaseAttachment(
 				knowledgeBaseArticleId, randomKnowledgeBaseAttachment());
+
 		KnowledgeBaseAttachment knowledgeBaseAttachment2 =
 			testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_addKnowledgeBaseAttachment(
 				knowledgeBaseArticleId, randomKnowledgeBaseAttachment());

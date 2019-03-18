@@ -110,6 +110,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		WorkflowTask workflowTask1 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
+
 		WorkflowTask workflowTask2 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
@@ -132,9 +133,11 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		WorkflowTask workflowTask1 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
+
 		WorkflowTask workflowTask2 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
+
 		WorkflowTask workflowTask3 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());

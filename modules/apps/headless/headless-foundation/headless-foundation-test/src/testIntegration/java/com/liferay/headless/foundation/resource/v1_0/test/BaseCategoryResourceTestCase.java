@@ -264,6 +264,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 		Category category1 = testGetCategoryCategoriesPage_addCategory(
 			categoryId, randomCategory());
+
 		Category category2 = testGetCategoryCategoriesPage_addCategory(
 			categoryId, randomCategory());
 
@@ -356,8 +357,10 @@ public abstract class BaseCategoryResourceTestCase {
 
 		Category category1 = testGetCategoryCategoriesPage_addCategory(
 			categoryId, randomCategory());
+
 		Category category2 = testGetCategoryCategoriesPage_addCategory(
 			categoryId, randomCategory());
+
 		Category category3 = testGetCategoryCategoriesPage_addCategory(
 			categoryId, randomCategory());
 
@@ -457,6 +460,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 		category1 = testGetCategoryCategoriesPage_addCategory(
 			categoryId, category1);
+
 		category2 = testGetCategoryCategoriesPage_addCategory(
 			categoryId, category2);
 
@@ -618,6 +622,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 		Category category1 = testGetVocabularyCategoriesPage_addCategory(
 			vocabularyId, randomCategory());
+
 		Category category2 = testGetVocabularyCategoriesPage_addCategory(
 			vocabularyId, randomCategory());
 
@@ -712,8 +717,10 @@ public abstract class BaseCategoryResourceTestCase {
 
 		Category category1 = testGetVocabularyCategoriesPage_addCategory(
 			vocabularyId, randomCategory());
+
 		Category category2 = testGetVocabularyCategoriesPage_addCategory(
 			vocabularyId, randomCategory());
+
 		Category category3 = testGetVocabularyCategoriesPage_addCategory(
 			vocabularyId, randomCategory());
 
@@ -815,6 +822,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 		category1 = testGetVocabularyCategoriesPage_addCategory(
 			vocabularyId, category1);
+
 		category2 = testGetVocabularyCategoriesPage_addCategory(
 			vocabularyId, category2);
 

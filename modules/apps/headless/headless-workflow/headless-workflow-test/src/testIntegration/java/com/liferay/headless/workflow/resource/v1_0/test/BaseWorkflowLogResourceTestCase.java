@@ -155,6 +155,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		WorkflowLog workflowLog1 =
 			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
 				workflowTaskId, randomWorkflowLog());
+
 		WorkflowLog workflowLog2 =
 			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
 				workflowTaskId, randomWorkflowLog());
@@ -180,9 +181,11 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		WorkflowLog workflowLog1 =
 			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
 				workflowTaskId, randomWorkflowLog());
+
 		WorkflowLog workflowLog2 =
 			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
 				workflowTaskId, randomWorkflowLog());
+
 		WorkflowLog workflowLog3 =
 			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
 				workflowTaskId, randomWorkflowLog());

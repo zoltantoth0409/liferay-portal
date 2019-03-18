@@ -107,6 +107,7 @@ public abstract class BaseSegmentResourceTestCase {
 
 		Segment segment1 = testGetContentSpaceSegmentsPage_addSegment(
 			contentSpaceId, randomSegment());
+
 		Segment segment2 = testGetContentSpaceSegmentsPage_addSegment(
 			contentSpaceId, randomSegment());
 
@@ -129,8 +130,10 @@ public abstract class BaseSegmentResourceTestCase {
 
 		Segment segment1 = testGetContentSpaceSegmentsPage_addSegment(
 			contentSpaceId, randomSegment());
+
 		Segment segment2 = testGetContentSpaceSegmentsPage_addSegment(
 			contentSpaceId, randomSegment());
+
 		Segment segment3 = testGetContentSpaceSegmentsPage_addSegment(
 			contentSpaceId, randomSegment());
 
@@ -227,13 +230,16 @@ public abstract class BaseSegmentResourceTestCase {
 	public void testGetContentSpaceUserAccountSegmentsPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceUserAccountSegmentsPage_getContentSpaceId();
+		Long userAccountId =
+			testGetContentSpaceUserAccountSegmentsPage_getUserAccountId();
 
 		Segment segment1 =
 			testGetContentSpaceUserAccountSegmentsPage_addSegment(
-				contentSpaceId, randomSegment());
+				contentSpaceId, userAccountId, randomSegment());
+
 		Segment segment2 =
 			testGetContentSpaceUserAccountSegmentsPage_addSegment(
-				contentSpaceId, randomSegment());
+				contentSpaceId, userAccountId, randomSegment());
 
 		Page<Segment> page = invokeGetContentSpaceUserAccountSegmentsPage(
 			contentSpaceId, null, Pagination.of(1, 2));
@@ -251,16 +257,20 @@ public abstract class BaseSegmentResourceTestCase {
 
 		Long contentSpaceId =
 			testGetContentSpaceUserAccountSegmentsPage_getContentSpaceId();
+		Long userAccountId =
+			testGetContentSpaceUserAccountSegmentsPage_getUserAccountId();
 
 		Segment segment1 =
 			testGetContentSpaceUserAccountSegmentsPage_addSegment(
-				contentSpaceId, randomSegment());
+				contentSpaceId, userAccountId, randomSegment());
+
 		Segment segment2 =
 			testGetContentSpaceUserAccountSegmentsPage_addSegment(
-				contentSpaceId, randomSegment());
+				contentSpaceId, userAccountId, randomSegment());
+
 		Segment segment3 =
 			testGetContentSpaceUserAccountSegmentsPage_addSegment(
-				contentSpaceId, randomSegment());
+				contentSpaceId, userAccountId, randomSegment());
 
 		Page<Segment> page1 = invokeGetContentSpaceUserAccountSegmentsPage(
 			contentSpaceId, null, Pagination.of(1, 2));
@@ -289,7 +299,7 @@ public abstract class BaseSegmentResourceTestCase {
 	}
 
 	protected Segment testGetContentSpaceUserAccountSegmentsPage_addSegment(
-			Long contentSpaceId, Segment segment)
+			Long contentSpaceId, Long userAccountId, Segment segment)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
@@ -301,6 +311,13 @@ public abstract class BaseSegmentResourceTestCase {
 		throws Exception {
 
 		return testGroup.getGroupId();
+	}
+
+	protected Long testGetContentSpaceUserAccountSegmentsPage_getUserAccountId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected Page<Segment> invokeGetContentSpaceUserAccountSegmentsPage(

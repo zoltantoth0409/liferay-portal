@@ -111,6 +111,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		KnowledgeBaseFolder knowledgeBaseFolder1 =
 			testGetContentSpaceKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				contentSpaceId, randomKnowledgeBaseFolder());
+
 		KnowledgeBaseFolder knowledgeBaseFolder2 =
 			testGetContentSpaceKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				contentSpaceId, randomKnowledgeBaseFolder());
@@ -137,9 +138,11 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		KnowledgeBaseFolder knowledgeBaseFolder1 =
 			testGetContentSpaceKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				contentSpaceId, randomKnowledgeBaseFolder());
+
 		KnowledgeBaseFolder knowledgeBaseFolder2 =
 			testGetContentSpaceKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				contentSpaceId, randomKnowledgeBaseFolder());
+
 		KnowledgeBaseFolder knowledgeBaseFolder3 =
 			testGetContentSpaceKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				contentSpaceId, randomKnowledgeBaseFolder());
@@ -610,6 +613,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		KnowledgeBaseFolder knowledgeBaseFolder1 =
 			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				knowledgeBaseFolderId, randomKnowledgeBaseFolder());
+
 		KnowledgeBaseFolder knowledgeBaseFolder2 =
 			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				knowledgeBaseFolderId, randomKnowledgeBaseFolder());
@@ -636,9 +640,11 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		KnowledgeBaseFolder knowledgeBaseFolder1 =
 			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				knowledgeBaseFolderId, randomKnowledgeBaseFolder());
+
 		KnowledgeBaseFolder knowledgeBaseFolder2 =
 			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				knowledgeBaseFolderId, randomKnowledgeBaseFolder());
+
 		KnowledgeBaseFolder knowledgeBaseFolder3 =
 			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				knowledgeBaseFolderId, randomKnowledgeBaseFolder());

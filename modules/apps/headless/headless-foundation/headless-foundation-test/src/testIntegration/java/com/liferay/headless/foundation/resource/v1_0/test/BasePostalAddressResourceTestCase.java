@@ -108,6 +108,7 @@ public abstract class BasePostalAddressResourceTestCase {
 		PostalAddress postalAddress1 =
 			testGetOrganizationPostalAddressesPage_addPostalAddress(
 				organizationId, randomPostalAddress());
+
 		PostalAddress postalAddress2 =
 			testGetOrganizationPostalAddressesPage_addPostalAddress(
 				organizationId, randomPostalAddress());
@@ -133,9 +134,11 @@ public abstract class BasePostalAddressResourceTestCase {
 		PostalAddress postalAddress1 =
 			testGetOrganizationPostalAddressesPage_addPostalAddress(
 				organizationId, randomPostalAddress());
+
 		PostalAddress postalAddress2 =
 			testGetOrganizationPostalAddressesPage_addPostalAddress(
 				organizationId, randomPostalAddress());
+
 		PostalAddress postalAddress3 =
 			testGetOrganizationPostalAddressesPage_addPostalAddress(
 				organizationId, randomPostalAddress());
@@ -295,6 +298,7 @@ public abstract class BasePostalAddressResourceTestCase {
 		PostalAddress postalAddress1 =
 			testGetUserAccountPostalAddressesPage_addPostalAddress(
 				userAccountId, randomPostalAddress());
+
 		PostalAddress postalAddress2 =
 			testGetUserAccountPostalAddressesPage_addPostalAddress(
 				userAccountId, randomPostalAddress());
@@ -320,9 +324,11 @@ public abstract class BasePostalAddressResourceTestCase {
 		PostalAddress postalAddress1 =
 			testGetUserAccountPostalAddressesPage_addPostalAddress(
 				userAccountId, randomPostalAddress());
+
 		PostalAddress postalAddress2 =
 			testGetUserAccountPostalAddressesPage_addPostalAddress(
 				userAccountId, randomPostalAddress());
+
 		PostalAddress postalAddress3 =
 			testGetUserAccountPostalAddressesPage_addPostalAddress(
 				userAccountId, randomPostalAddress());

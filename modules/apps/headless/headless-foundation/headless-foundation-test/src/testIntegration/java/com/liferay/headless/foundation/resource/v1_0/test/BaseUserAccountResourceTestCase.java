@@ -162,6 +162,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount userAccount1 =
 			testGetOrganizationUserAccountsPage_addUserAccount(
 				organizationId, randomUserAccount());
+
 		UserAccount userAccount2 =
 			testGetOrganizationUserAccountsPage_addUserAccount(
 				organizationId, randomUserAccount());
@@ -187,9 +188,11 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount userAccount1 =
 			testGetOrganizationUserAccountsPage_addUserAccount(
 				organizationId, randomUserAccount());
+
 		UserAccount userAccount2 =
 			testGetOrganizationUserAccountsPage_addUserAccount(
 				organizationId, randomUserAccount());
+
 		UserAccount userAccount3 =
 			testGetOrganizationUserAccountsPage_addUserAccount(
 				organizationId, randomUserAccount());
@@ -611,6 +614,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount userAccount1 =
 			testGetWebSiteUserAccountsPage_addUserAccount(
 				webSiteId, randomUserAccount());
+
 		UserAccount userAccount2 =
 			testGetWebSiteUserAccountsPage_addUserAccount(
 				webSiteId, randomUserAccount());
@@ -635,9 +639,11 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount userAccount1 =
 			testGetWebSiteUserAccountsPage_addUserAccount(
 				webSiteId, randomUserAccount());
+
 		UserAccount userAccount2 =
 			testGetWebSiteUserAccountsPage_addUserAccount(
 				webSiteId, randomUserAccount());
+
 		UserAccount userAccount3 =
 			testGetWebSiteUserAccountsPage_addUserAccount(
 				webSiteId, randomUserAccount());

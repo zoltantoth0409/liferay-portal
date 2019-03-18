@@ -107,6 +107,7 @@ public abstract class BaseSegmentUserResourceTestCase {
 		SegmentUser segmentUser1 =
 			testGetSegmentUserAccountsPage_addSegmentUser(
 				segmentId, randomSegmentUser());
+
 		SegmentUser segmentUser2 =
 			testGetSegmentUserAccountsPage_addSegmentUser(
 				segmentId, randomSegmentUser());
@@ -131,9 +132,11 @@ public abstract class BaseSegmentUserResourceTestCase {
 		SegmentUser segmentUser1 =
 			testGetSegmentUserAccountsPage_addSegmentUser(
 				segmentId, randomSegmentUser());
+
 		SegmentUser segmentUser2 =
 			testGetSegmentUserAccountsPage_addSegmentUser(
 				segmentId, randomSegmentUser());
+
 		SegmentUser segmentUser3 =
 			testGetSegmentUserAccountsPage_addSegmentUser(
 				segmentId, randomSegmentUser());

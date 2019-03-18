@@ -115,6 +115,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
+
 		StructuredContent structuredContent2 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
@@ -223,9 +224,11 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
+
 		StructuredContent structuredContent2 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
+
 		StructuredContent structuredContent3 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
@@ -344,6 +347,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, structuredContent1);
+
 		structuredContent2 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, structuredContent2);
@@ -524,6 +528,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
+
 		StructuredContent structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
@@ -632,9 +637,11 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
+
 		StructuredContent structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
+
 		StructuredContent structuredContent3 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
@@ -753,6 +760,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, structuredContent1);
+
 		structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, structuredContent2);

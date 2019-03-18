@@ -336,6 +336,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		BlogPostingImage blogPostingImage1 =
 			testGetContentSpaceBlogPostingImagesPage_addBlogPostingImage(
 				contentSpaceId, randomBlogPostingImage());
+
 		BlogPostingImage blogPostingImage2 =
 			testGetContentSpaceBlogPostingImagesPage_addBlogPostingImage(
 				contentSpaceId, randomBlogPostingImage());
@@ -444,9 +445,11 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		BlogPostingImage blogPostingImage1 =
 			testGetContentSpaceBlogPostingImagesPage_addBlogPostingImage(
 				contentSpaceId, randomBlogPostingImage());
+
 		BlogPostingImage blogPostingImage2 =
 			testGetContentSpaceBlogPostingImagesPage_addBlogPostingImage(
 				contentSpaceId, randomBlogPostingImage());
+
 		BlogPostingImage blogPostingImage3 =
 			testGetContentSpaceBlogPostingImagesPage_addBlogPostingImage(
 				contentSpaceId, randomBlogPostingImage());
@@ -565,6 +568,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		blogPostingImage1 =
 			testGetContentSpaceBlogPostingImagesPage_addBlogPostingImage(
 				contentSpaceId, blogPostingImage1);
+
 		blogPostingImage2 =
 			testGetContentSpaceBlogPostingImagesPage_addBlogPostingImage(
 				contentSpaceId, blogPostingImage2);

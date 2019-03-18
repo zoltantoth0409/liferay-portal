@@ -106,6 +106,7 @@ public abstract class BasePhoneResourceTestCase {
 
 		Phone phone1 = testGetOrganizationPhonesPage_addPhone(
 			organizationId, randomPhone());
+
 		Phone phone2 = testGetOrganizationPhonesPage_addPhone(
 			organizationId, randomPhone());
 
@@ -125,8 +126,10 @@ public abstract class BasePhoneResourceTestCase {
 
 		Phone phone1 = testGetOrganizationPhonesPage_addPhone(
 			organizationId, randomPhone());
+
 		Phone phone2 = testGetOrganizationPhonesPage_addPhone(
 			organizationId, randomPhone());
+
 		Phone phone3 = testGetOrganizationPhonesPage_addPhone(
 			organizationId, randomPhone());
 
@@ -264,6 +267,7 @@ public abstract class BasePhoneResourceTestCase {
 
 		Phone phone1 = testGetUserAccountPhonesPage_addPhone(
 			userAccountId, randomPhone());
+
 		Phone phone2 = testGetUserAccountPhonesPage_addPhone(
 			userAccountId, randomPhone());
 
@@ -283,8 +287,10 @@ public abstract class BasePhoneResourceTestCase {
 
 		Phone phone1 = testGetUserAccountPhonesPage_addPhone(
 			userAccountId, randomPhone());
+
 		Phone phone2 = testGetUserAccountPhonesPage_addPhone(
 			userAccountId, randomPhone());
+
 		Phone phone3 = testGetUserAccountPhonesPage_addPhone(
 			userAccountId, randomPhone());
 

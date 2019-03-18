@@ -222,6 +222,7 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		FormRecord formRecord1 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());
+
 		FormRecord formRecord2 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());
 
@@ -242,8 +243,10 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		FormRecord formRecord1 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());
+
 		FormRecord formRecord2 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());
+
 		FormRecord formRecord3 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());
 

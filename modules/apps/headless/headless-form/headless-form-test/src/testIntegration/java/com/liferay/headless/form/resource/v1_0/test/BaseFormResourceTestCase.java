@@ -108,6 +108,7 @@ public abstract class BaseFormResourceTestCase {
 
 		Form form1 = testGetContentSpaceFormsPage_addForm(
 			contentSpaceId, randomForm());
+
 		Form form2 = testGetContentSpaceFormsPage_addForm(
 			contentSpaceId, randomForm());
 
@@ -127,8 +128,10 @@ public abstract class BaseFormResourceTestCase {
 
 		Form form1 = testGetContentSpaceFormsPage_addForm(
 			contentSpaceId, randomForm());
+
 		Form form2 = testGetContentSpaceFormsPage_addForm(
 			contentSpaceId, randomForm());
+
 		Form form3 = testGetContentSpaceFormsPage_addForm(
 			contentSpaceId, randomForm());
 
