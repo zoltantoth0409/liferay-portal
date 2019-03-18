@@ -98,7 +98,7 @@ components:
             properties:
                 columnSize:
                     type: integer
-                fieldsName:
+                fieldNames:
                     items:
                         type: string
                     type:

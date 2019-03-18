@@ -139,7 +139,7 @@ public class DataLayoutUtil {
 			JSONObject jsonObject = (JSONObject)object;
 
 			dataLayoutColumn.setColumnSize(jsonObject.getInt("columnSize"));
-			dataLayoutColumn.setFieldsName(
+			dataLayoutColumn.setFieldNames(
 				JSONUtil.toStringArray(jsonObject.getJSONArray("fieldNames")));
 
 			dataLayoutColumns.add(dataLayoutColumn);
@@ -184,7 +184,7 @@ public class DataLayoutUtil {
 		for (DataLayoutColumn dataLayoutColumn : dataLayoutColumns) {
 			JSONArray fieldNames = JSONFactoryUtil.createJSONArray();
 
-			for (String fieldName : dataLayoutColumn.getFieldsName()) {
+			for (String fieldName : dataLayoutColumn.getFieldNames()) {
 				fieldNames.put(fieldName);
 			}
 
