@@ -388,8 +388,8 @@ definition {
 				AssertClick(locator1 = "Button#SELECT_FILES", value1 = "Select Files");
 
 				if ("${uploadTempFile}" == "true") {
-					SikuliUploadTempFile(
-						locator1 = "OS#FILE_DIALOG_BOX_FILE_NAME_FIELD_PNG",
+					UploadTempFile.uploadTempFileHiddenNoMouseOver(
+						locator1 = "TextInput#FILE",
 						value1 = "${dmDocumentFile}"
 					);
 				}
@@ -431,8 +431,8 @@ definition {
 				AssertClick(locator1 = "Button#SELECT_FILES", value1 = "Select Files");
 
 				if ("${uploadTempFile}" == "true") {
-					SikuliUploadTempFile(
-						locator1 = "OS#FILE_DIALOG_BOX_FILE_NAME_FIELD_PNG",
+					UploadTempFile.uploadTempFileHiddenNoMouseOver(
+						locator1 = "TextInput#FILE",
 						value1 = "${dmDocumentFile}"
 					);
 				}
