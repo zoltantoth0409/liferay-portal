@@ -17,14 +17,10 @@ package com.liferay.data.engine.rest.internal.dto.v1_0.util;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.Validator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Jeyvison Nascimento
@@ -38,8 +34,10 @@ public class DataDefinitionUtil {
 			{
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(json);
 
-				dataDefinitionFields = _toDataDefinitionFields(
-					jsonObject.getJSONArray("fields"));
+				dataDefinitionFields = JSONUtil.toArray(
+					jsonObject.getJSONArray("fields"),
+					fieldJSONObject -> _toDataDefinitionField(fieldJSONObject),
+					DataDefinitionField.class);
 			}
 		};
 	}
@@ -48,7 +46,10 @@ public class DataDefinitionUtil {
 		throws Exception {
 
 		return JSONUtil.put(
-			"fields", _toJSONArray(dataDefinition.getDataDefinitionFields())
+			"fields",
+			JSONUtil.toJSONArray(
+				dataDefinition.getDataDefinitionFields(),
+				dataDefinitionField -> _toJSONObject(dataDefinitionField))
 		).toString();
 	}
 
@@ -107,35 +108,6 @@ public class DataDefinitionUtil {
 					jsonObject.getJSONObject("tip"));
 			}
 		};
-	}
-
-	private static DataDefinitionField[] _toDataDefinitionFields(
-			JSONArray jsonArray)
-		throws Exception {
-
-		List<DataDefinitionField> dataDefinitionFields = new ArrayList<>(
-			jsonArray.length());
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			dataDefinitionFields.add(
-				_toDataDefinitionField(jsonArray.getJSONObject(i)));
-		}
-
-		return dataDefinitionFields.toArray(
-			new DataDefinitionField[dataDefinitionFields.size()]);
-	}
-
-	private static JSONArray _toJSONArray(
-			DataDefinitionField[] dataDefinitionFields)
-		throws Exception {
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		for (DataDefinitionField dataDefinitionField : dataDefinitionFields) {
-			jsonArray.put(_toJSONObject(dataDefinitionField));
-		}
-
-		return jsonArray;
 	}
 
 	private static JSONObject _toJSONObject(

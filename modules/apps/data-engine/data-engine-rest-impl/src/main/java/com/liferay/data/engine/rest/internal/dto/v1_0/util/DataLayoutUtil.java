@@ -18,15 +18,12 @@ import com.liferay.data.engine.rest.dto.v1_0.DataLayout;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutColumn;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutPage;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutRow;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -39,8 +36,10 @@ public class DataLayoutUtil {
 
 		return new DataLayout() {
 			{
-				dataLayoutPages = _toDataLayoutPages(
-					jsonObject.getJSONArray("pages"));
+				dataLayoutPages = JSONUtil.toArray(
+					jsonObject.getJSONArray("pages"),
+					pageJSONObject -> _toDataLayoutPage(pageJSONObject),
+					DataLayoutPage.class);
 				defaultLanguageId = jsonObject.getString("defaultLanguageId");
 				paginationMode = jsonObject.getString("paginationMode");
 			}
@@ -62,7 +61,10 @@ public class DataLayoutUtil {
 		return JSONUtil.put(
 			"defaultLanguageId", dataLayout.getDefaultLanguageId()
 		).put(
-			"pages", _toJSONArray(dataLayout.getDataLayoutPages())
+			"pages",
+			JSONUtil.toJSONArray(
+				dataLayout.getDataLayoutPages(),
+				dataLayoutPage -> _toJSONObject(dataLayoutPage))
 		).put(
 			"paginationMode", dataLayout.getPaginationMode()
 		).toString();
@@ -78,26 +80,15 @@ public class DataLayoutUtil {
 		};
 	}
 
-	private static DataLayoutColumn[] _toDataLayoutColumns(
-		JSONArray jsonArray) {
+	private static DataLayoutPage _toDataLayoutPage(JSONObject jsonObject)
+		throws Exception {
 
-		List<DataLayoutColumn> dataLayoutColumns = new ArrayList<>();
-
-		for (Object object : jsonArray) {
-			JSONObject jsonObject = (JSONObject)object;
-
-			dataLayoutColumns.add(_toDataLayoutColumn(jsonObject));
-		}
-
-		return dataLayoutColumns.toArray(
-			new DataLayoutColumn[dataLayoutColumns.size()]);
-	}
-
-	private static DataLayoutPage _toDataLayoutPage(JSONObject jsonObject) {
 		return new DataLayoutPage() {
 			{
-				dataLayoutRows = _toDataLayoutRows(
-					jsonObject.getJSONArray("rows"));
+				dataLayoutRows = JSONUtil.toArray(
+					jsonObject.getJSONArray("rows"),
+					rowJSONObject -> _toDataLayoutRow(rowJSONObject),
+					DataLayoutRow.class);
 				description = LocalizedValueUtil.toLocalizedValues(
 					jsonObject.getJSONObject("description"));
 				title = LocalizedValueUtil.toLocalizedValues(
@@ -106,81 +97,27 @@ public class DataLayoutUtil {
 		};
 	}
 
-	private static DataLayoutPage[] _toDataLayoutPages(JSONArray jsonArray) {
-		if (jsonArray == null) {
-			return null;
-		}
+	private static DataLayoutRow _toDataLayoutRow(JSONObject jsonObject)
+		throws Exception {
 
-		List<DataLayoutPage> dataLayoutPages = new ArrayList<>();
-
-		for (Object object : jsonArray) {
-			JSONObject jsonObject = (JSONObject)object;
-
-			dataLayoutPages.add(_toDataLayoutPage(jsonObject));
-		}
-
-		return dataLayoutPages.toArray(
-			new DataLayoutPage[dataLayoutPages.size()]);
-	}
-
-	private static DataLayoutRow _toDataLayoutRow(JSONObject jsonObject) {
 		return new DataLayoutRow() {
 			{
-				dataLayoutColums = _toDataLayoutColumns(
-					jsonObject.getJSONArray("columns"));
+				dataLayoutColums = JSONUtil.toArray(
+					jsonObject.getJSONArray("columns"),
+					columnJSONObject -> _toDataLayoutColumn(columnJSONObject),
+					DataLayoutColumn.class);
 			}
 		};
 	}
 
-	private static DataLayoutRow[] _toDataLayoutRows(JSONArray jsonArray) {
-		List<DataLayoutRow> dataLayoutRows = new ArrayList<>();
-
-		for (Object object : jsonArray) {
-			JSONObject jsonObject = (JSONObject)object;
-
-			dataLayoutRows.add(_toDataLayoutRow(jsonObject));
-		}
-
-		return dataLayoutRows.toArray(new DataLayoutRow[dataLayoutRows.size()]);
-	}
-
-	private static JSONArray _toJSONArray(DataLayoutPage[] dataLayoutPages)
+	private static JSONObject _toJSONObject(DataLayoutColumn dataLayoutColumn)
 		throws Exception {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		for (DataLayoutPage dataLayoutPage : dataLayoutPages) {
-			jsonArray.put(_toJSONObject(dataLayoutPage));
-		}
-
-		return jsonArray;
-	}
-
-	private static JSONArray _toJSONArray(DataLayoutRow[] dataLayoutRows) {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		for (DataLayoutRow dataLayoutRow : dataLayoutRows) {
-			jsonArray.put(_toJSONObject(dataLayoutRow.getDataLayoutColums()));
-		}
-
-		return jsonArray;
-	}
-
-	private static JSONObject _toJSONObject(
-		DataLayoutColumn[] dataLayoutColumns) {
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		for (DataLayoutColumn dataLayoutColumn : dataLayoutColumns) {
-			jsonArray.put(
-				JSONUtil.put(
-					"size", dataLayoutColumn.getColumnSize()
-				).put(
-					"fieldNames", JSONUtil.put(dataLayoutColumn.getFieldNames())
-				));
-		}
-
-		return JSONUtil.put("columns", jsonArray);
+		return JSONUtil.put(
+			"size", dataLayoutColumn.getColumnSize()
+		).put(
+			"fieldNames", JSONUtil.put(dataLayoutColumn.getFieldNames())
+		);
 	}
 
 	private static JSONObject _toJSONObject(DataLayoutPage dataLayoutPage)
@@ -193,10 +130,23 @@ public class DataLayoutUtil {
 		return JSONUtil.put(
 			"description", dataLayoutPage.getDescription()
 		).put(
-			"rows", _toJSONArray(dataLayoutPage.getDataLayoutRows())
+			"rows",
+			JSONUtil.toJSONArray(
+				dataLayoutPage.getDataLayoutRows(),
+				dataLayoutRow -> _toJSONObject(dataLayoutRow))
 		).put(
 			"title", dataLayoutPage.getTitle()
 		);
+	}
+
+	private static JSONObject _toJSONObject(DataLayoutRow dataLayoutRow)
+		throws Exception {
+
+		return JSONUtil.put(
+			"columns",
+			JSONUtil.toJSONArray(
+				dataLayoutRow.getDataLayoutColums(),
+				dataLayoutColumn -> _toJSONObject(dataLayoutColumn)));
 	}
 
 }
