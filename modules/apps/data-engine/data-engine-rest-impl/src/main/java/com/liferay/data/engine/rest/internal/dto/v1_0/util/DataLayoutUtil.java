@@ -183,29 +183,26 @@ public class DataLayoutUtil {
 	private static JSONObject _toJSONObject(
 		DataLayoutColumn[] dataLayoutColumns) {
 
-		JSONArray columnsArray = JSONFactoryUtil.createJSONArray();
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (DataLayoutColumn dataLayoutColumn : dataLayoutColumns) {
-			JSONObject column = JSONFactoryUtil.createJSONObject();
-
-			column.put("size", dataLayoutColumn.getColumnSize());
-
 			JSONArray fieldNames = JSONFactoryUtil.createJSONArray();
 
 			for (String fieldName : dataLayoutColumn.getFieldsName()) {
 				fieldNames.put(fieldName);
 			}
 
-			column.put("fieldNames", fieldNames);
-
-			columnsArray.put(column);
+			jsonArray.put(
+				JSONUtil.put(
+					"size", dataLayoutColumn.getColumnSize()
+				).put(
+					"fieldNames", fieldNames
+				));
 		}
 
-		JSONObject columns = JSONFactoryUtil.createJSONObject();
-
-		columns.put("columns", columnsArray);
-
-		return columns;
+		return JSONUtil.put(
+			"columns", jsonArray
+		);
 	}
 
 	private static final String[] _PAGINATION_MODES = {"wizard", "pagination"};
