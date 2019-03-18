@@ -133,18 +133,18 @@ public class DataLayoutUtil {
 
 		List<DataLayoutColumn> dataLayoutColumns = new ArrayList<>();
 
-		for (Object columnObject : jsonArray) {
-			JSONObject column = (JSONObject)columnObject;
-
+		for (Object object : jsonArray) {
 			DataLayoutColumn dataLayoutColumn = new DataLayoutColumn();
 
-			dataLayoutColumn.setColumnSize(column.getInt("columnSize"));
+			JSONObject jsonObject = (JSONObject)object;
 
-			List<String> fieldsNameList = JSONUtil.toStringList(
-				column.getJSONArray("fieldNames"));
+			dataLayoutColumn.setColumnSize(jsonObject.getInt("columnSize"));
+
+			List<String> fieldNames = JSONUtil.toStringList(
+				jsonObject.getJSONArray("fieldNames"));
 
 			dataLayoutColumn.setFieldsName(
-				fieldsNameList.toArray(new String[fieldsNameList.size()]));
+				fieldNames.toArray(new String[fieldNames.size()]));
 
 			dataLayoutColumns.add(dataLayoutColumn);
 		}
@@ -156,13 +156,13 @@ public class DataLayoutUtil {
 	private static DataLayoutRow[] _toDataLayoutRows(JSONArray jsonArray) {
 		List<DataLayoutRow> dataLayoutRows = new ArrayList<>();
 
-		for (Object rowObject : jsonArray) {
-			JSONObject row = (JSONObject)rowObject;
-
+		for (Object object : jsonArray) {
 			DataLayoutRow dataLayoutRow = new DataLayoutRow();
 
+			JSONObject jsonObject = (JSONObject)object;
+
 			dataLayoutRow.setDataLayoutColums(
-				_toDataLayoutColumns(row.getJSONArray("columns")));
+				_toDataLayoutColumns(jsonObject.getJSONArray("columns")));
 
 			dataLayoutRows.add(dataLayoutRow);
 		}
@@ -200,9 +200,7 @@ public class DataLayoutUtil {
 				));
 		}
 
-		return JSONUtil.put(
-			"columns", jsonArray
-		);
+		return JSONUtil.put("columns", jsonArray);
 	}
 
 	private static final String[] _PAGINATION_MODES = {"wizard", "pagination"};
