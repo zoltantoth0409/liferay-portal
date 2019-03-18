@@ -64,32 +64,42 @@ public class DataLayoutUtil {
 				"Pagination mode must be 'wizard' or 'pagination'");
 		}
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		DataLayoutPage[] dataLayoutPages = dataLayout.getDataLayoutPages();
-
-		for (DataLayoutPage dataLayoutPage : dataLayoutPages) {
-			if (ArrayUtil.isEmpty(dataLayoutPage.getTitle())) {
-				throw new Exception("Title is required");
-			}
-
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-			jsonObject.put("description", dataLayoutPage.getDescription());
-			jsonObject.put(
-				"rows", _toJSONArray(dataLayoutPage.getDataLayoutRows()));
-			jsonObject.put("title", dataLayoutPage.getTitle());
-
-			jsonArray.put(jsonObject);
-		}
-
 		return JSONUtil.put(
 			"defaultLanguageId", defaultLanguageId
 		).put(
-			"pages", jsonArray
+			"pages", _toJSONArray(dataLayout.getDataLayoutPages())
 		).put(
 			"paginationMode", paginationMode
 		).toString();
+	}
+
+	private static JSONObject _toJSONObject(DataLayoutPage dataLayoutPage)
+		throws Exception {
+
+		if (ArrayUtil.isEmpty(dataLayoutPage.getTitle())) {
+			throw new Exception("Title is required");
+		}
+
+		return JSONUtil.put(
+			"description", dataLayoutPage.getDescription()
+		).put(
+			"rows",
+			_toJSONArray(dataLayoutPage.getDataLayoutRows())
+		).put(
+			"title", dataLayoutPage.getTitle()
+		);
+	}
+
+	private static JSONArray _toJSONArray(DataLayoutPage[] dataLayoutPages)
+		throws Exception {
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (DataLayoutPage dataLayoutPage : dataLayoutPages) {
+			jsonArray.put(_toJSONObject(dataLayoutPage));
+		}
+
+		return jsonArray;
 	}
 
 	private static DataLayoutPage _toDataLayoutPage(JSONObject jsonObject) {
