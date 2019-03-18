@@ -103,7 +103,7 @@ public class DDMStructureLayoutLocalServiceImpl
 	}
 
 	@Override
-	public int countStructureLayoutByGroupId(long groupId) {
+	public int getStructureLayoutsCount(long groupId) {
 		return ddmStructureLayoutPersistence.countByGroupId(groupId);
 	}
 
