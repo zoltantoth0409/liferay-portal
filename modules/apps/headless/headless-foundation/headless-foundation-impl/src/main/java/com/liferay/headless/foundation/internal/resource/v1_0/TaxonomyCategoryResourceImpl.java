@@ -259,22 +259,9 @@ public class TaxonomyCategoryResourceImpl
 				dateModified = assetCategory.getModifiedDate();
 				description = assetCategory.getDescription(
 					contextAcceptLanguage.getPreferredLocale());
-
-				int childAssetCategoriesCount =
-					_assetCategoryService.getChildCategoriesCount(
-						assetCategory.getCategoryId());
-
-				hasTaxonomyCategories = childAssetCategoriesCount > 0;
-
 				id = assetCategory.getCategoryId();
 				name = assetCategory.getTitle(
 					contextAcceptLanguage.getPreferredLocale());
-
-				if (assetCategory.getParentCategory() != null) {
-					parentTaxonomyCategory = _toParentCategory(
-						assetCategory.getParentCategory());
-				}
-
 				parentTaxonomyVocabulary = new ParentTaxonomyVocabulary() {
 					{
 						id = assetCategory.getVocabularyId();
@@ -289,6 +276,24 @@ public class TaxonomyCategoryResourceImpl
 							});
 					}
 				};
+
+				setHasTaxonomyCategories(
+					() -> {
+						int count =
+							_assetCategoryService.getChildCategoriesCount(
+								assetCategory.getCategoryId());
+
+						return count > 0;
+					});
+				setParentTaxonomyCategory(
+					() -> {
+						if (assetCategory.getParentCategory() == null) {
+							return null;
+						}
+
+						return _toParentCategory(
+							assetCategory.getParentCategory());
+					});
 			}
 		};
 	}
