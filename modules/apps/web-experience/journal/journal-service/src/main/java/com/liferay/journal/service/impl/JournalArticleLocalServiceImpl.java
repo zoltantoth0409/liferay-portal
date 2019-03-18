@@ -99,6 +99,7 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Image;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
@@ -3412,8 +3413,15 @@ public class JournalArticleLocalServiceImpl
 			long groupId, String articleId, String urlTitle)
 		throws PortalException {
 
+		int maxLength = ModelHintsUtil.getMaxLength(
+			JournalArticle.class.getName(), "urlTitle");
+
+		String curUrlTitle = urlTitle.substring(
+			0, Math.min(maxLength, urlTitle.length()));
+
 		for (int i = 1;; i++) {
-			JournalArticle article = fetchArticleByUrlTitle(groupId, urlTitle);
+			JournalArticle article = fetchArticleByUrlTitle(
+				groupId, curUrlTitle);
 
 			if ((article == null) || articleId.equals(article.getArticleId())) {
 				break;
@@ -3421,17 +3429,13 @@ public class JournalArticleLocalServiceImpl
 
 			String suffix = StringPool.DASH + i;
 
-			String prefix = urlTitle;
+			String prefix = urlTitle.substring(
+				0, Math.min(maxLength - suffix.length(), urlTitle.length()));
 
-			if (urlTitle.length() > suffix.length()) {
-				prefix = urlTitle.substring(
-					0, urlTitle.length() - suffix.length());
-			}
-
-			urlTitle = prefix + suffix;
+			curUrlTitle = prefix + suffix;
 		}
 
-		return urlTitle;
+		return curUrlTitle;
 	}
 
 	/**
