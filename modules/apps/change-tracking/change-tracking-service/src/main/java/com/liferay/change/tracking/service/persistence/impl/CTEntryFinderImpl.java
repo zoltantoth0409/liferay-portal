@@ -269,9 +269,7 @@ public class CTEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(ctCollectionId);
-
 			qPos.add(modelClassNameId);
-
 			qPos.add(modelClassPK);
 
 			List<CTEntry> ctEntries = q.list();
