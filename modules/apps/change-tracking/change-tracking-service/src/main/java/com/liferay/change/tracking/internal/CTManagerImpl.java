@@ -453,11 +453,11 @@ public class CTManagerImpl implements CTManager {
 		catch (DuplicateCTEntryException dctee) {
 			StringBundler sb = new StringBundler(8);
 
-			sb.append("Duplicate CTEntry with class name ID ");
+			sb.append("Duplicate CTEntry with model class name ID ");
 			sb.append(modelClassNameId);
-			sb.append(", class PK ");
+			sb.append(", model class PK ");
 			sb.append(modelClassPK);
-			sb.append(", and resource primary key ");
+			sb.append(", and model resource primary key ");
 			sb.append(modelResourcePrimKey);
 			sb.append(" in change tracking collection ");
 			sb.append(ctCollection.getCtCollectionId());
@@ -468,13 +468,14 @@ public class CTManagerImpl implements CTManager {
 				sb.toString(), dctee);
 		}
 		catch (PortalException pe) {
-			StringBundler sb = new StringBundler(8);
+			StringBundler sb = new StringBundler(9);
 
-			sb.append("Unable to register model change  with class name ID ");
+			sb.append("Unable to register model change with model class name ");
+			sb.append("ID ");
 			sb.append(modelClassNameId);
-			sb.append(", class PK ");
+			sb.append(", model class PK ");
 			sb.append(modelClassPK);
-			sb.append(", and resource primary key ");
+			sb.append(", and model resource primary key ");
 			sb.append(modelResourcePrimKey);
 			sb.append(" in change tracking collection ");
 			sb.append(ctCollection.getCtCollectionId());
