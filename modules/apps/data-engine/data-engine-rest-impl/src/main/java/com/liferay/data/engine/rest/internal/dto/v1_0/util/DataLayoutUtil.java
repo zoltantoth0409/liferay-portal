@@ -69,10 +69,8 @@ public class DataLayoutUtil {
 		JSONArray pages = JSONFactoryUtil.createJSONArray();
 
 		for (DataLayoutPage dataLayoutPage : dataLayoutPages) {
-			LocalizedValue[] title = dataLayoutPage.getTitle();
-
-			if (title.length < 1) {
-				throw new Exception("Page title cannot be empty ");
+			if (ArrayUtil.isEmpty(dataLayoutPage.getTitle()) {
+				throw new Exception("Title is required");
 			}
 
 			JSONObject page = JSONFactoryUtil.createJSONObject();
