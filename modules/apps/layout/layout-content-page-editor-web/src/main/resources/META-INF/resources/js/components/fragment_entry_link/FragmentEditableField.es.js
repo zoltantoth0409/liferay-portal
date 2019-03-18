@@ -137,10 +137,9 @@ class FragmentEditableField extends Component {
 	 * @review
 	 */
 	rendered() {
-		if (
-			(`${this.fragmentEntryLinkId}-${this.editableId}` === this.activeItemId) &&
-			(this.activeItemType === FRAGMENTS_EDITOR_ITEM_TYPES.editable)
-		) {
+		if ((`${this.fragmentEntryLinkId}-${this.editableId}` === this.activeItemId) &&
+			(this.activeItemType === FRAGMENTS_EDITOR_ITEM_TYPES.editable)) {
+
 			this._createFloatingToolbar();
 		}
 		else {
@@ -303,11 +302,10 @@ class FragmentEditableField extends Component {
 				this.editableValues
 			);
 
-			if (
-				!mapped &&
+			if (!mapped &&
 				this.activeItemId === `${this.fragmentEntryLinkId}-${this.editableId}` &&
-				this.activeItemType === FRAGMENTS_EDITOR_ITEM_TYPES.editable
-			) {
+				this.activeItemType === FRAGMENTS_EDITOR_ITEM_TYPES.editable) {
+
 				this._enableEditor();
 
 				this._disposeFloatingToolbar();
@@ -380,12 +378,12 @@ class FragmentEditableField extends Component {
 
 			this._disposeFloatingToolbar();
 		}
-		else if (
-			panelId === FLOATING_TOOLBAR_PANELS.map.panelId &&
-			this.mappingFieldsURL &&
-			!this.selectedMappingTypes.type
-		) {
+		else if (panelId === FLOATING_TOOLBAR_PANELS.map.panelId &&
+				 this.mappingFieldsURL &&
+				 !this.selectedMappingTypes.type) {
+
 			event.preventDefault();
+
 			this.store.dispatchAction(OPEN_ASSET_TYPE_DIALOG);
 		}
 	}
