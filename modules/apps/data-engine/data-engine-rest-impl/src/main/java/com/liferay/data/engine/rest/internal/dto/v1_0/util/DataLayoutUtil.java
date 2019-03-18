@@ -103,21 +103,19 @@ public class DataLayoutUtil {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("pages");
 
-		for (Object pageObject : jsonArray) {
-			JSONObject page = (JSONObject)pageObject;
-
+		for (Object object : jsonArray) {
 			DataLayoutPage dataLayoutPage = new DataLayoutPage();
 
-			dataLayoutPage.setDescription(
-				LocalizedValueUtil.toLocalizedValues(
-					page.getJSONObject("description")));
+			JSONObject pageJSONObject = (JSONObject)object;
 
 			dataLayoutPage.setDataLayoutRows(
-				_toDataLayoutRows(page.getJSONArray("rows")));
-
+				_toDataLayoutRows(pageJSONObject.getJSONArray("rows")));
+			dataLayoutPage.setDescription(
+				LocalizedValueUtil.toLocalizedValues(
+					pageJSONObject.getJSONObject("description")));
 			dataLayoutPage.setTitle(
 				LocalizedValueUtil.toLocalizedValues(
-					page.getJSONObject("title")));
+					pageJSONObject.getJSONObject("title")));
 
 			dataLayoutPages.add(dataLayoutPage);
 		}
