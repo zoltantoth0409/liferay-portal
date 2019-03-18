@@ -197,6 +197,24 @@ public class JSONUtil {
 		return values;
 	}
 
+	public static String[] toStringArray(
+		JSONArray jsonArray, String jsonObjectKey) {
+
+		if (jsonArray == null) {
+			return new String[0];
+		}
+
+		String[] values = new String[jsonArray.length()];
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			values[i] = jsonObject.getString(jsonObjectKey);
+		}
+
+		return values;
+	}
+
 	public static List<String> toStringList(JSONArray jsonArray) {
 		if (jsonArray == null) {
 			return Collections.emptyList();
