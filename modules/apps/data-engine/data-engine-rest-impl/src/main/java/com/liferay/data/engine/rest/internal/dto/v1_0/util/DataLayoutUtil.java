@@ -139,12 +139,8 @@ public class DataLayoutUtil {
 			JSONObject jsonObject = (JSONObject)object;
 
 			dataLayoutColumn.setColumnSize(jsonObject.getInt("columnSize"));
-
-			List<String> fieldNames = JSONUtil.toStringList(
-				jsonObject.getJSONArray("fieldNames"));
-
 			dataLayoutColumn.setFieldsName(
-				fieldNames.toArray(new String[fieldNames.size()]));
+				JSONUtil.toStringArray(jsonObject.getJSONArray("fieldNames")));
 
 			dataLayoutColumns.add(dataLayoutColumn);
 		}
