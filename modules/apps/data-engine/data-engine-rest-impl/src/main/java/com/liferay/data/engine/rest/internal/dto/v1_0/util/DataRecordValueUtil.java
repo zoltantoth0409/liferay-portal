@@ -66,94 +66,73 @@ public class DataRecordValueUtil {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		_addDEDataDefinitionFieldValue(
-			jsonObject, dataDefinition, dataRecordValues);
-
-		return jsonObject.toString();
-	}
-
-	private static void _addDEDataDefinitionFieldValue(
-			JSONObject jsonObject, DataDefinition dataDefinition,
-			DataRecordValue[] dataRecordValues)
-		throws Exception {
-
-		Map<String, Object> dataRecordValuesMap = _toDataRecordValuesMap(
+		Map<String, Object> dataRecordValuesValues = _toDataRecordValuesValues(
 			dataRecordValues);
 
 		Map<String, DataDefinitionField> dataDefinitionFields = Stream.of(
 			dataDefinition.getDataDefinitionFields()
 		).collect(
-			Collectors.toMap(field -> field.getName(), Function.identity())
+			Collectors.toMap(
+				dataDefinitionField -> dataDefinitionField.getName(),
+				Function.identity())
 		);
 
 		for (Map.Entry<String, DataDefinitionField> entry :
 				dataDefinitionFields.entrySet()) {
 
-			if (!dataRecordValuesMap.containsKey(entry.getKey())) {
+			if (!dataRecordValuesValues.containsKey(entry.getKey())) {
 				continue;
 			}
 
 			DataDefinitionField dataDefinitionField = entry.getValue();
 
 			if (dataDefinitionField.getLocalizable()) {
-				JSONObject localizedJSONObject =
-					JSONFactoryUtil.createJSONObject();
-
-				_addLocalizedValues(
-					localizedJSONObject,
-					(Map<String, Object>)dataRecordValuesMap.get(
-						dataDefinitionField.getName()));
-
-				jsonObject.put(entry.getKey(), localizedJSONObject);
+				jsonObject.put(
+					entry.getKey(),
+					_toJSONObject(
+						(Map<String, Object>)dataRecordValuesValues.get(
+							dataDefinitionField.getName())));
 			}
 			else if (dataDefinitionField.getRepeatable()) {
 				jsonObject.put(
 					entry.getKey(),
 					JSONUtil.toJSONArray(
-						(Object[])dataRecordValuesMap.get(entry.getKey()),
+						(Object[])dataRecordValuesValues.get(entry.getKey()),
 						object -> object));
 			}
 			else {
 				jsonObject.put(
-					entry.getKey(), dataRecordValuesMap.get(entry.getKey()));
+					entry.getKey(), dataRecordValuesValues.get(entry.getKey()));
 			}
 		}
+
+		return jsonObject.toString();
 	}
 
-	private static void _addLocalizedValues(
-		JSONObject jsonObject, Map<String, Object> values) {
-
-		for (Map.Entry<String, Object> entry : values.entrySet()) {
-			jsonObject.put(
-				entry.getKey(),
-				GetterUtil.get(entry.getValue(), StringPool.BLANK));
-		}
-	}
-
-	private static Map<String, Object> _toDataRecordValuesMap(
+	private static Map<String, Object> _toDataRecordValuesValues(
 			DataRecordValue[] dataRecordValues)
 		throws Exception {
 
-		Map<String, Object> dataRecordValuesMap = new HashMap<>();
+		Map<String, Object> dataRecordValuesValues = new HashMap<>();
 
 		for (DataRecordValue dataRecordValue : dataRecordValues) {
-			dataRecordValuesMap.put(
+			dataRecordValuesValues.put(
 				dataRecordValue.getKey(), dataRecordValue.getValue());
 		}
 
-		return dataRecordValuesMap;
+		return dataRecordValuesValues;
 	}
 
 	private static Object _toDataRecordValueValue(
 		DataDefinitionField dataDefinitionField, JSONObject jsonObject) {
 
 		if (dataDefinitionField.getLocalizable()) {
+			Map<String, Object> localizedValues = new HashMap<>();
+
 			JSONObject dataRecordValueJSONObject = jsonObject.getJSONObject(
 				dataDefinitionField.getName());
 
 			Iterable<String> iterable = dataRecordValueJSONObject::keys;
-
-			Map<String, Object> localizedValues = new HashMap<>();
 
 			StreamSupport.stream(
 				iterable.spliterator(), false
@@ -171,6 +150,20 @@ public class DataRecordValueUtil {
 		}
 
 		return jsonObject.get(dataDefinitionField.getName());
+	}
+
+	private static JSONObject _toJSONObject(
+		Map<String, Object> localizedValues) {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		for (Map.Entry<String, Object> entry : localizedValues.entrySet()) {
+			jsonObject.put(
+				entry.getKey(),
+				GetterUtil.get(entry.getValue(), StringPool.BLANK));
+		}
+
+		return jsonObject;
 	}
 
 }
