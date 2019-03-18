@@ -56,6 +56,10 @@ public class DataDefinitionUtil {
 	private static void _put(
 		JSONObject jsonObject, String key, LocalizedValue[] localizedValues) {
 
+		if (localizedValues.length == 0) {
+			return;
+		}
+
 		JSONObject localizedValueJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
@@ -124,11 +128,7 @@ public class DataDefinitionUtil {
 
 		jsonObject.put("indexable", dataDefinitionField.getIndexable());
 
-		LocalizedValue[] label = dataDefinitionField.getLabel();
-
-		if (label.length > 0) {
-			_put(jsonObject, "label", label);
-		}
+		_put(jsonObject, "label", dataDefinitionField.getLabel());
 
 		jsonObject.put("localizable", dataDefinitionField.getLocalizable());
 
@@ -142,11 +142,7 @@ public class DataDefinitionUtil {
 
 		jsonObject.put("repeatable", dataDefinitionField.getRepeatable());
 
-		LocalizedValue[] tip = dataDefinitionField.getTip();
-
-		if (tip.length > 0) {
-			_put(jsonObject, "tip", tip);
-		}
+		_put(jsonObject, "tip", dataDefinitionField.getTip());
 
 		String type = dataDefinitionField.getFieldType();
 
