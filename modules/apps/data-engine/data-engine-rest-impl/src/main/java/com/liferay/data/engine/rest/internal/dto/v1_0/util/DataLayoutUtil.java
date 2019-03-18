@@ -18,7 +18,6 @@ import com.liferay.data.engine.rest.dto.v1_0.DataLayout;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutColumn;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutPage;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutRow;
-import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -53,10 +52,8 @@ public class DataLayoutUtil {
 			throw new Exception("Default language ID is required");
 		}
 
-		if (Objects.equals(
-				dataLayout.getPaginationMode(), "pagination") ||
-			Objects.equals(
-				dataLayout.getPaginationMode(), "wizard")) {
+		if (Objects.equals(dataLayout.getPaginationMode(), "pagination") ||
+			Objects.equals(dataLayout.getPaginationMode(), "wizard")) {
 
 			throw new Exception(
 				"Pagination mode must be \"pagination\" or \"wizard\"");
@@ -71,33 +68,29 @@ public class DataLayoutUtil {
 		).toString();
 	}
 
-	private static JSONObject _toJSONObject(DataLayoutPage dataLayoutPage)
-		throws Exception {
-
-		if (ArrayUtil.isEmpty(dataLayoutPage.getTitle())) {
-			throw new Exception("Title is required");
-		}
-
-		return JSONUtil.put(
-			"description", dataLayoutPage.getDescription()
-		).put(
-			"rows",
-			_toJSONArray(dataLayoutPage.getDataLayoutRows())
-		).put(
-			"title", dataLayoutPage.getTitle()
-		);
+	private static DataLayoutColumn _toDataLayoutColumn(JSONObject jsonObject) {
+		return new DataLayoutColumn() {
+			{
+				columnSize = jsonObject.getInt("columnSize");
+				fieldNames = JSONUtil.toStringArray(
+					jsonObject.getJSONArray("fieldNames"));
+			}
+		};
 	}
 
-	private static JSONArray _toJSONArray(DataLayoutPage[] dataLayoutPages)
-		throws Exception {
+	private static DataLayoutColumn[] _toDataLayoutColumns(
+		JSONArray jsonArray) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		List<DataLayoutColumn> dataLayoutColumns = new ArrayList<>();
 
-		for (DataLayoutPage dataLayoutPage : dataLayoutPages) {
-			jsonArray.put(_toJSONObject(dataLayoutPage));
+		for (Object object : jsonArray) {
+			JSONObject jsonObject = (JSONObject)object;
+
+			dataLayoutColumns.add(_toDataLayoutColumn(jsonObject));
 		}
 
-		return jsonArray;
+		return dataLayoutColumns.toArray(
+			new DataLayoutColumn[dataLayoutColumns.size()]);
 	}
 
 	private static DataLayoutPage _toDataLayoutPage(JSONObject jsonObject) {
@@ -130,33 +123,6 @@ public class DataLayoutUtil {
 			new DataLayoutPage[dataLayoutPages.size()]);
 	}
 
-	private static DataLayoutColumn _toDataLayoutColumn(
-		JSONObject jsonObject) {
-
-		return new DataLayoutColumn() {
-			{
-				columnSize = jsonObject.getInt("columnSize");
-				fieldNames = JSONUtil.toStringArray(
-					jsonObject.getJSONArray("fieldNames"));
-			}
-		};
-	}
-
-	private static DataLayoutColumn[] _toDataLayoutColumns(
-		JSONArray jsonArray) {
-
-		List<DataLayoutColumn> dataLayoutColumns = new ArrayList<>();
-
-		for (Object object : jsonArray) {
-			JSONObject jsonObject = (JSONObject)object;
-
-			dataLayoutColumns.add(_toDataLayoutColumn(jsonObject));
-		}
-
-		return dataLayoutColumns.toArray(
-			new DataLayoutColumn[dataLayoutColumns.size()]);
-	}
-
 	private static DataLayoutRow _toDataLayoutRow(JSONObject jsonObject) {
 		return new DataLayoutRow() {
 			{
@@ -176,6 +142,18 @@ public class DataLayoutUtil {
 		}
 
 		return dataLayoutRows.toArray(new DataLayoutRow[dataLayoutRows.size()]);
+	}
+
+	private static JSONArray _toJSONArray(DataLayoutPage[] dataLayoutPages)
+		throws Exception {
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (DataLayoutPage dataLayoutPage : dataLayoutPages) {
+			jsonArray.put(_toJSONObject(dataLayoutPage));
+		}
+
+		return jsonArray;
 	}
 
 	private static JSONArray _toJSONArray(DataLayoutRow[] dataLayoutRows) {
@@ -198,12 +176,27 @@ public class DataLayoutUtil {
 				JSONUtil.put(
 					"size", dataLayoutColumn.getColumnSize()
 				).put(
-					"fieldNames",
-					JSONUtil.put(dataLayoutColumn.getFieldNames())
+					"fieldNames", JSONUtil.put(dataLayoutColumn.getFieldNames())
 				));
 		}
 
 		return JSONUtil.put("columns", jsonArray);
+	}
+
+	private static JSONObject _toJSONObject(DataLayoutPage dataLayoutPage)
+		throws Exception {
+
+		if (ArrayUtil.isEmpty(dataLayoutPage.getTitle())) {
+			throw new Exception("Title is required");
+		}
+
+		return JSONUtil.put(
+			"description", dataLayoutPage.getDescription()
+		).put(
+			"rows", _toJSONArray(dataLayoutPage.getDataLayoutRows())
+		).put(
+			"title", dataLayoutPage.getTitle()
+		);
 	}
 
 }
