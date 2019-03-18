@@ -179,6 +179,52 @@ public class JSONUtil {
 		return values;
 	}
 
+	public static List<Long> toLongList(JSONArray jsonArray) {
+		if (jsonArray == null) {
+			return Collections.emptyList();
+		}
+
+		List<Long> values = new ArrayList<>(jsonArray.length());
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			values.add(jsonArray.getLong(i));
+		}
+
+		return values;
+	}
+
+	public static List<Long> toLongList(
+		JSONArray jsonArray, String jsonObjectKey) {
+
+		if (jsonArray == null) {
+			return Collections.emptyList();
+		}
+
+		List<Long> values = new ArrayList<>(jsonArray.length());
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			values.add(jsonObject.getLong(jsonObjectKey));
+		}
+
+		return values;
+	}
+
+	public static Set<Long> toLongSet(JSONArray jsonArray) {
+		if (jsonArray == null) {
+			return Collections.emptySet();
+		}
+
+		Set<Long> values = new HashSet<>(jsonArray.length());
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			values.add(jsonArray.getLong(i));
+		}
+
+		return values;
+	}
+
 	public static Set<Long> toLongSet(
 		JSONArray jsonArray, String jsonObjectKey) {
 
@@ -192,6 +238,20 @@ public class JSONUtil {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 			values.add(jsonObject.getLong(jsonObjectKey));
+		}
+
+		return values;
+	}
+
+	public static String[] toStringArray(JSONArray jsonArray) {
+		if (jsonArray == null) {
+			return new String[0];
+		}
+
+		String[] values = new String[jsonArray.length()];
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			values[i] = jsonArray.getString(i);
 		}
 
 		return values;
@@ -242,6 +302,20 @@ public class JSONUtil {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 			values.add(jsonObject.getString(jsonObjectKey));
+		}
+
+		return values;
+	}
+
+	public static Set<String> toStringSet(JSONArray jsonArray) {
+		if (jsonArray == null) {
+			return Collections.emptySet();
+		}
+
+		Set<String> values = new HashSet<>(jsonArray.length());
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			values.add(jsonArray.getString(i));
 		}
 
 		return values;
