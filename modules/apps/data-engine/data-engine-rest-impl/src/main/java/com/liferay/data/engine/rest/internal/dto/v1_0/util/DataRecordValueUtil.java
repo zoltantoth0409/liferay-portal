@@ -22,10 +22,9 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.vulcan.util.TransformUtil;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -41,29 +40,24 @@ public class DataRecordValueUtil {
 			DataDefinition dataDefinition, String json)
 		throws Exception {
 
-		List<DataRecordValue> dataRecordValues = new ArrayList<>();
-
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(json);
 
-		for (DataDefinitionField dataDefinitionField :
-				dataDefinition.getDataDefinitionFields()) {
+		return TransformUtil.transform(
+			dataDefinition.getDataDefinitionFields(),
+			dataDefinitionField -> {
+				if (!jsonObject.has(dataDefinitionField.getName())) {
+					return null;
+				}
 
-			if (!jsonObject.has(dataDefinitionField.getName())) {
-				continue;
-			}
-
-			dataRecordValues.add(
-				new DataRecordValue() {
+				return new DataRecordValue() {
 					{
 						key = dataDefinitionField.getName();
 						value = _toDataRecordValueValue(
 							dataDefinitionField, jsonObject);
 					}
-				});
-		}
-
-		return dataRecordValues.toArray(
-			new DataRecordValue[dataRecordValues.size()]);
+				};
+			},
+			DataRecordValue.class);
 	}
 
 	public static String toJSON(
