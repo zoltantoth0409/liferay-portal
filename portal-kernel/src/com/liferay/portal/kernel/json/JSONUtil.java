@@ -347,6 +347,102 @@ public class JSONUtil {
 		return values;
 	}
 
+	public static Object[] toObjectArray(JSONArray jsonArray) {
+		if (jsonArray == null) {
+			return new Object[0];
+		}
+
+		Object[] values = new Object[jsonArray.length()];
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			values[i] = jsonArray.get(i);
+		}
+
+		return values;
+	}
+
+	public static Object[] toObjectArray(
+		JSONArray jsonArray, String jsonObjectKey) {
+
+		if (jsonArray == null) {
+			return new Object[0];
+		}
+
+		Object[] values = new Object[jsonArray.length()];
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			values[i] = jsonObject.get(jsonObjectKey);
+		}
+
+		return values;
+	}
+
+	public static List<Object> toObjectList(JSONArray jsonArray) {
+		if (jsonArray == null) {
+			return Collections.emptyList();
+		}
+
+		List<Object> values = new ArrayList<>(jsonArray.length());
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			values.add(jsonArray.get(i));
+		}
+
+		return values;
+	}
+
+	public static List<Object> toObjectList(
+		JSONArray jsonArray, String jsonObjectKey) {
+
+		if (jsonArray == null) {
+			return Collections.emptyList();
+		}
+
+		List<Object> values = new ArrayList<>(jsonArray.length());
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			values.add(jsonObject.get(jsonObjectKey));
+		}
+
+		return values;
+	}
+
+	public static Set<Object> toObjectSet(JSONArray jsonArray) {
+		if (jsonArray == null) {
+			return Collections.emptySet();
+		}
+
+		Set<Object> values = new HashSet<>(jsonArray.length());
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			values.add(jsonArray.get(i));
+		}
+
+		return values;
+	}
+
+	public static Set<Object> toObjectSet(
+		JSONArray jsonArray, String jsonObjectKey) {
+
+		if (jsonArray == null) {
+			return Collections.emptySet();
+		}
+
+		Set<Object> values = new HashSet<>(jsonArray.length());
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			values.add(jsonObject.get(jsonObjectKey));
+		}
+
+		return values;
+	}
+
 	public static String[] toStringArray(JSONArray jsonArray) {
 		if (jsonArray == null) {
 			return new String[0];
