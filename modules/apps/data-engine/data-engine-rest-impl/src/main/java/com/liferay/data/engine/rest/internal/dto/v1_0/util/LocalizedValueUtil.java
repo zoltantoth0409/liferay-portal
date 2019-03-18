@@ -15,12 +15,11 @@
 package com.liferay.data.engine.rest.internal.dto.v1_0.util;
 
 import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -43,8 +42,7 @@ public class LocalizedValueUtil {
 		}
 
 		for (LocalizedValue localizedValue : localizedValues) {
-			jsonObject.put(
-				localizedValue.getKey(), localizedValue.getValue());
+			jsonObject.put(localizedValue.getKey(), localizedValue.getValue());
 		}
 
 		return jsonObject;

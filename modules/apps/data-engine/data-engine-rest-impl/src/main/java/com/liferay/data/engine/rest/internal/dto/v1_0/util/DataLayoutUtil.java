@@ -136,8 +136,7 @@ public class DataLayoutUtil {
 				dataLayoutPage.getDataLayoutRows(),
 				dataLayoutRow -> _toJSONObject(dataLayoutRow))
 		).put(
-			"title",
-			LocalizedValueUtil.toJSONObject(dataLayoutPage.getTitle())
+			"title", LocalizedValueUtil.toJSONObject(dataLayoutPage.getTitle())
 		);
 	}
 

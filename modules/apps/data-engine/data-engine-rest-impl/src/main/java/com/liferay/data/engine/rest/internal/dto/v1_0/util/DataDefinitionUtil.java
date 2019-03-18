@@ -16,11 +16,9 @@ package com.liferay.data.engine.rest.internal.dto.v1_0.util;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
-import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
@@ -110,11 +108,9 @@ public class DataDefinitionUtil {
 		}
 
 		jsonObject.put("indexable", dataDefinitionField.getIndexable());
-
 		jsonObject.put(
 			"label",
 			LocalizedValueUtil.toJSONObject(dataDefinitionField.getLabel()));
-
 		jsonObject.put("localizable", dataDefinitionField.getLocalizable());
 
 		String name = dataDefinitionField.getName();
@@ -126,7 +122,6 @@ public class DataDefinitionUtil {
 		jsonObject.put("name", name);
 
 		jsonObject.put("repeatable", dataDefinitionField.getRepeatable());
-
 		jsonObject.put(
 			"tip",
 			LocalizedValueUtil.toJSONObject(dataDefinitionField.getTip()));
