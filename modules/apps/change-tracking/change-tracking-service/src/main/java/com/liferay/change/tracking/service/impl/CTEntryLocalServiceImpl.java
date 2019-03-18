@@ -173,7 +173,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 
 	private CTEntry _addCTEntry(
 		User user, long modelClassNameId, long modelClassPK,
-		long resourcePrimKey, int changeType, long ctCollectionId,
+		long modelResourcePrimKey, int changeType, long ctCollectionId,
 		ServiceContext serviceContext) {
 
 		long ctEntryId = counterLocalService.increment();
@@ -191,7 +191,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 
 		ctEntry.setModelClassNameId(modelClassNameId);
 		ctEntry.setModelClassPK(modelClassPK);
-		ctEntry.setModelResourcePrimKey(resourcePrimKey);
+		ctEntry.setModelResourcePrimKey(modelResourcePrimKey);
 		ctEntry.setChangeType(changeType);
 
 		int status = WorkflowConstants.STATUS_DRAFT;
