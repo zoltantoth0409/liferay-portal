@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Jeyvison Nascimento
@@ -52,8 +53,10 @@ public class DataLayoutUtil {
 			throw new Exception("Default language ID is required");
 		}
 
-		if (!ArrayUtil.contains(
-				_PAGINATION_MODES, dataLayout.getPaginationMode()) {
+		if (Objects.equals(
+				dataLayout.getPaginationMode(), "pagination") ||
+			Objects.equals(
+				dataLayout.getPaginationMode(), "wizard")) {
 
 			throw new Exception(
 				"Pagination mode must be \"pagination\" or \"wizard\"");
@@ -202,7 +205,5 @@ public class DataLayoutUtil {
 
 		return JSONUtil.put("columns", jsonArray);
 	}
-
-	private static final String[] _PAGINATION_MODES = {"pagination", "wizard"};
 
 }
