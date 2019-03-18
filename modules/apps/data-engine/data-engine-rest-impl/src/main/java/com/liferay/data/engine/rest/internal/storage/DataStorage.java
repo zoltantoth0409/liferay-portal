@@ -35,8 +35,8 @@ public class DataStorage {
 		DataRecordCollectionResource dataRecordCollectionResource,
 		DDMContentLocalService ddmContentLocalService) {
 
-		_dataRecordCollectionResource = dataRecordCollectionResource;
 		_dataDefinitionResource = dataDefinitionResource;
+		_dataRecordCollectionResource = dataRecordCollectionResource;
 		_ddmContentLocalService = ddmContentLocalService;
 	}
 
