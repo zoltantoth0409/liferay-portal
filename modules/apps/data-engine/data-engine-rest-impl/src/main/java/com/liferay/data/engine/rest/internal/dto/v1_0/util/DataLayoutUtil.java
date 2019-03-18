@@ -35,17 +35,16 @@ import java.util.List;
 public class DataLayoutUtil {
 
 	public static DataLayout toDataLayout(String json) throws Exception {
-		DataLayout dataLayout = new DataLayout();
-
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(json);
 
-		dataLayout.setDefaultLanguageId(
-			jsonObject.getString("defaultLanguageId"));
-		dataLayout.setDataLayoutPages(
-			_toDataLayoutPages(jsonObject.getJSONArray("pages")));
-		dataLayout.setPaginationMode(jsonObject.getString("paginationMode"));
-
-		return dataLayout;
+		return new DataLayout() {
+			{
+				defaultLanguageId =
+					jsonObject.getString("defaultLanguageId");
+				dataLayoutPages = _toDataLayoutPages(jsonObject.getJSONArray("pages"));
+				paginationMode = jsonObject.getString("paginationMode");
+			}
+		};
 	}
 
 	public static String toJSON(DataLayout dataLayout) throws Exception {
