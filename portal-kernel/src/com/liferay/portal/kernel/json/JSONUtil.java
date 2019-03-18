@@ -133,6 +133,14 @@ public class JSONUtil {
 		return jsonObject;
 	}
 
+	public static JSONArray put(Object value) {
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		jsonArray.put(value);
+
+		return jsonArray;
+	}
+
 	public static JSONArray put(Object... values) {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
