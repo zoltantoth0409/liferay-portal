@@ -125,7 +125,7 @@ public class MultipartBodyTest {
 	@Test
 	public void testGetValueAsInstanceOptional() throws IOException {
 
-		// Non empty Optional
+		// Present optional
 
 		MultipartBody multipartBody = MultipartBody.of(
 			Collections.emptyMap(), __ -> _objectMapper,
@@ -151,7 +151,7 @@ public class MultipartBodyTest {
 		assertThat(testClass.string, is("Hello"));
 		assertThat(testClass.testClass, is(nullValue()));
 
-		// empty Optional
+		// Null optional
 
 		testClassOptional = multipartBody.getValueAsInstanceOptional(
 			"null", TestClass.class);
