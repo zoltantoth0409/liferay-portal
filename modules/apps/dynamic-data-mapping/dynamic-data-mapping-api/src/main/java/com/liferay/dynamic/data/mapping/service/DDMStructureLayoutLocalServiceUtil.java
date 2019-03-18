@@ -81,10 +81,6 @@ public class DDMStructureLayoutLocalServiceUtil {
 			serviceContext);
 	}
 
-	public static int countStructureLayoutByGroupId(long groupId) {
-		return getService().countStructureLayoutByGroupId(groupId);
-	}
-
 	/**
 	 * Creates a new ddm structure layout with the primary key. Does not add the ddm structure layout to the database.
 	 *
@@ -415,6 +411,10 @@ public class DDMStructureLayoutLocalServiceUtil {
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getStructureLayouts(groupId, start, end);
+	}
+
+	public static int getStructureLayoutsCount(long groupId) {
+		return getService().getStructureLayoutsCount(groupId);
 	}
 
 	/**

@@ -92,14 +92,6 @@ public interface DDMStructureLayoutLocalService
 		throws PortalException;
 
 	/**
-	 * Count all ddm structure layouts by group id
-	 *
-	 * @param groupId the primary key of the group
-	 * @return the number of rows matching the group id
-	 */
-	public int countStructureLayoutByGroupId(long groupId);
-
-	/**
 	 * Creates a new ddm structure layout with the primary key. Does not add the ddm structure layout to the database.
 	 *
 	 * @param structureLayoutId the primary key for the new ddm structure layout
@@ -333,6 +325,9 @@ public interface DDMStructureLayoutLocalService
 	public List<DDMStructureLayout> getStructureLayouts(
 			long groupId, int start, int end)
 		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getStructureLayoutsCount(long groupId);
 
 	/**
 	 * Updates the ddm structure layout in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
