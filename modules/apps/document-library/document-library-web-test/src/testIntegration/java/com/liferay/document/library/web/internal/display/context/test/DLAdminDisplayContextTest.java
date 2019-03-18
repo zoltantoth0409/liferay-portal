@@ -175,7 +175,6 @@ public class DLAdminDisplayContextTest {
 		mockHttpServletRequest.setAttribute(
 			JavaConstants.JAVAX_PORTLET_REQUEST,
 			new MockLiferayPortletRequest(httpServletRequest));
-
 		mockHttpServletRequest.setAttribute(
 			JavaConstants.JAVAX_PORTLET_RESPONSE,
 			new MockLiferayPortletresponse());
@@ -204,7 +203,6 @@ public class DLAdminDisplayContextTest {
 
 		mockHttpServletRequest.setParameter(
 			"mvcRenderCommandName", "/document_library/search");
-
 		mockHttpServletRequest.setParameter("keywords", keywords);
 
 		return mockHttpServletRequest;
@@ -392,7 +390,7 @@ public class DLAdminDisplayContextTest {
 
 		@Override
 		public void setPortletRequestDispatcherRequest(
-			HttpServletRequest request) {
+			HttpServletRequest httpServletRequest) {
 		}
 
 		private final HttpServletRequest _httpServletRequest;
