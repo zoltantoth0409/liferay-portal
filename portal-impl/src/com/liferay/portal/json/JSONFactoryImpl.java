@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.jabsorb.serializer.MarshallException;
@@ -136,6 +137,11 @@ public class JSONFactoryImpl implements JSONFactory {
 	@Override
 	public JSONArray createJSONArray() {
 		return new JSONArrayImpl();
+	}
+
+	@Override
+	public JSONArray createJSONArray(Collection<?> collection) {
+		return new JSONArrayImpl(collection);
 	}
 
 	@Override
