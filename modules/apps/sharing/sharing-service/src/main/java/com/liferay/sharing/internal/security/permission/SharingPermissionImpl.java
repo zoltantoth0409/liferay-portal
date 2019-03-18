@@ -94,8 +94,8 @@ public class SharingPermissionImpl implements SharingPermission {
 			throw new PrincipalException(
 				StringBundler.concat(
 					"User ", permissionChecker.getUserId(),
-					" does not have permissions to manage collaborators of ",
-					"entry with className ", classNameId, " and classPK ",
+					" does not have permission to manage collaborators of ",
+					"entry with class name ", classNameId, " and class PK ",
 					classPK));
 		}
 	}
