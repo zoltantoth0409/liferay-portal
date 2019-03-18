@@ -128,14 +128,16 @@ public class DataLayoutUtil {
 		}
 
 		return JSONUtil.put(
-			"description", dataLayoutPage.getDescription()
+			"description",
+			LocalizedValueUtil.toJSONObject(dataLayoutPage.getDescription())
 		).put(
 			"rows",
 			JSONUtil.toJSONArray(
 				dataLayoutPage.getDataLayoutRows(),
 				dataLayoutRow -> _toJSONObject(dataLayoutRow))
 		).put(
-			"title", dataLayoutPage.getTitle()
+			"title",
+			LocalizedValueUtil.toJSONObject(dataLayoutPage.getTitle())
 		);
 	}
 
