@@ -60,6 +60,10 @@ public class JSONFactoryUtil {
 		return getJSONFactory().createJSONArray(json);
 	}
 
+	public static <T> JSONArray createJSONArray(T[] array) {
+		return getJSONFactory().createJSONArray(array);
+	}
+
 	public static <T> JSONDeserializer<T> createJSONDeserializer() {
 		return getJSONFactory().createJSONDeserializer();
 	}
