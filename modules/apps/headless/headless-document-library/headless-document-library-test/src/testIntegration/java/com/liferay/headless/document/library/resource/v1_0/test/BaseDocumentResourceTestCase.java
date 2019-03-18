@@ -112,6 +112,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Document document1 = testGetContentSpaceDocumentsPage_addDocument(
 			contentSpaceId, randomDocument());
+
 		Document document2 = testGetContentSpaceDocumentsPage_addDocument(
 			contentSpaceId, randomDocument());
 
@@ -209,8 +210,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Document document1 = testGetContentSpaceDocumentsPage_addDocument(
 			contentSpaceId, randomDocument());
+
 		Document document2 = testGetContentSpaceDocumentsPage_addDocument(
 			contentSpaceId, randomDocument());
+
 		Document document3 = testGetContentSpaceDocumentsPage_addDocument(
 			contentSpaceId, randomDocument());
 
@@ -314,6 +317,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 		document1 = testGetContentSpaceDocumentsPage_addDocument(
 			contentSpaceId, document1);
+
 		document2 = testGetContentSpaceDocumentsPage_addDocument(
 			contentSpaceId, document2);
 
@@ -648,6 +652,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Document document1 = testGetFolderDocumentsPage_addDocument(
 			folderId, randomDocument());
+
 		Document document2 = testGetFolderDocumentsPage_addDocument(
 			folderId, randomDocument());
 
@@ -738,8 +743,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Document document1 = testGetFolderDocumentsPage_addDocument(
 			folderId, randomDocument());
+
 		Document document2 = testGetFolderDocumentsPage_addDocument(
 			folderId, randomDocument());
+
 		Document document3 = testGetFolderDocumentsPage_addDocument(
 			folderId, randomDocument());
 
@@ -834,6 +841,7 @@ public abstract class BaseDocumentResourceTestCase {
 		}
 
 		document1 = testGetFolderDocumentsPage_addDocument(folderId, document1);
+
 		document2 = testGetFolderDocumentsPage_addDocument(folderId, document2);
 
 		for (EntityField entityField : entityFields) {
@@ -1275,8 +1283,13 @@ public abstract class BaseDocumentResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {

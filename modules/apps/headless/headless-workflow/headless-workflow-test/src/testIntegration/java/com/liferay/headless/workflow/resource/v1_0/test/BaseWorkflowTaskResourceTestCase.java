@@ -110,6 +110,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		WorkflowTask workflowTask1 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
+
 		WorkflowTask workflowTask2 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
@@ -132,9 +133,11 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		WorkflowTask workflowTask1 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
+
 		WorkflowTask workflowTask2 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
+
 		WorkflowTask workflowTask3 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
@@ -403,7 +406,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-me",
-					workflowTaskId);
+					workflowTaskId, workflowTaskAssignToMe);
 
 		options.setLocation(location);
 
@@ -423,7 +426,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-me",
-					workflowTaskId);
+					workflowTaskId, workflowTaskAssignToMe);
 
 		options.setLocation(location);
 
@@ -465,7 +468,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-user",
-					workflowTaskId);
+					workflowTaskId, workflowTaskAssignToUser);
 
 		options.setLocation(location);
 
@@ -486,7 +489,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-user",
-					workflowTaskId);
+					workflowTaskId, workflowTaskAssignToUser);
 
 		options.setLocation(location);
 
@@ -527,7 +530,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/change-transition",
-					workflowTaskId);
+					workflowTaskId, changeTransition);
 
 		options.setLocation(location);
 
@@ -547,7 +550,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/change-transition",
-					workflowTaskId);
+					workflowTaskId, changeTransition);
 
 		options.setLocation(location);
 
@@ -588,7 +591,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/update-due-date",
-					workflowTaskId);
+					workflowTaskId, workflowTaskAssignToMe);
 
 		options.setLocation(location);
 
@@ -608,7 +611,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/update-due-date",
-					workflowTaskId);
+					workflowTaskId, workflowTaskAssignToMe);
 
 		options.setLocation(location);
 
@@ -890,8 +893,13 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {

@@ -308,6 +308,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		TaxonomyCategory taxonomyCategory1 =
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyCategoryId, randomTaxonomyCategory());
+
 		TaxonomyCategory taxonomyCategory2 =
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyCategoryId, randomTaxonomyCategory());
@@ -416,9 +417,11 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		TaxonomyCategory taxonomyCategory1 =
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyCategoryId, randomTaxonomyCategory());
+
 		TaxonomyCategory taxonomyCategory2 =
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyCategoryId, randomTaxonomyCategory());
+
 		TaxonomyCategory taxonomyCategory3 =
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyCategoryId, randomTaxonomyCategory());
@@ -537,6 +540,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		taxonomyCategory1 =
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyCategoryId, taxonomyCategory1);
+
 		taxonomyCategory2 =
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyCategoryId, taxonomyCategory2);
@@ -720,6 +724,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		TaxonomyCategory taxonomyCategory1 =
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyVocabularyId, randomTaxonomyCategory());
+
 		TaxonomyCategory taxonomyCategory2 =
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyVocabularyId, randomTaxonomyCategory());
@@ -828,9 +833,11 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		TaxonomyCategory taxonomyCategory1 =
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyVocabularyId, randomTaxonomyCategory());
+
 		TaxonomyCategory taxonomyCategory2 =
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyVocabularyId, randomTaxonomyCategory());
+
 		TaxonomyCategory taxonomyCategory3 =
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyVocabularyId, randomTaxonomyCategory());
@@ -949,6 +956,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		taxonomyCategory1 =
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyVocabularyId, taxonomyCategory1);
+
 		taxonomyCategory2 =
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
 				taxonomyVocabularyId, taxonomyCategory2);
@@ -1406,8 +1414,13 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {

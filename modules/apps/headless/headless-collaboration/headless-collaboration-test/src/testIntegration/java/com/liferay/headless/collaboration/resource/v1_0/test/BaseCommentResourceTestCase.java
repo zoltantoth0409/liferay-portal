@@ -112,6 +112,7 @@ public abstract class BaseCommentResourceTestCase {
 
 		Comment comment1 = testGetBlogPostingCommentsPage_addComment(
 			blogPostingId, randomComment());
+
 		Comment comment2 = testGetBlogPostingCommentsPage_addComment(
 			blogPostingId, randomComment());
 
@@ -205,8 +206,10 @@ public abstract class BaseCommentResourceTestCase {
 
 		Comment comment1 = testGetBlogPostingCommentsPage_addComment(
 			blogPostingId, randomComment());
+
 		Comment comment2 = testGetBlogPostingCommentsPage_addComment(
 			blogPostingId, randomComment());
+
 		Comment comment3 = testGetBlogPostingCommentsPage_addComment(
 			blogPostingId, randomComment());
 
@@ -308,6 +311,7 @@ public abstract class BaseCommentResourceTestCase {
 
 		comment1 = testGetBlogPostingCommentsPage_addComment(
 			blogPostingId, comment1);
+
 		comment2 = testGetBlogPostingCommentsPage_addComment(
 			blogPostingId, comment2);
 
@@ -625,6 +629,7 @@ public abstract class BaseCommentResourceTestCase {
 
 		Comment comment1 = testGetCommentCommentsPage_addComment(
 			commentId, randomComment());
+
 		Comment comment2 = testGetCommentCommentsPage_addComment(
 			commentId, randomComment());
 
@@ -714,8 +719,10 @@ public abstract class BaseCommentResourceTestCase {
 
 		Comment comment1 = testGetCommentCommentsPage_addComment(
 			commentId, randomComment());
+
 		Comment comment2 = testGetCommentCommentsPage_addComment(
 			commentId, randomComment());
+
 		Comment comment3 = testGetCommentCommentsPage_addComment(
 			commentId, randomComment());
 
@@ -810,6 +817,7 @@ public abstract class BaseCommentResourceTestCase {
 		}
 
 		comment1 = testGetCommentCommentsPage_addComment(commentId, comment1);
+
 		comment2 = testGetCommentCommentsPage_addComment(commentId, comment2);
 
 		for (EntityField entityField : entityFields) {
@@ -1196,8 +1204,13 @@ public abstract class BaseCommentResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {

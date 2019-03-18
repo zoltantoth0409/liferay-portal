@@ -114,6 +114,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		TaxonomyVocabulary taxonomyVocabulary1 =
 			testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
 				contentSpaceId, randomTaxonomyVocabulary());
+
 		TaxonomyVocabulary taxonomyVocabulary2 =
 			testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
 				contentSpaceId, randomTaxonomyVocabulary());
@@ -222,9 +223,11 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		TaxonomyVocabulary taxonomyVocabulary1 =
 			testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
 				contentSpaceId, randomTaxonomyVocabulary());
+
 		TaxonomyVocabulary taxonomyVocabulary2 =
 			testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
 				contentSpaceId, randomTaxonomyVocabulary());
+
 		TaxonomyVocabulary taxonomyVocabulary3 =
 			testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
 				contentSpaceId, randomTaxonomyVocabulary());
@@ -343,6 +346,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		taxonomyVocabulary1 =
 			testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
 				contentSpaceId, taxonomyVocabulary1);
+
 		taxonomyVocabulary2 =
 			testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
 				contentSpaceId, taxonomyVocabulary2);
@@ -996,8 +1000,13 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {

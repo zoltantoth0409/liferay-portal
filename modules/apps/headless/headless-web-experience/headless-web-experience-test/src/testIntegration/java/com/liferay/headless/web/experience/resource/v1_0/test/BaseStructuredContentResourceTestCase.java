@@ -115,6 +115,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
+
 		StructuredContent structuredContent2 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
@@ -223,9 +224,11 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
+
 		StructuredContent structuredContent2 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
+
 		StructuredContent structuredContent3 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, randomStructuredContent());
@@ -344,6 +347,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, structuredContent1);
+
 		structuredContent2 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
 				contentSpaceId, structuredContent2);
@@ -524,6 +528,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
+
 		StructuredContent structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
@@ -632,9 +637,11 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
+
 		StructuredContent structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
+
 		StructuredContent structuredContent3 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, randomStructuredContent());
@@ -753,6 +760,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 		structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, structuredContent1);
+
 		structuredContent2 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
 				contentStructureId, structuredContent2);
@@ -1149,7 +1157,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/structured-contents/{structured-content-id}/rendered-content/{template-id}",
-					structuredContentId);
+					structuredContentId, templateId);
 
 		options.setLocation(location);
 
@@ -1167,7 +1175,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/structured-contents/{structured-content-id}/rendered-content/{template-id}",
-					structuredContentId);
+					structuredContentId, templateId);
 
 		options.setLocation(location);
 
@@ -1499,8 +1507,13 @@ public abstract class BaseStructuredContentResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {

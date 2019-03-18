@@ -359,6 +359,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 		BlogPosting blogPosting1 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
+
 		BlogPosting blogPosting2 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
@@ -462,9 +463,11 @@ public abstract class BaseBlogPostingResourceTestCase {
 		BlogPosting blogPosting1 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
+
 		BlogPosting blogPosting2 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
+
 		BlogPosting blogPosting3 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
 				contentSpaceId, randomBlogPosting());
@@ -569,6 +572,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		blogPosting1 = testGetContentSpaceBlogPostingsPage_addBlogPosting(
 			contentSpaceId, blogPosting1);
+
 		blogPosting2 = testGetContentSpaceBlogPostingsPage_addBlogPosting(
 			contentSpaceId, blogPosting2);
 
@@ -1075,8 +1079,13 @@ public abstract class BaseBlogPostingResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {

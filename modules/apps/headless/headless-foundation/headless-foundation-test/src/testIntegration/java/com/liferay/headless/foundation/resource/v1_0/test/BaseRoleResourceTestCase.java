@@ -107,6 +107,7 @@ public abstract class BaseRoleResourceTestCase {
 
 		Role role1 = testGetMyUserAccountRolesPage_addRole(
 			myUserAccountId, randomRole());
+
 		Role role2 = testGetMyUserAccountRolesPage_addRole(
 			myUserAccountId, randomRole());
 
@@ -127,8 +128,10 @@ public abstract class BaseRoleResourceTestCase {
 
 		Role role1 = testGetMyUserAccountRolesPage_addRole(
 			myUserAccountId, randomRole());
+
 		Role role2 = testGetMyUserAccountRolesPage_addRole(
 			myUserAccountId, randomRole());
+
 		Role role3 = testGetMyUserAccountRolesPage_addRole(
 			myUserAccountId, randomRole());
 
@@ -312,6 +315,7 @@ public abstract class BaseRoleResourceTestCase {
 
 		Role role1 = testGetUserAccountRolesPage_addRole(
 			userAccountId, randomRole());
+
 		Role role2 = testGetUserAccountRolesPage_addRole(
 			userAccountId, randomRole());
 
@@ -331,8 +335,10 @@ public abstract class BaseRoleResourceTestCase {
 
 		Role role1 = testGetUserAccountRolesPage_addRole(
 			userAccountId, randomRole());
+
 		Role role2 = testGetUserAccountRolesPage_addRole(
 			userAccountId, randomRole());
+
 		Role role3 = testGetUserAccountRolesPage_addRole(
 			userAccountId, randomRole());
 
@@ -673,8 +679,13 @@ public abstract class BaseRoleResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {

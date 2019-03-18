@@ -108,6 +108,7 @@ public abstract class BaseOrganizationResourceTestCase {
 		Organization organization1 =
 			testGetMyUserAccountOrganizationsPage_addOrganization(
 				myUserAccountId, randomOrganization());
+
 		Organization organization2 =
 			testGetMyUserAccountOrganizationsPage_addOrganization(
 				myUserAccountId, randomOrganization());
@@ -133,9 +134,11 @@ public abstract class BaseOrganizationResourceTestCase {
 		Organization organization1 =
 			testGetMyUserAccountOrganizationsPage_addOrganization(
 				myUserAccountId, randomOrganization());
+
 		Organization organization2 =
 			testGetMyUserAccountOrganizationsPage_addOrganization(
 				myUserAccountId, randomOrganization());
+
 		Organization organization3 =
 			testGetMyUserAccountOrganizationsPage_addOrganization(
 				myUserAccountId, randomOrganization());
@@ -338,6 +341,7 @@ public abstract class BaseOrganizationResourceTestCase {
 		Organization organization1 =
 			testGetOrganizationOrganizationsPage_addOrganization(
 				organizationId, randomOrganization());
+
 		Organization organization2 =
 			testGetOrganizationOrganizationsPage_addOrganization(
 				organizationId, randomOrganization());
@@ -363,9 +367,11 @@ public abstract class BaseOrganizationResourceTestCase {
 		Organization organization1 =
 			testGetOrganizationOrganizationsPage_addOrganization(
 				organizationId, randomOrganization());
+
 		Organization organization2 =
 			testGetOrganizationOrganizationsPage_addOrganization(
 				organizationId, randomOrganization());
+
 		Organization organization3 =
 			testGetOrganizationOrganizationsPage_addOrganization(
 				organizationId, randomOrganization());
@@ -472,6 +478,7 @@ public abstract class BaseOrganizationResourceTestCase {
 		Organization organization1 =
 			testGetUserAccountOrganizationsPage_addOrganization(
 				userAccountId, randomOrganization());
+
 		Organization organization2 =
 			testGetUserAccountOrganizationsPage_addOrganization(
 				userAccountId, randomOrganization());
@@ -497,9 +504,11 @@ public abstract class BaseOrganizationResourceTestCase {
 		Organization organization1 =
 			testGetUserAccountOrganizationsPage_addOrganization(
 				userAccountId, randomOrganization());
+
 		Organization organization2 =
 			testGetUserAccountOrganizationsPage_addOrganization(
 				userAccountId, randomOrganization());
+
 		Organization organization3 =
 			testGetUserAccountOrganizationsPage_addOrganization(
 				userAccountId, randomOrganization());
@@ -859,8 +868,13 @@ public abstract class BaseOrganizationResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {
