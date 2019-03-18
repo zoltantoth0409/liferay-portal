@@ -128,10 +128,46 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 				@Test
 				public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
-					${firstJavaMethodParameter.parameterType} ${firstJavaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaMethodParameter.parameterName?cap_first}();
+					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+						<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+						<#else>
+							${javaMethodParameter.parameterType} ${javaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}();
+						</#if>
+					</#list>
 
-					${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
-					${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
+					${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+
+					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+						<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+						<#else>
+							${javaMethodParameter.parameterName},
+						</#if>
+					</#list>
+
+					random${schemaName}());
+
+					${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+
+					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+						<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+						<#else>
+							${javaMethodParameter.parameterName},
+						</#if>
+					</#list>
+
+					random${schemaName}());
 
 					Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
 
@@ -162,7 +198,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 							return;
 						}
 
-						${firstJavaMethodParameter.parameterType} ${firstJavaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaMethodParameter.parameterName?cap_first}();
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterType} ${javaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}();
+							</#if>
+						</#list>
 
 						${schemaName} ${schemaVarName}1 = random${schemaName}();
 						${schemaName} ${schemaVarName}2 = random${schemaName}();
@@ -206,7 +251,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 							return;
 						}
 
-						${firstJavaMethodParameter.parameterType} ${firstJavaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaMethodParameter.parameterName?cap_first}();
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterType} ${javaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}();
+							</#if>
+						</#list>
 
 						${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
 
@@ -238,11 +292,61 @@ public abstract class Base${schemaName}ResourceTestCase {
 				<#if parameters?contains("Pagination pagination")>
 					@Test
 					public void test${javaMethodSignature.methodName?cap_first}WithPagination() throws Exception {
-						${firstJavaMethodParameter.parameterType} ${firstJavaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaMethodParameter.parameterName?cap_first}();
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterType} ${javaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}();
+							</#if>
+						</#list>
 
-						${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
-						${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
-						${schemaName} ${schemaVarName}3 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, random${schemaName}());
+						${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterName},
+							</#if>
+						</#list>
+
+						random${schemaName}());
+
+						${schemaName} ${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterName},
+							</#if>
+						</#list>
+
+						random${schemaName}());
+
+						${schemaName} ${schemaVarName}3 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterName},
+							</#if>
+						</#list>
+
+						random${schemaName}());
 
 						Page<${schemaName}> page1 = invoke${javaMethodSignature.methodName?cap_first}(
 
@@ -302,7 +406,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 							return;
 						}
 
-						${firstJavaMethodParameter.parameterType} ${firstJavaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaMethodParameter.parameterName?cap_first}();
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterType} ${javaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}();
+							</#if>
+						</#list>
 
 						${schemaName} ${schemaVarName}1 = random${schemaName}();
 						${schemaName} ${schemaVarName}2 = random${schemaName}();
@@ -311,11 +424,37 @@ public abstract class Base${schemaName}ResourceTestCase {
 							BeanUtils.setProperty(${schemaVarName}1, entityField.getName(), DateUtils.addMinutes(new Date(), -2));
 						}
 
-						${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, ${schemaVarName}1);
+						${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterName},
+							</#if>
+						</#list>
+
+						${schemaVarName}1);
 
 						Thread.sleep(1000);
 
-						${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, ${schemaVarName}2);
+						${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterName},
+							</#if>
+						</#list>
+
+						${schemaVarName}2);
 
 						for (EntityField entityField : entityFields) {
 							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(
@@ -364,7 +503,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 							return;
 						}
 
-						${firstJavaMethodParameter.parameterType} ${firstJavaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${firstJavaMethodParameter.parameterName?cap_first}();
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterType} ${javaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}();
+							</#if>
+						</#list>
 
 						${schemaName} ${schemaVarName}1 = random${schemaName}();
 						${schemaName} ${schemaVarName}2 = random${schemaName}();
@@ -374,8 +522,35 @@ public abstract class Base${schemaName}ResourceTestCase {
 							BeanUtils.setProperty(${schemaVarName}2, entityField.getName(), "Bbb");
 						}
 
-						${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, ${schemaVarName}1);
-						${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterName}, ${schemaVarName}2);
+						${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterName},
+							</#if>
+						</#list>
+
+						${schemaVarName}1);
+
+						${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterName},
+							</#if>
+						</#list>
+
+						${schemaVarName}2);
 
 						for (EntityField entityField : entityFields) {
 							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(
@@ -417,17 +592,40 @@ public abstract class Base${schemaName}ResourceTestCase {
 					}
 				</#if>
 
-				protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${firstJavaMethodParameter.parameterType} ${firstJavaMethodParameter.parameterName}, ${schemaName} ${schemaVarName}) throws Exception {
+				protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+								 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+							<#else>
+								${javaMethodParameter.parameterType} ${javaMethodParameter.parameterName},
+							</#if>
+						</#list>
+
+						${schemaName} ${schemaVarName}
+					) throws Exception {
+
 					throw new UnsupportedOperationException("This method needs to be implemented");
 				}
 
-				protected ${firstJavaMethodParameter.parameterType} test${javaMethodSignature.methodName?cap_first}_get${firstJavaMethodParameter.parameterName?cap_first}() throws Exception {
-					<#if stringUtil.equals(firstJavaMethodParameter.parameterName, "contentSpaceId")>
-						return testGroup.getGroupId();
+				<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+					<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+						 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+						 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+						 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+						 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
 					<#else>
-						throw new UnsupportedOperationException("This method needs to be implemented");
+						protected ${javaMethodParameter.parameterType} test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}() throws Exception {
+							<#if stringUtil.equals(javaMethodParameter.parameterName, "contentSpaceId")>
+								return testGroup.getGroupId();
+							<#else>
+								throw new UnsupportedOperationException("This method needs to be implemented");
+							</#if>
+						}
 					</#if>
-				}
+				</#list>
 			</#if>
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "get") && javaMethodSignature.returnType?ends_with(schemaName)>
 			@Test
