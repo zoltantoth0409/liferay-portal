@@ -92,6 +92,19 @@ public class DataLayoutUtil {
 		).toString();
 	}
 
+	private static DataLayoutPage _toDataLayoutPage(JSONObject jsonObject) {
+		return new DataLayoutPage() {
+			{
+				dataLayoutRows = _toDataLayoutRows(
+					jsonObject.getJSONArray("rows"));
+				description = LocalizedValueUtil.toLocalizedValues(
+					jsonObject.getJSONObject("description"));
+				title = LocalizedValueUtil.toLocalizedValues(
+					jsonObject.getJSONObject("title"));
+			}
+		};
+	}
+
 	private static DataLayoutPage[] _toDataLayoutPages(JSONArray jsonArray) {
 		if (jsonArray == null) {
 			return null;
@@ -102,21 +115,23 @@ public class DataLayoutUtil {
 		for (Object object : jsonArray) {
 			JSONObject jsonObject = (JSONObject)object;
 
-			dataLayoutPages.add(
-				new DataLayoutPage() {
-					{
-						dataLayoutRows = _toDataLayoutRows(
-							jsonObject.getJSONArray("rows"));
-						description = LocalizedValueUtil.toLocalizedValues(
-							jsonObject.getJSONObject("description"));
-						title = LocalizedValueUtil.toLocalizedValues(
-							jsonObject.getJSONObject("title"));
-					}
-				});
+			dataLayoutPages.add(_toDataLayoutPage(jsonObject));
 		}
 
 		return dataLayoutPages.toArray(
 			new DataLayoutPage[dataLayoutPages.size()]);
+	}
+
+	private static DataLayoutColumn _toDataLayoutColumn(
+		JSONObject jsonObject) {
+
+		return new DataLayoutColumn() {
+			{
+				columnSize = jsonObject.getInt("columnSize");
+				fieldNames = JSONUtil.toStringArray(
+					jsonObject.getJSONArray("fieldNames"));
+			}
+		};
 	}
 
 	private static DataLayoutColumn[] _toDataLayoutColumns(
@@ -127,18 +142,20 @@ public class DataLayoutUtil {
 		for (Object object : jsonArray) {
 			JSONObject jsonObject = (JSONObject)object;
 
-			dataLayoutColumns.add(
-				new DataLayoutColumn() {
-					{
-						columnSize = jsonObject.getInt("columnSize");
-						fieldNames = JSONUtil.toStringArray(
-							jsonObject.getJSONArray("fieldNames"));
-					}
-				});
+			dataLayoutColumns.add(_toDataLayoutColumn(jsonObject));
 		}
 
 		return dataLayoutColumns.toArray(
 			new DataLayoutColumn[dataLayoutColumns.size()]);
+	}
+
+	private static DataLayoutRow _toDataLayoutRow(JSONObject jsonObject) {
+		return new DataLayoutRow() {
+			{
+				dataLayoutColums = _toDataLayoutColumns(
+					jsonObject.getJSONArray("columns"));
+			}
+		};
 	}
 
 	private static DataLayoutRow[] _toDataLayoutRows(JSONArray jsonArray) {
@@ -147,13 +164,7 @@ public class DataLayoutUtil {
 		for (Object object : jsonArray) {
 			JSONObject jsonObject = (JSONObject)object;
 
-			dataLayoutRows.add(
-				new DataLayoutRow() {
-					{
-						dataLayoutColums = _toDataLayoutColumns(
-							jsonObject.getJSONArray("columns"));
-					}
-				});
+			dataLayoutRows.add(_toDataLayoutRow(jsonObject));
 		}
 
 		return dataLayoutRows.toArray(new DataLayoutRow[dataLayoutRows.size()]);
