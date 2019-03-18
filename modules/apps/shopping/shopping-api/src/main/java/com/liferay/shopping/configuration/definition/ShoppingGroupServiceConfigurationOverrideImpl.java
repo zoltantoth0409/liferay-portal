@@ -48,7 +48,9 @@ public class ShoppingGroupServiceConfigurationOverrideImpl
 			for (int i = 0; i < locales.length; i++) {
 				Locale locale = locales[i];
 
-				if (locale.getCountry().length() == 2) {
+				String country = locale.getCountry();
+
+				if (country.length() == 2) {
 					Currency currency = Currency.getInstance(locale);
 
 					String currencyId = currency.getCurrencyCode();

@@ -555,10 +555,8 @@ public class JspServlet extends HttpServlet {
 		}
 	}
 
-	private static final String _ANALYZED_TLDS = JspServlet.class.getName(
-	).concat(
-		"#ANALYZED_TLDS"
-	);
+	private static final String _ANALYZED_TLDS =
+		JspServlet.class.getName() + "#ANALYZED_TLDS";
 
 	private static final String _DIR_NAME_RESOURCES = "/META-INF/resources";
 
