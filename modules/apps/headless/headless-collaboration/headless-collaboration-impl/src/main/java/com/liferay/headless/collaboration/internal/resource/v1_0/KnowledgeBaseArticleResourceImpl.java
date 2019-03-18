@@ -255,15 +255,13 @@ public class KnowledgeBaseArticleResourceImpl
 
 				setHasKnowledgeBaseArticles(
 					() -> {
-						int kbArticlesCount =
-							_kbArticleService.getKBArticlesCount(
-								kbArticle.getGroupId(),
-								kbArticle.getResourcePrimKey(),
-								WorkflowConstants.STATUS_APPROVED);
+						int count = _kbArticleService.getKBArticlesCount(
+							kbArticle.getGroupId(),
+							kbArticle.getResourcePrimKey(),
+							WorkflowConstants.STATUS_APPROVED);
 
-						return kbArticlesCount > 0;
+						return count > 0;
 					});
-
 				setParentKnowledgeBaseFolder(
 					() -> {
 						if (kbArticle.getKbFolderId() <= 0) {
