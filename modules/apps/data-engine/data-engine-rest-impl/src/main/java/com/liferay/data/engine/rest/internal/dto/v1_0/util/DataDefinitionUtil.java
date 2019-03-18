@@ -20,6 +20,7 @@ import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
@@ -56,7 +57,7 @@ public class DataDefinitionUtil {
 	private static void _put(
 		JSONObject jsonObject, String key, LocalizedValue[] localizedValues) {
 
-		if (localizedValues.length == 0) {
+		if (ArrayUtil.isEmpty(localizedValues)) {
 			return;
 		}
 
