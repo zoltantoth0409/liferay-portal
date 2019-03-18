@@ -190,6 +190,8 @@ name = HtmlUtil.escapeJS(name);
 		},
 
 		destroy: function() {
+			clearInterval(contentChangeHandle);
+
 			window['<%= name %>'].dispose();
 
 			window['<%= name %>'] = null;
@@ -198,12 +200,14 @@ name = HtmlUtil.escapeJS(name);
 		},
 
 		dispose: function() {
-			var editor = CKEDITOR.instances['<%= name %>'];
+			if (CKEDITOR) {
+				var editor = CKEDITOR.instances['<%= name %>'];
 
-			if (editor) {
-				editor.destroy();
+				if (editor) {
+					editor.destroy();
 
-				window['<%= name %>'].instanceReady = false;
+					window['<%= name %>'].instanceReady = false;
+				}
 			}
 
 			(new A.EventHandle(eventHandles)).detach();
@@ -387,6 +391,7 @@ name = HtmlUtil.escapeJS(name);
 	</c:if>
 
 	var ckEditorContent;
+	var contentChangeHandle;
 	var currentToolbarSet;
 
 	var initialToolbarSet = '<%= TextFormatter.format(HtmlUtil.escapeJS(toolbarSet), TextFormatter.M) %>';
@@ -547,7 +552,7 @@ name = HtmlUtil.escapeJS(name);
 				</c:if>
 
 				<c:if test="<%= Validator.isNotNull(onChangeMethod) %>">
-					var contentChangeHandle = setInterval(
+					contentChangeHandle = setInterval(
 						function() {
 							try {
 								window['<%= name %>'].onChangeCallback();
