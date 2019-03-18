@@ -64,30 +64,29 @@ public class DataLayoutUtil {
 				"Pagination mode must be 'wizard' or 'pagination'");
 		}
 
-		JSONArray pages = JSONFactoryUtil.createJSONArray();
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		DataLayoutPage[] dataLayoutPages = dataLayout.getDataLayoutPages();
 
 		for (DataLayoutPage dataLayoutPage : dataLayoutPages) {
-			if (ArrayUtil.isEmpty(dataLayoutPage.getTitle()) {
+			if (ArrayUtil.isEmpty(dataLayoutPage.getTitle())) {
 				throw new Exception("Title is required");
 			}
 
-			JSONObject page = JSONFactoryUtil.createJSONObject();
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-			page.put("description", dataLayoutPage.getDescription());
+			jsonObject.put("description", dataLayoutPage.getDescription());
+			jsonObject.put(
+				"rows", _toJSONArray(dataLayoutPage.getDataLayoutRows()));
+			jsonObject.put("title", dataLayoutPage.getTitle());
 
-			page.put("rows", _toJSONArray(dataLayoutPage.getDataLayoutRows()));
-
-			page.put("title", title);
-
-			pages.put(page);
+			jsonArray.put(jsonObject);
 		}
 
 		return JSONUtil.put(
 			"defaultLanguageId", defaultLanguageId
 		).put(
-			"pages", pages
+			"pages", jsonArray
 		).put(
 			"paginationMode", paginationMode
 		).toString();
