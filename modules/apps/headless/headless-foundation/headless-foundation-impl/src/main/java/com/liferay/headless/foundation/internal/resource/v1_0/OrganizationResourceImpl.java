@@ -122,15 +122,17 @@ public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 			return null;
 		}
 
-		DecimalFormat decimalFormat = new DecimalFormat("00,00");
-
-		DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
-
-		decimalFormatSymbols.setGroupingSeparator(':');
-
-		decimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
-
-		decimalFormat.setGroupingSize(2);
+		DecimalFormat decimalFormat = new DecimalFormat("00,00") {
+			{
+				setDecimalFormatSymbols(
+					new DecimalFormatSymbols() {
+						{
+							setGroupingSeparator(':');
+						}
+					});
+				setGroupingSize(2);
+			}
+		};
 
 		return decimalFormat.format(hour);
 	}
