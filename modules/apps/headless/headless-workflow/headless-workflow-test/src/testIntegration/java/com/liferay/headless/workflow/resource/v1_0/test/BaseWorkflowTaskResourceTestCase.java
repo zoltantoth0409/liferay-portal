@@ -30,6 +30,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
@@ -240,8 +241,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		String location =
-			_resourceURL +
-				_toPath("/workflow-tasks/assigned-to-me", pagination);
+			_resourceURL + _toPath("/workflow-tasks/assigned-to-me");
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -263,8 +263,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		String location =
-			_resourceURL +
-				_toPath("/workflow-tasks/assigned-to-me", pagination);
+			_resourceURL + _toPath("/workflow-tasks/assigned-to-me");
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -290,8 +289,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		String location =
-			_resourceURL +
-				_toPath("/workflow-tasks/assigned-to-my-roles", pagination);
+			_resourceURL + _toPath("/workflow-tasks/assigned-to-my-roles");
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -313,8 +311,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		String location =
-			_resourceURL +
-				_toPath("/workflow-tasks/assigned-to-my-roles", pagination);
+			_resourceURL + _toPath("/workflow-tasks/assigned-to-my-roles");
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -406,7 +403,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-me",
-					workflowTaskId, workflowTaskAssignToMe);
+					workflowTaskId);
 
 		options.setLocation(location);
 
@@ -426,7 +423,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-me",
-					workflowTaskId, workflowTaskAssignToMe);
+					workflowTaskId);
 
 		options.setLocation(location);
 
@@ -468,7 +465,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-user",
-					workflowTaskId, workflowTaskAssignToUser);
+					workflowTaskId);
 
 		options.setLocation(location);
 
@@ -489,7 +486,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/assign-to-user",
-					workflowTaskId, workflowTaskAssignToUser);
+					workflowTaskId);
 
 		options.setLocation(location);
 
@@ -530,7 +527,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/change-transition",
-					workflowTaskId, changeTransition);
+					workflowTaskId);
 
 		options.setLocation(location);
 
@@ -550,7 +547,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/change-transition",
-					workflowTaskId, changeTransition);
+					workflowTaskId);
 
 		options.setLocation(location);
 
@@ -591,7 +588,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/update-due-date",
-					workflowTaskId, workflowTaskAssignToMe);
+					workflowTaskId);
 
 		options.setLocation(location);
 
@@ -611,7 +608,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			_resourceURL +
 				_toPath(
 					"/workflow-tasks/{workflow-task-id}/update-due-date",
-					workflowTaskId, workflowTaskAssignToMe);
+					workflowTaskId);
 
 		options.setLocation(location);
 
@@ -894,6 +891,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	}
 
 	private String _toPath(String template, Object... values) {
+		if (ArrayUtil.isEmpty(values)) {
+			return template;
+		}
+
 		for (int i = 0; i < values.length; i++) {
 			template = template.replaceFirst(
 				"\\{.*\\}", String.valueOf(values[i]));
