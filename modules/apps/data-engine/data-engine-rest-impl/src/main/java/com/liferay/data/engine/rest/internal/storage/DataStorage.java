@@ -71,11 +71,6 @@ public class DataStorage {
 				_ddlRecordSetLocalService.getRecordSet(
 					dataRecord.getDataRecordCollectionId()));
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setScopeGroupId(groupId);
-		serviceContext.setUserId(PrincipalThreadLocal.getUserId());
-
 		DDMContent ddmContent = _ddmContentLocalService.addContent(
 			PrincipalThreadLocal.getUserId(), groupId,
 			DataRecord.class.getName(), null,
@@ -84,7 +79,12 @@ public class DataStorage {
 					_ddmStructureService.getStructure(
 						dataRecordCollection.getDataDefinitionId())),
 				dataRecord.getDataRecordValues()),
-			serviceContext);
+			new ServiceContext() {
+				{
+					setScopeGroupId(groupId);
+					setUserId(PrincipalThreadLocal.getUserId());
+				}
+			});
 
 		return ddmContent.getPrimaryKey();
 	}
