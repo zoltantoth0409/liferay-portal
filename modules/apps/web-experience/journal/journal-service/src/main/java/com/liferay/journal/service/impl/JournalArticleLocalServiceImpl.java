@@ -3414,11 +3414,11 @@ public class JournalArticleLocalServiceImpl
 			long groupId, String articleId, String urlTitle)
 		throws PortalException {
 
-		int maxLength = ModelHintsUtil.getMaxLength(
-			JournalArticle.class.getName(), "urlTitle");
-
 		String normalizedUrlTitle = FriendlyURLNormalizerUtil.normalize(
 			urlTitle);
+
+		int maxLength = ModelHintsUtil.getMaxLength(
+			JournalArticle.class.getName(), "urlTitle");
 
 		String curUrlTitle = normalizedUrlTitle.substring(
 			0, Math.min(maxLength, normalizedUrlTitle.length()));
