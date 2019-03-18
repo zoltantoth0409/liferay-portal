@@ -33,6 +33,23 @@ import java.util.Map;
  */
 public class LocalizedValueUtil {
 
+	public static JSONObject toJSONObject(LocalizedValue[] localizedValues)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		if (ArrayUtil.isEmpty(localizedValues)) {
+			return jsonObject;
+		}
+
+		for (LocalizedValue localizedValue : localizedValues) {
+			jsonObject.put(
+				localizedValue.getKey(), localizedValue.getValue());
+		}
+
+		return jsonObject;
+	}
+
 	public static Map<Locale, String> toLocalizationMap(
 		LocalizedValue[] localizedValues) {
 
