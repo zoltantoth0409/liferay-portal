@@ -41,9 +41,9 @@ public class DataRecordValueUtil {
 			DataDefinition dataDefinition, String json)
 		throws Exception {
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(json);
-
 		List<DataRecordValue> dataRecordValues = new ArrayList<>();
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(json);
 
 		for (DataDefinitionField dataDefinitionField :
 				dataDefinition.getDataDefinitionFields()) {
