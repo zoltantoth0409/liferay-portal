@@ -52,7 +52,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	@Activate
 	public void activate() {
 		_dataStorage = new DataStorage(
-			_dataRecordCollectionResource, _dataDefinitionResource,
+			_dataDefinitionResource, _dataRecordCollectionResource,
 			_ddmContentLocalService);
 	}
 

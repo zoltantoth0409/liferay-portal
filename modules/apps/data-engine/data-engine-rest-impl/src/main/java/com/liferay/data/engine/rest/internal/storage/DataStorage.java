@@ -31,8 +31,8 @@ import com.liferay.portal.kernel.service.ServiceContext;
 public class DataStorage {
 
 	public DataStorage(
-		DataRecordCollectionResource dataRecordCollectionResource,
 		DataDefinitionResource dataDefinitionResource,
+		DataRecordCollectionResource dataRecordCollectionResource,
 		DDMContentLocalService ddmContentLocalService) {
 
 		_dataRecordCollectionResource = dataRecordCollectionResource;
