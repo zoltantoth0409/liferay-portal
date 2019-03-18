@@ -780,11 +780,11 @@ public class UIItemsBuilder {
 
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("Liferay.Util.openWindow({title: '");
+		sb.append("Liferay.Util.openWindow({dialogIframe: {bodyCssClass: 'dialog-with-footer'}, title: '");
 		sb.append(UnicodeLanguageUtil.get(_resourceBundle, "permissions"));
 		sb.append("', uri: '");
 		sb.append(permissionsURL);
-		sb.append("', dialogIframe: {bodyCssClass: 'dialog-with-footer'}});");
+		sb.append("'});");
 
 		_addJavaScriptUIItem(
 			new JavaScriptToolbarItem(), toolbarItems, DLUIItemKeys.PERMISSIONS,
