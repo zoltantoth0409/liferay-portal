@@ -41,7 +41,8 @@ public class DataLayoutUtil {
 
 		dataLayout.setDefaultLanguageId(
 			jsonObject.getString("defaultLanguageId"));
-		dataLayout.setDataLayoutPages(_toDataLayoutPages(jsonObject));
+		dataLayout.setDataLayoutPages(
+			_toDataLayoutPages(jsonObject.getJSONArray("pages")));
 		dataLayout.setPaginationMode(jsonObject.getString("paginationMode"));
 
 		return dataLayout;
@@ -94,28 +95,26 @@ public class DataLayoutUtil {
 		).toString();
 	}
 
-	private static DataLayoutPage[] _toDataLayoutPages(JSONObject jsonObject) {
-		if (!jsonObject.has("pages")) {
+	private static DataLayoutPage[] _toDataLayoutPages(JSONArray jsonArray) {
+		if (jsonArray == null) {
 			return null;
 		}
 
 		List<DataLayoutPage> dataLayoutPages = new ArrayList<>();
 
-		JSONArray jsonArray = jsonObject.getJSONArray("pages");
-
 		for (Object object : jsonArray) {
 			DataLayoutPage dataLayoutPage = new DataLayoutPage();
 
-			JSONObject pageJSONObject = (JSONObject)object;
+			JSONObject jsonObject = (JSONObject)object;
 
 			dataLayoutPage.setDataLayoutRows(
-				_toDataLayoutRows(pageJSONObject.getJSONArray("rows")));
+				_toDataLayoutRows(jsonObject.getJSONArray("rows")));
 			dataLayoutPage.setDescription(
 				LocalizedValueUtil.toLocalizedValues(
-					pageJSONObject.getJSONObject("description")));
+					jsonObject.getJSONObject("description")));
 			dataLayoutPage.setTitle(
 				LocalizedValueUtil.toLocalizedValues(
-					pageJSONObject.getJSONObject("title")));
+					jsonObject.getJSONObject("title")));
 
 			dataLayoutPages.add(dataLayoutPage);
 		}
