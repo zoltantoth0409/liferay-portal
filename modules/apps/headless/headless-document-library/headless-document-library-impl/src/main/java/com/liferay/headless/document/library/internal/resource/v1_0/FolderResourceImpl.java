@@ -139,19 +139,19 @@ public class FolderResourceImpl
 	}
 
 	private Folder _addFolder(
-			Long documentsRepositoryId, Long parentFolderId, Folder folder)
+			Long contentSpaceId, Long parentFolderId, Folder folder)
 		throws Exception {
 
 		return _toFolder(
 			_dlAppService.addFolder(
-				documentsRepositoryId, parentFolderId, folder.getName(),
+				contentSpaceId, parentFolderId, folder.getName(),
 				folder.getDescription(),
 				ServiceContextUtil.createServiceContext(
-					documentsRepositoryId, folder.getViewableByAsString())));
+					contentSpaceId, folder.getViewableByAsString())));
 	}
 
 	private Page<Folder> _getFolderPage(
-			Long documentsRepositoryId, Filter filter, Long parentFolderId,
+			Long contentSpaceId, Filter filter, Long parentFolderId,
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
@@ -172,7 +172,7 @@ public class FolderResourceImpl
 				Field.ENTRY_CLASS_PK),
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
-				searchContext.setGroupIds(new long[] {documentsRepositoryId});
+				searchContext.setGroupIds(new long[] {contentSpaceId});
 			},
 			document -> _toFolder(
 				_dlAppService.getFolder(
