@@ -64,9 +64,9 @@ public class DataLayoutUtil {
 				"Pagination mode must be 'wizard' or 'pagination'");
 		}
 
-		DataLayoutPage[] dataLayoutPages = dataLayout.getDataLayoutPages();
-
 		JSONArray pages = JSONFactoryUtil.createJSONArray();
+
+		DataLayoutPage[] dataLayoutPages = dataLayout.getDataLayoutPages();
 
 		for (DataLayoutPage dataLayoutPage : dataLayoutPages) {
 			if (ArrayUtil.isEmpty(dataLayoutPage.getTitle()) {
