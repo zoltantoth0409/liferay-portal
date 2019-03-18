@@ -48,45 +48,18 @@ public class DataRecordValueUtil {
 		for (DataDefinitionField dataDefinitionField :
 				dataDefinition.getDataDefinitionFields()) {
 
-			String name = dataDefinitionField.getName();
-
-			if (!jsonObject.has(name)) {
+			if (!jsonObject.has(dataDefinitionField.getName())) {
 				continue;
 			}
 
-			DataRecordValue dataRecordValue = new DataRecordValue() {
-				{
-					key = name;
-
-					if (dataDefinitionField.getLocalizable()) {
-						JSONObject dataRecordValueJSONObject =
-							jsonObject.getJSONObject(name);
-
-						Iterable<String> iterable =
-							dataRecordValueJSONObject::keys;
-
-						Map<String, Object> localizedValues = new HashMap<>();
-
-						StreamSupport.stream(
-							iterable.spliterator(), false
-						).forEach(
-							key -> localizedValues.put(
-								key, dataRecordValueJSONObject.get(key))
-						);
-
-						value = localizedValues;
+			dataRecordValues.add(
+				new DataRecordValue() {
+					{
+						key = dataDefinitionField.getName();
+						value = _toDataRecordValueValue(
+							dataDefinitionField, jsonObject);
 					}
-					else if (dataDefinitionField.getRepeatable()) {
-						value = JSONUtil.toObjectArray(
-							jsonObject.getJSONArray(name));
-					}
-					else {
-						value = jsonObject.get(name);
-					}
-				}
-			};
-
-			dataRecordValues.add(dataRecordValue);
+				});
 		}
 
 		return dataRecordValues.toArray(
@@ -175,6 +148,35 @@ public class DataRecordValueUtil {
 		}
 
 		return dataRecordValuesMap;
+	}
+
+	private static Object _toDataRecordValueValue(
+		DataDefinitionField dataDefinitionField, JSONObject jsonObject) {
+
+		if (dataDefinitionField.getLocalizable()) {
+			JSONObject dataRecordValueJSONObject = jsonObject.getJSONObject(
+				dataDefinitionField.getName());
+
+			Iterable<String> iterable = dataRecordValueJSONObject::keys;
+
+			Map<String, Object> localizedValues = new HashMap<>();
+
+			StreamSupport.stream(
+				iterable.spliterator(), false
+			).forEach(
+				key -> localizedValues.put(
+					key, dataRecordValueJSONObject.get(key))
+			);
+
+			return localizedValues;
+		}
+
+		if (dataDefinitionField.getRepeatable()) {
+			return JSONUtil.toObjectArray(
+				jsonObject.getJSONArray(dataDefinitionField.getName()));
+		}
+
+		return jsonObject.get(dataDefinitionField.getName());
 	}
 
 }
