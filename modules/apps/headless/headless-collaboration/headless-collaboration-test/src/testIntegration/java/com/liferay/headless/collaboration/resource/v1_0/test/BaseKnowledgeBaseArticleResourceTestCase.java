@@ -211,7 +211,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-space/{content-space-id}/knowledge-base-articles",
+					"/content-spaces/{content-space-id}/knowledge-base-articles",
 					contentSpaceId);
 
 		location = HttpUtil.addParameter(
@@ -237,7 +237,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-space/{content-space-id}/knowledge-base-articles",
+					"/content-spaces/{content-space-id}/knowledge-base-articles",
 					contentSpaceId);
 
 		location = HttpUtil.addParameter(
@@ -287,7 +287,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-space/{content-space-id}/knowledge-base-articles",
+					"/content-spaces/{content-space-id}/knowledge-base-articles",
 					contentSpaceId);
 
 		options.setLocation(location);
@@ -311,7 +311,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-space/{content-space-id}/knowledge-base-articles",
+					"/content-spaces/{content-space-id}/knowledge-base-articles",
 					contentSpaceId);
 
 		options.setLocation(location);
@@ -1280,6 +1280,11 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				"Invalid entity field " + entityFieldName);
 		}
 
+		if (entityFieldName.equals("hasKnowledgeBaseArticles")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
 		if (entityFieldName.equals("id")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
@@ -1327,6 +1332,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				description = RandomTestUtil.randomString();
 				friendlyUrlPath = RandomTestUtil.randomString();
 				hasAttachments = RandomTestUtil.randomBoolean();
+				hasKnowledgeBaseArticles = RandomTestUtil.randomBoolean();
 				id = RandomTestUtil.randomLong();
 				parentKnowledgeBaseFolderId = RandomTestUtil.randomLong();
 				title = RandomTestUtil.randomString();
