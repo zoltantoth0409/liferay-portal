@@ -138,6 +138,7 @@ import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.GroupSubscriptionCheckSubscriptionSender;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -3416,8 +3417,11 @@ public class JournalArticleLocalServiceImpl
 		int maxLength = ModelHintsUtil.getMaxLength(
 			JournalArticle.class.getName(), "urlTitle");
 
-		String curUrlTitle = urlTitle.substring(
-			0, Math.min(maxLength, urlTitle.length()));
+		String normalizedUrlTitle = FriendlyURLNormalizerUtil.normalize(
+			urlTitle);
+
+		String curUrlTitle = normalizedUrlTitle.substring(
+			0, Math.min(maxLength, normalizedUrlTitle.length()));
 
 		for (int i = 1;; i++) {
 			JournalArticle article = fetchArticleByUrlTitle(
@@ -3429,8 +3433,10 @@ public class JournalArticleLocalServiceImpl
 
 			String suffix = StringPool.DASH + i;
 
-			String prefix = urlTitle.substring(
-				0, Math.min(maxLength - suffix.length(), urlTitle.length()));
+			String prefix = normalizedUrlTitle.substring(
+				0,
+				Math.min(
+					maxLength - suffix.length(), normalizedUrlTitle.length()));
 
 			curUrlTitle = prefix + suffix;
 		}
