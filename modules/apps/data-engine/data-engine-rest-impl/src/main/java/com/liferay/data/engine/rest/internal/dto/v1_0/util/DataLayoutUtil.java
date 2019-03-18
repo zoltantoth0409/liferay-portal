@@ -41,9 +41,8 @@ public class DataLayoutUtil {
 
 		dataLayout.setDefaultLanguageId(
 			jsonObject.getString("defaultLanguageId"));
+		dataLayout.setDataLayoutPages(_toDataLayoutPages(jsonObject));
 		dataLayout.setPaginationMode(jsonObject.getString("paginationMode"));
-
-		_createDEDataLayoutPages(dataLayout, jsonObject);
 
 		return dataLayout;
 	}
@@ -95,37 +94,36 @@ public class DataLayoutUtil {
 		).toString();
 	}
 
-	private static void _createDEDataLayoutPages(
-		DataLayout dataLayout, JSONObject jsonObject) {
-
-		if (jsonObject.has("pages")) {
-			List<DataLayoutPage> dataLayoutPages = new ArrayList<>();
-
-			JSONArray jsonArray = jsonObject.getJSONArray("pages");
-
-			for (Object pageObject : jsonArray) {
-				JSONObject page = (JSONObject)pageObject;
-
-				DataLayoutPage dataLayoutPage = new DataLayoutPage();
-
-				dataLayoutPage.setDescription(
-					LocalizedValueUtil.toLocalizedValues(
-						page.getJSONObject("description")));
-
-				dataLayoutPage.setDataLayoutRows(
-					_toDataLayoutRows(page.getJSONArray("rows")));
-
-				dataLayoutPage.setTitle(
-					LocalizedValueUtil.toLocalizedValues(
-						page.getJSONObject("title")));
-
-				dataLayoutPages.add(dataLayoutPage);
-			}
-
-			dataLayout.setDataLayoutPages(
-				dataLayoutPages.toArray(
-					new DataLayoutPage[dataLayoutPages.size()]));
+	private static DataLayoutPage[] _toDataLayoutPages(JSONObject jsonObject) {
+		if (!jsonObject.has("pages")) {
+			return null;
 		}
+
+		List<DataLayoutPage> dataLayoutPages = new ArrayList<>();
+
+		JSONArray jsonArray = jsonObject.getJSONArray("pages");
+
+		for (Object pageObject : jsonArray) {
+			JSONObject page = (JSONObject)pageObject;
+
+			DataLayoutPage dataLayoutPage = new DataLayoutPage();
+
+			dataLayoutPage.setDescription(
+				LocalizedValueUtil.toLocalizedValues(
+					page.getJSONObject("description")));
+
+			dataLayoutPage.setDataLayoutRows(
+				_toDataLayoutRows(page.getJSONArray("rows")));
+
+			dataLayoutPage.setTitle(
+				LocalizedValueUtil.toLocalizedValues(
+					page.getJSONObject("title")));
+
+			dataLayoutPages.add(dataLayoutPage);
+		}
+
+		return dataLayoutPages.toArray(
+			new DataLayoutPage[dataLayoutPages.size()]);
 	}
 
 	private static DataLayoutColumn[] _toDataLayoutColumns(
