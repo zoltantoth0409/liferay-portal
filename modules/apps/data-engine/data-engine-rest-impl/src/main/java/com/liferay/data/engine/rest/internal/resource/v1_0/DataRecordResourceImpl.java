@@ -59,6 +59,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	@Override
 	public boolean deleteDataRecord(Long dataRecordId) throws Exception {
 		_dataStorage.delete(dataRecordId);
+
 		_ddlRecordLocalService.deleteDDLRecord(dataRecordId);
 
 		return true;
