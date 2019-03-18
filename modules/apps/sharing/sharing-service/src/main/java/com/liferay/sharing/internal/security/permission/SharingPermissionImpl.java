@@ -146,10 +146,7 @@ public class SharingPermissionImpl implements SharingPermission {
 			long groupId)
 		throws PortalException {
 
-		if (permissionChecker.isOmniadmin() ||
-			permissionChecker.isCompanyAdmin() ||
-			permissionChecker.isGroupAdmin(groupId)) {
-
+		if (permissionChecker.isGroupAdmin(groupId)) {
 			return true;
 		}
 
