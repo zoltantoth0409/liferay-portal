@@ -137,7 +137,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 						<#if javaMethodParameter?is_first>
-							${firstJavaMethodParameter.parameterName}
+							${javaMethodParameter.parameterName}
 						<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 							, Pagination.of(1, 2)
 						<#else>
@@ -182,7 +182,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if javaMethodParameter?is_first>
-									${firstJavaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "filter")>
 									, getFilterString(entityField, "eq", ${schemaVarName}1)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
@@ -218,7 +218,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if javaMethodParameter?is_first>
-									${firstJavaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "filter")>
 									, getFilterString(entityField, "eq", ${schemaVarName}1)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
@@ -248,7 +248,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 							<#if javaMethodParameter?is_first>
-								${firstJavaMethodParameter.parameterName}
+								${javaMethodParameter.parameterName}
 							<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 								, Pagination.of(1, 2)
 							<#else>
@@ -266,7 +266,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 							<#if javaMethodParameter?is_first>
-								${firstJavaMethodParameter.parameterName}
+								${javaMethodParameter.parameterName}
 							<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 								, Pagination.of(2, 2)
 							<#else>
@@ -322,7 +322,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if javaMethodParameter?is_first>
-									${firstJavaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 									, Pagination.of(1, 2)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
@@ -340,7 +340,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if javaMethodParameter?is_first>
-									${firstJavaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 									, Pagination.of(1, 2)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
@@ -382,7 +382,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if javaMethodParameter?is_first>
-									${firstJavaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 									, Pagination.of(1, 2)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
@@ -400,7 +400,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if javaMethodParameter?is_first>
-									${firstJavaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 									, Pagination.of(1, 2)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
@@ -536,7 +536,22 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 
 			<#if (javaMethodSignature.javaMethodParameters?size > 0)>
-				String location = _resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaMethodParameters[0].parameterName});
+				String location = _resourceURL + _toPath("${javaMethodSignature.path}",
+
+				<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+					<#if javaMethodParameter?is_first>
+						${javaMethodParameter.parameterName}
+					<#elseif stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+					<#else>
+						, ${javaMethodParameter.parameterName}
+					</#if>
+				</#list>
+
+				);
 
 				<#if parameters?contains("Filter filter")>
 					location = HttpUtil.addParameter(location, "filter", filterString);
@@ -587,7 +602,22 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 
 			<#if (javaMethodSignature.javaMethodParameters?size > 0)>
-				String location = _resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaMethodParameters[0].parameterName});
+				String location = _resourceURL + _toPath("${javaMethodSignature.path}",
+
+				<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+					<#if javaMethodParameter?is_first>
+						${javaMethodParameter.parameterName}
+					<#elseif stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
+							 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
+					<#else>
+						, ${javaMethodParameter.parameterName}
+					</#if>
+				</#list>
+
+				);
 
 				<#if parameters?contains("Filter filter")>
 					location = HttpUtil.addParameter(location, "filter", filterString);
@@ -819,8 +849,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst("\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {
