@@ -39,9 +39,9 @@ public class DataLayoutUtil {
 
 		return new DataLayout() {
 			{
-				defaultLanguageId =
-					jsonObject.getString("defaultLanguageId");
-				dataLayoutPages = _toDataLayoutPages(jsonObject.getJSONArray("pages"));
+				dataLayoutPages = _toDataLayoutPages(
+					jsonObject.getJSONArray("pages"));
+				defaultLanguageId = jsonObject.getString("defaultLanguageId");
 				paginationMode = jsonObject.getString("paginationMode");
 			}
 		};
