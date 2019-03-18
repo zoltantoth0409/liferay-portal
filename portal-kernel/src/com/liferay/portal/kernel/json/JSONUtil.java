@@ -133,10 +133,12 @@ public class JSONUtil {
 		return jsonObject;
 	}
 
-	public static JSONArray put(Object value) {
+	public static JSONArray put(Object... values) {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		jsonArray.put(value);
+		for (Object value : values) {
+			jsonArray.put(value);
+		}
 
 		return jsonArray;
 	}
@@ -145,6 +147,32 @@ public class JSONUtil {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		return jsonObject.put(key, value);
+	}
+
+	public static JSONArray replace(
+		JSONArray jsonArray, String jsonObjectKey, JSONObject newJSONObject) {
+
+		if (jsonArray == null) {
+			return null;
+		}
+
+		JSONArray newJSONArray = JSONFactoryUtil.createJSONArray();
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			if (Objects.equals(
+					jsonObject.getString(jsonObjectKey),
+					newJSONObject.getString(jsonObjectKey))) {
+
+				newJSONArray.put(newJSONObject);
+			}
+			else {
+				newJSONArray.put(jsonObject);
+			}
+		}
+
+		return newJSONArray;
 	}
 
 	public static long[] toLongArray(JSONArray jsonArray) {

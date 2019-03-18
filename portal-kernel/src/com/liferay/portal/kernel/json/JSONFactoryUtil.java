@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -51,6 +52,10 @@ public class JSONFactoryUtil {
 
 	public static JSONArray createJSONArray() {
 		return getJSONFactory().createJSONArray();
+	}
+
+	public static JSONArray createJSONArray(Collection<?> collection) {
+		return getJSONFactory().createJSONArray(collection);
 	}
 
 	public static JSONArray createJSONArray(String json) throws JSONException {
