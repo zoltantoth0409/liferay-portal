@@ -1000,8 +1000,8 @@ AUI.add(
 
 						var colorPicker = new A.ColorPickerPopover(
 							{
-								trigger: selectorInput,
 								position: 'bottom',
+								trigger: selectorInput,
 								zIndex: 65535
 							}
 						).render();
