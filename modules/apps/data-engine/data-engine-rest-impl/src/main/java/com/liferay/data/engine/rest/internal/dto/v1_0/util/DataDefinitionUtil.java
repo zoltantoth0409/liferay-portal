@@ -56,15 +56,15 @@ public class DataDefinitionUtil {
 	private static void _put(
 		JSONObject jsonObject, String key, LocalizedValue[] localizedValues) {
 
-		JSONObject localziedValueJSONObject =
+		JSONObject localizedValueJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
 		for (LocalizedValue localizedValue : localizedValues) {
-			localziedValueJSONObject.put(
+			localizedValueJSONObject.put(
 				localizedValue.getKey(), localizedValue.getValue());
 		}
 
-		jsonObject.put(key, localziedValueJSONObject);
+		jsonObject.put(key, localizedValueJSONObject);
 	}
 
 	private static DataDefinitionField _toDataDefinitionField(
