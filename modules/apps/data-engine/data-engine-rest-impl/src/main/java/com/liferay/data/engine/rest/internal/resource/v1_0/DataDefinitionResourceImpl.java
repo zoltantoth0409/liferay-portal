@@ -18,7 +18,6 @@ import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionUtil;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.LocalizedValueUtil;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
-import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureService;
@@ -65,7 +64,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 						_portal.getClassNameId(DataDefinition.class),
 						pagination.getStartPosition(),
 						pagination.getEndPosition(), null),
-					this::_toDataDefinition),
+					DataDefinitionUtil::toDataDefinition),
 				pagination,
 				_ddmStructureService.getStructuresCount(
 					contextCompany.getCompanyId(), new long[] {contentSpaceId},
@@ -79,7 +78,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 					_portal.getClassNameId(DataDefinition.class), keywords,
 					WorkflowConstants.STATUS_ANY, pagination.getStartPosition(),
 					pagination.getEndPosition(), null),
-				this::_toDataDefinition),
+				DataDefinitionUtil::toDataDefinition),
 			pagination,
 			_ddmStructureService.searchCount(
 				contextCompany.getCompanyId(), new long[] {contentSpaceId},
@@ -91,7 +90,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 	public DataDefinition getDataDefinition(Long dataDefinitionId)
 		throws Exception {
 
-		return _toDataDefinition(
+		return DataDefinitionUtil.toDataDefinition(
 			_ddmStructureService.getStructure(dataDefinitionId));
 	}
 
@@ -100,7 +99,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
-		return _toDataDefinition(
+		return DataDefinitionUtil.toDataDefinition(
 			_ddmStructureLocalService.addStructure(
 				PrincipalThreadLocal.getUserId(), contentSpaceId,
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
@@ -117,7 +116,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
-		return _toDataDefinition(
+		return DataDefinitionUtil.toDataDefinition(
 			_ddmStructureLocalService.updateStructure(
 				PrincipalThreadLocal.getUserId(), dataDefinition.getId(),
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
@@ -126,26 +125,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 					dataDefinition.getDescription()),
 				DataDefinitionUtil.toJSON(dataDefinition),
 				new ServiceContext()));
-	}
-
-	private DataDefinition _toDataDefinition(DDMStructure ddmStructure)
-		throws Exception {
-
-		DataDefinition dataDefinition = DataDefinitionUtil.toDataDefinition(
-			ddmStructure.getDefinition());
-
-		dataDefinition.setDateCreated(ddmStructure.getCreateDate());
-		dataDefinition.setDateModified(ddmStructure.getModifiedDate());
-		dataDefinition.setDescription(
-			LocalizedValueUtil.toLocalizedValues(
-				ddmStructure.getDescriptionMap()));
-		dataDefinition.setId(ddmStructure.getStructureId());
-		dataDefinition.setName(
-			LocalizedValueUtil.toLocalizedValues(ddmStructure.getNameMap()));
-		dataDefinition.setStorageType(ddmStructure.getStorageType());
-		dataDefinition.setUserId(ddmStructure.getUserId());
-
-		return dataDefinition;
 	}
 
 	@Reference

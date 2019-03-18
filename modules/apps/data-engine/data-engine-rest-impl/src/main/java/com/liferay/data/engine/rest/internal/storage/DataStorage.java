@@ -17,11 +17,13 @@ package com.liferay.data.engine.rest.internal.storage;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecord;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordValue;
+import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionUtil;
+import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataRecordCollectionUtil;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataRecordValueUtil;
-import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
-import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
+import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
 import com.liferay.dynamic.data.mapping.model.DDMContent;
 import com.liferay.dynamic.data.mapping.service.DDMContentLocalService;
+import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -31,13 +33,13 @@ import com.liferay.portal.kernel.service.ServiceContext;
 public class DataStorage {
 
 	public DataStorage(
-		DataDefinitionResource dataDefinitionResource,
-		DataRecordCollectionResource dataRecordCollectionResource,
-		DDMContentLocalService ddmContentLocalService) {
+		DDLRecordSetLocalService ddlRecordSetLocalService,
+		DDMContentLocalService ddmContentLocalService,
+		DDMStructureService ddmStructureService) {
 
-		_dataDefinitionResource = dataDefinitionResource;
-		_dataRecordCollectionResource = dataRecordCollectionResource;
+		_ddlRecordSetLocalService = ddlRecordSetLocalService;
 		_ddmContentLocalService = ddmContentLocalService;
+		_ddmStructureService = ddmStructureService;
 	}
 
 	public long delete(long dataStorageId) throws Exception {
@@ -58,14 +60,16 @@ public class DataStorage {
 			dataStorageId);
 
 		return DataRecordValueUtil.toDataRecordValues(
-			_dataDefinitionResource.getDataDefinition(dataDefinitionId),
+			DataDefinitionUtil.toDataDefinition(
+				_ddmStructureService.getStructure(dataDefinitionId)),
 			ddmContent.getData());
 	}
 
 	public long save(long groupId, DataRecord dataRecord) throws Exception {
 		DataRecordCollection dataRecordCollection =
-			_dataRecordCollectionResource.getDataRecordCollection(
-				dataRecord.getDataRecordCollectionId());
+			DataRecordCollectionUtil.toDataRecordCollection(
+				_ddlRecordSetLocalService.getRecordSet(
+					dataRecord.getDataRecordCollectionId()));
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -76,16 +80,17 @@ public class DataStorage {
 			PrincipalThreadLocal.getUserId(), groupId,
 			DataRecord.class.getName(), null,
 			DataRecordValueUtil.toJSON(
-				_dataDefinitionResource.getDataDefinition(
-					dataRecordCollection.getDataDefinitionId()),
+				DataDefinitionUtil.toDataDefinition(
+					_ddmStructureService.getStructure(
+						dataRecordCollection.getDataDefinitionId())),
 				dataRecord.getDataRecordValues()),
 			serviceContext);
 
 		return ddmContent.getPrimaryKey();
 	}
 
-	private final DataDefinitionResource _dataDefinitionResource;
-	private final DataRecordCollectionResource _dataRecordCollectionResource;
+	private final DDLRecordSetLocalService _ddlRecordSetLocalService;
 	private final DDMContentLocalService _ddmContentLocalService;
+	private final DDMStructureService _ddmStructureService;
 
 }

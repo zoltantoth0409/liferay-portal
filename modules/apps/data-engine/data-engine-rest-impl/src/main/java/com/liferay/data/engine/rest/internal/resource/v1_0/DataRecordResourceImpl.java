@@ -16,8 +16,6 @@ package com.liferay.data.engine.rest.internal.resource.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataRecord;
 import com.liferay.data.engine.rest.internal.storage.DataStorage;
-import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
-import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordResource;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
@@ -29,6 +27,7 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
 import com.liferay.dynamic.data.mapping.service.DDMContentLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStorageLinkLocalService;
+import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.Portal;
@@ -52,8 +51,8 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	@Activate
 	public void activate() {
 		_dataStorage = new DataStorage(
-			_dataDefinitionResource, _dataRecordCollectionResource,
-			_ddmContentLocalService);
+			_ddlRecordSetLocalService, _ddmContentLocalService,
+			_ddmStructureService);
 	}
 
 	@Override
@@ -144,12 +143,6 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		};
 	}
 
-	@Reference
-	private DataDefinitionResource _dataDefinitionResource;
-
-	@Reference
-	private DataRecordCollectionResource _dataRecordCollectionResource;
-
 	private DataStorage _dataStorage;
 
 	@Reference
@@ -166,6 +159,9 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 
 	@Reference
 	private DDMStorageLinkLocalService _ddmStorageLinkLocalService;
+
+	@Reference
+	private DDMStructureService _ddmStructureService;
 
 	@Reference
 	private Portal _portal;

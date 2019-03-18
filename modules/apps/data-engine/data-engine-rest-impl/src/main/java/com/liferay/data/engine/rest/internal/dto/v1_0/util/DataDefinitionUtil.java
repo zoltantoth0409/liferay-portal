@@ -16,6 +16,7 @@ package com.liferay.data.engine.rest.internal.dto.v1_0.util;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
+import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -26,17 +27,27 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class DataDefinitionUtil {
 
-	public static DataDefinition toDataDefinition(String json)
+	public static DataDefinition toDataDefinition(DDMStructure ddmStructure)
 		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			ddmStructure.getDefinition());
 
 		return new DataDefinition() {
 			{
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(json);
-
 				dataDefinitionFields = JSONUtil.toArray(
 					jsonObject.getJSONArray("fields"),
 					fieldJSONObject -> _toDataDefinitionField(fieldJSONObject),
 					DataDefinitionField.class);
+				dateCreated = ddmStructure.getCreateDate();
+				dateModified = ddmStructure.getModifiedDate();
+				description = LocalizedValueUtil.toLocalizedValues(
+					ddmStructure.getDescriptionMap());
+				id = ddmStructure.getStructureId();
+				name = LocalizedValueUtil.toLocalizedValues(
+					ddmStructure.getNameMap());
+				storageType = ddmStructure.getStorageType();
+				userId = ddmStructure.getUserId();
 			}
 		};
 	}

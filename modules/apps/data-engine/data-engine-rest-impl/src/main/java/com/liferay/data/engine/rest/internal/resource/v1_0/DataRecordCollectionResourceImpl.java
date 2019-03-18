@@ -15,6 +15,7 @@
 package com.liferay.data.engine.rest.internal.resource.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
+import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataRecordCollectionUtil;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.LocalizedValueUtil;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
@@ -63,7 +64,7 @@ public class DataRecordCollectionResourceImpl
 					_ddlRecordSetLocalService.getRecordSets(
 						contentSpaceId, pagination.getStartPosition(),
 						pagination.getEndPosition()),
-					this::_toDataRecordCollection),
+					DataRecordCollectionUtil::toDataRecordCollection),
 				pagination,
 				_ddlRecordSetLocalService.getRecordSetsCount(contentSpaceId));
 		}
@@ -77,7 +78,7 @@ public class DataRecordCollectionResourceImpl
 					DDLRecordSetConstants.SCOPE_DATA_ENGINE,
 					pagination.getStartPosition(), pagination.getEndPosition(),
 					null),
-				this::_toDataRecordCollection),
+				DataRecordCollectionUtil::toDataRecordCollection),
 			pagination,
 			_ddlRecordSetLocalService.searchCount(
 				group.getCompanyId(), contentSpaceId, keywords,
@@ -100,7 +101,7 @@ public class DataRecordCollectionResourceImpl
 						ddmStructure.getGroupId(),
 						pagination.getStartPosition(),
 						pagination.getEndPosition()),
-					this::_toDataRecordCollection),
+					DataRecordCollectionUtil::toDataRecordCollection),
 				pagination,
 				_ddlRecordSetLocalService.getRecordSetsCount(
 					ddmStructure.getGroupId()));
@@ -113,7 +114,7 @@ public class DataRecordCollectionResourceImpl
 					keywords, DDLRecordSetConstants.SCOPE_DATA_ENGINE,
 					pagination.getStartPosition(), pagination.getEndPosition(),
 					null),
-				this::_toDataRecordCollection),
+				DataRecordCollectionUtil::toDataRecordCollection),
 			pagination,
 			_ddlRecordSetLocalService.searchCount(
 				ddmStructure.getCompanyId(), ddmStructure.getGroupId(),
@@ -125,7 +126,7 @@ public class DataRecordCollectionResourceImpl
 			Long dataRecordCollectionId)
 		throws Exception {
 
-		return _toDataRecordCollection(
+		return DataRecordCollectionUtil.toDataRecordCollection(
 			_ddlRecordSetLocalService.getRecordSet(dataRecordCollectionId));
 	}
 
@@ -137,7 +138,7 @@ public class DataRecordCollectionResourceImpl
 		DDMStructure ddmStructure = _ddmStructureService.getStructure(
 			dataDefinitionId);
 
-		return _toDataRecordCollection(
+		return DataRecordCollectionUtil.toDataRecordCollection(
 			_ddlRecordSetLocalService.addRecordSet(
 				PrincipalThreadLocal.getUserId(), ddmStructure.getGroupId(),
 				dataRecordCollection.getDataDefinitionId(), null,
@@ -158,7 +159,7 @@ public class DataRecordCollectionResourceImpl
 		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
 			dataRecordCollectionId);
 
-		return _toDataRecordCollection(
+		return DataRecordCollectionUtil.toDataRecordCollection(
 			_ddlRecordSetLocalService.updateRecordSet(
 				dataRecordCollectionId, ddlRecordSet.getDDMStructureId(),
 				LocalizedValueUtil.toLocalizationMap(
@@ -166,21 +167,6 @@ public class DataRecordCollectionResourceImpl
 				LocalizedValueUtil.toLocalizationMap(
 					dataRecordCollection.getDescription()),
 				0, new ServiceContext()));
-	}
-
-	private DataRecordCollection _toDataRecordCollection(
-		DDLRecordSet ddlRecordSet) {
-
-		return new DataRecordCollection() {
-			{
-				dataDefinitionId = ddlRecordSet.getDDMStructureId();
-				description = LocalizedValueUtil.toLocalizedValues(
-					ddlRecordSet.getDescriptionMap());
-				id = ddlRecordSet.getRecordSetId();
-				name = LocalizedValueUtil.toLocalizedValues(
-					ddlRecordSet.getNameMap());
-			}
-		};
 	}
 
 	@Reference
