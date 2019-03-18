@@ -117,10 +117,8 @@ public class DataDefinitionUtil {
 			jsonArray.length());
 
 		for (int i = 0; i < jsonArray.length(); i++) {
-			DataDefinitionField dataDefinitionField = _toDataDefinitionField(
-				jsonArray.getJSONObject(i));
-
-			dataDefinitionFields.add(dataDefinitionField);
+			dataDefinitionFields.add(
+				_toDataDefinitionField(jsonArray.getJSONObject(i)));
 		}
 
 		return dataDefinitionFields.toArray(

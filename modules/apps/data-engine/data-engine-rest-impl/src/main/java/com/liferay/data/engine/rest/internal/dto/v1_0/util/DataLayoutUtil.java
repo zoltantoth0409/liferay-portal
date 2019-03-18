@@ -103,20 +103,19 @@ public class DataLayoutUtil {
 		List<DataLayoutPage> dataLayoutPages = new ArrayList<>();
 
 		for (Object object : jsonArray) {
-			DataLayoutPage dataLayoutPage = new DataLayoutPage();
-
 			JSONObject jsonObject = (JSONObject)object;
 
-			dataLayoutPage.setDataLayoutRows(
-				_toDataLayoutRows(jsonObject.getJSONArray("rows")));
-			dataLayoutPage.setDescription(
-				LocalizedValueUtil.toLocalizedValues(
-					jsonObject.getJSONObject("description")));
-			dataLayoutPage.setTitle(
-				LocalizedValueUtil.toLocalizedValues(
-					jsonObject.getJSONObject("title")));
-
-			dataLayoutPages.add(dataLayoutPage);
+			dataLayoutPages.add(
+				new DataLayoutPage() {
+					{
+						dataLayoutRows = _toDataLayoutRows(
+							jsonObject.getJSONArray("rows"));
+						description = LocalizedValueUtil.toLocalizedValues(
+							jsonObject.getJSONObject("description"));
+						title = LocalizedValueUtil.toLocalizedValues(
+							jsonObject.getJSONObject("title"));
+					}
+				});
 		}
 
 		return dataLayoutPages.toArray(
@@ -129,15 +128,16 @@ public class DataLayoutUtil {
 		List<DataLayoutColumn> dataLayoutColumns = new ArrayList<>();
 
 		for (Object object : jsonArray) {
-			DataLayoutColumn dataLayoutColumn = new DataLayoutColumn();
-
 			JSONObject jsonObject = (JSONObject)object;
 
-			dataLayoutColumn.setColumnSize(jsonObject.getInt("columnSize"));
-			dataLayoutColumn.setFieldNames(
-				JSONUtil.toStringArray(jsonObject.getJSONArray("fieldNames")));
-
-			dataLayoutColumns.add(dataLayoutColumn);
+			dataLayoutColumns.add(
+				new DataLayoutColumn() {
+					{
+						columnSize = jsonObject.getInt("columnSize");
+						fieldNames = JSONUtil.toStringArray(
+							jsonObject.getJSONArray("fieldNames"));
+					}
+				});
 		}
 
 		return dataLayoutColumns.toArray(
@@ -148,14 +148,15 @@ public class DataLayoutUtil {
 		List<DataLayoutRow> dataLayoutRows = new ArrayList<>();
 
 		for (Object object : jsonArray) {
-			DataLayoutRow dataLayoutRow = new DataLayoutRow();
-
 			JSONObject jsonObject = (JSONObject)object;
 
-			dataLayoutRow.setDataLayoutColums(
-				_toDataLayoutColumns(jsonObject.getJSONArray("columns")));
-
-			dataLayoutRows.add(dataLayoutRow);
+			dataLayoutRows.add(
+				new DataLayoutRow() {
+					{
+						dataLayoutColums = _toDataLayoutColumns(
+							jsonObject.getJSONArray("columns"));
+					}
+				});
 		}
 
 		return dataLayoutRows.toArray(new DataLayoutRow[dataLayoutRows.size()]);
