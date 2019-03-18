@@ -56,7 +56,7 @@ public class DataLayoutUtil {
 				_PAGINATION_MODES, dataLayout.getPaginationMode()) {
 
 			throw new Exception(
-				"Pagination mode must be 'wizard' or 'pagination'");
+				"Pagination mode must be 'pagination' or 'wizard'");
 		}
 
 		return JSONUtil.put(
