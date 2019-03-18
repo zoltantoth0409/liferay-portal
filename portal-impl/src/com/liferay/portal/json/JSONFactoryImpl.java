@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.lang.reflect.InvocationTargetException;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -147,6 +148,11 @@ public class JSONFactoryImpl implements JSONFactory {
 	@Override
 	public JSONArray createJSONArray(String json) throws JSONException {
 		return new JSONArrayImpl(json);
+	}
+
+	@Override
+	public <T> JSONArray createJSONArray(T[] array) {
+		return new JSONArrayImpl(Arrays.asList(array));
 	}
 
 	@Override
