@@ -14,7 +14,10 @@
 
 package com.liferay.portal.kernel.json;
 
+import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.util.GetterUtil;
+
+import java.lang.reflect.Array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -181,6 +184,71 @@ public class JSONUtil {
 		}
 
 		return newJSONArray;
+	}
+
+	public static <T> T[] toArray(
+			JSONArray jsonArray,
+			UnsafeFunction<JSONObject, T, Exception> unsafeFunction,
+			Class<?> clazz)
+		throws Exception {
+
+		List<T> list = toList(jsonArray, unsafeFunction);
+
+		return list.toArray((T[])Array.newInstance(clazz, list.size()));
+	}
+
+	public static <T> JSONArray toJSONArray(
+			List<T> list, UnsafeFunction<T, Object, Exception> unsafeFunction)
+		throws Exception {
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		if (list == null) {
+			return jsonArray;
+		}
+
+		for (T t : list) {
+			jsonArray.put(unsafeFunction.apply(t));
+		}
+
+		return jsonArray;
+	}
+
+	public static <T> JSONArray toJSONArray(
+			T[] array, UnsafeFunction<T, Object, Exception> unsafeFunction)
+		throws Exception {
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		if (array == null) {
+			return jsonArray;
+		}
+
+		for (T t : array) {
+			jsonArray.put(unsafeFunction.apply(t));
+		}
+
+		return jsonArray;
+	}
+
+	public static <T> List<T> toList(
+			JSONArray jsonArray,
+			UnsafeFunction<JSONObject, T, Exception> unsafeFunction)
+		throws Exception {
+
+		if (jsonArray == null) {
+			return Collections.emptyList();
+		}
+
+		List<T> values = new ArrayList<>(jsonArray.length());
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			values.add(unsafeFunction.apply(jsonObject));
+		}
+
+		return values;
 	}
 
 	public static long[] toLongArray(JSONArray jsonArray) {
