@@ -103,11 +103,6 @@ public class DDMStructureLayoutLocalServiceImpl
 	}
 
 	@Override
-	public int getStructureLayoutsCount(long groupId) {
-		return ddmStructureLayoutPersistence.countByGroupId(groupId);
-	}
-
-	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteStructureLayout(DDMStructureLayout structureLayout) {
 		ddmStructureLayoutPersistence.remove(structureLayout);
@@ -165,6 +160,11 @@ public class DDMStructureLayoutLocalServiceImpl
 		throws PortalException {
 
 		return ddmStructureLayoutPersistence.findByGroupId(groupId, start, end);
+	}
+
+	@Override
+	public int getStructureLayoutsCount(long groupId) {
+		return ddmStructureLayoutPersistence.countByGroupId(groupId);
 	}
 
 	@Override
