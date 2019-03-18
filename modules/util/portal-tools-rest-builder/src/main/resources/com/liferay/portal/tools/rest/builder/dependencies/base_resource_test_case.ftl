@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
@@ -157,14 +158,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 					Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
 
 					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-						<#if javaMethodParameter?is_first>
-							${javaMethodParameter.parameterName}
-						<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-							, Pagination.of(1, 2)
+						<#if !javaMethodParameter?is_first>
+							,
+						</#if>
+
+						<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+							Pagination.of(1, 2)
 						<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-							, ${javaMethodParameter.parameterName}
+							${javaMethodParameter.parameterName}
 						<#else>
-							, null
+							null
 						</#if>
 					</#list>
 
@@ -208,16 +211,18 @@ public abstract class Base${schemaName}ResourceTestCase {
 							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-								<#if javaMethodParameter?is_first>
-									${javaMethodParameter.parameterName}
-								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "filter")>
-									, getFilterString(entityField, "eq", ${schemaVarName}1)
+								<#if !javaMethodParameter?is_first>
+									,
+								</#if>
+
+								<#if stringUtil.equals(javaMethodParameter.parameterName, "filter")>
+									getFilterString(entityField, "eq", ${schemaVarName}1)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-									, Pagination.of(1, 2)
+									Pagination.of(1, 2)
 								<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-									, ${javaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#else>
-									, null
+									null
 								</#if>
 							</#list>
 
@@ -250,16 +255,18 @@ public abstract class Base${schemaName}ResourceTestCase {
 							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-								<#if javaMethodParameter?is_first>
-									${javaMethodParameter.parameterName}
-								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "filter")>
-									, getFilterString(entityField, "eq", ${schemaVarName}1)
+								<#if !javaMethodParameter?is_first>
+									,
+								</#if>
+
+								<#if stringUtil.equals(javaMethodParameter.parameterName, "filter")>
+									getFilterString(entityField, "eq", ${schemaVarName}1)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-									, Pagination.of(1, 2)
+									Pagination.of(1, 2)
 								<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-									, ${javaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#else>
-									, null
+									null
 								</#if>
 							</#list>
 
@@ -312,14 +319,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 						Page<${schemaName}> page1 = invoke${javaMethodSignature.methodName?cap_first}(
 
 						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-							<#if javaMethodParameter?is_first>
-								${javaMethodParameter.parameterName}
-							<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-								, Pagination.of(1, 2)
+							<#if !javaMethodParameter?is_first>
+								,
+							</#if>
+
+							<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+								Pagination.of(1, 2)
 							<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-								, ${javaMethodParameter.parameterName}
+								${javaMethodParameter.parameterName}
 							<#else>
-								, null
+								null
 							</#if>
 						</#list>
 
@@ -332,14 +341,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 						Page<${schemaName}> page2 = invoke${javaMethodSignature.methodName?cap_first}(
 
 						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-							<#if javaMethodParameter?is_first>
-								${javaMethodParameter.parameterName}
-							<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-								, Pagination.of(2, 2)
+							<#if !javaMethodParameter?is_first>
+								,
+							</#if>
+
+							<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+								Pagination.of(2, 2)
 							<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-								, ${javaMethodParameter.parameterName}
+								${javaMethodParameter.parameterName}
 							<#else>
-								, null
+								null
 							</#if>
 						</#list>
 
@@ -410,16 +421,18 @@ public abstract class Base${schemaName}ResourceTestCase {
 							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-								<#if javaMethodParameter?is_first>
-									${javaMethodParameter.parameterName}
-								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-									, Pagination.of(1, 2)
+								<#if !javaMethodParameter?is_first>
+									,
+								</#if>
+
+								<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+									Pagination.of(1, 2)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
-									, entityField.getName() + ":asc"
+									entityField.getName() + ":asc"
 								<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-									, ${javaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#else>
-									, null
+									null
 								</#if>
 							</#list>
 
@@ -430,16 +443,18 @@ public abstract class Base${schemaName}ResourceTestCase {
 							Page<${schemaName}> descPage = invoke${javaMethodSignature.methodName?cap_first}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-								<#if javaMethodParameter?is_first>
-									${javaMethodParameter.parameterName}
-								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-									, Pagination.of(1, 2)
+								<#if !javaMethodParameter?is_first>
+									,
+								</#if>
+
+								<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+									Pagination.of(1, 2)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
-									, entityField.getName() + ":desc"
+									entityField.getName() + ":desc"
 								<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-									, ${javaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#else>
-									, null
+									null
 								</#if>
 							</#list>
 
@@ -495,16 +510,18 @@ public abstract class Base${schemaName}ResourceTestCase {
 							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-								<#if javaMethodParameter?is_first>
-									${javaMethodParameter.parameterName}
-								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-									, Pagination.of(1, 2)
+								<#if !javaMethodParameter?is_first>
+									,
+								</#if>
+
+								<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+									Pagination.of(1, 2)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
-									, entityField.getName() + ":asc"
+									entityField.getName() + ":asc"
 								<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-									, ${javaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#else>
-									, null
+									null
 								</#if>
 							</#list>
 
@@ -515,16 +532,18 @@ public abstract class Base${schemaName}ResourceTestCase {
 							Page<${schemaName}> descPage = invoke${javaMethodSignature.methodName?cap_first}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-								<#if javaMethodParameter?is_first>
-									${javaMethodParameter.parameterName}
-								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-									, Pagination.of(1, 2)
+								<#if !javaMethodParameter?is_first>
+									,
+								</#if>
+
+								<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+									Pagination.of(1, 2)
 								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
-									, entityField.getName() + ":desc"
+									entityField.getName() + ":desc"
 								<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-									, ${javaMethodParameter.parameterName}
+									${javaMethodParameter.parameterName}
 								<#else>
-									, null
+									null
 								</#if>
 							</#list>
 
@@ -667,17 +686,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 
 			<#if (javaMethodSignature.javaMethodParameters?size > 0)>
-				String location = _resourceURL + _toPath("${javaMethodSignature.path}",
+				String location = _resourceURL + _toPath("${javaMethodSignature.path}"
 
 				<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-					<#if javaMethodParameter?is_first>
-						${javaMethodParameter.parameterName}
-					<#elseif stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
-							 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
-							 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
-							 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
-							 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
-					<#else>
+					<#if freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
 						, ${javaMethodParameter.parameterName}
 					</#if>
 				</#list>
@@ -733,17 +745,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 
 			<#if (javaMethodSignature.javaMethodParameters?size > 0)>
-				String location = _resourceURL + _toPath("${javaMethodSignature.path}",
+				String location = _resourceURL + _toPath("${javaMethodSignature.path}"
 
 				<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-					<#if javaMethodParameter?is_first>
-						${javaMethodParameter.parameterName}
-					<#elseif stringUtil.equals(javaMethodParameter.parameterName, schemaVarName) ||
-							 stringUtil.equals(javaMethodParameter.parameterName, "filter") ||
-							 stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") ||
-							 stringUtil.equals(javaMethodParameter.parameterName, "pagination") ||
-							 stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
-					<#else>
+					<#if freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
 						, ${javaMethodParameter.parameterName}
 					</#if>
 				</#list>
@@ -981,6 +986,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 	}
 
 	private String _toPath(String template, Object... values) {
+		if  (ArrayUtil.isEmpty(values)) {
+			return template;
+		}
+
 		for (int i = 0; i < values.length; i++) {
 			template = template.replaceFirst("\\{.*\\}", String.valueOf(values[i]));
 		}
