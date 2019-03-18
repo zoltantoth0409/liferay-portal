@@ -193,7 +193,7 @@ public class BlogPostingImageResourceImpl
 
 		FileEntry existingFileEntry = _getFileEntry(blogPostingImageId);
 
-		BinaryFile mergedBinaryFile = Optional.ofNullable(
+		BinaryFile binaryFile = Optional.ofNullable(
 			multipartBody.getBinaryFile("file")
 		).orElse(
 			new BinaryFile(
@@ -202,20 +202,20 @@ public class BlogPostingImageResourceImpl
 				existingFileEntry.getSize())
 		);
 
-		Optional<BlogPostingImage> blogPostingImage =
+		Optional<BlogPostingImage> blogPostingImageOptional =
 			multipartBody.getValueAsInstanceOptional(
 				"blogPostingImage", BlogPostingImage.class);
 
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
-			existingFileEntry.getFileEntryId(), mergedBinaryFile.getFileName(),
-			mergedBinaryFile.getContentType(),
-			blogPostingImage.map(
+			existingFileEntry.getFileEntryId(), binaryFile.getFileName(),
+			binaryFile.getContentType(),
+			blogPostingImageOptional.map(
 				BlogPostingImage::getTitle
 			).orElse(
 				existingFileEntry.getTitle()
 			),
 			null, null, DLVersionNumberIncrease.AUTOMATIC,
-			mergedBinaryFile.getInputStream(), mergedBinaryFile.getSize(),
+			binaryFile.getInputStream(), binaryFile.getSize(),
 			new ServiceContext());
 
 		return _toBlogPostingImage(fileEntry);
