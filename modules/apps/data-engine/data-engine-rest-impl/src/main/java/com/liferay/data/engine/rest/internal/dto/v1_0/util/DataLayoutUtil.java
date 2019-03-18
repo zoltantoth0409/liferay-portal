@@ -52,10 +52,8 @@ public class DataLayoutUtil {
 			throw new Exception("Default language ID is required");
 		}
 
-		String paginationMode = dataLayout.getPaginationMode();
-
-		if (Validator.isNull(paginationMode) ||
-			!ArrayUtil.contains(_PAGINATION_MODES, paginationMode)) {
+		if (!ArrayUtil.contains(
+				_PAGINATION_MODES, dataLayout.getPaginationMode()) {
 
 			throw new Exception(
 				"Pagination mode must be 'wizard' or 'pagination'");
@@ -66,7 +64,7 @@ public class DataLayoutUtil {
 		).put(
 			"pages", _toJSONArray(dataLayout.getDataLayoutPages())
 		).put(
-			"paginationMode", paginationMode
+			"paginationMode", dataLayout.getPaginationMode()
 		).toString();
 	}
 
