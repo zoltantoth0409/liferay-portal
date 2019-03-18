@@ -48,10 +48,8 @@ public class DataLayoutUtil {
 	}
 
 	public static String toJSON(DataLayout dataLayout) throws Exception {
-		String defaultLanguageId = dataLayout.getDefaultLanguageId();
-
-		if (Validator.isNull(defaultLanguageId)) {
-			throw new Exception("Default language id cannot be null or empty");
+		if (Validator.isNull(dataLayout.getDefaultLanguageId())) {
+			throw new Exception("Default language ID is required");
 		}
 
 		String paginationMode = dataLayout.getPaginationMode();
@@ -64,7 +62,7 @@ public class DataLayoutUtil {
 		}
 
 		return JSONUtil.put(
-			"defaultLanguageId", defaultLanguageId
+			"defaultLanguageId", dataLayout.getDefaultLanguageId()
 		).put(
 			"pages", _toJSONArray(dataLayout.getDataLayoutPages())
 		).put(
