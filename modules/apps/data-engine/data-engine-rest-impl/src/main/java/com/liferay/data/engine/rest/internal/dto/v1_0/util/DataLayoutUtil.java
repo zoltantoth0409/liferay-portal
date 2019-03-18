@@ -56,7 +56,7 @@ public class DataLayoutUtil {
 				_PAGINATION_MODES, dataLayout.getPaginationMode()) {
 
 			throw new Exception(
-				"Pagination mode must be 'pagination' or 'wizard'");
+				"Pagination mode must be \"pagination\" or \"wizard\"");
 		}
 
 		return JSONUtil.put(
@@ -203,6 +203,6 @@ public class DataLayoutUtil {
 		return JSONUtil.put("columns", jsonArray);
 	}
 
-	private static final String[] _PAGINATION_MODES = {"wizard", "pagination"};
+	private static final String[] _PAGINATION_MODES = {"pagination", "wizard"};
 
 }
