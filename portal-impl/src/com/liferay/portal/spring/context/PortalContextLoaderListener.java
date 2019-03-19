@@ -52,7 +52,6 @@ import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.PortalLifecycleUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringPool;
@@ -206,8 +205,6 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 		MethodCache.reset();
 		PortalBeanLocatorUtil.reset();
 		PortletBagPool.reset();
-
-		ReferenceRegistry.releaseReferences();
 
 		FieldInterceptionHelperUtil.initialize();
 
