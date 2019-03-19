@@ -72,13 +72,6 @@ public class UpgradeFileEntryTypeName extends UpgradeProcess {
 				UpgradeProcessUtil.getDefaultLanguageId(
 					dlFileEntryType.getCompanyId()));
 
-			boolean hasDefaultDescription = "Google Docs".equals(
-				dlFileEntryType.getDescription(locale));
-
-			if (hasDefaultDescription) {
-				dlFileEntryType.setDescription(StringPool.BLANK, locale);
-			}
-
 			boolean hasDefaultName = "Google Docs".equals(
 				dlFileEntryType.getName(locale));
 
@@ -87,7 +80,14 @@ public class UpgradeFileEntryTypeName extends UpgradeProcess {
 					GoogleDocsConstants.DL_FILE_ENTRY_TYPE_NAME, locale);
 			}
 
-			if (hasDefaultDescription || hasDefaultName) {
+			boolean hasDefaultDescription = "Google Docs".equals(
+				dlFileEntryType.getDescription(locale));
+
+			if (hasDefaultDescription) {
+				dlFileEntryType.setDescription(StringPool.BLANK, locale);
+			}
+
+			if (hasDefaultName || hasDefaultDescription) {
 				_dlFileEntryTypeLocalService.updateDLFileEntryType(
 					dlFileEntryType);
 			}
