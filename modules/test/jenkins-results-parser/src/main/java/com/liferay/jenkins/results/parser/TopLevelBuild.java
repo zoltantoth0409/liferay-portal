@@ -1153,12 +1153,12 @@ public class TopLevelBuild extends BaseBuild {
 			topLevelTableElement, getJenkinsReportTableColumnHeadersElement(),
 			getJenkinsReportTableRowElement());
 
-		List<Element> jenkinsReportStopwatchRecordElements =
-			getJenkinsReportStopwatchRecordElements();
+		List<Element> jenkinsReportStopWatchRecordElements =
+			getJenkinsReportStopWatchRecordElements();
 
 		Dom4JUtil.addToElement(
 			topLevelTableElement,
-			jenkinsReportStopwatchRecordElements.toArray());
+			jenkinsReportStopWatchRecordElements.toArray());
 
 		return topLevelTableElement;
 	}
