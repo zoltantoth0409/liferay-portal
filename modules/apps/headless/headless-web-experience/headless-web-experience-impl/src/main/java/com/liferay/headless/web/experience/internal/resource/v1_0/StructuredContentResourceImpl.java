@@ -503,8 +503,8 @@ public class StructuredContentResourceImpl
 		catch (StructureFieldException sfe) {
 			throw new BadRequestException(
 				StringBundler.concat(
-					"Unable to find field with name ",
-					contentFieldValue.getName(), " in structure with id ",
+					"Unable to get content field value for \"",
+					contentFieldValue.getName(), "\" for content structure ",
 					ddmStructure.getStructureId()),
 				sfe);
 		}
