@@ -133,12 +133,8 @@ public class LayoutModelListenerTest {
 		Assert.assertFalse(_hasDefaultSegmentsExperienceLayout(layout));
 	}
 
-	private Layout _addLayout(long groupId, String type) throws Exception {
-		return _addLayout(groupId, type, 0, 0);
-	}
-
 	private Layout _addLayout(
-			long groupId, String type, long classNameId, long classPK)
+			long groupId, long classNameId, long classPK, String type)
 		throws Exception {
 
 		String friendlyURL =
@@ -168,6 +164,10 @@ public class LayoutModelListenerTest {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap(), type, null, false, false,
 			friendlyURLMap, ServiceContextTestUtil.getServiceContext());
+	}
+
+	private Layout _addLayout(long groupId, String type) throws Exception {
+		return _addLayout(groupId, 0, 0, type);
 	}
 
 	private boolean _hasDefaultSegmentsExperienceLayout(Layout layout) {
