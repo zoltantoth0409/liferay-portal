@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.ContentLanguageUtil;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
@@ -63,6 +64,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MultivaluedMap;
 
 import org.apache.commons.collections.MapUtils;
 
@@ -78,11 +80,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 	scope = ServiceScope.PROTOTYPE, service = TaxonomyVocabularyResource.class
 )
 public class TaxonomyVocabularyResourceImpl
-	extends BaseTaxonomyVocabularyResourceImpl {
-
-	public static EntityModel getEntityModel() {
-		return _entityModel;
-	}
+	extends BaseTaxonomyVocabularyResourceImpl implements EntityModelResource {
 
 	@Override
 	public boolean deleteTaxonomyVocabulary(Long taxonomyVocabularyId)
@@ -114,6 +112,11 @@ public class TaxonomyVocabularyResourceImpl
 					GetterUtil.getLong(
 						document.get(Field.ASSET_VOCABULARY_ID)))),
 			sorts);
+	}
+
+	@Override
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
+		return _entityModel;
 	}
 
 	@Override

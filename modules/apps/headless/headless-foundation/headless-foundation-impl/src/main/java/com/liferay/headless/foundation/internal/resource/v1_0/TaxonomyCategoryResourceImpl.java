@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.ContentLanguageUtil;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
@@ -52,6 +53,7 @@ import java.util.Collections;
 import javax.servlet.http.HttpServletResponse;
 
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MultivaluedMap;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -65,11 +67,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 	scope = ServiceScope.PROTOTYPE, service = TaxonomyCategoryResource.class
 )
 public class TaxonomyCategoryResourceImpl
-	extends BaseTaxonomyCategoryResourceImpl {
-
-	public static EntityModel getEntityModel() {
-		return _entityModel;
-	}
+	extends BaseTaxonomyCategoryResourceImpl implements EntityModelResource {
 
 	@Override
 	public boolean deleteTaxonomyCategory(Long taxonomyCategoryId)
@@ -78,6 +76,11 @@ public class TaxonomyCategoryResourceImpl
 		_assetCategoryService.deleteCategory(taxonomyCategoryId);
 
 		return true;
+	}
+
+	@Override
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
+		return _entityModel;
 	}
 
 	@Override
