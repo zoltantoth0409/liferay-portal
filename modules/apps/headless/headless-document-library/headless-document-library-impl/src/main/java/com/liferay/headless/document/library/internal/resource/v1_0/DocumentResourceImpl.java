@@ -98,16 +98,6 @@ public class DocumentResourceImpl
 
 		return _getDocumentsPage(
 			booleanQuery -> {
-				if (contentSpaceId != null) {
-					BooleanFilter booleanFilter =
-						booleanQuery.getPreBooleanFilter();
-
-					booleanFilter.add(
-						new TermFilter(
-							Field.GROUP_ID, String.valueOf(contentSpaceId)),
-						BooleanClauseOccur.MUST);
-				}
-
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
 
@@ -117,6 +107,13 @@ public class DocumentResourceImpl
 						String.valueOf(
 							DLFolderConstants.DEFAULT_PARENT_FOLDER_ID)),
 					BooleanClauseOccur.MUST);
+
+				if (contentSpaceId != null) {
+					booleanFilter.add(
+						new TermFilter(
+							Field.GROUP_ID, String.valueOf(contentSpaceId)),
+						BooleanClauseOccur.MUST);
+				}
 			},
 			filter, pagination, sorts);
 	}
