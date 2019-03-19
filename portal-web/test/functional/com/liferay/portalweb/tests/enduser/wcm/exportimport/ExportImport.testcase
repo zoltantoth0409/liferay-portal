@@ -468,8 +468,6 @@ definition {
 		property portal.acceptance = "true";
 		property testray.component.names = "Training";
 
-		User.firstLoginPG();
-
 		LAR.configureExportSiteCP();
 
 		AssertClick(locator1 = "SitePagesExport#EXPORT_BUTTON", value1 = "Export");
