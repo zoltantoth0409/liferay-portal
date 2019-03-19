@@ -189,13 +189,13 @@ public class DocumentResourceImpl
 			documentId, binaryFile.getFileName(), binaryFile.getContentType(),
 			documentOptional.map(
 				Document::getTitle
-			).orElseGet(
-				existingFileEntry::getTitle
+			).orElse(
+				existingFileEntry.getTitle()
 			),
 			documentOptional.map(
 				Document::getDescription
-			).orElseGet(
-				existingFileEntry::getDescription
+			).orElse(
+				existingFileEntry.getDescription()
 			),
 			null, DLVersionNumberIncrease.AUTOMATIC,
 			binaryFile.getInputStream(), binaryFile.getSize(),
