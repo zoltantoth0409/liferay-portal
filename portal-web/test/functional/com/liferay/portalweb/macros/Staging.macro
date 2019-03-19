@@ -638,11 +638,10 @@ definition {
 
 		SelectFrame(locator1 = "IFrame#SITE_VARIATION_IFRAME");
 
-		var key_sitePagesVariationName = "${sitePagesVariationName}";
-
-		LexiconEntry.openEntryMenu(rowEntry = "${sitePagesVariationName}");
-
-		MenuItem.click(menuItem = "Edit");
+		LexiconEntry.gotoEntryMenuItemNoWait(
+			menuItem = "Edit",
+			rowEntry = "${sitePagesVariationName}"
+		);
 
 		Type(
 			locator1 = "StagingManageVariations#MANAGE_VARIATION",
