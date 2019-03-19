@@ -116,8 +116,19 @@ public abstract class BaseDocumentResourceTestCase {
 			testGetContentSpaceDocumentsPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceDocumentsPage_addDocument(
-				irrelevantContentSpaceId, randomIrrelevantDocument());
+			Document irrelevantDocument =
+				testGetContentSpaceDocumentsPage_addDocument(
+					irrelevantContentSpaceId, randomIrrelevantDocument());
+
+			Page<Document> page = invokeGetContentSpaceDocumentsPage(
+				irrelevantContentSpaceId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantDocument),
+				(List<Document>)page.getItems());
+			assertValid(page);
 		}
 
 		Document document1 = testGetContentSpaceDocumentsPage_addDocument(
@@ -712,8 +723,19 @@ public abstract class BaseDocumentResourceTestCase {
 			testGetFolderDocumentsPage_getIrrelevantFolderId();
 
 		if ((irrelevantFolderId != null)) {
-			testGetFolderDocumentsPage_addDocument(
-				irrelevantFolderId, randomIrrelevantDocument());
+			Document irrelevantDocument =
+				testGetFolderDocumentsPage_addDocument(
+					irrelevantFolderId, randomIrrelevantDocument());
+
+			Page<Document> page = invokeGetFolderDocumentsPage(
+				irrelevantFolderId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantDocument),
+				(List<Document>)page.getItems());
+			assertValid(page);
 		}
 
 		Document document1 = testGetFolderDocumentsPage_addDocument(

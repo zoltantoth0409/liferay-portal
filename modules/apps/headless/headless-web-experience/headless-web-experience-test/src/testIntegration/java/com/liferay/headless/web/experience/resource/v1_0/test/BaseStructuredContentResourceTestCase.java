@@ -118,8 +118,21 @@ public abstract class BaseStructuredContentResourceTestCase {
 			testGetContentSpaceStructuredContentsPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceStructuredContentsPage_addStructuredContent(
-				irrelevantContentSpaceId, randomIrrelevantStructuredContent());
+			StructuredContent irrelevantStructuredContent =
+				testGetContentSpaceStructuredContentsPage_addStructuredContent(
+					irrelevantContentSpaceId,
+					randomIrrelevantStructuredContent());
+
+			Page<StructuredContent> page =
+				invokeGetContentSpaceStructuredContentsPage(
+					irrelevantContentSpaceId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantStructuredContent),
+				(List<StructuredContent>)page.getItems());
+			assertValid(page);
 		}
 
 		StructuredContent structuredContent1 =
@@ -556,9 +569,22 @@ public abstract class BaseStructuredContentResourceTestCase {
 			testGetContentStructureStructuredContentsPage_getIrrelevantContentStructureId();
 
 		if ((irrelevantContentStructureId != null)) {
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				irrelevantContentStructureId,
-				randomIrrelevantStructuredContent());
+			StructuredContent irrelevantStructuredContent =
+				testGetContentStructureStructuredContentsPage_addStructuredContent(
+					irrelevantContentStructureId,
+					randomIrrelevantStructuredContent());
+
+			Page<StructuredContent> page =
+				invokeGetContentStructureStructuredContentsPage(
+					irrelevantContentStructureId, null, Pagination.of(1, 2),
+					null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantStructuredContent),
+				(List<StructuredContent>)page.getItems());
+			assertValid(page);
 		}
 
 		StructuredContent structuredContent1 =

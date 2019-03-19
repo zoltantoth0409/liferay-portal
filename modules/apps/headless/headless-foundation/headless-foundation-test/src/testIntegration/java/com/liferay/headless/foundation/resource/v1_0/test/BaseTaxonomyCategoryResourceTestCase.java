@@ -337,9 +337,22 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_getIrrelevantTaxonomyCategoryId();
 
 		if ((irrelevantTaxonomyCategoryId != null)) {
-			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
-				irrelevantTaxonomyCategoryId,
-				randomIrrelevantTaxonomyCategory());
+			TaxonomyCategory irrelevantTaxonomyCategory =
+				testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
+					irrelevantTaxonomyCategoryId,
+					randomIrrelevantTaxonomyCategory());
+
+			Page<TaxonomyCategory> page =
+				invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
+					irrelevantTaxonomyCategoryId, null, Pagination.of(1, 2),
+					null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantTaxonomyCategory),
+				(List<TaxonomyCategory>)page.getItems());
+			assertValid(page);
 		}
 
 		TaxonomyCategory taxonomyCategory1 =
@@ -779,9 +792,22 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_getIrrelevantTaxonomyVocabularyId();
 
 		if ((irrelevantTaxonomyVocabularyId != null)) {
-			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
-				irrelevantTaxonomyVocabularyId,
-				randomIrrelevantTaxonomyCategory());
+			TaxonomyCategory irrelevantTaxonomyCategory =
+				testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
+					irrelevantTaxonomyVocabularyId,
+					randomIrrelevantTaxonomyCategory());
+
+			Page<TaxonomyCategory> page =
+				invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
+					irrelevantTaxonomyVocabularyId, null, Pagination.of(1, 2),
+					null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantTaxonomyCategory),
+				(List<TaxonomyCategory>)page.getItems());
+			assertValid(page);
 		}
 
 		TaxonomyCategory taxonomyCategory1 =

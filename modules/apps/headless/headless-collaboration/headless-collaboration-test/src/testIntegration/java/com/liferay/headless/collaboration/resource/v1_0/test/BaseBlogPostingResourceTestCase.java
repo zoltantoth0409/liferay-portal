@@ -394,8 +394,19 @@ public abstract class BaseBlogPostingResourceTestCase {
 			testGetContentSpaceBlogPostingsPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceBlogPostingsPage_addBlogPosting(
-				irrelevantContentSpaceId, randomIrrelevantBlogPosting());
+			BlogPosting irrelevantBlogPosting =
+				testGetContentSpaceBlogPostingsPage_addBlogPosting(
+					irrelevantContentSpaceId, randomIrrelevantBlogPosting());
+
+			Page<BlogPosting> page = invokeGetContentSpaceBlogPostingsPage(
+				irrelevantContentSpaceId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantBlogPosting),
+				(List<BlogPosting>)page.getItems());
+			assertValid(page);
 		}
 
 		BlogPosting blogPosting1 =

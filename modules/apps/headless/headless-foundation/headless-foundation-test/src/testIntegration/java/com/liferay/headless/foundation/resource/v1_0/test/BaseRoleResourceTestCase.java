@@ -111,8 +111,17 @@ public abstract class BaseRoleResourceTestCase {
 			testGetMyUserAccountRolesPage_getIrrelevantMyUserAccountId();
 
 		if ((irrelevantMyUserAccountId != null)) {
-			testGetMyUserAccountRolesPage_addRole(
+			Role irrelevantRole = testGetMyUserAccountRolesPage_addRole(
 				irrelevantMyUserAccountId, randomIrrelevantRole());
+
+			Page<Role> page = invokeGetMyUserAccountRolesPage(
+				irrelevantMyUserAccountId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantRole), (List<Role>)page.getItems());
+			assertValid(page);
 		}
 
 		Role role1 = testGetMyUserAccountRolesPage_addRole(
@@ -344,8 +353,17 @@ public abstract class BaseRoleResourceTestCase {
 			testGetUserAccountRolesPage_getIrrelevantUserAccountId();
 
 		if ((irrelevantUserAccountId != null)) {
-			testGetUserAccountRolesPage_addRole(
+			Role irrelevantRole = testGetUserAccountRolesPage_addRole(
 				irrelevantUserAccountId, randomIrrelevantRole());
+
+			Page<Role> page = invokeGetUserAccountRolesPage(
+				irrelevantUserAccountId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantRole), (List<Role>)page.getItems());
+			assertValid(page);
 		}
 
 		Role role1 = testGetUserAccountRolesPage_addRole(

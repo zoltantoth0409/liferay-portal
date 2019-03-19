@@ -113,8 +113,19 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			testGetRoleWorkflowTasksPage_getIrrelevantRoleId();
 
 		if ((irrelevantRoleId != null)) {
-			testGetRoleWorkflowTasksPage_addWorkflowTask(
-				irrelevantRoleId, randomIrrelevantWorkflowTask());
+			WorkflowTask irrelevantWorkflowTask =
+				testGetRoleWorkflowTasksPage_addWorkflowTask(
+					irrelevantRoleId, randomIrrelevantWorkflowTask());
+
+			Page<WorkflowTask> page = invokeGetRoleWorkflowTasksPage(
+				irrelevantRoleId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantWorkflowTask),
+				(List<WorkflowTask>)page.getItems());
+			assertValid(page);
 		}
 
 		WorkflowTask workflowTask1 =

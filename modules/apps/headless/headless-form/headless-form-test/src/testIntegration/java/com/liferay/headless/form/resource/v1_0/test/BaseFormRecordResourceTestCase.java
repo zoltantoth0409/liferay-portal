@@ -242,8 +242,19 @@ public abstract class BaseFormRecordResourceTestCase {
 			testGetFormFormRecordsPage_getIrrelevantFormId();
 
 		if ((irrelevantFormId != null)) {
-			testGetFormFormRecordsPage_addFormRecord(
-				irrelevantFormId, randomIrrelevantFormRecord());
+			FormRecord irrelevantFormRecord =
+				testGetFormFormRecordsPage_addFormRecord(
+					irrelevantFormId, randomIrrelevantFormRecord());
+
+			Page<FormRecord> page = invokeGetFormFormRecordsPage(
+				irrelevantFormId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantFormRecord),
+				(List<FormRecord>)page.getItems());
+			assertValid(page);
 		}
 
 		FormRecord formRecord1 = testGetFormFormRecordsPage_addFormRecord(

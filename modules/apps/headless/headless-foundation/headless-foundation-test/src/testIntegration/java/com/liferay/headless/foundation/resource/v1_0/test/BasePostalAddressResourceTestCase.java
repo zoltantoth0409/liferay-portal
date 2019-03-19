@@ -111,8 +111,19 @@ public abstract class BasePostalAddressResourceTestCase {
 			testGetOrganizationPostalAddressesPage_getIrrelevantOrganizationId();
 
 		if ((irrelevantOrganizationId != null)) {
-			testGetOrganizationPostalAddressesPage_addPostalAddress(
-				irrelevantOrganizationId, randomIrrelevantPostalAddress());
+			PostalAddress irrelevantPostalAddress =
+				testGetOrganizationPostalAddressesPage_addPostalAddress(
+					irrelevantOrganizationId, randomIrrelevantPostalAddress());
+
+			Page<PostalAddress> page = invokeGetOrganizationPostalAddressesPage(
+				irrelevantOrganizationId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantPostalAddress),
+				(List<PostalAddress>)page.getItems());
+			assertValid(page);
 		}
 
 		PostalAddress postalAddress1 =
@@ -325,8 +336,19 @@ public abstract class BasePostalAddressResourceTestCase {
 			testGetUserAccountPostalAddressesPage_getIrrelevantUserAccountId();
 
 		if ((irrelevantUserAccountId != null)) {
-			testGetUserAccountPostalAddressesPage_addPostalAddress(
-				irrelevantUserAccountId, randomIrrelevantPostalAddress());
+			PostalAddress irrelevantPostalAddress =
+				testGetUserAccountPostalAddressesPage_addPostalAddress(
+					irrelevantUserAccountId, randomIrrelevantPostalAddress());
+
+			Page<PostalAddress> page = invokeGetUserAccountPostalAddressesPage(
+				irrelevantUserAccountId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantPostalAddress),
+				(List<PostalAddress>)page.getItems());
+			assertValid(page);
 		}
 
 		PostalAddress postalAddress1 =

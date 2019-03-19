@@ -111,8 +111,19 @@ public abstract class BaseOrganizationResourceTestCase {
 			testGetMyUserAccountOrganizationsPage_getIrrelevantMyUserAccountId();
 
 		if ((irrelevantMyUserAccountId != null)) {
-			testGetMyUserAccountOrganizationsPage_addOrganization(
-				irrelevantMyUserAccountId, randomIrrelevantOrganization());
+			Organization irrelevantOrganization =
+				testGetMyUserAccountOrganizationsPage_addOrganization(
+					irrelevantMyUserAccountId, randomIrrelevantOrganization());
+
+			Page<Organization> page = invokeGetMyUserAccountOrganizationsPage(
+				irrelevantMyUserAccountId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantOrganization),
+				(List<Organization>)page.getItems());
+			assertValid(page);
 		}
 
 		Organization organization1 =
@@ -370,8 +381,19 @@ public abstract class BaseOrganizationResourceTestCase {
 			testGetOrganizationOrganizationsPage_getIrrelevantOrganizationId();
 
 		if ((irrelevantOrganizationId != null)) {
-			testGetOrganizationOrganizationsPage_addOrganization(
-				irrelevantOrganizationId, randomIrrelevantOrganization());
+			Organization irrelevantOrganization =
+				testGetOrganizationOrganizationsPage_addOrganization(
+					irrelevantOrganizationId, randomIrrelevantOrganization());
+
+			Page<Organization> page = invokeGetOrganizationOrganizationsPage(
+				irrelevantOrganizationId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantOrganization),
+				(List<Organization>)page.getItems());
+			assertValid(page);
 		}
 
 		Organization organization1 =
@@ -523,8 +545,19 @@ public abstract class BaseOrganizationResourceTestCase {
 			testGetUserAccountOrganizationsPage_getIrrelevantUserAccountId();
 
 		if ((irrelevantUserAccountId != null)) {
-			testGetUserAccountOrganizationsPage_addOrganization(
-				irrelevantUserAccountId, randomIrrelevantOrganization());
+			Organization irrelevantOrganization =
+				testGetUserAccountOrganizationsPage_addOrganization(
+					irrelevantUserAccountId, randomIrrelevantOrganization());
+
+			Page<Organization> page = invokeGetUserAccountOrganizationsPage(
+				irrelevantUserAccountId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantOrganization),
+				(List<Organization>)page.getItems());
+			assertValid(page);
 		}
 
 		Organization organization1 =

@@ -114,9 +114,21 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			testGetContentSpaceKnowledgeBaseFoldersPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
-				irrelevantContentSpaceId,
-				randomIrrelevantKnowledgeBaseFolder());
+			KnowledgeBaseFolder irrelevantKnowledgeBaseFolder =
+				testGetContentSpaceKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
+					irrelevantContentSpaceId,
+					randomIrrelevantKnowledgeBaseFolder());
+
+			Page<KnowledgeBaseFolder> page =
+				invokeGetContentSpaceKnowledgeBaseFoldersPage(
+					irrelevantContentSpaceId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantKnowledgeBaseFolder),
+				(List<KnowledgeBaseFolder>)page.getItems());
+			assertValid(page);
 		}
 
 		KnowledgeBaseFolder knowledgeBaseFolder1 =
@@ -677,9 +689,21 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_getIrrelevantKnowledgeBaseFolderId();
 
 		if ((irrelevantKnowledgeBaseFolderId != null)) {
-			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
-				irrelevantKnowledgeBaseFolderId,
-				randomIrrelevantKnowledgeBaseFolder());
+			KnowledgeBaseFolder irrelevantKnowledgeBaseFolder =
+				testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
+					irrelevantKnowledgeBaseFolderId,
+					randomIrrelevantKnowledgeBaseFolder());
+
+			Page<KnowledgeBaseFolder> page =
+				invokeGetKnowledgeBaseFolderKnowledgeBaseFoldersPage(
+					irrelevantKnowledgeBaseFolderId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantKnowledgeBaseFolder),
+				(List<KnowledgeBaseFolder>)page.getItems());
+			assertValid(page);
 		}
 
 		KnowledgeBaseFolder knowledgeBaseFolder1 =

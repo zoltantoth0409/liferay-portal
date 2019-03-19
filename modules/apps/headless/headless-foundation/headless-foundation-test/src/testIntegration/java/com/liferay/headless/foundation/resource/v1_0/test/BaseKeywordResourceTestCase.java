@@ -117,8 +117,19 @@ public abstract class BaseKeywordResourceTestCase {
 			testGetContentSpaceKeywordsPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceKeywordsPage_addKeyword(
-				irrelevantContentSpaceId, randomIrrelevantKeyword());
+			Keyword irrelevantKeyword =
+				testGetContentSpaceKeywordsPage_addKeyword(
+					irrelevantContentSpaceId, randomIrrelevantKeyword());
+
+			Page<Keyword> page = invokeGetContentSpaceKeywordsPage(
+				irrelevantContentSpaceId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantKeyword),
+				(List<Keyword>)page.getItems());
+			assertValid(page);
 		}
 
 		Keyword keyword1 = testGetContentSpaceKeywordsPage_addKeyword(

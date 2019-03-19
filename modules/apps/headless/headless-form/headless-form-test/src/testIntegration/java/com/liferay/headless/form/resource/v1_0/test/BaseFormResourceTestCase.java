@@ -112,8 +112,17 @@ public abstract class BaseFormResourceTestCase {
 			testGetContentSpaceFormsPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceFormsPage_addForm(
+			Form irrelevantForm = testGetContentSpaceFormsPage_addForm(
 				irrelevantContentSpaceId, randomIrrelevantForm());
+
+			Page<Form> page = invokeGetContentSpaceFormsPage(
+				irrelevantContentSpaceId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantForm), (List<Form>)page.getItems());
+			assertValid(page);
 		}
 
 		Form form1 = testGetContentSpaceFormsPage_addForm(

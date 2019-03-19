@@ -113,9 +113,21 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_getIrrelevantKnowledgeBaseArticleId();
 
 		if ((irrelevantKnowledgeBaseArticleId != null)) {
-			testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_addKnowledgeBaseAttachment(
-				irrelevantKnowledgeBaseArticleId,
-				randomIrrelevantKnowledgeBaseAttachment());
+			KnowledgeBaseAttachment irrelevantKnowledgeBaseAttachment =
+				testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_addKnowledgeBaseAttachment(
+					irrelevantKnowledgeBaseArticleId,
+					randomIrrelevantKnowledgeBaseAttachment());
+
+			Page<KnowledgeBaseAttachment> page =
+				invokeGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
+					irrelevantKnowledgeBaseArticleId);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantKnowledgeBaseAttachment),
+				(List<KnowledgeBaseAttachment>)page.getItems());
+			assertValid(page);
 		}
 
 		KnowledgeBaseAttachment knowledgeBaseAttachment1 =

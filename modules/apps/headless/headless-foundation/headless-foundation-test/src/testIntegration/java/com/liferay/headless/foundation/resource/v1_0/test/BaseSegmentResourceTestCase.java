@@ -111,8 +111,19 @@ public abstract class BaseSegmentResourceTestCase {
 			testGetContentSpaceSegmentsPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceSegmentsPage_addSegment(
-				irrelevantContentSpaceId, randomIrrelevantSegment());
+			Segment irrelevantSegment =
+				testGetContentSpaceSegmentsPage_addSegment(
+					irrelevantContentSpaceId, randomIrrelevantSegment());
+
+			Page<Segment> page = invokeGetContentSpaceSegmentsPage(
+				irrelevantContentSpaceId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantSegment),
+				(List<Segment>)page.getItems());
+			assertValid(page);
 		}
 
 		Segment segment1 = testGetContentSpaceSegmentsPage_addSegment(
@@ -258,9 +269,21 @@ public abstract class BaseSegmentResourceTestCase {
 		if ((irrelevantContentSpaceId != null) &&
 			(irrelevantUserAccountId != null)) {
 
-			testGetContentSpaceUserAccountSegmentsPage_addSegment(
+			Segment irrelevantSegment =
+				testGetContentSpaceUserAccountSegmentsPage_addSegment(
+					irrelevantContentSpaceId, irrelevantUserAccountId,
+					randomIrrelevantSegment());
+
+			Page<Segment> page = invokeGetContentSpaceUserAccountSegmentsPage(
 				irrelevantContentSpaceId, irrelevantUserAccountId,
-				randomIrrelevantSegment());
+				Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantSegment),
+				(List<Segment>)page.getItems());
+			assertValid(page);
 		}
 
 		Segment segment1 =

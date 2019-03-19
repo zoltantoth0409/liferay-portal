@@ -173,8 +173,19 @@ public abstract class BaseUserAccountResourceTestCase {
 			testGetOrganizationUserAccountsPage_getIrrelevantOrganizationId();
 
 		if ((irrelevantOrganizationId != null)) {
-			testGetOrganizationUserAccountsPage_addUserAccount(
-				irrelevantOrganizationId, randomIrrelevantUserAccount());
+			UserAccount irrelevantUserAccount =
+				testGetOrganizationUserAccountsPage_addUserAccount(
+					irrelevantOrganizationId, randomIrrelevantUserAccount());
+
+			Page<UserAccount> page = invokeGetOrganizationUserAccountsPage(
+				irrelevantOrganizationId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantUserAccount),
+				(List<UserAccount>)page.getItems());
+			assertValid(page);
 		}
 
 		UserAccount userAccount1 =
@@ -681,8 +692,19 @@ public abstract class BaseUserAccountResourceTestCase {
 			testGetWebSiteUserAccountsPage_getIrrelevantWebSiteId();
 
 		if ((irrelevantWebSiteId != null)) {
-			testGetWebSiteUserAccountsPage_addUserAccount(
-				irrelevantWebSiteId, randomIrrelevantUserAccount());
+			UserAccount irrelevantUserAccount =
+				testGetWebSiteUserAccountsPage_addUserAccount(
+					irrelevantWebSiteId, randomIrrelevantUserAccount());
+
+			Page<UserAccount> page = invokeGetWebSiteUserAccountsPage(
+				irrelevantWebSiteId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantUserAccount),
+				(List<UserAccount>)page.getItems());
+			assertValid(page);
 		}
 
 		UserAccount userAccount1 =

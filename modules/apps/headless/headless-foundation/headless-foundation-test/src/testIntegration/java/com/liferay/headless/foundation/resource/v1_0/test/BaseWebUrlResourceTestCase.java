@@ -111,8 +111,17 @@ public abstract class BaseWebUrlResourceTestCase {
 			testGetOrganizationWebUrlsPage_getIrrelevantOrganizationId();
 
 		if ((irrelevantOrganizationId != null)) {
-			testGetOrganizationWebUrlsPage_addWebUrl(
+			WebUrl irrelevantWebUrl = testGetOrganizationWebUrlsPage_addWebUrl(
 				irrelevantOrganizationId, randomIrrelevantWebUrl());
+
+			Page<WebUrl> page = invokeGetOrganizationWebUrlsPage(
+				irrelevantOrganizationId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantWebUrl), (List<WebUrl>)page.getItems());
+			assertValid(page);
 		}
 
 		WebUrl webUrl1 = testGetOrganizationWebUrlsPage_addWebUrl(
@@ -252,8 +261,17 @@ public abstract class BaseWebUrlResourceTestCase {
 			testGetUserAccountWebUrlsPage_getIrrelevantUserAccountId();
 
 		if ((irrelevantUserAccountId != null)) {
-			testGetUserAccountWebUrlsPage_addWebUrl(
+			WebUrl irrelevantWebUrl = testGetUserAccountWebUrlsPage_addWebUrl(
 				irrelevantUserAccountId, randomIrrelevantWebUrl());
+
+			Page<WebUrl> page = invokeGetUserAccountWebUrlsPage(
+				irrelevantUserAccountId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantWebUrl), (List<WebUrl>)page.getItems());
+			assertValid(page);
 		}
 
 		WebUrl webUrl1 = testGetUserAccountWebUrlsPage_addWebUrl(

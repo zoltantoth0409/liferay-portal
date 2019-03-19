@@ -293,8 +293,18 @@ public abstract class BaseCommentResourceTestCase {
 			testGetCommentCommentsPage_getIrrelevantCommentId();
 
 		if ((irrelevantCommentId != null)) {
-			testGetCommentCommentsPage_addComment(
+			Comment irrelevantComment = testGetCommentCommentsPage_addComment(
 				irrelevantCommentId, randomIrrelevantComment());
+
+			Page<Comment> page = invokeGetCommentCommentsPage(
+				irrelevantCommentId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantComment),
+				(List<Comment>)page.getItems());
+			assertValid(page);
 		}
 
 		Comment comment1 = testGetCommentCommentsPage_addComment(
@@ -662,8 +672,19 @@ public abstract class BaseCommentResourceTestCase {
 			testGetStructuredContentCommentsPage_getIrrelevantStructuredContentId();
 
 		if ((irrelevantStructuredContentId != null)) {
-			testGetStructuredContentCommentsPage_addComment(
-				irrelevantStructuredContentId, randomIrrelevantComment());
+			Comment irrelevantComment =
+				testGetStructuredContentCommentsPage_addComment(
+					irrelevantStructuredContentId, randomIrrelevantComment());
+
+			Page<Comment> page = invokeGetStructuredContentCommentsPage(
+				irrelevantStructuredContentId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantComment),
+				(List<Comment>)page.getItems());
+			assertValid(page);
 		}
 
 		Comment comment1 = testGetStructuredContentCommentsPage_addComment(

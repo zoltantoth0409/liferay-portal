@@ -117,8 +117,17 @@ public abstract class BaseFolderResourceTestCase {
 			testGetContentSpaceFoldersPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceFoldersPage_addFolder(
+			Folder irrelevantFolder = testGetContentSpaceFoldersPage_addFolder(
 				irrelevantContentSpaceId, randomIrrelevantFolder());
+
+			Page<Folder> page = invokeGetContentSpaceFoldersPage(
+				irrelevantContentSpaceId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantFolder), (List<Folder>)page.getItems());
+			assertValid(page);
 		}
 
 		Folder folder1 = testGetContentSpaceFoldersPage_addFolder(
@@ -760,8 +769,17 @@ public abstract class BaseFolderResourceTestCase {
 			testGetFolderFoldersPage_getIrrelevantFolderId();
 
 		if ((irrelevantFolderId != null)) {
-			testGetFolderFoldersPage_addFolder(
+			Folder irrelevantFolder = testGetFolderFoldersPage_addFolder(
 				irrelevantFolderId, randomIrrelevantFolder());
+
+			Page<Folder> page = invokeGetFolderFoldersPage(
+				irrelevantFolderId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantFolder), (List<Folder>)page.getItems());
+			assertValid(page);
 		}
 
 		Folder folder1 = testGetFolderFoldersPage_addFolder(

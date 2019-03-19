@@ -166,8 +166,19 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			testGetWorkflowTaskWorkflowLogsPage_getIrrelevantWorkflowTaskId();
 
 		if ((irrelevantWorkflowTaskId != null)) {
-			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
-				irrelevantWorkflowTaskId, randomIrrelevantWorkflowLog());
+			WorkflowLog irrelevantWorkflowLog =
+				testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
+					irrelevantWorkflowTaskId, randomIrrelevantWorkflowLog());
+
+			Page<WorkflowLog> page = invokeGetWorkflowTaskWorkflowLogsPage(
+				irrelevantWorkflowTaskId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantWorkflowLog),
+				(List<WorkflowLog>)page.getItems());
+			assertValid(page);
 		}
 
 		WorkflowLog workflowLog1 =

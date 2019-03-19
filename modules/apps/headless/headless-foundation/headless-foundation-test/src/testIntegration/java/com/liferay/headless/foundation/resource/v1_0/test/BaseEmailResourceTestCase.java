@@ -158,8 +158,17 @@ public abstract class BaseEmailResourceTestCase {
 			testGetOrganizationEmailsPage_getIrrelevantOrganizationId();
 
 		if ((irrelevantOrganizationId != null)) {
-			testGetOrganizationEmailsPage_addEmail(
+			Email irrelevantEmail = testGetOrganizationEmailsPage_addEmail(
 				irrelevantOrganizationId, randomIrrelevantEmail());
+
+			Page<Email> page = invokeGetOrganizationEmailsPage(
+				irrelevantOrganizationId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantEmail), (List<Email>)page.getItems());
+			assertValid(page);
 		}
 
 		Email email1 = testGetOrganizationEmailsPage_addEmail(
@@ -294,8 +303,17 @@ public abstract class BaseEmailResourceTestCase {
 			testGetUserAccountEmailsPage_getIrrelevantUserAccountId();
 
 		if ((irrelevantUserAccountId != null)) {
-			testGetUserAccountEmailsPage_addEmail(
+			Email irrelevantEmail = testGetUserAccountEmailsPage_addEmail(
 				irrelevantUserAccountId, randomIrrelevantEmail());
+
+			Page<Email> page = invokeGetUserAccountEmailsPage(
+				irrelevantUserAccountId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantEmail), (List<Email>)page.getItems());
+			assertValid(page);
 		}
 
 		Email email1 = testGetUserAccountEmailsPage_addEmail(

@@ -110,8 +110,19 @@ public abstract class BaseSegmentUserResourceTestCase {
 			testGetSegmentUserAccountsPage_getIrrelevantSegmentId();
 
 		if ((irrelevantSegmentId != null)) {
-			testGetSegmentUserAccountsPage_addSegmentUser(
-				irrelevantSegmentId, randomIrrelevantSegmentUser());
+			SegmentUser irrelevantSegmentUser =
+				testGetSegmentUserAccountsPage_addSegmentUser(
+					irrelevantSegmentId, randomIrrelevantSegmentUser());
+
+			Page<SegmentUser> page = invokeGetSegmentUserAccountsPage(
+				irrelevantSegmentId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantSegmentUser),
+				(List<SegmentUser>)page.getItems());
+			assertValid(page);
 		}
 
 		SegmentUser segmentUser1 =

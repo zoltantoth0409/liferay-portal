@@ -117,8 +117,21 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			testGetContentSpaceTaxonomyVocabulariesPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
-				irrelevantContentSpaceId, randomIrrelevantTaxonomyVocabulary());
+			TaxonomyVocabulary irrelevantTaxonomyVocabulary =
+				testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
+					irrelevantContentSpaceId,
+					randomIrrelevantTaxonomyVocabulary());
+
+			Page<TaxonomyVocabulary> page =
+				invokeGetContentSpaceTaxonomyVocabulariesPage(
+					irrelevantContentSpaceId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantTaxonomyVocabulary),
+				(List<TaxonomyVocabulary>)page.getItems());
+			assertValid(page);
 		}
 
 		TaxonomyVocabulary taxonomyVocabulary1 =

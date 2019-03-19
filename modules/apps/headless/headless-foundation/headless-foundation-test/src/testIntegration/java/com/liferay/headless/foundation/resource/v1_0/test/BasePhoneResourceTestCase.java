@@ -110,8 +110,17 @@ public abstract class BasePhoneResourceTestCase {
 			testGetOrganizationPhonesPage_getIrrelevantOrganizationId();
 
 		if ((irrelevantOrganizationId != null)) {
-			testGetOrganizationPhonesPage_addPhone(
+			Phone irrelevantPhone = testGetOrganizationPhonesPage_addPhone(
 				irrelevantOrganizationId, randomIrrelevantPhone());
+
+			Page<Phone> page = invokeGetOrganizationPhonesPage(
+				irrelevantOrganizationId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantPhone), (List<Phone>)page.getItems());
+			assertValid(page);
 		}
 
 		Phone phone1 = testGetOrganizationPhonesPage_addPhone(
@@ -294,8 +303,17 @@ public abstract class BasePhoneResourceTestCase {
 			testGetUserAccountPhonesPage_getIrrelevantUserAccountId();
 
 		if ((irrelevantUserAccountId != null)) {
-			testGetUserAccountPhonesPage_addPhone(
+			Phone irrelevantPhone = testGetUserAccountPhonesPage_addPhone(
 				irrelevantUserAccountId, randomIrrelevantPhone());
+
+			Page<Phone> page = invokeGetUserAccountPhonesPage(
+				irrelevantUserAccountId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantPhone), (List<Phone>)page.getItems());
+			assertValid(page);
 		}
 
 		Phone phone1 = testGetUserAccountPhonesPage_addPhone(

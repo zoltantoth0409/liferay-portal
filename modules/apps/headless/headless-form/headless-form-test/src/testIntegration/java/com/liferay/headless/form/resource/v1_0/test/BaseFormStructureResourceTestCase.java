@@ -111,8 +111,19 @@ public abstract class BaseFormStructureResourceTestCase {
 			testGetContentSpaceFormStructuresPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceFormStructuresPage_addFormStructure(
-				irrelevantContentSpaceId, randomIrrelevantFormStructure());
+			FormStructure irrelevantFormStructure =
+				testGetContentSpaceFormStructuresPage_addFormStructure(
+					irrelevantContentSpaceId, randomIrrelevantFormStructure());
+
+			Page<FormStructure> page = invokeGetContentSpaceFormStructuresPage(
+				irrelevantContentSpaceId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantFormStructure),
+				(List<FormStructure>)page.getItems());
+			assertValid(page);
 		}
 
 		FormStructure formStructure1 =

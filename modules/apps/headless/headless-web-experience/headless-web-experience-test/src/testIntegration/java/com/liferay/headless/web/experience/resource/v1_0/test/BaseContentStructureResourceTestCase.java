@@ -116,8 +116,21 @@ public abstract class BaseContentStructureResourceTestCase {
 			testGetContentSpaceContentStructuresPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceContentStructuresPage_addContentStructure(
-				irrelevantContentSpaceId, randomIrrelevantContentStructure());
+			ContentStructure irrelevantContentStructure =
+				testGetContentSpaceContentStructuresPage_addContentStructure(
+					irrelevantContentSpaceId,
+					randomIrrelevantContentStructure());
+
+			Page<ContentStructure> page =
+				invokeGetContentSpaceContentStructuresPage(
+					irrelevantContentSpaceId, null, Pagination.of(1, 2), null);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantContentStructure),
+				(List<ContentStructure>)page.getItems());
+			assertValid(page);
 		}
 
 		ContentStructure contentStructure1 =

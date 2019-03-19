@@ -116,9 +116,21 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			testGetContentSpaceKnowledgeBaseArticlesPage_getIrrelevantContentSpaceId();
 
 		if ((irrelevantContentSpaceId != null)) {
-			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
-				irrelevantContentSpaceId,
-				randomIrrelevantKnowledgeBaseArticle());
+			KnowledgeBaseArticle irrelevantKnowledgeBaseArticle =
+				testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+					irrelevantContentSpaceId,
+					randomIrrelevantKnowledgeBaseArticle());
+
+			Page<KnowledgeBaseArticle> page =
+				invokeGetContentSpaceKnowledgeBaseArticlesPage(
+					irrelevantContentSpaceId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantKnowledgeBaseArticle),
+				(List<KnowledgeBaseArticle>)page.getItems());
+			assertValid(page);
 		}
 
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
@@ -687,9 +699,21 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_getIrrelevantKnowledgeBaseArticleId();
 
 		if ((irrelevantKnowledgeBaseArticleId != null)) {
-			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
-				irrelevantKnowledgeBaseArticleId,
-				randomIrrelevantKnowledgeBaseArticle());
+			KnowledgeBaseArticle irrelevantKnowledgeBaseArticle =
+				testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+					irrelevantKnowledgeBaseArticleId,
+					randomIrrelevantKnowledgeBaseArticle());
+
+			Page<KnowledgeBaseArticle> page =
+				invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+					irrelevantKnowledgeBaseArticleId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantKnowledgeBaseArticle),
+				(List<KnowledgeBaseArticle>)page.getItems());
+			assertValid(page);
 		}
 
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
@@ -941,9 +965,21 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_getIrrelevantKnowledgeBaseFolderId();
 
 		if ((irrelevantKnowledgeBaseFolderId != null)) {
-			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
-				irrelevantKnowledgeBaseFolderId,
-				randomIrrelevantKnowledgeBaseArticle());
+			KnowledgeBaseArticle irrelevantKnowledgeBaseArticle =
+				testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+					irrelevantKnowledgeBaseFolderId,
+					randomIrrelevantKnowledgeBaseArticle());
+
+			Page<KnowledgeBaseArticle> page =
+				invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+					irrelevantKnowledgeBaseFolderId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantKnowledgeBaseArticle),
+				(List<KnowledgeBaseArticle>)page.getItems());
+			assertValid(page);
 		}
 
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
