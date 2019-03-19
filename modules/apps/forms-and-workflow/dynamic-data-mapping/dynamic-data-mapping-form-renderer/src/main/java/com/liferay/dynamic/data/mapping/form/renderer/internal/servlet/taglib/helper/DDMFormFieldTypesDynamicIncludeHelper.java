@@ -14,7 +14,6 @@
 
 package com.liferay.dynamic.data.mapping.form.renderer.internal.servlet.taglib.helper;
 
-import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldType;
 import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldTypeServicesTracker;
 import com.liferay.dynamic.data.mapping.form.renderer.internal.servlet.taglib.DDMFormFieldTypesDynamicInclude;
 import com.liferay.dynamic.data.mapping.io.DDMFormFieldTypesJSONSerializer;
@@ -29,7 +28,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.io.IOException;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,9 +52,19 @@ public class DDMFormFieldTypesDynamicIncludeHelper {
 
 		Map<String, String> values = new HashMap<>();
 
-		values.put(
-			"fieldTypes",
-			serialize(_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes()));
+		try {
+			values.put(
+				"fieldTypes",
+				_ddmFormFieldTypesJSONSerialize.serialize(
+					_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes()));
+		}
+		catch (PortalException pe) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(pe);
+			}
+
+			values.put("fieldTypes", StringPool.BLANK);
+		}
 
 		scriptData.append(
 			null,
@@ -65,19 +73,6 @@ public class DDMFormFieldTypesDynamicIncludeHelper {
 			_MODULES, ScriptData.ModulesType.AUI);
 
 		scriptData.writeTo(response.getWriter());
-	}
-
-	protected String serialize(List<DDMFormFieldType> ddmFormFieldTypes) {
-		try {
-			return _ddmFormFieldTypesJSONSerialize.serialize(ddmFormFieldTypes);
-		}
-		catch (PortalException pe) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(pe);
-			}
-
-			return StringPool.BLANK;
-		}
 	}
 
 	private static String _getTemplateContent() {
