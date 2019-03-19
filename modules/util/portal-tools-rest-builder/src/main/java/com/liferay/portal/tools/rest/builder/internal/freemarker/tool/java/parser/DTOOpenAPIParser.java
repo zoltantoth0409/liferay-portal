@@ -149,8 +149,7 @@ public class DTOOpenAPIParser {
 			propertySchemas = items.getPropertySchemas();
 		}
 		else if (schema.getAllOfSchemas() != null) {
-			propertySchemas = OpenAPIParserUtil.getAllOfPropertySchemas(
-				schema.getAllOfSchemas());
+			propertySchemas = OpenAPIParserUtil.getAllOfPropertySchemas(schema);
 		}
 		else {
 			propertySchemas = schema.getPropertySchemas();
