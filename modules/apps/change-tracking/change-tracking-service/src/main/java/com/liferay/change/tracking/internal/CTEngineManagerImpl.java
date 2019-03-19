@@ -569,7 +569,6 @@ public class CTEngineManagerImpl implements CTEngineManager {
 				userId, ctConfiguration, ctCollection));
 	}
 
-	@SuppressWarnings("unchecked")
 	private void _generateCTEntriesForCTConfiguration(
 		long userId, CTConfiguration ctConfiguration,
 		CTCollection ctCollection) {
@@ -596,7 +595,6 @@ public class CTEngineManagerImpl implements CTEngineManager {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private void _generateCTEntriesForResourceEntity(
 		long userId, CTConfiguration ctConfiguration, CTCollection ctCollection,
 		BaseModel resourceEntity, Serializable resourcePrimKey) {
@@ -642,7 +640,6 @@ public class CTEngineManagerImpl implements CTEngineManager {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private <V extends BaseModel, R extends BaseModel> void
 		_generateCTEntryAggregateForCTEntry(
 			long userId, CTConfiguration ctConfiguration,
@@ -717,7 +714,6 @@ public class CTEngineManagerImpl implements CTEngineManager {
 			ctEntryAggregate, relatedCTEntry);
 	}
 
-	@SuppressWarnings("unchecked")
 	private <V extends BaseModel, R extends BaseModel> void
 		_generateCTEntryAggregatesForCTConfiguration(
 			long userId, CTConfiguration ctConfiguration,
