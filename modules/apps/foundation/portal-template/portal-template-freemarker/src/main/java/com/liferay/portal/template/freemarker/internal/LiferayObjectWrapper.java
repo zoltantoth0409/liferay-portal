@@ -122,9 +122,9 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 				restrictedMethodNames.length);
 
 			for (String restrictedMethodName : restrictedMethodNames) {
-				int pos = restrictedMethodName.indexOf(CharPool.POUND);
+				int index = restrictedMethodName.indexOf(CharPool.POUND);
 
-				if (pos < 0) {
+				if (index < 0) {
 					_log.error(
 						"Invalid syntax of " + restrictedMethodName +
 							". Expecting className#methodName");
@@ -133,10 +133,10 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 				}
 
 				String className = StringUtil.trim(
-					restrictedMethodName.substring(0, pos));
+					restrictedMethodName.substring(0, index));
 
 				String methodName = StringUtil.trim(
-					restrictedMethodName.substring(pos + 1));
+					restrictedMethodName.substring(index + 1));
 
 				Set<String> methodNames =
 					_restrictedMethodNamesMap.computeIfAbsent(
@@ -346,18 +346,6 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 
 		};
 
-	private static final ModelFactory _MAP_MODEL_FACTORY = new ModelFactory() {
-
-		@Override
-		public TemplateModel create(
-			Object object, ObjectWrapper objectWrapper) {
-
-			return new MapModel((Map)object, (BeansWrapper)objectWrapper);
-		}
-
-	};
-
-
 	private static final ModelFactory _LIFERAY_MODEL_FACTORY =
 		new ModelFactory() {
 
@@ -370,6 +358,17 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 			}
 
 		};
+
+	private static final ModelFactory _MAP_MODEL_FACTORY = new ModelFactory() {
+
+		@Override
+		public TemplateModel create(
+			Object object, ObjectWrapper objectWrapper) {
+
+			return new MapModel((Map)object, (BeansWrapper)objectWrapper);
+		}
+
+	};
 
 	private static final ModelFactory _RESOURCE_BUNDLE_MODEL_FACTORY =
 		new ModelFactory() {
