@@ -1077,11 +1077,11 @@ definition {
 
 		Portlet.changeDisplayStyle(displayStyle = "List");
 
-		var valueName = selenium.getText("//tr/td[7]//span/a");
+		var valueName = selenium.getAttribute("//tr/td[7]//span/a@href");
 
 		echo("value name ${valueName}");
 
-		var larFileName = RegexUtil.replace("${valueName}", "([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
+		var larFileName = RegexUtil.replace("${valueName}", "http://localhost:8080/documents/portlet_file_entry/[0-9]*/([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
 
 		echo("import file name ${larFileName}");
 

@@ -1147,11 +1147,11 @@ definition {
 
 		Portlet.changeDisplayStyle(displayStyle = "List");
 
-		var valueName = selenium.getText("//tr/td/span/a/span");
+		var valueName = selenium.getAttribute("//ul/li/div/h5//a@href");
 
 		echo("value name ${valueName}");
 
-		var larFileName = RegexUtil.replace("${valueName}", "([0-9a-zA-Z_.-]+).*", "1");
+		var larFileName = RegexUtil.replace("${valueName}", "http://localhost:8080/documents/portlet_file_entry/[0-9]*/([0-9a-zA-Z_.-]+).*", "1");
 
 		echo("lar file name ${larFileName}");
 
