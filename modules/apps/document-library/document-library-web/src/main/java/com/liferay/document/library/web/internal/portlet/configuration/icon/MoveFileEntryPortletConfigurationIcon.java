@@ -64,7 +64,7 @@ public class MoveFileEntryPortletConfigurationIcon
 			FileEntry fileEntry = ActionUtil.getFileEntry(portletRequest);
 
 			return StringBundler.concat(
-				"javascript:", liferayPortletResponse.getNamespace(),
+				"javascript: ", liferayPortletResponse.getNamespace(),
 				"move(1, 'rowIdsFileEntry', ", fileEntry.getFileEntryId(),
 				");");
 		}

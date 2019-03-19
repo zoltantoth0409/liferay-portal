@@ -66,7 +66,7 @@ public class MoveFolderPortletConfigurationIcon
 			Folder folder = ActionUtil.getFolder(portletRequest);
 
 			return StringBundler.concat(
-				"javascript:", liferayPortletResponse.getNamespace(),
+				"javascript: ", liferayPortletResponse.getNamespace(),
 				"move(1, 'rowIdsFolder', ", folder.getFolderId(), ");");
 		}
 		catch (Exception e) {

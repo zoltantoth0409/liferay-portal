@@ -556,7 +556,7 @@ public class UIItemsBuilder {
 		_addJavaScriptUIItem(
 			new JavaScriptMenuItem(), menuItems, DLUIItemKeys.MOVE,
 			LanguageUtil.get(_resourceBundle, "move"),
-			_getMoveEntryOnClickJavascript());
+			_getMoveEntryOnClickJavaScript());
 	}
 
 	public void addMoveToolbarItem(List<ToolbarItem> toolbarItems)
@@ -569,7 +569,7 @@ public class UIItemsBuilder {
 		_addJavaScriptUIItem(
 			new JavaScriptToolbarItem(), toolbarItems, DLUIItemKeys.MOVE,
 			LanguageUtil.get(_resourceBundle, "move"),
-			_getMoveEntryOnClickJavascript());
+			_getMoveEntryOnClickJavaScript());
 	}
 
 	public void addMoveToTheRecycleBinToolbarItem(
@@ -1159,7 +1159,7 @@ public class UIItemsBuilder {
 		return PortalUtil.getLiferayPortletResponse(portletResponse);
 	}
 
-	private String _getMoveEntryOnClickJavascript() {
+	private String _getMoveEntryOnClickJavaScript() {
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(getNamespace());
