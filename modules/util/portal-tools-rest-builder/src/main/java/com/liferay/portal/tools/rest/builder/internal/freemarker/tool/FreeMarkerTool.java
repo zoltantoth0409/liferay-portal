@@ -46,17 +46,16 @@ public class FreeMarkerTool {
 		return _instance;
 	}
 
-	public List<JavaMethodParameter> getDTOJavaMethodParameters(
+	public Map<String, String> getDTOProperties(
 		ConfigYAML configYAML, OpenAPIYAML openAPIYAML, Schema schema) {
 
-		return DTOOpenAPIParser.getJavaMethodParameters(
-			configYAML, openAPIYAML, schema);
+		return DTOOpenAPIParser.getProperties(configYAML, openAPIYAML, schema);
 	}
 
-	public List<JavaMethodParameter> getDTOJavaMethodParameters(
+	public Map<String, String> getDTOProperties(
 		ConfigYAML configYAML, OpenAPIYAML openAPIYAML, String schemaName) {
 
-		return DTOOpenAPIParser.getJavaMethodParameters(
+		return DTOOpenAPIParser.getProperties(
 			configYAML, openAPIYAML, schemaName);
 	}
 
@@ -91,10 +90,8 @@ public class FreeMarkerTool {
 		return null;
 	}
 
-	public Schema getDTOPropertySchema(
-		JavaMethodParameter javaMethodParameter, Schema schema) {
-
-		return DTOOpenAPIParser.getPropertySchema(javaMethodParameter, schema);
+	public Schema getDTOPropertySchema(String propertyName, Schema schema) {
+		return DTOOpenAPIParser.getPropertySchema(propertyName, schema);
 	}
 
 	public String getEnumFieldName(String value) {
@@ -214,10 +211,9 @@ public class FreeMarkerTool {
 	}
 
 	public boolean isSchemaParameter(
-		JavaMethodParameter javaMethodParameter, OpenAPIYAML openAPIYAML) {
+		String javaDataType, OpenAPIYAML openAPIYAML) {
 
-		return OpenAPIParserUtil.isSchemaParameter(
-			javaMethodParameter, openAPIYAML);
+		return OpenAPIParserUtil.isSchemaParameter(javaDataType, openAPIYAML);
 	}
 
 	private FreeMarkerTool() {

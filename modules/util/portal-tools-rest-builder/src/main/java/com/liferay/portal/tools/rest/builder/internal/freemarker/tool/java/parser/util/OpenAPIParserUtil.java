@@ -282,27 +282,24 @@ public class OpenAPIParserUtil {
 	}
 
 	public static boolean isSchemaParameter(
-		JavaMethodParameter javaMethodParameter, OpenAPIYAML openAPIYAML) {
+		String javaDataType, OpenAPIYAML openAPIYAML) {
 
-		String simpleClassName = javaMethodParameter.getParameterType();
-
-		if (simpleClassName.startsWith("[")) {
-			simpleClassName = getElementClassName(simpleClassName);
+		if (javaDataType.startsWith("[")) {
+			javaDataType = getElementClassName(javaDataType);
 		}
 
-		if (simpleClassName.endsWith(">")) {
-			simpleClassName = simpleClassName.substring(
-				0, simpleClassName.indexOf("<"));
+		if (javaDataType.endsWith(">")) {
+			javaDataType = javaDataType.substring(0, javaDataType.indexOf("<"));
 		}
 
-		if (simpleClassName.indexOf('.') != -1) {
-			simpleClassName = simpleClassName.substring(
-				simpleClassName.lastIndexOf(".") + 1);
+		if (javaDataType.indexOf('.') != -1) {
+			javaDataType = javaDataType.substring(
+				javaDataType.lastIndexOf(".") + 1);
 		}
 
 		Map<String, Schema> schemas = OpenAPIUtil.getAllSchemas(openAPIYAML);
 
-		if (schemas.containsKey(simpleClassName)) {
+		if (schemas.containsKey(javaDataType)) {
 			return true;
 		}
 

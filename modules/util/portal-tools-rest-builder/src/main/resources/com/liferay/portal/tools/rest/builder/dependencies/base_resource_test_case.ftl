@@ -979,6 +979,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 		);
 	}
 
+	<#assign properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema) />
+
 	protected String getFilterString(EntityField entityField, String operator, ${schemaName} ${schemaVarName}) {
 		StringBundler sb = new StringBundler();
 
@@ -990,15 +992,15 @@ public abstract class Base${schemaName}ResourceTestCase {
 		sb.append(operator);
 		sb.append(" ");
 
-		<#list freeMarkerTool.getDTOJavaMethodParameters(configYAML, openAPIYAML, schema) as javaMethodParameter>
-			if (entityFieldName.equals("${javaMethodParameter.parameterName}")) {
-				<#if stringUtil.equals(javaMethodParameter.parameterType, "java.util.Date")>
-					sb.append(_dateFormat.format(${schemaVarName}.get${javaMethodParameter.parameterName?cap_first}()));
+		<#list properties?keys as propertyName>
+			if (entityFieldName.equals("${propertyName}")) {
+				<#if stringUtil.equals(properties[propertyName], "java.util.Date")>
+					sb.append(_dateFormat.format(${schemaVarName}.get${propertyName?cap_first}()));
 
 					return sb.toString();
-				<#elseif stringUtil.equals(javaMethodParameter.parameterType, "java.lang.String")>
+				<#elseif stringUtil.equals(properties[propertyName], "java.lang.String")>
 					sb.append("'");
-					sb.append(String.valueOf(${schemaVarName}.get${javaMethodParameter.parameterName?cap_first}()));
+					sb.append(String.valueOf(${schemaVarName}.get${propertyName?cap_first}()));
 					sb.append("'");
 
 					return sb.toString();
@@ -1016,11 +1018,11 @@ public abstract class Base${schemaName}ResourceTestCase {
 			{
 				<#assign randomDataTypes = ["java.lang.Boolean", "java.lang.Double", "java.lang.Long", "java.lang.String"] />
 
-				<#list freeMarkerTool.getDTOJavaMethodParameters(configYAML, openAPIYAML, schema) as javaMethodParameter>
-					<#if randomDataTypes?seq_contains(javaMethodParameter.parameterType)>
-						${javaMethodParameter.parameterName} = RandomTestUtil.random${javaMethodParameter.parameterType}();
-					<#elseif stringUtil.equals(javaMethodParameter.parameterType, "java.util.Date")>
-						${javaMethodParameter.parameterName} = RandomTestUtil.nextDate();
+				<#list properties?keys as propertyName>
+					<#if randomDataTypes?seq_contains(properties[propertyName])>
+						${propertyName} = RandomTestUtil.random${properties[propertyName]}();
+					<#elseif stringUtil.equals(properties[propertyName], "java.util.Date")>
+						${propertyName} = RandomTestUtil.nextDate();
 					</#if>
 				</#list>
 			}

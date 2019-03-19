@@ -84,10 +84,12 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 
 				${schemaName} existing${schemaName} = get${schemaName}(${firstJavaMethodParameter.parameterName});
 
-				<#list freeMarkerTool.getDTOJavaMethodParameters(configYAML, openAPIYAML, schemaName) as javaMethodParameter>
-					<#if !freeMarkerTool.isSchemaParameter(javaMethodParameter, openAPIYAML) && !stringUtil.equals(javaMethodParameter.parameterName, "id")>
-						if (Validator.isNotNull(${schemaVarName}.get${javaMethodParameter.parameterName?cap_first}())) {
-							existing${schemaName}.set${javaMethodParameter.parameterName?cap_first}(${schemaVarName}.get${javaMethodParameter.parameterName?cap_first}());
+				<#assign properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema) />
+
+				<#list properties?keys as propertyName>
+					<#if !freeMarkerTool.isSchemaParameter(properties[propertyName], openAPIYAML) && !stringUtil.equals(propertyName, "id")>
+						if (Validator.isNotNull(${schemaVarName}.get${propertyName?cap_first}())) {
+							existing${schemaName}.set${propertyName?cap_first}(${schemaVarName}.get${propertyName?cap_first}());
 						}
 					</#if>
 				</#list>
