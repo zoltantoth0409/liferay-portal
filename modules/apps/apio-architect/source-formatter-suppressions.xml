@@ -15,7 +15,6 @@
 		<suppress checks="IndentationCheck" files="modules/apps/apio-architect/apio-architect-api/src/test/java/com/liferay/apio/architect/consumer/UndecaConsumerTest\.java" />
 		<suppress checks="MissingModifierCheck" files="modules/apps/apio-architect/apio-architect-impl/src/test/java/com/liferay/apio/architect/internal/annotation/representor/ActionRouterTypeExtractorTest\.java" />
 		<suppress checks="ParsePrimitiveTypeCheck" files="modules/apps/apio-architect/apio-architect-uri-mapper-impl/src/main/java/com/liferay/apio/architect/uri/mapper/internal/PathLongIdentifierMapper\.java" />
-		<suppress checks="StaticBlockCheck" files="modules/apps/apio-architect/apio-architect-impl/src/main/java/com/liferay/apio/architect/internal/jaxrs/writer/FormMessageBodyWriter\.java" />
 		<suppress checks="VariableNameCheck" files="modules/apps/apio-architect/apio-architect-api/src/main/java/com/liferay/apio/architect/routes/.*" />
 		<suppress checks="VariableNameCheck" files="modules/apps/apio-architect/apio-architect-impl/src/main/java/com/liferay/apio/architect/internal/routes/.*" />
 	</checkstyle>
