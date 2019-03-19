@@ -25,4 +25,14 @@ definition {
 
 		selenium.assertLiferayErrors();
 	}
+
+	function uploadCommonFileHiddenNoMouseOver {
+		WaitForSPARefresh();
+
+		selenium.uploadCommonFile();
+
+		selenium.assertJavaScriptErrors();
+
+		selenium.assertLiferayErrors();
+	}
 }

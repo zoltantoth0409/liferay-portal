@@ -385,7 +385,7 @@ definition {
 
 		if (isSet(dmDocumentFileList)) {
 			for (var dmDocumentFile : list "${dmDocumentFileList}") {
-				AssertClick(locator1 = "Button#SELECT_FILES", value1 = "Select Files");
+				AssertElementPresent(locator1 = "Button#SELECT_FILES");
 
 				if ("${uploadTempFile}" == "true") {
 					UploadTempFile.uploadTempFileHiddenNoMouseOver(
@@ -394,8 +394,8 @@ definition {
 					);
 				}
 				else {
-					SikuliUploadCommonFile(
-						locator1 = "OS#FILE_DIALOG_BOX_FILE_NAME_FIELD_PNG",
+					UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
+						locator1 = "TextInput#FILE",
 						value1 = "${dmDocumentFile}"
 					);
 				}
@@ -428,7 +428,7 @@ definition {
 
 		if (isSet(dmDocumentFileList)) {
 			for (var dmDocumentFile : list "${dmDocumentFileList}") {
-				AssertClick(locator1 = "Button#SELECT_FILES", value1 = "Select Files");
+				AssertElementPresent(locator1 = "Button#SELECT_FILES");
 
 				if ("${uploadTempFile}" == "true") {
 					UploadTempFile.uploadTempFileHiddenNoMouseOver(
@@ -437,8 +437,8 @@ definition {
 					);
 				}
 				else {
-					SikuliUploadCommonFile(
-						locator1 = "OS#FILE_DIALOG_BOX_FILE_NAME_FIELD_PNG",
+					UploadCommonFile.uploadCommonFileHiddenNoMouseOver(
+						locator1 = "TextInput#FILE",
 						value1 = "${dmDocumentFile}"
 					);
 				}
