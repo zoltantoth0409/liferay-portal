@@ -21,9 +21,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 AssetEntry assetEntry = workflowTaskDisplayContext.getAssetEntry();
 
-WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
-
-AssetRenderer assetRenderer = workflowTaskDisplayContext.getAssetRenderer(workflowTask);
+AssetRenderer assetRenderer = workflowTaskDisplayContext.getAssetRenderer(workflowTaskDisplayContext.getWorkflowTask());
 
 AssetRendererFactory assetRendererFactory = workflowTaskDisplayContext.getAssetRendererFactory();
 
