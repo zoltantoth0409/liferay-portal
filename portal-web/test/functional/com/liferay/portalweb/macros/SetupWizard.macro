@@ -306,7 +306,7 @@ definition {
 
 			AssertTextEquals.assertText(
 				locator1 = "SetupWizard#DATABASE_CHANGE_JDBC_DRIVER_CLASS_NAME_LABEL",
-				value1 = "JDBC Driver Class Name asterisk Required"
+				value1 = "JDBC Driver Class Name Required"
 			);
 
 			AssertTextEquals.assertText(
