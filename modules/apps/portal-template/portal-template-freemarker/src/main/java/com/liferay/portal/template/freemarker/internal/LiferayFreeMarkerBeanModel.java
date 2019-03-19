@@ -43,7 +43,7 @@ public class LiferayFreeMarkerBeanModel extends BeanModel {
 			if (restrictedMethodName.endsWith(methodOrFieldName)) {
 				throw new InvalidPropertyException(
 					StringBundler.concat(
-						"Forbbiden access to method or field ", key, " of ",
+						"Denied access to method or field ", key, " of ",
 						object.getClass()));
 			}
 		}

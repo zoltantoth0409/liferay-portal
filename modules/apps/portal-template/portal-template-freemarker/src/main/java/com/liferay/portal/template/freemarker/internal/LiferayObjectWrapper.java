@@ -116,10 +116,10 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 		}
 
 		if (restrictedMethodNames == null) {
-			_restrictedMethodNamesMap = Collections.emptyMap();
+			_restrictedMethodNames = Collections.emptyMap();
 		}
 		else {
-			_restrictedMethodNamesMap = new HashMap<>(
+			_restrictedMethodNames = new HashMap<>(
 				restrictedMethodNames.length);
 
 			for (String restrictedMethodName : restrictedMethodNames) {
@@ -127,20 +127,21 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 
 				if (pos < 0) {
 					_log.error(
-						"Invalid syntax of " + restrictedMethodName +
-							". Expecting className#methodName");
+						StringBundler.concat(
+							"\"", restrictedMethodName,
+							"\" does not match format ",
+							"\"className#methodName\""));
 
 					continue;
 				}
 
 				String className = StringUtil.trim(
 					restrictedMethodName.substring(0, pos));
-
 				String methodName = StringUtil.trim(
 					restrictedMethodName.substring(pos + 1));
 
 				Set<String> methodNames =
-					_restrictedMethodNamesMap.computeIfAbsent(
+					_restrictedMethodNames.computeIfAbsent(
 						className, key -> new HashSet<>());
 
 				methodNames.add(StringUtil.toLowerCase(methodName));
@@ -201,15 +202,15 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 			_checkClassIsRestricted(clazz);
 		}
 
-		if (_restrictedMethodNamesMap.containsKey(className)) {
-			LiferayFreeMarkerBeanModel templateModel =
-				(LiferayFreeMarkerBeanModel)_LIFERAY_MODEL_FACTORY.create(
-					object, this);
+		if (_restrictedMethodNames.containsKey(className)) {
+			LiferayFreeMarkerBeanModel liferayFreeMarkerBeanModel =
+				(LiferayFreeMarkerBeanModel)
+					_LIFERAY_FREEMARKER_BEAN_MODEL_FACTORY.create(object, this);
 
-			templateModel.setRestrictedMethodNames(
-				_restrictedMethodNamesMap.get(className));
+			liferayFreeMarkerBeanModel.setRestrictedMethodNames(
+				_restrictedMethodNames.get(className));
 
-			return templateModel;
+			return liferayFreeMarkerBeanModel;
 		}
 
 		if (className.startsWith("com.liferay.")) {
@@ -326,7 +327,7 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 
 		};
 
-	private static final ModelFactory _LIFERAY_MODEL_FACTORY =
+	private static final ModelFactory _LIFERAY_FREEMARKER_BEAN_MODEL_FACTORY =
 		new ModelFactory() {
 
 			@Override
@@ -408,7 +409,7 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 	private final Map<String, ClassRestrictionInformation>
 		_classRestrictionInformations = new ConcurrentHashMap<>();
 	private final List<Class<?>> _restrictedClasses;
-	private final Map<String, Set<String>> _restrictedMethodNamesMap;
+	private final Map<String, Set<String>> _restrictedMethodNames;
 	private final List<String> _restrictedPackageNames;
 
 	private static class ClassRestrictionInformation {

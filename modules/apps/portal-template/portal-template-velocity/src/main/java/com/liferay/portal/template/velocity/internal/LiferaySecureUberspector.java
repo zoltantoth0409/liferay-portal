@@ -74,10 +74,10 @@ public class LiferaySecureUberspector extends SecureUberspector {
 				".methods");
 
 		if (restrictedMethodNames == null) {
-			_restrictedMethodNamesMap = Collections.emptyMap();
+			_restrictedMethodNames = Collections.emptyMap();
 		}
 		else {
-			_restrictedMethodNamesMap = new HashMap<>(
+			_restrictedMethodNames = new HashMap<>(
 				restrictedMethodNames.length);
 
 			for (String restrictedMethodName : restrictedMethodNames) {
@@ -99,7 +99,7 @@ public class LiferaySecureUberspector extends SecureUberspector {
 					restrictedMethodName.substring(index + 1));
 
 				Set<String> methodNames =
-					_restrictedMethodNamesMap.computeIfAbsent(
+					_restrictedMethodNames.computeIfAbsent(
 						className, key -> new HashSet<>());
 
 				methodNames.add(StringUtil.toLowerCase(methodName));
@@ -185,8 +185,8 @@ public class LiferaySecureUberspector extends SecureUberspector {
 	private void _checkMethodIsRestricted(Class clazz, String methodName) {
 		String className = clazz.getName();
 
-		if (_restrictedMethodNamesMap.containsKey(className)) {
-			Set<String> methodNames = _restrictedMethodNamesMap.get(className);
+		if (_restrictedMethodNames.containsKey(className)) {
+			Set<String> methodNames = _restrictedMethodNames.get(className);
 
 			if (methodNames.contains(StringUtil.toLowerCase(methodName))) {
 				throw new IllegalArgumentException(
@@ -203,7 +203,7 @@ public class LiferaySecureUberspector extends SecureUberspector {
 	private final Map<String, ClassRestrictionInformation>
 		_classRestrictionInformations = new ConcurrentHashMap<>();
 	private List<Class<?>> _restrictedClasses;
-	private Map<String, Set<String>> _restrictedMethodNamesMap;
+	private Map<String, Set<String>> _restrictedMethodNames;
 	private List<String> _restrictedPackageNames;
 	private RuntimeServices _runtimeServices;
 
