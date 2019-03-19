@@ -1373,13 +1373,7 @@ definition {
 
 		Portlet.changeDisplayStyle(displayStyle = "list");
 
-		var valueName = selenium.getAttribute("//ul/li/div/h5//a@href");
-
-		echo("value name ${valueName}");
-
-		var larFileName = RegexUtil.replace("${valueName}", "http://localhost:8080/documents/portlet_file_entry/[0-9]*/([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
-
-		echo("lar file name ${larFileName}");
+		var larFileName = LAR.getLarFileName();
 
 		Portlet.changeDisplayStyle(displayStyle = "descriptive");
 
@@ -1551,13 +1545,7 @@ definition {
 
 		Portlet.changeDisplayStyle(displayStyle = "list");
 
-		var valueName = selenium.getAttribute("//ul/li/div/h5//a@href");
-
-		echo("value name ${valueName}");
-
-		var larFileName = RegexUtil.replace("${valueName}", "http://localhost:8080/documents/portlet_file_entry/[0-9]*/([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
-
-		echo("lar file name ${larFileName}");
+		var larFileName = LAR.getLarFileName();
 
 		Portlet.changeDisplayStyle(displayStyle = "descriptive");
 
@@ -1617,13 +1605,7 @@ definition {
 
 		Portlet.changeDisplayStyle(displayStyle = "list");
 
-		var valueName = selenium.getAttribute("//ul/li/div/h5//a@href");
-
-		echo("value name ${valueName}");
-
-		var larFileName = RegexUtil.replace("${valueName}", "http://localhost:8080/documents/portlet_file_entry/[0-9]*/([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
-
-		echo("lar file name ${larFileName}");
+		var larFileName = LAR.getLarFileName();
 
 		Portlet.changeDisplayStyle(displayStyle = "descriptive");
 
@@ -1693,13 +1675,7 @@ definition {
 
 		Portlet.changeDisplayStyle(displayStyle = "list");
 
-		var valueName = selenium.getAttribute("//ul/li/div/h5//a@href");
-
-		echo("value name ${valueName}");
-
-		var larFileName = RegexUtil.replace("${valueName}", "http://localhost:8080/documents/portlet_file_entry/[0-9]*/([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
-
-		echo("lar file name ${larFileName}");
+		var larFileName = LAR.getLarFileName();
 
 		Portlet.changeDisplayStyle(displayStyle = "descriptive");
 
@@ -1865,13 +1841,7 @@ definition {
 
 		Portlet.changeDisplayStyle(displayStyle = "list");
 
-		var valueName = selenium.getAttribute("//ul/li/div/h5//a@href");
-
-		echo("value name ${valueName}");
-
-		var larFileName = RegexUtil.replace("${valueName}", "http://localhost:8080/documents/portlet_file_entry/[0-9]*/([a-zA-z0-9_.-]*)[(0-9KB)]*", "1");
-
-		echo("lar file name ${larFileName}");
+		var larFileName = LAR.getLarFileName();
 
 		Portlet.changeDisplayStyle(displayStyle = "descriptive");
 
