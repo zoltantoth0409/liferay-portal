@@ -243,7 +243,7 @@ public class TGZUtil {
 		}
 		catch (Exception e) {
 			throw new RuntimeException(
-				"Invalid posix integer value " + posixIntegerValue, e);
+				"Invalid POSIX integer value " + posixIntegerValue, e);
 		}
 	}
 
