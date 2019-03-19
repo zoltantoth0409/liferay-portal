@@ -21,26 +21,11 @@ import com.liferay.portal.kernel.exception.PortalException;
 import java.util.List;
 
 /**
- * The implementation of the ddm structure layout remote service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.dynamic.data.mapping.service.DDMStructureLayoutService</code> interface.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see DDMStructureLayoutServiceBaseImpl
  */
 public class DDMStructureLayoutServiceImpl
 	extends DDMStructureLayoutServiceBaseImpl {
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use <code>com.liferay.dynamic.data.mapping.service.DDMStructureLayoutServiceUtil</code> to access the ddm structure layout remote service.
-	 */
 	@Override
 	public List<DDMStructureLayout> getStructureLayouts(
 			long groupId, int start, int end)
