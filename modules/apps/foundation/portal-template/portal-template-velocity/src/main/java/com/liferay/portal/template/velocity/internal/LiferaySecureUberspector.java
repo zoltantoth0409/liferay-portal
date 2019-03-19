@@ -81,21 +81,22 @@ public class LiferaySecureUberspector extends SecureUberspector {
 				restrictedMethodNames.length);
 
 			for (String restrictedMethodName : restrictedMethodNames) {
-				int pos = restrictedMethodName.indexOf(CharPool.POUND);
+				int index = restrictedMethodName.indexOf(CharPool.POUND);
 
-				if (pos < 0) {
+				if (index < 0) {
 					super.log.error(
-						"Invalid syntax of " + restrictedMethodName +
-							". Expecting className#methodName");
+						StringBundler.concat(
+							"\"", restrictedMethodName,
+							"\" does not match format ",
+							"\"className#methodName\""));
 
 					continue;
 				}
 
 				String className = StringUtil.trim(
-					restrictedMethodName.substring(0, pos));
-
+					restrictedMethodName.substring(0, index));
 				String methodName = StringUtil.trim(
-					restrictedMethodName.substring(pos + 1));
+					restrictedMethodName.substring(index + 1));
 
 				Set<String> methodNames =
 					_restrictedMethodNamesMap.computeIfAbsent(
@@ -190,7 +191,7 @@ public class LiferaySecureUberspector extends SecureUberspector {
 			if (methodNames.contains(StringUtil.toLowerCase(methodName))) {
 				throw new IllegalArgumentException(
 					StringBundler.concat(
-						"Forbbiden access to method ", methodName, " of ",
+						"Denied access to method ", methodName, " of ",
 						clazz.getName()));
 			}
 		}
