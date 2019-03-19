@@ -345,8 +345,8 @@ public class LiferayObjectWrapperTest {
 			LogRecord logRecord = logRecords.get(0);
 
 			Assert.assertEquals(
-				"Invalid syntax of " + methodName +
-					". Expecting className#methodName",
+				"\"" + methodName + "\" does not match format " +
+					"\"className#methodName\"",
 				logRecord.getMessage());
 		}
 	}
@@ -445,7 +445,7 @@ public class LiferayObjectWrapperTest {
 			Assert.assertSame(InvalidPropertyException.class, tme.getClass());
 
 			Assert.assertEquals(
-				"Forbbiden access to method or field " + key + " of " +
+				"Denied access to method or field " + key + " of " +
 					TestLiferayMethodObject.class.toString(),
 				tme.getMessage());
 		}
