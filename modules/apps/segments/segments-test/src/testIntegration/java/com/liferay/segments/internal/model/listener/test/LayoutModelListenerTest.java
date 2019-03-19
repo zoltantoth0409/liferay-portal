@@ -101,8 +101,8 @@ public class LayoutModelListenerTest {
 		Layout draftLayout = LayoutTestUtil.addLayout(_group);
 
 		Layout layout = _addLayout(
-			_group.getGroupId(), LayoutConstants.TYPE_CONTENT, _classNameId,
-			draftLayout.getPlid());
+			_group.getGroupId(), _classNameId, draftLayout.getPlid(),
+			LayoutConstants.TYPE_CONTENT);
 
 		Assert.assertFalse(_hasDefaultSegmentsExperienceLayout(layout));
 	}

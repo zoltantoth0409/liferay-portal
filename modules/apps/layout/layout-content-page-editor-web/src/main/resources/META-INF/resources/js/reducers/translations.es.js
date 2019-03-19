@@ -118,6 +118,7 @@ function _getTranslationStatus(languageIds, editableValues, segmentsExperienceId
 				editableValue => Object.keys(editableValue).map(
 					editableValueId => {
 						let result;
+
 						if (!segmentsExperienceId) {
 							result = editableValue &&
 								editableValue[editableValueId] &&

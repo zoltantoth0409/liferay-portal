@@ -77,7 +77,6 @@ public class SegmentsExperienceLocalServiceImpl
 		User user = userLocalService.getUser(serviceContext.getUserId());
 
 		long groupId = serviceContext.getScopeGroupId();
-
 		long publishedClassPK = _getPublishedLayoutClassPK(classPK);
 
 		_validate(segmentsEntryId, groupId, classNameId, publishedClassPK);
