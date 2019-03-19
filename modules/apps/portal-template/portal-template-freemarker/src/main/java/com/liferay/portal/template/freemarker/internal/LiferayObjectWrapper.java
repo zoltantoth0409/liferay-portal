@@ -123,9 +123,9 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 				restrictedMethodNames.length);
 
 			for (String restrictedMethodName : restrictedMethodNames) {
-				int pos = restrictedMethodName.indexOf(CharPool.POUND);
+				int index = restrictedMethodName.indexOf(CharPool.POUND);
 
-				if (pos < 0) {
+				if (index < 0) {
 					_log.error(
 						StringBundler.concat(
 							"\"", restrictedMethodName,
@@ -136,9 +136,9 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 				}
 
 				String className = StringUtil.trim(
-					restrictedMethodName.substring(0, pos));
+					restrictedMethodName.substring(0, index));
 				String methodName = StringUtil.trim(
-					restrictedMethodName.substring(pos + 1));
+					restrictedMethodName.substring(index + 1));
 
 				Set<String> methodNames =
 					_restrictedMethodNames.computeIfAbsent(
