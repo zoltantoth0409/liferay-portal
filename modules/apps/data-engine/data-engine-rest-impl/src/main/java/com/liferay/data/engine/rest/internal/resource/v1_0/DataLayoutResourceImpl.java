@@ -56,7 +56,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
-		Page.of(
+		return Page.of(
 			transform(
 				_ddmStructureLayoutService.getStructureLayouts(
 					contentSpaceId, pagination.getStartPosition(),
@@ -65,8 +65,6 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			pagination,
 			_ddmStructureLayoutService.getStructureLayoutsCount(
 				contentSpaceId));
-
-		return super.getContentSpaceDataLayoutPage(contentSpaceId, pagination);
 	}
 
 	@Override
