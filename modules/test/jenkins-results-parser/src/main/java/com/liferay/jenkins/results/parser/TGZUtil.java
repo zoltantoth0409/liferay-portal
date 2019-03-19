@@ -41,7 +41,7 @@ import org.apache.commons.io.IOUtils;
 /**
  * @author Michael Hashimoto
  */
-public class TarGzUtil {
+public class TGZUtil {
 
 	public static boolean debug = false;
 
