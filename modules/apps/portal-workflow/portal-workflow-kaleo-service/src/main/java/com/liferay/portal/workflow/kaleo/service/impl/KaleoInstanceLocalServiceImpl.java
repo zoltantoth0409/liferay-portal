@@ -334,6 +334,8 @@ public class KaleoInstanceLocalServiceImpl
 		try {
 			List<KaleoInstance> kaleoInstances = new ArrayList<>();
 
+			serviceContext.setUserId(userId);
+
 			Hits hits = kaleoInstanceTokenLocalService.search(
 				assetClassName, assetTitle, assetDescription, nodeName,
 				kaleoDefinitionName, completed, start, end,
@@ -380,6 +382,8 @@ public class KaleoInstanceLocalServiceImpl
 		Long userId, String assetClassName, String assetTitle,
 		String assetDescription, String nodeName, String kaleoDefinitionName,
 		Boolean completed, ServiceContext serviceContext) {
+
+		serviceContext.setUserId(userId);
 
 		return kaleoInstanceTokenLocalService.searchCount(
 			assetClassName, assetTitle, assetDescription, nodeName,
