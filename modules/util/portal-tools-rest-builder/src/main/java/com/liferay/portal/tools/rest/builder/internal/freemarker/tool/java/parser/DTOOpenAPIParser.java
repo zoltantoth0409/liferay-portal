@@ -83,20 +83,6 @@ public class DTOOpenAPIParser {
 		return null;
 	}
 
-	private static String _getPropertyName(
-		Schema propertySchema, String propertySchemaName) {
-
-		String name = CamelCaseUtil.toCamelCase(propertySchemaName);
-
-		if (StringUtil.equalsIgnoreCase(propertySchema.getType(), "object")) {
-			if (propertySchema.getItems() != null) {
-				return OpenAPIUtil.formatSingular(name);
-			}
-		}
-
-		return name;
-	}
-
 	private static String _getJavaDataType(
 		Map<String, String> javaDataTypeMap, Schema propertySchema,
 		String propertySchemaName) {
@@ -138,6 +124,20 @@ public class DTOOpenAPIParser {
 
 		return OpenAPIParserUtil.getJavaDataType(
 			javaDataTypeMap, propertySchema);
+	}
+
+	private static String _getPropertyName(
+		Schema propertySchema, String propertySchemaName) {
+
+		String name = CamelCaseUtil.toCamelCase(propertySchemaName);
+
+		if (StringUtil.equalsIgnoreCase(propertySchema.getType(), "object")) {
+			if (propertySchema.getItems() != null) {
+				return OpenAPIUtil.formatSingular(name);
+			}
+		}
+
+		return name;
 	}
 
 	private static Map<String, Schema> _getPropertySchemas(Schema schema) {

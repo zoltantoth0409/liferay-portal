@@ -46,19 +46,6 @@ public class FreeMarkerTool {
 		return _instance;
 	}
 
-	public Map<String, String> getDTOProperties(
-		ConfigYAML configYAML, OpenAPIYAML openAPIYAML, Schema schema) {
-
-		return DTOOpenAPIParser.getProperties(configYAML, openAPIYAML, schema);
-	}
-
-	public Map<String, String> getDTOProperties(
-		ConfigYAML configYAML, OpenAPIYAML openAPIYAML, String schemaName) {
-
-		return DTOOpenAPIParser.getProperties(
-			configYAML, openAPIYAML, schemaName);
-	}
-
 	public String getDTOParentClassName(
 		OpenAPIYAML openAPIYAML, String schemaName) {
 
@@ -88,6 +75,19 @@ public class FreeMarkerTool {
 		}
 
 		return null;
+	}
+
+	public Map<String, String> getDTOProperties(
+		ConfigYAML configYAML, OpenAPIYAML openAPIYAML, Schema schema) {
+
+		return DTOOpenAPIParser.getProperties(configYAML, openAPIYAML, schema);
+	}
+
+	public Map<String, String> getDTOProperties(
+		ConfigYAML configYAML, OpenAPIYAML openAPIYAML, String schemaName) {
+
+		return DTOOpenAPIParser.getProperties(
+			configYAML, openAPIYAML, schemaName);
 	}
 
 	public Schema getDTOPropertySchema(String propertyName, Schema schema) {
