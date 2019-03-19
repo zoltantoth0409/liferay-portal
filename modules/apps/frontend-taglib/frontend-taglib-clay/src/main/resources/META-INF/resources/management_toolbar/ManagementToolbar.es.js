@@ -153,6 +153,12 @@ class ManagementToolbar extends ClayComponent {
 
 		this.selectedItems = elements.allSelectedElements.filter(':enabled').size();
 
+		this.checkboxStatus = 'unchecked';
+
+		if (this.selectedItems !== 0) {
+			this.checkboxStatus = this.selectedItems < this.totalItems ? 'indeterminate' : 'checked';
+		}
+
 		if (this.actionItems) {
 			this.actionItems = this.actionItems.map(
 				actionItem => {
