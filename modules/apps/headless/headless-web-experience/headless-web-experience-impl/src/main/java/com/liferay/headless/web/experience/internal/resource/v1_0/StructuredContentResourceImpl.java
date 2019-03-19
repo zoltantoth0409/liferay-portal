@@ -425,7 +425,7 @@ public class StructuredContentResourceImpl
 		catch (PrincipalException.MustHavePermission mhp) {
 			throw new ForbiddenException(
 				"You do not have permission to create a structured content " +
-					"using the structure id " +
+					"using the content structure ID " +
 						structuredContent.getContentStructureId(),
 				mhp);
 		}
