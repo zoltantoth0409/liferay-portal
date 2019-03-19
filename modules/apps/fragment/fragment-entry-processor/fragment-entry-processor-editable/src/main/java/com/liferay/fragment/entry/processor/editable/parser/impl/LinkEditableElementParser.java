@@ -121,7 +121,7 @@ public class LinkEditableElementParser implements EditableElementParser {
 
 		String buttonType = configJSONObject.getString("buttonType");
 
-		if (Objects.equals(buttonType, _BUTTON_TYPE_LINK)) {
+		if (Objects.equals(buttonType, "link")) {
 			replaceableElement.addClass("link");
 		}
 		else {
@@ -147,8 +147,6 @@ public class LinkEditableElementParser implements EditableElementParser {
 					new Object[] {"<em>", "</em>"}, false));
 		}
 	}
-
-	private static final String _BUTTON_TYPE_LINK = "link";
 
 	private static final String _TMPL_LINK_FIELD_TEMPLATE = StringUtil.read(
 		EditableFragmentEntryProcessor.class,
