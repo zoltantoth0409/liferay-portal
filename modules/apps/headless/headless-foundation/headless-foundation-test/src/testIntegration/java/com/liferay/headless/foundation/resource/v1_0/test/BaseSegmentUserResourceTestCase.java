@@ -90,6 +90,7 @@ public abstract class BaseSegmentUserResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -98,12 +99,20 @@ public abstract class BaseSegmentUserResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
 	public void testGetSegmentUserAccountsPage() throws Exception {
 		Long segmentId = testGetSegmentUserAccountsPage_getSegmentId();
+		Long irrelevantSegmentId =
+			testGetSegmentUserAccountsPage_getIrrelevantSegmentId();
+
+		if ((irrelevantSegmentId != null)) {
+			testGetSegmentUserAccountsPage_addSegmentUser(
+				irrelevantSegmentId, randomIrrelevantSegmentUser());
+		}
 
 		SegmentUser segmentUser1 =
 			testGetSegmentUserAccountsPage_addSegmentUser(
@@ -183,6 +192,12 @@ public abstract class BaseSegmentUserResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetSegmentUserAccountsPage_getIrrelevantSegmentId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<SegmentUser> invokeGetSegmentUserAccountsPage(
 			Long segmentId, Pagination pagination)
 		throws Exception {
@@ -200,8 +215,10 @@ public abstract class BaseSegmentUserResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<SegmentUser>>() {
 			});
 	}
@@ -389,10 +406,15 @@ public abstract class BaseSegmentUserResourceTestCase {
 		};
 	}
 
+	protected SegmentUser randomIrrelevantSegmentUser() {
+		return randomSegmentUser();
+	}
+
 	protected SegmentUser randomPatchSegmentUser() {
 		return randomSegmentUser();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

@@ -90,6 +90,7 @@ public abstract class BasePostalAddressResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -98,6 +99,7 @@ public abstract class BasePostalAddressResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -105,6 +107,13 @@ public abstract class BasePostalAddressResourceTestCase {
 	public void testGetOrganizationPostalAddressesPage() throws Exception {
 		Long organizationId =
 			testGetOrganizationPostalAddressesPage_getOrganizationId();
+		Long irrelevantOrganizationId =
+			testGetOrganizationPostalAddressesPage_getIrrelevantOrganizationId();
+
+		if ((irrelevantOrganizationId != null)) {
+			testGetOrganizationPostalAddressesPage_addPostalAddress(
+				irrelevantOrganizationId, randomIrrelevantPostalAddress());
+		}
 
 		PostalAddress postalAddress1 =
 			testGetOrganizationPostalAddressesPage_addPostalAddress(
@@ -190,6 +199,13 @@ public abstract class BasePostalAddressResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetOrganizationPostalAddressesPage_getIrrelevantOrganizationId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<PostalAddress> invokeGetOrganizationPostalAddressesPage(
 			Long organizationId, Pagination pagination)
 		throws Exception {
@@ -209,8 +225,10 @@ public abstract class BasePostalAddressResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<PostalAddress>>() {
 			});
 	}
@@ -270,8 +288,16 @@ public abstract class BasePostalAddressResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), PostalAddress.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, PostalAddress.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetPostalAddressResponse(Long postalAddressId)
@@ -295,6 +321,13 @@ public abstract class BasePostalAddressResourceTestCase {
 	public void testGetUserAccountPostalAddressesPage() throws Exception {
 		Long userAccountId =
 			testGetUserAccountPostalAddressesPage_getUserAccountId();
+		Long irrelevantUserAccountId =
+			testGetUserAccountPostalAddressesPage_getIrrelevantUserAccountId();
+
+		if ((irrelevantUserAccountId != null)) {
+			testGetUserAccountPostalAddressesPage_addPostalAddress(
+				irrelevantUserAccountId, randomIrrelevantPostalAddress());
+		}
 
 		PostalAddress postalAddress1 =
 			testGetUserAccountPostalAddressesPage_addPostalAddress(
@@ -380,6 +413,13 @@ public abstract class BasePostalAddressResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetUserAccountPostalAddressesPage_getIrrelevantUserAccountId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<PostalAddress> invokeGetUserAccountPostalAddressesPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
@@ -399,8 +439,10 @@ public abstract class BasePostalAddressResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<PostalAddress>>() {
 			});
 	}
@@ -647,10 +689,15 @@ public abstract class BasePostalAddressResourceTestCase {
 		};
 	}
 
+	protected PostalAddress randomIrrelevantPostalAddress() {
+		return randomPostalAddress();
+	}
+
 	protected PostalAddress randomPatchPostalAddress() {
 		return randomPostalAddress();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

@@ -96,6 +96,7 @@ public abstract class BaseFolderResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -104,6 +105,7 @@ public abstract class BaseFolderResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -111,6 +113,13 @@ public abstract class BaseFolderResourceTestCase {
 	public void testGetContentSpaceFoldersPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceFoldersPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceFoldersPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceFoldersPage_addFolder(
+				irrelevantContentSpaceId, randomIrrelevantFolder());
+		}
 
 		Folder folder1 = testGetContentSpaceFoldersPage_addFolder(
 			contentSpaceId, randomFolder());
@@ -355,6 +364,12 @@ public abstract class BaseFolderResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long testGetContentSpaceFoldersPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<Folder> invokeGetContentSpaceFoldersPage(
 			Long contentSpaceId, String filterString, Pagination pagination,
 			String sortString)
@@ -379,8 +394,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Folder>>() {
 			});
 	}
@@ -451,8 +468,16 @@ public abstract class BaseFolderResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Folder.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Folder.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostContentSpaceFolderResponse(
@@ -504,8 +529,16 @@ public abstract class BaseFolderResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteFolderResponse(Long folderId)
@@ -548,8 +581,16 @@ public abstract class BaseFolderResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Folder.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Folder.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetFolderResponse(Long folderId)
@@ -606,8 +647,16 @@ public abstract class BaseFolderResourceTestCase {
 
 		options.setPatch(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Folder.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Folder.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePatchFolderResponse(
@@ -670,8 +719,16 @@ public abstract class BaseFolderResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Folder.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Folder.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutFolderResponse(
@@ -699,6 +756,13 @@ public abstract class BaseFolderResourceTestCase {
 	@Test
 	public void testGetFolderFoldersPage() throws Exception {
 		Long folderId = testGetFolderFoldersPage_getFolderId();
+		Long irrelevantFolderId =
+			testGetFolderFoldersPage_getIrrelevantFolderId();
+
+		if ((irrelevantFolderId != null)) {
+			testGetFolderFoldersPage_addFolder(
+				irrelevantFolderId, randomIrrelevantFolder());
+		}
 
 		Folder folder1 = testGetFolderFoldersPage_addFolder(
 			folderId, randomFolder());
@@ -925,6 +989,12 @@ public abstract class BaseFolderResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetFolderFoldersPage_getIrrelevantFolderId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Folder> invokeGetFolderFoldersPage(
 			Long folderId, String filterString, Pagination pagination,
 			String sortString)
@@ -946,8 +1016,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Folder>>() {
 			});
 	}
@@ -1011,8 +1083,16 @@ public abstract class BaseFolderResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Folder.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Folder.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostFolderFolderResponse(
@@ -1233,10 +1313,15 @@ public abstract class BaseFolderResourceTestCase {
 		};
 	}
 
+	protected Folder randomIrrelevantFolder() {
+		return randomFolder();
+	}
+
 	protected Folder randomPatchFolder() {
 		return randomFolder();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

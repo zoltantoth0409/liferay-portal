@@ -90,6 +90,7 @@ public abstract class BaseWebUrlResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -98,6 +99,7 @@ public abstract class BaseWebUrlResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -105,6 +107,13 @@ public abstract class BaseWebUrlResourceTestCase {
 	public void testGetOrganizationWebUrlsPage() throws Exception {
 		Long organizationId =
 			testGetOrganizationWebUrlsPage_getOrganizationId();
+		Long irrelevantOrganizationId =
+			testGetOrganizationWebUrlsPage_getIrrelevantOrganizationId();
+
+		if ((irrelevantOrganizationId != null)) {
+			testGetOrganizationWebUrlsPage_addWebUrl(
+				irrelevantOrganizationId, randomIrrelevantWebUrl());
+		}
 
 		WebUrl webUrl1 = testGetOrganizationWebUrlsPage_addWebUrl(
 			organizationId, randomWebUrl());
@@ -179,6 +188,12 @@ public abstract class BaseWebUrlResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetOrganizationWebUrlsPage_getIrrelevantOrganizationId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<WebUrl> invokeGetOrganizationWebUrlsPage(
 			Long organizationId, Pagination pagination)
 		throws Exception {
@@ -198,8 +213,10 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<WebUrl>>() {
 			});
 	}
@@ -231,6 +248,13 @@ public abstract class BaseWebUrlResourceTestCase {
 	@Test
 	public void testGetUserAccountWebUrlsPage() throws Exception {
 		Long userAccountId = testGetUserAccountWebUrlsPage_getUserAccountId();
+		Long irrelevantUserAccountId =
+			testGetUserAccountWebUrlsPage_getIrrelevantUserAccountId();
+
+		if ((irrelevantUserAccountId != null)) {
+			testGetUserAccountWebUrlsPage_addWebUrl(
+				irrelevantUserAccountId, randomIrrelevantWebUrl());
+		}
 
 		WebUrl webUrl1 = testGetUserAccountWebUrlsPage_addWebUrl(
 			userAccountId, randomWebUrl());
@@ -302,6 +326,12 @@ public abstract class BaseWebUrlResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetUserAccountWebUrlsPage_getIrrelevantUserAccountId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<WebUrl> invokeGetUserAccountWebUrlsPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
@@ -320,8 +350,10 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<WebUrl>>() {
 			});
 	}
@@ -372,8 +404,16 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), WebUrl.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, WebUrl.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetWebUrlResponse(Long webUrlId)
@@ -545,10 +585,15 @@ public abstract class BaseWebUrlResourceTestCase {
 		};
 	}
 
+	protected WebUrl randomIrrelevantWebUrl() {
+		return randomWebUrl();
+	}
+
 	protected WebUrl randomPatchWebUrl() {
 		return randomWebUrl();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

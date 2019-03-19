@@ -97,6 +97,7 @@ public abstract class BaseCommentResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -105,6 +106,7 @@ public abstract class BaseCommentResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -132,8 +134,16 @@ public abstract class BaseCommentResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteCommentResponse(Long commentId)
@@ -176,8 +186,16 @@ public abstract class BaseCommentResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Comment.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Comment.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetCommentResponse(Long commentId)
@@ -234,8 +252,16 @@ public abstract class BaseCommentResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Comment.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Comment.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutCommentResponse(
@@ -263,6 +289,13 @@ public abstract class BaseCommentResourceTestCase {
 	@Test
 	public void testGetCommentCommentsPage() throws Exception {
 		Long commentId = testGetCommentCommentsPage_getCommentId();
+		Long irrelevantCommentId =
+			testGetCommentCommentsPage_getIrrelevantCommentId();
+
+		if ((irrelevantCommentId != null)) {
+			testGetCommentCommentsPage_addComment(
+				irrelevantCommentId, randomIrrelevantComment());
+		}
 
 		Comment comment1 = testGetCommentCommentsPage_addComment(
 			commentId, randomComment());
@@ -489,6 +522,12 @@ public abstract class BaseCommentResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetCommentCommentsPage_getIrrelevantCommentId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Comment> invokeGetCommentCommentsPage(
 			Long commentId, String filterString, Pagination pagination,
 			String sortString)
@@ -511,8 +550,10 @@ public abstract class BaseCommentResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Comment>>() {
 			});
 	}
@@ -578,8 +619,16 @@ public abstract class BaseCommentResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Comment.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Comment.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostCommentCommentResponse(
@@ -609,6 +658,13 @@ public abstract class BaseCommentResourceTestCase {
 	public void testGetStructuredContentCommentsPage() throws Exception {
 		Long structuredContentId =
 			testGetStructuredContentCommentsPage_getStructuredContentId();
+		Long irrelevantStructuredContentId =
+			testGetStructuredContentCommentsPage_getIrrelevantStructuredContentId();
+
+		if ((irrelevantStructuredContentId != null)) {
+			testGetStructuredContentCommentsPage_addComment(
+				irrelevantStructuredContentId, randomIrrelevantComment());
+		}
 
 		Comment comment1 = testGetStructuredContentCommentsPage_addComment(
 			structuredContentId, randomComment());
@@ -856,6 +912,13 @@ public abstract class BaseCommentResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetStructuredContentCommentsPage_getIrrelevantStructuredContentId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Comment> invokeGetStructuredContentCommentsPage(
 			Long structuredContentId, String filterString,
 			Pagination pagination, String sortString)
@@ -880,8 +943,10 @@ public abstract class BaseCommentResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Comment>>() {
 			});
 	}
@@ -954,8 +1019,16 @@ public abstract class BaseCommentResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Comment.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Comment.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostStructuredContentCommentResponse(
@@ -1156,10 +1229,15 @@ public abstract class BaseCommentResourceTestCase {
 		};
 	}
 
+	protected Comment randomIrrelevantComment() {
+		return randomComment();
+	}
+
 	protected Comment randomPatchComment() {
 		return randomComment();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

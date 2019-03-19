@@ -93,6 +93,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -101,6 +102,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -108,6 +110,14 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 	public void testGetContentSpaceKnowledgeBaseFoldersPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceKnowledgeBaseFoldersPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceKnowledgeBaseFoldersPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
+				irrelevantContentSpaceId,
+				randomIrrelevantKnowledgeBaseFolder());
+		}
 
 		KnowledgeBaseFolder knowledgeBaseFolder1 =
 			testGetContentSpaceKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
@@ -198,6 +208,13 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long
+			testGetContentSpaceKnowledgeBaseFoldersPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<KnowledgeBaseFolder>
 			invokeGetContentSpaceKnowledgeBaseFoldersPage(
 				Long contentSpaceId, Pagination pagination)
@@ -218,8 +235,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<KnowledgeBaseFolder>>() {
 			});
 	}
@@ -291,8 +310,17 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseFolder.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseFolder.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostContentSpaceKnowledgeBaseFolderResponse(
@@ -359,8 +387,16 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteKnowledgeBaseFolderResponse(
@@ -418,8 +454,17 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseFolder.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseFolder.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetKnowledgeBaseFolderResponse(
@@ -496,8 +541,17 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		options.setPatch(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseFolder.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseFolder.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePatchKnowledgeBaseFolderResponse(
@@ -575,8 +629,17 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseFolder.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseFolder.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutKnowledgeBaseFolderResponse(
@@ -610,6 +673,14 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		Long knowledgeBaseFolderId =
 			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_getKnowledgeBaseFolderId();
+		Long irrelevantKnowledgeBaseFolderId =
+			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_getIrrelevantKnowledgeBaseFolderId();
+
+		if ((irrelevantKnowledgeBaseFolderId != null)) {
+			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
+				irrelevantKnowledgeBaseFolderId,
+				randomIrrelevantKnowledgeBaseFolder());
+		}
 
 		KnowledgeBaseFolder knowledgeBaseFolder1 =
 			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
@@ -702,6 +773,13 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_getIrrelevantKnowledgeBaseFolderId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<KnowledgeBaseFolder>
 			invokeGetKnowledgeBaseFolderKnowledgeBaseFoldersPage(
 				Long knowledgeBaseFolderId, Pagination pagination)
@@ -722,8 +800,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<KnowledgeBaseFolder>>() {
 			});
 	}
@@ -799,8 +879,17 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseFolder.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseFolder.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response
@@ -1042,10 +1131,15 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		};
 	}
 
+	protected KnowledgeBaseFolder randomIrrelevantKnowledgeBaseFolder() {
+		return randomKnowledgeBaseFolder();
+	}
+
 	protected KnowledgeBaseFolder randomPatchKnowledgeBaseFolder() {
 		return randomKnowledgeBaseFolder();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

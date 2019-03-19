@@ -93,6 +93,7 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -101,6 +102,7 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -134,8 +136,16 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), UserAccount.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, UserAccount.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetMyUserAccountResponse(Long myUserAccountId)
@@ -159,6 +169,13 @@ public abstract class BaseUserAccountResourceTestCase {
 	public void testGetOrganizationUserAccountsPage() throws Exception {
 		Long organizationId =
 			testGetOrganizationUserAccountsPage_getOrganizationId();
+		Long irrelevantOrganizationId =
+			testGetOrganizationUserAccountsPage_getIrrelevantOrganizationId();
+
+		if ((irrelevantOrganizationId != null)) {
+			testGetOrganizationUserAccountsPage_addUserAccount(
+				irrelevantOrganizationId, randomIrrelevantUserAccount());
+		}
 
 		UserAccount userAccount1 =
 			testGetOrganizationUserAccountsPage_addUserAccount(
@@ -239,6 +256,13 @@ public abstract class BaseUserAccountResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetOrganizationUserAccountsPage_getIrrelevantOrganizationId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<UserAccount> invokeGetOrganizationUserAccountsPage(
 			Long organizationId, Pagination pagination)
 		throws Exception {
@@ -258,8 +282,10 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<UserAccount>>() {
 			});
 	}
@@ -307,8 +333,10 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<UserAccount>>() {
 			});
 	}
@@ -364,8 +392,16 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), UserAccount.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, UserAccount.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostMediaType1UserAccountResponse(
@@ -416,8 +452,16 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), UserAccount.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, UserAccount.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostMediaType2UserAccountResponse(
@@ -468,8 +512,16 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteUserAccountResponse(Long userAccountId)
@@ -517,8 +569,16 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), UserAccount.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, UserAccount.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetUserAccountResponse(Long userAccountId)
@@ -579,8 +639,16 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), UserAccount.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, UserAccount.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutUserAccountResponse(
@@ -609,6 +677,13 @@ public abstract class BaseUserAccountResourceTestCase {
 	@Test
 	public void testGetWebSiteUserAccountsPage() throws Exception {
 		Long webSiteId = testGetWebSiteUserAccountsPage_getWebSiteId();
+		Long irrelevantWebSiteId =
+			testGetWebSiteUserAccountsPage_getIrrelevantWebSiteId();
+
+		if ((irrelevantWebSiteId != null)) {
+			testGetWebSiteUserAccountsPage_addUserAccount(
+				irrelevantWebSiteId, randomIrrelevantUserAccount());
+		}
 
 		UserAccount userAccount1 =
 			testGetWebSiteUserAccountsPage_addUserAccount(
@@ -688,6 +763,12 @@ public abstract class BaseUserAccountResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetWebSiteUserAccountsPage_getIrrelevantWebSiteId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<UserAccount> invokeGetWebSiteUserAccountsPage(
 			Long webSiteId, Pagination pagination)
 		throws Exception {
@@ -705,8 +786,10 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<UserAccount>>() {
 			});
 	}
@@ -1026,10 +1109,15 @@ public abstract class BaseUserAccountResourceTestCase {
 		};
 	}
 
+	protected UserAccount randomIrrelevantUserAccount() {
+		return randomUserAccount();
+	}
+
 	protected UserAccount randomPatchUserAccount() {
 		return randomUserAccount();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

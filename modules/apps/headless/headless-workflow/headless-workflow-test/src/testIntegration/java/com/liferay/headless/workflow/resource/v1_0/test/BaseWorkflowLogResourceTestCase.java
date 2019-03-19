@@ -90,6 +90,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -98,6 +99,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -128,8 +130,16 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), WorkflowLog.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, WorkflowLog.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetWorkflowLogResponse(Long workflowLogId)
@@ -152,6 +162,13 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	public void testGetWorkflowTaskWorkflowLogsPage() throws Exception {
 		Long workflowTaskId =
 			testGetWorkflowTaskWorkflowLogsPage_getWorkflowTaskId();
+		Long irrelevantWorkflowTaskId =
+			testGetWorkflowTaskWorkflowLogsPage_getIrrelevantWorkflowTaskId();
+
+		if ((irrelevantWorkflowTaskId != null)) {
+			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
+				irrelevantWorkflowTaskId, randomIrrelevantWorkflowLog());
+		}
 
 		WorkflowLog workflowLog1 =
 			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
@@ -232,6 +249,13 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetWorkflowTaskWorkflowLogsPage_getIrrelevantWorkflowTaskId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<WorkflowLog> invokeGetWorkflowTaskWorkflowLogsPage(
 			Long workflowTaskId, Pagination pagination)
 		throws Exception {
@@ -251,8 +275,10 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<WorkflowLog>>() {
 			});
 	}
@@ -488,10 +514,15 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		};
 	}
 
+	protected WorkflowLog randomIrrelevantWorkflowLog() {
+		return randomWorkflowLog();
+	}
+
 	protected WorkflowLog randomPatchWorkflowLog() {
 		return randomWorkflowLog();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

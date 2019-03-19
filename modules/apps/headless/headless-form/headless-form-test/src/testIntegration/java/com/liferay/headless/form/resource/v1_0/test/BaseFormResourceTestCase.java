@@ -93,6 +93,7 @@ public abstract class BaseFormResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL("http://localhost:8080/o/headless-form/v1.0");
@@ -100,12 +101,20 @@ public abstract class BaseFormResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
 	public void testGetContentSpaceFormsPage() throws Exception {
 		Long contentSpaceId = testGetContentSpaceFormsPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceFormsPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceFormsPage_addForm(
+				irrelevantContentSpaceId, randomIrrelevantForm());
+		}
 
 		Form form1 = testGetContentSpaceFormsPage_addForm(
 			contentSpaceId, randomForm());
@@ -176,6 +185,12 @@ public abstract class BaseFormResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long testGetContentSpaceFormsPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<Form> invokeGetContentSpaceFormsPage(
 			Long contentSpaceId, Pagination pagination)
 		throws Exception {
@@ -194,8 +209,10 @@ public abstract class BaseFormResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Form>>() {
 			});
 	}
@@ -245,8 +262,16 @@ public abstract class BaseFormResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Form.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Form.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetFormResponse(Long formId)
@@ -296,8 +321,16 @@ public abstract class BaseFormResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Form.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Form.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostFormEvaluateContextResponse(
@@ -346,8 +379,16 @@ public abstract class BaseFormResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Form.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Form.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetFormFetchLatestDraftResponse(Long formId)
@@ -397,8 +438,16 @@ public abstract class BaseFormResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Form.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Form.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostFormUploadFileResponse(
@@ -643,10 +692,15 @@ public abstract class BaseFormResourceTestCase {
 		};
 	}
 
+	protected Form randomIrrelevantForm() {
+		return randomForm();
+	}
+
 	protected Form randomPatchForm() {
 		return randomForm();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

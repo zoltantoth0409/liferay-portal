@@ -90,6 +90,7 @@ public abstract class BaseRoleResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -98,6 +99,7 @@ public abstract class BaseRoleResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -105,6 +107,13 @@ public abstract class BaseRoleResourceTestCase {
 	public void testGetMyUserAccountRolesPage() throws Exception {
 		Long myUserAccountId =
 			testGetMyUserAccountRolesPage_getMyUserAccountId();
+		Long irrelevantMyUserAccountId =
+			testGetMyUserAccountRolesPage_getIrrelevantMyUserAccountId();
+
+		if ((irrelevantMyUserAccountId != null)) {
+			testGetMyUserAccountRolesPage_addRole(
+				irrelevantMyUserAccountId, randomIrrelevantRole());
+		}
 
 		Role role1 = testGetMyUserAccountRolesPage_addRole(
 			myUserAccountId, randomRole());
@@ -177,6 +186,12 @@ public abstract class BaseRoleResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetMyUserAccountRolesPage_getIrrelevantMyUserAccountId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Role> invokeGetMyUserAccountRolesPage(
 			Long myUserAccountId, Pagination pagination)
 		throws Exception {
@@ -196,8 +211,10 @@ public abstract class BaseRoleResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Role>>() {
 			});
 	}
@@ -245,8 +262,10 @@ public abstract class BaseRoleResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Role>>() {
 			});
 	}
@@ -292,8 +311,16 @@ public abstract class BaseRoleResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Role.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Role.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetRoleResponse(Long roleId)
@@ -313,6 +340,13 @@ public abstract class BaseRoleResourceTestCase {
 	@Test
 	public void testGetUserAccountRolesPage() throws Exception {
 		Long userAccountId = testGetUserAccountRolesPage_getUserAccountId();
+		Long irrelevantUserAccountId =
+			testGetUserAccountRolesPage_getIrrelevantUserAccountId();
+
+		if ((irrelevantUserAccountId != null)) {
+			testGetUserAccountRolesPage_addRole(
+				irrelevantUserAccountId, randomIrrelevantRole());
+		}
 
 		Role role1 = testGetUserAccountRolesPage_addRole(
 			userAccountId, randomRole());
@@ -384,6 +418,12 @@ public abstract class BaseRoleResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetUserAccountRolesPage_getIrrelevantUserAccountId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Role> invokeGetUserAccountRolesPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
@@ -402,8 +442,10 @@ public abstract class BaseRoleResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Role>>() {
 			});
 	}
@@ -617,10 +659,15 @@ public abstract class BaseRoleResourceTestCase {
 		};
 	}
 
+	protected Role randomIrrelevantRole() {
+		return randomRole();
+	}
+
 	protected Role randomPatchRole() {
 		return randomRole();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

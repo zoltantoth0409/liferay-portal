@@ -91,6 +91,7 @@ public abstract class BaseFormStructureResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL("http://localhost:8080/o/headless-form/v1.0");
@@ -98,6 +99,7 @@ public abstract class BaseFormStructureResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -105,6 +107,13 @@ public abstract class BaseFormStructureResourceTestCase {
 	public void testGetContentSpaceFormStructuresPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceFormStructuresPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceFormStructuresPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceFormStructuresPage_addFormStructure(
+				irrelevantContentSpaceId, randomIrrelevantFormStructure());
+		}
 
 		FormStructure formStructure1 =
 			testGetContentSpaceFormStructuresPage_addFormStructure(
@@ -189,6 +198,13 @@ public abstract class BaseFormStructureResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long
+			testGetContentSpaceFormStructuresPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<FormStructure> invokeGetContentSpaceFormStructuresPage(
 			Long contentSpaceId, Pagination pagination)
 		throws Exception {
@@ -208,8 +224,10 @@ public abstract class BaseFormStructureResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<FormStructure>>() {
 			});
 	}
@@ -269,8 +287,16 @@ public abstract class BaseFormStructureResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), FormStructure.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, FormStructure.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetFormStructureResponse(Long formStructureId)
@@ -494,10 +520,15 @@ public abstract class BaseFormStructureResourceTestCase {
 		};
 	}
 
+	protected FormStructure randomIrrelevantFormStructure() {
+		return randomFormStructure();
+	}
+
 	protected FormStructure randomPatchFormStructure() {
 		return randomFormStructure();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

@@ -96,6 +96,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -104,6 +105,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -138,8 +140,16 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteBlogPostingResponse(Long blogPostingId)
@@ -187,8 +197,16 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), BlogPosting.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, BlogPosting.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetBlogPostingResponse(Long blogPostingId)
@@ -256,8 +274,16 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		options.setPatch(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), BlogPosting.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, BlogPosting.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePatchBlogPostingResponse(
@@ -325,8 +351,16 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), BlogPosting.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, BlogPosting.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutBlogPostingResponse(
@@ -356,6 +390,13 @@ public abstract class BaseBlogPostingResourceTestCase {
 	public void testGetContentSpaceBlogPostingsPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceBlogPostingsPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceBlogPostingsPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceBlogPostingsPage_addBlogPosting(
+				irrelevantContentSpaceId, randomIrrelevantBlogPosting());
+		}
 
 		BlogPosting blogPosting1 =
 			testGetContentSpaceBlogPostingsPage_addBlogPosting(
@@ -610,6 +651,13 @@ public abstract class BaseBlogPostingResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long
+			testGetContentSpaceBlogPostingsPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<BlogPosting> invokeGetContentSpaceBlogPostingsPage(
 			Long contentSpaceId, String filterString, Pagination pagination,
 			String sortString)
@@ -634,8 +682,10 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<BlogPosting>>() {
 			});
 	}
@@ -708,8 +758,16 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), BlogPosting.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, BlogPosting.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostContentSpaceBlogPostingResponse(
@@ -1017,10 +1075,15 @@ public abstract class BaseBlogPostingResourceTestCase {
 		};
 	}
 
+	protected BlogPosting randomIrrelevantBlogPosting() {
+		return randomBlogPosting();
+	}
+
 	protected BlogPosting randomPatchBlogPosting() {
 		return randomBlogPosting();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

@@ -90,6 +90,7 @@ public abstract class BaseSegmentResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -98,6 +99,7 @@ public abstract class BaseSegmentResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -105,6 +107,13 @@ public abstract class BaseSegmentResourceTestCase {
 	public void testGetContentSpaceSegmentsPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceSegmentsPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceSegmentsPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceSegmentsPage_addSegment(
+				irrelevantContentSpaceId, randomIrrelevantSegment());
+		}
 
 		Segment segment1 = testGetContentSpaceSegmentsPage_addSegment(
 			contentSpaceId, randomSegment());
@@ -178,6 +187,12 @@ public abstract class BaseSegmentResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long testGetContentSpaceSegmentsPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<Segment> invokeGetContentSpaceSegmentsPage(
 			Long contentSpaceId, Pagination pagination)
 		throws Exception {
@@ -197,8 +212,10 @@ public abstract class BaseSegmentResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Segment>>() {
 			});
 	}
@@ -231,8 +248,20 @@ public abstract class BaseSegmentResourceTestCase {
 	public void testGetContentSpaceUserAccountSegmentsPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceUserAccountSegmentsPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceUserAccountSegmentsPage_getIrrelevantContentSpaceId();
 		Long userAccountId =
 			testGetContentSpaceUserAccountSegmentsPage_getUserAccountId();
+		Long irrelevantUserAccountId =
+			testGetContentSpaceUserAccountSegmentsPage_getIrrelevantUserAccountId();
+
+		if ((irrelevantContentSpaceId != null) &&
+			(irrelevantUserAccountId != null)) {
+
+			testGetContentSpaceUserAccountSegmentsPage_addSegment(
+				irrelevantContentSpaceId, irrelevantUserAccountId,
+				randomIrrelevantSegment());
+		}
 
 		Segment segment1 =
 			testGetContentSpaceUserAccountSegmentsPage_addSegment(
@@ -314,11 +343,25 @@ public abstract class BaseSegmentResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long
+			testGetContentSpaceUserAccountSegmentsPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Long testGetContentSpaceUserAccountSegmentsPage_getUserAccountId()
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetContentSpaceUserAccountSegmentsPage_getIrrelevantUserAccountId()
+		throws Exception {
+
+		return null;
 	}
 
 	protected Page<Segment> invokeGetContentSpaceUserAccountSegmentsPage(
@@ -340,8 +383,10 @@ public abstract class BaseSegmentResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Segment>>() {
 			});
 	}
@@ -563,10 +608,15 @@ public abstract class BaseSegmentResourceTestCase {
 		};
 	}
 
+	protected Segment randomIrrelevantSegment() {
+		return randomSegment();
+	}
+
 	protected Segment randomPatchSegment() {
 		return randomSegment();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

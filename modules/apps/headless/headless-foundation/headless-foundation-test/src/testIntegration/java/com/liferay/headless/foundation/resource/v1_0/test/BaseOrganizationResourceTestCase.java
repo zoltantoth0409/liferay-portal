@@ -90,6 +90,7 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -98,6 +99,7 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -105,6 +107,13 @@ public abstract class BaseOrganizationResourceTestCase {
 	public void testGetMyUserAccountOrganizationsPage() throws Exception {
 		Long myUserAccountId =
 			testGetMyUserAccountOrganizationsPage_getMyUserAccountId();
+		Long irrelevantMyUserAccountId =
+			testGetMyUserAccountOrganizationsPage_getIrrelevantMyUserAccountId();
+
+		if ((irrelevantMyUserAccountId != null)) {
+			testGetMyUserAccountOrganizationsPage_addOrganization(
+				irrelevantMyUserAccountId, randomIrrelevantOrganization());
+		}
 
 		Organization organization1 =
 			testGetMyUserAccountOrganizationsPage_addOrganization(
@@ -190,6 +199,13 @@ public abstract class BaseOrganizationResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetMyUserAccountOrganizationsPage_getIrrelevantMyUserAccountId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Organization> invokeGetMyUserAccountOrganizationsPage(
 			Long myUserAccountId, Pagination pagination)
 		throws Exception {
@@ -209,8 +225,10 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Organization>>() {
 			});
 	}
@@ -259,8 +277,10 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Organization>>() {
 			});
 	}
@@ -314,8 +334,16 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Organization.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Organization.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetOrganizationResponse(Long organizationId)
@@ -338,6 +366,13 @@ public abstract class BaseOrganizationResourceTestCase {
 	public void testGetOrganizationOrganizationsPage() throws Exception {
 		Long organizationId =
 			testGetOrganizationOrganizationsPage_getOrganizationId();
+		Long irrelevantOrganizationId =
+			testGetOrganizationOrganizationsPage_getIrrelevantOrganizationId();
+
+		if ((irrelevantOrganizationId != null)) {
+			testGetOrganizationOrganizationsPage_addOrganization(
+				irrelevantOrganizationId, randomIrrelevantOrganization());
+		}
 
 		Organization organization1 =
 			testGetOrganizationOrganizationsPage_addOrganization(
@@ -422,6 +457,13 @@ public abstract class BaseOrganizationResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetOrganizationOrganizationsPage_getIrrelevantOrganizationId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Organization> invokeGetOrganizationOrganizationsPage(
 			Long organizationId, Pagination pagination)
 		throws Exception {
@@ -441,8 +483,10 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Organization>>() {
 			});
 	}
@@ -475,6 +519,13 @@ public abstract class BaseOrganizationResourceTestCase {
 	public void testGetUserAccountOrganizationsPage() throws Exception {
 		Long userAccountId =
 			testGetUserAccountOrganizationsPage_getUserAccountId();
+		Long irrelevantUserAccountId =
+			testGetUserAccountOrganizationsPage_getIrrelevantUserAccountId();
+
+		if ((irrelevantUserAccountId != null)) {
+			testGetUserAccountOrganizationsPage_addOrganization(
+				irrelevantUserAccountId, randomIrrelevantOrganization());
+		}
 
 		Organization organization1 =
 			testGetUserAccountOrganizationsPage_addOrganization(
@@ -559,6 +610,13 @@ public abstract class BaseOrganizationResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetUserAccountOrganizationsPage_getIrrelevantUserAccountId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Organization> invokeGetUserAccountOrganizationsPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
@@ -578,8 +636,10 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Organization>>() {
 			});
 	}
@@ -806,10 +866,15 @@ public abstract class BaseOrganizationResourceTestCase {
 		};
 	}
 
+	protected Organization randomIrrelevantOrganization() {
+		return randomOrganization();
+	}
+
 	protected Organization randomPatchOrganization() {
 		return randomOrganization();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

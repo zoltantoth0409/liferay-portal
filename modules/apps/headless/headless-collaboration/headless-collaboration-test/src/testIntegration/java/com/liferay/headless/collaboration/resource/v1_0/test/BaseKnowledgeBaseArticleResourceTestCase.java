@@ -93,6 +93,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -101,6 +102,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -110,6 +112,14 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Long contentSpaceId =
 			testGetContentSpaceKnowledgeBaseArticlesPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceKnowledgeBaseArticlesPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				irrelevantContentSpaceId,
+				randomIrrelevantKnowledgeBaseArticle());
+		}
 
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
 			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
@@ -202,6 +212,13 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long
+			testGetContentSpaceKnowledgeBaseArticlesPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<KnowledgeBaseArticle>
 			invokeGetContentSpaceKnowledgeBaseArticlesPage(
 				Long contentSpaceId, Pagination pagination)
@@ -222,8 +239,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<KnowledgeBaseArticle>>() {
 			});
 	}
@@ -295,8 +314,17 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseArticle.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseArticle.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostContentSpaceKnowledgeBaseArticleResponse(
@@ -364,8 +392,16 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteKnowledgeBaseArticleResponse(
@@ -423,8 +459,17 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseArticle.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseArticle.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetKnowledgeBaseArticleResponse(
@@ -503,8 +548,17 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		options.setPatch(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseArticle.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseArticle.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePatchKnowledgeBaseArticleResponse(
@@ -584,8 +638,17 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseArticle.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseArticle.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutKnowledgeBaseArticleResponse(
@@ -620,6 +683,14 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Long knowledgeBaseArticleId =
 			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_getKnowledgeBaseArticleId();
+		Long irrelevantKnowledgeBaseArticleId =
+			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_getIrrelevantKnowledgeBaseArticleId();
+
+		if ((irrelevantKnowledgeBaseArticleId != null)) {
+			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				irrelevantKnowledgeBaseArticleId,
+				randomIrrelevantKnowledgeBaseArticle());
+		}
 
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
 			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
@@ -714,6 +785,13 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_getIrrelevantKnowledgeBaseArticleId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<KnowledgeBaseArticle>
 			invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
 				Long knowledgeBaseArticleId, Pagination pagination)
@@ -734,8 +812,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<KnowledgeBaseArticle>>() {
 			});
 	}
@@ -811,8 +891,17 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseArticle.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseArticle.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response
@@ -848,6 +937,14 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Long knowledgeBaseFolderId =
 			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_getKnowledgeBaseFolderId();
+		Long irrelevantKnowledgeBaseFolderId =
+			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_getIrrelevantKnowledgeBaseFolderId();
+
+		if ((irrelevantKnowledgeBaseFolderId != null)) {
+			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				irrelevantKnowledgeBaseFolderId,
+				randomIrrelevantKnowledgeBaseArticle());
+		}
 
 		KnowledgeBaseArticle knowledgeBaseArticle1 =
 			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
@@ -942,6 +1039,13 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_getIrrelevantKnowledgeBaseFolderId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<KnowledgeBaseArticle>
 			invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
 				Long knowledgeBaseFolderId, Pagination pagination)
@@ -962,8 +1066,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<KnowledgeBaseArticle>>() {
 			});
 	}
@@ -1039,8 +1145,17 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseArticle.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseArticle.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response
@@ -1341,10 +1456,15 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		};
 	}
 
+	protected KnowledgeBaseArticle randomIrrelevantKnowledgeBaseArticle() {
+		return randomKnowledgeBaseArticle();
+	}
+
 	protected KnowledgeBaseArticle randomPatchKnowledgeBaseArticle() {
 		return randomKnowledgeBaseArticle();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

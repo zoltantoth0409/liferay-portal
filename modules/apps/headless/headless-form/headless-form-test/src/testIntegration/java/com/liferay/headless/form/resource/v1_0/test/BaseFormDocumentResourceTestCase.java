@@ -88,6 +88,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL("http://localhost:8080/o/headless-form/v1.0");
@@ -95,6 +96,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -129,8 +131,16 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteFormDocumentResponse(
@@ -181,8 +191,16 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), FormDocument.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, FormDocument.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetFormDocumentResponse(Long formDocumentId)
@@ -386,10 +404,15 @@ public abstract class BaseFormDocumentResourceTestCase {
 		};
 	}
 
+	protected FormDocument randomIrrelevantFormDocument() {
+		return randomFormDocument();
+	}
+
 	protected FormDocument randomPatchFormDocument() {
 		return randomFormDocument();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

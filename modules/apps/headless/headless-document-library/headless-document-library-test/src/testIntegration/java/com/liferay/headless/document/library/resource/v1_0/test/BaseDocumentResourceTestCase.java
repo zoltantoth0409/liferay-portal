@@ -95,6 +95,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -103,6 +104,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -110,6 +112,13 @@ public abstract class BaseDocumentResourceTestCase {
 	public void testGetContentSpaceDocumentsPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceDocumentsPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceDocumentsPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceDocumentsPage_addDocument(
+				irrelevantContentSpaceId, randomIrrelevantDocument());
+		}
 
 		Document document1 = testGetContentSpaceDocumentsPage_addDocument(
 			contentSpaceId, randomDocument());
@@ -355,6 +364,13 @@ public abstract class BaseDocumentResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long
+			testGetContentSpaceDocumentsPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<Document> invokeGetContentSpaceDocumentsPage(
 			Long contentSpaceId, String filterString, Pagination pagination,
 			String sortString)
@@ -379,8 +395,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Document>>() {
 			});
 	}
@@ -443,8 +461,16 @@ public abstract class BaseDocumentResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Document.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Document.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostContentSpaceDocumentResponse(
@@ -492,8 +518,16 @@ public abstract class BaseDocumentResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteDocumentResponse(Long documentId)
@@ -536,8 +570,16 @@ public abstract class BaseDocumentResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Document.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Document.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetDocumentResponse(Long documentId)
@@ -580,8 +622,16 @@ public abstract class BaseDocumentResourceTestCase {
 
 		options.setPatch(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Document.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Document.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePatchDocumentResponse(
@@ -625,8 +675,16 @@ public abstract class BaseDocumentResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Document.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Document.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutDocumentResponse(
@@ -650,6 +708,13 @@ public abstract class BaseDocumentResourceTestCase {
 	@Test
 	public void testGetFolderDocumentsPage() throws Exception {
 		Long folderId = testGetFolderDocumentsPage_getFolderId();
+		Long irrelevantFolderId =
+			testGetFolderDocumentsPage_getIrrelevantFolderId();
+
+		if ((irrelevantFolderId != null)) {
+			testGetFolderDocumentsPage_addDocument(
+				irrelevantFolderId, randomIrrelevantDocument());
+		}
 
 		Document document1 = testGetFolderDocumentsPage_addDocument(
 			folderId, randomDocument());
@@ -877,6 +942,12 @@ public abstract class BaseDocumentResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetFolderDocumentsPage_getIrrelevantFolderId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Document> invokeGetFolderDocumentsPage(
 			Long folderId, String filterString, Pagination pagination,
 			String sortString)
@@ -898,8 +969,10 @@ public abstract class BaseDocumentResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Document>>() {
 			});
 	}
@@ -955,8 +1028,16 @@ public abstract class BaseDocumentResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Document.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Document.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostFolderDocumentResponse(
@@ -1221,10 +1302,15 @@ public abstract class BaseDocumentResourceTestCase {
 		};
 	}
 
+	protected Document randomIrrelevantDocument() {
+		return randomDocument();
+	}
+
 	protected Document randomPatchDocument() {
 		return randomDocument();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

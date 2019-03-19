@@ -90,6 +90,7 @@ public abstract class BaseEmailResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -98,6 +99,7 @@ public abstract class BaseEmailResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -123,8 +125,16 @@ public abstract class BaseEmailResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Email.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Email.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetEmailResponse(Long emailId)
@@ -144,6 +154,13 @@ public abstract class BaseEmailResourceTestCase {
 	@Test
 	public void testGetOrganizationEmailsPage() throws Exception {
 		Long organizationId = testGetOrganizationEmailsPage_getOrganizationId();
+		Long irrelevantOrganizationId =
+			testGetOrganizationEmailsPage_getIrrelevantOrganizationId();
+
+		if ((irrelevantOrganizationId != null)) {
+			testGetOrganizationEmailsPage_addEmail(
+				irrelevantOrganizationId, randomIrrelevantEmail());
+		}
 
 		Email email1 = testGetOrganizationEmailsPage_addEmail(
 			organizationId, randomEmail());
@@ -215,6 +232,12 @@ public abstract class BaseEmailResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetOrganizationEmailsPage_getIrrelevantOrganizationId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Email> invokeGetOrganizationEmailsPage(
 			Long organizationId, Pagination pagination)
 		throws Exception {
@@ -233,8 +256,10 @@ public abstract class BaseEmailResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Email>>() {
 			});
 	}
@@ -265,6 +290,13 @@ public abstract class BaseEmailResourceTestCase {
 	@Test
 	public void testGetUserAccountEmailsPage() throws Exception {
 		Long userAccountId = testGetUserAccountEmailsPage_getUserAccountId();
+		Long irrelevantUserAccountId =
+			testGetUserAccountEmailsPage_getIrrelevantUserAccountId();
+
+		if ((irrelevantUserAccountId != null)) {
+			testGetUserAccountEmailsPage_addEmail(
+				irrelevantUserAccountId, randomIrrelevantEmail());
+		}
 
 		Email email1 = testGetUserAccountEmailsPage_addEmail(
 			userAccountId, randomEmail());
@@ -336,6 +368,12 @@ public abstract class BaseEmailResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetUserAccountEmailsPage_getIrrelevantUserAccountId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Email> invokeGetUserAccountEmailsPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
@@ -354,8 +392,10 @@ public abstract class BaseEmailResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Email>>() {
 			});
 	}
@@ -537,10 +577,15 @@ public abstract class BaseEmailResourceTestCase {
 		};
 	}
 
+	protected Email randomIrrelevantEmail() {
+		return randomEmail();
+	}
+
 	protected Email randomPatchEmail() {
 		return randomEmail();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

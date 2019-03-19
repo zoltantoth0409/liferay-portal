@@ -90,6 +90,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -98,6 +99,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -107,6 +109,14 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 		Long knowledgeBaseArticleId =
 			testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_getKnowledgeBaseArticleId();
+		Long irrelevantKnowledgeBaseArticleId =
+			testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_getIrrelevantKnowledgeBaseArticleId();
+
+		if ((irrelevantKnowledgeBaseArticleId != null)) {
+			testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_addKnowledgeBaseAttachment(
+				irrelevantKnowledgeBaseArticleId,
+				randomIrrelevantKnowledgeBaseAttachment());
+		}
 
 		KnowledgeBaseAttachment knowledgeBaseAttachment1 =
 			testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_addKnowledgeBaseAttachment(
@@ -146,6 +156,13 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_getIrrelevantKnowledgeBaseArticleId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<KnowledgeBaseAttachment>
 			invokeGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
 				Long knowledgeBaseArticleId)
@@ -161,8 +178,10 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<KnowledgeBaseAttachment>>() {
 			});
 	}
@@ -220,8 +239,17 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseAttachment.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseAttachment.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response
@@ -286,8 +314,16 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteKnowledgeBaseAttachmentResponse(
@@ -346,8 +382,17 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), KnowledgeBaseAttachment.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, KnowledgeBaseAttachment.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetKnowledgeBaseAttachmentResponse(
@@ -578,10 +623,17 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		};
 	}
 
+	protected KnowledgeBaseAttachment
+		randomIrrelevantKnowledgeBaseAttachment() {
+
+		return randomKnowledgeBaseAttachment();
+	}
+
 	protected KnowledgeBaseAttachment randomPatchKnowledgeBaseAttachment() {
 		return randomKnowledgeBaseAttachment();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

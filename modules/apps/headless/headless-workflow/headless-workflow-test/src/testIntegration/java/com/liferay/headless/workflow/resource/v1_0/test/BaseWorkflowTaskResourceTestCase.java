@@ -93,6 +93,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -101,12 +102,20 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
 	public void testGetRoleWorkflowTasksPage() throws Exception {
 		Long roleId = testGetRoleWorkflowTasksPage_getRoleId();
+		Long irrelevantRoleId =
+			testGetRoleWorkflowTasksPage_getIrrelevantRoleId();
+
+		if ((irrelevantRoleId != null)) {
+			testGetRoleWorkflowTasksPage_addWorkflowTask(
+				irrelevantRoleId, randomIrrelevantWorkflowTask());
+		}
 
 		WorkflowTask workflowTask1 =
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
@@ -186,6 +195,12 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetRoleWorkflowTasksPage_getIrrelevantRoleId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<WorkflowTask> invokeGetRoleWorkflowTasksPage(
 			Long roleId, Pagination pagination)
 		throws Exception {
@@ -202,8 +217,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<WorkflowTask>>() {
 			});
 	}
@@ -250,8 +267,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<WorkflowTask>>() {
 			});
 	}
@@ -298,8 +317,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<WorkflowTask>>() {
 			});
 	}
@@ -354,8 +375,16 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), WorkflowTask.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, WorkflowTask.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetWorkflowTaskResponse(Long workflowTaskId)
@@ -409,8 +438,16 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), WorkflowTask.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, WorkflowTask.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostWorkflowTaskAssignToMeResponse(
@@ -471,8 +508,16 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), WorkflowTask.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, WorkflowTask.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostWorkflowTaskAssignToUserResponse(
@@ -533,8 +578,16 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), WorkflowTask.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, WorkflowTask.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostWorkflowTaskChangeTransitionResponse(
@@ -594,8 +647,16 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), WorkflowTask.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, WorkflowTask.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostWorkflowTaskUpdateDueDateResponse(
@@ -827,10 +888,15 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		};
 	}
 
+	protected WorkflowTask randomIrrelevantWorkflowTask() {
+		return randomWorkflowTask();
+	}
+
 	protected WorkflowTask randomPatchWorkflowTask() {
 		return randomWorkflowTask();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

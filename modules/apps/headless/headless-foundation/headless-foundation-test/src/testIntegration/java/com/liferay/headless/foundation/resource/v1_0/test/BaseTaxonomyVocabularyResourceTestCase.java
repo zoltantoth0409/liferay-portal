@@ -96,6 +96,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -104,6 +105,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -111,6 +113,13 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	public void testGetContentSpaceTaxonomyVocabulariesPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceTaxonomyVocabulariesPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceTaxonomyVocabulariesPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
+				irrelevantContentSpaceId, randomIrrelevantTaxonomyVocabulary());
+		}
 
 		TaxonomyVocabulary taxonomyVocabulary1 =
 			testGetContentSpaceTaxonomyVocabulariesPage_addTaxonomyVocabulary(
@@ -389,6 +398,13 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long
+			testGetContentSpaceTaxonomyVocabulariesPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<TaxonomyVocabulary>
 			invokeGetContentSpaceTaxonomyVocabulariesPage(
 				Long contentSpaceId, String filterString, Pagination pagination,
@@ -414,8 +430,10 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<TaxonomyVocabulary>>() {
 			});
 	}
@@ -492,8 +510,17 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), TaxonomyVocabulary.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, TaxonomyVocabulary.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostContentSpaceTaxonomyVocabularyResponse(
@@ -558,8 +585,16 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteTaxonomyVocabularyResponse(
@@ -617,8 +652,17 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), TaxonomyVocabulary.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, TaxonomyVocabulary.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetTaxonomyVocabularyResponse(
@@ -689,8 +733,17 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), TaxonomyVocabulary.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, TaxonomyVocabulary.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutTaxonomyVocabularyResponse(
@@ -938,10 +991,15 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		};
 	}
 
+	protected TaxonomyVocabulary randomIrrelevantTaxonomyVocabulary() {
+		return randomTaxonomyVocabulary();
+	}
+
 	protected TaxonomyVocabulary randomPatchTaxonomyVocabulary() {
 		return randomTaxonomyVocabulary();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

@@ -90,6 +90,7 @@ public abstract class BasePhoneResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -98,12 +99,20 @@ public abstract class BasePhoneResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
 	public void testGetOrganizationPhonesPage() throws Exception {
 		Long organizationId = testGetOrganizationPhonesPage_getOrganizationId();
+		Long irrelevantOrganizationId =
+			testGetOrganizationPhonesPage_getIrrelevantOrganizationId();
+
+		if ((irrelevantOrganizationId != null)) {
+			testGetOrganizationPhonesPage_addPhone(
+				irrelevantOrganizationId, randomIrrelevantPhone());
+		}
 
 		Phone phone1 = testGetOrganizationPhonesPage_addPhone(
 			organizationId, randomPhone());
@@ -175,6 +184,12 @@ public abstract class BasePhoneResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetOrganizationPhonesPage_getIrrelevantOrganizationId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Phone> invokeGetOrganizationPhonesPage(
 			Long organizationId, Pagination pagination)
 		throws Exception {
@@ -193,8 +208,10 @@ public abstract class BasePhoneResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Phone>>() {
 			});
 	}
@@ -244,8 +261,16 @@ public abstract class BasePhoneResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Phone.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Phone.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetPhoneResponse(Long phoneId)
@@ -265,6 +290,13 @@ public abstract class BasePhoneResourceTestCase {
 	@Test
 	public void testGetUserAccountPhonesPage() throws Exception {
 		Long userAccountId = testGetUserAccountPhonesPage_getUserAccountId();
+		Long irrelevantUserAccountId =
+			testGetUserAccountPhonesPage_getIrrelevantUserAccountId();
+
+		if ((irrelevantUserAccountId != null)) {
+			testGetUserAccountPhonesPage_addPhone(
+				irrelevantUserAccountId, randomIrrelevantPhone());
+		}
 
 		Phone phone1 = testGetUserAccountPhonesPage_addPhone(
 			userAccountId, randomPhone());
@@ -336,6 +368,12 @@ public abstract class BasePhoneResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetUserAccountPhonesPage_getIrrelevantUserAccountId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<Phone> invokeGetUserAccountPhonesPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
@@ -354,8 +392,10 @@ public abstract class BasePhoneResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Phone>>() {
 			});
 	}
@@ -546,10 +586,15 @@ public abstract class BasePhoneResourceTestCase {
 		};
 	}
 
+	protected Phone randomIrrelevantPhone() {
+		return randomPhone();
+	}
+
 	protected Phone randomPatchPhone() {
 		return randomPhone();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

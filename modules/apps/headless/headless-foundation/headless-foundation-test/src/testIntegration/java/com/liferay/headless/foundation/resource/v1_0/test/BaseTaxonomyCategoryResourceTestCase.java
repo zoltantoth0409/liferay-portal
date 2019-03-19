@@ -96,6 +96,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -104,6 +105,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -142,8 +144,16 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteTaxonomyCategoryResponse(
@@ -200,8 +210,17 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), TaxonomyCategory.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, TaxonomyCategory.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetTaxonomyCategoryResponse(
@@ -270,8 +289,17 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), TaxonomyCategory.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, TaxonomyCategory.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutTaxonomyCategoryResponse(
@@ -305,6 +333,14 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		Long taxonomyCategoryId =
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_getTaxonomyCategoryId();
+		Long irrelevantTaxonomyCategoryId =
+			testGetTaxonomyCategoryTaxonomyCategoriesPage_getIrrelevantTaxonomyCategoryId();
+
+		if ((irrelevantTaxonomyCategoryId != null)) {
+			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
+				irrelevantTaxonomyCategoryId,
+				randomIrrelevantTaxonomyCategory());
+		}
 
 		TaxonomyCategory taxonomyCategory1 =
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
@@ -584,6 +620,13 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetTaxonomyCategoryTaxonomyCategoriesPage_getIrrelevantTaxonomyCategoryId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<TaxonomyCategory>
 			invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
 				Long taxonomyCategoryId, String filterString,
@@ -609,8 +652,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<TaxonomyCategory>>() {
 			});
 	}
@@ -686,8 +731,17 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), TaxonomyCategory.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, TaxonomyCategory.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostTaxonomyCategoryTaxonomyCategoryResponse(
@@ -721,6 +775,14 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		Long taxonomyVocabularyId =
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_getTaxonomyVocabularyId();
+		Long irrelevantTaxonomyVocabularyId =
+			testGetTaxonomyVocabularyTaxonomyCategoriesPage_getIrrelevantTaxonomyVocabularyId();
+
+		if ((irrelevantTaxonomyVocabularyId != null)) {
+			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
+				irrelevantTaxonomyVocabularyId,
+				randomIrrelevantTaxonomyCategory());
+		}
 
 		TaxonomyCategory taxonomyCategory1 =
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
@@ -1000,6 +1062,13 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetTaxonomyVocabularyTaxonomyCategoriesPage_getIrrelevantTaxonomyVocabularyId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<TaxonomyCategory>
 			invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
 				Long taxonomyVocabularyId, String filterString,
@@ -1025,8 +1094,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<TaxonomyCategory>>() {
 			});
 	}
@@ -1102,8 +1173,17 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), TaxonomyCategory.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, TaxonomyCategory.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response
@@ -1352,10 +1432,15 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		};
 	}
 
+	protected TaxonomyCategory randomIrrelevantTaxonomyCategory() {
+		return randomTaxonomyCategory();
+	}
+
 	protected TaxonomyCategory randomPatchTaxonomyCategory() {
 		return randomTaxonomyCategory();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

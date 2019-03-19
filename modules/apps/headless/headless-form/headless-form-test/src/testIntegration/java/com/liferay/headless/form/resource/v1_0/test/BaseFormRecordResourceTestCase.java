@@ -93,6 +93,7 @@ public abstract class BaseFormRecordResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL("http://localhost:8080/o/headless-form/v1.0");
@@ -100,6 +101,7 @@ public abstract class BaseFormRecordResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -129,8 +131,16 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), FormRecord.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, FormRecord.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetFormRecordResponse(Long formRecordId)
@@ -190,8 +200,16 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), FormRecord.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, FormRecord.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutFormRecordResponse(
@@ -220,6 +238,13 @@ public abstract class BaseFormRecordResourceTestCase {
 	@Test
 	public void testGetFormFormRecordsPage() throws Exception {
 		Long formId = testGetFormFormRecordsPage_getFormId();
+		Long irrelevantFormId =
+			testGetFormFormRecordsPage_getIrrelevantFormId();
+
+		if ((irrelevantFormId != null)) {
+			testGetFormFormRecordsPage_addFormRecord(
+				irrelevantFormId, randomIrrelevantFormRecord());
+		}
 
 		FormRecord formRecord1 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());
@@ -290,6 +315,12 @@ public abstract class BaseFormRecordResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long testGetFormFormRecordsPage_getIrrelevantFormId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<FormRecord> invokeGetFormFormRecordsPage(
 			Long formId, Pagination pagination)
 		throws Exception {
@@ -306,8 +337,10 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<FormRecord>>() {
 			});
 	}
@@ -369,8 +402,16 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), FormRecord.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, FormRecord.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostFormFormRecordResponse(
@@ -584,10 +625,15 @@ public abstract class BaseFormRecordResourceTestCase {
 		};
 	}
 
+	protected FormRecord randomIrrelevantFormRecord() {
+		return randomFormRecord();
+	}
+
 	protected FormRecord randomPatchFormRecord() {
 		return randomFormRecord();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

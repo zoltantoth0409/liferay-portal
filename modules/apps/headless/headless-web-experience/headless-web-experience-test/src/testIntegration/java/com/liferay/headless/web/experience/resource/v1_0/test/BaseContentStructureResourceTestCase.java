@@ -95,6 +95,7 @@ public abstract class BaseContentStructureResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -103,6 +104,7 @@ public abstract class BaseContentStructureResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -110,6 +112,13 @@ public abstract class BaseContentStructureResourceTestCase {
 	public void testGetContentSpaceContentStructuresPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceContentStructuresPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceContentStructuresPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceContentStructuresPage_addContentStructure(
+				irrelevantContentSpaceId, randomIrrelevantContentStructure());
+		}
 
 		ContentStructure contentStructure1 =
 			testGetContentSpaceContentStructuresPage_addContentStructure(
@@ -387,6 +396,13 @@ public abstract class BaseContentStructureResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long
+			testGetContentSpaceContentStructuresPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<ContentStructure> invokeGetContentSpaceContentStructuresPage(
 			Long contentSpaceId, String filterString, Pagination pagination,
 			String sortString)
@@ -411,8 +427,10 @@ public abstract class BaseContentStructureResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<ContentStructure>>() {
 			});
 	}
@@ -479,8 +497,17 @@ public abstract class BaseContentStructureResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), ContentStructure.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, ContentStructure.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetContentStructureResponse(
@@ -706,10 +733,15 @@ public abstract class BaseContentStructureResourceTestCase {
 		};
 	}
 
+	protected ContentStructure randomIrrelevantContentStructure() {
+		return randomContentStructure();
+	}
+
 	protected ContentStructure randomPatchContentStructure() {
 		return randomContentStructure();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

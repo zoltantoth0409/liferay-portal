@@ -96,6 +96,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -104,6 +105,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -111,6 +113,13 @@ public abstract class BaseKeywordResourceTestCase {
 	public void testGetContentSpaceKeywordsPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceKeywordsPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceKeywordsPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceKeywordsPage_addKeyword(
+				irrelevantContentSpaceId, randomIrrelevantKeyword());
+		}
 
 		Keyword keyword1 = testGetContentSpaceKeywordsPage_addKeyword(
 			contentSpaceId, randomKeyword());
@@ -355,6 +364,12 @@ public abstract class BaseKeywordResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long testGetContentSpaceKeywordsPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<Keyword> invokeGetContentSpaceKeywordsPage(
 			Long contentSpaceId, String filterString, Pagination pagination,
 			String sortString)
@@ -379,8 +394,10 @@ public abstract class BaseKeywordResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<Keyword>>() {
 			});
 	}
@@ -452,8 +469,16 @@ public abstract class BaseKeywordResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Keyword.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Keyword.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostContentSpaceKeywordResponse(
@@ -505,8 +530,16 @@ public abstract class BaseKeywordResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteKeywordResponse(Long keywordId)
@@ -549,8 +582,16 @@ public abstract class BaseKeywordResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Keyword.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Keyword.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetKeywordResponse(Long keywordId)
@@ -607,8 +648,16 @@ public abstract class BaseKeywordResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Keyword.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Keyword.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutKeywordResponse(
@@ -811,10 +860,15 @@ public abstract class BaseKeywordResourceTestCase {
 		};
 	}
 
+	protected Keyword randomIrrelevantKeyword() {
+		return randomKeyword();
+	}
+
 	protected Keyword randomPatchKeyword() {
 		return randomKeyword();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {

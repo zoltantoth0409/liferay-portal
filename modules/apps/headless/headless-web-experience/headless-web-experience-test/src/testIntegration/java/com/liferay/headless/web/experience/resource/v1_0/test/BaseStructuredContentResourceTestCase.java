@@ -97,6 +97,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
@@ -105,6 +106,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -112,6 +114,13 @@ public abstract class BaseStructuredContentResourceTestCase {
 	public void testGetContentSpaceStructuredContentsPage() throws Exception {
 		Long contentSpaceId =
 			testGetContentSpaceStructuredContentsPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceStructuredContentsPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			testGetContentSpaceStructuredContentsPage_addStructuredContent(
+				irrelevantContentSpaceId, randomIrrelevantStructuredContent());
+		}
 
 		StructuredContent structuredContent1 =
 			testGetContentSpaceStructuredContentsPage_addStructuredContent(
@@ -389,6 +398,13 @@ public abstract class BaseStructuredContentResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long
+			testGetContentSpaceStructuredContentsPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<StructuredContent>
 			invokeGetContentSpaceStructuredContentsPage(
 				Long contentSpaceId, String filterString, Pagination pagination,
@@ -414,8 +430,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<StructuredContent>>() {
 			});
 	}
@@ -490,8 +508,17 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), StructuredContent.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, StructuredContent.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostContentSpaceStructuredContentResponse(
@@ -525,6 +552,14 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Long contentStructureId =
 			testGetContentStructureStructuredContentsPage_getContentStructureId();
+		Long irrelevantContentStructureId =
+			testGetContentStructureStructuredContentsPage_getIrrelevantContentStructureId();
+
+		if ((irrelevantContentStructureId != null)) {
+			testGetContentStructureStructuredContentsPage_addStructuredContent(
+				irrelevantContentStructureId,
+				randomIrrelevantStructuredContent());
+		}
 
 		StructuredContent structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
@@ -804,6 +839,13 @@ public abstract class BaseStructuredContentResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetContentStructureStructuredContentsPage_getIrrelevantContentStructureId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<StructuredContent>
 			invokeGetContentStructureStructuredContentsPage(
 				Long contentStructureId, String filterString,
@@ -829,8 +871,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<StructuredContent>>() {
 			});
 	}
@@ -901,8 +945,16 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteStructuredContentResponse(
@@ -959,8 +1011,17 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), StructuredContent.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, StructuredContent.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetStructuredContentResponse(
@@ -1036,8 +1097,17 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		options.setPatch(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), StructuredContent.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, StructuredContent.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePatchStructuredContentResponse(
@@ -1112,8 +1182,17 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), StructuredContent.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, StructuredContent.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutStructuredContentResponse(
@@ -1162,7 +1241,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		options.setLocation(location);
 
-		return HttpUtil.URLtoString(options);
+		String string = HttpUtil.URLtoString(options);
+
+		return string;
 	}
 
 	protected Http.Response
@@ -1445,10 +1526,15 @@ public abstract class BaseStructuredContentResourceTestCase {
 		};
 	}
 
+	protected StructuredContent randomIrrelevantStructuredContent() {
+		return randomStructuredContent();
+	}
+
 	protected StructuredContent randomPatchStructuredContent() {
 		return randomStructuredContent();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {
