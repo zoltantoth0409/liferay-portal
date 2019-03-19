@@ -28,6 +28,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
@@ -91,6 +92,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL("http://localhost:8080/o/data-engine/v1.0");
@@ -98,6 +100,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -107,10 +110,31 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		Long contentSpaceId =
 			testGetContentSpaceDataRecordCollectionsPage_getContentSpaceId();
+		Long irrelevantContentSpaceId =
+			testGetContentSpaceDataRecordCollectionsPage_getIrrelevantContentSpaceId();
+
+		if ((irrelevantContentSpaceId != null)) {
+			DataRecordCollection irrelevantDataRecordCollection =
+				testGetContentSpaceDataRecordCollectionsPage_addDataRecordCollection(
+					irrelevantContentSpaceId,
+					randomIrrelevantDataRecordCollection());
+
+			Page<DataRecordCollection> page =
+				invokeGetContentSpaceDataRecordCollectionsPage(
+					irrelevantContentSpaceId, null, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantDataRecordCollection),
+				(List<DataRecordCollection>)page.getItems());
+			assertValid(page);
+		}
 
 		DataRecordCollection dataRecordCollection1 =
 			testGetContentSpaceDataRecordCollectionsPage_addDataRecordCollection(
 				contentSpaceId, randomDataRecordCollection());
+
 		DataRecordCollection dataRecordCollection2 =
 			testGetContentSpaceDataRecordCollectionsPage_addDataRecordCollection(
 				contentSpaceId, randomDataRecordCollection());
@@ -137,9 +161,11 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		DataRecordCollection dataRecordCollection1 =
 			testGetContentSpaceDataRecordCollectionsPage_addDataRecordCollection(
 				contentSpaceId, randomDataRecordCollection());
+
 		DataRecordCollection dataRecordCollection2 =
 			testGetContentSpaceDataRecordCollectionsPage_addDataRecordCollection(
 				contentSpaceId, randomDataRecordCollection());
+
 		DataRecordCollection dataRecordCollection3 =
 			testGetContentSpaceDataRecordCollectionsPage_addDataRecordCollection(
 				contentSpaceId, randomDataRecordCollection());
@@ -196,6 +222,13 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		return testGroup.getGroupId();
 	}
 
+	protected Long
+			testGetContentSpaceDataRecordCollectionsPage_getIrrelevantContentSpaceId()
+		throws Exception {
+
+		return irrelevantGroup.getGroupId();
+	}
+
 	protected Page<DataRecordCollection>
 			invokeGetContentSpaceDataRecordCollectionsPage(
 				Long contentSpaceId, String keywords, Pagination pagination)
@@ -216,8 +249,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<DataRecordCollection>>() {
 			});
 	}
@@ -253,10 +288,31 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		Long dataDefinitionId =
 			testGetDataDefinitionDataRecordCollectionsPage_getDataDefinitionId();
+		Long irrelevantDataDefinitionId =
+			testGetDataDefinitionDataRecordCollectionsPage_getIrrelevantDataDefinitionId();
+
+		if ((irrelevantDataDefinitionId != null)) {
+			DataRecordCollection irrelevantDataRecordCollection =
+				testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
+					irrelevantDataDefinitionId,
+					randomIrrelevantDataRecordCollection());
+
+			Page<DataRecordCollection> page =
+				invokeGetDataDefinitionDataRecordCollectionsPage(
+					irrelevantDataDefinitionId, null, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantDataRecordCollection),
+				(List<DataRecordCollection>)page.getItems());
+			assertValid(page);
+		}
 
 		DataRecordCollection dataRecordCollection1 =
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
 				dataDefinitionId, randomDataRecordCollection());
+
 		DataRecordCollection dataRecordCollection2 =
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
 				dataDefinitionId, randomDataRecordCollection());
@@ -283,9 +339,11 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		DataRecordCollection dataRecordCollection1 =
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
 				dataDefinitionId, randomDataRecordCollection());
+
 		DataRecordCollection dataRecordCollection2 =
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
 				dataDefinitionId, randomDataRecordCollection());
+
 		DataRecordCollection dataRecordCollection3 =
 			testGetDataDefinitionDataRecordCollectionsPage_addDataRecordCollection(
 				dataDefinitionId, randomDataRecordCollection());
@@ -344,6 +402,13 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetDataDefinitionDataRecordCollectionsPage_getIrrelevantDataDefinitionId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<DataRecordCollection>
 			invokeGetDataDefinitionDataRecordCollectionsPage(
 				Long dataDefinitionId, String keywords, Pagination pagination)
@@ -364,8 +429,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<DataRecordCollection>>() {
 			});
 	}
@@ -437,8 +504,17 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DataRecordCollection.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, DataRecordCollection.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response
@@ -508,8 +584,16 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteDataRecordCollectionResponse(
@@ -567,8 +651,17 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DataRecordCollection.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, DataRecordCollection.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetDataRecordCollectionResponse(
@@ -641,8 +734,17 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DataRecordCollection.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, DataRecordCollection.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutDataRecordCollectionResponse(
@@ -846,10 +948,15 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		};
 	}
 
+	protected DataRecordCollection randomIrrelevantDataRecordCollection() {
+		return randomDataRecordCollection();
+	}
+
 	protected DataRecordCollection randomPatchDataRecordCollection() {
 		return randomDataRecordCollection();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -909,8 +1016,17 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		if (ArrayUtil.isEmpty(values)) {
+			return template;
+		}
+
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {

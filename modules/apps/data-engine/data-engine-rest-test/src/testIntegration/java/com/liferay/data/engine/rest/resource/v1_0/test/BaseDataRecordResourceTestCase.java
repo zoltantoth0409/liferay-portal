@@ -28,6 +28,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
@@ -91,6 +92,7 @@ public abstract class BaseDataRecordResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL("http://localhost:8080/o/data-engine/v1.0");
@@ -98,6 +100,7 @@ public abstract class BaseDataRecordResourceTestCase {
 
 	@After
 	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
@@ -105,10 +108,31 @@ public abstract class BaseDataRecordResourceTestCase {
 	public void testGetDataRecordCollectionDataRecordsPage() throws Exception {
 		Long dataRecordCollectionId =
 			testGetDataRecordCollectionDataRecordsPage_getDataRecordCollectionId();
+		Long irrelevantDataRecordCollectionId =
+			testGetDataRecordCollectionDataRecordsPage_getIrrelevantDataRecordCollectionId();
+
+		if ((irrelevantDataRecordCollectionId != null)) {
+			DataRecord irrelevantDataRecord =
+				testGetDataRecordCollectionDataRecordsPage_addDataRecord(
+					irrelevantDataRecordCollectionId,
+					randomIrrelevantDataRecord());
+
+			Page<DataRecord> page =
+				invokeGetDataRecordCollectionDataRecordsPage(
+					irrelevantDataRecordCollectionId, Pagination.of(1, 2));
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantDataRecord),
+				(List<DataRecord>)page.getItems());
+			assertValid(page);
+		}
 
 		DataRecord dataRecord1 =
 			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
 				dataRecordCollectionId, randomDataRecord());
+
 		DataRecord dataRecord2 =
 			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
 				dataRecordCollectionId, randomDataRecord());
@@ -134,9 +158,11 @@ public abstract class BaseDataRecordResourceTestCase {
 		DataRecord dataRecord1 =
 			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
 				dataRecordCollectionId, randomDataRecord());
+
 		DataRecord dataRecord2 =
 			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
 				dataRecordCollectionId, randomDataRecord());
+
 		DataRecord dataRecord3 =
 			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
 				dataRecordCollectionId, randomDataRecord());
@@ -184,6 +210,13 @@ public abstract class BaseDataRecordResourceTestCase {
 			"This method needs to be implemented");
 	}
 
+	protected Long
+			testGetDataRecordCollectionDataRecordsPage_getIrrelevantDataRecordCollectionId()
+		throws Exception {
+
+		return null;
+	}
+
 	protected Page<DataRecord> invokeGetDataRecordCollectionDataRecordsPage(
 			Long dataRecordCollectionId, Pagination pagination)
 		throws Exception {
@@ -203,8 +236,10 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		options.setLocation(location);
 
+		String string = HttpUtil.URLtoString(options);
+
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
+			string,
 			new TypeReference<Page<DataRecord>>() {
 			});
 	}
@@ -274,8 +309,16 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		options.setPost(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DataRecord.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, DataRecord.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePostDataRecordCollectionDataRecordResponse(
@@ -332,8 +375,16 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), Boolean.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, Boolean.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeDeleteDataRecordResponse(Long dataRecordId)
@@ -380,8 +431,16 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		options.setLocation(location);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DataRecord.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, DataRecord.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokeGetDataRecordResponse(Long dataRecordId)
@@ -441,8 +500,16 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		options.setPut(true);
 
-		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DataRecord.class);
+		String string = HttpUtil.URLtoString(options);
+
+		try {
+			return _outputObjectMapper.readValue(string, DataRecord.class);
+		}
+		catch (Exception e) {
+			Assert.fail("HTTP response: " + string);
+
+			throw e;
+		}
 	}
 
 	protected Http.Response invokePutDataRecordResponse(
@@ -620,10 +687,15 @@ public abstract class BaseDataRecordResourceTestCase {
 		};
 	}
 
+	protected DataRecord randomIrrelevantDataRecord() {
+		return randomDataRecord();
+	}
+
 	protected DataRecord randomPatchDataRecord() {
 		return randomDataRecord();
 	}
 
+	protected Group irrelevantGroup;
 	protected Group testGroup;
 
 	protected static class Page<T> {
@@ -683,8 +755,17 @@ public abstract class BaseDataRecordResourceTestCase {
 		return options;
 	}
 
-	private String _toPath(String template, Object value) {
-		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
+	private String _toPath(String template, Object... values) {
+		if (ArrayUtil.isEmpty(values)) {
+			return template;
+		}
+
+		for (int i = 0; i < values.length; i++) {
+			template = template.replaceFirst(
+				"\\{.*\\}", String.valueOf(values[i]));
+		}
+
+		return template;
 	}
 
 	private static BeanUtilsBean _beanUtilsBean = new BeanUtilsBean() {
