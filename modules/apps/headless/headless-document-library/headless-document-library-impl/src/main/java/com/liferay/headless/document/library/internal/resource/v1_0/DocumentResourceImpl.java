@@ -166,17 +166,18 @@ public class DocumentResourceImpl
 				existingFileEntry.getSize())
 		);
 
-		Optional<Document> optional = multipartBody.getValueAsInstanceOptional(
-			"document", Document.class);
+		Optional<Document> documentOptional =
+			multipartBody.getValueAsInstanceOptional(
+				"document", Document.class);
 
-		String[] keywords = optional.map(
+		String[] keywords = documentOptional.map(
 			Document::getKeywords
 		).orElseGet(
 			() -> _assetTagLocalService.getTagNames(
 				DLFileEntry.class.getName(), documentId)
 		);
 
-		Long[] categoryIds = optional.map(
+		Long[] categoryIds = documentOptional.map(
 			Document::getTaxonomyCategoryIds
 		).orElseGet(
 			() -> ArrayUtil.toArray(
@@ -186,12 +187,12 @@ public class DocumentResourceImpl
 
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
 			documentId, binaryFile.getFileName(), binaryFile.getContentType(),
-			optional.map(
+			documentOptional.map(
 				Document::getTitle
 			).orElseGet(
 				existingFileEntry::getTitle
 			),
-			optional.map(
+			documentOptional.map(
 				Document::getDescription
 			).orElseGet(
 				existingFileEntry::getDescription
@@ -200,7 +201,7 @@ public class DocumentResourceImpl
 			binaryFile.getInputStream(), binaryFile.getSize(),
 			ServiceContextUtil.createServiceContext(
 				keywords, categoryIds, existingFileEntry.getGroupId(),
-				optional.map(
+				documentOptional.map(
 					Document::getViewableBy
 				).map(
 					Document.ViewableBy::getValue
@@ -386,9 +387,9 @@ public class DocumentResourceImpl
 	private <T, S> T _getValue(
 		AdaptiveMedia<S> adaptiveMedia, AMAttribute<S, T> amAttribute) {
 
-		Optional<T> optional = adaptiveMedia.getValueOptional(amAttribute);
+		Optional<T> valueOptional = adaptiveMedia.getValueOptional(amAttribute);
 
-		return optional.orElse(null);
+		return valueOptional.orElse(null);
 	}
 
 	private AdaptedImages _toAdaptedImages(
