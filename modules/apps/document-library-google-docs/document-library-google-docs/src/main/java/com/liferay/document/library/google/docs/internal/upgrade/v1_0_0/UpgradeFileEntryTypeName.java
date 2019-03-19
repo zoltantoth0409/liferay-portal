@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import java.sql.SQLException;
 
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * @author Alejandro Tardín
@@ -72,16 +73,16 @@ public class UpgradeFileEntryTypeName extends UpgradeProcess {
 				UpgradeProcessUtil.getDefaultLanguageId(
 					dlFileEntryType.getCompanyId()));
 
-			boolean hasDefaultName = "Google Docs".equals(
-				dlFileEntryType.getName(locale));
+			boolean hasDefaultName = Objects.equals(
+				"Google Docs", dlFileEntryType.getName(locale));
 
 			if (hasDefaultName) {
 				dlFileEntryType.setName(
 					GoogleDocsConstants.DL_FILE_ENTRY_TYPE_NAME, locale);
 			}
 
-			boolean hasDefaultDescription = "Google Docs".equals(
-				dlFileEntryType.getDescription(locale));
+			boolean hasDefaultDescription = Objects.equals(
+				"Google Docs", dlFileEntryType.getDescription(locale));
 
 			if (hasDefaultDescription) {
 				dlFileEntryType.setDescription(StringPool.BLANK, locale);
