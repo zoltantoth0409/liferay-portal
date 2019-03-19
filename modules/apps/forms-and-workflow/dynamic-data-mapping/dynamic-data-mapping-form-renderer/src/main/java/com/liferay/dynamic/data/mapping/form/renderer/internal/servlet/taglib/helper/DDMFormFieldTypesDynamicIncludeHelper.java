@@ -27,8 +27,7 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,27 +49,23 @@ public class DDMFormFieldTypesDynamicIncludeHelper {
 
 		ScriptData scriptData = new ScriptData();
 
-		Map<String, String> values = new HashMap<>();
-
 		try {
-			values.put(
-				"fieldTypes",
-				_ddmFormFieldTypesJSONSerialize.serialize(
-					_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes()));
+			scriptData.append(
+				null,
+				StringUtil.replaceToStringBundler(
+					_TMPL_CONTENT, StringPool.POUND, StringPool.POUND,
+					Collections.singletonMap(
+						"fieldTypes",
+						_ddmFormFieldTypesJSONSerialize.serialize(
+							_ddmFormFieldTypeServicesTracker.
+								getDDMFormFieldTypes()))),
+				_MODULES, ScriptData.ModulesType.AUI);
 		}
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(pe);
 			}
-
-			values.put("fieldTypes", StringPool.BLANK);
 		}
-
-		scriptData.append(
-			null,
-			StringUtil.replaceToStringBundler(
-				_TMPL_CONTENT, StringPool.POUND, StringPool.POUND, values),
-			_MODULES, ScriptData.ModulesType.AUI);
 
 		scriptData.writeTo(response.getWriter());
 	}
