@@ -27,6 +27,7 @@ import com.liferay.dynamic.data.mapping.test.util.DDMStructureTestHelper;
 import com.liferay.dynamic.data.mapping.test.util.DDMTemplateTestUtil;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.journal.model.JournalArticle;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -64,21 +65,8 @@ public class StructuredContentResourceTest
 
 		_ddmFormDeserializerTracker = registry.getService(_serviceReference);
 
-		DDMStructureTestHelper ddmStructureTestHelper =
-			new DDMStructureTestHelper(
-				PortalUtil.getClassNameId(JournalArticle.class), testGroup);
-
-		_ddmStructure = ddmStructureTestHelper.addStructure(
-			PortalUtil.getClassNameId(JournalArticle.class),
-			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-			_deserialize(_read("test-structured-content-structure.json")),
-			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
-
-		DDMTemplateTestUtil.addTemplate(
-			testGroup.getGroupId(), _ddmStructure.getStructureId(),
-			PortalUtil.getClassNameId(JournalArticle.class),
-			TemplateConstants.LANG_TYPE_VM,
-			_read("test-structured-content-template.xsl"), LocaleUtil.US);
+		_ddmStructure = _addDDMStructure(testGroup);
+		_irrelevantDDMStructure = _addDDMStructure(irrelevantGroup);
 	}
 
 	@After
@@ -130,6 +118,17 @@ public class StructuredContentResourceTest
 		}
 
 		return false;
+	}
+
+	@Override
+	protected StructuredContent randomIrrelevantStructuredContent() {
+		StructuredContent structuredContent = randomStructuredContent();
+
+		structuredContent.setContentSpaceId(irrelevantGroup.getGroupId());
+		structuredContent.setContentStructureId(
+			_irrelevantDDMStructure.getStructureId());
+
+		return structuredContent;
 	}
 
 	@Override
@@ -218,6 +217,26 @@ public class StructuredContentResourceTest
 			testGroup.getGroupId(), randomStructuredContent());
 	}
 
+	private DDMStructure _addDDMStructure(Group group) throws Exception {
+		DDMStructureTestHelper ddmStructureTestHelper =
+			new DDMStructureTestHelper(
+				PortalUtil.getClassNameId(JournalArticle.class), group);
+
+		DDMStructure ddmStructure = ddmStructureTestHelper.addStructure(
+			PortalUtil.getClassNameId(JournalArticle.class),
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
+			_deserialize(_read("test-structured-content-structure.json")),
+			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
+
+		DDMTemplateTestUtil.addTemplate(
+			ddmStructure.getGroupId(), ddmStructure.getStructureId(),
+			PortalUtil.getClassNameId(JournalArticle.class),
+			TemplateConstants.LANG_TYPE_VM,
+			_read("test-structured-content-template.xsl"), LocaleUtil.US);
+
+		return ddmStructure;
+	}
+
 	private DDMForm _deserialize(String content) {
 		DDMFormDeserializer ddmFormDeserializer =
 			_ddmFormDeserializerTracker.getDDMFormDeserializer("json");
@@ -243,6 +262,7 @@ public class StructuredContentResourceTest
 
 	private DDMFormDeserializerTracker _ddmFormDeserializerTracker;
 	private DDMStructure _ddmStructure;
+	private DDMStructure _irrelevantDDMStructure;
 	private ServiceReference<DDMFormDeserializerTracker> _serviceReference;
 
 }
