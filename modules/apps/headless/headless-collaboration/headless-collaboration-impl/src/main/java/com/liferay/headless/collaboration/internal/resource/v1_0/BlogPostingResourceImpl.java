@@ -122,7 +122,6 @@ public class BlogPostingResourceImpl
 
 		LocalDateTime localDateTime = toLocalDateTime(
 			blogPosting.getDatePublished());
-
 		Optional<Image> imageOptional = Optional.ofNullable(
 			blogPosting.getImage());
 
@@ -159,7 +158,6 @@ public class BlogPostingResourceImpl
 
 		LocalDateTime localDateTime = toLocalDateTime(
 			blogPosting.getDatePublished());
-
 		Optional<Image> imageOptional = Optional.ofNullable(
 			blogPosting.getImage());
 
