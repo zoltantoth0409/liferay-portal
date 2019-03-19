@@ -209,16 +209,11 @@ public class FormMessageBodyWriter implements MessageBodyWriter<Form<?>> {
 		);
 	}
 
-	private static final JSONArray _contextJSONArray;
-
-	static {
-		_contextJSONArray = new JSONArray();
-
-		_contextJSONArray.put(
-			new JSONObject(singletonMap("@vocab", "http://schema.org"))
-		).put(
-			"https://www.w3.org/ns/hydra/core#"
-		);
+	private static final JSONArray _contextJSONArray = new JSONArray() {
+		{
+			put(new JSONObject(singletonMap("@vocab", "http://schema.org")));
+			put("https://www.w3.org/ns/hydra/core#");
+		}
 	}
 
 	@Reference
