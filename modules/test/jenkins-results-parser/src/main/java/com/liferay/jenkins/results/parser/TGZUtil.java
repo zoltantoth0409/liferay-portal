@@ -45,15 +45,15 @@ public class TGZUtil {
 
 	public static boolean debug = false;
 
-	public static void archive(File source, File archiveFile) {
-		if (!source.exists()) {
-			throw new RuntimeException("Unable to find " + source);
+	public static void archive(File sourceFile, File archiveFile) {
+		if (!sourceFile.exists()) {
+			throw new RuntimeException("Unable to find " + sourceFile);
 		}
 
-		File parent = archiveFile.getParentFile();
+		File parentDir = archiveFile.getParentFile();
 
-		if (!parent.exists()) {
-			parent.mkdirs();
+		if (!parentDir.exists()) {
+			parentDir.mkdirs();
 		}
 
 		try (FileOutputStream fileOutputStream = new FileOutputStream(
@@ -68,13 +68,15 @@ public class TGZUtil {
 			tarArchiveOutputStream.setLongFileMode(
 				TarArchiveOutputStream.LONGFILE_POSIX);
 
-			if (source.isFile()) {
+			if (sourceFile.isFile()) {
 				_archiveFile(
-					source.getParentFile(), source, tarArchiveOutputStream);
+					sourceFile.getParentFile(), sourceFile,
+					tarArchiveOutputStream);
 			}
 			else {
 				_archiveDir(
-					source.getParentFile(), source, tarArchiveOutputStream);
+					sourceFile.getParentFile(), sourceFile,
+					tarArchiveOutputStream);
 			}
 
 			tarArchiveOutputStream.flush();
@@ -83,7 +85,7 @@ public class TGZUtil {
 		}
 		catch (IOException ioe) {
 			throw new RuntimeException(
-				"Unable to archive " + source.toString(), ioe);
+				"Unable to archive " + sourceFile.toString(), ioe);
 		}
 	}
 
@@ -288,10 +290,10 @@ public class TGZUtil {
 			System.out.println("Unarchiving " + file);
 		}
 
-		File parent = file.getParentFile();
+		File parentDir = file.getParentFile();
 
-		if (!parent.exists()) {
-			parent.mkdirs();
+		if (!parentDir.exists()) {
+			parentDir.mkdirs();
 		}
 
 		try {
