@@ -148,7 +148,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 							</#if>
 						</#list>) {
 
-						test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
+						${schemaName} irrelevant${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
 
 						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 							<#if freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
@@ -157,6 +157,29 @@ public abstract class Base${schemaName}ResourceTestCase {
 						</#list>
 
 						randomIrrelevant${schemaName}());
+
+						Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
+
+						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+							<#if !javaMethodParameter?is_first>
+								,
+							</#if>
+
+							<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
+								Pagination.of(1, 2)
+							<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
+								irrelevant${javaMethodParameter.parameterName?cap_first}
+							<#else>
+								null
+							</#if>
+						</#list>
+
+						);
+
+						Assert.assertEquals(1, page.getTotalCount());
+
+						assertEquals(Arrays.asList(irrelevant${schemaName}), (List<${schemaName}>)page.getItems());
+						assertValid(page);
 					}
 
 					${schemaName} ${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
