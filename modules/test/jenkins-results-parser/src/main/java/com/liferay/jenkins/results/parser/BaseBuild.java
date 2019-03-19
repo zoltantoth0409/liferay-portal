@@ -1504,9 +1504,9 @@ public abstract class BaseBuild implements Build {
 
 	}
 
-	public static class StopwatchRecord implements Comparable<StopwatchRecord> {
+	public static class StopWatchRecord implements Comparable<StopWatchRecord> {
 
-		public StopwatchRecord(
+		public StopWatchRecord(
 			String name, long startTimestamp, BaseBuild baseBuild) {
 
 			_name = name;
@@ -1514,47 +1514,47 @@ public abstract class BaseBuild implements Build {
 			_baseBuild = baseBuild;
 		}
 
-		public void addChildStopwatchRecord(
-			StopwatchRecord newChildStopwatchRecord) {
+		public void addChildStopWatchRecord(
+			StopWatchRecord newChildStopWatchRecord) {
 
-			if (_childStopwatchRecords == null) {
-				_childStopwatchRecords = new TreeSet<>();
+			if (_childStopWatchRecords == null) {
+				_childStopWatchRecords = new TreeSet<>();
 			}
 
-			for (StopwatchRecord childStopwatchRecord :
-					_childStopwatchRecords) {
+			for (StopWatchRecord childStopWatchRecord :
+					_childStopWatchRecords) {
 
-				if (childStopwatchRecord.isParentOf(newChildStopwatchRecord)) {
-					childStopwatchRecord.addChildStopwatchRecord(
-						newChildStopwatchRecord);
+				if (childStopWatchRecord.isParentOf(newChildStopWatchRecord)) {
+					childStopWatchRecord.addChildStopWatchRecord(
+						newChildStopWatchRecord);
 
 					return;
 				}
 			}
 
-			newChildStopwatchRecord.setParentStopwatchRecord(this);
+			newChildStopWatchRecord.setParentStopWatchRecord(this);
 
-			_childStopwatchRecords.add(newChildStopwatchRecord);
+			_childStopWatchRecords.add(newChildStopWatchRecord);
 		}
 
 		@Override
-		public int compareTo(StopwatchRecord stopwatchRecord) {
+		public int compareTo(StopWatchRecord stopWatchRecord) {
 			int compareToValue = _startTimestamp.compareTo(
-				stopwatchRecord.getStartTimestamp());
+				stopWatchRecord.getStartTimestamp());
 
 			if (compareToValue != 0) {
 				return compareToValue;
 			}
 
-			return _name.compareTo(stopwatchRecord.getName());
+			return _name.compareTo(stopWatchRecord.getName());
 		}
 
 		public int getDepth() {
-			if (_parentStopwatchRecord == null) {
+			if (_parentStopWatchRecord == null) {
 				return 0;
 			}
 
-			return _parentStopwatchRecord.getDepth() + 1;
+			return _parentStopWatchRecord.getDepth() + 1;
 		}
 
 		public Long getDuration() {
@@ -1565,36 +1565,36 @@ public abstract class BaseBuild implements Build {
 			return _name;
 		}
 
-		public StopwatchRecord getParentStopwatchRecord() {
-			return _parentStopwatchRecord;
+		public StopWatchRecord getParentStopWatchRecord() {
+			return _parentStopWatchRecord;
 		}
 
 		public Long getStartTimestamp() {
 			return _startTimestamp;
 		}
 
-		public boolean isParentOf(StopwatchRecord stopwatchRecord) {
+		public boolean isParentOf(StopWatchRecord stopWatchRecord) {
 			Long duration = getDuration();
-			Long stopwatchRecordDuration = stopwatchRecord.getDuration();
+			Long stopWatchRecordDuration = stopWatchRecord.getDuration();
 
-			if ((duration != null) && (stopwatchRecordDuration == null)) {
+			if ((duration != null) && (stopWatchRecordDuration == null)) {
 				return false;
 			}
 
 			Long startTimestamp = getStartTimestamp();
-			Long stopwatchRecordStartTimestamp =
-				stopwatchRecord.getStartTimestamp();
+			Long stopWatchRecordStartTimestamp =
+				stopWatchRecord.getStartTimestamp();
 
-			if (startTimestamp <= stopwatchRecordStartTimestamp) {
+			if (startTimestamp <= stopWatchRecordStartTimestamp) {
 				if (duration == null) {
 					return true;
 				}
 
 				Long endTimestamp = startTimestamp + duration;
-				Long stopwatchRecordEndTimestamp =
-					stopwatchRecordStartTimestamp + stopwatchRecordDuration;
+				Long stopWatchRecordEndTimestamp =
+					stopWatchRecordStartTimestamp + stopWatchRecordDuration;
 
-				if (endTimestamp > stopwatchRecordEndTimestamp) {
+				if (endTimestamp > stopWatchRecordEndTimestamp) {
 					return true;
 				}
 			}
@@ -1625,10 +1625,10 @@ public abstract class BaseBuild implements Build {
 
 			String name = getName();
 
-			StopwatchRecord parentStopwatchRecord = getParentStopwatchRecord();
+			StopWatchRecord parentStopWatchRecord = getParentStopWatchRecord();
 
-			if (parentStopwatchRecord != null) {
-				name = name.replace(parentStopwatchRecord.getName(), "");
+			if (parentStopWatchRecord != null) {
+				name = name.replace(parentStopWatchRecord.getName(), "");
 			}
 
 			sb.append(name);
@@ -1668,12 +1668,12 @@ public abstract class BaseBuild implements Build {
 
 			jenkinsReportTableRowElements.add(buildInfoElement);
 
-			if (_childStopwatchRecords != null) {
-				for (StopwatchRecord childStopwatchRecord :
-						_childStopwatchRecords) {
+			if (_childStopWatchRecords != null) {
+				for (StopWatchRecord childStopWatchRecord :
+						_childStopWatchRecords) {
 
 					jenkinsReportTableRowElements.addAll(
-						childStopwatchRecord.
+						childStopWatchRecord.
 							getJenkinsReportTableRowElements());
 				}
 			}
@@ -1681,52 +1681,52 @@ public abstract class BaseBuild implements Build {
 			return jenkinsReportTableRowElements;
 		}
 
-		protected void setParentStopwatchRecord(
-			StopwatchRecord stopwatchRecord) {
+		protected void setParentStopWatchRecord(
+			StopWatchRecord stopWatchRecord) {
 
-			_parentStopwatchRecord = stopwatchRecord;
+			_parentStopWatchRecord = stopWatchRecord;
 		}
 
 		private static final int _INDENTATION_SIZE = 4;
 
 		private final BaseBuild _baseBuild;
-		private Set<StopwatchRecord> _childStopwatchRecords;
+		private Set<StopWatchRecord> _childStopWatchRecords;
 		private Long _duration;
 		private final String _name;
-		private StopwatchRecord _parentStopwatchRecord;
+		private StopWatchRecord _parentStopWatchRecord;
 		private final Long _startTimestamp;
 
 	}
 
-	public static class StopwatchRecordsGroup
-		implements Iterable<StopwatchRecord> {
+	public static class StopWatchRecordsGroup
+		implements Iterable<StopWatchRecord> {
 
-		public void add(StopwatchRecord newStopwatchRecord) {
-			_stopwatchRecordsMap.put(
-				newStopwatchRecord.getName(), newStopwatchRecord);
+		public void add(StopWatchRecord newStopWatchRecord) {
+			_stopWatchRecordsMap.put(
+				newStopWatchRecord.getName(), newStopWatchRecord);
 		}
 
-		public StopwatchRecord get(String name) {
-			return _stopwatchRecordsMap.get(name);
+		public StopWatchRecord get(String name) {
+			return _stopWatchRecordsMap.get(name);
 		}
 
-		public List<StopwatchRecord> getStopwatchRecords() {
-			List<StopwatchRecord> allStopwatchRecords = new ArrayList<>(
-				_stopwatchRecordsMap.values());
+		public List<StopWatchRecord> getStopWatchRecords() {
+			List<StopWatchRecord> allStopWatchRecords = new ArrayList<>(
+				_stopWatchRecordsMap.values());
 
-			Collections.sort(allStopwatchRecords);
+			Collections.sort(allStopWatchRecords);
 
-			List<StopwatchRecord> parentStopwatchRecords = new ArrayList<>();
+			List<StopWatchRecord> parentStopWatchRecords = new ArrayList<>();
 
-			for (StopwatchRecord stopwatchRecord : allStopwatchRecords) {
+			for (StopWatchRecord stopWatchRecord : allStopWatchRecords) {
 				boolean addedAsChild = false;
 
-				for (StopwatchRecord parentStopwatchRecord :
-						parentStopwatchRecords) {
+				for (StopWatchRecord parentStopWatchRecord :
+						parentStopWatchRecords) {
 
-					if (parentStopwatchRecord.isParentOf(stopwatchRecord)) {
-						parentStopwatchRecord.addChildStopwatchRecord(
-							stopwatchRecord);
+					if (parentStopWatchRecord.isParentOf(stopWatchRecord)) {
+						parentStopWatchRecord.addChildStopWatchRecord(
+							stopWatchRecord);
 
 						addedAsChild = true;
 
@@ -1735,21 +1735,21 @@ public abstract class BaseBuild implements Build {
 				}
 
 				if (!addedAsChild) {
-					parentStopwatchRecords.add(stopwatchRecord);
+					parentStopWatchRecords.add(stopWatchRecord);
 				}
 			}
 
-			return parentStopwatchRecords;
+			return parentStopWatchRecords;
 		}
 
 		@Override
-		public Iterator<StopwatchRecord> iterator() {
-			List<StopwatchRecord> list = getStopwatchRecords();
+		public Iterator<StopWatchRecord> iterator() {
+			List<StopWatchRecord> list = getStopWatchRecords();
 
 			return list.iterator();
 		}
 
-		private final Map<String, StopwatchRecord> _stopwatchRecordsMap =
+		private final Map<String, StopWatchRecord> _stopWatchRecordsMap =
 			new HashMap<>();
 
 	}
@@ -2182,20 +2182,20 @@ public abstract class BaseBuild implements Build {
 		return "td";
 	}
 
-	protected List<Element> getJenkinsReportStopwatchRecordElements() {
-		List<Element> jenkinsReportStopwatchRecordTableRowElements =
+	protected List<Element> getJenkinsReportStopWatchRecordElements() {
+		List<Element> jenkinsReportStopWatchRecordTableRowElements =
 			new ArrayList<>();
 
-		for (StopwatchRecord stopwatchRecord : getStopwatchRecordsGroup()) {
-			if (stopwatchRecord.getDuration() == null) {
+		for (StopWatchRecord stopWatchRecord : getStopWatchRecordsGroup()) {
+			if (stopWatchRecord.getDuration() == null) {
 				continue;
 			}
 
-			jenkinsReportStopwatchRecordTableRowElements.addAll(
-				stopwatchRecord.getJenkinsReportTableRowElements());
+			jenkinsReportStopWatchRecordTableRowElements.addAll(
+				stopWatchRecord.getJenkinsReportTableRowElements());
 		}
 
-		return jenkinsReportStopwatchRecordTableRowElements;
+		return jenkinsReportStopWatchRecordTableRowElements;
 	}
 
 	protected Element getJenkinsReportTableRowElement() {
@@ -2274,7 +2274,7 @@ public abstract class BaseBuild implements Build {
 
 			tableRowElements.add(getJenkinsReportTableRowElement());
 
-			tableRowElements.addAll(getJenkinsReportStopwatchRecordElements());
+			tableRowElements.addAll(getJenkinsReportStopWatchRecordElements());
 		}
 
 		List<Build> downstreamBuilds = getDownstreamBuilds(result, status);
@@ -2466,21 +2466,21 @@ public abstract class BaseBuild implements Build {
 		return null;
 	}
 
-	protected StopwatchRecordsGroup getStopwatchRecordsGroup() {
+	protected StopWatchRecordsGroup getStopWatchRecordsGroup() {
 		String consoleText = getConsoleText();
 
 		int consoleTextLength = consoleText.length();
 
-		consoleText = consoleText.substring(stopwatchRecordConsoleReadCursor);
+		consoleText = consoleText.substring(stopWatchRecordConsoleReadCursor);
 
 		for (String line : consoleText.split("\n")) {
-			Matcher matcher = stopwatchStartTimestampPattern.matcher(line);
+			Matcher matcher = stopWatchStartTimestampPattern.matcher(line);
 
 			if (matcher.matches()) {
 				Date timestamp = null;
 
 				try {
-					timestamp = stopwatchTimestampSimpleDateFormat.parse(
+					timestamp = stopWatchTimestampSimpleDateFormat.parse(
 						matcher.group("timestamp"));
 				}
 				catch (ParseException pe) {
@@ -2488,16 +2488,16 @@ public abstract class BaseBuild implements Build {
 						"Unable to parse timestamp in " + line, pe);
 				}
 
-				String stopwatchName = matcher.group("name");
+				String stopWatchName = matcher.group("name");
 
-				stopwatchRecordsGroup.add(
-					new StopwatchRecord(
-						stopwatchName, timestamp.getTime(), this));
+				stopWatchRecordsGroup.add(
+					new StopWatchRecord(
+						stopWatchName, timestamp.getTime(), this));
 
 				continue;
 			}
 
-			matcher = stopwatchPattern.matcher(line);
+			matcher = stopWatchPattern.matcher(line);
 
 			if (matcher.matches()) {
 				long duration = Long.parseLong(matcher.group("milliseconds"));
@@ -2514,20 +2514,20 @@ public abstract class BaseBuild implements Build {
 					duration += Long.parseLong(minutes) * 60L * 1000L;
 				}
 
-				String stopwatchName = matcher.group("name");
+				String stopWatchName = matcher.group("name");
 
-				StopwatchRecord stopwatchRecord = stopwatchRecordsGroup.get(
-					stopwatchName);
+				StopWatchRecord stopWatchRecord = stopWatchRecordsGroup.get(
+					stopWatchName);
 
-				if (stopwatchRecord != null) {
-					stopwatchRecord.setDuration(duration);
+				if (stopWatchRecord != null) {
+					stopWatchRecord.setDuration(duration);
 				}
 			}
 		}
 
-		stopwatchRecordConsoleReadCursor = consoleTextLength;
+		stopWatchRecordConsoleReadCursor = consoleTextLength;
 
-		return stopwatchRecordsGroup;
+		return stopWatchRecordsGroup;
 	}
 
 	protected Map<String, String> getTempMap(String tempMapName) {
@@ -2896,17 +2896,17 @@ public abstract class BaseBuild implements Build {
 			"buildWithParameters\\?(?<queryString>.*)"));
 	protected static final Pattern jobNamePattern = Pattern.compile(
 		"(?<baseJob>[^\\(]+)\\((?<branchName>[^\\)]+)\\)");
-	protected static final Pattern stopwatchPattern = Pattern.compile(
+	protected static final Pattern stopWatchPattern = Pattern.compile(
 		JenkinsResultsParserUtil.combine(
-			"\\s*\\[stopwatch\\]\\s*\\[(?<name>[^:]+): ",
+			"\\s*\\[stopWatch\\]\\s*\\[(?<name>[^:]+): ",
 			"((?<minutes>\\d+):)?((?<seconds>\\d+))?\\.",
 			"(?<milliseconds>\\d+) sec\\]"));
-	protected static final Pattern stopwatchStartTimestampPattern =
+	protected static final Pattern stopWatchStartTimestampPattern =
 		Pattern.compile(
 			JenkinsResultsParserUtil.combine(
 				"\\s*\\[echo\\] (?<name>.*)\\.start\\.timestamp: ",
 				"(?<timestamp>.*)$"));
-	protected static final SimpleDateFormat stopwatchTimestampSimpleDateFormat =
+	protected static final SimpleDateFormat stopWatchTimestampSimpleDateFormat =
 		new SimpleDateFormat("MM-dd-yyyy HH:mm:ss:SSS z");
 
 	protected String archiveName;
@@ -2926,9 +2926,9 @@ public abstract class BaseBuild implements Build {
 	protected Long startTime;
 	protected Map<String, Long> statusDurations = new HashMap<>();
 	protected long statusModifiedTime;
-	protected int stopwatchRecordConsoleReadCursor;
-	protected StopwatchRecordsGroup stopwatchRecordsGroup =
-		new StopwatchRecordsGroup();
+	protected int stopWatchRecordConsoleReadCursor;
+	protected StopWatchRecordsGroup stopWatchRecordsGroup =
+		new StopWatchRecordsGroup();
 	protected Element upstreamJobFailureMessageElement;
 
 	protected static class TimelineData {
