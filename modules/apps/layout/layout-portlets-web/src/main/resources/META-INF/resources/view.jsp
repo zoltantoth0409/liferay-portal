@@ -19,11 +19,11 @@
 <%
 LayoutPortletsDisplayContext layoutPortletsDisplayContext = new LayoutPortletsDisplayContext(renderRequest, renderResponse, request);
 
-LayoutPortletsManagementToolbarDisplayContext siteTeamsManagementToolbarDisplayContext = new LayoutPortletsManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, layoutPortletsDisplayContext);
+LayoutPortletsManagementToolbarDisplayContext layoutPortletsManagementToolbarDisplayContext = new LayoutPortletsManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, layoutPortletsDisplayContext);
 %>
 
 <clay:management-toolbar
-	displayContext="<%= siteTeamsManagementToolbarDisplayContext %>"
+	displayContext="<%= layoutPortletsManagementToolbarDisplayContext %>"
 />
 
 <aui:form action="" cssClass="container-fluid-1280" name="fm">
