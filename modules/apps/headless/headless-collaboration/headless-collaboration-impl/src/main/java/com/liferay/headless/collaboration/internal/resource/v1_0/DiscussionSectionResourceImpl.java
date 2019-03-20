@@ -108,7 +108,7 @@ public class DiscussionSectionResourceImpl
 			Long contentSpaceId, DiscussionSection discussionSection)
 		throws Exception {
 
-		return _addDiscussionSection(0, contentSpaceId, discussionSection);
+		return _addDiscussionSection(0L, contentSpaceId, discussionSection);
 	}
 
 	@Override
@@ -142,13 +142,13 @@ public class DiscussionSectionResourceImpl
 	}
 
 	private DiscussionSection _addDiscussionSection(
-			long parentCategoryId, long contentSpaceId,
+			Long parentDiscussionSectionId, long contentSpaceId,
 			DiscussionSection discussionSection)
 		throws PortalException {
 
 		return _toDiscussionSection(
 			_mbCategoryService.addCategory(
-				_user.getUserId(), parentCategoryId,
+				_user.getUserId(), parentDiscussionSectionId,
 				discussionSection.getTitle(),
 				discussionSection.getDescription(),
 				ServiceContextUtil.createServiceContext(
