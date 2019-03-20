@@ -72,8 +72,7 @@ public class TaxonomyVocabularyResourceImpl
 		throws Exception {
 
 		Map<AssetVocabulary, List<AssetCategory>> assetCategoriesMap =
-			_getAssetCategoriesMap(
-				contentSpaceId, documentBulkSelection);
+			_getAssetCategoriesMap(contentSpaceId, documentBulkSelection);
 
 		Set<Map.Entry<AssetVocabulary, List<AssetCategory>>> entries =
 			assetCategoriesMap.entrySet();
@@ -87,30 +86,6 @@ public class TaxonomyVocabularyResourceImpl
 				assetVocabularyListEntry -> _toTaxonomyVocabulary(
 					assetVocabularyListEntry.getValue(),
 					assetVocabularyListEntry.getKey())));
-	}
-
-	private Stream<AssetCategory> _getAssetCategoriesStream(
-			DocumentBulkSelection documentBulkSelection)
-		throws Exception {
-
-		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
-			documentBulkSelection);
-
-		BulkSelection<AssetEntry> assetEntryBulkSelection =
-			bulkSelection.toAssetEntryBulkSelection();
-
-		Stream<AssetEntry> stream = assetEntryBulkSelection.stream();
-
-		Set<AssetCategory> assetCategories = stream.map(
-			_getAssetCategoriesFunction(
-				PermissionCheckerFactoryUtil.create(_user))
-		).reduce(
-			SetUtil::intersect
-		).orElse(
-			Collections.emptySet()
-		);
-
-		return assetCategories.stream();
 	}
 
 	private Function<AssetEntry, Set<AssetCategory>>
@@ -135,8 +110,8 @@ public class TaxonomyVocabularyResourceImpl
 			Long contentSpaceId, DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 
-		Stream<AssetVocabulary> assetVocabulariesStream = _getAssetVocabulariesStream(
-			contentSpaceId);
+		Stream<AssetVocabulary> assetVocabulariesStream =
+			_getAssetVocabulariesStream(contentSpaceId);
 
 		Stream<AssetCategory> assetCategoriesStream = _getAssetCategoriesStream(
 			documentBulkSelection);
@@ -151,6 +126,30 @@ public class TaxonomyVocabularyResourceImpl
 				assetVocabulary -> assetCategoriesMap.computeIfAbsent(
 					assetVocabulary.getVocabularyId(),
 					key -> new ArrayList<>())));
+	}
+
+	private Stream<AssetCategory> _getAssetCategoriesStream(
+			DocumentBulkSelection documentBulkSelection)
+		throws Exception {
+
+		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
+			documentBulkSelection);
+
+		BulkSelection<AssetEntry> assetEntryBulkSelection =
+			bulkSelection.toAssetEntryBulkSelection();
+
+		Stream<AssetEntry> stream = assetEntryBulkSelection.stream();
+
+		Set<AssetCategory> assetCategories = stream.map(
+			_getAssetCategoriesFunction(
+				PermissionCheckerFactoryUtil.create(_user))
+		).reduce(
+			SetUtil::intersect
+		).orElse(
+			Collections.emptySet()
+		);
+
+		return assetCategories.stream();
 	}
 
 	private Stream<AssetVocabulary> _getAssetVocabulariesStream(
