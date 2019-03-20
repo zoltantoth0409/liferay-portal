@@ -73,23 +73,8 @@ public class TaxonomyVocabularyResourceImpl
 
 		ClassName className = _classNameLocalService.getClassName(
 			FileEntry.class.getName());
-
-		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
+		Set<AssetCategory> assetCategories = _getAssetCategories(
 			documentBulkSelection);
-
-		BulkSelection<AssetEntry> assetEntryBulkSelection =
-			bulkSelection.toAssetEntryBulkSelection();
-
-		Stream<AssetEntry> stream = assetEntryBulkSelection.stream();
-
-		Set<AssetCategory> assetCategories = stream.map(
-			_getAssetCategoriesFunction(
-				PermissionCheckerFactoryUtil.create(_user))
-		).reduce(
-			SetUtil::intersect
-		).orElse(
-			Collections.emptySet()
-		);
 
 		Map<AssetVocabulary, List<AssetCategory>> assetCategoriesMap =
 			_getAssetCategoriesMap(
@@ -107,6 +92,28 @@ public class TaxonomyVocabularyResourceImpl
 				assetVocabularyListEntry -> _toTaxonomyVocabulary(
 					assetVocabularyListEntry.getValue(),
 					assetVocabularyListEntry.getKey())));
+	}
+
+	private Set<AssetCategory> _getAssetCategories(
+			DocumentBulkSelection documentBulkSelection)
+		throws Exception {
+
+		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
+			documentBulkSelection);
+
+		BulkSelection<AssetEntry> assetEntryBulkSelection =
+			bulkSelection.toAssetEntryBulkSelection();
+
+		Stream<AssetEntry> stream = assetEntryBulkSelection.stream();
+
+		return stream.map(
+			_getAssetCategoriesFunction(
+				PermissionCheckerFactoryUtil.create(_user))
+		).reduce(
+			SetUtil::intersect
+		).orElse(
+			Collections.emptySet()
+		);
 	}
 
 	private Function<AssetEntry, Set<AssetCategory>>
