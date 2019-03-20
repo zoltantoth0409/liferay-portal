@@ -229,8 +229,8 @@ public class DiscussionThreadResourceImpl
 		String[] priorities = mbGroupServiceSettings.getPriorities(
 			contextAcceptLanguage.getPreferredLanguageId());
 
-		for (int i = 0; i < priorities.length; i++) {
-			String[] parts = StringUtil.split(priorities[i], StringPool.PIPE);
+		for (String priorityString : priorities) {
+			String[] parts = StringUtil.split(priorityString, StringPool.PIPE);
 
 			if (priority == GetterUtil.getDouble(parts[2])) {
 				return parts[0];
