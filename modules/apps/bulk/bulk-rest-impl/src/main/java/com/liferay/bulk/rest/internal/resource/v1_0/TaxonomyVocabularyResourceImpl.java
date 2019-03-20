@@ -157,12 +157,12 @@ public class TaxonomyVocabularyResourceImpl
 	}
 
 	private Stream<AssetVocabulary> _getAssetVocabulariesStream(
-			Long groupId, Long classNameId)
+			Long contentSpaceId, Long classNameId)
 		throws Exception {
 
 		List<AssetVocabulary> assetVocabularies =
 			_assetVocabularyLocalService.getGroupVocabularies(
-				_portal.getCurrentAndAncestorSiteGroupIds(groupId));
+				_portal.getCurrentAndAncestorSiteGroupIds(contentSpaceId));
 
 		Stream<AssetVocabulary> stream = assetVocabularies.stream();
 
