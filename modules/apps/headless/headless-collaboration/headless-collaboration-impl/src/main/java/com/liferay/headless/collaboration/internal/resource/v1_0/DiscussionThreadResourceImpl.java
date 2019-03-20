@@ -166,13 +166,13 @@ public class DiscussionThreadResourceImpl
 	}
 
 	private String _toThreadType(
-		String[] priorities, double priority) {
+		String[] priorities, double priorityDouble) {
 
 		for (String priority : priorities) {
 			String[] priorityArray = StringUtil.split(
 				priority, StringPool.PIPE);
 
-			if (priority == GetterUtil.getDouble(priorityArray[2])) {
+			if (priorityDouble == GetterUtil.getDouble(priorityArray[2])) {
 				return priorityArray[0];
 			}
 		}
@@ -224,7 +224,6 @@ public class DiscussionThreadResourceImpl
 					_mbMessageLocalService.getChildMessagesCount(
 						mbMessage.getMessageId(),
 						WorkflowConstants.STATUS_APPROVED);
-
 				showAsQuestion = mbThread.isQuestion();
 				taxonomyCategories = transformToArray(
 					_assetCategoryLocalService.getCategories(
@@ -232,10 +231,10 @@ public class DiscussionThreadResourceImpl
 					TaxonomyCategoryUtil::toTaxonomyCategory,
 					TaxonomyCategory.class);
 
-				MBGroupServiceSettings instance =
+				MBGroupServiceSettings mbGroupServiceSettings =
 					MBGroupServiceSettings.getInstance(mbThread.getGroupId());
 
-				String[] priorities = instance.getPriorities(
+				String[] priorities = mbGroupServiceSettings.getPriorities(
 					contextAcceptLanguage.getPreferredLanguageId());
 
 				threadType = _toThreadType(
