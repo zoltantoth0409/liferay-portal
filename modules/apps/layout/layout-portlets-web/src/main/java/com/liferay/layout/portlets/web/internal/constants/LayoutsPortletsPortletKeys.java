@@ -20,6 +20,7 @@ package com.liferay.layout.portlets.web.internal.constants;
 public class LayoutsPortletsPortletKeys {
 
 	public static final String LAYOUT_PORTLETS =
-		"com_liferay_layout_portlets_web_portlet_LayoutPortletsPortlet";
+		"com_liferay_layout_portlets_web_internal_portlet_" +
+			"LayoutPortletsPortlet";
 
 }
