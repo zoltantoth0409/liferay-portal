@@ -162,13 +162,13 @@ public class DiscussionForumPostingResourceImpl
 	}
 
 	private DiscussionForumPosting _addDiscussionThread(
-			long contentSpaceId, long parentMessageId,
+			Long contentSpaceId, Long discussionForumPostingId,
 			DiscussionForumPosting discussionForumPosting)
 		throws PortalException {
 
 		return _toDiscussionForumPosting(
 			_mbMessageService.addMessage(
-				parentMessageId, discussionForumPosting.getHeadline(),
+				discussionForumPostingId, discussionForumPosting.getHeadline(),
 				discussionForumPosting.getArticleBody(),
 				MBMessageConstants.DEFAULT_FORMAT, Collections.emptyList(),
 				false, 0.0, false,
