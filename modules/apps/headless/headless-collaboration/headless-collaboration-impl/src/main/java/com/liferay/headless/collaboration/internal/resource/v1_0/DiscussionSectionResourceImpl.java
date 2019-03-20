@@ -68,9 +68,9 @@ public class DiscussionSectionResourceImpl
 					contentSpaceId, WorkflowConstants.STATUS_APPROVED,
 					pagination.getStartPosition(), pagination.getEndPosition()),
 				this::_toDiscussionSection),
-				pagination,
-				_mbCategoryService.getCategoriesCount(
-					contentSpaceId, WorkflowConstants.STATUS_APPROVED));
+			pagination,
+			_mbCategoryService.getCategoriesCount(
+				contentSpaceId, WorkflowConstants.STATUS_APPROVED));
 	}
 
 	@Override

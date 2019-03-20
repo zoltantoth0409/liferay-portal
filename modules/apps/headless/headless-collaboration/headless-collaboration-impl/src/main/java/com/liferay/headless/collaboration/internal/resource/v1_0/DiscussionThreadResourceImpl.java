@@ -164,27 +164,6 @@ public class DiscussionThreadResourceImpl
 		return _toDiscussionThread(updatedMBMessage.getThread());
 	}
 
-	private String _toThreadType(Long contentSpaceId, double priority)
-		throws Exception {
-
-		MBGroupServiceSettings mbGroupServiceSettings =
-			MBGroupServiceSettings.getInstance(contentSpaceId);
-
-		String[] priorities =
-			mbGroupServiceSettings.getPriorities(
-				contextAcceptLanguage.getPreferredLanguageId());
-
-		for (int i = 0; i < priorities.length; i++) {
-			String[] parts = StringUtil.split(priorities[i], StringPool.PIPE);
-
-			if (priority == GetterUtil.getDouble(parts[2])) {
-				return parts[0];
-			}
-		}
-
-		return null;
-	}
-
 	private DiscussionThread _addDiscussionThread(
 			Long contentSpaceId, Long discussionSectionId,
 			DiscussionThread discussionThread)
@@ -239,6 +218,26 @@ public class DiscussionThreadResourceImpl
 					mbThread.getGroupId(), mbThread.getPriority());
 			}
 		};
+	}
+
+	private String _toThreadType(Long contentSpaceId, double priority)
+		throws Exception {
+
+		MBGroupServiceSettings mbGroupServiceSettings =
+			MBGroupServiceSettings.getInstance(contentSpaceId);
+
+		String[] priorities = mbGroupServiceSettings.getPriorities(
+			contextAcceptLanguage.getPreferredLanguageId());
+
+		for (int i = 0; i < priorities.length; i++) {
+			String[] parts = StringUtil.split(priorities[i], StringPool.PIPE);
+
+			if (priority == GetterUtil.getDouble(parts[2])) {
+				return parts[0];
+			}
+		}
+
+		return null;
 	}
 
 	@Reference
