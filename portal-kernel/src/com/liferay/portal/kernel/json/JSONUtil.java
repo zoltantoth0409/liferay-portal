@@ -15,7 +15,6 @@
 package com.liferay.portal.kernel.json;
 
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.lang.reflect.Array;
@@ -59,11 +58,7 @@ public class JSONUtil {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			String value = jsonObject.optString(jsonObjectKey);
-
-			if (value != null) {
-				collection.add(value);
-			}
+			collection.add(jsonObject.getString(jsonObjectKey));
 		}
 	}
 
@@ -277,9 +272,15 @@ public class JSONUtil {
 			return new long[0];
 		}
 
-		List<Long> values = toLongList(jsonArray, jsonObjectKey);
+		long[] values = new long[jsonArray.length()];
 
-		return ArrayUtil.toArray(values.toArray(new Long[values.size()]));
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			values[i] = jsonObject.getLong(jsonObjectKey);
+		}
+
+		return values;
 	}
 
 	public static List<Long> toLongList(JSONArray jsonArray) {
@@ -290,13 +291,7 @@ public class JSONUtil {
 		List<Long> values = new ArrayList<>(jsonArray.length());
 
 		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-			Object value = jsonObject.opt(jsonObjectKey);
-
-			if (value != null) {
-				values.add((Long)value);
-			}
+			values.add(jsonArray.getLong(i));
 		}
 
 		return values;
@@ -314,11 +309,7 @@ public class JSONUtil {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			Object value = jsonObject.opt(jsonObjectKey);
-
-			if (value != null) {
-				values.add((Long)value);
-			}
+			values.add(jsonObject.getLong(jsonObjectKey));
 		}
 
 		return values;
@@ -350,11 +341,7 @@ public class JSONUtil {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			Object value = jsonObject.opt(jsonObjectKey);
-
-			if (value != null) {
-				values.add((Long)value);
-			}
+			values.add(jsonObject.getLong(jsonObjectKey));
 		}
 
 		return values;
@@ -381,9 +368,15 @@ public class JSONUtil {
 			return new Object[0];
 		}
 
-		List<Object> values = toObjectList(jsonArray, jsonObjectKey);
+		Object[] values = new Object[jsonArray.length()];
 
-		return values.toArray(new Object[values.size()]);
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			values[i] = jsonObject.get(jsonObjectKey);
+		}
+
+		return values;
 	}
 
 	public static List<Object> toObjectList(JSONArray jsonArray) {
@@ -412,11 +405,7 @@ public class JSONUtil {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			Object value = jsonObject.opt(jsonObjectKey);
-
-			if (value != null) {
-				values.add(value);
-			}
+			values.add(jsonObject.get(jsonObjectKey));
 		}
 
 		return values;
@@ -448,11 +437,7 @@ public class JSONUtil {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			Object value = jsonObject.opt(jsonObjectKey);
-
-			if (value != null) {
-				values.add(value);
-			}
+			values.add(jsonObject.get(jsonObjectKey));
 		}
 
 		return values;
@@ -479,9 +464,15 @@ public class JSONUtil {
 			return new String[0];
 		}
 
-		List<String> values = toStringList(jsonArray, jsonObjectKey);
+		String[] values = new String[jsonArray.length()];
 
-		return values.toArray(new String[values.size()]);
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			values[i] = jsonObject.getString(jsonObjectKey);
+		}
+
+		return values;
 	}
 
 	public static List<String> toStringList(JSONArray jsonArray) {
@@ -510,11 +501,7 @@ public class JSONUtil {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			String value = jsonObject.optString(jsonObjectKey);
-
-			if (value != null) {
-				values.add(value);
-			}
+			values.add(jsonObject.getString(jsonObjectKey));
 		}
 
 		return values;
@@ -546,11 +533,7 @@ public class JSONUtil {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			String value = jsonObject.optString(jsonObjectKey);
-
-			if (value != null) {
-				values.add(value);
-			}
+			values.add(jsonObject.getString(jsonObjectKey));
 		}
 
 		return values;
