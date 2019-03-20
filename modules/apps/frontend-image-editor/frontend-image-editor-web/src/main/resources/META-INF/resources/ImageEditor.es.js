@@ -39,7 +39,7 @@ class ImageEditor extends PortletBase {
 	 * @inheritDoc
 	 */
 	attached() {
-	this.historyIndex_ = 0;
+		this.historyIndex_ = 0;
 
 		/**
 		 * History of the different image states during editing. Every entry

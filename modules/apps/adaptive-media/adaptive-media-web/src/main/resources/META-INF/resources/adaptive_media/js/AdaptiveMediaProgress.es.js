@@ -86,7 +86,7 @@ class AdaptiveMediaProgress extends PortletBase {
 					this.onProgressBarComplete_();
 				}
 			}
- catch (e) {
+			catch (e) {
 				clearInterval(this.intervalId_);
 			}
 		});

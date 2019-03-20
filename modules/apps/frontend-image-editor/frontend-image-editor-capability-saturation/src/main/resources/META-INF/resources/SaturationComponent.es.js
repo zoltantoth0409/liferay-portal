@@ -17,7 +17,7 @@ class SaturationComponent extends Component {
 	 * @inheritDoc
 	 */
 	attached() {
-	this.requestImageEditorPreview_ = debounce(this.requestImageEditorPreview, 50);
+		this.requestImageEditorPreview_ = debounce(this.requestImageEditorPreview, 50);
 
 		this.cache_ = {};
 	}

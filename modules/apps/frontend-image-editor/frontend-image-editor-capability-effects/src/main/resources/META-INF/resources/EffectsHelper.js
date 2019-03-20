@@ -48,11 +48,13 @@ Lagrange.prototype._updateWeights = function() {
 
 	for (var j = 0; j < k; ++j) {
 		w = 1;
+
 		for (var i = 0; i < k; ++i) {
-		if (i != j) {
+			if (i != j) {
 				w *= this.xs[j] - this.xs[i];
+			}
 		}
-		}
+
 		this.ws[j] = 1 / w;
 	}
 };
@@ -67,12 +69,12 @@ Lagrange.prototype.valueOf = function(x) {
 
 	for (var j = 0; j < this.xs.length; ++j) {
 		if (x != this.xs[j]) {
-		a = this.ws[j] / (x - this.xs[j]);
-		b += a * this.ys[j];
-		c += a;
+			a = this.ws[j] / (x - this.xs[j]);
+			b += a * this.ys[j];
+			c += a;
 		}
- else {
-		return this.ys[j];
+		else {
+			return this.ys[j];
 		}
 	}
 
@@ -82,7 +84,7 @@ Lagrange.prototype.valueOf = function(x) {
 Lagrange.prototype.addMultiPoints = function(arr) {
 	for (var i = 0, n = arr.length; i < n; i++) {
 		if (i !== 0 && i !== 1) {
-		this.addPoint(arr[i][1], arr[i][2]);
+			this.addPoint(arr[i][1], arr[i][2]);
 		}
 	}
 };
