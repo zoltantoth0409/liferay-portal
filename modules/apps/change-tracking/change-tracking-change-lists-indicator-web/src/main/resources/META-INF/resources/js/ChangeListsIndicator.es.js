@@ -1,4 +1,4 @@
-import 'clay-icon';
+import {ClayIcon} from 'clay-icon';
 import PortletBase from 'frontend-js-web/liferay/PortletBase.es';
 import Soy from 'metal-soy';
 import {Config} from 'metal-state';
@@ -8,28 +8,25 @@ import {openToast} from 'frontend-js-web/liferay/toast/commands/OpenToast.es';
 
 import templates from './ChangeListsIndicator.soy';
 
-const BLUE_BACKGROUND_TOOLTIP_CSS_CLASS_NAME = 'tooltip-background-blue';
-
-const CHANGE_LISTS_INDICATOR_QUERY_SELECTOR = '[data-change-lists-indicator]';
-
-const GREEN_BACKGROUND_TOOLTIP_CSS_CLASS_NAME = 'tooltip-background-green';
-
 const PRODUCTION_COLLECTION_NAME = 'productionCTCollectionName';
-
+const BLUE_BACKGROUND_TOOLTIP_CSS_CLASS_NAME = 'tooltip-background-blue';
+const GREEN_BACKGROUND_TOOLTIP_CSS_CLASS_NAME = 'tooltip-background-green';
 const TOOLTIP_QUERY_SELECTOR = '.yui3-widget.tooltip';
+const CHANGE_LISTS_INDICATOR_QUERY_SELECTOR = '[data-change-lists-indicator]';
 
 /**
  * Component for the Change Lists indicator
  * @review
  */
 class ChangeListsIndicator extends PortletBase {
-
+	
 	/**
 	 * @inheritDoc
 	 */
 	created() {
+		console.log("created");
 		this._eventHandler = new EventHandler();
-
+		
 		let urlActiveCollection = this.urlCollectionsBase + '?type=active&userId=' + Liferay.ThemeDisplay.getUserId();
 
 		this._getDataRequest(
@@ -43,7 +40,7 @@ class ChangeListsIndicator extends PortletBase {
 			}
 		);
 	}
-
+	
 	/**
 	 * @inheritDoc
 	 */
@@ -56,6 +53,13 @@ class ChangeListsIndicator extends PortletBase {
 	 */
 	disposed() {
 		this._eventHandler.removeAllListeners();
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	rendered() {
+		console.log("rendered");
 	}
 
 	/**
@@ -102,7 +106,7 @@ class ChangeListsIndicator extends PortletBase {
 	 * @param {!Event} event
 	 * @private
 	 */
-	_handleBlur(event) {
+	_handleBlur(event) {		
 		this._handleMouseLeave.bind(this);
 	}
 
@@ -112,20 +116,20 @@ class ChangeListsIndicator extends PortletBase {
 	 * @param {!Event} event
 	 * @private
 	 */
-	_handleFocus(event) {
+	_handleFocus(event) {		
 		this._handleMouseEnter.bind(this);
 	}
-
+	
 	/**
 	 * Handles click event.
 	 * @memberof ChangeListsIndicator
 	 * @param {!Event} event
 	 * @private
 	 */
-	_handleMouseClick(event) {
+	_handleMouseClick(event) {		
 		this._handleMouseEnter.bind(this);
 	}
-
+	
 	/**
 	 * Handles mouseenter event.
 	 * @memberof ChangeListsIndicator
@@ -135,13 +139,13 @@ class ChangeListsIndicator extends PortletBase {
 	_handleMouseEnter(event) {
 		setTimeout(() => {
 			let element = document.querySelector(TOOLTIP_QUERY_SELECTOR);
-
-			if (element && !element.classList.contains(this._tooltipCssClassName)) {
+			
+			if(element && !element.classList.contains(this._tooltipCssClassName)) {
 				element.classList.add(this._tooltipCssClassName);
 			}
 		}, 0);
 	}
-
+	
 	/**
 	 * Handles mouseleave events.
 	 * @memberof ChangeListsIndicator
@@ -151,13 +155,13 @@ class ChangeListsIndicator extends PortletBase {
 	_handleMouseLeave(event) {
 		setTimeout(() => {
 			let element = document.querySelector(TOOLTIP_QUERY_SELECTOR);
-
-			if (element && element.classList.contains(this._tooltipCssClassName)) {
+			
+			if(element && element.classList.contains(this._tooltipCssClassName)) {
 				element.classList.remove(this._tooltipCssClassName);
-			}
+			}	
 		}, 50);
 	}
-
+	
 	/**
 	 * Set the event for the change lists indicator.
 	 * @memberof ChangeListsIndicator
@@ -165,8 +169,9 @@ class ChangeListsIndicator extends PortletBase {
 	 * @private
 	 */
 	_setEventHandler() {
+		
 		let selector = CHANGE_LISTS_INDICATOR_QUERY_SELECTOR;
-
+		
 		this._eventHandler.add(
 			dom.delegate(
 				document,
@@ -200,7 +205,7 @@ class ChangeListsIndicator extends PortletBase {
 			)
 		);
 	}
-
+	
 	/**
 	 * Set the tooltip css class name.
 	 * @memberof ChangeListsIndicator
@@ -220,7 +225,7 @@ class ChangeListsIndicator extends PortletBase {
  * @type {!Object}
  */
 ChangeListsIndicator.STATE = {
-
+	
 	/**
 	 * Name of the tooltip css class.
 	 * @default
@@ -229,7 +234,7 @@ ChangeListsIndicator.STATE = {
 	 * @review
 	 * @type {!string}
 	 */
-
+	
 	_tooltipCssClassName: Config.string().value(''),
 
 	/**
