@@ -76,8 +76,7 @@ public class TaxonomyVocabularyResourceImpl
 
 		return Page.of(
 			transform(
-				new ArrayList<Map.Entry<AssetVocabulary, List<AssetCategory>>>(
-					assetCategoriesMap.entrySet()),
+				assetCategoriesMap.entrySet(),
 				entry -> _toTaxonomyVocabulary(
 					entry.getValue(), entry.getKey())));
 	}
