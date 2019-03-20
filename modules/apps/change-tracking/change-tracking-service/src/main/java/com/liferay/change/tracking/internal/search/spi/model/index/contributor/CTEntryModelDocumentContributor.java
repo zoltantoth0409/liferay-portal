@@ -44,11 +44,12 @@ public class CTEntryModelDocumentContributor
 	@Override
 	public void contribute(Document document, CTEntry ctEntry) {
 		document.addDate(Field.CREATE_DATE, ctEntry.getCreateDate());
+		document.addKeyword(Field.GROUP_ID, _getGroupId(ctEntry));
 		document.addDate(Field.MODIFIED_DATE, ctEntry.getModifiedDate());
-
+		document.addKeyword(Field.STATUS, ctEntry.getStatus());
+		document.addText(Field.TITLE, _getTitle(ctEntry));
 		document.addKeyword("changeType", ctEntry.getChangeType());
 		document.addKeyword("ctCollectionId", _getCTCollectionIds(ctEntry));
-		document.addKeyword(Field.GROUP_ID, _getGroupId(ctEntry));
 		document.addKeyword(
 			"modelClassName",
 			_portal.getClassName(ctEntry.getModelClassNameId()));
@@ -56,9 +57,6 @@ public class CTEntryModelDocumentContributor
 		document.addKeyword("modelClassPK", ctEntry.getModelClassPK());
 		document.addKeyword(
 			"modelResourcePrimKey", ctEntry.getModelResourcePrimKey());
-		document.addKeyword(Field.STATUS, ctEntry.getStatus());
-
-		document.addText(Field.TITLE, _getTitle(ctEntry));
 	}
 
 	private long[] _getCTCollectionIds(CTEntry ctEntry) {
