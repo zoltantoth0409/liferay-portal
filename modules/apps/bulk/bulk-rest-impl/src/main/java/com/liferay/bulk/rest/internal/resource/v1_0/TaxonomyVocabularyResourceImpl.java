@@ -74,18 +74,12 @@ public class TaxonomyVocabularyResourceImpl
 		Map<AssetVocabulary, List<AssetCategory>> assetCategoriesMap =
 			_getAssetCategoriesMap(contentSpaceId, documentBulkSelection);
 
-		Set<Map.Entry<AssetVocabulary, List<AssetCategory>>> entries =
-			assetCategoriesMap.entrySet();
-
-		Map.Entry<AssetVocabulary, List<AssetCategory>>[]
-			assetCategoriesEntries = entries.toArray(new Map.Entry[0]);
-
 		return Page.of(
-			transformToList(
-				assetCategoriesEntries,
-				assetVocabularyListEntry -> _toTaxonomyVocabulary(
-					assetVocabularyListEntry.getValue(),
-					assetVocabularyListEntry.getKey())));
+			transform(
+				new ArrayList<Map.Entry<AssetVocabulary, List<AssetCategory>>>(
+					assetCategoriesMap.entrySet()),
+				entry -> _toTaxonomyVocabulary(
+					entry.getValue(), entry.getKey())));
 	}
 
 	private Function<AssetEntry, Set<AssetCategory>>
