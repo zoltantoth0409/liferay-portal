@@ -35,7 +35,6 @@ import com.liferay.message.boards.service.MBThreadLocalService;
 import com.liferay.message.boards.service.MBThreadService;
 import com.liferay.message.boards.settings.MBGroupServiceSettings;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.UserService;
@@ -165,15 +164,21 @@ public class DiscussionThreadResourceImpl
 		return _toDiscussionThread(updatedMBMessage.getThread());
 	}
 
-	private String _toThreadType(
-		String[] priorities, double priorityDouble) {
+	private String _toThreadType(Long contentSpaceId, double priority)
+		throws Exception {
 
-		for (String priority : priorities) {
-			String[] priorityArray = StringUtil.split(
-				priority, StringPool.PIPE);
+		MBGroupServiceSettings mbGroupServiceSettings =
+			MBGroupServiceSettings.getInstance(contentSpaceId);
 
-			if (priorityDouble == GetterUtil.getDouble(priorityArray[2])) {
-				return priorityArray[0];
+		String[] priorities =
+			mbGroupServiceSettings.getPriorities(
+				contextAcceptLanguage.getPreferredLanguageId());
+
+		for (int i = 0; i < priorities.length; i++) {
+			String[] parts = StringUtil.split(priorities[i], StringPool.PIPE);
+
+			if (priority == GetterUtil.getDouble(parts[2])) {
+				return parts[0];
 			}
 		}
 
@@ -183,7 +188,7 @@ public class DiscussionThreadResourceImpl
 	private DiscussionThread _addDiscussionThread(
 			long contentSpaceId, long categoryId,
 			DiscussionThread discussionThread)
-		throws PortalException {
+		throws Exception {
 
 		MBMessage mbMessage = _mbMessageService.addMessage(
 			contentSpaceId, categoryId, discussionThread.getHeadline(),
@@ -199,7 +204,7 @@ public class DiscussionThreadResourceImpl
 	}
 
 	private DiscussionThread _toDiscussionThread(MBThread mbThread)
-		throws PortalException {
+		throws Exception {
 
 		MBMessage mbMessage = _mbMessageService.getMessage(
 			mbThread.getRootMessageId());
@@ -230,15 +235,8 @@ public class DiscussionThreadResourceImpl
 						MBMessage.class.getName(), mbMessage.getClassPK()),
 					TaxonomyCategoryUtil::toTaxonomyCategory,
 					TaxonomyCategory.class);
-
-				MBGroupServiceSettings mbGroupServiceSettings =
-					MBGroupServiceSettings.getInstance(mbThread.getGroupId());
-
-				String[] priorities = mbGroupServiceSettings.getPriorities(
-					contextAcceptLanguage.getPreferredLanguageId());
-
 				threadType = _toThreadType(
-					priorities, mbThread.getPriority());
+					mbThread.getGroupId(), mbThread.getPriority());
 			}
 		};
 	}
