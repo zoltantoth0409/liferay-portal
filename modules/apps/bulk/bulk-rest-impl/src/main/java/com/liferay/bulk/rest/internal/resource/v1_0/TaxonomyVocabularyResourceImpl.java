@@ -73,12 +73,11 @@ public class TaxonomyVocabularyResourceImpl
 
 		ClassName className = _classNameLocalService.getClassName(
 			FileEntry.class.getName());
-		Set<AssetCategory> assetCategories = _getAssetCategories(
-			documentBulkSelection);
 
 		Map<AssetVocabulary, List<AssetCategory>> assetCategoriesMap =
 			_getAssetCategoriesMap(
-				contentSpaceId, className.getClassNameId(), assetCategories);
+				contentSpaceId, className.getClassNameId(),
+				_getAssetCategories(documentBulkSelection));
 
 		Set<Map.Entry<AssetVocabulary, List<AssetCategory>>> entries =
 			assetCategoriesMap.entrySet();
@@ -135,11 +134,11 @@ public class TaxonomyVocabularyResourceImpl
 	}
 
 	private Map<AssetVocabulary, List<AssetCategory>> _getAssetCategoriesMap(
-			Long groupId, Long classNameId, Set<AssetCategory> assetCategories)
+			Long contentSpaceId, Long classNameId, Set<AssetCategory> assetCategories)
 		throws Exception {
 
 		List<AssetVocabulary> assetVocabularies = _getAssetVocabularies(
-			groupId, classNameId);
+			contentSpaceId, classNameId);
 
 		Stream<AssetVocabulary> assetVocabulariesStream =
 			assetVocabularies.stream();
