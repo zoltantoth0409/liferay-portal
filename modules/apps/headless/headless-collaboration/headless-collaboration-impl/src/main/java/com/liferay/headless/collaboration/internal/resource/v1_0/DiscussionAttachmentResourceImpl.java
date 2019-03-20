@@ -22,7 +22,6 @@ import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.service.MBMessageService;
 import com.liferay.message.boards.service.MBThreadLocalService;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -108,7 +107,7 @@ public class DiscussionAttachmentResourceImpl
 
 	private DiscussionAttachment _addDiscussionAttachment(
 			Long discussionForumPostingId, MultipartBody multipartBody)
-		throws PortalException {
+		throws Exception {
 
 		MBMessage mbMessage = _mbMessageService.getMessage(
 			discussionForumPostingId);
@@ -125,7 +124,7 @@ public class DiscussionAttachmentResourceImpl
 
 	private Page<DiscussionAttachment> _getDiscussionAttachmentPage(
 			Long discussionForumPostingId)
-		throws PortalException {
+		throws Exception {
 
 		MBMessage mbMessage = _mbMessageService.getMessage(
 			discussionForumPostingId);
