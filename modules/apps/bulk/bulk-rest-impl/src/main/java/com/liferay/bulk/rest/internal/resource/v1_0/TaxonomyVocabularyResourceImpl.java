@@ -89,7 +89,7 @@ public class TaxonomyVocabularyResourceImpl
 					assetVocabularyListEntry.getKey())));
 	}
 
-	private Set<AssetCategory> _getAssetCategories(
+	private Stream<AssetCategory> _getAssetCategoriesStream(
 			DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 
@@ -101,7 +101,7 @@ public class TaxonomyVocabularyResourceImpl
 
 		Stream<AssetEntry> stream = assetEntryBulkSelection.stream();
 
-		return stream.map(
+		Set<AssetCategory> assetCategories = stream.map(
 			_getAssetCategoriesFunction(
 				PermissionCheckerFactoryUtil.create(_user))
 		).reduce(
@@ -109,6 +109,8 @@ public class TaxonomyVocabularyResourceImpl
 		).orElse(
 			Collections.emptySet()
 		);
+
+		return assetCategories.stream();
 	}
 
 	private Function<AssetEntry, Set<AssetCategory>>
@@ -136,16 +138,11 @@ public class TaxonomyVocabularyResourceImpl
 		ClassName className = _classNameLocalService.getClassName(
 			FileEntry.class.getName());
 
-		List<AssetVocabulary> assetVocabularies = _getAssetVocabularies(
+		Stream<AssetVocabulary> assetVocabulariesStream = _getAssetVocabulariesStream(
 			contentSpaceId, className.getClassNameId());
 
-		Stream<AssetVocabulary> assetVocabulariesStream =
-			assetVocabularies.stream();
-
-		Set<AssetCategory> assetCategories = _getAssetCategories(
+		Stream<AssetCategory> assetCategoriesStream = _getAssetCategoriesStream(
 			documentBulkSelection);
-
-		Stream<AssetCategory> assetCategoriesStream = assetCategories.stream();
 
 		Map<Long, List<AssetCategory>> assetCategoriesMap =
 			assetCategoriesStream.collect(
@@ -159,7 +156,7 @@ public class TaxonomyVocabularyResourceImpl
 					key -> new ArrayList<>())));
 	}
 
-	private List<AssetVocabulary> _getAssetVocabularies(
+	private Stream<AssetVocabulary> _getAssetVocabulariesStream(
 			Long groupId, Long classNameId)
 		throws Exception {
 
@@ -169,7 +166,7 @@ public class TaxonomyVocabularyResourceImpl
 
 		Stream<AssetVocabulary> stream = assetVocabularies.stream();
 
-		return stream.filter(
+		List<AssetVocabulary> filteredAssetVocabularies = stream.filter(
 			assetVocabulary -> assetVocabulary.isAssociatedToClassNameId(
 				classNameId)
 		).filter(
@@ -183,6 +180,8 @@ public class TaxonomyVocabularyResourceImpl
 		).collect(
 			Collectors.toList()
 		);
+
+		return filteredAssetVocabularies.stream();
 	}
 
 	private TaxonomyVocabulary _toTaxonomyVocabulary(
