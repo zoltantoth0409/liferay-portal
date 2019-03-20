@@ -285,8 +285,7 @@ AUI.add(
 				if (predefinedValue) {
 					value = predefinedValue;
 				}
-				else {
-					if (Lang.isArray(value)) {
+				else if (Lang.isArray(value)) {
 						value = [];
 					}
 					else if (Lang.isObject(value)) {
@@ -295,7 +294,6 @@ AUI.add(
 					else {
 						value = '';
 					}
-				}
 
 				config.value = config.context.value = value;
 			},

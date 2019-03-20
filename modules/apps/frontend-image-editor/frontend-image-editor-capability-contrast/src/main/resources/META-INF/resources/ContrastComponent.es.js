@@ -17,10 +17,7 @@ class ContrastComponent extends Component {
 	 * @inheritDoc
 	 */
 	attached() {
-
-		// Debounced version of requestImageEditorPreview
-
-		this.requestImageEditorPreview_ = debounce(this.requestImageEditorPreview, 50);
+	this.requestImageEditorPreview_ = debounce(this.requestImageEditorPreview, 50);
 
 		this.cache_ = {};
 	}

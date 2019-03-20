@@ -39,13 +39,7 @@ class ImageEditor extends PortletBase {
 	 * @inheritDoc
 	 */
 	attached() {
-
-		/**
-		 * Current state in the history.
-		 * @protected
-		 * @type {Number}
-		 */
-		this.historyIndex_ = 0;
+	this.historyIndex_ = 0;
 
 		/**
 		 * History of the different image states during editing. Every entry
@@ -124,7 +118,9 @@ class ImageEditor extends PortletBase {
 	 * @protected
 	 */
 	createHistoryEntry_(imageData) {
+
 		// Push new state and discard stale redo states
+
 		this.historyIndex_++;
 		this.history_.length = this.historyIndex_ + 1;
 		this.history_[this.historyIndex_] = new ImageEditorHistoryEntry({data: imageData});
