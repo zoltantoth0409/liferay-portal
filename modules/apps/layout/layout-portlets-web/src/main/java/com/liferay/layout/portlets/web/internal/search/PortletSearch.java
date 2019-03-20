@@ -14,6 +14,7 @@
 
 package com.liferay.layout.portlets.web.internal.search;
 
+import com.liferay.layout.portlets.web.internal.util.comparator.PortletDisplayNameComparator;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.util.OrderByComparator;

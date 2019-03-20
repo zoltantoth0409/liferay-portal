@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.portlets.web.internal.search;
+package com.liferay.layout.portlets.web.internal.util.comparator;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Portlet;
