@@ -137,7 +137,7 @@ public class DiscussionAttachmentResourceImpl
 	}
 
 	private DiscussionAttachment _toDiscussionAttachment(FileEntry fileEntry)
-		throws PortalException {
+		throws Exception {
 
 		return new DiscussionAttachment() {
 			{
