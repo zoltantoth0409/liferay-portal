@@ -319,7 +319,7 @@ definition {
 
 		KaleoFormsAdmin.viewNoPublishedWorkflowDefinitions();
 
-		KaleoFormsAdmin.viewNoUnpublishedWorkflowDefinitions();
+		KaleoFormsAdmin.viewUnpublishedWorkflowDefinitions();
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -357,7 +357,7 @@ definition {
 
 		KaleoFormsAdmin.viewNoPublishedWorkflowDefinitions();
 
-		KaleoFormsAdmin.viewNoUnpublishedWorkflowDefinitions();
+		KaleoFormsAdmin.viewUnpublishedWorkflowDefinitions();
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
