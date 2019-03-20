@@ -92,7 +92,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL("http://localhost:8080/o/bulk/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/bulk-rest/v1.0");
 	}
 
 	@After
