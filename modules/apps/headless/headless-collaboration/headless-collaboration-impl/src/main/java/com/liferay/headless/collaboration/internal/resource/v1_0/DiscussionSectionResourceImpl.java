@@ -65,8 +65,12 @@ public class DiscussionSectionResourceImpl
 		return Page.of(
 			transform(
 				_mbCategoryService.getCategories(
-					contentSpaceId, WorkflowConstants.STATUS_APPROVED),
-				this::_toDiscussionSection));
+					contentSpaceId, WorkflowConstants.STATUS_APPROVED,
+					pagination.getStartPosition(), pagination.getEndPosition()),
+				this::_toDiscussionSection),
+				pagination,
+				_mbCategoryService.getCategoriesCount(
+					contentSpaceId, WorkflowConstants.STATUS_APPROVED));
 	}
 
 	@Override
