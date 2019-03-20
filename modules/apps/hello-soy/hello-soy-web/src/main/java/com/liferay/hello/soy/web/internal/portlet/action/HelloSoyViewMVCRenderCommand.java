@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -60,18 +59,18 @@ public class HelloSoyViewMVCRenderCommand implements MVCRenderCommand {
 
 		Stream<Layout> layoutStream = layouts.stream();
 
-		List<Map> layoutMaps = layoutStream.map(
-			layout -> new HashMap<String, String>() {
-				{
-					put("friendlyURL", layout.getFriendlyURL());
-					put("nameCurrentValue", layout.getNameCurrentValue());
+		template.put(
+			"layouts",
+			layoutStream.map(
+				layout -> new HashMap<String, String>() {
+					{
+						put("friendlyURL", layout.getFriendlyURL());
+						put("nameCurrentValue", layout.getNameCurrentValue());
+					}
 				}
-			}
-		).collect(
-			Collectors.toList()
-		);
-
-		template.put("layouts", layoutMaps);
+			).collect(
+				Collectors.toList()
+			));
 
 		PortletURL navigationURL = renderResponse.createRenderURL();
 
