@@ -15,7 +15,7 @@
 package com.liferay.bulk.rest.internal.helper;
 
 import com.liferay.bulk.rest.dto.v1_0.DocumentBulkSelection;
-import com.liferay.bulk.rest.internal.util.ParameterMapUtil;
+import com.liferay.bulk.rest.dto.v1_0.SelectionScope;
 import com.liferay.bulk.selection.BulkSelection;
 import com.liferay.bulk.selection.BulkSelectionFactory;
 import com.liferay.bulk.selection.BulkSelectionFactoryRegistry;
@@ -23,6 +23,10 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -45,9 +49,38 @@ public class BulkSelectionHelper {
 				className.getClassNameId());
 
 		return bulkSelectionFactory.create(
-			ParameterMapUtil.getParameterMap(
+			_getParameterMap(
 				documentBulkSelection.getDocumentIds(),
 				documentBulkSelection.getSelectionScope()));
+	}
+
+	private Map<String, String[]> _getParameterMap(
+		String[] rowIdsFileEntry, SelectionScope selectionScope) {
+
+		if (selectionScope.getRepositoryId() == 0) {
+			return Collections.singletonMap("rowIdsFileEntry", rowIdsFileEntry);
+		}
+
+		return new HashMap<String, String[]>() {
+			{
+				put(
+					"folderId",
+					new String[] {
+						String.valueOf(selectionScope.getFolderId())
+					});
+				put(
+					"repositoryId",
+					new String[] {
+						String.valueOf(selectionScope.getRepositoryId())
+					});
+				put("rowIdsFileEntry", rowIdsFileEntry);
+				put(
+					"selectAll",
+					new String[] {
+						Boolean.toString(selectionScope.getSelectAll())
+					});
+			}
+		};
 	}
 
 	@Reference
