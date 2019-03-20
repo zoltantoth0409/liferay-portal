@@ -38,6 +38,33 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "TaxonomyCategoryBulkSelection")
 public class TaxonomyCategoryBulkSelection {
 
+	public DocumentBulkSelection getDocumentBulkSelection() {
+		return documentBulkSelection;
+	}
+
+	public void setDocumentBulkSelection(
+		DocumentBulkSelection documentBulkSelection) {
+
+		this.documentBulkSelection = documentBulkSelection;
+	}
+
+	@JsonIgnore
+	public void setDocumentBulkSelection(
+		UnsafeSupplier<DocumentBulkSelection, Exception>
+			documentBulkSelectionUnsafeSupplier) {
+
+		try {
+			documentBulkSelection = documentBulkSelectionUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected DocumentBulkSelection documentBulkSelection;
+
 	public Long[] getTaxonomyCategoryIdsToAdd() {
 		return taxonomyCategoryIdsToAdd;
 	}
@@ -92,37 +119,15 @@ public class TaxonomyCategoryBulkSelection {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Long[] taxonomyCategoryIdsToRemove;
 
-	public DocumentBulkSelection getDocumentBulkSelection() {
-		return documentBulkSelection;
-	}
-
-	public void setDocumentBulkSelection(
-		DocumentBulkSelection documentBulkSelection) {
-
-		this.documentBulkSelection = documentBulkSelection;
-	}
-
-	@JsonIgnore
-	public void setDocumentBulkSelection(
-		UnsafeSupplier<DocumentBulkSelection, Exception>
-			documentBulkSelectionUnsafeSupplier) {
-
-		try {
-			documentBulkSelection = documentBulkSelectionUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected DocumentBulkSelection documentBulkSelection;
-
 	public String toString() {
 		StringBundler sb = new StringBundler();
 
 		sb.append("{");
+
+		sb.append("\"documentBulkSelection\": ");
+
+		sb.append(documentBulkSelection);
+		sb.append(", ");
 
 		sb.append("\"taxonomyCategoryIdsToAdd\": ");
 
@@ -163,12 +168,6 @@ public class TaxonomyCategoryBulkSelection {
 
 			sb.append("]");
 		}
-
-		sb.append(", ");
-
-		sb.append("\"documentBulkSelection\": ");
-
-		sb.append(documentBulkSelection);
 
 		sb.append("}");
 

@@ -38,30 +38,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "KeywordBulkSelection")
 public class KeywordBulkSelection {
 
-	public String[] getKeywordsToAdd() {
-		return keywordsToAdd;
-	}
-
-	public void setKeywordsToAdd(String[] keywordsToAdd) {
-		this.keywordsToAdd = keywordsToAdd;
-	}
-
-	@JsonIgnore
-	public void setKeywordsToAdd(
-		UnsafeSupplier<String[], Exception> keywordsToAddUnsafeSupplier) {
-
-		try {
-			keywordsToAdd = keywordsToAddUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String[] keywordsToAdd;
-
 	public DocumentBulkSelection getDocumentBulkSelection() {
 		return documentBulkSelection;
 	}
@@ -88,6 +64,30 @@ public class KeywordBulkSelection {
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected DocumentBulkSelection documentBulkSelection;
+
+	public String[] getKeywordsToAdd() {
+		return keywordsToAdd;
+	}
+
+	public void setKeywordsToAdd(String[] keywordsToAdd) {
+		this.keywordsToAdd = keywordsToAdd;
+	}
+
+	@JsonIgnore
+	public void setKeywordsToAdd(
+		UnsafeSupplier<String[], Exception> keywordsToAddUnsafeSupplier) {
+
+		try {
+			keywordsToAdd = keywordsToAddUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected String[] keywordsToAdd;
 
 	public String[] getKeywordsToRemove() {
 		return keywordsToRemove;
@@ -118,6 +118,11 @@ public class KeywordBulkSelection {
 
 		sb.append("{");
 
+		sb.append("\"documentBulkSelection\": ");
+
+		sb.append(documentBulkSelection);
+		sb.append(", ");
+
 		sb.append("\"keywordsToAdd\": ");
 
 		if (keywordsToAdd == null) {
@@ -139,11 +144,6 @@ public class KeywordBulkSelection {
 			sb.append("]");
 		}
 
-		sb.append(", ");
-
-		sb.append("\"documentBulkSelection\": ");
-
-		sb.append(documentBulkSelection);
 		sb.append(", ");
 
 		sb.append("\"keywordsToRemove\": ");
