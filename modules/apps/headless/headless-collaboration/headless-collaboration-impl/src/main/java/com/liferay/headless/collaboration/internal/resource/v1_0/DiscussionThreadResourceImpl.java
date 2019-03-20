@@ -166,13 +166,13 @@ public class DiscussionThreadResourceImpl
 	}
 
 	private String _findThreadPriority(
-		double value, String[] priorities) {
+		String[] priorities, double priority) {
 
 		for (String priority : priorities) {
 			String[] priorityArray = StringUtil.split(
 				priority, StringPool.PIPE);
 
-			if (value == GetterUtil.getDouble(priorityArray[2])) {
+			if (priority == GetterUtil.getDouble(priorityArray[2])) {
 				return priorityArray[0];
 			}
 		}
@@ -239,7 +239,7 @@ public class DiscussionThreadResourceImpl
 					contextAcceptLanguage.getPreferredLanguageId());
 
 				threadType = _findThreadPriority(
-					mbThread.getPriority(), priorities);
+					priorities, mbThread.getPriority());
 			}
 		};
 	}
