@@ -49,7 +49,7 @@ public class TaxonomyCategoryResourceImpl
 			TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception {
 
-		_updateCategories(taxonomyCategoryBulkSelection, true);
+		_updateCategories(true, taxonomyCategoryBulkSelection);
 
 		return true;
 	}
@@ -59,14 +59,14 @@ public class TaxonomyCategoryResourceImpl
 			TaxonomyCategoryBulkSelection documentSelection)
 		throws Exception {
 
-		_updateCategories(documentSelection, false);
+		_updateCategories(false, documentSelection);
 
 		return true;
 	}
 
 	private void _updateCategories(
-			TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection,
-			boolean append)
+			boolean append,
+			TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws PortalException {
 
 		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
