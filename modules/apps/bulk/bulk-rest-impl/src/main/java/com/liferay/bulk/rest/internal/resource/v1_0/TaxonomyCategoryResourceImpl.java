@@ -49,7 +49,7 @@ public class TaxonomyCategoryResourceImpl
 			TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception {
 
-		_updateCategories(true, taxonomyCategoryBulkSelection);
+		_update(true, taxonomyCategoryBulkSelection);
 
 		return true;
 	}
@@ -59,12 +59,12 @@ public class TaxonomyCategoryResourceImpl
 			TaxonomyCategoryBulkSelection documentSelection)
 		throws Exception {
 
-		_updateCategories(false, documentSelection);
+		_update(false, documentSelection);
 
 		return true;
 	}
 
-	private void _updateCategories(
+	private void _update(
 			boolean append,
 			TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws PortalException {

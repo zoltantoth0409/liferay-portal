@@ -63,7 +63,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 	public boolean patchKeywordBatch(KeywordBulkSelection keywordBulkSelection)
 		throws Exception {
 
-		_updateKeywords(false, keywordBulkSelection);
+		_update(false, keywordBulkSelection);
 
 		return true;
 	}
@@ -99,7 +99,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 	public boolean putKeywordBatch(KeywordBulkSelection keywordBulkSelection)
 		throws Exception {
 
-		_updateKeywords(true, keywordBulkSelection);
+		_update(true, keywordBulkSelection);
 
 		return true;
 	}
@@ -130,7 +130,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 		};
 	}
 
-	private void _updateKeywords(
+	private void _update(
 			boolean append, KeywordBulkSelection keywordBulkSelection)
 		throws PortalException {
 
