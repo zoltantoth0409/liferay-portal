@@ -124,10 +124,11 @@ public class DiscussionAttachmentResourceImpl
 	}
 
 	private Page<DiscussionAttachment> _getDiscussionAttachmentPage(
-			Long messageId)
+			Long discussionForumPostingId)
 		throws PortalException {
 
-		MBMessage mbMessage = _mbMessageService.getMessage(messageId);
+		MBMessage mbMessage = _mbMessageService.getMessage(
+			discussionForumPostingId);
 
 		return Page.of(
 			transform(
