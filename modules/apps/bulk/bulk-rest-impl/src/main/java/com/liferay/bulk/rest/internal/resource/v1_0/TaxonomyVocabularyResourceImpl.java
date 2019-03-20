@@ -71,6 +71,9 @@ public class TaxonomyVocabularyResourceImpl
 				DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 
+		ClassName className = _classNameLocalService.getClassName(
+			FileEntry.class.getName());
+
 		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
 			documentBulkSelection);
 
@@ -88,14 +91,9 @@ public class TaxonomyVocabularyResourceImpl
 			Collections.emptySet()
 		);
 
-		ClassName className = _classNameLocalService.getClassName(
-			FileEntry.class.getName());
-
-		long classNameId = className.getClassNameId();
-
 		Map<AssetVocabulary, List<AssetCategory>> assetCategoriesMap =
 			_getAssetCategoriesMap(
-				contentSpaceId, classNameId, assetCategories);
+				contentSpaceId, className.getClassNameId(), assetCategories);
 
 		Set<Map.Entry<AssetVocabulary, List<AssetCategory>>> entries =
 			assetCategoriesMap.entrySet();
