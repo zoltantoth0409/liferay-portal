@@ -32,7 +32,6 @@ import org.osgi.util.tracker.ServiceTracker;
  */
 public class CTConfigurationRegistryUtil {
 
-	@SuppressWarnings("unchecked")
 	public static long getVersionEntityGroupId(long classNameId, long classPK) {
 		CTConfiguration<?, ?> ctConfiguration = _getCTConfiguration(
 			classNameId);
