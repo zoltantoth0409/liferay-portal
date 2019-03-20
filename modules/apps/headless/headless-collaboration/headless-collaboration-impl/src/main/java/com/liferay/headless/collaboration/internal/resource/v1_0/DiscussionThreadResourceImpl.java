@@ -165,7 +165,7 @@ public class DiscussionThreadResourceImpl
 		return _toDiscussionThread(updatedMBMessage.getThread());
 	}
 
-	private String _findThreadPriority(
+	private String _toThreadType(
 		String[] priorities, double priority) {
 
 		for (String priority : priorities) {
@@ -238,7 +238,7 @@ public class DiscussionThreadResourceImpl
 				String[] priorities = instance.getPriorities(
 					contextAcceptLanguage.getPreferredLanguageId());
 
-				threadType = _findThreadPriority(
+				threadType = _toThreadType(
 					priorities, mbThread.getPriority());
 			}
 		};
