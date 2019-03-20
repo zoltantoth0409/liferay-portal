@@ -122,10 +122,10 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 		};
 	}
 
-	private Keyword _toTag(String keywordName) {
+	private Keyword _toTag(String assetTagName) {
 		return new Keyword() {
 			{
-				name = keywordName;
+				name = assetTagName;
 			}
 		};
 	}
