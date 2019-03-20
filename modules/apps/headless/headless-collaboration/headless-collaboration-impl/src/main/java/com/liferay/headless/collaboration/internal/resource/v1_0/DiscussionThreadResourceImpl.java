@@ -152,7 +152,7 @@ public class DiscussionThreadResourceImpl
 		MBMessage mbMessage = _mbMessageService.getMessage(
 			mbThread.getRootMessageId());
 
-		MBMessage updatedMbMessage = _mbMessageService.updateDiscussionMessage(
+		MBMessage updatedMBMessage = _mbMessageService.updateDiscussionMessage(
 			mbMessage.getClassName(), mbMessage.getClassPK(),
 			mbMessage.getMessageId(), discussionThread.getHeadline(),
 			discussionThread.getArticleBody(),
@@ -162,7 +162,7 @@ public class DiscussionThreadResourceImpl
 				mbThread.getGroupId(),
 				discussionThread.getViewableByAsString()));
 
-		return _toDiscussionThread(updatedMbMessage.getThread());
+		return _toDiscussionThread(updatedMBMessage.getThread());
 	}
 
 	private static String _findThreadPriority(
