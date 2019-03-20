@@ -16,7 +16,7 @@ package com.liferay.bulk.rest.internal.resource.v1_0;
 
 import com.liferay.bulk.rest.dto.v1_0.DocumentBulkSelection;
 import com.liferay.bulk.rest.dto.v1_0.MessageSelection;
-import com.liferay.bulk.rest.internal.helper.BulkSelectionHelper;
+import com.liferay.bulk.rest.internal.selection.v1_0.DocumentBulkSelectionFactory;
 import com.liferay.bulk.rest.resource.v1_0.MessageSelectionResource;
 import com.liferay.bulk.selection.BulkSelection;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -41,7 +41,7 @@ public class MessageSelectionResourceImpl
 		throws Exception {
 
 		return _toMessageSelection(
-			_bulkSelectionHelper.getBulkSelection(documentBulkSelection));
+			_documentBulkSelectionFactory.create(documentBulkSelection));
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class MessageSelectionResourceImpl
 			DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 
-		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
+		BulkSelection<?> bulkSelection = _documentBulkSelectionFactory.create(
 			documentBulkSelection);
 
 		return _toMessageSelection(bulkSelection.toAssetEntryBulkSelection());
@@ -67,6 +67,6 @@ public class MessageSelectionResourceImpl
 	}
 
 	@Reference
-	private BulkSelectionHelper _bulkSelectionHelper;
+	private DocumentBulkSelectionFactory _documentBulkSelectionFactory;
 
 }

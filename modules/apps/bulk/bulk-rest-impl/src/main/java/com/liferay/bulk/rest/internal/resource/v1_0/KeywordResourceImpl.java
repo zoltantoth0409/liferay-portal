@@ -19,7 +19,7 @@ import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.bulk.rest.dto.v1_0.DocumentBulkSelection;
 import com.liferay.bulk.rest.dto.v1_0.Keyword;
 import com.liferay.bulk.rest.dto.v1_0.KeywordBulkSelection;
-import com.liferay.bulk.rest.internal.helper.BulkSelectionHelper;
+import com.liferay.bulk.rest.internal.selection.v1_0.DocumentBulkSelectionFactory;
 import com.liferay.bulk.rest.resource.v1_0.KeywordResource;
 import com.liferay.bulk.selection.BulkSelection;
 import com.liferay.bulk.selection.BulkSelectionInputParameters;
@@ -73,7 +73,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 			DocumentBulkSelection documentSelection)
 		throws Exception {
 
-		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
+		BulkSelection<?> bulkSelection = _documentBulkSelectionFactory.create(
 			documentSelection);
 
 		BulkSelection<AssetEntry> assetEntryBulkSelection =
@@ -134,7 +134,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 			boolean append, KeywordBulkSelection keywordBulkSelection)
 		throws PortalException {
 
-		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
+		BulkSelection<?> bulkSelection = _documentBulkSelectionFactory.create(
 			keywordBulkSelection.getDocumentBulkSelection());
 
 		_bulkSelectionRunner.run(
@@ -160,10 +160,10 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 	private AssetTagLocalService _assetTagLocalService;
 
 	@Reference
-	private BulkSelectionHelper _bulkSelectionHelper;
+	private BulkSelectionRunner _bulkSelectionRunner;
 
 	@Reference
-	private BulkSelectionRunner _bulkSelectionRunner;
+	private DocumentBulkSelectionFactory _documentBulkSelectionFactory;
 
 	@Reference
 	private EditTagsBulkSelectionAction _editTagsBulkSelectionAction;

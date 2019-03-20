@@ -23,7 +23,7 @@ import com.liferay.asset.kernel.service.AssetVocabularyLocalService;
 import com.liferay.bulk.rest.dto.v1_0.DocumentBulkSelection;
 import com.liferay.bulk.rest.dto.v1_0.TaxonomyCategory;
 import com.liferay.bulk.rest.dto.v1_0.TaxonomyVocabulary;
-import com.liferay.bulk.rest.internal.helper.BulkSelectionHelper;
+import com.liferay.bulk.rest.internal.selection.v1_0.DocumentBulkSelectionFactory;
 import com.liferay.bulk.rest.resource.v1_0.TaxonomyVocabularyResource;
 import com.liferay.bulk.selection.BulkSelection;
 import com.liferay.portal.kernel.model.ClassName;
@@ -125,7 +125,7 @@ public class TaxonomyVocabularyResourceImpl
 			DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 
-		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
+		BulkSelection<?> bulkSelection = _documentBulkSelectionFactory.create(
 			documentBulkSelection);
 
 		BulkSelection<AssetEntry> assetEntryBulkSelection =
@@ -204,10 +204,10 @@ public class TaxonomyVocabularyResourceImpl
 	private AssetVocabularyLocalService _assetVocabularyLocalService;
 
 	@Reference
-	private BulkSelectionHelper _bulkSelectionHelper;
+	private ClassNameLocalService _classNameLocalService;
 
 	@Reference
-	private ClassNameLocalService _classNameLocalService;
+	private DocumentBulkSelectionFactory _documentBulkSelectionFactory;
 
 	@Reference
 	private Portal _portal;

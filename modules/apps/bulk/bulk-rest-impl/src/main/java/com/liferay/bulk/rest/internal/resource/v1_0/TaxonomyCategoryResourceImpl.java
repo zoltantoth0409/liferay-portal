@@ -15,7 +15,7 @@
 package com.liferay.bulk.rest.internal.resource.v1_0;
 
 import com.liferay.bulk.rest.dto.v1_0.TaxonomyCategoryBulkSelection;
-import com.liferay.bulk.rest.internal.helper.BulkSelectionHelper;
+import com.liferay.bulk.rest.internal.selection.v1_0.DocumentBulkSelectionFactory;
 import com.liferay.bulk.rest.resource.v1_0.TaxonomyCategoryResource;
 import com.liferay.bulk.selection.BulkSelection;
 import com.liferay.bulk.selection.BulkSelectionInputParameters;
@@ -69,7 +69,7 @@ public class TaxonomyCategoryResourceImpl
 			TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws PortalException {
 
-		BulkSelection<?> bulkSelection = _bulkSelectionHelper.getBulkSelection(
+		BulkSelection<?> bulkSelection = _documentBulkSelectionFactory.create(
 			taxonomyCategoryBulkSelection.getDocumentBulkSelection());
 
 		_bulkSelectionRunner.run(
@@ -94,10 +94,10 @@ public class TaxonomyCategoryResourceImpl
 	}
 
 	@Reference
-	private BulkSelectionHelper _bulkSelectionHelper;
+	private BulkSelectionRunner _bulkSelectionRunner;
 
 	@Reference
-	private BulkSelectionRunner _bulkSelectionRunner;
+	private DocumentBulkSelectionFactory _documentBulkSelectionFactory;
 
 	@Reference
 	private EditCategoriesBulkSelectionAction

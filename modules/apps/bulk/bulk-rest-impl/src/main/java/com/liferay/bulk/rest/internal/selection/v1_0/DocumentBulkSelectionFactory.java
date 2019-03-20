@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.bulk.rest.internal.helper;
+package com.liferay.bulk.rest.internal.selection.v1_0;
 
 import com.liferay.bulk.rest.dto.v1_0.DocumentBulkSelection;
 import com.liferay.bulk.rest.dto.v1_0.SelectionScope;
@@ -35,10 +35,9 @@ import org.osgi.service.component.annotations.Reference;
  * @author Javier Gamarra
  */
 @Component(service = {})
-public class BulkSelectionHelper {
+public class DocumentBulkSelectionFactory {
 
-	public BulkSelection<?> getBulkSelection(
-			DocumentBulkSelection documentBulkSelection)
+	public BulkSelection<?> create(DocumentBulkSelection documentBulkSelection)
 		throws PortalException {
 
 		ClassName className = _classNameLocalService.getClassName(
