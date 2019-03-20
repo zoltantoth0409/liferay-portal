@@ -52,12 +52,12 @@ public class SearchEngineAdapterTest {
 		try {
 			_searchEngineAdapter.execute(updateDocumentRequest);
 
-			Assert.fail("exception expected");
+			Assert.fail("Exception was not thrown");
 		}
-		catch (RuntimeException re) {
-			assertClientSideSafeToLoad(re);
+		catch (RuntimeException runtimeException) {
+			assertClientSideSafeToLoad(runtimeException);
 
-			String message = re.getMessage();
+			String message = runtimeException.getMessage();
 
 			Assert.assertTrue(
 				message,
@@ -67,31 +67,32 @@ public class SearchEngineAdapterTest {
 		}
 	}
 
-	protected void assertClientSideSafeToLoad(Throwable t) {
-		if (t == null) {
+	protected void assertClientSideSafeToLoad(Throwable throwable) {
+		if (throwable == null) {
 			return;
 		}
 
-		Class<?> clazz = t.getClass();
+		Class<?> clazz = throwable.getClass();
 
 		String name = clazz.getName();
 
 		if (name.startsWith("org.elasticsearch")) {
 			throw _getTestFrameworkSafeToLoadException(
-				name, t.getMessage(), t.getStackTrace());
+				name, throwable.getMessage(), throwable.getStackTrace());
 		}
 
-		assertClientSideSafeToLoad(t.getCause());
+		assertClientSideSafeToLoad(throwable.getCause());
 	}
 
 	private RuntimeException _getTestFrameworkSafeToLoadException(
-		String name, String message, StackTraceElement[] stackTrace) {
+		String name, String message, StackTraceElement[] stackTraceElements) {
 
-		RuntimeException re = new RuntimeException(name + ": " + message);
+		RuntimeException runtimeException = new RuntimeException(
+			name + ": " + message);
 
-		re.setStackTrace(stackTrace);
+		runtimeException.setStackTrace(stackTraceElements);
 
-		return re;
+		return runtimeException;
 	}
 
 	@Inject
