@@ -108,7 +108,7 @@ public class DiscussionSectionResourceImpl
 			Long contentSpaceId, DiscussionSection discussionSection)
 		throws Exception {
 
-		return _addDiscussionSection(0L, contentSpaceId, discussionSection);
+		return _addDiscussionSection(contentSpaceId, 0L, discussionSection);
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class DiscussionSectionResourceImpl
 			discussionSectionId);
 
 		return _addDiscussionSection(
-			discussionSectionId, mbCategory.getGroupId(), discussionSection);
+			mbCategory.getGroupId(), discussionSectionId, discussionSection);
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class DiscussionSectionResourceImpl
 	}
 
 	private DiscussionSection _addDiscussionSection(
-			Long parentDiscussionSectionId, long contentSpaceId,
+			long contentSpaceId, Long parentDiscussionSectionId,
 			DiscussionSection discussionSection)
 		throws PortalException {
 

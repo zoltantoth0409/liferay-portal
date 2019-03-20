@@ -125,7 +125,7 @@ public class DiscussionThreadResourceImpl
 			Long contentSpaceId, DiscussionThread discussionThread)
 		throws Exception {
 
-		return _addDiscussionThread(contentSpaceId, 0, discussionThread);
+		return _addDiscussionThread(contentSpaceId, 0L, discussionThread);
 	}
 
 	@Override
@@ -186,12 +186,12 @@ public class DiscussionThreadResourceImpl
 	}
 
 	private DiscussionThread _addDiscussionThread(
-			long contentSpaceId, long categoryId,
+			Long contentSpaceId, Long discussionSectionId,
 			DiscussionThread discussionThread)
 		throws Exception {
 
 		MBMessage mbMessage = _mbMessageService.addMessage(
-			contentSpaceId, categoryId, discussionThread.getHeadline(),
+			contentSpaceId, discussionSectionId, discussionThread.getHeadline(),
 			discussionThread.getArticleBody(),
 			MBMessageConstants.DEFAULT_FORMAT, Collections.emptyList(), false,
 			0.0, false,
