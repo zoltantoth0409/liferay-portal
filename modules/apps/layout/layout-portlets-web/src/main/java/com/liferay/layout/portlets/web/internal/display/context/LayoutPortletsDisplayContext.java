@@ -118,11 +118,9 @@ public class LayoutPortletsDisplayContext {
 			_renderRequest, getPortletURL());
 
 		searchContainer.setEmptyResultsMessage("there-are-no-widgets");
-
 		searchContainer.setId("layoutPortlets");
 		searchContainer.setOrderByCol(getOrderByCol());
 		searchContainer.setOrderByType(getOrderByType());
-
 		searchContainer.setTotal(_layoutPortlets.size());
 
 		List results = ListUtil.sort(
