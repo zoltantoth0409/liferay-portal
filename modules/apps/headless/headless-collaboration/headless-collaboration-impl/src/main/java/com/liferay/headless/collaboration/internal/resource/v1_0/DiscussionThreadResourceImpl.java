@@ -165,7 +165,7 @@ public class DiscussionThreadResourceImpl
 		return _toDiscussionThread(updatedMBMessage.getThread());
 	}
 
-	private static String _findThreadPriority(
+	private String _findThreadPriority(
 		double value, String[] priorities) {
 
 		for (String priority : priorities) {
