@@ -135,11 +135,8 @@ public class TaxonomyVocabularyResourceImpl
 			Long contentSpaceId, DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 
-		ClassName className = _classNameLocalService.getClassName(
-			FileEntry.class.getName());
-
 		Stream<AssetVocabulary> assetVocabulariesStream = _getAssetVocabulariesStream(
-			contentSpaceId, className.getClassNameId());
+			contentSpaceId);
 
 		Stream<AssetCategory> assetCategoriesStream = _getAssetCategoriesStream(
 			documentBulkSelection);
@@ -157,8 +154,11 @@ public class TaxonomyVocabularyResourceImpl
 	}
 
 	private Stream<AssetVocabulary> _getAssetVocabulariesStream(
-			Long contentSpaceId, Long classNameId)
+			Long contentSpaceId)
 		throws Exception {
+
+		ClassName className = _classNameLocalService.getClassName(
+			FileEntry.class.getName());
 
 		List<AssetVocabulary> assetVocabularies =
 			_assetVocabularyLocalService.getGroupVocabularies(
@@ -168,7 +168,7 @@ public class TaxonomyVocabularyResourceImpl
 
 		List<AssetVocabulary> filteredAssetVocabularies = stream.filter(
 			assetVocabulary -> assetVocabulary.isAssociatedToClassNameId(
-				classNameId)
+				className.getClassNameId())
 		).filter(
 			assetVocabulary -> {
 				int count =
