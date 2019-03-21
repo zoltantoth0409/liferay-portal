@@ -350,7 +350,8 @@ public class JSONUtilTest {
 			new String[] {"alpha", "beta"},
 			JSONUtil.toStringArray(
 				JSONUtil.put(
-					JSONUtil.put("alpha", "alpha"), JSONUtil.put("alpha", "beta"),
+					JSONUtil.put("alpha", "alpha"),
+					JSONUtil.put("alpha", "beta"),
 					JSONUtil.put("beta", "gamma")),
 				"alpha"));
 	}
@@ -379,7 +380,8 @@ public class JSONUtilTest {
 			},
 			JSONUtil.toStringList(
 				JSONUtil.put(
-					JSONUtil.put("alpha", "alpha"), JSONUtil.put("alpha", "beta"),
+					JSONUtil.put("alpha", "alpha"),
+					JSONUtil.put("alpha", "beta"),
 					JSONUtil.put("beta", "gamma")),
 				"alpha"));
 	}
@@ -408,7 +410,8 @@ public class JSONUtilTest {
 			},
 			JSONUtil.toStringSet(
 				JSONUtil.put(
-					JSONUtil.put("alpha", "alpha"), JSONUtil.put("alpha", "beta"),
+					JSONUtil.put("alpha", "alpha"),
+					JSONUtil.put("alpha", "beta"),
 					JSONUtil.put("beta", "gamma")),
 				"alpha"));
 	}
