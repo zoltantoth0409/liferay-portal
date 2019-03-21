@@ -113,7 +113,7 @@ public class JSONUtilTest {
 
 	@Test
 	public void testPutKeyValue() {
-		JSONObject jsonObject1 = _getJSONObject();
+		JSONObject jsonObject1 = _createJSONObject();
 
 		jsonObject1.put("foo", "bar");
 
@@ -124,7 +124,7 @@ public class JSONUtilTest {
 
 	@Test
 	public void testPutValue() {
-		JSONArray jsonArray1 = _getJSONArray();
+		JSONArray jsonArray1 = _createJSONArray();
 
 		jsonArray1.put("foo");
 
@@ -136,7 +136,7 @@ public class JSONUtilTest {
 
 	@Test
 	public void testPutValues() {
-		JSONArray jsonArray1 = _getJSONArray();
+		JSONArray jsonArray1 = _createJSONArray();
 
 		jsonArray1.put(
 			"foo"
@@ -180,7 +180,7 @@ public class JSONUtilTest {
 
 	@Test
 	public void testSerializeArraysWithObjects() {
-		JSONArray jsonArray = JSONUtil.put(_getJSONObject());
+		JSONArray jsonArray = JSONUtil.put(_createJSONObject());
 
 		Assert.assertEquals("[{}]", jsonArray.toString());
 	}
@@ -413,11 +413,11 @@ public class JSONUtilTest {
 				"foo"));
 	}
 
-	private JSONArray _getJSONArray() {
+	private JSONArray _createJSONArray() {
 		return JSONFactoryUtil.createJSONArray();
 	}
 
-	private JSONObject _getJSONObject() {
+	private JSONObject _createJSONObject() {
 		return JSONFactoryUtil.createJSONObject();
 	}
 
