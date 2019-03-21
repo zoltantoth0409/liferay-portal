@@ -127,8 +127,7 @@ public class JSONUtil {
 			return _createJSONObject(jsonObject1.toString());
 		}
 
-		JSONObject jsonObject = _createJSONObject(
-			jsonObject1.toString());
+		JSONObject jsonObject = _createJSONObject(jsonObject1.toString());
 
 		Iterator<String> iterator = jsonObject2.keys();
 
