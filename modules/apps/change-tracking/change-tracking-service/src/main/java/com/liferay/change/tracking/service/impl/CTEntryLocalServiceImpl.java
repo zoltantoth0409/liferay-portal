@@ -295,27 +295,27 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 
 		if (!ArrayUtil.isEmpty(groupIds)) {
 			booleanQuery.addMustQueryClauses(
-				_getTermSetQuery(
+				_getTermsQuery(
 					Field.GROUP_ID,
 					_getTermValues(ArrayUtil.toArray(groupIds))));
 		}
 
 		if (!ArrayUtil.isEmpty(userIds)) {
 			booleanQuery.addMustQueryClauses(
-				_getTermSetQuery(
+				_getTermsQuery(
 					Field.USER_ID, _getTermValues(ArrayUtil.toArray(userIds))));
 		}
 
 		if (!ArrayUtil.isEmpty(classNameIds)) {
 			booleanQuery.addMustQueryClauses(
-				_getTermSetQuery(
+				_getTermsQuery(
 					"modelClassNameId",
 					_getTermValues(ArrayUtil.toArray(classNameIds))));
 		}
 
 		if (!ArrayUtil.isEmpty(changeTypes)) {
 			booleanQuery.addMustQueryClauses(
-				_getTermSetQuery(
+				_getTermsQuery(
 					"changeType",
 					_getTermValues(ArrayUtil.toArray(changeTypes))));
 		}
@@ -350,7 +350,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		);
 	}
 
-	private Sort[] _getSortsFromQueryDefinition(
+	private Sort[] _getSorts(
 		QueryDefinition<CTEntry> queryDefinition) {
 
 		if (queryDefinition == null) {
@@ -389,7 +389,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		);
 	}
 
-	private TermsQuery _getTermSetQuery(String field, Object[] values) {
+	private TermsQuery _getTermsQuery(String field, Object[] values) {
 		TermsQuery termsQuery = _queries.terms(field);
 
 		termsQuery.addValues(values);
@@ -432,7 +432,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		).modelIndexerClasses(
 			CTEntry.class
 		).sorts(
-			_getSortsFromQueryDefinition(queryDefinition)
+			_getSorts(queryDefinition)
 		).withSearchContext(
 			searchContext -> {
 				searchContext.setCompanyId(companyId);
@@ -449,10 +449,10 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 
 		SearchContext searchContext = new SearchContext();
 
+		searchContext.setAttribute("search.request.query", query);
 		searchContext.setCompanyId(companyId);
 		searchContext.setEntryClassNames(
 			new String[] {CTEntry.class.getName()});
-		searchContext.setAttribute("search.request.query", query);
 		searchContext.setSorts();
 
 		try {
