@@ -59,8 +59,7 @@ const ConnectedFragmentsEditorToolbar = getConnectedComponent(
 		'publishURL',
 		'redirectURL',
 		'savingChanges',
-		'spritemap',
-		'status'
+		'spritemap'
 	]
 );
 
