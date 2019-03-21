@@ -44,11 +44,9 @@ public class KeywordHasPermissionImpl implements HasPermission<Long> {
 		Class<? extends Identifier<S>> identifierClass) {
 
 		if (identifierClass.equals(ContentSpace.class)) {
-			return (credentials, groupId) -> {
-				return AssetTagsPermission.contains(
-					(PermissionChecker)credentials.get(), (Long)groupId,
-					ActionKeys.MANAGE_TAG);
-			};
+			return (credentials, groupId) -> AssetTagsPermission.contains(
+				(PermissionChecker)credentials.get(), (Long)groupId,
+				ActionKeys.MANAGE_TAG);
 		}
 
 		return (credentials, s) -> false;
