@@ -108,15 +108,15 @@ JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalE
 		<div class="sidebar-body">
 
 			<%
-			String tabNames = "properties,usages";
+			String tabs1Names = "properties,usages";
 
 			if ((article == null) || (journalEditArticleDisplayContext.getClassNameId() != JournalArticleConstants.CLASSNAME_ID_DEFAULT)) {
-				tabNames = "properties";
+				tabs1Names = "properties";
 			}
 			%>
 
 			<liferay-ui:tabs
-				names="<%= tabNames %>"
+				names="<%= tabs1Names %>"
 				param="tabs1"
 				refresh="<%= false %>"
 				type="tabs nav-tabs-default"
