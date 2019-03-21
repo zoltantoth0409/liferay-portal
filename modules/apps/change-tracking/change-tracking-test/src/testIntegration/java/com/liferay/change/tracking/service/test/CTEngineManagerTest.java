@@ -567,7 +567,6 @@ public class CTEngineManagerTest {
 			RandomTestUtil.nextLong(), RandomTestUtil.nextLong(),
 			CTConstants.CT_CHANGE_TYPE_ADDITION,
 			ctCollection.getCtCollectionId(), new ServiceContext());
-
 		CTEntry ctEntry2 = _ctEntryLocalService.addCTEntry(
 			TestPropsValues.getUserId(), _testVersionClassName.getClassNameId(),
 			RandomTestUtil.nextLong(), RandomTestUtil.nextLong(),
@@ -586,6 +585,11 @@ public class CTEngineManagerTest {
 			new long[] {_testVersionClassName.getClassNameId()}, null, false,
 			queryDefinition);
 
+		Assert.assertEquals(
+			"There must be two change entries", 2, ctEntries.size());
+		Assert.assertEquals(ctEntry1, ctEntries.get(0));
+		Assert.assertEquals(ctEntry2, ctEntries.get(1));
+
 		int ctEntriesCount = _ctEngineManager.getCTEntriesCount(
 			ctCollection, null, null,
 			new long[] {_testVersionClassName.getClassNameId()}, null, false,
@@ -594,42 +598,37 @@ public class CTEngineManagerTest {
 		Assert.assertEquals(
 			"There must be two change entries", 2, ctEntriesCount);
 
-		Assert.assertEquals(
-			"There must be two change entries", 2, ctEntries.size());
-		Assert.assertEquals(ctEntry1, ctEntries.get(0));
-		Assert.assertEquals(ctEntry2, ctEntries.get(1));
-
 		ctEntries = _ctEngineManager.getCTEntries(
 			ctCollection, null, new long[] {_user.getUserId()}, null, null,
 			false, queryDefinition);
-
-		ctEntriesCount = _ctEngineManager.getCTEntriesCount(
-			ctCollection, null, new long[] {_user.getUserId()}, null, null,
-			false, queryDefinition);
-
-		Assert.assertEquals(
-			"There must be one change entry", 1, ctEntriesCount);
 
 		Assert.assertEquals(
 			"There must be one change entry", 1, ctEntries.size());
 		Assert.assertEquals(ctEntry1, ctEntries.get(0));
 
+		ctEntriesCount = _ctEngineManager.getCTEntriesCount(
+			ctCollection, null, new long[] {_user.getUserId()}, null, null,
+			false, queryDefinition);
+
+		Assert.assertEquals(
+			"There must be one change entry", 1, ctEntriesCount);
+
 		ctEntries = _ctEngineManager.getCTEntries(
 			ctCollection, null, null, null,
 			new int[] {CTConstants.CT_CHANGE_TYPE_DELETION}, false,
 			queryDefinition);
-
-		ctEntriesCount = _ctEngineManager.getCTEntriesCount(
-			ctCollection, null, null, null,
-			new int[] {CTConstants.CT_CHANGE_TYPE_DELETION}, false,
-			queryDefinition);
-
-		Assert.assertEquals(
-			"There must be one change entry", 1, ctEntriesCount);
 
 		Assert.assertEquals(
 			"There must be one change entry", 1, ctEntries.size());
 		Assert.assertEquals(ctEntry2, ctEntries.get(0));
+
+		ctEntriesCount = _ctEngineManager.getCTEntriesCount(
+			ctCollection, null, null, null,
+			new int[] {CTConstants.CT_CHANGE_TYPE_DELETION}, false,
+			queryDefinition);
+
+		Assert.assertEquals(
+			"There must be one change entry", 1, ctEntriesCount);
 	}
 
 	@Test
