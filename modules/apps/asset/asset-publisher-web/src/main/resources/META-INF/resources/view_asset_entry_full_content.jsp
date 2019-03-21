@@ -335,7 +335,6 @@ String viewInContextURL = assetRenderer.getURLViewInContext(liferayPortletReques
 							printAssetURL.setParameter("viewMode", Constants.PRINT);
 							printAssetURL.setParameter("type", assetRendererFactory.getType());
 							printAssetURL.setParameter("languageId", LanguageUtil.getLanguageId(request));
-
 							printAssetURL.setWindowState(LiferayWindowState.POP_UP);
 							%>
 

@@ -256,7 +256,6 @@ for (AssetEntry assetEntry : assetEntryResult.getAssetEntries()) {
 							printAssetURL.setParameter("viewMode", Constants.PRINT);
 							printAssetURL.setParameter("type", assetRendererFactory.getType());
 							printAssetURL.setParameter("languageId", LanguageUtil.getLanguageId(request));
-
 							printAssetURL.setWindowState(LiferayWindowState.POP_UP);
 
 							String id = assetEntry.getEntryId() + StringUtil.randomId();
