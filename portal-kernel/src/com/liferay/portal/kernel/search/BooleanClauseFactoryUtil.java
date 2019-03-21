@@ -34,11 +34,10 @@ public class BooleanClauseFactoryUtil {
 	public static BooleanClause<Query> create(
 		SearchContext searchContext, Query query, String occur) {
 
-		return getBooleanClauseFactory(
-			searchContext
-		).create(
-			query, occur
-		);
+		BooleanClauseFactory booleanClauseFactory = getBooleanClauseFactory(
+			searchContext);
+
+		return booleanClauseFactory.create(query, occur);
 	}
 
 	/**
@@ -49,11 +48,10 @@ public class BooleanClauseFactoryUtil {
 	public static BooleanClause<Query> create(
 		SearchContext searchContext, String field, String value, String occur) {
 
-		return getBooleanClauseFactory(
-			searchContext
-		).create(
-			field, value, occur
-		);
+		BooleanClauseFactory booleanClauseFactory = getBooleanClauseFactory(
+			searchContext);
+
+		return booleanClauseFactory.create(field, value, occur);
 	}
 
 	public static BooleanClause<Query> create(
@@ -73,22 +71,21 @@ public class BooleanClauseFactoryUtil {
 		SearchContext searchContext, Filter filter,
 		BooleanClauseOccur booleanClauseOccur) {
 
-		return getBooleanClauseFactory(
-			searchContext
-		).createFilter(
-			filter, booleanClauseOccur
-		);
+		BooleanClauseFactory booleanClauseFactory = getBooleanClauseFactory(
+			searchContext);
+
+		return booleanClauseFactory.createFilter(filter, booleanClauseOccur);
 	}
 
 	public static BooleanClause<Filter> createFilter(
 		SearchContext searchContext, String field, String value,
 		BooleanClauseOccur booleanClauseOccur) {
 
-		return getBooleanClauseFactory(
-			searchContext
-		).createFilter(
-			field, value, booleanClauseOccur
-		);
+		BooleanClauseFactory booleanClauseFactory = getBooleanClauseFactory(
+			searchContext);
+
+		return booleanClauseFactory.createFilter(
+			field, value, booleanClauseOccur);
 	}
 
 	public static BooleanClause<Filter> createFilter(

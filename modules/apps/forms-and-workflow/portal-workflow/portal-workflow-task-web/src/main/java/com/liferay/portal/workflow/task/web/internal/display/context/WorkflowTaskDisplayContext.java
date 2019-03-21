@@ -1010,9 +1010,9 @@ public class WorkflowTaskDisplayContext {
 			WorkflowTask workflowTask)
 		throws PortalException {
 
-		return getWorkflowInstance(
-			workflowTask
-		).getWorkflowContext();
+		WorkflowInstance workflowInstance = getWorkflowInstance(workflowTask);
+
+		return workflowInstance.getWorkflowContext();
 	}
 
 	protected WorkflowTaskSearch searchTasks(boolean searchByUserRoles)
