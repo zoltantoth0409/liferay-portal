@@ -756,7 +756,7 @@ public class CTEngineManagerImpl implements CTEngineManager {
 
 		if (user == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to find user " + userId);
+				_log.warn("Unable to get user " + userId);
 			}
 
 			return;
