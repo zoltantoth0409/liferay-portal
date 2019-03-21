@@ -120,14 +120,14 @@ public class JSONUtil {
 		throws JSONException {
 
 		if (jsonObject1 == null) {
-			return JSONFactoryUtil.createJSONObject(jsonObject2.toString());
+			return _createJSONObject(jsonObject2.toString());
 		}
 
 		if (jsonObject2 == null) {
-			return JSONFactoryUtil.createJSONObject(jsonObject1.toString());
+			return _createJSONObject(jsonObject1.toString());
 		}
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+		JSONObject jsonObject = _createJSONObject(
 			jsonObject1.toString());
 
 		Iterator<String> iterator = jsonObject2.keys();
@@ -142,7 +142,7 @@ public class JSONUtil {
 	}
 
 	public static JSONArray put(Object value) {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		JSONArray jsonArray = _createJSONArray();
 
 		jsonArray.put(value);
 
@@ -150,7 +150,7 @@ public class JSONUtil {
 	}
 
 	public static JSONArray put(Object... values) {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		JSONArray jsonArray = _createJSONArray();
 
 		for (Object value : values) {
 			jsonArray.put(value);
@@ -160,7 +160,7 @@ public class JSONUtil {
 	}
 
 	public static JSONObject put(String key, Object value) {
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = _createJSONObject();
 
 		return jsonObject.put(key, value);
 	}
@@ -172,7 +172,7 @@ public class JSONUtil {
 			return null;
 		}
 
-		JSONArray newJSONArray = JSONFactoryUtil.createJSONArray();
+		JSONArray newJSONArray = _createJSONArray();
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -206,7 +206,7 @@ public class JSONUtil {
 			List<T> list, UnsafeFunction<T, Object, Exception> unsafeFunction)
 		throws Exception {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		JSONArray jsonArray = _createJSONArray();
 
 		if (list == null) {
 			return jsonArray;
@@ -223,7 +223,7 @@ public class JSONUtil {
 			T[] array, UnsafeFunction<T, Object, Exception> unsafeFunction)
 		throws Exception {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		JSONArray jsonArray = _createJSONArray();
 
 		if (array == null) {
 			return jsonArray;
@@ -548,6 +548,20 @@ public class JSONUtil {
 		}
 
 		return values;
+	}
+
+	private static JSONArray _createJSONArray() {
+		return JSONFactoryUtil.createJSONArray();
+	}
+
+	private static JSONObject _createJSONObject() {
+		return JSONFactoryUtil.createJSONObject();
+	}
+
+	private static JSONObject _createJSONObject(String json)
+		throws JSONException {
+
+		return JSONFactoryUtil.createJSONObject(json);
 	}
 
 }
