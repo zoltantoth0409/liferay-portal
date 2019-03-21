@@ -43,10 +43,10 @@ public abstract class BaseAddLayoutMVCActionCommand
 			ThemeDisplay themeDisplay, Layout layout)
 		throws PortalException {
 
+		String layoutFullURL = portal.getLayoutFullURL(layout, themeDisplay);
+
 		Layout draftLayout = layoutLocalService.fetchLayout(
 			portal.getClassNameId(Layout.class), layout.getPlid());
-
-		String layoutFullURL = portal.getLayoutFullURL(layout, themeDisplay);
 
 		if (draftLayout != null) {
 			layoutFullURL = portal.getLayoutFullURL(draftLayout, themeDisplay);
