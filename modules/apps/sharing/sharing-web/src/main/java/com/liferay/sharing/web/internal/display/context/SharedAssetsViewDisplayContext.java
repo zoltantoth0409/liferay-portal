@@ -71,19 +71,19 @@ public class SharedAssetsViewDisplayContext {
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse,
 		HttpServletRequest request, ResourceBundle resourceBundle,
+		List<SharedAssetsFilterItem> sharedAssetsFilterItems,
 		SharingEntryLocalService sharingEntryLocalService,
 		Function<SharingEntry, SharingEntryInterpreter>
 			sharingEntryInterpreterFunction,
-		List<SharedAssetsFilterItem> sharedAssetsFilterItems,
 		SharingMenuItemFactory sharingMenuItemFactory,
 		SharingPermission sharingPermission) {
 
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
 		_request = request;
+		_sharedAssetsFilterItems = sharedAssetsFilterItems;
 		_sharingEntryLocalService = sharingEntryLocalService;
 		_sharingEntryInterpreterFunction = sharingEntryInterpreterFunction;
-		_sharedAssetsFilterItems = sharedAssetsFilterItems;
 		_sharingMenuItemFactory = sharingMenuItemFactory;
 		_sharingPermission = sharingPermission;
 

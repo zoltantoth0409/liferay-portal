@@ -154,10 +154,10 @@ public class SharedAssetsViewMVCRenderCommand implements MVCRenderCommand {
 		SharedAssetsViewDisplayContext sharedAssetsViewDisplayContext =
 			new SharedAssetsViewDisplayContext(
 				liferayPortletRequest, liferayPortletResponse, request,
-				resourceBundle, _sharingEntryLocalService,
+				resourceBundle, sharedAssetsFilterItems,
+				_sharingEntryLocalService,
 				_sharingEntryInterpreterProvider::getSharingEntryInterpreter,
-				sharedAssetsFilterItems, _sharingMenuItemFactory,
-				_sharingPermission);
+				_sharingMenuItemFactory, _sharingPermission);
 
 		renderRequest.setAttribute(
 			SharedAssetsViewDisplayContext.class.getName(),
