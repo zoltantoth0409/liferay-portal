@@ -214,7 +214,7 @@ public class FormMessageBodyWriter implements MessageBodyWriter<Form<?>> {
 			put(new JSONObject(singletonMap("@vocab", "http://schema.org")));
 			put("https://www.w3.org/ns/hydra/core#");
 		}
-	}
+	};
 
 	@Reference
 	private ProviderManager _providerManager;
