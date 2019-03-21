@@ -186,14 +186,14 @@ public class GroupPagesPortlet extends MVCPortlet {
 				LayoutAdminWebConfiguration.class.getName(),
 				_layoutAdminWebConfiguration);
 			renderRequest.setAttribute(
-				LayoutAdminWebKeys.LAYOUT_COPY_HELPER, _layoutCopyHelper);
-			renderRequest.setAttribute(
 				LayoutAdminWebKeys.ASSET_DISPLAY_CONTRIBUTOR_TRACKER,
 				_assetDisplayContributorTracker);
 			renderRequest.setAttribute(
 				ApplicationListWebKeys.GROUP_PROVIDER, _groupProvider);
 			renderRequest.setAttribute(
 				LayoutAdminWebKeys.ITEM_SELECTOR, _itemSelector);
+			renderRequest.setAttribute(
+				LayoutAdminWebKeys.LAYOUT_COPY_HELPER, _layoutCopyHelper);
 
 			super.doDispatch(renderRequest, renderResponse);
 		}
