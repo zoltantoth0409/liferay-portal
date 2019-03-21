@@ -47,15 +47,15 @@ public class JSONUtilTest {
 	public void testAddToStringCollection() {
 		List<String> values = new ArrayList<String>() {
 			{
-				add("foo");
-				add("bar");
+				add("alpha");
+				add("beta");
 			}
 		};
 
-		JSONUtil.addToStringCollection(values, JSONUtil.put("baz"));
+		JSONUtil.addToStringCollection(values, JSONUtil.put("gamma"));
 
 		Assert.assertEquals(values.toString(), 3, values.size());
-		Assert.assertTrue(values.contains("baz"));
+		Assert.assertTrue(values.contains("gamma"));
 	}
 
 	@Test
@@ -68,7 +68,7 @@ public class JSONUtilTest {
 		};
 
 		JSONUtil.addToStringCollection(
-			values, JSONUtil.put(JSONUtil.put("foo", "3")), "foo");
+			values, JSONUtil.put(JSONUtil.put("alpha", "3")), "alpha");
 
 		Assert.assertEquals(values.toString(), 3, values.size());
 		Assert.assertTrue(values.contains("3"));
@@ -77,58 +77,58 @@ public class JSONUtilTest {
 	@Test
 	public void testGetValue() {
 		JSONObject jsonObject = JSONUtil.put(
-			"foo", JSONUtil.put("bar", JSONUtil.put("baz")));
+			"alpha", JSONUtil.put("beta", JSONUtil.put("gamma")));
 
 		Assert.assertEquals(
-			"baz",
+			"gamma",
 			JSONUtil.getValue(
-				jsonObject, "JSONObject/foo", "JSONArray/bar", "Object/0"));
+				jsonObject, "JSONObject/alpha", "JSONArray/beta", "Object/0"));
 	}
 
 	@Test
 	public void testHasValue() {
 		Assert.assertTrue(
-			JSONUtil.hasValue(JSONUtil.put("foo", "bar", "baz"), "baz"));
+			JSONUtil.hasValue(JSONUtil.put("alpha", "beta", "gamma"), "gamma"));
 
 		Assert.assertFalse(
-			JSONUtil.hasValue(JSONUtil.put("foo", "bar", "baz"), "1"));
+			JSONUtil.hasValue(JSONUtil.put("alpha", "beta", "gamma"), "1"));
 	}
 
 	@Test
 	public void testMerge() throws Exception {
-		JSONObject jsonObject1 = JSONUtil.put("foo", "1");
+		JSONObject jsonObject1 = JSONUtil.put("alpha", "1");
 		JSONObject jsonObject2 = JSONUtil.put(
-			"bar", "2"
+			"beta", "2"
 		).put(
-			"baz", "3"
+			"gamma", "3"
 		);
 
 		JSONObject jsonObject3 = JSONUtil.merge(jsonObject1, jsonObject2);
 
 		Assert.assertEquals(3, jsonObject3.length());
-		Assert.assertTrue(jsonObject3.has("foo"));
-		Assert.assertTrue(jsonObject3.has("bar"));
-		Assert.assertTrue(jsonObject3.has("baz"));
+		Assert.assertTrue(jsonObject3.has("alpha"));
+		Assert.assertTrue(jsonObject3.has("beta"));
+		Assert.assertTrue(jsonObject3.has("gamma"));
 	}
 
 	@Test
 	public void testPutKeyValue() {
 		JSONObject jsonObject1 = _createJSONObject();
 
-		jsonObject1.put("foo", "bar");
+		jsonObject1.put("alpha", "beta");
 
-		JSONObject jsonObject2 = JSONUtil.put("foo", "bar");
+		JSONObject jsonObject2 = JSONUtil.put("alpha", "beta");
 
-		Assert.assertEquals(jsonObject1.get("foo"), jsonObject2.get("foo"));
+		Assert.assertEquals(jsonObject1.get("alpha"), jsonObject2.get("alpha"));
 	}
 
 	@Test
 	public void testPutValue() {
 		JSONArray jsonArray1 = _createJSONArray();
 
-		jsonArray1.put("foo");
+		jsonArray1.put("alpha");
 
-		JSONArray jsonArray2 = JSONUtil.put("foo");
+		JSONArray jsonArray2 = JSONUtil.put("alpha");
 
 		Assert.assertEquals(jsonArray1.length(), jsonArray2.length());
 		Assert.assertEquals(jsonArray1.get(0), jsonArray2.get(0));
@@ -139,14 +139,14 @@ public class JSONUtilTest {
 		JSONArray jsonArray1 = _createJSONArray();
 
 		jsonArray1.put(
-			"foo"
+			"alpha"
 		).put(
-			"bar"
+			"beta"
 		).put(
-			"baz"
+			"gamma"
 		);
 
-		JSONArray jsonArray2 = JSONUtil.put("foo", "bar", "baz");
+		JSONArray jsonArray2 = JSONUtil.put("alpha", "beta", "gamma");
 
 		for (int i = 0; i < jsonArray1.length(); i++) {
 			Assert.assertEquals(jsonArray1.get(i), jsonArray2.get(i));
@@ -157,25 +157,25 @@ public class JSONUtilTest {
 	public void testReplace() {
 		JSONArray jsonArray = JSONUtil.put(
 			JSONUtil.put(
-				"foo", "1"
+				"alpha", "1"
 			).put(
-				"bar", "2"
+				"beta", "2"
 			));
 
 		JSONObject jsonObject = JSONUtil.put(
-			"foo", "1"
+			"alpha", "1"
 		).put(
-			"bar", "3"
+			"beta", "3"
 		).put(
-			"baz", "4"
+			"gamma", "4"
 		);
 
-		jsonArray = JSONUtil.replace(jsonArray, "foo", jsonObject);
+		jsonArray = JSONUtil.replace(jsonArray, "alpha", jsonObject);
 
 		jsonObject = jsonArray.getJSONObject(0);
 
-		Assert.assertEquals("3", jsonObject.get("bar"));
-		Assert.assertEquals("4", jsonObject.get("baz"));
+		Assert.assertEquals("3", jsonObject.get("beta"));
+		Assert.assertEquals("4", jsonObject.get("gamma"));
 	}
 
 	@Test
@@ -197,9 +197,9 @@ public class JSONUtilTest {
 			new long[] {1, 2},
 			JSONUtil.toLongArray(
 				JSONUtil.put(
-					JSONUtil.put("foo", 1), JSONUtil.put("foo", 2),
-					JSONUtil.put("bar", 3)),
-				"foo"));
+					JSONUtil.put("alpha", 1), JSONUtil.put("alpha", 2),
+					JSONUtil.put("beta", 3)),
+				"alpha"));
 	}
 
 	@Test
@@ -227,9 +227,9 @@ public class JSONUtilTest {
 			},
 			JSONUtil.toLongList(
 				JSONUtil.put(
-					JSONUtil.put("foo", 1), JSONUtil.put("foo", 2),
-					JSONUtil.put("foo", 3)),
-				"foo"));
+					JSONUtil.put("alpha", 1), JSONUtil.put("alpha", 2),
+					JSONUtil.put("alpha", 3)),
+				"alpha"));
 	}
 
 	@Test
@@ -256,16 +256,16 @@ public class JSONUtilTest {
 			},
 			JSONUtil.toLongSet(
 				JSONUtil.put(
-					JSONUtil.put("foo", 1), JSONUtil.put("foo", 2),
-					JSONUtil.put("bar", 3)),
-				"foo"));
+					JSONUtil.put("alpha", 1), JSONUtil.put("alpha", 2),
+					JSONUtil.put("beta", 3)),
+				"alpha"));
 	}
 
 	@Test
 	public void testToObjectArray() {
 		Assert.assertArrayEquals(
-			new Object[] {1, "bar", true},
-			JSONUtil.toObjectArray(JSONUtil.put(1, "bar", true)));
+			new Object[] {1, "beta", true},
+			JSONUtil.toObjectArray(JSONUtil.put(1, "beta", true)));
 	}
 
 	@Test
@@ -274,9 +274,9 @@ public class JSONUtilTest {
 			new Object[] {1, true},
 			JSONUtil.toObjectArray(
 				JSONUtil.put(
-					JSONUtil.put("foo", 1), JSONUtil.put("foo", true),
-					JSONUtil.put("bar", 3)),
-				"foo"));
+					JSONUtil.put("alpha", 1), JSONUtil.put("alpha", true),
+					JSONUtil.put("beta", 3)),
+				"alpha"));
 	}
 
 	@Test
@@ -285,11 +285,11 @@ public class JSONUtilTest {
 			new ArrayList<Object>() {
 				{
 					add(1);
-					add("bar");
+					add("beta");
 					add(true);
 				}
 			},
-			JSONUtil.toObjectList(JSONUtil.put(1, "bar", true)));
+			JSONUtil.toObjectList(JSONUtil.put(1, "beta", true)));
 	}
 
 	@Test
@@ -298,14 +298,14 @@ public class JSONUtilTest {
 			new ArrayList<Object>() {
 				{
 					add(1);
-					add("bar");
+					add("beta");
 				}
 			},
 			JSONUtil.toObjectList(
 				JSONUtil.put(
-					JSONUtil.put("foo", 1), JSONUtil.put("foo", "bar"),
-					JSONUtil.put("bar", true)),
-				"foo"));
+					JSONUtil.put("alpha", 1), JSONUtil.put("alpha", "beta"),
+					JSONUtil.put("beta", true)),
+				"alpha"));
 	}
 
 	@Test
@@ -314,11 +314,11 @@ public class JSONUtilTest {
 			new HashSet<Object>() {
 				{
 					add(1);
-					add("bar");
+					add("beta");
 					add(true);
 				}
 			},
-			JSONUtil.toObjectSet(JSONUtil.put(1, "bar", true)));
+			JSONUtil.toObjectSet(JSONUtil.put(1, "beta", true)));
 	}
 
 	@Test
@@ -327,32 +327,32 @@ public class JSONUtilTest {
 			new HashSet<Object>() {
 				{
 					add(1);
-					add("bar");
+					add("beta");
 				}
 			},
 			JSONUtil.toObjectSet(
 				JSONUtil.put(
-					JSONUtil.put("foo", 1), JSONUtil.put("foo", "bar"),
-					JSONUtil.put("bar", true)),
-				"foo"));
+					JSONUtil.put("alpha", 1), JSONUtil.put("alpha", "beta"),
+					JSONUtil.put("beta", true)),
+				"alpha"));
 	}
 
 	@Test
 	public void testToStringArray() {
 		Assert.assertArrayEquals(
-			new String[] {"foo", "bar", "baz"},
-			JSONUtil.toStringArray(JSONUtil.put("foo", "bar", "baz")));
+			new String[] {"alpha", "beta", "gamma"},
+			JSONUtil.toStringArray(JSONUtil.put("alpha", "beta", "gamma")));
 	}
 
 	@Test
 	public void testToStringArrayWithKey() {
 		Assert.assertArrayEquals(
-			new String[] {"foo", "bar"},
+			new String[] {"alpha", "beta"},
 			JSONUtil.toStringArray(
 				JSONUtil.put(
-					JSONUtil.put("foo", "foo"), JSONUtil.put("foo", "bar"),
-					JSONUtil.put("bar", "baz")),
-				"foo"));
+					JSONUtil.put("alpha", "alpha"), JSONUtil.put("alpha", "beta"),
+					JSONUtil.put("beta", "gamma")),
+				"alpha"));
 	}
 
 	@Test
@@ -360,12 +360,12 @@ public class JSONUtilTest {
 		Assert.assertEquals(
 			new ArrayList<String>() {
 				{
-					add("foo");
-					add("bar");
-					add("baz");
+					add("alpha");
+					add("beta");
+					add("gamma");
 				}
 			},
-			JSONUtil.toStringList(JSONUtil.put("foo", "bar", "baz")));
+			JSONUtil.toStringList(JSONUtil.put("alpha", "beta", "gamma")));
 	}
 
 	@Test
@@ -373,15 +373,15 @@ public class JSONUtilTest {
 		Assert.assertEquals(
 			new ArrayList<String>() {
 				{
-					add("foo");
-					add("bar");
+					add("alpha");
+					add("beta");
 				}
 			},
 			JSONUtil.toStringList(
 				JSONUtil.put(
-					JSONUtil.put("foo", "foo"), JSONUtil.put("foo", "bar"),
-					JSONUtil.put("bar", "baz")),
-				"foo"));
+					JSONUtil.put("alpha", "alpha"), JSONUtil.put("alpha", "beta"),
+					JSONUtil.put("beta", "gamma")),
+				"alpha"));
 	}
 
 	@Test
@@ -389,12 +389,12 @@ public class JSONUtilTest {
 		Assert.assertEquals(
 			new HashSet<String>() {
 				{
-					add("foo");
-					add("bar");
-					add("baz");
+					add("alpha");
+					add("beta");
+					add("gamma");
 				}
 			},
-			JSONUtil.toStringSet(JSONUtil.put("foo", "bar", "baz")));
+			JSONUtil.toStringSet(JSONUtil.put("alpha", "beta", "gamma")));
 	}
 
 	@Test
@@ -402,15 +402,15 @@ public class JSONUtilTest {
 		Assert.assertEquals(
 			new HashSet<String>() {
 				{
-					add("foo");
-					add("bar");
+					add("alpha");
+					add("beta");
 				}
 			},
 			JSONUtil.toStringSet(
 				JSONUtil.put(
-					JSONUtil.put("foo", "foo"), JSONUtil.put("foo", "bar"),
-					JSONUtil.put("bar", "baz")),
-				"foo"));
+					JSONUtil.put("alpha", "alpha"), JSONUtil.put("alpha", "beta"),
+					JSONUtil.put("beta", "gamma")),
+				"alpha"));
 	}
 
 	private JSONArray _createJSONArray() {
