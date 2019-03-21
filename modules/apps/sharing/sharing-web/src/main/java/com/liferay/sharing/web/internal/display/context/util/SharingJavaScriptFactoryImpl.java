@@ -189,7 +189,6 @@ public class SharingJavaScriptFactoryImpl implements SharingJavaScriptFactory {
 		String dialogId, String namespace) {
 
 		portletURL.setParameter("dialogId", namespace + dialogId);
-
 		portletURL.setParameter("refererPortletNamespace", namespace);
 
 		try {
