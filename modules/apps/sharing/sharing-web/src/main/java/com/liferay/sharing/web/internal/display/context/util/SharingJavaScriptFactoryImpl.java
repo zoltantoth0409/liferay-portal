@@ -239,7 +239,6 @@ public class SharingJavaScriptFactoryImpl implements SharingJavaScriptFactory {
 		sharingURL.setParameter(
 			"classNameId",
 			String.valueOf(_classNameLocalService.getClassNameId(className)));
-
 		sharingURL.setParameter("classPK", String.valueOf(classPK));
 
 		return sharingURL;
