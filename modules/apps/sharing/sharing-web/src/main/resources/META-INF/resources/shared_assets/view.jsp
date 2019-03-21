@@ -17,8 +17,7 @@
 <%@ include file="/shared_assets/init.jsp" %>
 
 <%
-SharedAssetsViewDisplayContext
-	sharedAssetsViewDisplayContext = (SharedAssetsViewDisplayContext)renderRequest.getAttribute(SharedAssetsViewDisplayContext.class.getName());
+SharedAssetsViewDisplayContext sharedAssetsViewDisplayContext = (SharedAssetsViewDisplayContext)renderRequest.getAttribute(SharedAssetsViewDisplayContext.class.getName());
 %>
 
 <clay:navigation-bar
