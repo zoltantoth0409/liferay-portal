@@ -25,6 +25,7 @@ import com.liferay.asset.list.util.AssetListPortletUtil;
 import com.liferay.asset.list.web.internal.security.permission.resource.AssetListPermission;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -43,7 +44,6 @@ import com.liferay.segments.model.SegmentsEntry;
 import com.liferay.segments.service.SegmentsEntryLocalServiceUtil;
 
 import java.util.List;
-import java.util.function.Consumer;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
@@ -75,12 +75,12 @@ public class AssetListDisplayContext {
 		return new DropdownItemList() {
 			{
 				add(
-					_getAddAssetListEntryDropdownItem(
+					_getAddAssetListEntryDropdownItemUnsafeConsumer(
 						AssetListEntryTypeConstants.TYPE_MANUAL_LABEL,
 						"manual-selection",
 						AssetListEntryTypeConstants.TYPE_MANUAL));
 				add(
-					_getAddAssetListEntryDropdownItem(
+					_getAddAssetListEntryDropdownItemUnsafeConsumer(
 						AssetListEntryTypeConstants.TYPE_DYNAMIC_LABEL,
 						"dynamic-selection",
 						AssetListEntryTypeConstants.TYPE_DYNAMIC));
@@ -349,8 +349,9 @@ public class AssetListDisplayContext {
 			AssetListActionKeys.ADD_ASSET_LIST_ENTRY);
 	}
 
-	private Consumer<DropdownItem> _getAddAssetListEntryDropdownItem(
-		String title, String label, int type) {
+	private UnsafeConsumer<DropdownItem, Exception>
+		_getAddAssetListEntryDropdownItemUnsafeConsumer(
+			String title, String label, int type) {
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "addAssetListEntry");

@@ -18,7 +18,6 @@ import com.liferay.asset.kernel.action.AssetEntryAction;
 import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.SafeConsumer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -65,16 +64,14 @@ public class AssetEntryActionDropdownItemsProvider {
 
 				if (editAssetEntryURL != null) {
 					add(
-						SafeConsumer.ignore(
-							dropdownItem -> {
-								dropdownItem.setIcon("pencil");
-								dropdownItem.putData(
-									"useDialog", Boolean.FALSE.toString());
-								dropdownItem.setHref(
-									editAssetEntryURL.toString());
-								dropdownItem.setLabel(
-									LanguageUtil.get(_request, "edit"));
-							}));
+						dropdownItem -> {
+							dropdownItem.setIcon("pencil");
+							dropdownItem.putData(
+								"useDialog", Boolean.FALSE.toString());
+							dropdownItem.setHref(editAssetEntryURL.toString());
+							dropdownItem.setLabel(
+								LanguageUtil.get(_request, "edit"));
+						});
 				}
 
 				if (ListUtil.isNotEmpty(_assetEntryActions)) {
@@ -97,21 +94,19 @@ public class AssetEntryActionDropdownItemsProvider {
 							_themeDisplay.getLocale());
 
 						add(
-							SafeConsumer.ignore(
-								dropdownItem -> {
-									dropdownItem.setHref(
-										assetEntryAction.getDialogURL(
-											_request, _assetRenderer));
-									dropdownItem.setIcon(
-										assetEntryAction.getIcon());
-									dropdownItem.putData(
-										"destroyOnHide",
-										Boolean.TRUE.toString());
-									dropdownItem.putData(
-										"useDialog", Boolean.TRUE.toString());
-									dropdownItem.putData("title", title);
-									dropdownItem.setLabel(title);
-								}));
+							dropdownItem -> {
+								dropdownItem.setHref(
+									assetEntryAction.getDialogURL(
+										_request, _assetRenderer));
+								dropdownItem.setIcon(
+									assetEntryAction.getIcon());
+								dropdownItem.putData(
+									"destroyOnHide", Boolean.TRUE.toString());
+								dropdownItem.putData(
+									"useDialog", Boolean.TRUE.toString());
+								dropdownItem.putData("title", title);
+								dropdownItem.setLabel(title);
+							});
 					}
 				}
 			}

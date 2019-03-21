@@ -27,6 +27,7 @@ import com.liferay.layout.admin.web.internal.constants.LayoutAdminWebKeys;
 import com.liferay.layout.admin.web.internal.security.permission.resource.LayoutPageTemplateEntryPermission;
 import com.liferay.layout.page.template.constants.LayoutPageTemplateEntryTypeConstants;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
+import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -44,7 +45,6 @@ import com.liferay.taglib.security.PermissionsURLTag;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
@@ -84,29 +84,32 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 						_layoutPageTemplateEntry, ActionKeys.UPDATE)) {
 
 					add(
-						_getUpdateLayoutPageTemplateEntryPreviewActionConsumer());
-					add(_getRenameLayoutPageTemplateEntryActionConsumer());
+						_getUpdateLayoutPageTemplateEntryPreviewActionUnsafeConsumer());
+					add(
+						_getRenameLayoutPageTemplateEntryActionUnsafeConsumer());
 				}
 
 				if (LayoutPageTemplateEntryPermission.contains(
 						_themeDisplay.getPermissionChecker(),
 						_layoutPageTemplateEntry, ActionKeys.PERMISSIONS)) {
 
-					add(_getPermissionsLayoutPageTemplateEntryActionConsumer());
+					add(
+						_getPermissionsLayoutPageTemplateEntryActionUnsafeConsumer());
 				}
 
 				if (LayoutPageTemplateEntryPermission.contains(
 						_themeDisplay.getPermissionChecker(),
 						_layoutPageTemplateEntry, ActionKeys.DELETE)) {
 
-					add(_getDeleteLayoutPageTemplateEntryActionConsumer());
+					add(
+						_getDeleteLayoutPageTemplateEntryActionUnsafeConsumer());
 				}
 			}
 		};
 	}
 
-	private Consumer<DropdownItem>
-		_getDeleteLayoutPageTemplateEntryActionConsumer() {
+	private UnsafeConsumer<DropdownItem, Exception>
+		_getDeleteLayoutPageTemplateEntryActionUnsafeConsumer() {
 
 		PortletURL deleteLayoutPageTemplateEntryURL =
 			_renderResponse.createActionURL();
@@ -166,8 +169,8 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 		return itemSelectorURL.toString();
 	}
 
-	private Consumer<DropdownItem>
-			_getPermissionsLayoutPageTemplateEntryActionConsumer()
+	private UnsafeConsumer<DropdownItem, Exception>
+			_getPermissionsLayoutPageTemplateEntryActionUnsafeConsumer()
 		throws Exception {
 
 		String permissionsLayoutPageTemplateEntryURL = PermissionsURLTag.doTag(
@@ -187,8 +190,8 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 		};
 	}
 
-	private Consumer<DropdownItem>
-			_getRenameLayoutPageTemplateEntryActionConsumer()
+	private UnsafeConsumer<DropdownItem, Exception>
+			_getRenameLayoutPageTemplateEntryActionUnsafeConsumer()
 		throws PortalException {
 
 		if (Objects.equals(
@@ -232,8 +235,8 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 		};
 	}
 
-	private Consumer<DropdownItem>
-		_getUpdateLayoutPageTemplateEntryPreviewActionConsumer() {
+	private UnsafeConsumer<DropdownItem, Exception>
+		_getUpdateLayoutPageTemplateEntryPreviewActionUnsafeConsumer() {
 
 		return dropdownItem -> {
 			dropdownItem.putData(

@@ -17,7 +17,6 @@ package com.liferay.sharing.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.SafeConsumer;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -115,14 +114,12 @@ public class SharedAssetsViewDisplayContext {
 		return new DropdownItemList() {
 			{
 				addGroup(
-					SafeConsumer.ignore(
-						dropdownGroupItem -> {
-							dropdownGroupItem.setDropdownItems(
-								_getFilterNavigationDropdownItems());
-							dropdownGroupItem.setLabel(
-								LanguageUtil.get(
-									_request, "filter-by-navigation"));
-						}));
+					dropdownGroupItem -> {
+						dropdownGroupItem.setDropdownItems(
+							_getFilterNavigationDropdownItems());
+						dropdownGroupItem.setLabel(
+							LanguageUtil.get(_request, "filter-by-navigation"));
+					});
 				addGroup(
 					dropdownGroupItem -> {
 						dropdownGroupItem.setDropdownItems(
@@ -138,37 +135,35 @@ public class SharedAssetsViewDisplayContext {
 		return new NavigationItemList() {
 			{
 				add(
-					SafeConsumer.ignore(
-						navigationItem -> {
-							navigationItem.setActive(_isIncoming());
+					navigationItem -> {
+						navigationItem.setActive(_isIncoming());
 
-							PortletURL sharedWithMeURL =
-								_liferayPortletResponse.createRenderURL();
+						PortletURL sharedWithMeURL =
+							_liferayPortletResponse.createRenderURL();
 
-							sharedWithMeURL.setParameter(
-								"incoming", Boolean.TRUE.toString());
+						sharedWithMeURL.setParameter(
+							"incoming", Boolean.TRUE.toString());
 
-							navigationItem.setHref(sharedWithMeURL);
+						navigationItem.setHref(sharedWithMeURL);
 
-							navigationItem.setLabel(
-								LanguageUtil.get(_request, "shared-with-me"));
-						}));
+						navigationItem.setLabel(
+							LanguageUtil.get(_request, "shared-with-me"));
+					});
 				add(
-					SafeConsumer.ignore(
-						navigationItem -> {
-							navigationItem.setActive(!_isIncoming());
+					navigationItem -> {
+						navigationItem.setActive(!_isIncoming());
 
-							PortletURL sharedByMeURL =
-								_liferayPortletResponse.createRenderURL();
+						PortletURL sharedByMeURL =
+							_liferayPortletResponse.createRenderURL();
 
-							sharedByMeURL.setParameter(
-								"incoming", Boolean.FALSE.toString());
+						sharedByMeURL.setParameter(
+							"incoming", Boolean.FALSE.toString());
 
-							navigationItem.setHref(sharedByMeURL);
+						navigationItem.setHref(sharedByMeURL);
 
-							navigationItem.setLabel(
-								LanguageUtil.get(_request, "shared-by-me"));
-						}));
+						navigationItem.setLabel(
+							LanguageUtil.get(_request, "shared-by-me"));
+					});
 			}
 		};
 	}
@@ -368,34 +363,29 @@ public class SharedAssetsViewDisplayContext {
 				String className = ParamUtil.getString(_request, "className");
 
 				add(
-					SafeConsumer.ignore(
-						dropdownItem -> {
-							dropdownItem.setActive(Validator.isNull(className));
+					dropdownItem -> {
+						dropdownItem.setActive(Validator.isNull(className));
 
-							PortletURL viewAllClassNamesURL =
-								PortletURLUtil.clone(
-									_currentURLObj, _liferayPortletResponse);
+						PortletURL viewAllClassNamesURL = PortletURLUtil.clone(
+							_currentURLObj, _liferayPortletResponse);
 
-							viewAllClassNamesURL.setParameter(
-								"mvcRenderCommandName", "/shared_assets/view");
-							viewAllClassNamesURL.setParameter(
-								"className", (String)null);
+						viewAllClassNamesURL.setParameter(
+							"mvcRenderCommandName", "/shared_assets/view");
+						viewAllClassNamesURL.setParameter(
+							"className", (String)null);
 
-							dropdownItem.setHref(viewAllClassNamesURL);
+						dropdownItem.setHref(viewAllClassNamesURL);
 
-							dropdownItem.setLabel(
-								LanguageUtil.get(_request, "all"));
-						}));
+						dropdownItem.setLabel(
+							LanguageUtil.get(_request, "all"));
+					});
 				add(
-					SafeConsumer.ignore(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "openAssetTypesSelector");
-							dropdownItem.setActive(
-								Validator.isNotNull(className));
-							dropdownItem.setLabel(
-								_getClassNameLabel(className));
-						}));
+					dropdownItem -> {
+						dropdownItem.putData(
+							"action", "openAssetTypesSelector");
+						dropdownItem.setActive(Validator.isNotNull(className));
+						dropdownItem.setLabel(_getClassNameLabel(className));
+					});
 			}
 
 			private String _getClassNameLabel(String className) {
@@ -429,16 +419,14 @@ public class SharedAssetsViewDisplayContext {
 		return new DropdownItemList() {
 			{
 				add(
-					SafeConsumer.ignore(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								"sharedDate".equals(orderByCol));
-							dropdownItem.setHref(
-								_getCurrentSortingURL(), "orderByCol",
-								"sharedDate");
-							dropdownItem.setLabel(
-								LanguageUtil.get(_request, "shared-date"));
-						}));
+					dropdownItem -> {
+						dropdownItem.setActive("sharedDate".equals(orderByCol));
+						dropdownItem.setHref(
+							_getCurrentSortingURL(), "orderByCol",
+							"sharedDate");
+						dropdownItem.setLabel(
+							LanguageUtil.get(_request, "shared-date"));
+					});
 			}
 		};
 	}

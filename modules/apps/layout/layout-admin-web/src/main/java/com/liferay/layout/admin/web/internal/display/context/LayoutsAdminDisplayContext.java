@@ -20,7 +20,6 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.SafeConsumer;
 import com.liferay.layout.admin.web.internal.constants.LayoutAdminWebKeys;
 import com.liferay.layout.page.template.model.LayoutPageTemplateCollection;
 import com.liferay.layout.page.template.service.LayoutPageTemplateCollectionLocalServiceUtil;
@@ -128,23 +127,21 @@ public class LayoutsAdminDisplayContext {
 			{
 				if (isShowPublicPages()) {
 					add(
-						SafeConsumer.ignore(
-							dropdownItem -> {
-								dropdownItem.setHref(
-									getSelectLayoutPageTemplateEntryURL(false));
-								dropdownItem.setLabel(
-									LanguageUtil.get(_request, "public-page"));
-							}));
+						dropdownItem -> {
+							dropdownItem.setHref(
+								getSelectLayoutPageTemplateEntryURL(false));
+							dropdownItem.setLabel(
+								LanguageUtil.get(_request, "public-page"));
+						});
 				}
 
 				add(
-					SafeConsumer.ignore(
-						dropdownItem -> {
-							dropdownItem.setHref(
-								getSelectLayoutPageTemplateEntryURL(true));
-							dropdownItem.setLabel(
-								LanguageUtil.get(_request, "private-page"));
-						}));
+					dropdownItem -> {
+						dropdownItem.setHref(
+							getSelectLayoutPageTemplateEntryURL(true));
+						dropdownItem.setLabel(
+							LanguageUtil.get(_request, "private-page"));
+					});
 			}
 		};
 	}
