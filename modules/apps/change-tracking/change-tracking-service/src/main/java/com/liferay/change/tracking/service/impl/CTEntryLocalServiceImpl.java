@@ -350,9 +350,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		);
 	}
 
-	private Sort[] _getSorts(
-		QueryDefinition<CTEntry> queryDefinition) {
-
+	private Sort[] _getSorts(QueryDefinition<CTEntry> queryDefinition) {
 		if (queryDefinition == null) {
 			return new Sort[0];
 		}
