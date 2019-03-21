@@ -2,6 +2,7 @@
 
 <suppressions>
 	<checkstyle>
+		<suppress checks="ChainingCheck" files="modules/apps/apio-architect/apio-architect-test/src/main/java/com/liferay/apio/architect/internal/test/base/BaseTest\.java" />
 		<suppress checks="ConstantNameCheck" files="modules/apps/apio-architect/apio-architect-sample/src/test/java/com/liferay/apio/architect/sample/internal/converter/DemoDataUtil\.java" />
 		<suppress checks="IndentationCheck" files="modules/apps/apio-architect/apio-architect-api/src/test/java/com/liferay/apio/architect/consumer/DecaConsumerTest\.java" />
 		<suppress checks="IndentationCheck" files="modules/apps/apio-architect/apio-architect-api/src/test/java/com/liferay/apio/architect/consumer/EnneaConsumerTest\.java" />
