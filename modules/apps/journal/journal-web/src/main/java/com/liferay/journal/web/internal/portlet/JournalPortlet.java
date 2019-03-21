@@ -734,19 +734,13 @@ public class JournalPortlet extends MVCPortlet {
 		long classNameId = ParamUtil.getLong(
 			uploadPortletRequest, "classNameId");
 		long classPK = ParamUtil.getLong(uploadPortletRequest, "classPK");
-
 		String articleId = ParamUtil.getString(
 			uploadPortletRequest, "articleId");
-
 		boolean autoArticleId = ParamUtil.getBoolean(
 			uploadPortletRequest, "autoArticleId");
 		double version = ParamUtil.getDouble(uploadPortletRequest, "version");
-
 		Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "titleMapAsXML");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			JournalArticle.class.getName(), uploadPortletRequest);
 
 		String ddmStructureKey = ParamUtil.getString(
 			uploadPortletRequest, "ddmStructureKey");
@@ -755,6 +749,9 @@ public class JournalPortlet extends MVCPortlet {
 			_portal.getSiteGroupId(groupId),
 			_portal.getClassNameId(JournalArticle.class), ddmStructureKey,
 			true);
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			JournalArticle.class.getName(), uploadPortletRequest);
 
 		Fields fields = DDMUtil.getFields(
 			ddmStructure.getStructureId(), serviceContext);
