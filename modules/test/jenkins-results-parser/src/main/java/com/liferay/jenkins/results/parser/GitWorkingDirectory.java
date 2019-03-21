@@ -80,7 +80,7 @@ public class GitWorkingDirectory {
 			else {
 				throw new IllegalArgumentException(
 					JenkinsResultsParserUtil.combine(
-						"Git Remote ", gitRemoteName, " already exists"));
+						"Git remote ", gitRemoteName, " already exists"));
 			}
 		}
 
@@ -105,7 +105,7 @@ public class GitWorkingDirectory {
 			if (executionResult.getExitValue() != 0) {
 				throw new RuntimeException(
 					JenkinsResultsParserUtil.combine(
-						"Unable to write Git Remote ", gitRemoteName, "\n",
+						"Unable to write Git remote ", gitRemoteName, "\n",
 						executionResult.getStandardError()));
 			}
 		}
@@ -817,7 +817,7 @@ public class GitWorkingDirectory {
 		if (exceptionThrown || (executionResult.getExitValue() != 0)) {
 			throw new RuntimeException(
 				JenkinsResultsParserUtil.combine(
-					"Unable to run git gc\n",
+					"Unable to garbage collect Git\n",
 					executionResult.getStandardError()));
 		}
 	}
