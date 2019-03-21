@@ -12,8 +12,8 @@ class Sharing extends PortletBase {
 
 		this._classNameId = config.classNameId;
 		this._classPK = config.classPK;
-		this._refererPortletNamespace = config.refererPortletNamespace;
 		this._dialogId = config.dialogId;
+		this._refererPortletNamespace = config.refererPortletNamespace;
 		this._userEmailAddresses = [];
 	}
 
