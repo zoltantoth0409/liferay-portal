@@ -21,8 +21,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 SharingEntry sharingEntry = (SharingEntry)row.getObject();
 
-SharedAssetsViewDisplayContext
-	sharedAssetsViewDisplayContext = (SharedAssetsViewDisplayContext)renderRequest.getAttribute(SharedAssetsViewDisplayContext.class.getName());
+SharedAssetsViewDisplayContext sharedAssetsViewDisplayContext = (SharedAssetsViewDisplayContext)renderRequest.getAttribute(SharedAssetsViewDisplayContext.class.getName());
 
 boolean hasEditPermission = sharedAssetsViewDisplayContext.hasEditPermission(sharingEntry.getClassNameId(), sharingEntry.getClassPK());
 %>
