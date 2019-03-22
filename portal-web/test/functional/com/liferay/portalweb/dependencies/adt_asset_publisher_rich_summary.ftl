@@ -163,7 +163,6 @@
 		${printURL.setParameter("assetEntryId", entry.getEntryId()?string)}
 		${printURL.setParameter("viewMode", "print")}
 		${printURL.setParameter("type", entry.getAssetRendererFactory().getType())}
-
 		${printURL.setWindowState("pop_up")}
 
 		<@liferay_ui["icon"]
