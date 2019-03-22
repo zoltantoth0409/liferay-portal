@@ -55,7 +55,8 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		throws Exception {
 
 		_modelResourcePermission.check(
-			getPermissionChecker(), dataDefinitionId, ActionKeys.DELETE);
+			PermissionThreadLocal.getPermissionChecker(), dataDefinitionId,
+			ActionKeys.DELETE);
 
 		_ddmStructureLocalService.deleteStructure(dataDefinitionId);
 
@@ -101,7 +102,8 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		throws Exception {
 
 		_modelResourcePermission.check(
-			getPermissionChecker(), dataDefinitionId, ActionKeys.VIEW);
+			PermissionThreadLocal.getPermissionChecker(), dataDefinitionId,
+			ActionKeys.VIEW);
 
 		return DataDefinitionUtil.toDataDefinition(
 			_ddmStructureLocalService.getStructure(dataDefinitionId));
@@ -112,8 +114,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
 
-		checkPermission(
-			contentSpaceId, "ADD_DATA_DEFINITION", getPermissionChecker());
+		_checkPermission(contentSpaceId, "ADD_DATA_DEFINITION");
 
 		return DataDefinitionUtil.toDataDefinition(
 			_ddmStructureLocalService.addStructure(
@@ -133,7 +134,8 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		throws Exception {
 
 		_modelResourcePermission.check(
-			getPermissionChecker(), dataDefinition.getId(), ActionKeys.UPDATE);
+			PermissionThreadLocal.getPermissionChecker(),
+			dataDefinition.getId(), ActionKeys.UPDATE);
 
 		return DataDefinitionUtil.toDataDefinition(
 			_ddmStructureLocalService.updateStructure(
@@ -146,9 +148,11 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				new ServiceContext()));
 	}
 
-	protected void checkPermission(
-			long classPK, String actionId, PermissionChecker permissionChecker)
+	private void _checkPermission(long classPK, String actionId)
 		throws PortalException {
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
 
 		Group group = _groupLocalService.fetchGroup(classPK);
 
@@ -164,20 +168,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			throw new PrincipalException.MustHavePermission(
 				permissionChecker, resourceName, classPK, actionId);
 		}
-	}
-
-	protected PermissionChecker getPermissionChecker()
-		throws PrincipalException {
-
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		if (permissionChecker == null) {
-			throw new PrincipalException(
-				"Permission checker is not initialized");
-		}
-
-		return permissionChecker;
 	}
 
 	@Reference(
