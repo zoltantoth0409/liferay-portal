@@ -14,28 +14,30 @@
 
 package com.liferay.data.engine.rest.internal.rule.v1_0;
 
+import java.util.Objects;
+
 /**
  * @author Jeyvison Nascimento
  */
 public class DataRuleFunctionFactory {
 
 	public static DataRuleFunction getDataRuleFunction(String name) {
-		if ("decimalLiteral".equals(name)) {
+		if (Objects.equals(name, "decimalLiteral")) {
 			return new DecimalLiteralDataRuleFunction();
 		}
-		else if ("emailAddress".equals(name)) {
+		else if (Objects.equals(name, "emailAddress")) {
 			return new EmailAddressDataRuleFunction();
 		}
-		else if ("empty".equals(name)) {
+		else if (Objects.equals(name, "empty")) {
 			return new EmptyDataRuleFunction();
 		}
-		else if ("integerLiteral".equals(name)) {
+		else if (Objects.equals(name, "integerLiteral")) {
 			return new EmailAddressDataRuleFunction();
 		}
-		else if ("matchExpression".equals(name)) {
+		else if (Objects.equals(name, "matchExpression")) {
 			return new MatchExpressionDataRuleFunction();
 		}
-		else if ("url".equals(name)) {
+		else if (Objects.equals(name, "url")) {
 			return new EmailAddressDataRuleFunction();
 		}
 
