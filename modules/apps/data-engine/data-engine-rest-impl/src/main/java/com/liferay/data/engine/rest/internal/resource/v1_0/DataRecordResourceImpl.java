@@ -177,16 +177,17 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 
 		Set<String> fieldNames = dataRecordValuesMap.keySet();
 
-		List<String> orphanFieldNames = fieldNames.stream(
+		List<String> missingFieldNames = fieldNames.stream(
 		).filter(
 			fieldName -> !dataDefinitionFieldNames.contains(fieldName)
 		).collect(
 			Collectors.toList()
 		);
 
-		if (!orphanFieldNames.isEmpty()) {
+		if (!missingFieldNames.isEmpty()) {
 			throw new Exception(
-				"No such fields: " + ArrayUtil.toStringArray(orphanFieldNames));
+				"Missing fields: " +
+					ArrayUtil.toStringArray(missingFieldNames));
 		}
 
 		// Field values
