@@ -16,8 +16,9 @@ package com.liferay.data.engine.rest.internal.rule.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionRuleParameter;
+import com.liferay.portal.kernel.util.GetterUtil;
 
-import org.apache.commons.lang.math.NumberUtils;
+import java.util.Objects;
 
 /**
  * @author Jeyvison Nascimento
@@ -38,16 +39,10 @@ public class IntegerLiteralDataRuleFunction implements DataRuleFunction {
 			return dataRuleFunctionResult;
 		}
 
-		Integer valueInteger = NumberUtils.toInt(
-			value.toString(), Integer.MIN_VALUE);
-
-		boolean valid = false;
-
-		if (valueInteger != Integer.MIN_VALUE) {
-			valid = true;
-		}
-
-		dataRuleFunctionResult.setValid(valid);
+		dataRuleFunctionResult.setValid(
+			!Objects.equals(
+				GetterUtil.getInteger(value.toString(), Integer.MIN_VALUE),
+				Integer.MIN_VALUE));
 
 		return dataRuleFunctionResult;
 	}
