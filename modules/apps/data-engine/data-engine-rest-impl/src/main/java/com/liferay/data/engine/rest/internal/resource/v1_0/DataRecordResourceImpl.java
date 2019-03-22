@@ -113,8 +113,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			dataRecordCollectionId);
 
 		_validate(
-			DataDefinitionUtil.toDataDefinition(
-				ddlRecordSet.getDDMStructure()),
+			DataDefinitionUtil.toDataDefinition(ddlRecordSet.getDDMStructure()),
 			dataRecord);
 
 		return _toDataRecord(
@@ -135,8 +134,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
 
 		_validate(
-			DataDefinitionUtil.toDataDefinition(ddmStructure),
-			dataRecord);
+			DataDefinitionUtil.toDataDefinition(ddmStructure), dataRecord);
 
 		long ddmStorageId = _dataStorage.save(
 			ddlRecord.getGroupId(), dataRecord);
@@ -158,8 +156,22 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		return dataRecord;
 	}
 
-	private void _validate(
-			DataDefinition dataDefinition, DataRecord dataRecord)
+	private DataRecord _toDataRecord(DDLRecord ddlRecord) throws Exception {
+		DDLRecordSet ddlRecordSet = ddlRecord.getRecordSet();
+
+		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
+
+		return new DataRecord() {
+			{
+				dataRecordCollectionId = ddlRecordSet.getRecordSetId();
+				dataRecordValues = _dataStorage.get(
+					ddmStructure.getStructureId(), ddlRecord.getDDMStorageId());
+				id = ddlRecord.getRecordId();
+			}
+		};
+	}
+
+	private void _validate(DataDefinition dataDefinition, DataRecord dataRecord)
 		throws Exception {
 
 		// Field names
@@ -225,8 +237,8 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			for (String dataDefinitionFieldName :
 					dataDefinitionRule.getDataDefinitionFieldNames()) {
 
-				DataDefinitionField dataDefinitionField = dataDefinitionFields.get(
-					dataDefinitionFieldName);
+				DataDefinitionField dataDefinitionField =
+					dataDefinitionFields.get(dataDefinitionFieldName);
 
 				DataRuleFunctionResult dataRuleFunctionResult =
 					dataRuleFunction.validate(
@@ -234,7 +246,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 						dataDefinitionRule.getDataDefinitionRuleParameters(),
 						DataRecordValueUtil.getDataDefinitionFieldValue(
 							dataDefinitionField,
-						dataRecord.getDataRecordValues()));
+							dataRecord.getDataRecordValues()));
 
 				if (dataRuleFunctionResult.isValid()) {
 					continue;
@@ -252,21 +264,6 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		if (!errorCodesMap.isEmpty()) {
 			throw new Exception(errorCodesMap.toString());
 		}
-	}
-
-	private DataRecord _toDataRecord(DDLRecord ddlRecord) throws Exception {
-		DDLRecordSet ddlRecordSet = ddlRecord.getRecordSet();
-
-		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
-
-		return new DataRecord() {
-			{
-				dataRecordCollectionId = ddlRecordSet.getRecordSetId();
-				dataRecordValues = _dataStorage.get(
-					ddmStructure.getStructureId(), ddlRecord.getDDMStorageId());
-				id = ddlRecord.getRecordId();
-			}
-		};
 	}
 
 	private DataStorage _dataStorage;

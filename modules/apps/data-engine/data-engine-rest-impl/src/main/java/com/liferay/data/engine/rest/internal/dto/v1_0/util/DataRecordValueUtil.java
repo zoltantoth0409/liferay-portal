@@ -77,19 +77,6 @@ public class DataRecordValueUtil {
 			DataRecordValue.class);
 	}
 
-	public static Map<String, Object> toMap(DataRecordValue[] dataRecordValues)
-		throws Exception {
-
-		Map<String, Object> map = new HashMap<>();
-
-		for (DataRecordValue dataRecordValue : dataRecordValues) {
-			map.put(
-				dataRecordValue.getKey(), dataRecordValue.getValue());
-		}
-
-		return map;
-	}
-
 	public static String toJSON(
 			DataDefinition dataDefinition, DataRecordValue[] dataRecordValues)
 		throws Exception {
@@ -134,6 +121,18 @@ public class DataRecordValueUtil {
 		}
 
 		return jsonObject.toString();
+	}
+
+	public static Map<String, Object> toMap(DataRecordValue[] dataRecordValues)
+		throws Exception {
+
+		Map<String, Object> map = new HashMap<>();
+
+		for (DataRecordValue dataRecordValue : dataRecordValues) {
+			map.put(dataRecordValue.getKey(), dataRecordValue.getValue());
+		}
+
+		return map;
 	}
 
 	private static Object _toDataRecordValueValue(
