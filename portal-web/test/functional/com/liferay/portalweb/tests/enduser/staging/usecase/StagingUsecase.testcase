@@ -1235,7 +1235,7 @@ definition {
 		);
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content",
 			panel = "Site Administration",
 			portlet = "Web Content"
 		);
@@ -1276,7 +1276,7 @@ definition {
 		);
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content",
 			panel = "Site Administration",
 			portlet = "Web Content"
 		);
@@ -1316,7 +1316,7 @@ definition {
 		);
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content",
 			panel = "Site Administration",
 			portlet = "Web Content"
 		);
