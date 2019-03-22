@@ -51,9 +51,8 @@ public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 		try {
 			Pattern pattern = Pattern.compile(
 				MapUtil.getString(
-					DataDefinitionRuleParameterUtil.
-						toMap(
-							dataDefinitionRuleParameters),
+					DataDefinitionRuleParameterUtil.toMap(
+						dataDefinitionRuleParameters),
 					"expression"));
 
 			Matcher matcher = pattern.matcher(value.toString());
