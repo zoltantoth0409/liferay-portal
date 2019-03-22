@@ -47,6 +47,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -195,12 +196,6 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		}
 	}
 
-	private boolean isValidationRule(DataDefinitionRule dataDefinitionRule) {
-		String ruleType = dataDefinitionRule.getRuleType();
-
-		return ruleType.equals("validation");
-	}
-
 	private void _validate(
 			DataDefinition dataDefinition, DataRecord dataRecord)
 		throws Exception {
@@ -246,7 +241,8 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		List<DataDefinitionRule> dataDefinitionValidationRules = Stream.of(
 			dataDefinition.getDataDefinitionRules()
 		).filter(
-			this::isValidationRule
+			dataDefinitionRule -> Objects.equals(
+				dataDefinitionRule.getRuleType(), "validation")
 		).collect(
 			Collectors.toList()
 		);
