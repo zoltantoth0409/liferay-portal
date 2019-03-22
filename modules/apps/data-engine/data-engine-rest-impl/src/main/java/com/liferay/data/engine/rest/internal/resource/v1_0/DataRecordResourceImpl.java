@@ -172,12 +172,12 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			Collectors.toSet()
 		);
 
-		Map<String, Object> values = DataRecordValueUtil.toMap(
+		Map<String, Object> dataRecordValuesMap = DataRecordValueUtil.toMap(
 			dataRecord.getDataRecordValues());
 
-		Set<String> keySet = values.keySet();
+		Set<String> fieldNames = dataRecordValuesMap.keySet();
 
-		List<String> orphanFieldNames = keySet.stream(
+		List<String> orphanFieldNames = fieldNames.stream(
 		).filter(
 			fieldName -> !dataDefinitionFieldNames.contains(fieldName)
 		).collect(
