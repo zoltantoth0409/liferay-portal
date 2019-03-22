@@ -76,7 +76,6 @@ DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletI
 final DLViewFileVersionDisplayContext dlViewFileVersionDisplayContext = dlDisplayContextProvider.getDLViewFileVersionDisplayContext(request, response, fileVersion);
 
 boolean portletTitleBasedNavigation = GetterUtil.getBoolean(portletConfig.getInitParameter("portlet-title-based-navigation"));
-boolean fixedSidepanel = portletTitleBasedNavigation;
 
 if (portletTitleBasedNavigation) {
 	portletDisplay.setShowBackIcon(true);
@@ -86,7 +85,7 @@ if (portletTitleBasedNavigation) {
 }
 %>
 
-<c:if test="<%= fixedSidepanel %>">
+<c:if test="<%= portletTitleBasedNavigation %>">
 
 	<%
 	request.setAttribute("file_entry_upper_tbar.jsp-dlViewFileVersionDisplayContext", dlViewFileVersionDisplayContext);
@@ -99,7 +98,7 @@ if (portletTitleBasedNavigation) {
 </c:if>
 
 <c:choose>
-	<c:when test="<%= fixedSidepanel %>">
+	<c:when test="<%= portletTitleBasedNavigation %>">
 <div class="container-fluid-1280" id="<portlet:namespace />FileEntry">
 	</c:when>
 	<c:otherwise>
@@ -127,7 +126,7 @@ if (portletTitleBasedNavigation) {
 		/>
 	</c:if>
 
-	<c:if test="<%= !fixedSidepanel %>">
+	<c:if test="<%= !portletTitleBasedNavigation %>">
 		<div class="btn-group">
 			<liferay-frontend:management-bar-sidenav-toggler-button
 				label="info"
@@ -152,7 +151,7 @@ if (portletTitleBasedNavigation) {
 	</c:if>
 
 	<c:choose>
-		<c:when test="<%= fixedSidepanel %>">
+		<c:when test="<%= portletTitleBasedNavigation %>">
 			<div class="contextual-sidebar sidebar-light sidebar-preview">
 
 				<%
@@ -177,7 +176,7 @@ if (portletTitleBasedNavigation) {
 		</c:otherwise>
 	</c:choose>
 
-	<div class="<%= fixedSidepanel ? "contextual-sidebar-content" : "sidenav-content" %>">
+	<div class="<%= portletTitleBasedNavigation ? "contextual-sidebar-content" : "sidenav-content" %>">
 		<div class="alert alert-danger hide" id="<portlet:namespace />openMSOfficeError"></div>
 
 		<c:if test="<%= (fileEntry.getLock() != null) && DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) %>">
@@ -306,7 +305,7 @@ if (addPortletBreadcrumbEntries) {
 }
 %>
 
-<c:if test="<%= fixedSidepanel %>">
+<c:if test="<%= portletTitleBasedNavigation %>">
 	<aui:script>
 		var openContextualSidebarButton = document.getElementById('<portlet:namespace />OpenContextualSidebar');
 
