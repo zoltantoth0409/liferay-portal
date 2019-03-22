@@ -353,13 +353,15 @@ public class AggregationFilteringTest extends BaseFacetedSearcherTestCase {
 			expectations.typeFrequencies.entrySet();
 
 		Map<String, Integer> typeFrequencies = typeFrequenciesEntrySet.stream(
+		).collect(
 			Collectors.toMap(
 				entry -> {
 					Class<?> clazz = entry.getKey();
 
 					return clazz.getName();
 				},
-				Map.Entry::getValue));
+				Map.Entry::getValue)
+		);
 
 		assertFrequencies(
 			Field.ENTRY_CLASS_NAME, searchContext, typeFrequencies);
