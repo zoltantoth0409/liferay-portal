@@ -111,7 +111,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
 			dataRecordCollectionId);
 
-		validate(
+		_validate(
 			dataRecord,
 			DataDefinitionUtil.toDataDefinition(
 				ddlRecordSet.getDDMStructure()));
@@ -133,7 +133,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 
 		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
 
-		validate(dataRecord, DataDefinitionUtil.toDataDefinition(ddmStructure));
+		_validate(dataRecord, DataDefinitionUtil.toDataDefinition(ddmStructure));
 
 		long ddmStorageId = _dataStorage.save(
 			ddlRecord.getGroupId(), dataRecord);
@@ -155,7 +155,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		return dataRecord;
 	}
 
-	protected void doValidation(
+	private void _validate(
 			Map<String, DataDefinitionField> dataDefinitionFields,
 			DataDefinitionRule dataDefinitionRule, DataRecord dataRecord,
 			Map<String, Set<String>> validationErrors)
@@ -193,21 +193,21 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		}
 	}
 
-	protected boolean isValidationRule(DataDefinitionRule dataDefinitionRule) {
+	private boolean isValidationRule(DataDefinitionRule dataDefinitionRule) {
 		String ruleType = dataDefinitionRule.getRuleType();
 
 		return ruleType.equals("validation");
 	}
 
-	protected void validate(
+	private void _validate(
 			DataRecord dataRecord, DataDefinition dataDefinition)
 		throws Exception {
 
-		validateDEDataDefinitionFields(dataRecord, dataDefinition);
-		validateDEDataDefinitionFieldValues(dataRecord, dataDefinition);
+		_validateDEDataDefinitionFields(dataRecord, dataDefinition);
+		_validateDEDataDefinitionFieldValues(dataRecord, dataDefinition);
 	}
 
-	protected void validateDEDataDefinitionFields(
+	private void _validateDEDataDefinitionFields(
 			DataRecord dataRecord, DataDefinition dataDefinition)
 		throws Exception {
 
@@ -237,7 +237,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		}
 	}
 
-	protected void validateDEDataDefinitionFieldValues(
+	private void _validateDEDataDefinitionFieldValues(
 			DataRecord dataRecord, DataDefinition dataDefinition)
 		throws Exception {
 
@@ -264,7 +264,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		for (DataDefinitionRule dataDefinitionRule :
 				dataDefinitionValidationRules) {
 
-			doValidation(
+			_validate(
 				dataDefinitionFields, dataDefinitionRule, dataRecord,
 				validationErrors);
 		}
