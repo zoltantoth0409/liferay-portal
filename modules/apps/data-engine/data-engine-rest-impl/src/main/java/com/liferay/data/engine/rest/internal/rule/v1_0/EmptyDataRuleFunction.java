@@ -57,11 +57,11 @@ public class EmptyDataRuleFunction implements DataRuleFunction {
 			result = Validator.isNotNull(value.toString());
 		}
 
-		dataRuleFunctionResult.setValid(result);
-
 		if (result) {
 			dataRuleFunctionResult.setErrorCode(null);
 		}
+
+		dataRuleFunctionResult.setValid(result);
 
 		return dataRuleFunctionResult;
 	}

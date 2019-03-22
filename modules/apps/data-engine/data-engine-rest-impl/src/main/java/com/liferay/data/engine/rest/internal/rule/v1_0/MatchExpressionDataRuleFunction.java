@@ -65,11 +65,11 @@ public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 			}
 		}
 
-		dataRuleFunctionResult.setValid(result);
-
 		if (result) {
 			dataRuleFunctionResult.setErrorCode(null);
 		}
+
+		dataRuleFunctionResult.setValid(result);
 
 		return dataRuleFunctionResult;
 	}

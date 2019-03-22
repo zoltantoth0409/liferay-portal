@@ -50,11 +50,11 @@ public class IntegerLiteralDataRuleFunction implements DataRuleFunction {
 			result = true;
 		}
 
-		dataRuleFunctionResult.setValid(result);
-
 		if (result) {
 			dataRuleFunctionResult.setErrorCode(null);
 		}
+
+		dataRuleFunctionResult.setValid(result);
 
 		return dataRuleFunctionResult;
 	}

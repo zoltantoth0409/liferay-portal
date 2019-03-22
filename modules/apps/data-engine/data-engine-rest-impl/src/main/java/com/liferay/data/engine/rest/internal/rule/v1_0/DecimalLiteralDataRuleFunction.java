@@ -52,11 +52,11 @@ public class DecimalLiteralDataRuleFunction implements DataRuleFunction {
 			result = false;
 		}
 
-		dataRuleFunctionResult.setValid(true);
-
 		if (result) {
 			dataRuleFunctionResult.setErrorCode(null);
 		}
+
+		dataRuleFunctionResult.setValid(true);
 
 		return dataRuleFunctionResult;
 	}

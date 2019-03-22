@@ -54,11 +54,11 @@ public class EmailAddressDataRuleFunction implements DataRuleFunction {
 			Validator::isEmailAddress
 		);
 
-		dataRuleFunctionResult.setValid(result);
-
 		if (result) {
 			dataRuleFunctionResult.setErrorCode(null);
 		}
+
+		dataRuleFunctionResult.setValid(result);
 
 		return dataRuleFunctionResult;
 	}
