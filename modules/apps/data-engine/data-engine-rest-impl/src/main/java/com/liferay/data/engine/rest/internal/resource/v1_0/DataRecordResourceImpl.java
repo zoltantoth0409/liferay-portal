@@ -208,7 +208,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			DataDefinition dataDefinition, DataRecord dataRecord)
 		throws Exception {
 
-		Set<String> dataDefinitionFields = Stream.of(
+		Set<String> dataDefinitionFieldNames = Stream.of(
 			dataDefinition.getDataDefinitionFields()
 		).map(
 			dataDefinitionField -> dataDefinitionField.getName()
@@ -223,7 +223,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 
 		List<String> orphanFieldNames = keySet.stream(
 		).filter(
-			fieldName -> !dataDefinitionFields.contains(fieldName)
+			fieldName -> !dataDefinitionFieldNames.contains(fieldName)
 		).collect(
 			Collectors.toList()
 		);
@@ -259,9 +259,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 
 		Map<String, Set<String>> validationErrors = new HashMap<>();
 
-		for (DataDefinitionRule dataDefinitionRule :
-				dataDefinitionRules) {
-
+		for (DataDefinitionRule dataDefinitionRule : dataDefinitionRules) {
 			_validate(
 				dataDefinitionFields, dataDefinitionRule, dataRecord,
 				validationErrors);
