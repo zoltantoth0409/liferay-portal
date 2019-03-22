@@ -39,9 +39,9 @@ public class EmptyDataRuleFunction implements DataRuleFunction {
 			return dataRuleFunctionResult;
 		}
 
-		boolean valid;
+		boolean valid = false;
 
-		if (isArray(value)) {
+		if (_isArray(value)) {
 			Object[] values = (Object[])value;
 
 			valid = Stream.of(
@@ -59,7 +59,7 @@ public class EmptyDataRuleFunction implements DataRuleFunction {
 		return dataRuleFunctionResult;
 	}
 
-	protected boolean isArray(Object parameter) {
+	private boolean _isArray(Object parameter) {
 		Class<?> clazz = parameter.getClass();
 
 		return clazz.isArray();

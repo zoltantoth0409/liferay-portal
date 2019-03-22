@@ -43,8 +43,6 @@ public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 			return dataRuleFunctionResult;
 		}
 
-		boolean valid = false;
-
 		try {
 			Pattern pattern = Pattern.compile(
 				MapUtil.getString(
@@ -54,15 +52,13 @@ public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 
 			Matcher matcher = pattern.matcher(value.toString());
 
-			valid = matcher.matches();
+			dataRuleFunctionResult.setValid(matcher.matches());
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(e, e);
 			}
 		}
-
-		dataRuleFunctionResult.setValid(valid);
 
 		return dataRuleFunctionResult;
 	}
