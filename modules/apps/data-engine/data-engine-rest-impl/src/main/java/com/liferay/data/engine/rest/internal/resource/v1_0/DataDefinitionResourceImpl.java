@@ -72,31 +72,28 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				transform(
 					_ddmStructureService.getStructures(
 						contextCompany.getCompanyId(),
-						new long[] {contentSpaceId},
-						_portal.getClassNameId(InternalDataDefinition.class),
+						new long[] {contentSpaceId}, _getClassNameId(),
 						pagination.getStartPosition(),
 						pagination.getEndPosition(), null),
 					DataDefinitionUtil::toDataDefinition),
 				pagination,
 				_ddmStructureService.getStructuresCount(
 					contextCompany.getCompanyId(), new long[] {contentSpaceId},
-					_portal.getClassNameId(InternalDataDefinition.class)));
+					_getClassNameId()));
 		}
 
 		return Page.of(
 			transform(
 				_ddmStructureService.search(
 					contextCompany.getCompanyId(), new long[] {contentSpaceId},
-					_portal.getClassNameId(InternalDataDefinition.class),
-					keywords, WorkflowConstants.STATUS_ANY,
+					_getClassNameId(), keywords, WorkflowConstants.STATUS_ANY,
 					pagination.getStartPosition(), pagination.getEndPosition(),
 					null),
 				DataDefinitionUtil::toDataDefinition),
 			pagination,
 			_ddmStructureService.searchCount(
 				contextCompany.getCompanyId(), new long[] {contentSpaceId},
-				_portal.getClassNameId(InternalDataDefinition.class), keywords,
-				WorkflowConstants.STATUS_ANY));
+				_getClassNameId(), keywords, WorkflowConstants.STATUS_ANY));
 	}
 
 	@Override
@@ -122,7 +119,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			_ddmStructureLocalService.addStructure(
 				PrincipalThreadLocal.getUserId(), contentSpaceId,
 				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
-				_portal.getClassNameId(InternalDataDefinition.class), null,
+				_getClassNameId(), null,
 				LocalizedValueUtil.toLocalizationMap(dataDefinition.getName()),
 				LocalizedValueUtil.toLocalizationMap(
 					dataDefinition.getDescription()),
@@ -192,6 +189,10 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			modelResourcePermission) {
 
 		_modelResourcePermission = modelResourcePermission;
+	}
+
+	private long _getClassNameId() {
+		return _portal.getClassNameId(InternalDataDefinition.class);
 	}
 
 	@Reference
