@@ -16,10 +16,10 @@ package com.liferay.data.engine.rest.internal.rule.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionRuleParameter;
-
-import java.math.BigDecimal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.math.BigDecimal;
 
 /**
  * @author Jeyvison Nascimento
