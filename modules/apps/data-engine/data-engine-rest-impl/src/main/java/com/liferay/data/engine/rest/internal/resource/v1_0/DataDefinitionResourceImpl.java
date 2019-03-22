@@ -153,13 +153,13 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			long classPK, String actionId, PermissionChecker permissionChecker)
 		throws PortalException {
 
-		String resourceName = "com.liferay.data.engine";
-
 		Group group = _groupLocalService.fetchGroup(classPK);
 
 		if ((group != null) && group.isStagingGroup()) {
 			group = group.getLiveGroup();
 		}
+
+		String resourceName = "com.liferay.data.engine";
 
 		if (!permissionChecker.hasPermission(
 				group, resourceName, classPK, actionId)) {
