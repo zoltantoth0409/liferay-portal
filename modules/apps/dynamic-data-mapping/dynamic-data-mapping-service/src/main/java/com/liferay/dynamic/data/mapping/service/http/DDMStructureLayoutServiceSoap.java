@@ -64,11 +64,6 @@ import java.rmi.RemoteException;
 @ProviderType
 public class DDMStructureLayoutServiceSoap {
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use <code>DDMStructureLayoutServiceUtil</code> to access the ddm structure layout remote service.
-	 */
 	public static
 		com.liferay.dynamic.data.mapping.model.DDMStructureLayoutSoap[]
 				getStructureLayouts(long groupId, int start, int end)

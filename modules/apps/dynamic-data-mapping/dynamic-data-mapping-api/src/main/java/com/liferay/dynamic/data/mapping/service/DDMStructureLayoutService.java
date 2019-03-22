@@ -67,11 +67,6 @@ public interface DDMStructureLayoutService extends BaseService {
 	 */
 	public String getOSGiServiceIdentifier();
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use <code>DDMStructureLayoutServiceUtil</code> to access the ddm structure layout remote service.
-	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DDMStructureLayout> getStructureLayouts(
 			long groupId, int start, int end)
