@@ -42,11 +42,11 @@ public class URLDataRuleFunction implements DataRuleFunction {
 
 		boolean result = Validator.isUrl(value.toString());
 
-		dataRuleFunctionResult.setValid(result);
-
 		if (result) {
 			dataRuleFunctionResult.setErrorCode(null);
 		}
+
+		dataRuleFunctionResult.setValid(result);
 
 		return dataRuleFunctionResult;
 	}
