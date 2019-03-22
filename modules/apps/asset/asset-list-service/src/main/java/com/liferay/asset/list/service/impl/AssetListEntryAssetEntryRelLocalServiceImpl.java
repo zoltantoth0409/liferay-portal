@@ -283,7 +283,7 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 				if (assetRendererFactory == null) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"No asset renderer factory associated with " +
+							"No asset renderer factory found for class " +
 								assetEntry.getClassName());
 					}
 
