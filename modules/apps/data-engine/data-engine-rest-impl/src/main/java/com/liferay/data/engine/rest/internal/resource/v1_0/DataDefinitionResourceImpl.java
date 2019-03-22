@@ -148,13 +148,13 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				new ServiceContext()));
 	}
 
-	private void _checkPermission(long classPK, String actionId)
+	private void _checkPermission(Long contentSpaceId, String actionId)
 		throws PortalException {
 
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
-		Group group = _groupLocalService.fetchGroup(classPK);
+		Group group = _groupLocalService.fetchGroup(contentSpaceId);
 
 		if ((group != null) && group.isStagingGroup()) {
 			group = group.getLiveGroup();
@@ -163,10 +163,10 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		String resourceName = "com.liferay.data.engine";
 
 		if (!permissionChecker.hasPermission(
-				group, resourceName, classPK, actionId)) {
+				group, resourceName, contentSpaceId, actionId)) {
 
 			throw new PrincipalException.MustHavePermission(
-				permissionChecker, resourceName, classPK, actionId);
+				permissionChecker, resourceName, contentSpaceId, actionId);
 		}
 	}
 
