@@ -52,7 +52,7 @@ public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 			Pattern pattern = Pattern.compile(
 				MapUtil.getString(
 					DataDefinitionRuleParameterUtil.
-						toDataDefinitionRuleParametersMap(
+						toMap(
 							dataDefinitionRuleParameters),
 					"expression"));
 
