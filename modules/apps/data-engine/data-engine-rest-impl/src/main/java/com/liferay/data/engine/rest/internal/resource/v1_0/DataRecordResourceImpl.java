@@ -159,44 +159,6 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	}
 
 	private void _validate(
-			Map<String, DataDefinitionField> dataDefinitionFields,
-			DataDefinitionRule dataDefinitionRule, DataRecord dataRecord,
-			Map<String, Set<String>> validationErrors)
-		throws Exception {
-
-		DataRuleFunction dataRuleFunction =
-			DataRuleFunctionFactory.getDataRuleFunction(
-				dataDefinitionRule.getName());
-
-		if (dataRuleFunction == null) {
-			return;
-		}
-
-		for (String dataDefinitionFieldName :
-				dataDefinitionRule.getDataDefinitionFieldNames()) {
-
-			DataDefinitionField dataDefinitionField = dataDefinitionFields.get(
-				dataDefinitionFieldName);
-
-			DataRuleFunctionResult dataRuleFunctionResult =
-				dataRuleFunction.validate(
-					dataDefinitionField,
-					dataDefinitionRule.getDataDefinitionRuleParameters(),
-					DataRecordValueUtil.getDataDefinitionFieldValue(
-						dataDefinitionField, dataRecord.getDataRecordValues()));
-
-			if (!dataRuleFunctionResult.isValid()) {
-				Set<String> errorCodes = validationErrors.getOrDefault(
-					dataDefinitionFieldName, new HashSet<>());
-
-				errorCodes.add(dataRuleFunctionResult.getErrorCode());
-
-				validationErrors.put(dataDefinitionFieldName, errorCodes);
-			}
-		}
-	}
-
-	private void _validate(
 			DataDefinition dataDefinition, DataRecord dataRecord)
 		throws Exception {
 
@@ -260,9 +222,38 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		Map<String, Set<String>> validationErrors = new HashMap<>();
 
 		for (DataDefinitionRule dataDefinitionRule : dataDefinitionRules) {
-			_validate(
-				dataDefinitionFields, dataDefinitionRule, dataRecord,
-				validationErrors);
+			DataRuleFunction dataRuleFunction =
+				DataRuleFunctionFactory.getDataRuleFunction(
+					dataDefinitionRule.getName());
+
+			if (dataRuleFunction == null) {
+				continue;
+			}
+
+			for (String dataDefinitionFieldName :
+					dataDefinitionRule.getDataDefinitionFieldNames()) {
+
+				DataDefinitionField dataDefinitionField = dataDefinitionFields.get(
+					dataDefinitionFieldName);
+
+				DataRuleFunctionResult dataRuleFunctionResult =
+					dataRuleFunction.validate(
+						dataDefinitionField,
+						dataDefinitionRule.getDataDefinitionRuleParameters(),
+						DataRecordValueUtil.getDataDefinitionFieldValue(
+							dataDefinitionField, dataRecord.getDataRecordValues()));
+
+				if (dataRuleFunctionResult.isValid()) {
+					continue;
+				}
+
+				Set<String> errorCodes = validationErrors.getOrDefault(
+					dataDefinitionFieldName, new HashSet<>());
+
+				errorCodes.add(dataRuleFunctionResult.getErrorCode());
+
+				validationErrors.put(dataDefinitionFieldName, errorCodes);
+			}
 		}
 
 		if (!validationErrors.isEmpty()) {
