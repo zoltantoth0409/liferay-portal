@@ -31,7 +31,7 @@ import com.liferay.portal.kernel.util.Accessor;
 )
 @ProviderType
 public interface ResourceBlockPermission
-	extends ResourceBlockPermissionModel, PermissionedModel {
+	extends PermissionedModel, ResourceBlockPermissionModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:

@@ -31,7 +31,7 @@ import com.liferay.portal.kernel.util.Accessor;
 	"com.liferay.social.privatemessaging.model.impl.UserThreadImpl"
 )
 @ProviderType
-public interface UserThread extends UserThreadModel, PersistedModel {
+public interface UserThread extends PersistedModel, UserThreadModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:

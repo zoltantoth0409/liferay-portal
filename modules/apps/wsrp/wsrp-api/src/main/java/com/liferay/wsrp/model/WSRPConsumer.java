@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.util.Accessor;
  */
 @ImplementationClassName("com.liferay.wsrp.model.impl.WSRPConsumerImpl")
 @ProviderType
-public interface WSRPConsumer extends WSRPConsumerModel, PersistedModel {
+public interface WSRPConsumer extends PersistedModel, WSRPConsumerModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:

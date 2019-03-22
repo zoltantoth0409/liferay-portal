@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.util.Accessor;
 )
 @ProviderType
 public interface ShoppingItemPrice
-	extends ShoppingItemPriceModel, PersistedModel {
+	extends PersistedModel, ShoppingItemPriceModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:

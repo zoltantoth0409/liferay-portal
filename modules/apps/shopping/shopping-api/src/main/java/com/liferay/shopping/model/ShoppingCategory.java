@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.util.Accessor;
 @ImplementationClassName("com.liferay.shopping.model.impl.ShoppingCategoryImpl")
 @ProviderType
 public interface ShoppingCategory
-	extends ShoppingCategoryModel, PersistedModel {
+	extends PersistedModel, ShoppingCategoryModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:

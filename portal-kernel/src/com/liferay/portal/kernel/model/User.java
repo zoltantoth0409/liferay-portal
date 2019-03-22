@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.Accessor;
  */
 @ImplementationClassName("com.liferay.portal.model.impl.UserImpl")
 @ProviderType
-public interface User extends UserModel, PersistedModel {
+public interface User extends PersistedModel, UserModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:

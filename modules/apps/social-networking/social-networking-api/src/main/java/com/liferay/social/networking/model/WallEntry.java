@@ -31,7 +31,7 @@ import com.liferay.portal.kernel.util.Accessor;
 	"com.liferay.social.networking.model.impl.WallEntryImpl"
 )
 @ProviderType
-public interface WallEntry extends WallEntryModel, PersistedModel {
+public interface WallEntry extends PersistedModel, WallEntryModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:

@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.util.Accessor;
  */
 @ImplementationClassName("com.liferay.shopping.model.impl.ShoppingOrderImpl")
 @ProviderType
-public interface ShoppingOrder extends ShoppingOrderModel, PersistedModel {
+public interface ShoppingOrder extends PersistedModel, ShoppingOrderModel {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
