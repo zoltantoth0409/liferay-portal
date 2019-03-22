@@ -39,22 +39,22 @@ public class EmptyDataRuleFunction implements DataRuleFunction {
 			return dataRuleFunctionResult;
 		}
 
-		boolean result;
+		boolean valid;
 
 		if (isArray(value)) {
 			Object[] values = (Object[])value;
 
-			result = Stream.of(
+			valid = Stream.of(
 				values
 			).allMatch(
 				Validator::isNotNull
 			);
 		}
 		else {
-			result = Validator.isNotNull(value.toString());
+			valid = Validator.isNotNull(value.toString());
 		}
 
-		dataRuleFunctionResult.setValid(result);
+		dataRuleFunctionResult.setValid(valid);
 
 		return dataRuleFunctionResult;
 	}

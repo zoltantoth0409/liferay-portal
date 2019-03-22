@@ -36,9 +36,8 @@ public class URLDataRuleFunction implements DataRuleFunction {
 			return dataRuleFunctionResult;
 		}
 
-		boolean result = Validator.isUrl(value.toString());
-
-		dataRuleFunctionResult.setValid(result);
+		dataRuleFunctionResult.setValid(
+			Validator.isUrl(value.toString()));
 
 		return dataRuleFunctionResult;
 	}

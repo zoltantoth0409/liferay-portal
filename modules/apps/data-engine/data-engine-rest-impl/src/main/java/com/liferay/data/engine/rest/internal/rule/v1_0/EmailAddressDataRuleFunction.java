@@ -43,7 +43,7 @@ public class EmailAddressDataRuleFunction implements DataRuleFunction {
 			return dataRuleFunctionResult;
 		}
 
-		boolean result = Stream.of(
+		boolean valid = Stream.of(
 			StringUtil.split(value.toString(), CharPool.COMMA)
 		).map(
 			String::trim
@@ -51,7 +51,7 @@ public class EmailAddressDataRuleFunction implements DataRuleFunction {
 			Validator::isEmailAddress
 		);
 
-		dataRuleFunctionResult.setValid(result);
+		dataRuleFunctionResult.setValid(valid);
 
 		return dataRuleFunctionResult;
 	}

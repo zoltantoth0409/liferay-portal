@@ -38,15 +38,15 @@ public class DecimalLiteralDataRuleFunction implements DataRuleFunction {
 			return dataRuleFunctionResult;
 		}
 
-		boolean result;
+		boolean valid;
 
 		try {
 			new BigDecimal(value.toString());
 
-			result = true;
+			valid = true;
 		}
 		catch (NumberFormatException nfe) {
-			result = false;
+			valid = false;
 		}
 
 		dataRuleFunctionResult.setValid(true);

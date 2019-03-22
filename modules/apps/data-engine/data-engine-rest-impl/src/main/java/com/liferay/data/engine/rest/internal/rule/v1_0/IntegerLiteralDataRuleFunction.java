@@ -41,13 +41,13 @@ public class IntegerLiteralDataRuleFunction implements DataRuleFunction {
 		Integer valueInteger = NumberUtils.toInt(
 			value.toString(), Integer.MIN_VALUE);
 
-		boolean result = false;
+		boolean valid = false;
 
 		if (valueInteger != Integer.MIN_VALUE) {
-			result = true;
+			valid = true;
 		}
 
-		dataRuleFunctionResult.setValid(result);
+		dataRuleFunctionResult.setValid(valid);
 
 		return dataRuleFunctionResult;
 	}

@@ -43,7 +43,7 @@ public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 			return dataRuleFunctionResult;
 		}
 
-		boolean result = false;
+		boolean valid = false;
 
 		try {
 			Pattern pattern = Pattern.compile(
@@ -54,7 +54,7 @@ public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 
 			Matcher matcher = pattern.matcher(value.toString());
 
-			result = matcher.matches();
+			valid = matcher.matches();
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -62,7 +62,7 @@ public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 			}
 		}
 
-		dataRuleFunctionResult.setValid(result);
+		dataRuleFunctionResult.setValid(valid);
 
 		return dataRuleFunctionResult;
 	}
