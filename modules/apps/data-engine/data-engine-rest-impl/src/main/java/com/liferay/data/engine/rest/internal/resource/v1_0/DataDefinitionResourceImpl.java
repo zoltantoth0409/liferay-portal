@@ -148,6 +148,17 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				new ServiceContext()));
 	}
 
+	@Reference(
+		target = "(model.class.name=com.liferay.data.engine.rest.internal.model.InternalDataDefinition)",
+		unbind = "-"
+	)
+	protected void setModelResourcePermission(
+		ModelResourcePermission<InternalDataDefinition>
+			modelResourcePermission) {
+
+		_modelResourcePermission = modelResourcePermission;
+	}
+
 	private void _checkPermission(Long contentSpaceId, String actionId)
 		throws PortalException {
 
@@ -168,17 +179,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			throw new PrincipalException.MustHavePermission(
 				permissionChecker, resourceName, contentSpaceId, actionId);
 		}
-	}
-
-	@Reference(
-		target = "(model.class.name=com.liferay.data.engine.rest.internal.model.InternalDataDefinition)",
-		unbind = "-"
-	)
-	protected void setModelResourcePermission(
-		ModelResourcePermission<InternalDataDefinition>
-			modelResourcePermission) {
-
-		_modelResourcePermission = modelResourcePermission;
 	}
 
 	private long _getClassNameId() {
