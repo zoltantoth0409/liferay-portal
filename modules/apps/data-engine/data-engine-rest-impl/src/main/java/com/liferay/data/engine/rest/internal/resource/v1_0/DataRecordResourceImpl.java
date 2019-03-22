@@ -238,7 +238,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			DataDefinition dataDefinition, DataRecord dataRecord)
 		throws Exception {
 
-		List<DataDefinitionRule> dataDefinitionValidationRules = Stream.of(
+		List<DataDefinitionRule> dataDefinitionRules = Stream.of(
 			dataDefinition.getDataDefinitionRules()
 		).filter(
 			dataDefinitionRule -> Objects.equals(
@@ -247,7 +247,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			Collectors.toList()
 		);
 
-		if (dataDefinitionValidationRules.isEmpty()) {
+		if (dataDefinitionRules.isEmpty()) {
 			return;
 		}
 
@@ -260,7 +260,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		Map<String, Set<String>> validationErrors = new HashMap<>();
 
 		for (DataDefinitionRule dataDefinitionRule :
-				dataDefinitionValidationRules) {
+				dataDefinitionRules) {
 
 			_validate(
 				dataDefinitionFields, dataDefinitionRule, dataRecord,
