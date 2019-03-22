@@ -12,22 +12,18 @@
  * details.
  */
 
-package com.liferay.data.engine.rest.internal.rule.v1_0;
+package com.liferay.data.engine.rest.internal.rule.function.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionRuleParameter;
-import com.liferay.petra.string.CharPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.GetterUtil;
 
-import java.util.stream.Stream;
+import java.util.Objects;
 
 /**
- * It validates if a value is a valid email address.
- *
- * @author Leonardo Barros
+ * @author Jeyvison Nascimento
  */
-public class EmailAddressDataRuleFunction implements DataRuleFunction {
+public class IntegerLiteralDataRuleFunction implements DataRuleFunction {
 
 	@Override
 	public DataRuleFunctionResult validate(
@@ -37,20 +33,16 @@ public class EmailAddressDataRuleFunction implements DataRuleFunction {
 
 		DataRuleFunctionResult dataRuleFunctionResult =
 			DataRuleFunctionResult.of(
-				dataDefinitionField, "invalid-email-address");
+				dataDefinitionField, "value-must-be-an-integer-value");
 
 		if (value == null) {
 			return dataRuleFunctionResult;
 		}
 
 		dataRuleFunctionResult.setValid(
-			Stream.of(
-				StringUtil.split(value.toString(), CharPool.COMMA)
-			).map(
-				String::trim
-			).allMatch(
-				Validator::isEmailAddress
-			));
+			!Objects.equals(
+				GetterUtil.getInteger(value.toString(), Integer.MIN_VALUE),
+				Integer.MIN_VALUE));
 
 		return dataRuleFunctionResult;
 	}

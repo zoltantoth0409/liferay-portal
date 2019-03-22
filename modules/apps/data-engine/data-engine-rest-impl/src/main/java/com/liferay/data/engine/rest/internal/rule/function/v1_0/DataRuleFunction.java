@@ -12,49 +12,19 @@
  * details.
  */
 
-package com.liferay.data.engine.rest.internal.rule.v1_0;
+package com.liferay.data.engine.rest.internal.rule.function.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionRuleParameter;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-
-import java.math.BigDecimal;
 
 /**
  * @author Jeyvison Nascimento
  */
-public class DecimalLiteralDataRuleFunction implements DataRuleFunction {
+public interface DataRuleFunction {
 
-	@Override
 	public DataRuleFunctionResult validate(
 		DataDefinitionField dataDefinitionField,
 		DataDefinitionRuleParameter[] dataDefinitionRuleParameters,
-		Object value) {
-
-		DataRuleFunctionResult dataRuleFunctionResult =
-			DataRuleFunctionResult.of(
-				dataDefinitionField, "value-must-be-a-decimal-value");
-
-		if (value == null) {
-			return dataRuleFunctionResult;
-		}
-
-		try {
-			new BigDecimal(value.toString());
-
-			dataRuleFunctionResult.setValid(true);
-		}
-		catch (NumberFormatException nfe) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(nfe, nfe);
-			}
-		}
-
-		return dataRuleFunctionResult;
-	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		DecimalLiteralDataRuleFunction.class);
+		Object value);
 
 }

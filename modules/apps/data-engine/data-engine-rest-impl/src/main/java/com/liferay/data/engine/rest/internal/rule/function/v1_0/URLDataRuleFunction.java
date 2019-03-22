@@ -12,19 +12,33 @@
  * details.
  */
 
-package com.liferay.data.engine.rest.internal.rule.v1_0;
+package com.liferay.data.engine.rest.internal.rule.function.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionRuleParameter;
+import com.liferay.portal.kernel.util.Validator;
 
 /**
  * @author Jeyvison Nascimento
  */
-public interface DataRuleFunction {
+public class URLDataRuleFunction implements DataRuleFunction {
 
+	@Override
 	public DataRuleFunctionResult validate(
 		DataDefinitionField dataDefinitionField,
 		DataDefinitionRuleParameter[] dataDefinitionRuleParameters,
-		Object value);
+		Object value) {
+
+		DataRuleFunctionResult dataRuleFunctionResult =
+			DataRuleFunctionResult.of(dataDefinitionField, "invalid-url");
+
+		if (value == null) {
+			return dataRuleFunctionResult;
+		}
+
+		dataRuleFunctionResult.setValid(Validator.isUrl(value.toString()));
+
+		return dataRuleFunctionResult;
+	}
 
 }

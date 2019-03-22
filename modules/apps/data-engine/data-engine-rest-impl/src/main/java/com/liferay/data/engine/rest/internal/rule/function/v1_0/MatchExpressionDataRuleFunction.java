@@ -12,18 +12,22 @@
  * details.
  */
 
-package com.liferay.data.engine.rest.internal.rule.v1_0;
+package com.liferay.data.engine.rest.internal.rule.function.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionRuleParameter;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionRuleParameterUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 
-import java.util.stream.Stream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Jeyvison Nascimento
  */
-public class EmptyDataRuleFunction implements DataRuleFunction {
+public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 
 	@Override
 	public DataRuleFunctionResult validate(
@@ -33,36 +37,33 @@ public class EmptyDataRuleFunction implements DataRuleFunction {
 
 		DataRuleFunctionResult dataRuleFunctionResult =
 			DataRuleFunctionResult.of(
-				dataDefinitionField, "value-must-not-be-empty");
+				dataDefinitionField, "value-must-match-expression");
 
 		if (value == null) {
 			return dataRuleFunctionResult;
 		}
 
-		boolean valid = false;
+		try {
+			Pattern pattern = Pattern.compile(
+				MapUtil.getString(
+					DataDefinitionRuleParameterUtil.toMap(
+						dataDefinitionRuleParameters),
+					"expression"));
 
-		if (_isArray(value)) {
-			Object[] values = (Object[])value;
+			Matcher matcher = pattern.matcher(value.toString());
 
-			valid = Stream.of(
-				values
-			).allMatch(
-				Validator::isNotNull
-			);
+			dataRuleFunctionResult.setValid(matcher.matches());
 		}
-		else {
-			valid = Validator.isNotNull(value.toString());
+		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
 		}
-
-		dataRuleFunctionResult.setValid(valid);
 
 		return dataRuleFunctionResult;
 	}
 
-	private boolean _isArray(Object parameter) {
-		Class<?> clazz = parameter.getClass();
-
-		return clazz.isArray();
-	}
+	private static final Log _log = LogFactoryUtil.getLog(
+		MatchExpressionDataRuleFunction.class);
 
 }
