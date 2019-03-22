@@ -182,7 +182,8 @@ public class DataDefinitionUtil {
 		return JSONUtil.put(
 			"fields",
 			JSONUtil.toJSONArray(
-				dataDefinitionRule.getDataDefinitionFieldNames(), name -> name)
+				dataDefinitionRule.getDataDefinitionFieldNames(),
+				dataDefinitionFieldName -> dataDefinitionFieldName)
 		).put(
 			"name", dataDefinitionRule.getName()
 		).put(
