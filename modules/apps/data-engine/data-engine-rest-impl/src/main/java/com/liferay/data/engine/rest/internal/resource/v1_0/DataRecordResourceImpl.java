@@ -53,6 +53,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.ws.rs.BadRequestException;
+
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -197,7 +199,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		);
 
 		if (!missingFieldNames.isEmpty()) {
-			throw new Exception(
+			throw new BadRequestException(
 				"Missing fields: " +
 					ArrayUtil.toStringArray(missingFieldNames));
 		}
@@ -262,7 +264,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		}
 
 		if (!errorCodesMap.isEmpty()) {
-			throw new Exception(errorCodesMap.toString());
+			throw new BadRequestException(errorCodesMap.toString());
 		}
 	}
 
