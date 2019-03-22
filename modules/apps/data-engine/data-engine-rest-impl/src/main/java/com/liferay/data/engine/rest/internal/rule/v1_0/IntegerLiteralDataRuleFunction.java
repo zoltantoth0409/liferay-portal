@@ -31,11 +31,8 @@ public class IntegerLiteralDataRuleFunction implements DataRuleFunction {
 		Object value) {
 
 		DataRuleFunctionResult dataRuleFunctionResult =
-			new DataRuleFunctionResult();
-
-		dataRuleFunctionResult.setDataDefinitionField(dataDefinitionField);
-		dataRuleFunctionResult.setErrorCode("value-must-be-an-integer-value");
-		dataRuleFunctionResult.setValid(false);
+			DataRuleFunctionResult.of(
+				dataDefinitionField, "value-must-be-an-integer-value");
 
 		if (value == null) {
 			return dataRuleFunctionResult;
@@ -48,10 +45,6 @@ public class IntegerLiteralDataRuleFunction implements DataRuleFunction {
 
 		if (valueInteger != Integer.MIN_VALUE) {
 			result = true;
-		}
-
-		if (result) {
-			dataRuleFunctionResult.setErrorCode(null);
 		}
 
 		dataRuleFunctionResult.setValid(result);

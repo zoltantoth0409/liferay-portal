@@ -31,11 +31,8 @@ public class DecimalLiteralDataRuleFunction implements DataRuleFunction {
 		Object value) {
 
 		DataRuleFunctionResult dataRuleFunctionResult =
-			new DataRuleFunctionResult();
-
-		dataRuleFunctionResult.setDataDefinitionField(dataDefinitionField);
-		dataRuleFunctionResult.setErrorCode("value-must-be-a-decimal-value");
-		dataRuleFunctionResult.setValid(false);
+			DataRuleFunctionResult.of(
+				dataDefinitionField, "value-must-be-a-decimal-value");
 
 		if (value == null) {
 			return dataRuleFunctionResult;
@@ -50,10 +47,6 @@ public class DecimalLiteralDataRuleFunction implements DataRuleFunction {
 		}
 		catch (NumberFormatException nfe) {
 			result = false;
-		}
-
-		if (result) {
-			dataRuleFunctionResult.setErrorCode(null);
 		}
 
 		dataRuleFunctionResult.setValid(true);

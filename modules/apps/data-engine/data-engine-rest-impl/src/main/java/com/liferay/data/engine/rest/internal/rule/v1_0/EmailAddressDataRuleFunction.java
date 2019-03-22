@@ -36,11 +36,8 @@ public class EmailAddressDataRuleFunction implements DataRuleFunction {
 		Object value) {
 
 		DataRuleFunctionResult dataRuleFunctionResult =
-			new DataRuleFunctionResult();
-
-		dataRuleFunctionResult.setDataDefinitionField(dataDefinitionField);
-		dataRuleFunctionResult.setErrorCode("invalid-email-address");
-		dataRuleFunctionResult.setValid(false);
+			DataRuleFunctionResult.of(
+				dataDefinitionField, "invalid-email-address");
 
 		if (value == null) {
 			return dataRuleFunctionResult;
@@ -53,10 +50,6 @@ public class EmailAddressDataRuleFunction implements DataRuleFunction {
 		).allMatch(
 			Validator::isEmailAddress
 		);
-
-		if (result) {
-			dataRuleFunctionResult.setErrorCode(null);
-		}
 
 		dataRuleFunctionResult.setValid(result);
 

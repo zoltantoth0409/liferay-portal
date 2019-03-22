@@ -36,11 +36,8 @@ public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 		Object value) {
 
 		DataRuleFunctionResult dataRuleFunctionResult =
-			new DataRuleFunctionResult();
-
-		dataRuleFunctionResult.setDataDefinitionField(dataDefinitionField);
-		dataRuleFunctionResult.setErrorCode("value-must-match-expression");
-		dataRuleFunctionResult.setValid(false);
+			DataRuleFunctionResult.of(
+				dataDefinitionField, "value-must-match-expression");
 
 		if (value == null) {
 			return dataRuleFunctionResult;
@@ -63,10 +60,6 @@ public class MatchExpressionDataRuleFunction implements DataRuleFunction {
 			if (_log.isDebugEnabled()) {
 				_log.debug(e, e);
 			}
-		}
-
-		if (result) {
-			dataRuleFunctionResult.setErrorCode(null);
 		}
 
 		dataRuleFunctionResult.setValid(result);

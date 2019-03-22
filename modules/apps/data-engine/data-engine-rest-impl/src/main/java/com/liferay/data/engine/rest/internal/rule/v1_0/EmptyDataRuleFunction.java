@@ -32,11 +32,8 @@ public class EmptyDataRuleFunction implements DataRuleFunction {
 		Object value) {
 
 		DataRuleFunctionResult dataRuleFunctionResult =
-			new DataRuleFunctionResult();
-
-		dataRuleFunctionResult.setDataDefinitionField(dataDefinitionField);
-		dataRuleFunctionResult.setErrorCode("value-must-not-be-empty");
-		dataRuleFunctionResult.setValid(false);
+			DataRuleFunctionResult.of(
+				dataDefinitionField, "value-must-not-be-empty");
 
 		if (value == null) {
 			return dataRuleFunctionResult;
@@ -55,10 +52,6 @@ public class EmptyDataRuleFunction implements DataRuleFunction {
 		}
 		else {
 			result = Validator.isNotNull(value.toString());
-		}
-
-		if (result) {
-			dataRuleFunctionResult.setErrorCode(null);
 		}
 
 		dataRuleFunctionResult.setValid(result);

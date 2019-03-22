@@ -21,34 +21,41 @@ import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
  */
 public class DataRuleFunctionResult {
 
+	public static DataRuleFunctionResult of(
+		DataDefinitionField dataDefinitionField, String errorCode) {
+
+		return new DataRuleFunctionResult(dataDefinitionField, errorCode);
+	}
+
 	public DataDefinitionField getDataDefinitionField() {
-		return dataDefinitionField;
+		return _dataDefinitionField;
 	}
 
 	public String getErrorCode() {
-		return errorCode;
+		return _errorCode;
 	}
 
 	public boolean isValid() {
-		return valid;
-	}
-
-	public void setDataDefinitionField(
-		DataDefinitionField dataDefinitionField) {
-
-		this.dataDefinitionField = dataDefinitionField;
-	}
-
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
+		return _valid;
 	}
 
 	public void setValid(boolean valid) {
-		this.valid = valid;
+		_valid = valid;
+
+		if (valid) {
+			_errorCode = null;
+		}
 	}
 
-	protected DataDefinitionField dataDefinitionField;
-	protected String errorCode;
-	protected boolean valid;
+	private DataRuleFunctionResult(
+		DataDefinitionField dataDefinitionField, String errorCode) {
+
+		_dataDefinitionField = dataDefinitionField;
+		_errorCode = errorCode;
+	}
+
+	private final DataDefinitionField _dataDefinitionField;
+	private String _errorCode;
+	private boolean _valid;
 
 }

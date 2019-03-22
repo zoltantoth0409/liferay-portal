@@ -30,21 +30,13 @@ public class URLDataRuleFunction implements DataRuleFunction {
 		Object value) {
 
 		DataRuleFunctionResult dataRuleFunctionResult =
-			new DataRuleFunctionResult();
-
-		dataRuleFunctionResult.setDataDefinitionField(dataDefinitionField);
-		dataRuleFunctionResult.setErrorCode("invalid-url");
-		dataRuleFunctionResult.setValid(false);
+			DataRuleFunctionResult.of(dataDefinitionField, "invalid-url");
 
 		if (value == null) {
 			return dataRuleFunctionResult;
 		}
 
 		boolean result = Validator.isUrl(value.toString());
-
-		if (result) {
-			dataRuleFunctionResult.setErrorCode(null);
-		}
 
 		dataRuleFunctionResult.setValid(result);
 
