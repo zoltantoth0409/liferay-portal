@@ -18,6 +18,8 @@ import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionRuleParameter;
 
 import java.math.BigDecimal;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * @author Jeyvison Nascimento
@@ -38,20 +40,21 @@ public class DecimalLiteralDataRuleFunction implements DataRuleFunction {
 			return dataRuleFunctionResult;
 		}
 
-		boolean valid;
-
 		try {
 			new BigDecimal(value.toString());
 
-			valid = true;
+			dataRuleFunctionResult.setValid(true);
 		}
 		catch (NumberFormatException nfe) {
-			valid = false;
+			if (_log.isDebugEnabled()) {
+				_log.debug(nfe, nfe);
+			}
 		}
-
-		dataRuleFunctionResult.setValid(true);
 
 		return dataRuleFunctionResult;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DecimalLiteralDataRuleFunction.class);
 
 }
