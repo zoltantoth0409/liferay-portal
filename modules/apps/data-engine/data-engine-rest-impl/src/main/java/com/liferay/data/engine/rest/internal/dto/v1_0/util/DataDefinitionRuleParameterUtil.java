@@ -60,17 +60,17 @@ public class DataDefinitionRuleParameterUtil {
 	public static Map<String, Object> toDataDefinitionRuleParametersMap(
 		DataDefinitionRuleParameter[] dataDefinitionRuleParameters) {
 
-		Map<String, Object> dataDefinitionRuleParameterMap = new HashMap<>();
+		Map<String, Object> dataDefinitionRuleParametersMap = new HashMap<>();
 
 		for (DataDefinitionRuleParameter dataDefinitionRuleParameter :
 				dataDefinitionRuleParameters) {
 
-			dataDefinitionRuleParameterMap.put(
+			dataDefinitionRuleParametersMap.put(
 				dataDefinitionRuleParameter.getKey(),
 				dataDefinitionRuleParameter.getValue());
 		}
 
-		return dataDefinitionRuleParameterMap;
+		return dataDefinitionRuleParametersMap;
 	}
 
 	public static JSONObject toJSONObject(
