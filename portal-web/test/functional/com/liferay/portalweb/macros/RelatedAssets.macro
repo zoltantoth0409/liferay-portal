@@ -16,7 +16,6 @@ definition {
 	macro configureFilterByCategories {
 		Portlet.gotoPortletOptions(
 			portletName = "Related Assets",
-			portletName = "${portletName}",
 			portletOption = "Configuration"
 		);
 

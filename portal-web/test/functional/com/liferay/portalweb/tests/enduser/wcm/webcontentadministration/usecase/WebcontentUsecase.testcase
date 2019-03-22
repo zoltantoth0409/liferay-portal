@@ -2725,7 +2725,6 @@ definition {
 
 		WebContentTemplates.addStructure(
 			structureName = "WC Structure Name",
-			templateFieldNames = "Text",
 			templateFieldNames = "Image",
 			templateLanguage = "ftl"
 		);
