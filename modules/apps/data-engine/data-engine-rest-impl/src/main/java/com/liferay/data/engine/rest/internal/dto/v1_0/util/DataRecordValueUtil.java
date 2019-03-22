@@ -125,9 +125,8 @@ public class DataRecordValueUtil {
 			else if (dataDefinitionField.getRepeatable()) {
 				jsonObject.put(
 					entry.getKey(),
-					JSONUtil.toJSONArray(
-						(Object[])map.get(entry.getKey()),
-						object -> object));
+					JSONFactoryUtil.createJSONArray(
+						(Object[])map.get(entry.getKey())));
 			}
 			else {
 				jsonObject.put(entry.getKey(), map.get(entry.getKey()));

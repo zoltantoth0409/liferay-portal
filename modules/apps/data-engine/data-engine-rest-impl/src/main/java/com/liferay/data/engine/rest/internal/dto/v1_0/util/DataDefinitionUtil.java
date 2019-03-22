@@ -181,9 +181,8 @@ public class DataDefinitionUtil {
 
 		return JSONUtil.put(
 			"fields",
-			JSONUtil.toJSONArray(
-				dataDefinitionRule.getDataDefinitionFieldNames(),
-				dataDefinitionFieldName -> dataDefinitionFieldName)
+			JSONFactoryUtil.createJSONArray(
+				dataDefinitionRule.getDataDefinitionFieldNames())
 		).put(
 			"name", dataDefinitionRule.getName()
 		).put(
