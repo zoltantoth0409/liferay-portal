@@ -78,7 +78,7 @@ public class CTProcessLocalServiceTest {
 				TestPropsValues.getCompanyId());
 		}
 
-		_testVersionClassClassName = _classNameLocalService.addClassName(
+		_testVersionModelClassName = _classNameLocalService.addClassName(
 			TestVersionModelClass.class.getName());
 
 		_ctConfiguration = _ctConfigurationBuilder.setContentType(
@@ -137,7 +137,7 @@ public class CTProcessLocalServiceTest {
 
 		_ctEntryLocalService.addCTEntry(
 			TestPropsValues.getUserId(),
-			_testVersionClassClassName.getClassNameId(),
+			_testVersionModelClassName.getClassNameId(),
 			RandomTestUtil.nextLong(), RandomTestUtil.nextLong(),
 			CTConstants.CT_CHANGE_TYPE_ADDITION,
 			_ctCollection.getCtCollectionId(), new ServiceContext());
@@ -192,6 +192,6 @@ public class CTProcessLocalServiceTest {
 	private boolean _originallyEnabled;
 
 	@DeleteAfterTestRun
-	private ClassName _testVersionClassClassName;
+	private ClassName _testVersionModelClassName;
 
 }
