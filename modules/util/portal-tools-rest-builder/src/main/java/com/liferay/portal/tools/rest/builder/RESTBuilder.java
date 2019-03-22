@@ -90,7 +90,10 @@ public class RESTBuilder {
 		context.put("validator", Validator_IW.getInstance());
 
 		_createApplicationFile(context);
-		_createClientUnsafeSupplierFile(context);
+
+		if (Validator.isNotNull(_configYAML.getClientDir())) {
+			_createClientUnsafeSupplierFile(context);
+		}
 
 		File[] files = FileUtil.getFiles(_configDir, "rest-openapi", ".yaml");
 
