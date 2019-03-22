@@ -19,9 +19,6 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(redirect);
-
 String modelResource = ParamUtil.getString(request, "modelResource");
 String modelResourceName = ResourceActionsUtil.getModelResource(request, modelResource);
 
@@ -32,6 +29,9 @@ ExpandoColumn expandoColumn = null;
 if (columnId > 0) {
 	expandoColumn = ExpandoColumnServiceUtil.fetchExpandoColumn(columnId);
 }
+
+portletDisplay.setShowBackIcon(true);
+portletDisplay.setURLBack(redirect);
 
 renderResponse.setTitle(modelResourceName + ": " + ((expandoColumn == null) ? LanguageUtil.get(request, "new-custom-field") : expandoColumn.getName()));
 %>
