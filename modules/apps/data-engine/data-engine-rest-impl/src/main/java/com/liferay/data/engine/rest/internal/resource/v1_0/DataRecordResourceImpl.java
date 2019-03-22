@@ -200,12 +200,12 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			DataDefinition dataDefinition, DataRecord dataRecord)
 		throws Exception {
 
-		_validateDEDataDefinitionFields(dataRecord, dataDefinition);
-		_validateDEDataDefinitionFieldValues(dataRecord, dataDefinition);
+		_validateDEDataDefinitionFields(dataDefinition, dataRecord);
+		_validateDEDataDefinitionFieldValues(dataDefinition, dataRecord);
 	}
 
 	private void _validateDEDataDefinitionFields(
-			DataRecord dataRecord, DataDefinition dataDefinition)
+			DataDefinition dataDefinition, DataRecord dataRecord)
 		throws Exception {
 
 		Set<String> dataDefinitionFields = Stream.of(
@@ -235,7 +235,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	}
 
 	private void _validateDEDataDefinitionFieldValues(
-			DataRecord dataRecord, DataDefinition dataDefinition)
+			DataDefinition dataDefinition, DataRecord dataRecord)
 		throws Exception {
 
 		List<DataDefinitionRule> dataDefinitionValidationRules = Stream.of(
