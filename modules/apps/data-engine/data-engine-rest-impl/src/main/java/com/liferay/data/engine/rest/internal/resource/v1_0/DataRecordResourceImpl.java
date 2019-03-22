@@ -211,7 +211,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			Collectors.toMap(DataDefinitionField::getName, Function.identity())
 		);
 
-		Map<String, Set<String>> validationErrors = new HashMap<>();
+		Map<String, Set<String>> errorCodesMap = new HashMap<>();
 
 		for (DataDefinitionRule dataDefinitionRule : dataDefinitionRules) {
 			DataRuleFunction dataRuleFunction =
@@ -233,23 +233,24 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 						dataDefinitionField,
 						dataDefinitionRule.getDataDefinitionRuleParameters(),
 						DataRecordValueUtil.getDataDefinitionFieldValue(
-							dataDefinitionField, dataRecord.getDataRecordValues()));
+							dataDefinitionField,
+						dataRecord.getDataRecordValues()));
 
 				if (dataRuleFunctionResult.isValid()) {
 					continue;
 				}
 
-				Set<String> errorCodes = validationErrors.getOrDefault(
+				Set<String> errorCodes = errorCodesMap.getOrDefault(
 					dataDefinitionFieldName, new HashSet<>());
 
 				errorCodes.add(dataRuleFunctionResult.getErrorCode());
 
-				validationErrors.put(dataDefinitionFieldName, errorCodes);
+				errorCodesMap.put(dataDefinitionFieldName, errorCodes);
 			}
 		}
 
-		if (!validationErrors.isEmpty()) {
-			throw new Exception(validationErrors.toString());
+		if (!errorCodesMap.isEmpty()) {
+			throw new Exception(errorCodesMap.toString());
 		}
 	}
 
