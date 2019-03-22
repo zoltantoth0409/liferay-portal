@@ -162,13 +162,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			DataDefinition dataDefinition, DataRecord dataRecord)
 		throws Exception {
 
-		_validateDEDataDefinitionFields(dataDefinition, dataRecord);
-		_validateDEDataDefinitionFieldValues(dataDefinition, dataRecord);
-	}
-
-	private void _validateDEDataDefinitionFields(
-			DataDefinition dataDefinition, DataRecord dataRecord)
-		throws Exception {
+		// Field names
 
 		Set<String> dataDefinitionFieldNames = Stream.of(
 			dataDefinition.getDataDefinitionFields()
@@ -194,11 +188,8 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			throw new Exception(
 				"No such fields: " + ArrayUtil.toStringArray(orphanFieldNames));
 		}
-	}
 
-	private void _validateDEDataDefinitionFieldValues(
-			DataDefinition dataDefinition, DataRecord dataRecord)
-		throws Exception {
+		// Field values
 
 		List<DataDefinitionRule> dataDefinitionRules = Stream.of(
 			dataDefinition.getDataDefinitionRules()
