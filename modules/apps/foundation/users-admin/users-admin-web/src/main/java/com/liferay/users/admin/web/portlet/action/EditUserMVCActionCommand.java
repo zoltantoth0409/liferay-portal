@@ -500,10 +500,11 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, User user)
 		throws Exception {
 
-		if (actionRequest.getParameter(
-				"announcementsType" + AnnouncementsEntryConstants.TYPES[0] +
-					"Email") == null) {
+		String parameter = actionRequest.getParameter(
+			"announcementsType" + AnnouncementsEntryConstants.TYPES[0] +
+				"Email");
 
+		if (parameter == null) {
 			return _announcementsDeliveryLocalService.getUserDeliveries(
 				user.getUserId());
 		}

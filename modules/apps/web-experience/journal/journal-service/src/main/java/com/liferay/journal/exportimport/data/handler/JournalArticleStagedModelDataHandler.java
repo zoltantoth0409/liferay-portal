@@ -487,12 +487,18 @@ public class JournalArticleStagedModelDataHandler
 
 		boolean autoArticleId = false;
 
-		if (Validator.isNumber(articleId) ||
-			(_journalArticleLocalService.fetchArticle(
-				portletDataContext.getScopeGroupId(), articleId,
-				JournalArticleConstants.VERSION_DEFAULT) != null)) {
-
+		if (Validator.isNumber(articleId)) {
 			autoArticleId = true;
+		}
+		else {
+			JournalArticle scopeJournalArticle =
+				_journalArticleLocalService.fetchArticle(
+					portletDataContext.getScopeGroupId(), articleId,
+					JournalArticleConstants.VERSION_DEFAULT);
+
+			if (scopeJournalArticle != null) {
+				autoArticleId = true;
+			}
 		}
 
 		Map<String, String> articleIds =

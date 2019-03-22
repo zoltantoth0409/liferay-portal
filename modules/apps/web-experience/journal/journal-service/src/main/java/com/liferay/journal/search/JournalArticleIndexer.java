@@ -489,10 +489,10 @@ public class JournalArticleIndexer
 		long classPK = journalArticle.getId();
 
 		if (!isIndexAllArticleVersions()) {
-			if (_journalArticleLocalService.getArticlesCount(
-					journalArticle.getGroupId(),
-					journalArticle.getArticleId()) > 0) {
+			int count = _journalArticleLocalService.getArticlesCount(
+				journalArticle.getGroupId(), journalArticle.getArticleId());
 
+			if (count > 0) {
 				doReindex(journalArticle);
 
 				return;
