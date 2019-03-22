@@ -112,9 +112,9 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			dataRecordCollectionId);
 
 		_validate(
-			dataRecord,
 			DataDefinitionUtil.toDataDefinition(
-				ddlRecordSet.getDDMStructure()));
+				ddlRecordSet.getDDMStructure()),
+			dataRecord);
 
 		return _toDataRecord(
 			_ddlRecordLocalService.addRecord(
@@ -133,7 +133,9 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 
 		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
 
-		_validate(dataRecord, DataDefinitionUtil.toDataDefinition(ddmStructure));
+		_validate(
+			DataDefinitionUtil.toDataDefinition(ddmStructure),
+			dataRecord);
 
 		long ddmStorageId = _dataStorage.save(
 			ddlRecord.getGroupId(), dataRecord);
@@ -200,7 +202,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	}
 
 	private void _validate(
-			DataRecord dataRecord, DataDefinition dataDefinition)
+			DataDefinition dataDefinition, DataRecord dataRecord)
 		throws Exception {
 
 		_validateDEDataDefinitionFields(dataRecord, dataDefinition);
