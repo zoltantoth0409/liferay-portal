@@ -332,6 +332,11 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			return sb.toString();
 		}
 
+		if (entityFieldName.equals("required")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
 		if (entityFieldName.equals("taxonomyCategories")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
@@ -351,6 +356,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			{
 				multiValued = RandomTestUtil.randomBoolean();
 				name = RandomTestUtil.randomString();
+				required = RandomTestUtil.randomBoolean();
 				taxonomyVocabularyId = RandomTestUtil.randomLong();
 			}
 		};
