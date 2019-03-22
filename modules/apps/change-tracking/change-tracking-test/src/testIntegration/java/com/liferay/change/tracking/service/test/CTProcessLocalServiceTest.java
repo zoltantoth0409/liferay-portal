@@ -136,8 +136,7 @@ public class CTProcessLocalServiceTest {
 			RandomTestUtil.randomString(), new ServiceContext());
 
 		_ctEntryLocalService.addCTEntry(
-			TestPropsValues.getUserId(),
-			_className.getClassNameId(),
+			TestPropsValues.getUserId(), _className.getClassNameId(),
 			RandomTestUtil.nextLong(), RandomTestUtil.nextLong(),
 			CTConstants.CT_CHANGE_TYPE_ADDITION,
 			_ctCollection.getCtCollectionId(), new ServiceContext());
@@ -161,6 +160,9 @@ public class CTProcessLocalServiceTest {
 		Assert.assertNotNull(backgroundTask);
 		Assert.assertEquals(1, backgroundTask.getAttachmentsFileEntriesCount());
 	}
+
+	@DeleteAfterTestRun
+	private ClassName _className;
 
 	@Inject
 	private ClassNameLocalService _classNameLocalService;
@@ -190,8 +192,5 @@ public class CTProcessLocalServiceTest {
 	private CTProcessLocalService _ctProcessLocalService;
 
 	private boolean _originallyEnabled;
-
-	@DeleteAfterTestRun
-	private ClassName _className;
 
 }
