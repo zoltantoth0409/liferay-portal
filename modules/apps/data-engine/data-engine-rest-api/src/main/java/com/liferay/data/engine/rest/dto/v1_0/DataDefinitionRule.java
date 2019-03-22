@@ -64,28 +64,6 @@ public class DataDefinitionRule {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String[] dataDefinitionFieldNames;
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@JsonIgnore
-	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
-		try {
-			name = nameUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String name;
-
 	public DataDefinitionRuleParameter[] getDataDefinitionRuleParameters() {
 		return dataDefinitionRuleParameters;
 	}
@@ -113,6 +91,28 @@ public class DataDefinitionRule {
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected DataDefinitionRuleParameter[] dataDefinitionRuleParameters;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected String name;
 
 	public String getRuleType() {
 		return ruleType;
@@ -166,13 +166,6 @@ public class DataDefinitionRule {
 
 		sb.append(", ");
 
-		sb.append("\"name\": ");
-
-		sb.append("\"");
-		sb.append(name);
-		sb.append("\"");
-		sb.append(", ");
-
 		sb.append("\"dataDefinitionRuleParameters\": ");
 
 		if (dataDefinitionRuleParameters == null) {
@@ -192,6 +185,13 @@ public class DataDefinitionRule {
 			sb.append("]");
 		}
 
+		sb.append(", ");
+
+		sb.append("\"name\": ");
+
+		sb.append("\"");
+		sb.append(name);
+		sb.append("\"");
 		sb.append(", ");
 
 		sb.append("\"ruleType\": ");
