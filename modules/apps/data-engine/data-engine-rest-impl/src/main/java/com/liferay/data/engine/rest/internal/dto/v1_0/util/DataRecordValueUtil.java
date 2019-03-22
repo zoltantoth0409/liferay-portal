@@ -41,17 +41,16 @@ public class DataRecordValueUtil {
 			DataRecordValue[] dataRecordValues)
 		throws Exception {
 
-		Map<String, Object> valuesMap = toMap(dataRecordValues);
+		Map<String, Object> map = toMap(dataRecordValues);
 
 		if (dataDefinitionField.getLocalizable()) {
-			return (Map<String, Object>)valuesMap.get(
-				dataDefinitionField.getName());
+			return (Map<String, Object>)map.get(dataDefinitionField.getName());
 		}
 		else if (dataDefinitionField.getRepeatable()) {
-			return (Object[])valuesMap.get(dataDefinitionField.getName());
+			return (Object[])map.get(dataDefinitionField.getName());
 		}
 
-		return valuesMap.get(dataDefinitionField.getName());
+		return map.get(dataDefinitionField.getName());
 	}
 
 	public static DataRecordValue[] toDataRecordValues(
@@ -81,14 +80,14 @@ public class DataRecordValueUtil {
 	public static Map<String, Object> toMap(DataRecordValue[] dataRecordValues)
 		throws Exception {
 
-		Map<String, Object> dataRecordValuesValues = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 
 		for (DataRecordValue dataRecordValue : dataRecordValues) {
-			dataRecordValuesValues.put(
+			map.put(
 				dataRecordValue.getKey(), dataRecordValue.getValue());
 		}
 
-		return dataRecordValuesValues;
+		return map;
 	}
 
 	public static String toJSON(
@@ -97,8 +96,7 @@ public class DataRecordValueUtil {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		Map<String, Object> dataRecordValuesValues = toMap(
-			dataRecordValues);
+		Map<String, Object> map = toMap(dataRecordValues);
 
 		Map<String, DataDefinitionField> dataDefinitionFields = Stream.of(
 			dataDefinition.getDataDefinitionFields()
@@ -111,7 +109,7 @@ public class DataRecordValueUtil {
 		for (Map.Entry<String, DataDefinitionField> entry :
 				dataDefinitionFields.entrySet()) {
 
-			if (!dataRecordValuesValues.containsKey(entry.getKey())) {
+			if (!map.containsKey(entry.getKey())) {
 				continue;
 			}
 
@@ -121,19 +119,18 @@ public class DataRecordValueUtil {
 				jsonObject.put(
 					entry.getKey(),
 					_toJSONObject(
-						(Map<String, Object>)dataRecordValuesValues.get(
+						(Map<String, Object>)map.get(
 							dataDefinitionField.getName())));
 			}
 			else if (dataDefinitionField.getRepeatable()) {
 				jsonObject.put(
 					entry.getKey(),
 					JSONUtil.toJSONArray(
-						(Object[])dataRecordValuesValues.get(entry.getKey()),
+						(Object[])map.get(entry.getKey()),
 						object -> object));
 			}
 			else {
-				jsonObject.put(
-					entry.getKey(), dataRecordValuesValues.get(entry.getKey()));
+				jsonObject.put(entry.getKey(), map.get(entry.getKey()));
 			}
 		}
 
