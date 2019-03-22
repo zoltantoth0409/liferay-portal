@@ -219,7 +219,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			Collectors.toSet()
 		);
 
-		Map<String, Object> values = DataRecordValueUtil.toDataRecordValuesMap(
+		Map<String, Object> values = DataRecordValueUtil.toMap(
 			dataRecord.getDataRecordValues());
 
 		Set<String> keySet = values.keySet();

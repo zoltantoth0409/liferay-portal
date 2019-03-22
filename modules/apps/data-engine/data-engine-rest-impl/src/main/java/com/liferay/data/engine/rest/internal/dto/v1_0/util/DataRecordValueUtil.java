@@ -41,7 +41,7 @@ public class DataRecordValueUtil {
 			DataRecordValue[] dataRecordValues)
 		throws Exception {
 
-		Map<String, Object> valuesMap = toDataRecordValuesMap(dataRecordValues);
+		Map<String, Object> valuesMap = toMap(dataRecordValues);
 
 		if (dataDefinitionField.getLocalizable()) {
 			return (Map<String, Object>)valuesMap.get(
@@ -78,8 +78,7 @@ public class DataRecordValueUtil {
 			DataRecordValue.class);
 	}
 
-	public static Map<String, Object> toDataRecordValuesMap(
-			DataRecordValue[] dataRecordValues)
+	public static Map<String, Object> toMap(DataRecordValue[] dataRecordValues)
 		throws Exception {
 
 		Map<String, Object> dataRecordValuesValues = new HashMap<>();
@@ -98,7 +97,7 @@ public class DataRecordValueUtil {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		Map<String, Object> dataRecordValuesValues = toDataRecordValuesMap(
+		Map<String, Object> dataRecordValuesValues = toMap(
 			dataRecordValues);
 
 		Map<String, DataDefinitionField> dataDefinitionFields = Stream.of(
