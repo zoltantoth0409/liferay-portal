@@ -77,9 +77,6 @@ public class WesterosBankTopHeadDynamicInclude implements DynamicInclude {
 			return;
 		}
 
-		Theme theme = _themeLocalService.getTheme(
-			themeDisplay.getCompanyId(), _THEME_ID);
-
 		PrintWriter printWriter = response.getWriter();
 
 		printWriter.write("<link data-senna-track=\"permanent\" href=\"");
@@ -88,7 +85,12 @@ public class WesterosBankTopHeadDynamicInclude implements DynamicInclude {
 
 		sb.append(themeDisplay.getCDNBaseURL());
 		sb.append(_portal.getPathProxy());
+
+		Theme theme = _themeLocalService.getTheme(
+			themeDisplay.getCompanyId(), _THEME_ID);
+
 		sb.append(theme.getContextPath());
+
 		sb.append("/css/fragments_editor.css");
 
 		long themeLastModified = PortalWebResourcesUtil.getLastModified(
