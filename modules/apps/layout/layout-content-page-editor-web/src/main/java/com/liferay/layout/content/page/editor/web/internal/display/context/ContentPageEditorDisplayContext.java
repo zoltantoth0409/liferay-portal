@@ -161,7 +161,9 @@ public class ContentPageEditorDisplayContext {
 		soyContext.put("classPK", classPK);
 		soyContext.put(
 			"defaultEditorConfigurations", _getDefaultConfigurations());
-		soyContext.put("defaultLanguageId", themeDisplay.getLanguageId());
+		soyContext.put(
+			"defaultLanguageId",
+			LocaleUtil.toLanguageId(themeDisplay.getSiteDefaultLocale()));
 		soyContext.put(
 			"deleteFragmentEntryLinkURL",
 			getFragmentEntryActionURL(
