@@ -104,6 +104,16 @@ public class BndBundleUtil {
 			String hostAddress, int port, long passCode)
 		throws Exception {
 
+		project.setProperty(Headers.TEST_BRIDGE_CLASS_NAME, className);
+		project.setProperty(
+			Headers.TEST_BRIDGE_FILTERED_METHOD_NAMES,
+			StringUtil.merge(filteredMethods, StringPool.COMMA));
+		project.setProperty(
+			Headers.TEST_BRIDGE_REPORT_SERVER_HOST_NAME, hostAddress);
+		project.setProperty(
+			Headers.TEST_BRIDGE_REPORT_SERVER_PORT, String.valueOf(port));
+		project.setProperty(
+			Headers.TEST_BRIDGE_PASS_CODE, String.valueOf(passCode));
 		project.setProperty(
 			"Bundle-Activator", TestBundleActivator.class.getCanonicalName());
 
@@ -122,17 +132,6 @@ public class BndBundleUtil {
 		project.setProperty(
 			"Import-Package",
 			StringUtil.merge(importPackages, StringPool.COMMA));
-
-		project.setProperty(Headers.TEST_BRIDGE_CLASS_NAME, className);
-		project.setProperty(
-			Headers.TEST_BRIDGE_FILTERED_METHOD_NAMES,
-			StringUtil.merge(filteredMethods, StringPool.COMMA));
-		project.setProperty(
-			Headers.TEST_BRIDGE_REPORT_SERVER_HOST_NAME, hostAddress);
-		project.setProperty(
-			Headers.TEST_BRIDGE_REPORT_SERVER_PORT, String.valueOf(port));
-		project.setProperty(
-			Headers.TEST_BRIDGE_PASS_CODE, String.valueOf(passCode));
 
 		Set<String> includeResources = new LinkedHashSet<>();
 
