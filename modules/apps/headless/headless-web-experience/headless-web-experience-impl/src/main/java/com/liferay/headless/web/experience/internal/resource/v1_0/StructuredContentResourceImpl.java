@@ -981,8 +981,8 @@ public class StructuredContentResourceImpl
 				{
 					image = ContentDocumentUtil.toContentDocument(
 						_dlurlHelper, fileEntry);
-					imageId = fileEntryId;
 					imageDescription = jsonObject.getString("alt");
+					imageId = fileEntryId;
 				}
 			};
 		}
