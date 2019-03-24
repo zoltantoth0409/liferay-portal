@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 public class ContentDocumentUtil {
 
 	public static ContentDocument toContentDocument(
-			FileEntry fileEntry, DLURLHelper dlurlHelper)
+			DLURLHelper dlurlHelper, FileEntry fileEntry)
 		throws PortalException {
 
 		return new ContentDocument() {

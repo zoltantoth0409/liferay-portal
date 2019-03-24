@@ -637,7 +637,7 @@ public class StructuredContentResourceImpl
 		DDMFormField ddmFormField = _getDDMFormField(
 			contentFieldValue, ddmStructure);
 
-		final Value value = contentFieldValue.getValue();
+		Value value = contentFieldValue.getValue();
 
 		if (ddmFormField.isLocalizable()) {
 			return new LocalizedValue() {
@@ -942,7 +942,7 @@ public class StructuredContentResourceImpl
 			return new Value() {
 				{
 					document = ContentDocumentUtil.toContentDocument(
-						fileEntry, _dlurlHelper);
+						_dlurlHelper, fileEntry);
 				}
 			};
 		}
@@ -980,7 +980,7 @@ public class StructuredContentResourceImpl
 			return new Value() {
 				{
 					image = ContentDocumentUtil.toContentDocument(
-						fileEntry, _dlurlHelper);
+						_dlurlHelper, fileEntry);
 					imageId = fileEntryId;
 					imageDescription = jsonObject.getString("alt");
 				}
