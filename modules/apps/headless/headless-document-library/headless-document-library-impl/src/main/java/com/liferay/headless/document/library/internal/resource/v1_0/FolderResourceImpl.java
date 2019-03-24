@@ -62,7 +62,7 @@ public class FolderResourceImpl
 	}
 
 	@Override
-	public Page<Folder> getContentSpaceFoldersPage(
+	public Page<Folder> getContentSpaceTreeFoldersPage(
 			Long contentSpaceId, Filter filter, Pagination pagination,
 			Sort[] sorts)
 		throws Exception {
@@ -114,7 +114,7 @@ public class FolderResourceImpl
 	}
 
 	@Override
-	public Folder postContentSpaceFolder(Long contentSpaceId, Folder folder)
+	public Folder postContentSpaceTreeFolder(Long contentSpaceId, Folder folder)
 		throws Exception {
 
 		return _addFolder(contentSpaceId, 0L, folder);

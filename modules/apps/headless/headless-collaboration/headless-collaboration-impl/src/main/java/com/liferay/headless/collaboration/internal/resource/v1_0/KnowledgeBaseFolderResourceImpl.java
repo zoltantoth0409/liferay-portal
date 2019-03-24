@@ -49,8 +49,9 @@ public class KnowledgeBaseFolderResourceImpl
 	}
 
 	@Override
-	public Page<KnowledgeBaseFolder> getContentSpaceKnowledgeBaseFoldersPage(
-			Long contentSpaceId, Pagination pagination)
+	public Page<KnowledgeBaseFolder>
+			getContentSpaceTreeKnowledgeBaseFoldersPage(
+				Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(
@@ -91,7 +92,7 @@ public class KnowledgeBaseFolderResourceImpl
 	}
 
 	@Override
-	public KnowledgeBaseFolder postContentSpaceKnowledgeBaseFolder(
+	public KnowledgeBaseFolder postContentSpaceTreeKnowledgeBaseFolder(
 			Long contentSpaceId, KnowledgeBaseFolder knowledgeBaseFolder)
 		throws Exception {
 
