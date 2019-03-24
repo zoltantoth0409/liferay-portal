@@ -198,8 +198,11 @@ public class TestExecutorRunnable implements Runnable {
 		};
 
 		statement = _withTimeout(method, statement);
+
 		statement = _withBefores(statement, Before.class, testClass, target);
+
 		statement = _withAfters(statement, After.class, testClass, target);
+
 		statement = _withRules(
 			statement, Rule.class, testClass, target,
 			Description.createTestDescription(
