@@ -41,10 +41,10 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 
 	@Override
 	public Page<Role> getMyUserAccountRolesPage(
-			Long myUserAccountId, Pagination pagination)
+			Long userAccountId, Pagination pagination)
 		throws Exception {
 
-		return _getRolesPage(myUserAccountId);
+		return _getRolesPage(userAccountId);
 	}
 
 	@Override

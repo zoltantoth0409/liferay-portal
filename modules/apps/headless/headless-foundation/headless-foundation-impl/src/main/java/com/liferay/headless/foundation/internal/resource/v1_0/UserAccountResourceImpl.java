@@ -81,8 +81,8 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 	}
 
 	@Override
-	public UserAccount getMyUserAccount(Long myUserAccountId) throws Exception {
-		return _toUserAccount(_userService.getUserById(myUserAccountId));
+	public UserAccount getMyUserAccount(Long userAccountId) throws Exception {
+		return _toUserAccount(_userService.getUserById(userAccountId));
 	}
 
 	@Override
