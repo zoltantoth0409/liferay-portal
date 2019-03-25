@@ -46,7 +46,6 @@ import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -184,15 +183,12 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			return;
 		}
 
-		List<String> roleNames = ListUtil.fromArray(
-			dataDefinitionPermission.getRoleNames());
-
 		if (StringUtil.equalsIgnoreCase(
 				DataEngineConstants.OPERATION_SAVE_PERMISSION, operation)) {
 
 			ModelPermissions modelPermissions = new ModelPermissions();
 
-			for (String roleName : roleNames) {
+			for (String roleName : dataDefinitionPermission.getRoleNames()) {
 				modelPermissions.addRolePermissions(
 					roleName, ArrayUtil.toStringArray(actionIds));
 			}
@@ -207,7 +203,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			List<String> invalidRoleNames = new ArrayList<>();
 			List<Role> roles = new ArrayList<>();
 
-			for (String roleName : roleNames) {
+			for (String roleName : dataDefinitionPermission.getRoleNames()) {
 				try {
 					roles.add(
 						_roleLocalService.getRole(
