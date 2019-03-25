@@ -185,26 +185,26 @@ public abstract class BaseJSONParser<T> {
 	}
 
 	private Object _readValue() {
-		if (_lastChar == 'f') {
+		if (_lastChar == '[') {
+			return _readValueAsArray();
+		}
+		else if (_lastChar == 'f') {
 			return _readValueAsBooleanFalse();
-		}
-		else if (_lastChar == 'n') {
-			return _readValueAsObjectNull();
-		}
-		else if ((_lastChar == '-') || (_lastChar == '0') || (_lastChar == '1') || (_lastChar == '2') || (_lastChar == '3') || (_lastChar == '4') || (_lastChar == '5') || (_lastChar == '6') || (_lastChar == '7') || (_lastChar == '8') || (_lastChar == '9')) {
-			return _readValueAsStringNumber();
-		}
-		else if (_lastChar == '"') {
-			return _readValueAsString();
 		}
 		else if (_lastChar == 't') {
 			return _readValueAsBooleanTrue();
 		}
-		else if (_lastChar == '[') {
-			return _readValueAsArray();
+		else if (_lastChar == 'n') {
+			return _readValueAsObjectNull();
+		}
+		else if (_lastChar == '"') {
+			return _readValueAsString();
 		}
 		else if (_lastChar == '{') {
 			return _readObjectAsStringJSON();
+		}
+		else if ((_lastChar == '-') || (_lastChar == '0') || (_lastChar == '1') || (_lastChar == '2') || (_lastChar == '3') || (_lastChar == '4') || (_lastChar == '5') || (_lastChar == '6') || (_lastChar == '7') || (_lastChar == '8') || (_lastChar == '9')) {
+			return _readValueAsStringNumber();
 		}
 		else {
 			throw new IllegalArgumentException();
