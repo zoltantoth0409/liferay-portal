@@ -65,11 +65,11 @@ public abstract class BaseOrganizationResourceImpl
 			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
 		}
 	)
-	@Path("/my-user-accounts/{my-user-account-id}/organizations")
+	@Path("/my-user-accounts/{user-account-id}/organizations")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "Organization")})
-	public Page<Organization> getMyUserAccountOrganizationsPage(
-			@NotNull @PathParam("my-user-account-id") Long myUserAccountId,
+	public Page<Organization> getMyUserAccountUserAccountOrganizationsPage(
+			@NotNull @PathParam("user-account-id") Long userAccountId,
 			@Context Pagination pagination)
 		throws Exception {
 

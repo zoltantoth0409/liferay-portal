@@ -106,18 +106,19 @@ public abstract class BaseRoleResourceTestCase {
 	}
 
 	@Test
-	public void testGetMyUserAccountRolesPage() throws Exception {
-		Long myUserAccountId =
-			testGetMyUserAccountRolesPage_getMyUserAccountId();
-		Long irrelevantMyUserAccountId =
-			testGetMyUserAccountRolesPage_getIrrelevantMyUserAccountId();
+	public void testGetMyUserAccountUserAccountRolesPage() throws Exception {
+		Long userAccountId =
+			testGetMyUserAccountUserAccountRolesPage_getUserAccountId();
+		Long irrelevantUserAccountId =
+			testGetMyUserAccountUserAccountRolesPage_getIrrelevantUserAccountId();
 
-		if ((irrelevantMyUserAccountId != null)) {
-			Role irrelevantRole = testGetMyUserAccountRolesPage_addRole(
-				irrelevantMyUserAccountId, randomIrrelevantRole());
+		if ((irrelevantUserAccountId != null)) {
+			Role irrelevantRole =
+				testGetMyUserAccountUserAccountRolesPage_addRole(
+					irrelevantUserAccountId, randomIrrelevantRole());
 
-			Page<Role> page = invokeGetMyUserAccountRolesPage(
-				irrelevantMyUserAccountId, Pagination.of(1, 2));
+			Page<Role> page = invokeGetMyUserAccountUserAccountRolesPage(
+				irrelevantUserAccountId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -126,14 +127,14 @@ public abstract class BaseRoleResourceTestCase {
 			assertValid(page);
 		}
 
-		Role role1 = testGetMyUserAccountRolesPage_addRole(
-			myUserAccountId, randomRole());
+		Role role1 = testGetMyUserAccountUserAccountRolesPage_addRole(
+			userAccountId, randomRole());
 
-		Role role2 = testGetMyUserAccountRolesPage_addRole(
-			myUserAccountId, randomRole());
+		Role role2 = testGetMyUserAccountUserAccountRolesPage_addRole(
+			userAccountId, randomRole());
 
-		Page<Role> page = invokeGetMyUserAccountRolesPage(
-			myUserAccountId, Pagination.of(1, 2));
+		Page<Role> page = invokeGetMyUserAccountUserAccountRolesPage(
+			userAccountId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -143,28 +144,30 @@ public abstract class BaseRoleResourceTestCase {
 	}
 
 	@Test
-	public void testGetMyUserAccountRolesPageWithPagination() throws Exception {
-		Long myUserAccountId =
-			testGetMyUserAccountRolesPage_getMyUserAccountId();
+	public void testGetMyUserAccountUserAccountRolesPageWithPagination()
+		throws Exception {
 
-		Role role1 = testGetMyUserAccountRolesPage_addRole(
-			myUserAccountId, randomRole());
+		Long userAccountId =
+			testGetMyUserAccountUserAccountRolesPage_getUserAccountId();
 
-		Role role2 = testGetMyUserAccountRolesPage_addRole(
-			myUserAccountId, randomRole());
+		Role role1 = testGetMyUserAccountUserAccountRolesPage_addRole(
+			userAccountId, randomRole());
 
-		Role role3 = testGetMyUserAccountRolesPage_addRole(
-			myUserAccountId, randomRole());
+		Role role2 = testGetMyUserAccountUserAccountRolesPage_addRole(
+			userAccountId, randomRole());
 
-		Page<Role> page1 = invokeGetMyUserAccountRolesPage(
-			myUserAccountId, Pagination.of(1, 2));
+		Role role3 = testGetMyUserAccountUserAccountRolesPage_addRole(
+			userAccountId, randomRole());
+
+		Page<Role> page1 = invokeGetMyUserAccountUserAccountRolesPage(
+			userAccountId, Pagination.of(1, 2));
 
 		List<Role> roles1 = (List<Role>)page1.getItems();
 
 		Assert.assertEquals(roles1.toString(), 2, roles1.size());
 
-		Page<Role> page2 = invokeGetMyUserAccountRolesPage(
-			myUserAccountId, Pagination.of(2, 2));
+		Page<Role> page2 = invokeGetMyUserAccountUserAccountRolesPage(
+			userAccountId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -182,29 +185,30 @@ public abstract class BaseRoleResourceTestCase {
 			});
 	}
 
-	protected Role testGetMyUserAccountRolesPage_addRole(
-			Long myUserAccountId, Role role)
+	protected Role testGetMyUserAccountUserAccountRolesPage_addRole(
+			Long userAccountId, Role role)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Long testGetMyUserAccountRolesPage_getMyUserAccountId()
+	protected Long testGetMyUserAccountUserAccountRolesPage_getUserAccountId()
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Long testGetMyUserAccountRolesPage_getIrrelevantMyUserAccountId()
+	protected Long
+			testGetMyUserAccountUserAccountRolesPage_getIrrelevantUserAccountId()
 		throws Exception {
 
 		return null;
 	}
 
-	protected Page<Role> invokeGetMyUserAccountRolesPage(
-			Long myUserAccountId, Pagination pagination)
+	protected Page<Role> invokeGetMyUserAccountUserAccountRolesPage(
+			Long userAccountId, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -212,8 +216,7 @@ public abstract class BaseRoleResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/my-user-accounts/{my-user-account-id}/roles",
-					myUserAccountId);
+					"/my-user-accounts/{user-account-id}/roles", userAccountId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -234,8 +237,8 @@ public abstract class BaseRoleResourceTestCase {
 			});
 	}
 
-	protected Http.Response invokeGetMyUserAccountRolesPageResponse(
-			Long myUserAccountId, Pagination pagination)
+	protected Http.Response invokeGetMyUserAccountUserAccountRolesPageResponse(
+			Long userAccountId, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -243,8 +246,7 @@ public abstract class BaseRoleResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/my-user-accounts/{my-user-account-id}/roles",
-					myUserAccountId);
+					"/my-user-accounts/{user-account-id}/roles", userAccountId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());

@@ -244,10 +244,11 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<Organization> getMyUserAccountOrganizationsPage(
-			@GraphQLName("my-user-account-id") Long myUserAccountId,
-			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page)
+	public Collection<Organization>
+			getMyUserAccountUserAccountOrganizationsPage(
+				@GraphQLName("user-account-id") Long userAccountId,
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -255,8 +256,9 @@ public class Query {
 			this::_populateResourceContext,
 			organizationResource -> {
 				Page paginationPage =
-					organizationResource.getMyUserAccountOrganizationsPage(
-						myUserAccountId, Pagination.of(pageSize, page));
+					organizationResource.
+						getMyUserAccountUserAccountOrganizationsPage(
+							userAccountId, Pagination.of(pageSize, page));
 
 				return paginationPage.getItems();
 			});
@@ -437,8 +439,8 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<Role> getMyUserAccountRolesPage(
-			@GraphQLName("my-user-account-id") Long myUserAccountId,
+	public Collection<Role> getMyUserAccountUserAccountRolesPage(
+			@GraphQLName("user-account-id") Long userAccountId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
 		throws Exception {
@@ -447,8 +449,9 @@ public class Query {
 			_roleResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			roleResource -> {
-				Page paginationPage = roleResource.getMyUserAccountRolesPage(
-					myUserAccountId, Pagination.of(pageSize, page));
+				Page paginationPage =
+					roleResource.getMyUserAccountUserAccountRolesPage(
+						userAccountId, Pagination.of(pageSize, page));
 
 				return paginationPage.getItems();
 			});
@@ -668,15 +671,15 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public UserAccount getMyUserAccount(
-			@GraphQLName("my-user-account-id") Long myUserAccountId)
+	public UserAccount getMyUserAccountUserAccount(
+			@GraphQLName("user-account-id") Long userAccountId)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
 			_userAccountResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			userAccountResource -> userAccountResource.getMyUserAccount(
-				myUserAccountId));
+			userAccountResource ->
+				userAccountResource.getMyUserAccountUserAccount(userAccountId));
 	}
 
 	@GraphQLField

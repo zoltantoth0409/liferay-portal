@@ -64,11 +64,11 @@ public abstract class BaseRoleResourceImpl implements RoleResource {
 			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
 		}
 	)
-	@Path("/my-user-accounts/{my-user-account-id}/roles")
+	@Path("/my-user-accounts/{user-account-id}/roles")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "Role")})
-	public Page<Role> getMyUserAccountRolesPage(
-			@NotNull @PathParam("my-user-account-id") Long myUserAccountId,
+	public Page<Role> getMyUserAccountUserAccountRolesPage(
+			@NotNull @PathParam("user-account-id") Long userAccountId,
 			@Context Pagination pagination)
 		throws Exception {
 

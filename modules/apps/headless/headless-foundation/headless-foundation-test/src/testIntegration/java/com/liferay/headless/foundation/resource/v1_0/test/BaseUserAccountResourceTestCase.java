@@ -109,32 +109,32 @@ public abstract class BaseUserAccountResourceTestCase {
 	}
 
 	@Test
-	public void testGetMyUserAccount() throws Exception {
-		UserAccount postUserAccount = testGetMyUserAccount_addUserAccount();
+	public void testGetMyUserAccountUserAccount() throws Exception {
+		UserAccount postUserAccount =
+			testGetMyUserAccountUserAccount_addUserAccount();
 
-		UserAccount getUserAccount = invokeGetMyUserAccount(
-			postUserAccount.getMyUserAccountId());
+		UserAccount getUserAccount = invokeGetMyUserAccountUserAccount(
+			postUserAccount.getId());
 
 		assertEquals(postUserAccount, getUserAccount);
 		assertValid(getUserAccount);
 	}
 
-	protected UserAccount testGetMyUserAccount_addUserAccount()
+	protected UserAccount testGetMyUserAccountUserAccount_addUserAccount()
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected UserAccount invokeGetMyUserAccount(Long myUserAccountId)
+	protected UserAccount invokeGetMyUserAccountUserAccount(Long userAccountId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		String location =
 			_resourceURL +
-				_toPath(
-					"/my-user-accounts/{my-user-account-id}", myUserAccountId);
+				_toPath("/my-user-accounts/{user-account-id}", userAccountId);
 
 		options.setLocation(location);
 
@@ -154,15 +154,15 @@ public abstract class BaseUserAccountResourceTestCase {
 		}
 	}
 
-	protected Http.Response invokeGetMyUserAccountResponse(Long myUserAccountId)
+	protected Http.Response invokeGetMyUserAccountUserAccountResponse(
+			Long userAccountId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		String location =
 			_resourceURL +
-				_toPath(
-					"/my-user-accounts/{my-user-account-id}", myUserAccountId);
+				_toPath("/my-user-accounts/{user-account-id}", userAccountId);
 
 		options.setLocation(location);
 

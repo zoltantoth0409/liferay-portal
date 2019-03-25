@@ -106,19 +106,22 @@ public abstract class BaseOrganizationResourceTestCase {
 	}
 
 	@Test
-	public void testGetMyUserAccountOrganizationsPage() throws Exception {
-		Long myUserAccountId =
-			testGetMyUserAccountOrganizationsPage_getMyUserAccountId();
-		Long irrelevantMyUserAccountId =
-			testGetMyUserAccountOrganizationsPage_getIrrelevantMyUserAccountId();
+	public void testGetMyUserAccountUserAccountOrganizationsPage()
+		throws Exception {
 
-		if ((irrelevantMyUserAccountId != null)) {
+		Long userAccountId =
+			testGetMyUserAccountUserAccountOrganizationsPage_getUserAccountId();
+		Long irrelevantUserAccountId =
+			testGetMyUserAccountUserAccountOrganizationsPage_getIrrelevantUserAccountId();
+
+		if ((irrelevantUserAccountId != null)) {
 			Organization irrelevantOrganization =
-				testGetMyUserAccountOrganizationsPage_addOrganization(
-					irrelevantMyUserAccountId, randomIrrelevantOrganization());
+				testGetMyUserAccountUserAccountOrganizationsPage_addOrganization(
+					irrelevantUserAccountId, randomIrrelevantOrganization());
 
-			Page<Organization> page = invokeGetMyUserAccountOrganizationsPage(
-				irrelevantMyUserAccountId, Pagination.of(1, 2));
+			Page<Organization> page =
+				invokeGetMyUserAccountUserAccountOrganizationsPage(
+					irrelevantUserAccountId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -129,15 +132,16 @@ public abstract class BaseOrganizationResourceTestCase {
 		}
 
 		Organization organization1 =
-			testGetMyUserAccountOrganizationsPage_addOrganization(
-				myUserAccountId, randomOrganization());
+			testGetMyUserAccountUserAccountOrganizationsPage_addOrganization(
+				userAccountId, randomOrganization());
 
 		Organization organization2 =
-			testGetMyUserAccountOrganizationsPage_addOrganization(
-				myUserAccountId, randomOrganization());
+			testGetMyUserAccountUserAccountOrganizationsPage_addOrganization(
+				userAccountId, randomOrganization());
 
-		Page<Organization> page = invokeGetMyUserAccountOrganizationsPage(
-			myUserAccountId, Pagination.of(1, 2));
+		Page<Organization> page =
+			invokeGetMyUserAccountUserAccountOrganizationsPage(
+				userAccountId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -148,26 +152,27 @@ public abstract class BaseOrganizationResourceTestCase {
 	}
 
 	@Test
-	public void testGetMyUserAccountOrganizationsPageWithPagination()
+	public void testGetMyUserAccountUserAccountOrganizationsPageWithPagination()
 		throws Exception {
 
-		Long myUserAccountId =
-			testGetMyUserAccountOrganizationsPage_getMyUserAccountId();
+		Long userAccountId =
+			testGetMyUserAccountUserAccountOrganizationsPage_getUserAccountId();
 
 		Organization organization1 =
-			testGetMyUserAccountOrganizationsPage_addOrganization(
-				myUserAccountId, randomOrganization());
+			testGetMyUserAccountUserAccountOrganizationsPage_addOrganization(
+				userAccountId, randomOrganization());
 
 		Organization organization2 =
-			testGetMyUserAccountOrganizationsPage_addOrganization(
-				myUserAccountId, randomOrganization());
+			testGetMyUserAccountUserAccountOrganizationsPage_addOrganization(
+				userAccountId, randomOrganization());
 
 		Organization organization3 =
-			testGetMyUserAccountOrganizationsPage_addOrganization(
-				myUserAccountId, randomOrganization());
+			testGetMyUserAccountUserAccountOrganizationsPage_addOrganization(
+				userAccountId, randomOrganization());
 
-		Page<Organization> page1 = invokeGetMyUserAccountOrganizationsPage(
-			myUserAccountId, Pagination.of(1, 2));
+		Page<Organization> page1 =
+			invokeGetMyUserAccountUserAccountOrganizationsPage(
+				userAccountId, Pagination.of(1, 2));
 
 		List<Organization> organizations1 =
 			(List<Organization>)page1.getItems();
@@ -175,8 +180,9 @@ public abstract class BaseOrganizationResourceTestCase {
 		Assert.assertEquals(
 			organizations1.toString(), 2, organizations1.size());
 
-		Page<Organization> page2 = invokeGetMyUserAccountOrganizationsPage(
-			myUserAccountId, Pagination.of(2, 2));
+		Page<Organization> page2 =
+			invokeGetMyUserAccountUserAccountOrganizationsPage(
+				userAccountId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -197,15 +203,8 @@ public abstract class BaseOrganizationResourceTestCase {
 	}
 
 	protected Organization
-			testGetMyUserAccountOrganizationsPage_addOrganization(
-				Long myUserAccountId, Organization organization)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long testGetMyUserAccountOrganizationsPage_getMyUserAccountId()
+			testGetMyUserAccountUserAccountOrganizationsPage_addOrganization(
+				Long userAccountId, Organization organization)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
@@ -213,14 +212,23 @@ public abstract class BaseOrganizationResourceTestCase {
 	}
 
 	protected Long
-			testGetMyUserAccountOrganizationsPage_getIrrelevantMyUserAccountId()
+			testGetMyUserAccountUserAccountOrganizationsPage_getUserAccountId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetMyUserAccountUserAccountOrganizationsPage_getIrrelevantUserAccountId()
 		throws Exception {
 
 		return null;
 	}
 
-	protected Page<Organization> invokeGetMyUserAccountOrganizationsPage(
-			Long myUserAccountId, Pagination pagination)
+	protected Page<Organization>
+			invokeGetMyUserAccountUserAccountOrganizationsPage(
+				Long userAccountId, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -228,8 +236,8 @@ public abstract class BaseOrganizationResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/my-user-accounts/{my-user-account-id}/organizations",
-					myUserAccountId);
+					"/my-user-accounts/{user-account-id}/organizations",
+					userAccountId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
@@ -250,8 +258,9 @@ public abstract class BaseOrganizationResourceTestCase {
 			});
 	}
 
-	protected Http.Response invokeGetMyUserAccountOrganizationsPageResponse(
-			Long myUserAccountId, Pagination pagination)
+	protected Http.Response
+			invokeGetMyUserAccountUserAccountOrganizationsPageResponse(
+				Long userAccountId, Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -259,8 +268,8 @@ public abstract class BaseOrganizationResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/my-user-accounts/{my-user-account-id}/organizations",
-					myUserAccountId);
+					"/my-user-accounts/{user-account-id}/organizations",
+					userAccountId);
 
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());

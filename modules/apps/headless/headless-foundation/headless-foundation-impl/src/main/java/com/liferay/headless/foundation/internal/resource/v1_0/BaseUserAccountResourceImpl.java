@@ -64,11 +64,11 @@ public abstract class BaseUserAccountResourceImpl
 
 	@Override
 	@GET
-	@Path("/my-user-accounts/{my-user-account-id}")
+	@Path("/my-user-accounts/{user-account-id}")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "UserAccount")})
-	public UserAccount getMyUserAccount(
-			@NotNull @PathParam("my-user-account-id") Long myUserAccountId)
+	public UserAccount getMyUserAccountUserAccount(
+			@NotNull @PathParam("user-account-id") Long userAccountId)
 		throws Exception {
 
 		return new UserAccount();
