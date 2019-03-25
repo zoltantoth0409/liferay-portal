@@ -169,7 +169,7 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 
 			TransactionCommitCallbackUtil.registerCallback(
 				() -> {
-					_copyFromDraft(personalLayout);
+					_copyLayout(personalLayout);
 
 					return null;
 				});
@@ -224,7 +224,7 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 
 			TransactionCommitCallbackUtil.registerCallback(
 				() -> {
-					_copyFromDraft(businessLayout);
+					_copyLayout(businessLayout);
 
 					return null;
 				});
@@ -546,7 +546,7 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 		}
 	}
 
-	private void _copyFromDraft(Layout layout) throws Exception {
+	private void _copyLayout(Layout layout) throws Exception {
 		Layout draftLayout = _layoutLocalService.fetchLayout(
 			_portal.getClassNameId(Layout.class), layout.getPlid());
 
