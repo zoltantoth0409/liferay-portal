@@ -81,7 +81,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 	}
 
 	@Override
-	public boolean postDataDefinitionPermission(
+	public void postDataDefinitionPermission(
 			Long dataDefinitionId, String operation,
 			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception {
@@ -119,7 +119,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		}
 
 		if (actionIds.isEmpty()) {
-			return false;
+			return;
 		}
 
 		List<String> roleNames = ListUtil.fromArray(
@@ -177,8 +177,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				}
 			}
 		}
-
-		return true;
 	}
 
 	@Override
