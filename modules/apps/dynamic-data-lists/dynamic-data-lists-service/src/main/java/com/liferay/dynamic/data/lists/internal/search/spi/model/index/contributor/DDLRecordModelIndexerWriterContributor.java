@@ -72,7 +72,7 @@ public class DDLRecordModelIndexerWriterContributor
 
 				Property scopeProperty = PropertyFactoryUtil.forName("scope");
 
-				recordSetDynamicQuery.add(scopeProperty.in(_REINDEX_SCOPES));
+				recordSetDynamicQuery.add(scopeProperty.in(_SCOPES));
 
 				dynamicQuery.add(recordSetProperty.in(recordSetDynamicQuery));
 			});
@@ -108,7 +108,7 @@ public class DDLRecordModelIndexerWriterContributor
 	protected DynamicQueryBatchIndexingActionableFactory
 		dynamicQueryBatchIndexingActionableFactory;
 
-	private static final int[] _REINDEX_SCOPES = {
+	private static final int[] _SCOPES = {
 		DDLRecordSetConstants.SCOPE_DATA_ENGINE,
 		DDLRecordSetConstants.SCOPE_DYNAMIC_DATA_LISTS,
 		DDLRecordSetConstants.SCOPE_FORMS,
