@@ -17,8 +17,6 @@ package com.liferay.item.selector.criteria;
 import com.liferay.item.selector.ItemSelectorReturnType;
 
 /**
- * This return type should return the download URL of the entity as a string.
- *
  * @author Pavel Savinov
  */
 public class DownloadURLItemSelectorReturnType
