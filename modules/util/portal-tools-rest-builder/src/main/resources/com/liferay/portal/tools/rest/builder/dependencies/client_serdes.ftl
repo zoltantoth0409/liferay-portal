@@ -51,35 +51,25 @@ public class ${schemaName}SerDes {
 				sb.append(", ");
 			</#if>
 
-			<#if enumSchemas?keys?seq_contains(properties[propertyName])>
-				${schemaName}.
-			</#if>
-
-			<#assign
-				propertyType = properties[propertyName]
-			/>
-
-			${propertyType} ${propertyName} = ${schemaVarName}.get${propertyName?cap_first}();
-
 			sb.append("\"${propertyName}\": ");
 
 			<#if properties[propertyName]?contains("[]")>
-				if (${propertyName} == null) {
+				if (${schemaVarName}.get${propertyName?cap_first}() == null) {
 					sb.append("null");
 				}
 				else {
 					sb.append("[");
 
-					for (int i = 0; i < ${propertyName}.length; i++) {
+					for (int i = 0; i < ${schemaVarName}.get${propertyName?cap_first}().length; i++) {
 						<#if stringUtil.equals(properties[propertyName], "Date[]") || stringUtil.equals(properties[propertyName], "String[]") || enumSchemas?keys?seq_contains(properties[propertyName])>
 							sb.append("\"");
-							sb.append(${propertyName}[i]);
+							sb.append(${schemaVarName}.get${propertyName?cap_first}()[i]);
 							sb.append("\"");
 						<#else>
-							sb.append(${propertyName}[i]);
+							sb.append(${schemaVarName}.get${propertyName?cap_first}()[i]);
 						</#if>
 
-						if ((i + 1) < ${propertyName}.length) {
+						if ((i + 1) < ${schemaVarName}.get${propertyName?cap_first}().length) {
 							sb.append(", ");
 						}
 					}
@@ -89,10 +79,10 @@ public class ${schemaName}SerDes {
 			<#else>
 				<#if properties[propertyName]?ends_with("Date") || properties[propertyName]?ends_with("String") || enumSchemas?keys?seq_contains(properties[propertyName])>
 					sb.append("\"");
-					sb.append(${propertyName});
+					sb.append(${schemaVarName}.get${propertyName?cap_first}());
 					sb.append("\"");
 				<#else>
-					sb.append(${propertyName});
+					sb.append(${schemaVarName}.get${propertyName?cap_first}());
 				</#if>
 			</#if>
 		</#list>
