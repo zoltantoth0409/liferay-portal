@@ -173,10 +173,10 @@ public abstract class BaseJSONParser<T> {
 
 	protected abstract T[] toDTOs(Object[] objects);
 
-	private void _assertLastChar(char ch) {
-		if (_lastChar != ch) {
+	private void _assertLastChar(char c) {
+		if (_lastChar != c) {
 			throw new IllegalArgumentException(
-				String.format("Expected '%s', but got '%s'", ch, _lastChar));
+				String.format("Expected last char '%s', but got '%s'", c, _lastChar));
 		}
 	}
 
