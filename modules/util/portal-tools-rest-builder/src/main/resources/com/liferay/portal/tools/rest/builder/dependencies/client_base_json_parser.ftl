@@ -43,7 +43,7 @@ public abstract class BaseJSONParser<T> {
 		if (_isLastChar('}')) {
 			_readWhileLastCharIsWhiteSpace();
 
-			if (!_isEndOfText()) {
+			if (!_isEndOfJSON()) {
 				_readNextChar();
 
 				throw new IllegalArgumentException(
@@ -225,7 +225,7 @@ public abstract class BaseJSONParser<T> {
 		return substring.isEmpty();
 	}
 
-	private boolean _isEndOfText() {
+	private boolean _isEndOfJSON() {
 		if (_index == _json.length()) {
 			return true;
 		}
@@ -250,7 +250,7 @@ public abstract class BaseJSONParser<T> {
 	}
 
 	private void _readNextChar() {
-		if (!_isEndOfText()) {
+		if (!_isEndOfJSON()) {
 			_lastChar = _json.charAt(_index++);
 		}
 	}
