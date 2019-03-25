@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class RoleResourceImpl extends BaseRoleResourceImpl {
 
 	@Override
-	public Page<Role> getMyUserAccountRolesPage(
+	public Page<Role> getMyUserAccountUserAccountRolesPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
 
