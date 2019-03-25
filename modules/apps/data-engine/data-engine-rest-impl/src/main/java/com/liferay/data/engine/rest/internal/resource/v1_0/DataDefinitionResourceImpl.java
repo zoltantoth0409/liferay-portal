@@ -140,7 +140,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 				String.valueOf(dataDefinitionId), modelPermissions);
 		}
 		else {
-			List<String> noSuchRoleNames = new ArrayList<>();
+			List<String> invalidRoleNames = new ArrayList<>();
 			List<Role> roles = new ArrayList<>();
 
 			for (String roleName : roleNames) {
@@ -154,14 +154,14 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 						_log.debug(roleName, nsre);
 					}
 
-					noSuchRoleNames.add(roleName);
+					invalidRoleNames.add(roleName);
 				}
 			}
 
-			if (!noSuchRoleNames.isEmpty()) {
+			if (!invalidRoleNames.isEmpty()) {
 				throw new BadRequestException(
-					"Invalid Roles: " +
-						ArrayUtil.toStringArray(noSuchRoleNames));
+					"Invalid roles: " +
+						ArrayUtil.toStringArray(invalidRoleNames));
 			}
 
 			for (Role role : roles) {
