@@ -255,7 +255,7 @@ public abstract class BaseJSONParser<T> {
 		}
 	}
 
-	private String _readObjectAsStringJSON() {
+	private String _readValueAsStringJSON() {
 		_setCaptureStart();
 
 		_readNextChar();
@@ -314,7 +314,7 @@ public abstract class BaseJSONParser<T> {
 			return _readValueAsString();
 		}
 		else if (_lastChar == '{') {
-			return _readObjectAsStringJSON();
+			return _readValueAsStringJSON();
 		}
 		else if ((_lastChar == '-') || (_lastChar == '0') ||
 				 (_lastChar == '1') || (_lastChar == '2') ||
