@@ -293,7 +293,7 @@ public class FjordSiteInitializer implements SiteInitializer {
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
-				_copyFromDraft(layout);
+				_copyLayout(layout);
 
 				return null;
 			});
@@ -333,7 +333,7 @@ public class FjordSiteInitializer implements SiteInitializer {
 				previewFileEntryId);
 	}
 
-	private void _copyFromDraft(Layout layout) throws Exception {
+	private void _copyLayout(Layout layout) throws Exception {
 		Layout draftLayout = _layoutLocalService.fetchLayout(
 			_portal.getClassNameId(Layout.class), layout.getPlid());
 
