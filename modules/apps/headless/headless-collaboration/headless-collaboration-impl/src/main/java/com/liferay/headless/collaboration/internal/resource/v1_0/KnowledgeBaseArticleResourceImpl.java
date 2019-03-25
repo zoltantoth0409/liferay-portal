@@ -78,8 +78,8 @@ public class KnowledgeBaseArticleResourceImpl
 					null),
 				this::_toKBArticle),
 			pagination,
-			_kbArticleService.getKBArticlesCount(
-				contentSpaceId, 0, WorkflowConstants.STATUS_APPROVED));
+			_kbArticleService.getGroupKBArticles(
+				contentSpaceId, WorkflowConstants.STATUS_APPROVED));
 	}
 
 	@Override
