@@ -24,7 +24,7 @@ public abstract class BaseJSONParser<T> {
 			throw new IllegalArgumentException("Expected non null");
 		}
 
-		_initFields(string);
+		_init(string);
 
 		_assertStartsAndEndsWith("{", "}");
 
@@ -46,8 +46,7 @@ public abstract class BaseJSONParser<T> {
 			if (!_isEndOfText()) {
 				_readNextChar();
 
-				throw new IllegalArgumentException(
-					"Expected end of JSON; got '" + _lastChar + "'");
+				throw new IllegalArgumentException("Expected end of JSON, but got '" + _lastChar + "'");
 			}
 
 			return dto;
@@ -80,7 +79,7 @@ public abstract class BaseJSONParser<T> {
 			throw new IllegalArgumentException("Expected non null");
 		}
 
-		_initFields(string);
+		_init(string);
 
 		_assertStartsAndEndsWith("[", "]");
 
@@ -100,12 +99,10 @@ public abstract class BaseJSONParser<T> {
 
 		_readWhileLastCharIsWhiteSpace();
 
-		return arrayOfObjectsToArrayOfDTOs((Object[])_readValue());
+		return toDTOs((Object[])_readValue());
 	}
 
-	protected static Integer[] arrayOfObjectsToArrayOfIntegers(
-		Object[] objects) {
-
+	protected static Integer[] toIntegers(Object[] objects) {
 		return Stream.of(
 			objects
 		).map(
@@ -122,7 +119,7 @@ public abstract class BaseJSONParser<T> {
 		);
 	}
 
-	protected static Long[] arrayOfObjectsToArrayOfLongs(Object[] objects) {
+	protected static Long[] toLongs(Object[] objects) {
 		return Stream.of(
 			objects
 		).map(
@@ -139,7 +136,7 @@ public abstract class BaseJSONParser<T> {
 		);
 	}
 
-	protected static String[] arrayOfObjectsToArrayOfStrings(Object[] objects) {
+	protected static String[] toStrings(Object[] objects) {
 		return Stream.of(
 			objects
 		).map(
@@ -149,7 +146,7 @@ public abstract class BaseJSONParser<T> {
 		);
 	}
 
-	protected Date[] arrayOfObjectsToArrayOfDates(Object[] objects) {
+	protected Date[] toDates(Object[] objects) {
 		return Stream.of(
 			objects
 		).map(
@@ -167,13 +164,13 @@ public abstract class BaseJSONParser<T> {
 		);
 	}
 
-	protected abstract T[] arrayOfObjectsToArrayOfDTOs(Object[] objects);
+	protected abstract T[] toDTOs(Object[] objects);
 
 	protected abstract T createDTO();
 
 	protected abstract T[] createDTOs();
 
-	private void _initFields(String string) {
+	private void _init(String string) {
 		_captureStartStack = new Stack<>();
 		_dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 		_index = 0;
