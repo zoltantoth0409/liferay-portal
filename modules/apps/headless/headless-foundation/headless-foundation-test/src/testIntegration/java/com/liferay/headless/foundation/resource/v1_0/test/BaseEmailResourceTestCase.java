@@ -129,6 +129,10 @@ public abstract class BaseEmailResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(string, Email.class);
 		}
@@ -268,6 +272,10 @@ public abstract class BaseEmailResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		return _outputObjectMapper.readValue(
 			string,
@@ -413,6 +421,10 @@ public abstract class BaseEmailResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		return _outputObjectMapper.readValue(
 			string,

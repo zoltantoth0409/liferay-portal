@@ -194,6 +194,10 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<KnowledgeBaseAttachment>>() {
@@ -254,6 +258,10 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		options.setPost(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(
@@ -329,6 +337,10 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 	}
 
 	protected Http.Response invokeDeleteKnowledgeBaseAttachmentResponse(
@@ -388,6 +400,10 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(

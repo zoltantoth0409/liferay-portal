@@ -447,6 +447,10 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<TaxonomyVocabulary>>() {
@@ -527,6 +531,10 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(
 				string, TaxonomyVocabulary.class);
@@ -601,6 +609,10 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 	}
 
 	protected Http.Response invokeDeleteTaxonomyVocabularyResponse(
@@ -659,6 +671,10 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(
@@ -740,6 +756,10 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		options.setPut(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(

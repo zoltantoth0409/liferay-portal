@@ -446,6 +446,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<StructuredContent>>() {
@@ -523,6 +527,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 		options.setPost(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(
@@ -900,6 +908,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<StructuredContent>>() {
@@ -973,6 +985,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 	}
 
 	protected Http.Response invokeDeleteStructuredContentResponse(
@@ -1030,6 +1046,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(
@@ -1117,6 +1137,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(
 				string, StructuredContent.class);
@@ -1202,6 +1226,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(
 				string, StructuredContent.class);
@@ -1260,6 +1288,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		return string;
 	}

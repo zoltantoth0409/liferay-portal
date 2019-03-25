@@ -221,6 +221,10 @@ public abstract class BasePhoneResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<Phone>>() {
@@ -273,6 +277,10 @@ public abstract class BasePhoneResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, Phone.class);
@@ -413,6 +421,10 @@ public abstract class BasePhoneResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		return _outputObjectMapper.readValue(
 			string,

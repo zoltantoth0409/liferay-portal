@@ -240,6 +240,10 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<Organization>>() {
@@ -291,6 +295,10 @@ public abstract class BaseOrganizationResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		return _outputObjectMapper.readValue(
 			string,
@@ -348,6 +356,10 @@ public abstract class BaseOrganizationResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, Organization.class);
@@ -508,6 +520,10 @@ public abstract class BaseOrganizationResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		return _outputObjectMapper.readValue(
 			string,
@@ -672,6 +688,10 @@ public abstract class BaseOrganizationResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		return _outputObjectMapper.readValue(
 			string,

@@ -407,6 +407,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<Folder>>() {
@@ -481,6 +485,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(string, Folder.class);
 		}
@@ -541,6 +549,10 @@ public abstract class BaseFolderResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 	}
 
 	protected Http.Response invokeDeleteFolderResponse(Long folderId)
@@ -584,6 +596,10 @@ public abstract class BaseFolderResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, Folder.class);
@@ -650,6 +666,10 @@ public abstract class BaseFolderResourceTestCase {
 		options.setPatch(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, Folder.class);
@@ -722,6 +742,10 @@ public abstract class BaseFolderResourceTestCase {
 		options.setPut(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, Folder.class);
@@ -1029,6 +1053,10 @@ public abstract class BaseFolderResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<Folder>>() {
@@ -1095,6 +1123,10 @@ public abstract class BaseFolderResourceTestCase {
 		options.setPost(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, Folder.class);

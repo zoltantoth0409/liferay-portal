@@ -143,6 +143,10 @@ public abstract class BaseBlogPostingResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 	}
 
 	protected Http.Response invokeDeleteBlogPostingResponse(Long blogPostingId)
@@ -191,6 +195,10 @@ public abstract class BaseBlogPostingResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, BlogPosting.class);
@@ -269,6 +277,10 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(string, BlogPosting.class);
 		}
@@ -345,6 +357,10 @@ public abstract class BaseBlogPostingResourceTestCase {
 		options.setPut(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, BlogPosting.class);
@@ -688,6 +704,10 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<BlogPosting>>() {
@@ -763,6 +783,10 @@ public abstract class BaseBlogPostingResourceTestCase {
 		options.setPost(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, BlogPosting.class);

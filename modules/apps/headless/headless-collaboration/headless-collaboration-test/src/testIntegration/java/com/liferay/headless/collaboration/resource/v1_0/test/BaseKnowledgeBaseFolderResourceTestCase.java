@@ -251,6 +251,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<KnowledgeBaseFolder>>() {
@@ -325,6 +329,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		options.setPost(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(
@@ -401,6 +409,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 	}
 
 	protected Http.Response invokeDeleteKnowledgeBaseFolderResponse(
@@ -459,6 +471,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(
@@ -547,6 +563,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(
 				string, KnowledgeBaseFolder.class);
@@ -634,6 +654,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		options.setPut(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(
@@ -818,6 +842,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<KnowledgeBaseFolder>>() {
@@ -896,6 +924,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		options.setPost(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(

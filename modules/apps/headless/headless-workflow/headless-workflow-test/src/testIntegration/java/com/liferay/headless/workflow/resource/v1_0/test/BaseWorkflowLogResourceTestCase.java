@@ -134,6 +134,10 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(string, WorkflowLog.class);
 		}
@@ -289,6 +293,10 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		return _outputObjectMapper.readValue(
 			string,
