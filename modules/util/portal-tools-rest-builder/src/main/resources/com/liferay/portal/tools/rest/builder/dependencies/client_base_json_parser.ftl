@@ -9,7 +9,7 @@ import javax.annotation.Generated;
 @Generated("")
 public abstract class BaseJSONParser {
 
-	public T parse(String string) {
+	public T parseToDTO(String string) {
 		if (string == null) {
 			throw new IllegalArgumentException("Expected non null");
 		}
@@ -65,7 +65,7 @@ public abstract class BaseJSONParser {
 		return dto;
 	}
 
-	public T[] parseArray(String string) {
+	public T[] parseToDTOs(String string) {
 		if (string == null) {
 			throw new IllegalArgumentException("Expected non null");
 		}
