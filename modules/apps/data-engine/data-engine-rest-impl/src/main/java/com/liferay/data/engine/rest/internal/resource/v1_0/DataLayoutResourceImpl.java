@@ -45,10 +45,8 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 
 	@Override
-	public boolean deleteDataLayout(Long dataLayoutId) throws Exception {
+	public void deleteDataLayout(Long dataLayoutId) throws Exception {
 		_ddmStructureLayoutLocalService.deleteDDMStructureLayout(dataLayoutId);
-
-		return true;
 	}
 
 	@Override

@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 	@Override
-	public boolean deleteDataDefinition(Long dataDefinitionId)
+	public void deleteDataDefinition(Long dataDefinitionId)
 		throws Exception {
 
 		_modelResourcePermission.check(
@@ -59,8 +59,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			ActionKeys.DELETE);
 
 		_ddmStructureLocalService.deleteStructure(dataDefinitionId);
-
-		return true;
 	}
 
 	@Override

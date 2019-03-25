@@ -45,12 +45,10 @@ public class DataRecordCollectionResourceImpl
 	extends BaseDataRecordCollectionResourceImpl {
 
 	@Override
-	public boolean deleteDataRecordCollection(Long dataRecordCollectionId)
+	public void deleteDataRecordCollection(Long dataRecordCollectionId)
 		throws Exception {
 
 		_ddlRecordSetLocalService.deleteRecordSet(dataRecordCollectionId);
-
-		return true;
 	}
 
 	@Override
