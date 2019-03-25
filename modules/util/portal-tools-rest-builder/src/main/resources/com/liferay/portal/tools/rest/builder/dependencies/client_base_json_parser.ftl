@@ -220,9 +220,9 @@ public abstract class BaseJSONParser<T> {
 	private boolean _isEmpty() {
 		String substring = _json.substring(1, _json.length() - 1);
 
-		String substringTrimmed = substring.trim();
+		substring = substring.trim();
 
-		return substringTrimmed.isEmpty();
+		return substring.isEmpty();
 	}
 
 	private boolean _isEndOfText() {
