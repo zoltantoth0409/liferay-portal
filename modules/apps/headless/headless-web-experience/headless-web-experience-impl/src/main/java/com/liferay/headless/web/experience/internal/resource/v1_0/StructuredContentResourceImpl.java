@@ -157,7 +157,7 @@ public class StructuredContentResourceImpl
 	}
 
 	@Override
-	public StructuredContent getContentSpaceStructuredContentKey(
+	public StructuredContent getContentSpaceKeyStructuredContentKey(
 			Long contentSpaceId, String key)
 		throws Exception {
 
@@ -178,7 +178,7 @@ public class StructuredContentResourceImpl
 	}
 
 	@Override
-	public StructuredContent getContentSpaceStructuredContentUuid(
+	public StructuredContent getContentSpaceUuidStructuredContentUuid(
 			Long contentSpaceId, String uuid)
 		throws Exception {
 
