@@ -92,6 +92,7 @@ public class RESTBuilder {
 		_createApplicationFile(context);
 
 		if (Validator.isNotNull(_configYAML.getClientDir())) {
+			_createClientBaseJSONParserFile(context);
 			_createClientUnsafeSupplierFile(context);
 		}
 
@@ -281,6 +282,30 @@ public class RESTBuilder {
 			file,
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "base_resource_test_case", context));
+	}
+
+	private void _createClientBaseJSONParserFile(Map<String, Object> context)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getClientDir());
+		sb.append("/");
+
+		String apiPackagePath = _configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/client/json/BaseJSONParser.java");
+
+		File file = new File(sb.toString());
+
+		_files.add(file);
+
+		FileUtil.write(
+			file,
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "client_base_json_parser", context));
 	}
 
 	private void _createClientDTOFile(
