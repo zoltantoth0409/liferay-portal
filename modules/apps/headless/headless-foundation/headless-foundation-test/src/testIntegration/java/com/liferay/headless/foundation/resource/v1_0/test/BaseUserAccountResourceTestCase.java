@@ -113,7 +113,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount postUserAccount = testGetMyUserAccount_addUserAccount();
 
 		UserAccount getUserAccount = invokeGetMyUserAccount(
-			postUserAccount.getId());
+			postUserAccount.getMyUserAccountId());
 
 		assertEquals(postUserAccount, getUserAccount);
 		assertValid(getUserAccount);

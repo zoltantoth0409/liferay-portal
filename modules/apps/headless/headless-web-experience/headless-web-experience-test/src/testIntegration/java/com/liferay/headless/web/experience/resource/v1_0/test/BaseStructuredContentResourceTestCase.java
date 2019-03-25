@@ -955,7 +955,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		StructuredContent getStructuredContent =
 			invokeGetContentSpaceKeyStructuredContentKey(
-				postStructuredContent.getId());
+				postStructuredContent.getContentSpaceId(),
+				postStructuredContent.getKey());
 
 		assertEquals(postStructuredContent, getStructuredContent);
 		assertValid(getStructuredContent);
@@ -1029,7 +1030,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		StructuredContent getStructuredContent =
 			invokeGetContentSpaceUuidStructuredContentUuid(
-				postStructuredContent.getId());
+				postStructuredContent.getContentSpaceId(),
+				postStructuredContent.getUuid());
 
 		assertEquals(postStructuredContent, getStructuredContent);
 		assertValid(getStructuredContent);
