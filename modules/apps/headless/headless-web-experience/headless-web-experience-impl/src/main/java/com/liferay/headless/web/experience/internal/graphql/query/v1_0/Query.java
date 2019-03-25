@@ -210,7 +210,7 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public StructuredContent getContentSpaceStructuredContentKey(
+	public StructuredContent getContentSpaceKeyStructuredContentKey(
 			@GraphQLName("content-space-id") Long contentSpaceId,
 			@GraphQLName("key") String key)
 		throws Exception {
@@ -219,13 +219,14 @@ public class Query {
 			_structuredContentResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			structuredContentResource ->
-				structuredContentResource.getContentSpaceStructuredContentKey(
-					contentSpaceId, key));
+				structuredContentResource.
+					getContentSpaceKeyStructuredContentKey(
+						contentSpaceId, key));
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public StructuredContent getContentSpaceStructuredContentUuid(
+	public StructuredContent getContentSpaceUuidStructuredContentUuid(
 			@GraphQLName("content-space-id") Long contentSpaceId,
 			@GraphQLName("uuid") String uuid)
 		throws Exception {
@@ -234,8 +235,9 @@ public class Query {
 			_structuredContentResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			structuredContentResource ->
-				structuredContentResource.getContentSpaceStructuredContentUuid(
-					contentSpaceId, uuid));
+				structuredContentResource.
+					getContentSpaceUuidStructuredContentUuid(
+						contentSpaceId, uuid));
 	}
 
 	@GraphQLField

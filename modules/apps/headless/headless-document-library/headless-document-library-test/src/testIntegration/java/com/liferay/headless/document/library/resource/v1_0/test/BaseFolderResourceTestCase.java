@@ -393,7 +393,7 @@ public abstract class BaseFolderResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/tree/folders",
+					"/content-spaces/{content-space-id}/tree-folders",
 					contentSpaceId);
 
 		location = HttpUtil.addParameter(location, "filter", filterString);
@@ -429,7 +429,7 @@ public abstract class BaseFolderResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/tree/folders",
+					"/content-spaces/{content-space-id}/tree-folders",
 					contentSpaceId);
 
 		location = HttpUtil.addParameter(location, "filter", filterString);
@@ -479,7 +479,7 @@ public abstract class BaseFolderResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/tree/folders",
+					"/content-spaces/{content-space-id}/tree-folders",
 					contentSpaceId);
 
 		options.setLocation(location);
@@ -515,7 +515,7 @@ public abstract class BaseFolderResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/tree/folders",
+					"/content-spaces/{content-space-id}/tree-folders",
 					contentSpaceId);
 
 		options.setLocation(location);

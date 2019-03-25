@@ -74,7 +74,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			@Parameter(in = ParameterIn.QUERY, name = "sorts")
 		}
 	)
-	@Path("/content-spaces/{content-space-id}/tree/folders")
+	@Path("/content-spaces/{content-space-id}/tree-folders")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "Folder")})
 	public Page<Folder> getContentSpaceTreeFoldersPage(
@@ -89,7 +89,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	@Override
 	@Consumes("application/json")
 	@POST
-	@Path("/content-spaces/{content-space-id}/tree/folders")
+	@Path("/content-spaces/{content-space-id}/tree-folders")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "Folder")})
 	public Folder postContentSpaceTreeFolder(

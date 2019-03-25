@@ -104,7 +104,7 @@ public abstract class BaseKnowledgeBaseArticleResourceImpl
 			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
 		}
 	)
-	@Path("/content-spaces/{content-space-id}/tree/knowledge-base-articles")
+	@Path("/content-spaces/{content-space-id}/tree-knowledge-base-articles")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "KnowledgeBaseArticle")})
 	public Page<KnowledgeBaseArticle>
@@ -119,7 +119,7 @@ public abstract class BaseKnowledgeBaseArticleResourceImpl
 	@Override
 	@Consumes("application/json")
 	@POST
-	@Path("/content-spaces/{content-space-id}/tree/knowledge-base-articles")
+	@Path("/content-spaces/{content-space-id}/tree-knowledge-base-articles")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "KnowledgeBaseArticle")})
 	public KnowledgeBaseArticle postContentSpaceTreeKnowledgeBaseArticle(

@@ -74,7 +74,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			@Parameter(in = ParameterIn.QUERY, name = "sorts")
 		}
 	)
-	@Path("/content-spaces/{content-space-id}/tree/documents")
+	@Path("/content-spaces/{content-space-id}/tree-documents")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "Document")})
 	public Page<Document> getContentSpaceTreeDocumentsPage(
@@ -89,7 +89,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	@Override
 	@Consumes("multipart/form-data")
 	@POST
-	@Path("/content-spaces/{content-space-id}/tree/documents")
+	@Path("/content-spaces/{content-space-id}/tree-documents")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "Document")})
 	public Document postContentSpaceTreeDocument(

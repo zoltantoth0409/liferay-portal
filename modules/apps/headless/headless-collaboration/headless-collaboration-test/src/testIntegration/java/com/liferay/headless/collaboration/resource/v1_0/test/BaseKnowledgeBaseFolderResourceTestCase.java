@@ -241,7 +241,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/tree/knowledge-base-folders",
+					"/content-spaces/{content-space-id}/tree-knowledge-base-folders",
 					contentSpaceId);
 
 		location = HttpUtil.addParameter(
@@ -273,7 +273,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/tree/knowledge-base-folders",
+					"/content-spaces/{content-space-id}/tree-knowledge-base-folders",
 					contentSpaceId);
 
 		location = HttpUtil.addParameter(
@@ -323,7 +323,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/tree/knowledge-base-folders",
+					"/content-spaces/{content-space-id}/tree-knowledge-base-folders",
 					contentSpaceId);
 
 		options.setLocation(location);
@@ -361,7 +361,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/tree/knowledge-base-folders",
+					"/content-spaces/{content-space-id}/tree-knowledge-base-folders",
 					contentSpaceId);
 
 		options.setLocation(location);
