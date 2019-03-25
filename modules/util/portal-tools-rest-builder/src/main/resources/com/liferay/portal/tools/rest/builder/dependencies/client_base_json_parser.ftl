@@ -255,48 +255,6 @@ public abstract class BaseJSONParser<T> {
 		}
 	}
 
-	private String _readValueAsStringJSON() {
-		_setCaptureStart();
-
-		_readNextChar();
-
-		_readWhileLastCharIsWhiteSpace();
-
-		if (_isLastChar('}')) {
-			_readNextChar();
-
-			return "{}";
-		}
-
-		do {
-			_readWhileLastCharIsWhiteSpace();
-
-			_readValueAsString();
-
-			_readWhileLastCharIsWhiteSpace();
-
-			if (!_ifLastCharMatchesThenRead(':')) {
-				throw new IllegalArgumentException("Expected ':'");
-			}
-
-			_readWhileLastCharIsWhiteSpace();
-
-			_readValue();
-
-			_readWhileLastCharIsWhiteSpace();
-		}
-		while (_ifLastCharMatchesThenRead(','));
-
-		_readWhileLastCharIsWhiteSpace();
-
-		if (!_ifLastCharMatchesThenRead('}')) {
-			throw new IllegalArgumentException(
-				"Expected either ',' or '}'; found '" + _lastChar + "'");
-		}
-
-		return _getCapturedSubstring();
-	}
-
 	private Object _readValue() {
 		if (_lastChar == '[') {
 			return _readValueAsArray();
@@ -432,6 +390,48 @@ public abstract class BaseJSONParser<T> {
 		_readNextChar();
 
 		return string;
+	}
+
+	private String _readValueAsStringJSON() {
+		_setCaptureStart();
+
+		_readNextChar();
+
+		_readWhileLastCharIsWhiteSpace();
+
+		if (_isLastChar('}')) {
+			_readNextChar();
+
+			return "{}";
+		}
+
+		do {
+			_readWhileLastCharIsWhiteSpace();
+
+			_readValueAsString();
+
+			_readWhileLastCharIsWhiteSpace();
+
+			if (!_ifLastCharMatchesThenRead(':')) {
+				throw new IllegalArgumentException("Expected ':'");
+			}
+
+			_readWhileLastCharIsWhiteSpace();
+
+			_readValue();
+
+			_readWhileLastCharIsWhiteSpace();
+		}
+		while (_ifLastCharMatchesThenRead(','));
+
+		_readWhileLastCharIsWhiteSpace();
+
+		if (!_ifLastCharMatchesThenRead('}')) {
+			throw new IllegalArgumentException(
+				"Expected either ',' or '}'; found '" + _lastChar + "'");
+		}
+
+		return _getCapturedSubstring();
 	}
 
 	private String _readValueAsStringNumber() {
