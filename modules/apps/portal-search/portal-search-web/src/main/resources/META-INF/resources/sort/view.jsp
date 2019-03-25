@@ -43,15 +43,20 @@ SortDisplayContext sortDisplayContext = (SortDisplayContext)java.util.Objects.re
 	<c:otherwise>
 		<aui:form method="post" name="fm">
 			<aui:fieldset>
-					<aui:input cssClass="sort-parameter-name" name="sort-parameter-name" type="hidden" value="<%= sortDisplayContext.getParameterName() %>" />
+				<aui:input cssClass="sort-parameter-name" name="sort-parameter-name" type="hidden" value="<%= sortDisplayContext.getParameterName() %>" />
+
 				<aui:select class="sort-term" label="sort-by" name="sortSelection">
 
-				<%
+					<%
 					for (SortTermDisplayContext sortTermDisplayContext : sortDisplayContext.getSortTermDisplayContexts()) {
-				%>
+					%>
 
-					<aui:option label="<%= sortTermDisplayContext.getLabel() %>" selected="<%= sortTermDisplayContext.isSelected() %>" value="<%= sortTermDisplayContext.getField() %>" />
-				<%} %>
+						<aui:option label="<%= sortTermDisplayContext.getLabel() %>" selected="<%= sortTermDisplayContext.isSelected() %>" value="<%= sortTermDisplayContext.getField() %>" />
+
+					<%
+					}
+					%>
+
 				</aui:select>
 			</aui:fieldset>
 		</aui:form>
@@ -59,16 +64,23 @@ SortDisplayContext sortDisplayContext = (SortDisplayContext)java.util.Objects.re
 </c:choose>
 
 <aui:script use="liferay-search-sort-util">
-AUI().ready('aui-base',"node",'event', function(
-	A) {
+AUI().ready(
+	'aui-base',
+	"node",
+	'event',
+	function(A) {
 		A.one("#<portlet:namespace />sortSelection").on(
-			"change",function() {
-			var sortSelect = A.one("#<portlet:namespace />sortSelection").get('value');
-			var selections = [];
-			selections.push(sortSelect);
-			var key = A.one("#<portlet:namespace />sort-parameter-name").get('value');
+			"change",
+			function() {
+				var selections = [];
 
-			document.location.search = Liferay.Search.SortUtil.updateQueryString(key, selections, document.location.search);
+				var sortSelect = A.one("#<portlet:namespace />sortSelection").get('value');
+
+				selections.push(sortSelect);
+
+				var key = A.one("#<portlet:namespace />sort-parameter-name").get('value');
+
+				document.location.search = Liferay.Search.SortUtil.updateQueryString(key, selections, document.location.search);
+			});
 	});
-});
 </aui:script>
