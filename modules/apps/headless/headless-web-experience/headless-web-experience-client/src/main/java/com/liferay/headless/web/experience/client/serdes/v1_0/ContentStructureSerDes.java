@@ -16,10 +16,12 @@ package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentStructure;
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentStructureField;
-import com.liferay.headless.web.experience.client.dto.v1_0.Creator;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -30,6 +32,20 @@ import javax.annotation.Generated;
 @Generated("")
 public class ContentStructureSerDes {
 
+	public static ContentStructure toDTO(String json) {
+		ContentStructureJSONParser contentStructureJSONParser =
+			new ContentStructureJSONParser();
+
+		return contentStructureJSONParser.parseToDTO(json);
+	}
+
+	public static ContentStructure[] toDTOs(String json) {
+		ContentStructureJSONParser contentStructureJSONParser =
+			new ContentStructureJSONParser();
+
+		return contentStructureJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(ContentStructure contentStructure) {
 		if (contentStructure == null) {
 			return "{}";
@@ -39,22 +55,22 @@ public class ContentStructureSerDes {
 
 		sb.append("{");
 
-		String[] availableLanguages = contentStructure.getAvailableLanguages();
-
 		sb.append("\"availableLanguages\": ");
 
-		if (availableLanguages == null) {
+		if (contentStructure.getAvailableLanguages() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < availableLanguages.length; i++) {
+			for (int i = 0; i < contentStructure.getAvailableLanguages().length;
+				 i++) {
+
 				sb.append("\"");
-				sb.append(availableLanguages[i]);
+				sb.append(contentStructure.getAvailableLanguages()[i]);
 				sb.append("\"");
 
-				if ((i + 1) < availableLanguages.length) {
+				if ((i + 1) < contentStructure.getAvailableLanguages().length) {
 					sb.append(", ");
 				}
 			}
@@ -63,29 +79,28 @@ public class ContentStructureSerDes {
 		}
 
 		sb.append(", ");
-
-		Long contentSpaceId = contentStructure.getContentSpaceId();
 
 		sb.append("\"contentSpaceId\": ");
 
-		sb.append(contentSpaceId);
+		sb.append(contentStructure.getContentSpaceId());
 		sb.append(", ");
-
-		ContentStructureField[] contentStructureFields =
-			contentStructure.getContentStructureFields();
 
 		sb.append("\"contentStructureFields\": ");
 
-		if (contentStructureFields == null) {
+		if (contentStructure.getContentStructureFields() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < contentStructureFields.length; i++) {
-				sb.append(contentStructureFields[i]);
+			for (int i = 0;
+				 i < contentStructure.getContentStructureFields().length; i++) {
 
-				if ((i + 1) < contentStructureFields.length) {
+				sb.append(contentStructure.getContentStructureFields()[i]);
+
+				if ((i + 1) <
+						contentStructure.getContentStructureFields().length) {
+
 					sb.append(", ");
 				}
 			}
@@ -95,53 +110,41 @@ public class ContentStructureSerDes {
 
 		sb.append(", ");
 
-		Creator creator = contentStructure.getCreator();
-
 		sb.append("\"creator\": ");
 
-		sb.append(creator);
+		sb.append(contentStructure.getCreator());
 		sb.append(", ");
-
-		Date dateCreated = contentStructure.getDateCreated();
 
 		sb.append("\"dateCreated\": ");
 
 		sb.append("\"");
-		sb.append(dateCreated);
+		sb.append(contentStructure.getDateCreated());
 		sb.append("\"");
 		sb.append(", ");
-
-		Date dateModified = contentStructure.getDateModified();
 
 		sb.append("\"dateModified\": ");
 
 		sb.append("\"");
-		sb.append(dateModified);
+		sb.append(contentStructure.getDateModified());
 		sb.append("\"");
 		sb.append(", ");
-
-		String description = contentStructure.getDescription();
 
 		sb.append("\"description\": ");
 
 		sb.append("\"");
-		sb.append(description);
+		sb.append(contentStructure.getDescription());
 		sb.append("\"");
 		sb.append(", ");
 
-		Long id = contentStructure.getId();
-
 		sb.append("\"id\": ");
 
-		sb.append(id);
+		sb.append(contentStructure.getId());
 		sb.append(", ");
-
-		String name = contentStructure.getName();
 
 		sb.append("\"name\": ");
 
 		sb.append("\"");
-		sb.append(name);
+		sb.append(contentStructure.getName());
 		sb.append("\"");
 
 		sb.append("}");
@@ -173,12 +176,87 @@ public class ContentStructureSerDes {
 		return sb.toString();
 	}
 
-	public static ContentStructure toContentStructure(String json) {
-		return null;
-	}
+	private static class ContentStructureJSONParser
+		extends BaseJSONParser<ContentStructure> {
 
-	public static ContentStructure[] toContentStructures(String json) {
-		return null;
+		protected ContentStructure createDTO() {
+			return new ContentStructure();
+		}
+
+		protected ContentStructure[] createDTOArray(int size) {
+			return new ContentStructure[size];
+		}
+
+		protected void setField(
+			ContentStructure contentStructure, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "availableLanguages")) {
+				if (jsonParserFieldValue != null) {
+					contentStructure.setAvailableLanguages(
+						toStrings((Object[])jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "contentSpaceId")) {
+				if (jsonParserFieldValue != null) {
+					contentStructure.setContentSpaceId(
+						(Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(
+						jsonParserFieldName, "contentStructureFields")) {
+
+				if (jsonParserFieldValue != null) {
+					contentStructure.setContentStructureFields(
+						Stream.of(
+							toStrings((Object[])jsonParserFieldValue)
+						).map(
+							object -> ContentStructureFieldSerDes.toDTO(
+								(String)object)
+						).toArray(
+							size -> new ContentStructureField[size]
+						));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "creator")) {
+				if (jsonParserFieldValue != null) {
+					contentStructure.setCreator(
+						CreatorSerDes.toDTO((String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
+				if (jsonParserFieldValue != null) {
+					contentStructure.setDateCreated((Date)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
+				if (jsonParserFieldValue != null) {
+					contentStructure.setDateModified(
+						(Date)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "description")) {
+				if (jsonParserFieldValue != null) {
+					contentStructure.setDescription(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "id")) {
+				if (jsonParserFieldValue != null) {
+					contentStructure.setId((Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "name")) {
+				if (jsonParserFieldValue != null) {
+					contentStructure.setName((String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

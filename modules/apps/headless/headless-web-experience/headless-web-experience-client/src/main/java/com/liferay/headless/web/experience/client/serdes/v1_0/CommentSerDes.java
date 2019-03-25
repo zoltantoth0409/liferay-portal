@@ -15,10 +15,11 @@
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.Comment;
-import com.liferay.headless.web.experience.client.dto.v1_0.Creator;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -29,6 +30,18 @@ import javax.annotation.Generated;
 @Generated("")
 public class CommentSerDes {
 
+	public static Comment toDTO(String json) {
+		CommentJSONParser commentJSONParser = new CommentJSONParser();
+
+		return commentJSONParser.parseToDTO(json);
+	}
+
+	public static Comment[] toDTOs(String json) {
+		CommentJSONParser commentJSONParser = new CommentJSONParser();
+
+		return commentJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(Comment comment) {
 		if (comment == null) {
 			return "{}";
@@ -38,51 +51,39 @@ public class CommentSerDes {
 
 		sb.append("{");
 
-		Creator creator = comment.getCreator();
-
 		sb.append("\"creator\": ");
 
-		sb.append(creator);
+		sb.append(comment.getCreator());
 		sb.append(", ");
-
-		Date dateCreated = comment.getDateCreated();
 
 		sb.append("\"dateCreated\": ");
 
 		sb.append("\"");
-		sb.append(dateCreated);
+		sb.append(comment.getDateCreated());
 		sb.append("\"");
 		sb.append(", ");
-
-		Date dateModified = comment.getDateModified();
 
 		sb.append("\"dateModified\": ");
 
 		sb.append("\"");
-		sb.append(dateModified);
+		sb.append(comment.getDateModified());
 		sb.append("\"");
 		sb.append(", ");
 
-		Long id = comment.getId();
-
 		sb.append("\"id\": ");
 
-		sb.append(id);
+		sb.append(comment.getId());
 		sb.append(", ");
-
-		Number numberOfComments = comment.getNumberOfComments();
 
 		sb.append("\"numberOfComments\": ");
 
-		sb.append(numberOfComments);
+		sb.append(comment.getNumberOfComments());
 		sb.append(", ");
-
-		String text = comment.getText();
 
 		sb.append("\"text\": ");
 
 		sb.append("\"");
-		sb.append(text);
+		sb.append(comment.getText());
 		sb.append("\"");
 
 		sb.append("}");
@@ -112,12 +113,57 @@ public class CommentSerDes {
 		return sb.toString();
 	}
 
-	public static Comment toComment(String json) {
-		return null;
-	}
+	private static class CommentJSONParser extends BaseJSONParser<Comment> {
 
-	public static Comment[] toComments(String json) {
-		return null;
+		protected Comment createDTO() {
+			return new Comment();
+		}
+
+		protected Comment[] createDTOArray(int size) {
+			return new Comment[size];
+		}
+
+		protected void setField(
+			Comment comment, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "creator")) {
+				if (jsonParserFieldValue != null) {
+					comment.setCreator(
+						CreatorSerDes.toDTO((String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
+				if (jsonParserFieldValue != null) {
+					comment.setDateCreated((Date)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
+				if (jsonParserFieldValue != null) {
+					comment.setDateModified((Date)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "id")) {
+				if (jsonParserFieldValue != null) {
+					comment.setId((Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "numberOfComments")) {
+				if (jsonParserFieldValue != null) {
+					comment.setNumberOfComments((Number)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "text")) {
+				if (jsonParserFieldValue != null) {
+					comment.setText((String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

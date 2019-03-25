@@ -15,8 +15,10 @@
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.TaxonomyCategory;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -27,6 +29,20 @@ import javax.annotation.Generated;
 @Generated("")
 public class TaxonomyCategorySerDes {
 
+	public static TaxonomyCategory toDTO(String json) {
+		TaxonomyCategoryJSONParser taxonomyCategoryJSONParser =
+			new TaxonomyCategoryJSONParser();
+
+		return taxonomyCategoryJSONParser.parseToDTO(json);
+	}
+
+	public static TaxonomyCategory[] toDTOs(String json) {
+		TaxonomyCategoryJSONParser taxonomyCategoryJSONParser =
+			new TaxonomyCategoryJSONParser();
+
+		return taxonomyCategoryJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(TaxonomyCategory taxonomyCategory) {
 		if (taxonomyCategory == null) {
 			return "{}";
@@ -36,20 +52,15 @@ public class TaxonomyCategorySerDes {
 
 		sb.append("{");
 
-		Long taxonomyCategoryId = taxonomyCategory.getTaxonomyCategoryId();
-
 		sb.append("\"taxonomyCategoryId\": ");
 
-		sb.append(taxonomyCategoryId);
+		sb.append(taxonomyCategory.getTaxonomyCategoryId());
 		sb.append(", ");
-
-		String taxonomyCategoryName =
-			taxonomyCategory.getTaxonomyCategoryName();
 
 		sb.append("\"taxonomyCategoryName\": ");
 
 		sb.append("\"");
-		sb.append(taxonomyCategoryName);
+		sb.append(taxonomyCategory.getTaxonomyCategoryName());
 		sb.append("\"");
 
 		sb.append("}");
@@ -81,12 +92,41 @@ public class TaxonomyCategorySerDes {
 		return sb.toString();
 	}
 
-	public static TaxonomyCategory toTaxonomyCategory(String json) {
-		return null;
-	}
+	private static class TaxonomyCategoryJSONParser
+		extends BaseJSONParser<TaxonomyCategory> {
 
-	public static TaxonomyCategory[] toTaxonomyCategories(String json) {
-		return null;
+		protected TaxonomyCategory createDTO() {
+			return new TaxonomyCategory();
+		}
+
+		protected TaxonomyCategory[] createDTOArray(int size) {
+			return new TaxonomyCategory[size];
+		}
+
+		protected void setField(
+			TaxonomyCategory taxonomyCategory, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "taxonomyCategoryId")) {
+				if (jsonParserFieldValue != null) {
+					taxonomyCategory.setTaxonomyCategoryId(
+						(Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(
+						jsonParserFieldName, "taxonomyCategoryName")) {
+
+				if (jsonParserFieldValue != null) {
+					taxonomyCategory.setTaxonomyCategoryName(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

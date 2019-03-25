@@ -14,12 +14,11 @@
 
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
-import com.liferay.headless.web.experience.client.dto.v1_0.ContentDocument;
-import com.liferay.headless.web.experience.client.dto.v1_0.Geo;
-import com.liferay.headless.web.experience.client.dto.v1_0.StructuredContentLink;
 import com.liferay.headless.web.experience.client.dto.v1_0.Value;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -30,6 +29,18 @@ import javax.annotation.Generated;
 @Generated("")
 public class ValueSerDes {
 
+	public static Value toDTO(String json) {
+		ValueJSONParser valueJSONParser = new ValueJSONParser();
+
+		return valueJSONParser.parseToDTO(json);
+	}
+
+	public static Value[] toDTOs(String json) {
+		ValueJSONParser valueJSONParser = new ValueJSONParser();
+
+		return valueJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(Value value) {
 		if (value == null) {
 			return "{}";
@@ -39,81 +50,60 @@ public class ValueSerDes {
 
 		sb.append("{");
 
-		String data = value.getData();
-
 		sb.append("\"data\": ");
 
 		sb.append("\"");
-		sb.append(data);
+		sb.append(value.getData());
 		sb.append("\"");
 		sb.append(", ");
 
-		ContentDocument document = value.getDocument();
-
 		sb.append("\"document\": ");
 
-		sb.append(document);
+		sb.append(value.getDocument());
 		sb.append(", ");
-
-		Long documentId = value.getDocumentId();
 
 		sb.append("\"documentId\": ");
 
-		sb.append(documentId);
+		sb.append(value.getDocumentId());
 		sb.append(", ");
-
-		Geo geo = value.getGeo();
 
 		sb.append("\"geo\": ");
 
-		sb.append(geo);
+		sb.append(value.getGeo());
 		sb.append(", ");
-
-		ContentDocument image = value.getImage();
 
 		sb.append("\"image\": ");
 
-		sb.append(image);
+		sb.append(value.getImage());
 		sb.append(", ");
-
-		String imageDescription = value.getImageDescription();
 
 		sb.append("\"imageDescription\": ");
 
 		sb.append("\"");
-		sb.append(imageDescription);
+		sb.append(value.getImageDescription());
 		sb.append("\"");
 		sb.append(", ");
 
-		Long imageId = value.getImageId();
-
 		sb.append("\"imageId\": ");
 
-		sb.append(imageId);
+		sb.append(value.getImageId());
 		sb.append(", ");
-
-		String link = value.getLink();
 
 		sb.append("\"link\": ");
 
 		sb.append("\"");
-		sb.append(link);
+		sb.append(value.getLink());
 		sb.append("\"");
 		sb.append(", ");
 
-		Long structuredContentId = value.getStructuredContentId();
-
 		sb.append("\"structuredContentId\": ");
 
-		sb.append(structuredContentId);
+		sb.append(value.getStructuredContentId());
 		sb.append(", ");
-
-		StructuredContentLink structuredContentLink =
-			value.getStructuredContentLink();
 
 		sb.append("\"structuredContentLink\": ");
 
-		sb.append(structuredContentLink);
+		sb.append(value.getStructuredContentLink());
 
 		sb.append("}");
 
@@ -142,12 +132,86 @@ public class ValueSerDes {
 		return sb.toString();
 	}
 
-	public static Value toValue(String json) {
-		return null;
-	}
+	private static class ValueJSONParser extends BaseJSONParser<Value> {
 
-	public static Value[] toValues(String json) {
-		return null;
+		protected Value createDTO() {
+			return new Value();
+		}
+
+		protected Value[] createDTOArray(int size) {
+			return new Value[size];
+		}
+
+		protected void setField(
+			Value value, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "data")) {
+				if (jsonParserFieldValue != null) {
+					value.setData((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "document")) {
+				if (jsonParserFieldValue != null) {
+					value.setDocument(
+						ContentDocumentSerDes.toDTO(
+							(String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "documentId")) {
+				if (jsonParserFieldValue != null) {
+					value.setDocumentId((Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "geo")) {
+				if (jsonParserFieldValue != null) {
+					value.setGeo(GeoSerDes.toDTO((String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "image")) {
+				if (jsonParserFieldValue != null) {
+					value.setImage(
+						ContentDocumentSerDes.toDTO(
+							(String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "imageDescription")) {
+				if (jsonParserFieldValue != null) {
+					value.setImageDescription((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "imageId")) {
+				if (jsonParserFieldValue != null) {
+					value.setImageId((Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "link")) {
+				if (jsonParserFieldValue != null) {
+					value.setLink((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(
+						jsonParserFieldName, "structuredContentId")) {
+
+				if (jsonParserFieldValue != null) {
+					value.setStructuredContentId((Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(
+						jsonParserFieldName, "structuredContentLink")) {
+
+				if (jsonParserFieldValue != null) {
+					value.setStructuredContentLink(
+						StructuredContentLinkSerDes.toDTO(
+							(String)jsonParserFieldValue));
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

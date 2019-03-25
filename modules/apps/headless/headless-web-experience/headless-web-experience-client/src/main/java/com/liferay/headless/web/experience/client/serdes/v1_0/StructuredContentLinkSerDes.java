@@ -15,8 +15,10 @@
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.StructuredContentLink;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -27,6 +29,20 @@ import javax.annotation.Generated;
 @Generated("")
 public class StructuredContentLinkSerDes {
 
+	public static StructuredContentLink toDTO(String json) {
+		StructuredContentLinkJSONParser structuredContentLinkJSONParser =
+			new StructuredContentLinkJSONParser();
+
+		return structuredContentLinkJSONParser.parseToDTO(json);
+	}
+
+	public static StructuredContentLink[] toDTOs(String json) {
+		StructuredContentLinkJSONParser structuredContentLinkJSONParser =
+			new StructuredContentLinkJSONParser();
+
+		return structuredContentLinkJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(StructuredContentLink structuredContentLink) {
 		if (structuredContentLink == null) {
 			return "{}";
@@ -36,19 +52,15 @@ public class StructuredContentLinkSerDes {
 
 		sb.append("{");
 
-		Long id = structuredContentLink.getId();
-
 		sb.append("\"id\": ");
 
-		sb.append(id);
+		sb.append(structuredContentLink.getId());
 		sb.append(", ");
-
-		String title = structuredContentLink.getTitle();
 
 		sb.append("\"title\": ");
 
 		sb.append("\"");
-		sb.append(title);
+		sb.append(structuredContentLink.getTitle());
 		sb.append("\"");
 
 		sb.append("}");
@@ -82,14 +94,38 @@ public class StructuredContentLinkSerDes {
 		return sb.toString();
 	}
 
-	public static StructuredContentLink toStructuredContentLink(String json) {
-		return null;
-	}
+	private static class StructuredContentLinkJSONParser
+		extends BaseJSONParser<StructuredContentLink> {
 
-	public static StructuredContentLink[] toStructuredContentLinks(
-		String json) {
+		protected StructuredContentLink createDTO() {
+			return new StructuredContentLink();
+		}
 
-		return null;
+		protected StructuredContentLink[] createDTOArray(int size) {
+			return new StructuredContentLink[size];
+		}
+
+		protected void setField(
+			StructuredContentLink structuredContentLink,
+			String jsonParserFieldName, Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "id")) {
+				if (jsonParserFieldValue != null) {
+					structuredContentLink.setId((Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "title")) {
+				if (jsonParserFieldValue != null) {
+					structuredContentLink.setTitle(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

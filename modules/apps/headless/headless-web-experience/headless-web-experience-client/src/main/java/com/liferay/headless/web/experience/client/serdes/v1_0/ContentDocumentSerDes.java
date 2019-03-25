@@ -15,8 +15,10 @@
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentDocument;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -27,6 +29,20 @@ import javax.annotation.Generated;
 @Generated("")
 public class ContentDocumentSerDes {
 
+	public static ContentDocument toDTO(String json) {
+		ContentDocumentJSONParser contentDocumentJSONParser =
+			new ContentDocumentJSONParser();
+
+		return contentDocumentJSONParser.parseToDTO(json);
+	}
+
+	public static ContentDocument[] toDTOs(String json) {
+		ContentDocumentJSONParser contentDocumentJSONParser =
+			new ContentDocumentJSONParser();
+
+		return contentDocumentJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(ContentDocument contentDocument) {
 		if (contentDocument == null) {
 			return "{}";
@@ -36,62 +52,48 @@ public class ContentDocumentSerDes {
 
 		sb.append("{");
 
-		String contentUrl = contentDocument.getContentUrl();
-
 		sb.append("\"contentUrl\": ");
 
 		sb.append("\"");
-		sb.append(contentUrl);
+		sb.append(contentDocument.getContentUrl());
 		sb.append("\"");
 		sb.append(", ");
-
-		String description = contentDocument.getDescription();
 
 		sb.append("\"description\": ");
 
 		sb.append("\"");
-		sb.append(description);
+		sb.append(contentDocument.getDescription());
 		sb.append("\"");
 		sb.append(", ");
-
-		String encodingFormat = contentDocument.getEncodingFormat();
 
 		sb.append("\"encodingFormat\": ");
 
 		sb.append("\"");
-		sb.append(encodingFormat);
+		sb.append(contentDocument.getEncodingFormat());
 		sb.append("\"");
 		sb.append(", ");
-
-		String fileExtension = contentDocument.getFileExtension();
 
 		sb.append("\"fileExtension\": ");
 
 		sb.append("\"");
-		sb.append(fileExtension);
+		sb.append(contentDocument.getFileExtension());
 		sb.append("\"");
 		sb.append(", ");
 
-		Long id = contentDocument.getId();
-
 		sb.append("\"id\": ");
 
-		sb.append(id);
+		sb.append(contentDocument.getId());
 		sb.append(", ");
-
-		Number sizeInBytes = contentDocument.getSizeInBytes();
 
 		sb.append("\"sizeInBytes\": ");
 
-		sb.append(sizeInBytes);
+		sb.append(contentDocument.getSizeInBytes());
 		sb.append(", ");
-
-		String title = contentDocument.getTitle();
 
 		sb.append("\"title\": ");
 
 		sb.append("\"");
-		sb.append(title);
+		sb.append(contentDocument.getTitle());
 		sb.append("\"");
 
 		sb.append("}");
@@ -121,12 +123,66 @@ public class ContentDocumentSerDes {
 		return sb.toString();
 	}
 
-	public static ContentDocument toContentDocument(String json) {
-		return null;
-	}
+	private static class ContentDocumentJSONParser
+		extends BaseJSONParser<ContentDocument> {
 
-	public static ContentDocument[] toContentDocuments(String json) {
-		return null;
+		protected ContentDocument createDTO() {
+			return new ContentDocument();
+		}
+
+		protected ContentDocument[] createDTOArray(int size) {
+			return new ContentDocument[size];
+		}
+
+		protected void setField(
+			ContentDocument contentDocument, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "contentUrl")) {
+				if (jsonParserFieldValue != null) {
+					contentDocument.setContentUrl((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "description")) {
+				if (jsonParserFieldValue != null) {
+					contentDocument.setDescription(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "encodingFormat")) {
+				if (jsonParserFieldValue != null) {
+					contentDocument.setEncodingFormat(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "fileExtension")) {
+				if (jsonParserFieldValue != null) {
+					contentDocument.setFileExtension(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "id")) {
+				if (jsonParserFieldValue != null) {
+					contentDocument.setId((Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "sizeInBytes")) {
+				if (jsonParserFieldValue != null) {
+					contentDocument.setSizeInBytes(
+						(Number)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "title")) {
+				if (jsonParserFieldValue != null) {
+					contentDocument.setTitle((String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

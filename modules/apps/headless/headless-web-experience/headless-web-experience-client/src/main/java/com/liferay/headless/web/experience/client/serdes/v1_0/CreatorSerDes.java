@@ -15,8 +15,10 @@
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.Creator;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -27,6 +29,18 @@ import javax.annotation.Generated;
 @Generated("")
 public class CreatorSerDes {
 
+	public static Creator toDTO(String json) {
+		CreatorJSONParser creatorJSONParser = new CreatorJSONParser();
+
+		return creatorJSONParser.parseToDTO(json);
+	}
+
+	public static Creator[] toDTOs(String json) {
+		CreatorJSONParser creatorJSONParser = new CreatorJSONParser();
+
+		return creatorJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(Creator creator) {
 		if (creator == null) {
 			return "{}";
@@ -36,64 +50,50 @@ public class CreatorSerDes {
 
 		sb.append("{");
 
-		String additionalName = creator.getAdditionalName();
-
 		sb.append("\"additionalName\": ");
 
 		sb.append("\"");
-		sb.append(additionalName);
+		sb.append(creator.getAdditionalName());
 		sb.append("\"");
 		sb.append(", ");
-
-		String familyName = creator.getFamilyName();
 
 		sb.append("\"familyName\": ");
 
 		sb.append("\"");
-		sb.append(familyName);
+		sb.append(creator.getFamilyName());
 		sb.append("\"");
 		sb.append(", ");
-
-		String givenName = creator.getGivenName();
 
 		sb.append("\"givenName\": ");
 
 		sb.append("\"");
-		sb.append(givenName);
+		sb.append(creator.getGivenName());
 		sb.append("\"");
 		sb.append(", ");
 
-		Long id = creator.getId();
-
 		sb.append("\"id\": ");
 
-		sb.append(id);
+		sb.append(creator.getId());
 		sb.append(", ");
-
-		String image = creator.getImage();
 
 		sb.append("\"image\": ");
 
 		sb.append("\"");
-		sb.append(image);
+		sb.append(creator.getImage());
 		sb.append("\"");
 		sb.append(", ");
-
-		String name = creator.getName();
 
 		sb.append("\"name\": ");
 
 		sb.append("\"");
-		sb.append(name);
+		sb.append(creator.getName());
 		sb.append("\"");
 		sb.append(", ");
-
-		String profileURL = creator.getProfileURL();
 
 		sb.append("\"profileURL\": ");
 
 		sb.append("\"");
-		sb.append(profileURL);
+		sb.append(creator.getProfileURL());
 		sb.append("\"");
 
 		sb.append("}");
@@ -123,12 +123,61 @@ public class CreatorSerDes {
 		return sb.toString();
 	}
 
-	public static Creator toCreator(String json) {
-		return null;
-	}
+	private static class CreatorJSONParser extends BaseJSONParser<Creator> {
 
-	public static Creator[] toCreators(String json) {
-		return null;
+		protected Creator createDTO() {
+			return new Creator();
+		}
+
+		protected Creator[] createDTOArray(int size) {
+			return new Creator[size];
+		}
+
+		protected void setField(
+			Creator creator, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "additionalName")) {
+				if (jsonParserFieldValue != null) {
+					creator.setAdditionalName((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "familyName")) {
+				if (jsonParserFieldValue != null) {
+					creator.setFamilyName((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "givenName")) {
+				if (jsonParserFieldValue != null) {
+					creator.setGivenName((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "id")) {
+				if (jsonParserFieldValue != null) {
+					creator.setId((Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "image")) {
+				if (jsonParserFieldValue != null) {
+					creator.setImage((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "name")) {
+				if (jsonParserFieldValue != null) {
+					creator.setName((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "profileURL")) {
+				if (jsonParserFieldValue != null) {
+					creator.setProfileURL((String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

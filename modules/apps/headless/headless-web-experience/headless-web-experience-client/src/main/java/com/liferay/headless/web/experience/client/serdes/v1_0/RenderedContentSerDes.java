@@ -15,8 +15,10 @@
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.RenderedContent;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -27,6 +29,20 @@ import javax.annotation.Generated;
 @Generated("")
 public class RenderedContentSerDes {
 
+	public static RenderedContent toDTO(String json) {
+		RenderedContentJSONParser renderedContentJSONParser =
+			new RenderedContentJSONParser();
+
+		return renderedContentJSONParser.parseToDTO(json);
+	}
+
+	public static RenderedContent[] toDTOs(String json) {
+		RenderedContentJSONParser renderedContentJSONParser =
+			new RenderedContentJSONParser();
+
+		return renderedContentJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(RenderedContent renderedContent) {
 		if (renderedContent == null) {
 			return "{}";
@@ -36,21 +52,17 @@ public class RenderedContentSerDes {
 
 		sb.append("{");
 
-		String renderedContentURL = renderedContent.getRenderedContentURL();
-
 		sb.append("\"renderedContentURL\": ");
 
 		sb.append("\"");
-		sb.append(renderedContentURL);
+		sb.append(renderedContent.getRenderedContentURL());
 		sb.append("\"");
 		sb.append(", ");
-
-		String templateName = renderedContent.getTemplateName();
 
 		sb.append("\"templateName\": ");
 
 		sb.append("\"");
-		sb.append(templateName);
+		sb.append(renderedContent.getTemplateName());
 		sb.append("\"");
 
 		sb.append("}");
@@ -80,12 +92,39 @@ public class RenderedContentSerDes {
 		return sb.toString();
 	}
 
-	public static RenderedContent toRenderedContent(String json) {
-		return null;
-	}
+	private static class RenderedContentJSONParser
+		extends BaseJSONParser<RenderedContent> {
 
-	public static RenderedContent[] toRenderedContents(String json) {
-		return null;
+		protected RenderedContent createDTO() {
+			return new RenderedContent();
+		}
+
+		protected RenderedContent[] createDTOArray(int size) {
+			return new RenderedContent[size];
+		}
+
+		protected void setField(
+			RenderedContent renderedContent, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "renderedContentURL")) {
+				if (jsonParserFieldValue != null) {
+					renderedContent.setRenderedContentURL(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "templateName")) {
+				if (jsonParserFieldValue != null) {
+					renderedContent.setTemplateName(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

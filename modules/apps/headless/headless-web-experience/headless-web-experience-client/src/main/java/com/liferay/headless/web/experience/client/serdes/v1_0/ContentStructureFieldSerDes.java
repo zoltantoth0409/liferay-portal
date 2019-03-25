@@ -16,8 +16,11 @@ package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentStructureField;
 import com.liferay.headless.web.experience.client.dto.v1_0.Option;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -28,6 +31,20 @@ import javax.annotation.Generated;
 @Generated("")
 public class ContentStructureFieldSerDes {
 
+	public static ContentStructureField toDTO(String json) {
+		ContentStructureFieldJSONParser contentStructureFieldJSONParser =
+			new ContentStructureFieldJSONParser();
+
+		return contentStructureFieldJSONParser.parseToDTO(json);
+	}
+
+	public static ContentStructureField[] toDTOs(String json) {
+		ContentStructureFieldJSONParser contentStructureFieldJSONParser =
+			new ContentStructureFieldJSONParser();
+
+		return contentStructureFieldJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(ContentStructureField contentStructureField) {
 		if (contentStructureField == null) {
 			return "{}";
@@ -37,71 +54,63 @@ public class ContentStructureFieldSerDes {
 
 		sb.append("{");
 
-		String dataType = contentStructureField.getDataType();
-
 		sb.append("\"dataType\": ");
 
 		sb.append("\"");
-		sb.append(dataType);
+		sb.append(contentStructureField.getDataType());
 		sb.append("\"");
 		sb.append(", ");
-
-		String inputControl = contentStructureField.getInputControl();
 
 		sb.append("\"inputControl\": ");
 
 		sb.append("\"");
-		sb.append(inputControl);
+		sb.append(contentStructureField.getInputControl());
 		sb.append("\"");
 		sb.append(", ");
-
-		String label = contentStructureField.getLabel();
 
 		sb.append("\"label\": ");
 
 		sb.append("\"");
-		sb.append(label);
+		sb.append(contentStructureField.getLabel());
 		sb.append("\"");
 		sb.append(", ");
 
-		Boolean localizable = contentStructureField.getLocalizable();
-
 		sb.append("\"localizable\": ");
 
-		sb.append(localizable);
+		sb.append(contentStructureField.getLocalizable());
 		sb.append(", ");
-
-		Boolean multiple = contentStructureField.getMultiple();
 
 		sb.append("\"multiple\": ");
 
-		sb.append(multiple);
+		sb.append(contentStructureField.getMultiple());
 		sb.append(", ");
-
-		String name = contentStructureField.getName();
 
 		sb.append("\"name\": ");
 
 		sb.append("\"");
-		sb.append(name);
+		sb.append(contentStructureField.getName());
 		sb.append("\"");
 		sb.append(", ");
 
-		ContentStructureField[] nestedContentStructureFields =
-			contentStructureField.getNestedContentStructureFields();
-
 		sb.append("\"nestedContentStructureFields\": ");
 
-		if (nestedContentStructureFields == null) {
+		if (contentStructureField.getNestedContentStructureFields() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < nestedContentStructureFields.length; i++) {
-				sb.append(nestedContentStructureFields[i]);
+			for (int i = 0;
+				 i < contentStructureField.
+					 getNestedContentStructureFields().length;
+				 i++) {
 
-				if ((i + 1) < nestedContentStructureFields.length) {
+				sb.append(
+					contentStructureField.getNestedContentStructureFields()[i]);
+
+				if ((i + 1) < contentStructureField.
+						getNestedContentStructureFields().length) {
+
 					sb.append(", ");
 				}
 			}
@@ -110,21 +119,21 @@ public class ContentStructureFieldSerDes {
 		}
 
 		sb.append(", ");
-
-		Option[] options = contentStructureField.getOptions();
 
 		sb.append("\"options\": ");
 
-		if (options == null) {
+		if (contentStructureField.getOptions() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < options.length; i++) {
-				sb.append(options[i]);
+			for (int i = 0; i < contentStructureField.getOptions().length;
+				 i++) {
 
-				if ((i + 1) < options.length) {
+				sb.append(contentStructureField.getOptions()[i]);
+
+				if ((i + 1) < contentStructureField.getOptions().length) {
 					sb.append(", ");
 				}
 			}
@@ -133,35 +142,27 @@ public class ContentStructureFieldSerDes {
 		}
 
 		sb.append(", ");
-
-		String predefinedValue = contentStructureField.getPredefinedValue();
 
 		sb.append("\"predefinedValue\": ");
 
 		sb.append("\"");
-		sb.append(predefinedValue);
+		sb.append(contentStructureField.getPredefinedValue());
 		sb.append("\"");
 		sb.append(", ");
 
-		Boolean repeatable = contentStructureField.getRepeatable();
-
 		sb.append("\"repeatable\": ");
 
-		sb.append(repeatable);
+		sb.append(contentStructureField.getRepeatable());
 		sb.append(", ");
-
-		Boolean required = contentStructureField.getRequired();
 
 		sb.append("\"required\": ");
 
-		sb.append(required);
+		sb.append(contentStructureField.getRequired());
 		sb.append(", ");
-
-		Boolean showLabel = contentStructureField.getShowLabel();
 
 		sb.append("\"showLabel\": ");
 
-		sb.append(showLabel);
+		sb.append(contentStructureField.getShowLabel());
 
 		sb.append("}");
 
@@ -194,14 +195,113 @@ public class ContentStructureFieldSerDes {
 		return sb.toString();
 	}
 
-	public static ContentStructureField toContentStructureField(String json) {
-		return null;
-	}
+	private static class ContentStructureFieldJSONParser
+		extends BaseJSONParser<ContentStructureField> {
 
-	public static ContentStructureField[] toContentStructureFields(
-		String json) {
+		protected ContentStructureField createDTO() {
+			return new ContentStructureField();
+		}
 
-		return null;
+		protected ContentStructureField[] createDTOArray(int size) {
+			return new ContentStructureField[size];
+		}
+
+		protected void setField(
+			ContentStructureField contentStructureField,
+			String jsonParserFieldName, Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "dataType")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setDataType(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "inputControl")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setInputControl(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "label")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setLabel(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "localizable")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setLocalizable(
+						(Boolean)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "multiple")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setMultiple(
+						(Boolean)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "name")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setName((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(
+						jsonParserFieldName, "nestedContentStructureFields")) {
+
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setNestedContentStructureFields(
+						Stream.of(
+							toStrings((Object[])jsonParserFieldValue)
+						).map(
+							object -> ContentStructureFieldSerDes.toDTO(
+								(String)object)
+						).toArray(
+							size -> new ContentStructureField[size]
+						));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "options")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setOptions(
+						Stream.of(
+							toStrings((Object[])jsonParserFieldValue)
+						).map(
+							object -> OptionSerDes.toDTO((String)object)
+						).toArray(
+							size -> new Option[size]
+						));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "predefinedValue")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setPredefinedValue(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "repeatable")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setRepeatable(
+						(Boolean)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "required")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setRequired(
+						(Boolean)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "showLabel")) {
+				if (jsonParserFieldValue != null) {
+					contentStructureField.setShowLabel(
+						(Boolean)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

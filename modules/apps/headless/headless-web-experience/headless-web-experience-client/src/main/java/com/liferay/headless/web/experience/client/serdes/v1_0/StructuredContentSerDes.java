@@ -14,15 +14,16 @@
 
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
-import com.liferay.headless.web.experience.client.dto.v1_0.AggregateRating;
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentField;
-import com.liferay.headless.web.experience.client.dto.v1_0.Creator;
 import com.liferay.headless.web.experience.client.dto.v1_0.RenderedContent;
 import com.liferay.headless.web.experience.client.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.client.dto.v1_0.TaxonomyCategory;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -33,6 +34,20 @@ import javax.annotation.Generated;
 @Generated("")
 public class StructuredContentSerDes {
 
+	public static StructuredContent toDTO(String json) {
+		StructuredContentJSONParser structuredContentJSONParser =
+			new StructuredContentJSONParser();
+
+		return structuredContentJSONParser.parseToDTO(json);
+	}
+
+	public static StructuredContent[] toDTOs(String json) {
+		StructuredContentJSONParser structuredContentJSONParser =
+			new StructuredContentJSONParser();
+
+		return structuredContentJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(StructuredContent structuredContent) {
 		if (structuredContent == null) {
 			return "{}";
@@ -42,30 +57,29 @@ public class StructuredContentSerDes {
 
 		sb.append("{");
 
-		AggregateRating aggregateRating =
-			structuredContent.getAggregateRating();
-
 		sb.append("\"aggregateRating\": ");
 
-		sb.append(aggregateRating);
+		sb.append(structuredContent.getAggregateRating());
 		sb.append(", ");
-
-		String[] availableLanguages = structuredContent.getAvailableLanguages();
 
 		sb.append("\"availableLanguages\": ");
 
-		if (availableLanguages == null) {
+		if (structuredContent.getAvailableLanguages() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < availableLanguages.length; i++) {
+			for (int i = 0;
+				 i < structuredContent.getAvailableLanguages().length; i++) {
+
 				sb.append("\"");
-				sb.append(availableLanguages[i]);
+				sb.append(structuredContent.getAvailableLanguages()[i]);
 				sb.append("\"");
 
-				if ((i + 1) < availableLanguages.length) {
+				if ((i + 1) <
+						structuredContent.getAvailableLanguages().length) {
+
 					sb.append(", ");
 				}
 			}
@@ -74,21 +88,21 @@ public class StructuredContentSerDes {
 		}
 
 		sb.append(", ");
-
-		ContentField[] contentFields = structuredContent.getContentFields();
 
 		sb.append("\"contentFields\": ");
 
-		if (contentFields == null) {
+		if (structuredContent.getContentFields() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < contentFields.length; i++) {
-				sb.append(contentFields[i]);
+			for (int i = 0; i < structuredContent.getContentFields().length;
+				 i++) {
 
-				if ((i + 1) < contentFields.length) {
+				sb.append(structuredContent.getContentFields()[i]);
+
+				if ((i + 1) < structuredContent.getContentFields().length) {
 					sb.append(", ");
 				}
 			}
@@ -98,86 +112,68 @@ public class StructuredContentSerDes {
 
 		sb.append(", ");
 
-		Long contentSpaceId = structuredContent.getContentSpaceId();
-
 		sb.append("\"contentSpaceId\": ");
 
-		sb.append(contentSpaceId);
+		sb.append(structuredContent.getContentSpaceId());
 		sb.append(", ");
-
-		Long contentStructureId = structuredContent.getContentStructureId();
 
 		sb.append("\"contentStructureId\": ");
 
-		sb.append(contentStructureId);
+		sb.append(structuredContent.getContentStructureId());
 		sb.append(", ");
-
-		Creator creator = structuredContent.getCreator();
 
 		sb.append("\"creator\": ");
 
-		sb.append(creator);
+		sb.append(structuredContent.getCreator());
 		sb.append(", ");
-
-		Date dateCreated = structuredContent.getDateCreated();
 
 		sb.append("\"dateCreated\": ");
 
 		sb.append("\"");
-		sb.append(dateCreated);
+		sb.append(structuredContent.getDateCreated());
 		sb.append("\"");
 		sb.append(", ");
-
-		Date dateModified = structuredContent.getDateModified();
 
 		sb.append("\"dateModified\": ");
 
 		sb.append("\"");
-		sb.append(dateModified);
+		sb.append(structuredContent.getDateModified());
 		sb.append("\"");
 		sb.append(", ");
-
-		Date datePublished = structuredContent.getDatePublished();
 
 		sb.append("\"datePublished\": ");
 
 		sb.append("\"");
-		sb.append(datePublished);
+		sb.append(structuredContent.getDatePublished());
 		sb.append("\"");
 		sb.append(", ");
-
-		String description = structuredContent.getDescription();
 
 		sb.append("\"description\": ");
 
 		sb.append("\"");
-		sb.append(description);
+		sb.append(structuredContent.getDescription());
 		sb.append("\"");
 		sb.append(", ");
 
-		Long id = structuredContent.getId();
-
 		sb.append("\"id\": ");
 
-		sb.append(id);
+		sb.append(structuredContent.getId());
 		sb.append(", ");
-
-		String[] keywords = structuredContent.getKeywords();
 
 		sb.append("\"keywords\": ");
 
-		if (keywords == null) {
+		if (structuredContent.getKeywords() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < keywords.length; i++) {
+			for (int i = 0; i < structuredContent.getKeywords().length; i++) {
 				sb.append("\"");
-				sb.append(keywords[i]);
+				sb.append(structuredContent.getKeywords()[i]);
 				sb.append("\"");
 
-				if ((i + 1) < keywords.length) {
+				if ((i + 1) < structuredContent.getKeywords().length) {
 					sb.append(", ");
 				}
 			}
@@ -186,38 +182,33 @@ public class StructuredContentSerDes {
 		}
 
 		sb.append(", ");
-
-		Date lastReviewed = structuredContent.getLastReviewed();
 
 		sb.append("\"lastReviewed\": ");
 
 		sb.append("\"");
-		sb.append(lastReviewed);
+		sb.append(structuredContent.getLastReviewed());
 		sb.append("\"");
 		sb.append(", ");
 
-		Number numberOfComments = structuredContent.getNumberOfComments();
-
 		sb.append("\"numberOfComments\": ");
 
-		sb.append(numberOfComments);
+		sb.append(structuredContent.getNumberOfComments());
 		sb.append(", ");
-
-		RenderedContent[] renderedContents =
-			structuredContent.getRenderedContents();
 
 		sb.append("\"renderedContents\": ");
 
-		if (renderedContents == null) {
+		if (structuredContent.getRenderedContents() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < renderedContents.length; i++) {
-				sb.append(renderedContents[i]);
+			for (int i = 0; i < structuredContent.getRenderedContents().length;
+				 i++) {
 
-				if ((i + 1) < renderedContents.length) {
+				sb.append(structuredContent.getRenderedContents()[i]);
+
+				if ((i + 1) < structuredContent.getRenderedContents().length) {
 					sb.append(", ");
 				}
 			}
@@ -226,22 +217,23 @@ public class StructuredContentSerDes {
 		}
 
 		sb.append(", ");
-
-		TaxonomyCategory[] taxonomyCategories =
-			structuredContent.getTaxonomyCategories();
 
 		sb.append("\"taxonomyCategories\": ");
 
-		if (taxonomyCategories == null) {
+		if (structuredContent.getTaxonomyCategories() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < taxonomyCategories.length; i++) {
-				sb.append(taxonomyCategories[i]);
+			for (int i = 0;
+				 i < structuredContent.getTaxonomyCategories().length; i++) {
 
-				if ((i + 1) < taxonomyCategories.length) {
+				sb.append(structuredContent.getTaxonomyCategories()[i]);
+
+				if ((i + 1) <
+						structuredContent.getTaxonomyCategories().length) {
+
 					sb.append(", ");
 				}
 			}
@@ -250,21 +242,23 @@ public class StructuredContentSerDes {
 		}
 
 		sb.append(", ");
-
-		Long[] taxonomyCategoryIds = structuredContent.getTaxonomyCategoryIds();
 
 		sb.append("\"taxonomyCategoryIds\": ");
 
-		if (taxonomyCategoryIds == null) {
+		if (structuredContent.getTaxonomyCategoryIds() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < taxonomyCategoryIds.length; i++) {
-				sb.append(taxonomyCategoryIds[i]);
+			for (int i = 0;
+				 i < structuredContent.getTaxonomyCategoryIds().length; i++) {
 
-				if ((i + 1) < taxonomyCategoryIds.length) {
+				sb.append(structuredContent.getTaxonomyCategoryIds()[i]);
+
+				if ((i + 1) <
+						structuredContent.getTaxonomyCategoryIds().length) {
+
 					sb.append(", ");
 				}
 			}
@@ -273,23 +267,18 @@ public class StructuredContentSerDes {
 		}
 
 		sb.append(", ");
-
-		String title = structuredContent.getTitle();
 
 		sb.append("\"title\": ");
 
 		sb.append("\"");
-		sb.append(title);
+		sb.append(structuredContent.getTitle());
 		sb.append("\"");
 		sb.append(", ");
-
-		StructuredContent.ViewableBy viewableBy =
-			structuredContent.getViewableBy();
 
 		sb.append("\"viewableBy\": ");
 
 		sb.append("\"");
-		sb.append(viewableBy);
+		sb.append(structuredContent.getViewableBy());
 		sb.append("\"");
 
 		sb.append("}");
@@ -321,12 +310,169 @@ public class StructuredContentSerDes {
 		return sb.toString();
 	}
 
-	public static StructuredContent toStructuredContent(String json) {
-		return null;
-	}
+	private static class StructuredContentJSONParser
+		extends BaseJSONParser<StructuredContent> {
 
-	public static StructuredContent[] toStructuredContents(String json) {
-		return null;
+		protected StructuredContent createDTO() {
+			return new StructuredContent();
+		}
+
+		protected StructuredContent[] createDTOArray(int size) {
+			return new StructuredContent[size];
+		}
+
+		protected void setField(
+			StructuredContent structuredContent, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "aggregateRating")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setAggregateRating(
+						AggregateRatingSerDes.toDTO(
+							(String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(
+						jsonParserFieldName, "availableLanguages")) {
+
+				if (jsonParserFieldValue != null) {
+					structuredContent.setAvailableLanguages(
+						toStrings((Object[])jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "contentFields")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setContentFields(
+						Stream.of(
+							toStrings((Object[])jsonParserFieldValue)
+						).map(
+							object -> ContentFieldSerDes.toDTO((String)object)
+						).toArray(
+							size -> new ContentField[size]
+						));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "contentSpaceId")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setContentSpaceId(
+						(Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(
+						jsonParserFieldName, "contentStructureId")) {
+
+				if (jsonParserFieldValue != null) {
+					structuredContent.setContentStructureId(
+						(Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "creator")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setCreator(
+						CreatorSerDes.toDTO((String)jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setDateCreated(
+						(Date)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setDateModified(
+						(Date)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "datePublished")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setDatePublished(
+						(Date)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "description")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setDescription(
+						(String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "id")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setId((Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "keywords")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setKeywords(
+						toStrings((Object[])jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "lastReviewed")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setLastReviewed(
+						(Date)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "numberOfComments")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setNumberOfComments(
+						(Number)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "renderedContents")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setRenderedContents(
+						Stream.of(
+							toStrings((Object[])jsonParserFieldValue)
+						).map(
+							object -> RenderedContentSerDes.toDTO(
+								(String)object)
+						).toArray(
+							size -> new RenderedContent[size]
+						));
+				}
+			}
+			else if (Objects.equals(
+						jsonParserFieldName, "taxonomyCategories")) {
+
+				if (jsonParserFieldValue != null) {
+					structuredContent.setTaxonomyCategories(
+						Stream.of(
+							toStrings((Object[])jsonParserFieldValue)
+						).map(
+							object -> TaxonomyCategorySerDes.toDTO(
+								(String)object)
+						).toArray(
+							size -> new TaxonomyCategory[size]
+						));
+				}
+			}
+			else if (Objects.equals(
+						jsonParserFieldName, "taxonomyCategoryIds")) {
+
+				if (jsonParserFieldValue != null) {
+					structuredContent.setTaxonomyCategoryIds(
+						toLongs((Object[])jsonParserFieldValue));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "title")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setTitle((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "viewableBy")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setViewableBy(
+						StructuredContent.ViewableBy.create(
+							(String)jsonParserFieldValue));
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

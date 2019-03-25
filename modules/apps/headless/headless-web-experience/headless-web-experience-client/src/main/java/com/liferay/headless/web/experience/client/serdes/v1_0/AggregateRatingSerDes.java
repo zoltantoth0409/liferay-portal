@@ -15,8 +15,10 @@
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.AggregateRating;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -27,6 +29,20 @@ import javax.annotation.Generated;
 @Generated("")
 public class AggregateRatingSerDes {
 
+	public static AggregateRating toDTO(String json) {
+		AggregateRatingJSONParser aggregateRatingJSONParser =
+			new AggregateRatingJSONParser();
+
+		return aggregateRatingJSONParser.parseToDTO(json);
+	}
+
+	public static AggregateRating[] toDTOs(String json) {
+		AggregateRatingJSONParser aggregateRatingJSONParser =
+			new AggregateRatingJSONParser();
+
+		return aggregateRatingJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(AggregateRating aggregateRating) {
 		if (aggregateRating == null) {
 			return "{}";
@@ -36,32 +52,24 @@ public class AggregateRatingSerDes {
 
 		sb.append("{");
 
-		Number bestRating = aggregateRating.getBestRating();
-
 		sb.append("\"bestRating\": ");
 
-		sb.append(bestRating);
+		sb.append(aggregateRating.getBestRating());
 		sb.append(", ");
-
-		Number ratingCount = aggregateRating.getRatingCount();
 
 		sb.append("\"ratingCount\": ");
 
-		sb.append(ratingCount);
+		sb.append(aggregateRating.getRatingCount());
 		sb.append(", ");
-
-		Number ratingValue = aggregateRating.getRatingValue();
 
 		sb.append("\"ratingValue\": ");
 
-		sb.append(ratingValue);
+		sb.append(aggregateRating.getRatingValue());
 		sb.append(", ");
-
-		Number worstRating = aggregateRating.getWorstRating();
 
 		sb.append("\"worstRating\": ");
 
-		sb.append(worstRating);
+		sb.append(aggregateRating.getWorstRating());
 
 		sb.append("}");
 
@@ -90,12 +98,50 @@ public class AggregateRatingSerDes {
 		return sb.toString();
 	}
 
-	public static AggregateRating toAggregateRating(String json) {
-		return null;
-	}
+	private static class AggregateRatingJSONParser
+		extends BaseJSONParser<AggregateRating> {
 
-	public static AggregateRating[] toAggregateRatings(String json) {
-		return null;
+		protected AggregateRating createDTO() {
+			return new AggregateRating();
+		}
+
+		protected AggregateRating[] createDTOArray(int size) {
+			return new AggregateRating[size];
+		}
+
+		protected void setField(
+			AggregateRating aggregateRating, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "bestRating")) {
+				if (jsonParserFieldValue != null) {
+					aggregateRating.setBestRating((Number)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "ratingCount")) {
+				if (jsonParserFieldValue != null) {
+					aggregateRating.setRatingCount(
+						(Number)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "ratingValue")) {
+				if (jsonParserFieldValue != null) {
+					aggregateRating.setRatingValue(
+						(Number)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "worstRating")) {
+				if (jsonParserFieldValue != null) {
+					aggregateRating.setWorstRating(
+						(Number)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

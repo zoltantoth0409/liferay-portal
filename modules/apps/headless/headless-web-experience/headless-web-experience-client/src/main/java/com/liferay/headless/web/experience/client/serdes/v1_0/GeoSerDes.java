@@ -15,8 +15,10 @@
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.Geo;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -27,6 +29,18 @@ import javax.annotation.Generated;
 @Generated("")
 public class GeoSerDes {
 
+	public static Geo toDTO(String json) {
+		GeoJSONParser geoJSONParser = new GeoJSONParser();
+
+		return geoJSONParser.parseToDTO(json);
+	}
+
+	public static Geo[] toDTOs(String json) {
+		GeoJSONParser geoJSONParser = new GeoJSONParser();
+
+		return geoJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(Geo geo) {
 		if (geo == null) {
 			return "{}";
@@ -36,25 +50,19 @@ public class GeoSerDes {
 
 		sb.append("{");
 
-		Long id = geo.getId();
-
 		sb.append("\"id\": ");
 
-		sb.append(id);
+		sb.append(geo.getId());
 		sb.append(", ");
-
-		Number latitude = geo.getLatitude();
 
 		sb.append("\"latitude\": ");
 
-		sb.append(latitude);
+		sb.append(geo.getLatitude());
 		sb.append(", ");
-
-		Number longitude = geo.getLongitude();
 
 		sb.append("\"longitude\": ");
 
-		sb.append(longitude);
+		sb.append(geo.getLongitude());
 
 		sb.append("}");
 
@@ -83,12 +91,40 @@ public class GeoSerDes {
 		return sb.toString();
 	}
 
-	public static Geo toGeo(String json) {
-		return null;
-	}
+	private static class GeoJSONParser extends BaseJSONParser<Geo> {
 
-	public static Geo[] toGeos(String json) {
-		return null;
+		protected Geo createDTO() {
+			return new Geo();
+		}
+
+		protected Geo[] createDTOArray(int size) {
+			return new Geo[size];
+		}
+
+		protected void setField(
+			Geo geo, String jsonParserFieldName, Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "id")) {
+				if (jsonParserFieldValue != null) {
+					geo.setId((Long)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "latitude")) {
+				if (jsonParserFieldValue != null) {
+					geo.setLatitude((Number)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "longitude")) {
+				if (jsonParserFieldValue != null) {
+					geo.setLongitude((Number)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

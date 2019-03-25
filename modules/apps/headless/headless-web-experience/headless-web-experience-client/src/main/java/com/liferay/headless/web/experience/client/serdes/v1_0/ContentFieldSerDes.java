@@ -15,9 +15,11 @@
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentField;
-import com.liferay.headless.web.experience.client.dto.v1_0.Value;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -28,6 +30,20 @@ import javax.annotation.Generated;
 @Generated("")
 public class ContentFieldSerDes {
 
+	public static ContentField toDTO(String json) {
+		ContentFieldJSONParser contentFieldJSONParser =
+			new ContentFieldJSONParser();
+
+		return contentFieldJSONParser.parseToDTO(json);
+	}
+
+	public static ContentField[] toDTOs(String json) {
+		ContentFieldJSONParser contentFieldJSONParser =
+			new ContentFieldJSONParser();
+
+		return contentFieldJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(ContentField contentField) {
 		if (contentField == null) {
 			return "{}";
@@ -37,56 +53,46 @@ public class ContentFieldSerDes {
 
 		sb.append("{");
 
-		String dataType = contentField.getDataType();
-
 		sb.append("\"dataType\": ");
 
 		sb.append("\"");
-		sb.append(dataType);
+		sb.append(contentField.getDataType());
 		sb.append("\"");
 		sb.append(", ");
-
-		String inputControl = contentField.getInputControl();
 
 		sb.append("\"inputControl\": ");
 
 		sb.append("\"");
-		sb.append(inputControl);
+		sb.append(contentField.getInputControl());
 		sb.append("\"");
 		sb.append(", ");
-
-		String label = contentField.getLabel();
 
 		sb.append("\"label\": ");
 
 		sb.append("\"");
-		sb.append(label);
+		sb.append(contentField.getLabel());
 		sb.append("\"");
 		sb.append(", ");
-
-		String name = contentField.getName();
 
 		sb.append("\"name\": ");
 
 		sb.append("\"");
-		sb.append(name);
+		sb.append(contentField.getName());
 		sb.append("\"");
 		sb.append(", ");
 
-		ContentField[] nestedFields = contentField.getNestedFields();
-
 		sb.append("\"nestedFields\": ");
 
-		if (nestedFields == null) {
+		if (contentField.getNestedFields() == null) {
 			sb.append("null");
 		}
 		else {
 			sb.append("[");
 
-			for (int i = 0; i < nestedFields.length; i++) {
-				sb.append(nestedFields[i]);
+			for (int i = 0; i < contentField.getNestedFields().length; i++) {
+				sb.append(contentField.getNestedFields()[i]);
 
-				if ((i + 1) < nestedFields.length) {
+				if ((i + 1) < contentField.getNestedFields().length) {
 					sb.append(", ");
 				}
 			}
@@ -96,18 +102,14 @@ public class ContentFieldSerDes {
 
 		sb.append(", ");
 
-		Boolean repeatable = contentField.getRepeatable();
-
 		sb.append("\"repeatable\": ");
 
-		sb.append(repeatable);
+		sb.append(contentField.getRepeatable());
 		sb.append(", ");
-
-		Value value = contentField.getValue();
 
 		sb.append("\"value\": ");
 
-		sb.append(value);
+		sb.append(contentField.getValue());
 
 		sb.append("}");
 
@@ -136,12 +138,70 @@ public class ContentFieldSerDes {
 		return sb.toString();
 	}
 
-	public static ContentField toContentField(String json) {
-		return null;
-	}
+	private static class ContentFieldJSONParser
+		extends BaseJSONParser<ContentField> {
 
-	public static ContentField[] toContentFields(String json) {
-		return null;
+		protected ContentField createDTO() {
+			return new ContentField();
+		}
+
+		protected ContentField[] createDTOArray(int size) {
+			return new ContentField[size];
+		}
+
+		protected void setField(
+			ContentField contentField, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "dataType")) {
+				if (jsonParserFieldValue != null) {
+					contentField.setDataType((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "inputControl")) {
+				if (jsonParserFieldValue != null) {
+					contentField.setInputControl((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "label")) {
+				if (jsonParserFieldValue != null) {
+					contentField.setLabel((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "name")) {
+				if (jsonParserFieldValue != null) {
+					contentField.setName((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "nestedFields")) {
+				if (jsonParserFieldValue != null) {
+					contentField.setNestedFields(
+						Stream.of(
+							toStrings((Object[])jsonParserFieldValue)
+						).map(
+							object -> ContentFieldSerDes.toDTO((String)object)
+						).toArray(
+							size -> new ContentField[size]
+						));
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "repeatable")) {
+				if (jsonParserFieldValue != null) {
+					contentField.setRepeatable((Boolean)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "value")) {
+				if (jsonParserFieldValue != null) {
+					contentField.setValue(
+						ValueSerDes.toDTO((String)jsonParserFieldValue));
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }

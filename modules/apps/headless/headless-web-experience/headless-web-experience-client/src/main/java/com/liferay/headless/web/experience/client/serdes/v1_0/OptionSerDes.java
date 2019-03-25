@@ -15,8 +15,10 @@
 package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.Option;
+import com.liferay.headless.web.experience.client.json.BaseJSONParser;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -27,6 +29,18 @@ import javax.annotation.Generated;
 @Generated("")
 public class OptionSerDes {
 
+	public static Option toDTO(String json) {
+		OptionJSONParser optionJSONParser = new OptionJSONParser();
+
+		return optionJSONParser.parseToDTO(json);
+	}
+
+	public static Option[] toDTOs(String json) {
+		OptionJSONParser optionJSONParser = new OptionJSONParser();
+
+		return optionJSONParser.parseToDTOs(json);
+	}
+
 	public static String toJSON(Option option) {
 		if (option == null) {
 			return "{}";
@@ -36,21 +50,17 @@ public class OptionSerDes {
 
 		sb.append("{");
 
-		String label = option.getLabel();
-
 		sb.append("\"label\": ");
 
 		sb.append("\"");
-		sb.append(label);
+		sb.append(option.getLabel());
 		sb.append("\"");
 		sb.append(", ");
-
-		String value = option.getValue();
 
 		sb.append("\"value\": ");
 
 		sb.append("\"");
-		sb.append(value);
+		sb.append(option.getValue());
 		sb.append("\"");
 
 		sb.append("}");
@@ -80,12 +90,36 @@ public class OptionSerDes {
 		return sb.toString();
 	}
 
-	public static Option toOption(String json) {
-		return null;
-	}
+	private static class OptionJSONParser extends BaseJSONParser<Option> {
 
-	public static Option[] toOptions(String json) {
-		return null;
+		protected Option createDTO() {
+			return new Option();
+		}
+
+		protected Option[] createDTOArray(int size) {
+			return new Option[size];
+		}
+
+		protected void setField(
+			Option option, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "label")) {
+				if (jsonParserFieldValue != null) {
+					option.setLabel((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "value")) {
+				if (jsonParserFieldValue != null) {
+					option.setValue((String)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
 	}
 
 }
