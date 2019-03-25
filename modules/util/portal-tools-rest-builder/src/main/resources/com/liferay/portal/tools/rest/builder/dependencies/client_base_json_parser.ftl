@@ -303,7 +303,9 @@ public abstract class BaseJSONParser<T> {
 
 		do {
 			_readWhileLastCharIsWhiteSpace();
+
 			objects.add(_readValue());
+
 			_readWhileLastCharIsWhiteSpace();
 		}
 		while (_ifLastCharMatchesThenRead(','));
