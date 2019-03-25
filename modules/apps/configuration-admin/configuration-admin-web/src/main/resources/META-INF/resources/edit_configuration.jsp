@@ -67,8 +67,6 @@ portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(portletURL.toString());
 
 renderResponse.setTitle(categoryDisplayName);
-
-ConfigurationScopeDisplayContext configurationScopeDisplayContext = new ConfigurationScopeDisplayContext(renderRequest);
 %>
 
 <liferay-ui:error exception="<%= ConfigurationModelListenerException.class %>">
@@ -108,7 +106,9 @@ ConfigurationScopeDisplayContext configurationScopeDisplayContext = new Configur
 					<aui:input name="pid" type="hidden" value="<%= configurationModel.getID() %>" />
 
 					<%
-					String configurationTitle;
+					String configurationTitle = null;
+
+					ConfigurationScopeDisplayContext configurationScopeDisplayContext = new ConfigurationScopeDisplayContext(renderRequest);
 
 					if (configurationModel.isFactory() && !configurationModel.isCompanyFactory()) {
 						if (configurationModel.hasScopeConfiguration(configurationScopeDisplayContext.getScope())) {
