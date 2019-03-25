@@ -831,6 +831,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 			String string = HttpUtil.URLtoString(options);
 
+			if (_log.isDebugEnabled()) {
+				_log.debug("HTTP response: " + string);
+			}
+
 			<#if stringUtil.equals(javaMethodSignature.returnType, "boolean")>
 				try {
 					return _outputObjectMapper.readValue(string, Boolean.class);
