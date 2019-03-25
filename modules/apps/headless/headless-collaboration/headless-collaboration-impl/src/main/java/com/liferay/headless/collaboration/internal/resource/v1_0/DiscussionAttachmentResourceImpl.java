@@ -67,7 +67,7 @@ public class DiscussionAttachmentResourceImpl
 				Long discussionForumPostingId)
 		throws Exception {
 
-		return _getDiscussionAttachmentPage(discussionForumPostingId);
+		return _getDiscussionAttachmentsPage(discussionForumPostingId);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class DiscussionAttachmentResourceImpl
 		MBThread mbThread = _mbThreadLocalService.getMBThread(
 			discussionThreadId);
 
-		return _getDiscussionAttachmentPage(mbThread.getRootMessageId());
+		return _getDiscussionAttachmentsPage(mbThread.getRootMessageId());
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class DiscussionAttachmentResourceImpl
 				binaryFile.getFileName(), false));
 	}
 
-	private Page<DiscussionAttachment> _getDiscussionAttachmentPage(
+	private Page<DiscussionAttachment> _getDiscussionAttachmentsPage(
 			Long discussionForumPostingId)
 		throws Exception {
 

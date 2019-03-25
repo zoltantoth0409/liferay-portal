@@ -67,7 +67,7 @@ public class FolderResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		return _getFolderPage(
+		return _getFoldersPage(
 			contentSpaceId, filter, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			pagination, sorts);
 	}
@@ -89,7 +89,7 @@ public class FolderResourceImpl
 
 		Folder parentFolder = _toFolder(_dlAppService.getFolder(folderId));
 
-		return _getFolderPage(
+		return _getFoldersPage(
 			parentFolder.getContentSpaceId(), filter, parentFolder.getId(),
 			pagination, sorts);
 	}
@@ -148,7 +148,7 @@ public class FolderResourceImpl
 					contentSpaceId, folder.getViewableByAsString())));
 	}
 
-	private Page<Folder> _getFolderPage(
+	private Page<Folder> _getFoldersPage(
 			Long contentSpaceId, Filter filter, Long parentFolderId,
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
