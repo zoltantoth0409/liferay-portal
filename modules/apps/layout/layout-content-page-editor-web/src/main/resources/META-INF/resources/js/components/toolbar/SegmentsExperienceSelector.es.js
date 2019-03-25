@@ -502,8 +502,8 @@ class SegmentsExperienceSelector extends Component {
 	_updatePriority(
 		{
 			focusFallbackElement,
-			payload,
-			priorityButton
+			priorityButton,
+			payload
 		}
 	) {
 		const onBlur = () => {
