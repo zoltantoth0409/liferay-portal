@@ -185,6 +185,9 @@ public class TaxonomyVocabularyResourceImpl
 			{
 				multiValued = assetVocabulary.isMultiValued();
 				name = assetVocabulary.getName();
+				required = assetVocabulary.isRequired(
+					_getClassNameId(),
+					AssetCategoryConstants.ALL_CLASS_TYPE_PK);
 				taxonomyCategories = transformToArray(
 					assetCategories,
 					assetCategory -> new TaxonomyCategory() {
@@ -195,9 +198,6 @@ public class TaxonomyVocabularyResourceImpl
 					},
 					TaxonomyCategory.class);
 				taxonomyVocabularyId = assetVocabulary.getVocabularyId();
-				required = assetVocabulary.isRequired(
-					_getClassNameId(),
-					AssetCategoryConstants.ALL_CLASS_TYPE_PK);
 			}
 		};
 	}
