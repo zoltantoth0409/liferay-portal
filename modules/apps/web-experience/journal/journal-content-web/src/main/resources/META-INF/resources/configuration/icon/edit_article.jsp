@@ -19,11 +19,13 @@
 <c:if test="<%= journalContentDisplayContext.isShowEditArticleIcon() %>">
 
 	<%
-	JournalArticle latestArticle =
-		journalContentDisplayContext.getLatestArticle();
 	Map<String, Object> data = new HashMap<String, Object>();
+
 	data.put("destroyOnHide", true);
 	data.put("id", HtmlUtil.escape(portletDisplay.getNamespace()) + "editAsset");
+
+	JournalArticle latestArticle = journalContentDisplayContext.getLatestArticle();
+
 	data.put("title", HtmlUtil.escape(latestArticle.getTitle(locale)));
 	%>
 
