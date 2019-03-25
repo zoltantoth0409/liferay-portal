@@ -23,6 +23,7 @@ import com.liferay.headless.collaboration.internal.dto.v1_0.util.AggregateRating
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.ParentKnowledgeBaseFolderUtil;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.TaxonomyCategoryUtil;
+import com.liferay.headless.collaboration.internal.odata.entity.v1_0.KnowledgeBaseArticleEntityModel;
 import com.liferay.headless.collaboration.resource.v1_0.KnowledgeBaseArticleResource;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
@@ -32,17 +33,31 @@ import com.liferay.knowledge.base.service.KBArticleService;
 import com.liferay.knowledge.base.service.KBFolderService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ClassName;
+import com.liferay.portal.kernel.search.BooleanClauseOccur;
+import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.BooleanFilter;
+import com.liferay.portal.kernel.search.filter.ExistsFilter;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
+import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.constraints.NotNull;
+
+import javax.ws.rs.core.MultivaluedMap;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -56,7 +71,8 @@ import org.osgi.service.component.annotations.ServiceScope;
 	scope = ServiceScope.PROTOTYPE, service = KnowledgeBaseArticleResource.class
 )
 public class KnowledgeBaseArticleResourceImpl
-	extends BaseKnowledgeBaseArticleResourceImpl {
+	extends BaseKnowledgeBaseArticleResourceImpl
+	implements EntityModelResource {
 
 	@Override
 	public void deleteKnowledgeBaseArticle(Long knowledgeBaseArticleId)
@@ -67,37 +83,68 @@ public class KnowledgeBaseArticleResourceImpl
 
 	@Override
 	public Page<KnowledgeBaseArticle> getContentSpaceKnowledgeBaseArticlesPage(
-			Long contentSpaceId, Pagination pagination)
+			@NotNull Long contentSpaceId, Filter filter, Pagination pagination,
+			Sort[] sorts)
 		throws Exception {
 
-		return Page.of(
-			transform(
-				_kbArticleService.getGroupKBArticles(
-					contentSpaceId, WorkflowConstants.STATUS_APPROVED,
-					pagination.getStartPosition(), pagination.getEndPosition(),
-					null),
-				this::_toKBArticle),
-			pagination,
-			_kbArticleService.getGroupKBArticlesCount(
-				contentSpaceId, WorkflowConstants.STATUS_APPROVED));
+		return SearchUtil.search(
+			booleanQuery -> {
+			},
+			filter, KBArticle.class, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ENTRY_CLASS_PK),
+			searchContext -> {
+				searchContext.setAttribute(
+					Field.STATUS, WorkflowConstants.STATUS_APPROVED);
+				searchContext.setCompanyId(contextCompany.getCompanyId());
+				searchContext.setGroupIds(new long[] {contentSpaceId});
+				searchContext.setKeywords("");
+			},
+			document -> _toKBArticle(
+				_kbArticleService.getLatestKBArticle(
+					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)),
+					WorkflowConstants.STATUS_APPROVED)),
+			sorts);
 	}
 
 	@Override
 	public Page<KnowledgeBaseArticle>
 			getContentSpaceTreeKnowledgeBaseArticlesPage(
-				Long contentSpaceId, Pagination pagination)
+				@NotNull Long contentSpaceId, Filter filter,
+				Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		return Page.of(
-			transform(
-				_kbArticleService.getKBArticles(
-					contentSpaceId, 0, WorkflowConstants.STATUS_APPROVED,
-					pagination.getStartPosition(), pagination.getEndPosition(),
-					null),
-				this::_toKBArticle),
-			pagination,
-			_kbArticleService.getKBArticlesCount(
-				contentSpaceId, 0, WorkflowConstants.STATUS_APPROVED));
+		return SearchUtil.search(
+			booleanQuery -> {
+				BooleanFilter booleanFilter =
+					booleanQuery.getPreBooleanFilter();
+
+				booleanFilter.add(
+					new ExistsFilter("folderNames"),
+					BooleanClauseOccur.MUST_NOT);
+			},
+			filter, KBArticle.class, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ENTRY_CLASS_PK),
+			searchContext -> {
+				searchContext.setAttribute(
+					Field.STATUS, WorkflowConstants.STATUS_APPROVED);
+				searchContext.setCompanyId(contextCompany.getCompanyId());
+				searchContext.setGroupIds(new long[] {contentSpaceId});
+				searchContext.setKeywords("");
+			},
+			document -> _toKBArticle(
+				_kbArticleService.getLatestKBArticle(
+					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)),
+					WorkflowConstants.STATUS_APPROVED)),
+			sorts);
+	}
+
+	@Override
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
+		throws Exception {
+
+		return _entityModel;
 	}
 
 	@Override
@@ -303,6 +350,9 @@ public class KnowledgeBaseArticleResourceImpl
 			}
 		};
 	}
+
+	private static final EntityModel _entityModel =
+		new KnowledgeBaseArticleEntityModel();
 
 	@Reference
 	private AssetCategoryLocalService _assetCategoryLocalService;
