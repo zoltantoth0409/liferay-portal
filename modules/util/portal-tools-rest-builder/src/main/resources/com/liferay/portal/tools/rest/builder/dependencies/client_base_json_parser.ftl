@@ -47,7 +47,7 @@ public abstract class BaseJSONParser<T> {
 				_readNextChar();
 
 				throw new IllegalArgumentException(
-					"Expected end of JSON, but got '" + _lastChar + "'");
+					"Expected end of JSON, but found '" + _lastChar + "'");
 			}
 
 			return dto;
@@ -176,7 +176,7 @@ public abstract class BaseJSONParser<T> {
 	private void _assertLastChar(char c) {
 		if (_lastChar != c) {
 			throw new IllegalArgumentException(
-				String.format("Expected last char '%s', but got '%s'", c, _lastChar));
+				String.format("Expected last char '%s', but found '%s'", c, _lastChar));
 		}
 	}
 
@@ -184,13 +184,13 @@ public abstract class BaseJSONParser<T> {
 		if (!_json.startsWith(prefix)) {
 			throw new IllegalArgumentException(
 				String.format(
-					"Expected starts with '%s', but got '%s'", prefix, _json.charAt(0)));
+					"Expected starts with '%s', but found '%s'", prefix, _json.charAt(0)));
 		}
 
 		if (!_json.endsWith(sufix)) {
 			throw new IllegalArgumentException(
 				String.format(
-					"Expected ends with '%s', but got '%s'", sufix,
+					"Expected ends with '%s', but found '%s'", sufix,
 					_json.charAt(_json.length() - 1)));
 		}
 	}
@@ -312,7 +312,7 @@ public abstract class BaseJSONParser<T> {
 
 		if (!_isLastChar(']')) {
 			throw new IllegalArgumentException(
-				"Expected ']', but got '" + _lastChar + "'");
+				"Expected ']', but found '" + _lastChar + "'");
 		}
 
 		_readNextChar();
@@ -430,7 +430,7 @@ public abstract class BaseJSONParser<T> {
 
 		if (!_ifLastCharMatchesThenRead('}')) {
 			throw new IllegalArgumentException(
-				"Expected either ',' or '}'; found '" + _lastChar + "'");
+				"Expected either ',' or '}', but found '" + _lastChar + "'");
 		}
 
 		return _getCapturedSubstring();
