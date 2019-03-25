@@ -253,6 +253,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<DataRecordCollection>>() {
@@ -433,6 +437,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<DataRecordCollection>>() {
@@ -508,6 +516,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(
 				string, DataRecordCollection.class);
@@ -570,8 +582,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected boolean invokeDeleteDataRecordCollection(
-			Long dataRecordCollectionId)
+	protected void invokeDeleteDataRecordCollection(Long dataRecordCollectionId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -588,13 +599,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
-		try {
-			return _outputObjectMapper.readValue(string, Boolean.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
 		}
 	}
 
@@ -654,6 +660,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(
@@ -737,6 +747,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		options.setPut(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(

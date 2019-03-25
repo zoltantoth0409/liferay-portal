@@ -40,7 +40,7 @@ public interface DataDefinitionResource {
 			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception;
 
-	public boolean deleteDataDefinition(Long dataDefinitionId) throws Exception;
+	public void deleteDataDefinition(Long dataDefinitionId) throws Exception;
 
 	public DataDefinition getDataDefinition(Long dataDefinitionId)
 		throws Exception;

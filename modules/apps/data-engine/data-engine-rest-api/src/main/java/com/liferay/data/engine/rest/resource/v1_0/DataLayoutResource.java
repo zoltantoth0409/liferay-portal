@@ -40,7 +40,7 @@ public interface DataLayoutResource {
 			Long dataDefinitionId, DataLayout dataLayout)
 		throws Exception;
 
-	public boolean deleteDataLayout(Long dataLayoutId) throws Exception;
+	public void deleteDataLayout(Long dataLayoutId) throws Exception;
 
 	public DataLayout getDataLayout(Long dataLayoutId) throws Exception;
 

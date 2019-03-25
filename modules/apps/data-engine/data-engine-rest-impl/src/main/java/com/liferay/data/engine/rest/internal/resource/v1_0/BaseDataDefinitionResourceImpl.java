@@ -101,11 +101,9 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Path("/data-definitions/{data-definition-id}")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
-	public boolean deleteDataDefinition(
+	public void deleteDataDefinition(
 			@NotNull @PathParam("data-definition-id") Long dataDefinitionId)
 		throws Exception {
-
-		return false;
 	}
 
 	@Override

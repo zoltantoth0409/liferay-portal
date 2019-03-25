@@ -45,7 +45,7 @@ public interface DataRecordCollectionResource {
 			Long dataDefinitionId, DataRecordCollection dataRecordCollection)
 		throws Exception;
 
-	public boolean deleteDataRecordCollection(Long dataRecordCollectionId)
+	public void deleteDataRecordCollection(Long dataRecordCollectionId)
 		throws Exception;
 
 	public DataRecordCollection getDataRecordCollection(

@@ -235,6 +235,10 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<DataLayout>>() {
@@ -306,6 +310,10 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(string, DataLayout.class);
 		}
@@ -357,9 +365,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected boolean invokeDeleteDataLayout(Long dataLayoutId)
-		throws Exception {
-
+	protected void invokeDeleteDataLayout(Long dataLayoutId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
 		options.setDelete(true);
@@ -372,13 +378,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
-		try {
-			return _outputObjectMapper.readValue(string, Boolean.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
 		}
 	}
 
@@ -427,6 +428,10 @@ public abstract class BaseDataLayoutResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, DataLayout.class);
@@ -496,6 +501,10 @@ public abstract class BaseDataLayoutResourceTestCase {
 		options.setPut(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, DataLayout.class);

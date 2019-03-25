@@ -240,6 +240,10 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<DataRecord>>() {
@@ -313,6 +317,10 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(string, DataRecord.class);
 		}
@@ -364,9 +372,7 @@ public abstract class BaseDataRecordResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected boolean invokeDeleteDataRecord(Long dataRecordId)
-		throws Exception {
-
+	protected void invokeDeleteDataRecord(Long dataRecordId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
 		options.setDelete(true);
@@ -379,13 +385,8 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
-		try {
-			return _outputObjectMapper.readValue(string, Boolean.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
 		}
 	}
 
@@ -434,6 +435,10 @@ public abstract class BaseDataRecordResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, DataRecord.class);
@@ -503,6 +508,10 @@ public abstract class BaseDataRecordResourceTestCase {
 		options.setPut(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, DataRecord.class);

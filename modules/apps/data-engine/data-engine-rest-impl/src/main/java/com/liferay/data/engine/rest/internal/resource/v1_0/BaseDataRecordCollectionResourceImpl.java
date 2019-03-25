@@ -122,12 +122,10 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Path("/data-record-collections/{data-record-collection-id}")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public boolean deleteDataRecordCollection(
+	public void deleteDataRecordCollection(
 			@NotNull @PathParam("data-record-collection-id") Long
 				dataRecordCollectionId)
 		throws Exception {
-
-		return false;
 	}
 
 	@Override

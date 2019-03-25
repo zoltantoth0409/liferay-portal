@@ -100,11 +100,9 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 	@Path("/data-records/{data-record-id}")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecord")})
-	public boolean deleteDataRecord(
+	public void deleteDataRecord(
 			@NotNull @PathParam("data-record-id") Long dataRecordId)
 		throws Exception {
-
-		return false;
 	}
 
 	@Override

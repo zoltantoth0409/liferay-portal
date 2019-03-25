@@ -98,11 +98,9 @@ public abstract class BaseDataLayoutResourceImpl implements DataLayoutResource {
 	@Path("/data-layouts/{data-layout-id}")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataLayout")})
-	public boolean deleteDataLayout(
+	public void deleteDataLayout(
 			@NotNull @PathParam("data-layout-id") Long dataLayoutId)
 		throws Exception {
-
-		return false;
 	}
 
 	@Override

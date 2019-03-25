@@ -90,11 +90,11 @@ public class Mutation {
 	}
 
 	@GraphQLInvokeDetached
-	public boolean deleteDataDefinition(
+	public void deleteDataDefinition(
 			@GraphQLName("data-definition-id") Long dataDefinitionId)
 		throws Exception {
 
-		return _applyComponentServiceObjects(
+		_applyVoidComponentServiceObjects(
 			_dataDefinitionResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			dataDefinitionResource ->
@@ -130,11 +130,11 @@ public class Mutation {
 	}
 
 	@GraphQLInvokeDetached
-	public boolean deleteDataLayout(
+	public void deleteDataLayout(
 			@GraphQLName("data-layout-id") Long dataLayoutId)
 		throws Exception {
 
-		return _applyComponentServiceObjects(
+		_applyVoidComponentServiceObjects(
 			_dataLayoutResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			dataLayoutResource -> dataLayoutResource.deleteDataLayout(
@@ -171,11 +171,11 @@ public class Mutation {
 	}
 
 	@GraphQLInvokeDetached
-	public boolean deleteDataRecord(
+	public void deleteDataRecord(
 			@GraphQLName("data-record-id") Long dataRecordId)
 		throws Exception {
 
-		return _applyComponentServiceObjects(
+		_applyVoidComponentServiceObjects(
 			_dataRecordResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			dataRecordResource -> dataRecordResource.deleteDataRecord(
@@ -213,12 +213,12 @@ public class Mutation {
 	}
 
 	@GraphQLInvokeDetached
-	public boolean deleteDataRecordCollection(
+	public void deleteDataRecordCollection(
 			@GraphQLName("data-record-collection-id") Long
 				dataRecordCollectionId)
 		throws Exception {
 
-		return _applyComponentServiceObjects(
+		_applyVoidComponentServiceObjects(
 			_dataRecordCollectionResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			dataRecordCollectionResource ->
@@ -255,6 +255,25 @@ public class Mutation {
 			unsafeConsumer.accept(resource);
 
 			return unsafeFunction.apply(resource);
+		}
+		finally {
+			componentServiceObjects.ungetService(resource);
+		}
+	}
+
+	private <T, E1 extends Throwable, E2 extends Throwable> void
+			_applyVoidComponentServiceObjects(
+				ComponentServiceObjects<T> componentServiceObjects,
+				UnsafeConsumer<T, E1> unsafeConsumer,
+				UnsafeConsumer<T, E2> unsafeFunction)
+		throws E1, E2 {
+
+		T resource = componentServiceObjects.getService();
+
+		try {
+			unsafeConsumer.accept(resource);
+
+			unsafeFunction.accept(resource);
 		}
 		finally {
 			componentServiceObjects.ungetService(resource);

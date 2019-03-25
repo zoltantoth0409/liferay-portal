@@ -40,7 +40,7 @@ public interface DataRecordResource {
 			Long dataRecordCollectionId, DataRecord dataRecord)
 		throws Exception;
 
-	public boolean deleteDataRecord(Long dataRecordId) throws Exception;
+	public void deleteDataRecord(Long dataRecordId) throws Exception;
 
 	public DataRecord getDataRecord(Long dataRecordId) throws Exception;
 

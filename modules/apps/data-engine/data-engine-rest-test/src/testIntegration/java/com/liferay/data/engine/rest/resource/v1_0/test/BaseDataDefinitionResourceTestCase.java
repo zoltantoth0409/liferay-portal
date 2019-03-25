@@ -241,6 +241,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		return _outputObjectMapper.readValue(
 			string,
 			new TypeReference<Page<DataDefinition>>() {
@@ -314,6 +318,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(string, DataDefinition.class);
 		}
@@ -368,7 +376,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected boolean invokeDeleteDataDefinition(Long dataDefinitionId)
+	protected void invokeDeleteDataDefinition(Long dataDefinitionId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -384,13 +392,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
-		try {
-			return _outputObjectMapper.readValue(string, Boolean.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
 		}
 	}
 
@@ -446,6 +449,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, DataDefinition.class);
@@ -522,6 +529,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		options.setPut(true);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(string, DataDefinition.class);
