@@ -118,6 +118,17 @@ public class ManagementToolbarTag extends BaseClayTag {
 
 		setShowInfoButton(showInfoButton);
 
+		if (Validator.isNotNull(context.get("searchValue"))) {
+			setShowResultsBar(true);
+		}
+		else {
+			List filterLabels = (List)context.get("filterLabels");
+
+			if ((filterLabels != null) && !filterLabels.isEmpty()) {
+				setShowResultsBar(true);
+			}
+		}
+
 		return super.doStartTag();
 	}
 
@@ -233,6 +244,10 @@ public class ManagementToolbarTag extends BaseClayTag {
 
 	public void setShowInfoButton(Boolean showInfoButton) {
 		putValue("showInfoButton", showInfoButton);
+	}
+
+	public void setShowResultsBar(Boolean showResultsBar) {
+		putValue("showResultsBar", showResultsBar);
 	}
 
 	public void setShowSearch(Boolean showSearch) {

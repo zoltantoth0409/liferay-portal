@@ -463,6 +463,15 @@ ManagementToolbar.STATE = {
 	showInfoButton: Config.bool().value(false),
 
 	/**
+	 * Flag to indicate if the results bar should be shown or not.
+	 * @default false
+	 * @instance
+	 * @memberof ManagementToolbar
+	 * @type {?bool}
+	 */
+	showResultsBar: Config.bool().value(false),
+
+	/**
 	 * Flag to indicate if search should be shown or not.
 	 * @default true
 	 * @instance
