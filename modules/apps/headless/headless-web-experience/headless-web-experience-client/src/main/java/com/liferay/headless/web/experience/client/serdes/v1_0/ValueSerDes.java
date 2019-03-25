@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.client.parser.v1_0;
+package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentDocument;
 import com.liferay.headless.web.experience.client.dto.v1_0.Geo;
@@ -28,7 +28,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class ValueParser {
+public class ValueSerDes {
 
 	public static String toJSON(Value value) {
 		if (value == null) {

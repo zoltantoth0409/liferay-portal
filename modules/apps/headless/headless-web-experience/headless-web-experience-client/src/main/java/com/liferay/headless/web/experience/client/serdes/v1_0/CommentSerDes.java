@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.client.parser.v1_0;
+package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.Comment;
 import com.liferay.headless.web.experience.client.dto.v1_0.Creator;
@@ -27,7 +27,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class CommentParser {
+public class CommentSerDes {
 
 	public static String toJSON(Comment comment) {
 		if (comment == null) {

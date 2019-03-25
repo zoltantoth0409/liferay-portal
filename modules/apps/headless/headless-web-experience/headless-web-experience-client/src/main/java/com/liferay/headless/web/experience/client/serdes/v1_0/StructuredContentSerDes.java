@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.client.parser.v1_0;
+package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.AggregateRating;
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentField;
@@ -31,7 +31,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class StructuredContentParser {
+public class StructuredContentSerDes {
 
 	public static String toJSON(StructuredContent structuredContent) {
 		if (structuredContent == null) {

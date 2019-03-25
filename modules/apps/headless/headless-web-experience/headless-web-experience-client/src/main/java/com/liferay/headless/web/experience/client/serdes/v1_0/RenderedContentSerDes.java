@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.client.parser.v1_0;
+package com.liferay.headless.web.experience.client.serdes.v1_0;
 
-import com.liferay.headless.web.experience.client.dto.v1_0.Geo;
+import com.liferay.headless.web.experience.client.dto.v1_0.RenderedContent;
 
 import java.util.Collection;
 
@@ -25,10 +25,10 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class GeoParser {
+public class RenderedContentSerDes {
 
-	public static String toJSON(Geo geo) {
-		if (geo == null) {
+	public static String toJSON(RenderedContent renderedContent) {
+		if (renderedContent == null) {
 			return "{}";
 		}
 
@@ -36,33 +36,30 @@ public class GeoParser {
 
 		sb.append("{");
 
-		Long id = geo.getId();
+		String renderedContentURL = renderedContent.getRenderedContentURL();
 
-		sb.append("\"id\": ");
+		sb.append("\"renderedContentURL\": ");
 
-		sb.append(id);
+		sb.append("\"");
+		sb.append(renderedContentURL);
+		sb.append("\"");
 		sb.append(", ");
 
-		Number latitude = geo.getLatitude();
+		String templateName = renderedContent.getTemplateName();
 
-		sb.append("\"latitude\": ");
+		sb.append("\"templateName\": ");
 
-		sb.append(latitude);
-		sb.append(", ");
-
-		Number longitude = geo.getLongitude();
-
-		sb.append("\"longitude\": ");
-
-		sb.append(longitude);
+		sb.append("\"");
+		sb.append(templateName);
+		sb.append("\"");
 
 		sb.append("}");
 
 		return sb.toString();
 	}
 
-	public static String toJSON(Collection<Geo> geos) {
-		if (geos == null) {
+	public static String toJSON(Collection<RenderedContent> renderedContents) {
+		if (renderedContents == null) {
 			return "[]";
 		}
 
@@ -70,12 +67,12 @@ public class GeoParser {
 
 		sb.append("[");
 
-		for (Geo geo : geos) {
+		for (RenderedContent renderedContent : renderedContents) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append(toJSON(geo));
+			sb.append(toJSON(renderedContent));
 		}
 
 		sb.append("]");
@@ -83,11 +80,11 @@ public class GeoParser {
 		return sb.toString();
 	}
 
-	public static Geo toGeo(String json) {
+	public static RenderedContent toRenderedContent(String json) {
 		return null;
 	}
 
-	public static Geo[] toGeos(String json) {
+	public static RenderedContent[] toRenderedContents(String json) {
 		return null;
 	}
 

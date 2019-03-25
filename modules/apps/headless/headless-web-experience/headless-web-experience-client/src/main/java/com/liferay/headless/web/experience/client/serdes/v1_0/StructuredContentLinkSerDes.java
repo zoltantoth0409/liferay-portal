@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.client.parser.v1_0;
+package com.liferay.headless.web.experience.client.serdes.v1_0;
 
-import com.liferay.headless.web.experience.client.dto.v1_0.RenderedContent;
+import com.liferay.headless.web.experience.client.dto.v1_0.StructuredContentLink;
 
 import java.util.Collection;
 
@@ -25,10 +25,10 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class RenderedContentParser {
+public class StructuredContentLinkSerDes {
 
-	public static String toJSON(RenderedContent renderedContent) {
-		if (renderedContent == null) {
+	public static String toJSON(StructuredContentLink structuredContentLink) {
+		if (structuredContentLink == null) {
 			return "{}";
 		}
 
@@ -36,21 +36,19 @@ public class RenderedContentParser {
 
 		sb.append("{");
 
-		String renderedContentURL = renderedContent.getRenderedContentURL();
+		Long id = structuredContentLink.getId();
 
-		sb.append("\"renderedContentURL\": ");
+		sb.append("\"id\": ");
 
-		sb.append("\"");
-		sb.append(renderedContentURL);
-		sb.append("\"");
+		sb.append(id);
 		sb.append(", ");
 
-		String templateName = renderedContent.getTemplateName();
+		String title = structuredContentLink.getTitle();
 
-		sb.append("\"templateName\": ");
+		sb.append("\"title\": ");
 
 		sb.append("\"");
-		sb.append(templateName);
+		sb.append(title);
 		sb.append("\"");
 
 		sb.append("}");
@@ -58,8 +56,10 @@ public class RenderedContentParser {
 		return sb.toString();
 	}
 
-	public static String toJSON(Collection<RenderedContent> renderedContents) {
-		if (renderedContents == null) {
+	public static String toJSON(
+		Collection<StructuredContentLink> structuredContentLinks) {
+
+		if (structuredContentLinks == null) {
 			return "[]";
 		}
 
@@ -67,12 +67,14 @@ public class RenderedContentParser {
 
 		sb.append("[");
 
-		for (RenderedContent renderedContent : renderedContents) {
+		for (StructuredContentLink structuredContentLink :
+				structuredContentLinks) {
+
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append(toJSON(renderedContent));
+			sb.append(toJSON(structuredContentLink));
 		}
 
 		sb.append("]");
@@ -80,11 +82,13 @@ public class RenderedContentParser {
 		return sb.toString();
 	}
 
-	public static RenderedContent toRenderedContent(String json) {
+	public static StructuredContentLink toStructuredContentLink(String json) {
 		return null;
 	}
 
-	public static RenderedContent[] toRenderedContents(String json) {
+	public static StructuredContentLink[] toStructuredContentLinks(
+		String json) {
+
 		return null;
 	}
 

@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.client.parser.v1_0;
+package com.liferay.headless.web.experience.client.serdes.v1_0;
 
-import com.liferay.headless.web.experience.client.dto.v1_0.StructuredContentLink;
+import com.liferay.headless.web.experience.client.dto.v1_0.Geo;
 
 import java.util.Collection;
 
@@ -25,10 +25,10 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class StructuredContentLinkParser {
+public class GeoSerDes {
 
-	public static String toJSON(StructuredContentLink structuredContentLink) {
-		if (structuredContentLink == null) {
+	public static String toJSON(Geo geo) {
+		if (geo == null) {
 			return "{}";
 		}
 
@@ -36,30 +36,33 @@ public class StructuredContentLinkParser {
 
 		sb.append("{");
 
-		Long id = structuredContentLink.getId();
+		Long id = geo.getId();
 
 		sb.append("\"id\": ");
 
 		sb.append(id);
 		sb.append(", ");
 
-		String title = structuredContentLink.getTitle();
+		Number latitude = geo.getLatitude();
 
-		sb.append("\"title\": ");
+		sb.append("\"latitude\": ");
 
-		sb.append("\"");
-		sb.append(title);
-		sb.append("\"");
+		sb.append(latitude);
+		sb.append(", ");
+
+		Number longitude = geo.getLongitude();
+
+		sb.append("\"longitude\": ");
+
+		sb.append(longitude);
 
 		sb.append("}");
 
 		return sb.toString();
 	}
 
-	public static String toJSON(
-		Collection<StructuredContentLink> structuredContentLinks) {
-
-		if (structuredContentLinks == null) {
+	public static String toJSON(Collection<Geo> geos) {
+		if (geos == null) {
 			return "[]";
 		}
 
@@ -67,14 +70,12 @@ public class StructuredContentLinkParser {
 
 		sb.append("[");
 
-		for (StructuredContentLink structuredContentLink :
-				structuredContentLinks) {
-
+		for (Geo geo : geos) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append(toJSON(structuredContentLink));
+			sb.append(toJSON(geo));
 		}
 
 		sb.append("]");
@@ -82,13 +83,11 @@ public class StructuredContentLinkParser {
 		return sb.toString();
 	}
 
-	public static StructuredContentLink toStructuredContentLink(String json) {
+	public static Geo toGeo(String json) {
 		return null;
 	}
 
-	public static StructuredContentLink[] toStructuredContentLinks(
-		String json) {
-
+	public static Geo[] toGeos(String json) {
 		return null;
 	}
 

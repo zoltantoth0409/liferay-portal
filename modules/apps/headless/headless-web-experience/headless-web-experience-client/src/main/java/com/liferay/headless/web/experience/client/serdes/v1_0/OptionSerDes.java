@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.client.parser.v1_0;
+package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.Option;
 
@@ -25,7 +25,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class OptionParser {
+public class OptionSerDes {
 
 	public static String toJSON(Option option) {
 		if (option == null) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.client.parser.v1_0;
+package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentDocument;
 
@@ -25,7 +25,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class ContentDocumentParser {
+public class ContentDocumentSerDes {
 
 	public static String toJSON(ContentDocument contentDocument) {
 		if (contentDocument == null) {

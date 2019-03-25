@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.client.parser.v1_0;
+package com.liferay.headless.web.experience.client.serdes.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentStructure;
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentStructureField;
@@ -28,7 +28,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class ContentStructureParser {
+public class ContentStructureSerDes {
 
 	public static String toJSON(ContentStructure contentStructure) {
 		if (contentStructure == null) {
