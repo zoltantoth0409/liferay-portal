@@ -28,11 +28,56 @@ import javax.annotation.Generated;
 public class RenderedContentParser {
 
 	public static String toJSON(RenderedContent renderedContent) {
-		return null;
+		if (renderedContent == null) {
+			return "{}";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		String renderedContentURL = renderedContent.getRenderedContentURL();
+
+		sb.append("\"renderedContentURL\": ");
+
+		sb.append("\"");
+		sb.append(renderedContentURL);
+		sb.append("\"");
+		sb.append(", ");
+
+		String templateName = renderedContent.getTemplateName();
+
+		sb.append("\"templateName\": ");
+
+		sb.append("\"");
+		sb.append(templateName);
+		sb.append("\"");
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	public static String toJSON(Collection<RenderedContent> renderedContents) {
-		return null;
+		if (renderedContents == null) {
+			return "[]";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+
+		for (RenderedContent renderedContent : renderedContents) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append(toJSON(renderedContent));
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	public static RenderedContent toRenderedContent(String json) {

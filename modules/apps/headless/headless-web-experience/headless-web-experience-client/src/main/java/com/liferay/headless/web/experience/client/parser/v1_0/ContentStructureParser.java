@@ -15,8 +15,11 @@
 package com.liferay.headless.web.experience.client.parser.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.ContentStructure;
+import com.liferay.headless.web.experience.client.dto.v1_0.ContentStructureField;
+import com.liferay.headless.web.experience.client.dto.v1_0.Creator;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.annotation.Generated;
 
@@ -28,13 +31,146 @@ import javax.annotation.Generated;
 public class ContentStructureParser {
 
 	public static String toJSON(ContentStructure contentStructure) {
-		return null;
+		if (contentStructure == null) {
+			return "{}";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		String[] availableLanguages = contentStructure.getAvailableLanguages();
+
+		sb.append("\"availableLanguages\": ");
+
+		if (availableLanguages == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < availableLanguages.length; i++) {
+				sb.append("\"");
+				sb.append(availableLanguages[i]);
+				sb.append("\"");
+
+				if ((i + 1) < availableLanguages.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
+		sb.append(", ");
+
+		Long contentSpaceId = contentStructure.getContentSpaceId();
+
+		sb.append("\"contentSpaceId\": ");
+
+		sb.append(contentSpaceId);
+		sb.append(", ");
+
+		ContentStructureField[] contentStructureFields =
+			contentStructure.getContentStructureFields();
+
+		sb.append("\"contentStructureFields\": ");
+
+		if (contentStructureFields == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("[");
+
+			for (int i = 0; i < contentStructureFields.length; i++) {
+				sb.append(contentStructureFields[i]);
+
+				if ((i + 1) < contentStructureFields.length) {
+					sb.append(", ");
+				}
+			}
+
+			sb.append("]");
+		}
+
+		sb.append(", ");
+
+		Creator creator = contentStructure.getCreator();
+
+		sb.append("\"creator\": ");
+
+		sb.append(creator);
+		sb.append(", ");
+
+		Date dateCreated = contentStructure.getDateCreated();
+
+		sb.append("\"dateCreated\": ");
+
+		sb.append("\"");
+		sb.append(dateCreated);
+		sb.append("\"");
+		sb.append(", ");
+
+		Date dateModified = contentStructure.getDateModified();
+
+		sb.append("\"dateModified\": ");
+
+		sb.append("\"");
+		sb.append(dateModified);
+		sb.append("\"");
+		sb.append(", ");
+
+		String description = contentStructure.getDescription();
+
+		sb.append("\"description\": ");
+
+		sb.append("\"");
+		sb.append(description);
+		sb.append("\"");
+		sb.append(", ");
+
+		Long id = contentStructure.getId();
+
+		sb.append("\"id\": ");
+
+		sb.append(id);
+		sb.append(", ");
+
+		String name = contentStructure.getName();
+
+		sb.append("\"name\": ");
+
+		sb.append("\"");
+		sb.append(name);
+		sb.append("\"");
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	public static String toJSON(
 		Collection<ContentStructure> contentStructures) {
 
-		return null;
+		if (contentStructures == null) {
+			return "[]";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+
+		for (ContentStructure contentStructure : contentStructures) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append(toJSON(contentStructure));
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	public static ContentStructure toContentStructure(String json) {

@@ -28,13 +28,57 @@ import javax.annotation.Generated;
 public class TaxonomyCategoryParser {
 
 	public static String toJSON(TaxonomyCategory taxonomyCategory) {
-		return null;
+		if (taxonomyCategory == null) {
+			return "{}";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		Long taxonomyCategoryId = taxonomyCategory.getTaxonomyCategoryId();
+
+		sb.append("\"taxonomyCategoryId\": ");
+
+		sb.append(taxonomyCategoryId);
+		sb.append(", ");
+
+		String taxonomyCategoryName =
+			taxonomyCategory.getTaxonomyCategoryName();
+
+		sb.append("\"taxonomyCategoryName\": ");
+
+		sb.append("\"");
+		sb.append(taxonomyCategoryName);
+		sb.append("\"");
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	public static String toJSON(
 		Collection<TaxonomyCategory> taxonomyCategories) {
 
-		return null;
+		if (taxonomyCategories == null) {
+			return "[]";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+
+		for (TaxonomyCategory taxonomyCategory : taxonomyCategories) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append(toJSON(taxonomyCategory));
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	public static TaxonomyCategory toTaxonomyCategory(String json) {

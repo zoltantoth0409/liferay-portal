@@ -28,11 +28,66 @@ import javax.annotation.Generated;
 public class AggregateRatingParser {
 
 	public static String toJSON(AggregateRating aggregateRating) {
-		return null;
+		if (aggregateRating == null) {
+			return "{}";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		Number bestRating = aggregateRating.getBestRating();
+
+		sb.append("\"bestRating\": ");
+
+		sb.append(bestRating);
+		sb.append(", ");
+
+		Number ratingCount = aggregateRating.getRatingCount();
+
+		sb.append("\"ratingCount\": ");
+
+		sb.append(ratingCount);
+		sb.append(", ");
+
+		Number ratingValue = aggregateRating.getRatingValue();
+
+		sb.append("\"ratingValue\": ");
+
+		sb.append(ratingValue);
+		sb.append(", ");
+
+		Number worstRating = aggregateRating.getWorstRating();
+
+		sb.append("\"worstRating\": ");
+
+		sb.append(worstRating);
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	public static String toJSON(Collection<AggregateRating> aggregateRatings) {
-		return null;
+		if (aggregateRatings == null) {
+			return "[]";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+
+		for (AggregateRating aggregateRating : aggregateRatings) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append(toJSON(aggregateRating));
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	public static AggregateRating toAggregateRating(String json) {

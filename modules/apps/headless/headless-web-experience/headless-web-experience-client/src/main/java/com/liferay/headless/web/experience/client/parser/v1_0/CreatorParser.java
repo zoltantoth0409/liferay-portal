@@ -28,11 +28,99 @@ import javax.annotation.Generated;
 public class CreatorParser {
 
 	public static String toJSON(Creator creator) {
-		return null;
+		if (creator == null) {
+			return "{}";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		String additionalName = creator.getAdditionalName();
+
+		sb.append("\"additionalName\": ");
+
+		sb.append("\"");
+		sb.append(additionalName);
+		sb.append("\"");
+		sb.append(", ");
+
+		String familyName = creator.getFamilyName();
+
+		sb.append("\"familyName\": ");
+
+		sb.append("\"");
+		sb.append(familyName);
+		sb.append("\"");
+		sb.append(", ");
+
+		String givenName = creator.getGivenName();
+
+		sb.append("\"givenName\": ");
+
+		sb.append("\"");
+		sb.append(givenName);
+		sb.append("\"");
+		sb.append(", ");
+
+		Long id = creator.getId();
+
+		sb.append("\"id\": ");
+
+		sb.append(id);
+		sb.append(", ");
+
+		String image = creator.getImage();
+
+		sb.append("\"image\": ");
+
+		sb.append("\"");
+		sb.append(image);
+		sb.append("\"");
+		sb.append(", ");
+
+		String name = creator.getName();
+
+		sb.append("\"name\": ");
+
+		sb.append("\"");
+		sb.append(name);
+		sb.append("\"");
+		sb.append(", ");
+
+		String profileURL = creator.getProfileURL();
+
+		sb.append("\"profileURL\": ");
+
+		sb.append("\"");
+		sb.append(profileURL);
+		sb.append("\"");
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	public static String toJSON(Collection<Creator> creators) {
-		return null;
+		if (creators == null) {
+			return "[]";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+
+		for (Creator creator : creators) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append(toJSON(creator));
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	public static Creator toCreator(String json) {

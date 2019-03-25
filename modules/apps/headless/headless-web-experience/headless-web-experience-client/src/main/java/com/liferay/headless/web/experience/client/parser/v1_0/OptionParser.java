@@ -28,11 +28,56 @@ import javax.annotation.Generated;
 public class OptionParser {
 
 	public static String toJSON(Option option) {
-		return null;
+		if (option == null) {
+			return "{}";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		String label = option.getLabel();
+
+		sb.append("\"label\": ");
+
+		sb.append("\"");
+		sb.append(label);
+		sb.append("\"");
+		sb.append(", ");
+
+		String value = option.getValue();
+
+		sb.append("\"value\": ");
+
+		sb.append("\"");
+		sb.append(value);
+		sb.append("\"");
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	public static String toJSON(Collection<Option> options) {
-		return null;
+		if (options == null) {
+			return "[]";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+
+		for (Option option : options) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append(toJSON(option));
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	public static Option toOption(String json) {

@@ -28,11 +28,59 @@ import javax.annotation.Generated;
 public class GeoParser {
 
 	public static String toJSON(Geo geo) {
-		return null;
+		if (geo == null) {
+			return "{}";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		Long id = geo.getId();
+
+		sb.append("\"id\": ");
+
+		sb.append(id);
+		sb.append(", ");
+
+		Number latitude = geo.getLatitude();
+
+		sb.append("\"latitude\": ");
+
+		sb.append(latitude);
+		sb.append(", ");
+
+		Number longitude = geo.getLongitude();
+
+		sb.append("\"longitude\": ");
+
+		sb.append(longitude);
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	public static String toJSON(Collection<Geo> geos) {
-		return null;
+		if (geos == null) {
+			return "[]";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+
+		for (Geo geo : geos) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append(toJSON(geo));
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	public static Geo toGeo(String json) {

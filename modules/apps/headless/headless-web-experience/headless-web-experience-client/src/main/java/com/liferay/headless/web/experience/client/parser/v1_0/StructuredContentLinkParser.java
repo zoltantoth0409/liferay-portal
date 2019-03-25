@@ -28,13 +28,58 @@ import javax.annotation.Generated;
 public class StructuredContentLinkParser {
 
 	public static String toJSON(StructuredContentLink structuredContentLink) {
-		return null;
+		if (structuredContentLink == null) {
+			return "{}";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		Long id = structuredContentLink.getId();
+
+		sb.append("\"id\": ");
+
+		sb.append(id);
+		sb.append(", ");
+
+		String title = structuredContentLink.getTitle();
+
+		sb.append("\"title\": ");
+
+		sb.append("\"");
+		sb.append(title);
+		sb.append("\"");
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	public static String toJSON(
 		Collection<StructuredContentLink> structuredContentLinks) {
 
-		return null;
+		if (structuredContentLinks == null) {
+			return "[]";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+
+		for (StructuredContentLink structuredContentLink :
+				structuredContentLinks) {
+
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append(toJSON(structuredContentLink));
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	public static StructuredContentLink toStructuredContentLink(String json) {

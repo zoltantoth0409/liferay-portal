@@ -15,8 +15,10 @@
 package com.liferay.headless.web.experience.client.parser.v1_0;
 
 import com.liferay.headless.web.experience.client.dto.v1_0.Comment;
+import com.liferay.headless.web.experience.client.dto.v1_0.Creator;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.annotation.Generated;
 
@@ -28,11 +30,86 @@ import javax.annotation.Generated;
 public class CommentParser {
 
 	public static String toJSON(Comment comment) {
-		return null;
+		if (comment == null) {
+			return "{}";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		Creator creator = comment.getCreator();
+
+		sb.append("\"creator\": ");
+
+		sb.append(creator);
+		sb.append(", ");
+
+		Date dateCreated = comment.getDateCreated();
+
+		sb.append("\"dateCreated\": ");
+
+		sb.append("\"");
+		sb.append(dateCreated);
+		sb.append("\"");
+		sb.append(", ");
+
+		Date dateModified = comment.getDateModified();
+
+		sb.append("\"dateModified\": ");
+
+		sb.append("\"");
+		sb.append(dateModified);
+		sb.append("\"");
+		sb.append(", ");
+
+		Long id = comment.getId();
+
+		sb.append("\"id\": ");
+
+		sb.append(id);
+		sb.append(", ");
+
+		Number numberOfComments = comment.getNumberOfComments();
+
+		sb.append("\"numberOfComments\": ");
+
+		sb.append(numberOfComments);
+		sb.append(", ");
+
+		String text = comment.getText();
+
+		sb.append("\"text\": ");
+
+		sb.append("\"");
+		sb.append(text);
+		sb.append("\"");
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	public static String toJSON(Collection<Comment> comments) {
-		return null;
+		if (comments == null) {
+			return "[]";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+
+		for (Comment comment : comments) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append(toJSON(comment));
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	public static Comment toComment(String json) {

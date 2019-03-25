@@ -28,11 +28,97 @@ import javax.annotation.Generated;
 public class ContentDocumentParser {
 
 	public static String toJSON(ContentDocument contentDocument) {
-		return null;
+		if (contentDocument == null) {
+			return "{}";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		String contentUrl = contentDocument.getContentUrl();
+
+		sb.append("\"contentUrl\": ");
+
+		sb.append("\"");
+		sb.append(contentUrl);
+		sb.append("\"");
+		sb.append(", ");
+
+		String description = contentDocument.getDescription();
+
+		sb.append("\"description\": ");
+
+		sb.append("\"");
+		sb.append(description);
+		sb.append("\"");
+		sb.append(", ");
+
+		String encodingFormat = contentDocument.getEncodingFormat();
+
+		sb.append("\"encodingFormat\": ");
+
+		sb.append("\"");
+		sb.append(encodingFormat);
+		sb.append("\"");
+		sb.append(", ");
+
+		String fileExtension = contentDocument.getFileExtension();
+
+		sb.append("\"fileExtension\": ");
+
+		sb.append("\"");
+		sb.append(fileExtension);
+		sb.append("\"");
+		sb.append(", ");
+
+		Long id = contentDocument.getId();
+
+		sb.append("\"id\": ");
+
+		sb.append(id);
+		sb.append(", ");
+
+		Number sizeInBytes = contentDocument.getSizeInBytes();
+
+		sb.append("\"sizeInBytes\": ");
+
+		sb.append(sizeInBytes);
+		sb.append(", ");
+
+		String title = contentDocument.getTitle();
+
+		sb.append("\"title\": ");
+
+		sb.append("\"");
+		sb.append(title);
+		sb.append("\"");
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	public static String toJSON(Collection<ContentDocument> contentDocuments) {
-		return null;
+		if (contentDocuments == null) {
+			return "[]";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("[");
+
+		for (ContentDocument contentDocument : contentDocuments) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append(toJSON(contentDocument));
+		}
+
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	public static ContentDocument toContentDocument(String json) {
