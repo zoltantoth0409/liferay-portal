@@ -92,10 +92,8 @@ public class DiscussionForumPostingResourceImpl
 				Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		String messageId = String.valueOf(discussionForumPostingId);
-
-		return _getDiscussionForumPostingPage(
-			filter, pagination, sorts, messageId);
+		return _getDiscussionForumPostingsPage(
+			discussionForumPostingId, filter, pagination, sorts);
 	}
 
 	@Override
@@ -108,10 +106,8 @@ public class DiscussionForumPostingResourceImpl
 		MBThread mbThread = _mbThreadLocalService.getMBThread(
 			discussionThreadId);
 
-		String messageId = String.valueOf(mbThread.getRootMessageId());
-
-		return _getDiscussionForumPostingPage(
-			filter, pagination, sorts, messageId);
+		return _getDiscussionForumPostingsPage(
+			mbThread.getRootMessageId(), filter, pagination, sorts);
 	}
 
 	@Override
@@ -189,9 +185,9 @@ public class DiscussionForumPostingResourceImpl
 					discussionForumPosting.getViewableByAsString())));
 	}
 
-	private Page<DiscussionForumPosting> _getDiscussionForumPostingPage(
-			Filter filter, Pagination pagination, Sort[] sorts,
-			String messageId)
+	private Page<DiscussionForumPosting> _getDiscussionForumPostingsPage(
+			Long discussionForumPostingId, Filter filter, Pagination pagination,
+			Sort[] sorts)
 		throws Exception {
 
 		return SearchUtil.search(
@@ -200,10 +196,14 @@ public class DiscussionForumPostingResourceImpl
 					booleanQuery.getPreBooleanFilter();
 
 				booleanFilter.add(
-					new TermFilter(Field.ENTRY_CLASS_PK, messageId),
+					new TermFilter(
+						Field.ENTRY_CLASS_PK,
+						String.valueOf(discussionForumPostingId)),
 					BooleanClauseOccur.MUST_NOT);
 				booleanFilter.add(
-					new TermFilter("parentMessageId", messageId),
+					new TermFilter(
+						"parentMessageId",
+						String.valueOf(discussionForumPostingId)),
 					BooleanClauseOccur.MUST);
 			},
 			filter, MBMessage.class, pagination,
