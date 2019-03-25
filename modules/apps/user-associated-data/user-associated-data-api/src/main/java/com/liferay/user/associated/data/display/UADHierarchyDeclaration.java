@@ -46,6 +46,7 @@ public interface UADHierarchyDeclaration {
 	 *
 	 * @param locale the current locale
 	 * @return the label describing the entity types of the hierarchy
+	 * @review
 	 */
 	public String getEntitiesTypeLabel(Locale locale);
 
