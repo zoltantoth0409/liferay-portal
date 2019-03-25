@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	property = "model.class.name=com.liferay.data.engine.rest.internal.model.InternalDataDefinition",
+	property = "model.class.name=" + DataDefinitionConstants.RESOURCE_NAME,
 	service = ModelResourcePermission.class
 )
 public class InternalDataDefinitionModelResourcePermission
