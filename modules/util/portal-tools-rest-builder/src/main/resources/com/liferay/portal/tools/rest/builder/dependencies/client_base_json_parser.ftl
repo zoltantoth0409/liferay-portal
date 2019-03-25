@@ -19,12 +19,12 @@ import javax.annotation.Generated;
 @Generated("")
 public abstract class BaseJSONParser<T> {
 
-	public T parseToDTO(String string) {
-		if (string == null) {
+	public T parseToDTO(String json) {
+		if (json == null) {
 			throw new IllegalArgumentException("Expected non null");
 		}
 
-		_init(string);
+		_init(json);
 
 		_assertStartsAndEndsWith("{", "}");
 
@@ -75,12 +75,12 @@ public abstract class BaseJSONParser<T> {
 		return dto;
 	}
 
-	public T[] parseToDTOs(String string) {
-		if (string == null) {
+	public T[] parseToDTOs(String json) {
+		if (json == null) {
 			throw new IllegalArgumentException("Expected non null");
 		}
 
-		_init(string);
+		_init(json);
 
 		_assertStartsAndEndsWith("[", "]");
 
@@ -209,11 +209,11 @@ public abstract class BaseJSONParser<T> {
 		return true;
 	}
 
-	private void _init(String string) {
+	private void _init(String json) {
 		_captureStartStack = new Stack<>();
 		_dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 		_index = 0;
-		_json = string.trim();
+		_json = json.trim();
 		_lastChar = 0;
 	}
 
