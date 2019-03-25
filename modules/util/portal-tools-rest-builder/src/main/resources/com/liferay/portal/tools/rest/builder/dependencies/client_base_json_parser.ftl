@@ -220,7 +220,7 @@ public abstract class BaseJSONParser<T> {
 
 	protected abstract void setField(T dto, String fieldName, Object object);
 
-	protected static DateFormat _dateFormat;
+	protected DateFormat _dateFormat;
 
 	protected Stack<Integer> _captureStartStack;
 	protected int _index;
