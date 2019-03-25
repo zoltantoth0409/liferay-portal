@@ -21,7 +21,7 @@ public abstract class BaseJSONParser<T> {
 
 	public T parseToDTO(String json) {
 		if (json == null) {
-			throw new IllegalArgumentException("Expected non null");
+			throw new IllegalArgumentException("JSON is null");
 		}
 
 		_init(json);
@@ -176,7 +176,7 @@ public abstract class BaseJSONParser<T> {
 	private void _assertLastChar(char ch) {
 		if (_lastChar != ch) {
 			throw new IllegalArgumentException(
-				String.format("Expected '%s'; got '%s'", ch, _lastChar));
+				String.format("Expected '%s', but got '%s'", ch, _lastChar));
 		}
 	}
 
@@ -184,13 +184,13 @@ public abstract class BaseJSONParser<T> {
 		if (!_json.startsWith(prefix)) {
 			throw new IllegalArgumentException(
 				String.format(
-					"Expected '%s'; got '%s'", prefix, _json.charAt(0)));
+					"Expected '%s', but got '%s'", prefix, _json.charAt(0)));
 		}
 
 		if (!_json.endsWith(sufix)) {
 			throw new IllegalArgumentException(
 				String.format(
-					"Expected '%s'; got '%s'", sufix,
+					"Expected '%s', but got '%s'", sufix,
 					_json.charAt(_json.length() - 1)));
 		}
 	}
@@ -352,7 +352,7 @@ public abstract class BaseJSONParser<T> {
 
 		if (!_isLastChar(']')) {
 			throw new IllegalArgumentException(
-				"Expected ']'; got '" + _lastChar + "'");
+				"Expected ']', but got '" + _lastChar + "'");
 		}
 
 		_readNextChar();
