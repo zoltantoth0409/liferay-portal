@@ -89,8 +89,8 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		if (Validator.isNull(operation) ||
 			ArrayUtil.contains(
 				new String[] {
-					DataEngineConstants.SAVE_PERMISSION_OPERATION,
-				DataEngineConstants.DELETE_PERMISSION_OPERATION
+					DataEngineConstants.OPERATION_SAVE_PERMISSION,
+				DataEngineConstants.OPERATION_DELETE_PERMISSION
 					},
 				operation, true)) {
 
@@ -125,7 +125,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		List<String> roleNames = ListUtil.fromArray(
 			dataDefinitionPermission.getRoleNames());
 
-		if (DataEngineConstants.SAVE_PERMISSION_OPERATION.equalsIgnoreCase(
+		if (DataEngineConstants.OPERATION_SAVE_PERMISSION.equalsIgnoreCase(
 				operation)) {
 
 			ModelPermissions modelPermissions = new ModelPermissions();
