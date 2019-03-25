@@ -220,12 +220,12 @@ public abstract class BaseJSONParser<T> {
 
 	protected abstract void setField(T dto, String fieldName, Object object);
 
-	protected DateFormat _dateFormat;
+	private DateFormat _dateFormat;
 
-	protected Stack<Integer> _captureStartStack;
-	protected int _index;
-	protected String _json;
-	protected char _lastChar;
+	private Stack<Integer> _captureStartStack;
+	private int _index;
+	private String _json;
+	private char _lastChar;
 
 	private void _assertLastChar(char ch) {
 		if (_lastChar != ch) {
