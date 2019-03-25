@@ -558,7 +558,7 @@ paths:
                                 type: array
                     description: ""
             tags: ["StructuredContent"]
-    "/content-spaces/{content-space-id}/structured-contents/key/{key}":
+    "/content-spaces/{content-space-id}/key-structured-contents/{key}":
         get:
             parameters:
                 - in: header
@@ -584,7 +584,7 @@ paths:
                                 $ref: "#/components/schemas/StructuredContent"
                     description: ""
             tags: ["StructuredContent"]
-    "/content-spaces/{content-space-id}/structured-contents/uuid/{uuid}":
+    "/content-spaces/{content-space-id}/uuid-structured-contents/{uuid}":
         get:
             parameters:
                 - in: header

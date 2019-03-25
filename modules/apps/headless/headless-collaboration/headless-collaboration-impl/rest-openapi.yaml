@@ -979,7 +979,7 @@ paths:
                                 $ref: "#/components/schemas/KnowledgeBaseArticle"
                     description: ""
             tags: ["KnowledgeBaseArticle"]
-    "/content-spaces/{content-space-id}/tree/knowledge-base-articles":
+    "/content-spaces/{content-space-id}/tree-knowledge-base-articles":
         get:
             parameters:
                 - in: path
@@ -1027,7 +1027,7 @@ paths:
                                 $ref: "#/components/schemas/KnowledgeBaseArticle"
                     description: ""
             tags: ["KnowledgeBaseArticle"]
-    "/content-spaces/{content-space-id}/tree/knowledge-base-folders":
+    "/content-spaces/{content-space-id}/tree-knowledge-base-folders":
         get:
             parameters:
                 - in: path
