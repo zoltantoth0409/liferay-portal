@@ -183,8 +183,8 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 			"/layout/add_layout_page_template_entry");
 		actionURL.setParameter(
 			"mvcRenderCommandName", "/layout/edit_layout_page_template_entry");
-		actionURL.setParameter("backURL", _themeDisplay.getURLCurrent());
 		actionURL.setParameter("redirect", _themeDisplay.getURLCurrent());
+		actionURL.setParameter("backURL", _themeDisplay.getURLCurrent());
 		actionURL.setParameter(
 			"layoutPageTemplateCollectionId",
 			String.valueOf(
