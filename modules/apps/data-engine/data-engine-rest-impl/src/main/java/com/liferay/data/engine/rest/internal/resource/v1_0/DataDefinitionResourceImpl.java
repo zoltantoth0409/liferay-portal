@@ -87,10 +87,10 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception {
 
-		if (!Objects.equals(
-				operation, DataEngineConstants.OPERATION_DELETE_PERMISSION) &&
-			!Objects.equals(
-				operation, DataEngineConstants.OPERATION_SAVE_PERMISSION)) {
+		if (!DataEngineConstants.OPERATION_DELETE_PERMISSION.equalsIgnoreCase(
+				operation) &&
+			!DataEngineConstants.OPERATION_SAVE_PERMISSION.equalsIgnoreCase(
+				operation)) {
 
 			throw new BadRequestException(
 				"Operation must be 'delete' or 'save'");

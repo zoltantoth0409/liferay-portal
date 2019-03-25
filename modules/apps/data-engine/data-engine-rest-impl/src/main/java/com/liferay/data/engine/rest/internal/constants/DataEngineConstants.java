@@ -19,9 +19,9 @@ package com.liferay.data.engine.rest.internal.constants;
  */
 public class DataEngineConstants {
 
-	public static final String OPERATION_DELETE_PERMISSION = "DELETE";
+	public static final String OPERATION_DELETE_PERMISSION = "delete";
 
-	public static final String OPERATION_SAVE_PERMISSION = "SAVE";
+	public static final String OPERATION_SAVE_PERMISSION = "save";
 
 	public static final String RESOURCE_NAME = "com.liferay.data.engine";
 
