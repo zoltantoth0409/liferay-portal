@@ -137,3 +137,8 @@ deed662c3a268ed7e9afa7f1fa6a2c02781f27c1^..19fe68e85e80cdce275b93e47fc09df9ad1aa
 # Bundle Version 3.0.15
 #
 e2cc8ad304820cba4ecef9cbceb35de2928be4ed^..db603e8f10faeb7caff3276d58908dc85dd58c55=LPS-91420
+
+#
+# Bundle Version 3.0.16
+#
+db603e8f10faeb7caff3276d58908dc85dd58c55^..106bcfe8ee2a6ca352466c4808e26f84c64b0d23=LPS-77699
