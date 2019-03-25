@@ -102,7 +102,7 @@ public abstract class BaseJSONParser<T> {
 		return toDTOs((Object[])_readValue());
 	}
 
-	protected static Integer[] toIntegers(Object[] objects) {
+	protected Integer[] toIntegers(Object[] objects) {
 		return Stream.of(
 			objects
 		).map(
@@ -119,7 +119,7 @@ public abstract class BaseJSONParser<T> {
 		);
 	}
 
-	protected static Long[] toLongs(Object[] objects) {
+	protected Long[] toLongs(Object[] objects) {
 		return Stream.of(
 			objects
 		).map(
@@ -136,7 +136,7 @@ public abstract class BaseJSONParser<T> {
 		);
 	}
 
-	protected static String[] toStrings(Object[] objects) {
+	protected String[] toStrings(Object[] objects) {
 		return Stream.of(
 			objects
 		).map(
