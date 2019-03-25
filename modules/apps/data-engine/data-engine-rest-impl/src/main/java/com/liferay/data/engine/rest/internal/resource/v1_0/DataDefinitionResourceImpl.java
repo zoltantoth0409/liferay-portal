@@ -48,6 +48,7 @@ import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -150,10 +151,10 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception {
 
-		if (!DataEngineConstants.OPERATION_DELETE_PERMISSION.equalsIgnoreCase(
-				operation) &&
-			!DataEngineConstants.OPERATION_SAVE_PERMISSION.equalsIgnoreCase(
-				operation)) {
+		if (!StringUtil.equalsIgnoreCase(
+				DataEngineConstants.OPERATION_DELETE_PERMISSION, operation) &&
+			!StringUtil.equalsIgnoreCase(
+				DataEngineConstants.OPERATION_SAVE_PERMISSION, operation)) {
 
 			throw new BadRequestException(
 				"Operation must be 'delete' or 'save'");
@@ -186,8 +187,8 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		List<String> roleNames = ListUtil.fromArray(
 			dataDefinitionPermission.getRoleNames());
 
-		if (DataEngineConstants.OPERATION_SAVE_PERMISSION.equalsIgnoreCase(
-				operation)) {
+		if (StringUtil.equalsIgnoreCase(
+				DataEngineConstants.OPERATION_SAVE_PERMISSION, operation)) {
 
 			ModelPermissions modelPermissions = new ModelPermissions();
 
