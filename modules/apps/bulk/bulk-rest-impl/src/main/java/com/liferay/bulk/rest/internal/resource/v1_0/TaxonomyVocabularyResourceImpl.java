@@ -71,18 +71,14 @@ public class TaxonomyVocabularyResourceImpl
 				DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 
-		long classNameId = _classNameLocalService.getClassNameId(
-			DLFileEntry.class.getName());
-
 		Map<AssetVocabulary, List<AssetCategory>> assetCategoriesMap =
-			_getAssetCategoriesMap(
-				contentSpaceId, classNameId, documentBulkSelection);
+			_getAssetCategoriesMap(contentSpaceId, documentBulkSelection);
 
 		return Page.of(
 			transform(
 				assetCategoriesMap.entrySet(),
 				entry -> _toTaxonomyVocabulary(
-					entry.getValue(), entry.getKey(), classNameId)));
+					entry.getValue(), entry.getKey())));
 	}
 
 	private Function<AssetEntry, Set<AssetCategory>>
@@ -104,12 +100,11 @@ public class TaxonomyVocabularyResourceImpl
 	}
 
 	private Map<AssetVocabulary, List<AssetCategory>> _getAssetCategoriesMap(
-			Long contentSpaceId, long classNameId,
-			DocumentBulkSelection documentBulkSelection)
+			Long contentSpaceId, DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 
 		Stream<AssetVocabulary> assetVocabulariesStream =
-			_getAssetVocabulariesStream(contentSpaceId, classNameId);
+			_getAssetVocabulariesStream(contentSpaceId);
 
 		Stream<AssetCategory> assetCategoriesStream = _getAssetCategoriesStream(
 			documentBulkSelection);
@@ -151,7 +146,7 @@ public class TaxonomyVocabularyResourceImpl
 	}
 
 	private Stream<AssetVocabulary> _getAssetVocabulariesStream(
-			Long contentSpaceId, long classNameId)
+			Long contentSpaceId)
 		throws Exception {
 
 		List<AssetVocabulary> assetVocabularies =
@@ -162,7 +157,7 @@ public class TaxonomyVocabularyResourceImpl
 
 		List<AssetVocabulary> filteredAssetVocabularies = stream.filter(
 			assetVocabulary -> assetVocabulary.isAssociatedToClassNameId(
-				classNameId)
+				_getClassNameId())
 		).filter(
 			assetVocabulary -> {
 				int count =
@@ -178,9 +173,13 @@ public class TaxonomyVocabularyResourceImpl
 		return filteredAssetVocabularies.stream();
 	}
 
+	private long _getClassNameId() {
+		return _classNameLocalService.getClassNameId(
+			DLFileEntry.class.getName());
+	}
+
 	private TaxonomyVocabulary _toTaxonomyVocabulary(
-		List<AssetCategory> assetCategories, AssetVocabulary assetVocabulary,
-		long classNameId) {
+		List<AssetCategory> assetCategories, AssetVocabulary assetVocabulary) {
 
 		return new TaxonomyVocabulary() {
 			{
@@ -197,7 +196,8 @@ public class TaxonomyVocabularyResourceImpl
 					TaxonomyCategory.class);
 				taxonomyVocabularyId = assetVocabulary.getVocabularyId();
 				required = assetVocabulary.isRequired(
-					classNameId, AssetCategoryConstants.ALL_CLASS_TYPE_PK);
+					_getClassNameId(),
+					AssetCategoryConstants.ALL_CLASS_TYPE_PK);
 			}
 		};
 	}
