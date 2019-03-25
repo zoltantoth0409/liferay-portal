@@ -177,7 +177,7 @@ public class RESTBuilder {
 
 				if (Validator.isNotNull(_configYAML.getClientDir())) {
 					_createClientDTOFile(context, escapedVersion, schemaName);
-					_createClientParserFile(
+					_createClientSerDesFile(
 						context, escapedVersion, schemaName);
 				}
 			}
@@ -313,36 +313,6 @@ public class RESTBuilder {
 				_copyrightFileName, "client_dto", context));
 	}
 
-	private void _createClientParserFile(
-			Map<String, Object> context, String escapedVersion,
-			String schemaName)
-		throws Exception {
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_configYAML.getClientDir());
-		sb.append("/");
-
-		String apiPackagePath = _configYAML.getApiPackagePath();
-
-		sb.append(apiPackagePath.replace('.', '/'));
-
-		sb.append("/client/parser/");
-		sb.append(escapedVersion);
-		sb.append("/");
-		sb.append(schemaName);
-		sb.append("Parser.java");
-
-		File file = new File(sb.toString());
-
-		_files.add(file);
-
-		FileUtil.write(
-			file,
-			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "client_parser", context));
-	}
-
 	private void _createClientResourceFile(
 			Map<String, Object> context, String escapedVersion,
 			String schemaName)
@@ -371,6 +341,36 @@ public class RESTBuilder {
 			file,
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "client_resource", context));
+	}
+
+	private void _createClientSerDesFile(
+			Map<String, Object> context, String escapedVersion,
+			String schemaName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getClientDir());
+		sb.append("/");
+
+		String apiPackagePath = _configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/client/serdes/");
+		sb.append(escapedVersion);
+		sb.append("/");
+		sb.append(schemaName);
+		sb.append("SerDes.java");
+
+		File file = new File(sb.toString());
+
+		_files.add(file);
+
+		FileUtil.write(
+			file,
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "client_serdes", context));
 	}
 
 	private void _createClientUnsafeSupplierFile(Map<String, Object> context)

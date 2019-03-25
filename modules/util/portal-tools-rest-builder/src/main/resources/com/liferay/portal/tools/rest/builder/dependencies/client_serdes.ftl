@@ -1,4 +1,4 @@
-package ${configYAML.apiPackagePath}.client.parser.${escapedVersion};
+package ${configYAML.apiPackagePath}.client.serdes.${escapedVersion};
 
 <#list allSchemas?keys as schemaName>
 	import ${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName};
@@ -14,7 +14,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class ${schemaName}Parser {
+public class ${schemaName}SerDes {
 
 	<#assign
 		enumSchemas = freeMarkerTool.getDTOEnumSchemas(schema)
