@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ${configYAML.author}
  * @generated
  */
+
 <#if schema.oneOfSchemas?has_content>
 	@JsonSubTypes(
 		{
@@ -46,13 +47,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 	)
 	@JsonTypeInfo(include = JsonTypeInfo.As.PROPERTY, property = "childType", use = JsonTypeInfo.Id.NAME)
 </#if>
-<#assign dtoParentClassName = freeMarkerTool.getDTOParentClassName(openAPIYAML, schemaName)!/>
+
+<#assign dtoParentClassName = freeMarkerTool.getDTOParentClassName(openAPIYAML, schemaName)! />
+
 <#if dtoParentClassName?has_content>
 	@JsonTypeInfo(
-		use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "childType",
-		defaultImpl = ${schemaName}.class
+		defaultImpl = ${schemaName}.class, include = JsonTypeInfo.As.PROPERTY, property = "childType", use = JsonTypeInfo.Id.NAME
 	)
 </#if>
+
 @Generated("")
 @GraphQLName("${schemaName}")
 @JsonFilter("Liferay.Vulcan")
