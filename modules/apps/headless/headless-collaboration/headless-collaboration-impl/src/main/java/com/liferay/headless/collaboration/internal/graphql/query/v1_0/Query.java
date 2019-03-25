@@ -517,8 +517,10 @@ public class Query {
 	public Collection<KnowledgeBaseArticle>
 			getContentSpaceKnowledgeBaseArticlesPage(
 				@GraphQLName("content-space-id") Long contentSpaceId,
+				@GraphQLName("filter") Filter filter,
 				@GraphQLName("pageSize") int pageSize,
-				@GraphQLName("page") int page)
+				@GraphQLName("page") int page,
+				@GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -528,7 +530,8 @@ public class Query {
 				Page paginationPage =
 					knowledgeBaseArticleResource.
 						getContentSpaceKnowledgeBaseArticlesPage(
-							contentSpaceId, Pagination.of(pageSize, page));
+							contentSpaceId, filter,
+							Pagination.of(pageSize, page), sorts);
 
 				return paginationPage.getItems();
 			});
@@ -539,8 +542,10 @@ public class Query {
 	public Collection<KnowledgeBaseArticle>
 			getContentSpaceTreeKnowledgeBaseArticlesPage(
 				@GraphQLName("content-space-id") Long contentSpaceId,
+				@GraphQLName("filter") Filter filter,
 				@GraphQLName("pageSize") int pageSize,
-				@GraphQLName("page") int page)
+				@GraphQLName("page") int page,
+				@GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -550,7 +555,8 @@ public class Query {
 				Page paginationPage =
 					knowledgeBaseArticleResource.
 						getContentSpaceTreeKnowledgeBaseArticlesPage(
-							contentSpaceId, Pagination.of(pageSize, page));
+							contentSpaceId, filter,
+							Pagination.of(pageSize, page), sorts);
 
 				return paginationPage.getItems();
 			});

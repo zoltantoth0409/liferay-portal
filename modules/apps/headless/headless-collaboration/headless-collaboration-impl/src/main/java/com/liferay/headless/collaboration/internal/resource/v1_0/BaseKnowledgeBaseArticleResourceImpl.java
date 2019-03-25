@@ -19,6 +19,8 @@ import com.liferay.headless.collaboration.resource.v1_0.KnowledgeBaseArticleReso
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -67,8 +69,10 @@ public abstract class BaseKnowledgeBaseArticleResourceImpl
 	@GET
 	@Parameters(
 		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "filter"),
 			@Parameter(in = ParameterIn.QUERY, name = "page"),
-			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
+			@Parameter(in = ParameterIn.QUERY, name = "sorts")
 		}
 	)
 	@Path("/content-spaces/{content-space-id}/knowledge-base-articles")
@@ -76,7 +80,8 @@ public abstract class BaseKnowledgeBaseArticleResourceImpl
 	@Tags(value = {@Tag(name = "KnowledgeBaseArticle")})
 	public Page<KnowledgeBaseArticle> getContentSpaceKnowledgeBaseArticlesPage(
 			@NotNull @PathParam("content-space-id") Long contentSpaceId,
-			@Context Pagination pagination)
+			@Context Filter filter, @Context Pagination pagination,
+			@Context Sort[] sorts)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -100,8 +105,10 @@ public abstract class BaseKnowledgeBaseArticleResourceImpl
 	@GET
 	@Parameters(
 		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "filter"),
 			@Parameter(in = ParameterIn.QUERY, name = "page"),
-			@Parameter(in = ParameterIn.QUERY, name = "pageSize")
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
+			@Parameter(in = ParameterIn.QUERY, name = "sorts")
 		}
 	)
 	@Path("/content-spaces/{content-space-id}/tree-knowledge-base-articles")
@@ -110,7 +117,8 @@ public abstract class BaseKnowledgeBaseArticleResourceImpl
 	public Page<KnowledgeBaseArticle>
 			getContentSpaceTreeKnowledgeBaseArticlesPage(
 				@NotNull @PathParam("content-space-id") Long contentSpaceId,
-				@Context Pagination pagination)
+				@Context Filter filter, @Context Pagination pagination,
+				@Context Sort[] sorts)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());

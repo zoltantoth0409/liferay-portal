@@ -53,6 +53,8 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -66,6 +68,7 @@ import javax.ws.rs.core.Response;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.lang.time.DateUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -125,7 +128,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 			Page<KnowledgeBaseArticle> page =
 				invokeGetContentSpaceKnowledgeBaseArticlesPage(
-					irrelevantContentSpaceId, Pagination.of(1, 2));
+					irrelevantContentSpaceId, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -145,7 +148,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Page<KnowledgeBaseArticle> page =
 			invokeGetContentSpaceKnowledgeBaseArticlesPage(
-				contentSpaceId, Pagination.of(1, 2));
+				contentSpaceId, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -153,6 +156,90 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
 			(List<KnowledgeBaseArticle>)page.getItems());
 		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceKnowledgeBaseArticlesPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceKnowledgeBaseArticlesPage_getContentSpaceId();
+
+		KnowledgeBaseArticle knowledgeBaseArticle1 =
+			randomKnowledgeBaseArticle();
+		KnowledgeBaseArticle knowledgeBaseArticle2 =
+			randomKnowledgeBaseArticle();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				knowledgeBaseArticle1, entityField.getName(),
+				DateUtils.addMinutes(new Date(), -2));
+		}
+
+		knowledgeBaseArticle1 =
+			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle1);
+
+		Thread.sleep(1000);
+
+		knowledgeBaseArticle2 =
+			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle2);
+
+		for (EntityField entityField : entityFields) {
+			Page<KnowledgeBaseArticle> page =
+				invokeGetContentSpaceKnowledgeBaseArticlesPage(
+					contentSpaceId,
+					getFilterString(entityField, "eq", knowledgeBaseArticle1),
+					Pagination.of(1, 2), null);
+
+			assertEquals(
+				Collections.singletonList(knowledgeBaseArticle1),
+				(List<KnowledgeBaseArticle>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceKnowledgeBaseArticlesPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceKnowledgeBaseArticlesPage_getContentSpaceId();
+
+		KnowledgeBaseArticle knowledgeBaseArticle1 =
+			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, randomKnowledgeBaseArticle());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
+		KnowledgeBaseArticle knowledgeBaseArticle2 =
+			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, randomKnowledgeBaseArticle());
+
+		for (EntityField entityField : entityFields) {
+			Page<KnowledgeBaseArticle> page =
+				invokeGetContentSpaceKnowledgeBaseArticlesPage(
+					contentSpaceId,
+					getFilterString(entityField, "eq", knowledgeBaseArticle1),
+					Pagination.of(1, 2), null);
+
+			assertEquals(
+				Collections.singletonList(knowledgeBaseArticle1),
+				(List<KnowledgeBaseArticle>)page.getItems());
+		}
 	}
 
 	@Test
@@ -176,7 +263,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Page<KnowledgeBaseArticle> page1 =
 			invokeGetContentSpaceKnowledgeBaseArticlesPage(
-				contentSpaceId, Pagination.of(1, 2));
+				contentSpaceId, null, Pagination.of(1, 2), null);
 
 		List<KnowledgeBaseArticle> knowledgeBaseArticles1 =
 			(List<KnowledgeBaseArticle>)page1.getItems();
@@ -187,7 +274,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Page<KnowledgeBaseArticle> page2 =
 			invokeGetContentSpaceKnowledgeBaseArticlesPage(
-				contentSpaceId, Pagination.of(2, 2));
+				contentSpaceId, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -208,6 +295,117 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					addAll(knowledgeBaseArticles2);
 				}
 			});
+	}
+
+	@Test
+	public void testGetContentSpaceKnowledgeBaseArticlesPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceKnowledgeBaseArticlesPage_getContentSpaceId();
+
+		KnowledgeBaseArticle knowledgeBaseArticle1 =
+			randomKnowledgeBaseArticle();
+		KnowledgeBaseArticle knowledgeBaseArticle2 =
+			randomKnowledgeBaseArticle();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				knowledgeBaseArticle1, entityField.getName(),
+				DateUtils.addMinutes(new Date(), -2));
+		}
+
+		knowledgeBaseArticle1 =
+			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle1);
+
+		Thread.sleep(1000);
+
+		knowledgeBaseArticle2 =
+			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle2);
+
+		for (EntityField entityField : entityFields) {
+			Page<KnowledgeBaseArticle> ascPage =
+				invokeGetContentSpaceKnowledgeBaseArticlesPage(
+					contentSpaceId, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
+				(List<KnowledgeBaseArticle>)ascPage.getItems());
+
+			Page<KnowledgeBaseArticle> descPage =
+				invokeGetContentSpaceKnowledgeBaseArticlesPage(
+					contentSpaceId, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(knowledgeBaseArticle2, knowledgeBaseArticle1),
+				(List<KnowledgeBaseArticle>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceKnowledgeBaseArticlesPageWithSortString()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceKnowledgeBaseArticlesPage_getContentSpaceId();
+
+		KnowledgeBaseArticle knowledgeBaseArticle1 =
+			randomKnowledgeBaseArticle();
+		KnowledgeBaseArticle knowledgeBaseArticle2 =
+			randomKnowledgeBaseArticle();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				knowledgeBaseArticle1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(
+				knowledgeBaseArticle2, entityField.getName(), "Bbb");
+		}
+
+		knowledgeBaseArticle1 =
+			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle1);
+
+		knowledgeBaseArticle2 =
+			testGetContentSpaceKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle2);
+
+		for (EntityField entityField : entityFields) {
+			Page<KnowledgeBaseArticle> ascPage =
+				invokeGetContentSpaceKnowledgeBaseArticlesPage(
+					contentSpaceId, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
+				(List<KnowledgeBaseArticle>)ascPage.getItems());
+
+			Page<KnowledgeBaseArticle> descPage =
+				invokeGetContentSpaceKnowledgeBaseArticlesPage(
+					contentSpaceId, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(knowledgeBaseArticle2, knowledgeBaseArticle1),
+				(List<KnowledgeBaseArticle>)descPage.getItems());
+		}
 	}
 
 	protected KnowledgeBaseArticle
@@ -235,7 +433,8 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	protected Page<KnowledgeBaseArticle>
 			invokeGetContentSpaceKnowledgeBaseArticlesPage(
-				Long contentSpaceId, Pagination pagination)
+				Long contentSpaceId, String filterString, Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -246,10 +445,14 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					"/content-spaces/{content-space-id}/knowledge-base-articles",
 					contentSpaceId);
 
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
 
@@ -267,7 +470,8 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	protected Http.Response
 			invokeGetContentSpaceKnowledgeBaseArticlesPageResponse(
-				Long contentSpaceId, Pagination pagination)
+				Long contentSpaceId, String filterString, Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -278,10 +482,14 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					"/content-spaces/{content-space-id}/knowledge-base-articles",
 					contentSpaceId);
 
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
 
@@ -391,7 +599,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 			Page<KnowledgeBaseArticle> page =
 				invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
-					irrelevantContentSpaceId, Pagination.of(1, 2));
+					irrelevantContentSpaceId, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -411,7 +619,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Page<KnowledgeBaseArticle> page =
 			invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
-				contentSpaceId, Pagination.of(1, 2));
+				contentSpaceId, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -419,6 +627,90 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
 			(List<KnowledgeBaseArticle>)page.getItems());
 		assertValid(page);
+	}
+
+	@Test
+	public void testGetContentSpaceTreeKnowledgeBaseArticlesPageWithFilterDateTimeEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_getContentSpaceId();
+
+		KnowledgeBaseArticle knowledgeBaseArticle1 =
+			randomKnowledgeBaseArticle();
+		KnowledgeBaseArticle knowledgeBaseArticle2 =
+			randomKnowledgeBaseArticle();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				knowledgeBaseArticle1, entityField.getName(),
+				DateUtils.addMinutes(new Date(), -2));
+		}
+
+		knowledgeBaseArticle1 =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle1);
+
+		Thread.sleep(1000);
+
+		knowledgeBaseArticle2 =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle2);
+
+		for (EntityField entityField : entityFields) {
+			Page<KnowledgeBaseArticle> page =
+				invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
+					contentSpaceId,
+					getFilterString(entityField, "eq", knowledgeBaseArticle1),
+					Pagination.of(1, 2), null);
+
+			assertEquals(
+				Collections.singletonList(knowledgeBaseArticle1),
+				(List<KnowledgeBaseArticle>)page.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceTreeKnowledgeBaseArticlesPageWithFilterStringEquals()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_getContentSpaceId();
+
+		KnowledgeBaseArticle knowledgeBaseArticle1 =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, randomKnowledgeBaseArticle());
+
+		@SuppressWarnings("PMD.UnusedLocalVariable")
+		KnowledgeBaseArticle knowledgeBaseArticle2 =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, randomKnowledgeBaseArticle());
+
+		for (EntityField entityField : entityFields) {
+			Page<KnowledgeBaseArticle> page =
+				invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
+					contentSpaceId,
+					getFilterString(entityField, "eq", knowledgeBaseArticle1),
+					Pagination.of(1, 2), null);
+
+			assertEquals(
+				Collections.singletonList(knowledgeBaseArticle1),
+				(List<KnowledgeBaseArticle>)page.getItems());
+		}
 	}
 
 	@Test
@@ -442,7 +734,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Page<KnowledgeBaseArticle> page1 =
 			invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
-				contentSpaceId, Pagination.of(1, 2));
+				contentSpaceId, null, Pagination.of(1, 2), null);
 
 		List<KnowledgeBaseArticle> knowledgeBaseArticles1 =
 			(List<KnowledgeBaseArticle>)page1.getItems();
@@ -453,7 +745,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		Page<KnowledgeBaseArticle> page2 =
 			invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
-				contentSpaceId, Pagination.of(2, 2));
+				contentSpaceId, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -474,6 +766,117 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					addAll(knowledgeBaseArticles2);
 				}
 			});
+	}
+
+	@Test
+	public void testGetContentSpaceTreeKnowledgeBaseArticlesPageWithSortDateTime()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_getContentSpaceId();
+
+		KnowledgeBaseArticle knowledgeBaseArticle1 =
+			randomKnowledgeBaseArticle();
+		KnowledgeBaseArticle knowledgeBaseArticle2 =
+			randomKnowledgeBaseArticle();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				knowledgeBaseArticle1, entityField.getName(),
+				DateUtils.addMinutes(new Date(), -2));
+		}
+
+		knowledgeBaseArticle1 =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle1);
+
+		Thread.sleep(1000);
+
+		knowledgeBaseArticle2 =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle2);
+
+		for (EntityField entityField : entityFields) {
+			Page<KnowledgeBaseArticle> ascPage =
+				invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
+					contentSpaceId, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
+				(List<KnowledgeBaseArticle>)ascPage.getItems());
+
+			Page<KnowledgeBaseArticle> descPage =
+				invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
+					contentSpaceId, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(knowledgeBaseArticle2, knowledgeBaseArticle1),
+				(List<KnowledgeBaseArticle>)descPage.getItems());
+		}
+	}
+
+	@Test
+	public void testGetContentSpaceTreeKnowledgeBaseArticlesPageWithSortString()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long contentSpaceId =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_getContentSpaceId();
+
+		KnowledgeBaseArticle knowledgeBaseArticle1 =
+			randomKnowledgeBaseArticle();
+		KnowledgeBaseArticle knowledgeBaseArticle2 =
+			randomKnowledgeBaseArticle();
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				knowledgeBaseArticle1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(
+				knowledgeBaseArticle2, entityField.getName(), "Bbb");
+		}
+
+		knowledgeBaseArticle1 =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle1);
+
+		knowledgeBaseArticle2 =
+			testGetContentSpaceTreeKnowledgeBaseArticlesPage_addKnowledgeBaseArticle(
+				contentSpaceId, knowledgeBaseArticle2);
+
+		for (EntityField entityField : entityFields) {
+			Page<KnowledgeBaseArticle> ascPage =
+				invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
+					contentSpaceId, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
+				(List<KnowledgeBaseArticle>)ascPage.getItems());
+
+			Page<KnowledgeBaseArticle> descPage =
+				invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
+					contentSpaceId, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(knowledgeBaseArticle2, knowledgeBaseArticle1),
+				(List<KnowledgeBaseArticle>)descPage.getItems());
+		}
 	}
 
 	protected KnowledgeBaseArticle
@@ -501,7 +904,8 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	protected Page<KnowledgeBaseArticle>
 			invokeGetContentSpaceTreeKnowledgeBaseArticlesPage(
-				Long contentSpaceId, Pagination pagination)
+				Long contentSpaceId, String filterString, Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -512,10 +916,14 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					"/content-spaces/{content-space-id}/tree-knowledge-base-articles",
 					contentSpaceId);
 
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
 
@@ -533,7 +941,8 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	protected Http.Response
 			invokeGetContentSpaceTreeKnowledgeBaseArticlesPageResponse(
-				Long contentSpaceId, Pagination pagination)
+				Long contentSpaceId, String filterString, Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -544,10 +953,14 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					"/content-spaces/{content-space-id}/tree-knowledge-base-articles",
 					contentSpaceId);
 
+		location = HttpUtil.addParameter(location, "filter", filterString);
+
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
+
+		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
 

@@ -16,6 +16,8 @@ package com.liferay.headless.collaboration.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.KnowledgeBaseArticle;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -33,7 +35,8 @@ import javax.annotation.Generated;
 public interface KnowledgeBaseArticleResource {
 
 	public Page<KnowledgeBaseArticle> getContentSpaceKnowledgeBaseArticlesPage(
-			Long contentSpaceId, Pagination pagination)
+			Long contentSpaceId, Filter filter, Pagination pagination,
+			Sort[] sorts)
 		throws Exception;
 
 	public KnowledgeBaseArticle postContentSpaceKnowledgeBaseArticle(
@@ -42,7 +45,8 @@ public interface KnowledgeBaseArticleResource {
 
 	public Page<KnowledgeBaseArticle>
 			getContentSpaceTreeKnowledgeBaseArticlesPage(
-				Long contentSpaceId, Pagination pagination)
+				Long contentSpaceId, Filter filter, Pagination pagination,
+				Sort[] sorts)
 		throws Exception;
 
 	public KnowledgeBaseArticle postContentSpaceTreeKnowledgeBaseArticle(
