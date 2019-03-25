@@ -46,8 +46,7 @@ public abstract class BaseJSONParser<T> {
 			if (!_isEndOfJSON()) {
 				_readNextChar();
 
-				throw new IllegalArgumentException(
-					"Expected end of JSON, but found '" + _lastChar + "'");
+				throw new IllegalArgumentException("Expected end of JSON, but found '" + _lastChar + "'");
 			}
 
 			return dto;
@@ -162,8 +161,7 @@ public abstract class BaseJSONParser<T> {
 					return _dateFormat.parse((String)object);
 				}
 				catch (ParseException pe) {
-					throw new IllegalArgumentException(
-						"Unable to parse date from " + object, pe);
+					throw new IllegalArgumentException("Unable to parse date from " + object, pe);
 				}
 			}
 		).toArray(
@@ -182,16 +180,11 @@ public abstract class BaseJSONParser<T> {
 
 	private void _assertStartsAndEndsWith(String prefix, String sufix) {
 		if (!_json.startsWith(prefix)) {
-			throw new IllegalArgumentException(
-				String.format(
-					"Expected starts with '%s', but found '%s'", prefix, _json.charAt(0)));
+			throw new IllegalArgumentException(String.format("Expected starts with '%s', but found '%s'", prefix, _json.charAt(0)));
 		}
 
 		if (!_json.endsWith(sufix)) {
-			throw new IllegalArgumentException(
-				String.format(
-					"Expected ends with '%s', but found '%s'", sufix,
-					_json.charAt(_json.length() - 1)));
+			throw new IllegalArgumentException(String.format("Expected ends with '%s', but found '%s'", sufix, _json.charAt(_json.length() - 1)));
 		}
 	}
 
@@ -274,13 +267,7 @@ public abstract class BaseJSONParser<T> {
 		else if (_lastChar == '{') {
 			return _readValueAsStringJSON();
 		}
-		else if ((_lastChar == '-') || (_lastChar == '0') ||
-				 (_lastChar == '1') || (_lastChar == '2') ||
-				 (_lastChar == '3') || (_lastChar == '4') ||
-				 (_lastChar == '5') || (_lastChar == '6') ||
-				 (_lastChar == '7') || (_lastChar == '8') ||
-				 (_lastChar == '9')) {
-
+		else if ((_lastChar == '-') || (_lastChar == '0') || (_lastChar == '1') || (_lastChar == '2') || (_lastChar == '3') || (_lastChar == '4') || (_lastChar == '5') || (_lastChar == '6') || (_lastChar == '7') || (_lastChar == '8') || (_lastChar == '9')) {
 			return _readValueAsStringNumber();
 		}
 		else {
@@ -311,8 +298,7 @@ public abstract class BaseJSONParser<T> {
 		while (_ifLastCharMatchesThenRead(','));
 
 		if (!_isLastChar(']')) {
-			throw new IllegalArgumentException(
-				"Expected ']', but found '" + _lastChar + "'");
+			throw new IllegalArgumentException("Expected ']', but found '" + _lastChar + "'");
 		}
 
 		_readNextChar();
@@ -429,8 +415,7 @@ public abstract class BaseJSONParser<T> {
 		_readWhileLastCharIsWhiteSpace();
 
 		if (!_ifLastCharMatchesThenRead('}')) {
-			throw new IllegalArgumentException(
-				"Expected either ',' or '}', but found '" + _lastChar + "'");
+			throw new IllegalArgumentException("Expected either ',' or '}', but found '" + _lastChar + "'");
 		}
 
 		return _getCapturedSubstring();
@@ -448,9 +433,7 @@ public abstract class BaseJSONParser<T> {
 	}
 
 	private void _readWhileLastCharIsWhiteSpace() {
-		while ((_lastChar == ' ') || (_lastChar == '\n') ||
-			   (_lastChar == '\r') || (_lastChar == '\t')) {
-
+		while ((_lastChar == ' ') || (_lastChar == '\n') || (_lastChar == '\r') || (_lastChar == '\t')) {
 			_readNextChar();
 		}
 	}
