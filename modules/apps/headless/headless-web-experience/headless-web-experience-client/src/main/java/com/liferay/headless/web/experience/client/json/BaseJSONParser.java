@@ -14,6 +14,16 @@
 
 package com.liferay.headless.web.experience.client.json;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Stack;
+import java.util.stream.Stream;
+
 import javax.annotation.Generated;
 
 /**
@@ -21,7 +31,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public abstract class BaseJSONParser {
+public abstract class BaseJSONParser<T> {
 
 	public T parseToDTO(String string) {
 		if (string == null) {

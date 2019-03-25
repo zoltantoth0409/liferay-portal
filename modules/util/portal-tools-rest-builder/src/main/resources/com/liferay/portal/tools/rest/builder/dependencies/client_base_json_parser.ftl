@@ -17,7 +17,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public abstract class BaseJSONParser {
+public abstract class BaseJSONParser<T> {
 
 	public T parseToDTO(String string) {
 		if (string == null) {
