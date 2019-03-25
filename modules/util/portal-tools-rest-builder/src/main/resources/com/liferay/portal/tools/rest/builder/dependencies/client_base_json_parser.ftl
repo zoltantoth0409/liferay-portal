@@ -102,6 +102,31 @@ public abstract class BaseJSONParser<T> {
 		return toDTOs((Object[])_readValue());
 	}
 
+	protected abstract T createDTO();
+
+	protected abstract T[] createDTOs();
+
+	protected abstract void setField(T dto, String fieldName, Object object);
+
+	protected Date[] toDates(Object[] objects) {
+		return Stream.of(
+			objects
+		).map(
+			object -> {
+				try {
+					return _dateFormat.parse((String)object);
+				}
+				catch (ParseException pe) {
+					throw new IllegalArgumentException("Unable to parse date from " + object, pe);
+				}
+			}
+		).toArray(
+			size -> new Date[size]
+		);
+	}
+
+	protected abstract T[] toDTOs(Object[] objects);
+
 	protected Integer[] toIntegers(Object[] objects) {
 		return Stream.of(
 			objects
@@ -145,31 +170,6 @@ public abstract class BaseJSONParser<T> {
 			size -> new String[size]
 		);
 	}
-
-	protected abstract T createDTO();
-
-	protected abstract T[] createDTOs();
-
-	protected abstract void setField(T dto, String fieldName, Object object);
-
-	protected Date[] toDates(Object[] objects) {
-		return Stream.of(
-			objects
-		).map(
-			object -> {
-				try {
-					return _dateFormat.parse((String)object);
-				}
-				catch (ParseException pe) {
-					throw new IllegalArgumentException("Unable to parse date from " + object, pe);
-				}
-			}
-		).toArray(
-			size -> new Date[size]
-		);
-	}
-
-	protected abstract T[] toDTOs(Object[] objects);
 
 	private void _assertLastChar(char c) {
 		if (_lastChar != c) {
