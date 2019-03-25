@@ -48,14 +48,12 @@ import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.ws.rs.BadRequestException;
 
@@ -79,6 +77,71 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			ActionKeys.DELETE);
 
 		_ddmStructureLocalService.deleteStructure(dataDefinitionId);
+	}
+
+	@Override
+	public Page<DataDefinition> getContentSpaceDataDefinitionsPage(
+			Long contentSpaceId, String keywords, Pagination pagination)
+		throws Exception {
+
+		if (keywords == null) {
+			return Page.of(
+				transform(
+					_ddmStructureService.getStructures(
+						contextCompany.getCompanyId(),
+						new long[] {contentSpaceId}, _getClassNameId(),
+						pagination.getStartPosition(),
+						pagination.getEndPosition(), null),
+					DataDefinitionUtil::toDataDefinition),
+				pagination,
+				_ddmStructureService.getStructuresCount(
+					contextCompany.getCompanyId(), new long[] {contentSpaceId},
+					_getClassNameId()));
+		}
+
+		return Page.of(
+			transform(
+				_ddmStructureService.search(
+					contextCompany.getCompanyId(), new long[] {contentSpaceId},
+					_getClassNameId(), keywords, WorkflowConstants.STATUS_ANY,
+					pagination.getStartPosition(), pagination.getEndPosition(),
+					null),
+				DataDefinitionUtil::toDataDefinition),
+			pagination,
+			_ddmStructureService.searchCount(
+				contextCompany.getCompanyId(), new long[] {contentSpaceId},
+				_getClassNameId(), keywords, WorkflowConstants.STATUS_ANY));
+	}
+
+	@Override
+	public DataDefinition getDataDefinition(Long dataDefinitionId)
+		throws Exception {
+
+		_modelResourcePermission.check(
+			PermissionThreadLocal.getPermissionChecker(), dataDefinitionId,
+			ActionKeys.VIEW);
+
+		return DataDefinitionUtil.toDataDefinition(
+			_ddmStructureLocalService.getStructure(dataDefinitionId));
+	}
+
+	@Override
+	public DataDefinition postContentSpaceDataDefinition(
+			Long contentSpaceId, DataDefinition dataDefinition)
+		throws Exception {
+
+		_checkPermission(contentSpaceId, DataActionKeys.ADD_DATA_DEFINITION);
+
+		return DataDefinitionUtil.toDataDefinition(
+			_ddmStructureLocalService.addStructure(
+				PrincipalThreadLocal.getUserId(), contentSpaceId,
+				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
+				_getClassNameId(), null,
+				LocalizedValueUtil.toLocalizationMap(dataDefinition.getName()),
+				LocalizedValueUtil.toLocalizationMap(
+					dataDefinition.getDescription()),
+				DataDefinitionUtil.toJSON(dataDefinition),
+				dataDefinition.getStorageType(), new ServiceContext()));
 	}
 
 	@Override
@@ -178,71 +241,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 	}
 
 	@Override
-	public Page<DataDefinition> getContentSpaceDataDefinitionsPage(
-			Long contentSpaceId, String keywords, Pagination pagination)
-		throws Exception {
-
-		if (keywords == null) {
-			return Page.of(
-				transform(
-					_ddmStructureService.getStructures(
-						contextCompany.getCompanyId(),
-						new long[] {contentSpaceId}, _getClassNameId(),
-						pagination.getStartPosition(),
-						pagination.getEndPosition(), null),
-					DataDefinitionUtil::toDataDefinition),
-				pagination,
-				_ddmStructureService.getStructuresCount(
-					contextCompany.getCompanyId(), new long[] {contentSpaceId},
-					_getClassNameId()));
-		}
-
-		return Page.of(
-			transform(
-				_ddmStructureService.search(
-					contextCompany.getCompanyId(), new long[] {contentSpaceId},
-					_getClassNameId(), keywords, WorkflowConstants.STATUS_ANY,
-					pagination.getStartPosition(), pagination.getEndPosition(),
-					null),
-				DataDefinitionUtil::toDataDefinition),
-			pagination,
-			_ddmStructureService.searchCount(
-				contextCompany.getCompanyId(), new long[] {contentSpaceId},
-				_getClassNameId(), keywords, WorkflowConstants.STATUS_ANY));
-	}
-
-	@Override
-	public DataDefinition getDataDefinition(Long dataDefinitionId)
-		throws Exception {
-
-		_modelResourcePermission.check(
-			PermissionThreadLocal.getPermissionChecker(), dataDefinitionId,
-			ActionKeys.VIEW);
-
-		return DataDefinitionUtil.toDataDefinition(
-			_ddmStructureLocalService.getStructure(dataDefinitionId));
-	}
-
-	@Override
-	public DataDefinition postContentSpaceDataDefinition(
-			Long contentSpaceId, DataDefinition dataDefinition)
-		throws Exception {
-
-		_checkPermission(contentSpaceId, DataActionKeys.ADD_DATA_DEFINITION);
-
-		return DataDefinitionUtil.toDataDefinition(
-			_ddmStructureLocalService.addStructure(
-				PrincipalThreadLocal.getUserId(), contentSpaceId,
-				DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
-				_getClassNameId(), null,
-				LocalizedValueUtil.toLocalizationMap(dataDefinition.getName()),
-				LocalizedValueUtil.toLocalizationMap(
-					dataDefinition.getDescription()),
-				DataDefinitionUtil.toJSON(dataDefinition),
-				dataDefinition.getStorageType(), new ServiceContext()));
-	}
-
-	@Override
 	public DataDefinition putDataDefinition(
 			Long contentSpaceId, DataDefinition dataDefinition)
 		throws Exception {
@@ -295,12 +293,12 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		}
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		DataDefinitionResourceImpl.class);
-
 	private long _getClassNameId() {
 		return _portal.getClassNameId(InternalDataDefinition.class);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DataDefinitionResourceImpl.class);
 
 	@Reference
 	private DDMStructureLocalService _ddmStructureLocalService;
@@ -318,9 +316,9 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 	private Portal _portal;
 
 	@Reference
-	private RoleLocalService _roleLocalService;
+	private ResourcePermissionLocalService _resourcePermissionLocalService;
 
 	@Reference
-	private ResourcePermissionLocalService _resourcePermissionLocalService;
+	private RoleLocalService _roleLocalService;
 
 }
