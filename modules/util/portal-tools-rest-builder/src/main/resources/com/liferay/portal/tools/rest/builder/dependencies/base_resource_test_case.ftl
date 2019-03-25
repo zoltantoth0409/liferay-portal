@@ -682,7 +682,27 @@ public abstract class Base${schemaName}ResourceTestCase {
 				<#if properties?keys?seq_contains("id")>
 					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
 
-					${schemaName} get${schemaName} = invoke${javaMethodSignature.methodName?cap_first}(post${schemaName}.getId());
+					${schemaName} get${schemaName} = invoke${javaMethodSignature.methodName?cap_first}(
+
+					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+						<#if freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
+							<#if !javaMethodParameter?is_first>
+								,
+							</#if>
+
+							post${schemaName}.
+
+							<#if stringUtil.equals(javaMethodParameter.parameterName, schemaVarName + "Id")>
+								getId
+							<#else>
+								get${javaMethodParameter.parameterName?cap_first}
+							</#if>
+
+							()
+						</#if>
+					</#list>
+
+					);
 
 					assertEquals(post${schemaName}, get${schemaName});
 					assertValid(get${schemaName});
