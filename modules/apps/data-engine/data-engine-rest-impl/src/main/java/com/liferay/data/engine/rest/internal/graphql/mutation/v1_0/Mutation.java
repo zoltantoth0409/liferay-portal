@@ -92,14 +92,14 @@ public class Mutation {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public boolean postDataDefinitionPermission(
+	public void postDataDefinitionPermission(
 			@GraphQLName("data-definition-id") Long dataDefinitionId,
 			@GraphQLName("operation") String operation,
 			@GraphQLName("DataDefinitionPermission") DataDefinitionPermission
 				dataDefinitionPermission)
 		throws Exception {
 
-		return _applyComponentServiceObjects(
+		_applyVoidComponentServiceObjects(
 			_dataDefinitionResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			dataDefinitionResource ->

@@ -103,13 +103,11 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Path("/data-definitions/{data-definition-id}/permissions")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
-	public boolean postDataDefinitionPermission(
+	public void postDataDefinitionPermission(
 			@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
 			@NotNull @QueryParam("operation") String operation,
 			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception {
-
-		return false;
 	}
 
 	@Override
