@@ -93,30 +93,6 @@ public abstract class BaseJSONParser {
 		return arrayOfObjectsToArrayOfDtos((Object[])readValue());
 	}
 
-	protected static AnotherDTO[] arrayOfObjectsToArrayOfAnotherDtos(
-		Object[] objects) {
-
-		return Stream.of(
-			objects
-		).map(
-			object -> AnotherDTO.toAnotherDto((String)object)
-		).toArray(
-			size -> new AnotherDTO[size]
-		);
-	}
-
-	protected static Boolean[] arrayOfObjectsToArrayOfBooleans(
-		Object[] objects) {
-
-		return Stream.of(
-			objects
-		).map(
-			Boolean.class::cast
-		).toArray(
-			size -> new Boolean[size]
-		);
-	}
-
 	protected static Integer[] arrayOfObjectsToArrayOfIntegers(
 		Object[] objects) {
 
@@ -150,16 +126,6 @@ public abstract class BaseJSONParser {
 			}
 		).toArray(
 			size -> new Long[size]
-		);
-	}
-
-	protected static MyDTO[] arrayOfObjectsToArrayOfMyDtos(Object[] objects) {
-		return Stream.of(
-			objects
-		).map(
-			object -> MyDTO.toMyDto((String)object)
-		).toArray(
-			size -> new MyDTO[size]
 		);
 	}
 
