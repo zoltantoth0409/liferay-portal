@@ -56,13 +56,14 @@ public class SelectLayoutPageTemplateEntryVerticalCard implements VerticalCard {
 	public Map<String, String> getData() {
 		Map<String, String> data = new HashMap<>();
 
-		String redirect = ParamUtil.getString(_request, "redirect");
-
 		try {
 			PortletURL addLayoutURL = _renderResponse.createRenderURL();
 
 			addLayoutURL.setParameter(
 				"mvcRenderCommandName", "/layout/add_layout");
+
+			String redirect = ParamUtil.getString(_request, "redirect");
+
 			addLayoutURL.setParameter("backURL", redirect);
 
 			long selPlid = ParamUtil.getLong(_request, "selPlid");

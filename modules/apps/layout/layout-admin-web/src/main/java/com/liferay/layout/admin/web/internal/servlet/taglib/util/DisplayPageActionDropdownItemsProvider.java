@@ -185,9 +185,9 @@ public class DisplayPageActionDropdownItemsProvider {
 				layout, _themeDisplay);
 
 			layoutFullURL = HttpUtil.setParameter(
-				layoutFullURL, "p_l_mode", Constants.EDIT);
-			layoutFullURL = HttpUtil.setParameter(
 				layoutFullURL, "p_l_back_url", _themeDisplay.getURLCurrent());
+			layoutFullURL = HttpUtil.setParameter(
+				layoutFullURL, "p_l_mode", Constants.EDIT);
 
 			dropdownItem.setHref(layoutFullURL);
 
