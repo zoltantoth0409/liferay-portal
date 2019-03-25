@@ -26,7 +26,7 @@ public abstract class BaseJSONParser<T> {
 
 		_init(json);
 
-		_assertStartsAndEndsWith("{", "}");
+		_assertStartsWithAndEndsWith("{", "}");
 
 		T dto = createDTO();
 
@@ -81,7 +81,7 @@ public abstract class BaseJSONParser<T> {
 
 		_init(json);
 
-		_assertStartsAndEndsWith("[", "]");
+		_assertStartsWithAndEndsWith("[", "]");
 
 		if (_isEmpty()) {
 			return createDTOs();
@@ -178,7 +178,7 @@ public abstract class BaseJSONParser<T> {
 		}
 	}
 
-	private void _assertStartsAndEndsWith(String prefix, String sufix) {
+	private void _assertStartsWithAndEndsWith(String prefix, String sufix) {
 		if (!_json.startsWith(prefix)) {
 			throw new IllegalArgumentException(String.format("Expected starts with '%s', but found '%s'", prefix, _json.charAt(0)));
 		}
