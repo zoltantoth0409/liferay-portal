@@ -184,13 +184,13 @@ public abstract class BaseJSONParser<T> {
 		if (!_json.startsWith(prefix)) {
 			throw new IllegalArgumentException(
 				String.format(
-					"Expected '%s', but got '%s'", prefix, _json.charAt(0)));
+					"Expected starts with '%s', but got '%s'", prefix, _json.charAt(0)));
 		}
 
 		if (!_json.endsWith(sufix)) {
 			throw new IllegalArgumentException(
 				String.format(
-					"Expected '%s', but got '%s'", sufix,
+					"Expected ends with '%s', but got '%s'", sufix,
 					_json.charAt(_json.length() - 1)));
 		}
 	}
