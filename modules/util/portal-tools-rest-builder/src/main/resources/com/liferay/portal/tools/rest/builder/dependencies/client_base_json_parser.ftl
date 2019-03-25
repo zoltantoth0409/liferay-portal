@@ -84,7 +84,7 @@ public abstract class BaseJSONParser<T> {
 		_assertStartsWithAndEndsWith("[", "]");
 
 		if (_isEmpty()) {
-			return createDTOs();
+			return createDTOArray(0);
 		}
 
 		_readNextChar();
@@ -94,19 +94,27 @@ public abstract class BaseJSONParser<T> {
 		if (_isLastChar(']')) {
 			_readNextChar();
 
-			return createDTOs();
+			return createDTOArray(0);
 		}
 
 		_readWhileLastCharIsWhiteSpace();
 
-		return toDTOs((Object[])_readValue());
+		Object[] objects = (Object[])_readValue();
+
+		return Stream.of(
+			objects
+		).map(
+			object -> parseToDTO((String)object)
+		).toArray(
+			size -> createDTOArray(size)
+		);
 	}
 
 	protected abstract T createDTO();
 
-	protected abstract T[] createDTOs();
+	protected abstract T[] createDTOArray(int size);
 
-	protected abstract void setField(T dto, String fieldName, Object object);
+	protected abstract void setField(T dto, String jsonParserFieldName, Object jsonParserFieldValue);
 
 	protected Date[] toDates(Object[] objects) {
 		return Stream.of(
@@ -124,8 +132,6 @@ public abstract class BaseJSONParser<T> {
 			size -> new Date[size]
 		);
 	}
-
-	protected abstract T[] toDTOs(Object[] objects);
 
 	protected Integer[] toIntegers(Object[] objects) {
 		return Stream.of(
