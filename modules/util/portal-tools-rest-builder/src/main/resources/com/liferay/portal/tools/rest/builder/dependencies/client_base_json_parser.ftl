@@ -47,7 +47,7 @@ public abstract class BaseJSONParser<T> {
 				_readNextChar();
 
 				throw new IllegalArgumentException(
-					"Expected end of JSON; got '" + lastChar + "'");
+					"Expected end of JSON; got '" + _lastChar + "'");
 			}
 
 			return dto;
@@ -155,7 +155,7 @@ public abstract class BaseJSONParser<T> {
 		).map(
 			object -> {
 				try {
-					return dateFormat.parse((String)object);
+					return _dateFormat.parse((String)object);
 				}
 				catch (ParseException pe) {
 					throw new IllegalArgumentException(
@@ -174,44 +174,44 @@ public abstract class BaseJSONParser<T> {
 	protected abstract T[] createDTOs();
 
 	private void _initFields(String string) {
-		captureStartStack = new Stack<>();
-		dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-		index = 0;
-		jsonString = string.trim();
-		lastChar = 0;
+		_captureStartStack = new Stack<>();
+		_dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		_index = 0;
+		_json = string.trim();
+		_lastChar = 0;
 	}
 
 	private void _readNextChar() {
 		if (!_isEndOfText()) {
-			lastChar = jsonString.charAt(index++);
+			_lastChar = _json.charAt(_index++);
 		}
 	}
 
 	private Object _readValue() {
-		if (lastChar == 'f') {
+		if (_lastChar == 'f') {
 			return _readFalseAsBoolean();
 		}
-		else if (lastChar == 'n') {
+		else if (_lastChar == 'n') {
 			return _readNullAsObject();
 		}
-		else if ((lastChar == '-') || (lastChar == '0') || (lastChar == '1') ||
-				 (lastChar == '2') || (lastChar == '3') || (lastChar == '4') ||
-				 (lastChar == '5') || (lastChar == '6') || (lastChar == '7') ||
-				 (lastChar == '8') || (lastChar == '9')) {
+		else if ((_lastChar == '-') || (_lastChar == '0') || (_lastChar == '1') ||
+				 (_lastChar == '2') || (_lastChar == '3') || (_lastChar == '4') ||
+				 (_lastChar == '5') || (_lastChar == '6') || (_lastChar == '7') ||
+				 (_lastChar == '8') || (_lastChar == '9')) {
 
 			return _readNumberAsString();
 		}
-		else if (lastChar == '"') {
+		else if (_lastChar == '"') {
 			return _readString();
 		}
-		else if (lastChar == 't') {
+		else if (_lastChar == 't') {
 			return _readTrueAsBoolean();
 		}
-		else if (lastChar == '[') {
+		else if (_lastChar == '[') {
 			return _readArrayAsArrayOfObjects();
 		}
-		else if (lastChar == '{') {
-			return _readObjectAsJsonString();
+		else if (_lastChar == '{') {
+			return _readObjectAsJSON();
 		}
 		else {
 			throw new IllegalArgumentException();
@@ -220,41 +220,41 @@ public abstract class BaseJSONParser<T> {
 
 	protected abstract void setField(T dto, String fieldName, Object object);
 
-	protected static DateFormat dateFormat;
+	protected static DateFormat _dateFormat;
 
-	protected Stack<Integer> captureStartStack;
-	protected int index;
-	protected String jsonString;
-	protected char lastChar;
+	protected Stack<Integer> _captureStartStack;
+	protected int _index;
+	protected String _json;
+	protected char _lastChar;
 
 	private void _assertLastChar(char ch) {
-		if (lastChar != ch) {
+		if (_lastChar != ch) {
 			throw new IllegalArgumentException(
-				String.format("Expected '%s'; got '%s'", ch, lastChar));
+				String.format("Expected '%s'; got '%s'", ch, _lastChar));
 		}
 	}
 
 	private void _assertStartsAndEndsWith(String prefix, String sufix) {
-		if (!jsonString.startsWith(prefix)) {
+		if (!_json.startsWith(prefix)) {
 			throw new IllegalArgumentException(
 				String.format(
-					"Expected '%s'; got '%s'", prefix, jsonString.charAt(0)));
+					"Expected '%s'; got '%s'", prefix, _json.charAt(0)));
 		}
 
-		if (!jsonString.endsWith(sufix)) {
+		if (!_json.endsWith(sufix)) {
 			throw new IllegalArgumentException(
 				String.format(
 					"Expected '%s'; got '%s'", sufix,
-					jsonString.charAt(jsonString.length() - 1)));
+					_json.charAt(_json.length() - 1)));
 		}
 	}
 
 	private String _getCapturedSubstring() {
-		return jsonString.substring(captureStartStack.pop(), index - 1);
+		return _json.substring(_captureStartStack.pop(), _index - 1);
 	}
 
 	private boolean _ifLastCharMatchesThenRead(char ch) {
-		if (lastChar != ch) {
+		if (_lastChar != ch) {
 			return false;
 		}
 
@@ -264,7 +264,7 @@ public abstract class BaseJSONParser<T> {
 	}
 
 	private boolean _isEmpty() {
-		String substring = jsonString.substring(1, jsonString.length() - 1);
+		String substring = _json.substring(1, _json.length() - 1);
 
 		String substringTrimmed = substring.trim();
 
@@ -272,15 +272,15 @@ public abstract class BaseJSONParser<T> {
 	}
 
 	private boolean _isEndOfText() {
-		if (index == jsonString.length()) {
+		if (_index == _json.length()) {
 			return true;
 		}
 
 		return false;
 	}
 
-	private boolean _isLastChar(char ch) {
-		if (lastChar == ch) {
+	private boolean _isLastChar(char c) {
+		if (_lastChar == c) {
 			return true;
 		}
 
@@ -288,7 +288,7 @@ public abstract class BaseJSONParser<T> {
 	}
 
 	private boolean _isLastCharDigit() {
-		if ((lastChar >= '0') && (lastChar <= '9')) {
+		if ((_lastChar >= '0') && (_lastChar <= '9')) {
 			return true;
 		}
 
@@ -317,7 +317,7 @@ public abstract class BaseJSONParser<T> {
 
 		if (!_isLastChar(']')) {
 			throw new IllegalArgumentException(
-				"Expected ']'; got '" + lastChar + "'");
+				"Expected ']'; got '" + _lastChar + "'");
 		}
 
 		_readNextChar();
@@ -327,13 +327,21 @@ public abstract class BaseJSONParser<T> {
 
 	private boolean _readFalseAsBoolean() {
 		_readNextChar();
+
 		_assertLastChar('a');
+
 		_readNextChar();
+
 		_assertLastChar('l');
+
 		_readNextChar();
+
 		_assertLastChar('s');
+
 		_readNextChar();
+
 		_assertLastChar('e');
+
 		_readNextChar();
 
 		return false;
@@ -341,11 +349,17 @@ public abstract class BaseJSONParser<T> {
 
 	private Object _readNullAsObject() {
 		_readNextChar();
+
 		_assertLastChar('u');
+
 		_readNextChar();
+
 		_assertLastChar('l');
+
 		_readNextChar();
+
 		_assertLastChar('l');
+
 		_readNextChar();
 
 		return null;
@@ -362,9 +376,11 @@ public abstract class BaseJSONParser<T> {
 		return _getCapturedSubstring();
 	}
 
-	private String _readObjectAsJsonString() {
+	private String _readObjectAsJSON() {
 		_setCaptureStart();
+
 		_readNextChar();
+
 		_readWhileLastCharIsWhiteSpace();
 
 		if (_isLastChar('}')) {
@@ -375,7 +391,9 @@ public abstract class BaseJSONParser<T> {
 
 		do {
 			_readWhileLastCharIsWhiteSpace();
+
 			_readString();
+
 			_readWhileLastCharIsWhiteSpace();
 
 			if (!_ifLastCharMatchesThenRead(':')) {
@@ -383,7 +401,9 @@ public abstract class BaseJSONParser<T> {
 			}
 
 			_readWhileLastCharIsWhiteSpace();
+
 			_readValue();
+
 			_readWhileLastCharIsWhiteSpace();
 		}
 		while (_ifLastCharMatchesThenRead(','));
@@ -391,8 +411,7 @@ public abstract class BaseJSONParser<T> {
 		_readWhileLastCharIsWhiteSpace();
 
 		if (!_ifLastCharMatchesThenRead('}')) {
-			throw new IllegalArgumentException(
-				"Expected either ',' or '}'; found '" + lastChar + "'");
+			throw new IllegalArgumentException("Expected either ',' or '}'; found '" + _lastChar + "'");
 		}
 
 		return _getCapturedSubstring();
@@ -400,9 +419,10 @@ public abstract class BaseJSONParser<T> {
 
 	private String _readString() {
 		_readNextChar();
+
 		_setCaptureStart();
 
-		while (lastChar != '"') {
+		while (_lastChar != '"') {
 			_readNextChar();
 		}
 
@@ -415,26 +435,30 @@ public abstract class BaseJSONParser<T> {
 
 	private boolean _readTrueAsBoolean() {
 		_readNextChar();
+
 		_assertLastChar('r');
+
 		_readNextChar();
+
 		_assertLastChar('u');
+
 		_readNextChar();
+
 		_assertLastChar('e');
+
 		_readNextChar();
 
 		return true;
 	}
 
 	private void _readWhileLastCharIsWhiteSpace() {
-		while ((lastChar == ' ') || (lastChar == '\t') || (lastChar == '\n') ||
-			   (lastChar == '\r')) {
-
+		while ((_lastChar == ' ') || (_lastChar == '\n') || (_lastChar == '\r') || (_lastChar == '\t')) {
 			_readNextChar();
 		}
 	}
 
 	private void _setCaptureStart() {
-		captureStartStack.push(index - 1);
+		_captureStartStack.push(_index - 1);
 	}
 
 }
