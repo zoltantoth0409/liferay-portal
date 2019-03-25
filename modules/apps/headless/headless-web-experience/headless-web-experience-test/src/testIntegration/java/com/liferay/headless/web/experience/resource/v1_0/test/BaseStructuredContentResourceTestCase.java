@@ -955,8 +955,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		StructuredContent getStructuredContent =
 			invokeGetContentSpaceStructuredContentKey(
-				postStructuredContent.getContentSpaceId(),
-					postStructuredContent.getKey());
+				postStructuredContent.getId());
 
 		assertEquals(postStructuredContent, getStructuredContent);
 		assertValid(getStructuredContent);
@@ -985,6 +984,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(
@@ -1023,8 +1026,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		StructuredContent getStructuredContent =
 			invokeGetContentSpaceStructuredContentUuid(
-				postStructuredContent.getContentSpaceId(),
-				postStructuredContent.getUuid());
+				postStructuredContent.getId());
 
 		assertEquals(postStructuredContent, getStructuredContent);
 		assertValid(getStructuredContent);
@@ -1053,6 +1055,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 		options.setLocation(location);
 
 		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
 
 		try {
 			return _outputObjectMapper.readValue(

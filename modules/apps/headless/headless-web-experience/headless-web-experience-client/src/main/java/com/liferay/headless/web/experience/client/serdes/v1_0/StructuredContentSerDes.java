@@ -160,6 +160,13 @@ public class StructuredContentSerDes {
 		sb.append(structuredContent.getId());
 		sb.append(", ");
 
+		sb.append("\"key\": ");
+
+		sb.append("\"");
+		sb.append(structuredContent.getKey());
+		sb.append("\"");
+		sb.append(", ");
+
 		sb.append("\"keywords\": ");
 
 		if (structuredContent.getKeywords() == null) {
@@ -272,6 +279,13 @@ public class StructuredContentSerDes {
 
 		sb.append("\"");
 		sb.append(structuredContent.getTitle());
+		sb.append("\"");
+		sb.append(", ");
+
+		sb.append("\"uuid\": ");
+
+		sb.append("\"");
+		sb.append(structuredContent.getUuid());
 		sb.append("\"");
 		sb.append(", ");
 
@@ -401,6 +415,11 @@ public class StructuredContentSerDes {
 					structuredContent.setId((Long)jsonParserFieldValue);
 				}
 			}
+			else if (Objects.equals(jsonParserFieldName, "key")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setKey((String)jsonParserFieldValue);
+				}
+			}
 			else if (Objects.equals(jsonParserFieldName, "keywords")) {
 				if (jsonParserFieldValue != null) {
 					structuredContent.setKeywords(
@@ -458,6 +477,11 @@ public class StructuredContentSerDes {
 			else if (Objects.equals(jsonParserFieldName, "title")) {
 				if (jsonParserFieldValue != null) {
 					structuredContent.setTitle((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "uuid")) {
+				if (jsonParserFieldValue != null) {
+					structuredContent.setUuid((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "viewableBy")) {
