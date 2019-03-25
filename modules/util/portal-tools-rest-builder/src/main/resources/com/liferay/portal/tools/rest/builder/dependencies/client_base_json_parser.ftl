@@ -18,7 +18,7 @@ public abstract class BaseJSONParser {
 
 		_assertStartsAndEndsWith("{", "}");
 
-		T dto = createDto();
+		T dto = createDTO();
 
 		if (_isEmpty()) {
 			return dto;
@@ -75,7 +75,7 @@ public abstract class BaseJSONParser {
 		_assertStartsAndEndsWith("[", "]");
 
 		if (_isEmpty()) {
-			return createDtos();
+			return createDTOs();
 		}
 
 		_readNextChar();
@@ -85,12 +85,12 @@ public abstract class BaseJSONParser {
 		if (_isLastChar(']')) {
 			_readNextChar();
 
-			return createDtos();
+			return createDTOs();
 		}
 
 		_readWhileLastCharIsWhiteSpace();
 
-		return arrayOfObjectsToArrayOfDtos((Object[])_readValue());
+		return arrayOfObjectsToArrayOfDTOs((Object[])_readValue());
 	}
 
 	protected static Integer[] arrayOfObjectsToArrayOfIntegers(
@@ -157,11 +157,11 @@ public abstract class BaseJSONParser {
 		);
 	}
 
-	protected abstract T[] arrayOfObjectsToArrayOfDtos(Object[] objects);
+	protected abstract T[] arrayOfObjectsToArrayOfDTOs(Object[] objects);
 
-	protected abstract T createDto();
+	protected abstract T createDTO();
 
-	protected abstract T[] createDtos();
+	protected abstract T[] createDTOs();
 
 	private void _initFields(String string) {
 		captureStartStack = new Stack<>();
