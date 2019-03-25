@@ -55,6 +55,7 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.ws.rs.BadRequestException;
 
@@ -86,16 +87,13 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception {
 
-		if (Validator.isNull(operation) ||
-			ArrayUtil.contains(
-				new String[] {
-					DataEngineConstants.OPERATION_DELETE_PERMISSION,
-					DataEngineConstants.OPERATION_SAVE_PERMISSION
-				},
-				operation, true)) {
+		if (!Objects.equals(
+				operation, DataEngineConstants.OPERATION_DELETE_PERMISSION) &&
+			!Objects.equals(
+				operation, DataEngineConstants.OPERATION_SAVE_PERMISSION)) {
 
 			throw new BadRequestException(
-				"Operation parameter must be 'save' or 'delete'");
+				"Operation must be 'delete' or 'save'");
 		}
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
