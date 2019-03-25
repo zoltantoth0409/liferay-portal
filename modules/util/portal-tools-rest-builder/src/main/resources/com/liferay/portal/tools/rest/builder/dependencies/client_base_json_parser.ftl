@@ -77,7 +77,7 @@ public abstract class BaseJSONParser<T> {
 
 	public T[] parseToDTOs(String json) {
 		if (json == null) {
-			throw new IllegalArgumentException("Expected non null");
+			throw new IllegalArgumentException("JSON is null");
 		}
 
 		_init(json);
@@ -163,7 +163,7 @@ public abstract class BaseJSONParser<T> {
 				}
 				catch (ParseException pe) {
 					throw new IllegalArgumentException(
-						"Could not parse date from value " + object, pe);
+						"Unable to parse date from " + object, pe);
 				}
 			}
 		).toArray(
