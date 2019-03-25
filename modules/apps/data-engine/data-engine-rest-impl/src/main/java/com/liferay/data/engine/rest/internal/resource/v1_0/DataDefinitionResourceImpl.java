@@ -89,9 +89,9 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		if (Validator.isNull(operation) ||
 			ArrayUtil.contains(
 				new String[] {
-					DataEngineConstants.OPERATION_SAVE_PERMISSION,
-				DataEngineConstants.OPERATION_DELETE_PERMISSION
-					},
+					DataEngineConstants.OPERATION_DELETE_PERMISSION,
+					DataEngineConstants.OPERATION_SAVE_PERMISSION
+				},
 				operation, true)) {
 
 			throw new BadRequestException(
