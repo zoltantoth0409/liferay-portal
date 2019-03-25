@@ -95,8 +95,8 @@ function openImageSelector(imageSelectorURL, portletNamespace, callback, destroy
 			const {returnType, value} = selectedItem;
 			let selectedImageURL = '';
 
-			if (returnType === IMAGE_SELECTOR_RETURN_TYPES.url ||
-				returnType === IMAGE_SELECTOR_RETURN_TYPES.downloadUrl) {
+			if (returnType === IMAGE_SELECTOR_RETURN_TYPES.downloadUrl ||
+				returnType === IMAGE_SELECTOR_RETURN_TYPES.url) {
 
 				selectedImageURL = value;
 			}
