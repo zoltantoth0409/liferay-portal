@@ -62,8 +62,6 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
-import javax.validation.constraints.NotNull;
-
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.core.Context;
@@ -137,8 +135,7 @@ public class TaxonomyVocabularyResourceImpl
 
 	@Override
 	public TaxonomyVocabulary patchTaxonomyVocabulary(
-			@NotNull Long taxonomyVocabularyId,
-			TaxonomyVocabulary taxonomyVocabulary)
+			Long taxonomyVocabularyId, TaxonomyVocabulary taxonomyVocabulary)
 		throws Exception {
 
 		AssetVocabulary assetVocabulary = _assetVocabularyService.getVocabulary(
