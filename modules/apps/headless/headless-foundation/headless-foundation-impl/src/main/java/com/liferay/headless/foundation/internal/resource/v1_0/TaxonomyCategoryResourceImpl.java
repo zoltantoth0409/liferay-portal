@@ -165,7 +165,7 @@ public class TaxonomyCategoryResourceImpl
 
 			throw new BadRequestException(
 				StringBundler.concat(
-					"Unable to patch structured content with language ",
+					"Unable to patch taxonomy category with language ",
 					contextAcceptLanguage.getPreferredLanguageId(),
 					" because it is only configured to support ",
 					Arrays.toString(assetCategory.getAvailableLanguageIds())));
