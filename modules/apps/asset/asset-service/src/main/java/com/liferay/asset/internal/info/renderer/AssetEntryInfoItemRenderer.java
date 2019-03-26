@@ -36,15 +36,15 @@ public class AssetEntryInfoItemRenderer
 
 	@Override
 	public void render(
-		AssetEntry assetEntry, HttpServletRequest request,
-		HttpServletResponse response,
+		AssetEntry assetEntry, HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse,
 		InfoListRendererContext infoListRendererContext) {
 
 		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				assetEntry.getClassName());
 
-		request.setAttribute(
+		httpServletRequest.setAttribute(
 			WebKeys.ASSET_RENDERER_FACTORY, assetRendererFactory);
 
 		try {
@@ -52,7 +52,8 @@ public class AssetEntryInfoItemRenderer
 				assetRendererFactory.getAssetRenderer(assetEntry.getClassPK());
 
 			assetRenderer.include(
-				request, response, infoListRendererContext.getTemplate());
+				httpServletRequest, httpServletResponse,
+				infoListRendererContext.getTemplate());
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
