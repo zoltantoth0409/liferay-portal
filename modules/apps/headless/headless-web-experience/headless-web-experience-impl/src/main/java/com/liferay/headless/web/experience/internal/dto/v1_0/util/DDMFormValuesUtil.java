@@ -55,10 +55,7 @@ public class DDMFormValuesUtil {
 
 		return new DDMFormValues(ddmForm) {
 			{
-				DDMForm ddmForm = getDDMForm();
-
 				setAvailableLocales(ddmForm.getAvailableLocales());
-
 				setDDMFormFieldValues(
 					_flattenDDMFormFieldValues(
 						rootDDMFormFields,
