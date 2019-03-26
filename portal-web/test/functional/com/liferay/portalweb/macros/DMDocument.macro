@@ -1238,7 +1238,7 @@ definition {
 
 		DMDocument.viewDocumentToolbarCmdPG();
 
-		DMDocument.viewDocumentAuthorCmdPG(dmDocumentAuthor = "${dmDocumentAuthor}");
+		//DMDocument.viewDocumentAuthorCmdPG(dmDocumentAuthor = "${dmDocumentAuthor}");
 
 		if (isSet(commentBody)) {
 			var key_entryComment = "${commentBody}";
@@ -1252,11 +1252,11 @@ definition {
 			DMDocument.viewDocumentNoCommentsCmdPG();
 		}
 
-		DMDocument.viewDocumentVersionNumberCmdPG(
-			dmDocumentVersionNumber = "${dmDocumentVersionNumber}"
-		);
+		//DMDocument.viewDocumentVersionNumberCmdPG(
+		//	dmDocumentVersionNumber = "${dmDocumentVersionNumber}"
+		//);
 
-		DMDocument.viewDocumentDetailsCmdPG();
+		//DMDocument.viewDocumentDetailsCmdPG();
 	}
 
 	macro viewCannotAddRepository {
