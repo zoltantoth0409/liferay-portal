@@ -141,7 +141,7 @@ public class GoogleCloudNaturalLanguageUtilTest {
 	}
 
 	@Test
-	public void testTruncateToSizeTextBiggerThanMax() {
+	public void testTruncateToSizeTextGreaterThanMax() {
 		int size = _randomSize();
 
 		Assert.assertEquals(
@@ -153,7 +153,7 @@ public class GoogleCloudNaturalLanguageUtilTest {
 	}
 
 	@Test
-	public void testTruncateToSizeTextBiggerThanMaxWithTwoWordSmallerThanSize() {
+	public void testTruncateToSizeTextGreaterThanMaxWithTwoWordSmallerThanSize() {
 		int size = _randomSize();
 
 		String text =
@@ -168,7 +168,7 @@ public class GoogleCloudNaturalLanguageUtilTest {
 	}
 
 	@Test
-	public void testTruncateToSizeTextBiggerThanMaxWithWordSmallerThanSize() {
+	public void testTruncateToSizeTextGreaterThanMaxWithWordSmallerThanSize() {
 		int size = _randomSize();
 
 		String text = RandomTestUtil.randomString(size - 1);
@@ -195,7 +195,7 @@ public class GoogleCloudNaturalLanguageUtilTest {
 	}
 
 	@Test
-	public void testTruncateToSizeUnicodeTextBiggerThanMax() {
+	public void testTruncateToSizeUnicodeTextGreaterThanMax() {
 		String text = "中國哲學書電子化計劃 中國哲學書電子化計劃 中國哲學書電子化計劃";
 
 		byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
