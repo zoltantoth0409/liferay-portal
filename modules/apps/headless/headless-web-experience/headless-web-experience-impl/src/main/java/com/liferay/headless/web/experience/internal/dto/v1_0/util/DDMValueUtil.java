@@ -65,8 +65,7 @@ public class DDMValueUtil {
 					ddmFormField.getType())) {
 
 				localizedValue.addString(
-					locale,
-					_toJSON(dlAppService, "", value.getDocumentId()));
+					locale, _toJSON(dlAppService, "", value.getDocumentId()));
 			}
 			else if (Objects.equals(
 						DDMFormFieldType.IMAGE, ddmFormField.getType())) {
