@@ -152,8 +152,8 @@ public class DDMFormValuesUtil {
 		if (ddmFormField.isLocalizable()) {
 			return new LocalizedValue() {
 				{
-					setDefaultLocale(locale);
 					addString(locale, value);
+					setDefaultLocale(locale);
 				}
 			};
 		}
