@@ -111,12 +111,12 @@ public class ScopeLocatorImpl implements ScopeLocator {
 		Map<String, Boolean> matchCache = new HashMap<>();
 		PrefixHandler prefixHandler = prefixHandlerFactory.create(
 			serviceReference::getProperty);
+		Queue<String> queue = new LinkedList<>();
 		ScopeMapper scopeMapper =
 			_scopeMappersScopedServiceTrackerMap.getService(
 				companyId, applicationName);
 		ScopeMatcherFactory scopeMatcherFactory = getScopeMatcherFactory(
 			companyId);
-		Queue<String> queue = new LinkedList<>();
 
 		for (String scope : scopes) {
 			for (String mappedScope : scopeMapper.map(scope)) {
@@ -129,11 +129,11 @@ public class ScopeLocatorImpl implements ScopeLocator {
 					queue.add(scope);
 				}
 
-				Set<String> mappedScopeUnmappedScopes =
+				Set<String> unmappedScopes =
 					mappedScopeToUnmappedScopes.computeIfAbsent(
 						mappedScope, key -> new HashSet());
 
-				mappedScopeUnmappedScopes.add(scope);
+				unmappedScopes.add(scope);
 			}
 		}
 
@@ -282,7 +282,6 @@ public class ScopeLocatorImpl implements ScopeLocator {
 
 					return () -> _defaultScopeLocatorConfiguration;
 				}));
-
 		setScopeMappersScopedServiceTrackerMap(
 			_scopedServiceTrackerMapFactory.create(
 				bundleContext, ScopeMapper.class,
@@ -314,7 +313,7 @@ public class ScopeLocatorImpl implements ScopeLocator {
 		_scopeFindersScopedServiceTrackerMap.close();
 		_scopeLocatorConfigurationProvidersScopedServiceTrackerMap.close();
 		_scopeMappersScopedServiceTrackerMap.close();
-		_scopedScopeMatcherFactories.close();
+		_scopeMatcherFactoriesServiceTrackerMap.close();
 	}
 
 	protected Bundle getBundle(ServiceReference<?> serviceReference) {
@@ -342,7 +341,8 @@ public class ScopeLocatorImpl implements ScopeLocator {
 
 	protected ScopeMatcherFactory getScopeMatcherFactory(long companyId) {
 		ScopeMatcherFactory scopeMatcherFactory =
-			_scopedScopeMatcherFactories.getService(String.valueOf(companyId));
+			_scopeMatcherFactoriesServiceTrackerMap.getService(
+				String.valueOf(companyId));
 
 		if (scopeMatcherFactory == null) {
 			return _defaultScopeMatcherFactory;
@@ -430,9 +430,10 @@ public class ScopeLocatorImpl implements ScopeLocator {
 
 	protected void setScopeMatcherFactoriesServiceTrackerMap(
 		ServiceTrackerMap<String, ScopeMatcherFactory>
-			scopedScopeMatcherFactories) {
+			scopeMatcherFactoriesServiceTrackerMap) {
 
-		_scopedScopeMatcherFactories = scopedScopeMatcherFactories;
+		_scopeMatcherFactoriesServiceTrackerMap =
+			scopeMatcherFactoriesServiceTrackerMap;
 	}
 
 	private BundleContext _bundleContext;
@@ -469,8 +470,6 @@ public class ScopeLocatorImpl implements ScopeLocator {
 	private ScopeMatcherFactory _defaultScopeMatcherFactory;
 	private ScopedServiceTrackerMap<PrefixHandlerFactory>
 		_prefixHandlerFactoriesScopedServiceTrackerMap;
-	private ServiceTrackerMap<String, ScopeMatcherFactory>
-		_scopedScopeMatcherFactories;
 	private ScopedServiceTrackerMapFactory _scopedServiceTrackerMapFactory;
 	private ServiceTrackerMap
 		<String, ServiceReferenceServiceTuple<?, ScopeFinder>>
@@ -481,6 +480,8 @@ public class ScopeLocatorImpl implements ScopeLocator {
 		_scopeLocatorConfigurationProvidersScopedServiceTrackerMap;
 	private ScopedServiceTrackerMap<ScopeMapper>
 		_scopeMappersScopedServiceTrackerMap;
+	private ServiceTrackerMap<String, ScopeMatcherFactory>
+		_scopeMatcherFactoriesServiceTrackerMap;
 
 	private static class ScopeFinderServiceTupleServiceTrackerCustomizer
 		implements ServiceTrackerCustomizer
