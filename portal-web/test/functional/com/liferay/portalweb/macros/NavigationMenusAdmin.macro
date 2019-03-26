@@ -134,10 +134,6 @@ definition {
 			menuItem = "Primary Navigation",
 			rowEntry = "${newMenuName}"
 		);
-
-		AssertConfirm(
-			value1 = "Do you want to replace ${newMenuName} for ${oldMenuName} as primary navigation? This action will affect all the pages using primary navigation."
-		);
 	}
 
 	macro openItemSidebar {

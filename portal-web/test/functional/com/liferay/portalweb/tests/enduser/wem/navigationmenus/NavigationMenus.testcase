@@ -237,6 +237,10 @@ definition {
 			navigationMenu = "Test Navigation Menu Name"
 		);
 
+		NavigationMenusAdmin.markAsPrimaryNavigation(
+			newMenuName = "Test Navigation Menu Name"
+		);
+
 		LexiconEntry.gotoEntry(rowEntry = "Test Navigation Menu Name");
 
 		NavigationMenusAdmin.editItem(
