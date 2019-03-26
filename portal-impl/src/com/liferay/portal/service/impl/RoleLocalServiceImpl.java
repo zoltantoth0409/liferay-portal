@@ -446,12 +446,6 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 		if ((role.getType() == RoleConstants.TYPE_ORGANIZATION) ||
 			(role.getType() == RoleConstants.TYPE_SITE)) {
 
-			userGroupRoleLocalService.deleteUserGroupRolesByRoleId(
-				role.getRoleId());
-
-			userGroupGroupRoleLocalService.deleteUserGroupGroupRolesByRoleId(
-				role.getRoleId());
-
 			List<Group> groups = groupPersistence.findByC_S(
 				role.getCompanyId(), true);
 
@@ -477,6 +471,12 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 						group.getGroupId(), typeSettingsProperties.toString());
 				}
 			}
+
+			userGroupRoleLocalService.deleteUserGroupRolesByRoleId(
+				role.getRoleId());
+
+			userGroupGroupRoleLocalService.deleteUserGroupGroupRolesByRoleId(
+				role.getRoleId());
 		}
 
 		// Role
