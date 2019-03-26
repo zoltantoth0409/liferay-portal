@@ -18,9 +18,9 @@ class TopSearch extends State {
 		super();
 
 		this.search_ = dom.toElement('#search');
-		this.searchOptions_ = dom.toElement('#search .dropdown-toggle');
-		this.searchInput_ = dom.toElement('#search .search-input');
 		this.searchIcon_ = dom.toElement('#search + .btn-search');
+		this.searchInput_ = dom.toElement('#search .search-input');
+		this.searchOptions_ = dom.toElement('#search .dropdown-toggle');
 
 		if (this.searchInput_) {
 			dom.addClasses(this.searchInput_, 'visible-xs');
