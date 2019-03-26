@@ -125,18 +125,13 @@ public class GoogleCloudNaturalLanguageDocumentAssetAutoTagProvider
 
 			JSONObject responseJSONObject = _post(
 				_getServiceURL(apiKey, "classifyText"), documentPayload);
-
-			JSONArray jsonArray = responseJSONObject.getJSONArray(
-				"categories");
-
 			float confidence =
 				googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
 					confidence();
 
 			_processTagNames(
-				jsonArray,
-				jsonObject ->
-					jsonObject.getDouble("confidence") > confidence,
+				responseJSONObject.getJSONArray("categories"),
+				jsonObject -> jsonObject.getDouble("confidence") > confidence,
 				tagNames::add);
 		}
 
@@ -145,16 +140,12 @@ public class GoogleCloudNaturalLanguageDocumentAssetAutoTagProvider
 
 			JSONObject responseJSONObject = _post(
 				_getServiceURL(apiKey, "analyzeEntities"), documentPayload);
-
-			JSONArray jsonArray = responseJSONObject.getJSONArray(
-				"entities");
-
 			float salience =
 				googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
 					salience();
 
 			_processTagNames(
-				jsonArray,
+				responseJSONObject.getJSONArray("entities"),
 				jsonObject -> jsonObject.getDouble("salience") > salience,
 				tagNames::add);
 		}
@@ -189,14 +180,14 @@ public class GoogleCloudNaturalLanguageDocumentAssetAutoTagProvider
 		if (mimeType.equals(ContentTypes.TEXT_PLAIN) ||
 			mimeType.equals(ContentTypes.TEXT_HTML)) {
 
-			try (InputStream is = fileVersion.getContentStream(false)) {
+			try (InputStream inputStream = fileVersion.getContentStream(false)) {
 				return new String(
-					FileUtil.getBytes(is), StandardCharsets.UTF_8);
+					FileUtil.getBytes(inputStream), StandardCharsets.UTF_8);
 			}
 		}
 
-		try (InputStream is = fileVersion.getContentStream(false)) {
-			return FileUtil.extractText(is, fileVersion.getFileName());
+		try (InputStream inputStream = fileVersion.getContentStream(false)) {
+			return FileUtil.extractText(inputStream, fileVersion.getFileName());
 		}
 	}
 
@@ -242,8 +233,8 @@ public class GoogleCloudNaturalLanguageDocumentAssetAutoTagProvider
 
 		throw new PortalException(
 			StringBundler.concat(
-				"Cannot generate tags with Google Natural Language service; ",
-				"Response code ", response.getResponseCode(), ": ",
+				"Unable to generate tags with the Google Natural Language ",
+				" service. Response code ", response.getResponseCode(), ": ",
 				errorMessage));
 	}
 
