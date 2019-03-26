@@ -749,7 +749,8 @@ public class PorygonSiteInitializer implements SiteInitializer {
 		String journalArticleClassNameId = String.valueOf(
 			_portal.getClassNameId(JournalArticle.class));
 
-		jxPortletPreferences.setValue("anyAssetType", journalArticleClassNameId);
+		jxPortletPreferences.setValue(
+			"anyAssetType", journalArticleClassNameId);
 
 		String structureId = String.valueOf(ddmStructure.getStructureId());
 
@@ -757,7 +758,8 @@ public class PorygonSiteInitializer implements SiteInitializer {
 			"anyClassTypeJournalArticleAssetRendererFactory", structureId);
 
 		jxPortletPreferences.setValue("assetLinkBehavior", "viewInPortlet");
-		jxPortletPreferences.setValue("classNameIds", journalArticleClassNameId);
+		jxPortletPreferences.setValue(
+			"classNameIds", journalArticleClassNameId);
 		jxPortletPreferences.setValue("classTypeIds", structureId);
 		jxPortletPreferences.setValue(
 			"classTypeIdsJournalArticleAssetRendererFactory", structureId);
