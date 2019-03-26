@@ -51,7 +51,7 @@ public class DDMFormValuesUtil {
 		LayoutLocalService layoutLocalService, Locale locale,
 		List<DDMFormField> rootDDMFormFields) {
 
-		Map<String, List<ContentField>> contentFieldMap = _getContentFieldMap(
+		Map<String, List<ContentField>> contentFieldMap = _toContentFieldsMap(
 			contentFields);
 
 		return new DDMFormValues(ddmForm) {
@@ -60,7 +60,7 @@ public class DDMFormValuesUtil {
 				setDDMFormFieldValues(
 					_flattenDDMFormFieldValues(
 						rootDDMFormFields,
-						ddmFormField -> _createDDMFormFieldValue(
+						ddmFormField -> _toDDMFormFieldValues(
 							contentFieldMap.get(ddmFormField.getName()),
 							ddmFormField, dlAppService, groupId,
 							journalArticleService, layoutLocalService,
@@ -70,7 +70,7 @@ public class DDMFormValuesUtil {
 		};
 	}
 
-	private static List<DDMFormFieldValue> _createDDMFormFieldValue(
+	private static List<DDMFormFieldValue> _toDDMFormFieldValues(
 		List<ContentField> contentFields, DDMFormField ddmFormField,
 		DLAppService dlAppService, long groupId,
 		JournalArticleService journalArticleService,
@@ -87,7 +87,7 @@ public class DDMFormValuesUtil {
 				_toDDMFormFieldValue(
 					Collections.emptyList(), ddmFormField, dlAppService,
 					groupId, journalArticleService, layoutLocalService, locale,
-					_getPredefinedValue(ddmFormField, locale)));
+					_toValue(ddmFormField, locale)));
 		}
 
 		return TransformUtil.transform(
@@ -131,7 +131,7 @@ public class DDMFormValuesUtil {
 		);
 	}
 
-	private static Map<String, List<ContentField>> _getContentFieldMap(
+	private static Map<String, List<ContentField>> _toContentFieldsMap(
 		ContentField[] contentFields) {
 
 		return Stream.of(
@@ -141,24 +141,24 @@ public class DDMFormValuesUtil {
 		);
 	}
 
-	private static Value _getPredefinedValue(
+	private static Value _toValue(
 		DDMFormField ddmFormField, Locale locale) {
 
 		LocalizedValue localizedValue = ddmFormField.getPredefinedValue();
 
-		String value = localizedValue.getString(
+		String valueString = localizedValue.getString(
 			localizedValue.getDefaultLocale());
 
 		if (ddmFormField.isLocalizable()) {
 			return new LocalizedValue() {
 				{
-					addString(locale, value);
+					addString(locale, valueString);
 					setDefaultLocale(locale);
 				}
 			};
 		}
 
-		return new UnlocalizedValue(value);
+		return new UnlocalizedValue(valueString);
 	}
 
 	private static DDMFormFieldValue _toDDMFormFieldValue(
@@ -166,9 +166,9 @@ public class DDMFormValuesUtil {
 		DLAppService dlAppService, long groupId,
 		JournalArticleService journalArticleService,
 		LayoutLocalService layoutLocalService, Locale locale,
-		Value fieldValue) {
+		Value value) {
 
-		Map<String, List<ContentField>> contentFieldMap = _getContentFieldMap(
+		Map<String, List<ContentField>> contentFieldMap = _toContentFieldsMap(
 			contentFields.toArray(new ContentField[0]));
 
 		return new DDMFormFieldValue() {
@@ -177,12 +177,11 @@ public class DDMFormValuesUtil {
 				setNestedDDMFormFields(
 					_flattenDDMFormFieldValues(
 						ddmFormField.getNestedDDMFormFields(),
-						field -> _createDDMFormFieldValue(
+						field -> _toDDMFormFieldValues(
 							contentFieldMap.get(field.getName()), field,
 							dlAppService, groupId, journalArticleService,
 							layoutLocalService, locale)));
-
-				setValue(fieldValue);
+				setValue(value);
 			}
 		};
 	}
