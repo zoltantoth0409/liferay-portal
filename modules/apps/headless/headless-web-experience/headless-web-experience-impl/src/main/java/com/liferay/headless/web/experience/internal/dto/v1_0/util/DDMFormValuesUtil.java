@@ -27,6 +27,7 @@ import com.liferay.journal.service.JournalArticleService;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -89,22 +90,15 @@ public class DDMFormValuesUtil {
 					_getPredefinedValue(ddmFormField, locale)));
 		}
 
-		List<DDMFormFieldValue> ddmFormFieldValues = new ArrayList<>(
-			contentFields.size());
-
-		for (ContentField contentField : contentFields) {
-			DDMFormFieldValue ddmFormFieldValue = _toDDMFormFieldValue(
+		return TransformUtil.transform(
+			contentFields,
+			contentField -> _toDDMFormFieldValue(
 				ListUtil.toList(contentField.getNestedFields()), ddmFormField,
 				dlAppService, groupId, journalArticleService,
 				layoutLocalService, locale,
 				ValueUtil.toValue(
 					contentField, ddmFormField, dlAppService, groupId,
-					journalArticleService, layoutLocalService, locale));
-
-			ddmFormFieldValues.add(ddmFormFieldValue);
-		}
-
-		return ddmFormFieldValues;
+					journalArticleService, layoutLocalService, locale)));
 	}
 
 	private static List<DDMFormFieldValue> _flattenDDMFormFieldValues(
