@@ -445,11 +445,12 @@ public class ResourceOpenAPIParser {
 				if (!pathName.endsWith(pluralSchemaName) &&
 					previousMethodNameSegment.endsWith(schemaName)) {
 
-					String s = StringUtil.replaceLast(
+					String string = StringUtil.replaceLast(
 						previousMethodNameSegment, schemaName,
 						pluralSchemaName);
 
-					methodNameSegments.set(methodNameSegments.size() - 1, s);
+					methodNameSegments.set(
+						methodNameSegments.size() - 1, string);
 				}
 
 				methodNameSegments.add(pathName + "Page");
