@@ -408,6 +408,7 @@ public class ServicePreAction extends Action {
 
 		if (layout != null) {
 			group = layout.getGroup();
+
 			stagingGroup = group.isStagingGroup();
 
 			if (!signedIn && PropsValues.AUTH_FORWARD_BY_REDIRECT) {
@@ -1437,8 +1438,8 @@ public class ServicePreAction extends Action {
 			boolean signedIn)
 		throws PortalException {
 
-		return getDefaultViewableLayoutComposite(request, user,
-			permissionChecker, doAsGroupId, signedIn, false);
+		return getDefaultViewableLayoutComposite(
+			request, user, permissionChecker, doAsGroupId, signedIn, false);
 	}
 
 	protected LayoutComposite getDefaultViewableLayoutComposite(
