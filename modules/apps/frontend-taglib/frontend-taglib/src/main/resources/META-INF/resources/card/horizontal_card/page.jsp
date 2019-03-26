@@ -26,10 +26,10 @@
 
 		<c:if test="<%= Validator.isNotNull(checkboxInput) %>">
 			<div class="card-type-directory form-check form-check-card form-check-middle-left">
-					<div class="custom-checkbox custom-control">
-						<label>
-							<%= checkboxInput %>
-							<span class="custom-control-label"></span>
+				<div class="custom-checkbox custom-control">
+					<label>
+						<%= checkboxInput %>
+						<span class="custom-control-label"></span>
 		</c:if>
 	</c:when>
 </c:choose>
