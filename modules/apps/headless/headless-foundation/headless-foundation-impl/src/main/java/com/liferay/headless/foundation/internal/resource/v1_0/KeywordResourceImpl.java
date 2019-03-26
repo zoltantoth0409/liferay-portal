@@ -141,7 +141,9 @@ public class KeywordResourceImpl
 		}
 		catch (PrincipalException.MustHavePermission mh) {
 			throw new ForbiddenException(
-				"You do not have permissions to update keyword", mh);
+				"You do not have permissions to update keyword: " +
+					keyword.getName(),
+				mh);
 		}
 	}
 
