@@ -1262,19 +1262,37 @@ public class HttpImpl implements Http {
 
 	@Override
 	public String URLtoString(Http.Options options) throws IOException {
-		return new String(URLtoByteArray(options));
+		byte[] bytes = URLtoByteArray(options);
+
+		if (bytes == null) {
+			return null;
+		}
+
+		return new String(bytes);
 	}
 
 	@Override
 	public String URLtoString(String location) throws IOException {
-		return new String(URLtoByteArray(location));
+		byte[] bytes = URLtoByteArray(location);
+
+		if (bytes == null) {
+			return null;
+		}
+
+		return new String(bytes);
 	}
 
 	@Override
 	public String URLtoString(String location, boolean post)
 		throws IOException {
 
-		return new String(URLtoByteArray(location, post));
+		byte[] bytes = URLtoByteArray(location, post);
+
+		if (bytes == null) {
+			return null;
+		}
+
+		return new String(bytes);
 	}
 
 	/**
