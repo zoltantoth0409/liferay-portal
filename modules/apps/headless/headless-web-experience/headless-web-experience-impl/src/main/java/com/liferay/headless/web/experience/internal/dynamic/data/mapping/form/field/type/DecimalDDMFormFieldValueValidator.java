@@ -36,10 +36,10 @@ public class DecimalDDMFormFieldValueValidator
 	public void validate(DDMFormField ddmFormField, Value value)
 		throws DDMFormFieldValueValidationException {
 
-		_validator.validate(ddmFormField, value);
+		_ddmFormFieldValueValidator.validate(ddmFormField, value);
 	}
 
 	@Reference(target = "(ddm.form.field.type.name=numeric)")
-	private DDMFormFieldValueValidator _validator;
+	private DDMFormFieldValueValidator _ddmFormFieldValueValidator;
 
 }
