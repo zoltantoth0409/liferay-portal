@@ -41,9 +41,9 @@ import javax.ws.rs.BadRequestException;
 /**
  * @author Víctor Galán
  */
-public class DDMValueUtil {
+public class ValueUtil {
 
-	public static Value toDDMValue(
+	public static Value toValue(
 		ContentField contentFieldValue, DDMFormField ddmFormField,
 		DLAppService dlAppService, long groupId,
 		JournalArticleService journalArticleService,
