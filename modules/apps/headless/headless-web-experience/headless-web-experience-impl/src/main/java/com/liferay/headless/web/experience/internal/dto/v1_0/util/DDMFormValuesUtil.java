@@ -102,15 +102,15 @@ public class DDMFormValuesUtil {
 	}
 
 	private static List<DDMFormFieldValue> _flattenDDMFormFieldValues(
-		List<DDMFormField> list,
+		List<DDMFormField> ddmFormFields,
 		UnsafeFunction<DDMFormField, List<DDMFormFieldValue>, Exception>
 			unsafeFunction) {
 
-		if (ListUtil.isEmpty(list)) {
+		if (ListUtil.isEmpty(ddmFormFields)) {
 			return Collections.emptyList();
 		}
 
-		Stream<DDMFormField> stream = list.stream();
+		Stream<DDMFormField> stream = ddmFormFields.stream();
 
 		return stream.map(
 			ddmFormField -> {
@@ -144,10 +144,10 @@ public class DDMFormValuesUtil {
 	private static Value _getPredefinedValue(
 		DDMFormField ddmFormField, Locale locale) {
 
-		LocalizedValue predefinedValue = ddmFormField.getPredefinedValue();
+		LocalizedValue localizedValue = ddmFormField.getPredefinedValue();
 
-		String value = predefinedValue.getString(
-			predefinedValue.getDefaultLocale());
+		String value = localizedValue.getString(
+			localizedValue.getDefaultLocale());
 
 		if (ddmFormField.isLocalizable()) {
 			return new LocalizedValue() {
