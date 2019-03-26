@@ -414,7 +414,9 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 			assetEntry, fieldId, locale);
 
 		if (fieldValue instanceof ContentAccessor) {
-			fieldValue = ((ContentAccessor)fieldValue).getContent();
+			ContentAccessor contentAccessor = (ContentAccessor)fieldValue;
+
+			fieldValue = contentAccessor.getContent();
 		}
 
 		return GetterUtil.get(fieldValue, StringPool.BLANK);

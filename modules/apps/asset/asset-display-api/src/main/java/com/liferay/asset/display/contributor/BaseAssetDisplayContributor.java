@@ -127,7 +127,9 @@ public abstract class BaseAssetDisplayContributor<T>
 			fieldName, StringPool.BLANK);
 
 		if (fieldValue instanceof ContentAccessor) {
-			fieldValue = ((ContentAccessor)fieldValue).getContent();
+			ContentAccessor contentAccessor = (ContentAccessor)fieldValue;
+
+			fieldValue = contentAccessor.getContent();
 		}
 
 		return fieldValue;
