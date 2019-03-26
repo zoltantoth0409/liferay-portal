@@ -103,16 +103,15 @@ Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
 				<aui:button name="chooseDisplayPage" value="choose" />
 
-				<c:if test="<%= editArticleDisplayPageDisplayContext.isURLViewInContext() %>">
+				<%
+				Layout defaultDisplayLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(editArticleDisplayPageDisplayContext.getLayoutUuid(), themeDisplay.getScopeGroupId(), false);
 
-					<%
-					Layout defaultDisplayLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(editArticleDisplayPageDisplayContext.getLayoutUuid(), themeDisplay.getScopeGroupId(), false);
+				if (defaultDisplayLayout == null) {
+					defaultDisplayLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(editArticleDisplayPageDisplayContext.getLayoutUuid(), themeDisplay.getScopeGroupId(), true);
+				}
+				%>
 
-					if (defaultDisplayLayout == null) {
-						defaultDisplayLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(editArticleDisplayPageDisplayContext.getLayoutUuid(), themeDisplay.getScopeGroupId(), true);
-					}
-					%>
-
+				<c:if test="<%= editArticleDisplayPageDisplayContext.isURLViewInContext() && (defaultDisplayLayout != null) %>">
 					<aui:a href="<%= editArticleDisplayPageDisplayContext.getURLViewInContext() %>" target="blank">
 						<liferay-ui:message arguments="<%= HtmlUtil.escape(defaultDisplayLayout.getName(locale)) %>" key="view-content-in-x" translateArguments="<%= false %>" />
 					</aui:a>
