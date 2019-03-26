@@ -115,7 +115,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 				<#if properties?keys?seq_contains("id")>
 					${schemaName} ${schemaVarName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
 
-					assertResponseCode(200, invoke${javaMethodSignature.methodName?cap_first}Response(${schemaVarName}.getId()));
+					assertResponseCode(204, invoke${javaMethodSignature.methodName?cap_first}Response(${schemaVarName}.getId()));
 
 					assertResponseCode(404, invokeGet${javaMethodSignature.methodName?remove_beginning("delete")}Response(${schemaVarName}.getId()));
 				<#else>
