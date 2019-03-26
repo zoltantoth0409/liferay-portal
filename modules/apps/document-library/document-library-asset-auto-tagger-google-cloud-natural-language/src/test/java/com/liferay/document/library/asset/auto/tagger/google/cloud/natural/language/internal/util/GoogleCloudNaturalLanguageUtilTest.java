@@ -70,17 +70,16 @@ public class GoogleCloudNaturalLanguageUtilTest {
 			new ByteArrayInputStream(randomString.getBytes())
 		);
 
-		String truncated = GoogleCloudNaturalLanguageUtil.truncateToSize(
-			new String(FileUtil.getBytes(_fileVersion.getContentStream(false))),
-			5000);
-
-		String expected = GoogleCloudNaturalLanguageUtil.getDocumentPayload(
-			randomString, StringPool.BLANK);
-
-		String actual = GoogleCloudNaturalLanguageUtil.getDocumentPayload(
-			truncated, StringPool.BLANK);
-
-		Assert.assertEquals(expected, actual);
+		Assert.assertEquals(
+			GoogleCloudNaturalLanguageUtil.getDocumentPayload(
+				randomString, StringPool.BLANK),
+			GoogleCloudNaturalLanguageUtil.getDocumentPayload(
+				GoogleCloudNaturalLanguageUtil.truncateToSize(
+					new String(
+						FileUtil.getBytes(
+							_fileVersion.getContentStream(false))),
+					5000),
+				StringPool.BLANK));
 	}
 
 	@Test
@@ -92,7 +91,7 @@ public class GoogleCloudNaturalLanguageUtilTest {
 	}
 
 	@Test
-	public void testTruncateToSizeMixedUnicodeTextEqualToMax() {
+	public void testTruncateToSizeUnicodeTextEqualToMax() {
 		String text = "中國哲學書電子化計劃 中國哲學書電子化計劃 中國哲學書電子化計劃";
 
 		byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
@@ -112,11 +111,11 @@ public class GoogleCloudNaturalLanguageUtilTest {
 	public void testTruncateToSizeSingleWordEqualToMax() {
 		int size = _randomSize();
 
-		String content = RandomTestUtil.randomString(size);
+		String text = RandomTestUtil.randomString(size);
 
 		Assert.assertEquals(
-			content,
-			GoogleCloudNaturalLanguageUtil.truncateToSize(content, size));
+			text,
+			GoogleCloudNaturalLanguageUtil.truncateToSize(text, size));
 	}
 
 	@Test
@@ -133,71 +132,66 @@ public class GoogleCloudNaturalLanguageUtilTest {
 	public void testTruncateToSizeSingleWordSmallerThanMax() {
 		int size = _randomSize();
 
-		String expected = RandomTestUtil.randomString(size - 1);
+		String text = RandomTestUtil.randomString(size - 1);
 
-		String actual = GoogleCloudNaturalLanguageUtil.truncateToSize(
-			expected, size);
-
-		Assert.assertEquals(expected, actual);
+		Assert.assertEquals(
+			text,
+			GoogleCloudNaturalLanguageUtil.truncateToSize(
+				text, size));
 	}
 
 	@Test
 	public void testTruncateToSizeTextBiggerThanMax() {
 		int size = _randomSize();
 
-		String randomText =
-			RandomTestUtil.randomString(size + 1) + StringPool.SPACE +
-				RandomTestUtil.randomString(size + 1);
-
-		String actual = GoogleCloudNaturalLanguageUtil.truncateToSize(
-			randomText, size);
-
-		Assert.assertEquals(StringPool.BLANK, actual);
+		Assert.assertEquals(
+			StringPool.BLANK,
+			GoogleCloudNaturalLanguageUtil.truncateToSize(
+				RandomTestUtil.randomString(size + 1) + StringPool.SPACE +
+					RandomTestUtil.randomString(size + 1),
+				size));
 	}
 
 	@Test
 	public void testTruncateToSizeTextBiggerThanMaxWithTwoWordSmallerThanSize() {
 		int size = _randomSize();
 
-		String expected =
+		String text =
 			RandomTestUtil.randomString(size - 1) + StringPool.SPACE +
 				RandomTestUtil.randomString(size - 1);
 
-		String text =
-			expected + StringPool.SPACE + RandomTestUtil.randomString(size - 1);
-
-		String actual = GoogleCloudNaturalLanguageUtil.truncateToSize(
-			text, expected.length() + 1);
-
-		Assert.assertEquals(expected, actual);
+		Assert.assertEquals(
+			text,
+			GoogleCloudNaturalLanguageUtil.truncateToSize(
+				text + StringPool.SPACE + RandomTestUtil.randomString(size - 1),
+				text.length() + 1));
 	}
 
 	@Test
 	public void testTruncateToSizeTextBiggerThanMaxWithWordSmallerThanSize() {
 		int size = _randomSize();
 
-		String expected = RandomTestUtil.randomString(size - 1);
+		String text = RandomTestUtil.randomString(size - 1);
 
-		String text = expected + StringPool.SPACE + expected;
-
-		String actual = GoogleCloudNaturalLanguageUtil.truncateToSize(
-			text, size);
-
-		Assert.assertEquals(expected, actual);
+		Assert.assertEquals(
+			text,
+			GoogleCloudNaturalLanguageUtil.truncateToSize(
+				text + StringPool.SPACE + text, size));
 	}
 
 	@Test
 	public void testTruncateToSizeTextSmallerThanMax() {
 		int size = _randomSize();
 
-		String expected =
+		String text =
 			RandomTestUtil.randomString((size / 2) - 1) + StringPool.SPACE +
 				RandomTestUtil.randomString((size / 2) - 1);
 
-		String actual = GoogleCloudNaturalLanguageUtil.truncateToSize(
-			expected, size);
 
-		Assert.assertEquals(expected, actual);
+		Assert.assertEquals(
+			text,
+			GoogleCloudNaturalLanguageUtil.truncateToSize(
+				text, size));
 	}
 
 	@Test
