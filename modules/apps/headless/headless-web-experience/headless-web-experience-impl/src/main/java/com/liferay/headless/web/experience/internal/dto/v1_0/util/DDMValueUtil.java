@@ -188,15 +188,15 @@ public class DDMValueUtil {
 		return layout;
 	}
 
-	private static String _toDateString(String dateString, Locale locale) {
-		if (Validator.isNull(dateString)) {
+	private static String _toDateString(String valueString, Locale locale) {
+		if (Validator.isNull(valueString)) {
 			return "";
 		}
 
 		try {
 			return DateUtil.getDate(
 				DateUtil.parseDate(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'", dateString, locale),
+					"yyyy-MM-dd'T'HH:mm:ss'Z'", valueString, locale),
 				"yyyy-MM-dd", locale);
 		}
 		catch (ParseException pe) {
