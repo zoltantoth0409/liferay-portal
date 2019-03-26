@@ -31,10 +31,12 @@ import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.util.comparator.RoleNameComparator;
 import com.liferay.portlet.rolesadmin.search.RoleSearch;
 import com.liferay.portlet.rolesadmin.search.RoleSearchTerms;
 import com.liferay.site.memberships.web.internal.constants.SiteMembershipsPortletKeys;
@@ -218,10 +220,25 @@ public class UserGroupRolesDisplayContext {
 
 		roleSearch.setRowChecker(new EmptyOnClickRowChecker(_renderResponse));
 
+		roleSearch.setOrderByCol(_getOrderByCol());
+
+		boolean orderByAsc = false;
+
+		if (Objects.equals(_getOrderByType(), "asc")) {
+			orderByAsc = true;
+		}
+
+		OrderByComparator<Role> orderByComparator = new RoleNameComparator(
+			orderByAsc);
+
+		roleSearch.setOrderByComparator(orderByComparator);
+
+		roleSearch.setOrderByType(getOrderByType());
+
 		List<Role> roles = RoleLocalServiceUtil.search(
 			themeDisplay.getCompanyId(), searchTerms.getKeywords(),
 			new Integer[] {RoleConstants.TYPE_SITE}, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, roleSearch.getOrderByComparator());
+			QueryUtil.ALL_POS, orderByComparator);
 
 		roles = UsersAdminUtil.filterGroupRoles(
 			themeDisplay.getPermissionChecker(), getGroupId(), roles);
@@ -323,6 +340,16 @@ public class UserGroupRolesDisplayContext {
 		};
 	}
 
+	private String _getOrderByCol() {
+		if (Validator.isNotNull(_orderByCol)) {
+			return _orderByCol;
+		}
+
+		_orderByCol = ParamUtil.getString(_request, "orderByCol", "title");
+
+		return _orderByCol;
+	}
+
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return new DropdownItemList() {
 			{
@@ -337,6 +364,17 @@ public class UserGroupRolesDisplayContext {
 					});
 			}
 		};
+	}
+
+	private String _getOrderByType() {
+		if (Validator.isNotNull(_orderByType)) {
+			return _orderByType;
+		}
+
+		_orderByType = ParamUtil.getString(
+			_renderRequest, "orderByType", "asc");
+
+		return _orderByType;
 	}
 
 	private String _displayStyle;
