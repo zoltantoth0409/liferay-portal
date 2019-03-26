@@ -14,7 +14,6 @@
 
 package com.liferay.document.library.asset.auto.tagger.google.cloud.natural.language.internal.util;
 
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 
 import java.nio.charset.StandardCharsets;

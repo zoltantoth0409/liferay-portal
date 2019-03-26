@@ -79,7 +79,63 @@ public class GoogleCloudNaturalLanguageDocumentAssetAutoTagProvider
 		}
 	}
 
-	private Collection<String> _getTagNames(FileEntry fileEntry) throws Exception {
+	private static <T> Predicate<T> _negate(Predicate<T> predicate) {
+		return predicate.negate();
+	}
+
+	private GoogleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration
+			_getConfiguration(FileEntry fileEntry)
+		throws ConfigurationException {
+
+		return _configurationProvider.getConfiguration(
+			GoogleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
+				class,
+			new CompanyServiceSettingsLocator(
+				fileEntry.getCompanyId(),
+				GoogleCloudNaturalLanguageAssetAutoTagProviderConstants.
+					SERVICE_NAME));
+	}
+
+	private String _getFileEntryContent(FileEntry fileEntry)
+		throws IOException, PortalException {
+
+		FileVersion fileVersion = fileEntry.getFileVersion();
+
+		String mimeType = fileVersion.getMimeType();
+
+		if (mimeType.equals(ContentTypes.TEXT_PLAIN) ||
+			mimeType.equals(ContentTypes.TEXT_HTML)) {
+
+			try (InputStream inputStream = fileVersion.getContentStream(
+					false)) {
+
+				return new String(
+					FileUtil.getBytes(inputStream), StandardCharsets.UTF_8);
+			}
+		}
+
+		try (InputStream inputStream = fileVersion.getContentStream(false)) {
+			return FileUtil.extractText(inputStream, fileVersion.getFileName());
+		}
+	}
+
+	private String _getFileEntryType(FileEntry fileEntry) {
+		if (ContentTypes.TEXT_HTML.equals(fileEntry.getMimeType())) {
+			return "HTML";
+		}
+
+		return "PLAIN_TEXT";
+	}
+
+	private String _getServiceURL(String apiKey, String endpoint) {
+		return StringBundler.concat(
+			"https://language.googleapis.com/v1/documents:", endpoint, "?key=",
+			apiKey);
+	}
+
+	private Collection<String> _getTagNames(FileEntry fileEntry)
+		throws Exception {
+
 		if (fileEntry.isRepositoryCapabilityProvided(
 				TemporaryFileEntriesCapability.class) ||
 			!_supportedContentTypes.contains(fileEntry.getMimeType())) {
@@ -109,12 +165,10 @@ public class GoogleCloudNaturalLanguageDocumentAssetAutoTagProvider
 
 		int size =
 			GoogleCloudNaturalLanguageAssetAutoTagProviderConstants.
-				MAX_CHARACTERS_SERVICE - _MINIMUM_PAYLOAD_SIZE -
-					type.length();
+				MAX_CHARACTERS_SERVICE - _MINIMUM_PAYLOAD_SIZE - type.length();
 
-		String truncatedContent =
-			GoogleCloudNaturalLanguageUtil.truncateToSize(
-				_getFileEntryContent(fileEntry), size);
+		String truncatedContent = GoogleCloudNaturalLanguageUtil.truncateToSize(
+			_getFileEntryContent(fileEntry), size);
 
 		String documentPayload =
 			GoogleCloudNaturalLanguageUtil.getDocumentPayload(
@@ -151,58 +205,6 @@ public class GoogleCloudNaturalLanguageDocumentAssetAutoTagProvider
 		}
 
 		return tagNames;
-	}
-
-	private static <T> Predicate<T> _negate(Predicate<T> predicate) {
-		return predicate.negate();
-	}
-
-	private GoogleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration
-			_getConfiguration(FileEntry fileEntry)
-		throws ConfigurationException {
-
-		return _configurationProvider.getConfiguration(
-			GoogleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
-				class,
-			new CompanyServiceSettingsLocator(
-				fileEntry.getCompanyId(),
-				GoogleCloudNaturalLanguageAssetAutoTagProviderConstants.
-					SERVICE_NAME));
-	}
-
-	private String _getFileEntryContent(FileEntry fileEntry)
-		throws IOException, PortalException {
-
-		FileVersion fileVersion = fileEntry.getFileVersion();
-
-		String mimeType = fileVersion.getMimeType();
-
-		if (mimeType.equals(ContentTypes.TEXT_PLAIN) ||
-			mimeType.equals(ContentTypes.TEXT_HTML)) {
-
-			try (InputStream inputStream = fileVersion.getContentStream(false)) {
-				return new String(
-					FileUtil.getBytes(inputStream), StandardCharsets.UTF_8);
-			}
-		}
-
-		try (InputStream inputStream = fileVersion.getContentStream(false)) {
-			return FileUtil.extractText(inputStream, fileVersion.getFileName());
-		}
-	}
-
-	private String _getFileEntryType(FileEntry fileEntry) {
-		if (ContentTypes.TEXT_HTML.equals(fileEntry.getMimeType())) {
-			return "HTML";
-		}
-
-		return "PLAIN_TEXT";
-	}
-
-	private String _getServiceURL(String apiKey, String endpoint) {
-		return StringBundler.concat(
-			"https://language.googleapis.com/v1/documents:", endpoint, "?key=",
-			apiKey);
 	}
 
 	private JSONObject _post(String serviceURL, String body) throws Exception {
