@@ -102,9 +102,7 @@ public class DDMFormValuesUtil {
 	private static Map<String, List<ContentField>> _toContentFieldsMap(
 		Stream<ContentField> stream) {
 
-		return stream.collect(
-			Collectors.groupingBy(ContentField::getName)
-		);
+		return stream.collect(Collectors.groupingBy(ContentField::getName));
 	}
 
 	private static DDMFormFieldValue _toDDMFormFieldValue(

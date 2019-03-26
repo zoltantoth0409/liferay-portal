@@ -59,83 +59,77 @@ public class DDMValueUtil {
 		}
 
 		if (ddmFormField.isLocalizable()) {
-			return new LocalizedValue() {
-				{
-					setDefaultLocale(locale);
+			LocalizedValue localizedValue = new LocalizedValue(locale);
 
-					if (Objects.equals(
-							DDMFormFieldType.DOCUMENT_LIBRARY,
-							ddmFormField.getType())) {
+			if (Objects.equals(
+					DDMFormFieldType.DOCUMENT_LIBRARY,
+					ddmFormField.getType())) {
 
-						addString(
-							locale,
-							_getMediaValue(
-								dlAppService, value.getDocumentId(), ""));
-					}
-					else if (Objects.equals(
-								DDMFormFieldType.IMAGE,
-								ddmFormField.getType())) {
+				localizedValue.addString(
+					locale,
+					_getMediaValue(dlAppService, value.getDocumentId(), ""));
+			}
+			else if (Objects.equals(
+						DDMFormFieldType.IMAGE, ddmFormField.getType())) {
 
-						addString(
-							locale,
-							_getMediaValue(
-								dlAppService, value.getImageId(),
-								value.getImageDescription()));
-					}
-					else if (Objects.equals(
-								DDMFormFieldType.JOURNAL_ARTICLE,
-								ddmFormField.getType())) {
+				localizedValue.addString(
+					locale,
+					_getMediaValue(
+						dlAppService, value.getImageId(),
+						value.getImageDescription()));
+			}
+			else if (Objects.equals(
+						DDMFormFieldType.JOURNAL_ARTICLE,
+						ddmFormField.getType())) {
 
-						JournalArticle journalArticle = null;
+				JournalArticle journalArticle = null;
 
-						try {
-							journalArticle =
-								journalArticleService.getLatestArticle(
-									value.getStructuredContentId());
-						}
-						catch (Exception e) {
-							throw new BadRequestException(
-								"No structured content exists with id " +
-									value.getDocumentId(),
-								e);
-						}
-
-						addString(
-							locale,
-							JSONUtil.put(
-								"className", JournalArticle.class.getName()
-							).put(
-								"classPK", journalArticle.getResourcePrimKey()
-							).put(
-								"title", journalArticle.getTitle()
-							).toString());
-					}
-					else if (Objects.equals(
-								DDMFormFieldType.LINK_TO_PAGE,
-								ddmFormField.getType())) {
-
-						String link = value.getLink();
-
-						Layout layout = _getLayout(
-							link, layoutLocalService, groupId);
-
-						addString(
-							locale,
-							JSONUtil.put(
-								"groupId", layout.getGroupId()
-							).put(
-								"label", layout.getFriendlyURL()
-							).put(
-								"privateLayout", layout.isPrivateLayout()
-							).put(
-								"layoutId", layout.getLayoutId()
-							).toString());
-					}
-					else {
-						addString(locale, value.getData());
-					}
+				try {
+					journalArticle = journalArticleService.getLatestArticle(
+						value.getStructuredContentId());
 				}
-			};
+				catch (Exception e) {
+					throw new BadRequestException(
+						"No structured content exists with id " +
+							value.getDocumentId(),
+						e);
+				}
+
+				localizedValue.addString(
+					locale,
+					JSONUtil.put(
+						"className", JournalArticle.class.getName()
+					).put(
+						"classPK", journalArticle.getResourcePrimKey()
+					).put(
+						"title", journalArticle.getTitle()
+					).toString());
+			}
+			else if (Objects.equals(
+						DDMFormFieldType.LINK_TO_PAGE,
+						ddmFormField.getType())) {
+
+				String link = value.getLink();
+
+				Layout layout = _getLayout(link, layoutLocalService, groupId);
+
+				localizedValue.addString(
+					locale,
+					JSONUtil.put(
+						"groupId", layout.getGroupId()
+					).put(
+						"label", layout.getFriendlyURL()
+					).put(
+						"privateLayout", layout.isPrivateLayout()
+					).put(
+						"layoutId", layout.getLayoutId()
+					).toString());
+			}
+			else {
+				localizedValue.addString(locale, value.getData());
+			}
+
+			return localizedValue;
 		}
 
 		if (Objects.equals(
@@ -199,7 +193,7 @@ public class DDMValueUtil {
 		}
 		catch (Exception e) {
 			throw new BadRequestException(
-				"No document exists with id " + fileEntryId, e);
+				"No document exists with ID " + fileEntryId, e);
 		}
 
 		return JSONUtil.put(
