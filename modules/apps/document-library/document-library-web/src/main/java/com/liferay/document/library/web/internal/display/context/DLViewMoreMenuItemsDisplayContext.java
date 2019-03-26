@@ -105,9 +105,6 @@ public class DLViewMoreMenuItemsDisplayContext {
 			return _searchContainer;
 		}
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		SearchContainer searchContainer = new SearchContainer(
 			_renderRequest, new DisplayTerms(_request),
 			new DisplayTerms(_request), SearchContainer.DEFAULT_CUR_PARAM,
@@ -116,10 +113,12 @@ public class DLViewMoreMenuItemsDisplayContext {
 
 		DisplayTerms searchTerms = searchContainer.getSearchTerms();
 
-		boolean includeBasicFileEntryType = ParamUtil.getBoolean(
-			_renderRequest, "includeBasicFileEntryType");
+		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		long folderId = _getPrimaryFolderId(_folderId);
+		boolean includeBasicFileEntryType = ParamUtil.getBoolean(
+			_renderRequest, "includeBasicFileEntryType");
 
 		searchContainer.setResults(
 			DLFileEntryTypeServiceUtil.search(
@@ -129,7 +128,6 @@ public class DLViewMoreMenuItemsDisplayContext {
 				searchTerms.getKeywords(), includeBasicFileEntryType,
 				_inherited, searchContainer.getStart(),
 				searchContainer.getEnd()));
-
 		searchContainer.setTotal(
 			DLFileEntryTypeServiceUtil.searchCount(
 				themeDisplay.getCompanyId(), folderId,
