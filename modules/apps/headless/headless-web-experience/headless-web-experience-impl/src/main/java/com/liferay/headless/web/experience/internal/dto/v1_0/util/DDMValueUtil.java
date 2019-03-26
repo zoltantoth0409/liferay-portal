@@ -54,8 +54,7 @@ public class DDMValueUtil {
 
 		if (value == null) {
 			throw new BadRequestException(
-				"Value for field " + ddmFormField.getName() +
-					" can not be null");
+				"No value is specified for field " + ddmFormField.getName());
 		}
 
 		if (ddmFormField.isLocalizable()) {

@@ -138,7 +138,7 @@ public class DDMFormValuesUtil {
 		if (ListUtil.isEmpty(contentFields)) {
 			if (ddmFormField.isRequired()) {
 				throw new BadRequestException(
-					"No value specified for field " + ddmFormField.getName());
+					"No value is specified for field " + ddmFormField.getName());
 			}
 
 			return Collections.singletonList(
