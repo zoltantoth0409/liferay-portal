@@ -22,6 +22,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 
 /**
  * @author Alicia García
+ * @review
  */
 @ExtendedObjectClassDefinition(
 	category = "documents-and-media",

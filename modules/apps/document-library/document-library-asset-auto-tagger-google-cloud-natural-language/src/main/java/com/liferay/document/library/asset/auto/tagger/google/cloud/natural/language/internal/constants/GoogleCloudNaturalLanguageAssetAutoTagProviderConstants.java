@@ -16,6 +16,7 @@ package com.liferay.document.library.asset.auto.tagger.google.cloud.natural.lang
 
 /**
  * @author Alicia García
+ * @review
  */
 public class GoogleCloudNaturalLanguageAssetAutoTagProviderConstants {
 

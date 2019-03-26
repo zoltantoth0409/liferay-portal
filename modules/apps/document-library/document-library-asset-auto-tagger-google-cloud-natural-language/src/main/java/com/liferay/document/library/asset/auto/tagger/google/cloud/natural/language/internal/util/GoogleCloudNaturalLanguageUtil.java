@@ -27,15 +27,14 @@ import java.util.Arrays;
 public class GoogleCloudNaturalLanguageUtil {
 
 	public static String getDocumentPayload(String content, String type) {
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"document",
 			JSONUtil.put(
 				"type", type
 			).put(
 				"content", content
-			));
-
-		return jsonObject.toString();
+			)
+		).toString();
 	}
 
 	public static String truncateToSize(String content, int size) {
