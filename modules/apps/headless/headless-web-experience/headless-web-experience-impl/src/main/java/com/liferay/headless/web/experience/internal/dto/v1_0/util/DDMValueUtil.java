@@ -67,16 +67,16 @@ public class DDMValueUtil {
 
 				localizedValue.addString(
 					locale,
-					_getMediaValue(dlAppService, value.getDocumentId(), ""));
+					_toJSON(dlAppService, "", value.getDocumentId()));
 			}
 			else if (Objects.equals(
 						DDMFormFieldType.IMAGE, ddmFormField.getType())) {
 
 				localizedValue.addString(
 					locale,
-					_getMediaValue(
-						dlAppService, value.getImageId(),
-						value.getImageDescription()));
+					_toJSON(
+						dlAppService, value.getImageDescription(),
+						value.getImageId()));
 			}
 			else if (Objects.equals(
 						DDMFormFieldType.JOURNAL_ARTICLE,
@@ -90,7 +90,7 @@ public class DDMValueUtil {
 				}
 				catch (Exception e) {
 					throw new BadRequestException(
-						"No structured content exists with id " +
+						"No structured content exists with ID " +
 							value.getDocumentId(),
 						e);
 				}
@@ -109,9 +109,8 @@ public class DDMValueUtil {
 						DDMFormFieldType.LINK_TO_PAGE,
 						ddmFormField.getType())) {
 
-				String link = value.getLink();
-
-				Layout layout = _getLayout(link, layoutLocalService, groupId);
+				Layout layout = _getLayout(
+					groupId, layoutLocalService, value.getLink());
 
 				localizedValue.addString(
 					locale,
@@ -140,7 +139,7 @@ public class DDMValueUtil {
 			if (Objects.isNull(geo) || Objects.isNull(geo.getLatitude()) ||
 				Objects.isNull(geo.getLongitude())) {
 
-				throw new BadRequestException("Incorrect geo object");
+				throw new BadRequestException("Invalid geo " + geo);
 			}
 
 			return new UnlocalizedValue(
@@ -155,7 +154,7 @@ public class DDMValueUtil {
 	}
 
 	private static Layout _getLayout(
-		String link, LayoutLocalService layoutLocalService, long groupId) {
+		long groupId, LayoutLocalService layoutLocalService, String link) {
 
 		Layout layout = layoutLocalService.fetchLayoutByFriendlyURL(
 			groupId, false, link);
@@ -167,7 +166,7 @@ public class DDMValueUtil {
 
 		if (layout == null) {
 			throw new BadRequestException(
-				"No page found with friendly url " + link);
+				"No page found with friendly URL " + link);
 		}
 
 		try {
@@ -177,14 +176,14 @@ public class DDMValueUtil {
 		}
 		catch (PortalException pe) {
 			throw new BadRequestException(
-				"No page found with friendly url " + link, pe);
+				"No page found with friendly URL " + link, pe);
 		}
 
 		return layout;
 	}
 
-	private static String _getMediaValue(
-		DLAppService dlAppService, long fileEntryId, String description) {
+	private static String _toJSON(
+		DLAppService dlAppService, String description, long fileEntryId) {
 
 		FileEntry fileEntry = null;
 
