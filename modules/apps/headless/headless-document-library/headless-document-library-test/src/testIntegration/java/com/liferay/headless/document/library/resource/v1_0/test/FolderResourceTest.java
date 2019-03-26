@@ -139,7 +139,7 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 		Folder postFolder = invokePostContentSpaceTreeFolder(
 			testGroup.getGroupId(), folder);
 
-		Assert.assertEquals(1, postFolder.getNumberOfDocuments());
+		Assert.assertEquals(0, postFolder.getNumberOfDocuments());
 
 		return postFolder;
 	}
