@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -68,37 +67,6 @@ public class DDMFormValuesUtil {
 				setDefaultLocale(ddmForm.getDefaultLocale());
 			}
 		};
-	}
-
-	private static List<DDMFormFieldValue> _toDDMFormFieldValues(
-		List<ContentField> contentFields, DDMFormField ddmFormField,
-		DLAppService dlAppService, long groupId,
-		JournalArticleService journalArticleService,
-		LayoutLocalService layoutLocalService, Locale locale) {
-
-		if (ListUtil.isEmpty(contentFields)) {
-			if (ddmFormField.isRequired()) {
-				throw new BadRequestException(
-					"No value defined for field name " +
-						ddmFormField.getName());
-			}
-
-			return Collections.singletonList(
-				_toDDMFormFieldValue(
-					Collections.emptyList(), ddmFormField, dlAppService,
-					groupId, journalArticleService, layoutLocalService, locale,
-					_toValue(ddmFormField, locale)));
-		}
-
-		return TransformUtil.transform(
-			contentFields,
-			contentField -> _toDDMFormFieldValue(
-				ListUtil.toList(contentField.getNestedFields()), ddmFormField,
-				dlAppService, groupId, journalArticleService,
-				layoutLocalService, locale,
-				ValueUtil.toValue(
-					contentField, ddmFormField, dlAppService, groupId,
-					journalArticleService, layoutLocalService, locale)));
 	}
 
 	private static List<DDMFormFieldValue> _flattenDDMFormFieldValues(
@@ -141,32 +109,11 @@ public class DDMFormValuesUtil {
 		);
 	}
 
-	private static Value _toValue(
-		DDMFormField ddmFormField, Locale locale) {
-
-		LocalizedValue localizedValue = ddmFormField.getPredefinedValue();
-
-		String valueString = localizedValue.getString(
-			localizedValue.getDefaultLocale());
-
-		if (ddmFormField.isLocalizable()) {
-			return new LocalizedValue() {
-				{
-					addString(locale, valueString);
-					setDefaultLocale(locale);
-				}
-			};
-		}
-
-		return new UnlocalizedValue(valueString);
-	}
-
 	private static DDMFormFieldValue _toDDMFormFieldValue(
 		List<ContentField> contentFields, DDMFormField ddmFormField,
 		DLAppService dlAppService, long groupId,
 		JournalArticleService journalArticleService,
-		LayoutLocalService layoutLocalService, Locale locale,
-		Value value) {
+		LayoutLocalService layoutLocalService, Locale locale, Value value) {
 
 		Map<String, List<ContentField>> contentFieldMap = _toContentFieldsMap(
 			contentFields.toArray(new ContentField[0]));
@@ -184,6 +131,55 @@ public class DDMFormValuesUtil {
 				setValue(value);
 			}
 		};
+	}
+
+	private static List<DDMFormFieldValue> _toDDMFormFieldValues(
+		List<ContentField> contentFields, DDMFormField ddmFormField,
+		DLAppService dlAppService, long groupId,
+		JournalArticleService journalArticleService,
+		LayoutLocalService layoutLocalService, Locale locale) {
+
+		if (ListUtil.isEmpty(contentFields)) {
+			if (ddmFormField.isRequired()) {
+				throw new BadRequestException(
+					"No value defined for field name " +
+						ddmFormField.getName());
+			}
+
+			return Collections.singletonList(
+				_toDDMFormFieldValue(
+					Collections.emptyList(), ddmFormField, dlAppService,
+					groupId, journalArticleService, layoutLocalService, locale,
+					_toValue(ddmFormField, locale)));
+		}
+
+		return TransformUtil.transform(
+			contentFields,
+			contentField -> _toDDMFormFieldValue(
+				ListUtil.toList(contentField.getNestedFields()), ddmFormField,
+				dlAppService, groupId, journalArticleService,
+				layoutLocalService, locale,
+				ValueUtil.toValue(
+					contentField, ddmFormField, dlAppService, groupId,
+					journalArticleService, layoutLocalService, locale)));
+	}
+
+	private static Value _toValue(DDMFormField ddmFormField, Locale locale) {
+		LocalizedValue localizedValue = ddmFormField.getPredefinedValue();
+
+		String valueString = localizedValue.getString(
+			localizedValue.getDefaultLocale());
+
+		if (ddmFormField.isLocalizable()) {
+			return new LocalizedValue() {
+				{
+					addString(locale, valueString);
+					setDefaultLocale(locale);
+				}
+			};
+		}
+
+		return new UnlocalizedValue(valueString);
 	}
 
 }
