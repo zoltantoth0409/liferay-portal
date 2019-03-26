@@ -41,23 +41,14 @@ public class IntegerDDMFormFieldValueValidator
 		for (Locale availableLocale : value.getAvailableLocales()) {
 			String valueString = value.getString(availableLocale);
 
-			if (Validator.isNotNull(valueString) && !isNumber(valueString)) {
+			if (Validator.isNotNull(valueString) &&
+				!Validator.isNumber(valueString)) {
+
 				throw new DDMFormFieldValueValidationException(
 					String.format(
 						"\"%s\" is not a valid integer", valueString));
 			}
 		}
-	}
-
-	protected boolean isNumber(String valueString) {
-		try {
-			Integer.parseInt(valueString);
-		}
-		catch (NumberFormatException nfe) {
-			return false;
-		}
-
-		return true;
 	}
 
 }
