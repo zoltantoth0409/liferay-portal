@@ -39,7 +39,7 @@ public interface KeywordResource {
 	public boolean putKeywordBatch(KeywordBulkSelection keywordBulkSelection)
 		throws Exception;
 
-	public Page<Keyword> postKeywordCommonPage(
+	public Page<Keyword> postKeywordsCommonPage(
 			DocumentBulkSelection documentBulkSelection)
 		throws Exception;
 

@@ -116,7 +116,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			testDeleteBlogPostingImage_addBlogPostingImage();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteBlogPostingImageResponse(blogPostingImage.getId()));
 
 		assertResponseCode(

@@ -106,7 +106,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 		FormDocument formDocument = testDeleteFormDocument_addFormDocument();
 
 		assertResponseCode(
-			200, invokeDeleteFormDocumentResponse(formDocument.getId()));
+			204, invokeDeleteFormDocumentResponse(formDocument.getId()));
 
 		assertResponseCode(
 			404, invokeGetFormDocumentResponse(formDocument.getId()));

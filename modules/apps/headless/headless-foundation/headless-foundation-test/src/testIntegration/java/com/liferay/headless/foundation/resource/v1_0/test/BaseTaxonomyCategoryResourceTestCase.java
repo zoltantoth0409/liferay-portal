@@ -117,7 +117,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			testDeleteTaxonomyCategory_addTaxonomyCategory();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteTaxonomyCategoryResponse(taxonomyCategory.getId()));
 
 		assertResponseCode(

@@ -516,7 +516,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount userAccount = testDeleteUserAccount_addUserAccount();
 
 		assertResponseCode(
-			200, invokeDeleteUserAccountResponse(userAccount.getId()));
+			204, invokeDeleteUserAccountResponse(userAccount.getId()));
 
 		assertResponseCode(
 			404, invokeGetUserAccountResponse(userAccount.getId()));

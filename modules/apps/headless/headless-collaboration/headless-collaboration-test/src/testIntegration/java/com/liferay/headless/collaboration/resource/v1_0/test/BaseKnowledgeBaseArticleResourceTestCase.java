@@ -1063,7 +1063,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			testDeleteKnowledgeBaseArticle_addKnowledgeBaseArticle();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteKnowledgeBaseArticleResponse(
 				knowledgeBaseArticle.getId()));
 

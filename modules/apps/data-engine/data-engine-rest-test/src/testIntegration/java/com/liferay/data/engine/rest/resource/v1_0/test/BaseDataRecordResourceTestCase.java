@@ -361,7 +361,7 @@ public abstract class BaseDataRecordResourceTestCase {
 		DataRecord dataRecord = testDeleteDataRecord_addDataRecord();
 
 		assertResponseCode(
-			200, invokeDeleteDataRecordResponse(dataRecord.getId()));
+			204, invokeDeleteDataRecordResponse(dataRecord.getId()));
 
 		assertResponseCode(
 			404, invokeGetDataRecordResponse(dataRecord.getId()));

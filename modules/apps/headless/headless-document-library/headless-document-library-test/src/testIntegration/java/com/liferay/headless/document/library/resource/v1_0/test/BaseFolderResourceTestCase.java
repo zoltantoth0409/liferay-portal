@@ -531,7 +531,7 @@ public abstract class BaseFolderResourceTestCase {
 	public void testDeleteFolder() throws Exception {
 		Folder folder = testDeleteFolder_addFolder();
 
-		assertResponseCode(200, invokeDeleteFolderResponse(folder.getId()));
+		assertResponseCode(204, invokeDeleteFolderResponse(folder.getId()));
 
 		assertResponseCode(404, invokeGetFolderResponse(folder.getId()));
 	}

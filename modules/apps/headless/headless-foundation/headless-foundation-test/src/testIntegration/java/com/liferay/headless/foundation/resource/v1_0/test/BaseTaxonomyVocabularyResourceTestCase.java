@@ -577,7 +577,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			testDeleteTaxonomyVocabulary_addTaxonomyVocabulary();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteTaxonomyVocabularyResponse(taxonomyVocabulary.getId()));
 
 		assertResponseCode(

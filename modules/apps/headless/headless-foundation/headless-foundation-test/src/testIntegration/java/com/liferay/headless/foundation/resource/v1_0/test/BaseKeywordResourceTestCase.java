@@ -531,7 +531,7 @@ public abstract class BaseKeywordResourceTestCase {
 	public void testDeleteKeyword() throws Exception {
 		Keyword keyword = testDeleteKeyword_addKeyword();
 
-		assertResponseCode(200, invokeDeleteKeywordResponse(keyword.getId()));
+		assertResponseCode(204, invokeDeleteKeywordResponse(keyword.getId()));
 
 		assertResponseCode(404, invokeGetKeywordResponse(keyword.getId()));
 	}

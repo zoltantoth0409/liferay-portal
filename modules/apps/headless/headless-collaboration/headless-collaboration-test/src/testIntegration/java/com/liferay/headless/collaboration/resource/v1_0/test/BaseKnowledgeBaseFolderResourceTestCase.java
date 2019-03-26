@@ -379,7 +379,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			testDeleteKnowledgeBaseFolder_addKnowledgeBaseFolder();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteKnowledgeBaseFolderResponse(
 				knowledgeBaseFolder.getId()));
 

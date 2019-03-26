@@ -1098,7 +1098,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			testDeleteStructuredContent_addStructuredContent();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteStructuredContentResponse(structuredContent.getId()));
 
 		assertResponseCode(

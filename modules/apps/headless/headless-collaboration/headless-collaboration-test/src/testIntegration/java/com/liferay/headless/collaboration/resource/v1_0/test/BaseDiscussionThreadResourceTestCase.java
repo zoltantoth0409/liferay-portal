@@ -1036,7 +1036,7 @@ public abstract class BaseDiscussionThreadResourceTestCase {
 			testDeleteDiscussionThread_addDiscussionThread();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteDiscussionThreadResponse(discussionThread.getId()));
 
 		assertResponseCode(

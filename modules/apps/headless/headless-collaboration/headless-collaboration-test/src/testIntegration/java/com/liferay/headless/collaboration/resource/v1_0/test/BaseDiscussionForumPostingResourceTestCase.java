@@ -117,7 +117,7 @@ public abstract class BaseDiscussionForumPostingResourceTestCase {
 			testDeleteDiscussionForumPosting_addDiscussionForumPosting();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteDiscussionForumPostingResponse(
 				discussionForumPosting.getId()));
 

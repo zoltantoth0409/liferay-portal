@@ -205,24 +205,24 @@ public abstract class BaseKeywordResourceTestCase {
 	}
 
 	@Test
-	public void testPostKeywordCommonPage() throws Exception {
+	public void testPostKeywordsCommonPage() throws Exception {
 		Keyword randomKeyword = randomKeyword();
 
-		Keyword postKeyword = testPostKeywordCommonPage_addKeyword(
+		Keyword postKeyword = testPostKeywordsCommonPage_addKeyword(
 			randomKeyword);
 
 		assertEquals(randomKeyword, postKeyword);
 		assertValid(postKeyword);
 	}
 
-	protected Keyword testPostKeywordCommonPage_addKeyword(Keyword keyword)
+	protected Keyword testPostKeywordsCommonPage_addKeyword(Keyword keyword)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected Page<Keyword> invokePostKeywordCommonPage(
+	protected Page<Keyword> invokePostKeywordsCommonPage(
 			DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 
@@ -246,7 +246,7 @@ public abstract class BaseKeywordResourceTestCase {
 			});
 	}
 
-	protected Http.Response invokePostKeywordCommonPageResponse(
+	protected Http.Response invokePostKeywordsCommonPageResponse(
 			DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 

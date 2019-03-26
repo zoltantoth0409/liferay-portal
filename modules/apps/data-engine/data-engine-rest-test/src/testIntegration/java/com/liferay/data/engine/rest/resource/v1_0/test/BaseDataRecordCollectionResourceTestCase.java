@@ -564,7 +564,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			testDeleteDataRecordCollection_addDataRecordCollection();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteDataRecordCollectionResponse(
 				dataRecordCollection.getId()));
 

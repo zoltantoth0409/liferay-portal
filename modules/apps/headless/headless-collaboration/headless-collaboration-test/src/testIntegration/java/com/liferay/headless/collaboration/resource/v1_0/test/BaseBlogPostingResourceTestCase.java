@@ -116,7 +116,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 		BlogPosting blogPosting = testDeleteBlogPosting_addBlogPosting();
 
 		assertResponseCode(
-			200, invokeDeleteBlogPostingResponse(blogPosting.getId()));
+			204, invokeDeleteBlogPostingResponse(blogPosting.getId()));
 
 		assertResponseCode(
 			404, invokeGetBlogPostingResponse(blogPosting.getId()));

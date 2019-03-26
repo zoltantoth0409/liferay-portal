@@ -62,7 +62,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "TaxonomyVocabulary")})
 	public Page<TaxonomyVocabulary>
-			postContentSpaceTaxonomyVocabularyCommonPage(
+			postContentSpaceTaxonomyVocabulariesCommonPage(
 				@NotNull @PathParam("content-space-id") Long contentSpaceId,
 				DocumentBulkSelection documentBulkSelection)
 		throws Exception {

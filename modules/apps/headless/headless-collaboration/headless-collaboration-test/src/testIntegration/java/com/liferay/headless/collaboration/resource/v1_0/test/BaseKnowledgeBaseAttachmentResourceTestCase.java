@@ -302,7 +302,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			testDeleteKnowledgeBaseAttachment_addKnowledgeBaseAttachment();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteKnowledgeBaseAttachmentResponse(
 				knowledgeBaseAttachment.getId()));
 

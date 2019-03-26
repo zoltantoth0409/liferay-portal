@@ -574,7 +574,7 @@ public abstract class BaseDiscussionSectionResourceTestCase {
 			testDeleteDiscussionSection_addDiscussionSection();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteDiscussionSectionResponse(discussionSection.getId()));
 
 		assertResponseCode(

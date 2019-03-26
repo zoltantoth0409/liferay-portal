@@ -33,7 +33,7 @@ import javax.annotation.Generated;
 public interface TaxonomyVocabularyResource {
 
 	public Page<TaxonomyVocabulary>
-			postContentSpaceTaxonomyVocabularyCommonPage(
+			postContentSpaceTaxonomyVocabulariesCommonPage(
 				Long contentSpaceId,
 				DocumentBulkSelection documentBulkSelection)
 		throws Exception;

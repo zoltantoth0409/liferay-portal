@@ -104,14 +104,14 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	}
 
 	@Test
-	public void testPostContentSpaceTaxonomyVocabularyCommonPage()
+	public void testPostContentSpaceTaxonomyVocabulariesCommonPage()
 		throws Exception {
 
 		TaxonomyVocabulary randomTaxonomyVocabulary =
 			randomTaxonomyVocabulary();
 
 		TaxonomyVocabulary postTaxonomyVocabulary =
-			testPostContentSpaceTaxonomyVocabularyCommonPage_addTaxonomyVocabulary(
+			testPostContentSpaceTaxonomyVocabulariesCommonPage_addTaxonomyVocabulary(
 				randomTaxonomyVocabulary);
 
 		assertEquals(randomTaxonomyVocabulary, postTaxonomyVocabulary);
@@ -119,7 +119,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	}
 
 	protected TaxonomyVocabulary
-			testPostContentSpaceTaxonomyVocabularyCommonPage_addTaxonomyVocabulary(
+			testPostContentSpaceTaxonomyVocabulariesCommonPage_addTaxonomyVocabulary(
 				TaxonomyVocabulary taxonomyVocabulary)
 		throws Exception {
 
@@ -128,7 +128,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	}
 
 	protected Page<TaxonomyVocabulary>
-			invokePostContentSpaceTaxonomyVocabularyCommonPage(
+			invokePostContentSpaceTaxonomyVocabulariesCommonPage(
 				Long contentSpaceId,
 				DocumentBulkSelection documentBulkSelection)
 		throws Exception {
@@ -158,7 +158,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	}
 
 	protected Http.Response
-			invokePostContentSpaceTaxonomyVocabularyCommonPageResponse(
+			invokePostContentSpaceTaxonomyVocabulariesCommonPageResponse(
 				Long contentSpaceId,
 				DocumentBulkSelection documentBulkSelection)
 		throws Exception {

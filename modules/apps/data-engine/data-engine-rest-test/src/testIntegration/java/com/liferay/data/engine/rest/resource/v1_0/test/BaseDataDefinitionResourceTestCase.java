@@ -430,7 +430,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			testDeleteDataDefinition_addDataDefinition();
 
 		assertResponseCode(
-			200, invokeDeleteDataDefinitionResponse(dataDefinition.getId()));
+			204, invokeDeleteDataDefinitionResponse(dataDefinition.getId()));
 
 		assertResponseCode(
 			404, invokeGetDataDefinitionResponse(dataDefinition.getId()));

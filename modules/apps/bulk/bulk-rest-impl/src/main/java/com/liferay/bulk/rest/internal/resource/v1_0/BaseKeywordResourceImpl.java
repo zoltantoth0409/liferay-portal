@@ -82,7 +82,7 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 	@Path("/keywords/common")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "Keyword")})
-	public Page<Keyword> postKeywordCommonPage(
+	public Page<Keyword> postKeywordsCommonPage(
 			DocumentBulkSelection documentBulkSelection)
 		throws Exception {
 

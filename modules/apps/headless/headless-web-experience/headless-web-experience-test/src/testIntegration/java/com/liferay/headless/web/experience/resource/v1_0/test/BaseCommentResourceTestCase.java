@@ -115,7 +115,7 @@ public abstract class BaseCommentResourceTestCase {
 	public void testDeleteComment() throws Exception {
 		Comment comment = testDeleteComment_addComment();
 
-		assertResponseCode(200, invokeDeleteCommentResponse(comment.getId()));
+		assertResponseCode(204, invokeDeleteCommentResponse(comment.getId()));
 
 		assertResponseCode(404, invokeGetCommentResponse(comment.getId()));
 	}

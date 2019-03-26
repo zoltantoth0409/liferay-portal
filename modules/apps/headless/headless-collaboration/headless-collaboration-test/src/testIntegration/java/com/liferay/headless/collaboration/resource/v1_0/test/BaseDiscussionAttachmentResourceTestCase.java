@@ -111,7 +111,7 @@ public abstract class BaseDiscussionAttachmentResourceTestCase {
 			testDeleteDiscussionAttachment_addDiscussionAttachment();
 
 		assertResponseCode(
-			200,
+			204,
 			invokeDeleteDiscussionAttachmentResponse(
 				discussionAttachment.getId()));
 

@@ -519,7 +519,7 @@ public abstract class BaseDocumentResourceTestCase {
 	public void testDeleteDocument() throws Exception {
 		Document document = testDeleteDocument_addDocument();
 
-		assertResponseCode(200, invokeDeleteDocumentResponse(document.getId()));
+		assertResponseCode(204, invokeDeleteDocumentResponse(document.getId()));
 
 		assertResponseCode(404, invokeGetDocumentResponse(document.getId()));
 	}
