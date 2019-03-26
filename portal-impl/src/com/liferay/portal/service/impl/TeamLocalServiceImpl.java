@@ -111,6 +111,14 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 
 		teamPersistence.remove(team);
 
+		// Resources
+
+		resourceLocalService.deleteResource(
+			team.getCompanyId(), Team.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL, team.getTeamId());
+
+		// Group
+
 		List<Group> groups = groupPersistence.findByC_S(
 			team.getCompanyId(), true);
 
@@ -133,12 +141,6 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 					group.getGroupId(), typeSettingsProperties.toString());
 			}
 		}
-
-		// Resources
-
-		resourceLocalService.deleteResource(
-			team.getCompanyId(), Team.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL, team.getTeamId());
 
 		// Role
 
