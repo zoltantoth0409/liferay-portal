@@ -70,92 +70,96 @@ public class GoogleCloudNaturalLanguageDocumentAssetAutoTagProvider
 	@Override
 	public Collection<String> getTagNames(FileEntry fileEntry) {
 		try {
-			if (fileEntry.isRepositoryCapabilityProvided(
-					TemporaryFileEntriesCapability.class) ||
-				!_supportedContentTypes.contains(fileEntry.getMimeType())) {
-
-				return Collections.emptyList();
-			}
-
-			GoogleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration
-				googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration =
-					_getConfiguration(fileEntry);
-
-			if (!googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
-					classificationEndpointEnabled() &&
-				!googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
-					entityEndpointEnabled()) {
-
-				return Collections.emptyList();
-			}
-
-			Set<String> tagNames = new HashSet<>();
-
-			String apiKey =
-				googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
-					apiKey();
-
-			String type = _getFileEntryType(fileEntry);
-
-			int size =
-				GoogleCloudNaturalLanguageAssetAutoTagProviderConstants.
-					MAX_CHARACTERS_SERVICE - _MINIMUM_PAYLOAD_SIZE -
-						type.length();
-
-			String truncatedContent =
-				GoogleCloudNaturalLanguageUtil.truncateToSize(
-					_getFileEntryContent(fileEntry), size);
-
-			String documentPayload =
-				GoogleCloudNaturalLanguageUtil.getDocumentPayload(
-					truncatedContent, type);
-
-			if (googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
-					classificationEndpointEnabled()) {
-
-				JSONObject responseJSONObject = _post(
-					_getServiceURL(apiKey, "classifyText"), documentPayload);
-
-				JSONArray jsonArray = responseJSONObject.getJSONArray(
-					"categories");
-
-				float confidence =
-					googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
-						confidence();
-
-				_processTagNames(
-					jsonArray,
-					jsonObject ->
-						jsonObject.getDouble("confidence") > confidence,
-					tagNames::add);
-			}
-
-			if (googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
-					entityEndpointEnabled()) {
-
-				JSONObject responseJSONObject = _post(
-					_getServiceURL(apiKey, "analyzeEntities"), documentPayload);
-
-				JSONArray jsonArray = responseJSONObject.getJSONArray(
-					"entities");
-
-				float salience =
-					googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
-						salience();
-
-				_processTagNames(
-					jsonArray,
-					jsonObject -> jsonObject.getDouble("salience") > salience,
-					tagNames::add);
-			}
-
-			return tagNames;
+			return _getTagNames(fileEntry);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
 
 			return Collections.emptyList();
 		}
+	}
+
+	private Collection<String> _getTagNames(FileEntry fileEntry) throws Exception {
+		if (fileEntry.isRepositoryCapabilityProvided(
+				TemporaryFileEntriesCapability.class) ||
+			!_supportedContentTypes.contains(fileEntry.getMimeType())) {
+
+			return Collections.emptyList();
+		}
+
+		GoogleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration
+			googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration =
+				_getConfiguration(fileEntry);
+
+		if (!googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
+				classificationEndpointEnabled() &&
+			!googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
+				entityEndpointEnabled()) {
+
+			return Collections.emptyList();
+		}
+
+		Set<String> tagNames = new HashSet<>();
+
+		String apiKey =
+			googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
+				apiKey();
+
+		String type = _getFileEntryType(fileEntry);
+
+		int size =
+			GoogleCloudNaturalLanguageAssetAutoTagProviderConstants.
+				MAX_CHARACTERS_SERVICE - _MINIMUM_PAYLOAD_SIZE -
+					type.length();
+
+		String truncatedContent =
+			GoogleCloudNaturalLanguageUtil.truncateToSize(
+				_getFileEntryContent(fileEntry), size);
+
+		String documentPayload =
+			GoogleCloudNaturalLanguageUtil.getDocumentPayload(
+				truncatedContent, type);
+
+		if (googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
+				classificationEndpointEnabled()) {
+
+			JSONObject responseJSONObject = _post(
+				_getServiceURL(apiKey, "classifyText"), documentPayload);
+
+			JSONArray jsonArray = responseJSONObject.getJSONArray(
+				"categories");
+
+			float confidence =
+				googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
+					confidence();
+
+			_processTagNames(
+				jsonArray,
+				jsonObject ->
+					jsonObject.getDouble("confidence") > confidence,
+				tagNames::add);
+		}
+
+		if (googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
+				entityEndpointEnabled()) {
+
+			JSONObject responseJSONObject = _post(
+				_getServiceURL(apiKey, "analyzeEntities"), documentPayload);
+
+			JSONArray jsonArray = responseJSONObject.getJSONArray(
+				"entities");
+
+			float salience =
+				googleCloudNaturalLanguageAssetAutoTagProviderCompanyConfiguration.
+					salience();
+
+			_processTagNames(
+				jsonArray,
+				jsonObject -> jsonObject.getDouble("salience") > salience,
+				tagNames::add);
+		}
+
+		return tagNames;
 	}
 
 	private static <T> Predicate<T> _negate(Predicate<T> predicate) {
