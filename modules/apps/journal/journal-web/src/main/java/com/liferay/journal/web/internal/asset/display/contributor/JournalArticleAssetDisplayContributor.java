@@ -79,7 +79,7 @@ public class JournalArticleAssetDisplayContributor
 			long classTypeId, Locale locale)
 		throws PortalException {
 
-		List<AssetDisplayField> classTypesFields = super.getClassTypeFields(
+		List<AssetDisplayField> assetDisplayFields = super.getClassTypeFields(
 			classTypeId, locale);
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.fetchDDMStructure(
@@ -89,19 +89,18 @@ public class JournalArticleAssetDisplayContributor
 
 		Stream<DDMTemplate> stream = ddmTemplates.stream();
 
-		List<AssetDisplayField> assetDisplayFields = stream.map(
-			ddmTemplate -> new AssetDisplayField(
-				_DDM_TEMPLATE + ddmTemplate.getTemplateKey(),
-				ddmTemplate.getName(locale) + StringPool.SPACE +
-					StringPool.STAR,
-				"text")
-		).collect(
-			Collectors.toList()
-		);
+		assetDisplayFields.addAll(
+			stream.map(
+				ddmTemplate -> new AssetDisplayField(
+					_DDM_TEMPLATE + ddmTemplate.getTemplateKey(),
+					ddmTemplate.getName(locale) + StringPool.SPACE +
+						StringPool.STAR,
+					"text")
+			).collect(
+				Collectors.toList()
+			));
 
-		classTypesFields.addAll(assetDisplayFields);
-
-		return classTypesFields;
+		return assetDisplayFields;
 	}
 
 	@Override
