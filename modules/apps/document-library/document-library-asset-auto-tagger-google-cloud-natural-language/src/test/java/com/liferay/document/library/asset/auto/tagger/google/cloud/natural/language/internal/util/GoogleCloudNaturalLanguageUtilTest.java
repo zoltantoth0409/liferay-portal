@@ -90,17 +90,6 @@ public class GoogleCloudNaturalLanguageUtilTest {
 				StringPool.BLANK, RandomTestUtil.randomInt()));
 	}
 
-	@Test
-	public void testTruncateToSizeUnicodeTextEqualToMax() {
-		String text = "中國哲學書電子化計劃 中國哲學書電子化計劃 中國哲學書電子化計劃";
-
-		byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
-
-		Assert.assertEquals(
-			text,
-			GoogleCloudNaturalLanguageUtil.truncateToSize(text, bytes.length));
-	}
-
 	@Test(expected = NullPointerException.class)
 	public void testTruncateToSizeNullString() {
 		GoogleCloudNaturalLanguageUtil.truncateToSize(
@@ -114,8 +103,7 @@ public class GoogleCloudNaturalLanguageUtilTest {
 		String text = RandomTestUtil.randomString(size);
 
 		Assert.assertEquals(
-			text,
-			GoogleCloudNaturalLanguageUtil.truncateToSize(text, size));
+			text, GoogleCloudNaturalLanguageUtil.truncateToSize(text, size));
 	}
 
 	@Test
@@ -135,9 +123,7 @@ public class GoogleCloudNaturalLanguageUtilTest {
 		String text = RandomTestUtil.randomString(size - 1);
 
 		Assert.assertEquals(
-			text,
-			GoogleCloudNaturalLanguageUtil.truncateToSize(
-				text, size));
+			text, GoogleCloudNaturalLanguageUtil.truncateToSize(text, size));
 	}
 
 	@Test
@@ -187,11 +173,19 @@ public class GoogleCloudNaturalLanguageUtilTest {
 			RandomTestUtil.randomString((size / 2) - 1) + StringPool.SPACE +
 				RandomTestUtil.randomString((size / 2) - 1);
 
+		Assert.assertEquals(
+			text, GoogleCloudNaturalLanguageUtil.truncateToSize(text, size));
+	}
+
+	@Test
+	public void testTruncateToSizeUnicodeTextEqualToMax() {
+		String text = "中國哲學書電子化計劃 中國哲學書電子化計劃 中國哲學書電子化計劃";
+
+		byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
 
 		Assert.assertEquals(
 			text,
-			GoogleCloudNaturalLanguageUtil.truncateToSize(
-				text, size));
+			GoogleCloudNaturalLanguageUtil.truncateToSize(text, bytes.length));
 	}
 
 	@Test
