@@ -69,7 +69,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 	}
 
 	@Override
-	public Page<Keyword> postKeywordCommonPage(
+	public Page<Keyword> postKeywordsCommonPage(
 			DocumentBulkSelection documentSelection)
 		throws Exception {
 

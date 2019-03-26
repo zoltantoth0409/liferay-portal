@@ -66,7 +66,7 @@ public class TaxonomyVocabularyResourceImpl
 
 	@Override
 	public Page<TaxonomyVocabulary>
-			postContentSpaceTaxonomyVocabularyCommonPage(
+			postContentSpaceTaxonomyVocabulariesCommonPage(
 				Long contentSpaceId,
 				DocumentBulkSelection documentBulkSelection)
 		throws Exception {
