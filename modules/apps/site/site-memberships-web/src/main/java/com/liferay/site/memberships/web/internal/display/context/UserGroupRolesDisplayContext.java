@@ -20,18 +20,15 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.RoleConstants;
-import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
-import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
-import com.liferay.portal.kernel.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -40,7 +37,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portlet.rolesadmin.search.RoleSearch;
 import com.liferay.portlet.rolesadmin.search.RoleSearchTerms;
-import com.liferay.portlet.sites.search.UserGroupGroupRoleRoleChecker;
 import com.liferay.site.memberships.web.internal.constants.SiteMembershipsPortletKeys;
 import com.liferay.users.admin.kernel.util.UsersAdminUtil;
 
@@ -217,17 +213,10 @@ public class UserGroupRolesDisplayContext {
 
 		RoleSearch roleSearch = new RoleSearch(_renderRequest, getPortletURL());
 
-		Group group = GroupLocalServiceUtil.fetchGroup(getGroupId());
-
-		UserGroup userGroup = UserGroupLocalServiceUtil.fetchUserGroup(
-			getUserGroupId());
-
-		roleSearch.setRowChecker(
-			new UserGroupGroupRoleRoleChecker(
-				_renderResponse, userGroup, group));
-
 		RoleSearchTerms searchTerms =
 			(RoleSearchTerms)roleSearch.getSearchTerms();
+
+		roleSearch.setRowChecker(new EmptyOnClickRowChecker(_renderResponse));
 
 		List<Role> roles = RoleLocalServiceUtil.search(
 			themeDisplay.getCompanyId(), searchTerms.getKeywords(),
