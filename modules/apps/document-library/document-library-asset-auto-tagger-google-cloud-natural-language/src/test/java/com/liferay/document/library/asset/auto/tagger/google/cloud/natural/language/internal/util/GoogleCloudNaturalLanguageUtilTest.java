@@ -153,7 +153,7 @@ public class GoogleCloudNaturalLanguageUtilTest {
 	}
 
 	@Test
-	public void testTruncateToSizeTextGreaterThanMaxWithTwoWordSmallerThanSize() {
+	public void testTruncateToSizeTextGreaterThanMaxWithTwoWordsSmallerThanSize() {
 		int size = _randomSize();
 
 		String text =
