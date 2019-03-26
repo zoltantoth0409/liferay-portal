@@ -17,11 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-JournalArticle article = journalDisplayContext.getArticle();
-
-JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalEditArticleDisplayContext(request, liferayPortletResponse, article);
-
 String layoutUuid = null;
+
+JournalArticle article = journalDisplayContext.getArticle();
 
 if (article != null) {
 	layoutUuid = article.getLayoutUuid();
@@ -36,6 +34,8 @@ if (Validator.isNotNull(layoutUuid)) {
 		articleLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(layoutUuid, article.getGroupId(), true);
 	}
 }
+
+JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalEditArticleDisplayContext(request, liferayPortletResponse, article);
 %>
 
 <c:if test="<%= Validator.isNotNull(layoutUuid) && (articleLayout == null) %>">
