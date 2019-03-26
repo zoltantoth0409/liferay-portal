@@ -106,7 +106,7 @@ definition {
 
 		PortletEntry.publish();
 
-		LexiconEntry.gotoEntryMenuItem(menuItem = "Edit", rowEntry = "Fragment Name");
+		LexiconEntry.gotoEntry(rowEntry = "Fragment Name");
 
 		var htmlSnippet = TestCase.getFileContent(fileName = "fragment_title.html");
 
@@ -138,7 +138,7 @@ definition {
 
 		PortletEntry.publish();
 
-		LexiconEntry.gotoEntryMenuItem(menuItem = "Edit", rowEntry = "Fragment Name");
+		LexiconEntry.gotoEntry(rowEntry = "Fragment Name");
 
 		SelectFrame(locator1 = "FragmentEditor#PREVIEW_IFRAME");
 
