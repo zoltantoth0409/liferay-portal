@@ -136,11 +136,14 @@ public class OpenIdConnectServiceHandlerImpl
 		if (!OpenIdConnectFlowState.AUTH_REQUESTED.equals(
 				openIdConnectSessionImpl.getOpenIdConnectFlowState())) {
 
+			OpenIdConnectFlowState openIdConnectFlowState =
+				openIdConnectSessionImpl.getOpenIdConnectFlowState();
+
 			throw new OpenIdConnectServiceException.AuthenticationException(
 				StringBundler.concat(
 					"OpenId Connect login flow is not in the ",
-					OpenIdConnectFlowState.AUTH_REQUESTED, " state: ",
-					openIdConnectSessionImpl.getOpenIdConnectFlowState()));
+					OpenIdConnectFlowState.AUTH_REQUESTED.name(), " state: ",
+					openIdConnectFlowState.name()));
 		}
 
 		validateState(
