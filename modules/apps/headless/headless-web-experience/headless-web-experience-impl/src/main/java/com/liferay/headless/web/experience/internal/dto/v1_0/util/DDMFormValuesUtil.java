@@ -51,7 +51,7 @@ public class DDMFormValuesUtil {
 		List<DDMFormField> rootDDMFormFields) {
 
 		Map<String, List<ContentField>> contentFieldMap = _toContentFieldsMap(
-			contentFields);
+			Stream.of(contentFields));
 
 		return new DDMFormValues(ddmForm) {
 			{
@@ -100,11 +100,9 @@ public class DDMFormValuesUtil {
 	}
 
 	private static Map<String, List<ContentField>> _toContentFieldsMap(
-		ContentField[] contentFields) {
+		Stream<ContentField> stream) {
 
-		return Stream.of(
-			contentFields
-		).collect(
+		return stream.collect(
 			Collectors.groupingBy(ContentField::getName)
 		);
 	}
@@ -116,7 +114,7 @@ public class DDMFormValuesUtil {
 		LayoutLocalService layoutLocalService, Locale locale, Value value) {
 
 		Map<String, List<ContentField>> contentFieldMap = _toContentFieldsMap(
-			contentFields.toArray(new ContentField[0]));
+			contentFields.stream());
 
 		return new DDMFormFieldValue() {
 			{
