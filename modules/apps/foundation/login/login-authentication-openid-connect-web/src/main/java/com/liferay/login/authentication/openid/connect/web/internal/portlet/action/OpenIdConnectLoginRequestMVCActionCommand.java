@@ -32,7 +32,7 @@ import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectWeb
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.ActionURL;
+import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -136,23 +136,23 @@ public class OpenIdConnectLoginRequestMVCActionCommand
 			LiferayPortletResponse liferayPortletResponse =
 				_portal.getLiferayPortletResponse(actionResponse);
 
-			ActionURL actionURL = liferayPortletResponse.createActionURL();
+			PortletURL portletURL = liferayPortletResponse.createActionURL();
 
-			actionURL.setParameter(
+			portletURL.setParameter(
 				ActionRequest.ACTION_NAME,
 				OpenIdConnectWebKeys.OPEN_ID_CONNECT_RESPONSE_ACTION_NAME);
 
-			actionURL.setParameter("saveLastPath", Boolean.FALSE.toString());
+			portletURL.setParameter("saveLastPath", Boolean.FALSE.toString());
 
 			String redirect = ParamUtil.getString(actionRequest, "redirect");
 
 			if (Validator.isNotNull(redirect)) {
-				actionURL.setParameter("redirect", redirect);
+				portletURL.setParameter("redirect", redirect);
 			}
 
 			session.setAttribute(
 				OpenIdConnectWebKeys.OPEN_ID_CONNECT_ACTION_URL,
-				actionURL.toString());
+				portletURL.toString());
 
 			_openIdConnectServiceHandler.requestAuthentication(
 				openIdConnectProviderName, httpServletRequest,
