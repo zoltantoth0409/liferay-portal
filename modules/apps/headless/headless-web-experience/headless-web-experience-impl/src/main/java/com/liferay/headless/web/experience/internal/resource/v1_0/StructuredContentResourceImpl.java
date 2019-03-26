@@ -53,7 +53,7 @@ import com.liferay.headless.web.experience.internal.dto.v1_0.util.ContentDocumen
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.ContentStructureUtil;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.DDMFormValuesUtil;
-import com.liferay.headless.web.experience.internal.dto.v1_0.util.ValueUtil;
+import com.liferay.headless.web.experience.internal.dto.v1_0.util.DDMValueUtil;
 import com.liferay.headless.web.experience.internal.odata.entity.v1_0.EntityFieldsProvider;
 import com.liferay.headless.web.experience.internal.odata.entity.v1_0.StructuredContentEntityModel;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
@@ -688,7 +688,7 @@ public class StructuredContentResourceImpl
 			Field field = fields.get(contentField.getName());
 
 			com.liferay.dynamic.data.mapping.model.Value value =
-				ValueUtil.toValue(
+				DDMValueUtil.toDDMValue(
 					contentField,
 					_getDDMFormField(ddmStructure, contentField.getName()),
 					_dlAppService, journalArticle.getGroupId(),

@@ -156,7 +156,7 @@ public class DDMFormValuesUtil {
 				ListUtil.toList(contentField.getNestedFields()), ddmFormField,
 				dlAppService, groupId, journalArticleService,
 				layoutLocalService, locale,
-				ValueUtil.toValue(
+				DDMValueUtil.toDDMValue(
 					contentField, ddmFormField, dlAppService, groupId,
 					journalArticleService, layoutLocalService, locale)));
 	}
