@@ -203,7 +203,7 @@ public class AssignScopesDisplayContext
 			AssignableScopes applicationAssignableScopes =
 				assignableScopes.getApplicationAssignableScopes(
 					applicationName);
-			boolean applicationUnassignableScopes = true;
+			boolean unassignable = true;
 
 			for (Map.Entry<AssignableScopes, Relations> entry :
 					localRelations.entrySet()) {
@@ -214,7 +214,7 @@ public class AssignScopesDisplayContext
 					relations._globalAssignableScopes.add(assignableScopes);
 				}
 
-				if (!applicationUnassignableScopes) {
+				if (!unassignable) {
 					continue;
 				}
 
@@ -225,11 +225,11 @@ public class AssignScopesDisplayContext
 					applicationAssignableScopes.getLiferayOAuth2Scopes();
 
 				if (liferayOAuth2Scopes.isEmpty()) {
-					applicationUnassignableScopes = false;
+					unassignable = false;
 				}
 			}
 
-			if (!applicationUnassignableScopes) {
+			if (!unassignable) {
 				continue;
 			}
 
