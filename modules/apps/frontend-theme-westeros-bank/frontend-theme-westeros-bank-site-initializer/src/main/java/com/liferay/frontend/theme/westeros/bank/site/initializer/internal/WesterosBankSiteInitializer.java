@@ -528,32 +528,33 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 				continue;
 			}
 
-			PortletPreferences portletPreferences =
+			PortletPreferences jxPortletPreferences =
 				new PortletPreferencesImpl();
 
-			portletPreferences.setValue("articleId", articleId);
-
-			portletPreferences.setValue(
+			jxPortletPreferences.setValue("articleId", articleId);
+			jxPortletPreferences.setValue(
 				"portletSetupPortletDecoratorId", "barebone");
 
 			String portletId = PortletIdCodec.encode(
 				JournalContentPortletKeys.JOURNAL_CONTENT,
 				fragmentEntryLink.getNamespace());
 
-			com.liferay.portal.kernel.model.PortletPreferences preferences =
-				_portletPreferencesLocalService.fetchPortletPreferences(
-					0, PortletKeys.PREFS_OWNER_TYPE_LAYOUT, plid, portletId);
+			com.liferay.portal.kernel.model.PortletPreferences
+				portletPreferences =
+					_portletPreferencesLocalService.fetchPortletPreferences(
+						0, PortletKeys.PREFS_OWNER_TYPE_LAYOUT, plid,
+						portletId);
 
-			if (preferences == null) {
+			if (portletPreferences == null) {
 				_portletPreferencesLocalService.addPortletPreferences(
 					companyId, 0, PortletKeys.PREFS_OWNER_TYPE_LAYOUT, plid,
 					portletId, null,
-					PortletPreferencesFactoryUtil.toXML(portletPreferences));
+					PortletPreferencesFactoryUtil.toXML(jxPortletPreferences));
 			}
 			else {
 				_portletPreferencesLocalService.updatePreferences(
 					0, PortletKeys.PREFS_OWNER_TYPE_LAYOUT, plid, portletId,
-					portletPreferences);
+					jxPortletPreferences);
 			}
 		}
 	}
