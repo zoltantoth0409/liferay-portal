@@ -20,7 +20,6 @@
 SiteAdministrationPanelCategoryDisplayContext siteAdministrationPanelCategoryDisplayContext = new SiteAdministrationPanelCategoryDisplayContext(liferayPortletRequest, liferayPortletResponse, null);
 
 Group group = siteAdministrationPanelCategoryDisplayContext.getGroup();
-
 PanelCategory panelCategory = siteAdministrationPanelCategoryDisplayContext.getPanelCategory();
 %>
 
