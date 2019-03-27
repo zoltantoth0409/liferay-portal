@@ -35,16 +35,16 @@ public class PrincipalExceptionMapper
 
 	@Override
 	public Response toResponse(PrincipalException pe) {
+		Response.Status status = Response.Status.FORBIDDEN;
+
 		String method = _httpServletRequest.getMethod();
 
 		if (method.equals(HttpMethods.GET)) {
-			return Response.status(
-				Response.Status.NOT_FOUND
-			).build();
+			status = Response.Status.NOT_FOUND;
 		}
 
 		return Response.status(
-			Response.Status.FORBIDDEN
+			status
 		).build();
 	}
 
