@@ -90,7 +90,7 @@ public class KnowledgeBaseArticleResourceImpl
 
 		return _getKnowledgeBaseArticlesPage(
 			booleanQuery -> {
-				if ((tree != null) && tree) {
+				if (Boolean.TRUE.equals(tree)) {
 					BooleanFilter booleanFilter =
 						booleanQuery.getPreBooleanFilter();
 
