@@ -690,7 +690,7 @@ paths:
                                 $ref: "#/components/schemas/DataRecordCollection"
                     description: ""
             tags: ["DataRecordCollection"]
-    "/data-record-collections/{data-record-collection-id}/export":
+    "/data-record-collections/{data-record-collection-id}/data-records/export":
         get:
             parameters:
                 - in: path

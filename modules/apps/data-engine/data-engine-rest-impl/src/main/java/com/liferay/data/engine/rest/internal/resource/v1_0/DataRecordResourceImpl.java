@@ -108,7 +108,8 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	}
 
 	@Override
-	public String getDataRecordCollectionExport(Long dataRecordCollectionId)
+	public String getDataRecordCollectionDataRecordExport(
+			Long dataRecordCollectionId)
 		throws Exception {
 
 		return _dataRecordExporter.export(
