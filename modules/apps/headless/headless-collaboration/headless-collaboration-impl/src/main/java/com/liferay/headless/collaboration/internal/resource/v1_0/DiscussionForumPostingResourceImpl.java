@@ -234,13 +234,6 @@ public class DiscussionForumPostingResourceImpl
 				anonymous = mbMessage.isAnonymous();
 				articleBody = mbMessage.getBody();
 				contentSpaceId = mbMessage.getGroupId();
-
-				if (!mbMessage.isAnonymous()) {
-					creator = CreatorUtil.toCreator(
-						_portal,
-						_userService.getUserById(mbMessage.getUserId()));
-				}
-
 				dateCreated = mbMessage.getCreateDate();
 				dateModified = mbMessage.getModifiedDate();
 				headline = mbMessage.getSubject();
@@ -261,6 +254,17 @@ public class DiscussionForumPostingResourceImpl
 						MBMessage.class.getName(), mbMessage.getClassPK()),
 					TaxonomyCategoryUtil::toTaxonomyCategory,
 					TaxonomyCategory.class);
+
+				setCreator(
+					() -> {
+						if (mbMessage.isAnonymous()) {
+							return null;
+						}
+
+						return CreatorUtil.toCreator(
+							_portal,
+							_userService.getUserById(mbMessage.getUserId()));
+					});
 			}
 		};
 	}
