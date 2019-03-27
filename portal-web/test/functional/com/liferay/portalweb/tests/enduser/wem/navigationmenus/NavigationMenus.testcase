@@ -124,6 +124,16 @@ definition {
 		NavigationMenusAdmin.openNavigationMenusAdmin(siteURLKey = "test-site-name");
 
 		NavigationMenusAdmin.configureMenuType(
+			menuType = "Primary Navigation",
+			navigationMenu = "Navigation Menu Name 1"
+		);
+
+		NavigationMenusAdmin.viewMenuType(
+			menuType = "Primary Navigation",
+			rowEntry = "Navigation Menu Name 1"
+		);
+
+		NavigationMenusAdmin.configureMenuType(
 			oldPrimaryNavigationMenu = "Navigation Menu Name 1",
 			menuType = "Primary Navigation",
 			navigationMenu = "Navigation Menu Name 2"
@@ -220,6 +230,11 @@ definition {
 			category = "Build",
 			panel = "Site Administration",
 			portlet = "Navigation Menus"
+		);
+
+		NavigationMenusAdmin.configureMenuType(
+			menuType = "Primary Navigation",
+			navigationMenu = "Test Navigation Menu Name"
 		);
 
 		LexiconEntry.gotoEntry(rowEntry = "Test Navigation Menu Name");
