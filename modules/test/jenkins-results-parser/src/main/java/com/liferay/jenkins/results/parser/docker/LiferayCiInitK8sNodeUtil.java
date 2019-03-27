@@ -197,7 +197,7 @@ public class LiferayCiInitK8sNodeUtil {
 
 			System.out.println(
 				JenkinsResultsParserUtil.combine(
-					"WARNING: Please set \'", environmentVariableName, "\'"));
+					"Please set \'", environmentVariableName, "\'"));
 
 			return null;
 		}
