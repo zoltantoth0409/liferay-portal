@@ -82,12 +82,12 @@ public class EditAssetDisplayMenuDisplayContext {
 					add(
 						dropdownItem -> {
 							String editLayoutURL = HttpUtil.setParameter(
-								_themeDisplay.getURLCurrent(), "p_l_mode",
-								Constants.EDIT);
+								_themeDisplay.getURLCurrent(), "p_l_back_url",
+								_themeDisplay.getURLCurrent());
 
 							editLayoutURL = HttpUtil.setParameter(
-								editLayoutURL, "p_l_back_url",
-								_themeDisplay.getURLCurrent());
+								editLayoutURL, "p_l_mode",
+								Constants.EDIT);
 
 							dropdownItem.setHref(editLayoutURL);
 
