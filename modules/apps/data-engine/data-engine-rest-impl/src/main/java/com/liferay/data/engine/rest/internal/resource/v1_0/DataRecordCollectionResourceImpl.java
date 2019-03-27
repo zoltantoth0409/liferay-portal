@@ -14,6 +14,7 @@
 
 package com.liferay.data.engine.rest.internal.resource.v1_0;
 
+import com.liferay.data.engine.rest.internal.resource.v1_0.util.DataEnginePermissionUtil;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollectionPermission;
 import com.liferay.data.engine.rest.internal.constants.DataActionKeys;
@@ -178,7 +179,9 @@ public class DataRecordCollectionResourceImpl
 				"Operation must be 'delete' or 'save'");
 		}
 
-		_checkPermission(contentSpaceId, ActionKeys.DEFINE_PERMISSIONS);
+		DataEnginePermissionUtil.checkPermission(
+			DataActionKeys.DEFINE_PERMISSIONS, contentSpaceId,
+			_groupLocalService);
 
 		List<String> actionIds = new ArrayList<>();
 
@@ -197,7 +200,11 @@ public class DataRecordCollectionResourceImpl
 		if (StringUtil.equalsIgnoreCase(
 				DataEngineConstants.OPERATION_SAVE_PERMISSION, operation)) {
 
-			for (Role role : _getRoles(dataRecordCollectionPermission)) {
+			List<Role> roles = DataEnginePermissionUtil.getRoles(
+				contextCompany, _roleLocalService,
+				dataRecordCollectionPermission.getRoleNames());
+
+			for (Role role : roles) {
 				_resourcePermissionLocalService.setResourcePermissions(
 					contextCompany.getCompanyId(),
 					DataEngineConstants.RESOURCE_NAME,
@@ -207,7 +214,11 @@ public class DataRecordCollectionResourceImpl
 			}
 		}
 		else {
-			for (Role role : _getRoles(dataRecordCollectionPermission)) {
+			List<Role> roles = DataEnginePermissionUtil.getRoles(
+				contextCompany, _roleLocalService,
+				dataRecordCollectionPermission.getRoleNames());
+
+			for (Role role : roles) {
 				ResourcePermission resourcePermission =
 					_resourcePermissionLocalService.fetchResourcePermission(
 						contextCompany.getCompanyId(),
@@ -232,9 +243,9 @@ public class DataRecordCollectionResourceImpl
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
 			dataDefinitionId);
 
-		_checkPermission(
-			ddmStructure.getGroupId(),
-			DataActionKeys.ADD_DATA_RECORD_COLLECTION);
+		DataEnginePermissionUtil.checkPermission(
+			DataActionKeys.ADD_DATA_RECORD_COLLECTION, ddmStructure.getGroupId(),
+			_groupLocalService);
 
 		return DataRecordCollectionUtil.toDataRecordCollection(
 			_ddlRecordSetLocalService.addRecordSet(
@@ -266,8 +277,9 @@ public class DataRecordCollectionResourceImpl
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
 			dataRecordCollectionId);
 
-		_checkPermission(
-			ddmStructure.getGroupId(), ActionKeys.DEFINE_PERMISSIONS);
+		DataEnginePermissionUtil.checkPermission(
+			DataActionKeys.DEFINE_PERMISSIONS, ddmStructure.getGroupId(),
+			_groupLocalService);
 
 		List<String> actionIds = new ArrayList<>();
 
@@ -306,7 +318,11 @@ public class DataRecordCollectionResourceImpl
 				String.valueOf(dataRecordCollectionId), modelPermissions);
 		}
 		else {
-			for (Role role : _getRoles(dataRecordCollectionPermission)) {
+			List<Role> roles = DataEnginePermissionUtil.getRoles(
+				contextCompany, _roleLocalService,
+				dataRecordCollectionPermission.getRoleNames());
+
+			for (Role role : roles) {
 				for (String actionId : actionIds) {
 					_resourcePermissionLocalService.removeResourcePermission(
 						contextCompany.getCompanyId(),
@@ -351,58 +367,6 @@ public class DataRecordCollectionResourceImpl
 			modelResourcePermission) {
 
 		_modelResourcePermission = modelResourcePermission;
-	}
-
-	private void _checkPermission(Long contentSpaceId, String actionId)
-		throws PortalException {
-
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		Group group = _groupLocalService.fetchGroup(contentSpaceId);
-
-		if ((group != null) && group.isStagingGroup()) {
-			group = group.getLiveGroup();
-		}
-
-		if (!permissionChecker.hasPermission(
-				group, DataEngineConstants.RESOURCE_NAME, contentSpaceId,
-				actionId)) {
-
-			throw new PrincipalException.MustHavePermission(
-				permissionChecker, DataEngineConstants.RESOURCE_NAME,
-				contentSpaceId, actionId);
-		}
-	}
-
-	private List<Role> _getRoles(
-			DataRecordCollectionPermission dataRecordCollectionPermission)
-		throws PortalException {
-
-		List<String> invalidRoleNames = new ArrayList<>();
-		List<Role> roles = new ArrayList<>();
-
-		for (String roleName : dataRecordCollectionPermission.getRoleNames()) {
-			try {
-				roles.add(
-					_roleLocalService.getRole(
-						contextCompany.getCompanyId(), roleName));
-			}
-			catch (NoSuchRoleException nsre) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(roleName, nsre);
-				}
-
-				invalidRoleNames.add(roleName);
-			}
-		}
-
-		if (!invalidRoleNames.isEmpty()) {
-			throw new BadRequestException(
-				"Invalid roles: " + ArrayUtil.toStringArray(invalidRoleNames));
-		}
-
-		return roles;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
