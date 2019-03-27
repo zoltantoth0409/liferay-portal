@@ -46,7 +46,7 @@ public interface DataDefinitionResource {
 			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception;
 
-	public void postDataDefinitionPermission(
+	public void postDataDefinitionDataDefinitionPermission(
 			Long dataDefinitionId, String operation,
 			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception;

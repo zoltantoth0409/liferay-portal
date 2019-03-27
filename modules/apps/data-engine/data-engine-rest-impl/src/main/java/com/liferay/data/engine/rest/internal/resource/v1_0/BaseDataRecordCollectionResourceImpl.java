@@ -67,7 +67,7 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Consumes("application/json")
 	@POST
 	@Path(
-		"/content-spaces/{content-space-id}/data-record-collections/permissions"
+		"/content-spaces/{content-space-id}/data-record-collection-permissions"
 	)
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
@@ -136,10 +136,12 @@ public abstract class BaseDataRecordCollectionResourceImpl
 	@Override
 	@Consumes("application/json")
 	@POST
-	@Path("/data-record-collections/{data-record-collection-id}/permissions")
+	@Path(
+		"/data-record-collections/{data-record-collection-id}/data-record-collection-permissions"
+	)
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecordCollection")})
-	public void postDataRecordCollectionPermission(
+	public void postDataRecordCollectionDataRecordCollectionPermission(
 			@NotNull @PathParam("data-record-collection-id") Long
 				dataRecordCollectionId,
 			@NotNull @QueryParam("operation") String operation,

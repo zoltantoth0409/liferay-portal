@@ -110,7 +110,7 @@ public class Mutation {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public void postDataDefinitionPermission(
+	public void postDataDefinitionDataDefinitionPermission(
 			@GraphQLName("data-definition-id") Long dataDefinitionId,
 			@GraphQLName("operation") String operation,
 			@GraphQLName("DataDefinitionPermission") DataDefinitionPermission
@@ -121,8 +121,9 @@ public class Mutation {
 			_dataDefinitionResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			dataDefinitionResource ->
-				dataDefinitionResource.postDataDefinitionPermission(
-					dataDefinitionId, operation, dataDefinitionPermission));
+				dataDefinitionResource.
+					postDataDefinitionDataDefinitionPermission(
+						dataDefinitionId, operation, dataDefinitionPermission));
 	}
 
 	@GraphQLInvokeDetached
@@ -269,7 +270,7 @@ public class Mutation {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public void postDataRecordCollectionPermission(
+	public void postDataRecordCollectionDataRecordCollectionPermission(
 			@GraphQLName("data-record-collection-id") Long
 				dataRecordCollectionId,
 			@GraphQLName("operation") String operation,
@@ -281,9 +282,10 @@ public class Mutation {
 			_dataRecordCollectionResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			dataRecordCollectionResource ->
-				dataRecordCollectionResource.postDataRecordCollectionPermission(
-					dataRecordCollectionId, operation,
-					dataRecordCollectionPermission));
+				dataRecordCollectionResource.
+					postDataRecordCollectionDataRecordCollectionPermission(
+						dataRecordCollectionId, operation,
+						dataRecordCollectionPermission));
 	}
 
 	@GraphQLInvokeDetached

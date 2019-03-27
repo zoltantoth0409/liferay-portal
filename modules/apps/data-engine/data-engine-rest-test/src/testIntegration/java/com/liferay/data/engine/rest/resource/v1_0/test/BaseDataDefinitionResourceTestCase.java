@@ -391,7 +391,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/data-definitions/permissions",
+					"/content-spaces/{content-space-id}/data-definition-permissions",
 					contentSpaceId);
 
 		options.setLocation(location);
@@ -416,7 +416,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/data-definitions/permissions",
+					"/content-spaces/{content-space-id}/data-definition-permissions",
 					contentSpaceId);
 
 		options.setLocation(location);
@@ -429,26 +429,29 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	@Test
-	public void testPostDataDefinitionPermission() throws Exception {
+	public void testPostDataDefinitionDataDefinitionPermission()
+		throws Exception {
+
 		DataDefinition randomDataDefinition = randomDataDefinition();
 
 		DataDefinition postDataDefinition =
-			testPostDataDefinitionPermission_addDataDefinition(
+			testPostDataDefinitionDataDefinitionPermission_addDataDefinition(
 				randomDataDefinition);
 
 		assertEquals(randomDataDefinition, postDataDefinition);
 		assertValid(postDataDefinition);
 	}
 
-	protected DataDefinition testPostDataDefinitionPermission_addDataDefinition(
-			DataDefinition dataDefinition)
+	protected DataDefinition
+			testPostDataDefinitionDataDefinitionPermission_addDataDefinition(
+				DataDefinition dataDefinition)
 		throws Exception {
 
 		throw new UnsupportedOperationException(
 			"This method needs to be implemented");
 	}
 
-	protected void invokePostDataDefinitionPermission(
+	protected void invokePostDataDefinitionDataDefinitionPermission(
 			Long dataDefinitionId, String operation,
 			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception {
@@ -458,7 +461,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/data-definitions/{data-definition-id}/permissions",
+					"/data-definitions/{data-definition-id}/data-definition-permissions",
 					dataDefinitionId);
 
 		options.setLocation(location);
@@ -472,9 +475,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		}
 	}
 
-	protected Http.Response invokePostDataDefinitionPermissionResponse(
-			Long dataDefinitionId, String operation,
-			DataDefinitionPermission dataDefinitionPermission)
+	protected Http.Response
+			invokePostDataDefinitionDataDefinitionPermissionResponse(
+				Long dataDefinitionId, String operation,
+				DataDefinitionPermission dataDefinitionPermission)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -482,7 +486,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/data-definitions/{data-definition-id}/permissions",
+					"/data-definitions/{data-definition-id}/data-definition-permissions",
 					dataDefinitionId);
 
 		options.setLocation(location);
@@ -982,7 +986,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		for (int i = 0; i < values.length; i++) {
 			template = template.replaceFirst(
-				"\\{.*\\}", String.valueOf(values[i]));
+				"\\{.*?\\}", String.valueOf(values[i]));
 		}
 
 		return template;

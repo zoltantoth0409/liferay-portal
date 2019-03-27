@@ -100,7 +100,7 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Override
 	@Consumes("application/json")
 	@POST
-	@Path("/content-spaces/{content-space-id}/data-definitions/permissions")
+	@Path("/content-spaces/{content-space-id}/data-definition-permissions")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
 	public void postContentSpaceDataDefinitionPermission(
@@ -113,10 +113,10 @@ public abstract class BaseDataDefinitionResourceImpl
 	@Override
 	@Consumes("application/json")
 	@POST
-	@Path("/data-definitions/{data-definition-id}/permissions")
+	@Path("/data-definitions/{data-definition-id}/data-definition-permissions")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataDefinition")})
-	public void postDataDefinitionPermission(
+	public void postDataDefinitionDataDefinitionPermission(
 			@NotNull @PathParam("data-definition-id") Long dataDefinitionId,
 			@NotNull @QueryParam("operation") String operation,
 			DataDefinitionPermission dataDefinitionPermission)

@@ -141,7 +141,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/data-record-collections/permissions",
+					"/content-spaces/{content-space-id}/data-record-collection-permissions",
 					contentSpaceId);
 
 		options.setLocation(location);
@@ -166,7 +166,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/content-spaces/{content-space-id}/data-record-collections/permissions",
+					"/content-spaces/{content-space-id}/data-record-collection-permissions",
 					contentSpaceId);
 
 		options.setLocation(location);
@@ -631,12 +631,14 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	}
 
 	@Test
-	public void testPostDataRecordCollectionPermission() throws Exception {
+	public void testPostDataRecordCollectionDataRecordCollectionPermission()
+		throws Exception {
+
 		DataRecordCollection randomDataRecordCollection =
 			randomDataRecordCollection();
 
 		DataRecordCollection postDataRecordCollection =
-			testPostDataRecordCollectionPermission_addDataRecordCollection(
+			testPostDataRecordCollectionDataRecordCollectionPermission_addDataRecordCollection(
 				randomDataRecordCollection);
 
 		assertEquals(randomDataRecordCollection, postDataRecordCollection);
@@ -644,7 +646,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	}
 
 	protected DataRecordCollection
-			testPostDataRecordCollectionPermission_addDataRecordCollection(
+			testPostDataRecordCollectionDataRecordCollectionPermission_addDataRecordCollection(
 				DataRecordCollection dataRecordCollection)
 		throws Exception {
 
@@ -652,7 +654,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected void invokePostDataRecordCollectionPermission(
+	protected void invokePostDataRecordCollectionDataRecordCollectionPermission(
 			Long dataRecordCollectionId, String operation,
 			DataRecordCollectionPermission dataRecordCollectionPermission)
 		throws Exception {
@@ -662,7 +664,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/data-record-collections/{data-record-collection-id}/permissions",
+					"/data-record-collections/{data-record-collection-id}/data-record-collection-permissions",
 					dataRecordCollectionId);
 
 		options.setLocation(location);
@@ -676,9 +678,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		}
 	}
 
-	protected Http.Response invokePostDataRecordCollectionPermissionResponse(
-			Long dataRecordCollectionId, String operation,
-			DataRecordCollectionPermission dataRecordCollectionPermission)
+	protected Http.Response
+			invokePostDataRecordCollectionDataRecordCollectionPermissionResponse(
+				Long dataRecordCollectionId, String operation,
+				DataRecordCollectionPermission dataRecordCollectionPermission)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -686,7 +689,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/data-record-collections/{data-record-collection-id}/permissions",
+					"/data-record-collections/{data-record-collection-id}/data-record-collection-permissions",
 					dataRecordCollectionId);
 
 		options.setLocation(location);
@@ -1179,7 +1182,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		for (int i = 0; i < values.length; i++) {
 			template = template.replaceFirst(
-				"\\{.*\\}", String.valueOf(values[i]));
+				"\\{.*?\\}", String.valueOf(values[i]));
 		}
 
 		return template;

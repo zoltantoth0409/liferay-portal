@@ -51,7 +51,7 @@ public interface DataRecordCollectionResource {
 			Long dataDefinitionId, DataRecordCollection dataRecordCollection)
 		throws Exception;
 
-	public void postDataRecordCollectionPermission(
+	public void postDataRecordCollectionDataRecordCollectionPermission(
 			Long dataRecordCollectionId, String operation,
 			DataRecordCollectionPermission dataRecordCollectionPermission)
 		throws Exception;
