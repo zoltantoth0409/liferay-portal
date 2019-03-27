@@ -161,14 +161,10 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 			className, classPK);
 
 		if (assetEntry == null) {
-			StringBundler sb = new StringBundler(4);
+			String noSuchAssetEntryMessage = _getNoSuchAssetEntryMessage(
+				className, classPK);
 
-			sb.append("No asset entry exists with class name ");
-			sb.append(className);
-			sb.append(" and class PK ");
-			sb.append(classPK);
-
-			throw new PortalException(sb.toString());
+			throw new PortalException(noSuchAssetEntryMessage);
 		}
 
 		discussionPermission.checkSubscribePermission(
@@ -208,14 +204,10 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 			className, classPK);
 
 		if (assetEntry == null) {
-			StringBundler sb = new StringBundler(4);
+			String noSuchAssetEntryMessage = _getNoSuchAssetEntryMessage(
+				className, classPK);
 
-			sb.append("No asset entry exists with class name ");
-			sb.append(className);
-			sb.append(" and class PK ");
-			sb.append(classPK);
-
-			throw new PortalException(sb.toString());
+			throw new PortalException(noSuchAssetEntryMessage);
 		}
 
 		if (commentId <= 0) {
@@ -316,6 +308,17 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 		}
 
 		return discussionPermission;
+	}
+
+	private String _getNoSuchAssetEntryMessage(String className, long classPK) {
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("No asset entry exists with class name ");
+		sb.append(className);
+		sb.append(" and class PK ");
+		sb.append(classPK);
+
+		return sb.toString();
 	}
 
 }
