@@ -244,7 +244,7 @@ definition {
 
 		Page.gotoSALocalizedCP(
 			adminLocalized = "システム管理",
-			portletCategoryName = "編集",
+			portletCategoryName = "設定",
 			portletName = "ソーシャルアクティビティ"
 		);
 
@@ -256,7 +256,7 @@ definition {
 
 		Page.gotoSALocalizedCP(
 			adminLocalized = "Administração",
-			portletCategoryName = "Configurar",
+			portletCategoryName = "Configuração",
 			portletName = "Atividade Social"
 		);
 
