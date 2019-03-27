@@ -111,7 +111,7 @@ public class UserAccountResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		return _getUserAccountPage(
+		return _getUserAccountsPage(
 			booleanQuery -> {
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
@@ -141,7 +141,7 @@ public class UserAccountResourceImpl
 			throw new PrincipalException.MustBeCompanyAdmin(permissionChecker);
 		}
 
-		return _getUserAccountPage(
+		return _getUserAccountsPage(
 			booleanQuery -> {
 			},
 			filter, pagination, sorts);
@@ -152,7 +152,7 @@ public class UserAccountResourceImpl
 			Long webSiteId, Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		return _getUserAccountPage(
+		return _getUserAccountsPage(
 			booleanQuery -> {
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
@@ -302,7 +302,7 @@ public class UserAccountResourceImpl
 		};
 	}
 
-	private Page<UserAccount> _getUserAccountPage(
+	private Page<UserAccount> _getUserAccountsPage(
 			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
 			Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
