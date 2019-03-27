@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
@@ -75,7 +76,7 @@ public class ChangeListsDisplayContext {
 			WebKeys.THEME_DISPLAY);
 	}
 
-	public SoyContext getChangeListsContext() {
+	public SoyContext getChangeListsContext() throws Exception {
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
 		soyContext.put(
@@ -266,23 +267,15 @@ public class ChangeListsDisplayContext {
 		};
 	}
 
-	private JSONArray _getEntityNameTranslations() {
-		JSONArray translations = JSONFactoryUtil.createJSONArray();
-
-		for (String contentTypeLanguageKey :
-				CTConfigurationRegistryUtil.getContentTypeLanguageKeys()) {
-
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-			jsonObject.put("key", contentTypeLanguageKey);
-			jsonObject.put(
-				"translation",
-				LanguageUtil.get(_httpServletRequest, contentTypeLanguageKey));
-
-			translations.put(jsonObject);
-		}
-
-		return translations;
+	private JSONArray _getEntityNameTranslations() throws Exception {
+		return JSONUtil.toJSONArray(
+			CTConfigurationRegistryUtil.getContentTypeLanguageKeys(),
+			contentTypeLanguageKey -> JSONUtil.put(
+					"key", contentTypeLanguageKey
+				).put(
+					"translation",
+					LanguageUtil.get(_httpServletRequest, contentTypeLanguageKey)
+				));
 	}
 
 	private String _getFilterByStatus() {
