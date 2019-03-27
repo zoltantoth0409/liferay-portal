@@ -78,9 +78,9 @@ public class ChangeListsDisplayContext {
 	public SoyContext getChangeListsContext() {
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
-		soyContext.put("entityNameTranslations", _getEntityNameTranslations());
-
 		soyContext.put(
+			"entityNameTranslations", _getEntityNameTranslations()
+		).put(
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg"
 		).put(
