@@ -183,7 +183,8 @@ public class DiscussionForumPostingResourceImpl
 				discussionForumPostingId, headline,
 				discussionForumPosting.getArticleBody(),
 				MBMessageConstants.DEFAULT_FORMAT, Collections.emptyList(),
-				false, 0.0, false,
+				Boolean.TRUE.equals(discussionForumPosting.getAnonymous()), 0.0,
+				false,
 				ServiceContextUtil.createServiceContext(
 					discussionForumPosting.getKeywords(),
 					discussionForumPosting.getTaxonomyCategoryIds(),
@@ -230,10 +231,16 @@ public class DiscussionForumPostingResourceImpl
 
 		return new DiscussionForumPosting() {
 			{
+				anonymous = mbMessage.isAnonymous();
 				articleBody = mbMessage.getBody();
 				contentSpaceId = mbMessage.getGroupId();
-				creator = CreatorUtil.toCreator(
-					_portal, _userService.getUserById(mbMessage.getUserId()));
+
+				if (!mbMessage.isAnonymous()) {
+					creator = CreatorUtil.toCreator(
+						_portal,
+						_userService.getUserById(mbMessage.getUserId()));
+				}
+
 				dateCreated = mbMessage.getCreateDate();
 				dateModified = mbMessage.getModifiedDate();
 				headline = mbMessage.getSubject();
