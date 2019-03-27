@@ -116,6 +116,9 @@ public class CTEntryFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_CT_COLLECTION_ID);
 
+			sql = _customSQL.appendCriteria(
+				sql, "AND (CTEntry.originalCTCollectionId = ?)");
+
 			if (queryDefinition.isExcludeStatus()) {
 				sql = _customSQL.appendCriteria(
 					sql, "AND (CTEntry.status != ?)");
@@ -124,9 +127,6 @@ public class CTEntryFinderImpl
 				sql = _customSQL.appendCriteria(
 					sql, "AND (CTEntry.status = ?)");
 			}
-
-			sql = _customSQL.appendCriteria(
-				sql, "AND (CTEntry.originalCollectionId = ?)");
 
 			sql = _customSQL.replaceOrderBy(
 				sql, queryDefinition.getOrderByComparator());
@@ -138,8 +138,8 @@ public class CTEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(ctCollectionId);
-			qPos.add(queryDefinition.getStatus());
 			qPos.add(ctCollectionId);
+			qPos.add(queryDefinition.getStatus());
 
 			return (List<CTEntry>)QueryUtil.list(
 				q, getDialect(), queryDefinition.getStart(),
