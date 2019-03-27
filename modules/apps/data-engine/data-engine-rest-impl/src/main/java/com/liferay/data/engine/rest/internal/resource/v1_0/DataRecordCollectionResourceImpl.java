@@ -249,7 +249,7 @@ public class DataRecordCollectionResourceImpl
 	}
 
 	@Override
-	public void postDataRecordCollectionPermission(
+	public void postDataRecordCollectionDataRecordCollectionPermission(
 			Long dataRecordCollectionId, String operation,
 			DataRecordCollectionPermission dataRecordCollectionPermission)
 		throws Exception {
