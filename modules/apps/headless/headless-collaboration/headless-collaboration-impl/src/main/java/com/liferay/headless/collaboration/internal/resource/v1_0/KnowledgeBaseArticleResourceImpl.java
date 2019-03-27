@@ -88,7 +88,7 @@ public class KnowledgeBaseArticleResourceImpl
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		return _getKnowledgeBaseArticlePage(
+		return _getKnowledgeBaseArticlesPage(
 			booleanQuery -> {
 				if ((tree != null) && tree) {
 					BooleanFilter booleanFilter =
@@ -132,7 +132,7 @@ public class KnowledgeBaseArticleResourceImpl
 		KBArticle kbArticle = _kbArticleService.getLatestKBArticle(
 			knowledgeBaseArticleId, WorkflowConstants.STATUS_APPROVED);
 
-		return _getKnowledgeBaseArticlePage(
+		return _getKnowledgeBaseArticlesPage(
 			booleanQuery -> {
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
@@ -155,7 +155,7 @@ public class KnowledgeBaseArticleResourceImpl
 
 		KBFolder kbFolder = _kbFolderService.getKBFolder(knowledgeBaseFolderId);
 
-		return _getKnowledgeBaseArticlePage(
+		return _getKnowledgeBaseArticlesPage(
 			booleanQuery -> {
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
@@ -256,7 +256,7 @@ public class KnowledgeBaseArticleResourceImpl
 					knowledgeBaseArticle.getViewableByAsString())));
 	}
 
-	private Page<KnowledgeBaseArticle> _getKnowledgeBaseArticlePage(
+	private Page<KnowledgeBaseArticle> _getKnowledgeBaseArticlesPage(
 			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
 			Long contentSpaceId, Filter filter, Pagination pagination,
 			Sort[] sorts)
