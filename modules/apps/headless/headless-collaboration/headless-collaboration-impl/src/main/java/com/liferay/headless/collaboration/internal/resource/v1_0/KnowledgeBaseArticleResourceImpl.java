@@ -90,7 +90,7 @@ public class KnowledgeBaseArticleResourceImpl
 
 		return _getKnowledgeBaseArticlesPage(
 			booleanQuery -> {
-				if (Boolean.TRUE.equals(tree)) {
+				if (GetterUtil.getBoolean(tree)) {
 					BooleanFilter booleanFilter =
 						booleanQuery.getPreBooleanFilter();
 
@@ -166,7 +166,7 @@ public class KnowledgeBaseArticleResourceImpl
 						String.valueOf(kbFolder.getKbFolderId())),
 					BooleanClauseOccur.MUST);
 
-				if (Boolean.TRUE.equals(tree)) {
+				if (GetterUtil.getBoolean(tree)) {
 					booleanFilter.add(
 						new TermFilter(
 							"parentMessageId",

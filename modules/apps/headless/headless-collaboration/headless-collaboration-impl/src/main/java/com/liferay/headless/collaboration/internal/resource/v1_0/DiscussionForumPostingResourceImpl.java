@@ -183,8 +183,8 @@ public class DiscussionForumPostingResourceImpl
 				discussionForumPostingId, headline,
 				discussionForumPosting.getArticleBody(),
 				MBMessageConstants.DEFAULT_FORMAT, Collections.emptyList(),
-				Boolean.TRUE.equals(discussionForumPosting.getAnonymous()), 0.0,
-				false,
+				GetterUtil.getBoolean(discussionForumPosting.getAnonymous()),
+				0.0, false,
 				ServiceContextUtil.createServiceContext(
 					discussionForumPosting.getKeywords(),
 					discussionForumPosting.getTaxonomyCategoryIds(),

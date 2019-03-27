@@ -100,7 +100,7 @@ public class DocumentResourceImpl
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
 
-				if ((tree != null) && tree) {
+				if (GetterUtil.getBoolean(tree)) {
 					booleanFilter.add(
 						new TermFilter(
 							Field.FOLDER_ID,
