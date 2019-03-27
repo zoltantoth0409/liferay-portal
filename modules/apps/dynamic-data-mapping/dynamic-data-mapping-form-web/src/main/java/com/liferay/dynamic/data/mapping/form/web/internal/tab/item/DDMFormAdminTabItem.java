@@ -75,11 +75,10 @@ public class DDMFormAdminTabItem implements DDMDisplayTabItem {
 
 		portletURL.setParameter("backURL", themeDisplay.getURLCurrent());
 		portletURL.setParameter(
-			"groupId", String.valueOf(themeDisplay.getScopeGroupId()));
-
-		portletURL.setParameter(
 			"refererPortletName",
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
+		portletURL.setParameter(
+			"groupId", String.valueOf(themeDisplay.getScopeGroupId()));
 
 		return portletURL;
 	}

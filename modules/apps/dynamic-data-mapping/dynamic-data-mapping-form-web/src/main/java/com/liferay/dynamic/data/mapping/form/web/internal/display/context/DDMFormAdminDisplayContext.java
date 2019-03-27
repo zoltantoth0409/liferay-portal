@@ -827,8 +827,8 @@ public class DDMFormAdminDisplayContext {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
 		portletURL.setParameter("mvcPath", "/admin/view.jsp");
-		portletURL.setParameter("groupId", String.valueOf(getScopeGroupId()));
 		portletURL.setParameter("currentTab", "forms");
+		portletURL.setParameter("groupId", String.valueOf(getScopeGroupId()));
 
 		return portletURL.toString();
 	}
@@ -1298,16 +1298,15 @@ public class DDMFormAdminDisplayContext {
 				PortletProvider.Action.EDIT),
 			PortletRequest.RENDER_PHASE);
 
+		portletURL.setParameter("mvcPath", "/view.jsp");
 		portletURL.setParameter(
 			"backURL", formAdminRequestHelper.getCurrentURL());
 		portletURL.setParameter(
-			"groupId",
-			String.valueOf(formAdminRequestHelper.getScopeGroupId()));
-
-		portletURL.setParameter("mvcPath", "/view.jsp");
-		portletURL.setParameter(
 			"refererPortletName",
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
+		portletURL.setParameter(
+			"groupId",
+			String.valueOf(formAdminRequestHelper.getScopeGroupId()));
 		portletURL.setParameter("showBackIcon", Boolean.FALSE.toString());
 
 		navigationItem.setHref(portletURL.toString());

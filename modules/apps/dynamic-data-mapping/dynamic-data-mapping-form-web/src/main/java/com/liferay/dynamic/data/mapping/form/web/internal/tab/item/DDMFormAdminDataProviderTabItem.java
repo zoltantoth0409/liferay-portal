@@ -66,14 +66,13 @@ public class DDMFormAdminDataProviderTabItem implements DDMDisplayTabItem {
 			(ThemeDisplay)liferayPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		portletURL.setParameter("backURL", themeDisplay.getURLCurrent());
-		portletURL.setParameter(
-			"groupId", String.valueOf(themeDisplay.getScopeGroupId()));
-
 		portletURL.setParameter("mvcPath", "/view.jsp");
+		portletURL.setParameter("backURL", themeDisplay.getURLCurrent());
 		portletURL.setParameter(
 			"refererPortletName",
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
+		portletURL.setParameter(
+			"groupId", String.valueOf(themeDisplay.getScopeGroupId()));
 
 		return portletURL.toString();
 	}
