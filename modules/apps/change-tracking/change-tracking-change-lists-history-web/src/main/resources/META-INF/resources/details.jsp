@@ -25,6 +25,7 @@ if (ctCollection != null) {
 	String title = HtmlUtil.escapeJS(ctCollection.getName());
 
 	portletDisplay.setTitle(title);
+
 	renderResponse.setTitle(title);
 }
 %>
