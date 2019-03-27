@@ -87,7 +87,7 @@ public class TaxonomyVocabularyResourceImpl
 			_getAssetVocabulariesStream(contentSpaceId);
 
 		Stream<AssetCategory> assetCategoriesStream = _getAssetCategoriesStream(
-			documentBulkSelection);
+			documentBulkSelection, PermissionCheckerFactoryUtil.create(_user));
 
 		Map<Long, List<AssetCategory>> assetCategoriesMap =
 			assetCategoriesStream.collect(
@@ -102,19 +102,17 @@ public class TaxonomyVocabularyResourceImpl
 	}
 
 	private Stream<AssetCategory> _getAssetCategoriesStream(
-			DocumentBulkSelection documentBulkSelection)
+			DocumentBulkSelection documentBulkSelection,
+			PermissionChecker permissionChecker)
 		throws Exception {
+
+		Set<AssetCategory> assetCategories = new HashSet<>();
 
 		BulkSelection<?> bulkSelection = _documentBulkSelectionFactory.create(
 			documentBulkSelection);
 
 		BulkSelection<AssetEntry> assetEntryBulkSelection =
 			bulkSelection.toAssetEntryBulkSelection();
-
-		PermissionChecker permissionChecker =
-			PermissionCheckerFactoryUtil.create(_user);
-
-		Set<AssetCategory> assetCategories = new HashSet<>();
 
 		assetEntryBulkSelection.forEach(
 			assetEntry -> {

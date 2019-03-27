@@ -69,16 +69,35 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 			DocumentBulkSelection documentSelection)
 		throws Exception {
 
+		return Page.of(
+			transform(
+				_getAssetTagNames(
+					documentSelection,
+					PermissionCheckerFactoryUtil.create(_user)),
+				this::_toTag));
+	}
+
+	@Override
+	public boolean putKeywordBatch(KeywordBulkSelection keywordBulkSelection)
+		throws Exception {
+
+		_update(false, keywordBulkSelection);
+
+		return true;
+	}
+
+	private Set<String> _getAssetTagNames(
+			DocumentBulkSelection documentSelection,
+			PermissionChecker permissionChecker)
+		throws Exception {
+
+		Set<String> assetTagNames = new HashSet<>();
+
 		BulkSelection<?> bulkSelection = _documentBulkSelectionFactory.create(
 			documentSelection);
 
 		BulkSelection<AssetEntry> assetEntryBulkSelection =
 			bulkSelection.toAssetEntryBulkSelection();
-
-		PermissionChecker permissionChecker =
-			PermissionCheckerFactoryUtil.create(_user);
-
-		Set<String> assetTagNames = new HashSet<>();
 
 		assetEntryBulkSelection.forEach(
 			assetEntry -> {
@@ -95,16 +114,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 				}
 			});
 
-		return Page.of(transform(assetTagNames, this::_toTag));
-	}
-
-	@Override
-	public boolean putKeywordBatch(KeywordBulkSelection keywordBulkSelection)
-		throws Exception {
-
-		_update(false, keywordBulkSelection);
-
-		return true;
+		return assetTagNames;
 	}
 
 	private Keyword _toTag(String assetTagName) {
