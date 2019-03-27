@@ -133,7 +133,7 @@ public class EtcdUtil {
 			if (_value != null) {
 				throw new RuntimeException(
 					JenkinsResultsParserUtil.combine(
-						"Node ", getKey(), " is not a directory Node."));
+						"Node ", getKey(), " is not a directory node"));
 			}
 
 			_childNodes.add(node);
