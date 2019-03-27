@@ -70,9 +70,10 @@ public class CTEntryModelImpl
 		{"ctEntryId", Types.BIGINT}, {"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"originalCTCollectionId", Types.BIGINT},
 		{"modelClassNameId", Types.BIGINT}, {"modelClassPK", Types.BIGINT},
 		{"modelResourcePrimKey", Types.BIGINT}, {"changeType", Types.INTEGER},
-		{"status", Types.INTEGER}, {"originalCollectionId", Types.BIGINT}
+		{"status", Types.INTEGER}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -85,16 +86,16 @@ public class CTEntryModelImpl
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("originalCTCollectionId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("modelClassNameId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("modelClassPK", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("modelResourcePrimKey", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("changeType", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
-		TABLE_COLUMNS_MAP.put("originalCollectionId", Types.BIGINT);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table CTEntry (ctEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,modelClassNameId LONG,modelClassPK LONG,modelResourcePrimKey LONG,changeType INTEGER,status INTEGER,originalCollectionId LONG)";
+		"create table CTEntry (ctEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,originalCTCollectionId LONG,modelClassNameId LONG,modelClassPK LONG,modelResourcePrimKey LONG,changeType INTEGER,status INTEGER)";
 
 	public static final String TABLE_SQL_DROP = "drop table CTEntry";
 
@@ -291,6 +292,11 @@ public class CTEntryModelImpl
 			"modifiedDate",
 			(BiConsumer<CTEntry, Date>)CTEntry::setModifiedDate);
 		attributeGetterFunctions.put(
+			"originalCTCollectionId", CTEntry::getOriginalCTCollectionId);
+		attributeSetterBiConsumers.put(
+			"originalCTCollectionId",
+			(BiConsumer<CTEntry, Long>)CTEntry::setOriginalCTCollectionId);
+		attributeGetterFunctions.put(
 			"modelClassNameId", CTEntry::getModelClassNameId);
 		attributeSetterBiConsumers.put(
 			"modelClassNameId",
@@ -310,11 +316,6 @@ public class CTEntryModelImpl
 		attributeGetterFunctions.put("status", CTEntry::getStatus);
 		attributeSetterBiConsumers.put(
 			"status", (BiConsumer<CTEntry, Integer>)CTEntry::setStatus);
-		attributeGetterFunctions.put(
-			"originalCollectionId", CTEntry::getOriginalCollectionId);
-		attributeSetterBiConsumers.put(
-			"originalCollectionId",
-			(BiConsumer<CTEntry, Long>)CTEntry::setOriginalCollectionId);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -410,6 +411,16 @@ public class CTEntryModelImpl
 	}
 
 	@Override
+	public long getOriginalCTCollectionId() {
+		return _originalCTCollectionId;
+	}
+
+	@Override
+	public void setOriginalCTCollectionId(long originalCTCollectionId) {
+		_originalCTCollectionId = originalCTCollectionId;
+	}
+
+	@Override
 	public long getModelClassNameId() {
 		return _modelClassNameId;
 	}
@@ -483,16 +494,6 @@ public class CTEntryModelImpl
 		_status = status;
 	}
 
-	@Override
-	public long getOriginalCollectionId() {
-		return _originalCollectionId;
-	}
-
-	@Override
-	public void setOriginalCollectionId(long originalCollectionId) {
-		_originalCollectionId = originalCollectionId;
-	}
-
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -531,12 +532,12 @@ public class CTEntryModelImpl
 		ctEntryImpl.setUserName(getUserName());
 		ctEntryImpl.setCreateDate(getCreateDate());
 		ctEntryImpl.setModifiedDate(getModifiedDate());
+		ctEntryImpl.setOriginalCTCollectionId(getOriginalCTCollectionId());
 		ctEntryImpl.setModelClassNameId(getModelClassNameId());
 		ctEntryImpl.setModelClassPK(getModelClassPK());
 		ctEntryImpl.setModelResourcePrimKey(getModelResourcePrimKey());
 		ctEntryImpl.setChangeType(getChangeType());
 		ctEntryImpl.setStatus(getStatus());
-		ctEntryImpl.setOriginalCollectionId(getOriginalCollectionId());
 
 		ctEntryImpl.resetOriginalValues();
 
@@ -649,6 +650,8 @@ public class CTEntryModelImpl
 			ctEntryCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
+		ctEntryCacheModel.originalCTCollectionId = getOriginalCTCollectionId();
+
 		ctEntryCacheModel.modelClassNameId = getModelClassNameId();
 
 		ctEntryCacheModel.modelClassPK = getModelClassPK();
@@ -658,8 +661,6 @@ public class CTEntryModelImpl
 		ctEntryCacheModel.changeType = getChangeType();
 
 		ctEntryCacheModel.status = getStatus();
-
-		ctEntryCacheModel.originalCollectionId = getOriginalCollectionId();
 
 		return ctEntryCacheModel;
 	}
@@ -740,6 +741,7 @@ public class CTEntryModelImpl
 	private Date _createDate;
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
+	private long _originalCTCollectionId;
 	private long _modelClassNameId;
 	private long _originalModelClassNameId;
 	private boolean _setOriginalModelClassNameId;
@@ -749,7 +751,6 @@ public class CTEntryModelImpl
 	private long _modelResourcePrimKey;
 	private int _changeType;
 	private int _status;
-	private long _originalCollectionId;
 	private long _columnBitmask;
 	private CTEntry _escapedModel;
 

@@ -40,12 +40,12 @@ public class CTEntrySoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setOriginalCTCollectionId(model.getOriginalCTCollectionId());
 		soapModel.setModelClassNameId(model.getModelClassNameId());
 		soapModel.setModelClassPK(model.getModelClassPK());
 		soapModel.setModelResourcePrimKey(model.getModelResourcePrimKey());
 		soapModel.setChangeType(model.getChangeType());
 		soapModel.setStatus(model.getStatus());
-		soapModel.setOriginalCollectionId(model.getOriginalCollectionId());
 
 		return soapModel;
 	}
@@ -147,6 +147,14 @@ public class CTEntrySoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
+	public long getOriginalCTCollectionId() {
+		return _originalCTCollectionId;
+	}
+
+	public void setOriginalCTCollectionId(long originalCTCollectionId) {
+		_originalCTCollectionId = originalCTCollectionId;
+	}
+
 	public long getModelClassNameId() {
 		return _modelClassNameId;
 	}
@@ -187,25 +195,17 @@ public class CTEntrySoap implements Serializable {
 		_status = status;
 	}
 
-	public long getOriginalCollectionId() {
-		return _originalCollectionId;
-	}
-
-	public void setOriginalCollectionId(long originalCollectionId) {
-		_originalCollectionId = originalCollectionId;
-	}
-
 	private long _ctEntryId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private long _originalCTCollectionId;
 	private long _modelClassNameId;
 	private long _modelClassPK;
 	private long _modelResourcePrimKey;
 	private int _changeType;
 	private int _status;
-	private long _originalCollectionId;
 
 }

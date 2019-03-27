@@ -51,12 +51,12 @@ public class CTEntryWrapper
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("originalCTCollectionId", getOriginalCTCollectionId());
 		attributes.put("modelClassNameId", getModelClassNameId());
 		attributes.put("modelClassPK", getModelClassPK());
 		attributes.put("modelResourcePrimKey", getModelResourcePrimKey());
 		attributes.put("changeType", getChangeType());
 		attributes.put("status", getStatus());
-		attributes.put("originalCollectionId", getOriginalCollectionId());
 
 		return attributes;
 	}
@@ -99,6 +99,13 @@ public class CTEntryWrapper
 			setModifiedDate(modifiedDate);
 		}
 
+		Long originalCTCollectionId = (Long)attributes.get(
+			"originalCTCollectionId");
+
+		if (originalCTCollectionId != null) {
+			setOriginalCTCollectionId(originalCTCollectionId);
+		}
+
 		Long modelClassNameId = (Long)attributes.get("modelClassNameId");
 
 		if (modelClassNameId != null) {
@@ -128,13 +135,6 @@ public class CTEntryWrapper
 
 		if (status != null) {
 			setStatus(status);
-		}
-
-		Long originalCollectionId = (Long)attributes.get(
-			"originalCollectionId");
-
-		if (originalCollectionId != null) {
-			setOriginalCollectionId(originalCollectionId);
 		}
 	}
 
@@ -224,13 +224,13 @@ public class CTEntryWrapper
 	}
 
 	/**
-	 * Returns the original collection ID of this ct entry.
+	 * Returns the original ct collection ID of this ct entry.
 	 *
-	 * @return the original collection ID of this ct entry
+	 * @return the original ct collection ID of this ct entry
 	 */
 	@Override
-	public long getOriginalCollectionId() {
-		return model.getOriginalCollectionId();
+	public long getOriginalCTCollectionId() {
+		return model.getOriginalCTCollectionId();
 	}
 
 	/**
@@ -374,13 +374,13 @@ public class CTEntryWrapper
 	}
 
 	/**
-	 * Sets the original collection ID of this ct entry.
+	 * Sets the original ct collection ID of this ct entry.
 	 *
-	 * @param originalCollectionId the original collection ID of this ct entry
+	 * @param originalCTCollectionId the original ct collection ID of this ct entry
 	 */
 	@Override
-	public void setOriginalCollectionId(long originalCollectionId) {
-		model.setOriginalCollectionId(originalCollectionId);
+	public void setOriginalCTCollectionId(long originalCTCollectionId) {
+		model.setOriginalCTCollectionId(originalCTCollectionId);
 	}
 
 	/**

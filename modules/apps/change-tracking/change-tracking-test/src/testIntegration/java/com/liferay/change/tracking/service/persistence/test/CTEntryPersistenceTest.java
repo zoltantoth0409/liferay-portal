@@ -133,6 +133,8 @@ public class CTEntryPersistenceTest {
 
 		newCTEntry.setModifiedDate(RandomTestUtil.nextDate());
 
+		newCTEntry.setOriginalCTCollectionId(RandomTestUtil.nextLong());
+
 		newCTEntry.setModelClassNameId(RandomTestUtil.nextLong());
 
 		newCTEntry.setModelClassPK(RandomTestUtil.nextLong());
@@ -142,8 +144,6 @@ public class CTEntryPersistenceTest {
 		newCTEntry.setChangeType(RandomTestUtil.nextInt());
 
 		newCTEntry.setStatus(RandomTestUtil.nextInt());
-
-		newCTEntry.setOriginalCollectionId(RandomTestUtil.nextLong());
 
 		_ctEntries.add(_persistence.update(newCTEntry));
 
@@ -165,6 +165,9 @@ public class CTEntryPersistenceTest {
 			Time.getShortTimestamp(existingCTEntry.getModifiedDate()),
 			Time.getShortTimestamp(newCTEntry.getModifiedDate()));
 		Assert.assertEquals(
+			existingCTEntry.getOriginalCTCollectionId(),
+			newCTEntry.getOriginalCTCollectionId());
+		Assert.assertEquals(
 			existingCTEntry.getModelClassNameId(),
 			newCTEntry.getModelClassNameId());
 		Assert.assertEquals(
@@ -176,9 +179,6 @@ public class CTEntryPersistenceTest {
 			existingCTEntry.getChangeType(), newCTEntry.getChangeType());
 		Assert.assertEquals(
 			existingCTEntry.getStatus(), newCTEntry.getStatus());
-		Assert.assertEquals(
-			existingCTEntry.getOriginalCollectionId(),
-			newCTEntry.getOriginalCollectionId());
 	}
 
 	@Test
@@ -223,9 +223,9 @@ public class CTEntryPersistenceTest {
 		return OrderByComparatorFactoryUtil.create(
 			"CTEntry", "ctEntryId", true, "companyId", true, "userId", true,
 			"userName", true, "createDate", true, "modifiedDate", true,
-			"modelClassNameId", true, "modelClassPK", true,
-			"modelResourcePrimKey", true, "changeType", true, "status", true,
-			"originalCollectionId", true);
+			"originalCTCollectionId", true, "modelClassNameId", true,
+			"modelClassPK", true, "modelResourcePrimKey", true, "changeType",
+			true, "status", true);
 	}
 
 	@Test
@@ -466,6 +466,8 @@ public class CTEntryPersistenceTest {
 
 		ctEntry.setModifiedDate(RandomTestUtil.nextDate());
 
+		ctEntry.setOriginalCTCollectionId(RandomTestUtil.nextLong());
+
 		ctEntry.setModelClassNameId(RandomTestUtil.nextLong());
 
 		ctEntry.setModelClassPK(RandomTestUtil.nextLong());
@@ -475,8 +477,6 @@ public class CTEntryPersistenceTest {
 		ctEntry.setChangeType(RandomTestUtil.nextInt());
 
 		ctEntry.setStatus(RandomTestUtil.nextInt());
-
-		ctEntry.setOriginalCollectionId(RandomTestUtil.nextLong());
 
 		_ctEntries.add(_persistence.update(ctEntry));
 

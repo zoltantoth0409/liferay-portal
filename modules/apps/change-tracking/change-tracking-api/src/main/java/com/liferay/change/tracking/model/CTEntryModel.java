@@ -170,6 +170,20 @@ public interface CTEntryModel
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
+	 * Returns the original ct collection ID of this ct entry.
+	 *
+	 * @return the original ct collection ID of this ct entry
+	 */
+	public long getOriginalCTCollectionId();
+
+	/**
+	 * Sets the original ct collection ID of this ct entry.
+	 *
+	 * @param originalCTCollectionId the original ct collection ID of this ct entry
+	 */
+	public void setOriginalCTCollectionId(long originalCTCollectionId);
+
+	/**
 	 * Returns the model class name ID of this ct entry.
 	 *
 	 * @return the model class name ID of this ct entry
@@ -238,19 +252,5 @@ public interface CTEntryModel
 	 * @param status the status of this ct entry
 	 */
 	public void setStatus(int status);
-
-	/**
-	 * Returns the original collection ID of this ct entry.
-	 *
-	 * @return the original collection ID of this ct entry
-	 */
-	public long getOriginalCollectionId();
-
-	/**
-	 * Sets the original collection ID of this ct entry.
-	 *
-	 * @param originalCollectionId the original collection ID of this ct entry
-	 */
-	public void setOriginalCollectionId(long originalCollectionId);
 
 }

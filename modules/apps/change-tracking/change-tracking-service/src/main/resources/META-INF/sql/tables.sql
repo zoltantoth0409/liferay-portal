@@ -34,12 +34,12 @@ create table CTEntry (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
+	originalCTCollectionId LONG,
 	modelClassNameId LONG,
 	modelClassPK LONG,
 	modelResourcePrimKey LONG,
 	changeType INTEGER,
-	status INTEGER,
-	originalCollectionId LONG
+	status INTEGER
 );
 
 create table CTEntryAggregate (
