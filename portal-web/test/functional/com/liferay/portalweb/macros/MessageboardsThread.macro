@@ -435,7 +435,10 @@ definition {
 	}
 
 	macro markAsAnswerPG {
-		LexiconEntry.openEntryMenu(rowEntry = "${threadReplyBody}");
+		Click.waitForMenuToggleJSClick(
+			locator1 = "MessageBoards#THREAD_REPLY_ACTIONS",
+			key_threadReplyBody = "${threadReplyBody}"
+		);
 
 		MenuItem.click(menuItem = "Mark as an Answer");
 

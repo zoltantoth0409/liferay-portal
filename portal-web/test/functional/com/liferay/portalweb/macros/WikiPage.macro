@@ -426,7 +426,10 @@ definition {
 
 		var key_wikiPageVersion = "${wikiPageVersionNew}";
 
-		LexiconEntry.openEntryMenu(rowEntry = "${wikiPageVersionNew}");
+		Click.waitForMenuToggleJSClick(
+			locator1 = "Wiki#COMPARE_VERSIONS_VERSION_ACTIONS",
+			key_wikiPageVersion = "${wikiPageVersionNew}"
+		);
 
 		AssertClick(
 			locator1 = "Wiki#HISTORY_ACTIVITIES_TABLE_COMPARE_TO_LINK",
@@ -649,7 +652,10 @@ definition {
 			value1 = "${entryComment}"
 		);
 
-		LexiconEntry.openEntryMenu(rowEntry = "${entryComment}");
+		Click.waitForMenuToggleJSClick(
+			locator1 = "Comments#COMMENT_ACTIONS",
+			key_entryComment = "${entryComment}"
+		);
 
 		MenuItem.click(menuItem = "Edit");
 
@@ -874,7 +880,10 @@ definition {
 		var key_wikiPageRevision = "1.0";
 		var key_wikiPageTitle = "${wikiPage2Title}";
 
-		LexiconEntry.openEntryMenu(rowEntry = "${wikiPage2Title}");
+		Click.waitForMenuToggleJSClick(
+			locator1 = "Wiki#HISTORY_VERSIONS_ACTIONS",
+			key_wikiPageRevision = "${wikiPageRevision}"
+		);
 
 		MenuItem.click(menuItem = "Revert");
 
@@ -903,7 +912,10 @@ definition {
 		var key_wikiPageRevision = "${wikiPageRevisionOld}";
 		var key_wikiPageTitle = "${wikiPageTitle}";
 
-		LexiconEntry.openEntryMenu(rowEntry = "${wikiPageTitle}");
+		Click.waitForMenuToggleJSClick(
+			locator1 = "Wiki#HISTORY_VERSIONS_ACTIONS",
+			key_wikiPageRevision = "${wikiPageRevision}"
+		);
 
 		MenuItem.click(menuItem = "Revert");
 

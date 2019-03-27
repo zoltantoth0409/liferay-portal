@@ -136,7 +136,10 @@ definition {
 			key_threadSubject = "${threadSubject}"
 		);
 
-		LexiconEntry.openEntryMenu(rowEntry = "${threadReplyBody}");
+		Click.waitForMenuToggleJSClick(
+			locator1 = "MessageBoards#THREAD_REPLY_ACTIONS",
+			key_threadReplyBody = "${threadReplyBody}"
+		);
 
 		MenuItem.click(menuItem = "Permissions");
 
