@@ -109,7 +109,7 @@ public abstract class BaseKeywordResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected boolean invokePatchKeywordBatch(
+	protected Response invokePatchKeywordBatch(
 			KeywordBulkSelection keywordBulkSelection)
 		throws Exception {
 
@@ -128,7 +128,7 @@ public abstract class BaseKeywordResourceTestCase {
 		}
 
 		try {
-			return _outputObjectMapper.readValue(string, Boolean.class);
+			return _outputObjectMapper.readValue(string, Response.class);
 		}
 		catch (Exception e) {
 			_log.error("Unable to process HTTP response: " + string, e);
@@ -149,7 +149,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 		options.setPatch(true);
 
-		HttpUtil.URLtoString(options);
+		HttpUtil.URLtoByteArray(options);
 
 		return options.getResponse();
 	}
@@ -159,7 +159,7 @@ public abstract class BaseKeywordResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected boolean invokePutKeywordBatch(
+	protected Response invokePutKeywordBatch(
 			KeywordBulkSelection keywordBulkSelection)
 		throws Exception {
 
@@ -178,7 +178,7 @@ public abstract class BaseKeywordResourceTestCase {
 		}
 
 		try {
-			return _outputObjectMapper.readValue(string, Boolean.class);
+			return _outputObjectMapper.readValue(string, Response.class);
 		}
 		catch (Exception e) {
 			_log.error("Unable to process HTTP response: " + string, e);
@@ -199,7 +199,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 		options.setPut(true);
 
-		HttpUtil.URLtoString(options);
+		HttpUtil.URLtoByteArray(options);
 
 		return options.getResponse();
 	}
@@ -258,7 +258,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 		options.setPost(true);
 
-		HttpUtil.URLtoString(options);
+		HttpUtil.URLtoByteArray(options);
 
 		return options.getResponse();
 	}
@@ -480,7 +480,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 		for (int i = 0; i < values.length; i++) {
 			template = template.replaceFirst(
-				"\\{.*\\}", String.valueOf(values[i]));
+				"\\{.*?\\}", String.valueOf(values[i]));
 		}
 
 		return template;

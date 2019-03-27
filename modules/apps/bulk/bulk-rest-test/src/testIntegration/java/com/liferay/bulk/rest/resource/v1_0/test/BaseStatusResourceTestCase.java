@@ -136,7 +136,7 @@ public abstract class BaseStatusResourceTestCase {
 
 		options.setLocation(location);
 
-		HttpUtil.URLtoString(options);
+		HttpUtil.URLtoByteArray(options);
 
 		return options.getResponse();
 	}
@@ -354,7 +354,7 @@ public abstract class BaseStatusResourceTestCase {
 
 		for (int i = 0; i < values.length; i++) {
 			template = template.replaceFirst(
-				"\\{.*\\}", String.valueOf(values[i]));
+				"\\{.*?\\}", String.valueOf(values[i]));
 		}
 
 		return template;

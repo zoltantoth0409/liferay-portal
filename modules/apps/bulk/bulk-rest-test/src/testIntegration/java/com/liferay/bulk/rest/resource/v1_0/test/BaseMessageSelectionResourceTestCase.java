@@ -162,7 +162,7 @@ public abstract class BaseMessageSelectionResourceTestCase {
 
 		options.setPost(true);
 
-		HttpUtil.URLtoString(options);
+		HttpUtil.URLtoByteArray(options);
 
 		return options.getResponse();
 	}
@@ -396,7 +396,7 @@ public abstract class BaseMessageSelectionResourceTestCase {
 
 		for (int i = 0; i < values.length; i++) {
 			template = template.replaceFirst(
-				"\\{.*\\}", String.valueOf(values[i]));
+				"\\{.*?\\}", String.valueOf(values[i]));
 		}
 
 		return template;

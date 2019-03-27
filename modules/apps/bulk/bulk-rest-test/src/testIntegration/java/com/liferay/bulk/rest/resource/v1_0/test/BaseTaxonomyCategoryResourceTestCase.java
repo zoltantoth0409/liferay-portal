@@ -107,7 +107,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected boolean invokePatchTaxonomyCategoryBatch(
+	protected Response invokePatchTaxonomyCategoryBatch(
 			TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception {
 
@@ -126,7 +126,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		}
 
 		try {
-			return _outputObjectMapper.readValue(string, Boolean.class);
+			return _outputObjectMapper.readValue(string, Response.class);
 		}
 		catch (Exception e) {
 			_log.error("Unable to process HTTP response: " + string, e);
@@ -147,7 +147,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		options.setPatch(true);
 
-		HttpUtil.URLtoString(options);
+		HttpUtil.URLtoByteArray(options);
 
 		return options.getResponse();
 	}
@@ -157,7 +157,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected boolean invokePutTaxonomyCategoryBatch(
+	protected Response invokePutTaxonomyCategoryBatch(
 			TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception {
 
@@ -176,7 +176,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		}
 
 		try {
-			return _outputObjectMapper.readValue(string, Boolean.class);
+			return _outputObjectMapper.readValue(string, Response.class);
 		}
 		catch (Exception e) {
 			_log.error("Unable to process HTTP response: " + string, e);
@@ -197,7 +197,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		options.setPut(true);
 
-		HttpUtil.URLtoString(options);
+		HttpUtil.URLtoByteArray(options);
 
 		return options.getResponse();
 	}
@@ -438,7 +438,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		for (int i = 0; i < values.length; i++) {
 			template = template.replaceFirst(
-				"\\{.*\\}", String.valueOf(values[i]));
+				"\\{.*?\\}", String.valueOf(values[i]));
 		}
 
 		return template;

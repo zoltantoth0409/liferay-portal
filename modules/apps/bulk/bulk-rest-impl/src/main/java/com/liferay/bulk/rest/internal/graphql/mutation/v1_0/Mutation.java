@@ -38,6 +38,8 @@ import java.util.Collection;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Response;
+
 import org.osgi.service.component.ComponentServiceObjects;
 
 /**
@@ -80,7 +82,7 @@ public class Mutation {
 	}
 
 	@GraphQLInvokeDetached
-	public boolean patchKeywordBatch(
+	public Response patchKeywordBatch(
 			@GraphQLName("KeywordBulkSelection") KeywordBulkSelection
 				keywordBulkSelection)
 		throws Exception {
@@ -93,7 +95,7 @@ public class Mutation {
 	}
 
 	@GraphQLInvokeDetached
-	public boolean putKeywordBatch(
+	public Response putKeywordBatch(
 			@GraphQLName("KeywordBulkSelection") KeywordBulkSelection
 				keywordBulkSelection)
 		throws Exception {
@@ -139,7 +141,7 @@ public class Mutation {
 	}
 
 	@GraphQLInvokeDetached
-	public boolean patchTaxonomyCategoryBatch(
+	public Response patchTaxonomyCategoryBatch(
 			@GraphQLName("TaxonomyCategoryBulkSelection")
 				TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception {
@@ -153,7 +155,7 @@ public class Mutation {
 	}
 
 	@GraphQLInvokeDetached
-	public boolean putTaxonomyCategoryBatch(
+	public Response putTaxonomyCategoryBatch(
 			@GraphQLName("TaxonomyCategoryBulkSelection")
 				TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception {

@@ -22,6 +22,8 @@ import com.liferay.portal.vulcan.pagination.Page;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Response;
+
 /**
  * To access this resource, run:
  *
@@ -33,10 +35,10 @@ import javax.annotation.Generated;
 @Generated("")
 public interface KeywordResource {
 
-	public boolean patchKeywordBatch(KeywordBulkSelection keywordBulkSelection)
+	public Response patchKeywordBatch(KeywordBulkSelection keywordBulkSelection)
 		throws Exception;
 
-	public boolean putKeywordBatch(KeywordBulkSelection keywordBulkSelection)
+	public Response putKeywordBatch(KeywordBulkSelection keywordBulkSelection)
 		throws Exception;
 
 	public Page<Keyword> postKeywordsCommonPage(
