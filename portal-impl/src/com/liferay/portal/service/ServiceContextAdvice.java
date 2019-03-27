@@ -14,13 +14,14 @@
 
 package com.liferay.portal.service;
 
+import com.liferay.portal.kernel.aop.AopMethodInvocation;
+import com.liferay.portal.kernel.aop.ChainableMethodAdvice;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
-import com.liferay.portal.kernel.aop.ChainableMethodAdvice;
-import com.liferay.portal.kernel.aop.AopMethodInvocation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+
 import java.util.Map;
 
 /**
