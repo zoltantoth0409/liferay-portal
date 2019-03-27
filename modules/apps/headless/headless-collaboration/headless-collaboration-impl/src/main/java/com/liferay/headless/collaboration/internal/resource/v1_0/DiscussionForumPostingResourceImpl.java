@@ -125,7 +125,7 @@ public class DiscussionForumPostingResourceImpl
 		throws Exception {
 
 		return _addDiscussionThread(
-			discussionForumPosting, discussionForumPostingId);
+			discussionForumPostingId, discussionForumPosting);
 	}
 
 	@Override
@@ -138,7 +138,7 @@ public class DiscussionForumPostingResourceImpl
 			discussionThreadId);
 
 		return _addDiscussionThread(
-			discussionForumPosting, mbThread.getRootMessageId());
+			mbThread.getRootMessageId(), discussionForumPosting);
 	}
 
 	@Override
@@ -163,8 +163,8 @@ public class DiscussionForumPostingResourceImpl
 	}
 
 	private DiscussionForumPosting _addDiscussionThread(
-			DiscussionForumPosting discussionForumPosting,
-			Long discussionForumPostingId)
+			Long discussionForumPostingId,
+			DiscussionForumPosting discussionForumPosting)
 		throws PortalException {
 
 		MBMessage mbMessage = _mbMessageService.getMessage(
