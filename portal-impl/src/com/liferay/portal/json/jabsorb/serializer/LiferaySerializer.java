@@ -424,21 +424,21 @@ public class LiferaySerializer extends AbstractSerializer {
 		Object object = jsonObject.get(name);
 
 		if (object instanceof Integer) {
-			Integer jsonValue = (Integer)object;
+			Integer jsonInteger = (Integer)object;
 
-			Integer cachedValue = Integer.valueOf(jsonValue.intValue());
+			Integer cachedInteger = Integer.valueOf(jsonInteger.intValue());
 
-			if (jsonValue == cachedValue) {
-				return new Integer(jsonValue.intValue());
+			if (jsonInteger == cachedInteger) {
+				return new Integer(jsonInteger.intValue());
 			}
 		}
 		else if (object instanceof Long) {
-			Long jsonValue = (Long)object;
+			Long jsonLong = (Long)object;
 
-			Long cachedValue = Long.valueOf(jsonValue.longValue());
+			Long cachedLong = Long.valueOf(jsonLong.longValue());
 
-			if (jsonValue == cachedValue) {
-				return new Long(jsonValue.intValue());
+			if (jsonLong == cachedLong) {
+				return new Long(jsonLong.intValue());
 			}
 		}
 
