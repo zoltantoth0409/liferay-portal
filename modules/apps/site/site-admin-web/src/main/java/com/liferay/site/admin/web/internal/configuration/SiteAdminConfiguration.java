@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.site.admin.web.configuration;
+package com.liferay.site.admin.web.internal.configuration;
 
 import aQute.bnd.annotation.ProviderType;
 import aQute.bnd.annotation.metatype.Meta;
@@ -24,7 +24,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "infrastructure")
 @Meta.OCD(
-	id = "com.liferay.site.admin.web.configuration.SiteAdminConfiguration",
+	id = "com.liferay.site.admin.web.internal.configuration.SiteAdminConfiguration",
 	localization = "content/Language", name = "site-admin-configuration-name"
 )
 @ProviderType
