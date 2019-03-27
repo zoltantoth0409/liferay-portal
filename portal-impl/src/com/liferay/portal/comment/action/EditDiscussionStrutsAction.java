@@ -23,7 +23,6 @@ import com.liferay.message.boards.kernel.exception.RequiredMessageException;
 import com.liferay.portal.kernel.comment.Comment;
 import com.liferay.portal.kernel.comment.CommentManagerUtil;
 import com.liferay.portal.kernel.comment.DiscussionPermission;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.User;
@@ -43,7 +42,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Function;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -157,15 +155,8 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 		DiscussionPermission discussionPermission = _getDiscussionPermission(
 			themeDisplay);
 
-		AssetEntry assetEntry = AssetEntryLocalServiceUtil.fetchEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
 			className, classPK);
-
-		if (assetEntry == null) {
-			String noSuchAssetEntryMessage = _getNoSuchAssetEntryMessage(
-				className, classPK);
-
-			throw new PortalException(noSuchAssetEntryMessage);
-		}
 
 		discussionPermission.checkSubscribePermission(
 			assetEntry.getCompanyId(), assetEntry.getGroupId(), className,
@@ -200,15 +191,8 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 		DiscussionPermission discussionPermission = _getDiscussionPermission(
 			themeDisplay);
 
-		AssetEntry assetEntry = AssetEntryLocalServiceUtil.fetchEntry(
+		AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
 			className, classPK);
-
-		if (assetEntry == null) {
-			String noSuchAssetEntryMessage = _getNoSuchAssetEntryMessage(
-				className, classPK);
-
-			throw new PortalException(noSuchAssetEntryMessage);
-		}
 
 		if (commentId <= 0) {
 
@@ -308,17 +292,6 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 		}
 
 		return discussionPermission;
-	}
-
-	private String _getNoSuchAssetEntryMessage(String className, long classPK) {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("No asset entry exists with class name ");
-		sb.append(className);
-		sb.append(" and class PK ");
-		sb.append(classPK);
-
-		return sb.toString();
 	}
 
 }
