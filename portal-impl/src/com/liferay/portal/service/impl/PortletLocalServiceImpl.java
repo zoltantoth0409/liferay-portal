@@ -363,10 +363,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 			_portletApps.remove(servletContextName);
 
-			ServletContext servletContext = portletApp.getServletContext();
-
-			_propertiesConfigurations.remove(servletContext.getClassLoader());
-
 			ExtraPortletAppConfigRegistry.unregisterExtraPortletAppConfig(
 				servletContextName);
 		}
@@ -726,14 +722,16 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			Map<String, String> portletIdsByStrutsPath =
 				new ConcurrentHashMap<>();
 
+			Configuration configuration = _getConfiguration(portletApp);
+
 			Set<String> liferayPortletIds = readLiferayPortletXML(
 				StringPool.BLANK, servletContext, xmls[2], portletsMap,
-				portletIdsByStrutsPath);
+				portletIdsByStrutsPath, configuration);
 
 			liferayPortletIds.addAll(
 				readLiferayPortletXML(
 					StringPool.BLANK, servletContext, xmls[3], portletsMap,
-					portletIdsByStrutsPath));
+					portletIdsByStrutsPath, configuration));
 
 			_portletIdsByStrutsPath = portletIdsByStrutsPath;
 
@@ -810,6 +808,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		Set<String> liferayPortletIds = null;
 
+		PortletApp portletApp = getPortletApp(servletContextName);
+
 		try {
 			Set<String> servletURLPatterns = readWebXML(xmls[3]);
 
@@ -836,7 +836,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 			liferayPortletIds = readLiferayPortletXML(
 				servletContextName, servletContext, xmls[2], portletsMap,
-				portletIdsByStrutsPath);
+				portletIdsByStrutsPath, _getConfiguration(portletApp));
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -898,8 +898,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			}
 
 			// Sprite images
-
-			PortletApp portletApp = getPortletApp(servletContextName);
 
 			setSpriteImages(servletContext, portletApp, "/icons/");
 
@@ -1140,32 +1138,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		}
 
 		return portletsMap;
-	}
-
-	protected String getTriggerValue(Portlet portlet, String propertyKey) {
-		PortletApp portletApp = portlet.getPortletApp();
-
-		ServletContext servletContext = portletApp.getServletContext();
-
-		ClassLoader classLoader = servletContext.getClassLoader();
-
-		Configuration configuration = _propertiesConfigurations.get(
-			classLoader);
-
-		if (configuration == null) {
-			String propertyFileName = "portal";
-
-			if (portletApp.isWARFile()) {
-				propertyFileName = "portlet";
-			}
-
-			configuration = ConfigurationFactoryUtil.getConfiguration(
-				classLoader, propertyFileName);
-
-			_propertiesConfigurations.put(classLoader, configuration);
-		}
-
-		return configuration.get(propertyKey);
 	}
 
 	protected void initPortletAddToPagePermissions(Portlet portlet)
@@ -1435,7 +1407,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		String servletContextName, ServletContext servletContext,
 		Set<String> liferayPortletIds, Map<String, String> roleMappers,
 		Element portletElement, Map<String, Portlet> portletsMap,
-		Map<String, String> portletIdsByStrutsPath) {
+		Map<String, String> portletIdsByStrutsPath,
+		Configuration configuration) {
 
 		String portletId = portletElement.elementText("portlet-name");
 
@@ -1543,8 +1516,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 				String cronException = null;
 
 				if (propertyKeyElement != null) {
-					cronException = getTriggerValue(
-						portletModel, propertyKeyElement.getTextTrim());
+					cronException = configuration.get(
+						propertyKeyElement.getTextTrim());
 				}
 				else {
 					cronException = cronElement.elementText(
@@ -1561,8 +1534,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 				String intervalString = null;
 
 				if (propertyKeyElement != null) {
-					intervalString = getTriggerValue(
-						portletModel, propertyKeyElement.getTextTrim());
+					intervalString = configuration.get(
+						propertyKeyElement.getTextTrim());
 				}
 				else {
 					Element simpleTriggerValueElement = simpleElement.element(
@@ -2027,7 +2000,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 	protected Set<String> readLiferayPortletXML(
 			String servletContextName, ServletContext servletContext,
 			String xml, Map<String, Portlet> portletsMap,
-			Map<String, String> portletIdsByStrutsPath)
+			Map<String, String> portletIdsByStrutsPath,
+			Configuration configuration)
 		throws Exception {
 
 		Set<String> liferayPortletIds = new HashSet<>();
@@ -2073,7 +2047,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			readLiferayPortletXML(
 				servletContextName, servletContext, liferayPortletIds,
 				roleMappers, portletElement, portletsMap,
-				portletIdsByStrutsPath);
+				portletIdsByStrutsPath, configuration);
 		}
 
 		return liferayPortletIds;
@@ -2714,6 +2688,21 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		return updatePortlet(companyId, portletId, roles, active);
 	}
 
+	private Configuration _getConfiguration(PortletApp portletApp) {
+		String propertyFileName = "portal";
+
+		if (portletApp.isWARFile()) {
+			propertyFileName = "portlet";
+		}
+
+		ServletContext servletContext = portletApp.getServletContext();
+
+		ClassLoader classLoader = servletContext.getClassLoader();
+
+		return ConfigurationFactoryUtil.getConfiguration(
+			classLoader, propertyFileName);
+	}
+
 	private ClassLoader _getServletContextClassLoader(
 		String servletContextName) {
 
@@ -2775,7 +2764,5 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		new ConcurrentHashMap<>();
 	private static final Map<Long, Map<String, Portlet>> _portletsMaps =
 		new ConcurrentHashMap<>();
-	private static final Map<ClassLoader, Configuration>
-		_propertiesConfigurations = new ConcurrentHashMap<>();
 
 }
