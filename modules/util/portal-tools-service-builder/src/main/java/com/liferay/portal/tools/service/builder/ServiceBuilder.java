@@ -2098,9 +2098,18 @@ public class ServiceBuilder {
 
 	private void _addIndexMetadata(
 		Map<String, List<IndexMetadata>> indexMetadatasMap, String tableName,
-		IndexMetadata entityPKIndexMetadata, IndexMetadata indexMetadata) {
+		Entity entity, IndexMetadata indexMetadata) {
 
-		if (entityPKIndexMetadata != null) {
+		List<EntityColumn> pkEntityColumns = null;
+
+		if (entity != null) {
+			pkEntityColumns = entity.getPKEntityColumns();
+		}
+
+		if ((pkEntityColumns != null) && (pkEntityColumns.size() > 1)) {
+			IndexMetadata entityPKIndexMetadata = _getEntityPKIndexMetadata(
+				entity.getPKEntityColumns());
+
 			boolean redundant = true;
 
 			String[] indexMetadataColumnNames =
@@ -3587,26 +3596,16 @@ public class ServiceBuilder {
 				Entity entity = _getEntityByTableName(
 					indexMetadata.getTableName());
 
-				IndexMetadata entityPKIndexMetadata = null;
-
 				if (entity != null) {
 					indexMetadata = new IndexMetadata(
 						indexMetadata.getIndexName(),
 						indexMetadata.getTableName(), indexMetadata.isUnique(),
 						indexMetadata.getColumnNames());
-
-					List<EntityColumn> pkEntityColumns =
-						entity.getPKEntityColumns();
-
-					if (pkEntityColumns.size() > 1) {
-						entityPKIndexMetadata = _getEntityPKIndexMetadata(
-							entity.getPKEntityColumns());
-					}
 				}
 
 				_addIndexMetadata(
-					indexMetadatasMap, indexMetadata.getTableName(),
-					entityPKIndexMetadata, indexMetadata);
+					indexMetadatasMap, indexMetadata.getTableName(), entity,
+					indexMetadata);
 			}
 		}
 
@@ -3658,19 +3657,9 @@ public class ServiceBuilder {
 						entityFinder.isUnique(), entity.getTable(),
 						dbNames.toArray(new String[dbNames.size()]));
 
-				IndexMetadata entityPKIndexMetadata = null;
-
-				List<EntityColumn> pkEntityColumns =
-					entity.getPKEntityColumns();
-
-				if (pkEntityColumns.size() > 1) {
-					entityPKIndexMetadata = _getEntityPKIndexMetadata(
-						entity.getPKEntityColumns());
-				}
-
 				_addIndexMetadata(
-					indexMetadatasMap, indexMetadata.getTableName(),
-					entityPKIndexMetadata, indexMetadata);
+					indexMetadatasMap, indexMetadata.getTableName(), entity,
+					indexMetadata);
 			}
 		}
 
