@@ -22,6 +22,7 @@ import com.liferay.frontend.js.loader.modules.extender.npm.NPMRegistry;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.Portal;
 
 import java.io.IOException;
@@ -101,6 +102,12 @@ public class JSLoaderModulesServlet extends HttpServlet {
 			HttpServletRequest request, HttpServletResponse response)
 		throws IOException {
 
+		if (!_isLastServedContentStale()) {
+			_writeResponse(response, _lastServedContent.getValue());
+
+			return;
+		}
+
 		StringWriter stringWriter = new StringWriter();
 
 		PrintWriter printWriter = new PrintWriter(stringWriter);
@@ -128,7 +135,13 @@ public class JSLoaderModulesServlet extends HttpServlet {
 
 		printWriter.close();
 
-		_writeResponse(response, stringWriter.toString());
+		String content = _minifier.minify(
+			"/o/js_loader_modules", stringWriter.toString());
+
+		_lastServedContent = new ObjectValuePair<>(
+			_jsLoaderModulesTracker.getLastModified(), content);
+
+		_writeResponse(response, content);
 	}
 
 	protected void setDetails(Details details) {
@@ -155,6 +168,16 @@ public class JSLoaderModulesServlet extends HttpServlet {
 		}
 
 		return dependencyAlias;
+	}
+
+	private boolean _isLastServedContentStale() {
+		if (_jsLoaderModulesTracker.getLastModified() >
+				_lastServedContent.getKey()) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	private void _writeMaps(PrintWriter printWriter) {
@@ -453,7 +476,7 @@ public class JSLoaderModulesServlet extends HttpServlet {
 
 		PrintWriter printWriter = new PrintWriter(servletOutputStream, true);
 
-		printWriter.write(_minifier.minify("/o/js_loader_modules", content));
+		printWriter.write(content);
 
 		printWriter.close();
 	}
@@ -462,6 +485,8 @@ public class JSLoaderModulesServlet extends HttpServlet {
 	private final Map<String, String> _dependencyAliases = new HashMap<>();
 	private volatile Details _details;
 	private JSLoaderModulesTracker _jsLoaderModulesTracker;
+	private volatile ObjectValuePair<Long, String> _lastServedContent =
+		new ObjectValuePair<>(0L, null);
 	private Logger _logger;
 
 	@Reference
