@@ -80,7 +80,16 @@ public class ChangeListsDisplayContext {
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
 		soyContext.put(
-			"entityNameTranslations", _getEntityNameTranslations()
+			"entityNameTranslations",
+			JSONUtil.toJSONArray(
+				CTConfigurationRegistryUtil.getContentTypeLanguageKeys(),
+				contentTypeLanguageKey -> JSONUtil.put(
+						"key", contentTypeLanguageKey
+					).put(
+						"translation",
+						LanguageUtil.get(
+							_httpServletRequest, contentTypeLanguageKey)
+					))
 		).put(
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg"
@@ -265,17 +274,6 @@ public class ChangeListsDisplayContext {
 				addTableViewTypeItem();
 			}
 		};
-	}
-
-	private JSONArray _getEntityNameTranslations() throws Exception {
-		return JSONUtil.toJSONArray(
-			CTConfigurationRegistryUtil.getContentTypeLanguageKeys(),
-			contentTypeLanguageKey -> JSONUtil.put(
-					"key", contentTypeLanguageKey
-				).put(
-					"translation",
-					LanguageUtil.get(_httpServletRequest, contentTypeLanguageKey)
-				));
 	}
 
 	private String _getFilterByStatus() {
