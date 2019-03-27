@@ -107,11 +107,11 @@ public abstract class BaseDataRecordResourceTestCase {
 	}
 
 	@Test
-	public void testGetDataRecordCollectionExport() throws Exception {
+	public void testGetDataRecordCollectionDataRecordExport() throws Exception {
 		Assert.assertTrue(true);
 	}
 
-	protected String invokeGetDataRecordCollectionExport(
+	protected String invokeGetDataRecordCollectionDataRecordExport(
 			Long dataRecordCollectionId)
 		throws Exception {
 
@@ -120,7 +120,7 @@ public abstract class BaseDataRecordResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/data-record-collections/{data-record-collection-id}/export",
+					"/data-record-collections/{data-record-collection-id}/data-records/export",
 					dataRecordCollectionId);
 
 		options.setLocation(location);
@@ -134,8 +134,9 @@ public abstract class BaseDataRecordResourceTestCase {
 		return string;
 	}
 
-	protected Http.Response invokeGetDataRecordCollectionExportResponse(
-			Long dataRecordCollectionId)
+	protected Http.Response
+			invokeGetDataRecordCollectionDataRecordExportResponse(
+				Long dataRecordCollectionId)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -143,7 +144,7 @@ public abstract class BaseDataRecordResourceTestCase {
 		String location =
 			_resourceURL +
 				_toPath(
-					"/data-record-collections/{data-record-collection-id}/export",
+					"/data-record-collections/{data-record-collection-id}/data-records/export",
 					dataRecordCollectionId);
 
 		options.setLocation(location);
@@ -820,7 +821,7 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		for (int i = 0; i < values.length; i++) {
 			template = template.replaceFirst(
-				"\\{.*\\}", String.valueOf(values[i]));
+				"\\{.*?\\}", String.valueOf(values[i]));
 		}
 
 		return template;

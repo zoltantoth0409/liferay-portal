@@ -62,10 +62,12 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 
 	@Override
 	@GET
-	@Path("/data-record-collections/{data-record-collection-id}/export")
+	@Path(
+		"/data-record-collections/{data-record-collection-id}/data-records/export"
+	)
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "DataRecord")})
-	public String getDataRecordCollectionExport(
+	public String getDataRecordCollectionDataRecordExport(
 			@NotNull @PathParam("data-record-collection-id") Long
 				dataRecordCollectionId)
 		throws Exception {

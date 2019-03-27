@@ -32,7 +32,8 @@ import javax.annotation.Generated;
 @Generated("")
 public interface DataRecordResource {
 
-	public String getDataRecordCollectionExport(Long dataRecordCollectionId)
+	public String getDataRecordCollectionDataRecordExport(
+			Long dataRecordCollectionId)
 		throws Exception;
 
 	public Page<DataRecord> getDataRecordCollectionDataRecordsPage(

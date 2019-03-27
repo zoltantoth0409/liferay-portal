@@ -148,7 +148,7 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public String getDataRecordCollectionExport(
+	public String getDataRecordCollectionDataRecordExport(
 			@GraphQLName("data-record-collection-id") Long
 				dataRecordCollectionId)
 		throws Exception {
@@ -157,7 +157,7 @@ public class Query {
 			_dataRecordResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			dataRecordResource ->
-				dataRecordResource.getDataRecordCollectionExport(
+				dataRecordResource.getDataRecordCollectionDataRecordExport(
 					dataRecordCollectionId));
 	}
 
