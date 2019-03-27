@@ -247,7 +247,7 @@ public class DocumentResourceImpl
 			!documentOptional.isPresent()) {
 
 			throw new BadRequestException(
-				"Body is empty, you must send file or document");
+				"No document or file found in body");
 		}
 
 		FileEntry existingFileEntry = _dlAppService.getFileEntry(documentId);
