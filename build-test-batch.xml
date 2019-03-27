@@ -19,7 +19,8 @@
 					/>
 				</not>
 				<then>
-					<echo>Adding -cdiannotations: header to @{liferay.plugin.package.properties.file}</echo>
+					<echo>Adding -cdiannotations: header to @{liferay.plugin.package.properties.file}.</echo>
+
 					<echo append="true" file="@{liferay.plugin.package.properties.file}">
 -cdiannotations:</echo>
 				</then>
