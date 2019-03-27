@@ -27,9 +27,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
 import com.liferay.portal.kernel.dao.search.DisplayTerms;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
@@ -84,12 +81,12 @@ public class ChangeListsDisplayContext {
 			JSONUtil.toJSONArray(
 				CTConfigurationRegistryUtil.getContentTypeLanguageKeys(),
 				contentTypeLanguageKey -> JSONUtil.put(
-						"key", contentTypeLanguageKey
-					).put(
-						"translation",
-						LanguageUtil.get(
-							_httpServletRequest, contentTypeLanguageKey)
-					))
+					"key", contentTypeLanguageKey
+				).put(
+					"translation",
+					LanguageUtil.get(
+						_httpServletRequest, contentTypeLanguageKey)
+				))
 		).put(
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg"
