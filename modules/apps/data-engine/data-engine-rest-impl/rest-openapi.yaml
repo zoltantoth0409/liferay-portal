@@ -294,7 +294,7 @@ paths:
                                 $ref: "#/components/schemas/DataDefinition"
                     description: ""
             tags: ["DataDefinition"]
-    "/content-spaces/{content-space-id}/data-definitions/permissions":
+    "/content-spaces/{content-space-id}/data-definition-permissions":
         post:
             parameters:
                 - in: path
@@ -348,7 +348,7 @@ paths:
                                 type: array
                     description: ""
             tags: ["DataLayout"]
-    "/content-spaces/{content-space-id}/data-record-collections/permissions":
+    "/content-spaces/{content-space-id}/data-record-collection-permissions":
         post:
             parameters:
                 - in: path
@@ -406,7 +406,7 @@ paths:
                                 type: array
                     description: ""
             tags: ["DataRecordCollection"]
-    "/data-definitions/{data-definition-id}/permissions":
+    "/data-definitions/{data-definition-id}/data-definition-permissions":
         post:
             parameters:
                 - in: path
@@ -612,7 +612,7 @@ paths:
                                 $ref: "#/components/schemas/DataLayout"
                     description: ""
             tags: ["DataLayout"]
-    "/data-record-collections/{data-record-collection-id}/permissions":
+    "/data-record-collections/{data-record-collection-id}/data-record-collection-permissions":
         post:
             parameters:
                 - in: path
