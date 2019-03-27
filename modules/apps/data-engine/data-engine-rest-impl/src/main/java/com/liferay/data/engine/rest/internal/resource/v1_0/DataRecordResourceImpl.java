@@ -92,6 +92,18 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 	}
 
 	@Override
+	public String getDataRecordCollectionDataRecordExport(
+			Long dataRecordCollectionId)
+		throws Exception {
+
+		return _dataRecordExporter.export(
+			transform(
+				_ddlRecordLocalService.getRecords(
+					dataRecordCollectionId, -1, -1, null),
+				this::_toDataRecord));
+	}
+
+	@Override
 	public Page<DataRecord> getDataRecordCollectionDataRecordsPage(
 			Long dataRecordCollectionId, Pagination pagination)
 		throws Exception {
@@ -105,18 +117,6 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			pagination,
 			_ddlRecordLocalService.getRecordsCount(
 				dataRecordCollectionId, PrincipalThreadLocal.getUserId()));
-	}
-
-	@Override
-	public String getDataRecordCollectionDataRecordExport(
-			Long dataRecordCollectionId)
-		throws Exception {
-
-		return _dataRecordExporter.export(
-			transform(
-				_ddlRecordLocalService.getRecords(
-					dataRecordCollectionId, -1, -1, null),
-				this::_toDataRecord));
 	}
 
 	@Override
