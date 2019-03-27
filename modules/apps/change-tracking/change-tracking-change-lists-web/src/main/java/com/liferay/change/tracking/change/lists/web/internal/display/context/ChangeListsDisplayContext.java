@@ -269,8 +269,6 @@ public class ChangeListsDisplayContext {
 	private JSONArray _getEntityNameTranslations() {
 		JSONArray translations = JSONFactoryUtil.createJSONArray();
 
-		CTConfigurationRegistryUtil.getContentTypeLanguageKeys();
-
 		for (String contentTypeLanguageKey :
 				CTConfigurationRegistryUtil.getContentTypeLanguageKeys()) {
 
