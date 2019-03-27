@@ -268,11 +268,11 @@ public class DataRecordCollectionResourceImpl
 				"Operation must be 'delete' or 'save'");
 		}
 
-		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
+		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
 			dataRecordCollectionId);
 
 		DataEnginePermissionUtil.checkPermission(
-			DataActionKeys.DEFINE_PERMISSIONS, ddmStructure.getGroupId(),
+			DataActionKeys.DEFINE_PERMISSIONS, ddlRecordSet.getGroupId(),
 			_groupLocalService);
 
 		List<String> actionIds = new ArrayList<>();
@@ -306,7 +306,7 @@ public class DataRecordCollectionResourceImpl
 			}
 
 			_resourcePermissionLocalService.addModelResourcePermissions(
-				contextCompany.getCompanyId(), ddmStructure.getGroupId(),
+				contextCompany.getCompanyId(), ddlRecordSet.getGroupId(),
 				PrincipalThreadLocal.getUserId(),
 				DataRecordCollectionConstants.RESOURCE_NAME,
 				String.valueOf(dataRecordCollectionId), modelPermissions);
