@@ -84,7 +84,7 @@ public class ResourceBlockLocalServiceTest {
 			),
 			@ExpectedLog(
 				expectedDBType = ExpectedDBType.DB2,
-				expectedLog = "[jcc][t4][102][10040][4.16.53] Batch failure.",
+				expectedLog = "[jcc][t4][102][10040][4.24.92] Batch failure.",
 				expectedType = ExpectedType.PREFIX
 			),
 			@ExpectedLog(
@@ -219,7 +219,7 @@ public class ResourceBlockLocalServiceTest {
 			),
 			@ExpectedLog(
 				expectedDBType = ExpectedDBType.DB2,
-				expectedLog = "[jcc][t4][102][10040][4.16.53] Batch failure.",
+				expectedLog = "[jcc][t4][102][10040][4.24.92] Batch failure.",
 				expectedType = ExpectedType.PREFIX
 			),
 			@ExpectedLog(
