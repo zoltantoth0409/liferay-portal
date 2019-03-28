@@ -422,8 +422,16 @@ public class LayoutSiteNavigationMenuItemType
 		boolean privateLayout = GetterUtil.getBoolean(
 			typeSettingsProperties.get("privateLayout"));
 
-		return _layoutLocalService.getLayoutByUuidAndGroupId(
+		Layout layout = _layoutLocalService.fetchLayoutByUuidAndGroupId(
 			layoutUuid, siteNavigationMenuItem.getGroupId(), privateLayout);
+
+		if ((layout == null) && ExportImportThreadLocal.isImportInProcess()) {
+			layout = _layoutLocalService.fetchLayoutByUuidAndGroupId(
+				layoutUuid, siteNavigationMenuItem.getGroupId(),
+				!privateLayout);
+		}
+
+		return layout;
 	}
 
 	@Reference
