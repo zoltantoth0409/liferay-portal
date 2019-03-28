@@ -284,7 +284,7 @@ public class StructuredContentResourceImpl
 				StringBundler.concat(
 					"Unable to patch structured content with language ",
 					contextAcceptLanguage.getPreferredLanguageId(),
-					"because it is only available in the following languages ",
+					" because it is only available in the following languages ",
 					journalArticle.getAvailableLanguageIds()));
 		}
 

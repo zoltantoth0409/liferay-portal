@@ -151,7 +151,7 @@ public class TaxonomyVocabularyResourceImpl
 				StringBundler.concat(
 					"Unable to patch taxonomy vocabulary with language ",
 					contextAcceptLanguage.getPreferredLanguageId(),
-					"because it is only available in the following languages ",
+					" because it is only available in the following languages ",
 					Arrays.toString(
 						assetVocabulary.getAvailableLanguageIds())));
 		}
