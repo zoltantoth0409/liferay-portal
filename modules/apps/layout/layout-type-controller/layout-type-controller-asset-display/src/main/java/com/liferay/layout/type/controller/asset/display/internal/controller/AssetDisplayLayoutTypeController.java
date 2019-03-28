@@ -127,7 +127,7 @@ public class AssetDisplayLayoutTypeController
 
 		try {
 			LayoutPageTemplateEntry layoutPageTemplateEntry =
-				_getLayoutPageTemplateEntry(layout);
+				_fetchLayoutPageTemplateEntry(layout);
 
 			if (layoutPageTemplateEntry != null) {
 				request.setAttribute(
@@ -219,7 +219,7 @@ public class AssetDisplayLayoutTypeController
 		this.servletContext = servletContext;
 	}
 
-	private LayoutPageTemplateEntry _getLayoutPageTemplateEntry(Layout layout) {
+	private LayoutPageTemplateEntry _fetchLayoutPageTemplateEntry(Layout layout) {
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_layoutPageTemplateEntryLocalService.
 				fetchLayoutPageTemplateEntryByPlid(layout.getPlid());
