@@ -141,7 +141,6 @@ public class MessageBoardThreadResourceImpl
 						"categoryId",
 						String.valueOf(mbCategory.getCategoryId())),
 					BooleanClauseOccur.MUST);
-
 				booleanFilter.add(
 					new TermFilter("parentMessageId", "0"),
 					BooleanClauseOccur.MUST);
