@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.product.navigation.personal.menu.web.internal.util;
+package com.liferay.product.navigation.personal.menu.web.internal;
 
 import com.liferay.osgi.service.tracker.collections.map.PropertyServiceReferenceComparator;
 import com.liferay.osgi.service.tracker.collections.map.ServiceReferenceMapper;

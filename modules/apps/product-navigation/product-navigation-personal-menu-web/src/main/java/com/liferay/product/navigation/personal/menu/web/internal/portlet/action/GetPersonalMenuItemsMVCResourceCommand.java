@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.product.navigation.personal.menu.PersonalMenuEntry;
 import com.liferay.product.navigation.personal.menu.constants.PersonalMenuPortletKeys;
-import com.liferay.product.navigation.personal.menu.web.internal.util.PersonalMenuEntryRegistry;
+import com.liferay.product.navigation.personal.menu.web.internal.PersonalMenuEntryRegistry;
 
 import java.util.List;
 
@@ -63,15 +63,15 @@ public class GetPersonalMenuItemsMVCResourceCommand
 
 		try {
 			HttpServletResponse httpServletResponse =
-				_portal.getHttpServletResponse(
-					resourceResponse);
+				_portal.getHttpServletResponse(resourceResponse);
 
 			httpServletResponse.setContentType(ContentTypes.APPLICATION_JSON);
 
 			JSONArray jsonArray = _getPersonalMenuItemsJSONArray(
 				_portal.getHttpServletRequest(resourceRequest));
 
-			ServletResponseUtil.write(httpServletResponse, jsonArray.toString());
+			ServletResponseUtil.write(
+				httpServletResponse, jsonArray.toString());
 		}
 		catch (Exception e) {
 			_log.error(e, e);
