@@ -62,13 +62,13 @@ public class GetPersonalMenuItemsMVCResourceCommand
 		throws Exception {
 
 		try {
-			JSONArray jsonArray = _getPersonalMenuItemsJSONArray(
-				_portal.getHttpServletRequest(resourceRequest));
-
 			HttpServletResponse response = _portal.getHttpServletResponse(
 				resourceResponse);
 
 			response.setContentType(ContentTypes.APPLICATION_JSON);
+
+			JSONArray jsonArray = _getPersonalMenuItemsJSONArray(
+				_portal.getHttpServletRequest(resourceRequest));
 
 			ServletResponseUtil.write(response, jsonArray.toString());
 		}
@@ -81,10 +81,10 @@ public class GetPersonalMenuItemsMVCResourceCommand
 		HttpServletRequest request,
 		List<PersonalMenuEntry> personalMenuEntries) {
 
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (PersonalMenuEntry personalMenuEntry : personalMenuEntries) {
 			if (!personalMenuEntry.isShow(
@@ -115,12 +115,12 @@ public class GetPersonalMenuItemsMVCResourceCommand
 	private JSONArray _getPersonalMenuItemsJSONArray(
 		HttpServletRequest request) {
 
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
 		List<List<PersonalMenuEntry>> groupedPersonalMenuEntries =
 			_personalMenuEntryRegistry.getGroupedPersonalMenuEntries();
 
 		int size = groupedPersonalMenuEntries.size();
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (int i = 0; i < size; i++) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
