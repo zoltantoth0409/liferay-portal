@@ -92,15 +92,15 @@ public class MessageBoardThreadResourceImpl
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
 
-				booleanFilter.add(
-					new TermFilter("parentMessageId", "0"),
-					BooleanClauseOccur.MUST);
-
 				if (GetterUtil.getBoolean(tree)) {
 					booleanFilter.add(
 						new TermFilter(Field.CATEGORY_ID, "0"),
 						BooleanClauseOccur.MUST);
 				}
+
+				booleanFilter.add(
+					new TermFilter("parentMessageId", "0"),
+					BooleanClauseOccur.MUST);
 			},
 			filter, MBMessage.class, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
