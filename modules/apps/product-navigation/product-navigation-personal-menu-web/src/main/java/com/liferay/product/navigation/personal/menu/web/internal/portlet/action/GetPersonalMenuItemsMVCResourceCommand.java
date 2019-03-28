@@ -123,9 +123,7 @@ public class GetPersonalMenuItemsMVCResourceCommand
 		List<List<PersonalMenuEntry>> groupedPersonalMenuEntries =
 			_personalMenuEntryRegistry.getGroupedPersonalMenuEntries();
 
-		int size = groupedPersonalMenuEntries.size();
-
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < groupedPersonalMenuEntries.size(); i++) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			jsonObject.put(
@@ -133,7 +131,7 @@ public class GetPersonalMenuItemsMVCResourceCommand
 				_getPersonalMenuEntriesAsJSONArray(
 					httpServletRequest, groupedPersonalMenuEntries.get(i)));
 
-			if (i < (size - 1)) {
+			if (i < (groupedPersonalMenuEntries.size() - 1)) {
 				jsonObject.put("separator", true);
 			}
 
