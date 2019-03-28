@@ -58,10 +58,10 @@ public abstract class BasePersonalMenuEntry implements PersonalMenuEntry {
 			return null;
 		}
 
-		PortletURL url = PortalUtil.getControlPanelPortletURL(
+		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
 			request, getPortletId(), PortletRequest.RENDER_PHASE);
 
-		return url.toString();
+		return portletURL.toString();
 	}
 
 	/**
