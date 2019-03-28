@@ -65,16 +65,16 @@ public class UpgradeContentImages extends UpgradeProcess {
 		List<Node> imageNodes = xPath.selectNodes(contentDocument);
 
 		for (Node imageNode : imageNodes) {
-			Element imageEl = (Element)imageNode;
+			Element imageElement = (Element)imageNode;
 
-			List<Element> dynamicContentEls = imageEl.elements(
+			List<Element> dynamicContentElements = imageElement.elements(
 				"dynamic-content");
 
-			for (Element dynamicContentEl : dynamicContentEls) {
+			for (Element dynamicContentElement : dynamicContentElements) {
 				long fileEntryId = GetterUtil.getLong(
-					dynamicContentEl.attributeValue("fileEntryId"));
+					dynamicContentElement.attributeValue("fileEntryId"));
 
-				String id = dynamicContentEl.attributeValue("id");
+				String id = dynamicContentElement.attributeValue("id");
 
 				FileEntry fileEntry = null;
 
@@ -86,7 +86,7 @@ public class UpgradeContentImages extends UpgradeProcess {
 					fileEntry = _getFileEntryByFileEntryId(fileEntryId);
 				}
 				else {
-					String data = String.valueOf(dynamicContentEl.getData());
+					String data = String.valueOf(dynamicContentElement.getData());
 
 					fileEntry =
 						_journalArticleImageUpgradeUtil.getFileEntryFromURL(
@@ -97,13 +97,13 @@ public class UpgradeContentImages extends UpgradeProcess {
 					continue;
 				}
 
-				dynamicContentEl.clearContent();
+				dynamicContentElement.clearContent();
 
-				dynamicContentEl.addCDATA(
+				dynamicContentElement.addCDATA(
 					JSONUtil.put(
 						"alt",
 						GetterUtil.getString(
-							dynamicContentEl.attributeValue("alt"))
+							dynamicContentElement.attributeValue("alt"))
 					).put(
 						"groupId", fileEntry.getGroupId()
 					).put(
@@ -119,7 +119,7 @@ public class UpgradeContentImages extends UpgradeProcess {
 					).toString());
 
 				if (fileEntryId <= 0) {
-					dynamicContentEl.addAttribute(
+					dynamicContentElement.addAttribute(
 						"fileEntryId",
 						String.valueOf(fileEntry.getFileEntryId()));
 				}
