@@ -69,10 +69,9 @@ public class ChangeListsDisplayContext {
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
 
+		_ctEngineManager = _serviceTracker.getService();
 		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		_ctEngineManager = _serviceTracker.getService();
 	}
 
 	public SoyContext getChangeListsContext() throws Exception {

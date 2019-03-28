@@ -56,7 +56,7 @@ SearchContainer<CTCollection> ctCollectionSearchContainer = changeListsDisplayCo
 				>
 
 					<%
-					boolean productionCollection = CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(curCTCollection.getName());
+					boolean production = CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(curCTCollection.getName());
 					%>
 
 					<liferay-portlet:actionURL name="/change_lists/checkout_ct_collection" var="checkoutCollectionURL">
@@ -68,7 +68,7 @@ SearchContainer<CTCollection> ctCollectionSearchContainer = changeListsDisplayCo
 						name="name"
 					>
 						<c:choose>
-							<c:when test="<%= productionCollection %>">
+							<c:when test="<%= production %>">
 								<span class="work-on-production"><liferay-ui:message key="work-on-production" /></span>
 							</c:when>
 							<c:otherwise>
@@ -79,14 +79,14 @@ SearchContainer<CTCollection> ctCollectionSearchContainer = changeListsDisplayCo
 
 					<liferay-ui:search-container-column-date
 						name="modified-date"
-						value="<%= !productionCollection ? curCTCollection.getModifiedDate() : null %>"
+						value="<%= !production ? curCTCollection.getModifiedDate() : null %>"
 					>
 					</liferay-ui:search-container-column-date>
 
 					<liferay-ui:search-container-column-text
 						name="created-by"
 					>
-						<c:if test="<%= !productionCollection %>">
+						<c:if test="<%= !production %>">
 							<%= HtmlUtil.escape(curCTCollection.getUserName()) %>
 						</c:if>
 					</liferay-ui:search-container-column-text>
@@ -95,7 +95,7 @@ SearchContainer<CTCollection> ctCollectionSearchContainer = changeListsDisplayCo
 						name="description"
 					>
 						<c:choose>
-							<c:when test="<%= productionCollection %>">
+							<c:when test="<%= production %>">
 								<span class="work-on-production-description"><liferay-ui:message key="your-changes-will-be-added-to-the-live-site-immediately" /></span>
 							</c:when>
 							<c:otherwise>
@@ -122,7 +122,7 @@ SearchContainer<CTCollection> ctCollectionSearchContainer = changeListsDisplayCo
 							message="<%= StringPool.BLANK %>"
 							showWhenSingleIcon="<%= true %>"
 						>
-							<c:if test="<%= !productionCollection %>">
+							<c:if test="<%= !production %>">
 								<liferay-portlet:renderURL var="editCollectionURL">
 									<portlet:param name="mvcRenderCommandName" value="/change_lists/edit_ct_collection" />
 									<portlet:param name="backURL" value="<%= themeDisplay.getURLCurrent() %>" />
@@ -207,14 +207,14 @@ SearchContainer<CTCollection> ctCollectionSearchContainer = changeListsDisplayCo
 					>
 
 						<%
-						boolean productionCollection = CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(curCTCollection.getName());
+						boolean production = CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(curCTCollection.getName());
 						%>
 
 						<liferay-portlet:actionURL name="/change_lists/checkout_ct_collection" var="checkoutCollectionURL">
 							<portlet:param name="ctCollectionId" value="<%= String.valueOf(curCTCollection.getCtCollectionId()) %>" />
 						</liferay-portlet:actionURL>
 
-						<c:if test="<%= !productionCollection %>">
+						<c:if test="<%= !production %>">
 							<div class="col-sm-4">
 								<div class="border-left-blue card select-card-sheet">
 									<div class="card-row card-row-layout-fixed card-row-padded card-row-valign-top select-card-header">
