@@ -43,10 +43,8 @@ public class SearchEngineAdapterTest {
 	public void testExceptionBoundaries() {
 		String index = RandomTestUtil.randomString();
 
-		DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest(index);
-
 		try {
-			_searchEngineAdapter.execute(deleteIndexRequest);
+			_searchEngineAdapter.execute(new DeleteIndexRequest(index));
 
 			Assert.fail("Exception was not thrown");
 		}
