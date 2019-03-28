@@ -31,7 +31,6 @@ import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.service.MBMessageLocalService;
 import com.liferay.message.boards.service.MBMessageService;
 import com.liferay.message.boards.service.MBThreadLocalService;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
@@ -155,14 +154,14 @@ public class MessageBoardMessageResourceImpl
 				parentMBMessage.getGroupId(),
 				messageBoardMessage.getViewableByAsString()));
 
-		_updateAnswer(messageBoardMessage, mbMessage);
+		_updateAnswer(mbMessage, messageBoardMessage);
 
 		return _toMessageBoardMessage(mbMessage);
 	}
 
 	private MessageBoardMessage _addMessageBoardThread(
 			Long messageBoardMessageId, MessageBoardMessage messageBoardMessage)
-		throws PortalException {
+		throws Exception {
 
 		MBMessage parentMBMessage = _mbMessageService.getMessage(
 			messageBoardMessageId);
@@ -187,7 +186,7 @@ public class MessageBoardMessageResourceImpl
 				parentMBMessage.getGroupId(),
 				messageBoardMessage.getViewableByAsString()));
 
-		_updateAnswer(messageBoardMessage, mbMessage);
+		_updateAnswer(mbMessage, messageBoardMessage);
 
 		return _toMessageBoardMessage(mbMessage);
 	}
@@ -226,7 +225,7 @@ public class MessageBoardMessageResourceImpl
 	}
 
 	private MessageBoardMessage _toMessageBoardMessage(MBMessage mbMessage)
-		throws PortalException {
+		throws Exception {
 
 		return new MessageBoardMessage() {
 			{
@@ -272,14 +271,15 @@ public class MessageBoardMessageResourceImpl
 	}
 
 	private void _updateAnswer(
-			MessageBoardMessage messageBoardMessage, MBMessage mbMessage)
-		throws PortalException {
+			MBMessage mbMessage, MessageBoardMessage messageBoardMessage)
+		throws Exception {
 
 		Boolean showAsAnswer = messageBoardMessage.getShowAsAnswer();
 
 		if (showAsAnswer != null) {
 			_mbMessageService.updateAnswer(
 				mbMessage.getMessageId(), showAsAnswer, false);
+
 			mbMessage.setAnswer(showAsAnswer);
 		}
 	}
