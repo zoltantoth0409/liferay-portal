@@ -219,7 +219,9 @@ public class AssetDisplayLayoutTypeController
 		this.servletContext = servletContext;
 	}
 
-	private LayoutPageTemplateEntry _fetchLayoutPageTemplateEntry(Layout layout) {
+	private LayoutPageTemplateEntry _fetchLayoutPageTemplateEntry(
+		Layout layout) {
+
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_layoutPageTemplateEntryLocalService.
 				fetchLayoutPageTemplateEntryByPlid(layout.getPlid());
