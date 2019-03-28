@@ -39,13 +39,7 @@ AssetRenderer<?> assetRenderer = workflowHandler.getAssetRenderer(classPK);
 
 AssetRendererFactory<?> assetRendererFactory = assetRenderer.getAssetRendererFactory();
 
-long assetClassPK = assetRenderer.getClassPK();
-
-AssetEntry assetEntry = assetRendererFactory.getAssetEntry(workflowHandler.getClassName(), assetClassPK);
-
-if (assetClassPK != assetEntry.getEntryId()) {
-	assetClassPK = assetEntry.getClassPK();
-}
+AssetEntry assetEntry = assetRendererFactory.getAssetEntry(workflowHandler.getClassName(), assetRenderer.getClassPK());
 
 String headerTitle = workflowTaskDisplayContext.getHeaderTitle(workflowTask);
 
@@ -218,8 +212,8 @@ renderResponse.setTitle(headerTitle);
 						<liferay-ui:discussion
 							assetEntryVisible="<%= false %>"
 							className="<%= assetRenderer.getClassName() %>"
-							classPK="<%= assetClassPK %>"
-							formName='<%= "fm" + assetClassPK %>'
+							classPK="<%= assetEntry.getEntryId() %>"
+							formName='<%= "fm" + assetEntry.getEntryId() %>'
 							ratingsEnabled="<%= false %>"
 							redirect="<%= currentURL %>"
 							userId="<%= user.getUserId() %>"
