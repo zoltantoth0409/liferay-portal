@@ -59,6 +59,10 @@ public class ContentPageEditorDisplayContextProvider {
 			_layoutPageTemplateEntryLocalService.fetchLayoutPageTemplateEntry(
 				classPK);
 
+		Layout draftLayout = _layoutLocalService.fetchLayout(
+			_portal.getClassNameId(Layout.class.getName()),
+			layoutPageTemplateEntry.getPlid());
+
 		boolean showMapping = false;
 
 		if ((layoutPageTemplateEntry != null) &&
@@ -67,10 +71,6 @@ public class ContentPageEditorDisplayContextProvider {
 
 			showMapping = true;
 		}
-
-		Layout draftLayout = _layoutLocalService.fetchLayout(
-			_portal.getClassNameId(Layout.class.getName()),
-			layoutPageTemplateEntry.getPlid());
 
 		return new ContentPageEditorLayoutPageTemplateDisplayContext(
 			request, renderResponse, Layout.class.getName(),
