@@ -73,7 +73,7 @@ public class DiscussionSectionResourceImpl
 
 		return _getContentSpaceDiscussionSectionsPage(
 			booleanQuery -> {
-				if (Boolean.TRUE.equals(tree)) {
+				if (GetterUtil.getBoolean(tree)) {
 					BooleanFilter booleanFilter =
 						booleanQuery.getPreBooleanFilter();
 
