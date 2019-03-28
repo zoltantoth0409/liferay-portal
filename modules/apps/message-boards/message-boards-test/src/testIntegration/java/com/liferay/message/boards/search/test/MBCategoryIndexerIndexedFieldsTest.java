@@ -171,7 +171,6 @@ public class MBCategoryIndexerIndexedFieldsTest {
 
 		map.put(Field.DESCRIPTION, mbCategory.getDescription());
 		map.put(Field.NAME, name);
-
 		map.put(Field.NAME.concat("_sortable"), StringUtil.toLowerCase(name));
 	}
 
