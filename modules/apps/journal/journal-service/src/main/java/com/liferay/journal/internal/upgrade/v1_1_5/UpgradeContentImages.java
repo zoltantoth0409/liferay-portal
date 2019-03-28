@@ -17,8 +17,7 @@ package com.liferay.journal.internal.upgrade.v1_1_5;
 import com.liferay.journal.internal.upgrade.util.JournalArticleImageUpgradeUtil;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
@@ -98,23 +97,26 @@ public class UpgradeContentImages extends UpgradeProcess {
 					continue;
 				}
 
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-				String alt = GetterUtil.getString(
-					dynamicContentEl.attributeValue("alt"));
-
-				jsonObject.put("alt", alt);
-
-				jsonObject.put("groupId", fileEntry.getGroupId());
-				jsonObject.put("name", fileEntry.getFileName());
-				jsonObject.put("resourcePrimKey", resourcePrimKey);
-				jsonObject.put("title", fileEntry.getTitle());
-				jsonObject.put("type", "journal");
-				jsonObject.put("uuid", fileEntry.getUuid());
-
 				dynamicContentEl.clearContent();
 
-				dynamicContentEl.addCDATA(jsonObject.toString());
+				dynamicContentEl.addCDATA(
+					JSONUtil.put(
+						"alt",
+						GetterUtil.getString(
+							dynamicContentEl.attributeValue("alt"))
+					).put(
+						"groupId", fileEntry.getGroupId()
+					).put(
+						"name", fileEntry.getFileName()
+					).put(
+						"resourcePrimKey", resourcePrimKey
+					).put(
+						"title", fileEntry.getTitle()
+					).put(
+						"type", "journal"
+					).put(
+						"uuid", fileEntry.getUuid()
+					).toString());
 
 				if (fileEntryId <= 0) {
 					dynamicContentEl.addAttribute(
