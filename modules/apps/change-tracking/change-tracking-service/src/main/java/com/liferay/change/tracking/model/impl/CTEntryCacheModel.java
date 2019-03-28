@@ -87,10 +87,10 @@ public class CTEntryCacheModel implements CacheModel<CTEntry>, Externalizable {
 		sb.append(modelResourcePrimKey);
 		sb.append(", changeType=");
 		sb.append(changeType);
-		sb.append(", status=");
-		sb.append(status);
 		sb.append(", collision=");
 		sb.append(collision);
+		sb.append(", status=");
+		sb.append(status);
 		sb.append("}");
 
 		return sb.toString();
@@ -130,8 +130,8 @@ public class CTEntryCacheModel implements CacheModel<CTEntry>, Externalizable {
 		ctEntryImpl.setModelClassPK(modelClassPK);
 		ctEntryImpl.setModelResourcePrimKey(modelResourcePrimKey);
 		ctEntryImpl.setChangeType(changeType);
-		ctEntryImpl.setStatus(status);
 		ctEntryImpl.setCollision(collision);
+		ctEntryImpl.setStatus(status);
 
 		ctEntryImpl.resetOriginalValues();
 
@@ -159,9 +159,9 @@ public class CTEntryCacheModel implements CacheModel<CTEntry>, Externalizable {
 
 		changeType = objectInput.readInt();
 
-		status = objectInput.readInt();
-
 		collision = objectInput.readBoolean();
+
+		status = objectInput.readInt();
 	}
 
 	@Override
@@ -192,9 +192,9 @@ public class CTEntryCacheModel implements CacheModel<CTEntry>, Externalizable {
 
 		objectOutput.writeInt(changeType);
 
-		objectOutput.writeInt(status);
-
 		objectOutput.writeBoolean(collision);
+
+		objectOutput.writeInt(status);
 	}
 
 	public long ctEntryId;
@@ -208,7 +208,7 @@ public class CTEntryCacheModel implements CacheModel<CTEntry>, Externalizable {
 	public long modelClassPK;
 	public long modelResourcePrimKey;
 	public int changeType;
-	public int status;
 	public boolean collision;
+	public int status;
 
 }

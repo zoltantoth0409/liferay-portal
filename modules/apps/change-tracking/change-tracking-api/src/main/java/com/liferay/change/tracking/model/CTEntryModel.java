@@ -240,20 +240,6 @@ public interface CTEntryModel
 	public void setChangeType(int changeType);
 
 	/**
-	 * Returns the status of this ct entry.
-	 *
-	 * @return the status of this ct entry
-	 */
-	public int getStatus();
-
-	/**
-	 * Sets the status of this ct entry.
-	 *
-	 * @param status the status of this ct entry
-	 */
-	public void setStatus(int status);
-
-	/**
 	 * Returns the collision of this ct entry.
 	 *
 	 * @return the collision of this ct entry
@@ -273,5 +259,19 @@ public interface CTEntryModel
 	 * @param collision the collision of this ct entry
 	 */
 	public void setCollision(boolean collision);
+
+	/**
+	 * Returns the status of this ct entry.
+	 *
+	 * @return the status of this ct entry
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this ct entry.
+	 *
+	 * @param status the status of this ct entry
+	 */
+	public void setStatus(int status);
 
 }

@@ -27,8 +27,8 @@
 		<field name="modelClassPK" type="long" />
 		<field name="modelResourcePrimKey" type="long" />
 		<field name="changeType" type="int" />
-		<field name="status" type="int" />
 		<field name="collision" type="boolean" />
+		<field name="status" type="int" />
 	</model>
 	<model name="com.liferay.change.tracking.model.CTEntryAggregate">
 		<field name="ctEntryAggregateId" type="long" />

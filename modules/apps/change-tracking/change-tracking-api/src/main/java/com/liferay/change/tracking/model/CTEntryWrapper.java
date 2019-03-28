@@ -56,8 +56,8 @@ public class CTEntryWrapper
 		attributes.put("modelClassPK", getModelClassPK());
 		attributes.put("modelResourcePrimKey", getModelResourcePrimKey());
 		attributes.put("changeType", getChangeType());
-		attributes.put("status", getStatus());
 		attributes.put("collision", isCollision());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -132,16 +132,16 @@ public class CTEntryWrapper
 			setChangeType(changeType);
 		}
 
-		Integer status = (Integer)attributes.get("status");
-
-		if (status != null) {
-			setStatus(status);
-		}
-
 		Boolean collision = (Boolean)attributes.get("collision");
 
 		if (collision != null) {
 			setCollision(collision);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 

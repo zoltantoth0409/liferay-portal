@@ -73,7 +73,7 @@ public class CTEntryModelImpl
 		{"originalCTCollectionId", Types.BIGINT},
 		{"modelClassNameId", Types.BIGINT}, {"modelClassPK", Types.BIGINT},
 		{"modelResourcePrimKey", Types.BIGINT}, {"changeType", Types.INTEGER},
-		{"status", Types.INTEGER}, {"collision", Types.BOOLEAN}
+		{"collision", Types.BOOLEAN}, {"status", Types.INTEGER}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -91,12 +91,12 @@ public class CTEntryModelImpl
 		TABLE_COLUMNS_MAP.put("modelClassPK", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("modelResourcePrimKey", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("changeType", Types.INTEGER);
-		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("collision", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table CTEntry (ctEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,originalCTCollectionId LONG,modelClassNameId LONG,modelClassPK LONG,modelResourcePrimKey LONG,changeType INTEGER,status INTEGER,collision BOOLEAN)";
+		"create table CTEntry (ctEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,originalCTCollectionId LONG,modelClassNameId LONG,modelClassPK LONG,modelResourcePrimKey LONG,changeType INTEGER,collision BOOLEAN,status INTEGER)";
 
 	public static final String TABLE_SQL_DROP = "drop table CTEntry";
 
@@ -314,12 +314,12 @@ public class CTEntryModelImpl
 		attributeGetterFunctions.put("changeType", CTEntry::getChangeType);
 		attributeSetterBiConsumers.put(
 			"changeType", (BiConsumer<CTEntry, Integer>)CTEntry::setChangeType);
-		attributeGetterFunctions.put("status", CTEntry::getStatus);
-		attributeSetterBiConsumers.put(
-			"status", (BiConsumer<CTEntry, Integer>)CTEntry::setStatus);
 		attributeGetterFunctions.put("collision", CTEntry::getCollision);
 		attributeSetterBiConsumers.put(
 			"collision", (BiConsumer<CTEntry, Boolean>)CTEntry::setCollision);
+		attributeGetterFunctions.put("status", CTEntry::getStatus);
+		attributeSetterBiConsumers.put(
+			"status", (BiConsumer<CTEntry, Integer>)CTEntry::setStatus);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -489,16 +489,6 @@ public class CTEntryModelImpl
 	}
 
 	@Override
-	public int getStatus() {
-		return _status;
-	}
-
-	@Override
-	public void setStatus(int status) {
-		_status = status;
-	}
-
-	@Override
 	public boolean getCollision() {
 		return _collision;
 	}
@@ -511,6 +501,16 @@ public class CTEntryModelImpl
 	@Override
 	public void setCollision(boolean collision) {
 		_collision = collision;
+	}
+
+	@Override
+	public int getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(int status) {
+		_status = status;
 	}
 
 	public long getColumnBitmask() {
@@ -556,8 +556,8 @@ public class CTEntryModelImpl
 		ctEntryImpl.setModelClassPK(getModelClassPK());
 		ctEntryImpl.setModelResourcePrimKey(getModelResourcePrimKey());
 		ctEntryImpl.setChangeType(getChangeType());
-		ctEntryImpl.setStatus(getStatus());
 		ctEntryImpl.setCollision(isCollision());
+		ctEntryImpl.setStatus(getStatus());
 
 		ctEntryImpl.resetOriginalValues();
 
@@ -680,9 +680,9 @@ public class CTEntryModelImpl
 
 		ctEntryCacheModel.changeType = getChangeType();
 
-		ctEntryCacheModel.status = getStatus();
-
 		ctEntryCacheModel.collision = isCollision();
+
+		ctEntryCacheModel.status = getStatus();
 
 		return ctEntryCacheModel;
 	}
@@ -772,8 +772,8 @@ public class CTEntryModelImpl
 	private boolean _setOriginalModelClassPK;
 	private long _modelResourcePrimKey;
 	private int _changeType;
-	private int _status;
 	private boolean _collision;
+	private int _status;
 	private long _columnBitmask;
 	private CTEntry _escapedModel;
 

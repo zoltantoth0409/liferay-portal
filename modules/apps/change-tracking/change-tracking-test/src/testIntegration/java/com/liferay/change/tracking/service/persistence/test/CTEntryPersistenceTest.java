@@ -143,9 +143,9 @@ public class CTEntryPersistenceTest {
 
 		newCTEntry.setChangeType(RandomTestUtil.nextInt());
 
-		newCTEntry.setStatus(RandomTestUtil.nextInt());
-
 		newCTEntry.setCollision(RandomTestUtil.randomBoolean());
+
+		newCTEntry.setStatus(RandomTestUtil.nextInt());
 
 		_ctEntries.add(_persistence.update(newCTEntry));
 
@@ -180,9 +180,9 @@ public class CTEntryPersistenceTest {
 		Assert.assertEquals(
 			existingCTEntry.getChangeType(), newCTEntry.getChangeType());
 		Assert.assertEquals(
-			existingCTEntry.getStatus(), newCTEntry.getStatus());
-		Assert.assertEquals(
 			existingCTEntry.isCollision(), newCTEntry.isCollision());
+		Assert.assertEquals(
+			existingCTEntry.getStatus(), newCTEntry.getStatus());
 	}
 
 	@Test
@@ -229,7 +229,7 @@ public class CTEntryPersistenceTest {
 			"userName", true, "createDate", true, "modifiedDate", true,
 			"originalCTCollectionId", true, "modelClassNameId", true,
 			"modelClassPK", true, "modelResourcePrimKey", true, "changeType",
-			true, "status", true, "collision", true);
+			true, "collision", true, "status", true);
 	}
 
 	@Test
@@ -480,9 +480,9 @@ public class CTEntryPersistenceTest {
 
 		ctEntry.setChangeType(RandomTestUtil.nextInt());
 
-		ctEntry.setStatus(RandomTestUtil.nextInt());
-
 		ctEntry.setCollision(RandomTestUtil.randomBoolean());
+
+		ctEntry.setStatus(RandomTestUtil.nextInt());
 
 		_ctEntries.add(_persistence.update(ctEntry));
 

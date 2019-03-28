@@ -45,8 +45,8 @@ public class CTEntrySoap implements Serializable {
 		soapModel.setModelClassPK(model.getModelClassPK());
 		soapModel.setModelResourcePrimKey(model.getModelResourcePrimKey());
 		soapModel.setChangeType(model.getChangeType());
-		soapModel.setStatus(model.getStatus());
 		soapModel.setCollision(model.isCollision());
+		soapModel.setStatus(model.getStatus());
 
 		return soapModel;
 	}
@@ -188,14 +188,6 @@ public class CTEntrySoap implements Serializable {
 		_changeType = changeType;
 	}
 
-	public int getStatus() {
-		return _status;
-	}
-
-	public void setStatus(int status) {
-		_status = status;
-	}
-
 	public boolean getCollision() {
 		return _collision;
 	}
@@ -206,6 +198,14 @@ public class CTEntrySoap implements Serializable {
 
 	public void setCollision(boolean collision) {
 		_collision = collision;
+	}
+
+	public int getStatus() {
+		return _status;
+	}
+
+	public void setStatus(int status) {
+		_status = status;
 	}
 
 	private long _ctEntryId;
@@ -219,7 +219,7 @@ public class CTEntrySoap implements Serializable {
 	private long _modelClassPK;
 	private long _modelResourcePrimKey;
 	private int _changeType;
-	private int _status;
 	private boolean _collision;
+	private int _status;
 
 }
