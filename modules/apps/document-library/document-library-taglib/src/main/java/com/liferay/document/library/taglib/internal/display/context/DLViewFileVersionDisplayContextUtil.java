@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.taglib.internal.servlet;
+package com.liferay.document.library.taglib.internal.display.context;
 
 import com.liferay.document.library.display.context.DLDisplayContextProvider;
 import com.liferay.document.library.display.context.DLViewFileVersionDisplayContext;

@@ -14,7 +14,7 @@
 
 package com.liferay.document.library.taglib.servlet.taglib;
 
-import com.liferay.document.library.taglib.internal.servlet.DLViewFileVersionDisplayContextUtil;
+import com.liferay.document.library.taglib.internal.display.context.DLViewFileVersionDisplayContextUtil;
 import com.liferay.document.library.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.taglib.util.IncludeTag;
