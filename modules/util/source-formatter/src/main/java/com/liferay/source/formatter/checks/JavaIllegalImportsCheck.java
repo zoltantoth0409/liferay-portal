@@ -33,7 +33,7 @@ public class JavaIllegalImportsCheck extends BaseFileCheck {
 				"com.liferay.portal.SystemException",
 				"com.liferay.portal.kernel.util.Function",
 				"com.liferay.portal.kernel.util.Supplier",
-				"com.liferay.util.LocalizationUtil",
+				"com.liferay.util.LocalizationUtil"
 			},
 			new String[] {
 				"com.liferay.portal.kernel.exception.PortalException",
