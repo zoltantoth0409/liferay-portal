@@ -170,7 +170,6 @@ class FragmentEditableField extends PortletBase {
 			)
 		);
 
-		const itemId = this._getItemId();
 		const highlighted = FragmentEditableField._isHighlighted(
 			state.activeItemId,
 			state.activeItemType,
@@ -179,6 +178,7 @@ class FragmentEditableField extends PortletBase {
 			state.hoveredItemType,
 			state.layoutData.structure
 		);
+		const itemId = this._getItemId();
 		const translated = !mapped && Boolean(segmentedValue[this.languageId]);
 
 		let nextState = state;
