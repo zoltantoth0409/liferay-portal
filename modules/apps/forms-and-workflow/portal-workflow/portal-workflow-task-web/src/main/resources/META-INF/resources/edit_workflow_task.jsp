@@ -212,8 +212,8 @@ renderResponse.setTitle(headerTitle);
 						<liferay-ui:discussion
 							assetEntryVisible="<%= false %>"
 							className="<%= assetRenderer.getClassName() %>"
-							classPK="<%= assetEntry.getEntryId() %>"
-							formName='<%= "fm" + assetEntry.getEntryId() %>'
+							classPK="<%= assetEntry.getClassPK() %>"
+							formName='<%= "fm" + assetEntry.getClassPK() %>'
 							ratingsEnabled="<%= false %>"
 							redirect="<%= currentURL %>"
 							userId="<%= user.getUserId() %>"
