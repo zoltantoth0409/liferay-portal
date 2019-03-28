@@ -59,7 +59,6 @@ public class MBCategoryModelIndexerWriterContributor
 
 				dynamicQuery.add(statusProperty.in(statuses));
 			});
-
 		batchIndexingActionable.setPerformActionMethod(
 			(MBCategory mbCategory) -> {
 				if (_log.isDebugEnabled()) {
