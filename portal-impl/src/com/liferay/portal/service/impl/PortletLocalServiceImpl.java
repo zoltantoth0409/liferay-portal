@@ -2735,6 +2735,10 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		ClassLoader classLoader = servletContext.getClassLoader();
 
+		if (classLoader.getResource(propertyFileName + ".properties") == null) {
+			return null;
+		}
+
 		return ConfigurationFactoryUtil.getConfiguration(
 			classLoader, propertyFileName);
 	}
