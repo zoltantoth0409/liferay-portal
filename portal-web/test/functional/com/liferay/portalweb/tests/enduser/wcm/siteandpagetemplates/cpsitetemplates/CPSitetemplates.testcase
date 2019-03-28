@@ -424,7 +424,7 @@ definition {
 
 		SiteTemplates.viewDefaultDataLocalizedCP(
 			siteTemplateDescriptionList = "Sitio con foro y wiki,Sitio con documentos y noticias",
-			siteTemplateNameList = "Sitio de la Comunidad,Sitio de intranet"
+			siteTemplateNameList = "Sitio de comunidad,Sitio de intranet"
 		);
 
 		Navigator.openURL();
