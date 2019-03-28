@@ -17,7 +17,6 @@ package com.liferay.blogs.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the remote service utility for BlogsEntry. This utility wraps
@@ -338,9 +337,6 @@ public class BlogsEntryServiceUtil {
 		if (_service == null) {
 			_service = (BlogsEntryService)PortalBeanLocatorUtil.locate(
 				BlogsEntryService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				BlogsEntryServiceUtil.class, "_service");
 		}
 
 		return _service;

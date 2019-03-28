@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the remote service utility for MBBan. This utility wraps
@@ -68,9 +67,6 @@ public class MBBanServiceUtil {
 		if (_service == null) {
 			_service = (MBBanService)PortalBeanLocatorUtil.locate(
 				MBBanService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				MBBanServiceUtil.class, "_service");
 		}
 
 		return _service;

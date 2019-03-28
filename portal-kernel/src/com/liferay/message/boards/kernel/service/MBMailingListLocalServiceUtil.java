@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for MBMailingList. This utility wraps
@@ -425,9 +424,6 @@ public class MBMailingListLocalServiceUtil {
 		if (_service == null) {
 			_service = (MBMailingListLocalService)PortalBeanLocatorUtil.locate(
 				MBMailingListLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				MBMailingListLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

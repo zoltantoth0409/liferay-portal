@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for MBStatsUser. This utility wraps
@@ -370,9 +369,6 @@ public class MBStatsUserLocalServiceUtil {
 		if (_service == null) {
 			_service = (MBStatsUserLocalService)PortalBeanLocatorUtil.locate(
 				MBStatsUserLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				MBStatsUserLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

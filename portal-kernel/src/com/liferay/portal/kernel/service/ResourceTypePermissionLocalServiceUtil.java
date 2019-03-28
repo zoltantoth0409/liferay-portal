@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for ResourceTypePermission. This utility wraps
@@ -378,9 +377,6 @@ public class ResourceTypePermissionLocalServiceUtil {
 				(ResourceTypePermissionLocalService)
 					PortalBeanLocatorUtil.locate(
 						ResourceTypePermissionLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				ResourceTypePermissionLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

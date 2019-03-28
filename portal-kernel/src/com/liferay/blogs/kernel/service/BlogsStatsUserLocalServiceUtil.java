@@ -17,7 +17,6 @@ package com.liferay.blogs.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for BlogsStatsUser. This utility wraps
@@ -401,9 +400,6 @@ public class BlogsStatsUserLocalServiceUtil {
 		if (_service == null) {
 			_service = (BlogsStatsUserLocalService)PortalBeanLocatorUtil.locate(
 				BlogsStatsUserLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				BlogsStatsUserLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

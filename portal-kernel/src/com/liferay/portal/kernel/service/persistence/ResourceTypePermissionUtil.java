@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.model.ResourceTypePermission;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 import java.io.Serializable;
 
@@ -756,9 +755,6 @@ public class ResourceTypePermissionUtil {
 			_persistence =
 				(ResourceTypePermissionPersistence)PortalBeanLocatorUtil.locate(
 					ResourceTypePermissionPersistence.class.getName());
-
-			ReferenceRegistry.registerReference(
-				ResourceTypePermissionUtil.class, "_persistence");
 		}
 
 		return _persistence;

@@ -17,7 +17,6 @@ package com.liferay.blogs.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for BlogsEntry. This utility wraps
@@ -848,9 +847,6 @@ public class BlogsEntryLocalServiceUtil {
 		if (_service == null) {
 			_service = (BlogsEntryLocalService)PortalBeanLocatorUtil.locate(
 				BlogsEntryLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				BlogsEntryLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

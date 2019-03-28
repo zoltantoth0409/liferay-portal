@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the remote service utility for MBMessage. This utility wraps
@@ -350,9 +349,6 @@ public class MBMessageServiceUtil {
 		if (_service == null) {
 			_service = (MBMessageService)PortalBeanLocatorUtil.locate(
 				MBMessageService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				MBMessageServiceUtil.class, "_service");
 		}
 
 		return _service;

@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for MBThread. This utility wraps
@@ -649,9 +648,6 @@ public class MBThreadLocalServiceUtil {
 		if (_service == null) {
 			_service = (MBThreadLocalService)PortalBeanLocatorUtil.locate(
 				MBThreadLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				MBThreadLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for MBCategory. This utility wraps
@@ -731,9 +730,6 @@ public class MBCategoryLocalServiceUtil {
 		if (_service == null) {
 			_service = (MBCategoryLocalService)PortalBeanLocatorUtil.locate(
 				MBCategoryLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				MBCategoryLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

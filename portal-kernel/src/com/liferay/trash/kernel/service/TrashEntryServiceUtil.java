@@ -17,7 +17,6 @@ package com.liferay.trash.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the remote service utility for TrashEntry. This utility wraps
@@ -253,9 +252,6 @@ public class TrashEntryServiceUtil {
 		if (_service == null) {
 			_service = (TrashEntryService)PortalBeanLocatorUtil.locate(
 				TrashEntryService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				TrashEntryServiceUtil.class, "_service");
 		}
 
 		return _service;

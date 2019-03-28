@@ -17,7 +17,6 @@ package com.liferay.document.library.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for DLSyncEvent. This utility wraps
@@ -305,9 +304,6 @@ public class DLSyncEventLocalServiceUtil {
 		if (_service == null) {
 			_service = (DLSyncEventLocalService)PortalBeanLocatorUtil.locate(
 				DLSyncEventLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				DLSyncEventLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

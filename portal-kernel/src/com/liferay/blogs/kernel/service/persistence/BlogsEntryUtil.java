@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 import java.io.Serializable;
 
@@ -6580,9 +6579,6 @@ public class BlogsEntryUtil {
 		if (_persistence == null) {
 			_persistence = (BlogsEntryPersistence)PortalBeanLocatorUtil.locate(
 				BlogsEntryPersistence.class.getName());
-
-			ReferenceRegistry.registerReference(
-				BlogsEntryUtil.class, "_persistence");
 		}
 
 		return _persistence;

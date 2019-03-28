@@ -17,7 +17,6 @@ package com.liferay.document.library.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for DLContent. This utility wraps
@@ -379,9 +378,6 @@ public class DLContentLocalServiceUtil {
 		if (_service == null) {
 			_service = (DLContentLocalService)PortalBeanLocatorUtil.locate(
 				DLContentLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				DLContentLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

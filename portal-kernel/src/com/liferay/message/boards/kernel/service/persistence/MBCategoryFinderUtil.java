@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
@@ -103,9 +102,6 @@ public class MBCategoryFinderUtil {
 		if (_finder == null) {
 			_finder = (MBCategoryFinder)PortalBeanLocatorUtil.locate(
 				MBCategoryFinder.class.getName());
-
-			ReferenceRegistry.registerReference(
-				MBCategoryFinderUtil.class, "_finder");
 		}
 
 		return _finder;
@@ -113,9 +109,6 @@ public class MBCategoryFinderUtil {
 
 	public void setFinder(MBCategoryFinder finder) {
 		_finder = finder;
-
-		ReferenceRegistry.registerReference(
-			MBCategoryFinderUtil.class, "_finder");
 	}
 
 	private static MBCategoryFinder _finder;

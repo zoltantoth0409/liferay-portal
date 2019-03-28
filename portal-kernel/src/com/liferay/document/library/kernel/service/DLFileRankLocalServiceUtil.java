@@ -17,7 +17,6 @@ package com.liferay.document.library.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for DLFileRank. This utility wraps
@@ -350,9 +349,6 @@ public class DLFileRankLocalServiceUtil {
 		if (_service == null) {
 			_service = (DLFileRankLocalService)PortalBeanLocatorUtil.locate(
 				DLFileRankLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				DLFileRankLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

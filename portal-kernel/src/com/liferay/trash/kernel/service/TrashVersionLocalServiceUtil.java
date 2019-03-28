@@ -17,7 +17,6 @@ package com.liferay.trash.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for TrashVersion. This utility wraps
@@ -322,9 +321,6 @@ public class TrashVersionLocalServiceUtil {
 		if (_service == null) {
 			_service = (TrashVersionLocalService)PortalBeanLocatorUtil.locate(
 				TrashVersionLocalService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				TrashVersionLocalServiceUtil.class, "_service");
 		}
 
 		return _service;

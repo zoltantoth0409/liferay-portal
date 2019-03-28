@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.trash.kernel.model.TrashEntry;
 
 import java.io.Serializable;
@@ -1045,9 +1044,6 @@ public class TrashEntryUtil {
 		if (_persistence == null) {
 			_persistence = (TrashEntryPersistence)PortalBeanLocatorUtil.locate(
 				TrashEntryPersistence.class.getName());
-
-			ReferenceRegistry.registerReference(
-				TrashEntryUtil.class, "_persistence");
 		}
 
 		return _persistence;

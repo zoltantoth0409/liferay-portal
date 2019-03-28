@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 import java.io.Serializable;
 
@@ -275,9 +274,6 @@ public class CounterUtil {
 		if (_persistence == null) {
 			_persistence = (CounterPersistence)PortalBeanLocatorUtil.locate(
 				CounterPersistence.class.getName());
-
-			ReferenceRegistry.registerReference(
-				CounterUtil.class, "_persistence");
 		}
 
 		return _persistence;

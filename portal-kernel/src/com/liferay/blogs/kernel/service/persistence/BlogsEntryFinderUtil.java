@@ -17,7 +17,6 @@ package com.liferay.blogs.kernel.service.persistence;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
@@ -84,9 +83,6 @@ public class BlogsEntryFinderUtil {
 		if (_finder == null) {
 			_finder = (BlogsEntryFinder)PortalBeanLocatorUtil.locate(
 				BlogsEntryFinder.class.getName());
-
-			ReferenceRegistry.registerReference(
-				BlogsEntryFinderUtil.class, "_finder");
 		}
 
 		return _finder;
@@ -94,9 +90,6 @@ public class BlogsEntryFinderUtil {
 
 	public void setFinder(BlogsEntryFinder finder) {
 		_finder = finder;
-
-		ReferenceRegistry.registerReference(
-			BlogsEntryFinderUtil.class, "_finder");
 	}
 
 	private static BlogsEntryFinder _finder;

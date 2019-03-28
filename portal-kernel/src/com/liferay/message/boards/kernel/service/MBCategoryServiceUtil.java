@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the remote service utility for MBCategory. This utility wraps
@@ -356,9 +355,6 @@ public class MBCategoryServiceUtil {
 		if (_service == null) {
 			_service = (MBCategoryService)PortalBeanLocatorUtil.locate(
 				MBCategoryService.class.getName());
-
-			ReferenceRegistry.registerReference(
-				MBCategoryServiceUtil.class, "_service");
 		}
 
 		return _service;
