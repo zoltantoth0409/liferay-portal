@@ -32,7 +32,6 @@ import com.liferay.knowledge.base.model.KBFolder;
 import com.liferay.knowledge.base.service.KBArticleService;
 import com.liferay.knowledge.base.service.KBFolderService;
 import com.liferay.petra.function.UnsafeConsumer;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
@@ -239,7 +238,7 @@ public class KnowledgeBaseArticleResourceImpl
 			Long contentSpaceId, Long resourcePrimaryKey,
 			ClassName resourceClassName,
 			KnowledgeBaseArticle knowledgeBaseArticle)
-		throws PortalException {
+		throws Exception {
 
 		return _toKBArticle(
 			_kbArticleService.addKBArticle(
@@ -281,7 +280,7 @@ public class KnowledgeBaseArticleResourceImpl
 	}
 
 	private KnowledgeBaseArticle _toKBArticle(KBArticle kbArticle)
-		throws PortalException {
+		throws Exception {
 
 		if (kbArticle == null) {
 			return null;

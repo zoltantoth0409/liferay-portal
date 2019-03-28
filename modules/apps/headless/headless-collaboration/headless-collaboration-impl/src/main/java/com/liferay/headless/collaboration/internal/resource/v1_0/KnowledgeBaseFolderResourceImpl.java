@@ -20,7 +20,6 @@ import com.liferay.headless.collaboration.resource.v1_0.KnowledgeBaseFolderResou
 import com.liferay.knowledge.base.model.KBFolder;
 import com.liferay.knowledge.base.service.KBArticleService;
 import com.liferay.knowledge.base.service.KBFolderService;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -143,7 +142,7 @@ public class KnowledgeBaseFolderResourceImpl
 	}
 
 	private KnowledgeBaseFolder _toKnowledgeBaseFolder(KBFolder kbFolder)
-		throws PortalException {
+		throws Exception {
 
 		if (kbFolder == null) {
 			return null;

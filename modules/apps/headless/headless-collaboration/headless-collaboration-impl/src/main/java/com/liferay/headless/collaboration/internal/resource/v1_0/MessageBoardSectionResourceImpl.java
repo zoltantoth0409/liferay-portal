@@ -22,7 +22,6 @@ import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.message.boards.model.MBCategory;
 import com.liferay.message.boards.service.MBCategoryService;
 import com.liferay.petra.function.UnsafeConsumer;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
@@ -167,7 +166,7 @@ public class MessageBoardSectionResourceImpl
 	private MessageBoardSection _addMessageBoardSection(
 			long contentSpaceId, Long parentMessageBoardSectionId,
 			MessageBoardSection messageBoardSection)
-		throws PortalException {
+		throws Exception {
 
 		return _toMessageBoardSection(
 			_mbCategoryService.addCategory(
@@ -198,7 +197,7 @@ public class MessageBoardSectionResourceImpl
 	}
 
 	private MessageBoardSection _toMessageBoardSection(MBCategory mbCategory)
-		throws PortalException {
+		throws Exception {
 
 		return new MessageBoardSection() {
 			{

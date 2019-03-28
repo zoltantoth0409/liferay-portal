@@ -20,7 +20,6 @@ import com.liferay.headless.collaboration.resource.v1_0.KnowledgeBaseAttachmentR
 import com.liferay.knowledge.base.constants.KBConstants;
 import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.service.KBArticleService;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -100,7 +99,7 @@ public class KnowledgeBaseAttachmentResourceImpl
 
 	private KnowledgeBaseAttachment _toKnowledgeBaseAttachment(
 			FileEntry fileEntry)
-		throws PortalException {
+		throws Exception {
 
 		return new KnowledgeBaseAttachment() {
 			{
