@@ -3067,7 +3067,7 @@ definition {
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Text");
 
-		WebContentNavigator.gotoLocalizedEditPGViaWCD(localizedPortletOption = "编辑网页内容");
+		WebContentNavigator.gotoLocalizedEditPGViaWCD(localizedPortletOption = "编辑 Web 内容");
 
 		WebContent.viewTranslationPGViaWCD(
 			panelHeading = "结构和模板",
