@@ -36,7 +36,6 @@ import com.liferay.message.boards.service.MBThreadLocalService;
 import com.liferay.message.boards.service.MBThreadService;
 import com.liferay.message.boards.settings.MBGroupServiceSettings;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
@@ -224,7 +223,7 @@ public class MessageBoardThreadResourceImpl
 				messageBoardThread.getTaxonomyCategoryIds(), contentSpaceId,
 				messageBoardThread.getViewableByAsString()));
 
-		_updateQuestion(messageBoardThread, mbMessage);
+		_updateQuestion(mbMessage, messageBoardThread);
 
 		return _toMessageBoardThread(mbMessage);
 	}
@@ -297,8 +296,8 @@ public class MessageBoardThreadResourceImpl
 	}
 
 	private void _updateQuestion(
-			MessageBoardThread messageBoardThread, MBMessage mbMessage)
-		throws PortalException {
+			MBMessage mbMessage, MessageBoardThread messageBoardThread)
+		throws Exception {
 
 		Boolean showAsQuestion = messageBoardThread.getShowAsQuestion();
 
