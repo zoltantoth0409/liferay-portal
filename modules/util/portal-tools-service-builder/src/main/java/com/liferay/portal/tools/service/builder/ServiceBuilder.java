@@ -4162,6 +4162,12 @@ public class ServiceBuilder {
 			}
 		}
 
+		for (EntityColumn entityColumn : entity.getEntityColumns()) {
+			if (columnDBName.equals(entityColumn.getDBName())) {
+				return entityColumn;
+			}
+		}
+
 		return null;
 	}
 
