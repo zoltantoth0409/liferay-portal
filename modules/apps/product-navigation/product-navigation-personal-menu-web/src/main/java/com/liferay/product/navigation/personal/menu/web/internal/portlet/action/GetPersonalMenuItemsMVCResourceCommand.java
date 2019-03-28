@@ -62,15 +62,16 @@ public class GetPersonalMenuItemsMVCResourceCommand
 		throws Exception {
 
 		try {
-			HttpServletResponse response = _portal.getHttpServletResponse(
-				resourceResponse);
+			HttpServletResponse httpServletResponse =
+				_portal.getHttpServletResponse(
+					resourceResponse);
 
-			response.setContentType(ContentTypes.APPLICATION_JSON);
+			httpServletResponse.setContentType(ContentTypes.APPLICATION_JSON);
 
 			JSONArray jsonArray = _getPersonalMenuItemsJSONArray(
 				_portal.getHttpServletRequest(resourceRequest));
 
-			ServletResponseUtil.write(response, jsonArray.toString());
+			ServletResponseUtil.write(httpServletResponse, jsonArray.toString());
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -78,13 +79,14 @@ public class GetPersonalMenuItemsMVCResourceCommand
 	}
 
 	private JSONArray _getPersonalMenuEntriesAsJSONArray(
-		HttpServletRequest request,
+		HttpServletRequest httpServletRequest,
 		List<PersonalMenuEntry> personalMenuEntries) {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
 
 		for (PersonalMenuEntry personalMenuEntry : personalMenuEntries) {
 			if (!personalMenuEntry.isShow(
@@ -97,7 +99,8 @@ public class GetPersonalMenuItemsMVCResourceCommand
 
 			try {
 				jsonObject.put(
-					"href", personalMenuEntry.getPortletURL(request));
+					"href",
+					personalMenuEntry.getPortletURL(httpServletRequest));
 			}
 			catch (PortalException pe) {
 				_log.error(pe, pe);
@@ -113,7 +116,7 @@ public class GetPersonalMenuItemsMVCResourceCommand
 	}
 
 	private JSONArray _getPersonalMenuItemsJSONArray(
-		HttpServletRequest request) {
+		HttpServletRequest httpServletRequest) {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
@@ -128,7 +131,7 @@ public class GetPersonalMenuItemsMVCResourceCommand
 			jsonObject.put(
 				"items",
 				_getPersonalMenuEntriesAsJSONArray(
-					request, groupedPersonalMenuEntries.get(i)));
+					httpServletRequest, groupedPersonalMenuEntries.get(i)));
 
 			if (i < (size - 1)) {
 				jsonObject.put("separator", true);
