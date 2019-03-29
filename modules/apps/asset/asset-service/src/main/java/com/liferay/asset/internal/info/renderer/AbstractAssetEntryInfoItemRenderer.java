@@ -23,12 +23,12 @@ import org.osgi.service.component.annotations.Component;
  * @author Jorge Ferrer
  */
 @Component(service = InfoItemRenderer.class)
-public class AssetEntryFullContentInfoItemRenderer
-	extends AssetEntryInfoItemRenderer {
+public class AbstractAssetEntryInfoItemRenderer
+	extends BaseAssetEntryInfoItemRenderer {
 
 	@Override
 	protected String getTemplate() {
-		return AssetRenderer.TEMPLATE_FULL_CONTENT;
+		return AssetRenderer.TEMPLATE_ABSTRACT;
 	}
 
 }

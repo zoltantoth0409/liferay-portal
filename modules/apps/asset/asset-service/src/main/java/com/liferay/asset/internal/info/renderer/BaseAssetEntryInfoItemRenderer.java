@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Jorge Ferrer
  */
 @Component(service = InfoItemRenderer.class)
-public abstract class AssetEntryInfoItemRenderer
+public abstract class BaseAssetEntryInfoItemRenderer
 	implements InfoItemRenderer<AssetEntry> {
 
 	@Override
