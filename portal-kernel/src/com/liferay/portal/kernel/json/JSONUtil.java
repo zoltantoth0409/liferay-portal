@@ -15,7 +15,6 @@
 package com.liferay.portal.kernel.json;
 
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 
@@ -163,14 +162,6 @@ public class JSONUtil {
 		JSONObject jsonObject = _createJSONObject();
 
 		return jsonObject.put(key, value);
-	}
-
-	public static JSONObject put(
-		String key, UnsafeSupplier<Object, Exception> unsafeSupplier) {
-
-		JSONObject jsonObject = _createJSONObject();
-
-		return jsonObject.put(key, unsafeSupplier);
 	}
 
 	public static JSONArray replace(
