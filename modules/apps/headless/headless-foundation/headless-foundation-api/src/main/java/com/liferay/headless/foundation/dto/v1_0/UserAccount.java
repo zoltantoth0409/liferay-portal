@@ -27,6 +27,7 @@ import graphql.annotations.annotationTypes.GraphQLName;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -574,6 +575,28 @@ public class UserAccount {
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String[] tasksAssignedToMyRoles;
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
+		if (!(object instanceof UserAccount)) {
+			return false;
+		}
+
+		UserAccount userAccount = (UserAccount)object;
+
+		return Objects.equals(toString(), userAccount.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		String string = toString();
+
+		return string.hashCode();
+	}
 
 	public String toString() {
 		StringBundler sb = new StringBundler();

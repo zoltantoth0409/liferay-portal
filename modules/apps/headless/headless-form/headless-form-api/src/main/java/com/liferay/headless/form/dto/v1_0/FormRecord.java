@@ -27,6 +27,7 @@ import graphql.annotations.annotationTypes.GraphQLName;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -254,6 +255,28 @@ public class FormRecord {
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Long id;
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
+		if (!(object instanceof FormRecord)) {
+			return false;
+		}
+
+		FormRecord formRecord = (FormRecord)object;
+
+		return Objects.equals(toString(), formRecord.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		String string = toString();
+
+		return string.hashCode();
+	}
 
 	public String toString() {
 		StringBundler sb = new StringBundler();
