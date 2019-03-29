@@ -54,7 +54,7 @@ public class SegmentsExperienceLocalServiceImpl
 
 		SegmentsExperience defaultSegmentsExperience =
 			segmentsExperiencePersistence.fetchByG_S_C_C_First(
-				groupId, SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID,
+				groupId, SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT,
 				classNameId, _getPublishedLayoutClassPK(classPK), null);
 
 		if (defaultSegmentsExperience != null) {
@@ -62,7 +62,7 @@ public class SegmentsExperienceLocalServiceImpl
 		}
 
 		return _addDefaultSegmentsExperience(
-			groupId, SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID, classNameId,
+			groupId, SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT, classNameId,
 			classPK);
 	}
 
@@ -226,7 +226,7 @@ public class SegmentsExperienceLocalServiceImpl
 
 		SegmentsExperience defaultSegmentsExperience =
 			segmentsExperiencePersistence.fetchByG_S_C_C_First(
-				groupId, SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID,
+				groupId, SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT,
 				classNameId, _getPublishedLayoutClassPK(classPK), null);
 
 		if (defaultSegmentsExperience != null) {
@@ -421,18 +421,18 @@ public class SegmentsExperienceLocalServiceImpl
 		}
 
 		if ((priority == 0) &&
-			(SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID != segmentsEntryId)) {
+			(SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT != segmentsEntryId)) {
 
 			throw new SegmentsExperiencePriorityException(
 				"Priority 0 is reserved for the default segments experience");
 		}
 
-		if (SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID != segmentsEntryId) {
+		if (SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT != segmentsEntryId) {
 			return;
 		}
 
 		segmentsExperience = segmentsExperiencePersistence.fetchByG_S_C_C_First(
-			groupId, SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID, classNameId,
+			groupId, SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT, classNameId,
 			classPK, null);
 
 		if (segmentsExperience == null) {

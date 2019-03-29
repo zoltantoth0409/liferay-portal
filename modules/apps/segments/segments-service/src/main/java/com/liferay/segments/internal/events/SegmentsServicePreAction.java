@@ -87,7 +87,7 @@ public class SegmentsServicePreAction extends Action {
 			return;
 		}
 
-		long[] segmentsEntryIds = {SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID};
+		long[] segmentsEntryIds = {SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT};
 
 		Layout layout = themeDisplay.getLayout();
 

@@ -327,7 +327,7 @@ public class AssetListDisplayContext {
 
 		_segmentsEntryId = ParamUtil.getLong(
 			_request, "segmentsEntryId",
-			SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID);
+			SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT);
 
 		return _segmentsEntryId;
 	}

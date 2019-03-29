@@ -62,7 +62,7 @@ public class ContentPageLayoutEditorDisplayContext
 			_getAvailableSegmentsExperiencesSoyContext()
 		).put(
 			"defaultSegmentsEntryId",
-			SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID
+			SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT
 		).put(
 			"defaultSegmentsExperienceId", _getDefaultSegmentsExperienceId()
 		).put(
@@ -91,7 +91,7 @@ public class ContentPageLayoutEditorDisplayContext
 			_getAvailableSegmentsExperiencesSoyContext()
 		).put(
 			"defaultSegmentsEntryId",
-			SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID
+			SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT
 		).put(
 			"defaultSegmentsExperienceId", _getDefaultSegmentsExperienceId()
 		);
@@ -139,11 +139,11 @@ public class ContentPageLayoutEditorDisplayContext
 			SegmentsConstants.getDefaultSegmentsEntryName(
 				themeDisplay.getLocale())
 		).put(
-			"segmentsEntryId", SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID
+			"segmentsEntryId", SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT
 		);
 
 		availableSegmentsEntriesSoyContext.put(
-			String.valueOf(SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID),
+			String.valueOf(SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT),
 			segmentsEntrySoyContext);
 
 		return availableSegmentsEntriesSoyContext;

@@ -166,7 +166,7 @@ public class AssetListEntryLocalServiceImpl
 				addAssetListEntrySegmentsEntryRel(
 					serviceContext.getUserId(),
 					serviceContext.getScopeGroupId(), assetListEntryId,
-					SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID, typeSettings,
+					SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT, typeSettings,
 					serviceContext);
 		}
 
@@ -196,7 +196,7 @@ public class AssetListEntryLocalServiceImpl
 
 		addAssetEntrySelections(
 			assetListEntry.getAssetListEntryId(), assetEntryIds,
-			SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID, serviceContext);
+			SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT, serviceContext);
 
 		return assetListEntry;
 	}

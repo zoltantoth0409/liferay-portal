@@ -100,7 +100,7 @@ public class SegmentsExperienceLocalServiceTest {
 		Assert.assertEquals(nameMap, segmentsExperience.getNameMap());
 
 		Assert.assertEquals(
-			SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID,
+			SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT,
 			segmentsExperience.getSegmentsEntryId());
 	}
 
@@ -115,7 +115,7 @@ public class SegmentsExperienceLocalServiceTest {
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
 		_segmentsExperienceLocalService.addSegmentsExperience(
-			SegmentsConstants.DEFAULT_SEGMENTS_ENTRY_ID, _classNameId, _classPK,
+			SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT, _classNameId, _classPK,
 			RandomTestUtil.randomLocaleStringMap(), RandomTestUtil.randomInt(),
 			RandomTestUtil.randomBoolean(), serviceContext);
 	}
