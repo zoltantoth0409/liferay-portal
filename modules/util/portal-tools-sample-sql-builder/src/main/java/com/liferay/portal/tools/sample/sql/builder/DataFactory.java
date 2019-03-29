@@ -2161,13 +2161,15 @@ public class DataFactory {
 			_layoutCounters.put(groupId, simpleCounter);
 		}
 
-		long plid = _counter.get();
-
 		LayoutModel layoutModel = new LayoutModelImpl();
 
 		layoutModel.setUuid(SequentialUUID.generate());
+
+		long plid = _counter.get();
+
 		layoutModel.setPlid(plid);
 		layoutModel.setHeadId(-plid);
+
 		layoutModel.setGroupId(groupId);
 		layoutModel.setCompanyId(_companyId);
 		layoutModel.setUserId(_sampleUserId);
@@ -3496,7 +3498,6 @@ public class DataFactory {
 		layoutSetVersionModel.setLayoutSetId(layoutSetModel.getLayoutSetId());
 		layoutSetVersionModel.setGroupId(layoutSetModel.getGroupId());
 		layoutSetVersionModel.setCompanyId(layoutSetModel.getCompanyId());
-
 		layoutSetVersionModel.setCreateDate(new Date());
 		layoutSetVersionModel.setModifiedDate(new Date());
 		layoutSetVersionModel.setPrivateLayout(
