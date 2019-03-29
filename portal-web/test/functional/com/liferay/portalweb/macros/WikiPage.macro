@@ -1109,8 +1109,6 @@ definition {
 
 		AssertElementPresent(locator1 = "SocialBookmarks#TWITTER");
 
-		AssertElementPresent(locator1 = "SocialBookmarks#GOOGLE_PLUS");
-
 		AssertElementPresent(locator1 = "Ratings#YOUR_RATING_LABEL");
 
 		AssertElementPresent(locator1 = "Ratings#AVERAGE_LABEL");

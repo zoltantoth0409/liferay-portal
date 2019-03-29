@@ -9,11 +9,6 @@
 </thead>
 <tbody>
 <tr>
-	<td>GOOGLE_PLUS</td>
-	<td>//li[contains(@class,'taglib-social-bookmark-plusone')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>SOCIAL_BOOKMARKS_CONFIGURATION_CHECKBOX</td>
 	<td>//input[contains(@id,'socialBookmarksTypes${key_socialBookmarkSite}')]</td>
 	<td></td>

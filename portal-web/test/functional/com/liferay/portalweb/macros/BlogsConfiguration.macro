@@ -145,8 +145,6 @@ definition {
 		AssertChecked(locator1 = "Checkbox#TWITTER");
 
 		AssertChecked(locator1 = "Checkbox#FACEBOOK");
-
-		AssertChecked(locator1 = "Checkbox#GOOGLE_PLUS");
 	}
 
 	macro viewDefaultConfigurationRSS {

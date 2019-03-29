@@ -174,11 +174,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>GOOGLE_PLUS</td>
-	<td>//input[contains(@id,'plusone')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>HIDE_FROM_NAVIGATION_MENU</td>
 	<td>//label[contains(.,'Hide from Navigation Menu')]/input[@type='checkbox']</td>
 	<td></td>

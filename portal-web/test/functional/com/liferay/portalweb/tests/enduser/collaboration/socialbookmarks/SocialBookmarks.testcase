@@ -69,7 +69,7 @@ definition {
 
 		Click(locator1 = "Icon#SHARE");
 
-		for (var socialBookmarkSites : list "Twitter,Facebook,Google+,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti") {
+		for (var socialBookmarkSites : list "Twitter,Facebook,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti") {
 			KBArticle.viewEnabledKBSocialBookmarkSites(
 				socialBookmarkSite = "${socialBookmarkSites}"
 			);
@@ -89,7 +89,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
 
-		for (var socialBookmarkSites : list "Facebook,Google+,AddThis,LinkedIn,Delicious,Digg,Evernote") {
+		for (var socialBookmarkSites : list "Facebook,AddThis,LinkedIn,Delicious,Digg,Evernote") {
 			KBArticle.viewEnabledKBSocialBookmarkSites(
 				socialBookmarkSite = "${socialBookmarkSites}"
 			);
@@ -133,7 +133,7 @@ definition {
 		);
 
 		BlogsEntry.viewEnabledSocialBookmarkSites(
-			socialBookmarkSites = "Twitter,Facebook,Google+,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti"
+			socialBookmarkSites = "Twitter,Facebook,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti"
 		);
 
 		Blogs.disableSocialBookmarkSites(
@@ -182,7 +182,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Knowledge Base Display Page");
 
-		for (var socialBookmarkSites : list "Twitter,Facebook,Google+,AddThis,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti") {
+		for (var socialBookmarkSites : list "Twitter,Facebook,AddThis,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti") {
 			KBArticle.viewEnabledKBSocialBookmarkSites(
 				socialBookmarkSite = "${socialBookmarkSites}"
 			);
