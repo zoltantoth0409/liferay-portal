@@ -19,7 +19,7 @@
 
 		<!-- Relationships -->
 
-		<column entity="LVEntry" mapping-table="LVEntries_BigDecimalEntries" name="lvEntries" type="Collection" />
+		<column entity="LVEntry" mapping-table="BigDecimalEntries_LVEntries" name="lvEntries" type="Collection" />
 
 		<!-- Order -->
 
@@ -76,7 +76,7 @@
 
 		<!-- Relationships -->
 
-		<column entity="BigDecimalEntry" mapping-table="LVEntries_BigDecimalEntries" name="bigDecimalEntries" type="Collection" />
+		<column entity="BigDecimalEntry" mapping-table="BigDecimalEntries_LVEntries" name="bigDecimalEntries" type="Collection" />
 
 		<!-- Localized entity -->
 
