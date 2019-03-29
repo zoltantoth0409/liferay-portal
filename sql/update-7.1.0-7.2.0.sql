@@ -12,6 +12,25 @@ COMMIT_TRANSACTION;
 
 update Layout set headId = -1 * plid, head = TRUE, system_ = FALSE;
 
+insert into Counter (name, currentId)
+	select
+		'com.liferay.portal.kernel.model.Layout' as name,
+		max(plid) as currentId
+	from Layout;
+
+alter table LayoutSet add headId LONG;
+alter table LayoutSet add head BOOLEAN;
+
+COMMIT_TRANSACTION;
+
+update LayoutSet set headId = -1 * layoutSetId, head = TRUE;
+
+insert into Counter (name, currentId)
+	select
+		'com.liferay.portal.kernel.model.LayoutSet' as name,
+		max(layoutSetId) as currentId
+	from LayoutSet;
+
 create table LayoutSetVersion (
 	layoutSetVersionId LONG not null primary key,
 	version INTEGER,
@@ -53,30 +72,11 @@ insert into LayoutSetVersion
 		layoutSetPrototypeLinkEnabled
 	from LayoutSet;
 
-COMMIT_TRANSACTION;
-
-insert into Counter (name, currentId)
-	select
-		'com.liferay.portal.kernel.model.LayoutSet' as name,
-		max(layoutSetId) as currentId
-	from LayoutSet;
-
-COMMIT_TRANSACTION;
-
 insert into Counter (name, currentId)
 	select
 		'com.liferay.portal.kernel.model.LayoutSetVersion' as name,
 		max(layoutSetVersionId) as currentId
 	from LayoutSetVersion;
-
-COMMIT_TRANSACTION;
-
-alter table LayoutSet add headId LONG;
-alter table LayoutSet add head BOOLEAN;
-
-COMMIT_TRANSACTION;
-
-update LayoutSet set headId = -1 * layoutSetId, head = TRUE;
 
 create table LayoutVersion (
 	layoutVersionId LONG not null primary key,
@@ -118,14 +118,6 @@ create table LayoutVersion (
 	publishDate DATE null,
 	lastPublishDate DATE null
 );
-
-COMMIT_TRANSACTION;
-
-insert into Counter (name, currentId)
-	select
-		'com.liferay.portal.kernel.model.Layout' as name,
-		max(plid) as currentId
-	from Layout;
 
 COMMIT_TRANSACTION;
 
@@ -172,12 +164,8 @@ insert into LayoutVersion
 	from
 		Layout;
 
-COMMIT_TRANSACTION;
-
 insert into Counter (name, currentId)
 	select
 		'com.liferay.portal.kernel.model.LayoutVersion' as name,
 		max(layoutVersionId) as currentId
 	from LayoutVersion;
-
-COMMIT_TRANSACTION;
