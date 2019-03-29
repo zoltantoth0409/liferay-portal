@@ -14,6 +14,7 @@
 
 package com.liferay.portal.template.soy.internal;
 
+import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.template.soy.constants.SoyTemplateConstants;
 import com.liferay.portal.template.soy.data.SoyDataFactory;
 import com.liferay.portal.template.soy.internal.data.SoyDataFactoryProvider;
@@ -144,6 +145,20 @@ public class SoyContextImpl implements SoyContext {
 		}
 
 		_map.put(key, value);
+
+		return this;
+	}
+
+	@Override
+	public SoyContext put(
+		String key, UnsafeSupplier<?, Exception> unsafeSupplier) {
+
+		try {
+			_map.put(key, unsafeSupplier.get());
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 
 		return this;
 	}
