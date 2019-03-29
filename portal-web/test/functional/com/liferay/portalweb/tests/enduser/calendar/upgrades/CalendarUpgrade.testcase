@@ -14,43 +14,6 @@ definition {
 		Upgrade.reindexSearches();
 	}
 
-	@description = "This is a use case for LPS-43215."
-	@priority = "5"
-	test UpgradeCalendarWithLongCharactersFrom6130 {
-		property data.archive.type = "data-archive-calendar-long-character-event";
-		property database.types = "oracle";
-		property portal.version = "6.1.30";
-
-		AssertConsoleTextNotPresent(value1 = "SQLException");
-		AssertConsoleTextNotPresent(value1 = "ORA-22835");
-		AssertConsoleTextNotPresent(value1 = "Buffer too small for CLOB to CHAR or BLOB to RAW conversion");
-	}
-
-	// LPS-81751
-
-	@ignore = "true"
-	@priority = "5"
-	test ViewCalendarArchive612 {
-		property data.archive.type = "data-archive-calendar";
-		property database.types = "mariadb,mysql,postgresql";
-		property osgi.modules.includes = "calevent";
-		property portal.version = "6.1.2";
-
-		Upgrade.viewCalendar();
-	}
-
-	// LPS-81751
-
-	@ignore = "true"
-	@priority = "5"
-	test ViewCalendarArchive6130 {
-		property data.archive.type = "data-archive-calendar";
-		property osgi.modules.includes = "calevent";
-		property portal.version = "6.1.30";
-
-		Upgrade.viewCalendar();
-	}
-
 	@priority = "5"
 	test ViewCalendarArchive621015 {
 		property data.archive.type = "data-archive-calendar";
