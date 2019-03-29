@@ -1172,9 +1172,13 @@ public class AssetPublisherDisplayContext {
 	}
 
 	public boolean isEnableSetAsDefaultAssetPublisher() {
+		Layout layout = getLayout();
+
 		String rootPortletId = getRootPortletId();
 
-		if (rootPortletId.equals(AssetPublisherPortletKeys.ASSET_PUBLISHER)) {
+		if (!layout.isTypeControlPanel() &&
+			rootPortletId.equals(AssetPublisherPortletKeys.ASSET_PUBLISHER)) {
+
 			return true;
 		}
 
