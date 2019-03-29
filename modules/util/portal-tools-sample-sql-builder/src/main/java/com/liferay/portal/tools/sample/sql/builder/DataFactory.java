@@ -3491,10 +3491,7 @@ public class DataFactory {
 		LayoutSetVersionModel layoutSetVersionModel =
 			new LayoutSetVersionModelImpl();
 
-		long layoutSetVersionId = _counter.get();
-
-		layoutSetVersionModel.setLayoutSetVersionId(layoutSetVersionId);
-
+		layoutSetVersionModel.setLayoutSetVersionId(_counter.get());
 		layoutSetVersionModel.setLayoutSetId(layoutSetModel.getLayoutSetId());
 		layoutSetVersionModel.setGroupId(layoutSetModel.getGroupId());
 		layoutSetVersionModel.setCompanyId(layoutSetModel.getCompanyId());
