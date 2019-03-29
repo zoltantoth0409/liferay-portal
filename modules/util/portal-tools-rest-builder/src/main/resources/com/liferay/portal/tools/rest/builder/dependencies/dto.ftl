@@ -167,6 +167,28 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 		protected ${propertyType} ${propertyName};
 	</#list>
 
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
+		if (!(object instanceof ${schemaName})) {
+			return false;
+		}
+
+		${schemaName} ${schemaVarName} = (${schemaName})object;
+
+		return Objects.equals(toString(), ${schemaVarName}.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		String string = toString();
+
+		return string.hashCode();
+	}
+
 	public String toString() {
 		StringBundler sb = new StringBundler();
 
