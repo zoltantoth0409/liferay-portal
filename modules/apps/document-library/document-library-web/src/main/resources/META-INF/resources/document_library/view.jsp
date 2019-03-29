@@ -257,8 +257,8 @@ else {
 		<portlet:param name="mvcRenderCommandName" value="/document_library/edit_file_entry" />
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="repositoryId" value="<%= String.valueOf(repositoryId) %>" />
 		<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />
+		<portlet:param name="repositoryId" value="<%= String.valueOf(repositoryId) %>" />
 		<portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" />
 	</portlet:renderURL>
 
