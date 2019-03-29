@@ -768,7 +768,6 @@ public class LayoutStagedModelDataHandler
 		importTheme(portletDataContext, layout, draftImportedLayout);
 
 		importedLayout = _layoutLocalService.publishDraft(draftImportedLayout);
-		//_layoutLocalService.updateLayout(importedLayout);
 
 		_layoutSetLocalService.updatePageCount(groupId, privateLayout);
 
