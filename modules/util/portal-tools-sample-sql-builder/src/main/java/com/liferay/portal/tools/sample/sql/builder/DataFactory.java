@@ -2229,10 +2229,7 @@ public class DataFactory {
 	public LayoutVersionModel newLayoutVersionModel(LayoutModel layoutModel) {
 		LayoutVersionModel layoutVersionModel = new LayoutVersionModelImpl();
 
-		long layoutVersionId = _counter.get();
-
-		layoutVersionModel.setLayoutVersionId(layoutVersionId);
-
+		layoutVersionModel.setLayoutVersionId(_counter.get());
 		layoutVersionModel.setUuid(SequentialUUID.generate());
 		layoutVersionModel.setPlid(layoutModel.getPlid());
 		layoutVersionModel.setGroupId(layoutModel.getGroupId());
