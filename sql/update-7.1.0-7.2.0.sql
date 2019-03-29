@@ -71,8 +71,8 @@ insert into Counter (name, currentId)
 
 COMMIT_TRANSACTION;
 
-alter table LayoutSet add head BOOLEAN;
 alter table LayoutSet add headId LONG;
+alter table LayoutSet add head BOOLEAN;
 
 COMMIT_TRANSACTION;
 
