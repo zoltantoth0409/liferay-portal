@@ -238,7 +238,8 @@ public class DLFileEntryTypeServiceSoap {
 	public static
 		com.liferay.document.library.kernel.model.DLFileEntryTypeSoap[] search(
 				long companyId, long folderId, long[] groupIds, String keywords,
-				boolean includeBasicFileEntryType, int start, int end)
+				boolean includeBasicFileEntryType, boolean inherited, int start,
+				int end)
 			throws RemoteException {
 
 		try {
@@ -246,7 +247,7 @@ public class DLFileEntryTypeServiceSoap {
 				<com.liferay.document.library.kernel.model.DLFileEntryType>
 					returnValue = DLFileEntryTypeServiceUtil.search(
 						companyId, folderId, groupIds, keywords,
-						includeBasicFileEntryType, start, end);
+						includeBasicFileEntryType, inherited, start, end);
 
 			return com.liferay.document.library.kernel.model.
 				DLFileEntryTypeSoap.toSoapModels(returnValue);
@@ -277,6 +278,25 @@ public class DLFileEntryTypeServiceSoap {
 
 			return com.liferay.document.library.kernel.model.
 				DLFileEntryTypeSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int searchCount(
+			long companyId, long folderId, long[] groupIds, String keywords,
+			boolean includeBasicFileEntryType, boolean inherited)
+		throws RemoteException {
+
+		try {
+			int returnValue = DLFileEntryTypeServiceUtil.searchCount(
+				companyId, folderId, groupIds, keywords,
+				includeBasicFileEntryType, inherited);
+
+			return returnValue;
 		}
 		catch (Exception e) {
 			_log.error(e, e);

@@ -34,6 +34,15 @@ public class DLFileEntryTypeFinderUtil {
 	}
 
 	public static int filterCountByKeywords(
+		long companyId, long folderId, long[] groupIds, String keywords,
+		boolean includeBasicFileEntryType, boolean inherited) {
+
+		return getFinder().filterCountByKeywords(
+			companyId, folderId, groupIds, keywords, includeBasicFileEntryType,
+			inherited);
+	}
+
+	public static int filterCountByKeywords(
 		long companyId, long[] groupIds, String keywords,
 		boolean includeBasicFileEntryType) {
 
@@ -45,11 +54,12 @@ public class DLFileEntryTypeFinderUtil {
 		<com.liferay.document.library.kernel.model.DLFileEntryType>
 			filterFindByKeywords(
 				long companyId, long folderId, long[] groupIds, String keywords,
-				boolean includeBasicFileEntryType, int start, int end) {
+				boolean includeBasicFileEntryType, boolean inherited, int start,
+				int end) {
 
 		return getFinder().filterFindByKeywords(
 			companyId, folderId, groupIds, keywords, includeBasicFileEntryType,
-			start, end);
+			inherited, start, end);
 	}
 
 	public static java.util.List
