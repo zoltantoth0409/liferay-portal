@@ -33,11 +33,4 @@ public class SegmentsConstants {
 
 	public static final String SOURCE_DEFAULT = "DEFAULT";
 
-	public static String getDefaultSegmentsEntryName(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, SegmentsConstants.class);
-
-		return LanguageUtil.get(resourceBundle, "default-segment-name");
-	}
-
 }
