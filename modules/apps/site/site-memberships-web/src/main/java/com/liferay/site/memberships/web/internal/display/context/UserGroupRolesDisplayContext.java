@@ -226,7 +226,6 @@ public class UserGroupRolesDisplayContext {
 			(RoleSearchTerms)roleSearch.getSearchTerms();
 
 		roleSearch.setRowChecker(new EmptyOnClickRowChecker(_renderResponse));
-
 		roleSearch.setOrderByCol(_getOrderByCol());
 
 		boolean orderByAsc = false;
