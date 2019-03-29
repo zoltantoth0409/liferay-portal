@@ -14,12 +14,7 @@
 
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
-import static com.liferay.portal.vulcan.util.LocalDateTimeUtil.toLocalDateTime;
-
-import com.liferay.asset.kernel.service.AssetCategoryLocalService;
-import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializer;
 import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeRequest;
 import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeResponse;
@@ -35,17 +30,17 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.storage.Field;
 import com.liferay.dynamic.data.mapping.storage.Fields;
 import com.liferay.dynamic.data.mapping.util.DDM;
-import com.liferay.dynamic.data.mapping.util.FieldsToDDMFormValuesConverter;
 import com.liferay.dynamic.data.mapping.validator.DDMFormValuesValidationException;
 import com.liferay.dynamic.data.mapping.validator.DDMFormValuesValidator;
 import com.liferay.headless.common.spi.resource.SPIRatingResource;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.headless.web.experience.dto.v1_0.ContentField;
+import com.liferay.headless.web.experience.dto.v1_0.Rating;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
+import com.liferay.headless.web.experience.internal.dto.v1_0.converter.StructuredContentDTOConverter;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.DDMFormValuesUtil;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.DDMValueUtil;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.RatingUtil;
-import com.liferay.headless.web.experience.internal.dto.v1_0.util.StructuredContentUtil;
 import com.liferay.headless.web.experience.internal.odata.entity.v1_0.EntityFieldsProvider;
 import com.liferay.headless.web.experience.internal.odata.entity.v1_0.StructuredContentEntityModel;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
@@ -58,8 +53,8 @@ import com.liferay.journal.util.JournalConverter;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.events.EventsProcessorUtil;
-import com.liferay.portal.kernel.comment.CommentManager;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
@@ -89,10 +84,10 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.ContentLanguageUtil;
+import com.liferay.portal.vulcan.util.LocalDateTimeUtil;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
-import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.time.LocalDateTime;
 
@@ -283,7 +278,7 @@ public class StructuredContentResourceImpl
 		}
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
-		LocalDateTime localDateTime = toLocalDateTime(
+		LocalDateTime localDateTime = LocalDateTimeUtil.toLocalDateTime(
 			structuredContent.getDatePublished(),
 			journalArticle.getDisplayDate());
 
@@ -330,7 +325,7 @@ public class StructuredContentResourceImpl
 		DDMStructure ddmStructure = _checkDDMStructurePermission(
 			structuredContent);
 
-		LocalDateTime localDateTime = toLocalDateTime(
+		LocalDateTime localDateTime = LocalDateTimeUtil.toLocalDateTime(
 			structuredContent.getDatePublished());
 
 		if (!LocaleUtil.equals(
@@ -403,7 +398,7 @@ public class StructuredContentResourceImpl
 			structuredContentId);
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
-		LocalDateTime localDateTime = toLocalDateTime(
+		LocalDateTime localDateTime = LocalDateTimeUtil.toLocalDateTime(
 			structuredContent.getDatePublished(),
 			journalArticle.getDisplayDate());
 
@@ -711,12 +706,8 @@ public class StructuredContentResourceImpl
 			JournalArticle journalArticle)
 		throws Exception {
 
-		return StructuredContentUtil.toStructuredContent(
-			journalArticle, contextAcceptLanguage, _assetCategoryLocalService,
-			_assetTagLocalService, _commentManager, _dlAppService, _dlurlHelper,
-			_fieldsToDDMFormValuesConverter, _journalArticleService,
-			_journalConverter, _layoutLocalService, _portal,
-			_ratingsStatsLocalService, contextUriInfo, _userLocalService);
+		return _structuredContentDTOConverter.toDTO(
+			contextAcceptLanguage, journalArticle, contextUriInfo);
 	}
 
 	private void _validateFomFieldValues(DDMFormValues ddmFormValues) {
@@ -728,15 +719,6 @@ public class StructuredContentResourceImpl
 				"Validation error: " + ddmfvve.getMessage(), ddmfvve);
 		}
 	}
-
-	@Reference
-	private AssetCategoryLocalService _assetCategoryLocalService;
-
-	@Reference
-	private AssetTagLocalService _assetTagLocalService;
-
-	@Reference
-	private CommentManager _commentManager;
 
 	@Context
 	private HttpServletRequest _contextHttpServletRequest;
@@ -763,13 +745,7 @@ public class StructuredContentResourceImpl
 	private DLAppService _dlAppService;
 
 	@Reference
-	private DLURLHelper _dlurlHelper;
-
-	@Reference
 	private EntityFieldsProvider _entityFieldsProvider;
-
-	@Reference
-	private FieldsToDDMFormValuesConverter _fieldsToDDMFormValuesConverter;
 
 	@Reference
 	private JournalArticleLocalService _journalArticleLocalService;
@@ -799,7 +775,7 @@ public class StructuredContentResourceImpl
 	private RatingsEntryLocalService _ratingsEntryLocalService;
 
 	@Reference
-	private RatingsStatsLocalService _ratingsStatsLocalService;
+	private StructuredContentDTOConverter _structuredContentDTOConverter;
 
 	@Context
 	private User _user;
