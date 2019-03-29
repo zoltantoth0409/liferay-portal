@@ -145,6 +145,7 @@ public class KnowledgeBaseArticleResourceImpl
 			kbArticle.getGroupId(), filter, pagination, sorts);
 	}
 
+	@Override
 	public Page<KnowledgeBaseArticle>
 			getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
 				Long knowledgeBaseFolderId, Boolean flatten, Filter filter,
