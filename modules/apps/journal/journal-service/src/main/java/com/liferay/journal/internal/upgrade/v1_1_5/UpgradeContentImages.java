@@ -86,7 +86,8 @@ public class UpgradeContentImages extends UpgradeProcess {
 					fileEntry = _getFileEntryByFileEntryId(fileEntryId);
 				}
 				else {
-					String data = String.valueOf(dynamicContentElement.getData());
+					String data = String.valueOf(
+						dynamicContentElement.getData());
 
 					fileEntry =
 						_journalArticleImageUpgradeUtil.getFileEntryFromURL(
