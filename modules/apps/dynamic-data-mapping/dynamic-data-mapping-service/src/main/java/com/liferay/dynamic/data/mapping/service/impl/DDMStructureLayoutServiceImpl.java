@@ -48,7 +48,7 @@ public class DDMStructureLayoutServiceImpl
 			OrderByComparator<DDMStructureLayout> orderByComparator)
 		throws PortalException {
 
-		return ddmStructureLayoutLocalService.getStructureLayoutsSearch(
+		return ddmStructureLayoutLocalService.search(
 			companyId, groupIds, classNameId, keywords, start, end,
 			orderByComparator);
 	}
