@@ -17,10 +17,9 @@ package com.liferay.data.engine.rest.resource.v1_0.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 
 import java.util.Objects;
-
-import jodd.util.RandomString;
 
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -94,12 +93,10 @@ public class DataDefinitionResourceTest
 	protected DataDefinition randomDataDefinition() {
 		return new DataDefinition() {
 			{
-				RandomString randomString = RandomString.getInstance();
-
 				LocalizedValue localizedValue = new LocalizedValue() {
 					{
 						key = "en_US";
-						value = randomString.randomAlpha(10);
+						value = RandomTestUtil.randomString();
 					}
 				};
 
