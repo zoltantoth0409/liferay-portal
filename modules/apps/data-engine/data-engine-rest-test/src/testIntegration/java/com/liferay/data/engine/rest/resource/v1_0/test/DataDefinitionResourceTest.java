@@ -94,14 +94,14 @@ public class DataDefinitionResourceTest
 	protected DataDefinition randomDataDefinition() {
 		return new DataDefinition() {
 			{
-				LocalizedValue localizedValue = new LocalizedValue() {
-					{
-						key = "en_US";
-						value = RandomTestUtil.randomString();
+				name = new LocalizedValue[] {
+					new LocalizedValue() {
+						{
+							key = "en_US";
+							value = RandomTestUtil.randomString();
+						}
 					}
 				};
-
-				name = new LocalizedValue[] {localizedValue};
 			}
 		};
 	}
