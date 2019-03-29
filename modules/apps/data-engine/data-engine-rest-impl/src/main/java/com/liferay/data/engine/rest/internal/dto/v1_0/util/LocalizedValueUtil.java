@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -51,11 +52,11 @@ public class LocalizedValueUtil {
 	public static Map<Locale, String> toLocalizationMap(
 		LocalizedValue[] localizedValues) {
 
-		Map<Locale, String> localizationMap = new HashMap<>();
-
 		if (localizedValues == null) {
-			return localizationMap;
+			return Collections.emptyMap();
 		}
+
+		Map<Locale, String> localizationMap = new HashMap<>();
 
 		for (LocalizedValue localizedValue : localizedValues) {
 			localizationMap.put(
