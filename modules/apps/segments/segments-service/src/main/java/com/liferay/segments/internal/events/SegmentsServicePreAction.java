@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.segments.constants.SegmentsConstants;
 import com.liferay.segments.constants.SegmentsWebKeys;
-import com.liferay.segments.context.Context;
 import com.liferay.segments.internal.configuration.SegmentsServiceConfiguration;
 import com.liferay.segments.internal.context.RequestContextMapper;
 import com.liferay.segments.model.SegmentsExperience;
@@ -116,8 +115,8 @@ public class SegmentsServicePreAction extends Action {
 			SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS,
 			_getSegmentsExperienceIds(
 				layout.getGroupId(), segmentsEntryIds,
-				_portal.getClassNameId(
-					Layout.class.getName()), layout.getPlid()));
+				_portal.getClassNameId(Layout.class.getName()),
+				layout.getPlid()));
 	}
 
 	private long[] _getSegmentsExperienceIds(
