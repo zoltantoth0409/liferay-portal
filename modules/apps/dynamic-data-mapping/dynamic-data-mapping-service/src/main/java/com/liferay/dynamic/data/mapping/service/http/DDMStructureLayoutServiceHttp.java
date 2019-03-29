@@ -127,21 +127,18 @@ public class DDMStructureLayoutServiceHttp {
 	}
 
 	public static java.util.List
-		<com.liferay.dynamic.data.mapping.model.DDMStructureLayout>
-				getStructureLayoutsSearch(
-					HttpPrincipal httpPrincipal, long companyId,
-					long[] groupIds, long classNameId, String keywords,
-					int start, int end,
-					com.liferay.portal.kernel.util.OrderByComparator
-						<com.liferay.dynamic.data.mapping.model.
-							DDMStructureLayout> orderByComparator)
+		<com.liferay.dynamic.data.mapping.model.DDMStructureLayout> search(
+				HttpPrincipal httpPrincipal, long companyId, long[] groupIds,
+				long classNameId, String keywords, int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.dynamic.data.mapping.model.DDMStructureLayout>
+						orderByComparator)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				DDMStructureLayoutServiceUtil.class,
-				"getStructureLayoutsSearch",
-				_getStructureLayoutsSearchParameterTypes2);
+				DDMStructureLayoutServiceUtil.class, "search",
+				_searchParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, companyId, groupIds, classNameId, keywords, start,
@@ -182,10 +179,9 @@ public class DDMStructureLayoutServiceHttp {
 		new Class[] {long.class, int.class, int.class};
 	private static final Class<?>[] _getStructureLayoutsCountParameterTypes1 =
 		new Class[] {long.class};
-	private static final Class<?>[] _getStructureLayoutsSearchParameterTypes2 =
-		new Class[] {
-			long.class, long[].class, long.class, String.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class
-		};
+	private static final Class<?>[] _searchParameterTypes2 = new Class[] {
+		long.class, long[].class, long.class, String.class, int.class,
+		int.class, com.liferay.portal.kernel.util.OrderByComparator.class
+	};
 
 }
