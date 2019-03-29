@@ -19,9 +19,13 @@ package com.liferay.portal.search.engine;
  */
 public interface SearchEngineInformation {
 
-	public String getClientVersionString();
+	public default String getClientVersionString() {
+		return null;
+	}
 
-	public String getNodesString();
+	public default String getNodesString() {
+		return null;
+	}
 
 	/**
 	 * @deprecated As of Judson (7.1.x)
@@ -29,6 +33,8 @@ public interface SearchEngineInformation {
 	@Deprecated
 	public String getStatusString();
 
-	public String getVendorString();
+	public default String getVendorString() {
+		return null;
+	}
 
 }
