@@ -64,11 +64,12 @@ public class DDMSearchHelper {
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 		searchContext.setGroupIds(groupIds);
-		searchContext.setStart(start);
 
 		if (orderByComparator != null) {
 			searchContext.setSorts(getSortsFromComparator(orderByComparator));
 		}
+
+		searchContext.setStart(start);
 
 		return searchContext;
 	}
