@@ -1632,11 +1632,7 @@ definition {
 
 		AssertElementPresent(locator1 = "DocumentsAndMedia#ICON_DOCUMENT");
 
-		DMDocument.gotoEntry(dmDocumentTitle = "${dmDocumentTitleEdit}");
-
-		DMDocument.viewCardTitle(
-			dmDocumentTitle = "${dmDocumentTitleEdit}"
-		);
+		DMNavigator.gotoDocumentCP(dmDocumentTitle = "${dmDocumentTitleEdit}");
 
 		if (isSet(dmDocumentVersionNumber)) {
 			DMDocument.viewDocumentVersionNumberCmdPG(dmDocumentVersionNumber = "${dmDocumentVersionNumber}");
