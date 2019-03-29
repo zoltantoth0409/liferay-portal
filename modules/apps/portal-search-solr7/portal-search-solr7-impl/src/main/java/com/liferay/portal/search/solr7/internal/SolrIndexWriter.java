@@ -16,6 +16,7 @@ package com.liferay.portal.search.solr7.internal;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexWriter;
@@ -26,6 +27,7 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.suggest.SpellCheckIndexWriter;
 import com.liferay.portal.kernel.util.PortalRunMode;
+import com.liferay.portal.search.solr7.configuration.SolrConfiguration;
 import com.liferay.portal.search.solr7.internal.connection.SolrClientManager;
 import com.liferay.portal.search.solr7.internal.document.SolrUpdateDocumentCommand;
 import com.liferay.portal.search.solr7.internal.util.LogUtil;
@@ -34,11 +36,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -46,6 +51,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Michael C. Han
  */
 @Component(
+	configurationPid = "com.liferay.portal.search.solr7.configuration.SolrConfiguration",
 	immediate = true, property = "search.engine.impl=Solr",
 	service = IndexWriter.class
 )
@@ -216,7 +222,6 @@ public class SolrIndexWriter extends BaseIndexWriter {
 			SolrConfiguration.class, properties);
 
 		_defaultCollection = _solrConfiguration.defaultCollection();
-		_logExceptionsOnly = _solrConfiguration.logExceptionsOnly();
 	}
 
 	@Reference(unbind = "-")
@@ -235,8 +240,8 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		SolrIndexWriter.class);
 
 	private String _defaultCollection;
-	private boolean _logExceptionsOnly;
 	private SolrClientManager _solrClientManager;
+	private volatile SolrConfiguration _solrConfiguration;
 	private SolrUpdateDocumentCommand _solrUpdateDocumentCommand;
 
 }
