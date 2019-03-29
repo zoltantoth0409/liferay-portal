@@ -23,7 +23,7 @@ import javax.ws.rs.ext.Provider;
 /**
  * @author Ivica Cardic
  */
-@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_XHTML_XML})
+@Produces({MediaType.APPLICATION_XHTML_XML, MediaType.APPLICATION_XML})
 @Provider
 public class XMLMessageBodyWriter extends BaseMessageBodyWriter {
 
