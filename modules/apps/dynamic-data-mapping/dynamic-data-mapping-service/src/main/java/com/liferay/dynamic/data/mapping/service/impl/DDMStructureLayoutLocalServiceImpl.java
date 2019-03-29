@@ -172,7 +172,7 @@ public class DDMStructureLayoutLocalServiceImpl
 		return ddmStructureLayoutPersistence.countByGroupId(groupId);
 	}
 
-	public List<DDMStructureLayout> getStructureLayoutsSearch(
+	public List<DDMStructureLayout> search(
 			long companyId, long[] groupIds, long classNameId, String keywords,
 			int start, int end,
 			OrderByComparator<DDMStructureLayout> orderByComparator)
