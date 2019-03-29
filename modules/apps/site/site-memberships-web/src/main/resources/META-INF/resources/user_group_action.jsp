@@ -51,7 +51,7 @@ UserGroup userGroup = (UserGroup)row.getObject();
 			url="javascript:;"
 		/>
 
-		<portlet:renderURL var="unAssignURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+		<portlet:renderURL var="unassignURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 			<portlet:param name="mvcPath" value="/user_groups_roles.jsp" />
 			<portlet:param name="userGroupId" value="<%= String.valueOf(userGroup.getUserGroupId()) %>" />
 			<portlet:param name="groupId" value="<%= String.valueOf(siteMembershipsDisplayContext.getGroupId()) %>" />
@@ -59,16 +59,16 @@ UserGroup userGroup = (UserGroup)row.getObject();
 		</portlet:renderURL>
 
 		<%
-		Map<String, Object> unAssignData = new HashMap<>();
+		Map<String, Object> unassignData = new HashMap<>();
 
-		unAssignData.put("href", unAssignURL.toString());
-		unAssignData.put("usergroupid", userGroup.getUserGroupId());
+		unassignData.put("href", unassignURL.toString());
+		unassignData.put("usergroupid", userGroup.getUserGroupId());
 		%>
 
 		<liferay-ui:icon
 			cssClass="unassign-site-roles"
-			data="<%= unAssignData %>"
-			id='<%= row.getRowId() + "unAssignSiteRoles" %>'
+			data="<%= unassignData %>"
+			id='<%= row.getRowId() + "unassignSiteRoles" %>'
 			message="unassign-site-roles"
 			url="javascript:;"
 		/>
@@ -150,10 +150,10 @@ UserGroup userGroup = (UserGroup)row.getObject();
 	AUI().use(
 		'liferay-item-selector-dialog',
 		function(A) {
-			var unAssignSiteRolesLink = document.getElementById('<portlet:namespace /><%= row.getRowId() %>unAssignSiteRoles');
+			var unassignSiteRolesLink = document.getElementById('<portlet:namespace /><%= row.getRowId() %>unassignSiteRoles');
 
-			if (unAssignSiteRolesLink) {
-				unAssignSiteRolesLink.addEventListener(
+			if (unassignSiteRolesLink) {
+				unassignSiteRolesLink.addEventListener(
 					'click',
 					function(event) {
 						event.preventDefault();
@@ -164,10 +164,10 @@ UserGroup userGroup = (UserGroup)row.getObject();
 							target = target.parentElement;
 						}
 
-						var unAssignUserGroupGroupRoleFm = document.<portlet:namespace />unAssignUserGroupGroupRoleFm;
+						var unassignUserGroupGroupRoleFm = document.<portlet:namespace />unassignUserGroupGroupRoleFm;
 
 						Liferay.Util.setFormValues(
-							unAssignUserGroupGroupRoleFm,
+							unassignUserGroupGroupRoleFm,
 							{
 								userGroupId: target.dataset.usergroupid
 							}
@@ -184,11 +184,11 @@ UserGroup userGroup = (UserGroup)row.getObject();
 											Array.prototype.forEach.call(
 												selectedItems,
 												function(selectedItem, index) {
-													dom.append(unAssignUserGroupGroupRoleFm, selectedItem);
+													dom.append(unassignUserGroupGroupRoleFm, selectedItem);
 												}
 											);
 
-											submitForm(unAssignUserGroupGroupRoleFm);
+											submitForm(unassignUserGroupGroupRoleFm);
 										}
 									}
 								},
