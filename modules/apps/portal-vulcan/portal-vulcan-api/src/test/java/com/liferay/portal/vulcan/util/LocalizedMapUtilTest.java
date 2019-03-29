@@ -14,8 +14,6 @@
 
 package com.liferay.portal.vulcan.util;
 
-import com.liferay.portal.kernel.util.LocaleUtil;
-
 import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Locale;
@@ -35,50 +33,50 @@ public class LocalizedMapUtilTest {
 		// Null map
 
 		Map<Locale, String> map = LocalizedMapUtil.merge(
-			null, new AbstractMap.SimpleEntry<>(LocaleUtil.US, "hello"));
+			null, new AbstractMap.SimpleEntry<>(Locale.US, "hello"));
 
 		Assert.assertEquals(map.toString(), 1, map.size());
-		Assert.assertEquals("hello", map.get(LocaleUtil.US));
+		Assert.assertEquals("hello", map.get(Locale.US));
 
 		// Null entry
 
 		map = LocalizedMapUtil.merge(
 			new HashMap<Locale, String>() {
 				{
-					put(LocaleUtil.US, "hello");
+					put(Locale.US, "hello");
 				}
 			},
 			null);
 
 		Assert.assertEquals(map.toString(), 1, map.size());
-		Assert.assertEquals("hello", map.get(LocaleUtil.US));
+		Assert.assertEquals("hello", map.get(Locale.US));
 
 		// Entry hello null
 
 		map = LocalizedMapUtil.merge(
 			new HashMap<Locale, String>() {
 				{
-					put(LocaleUtil.US, "hello");
+					put(Locale.US, "hello");
 				}
 			},
-			new AbstractMap.SimpleEntry<>(LocaleUtil.US, null));
+			new AbstractMap.SimpleEntry<>(Locale.US, null));
 
 		Assert.assertEquals(map.toString(), 0, map.size());
-		Assert.assertNull(map.get(LocaleUtil.US));
+		Assert.assertNull(map.get(Locale.US));
 
 		// Merge map
 
 		map = LocalizedMapUtil.merge(
 			new HashMap<Locale, String>() {
 				{
-					put(LocaleUtil.US, "hello");
+					put(Locale.US, "hello");
 				}
 			},
-			new AbstractMap.SimpleEntry<>(LocaleUtil.FRANCE, "bonjour"));
+			new AbstractMap.SimpleEntry<>(Locale.FRANCE, "bonjour"));
 
 		Assert.assertEquals(map.toString(), 2, map.size());
-		Assert.assertEquals("bonjour", map.get(LocaleUtil.FRANCE));
-		Assert.assertEquals("hello", map.get(LocaleUtil.US));
+		Assert.assertEquals("bonjour", map.get(Locale.FRANCE));
+		Assert.assertEquals("hello", map.get(Locale.US));
 	}
 
 }

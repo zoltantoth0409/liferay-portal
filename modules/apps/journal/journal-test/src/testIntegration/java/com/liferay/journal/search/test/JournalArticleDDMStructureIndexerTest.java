@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.search.test.util.IndexerFixture;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -66,7 +65,7 @@ public class JournalArticleDDMStructureIndexerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		LocaleThreadLocal.setSiteDefaultLocale(LocaleUtil.JAPAN);
+		LocaleThreadLocal.setSiteDefaultLocale(Locale.JAPAN);
 
 		setUpUserSearchFixture();
 		setUpJournalArticleDDMStructureFixture();
@@ -82,7 +81,7 @@ public class JournalArticleDDMStructureIndexerTest {
 	public void testDisableJournalArticleIndexer()
 		throws Exception, PortalException {
 
-		Locale locale = LocaleUtil.JAPAN;
+		Locale locale = Locale.JAPAN;
 		String searchTerm = "新規";
 		String title = "新規作成";
 
@@ -103,7 +102,7 @@ public class JournalArticleDDMStructureIndexerTest {
 
 	@Test
 	public void testReindexJournalArticle() throws Exception, PortalException {
-		Locale locale = LocaleUtil.JAPAN;
+		Locale locale = Locale.JAPAN;
 		String searchTerm = "新規";
 		String title = "新規作成";
 

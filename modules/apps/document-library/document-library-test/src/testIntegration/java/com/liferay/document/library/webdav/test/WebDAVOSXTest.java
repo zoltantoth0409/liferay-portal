@@ -574,11 +574,11 @@ public class WebDAVOSXTest extends BaseWebDAVTestCase {
 
 		Set<Locale> availableLocales = new LinkedHashSet<>();
 
-		availableLocales.add(LocaleUtil.US);
+		availableLocales.add(Locale.US);
 
 		ddmForm.setAvailableLocales(availableLocales);
 
-		ddmForm.setDefaultLocale(LocaleUtil.US);
+		ddmForm.setDefaultLocale(Locale.US);
 
 		return ddmForm;
 	}

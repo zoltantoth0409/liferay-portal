@@ -1293,7 +1293,7 @@ public class FileSystemImporter extends BaseImporter {
 		Map<Locale, String> nameMap = getMap(
 			layoutTemplateJSONObject.getString("name"));
 
-		String name = nameMap.get(LocaleUtil.getDefault());
+		String name = nameMap.get(Locale.getDefault());
 
 		LayoutPrototype layoutPrototype = getLayoutPrototype(companyId, name);
 

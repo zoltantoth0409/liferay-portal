@@ -17,9 +17,10 @@ package com.liferay.dynamic.data.mapping.form.builder.internal.context;
 import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldTypeServicesTracker;
 import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldValueAccessor;
 import com.liferay.portal.json.JSONFactoryImpl;
-import com.liferay.portal.kernel.util.LocaleUtil;
 
 import java.io.IOException;
+
+import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -61,7 +62,7 @@ public class DDMFormContextToDDMFormTest {
 			_ddmFormFieldTypeServicesTracker;
 
 		Object result = _ddmFormContextToDDMForm.getValueFromValueAccessor(
-			"checkbox", "false", LocaleUtil.US);
+			"checkbox", "false", Locale.US);
 
 		Assert.assertEquals(false, result);
 	}
@@ -79,7 +80,7 @@ public class DDMFormContextToDDMFormTest {
 			_ddmFormFieldTypeServicesTracker;
 
 		Object result = _ddmFormContextToDDMForm.getValueFromValueAccessor(
-			"checkbox", "false", LocaleUtil.US);
+			"checkbox", "false", Locale.US);
 
 		Assert.assertEquals("false", result);
 	}

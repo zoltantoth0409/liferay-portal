@@ -43,6 +43,7 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.After;
 import org.junit.Before;
@@ -189,14 +190,13 @@ public class JournalArticleIndexerSummaryTest {
 
 	protected String getFieldName(String field) {
 		return StringBundler.concat(
-			field, StringPool.UNDERLINE,
-			LocaleUtil.toLanguageId(LocaleUtil.US));
+			field, StringPool.UNDERLINE, LocaleUtil.toLanguageId(Locale.US));
 	}
 
 	protected String getSnippetFieldName(String field) {
 		return StringBundler.concat(
 			Field.SNIPPET, StringPool.UNDERLINE, field, StringPool.UNDERLINE,
-			LocaleUtil.toLanguageId(LocaleUtil.US));
+			LocaleUtil.toLanguageId(Locale.US));
 	}
 
 	protected void setFields(String title, String content, Document document) {

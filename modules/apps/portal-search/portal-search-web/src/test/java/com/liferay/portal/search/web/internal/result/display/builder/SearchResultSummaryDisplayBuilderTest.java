@@ -376,7 +376,7 @@ public class SearchResultSummaryDisplayBuilderTest {
 		Indexer<?> indexer = Mockito.mock(Indexer.class);
 
 		Mockito.doReturn(
-			new Summary(LocaleUtil.US, null, null)
+			new Summary(Locale.US, null, null)
 		).when(
 			indexer
 		).getSummary(
@@ -462,7 +462,7 @@ public class SearchResultSummaryDisplayBuilderTest {
 	}
 
 	protected void setUpLocaleThreadLocal() {
-		LocaleThreadLocal.setThemeDisplayLocale(LocaleUtil.US);
+		LocaleThreadLocal.setThemeDisplayLocale(Locale.US);
 	}
 
 	protected void setUpProps() {
@@ -549,7 +549,7 @@ public class SearchResultSummaryDisplayBuilderTest {
 	@Mock
 	protected IndexerRegistry indexerRegistry;
 
-	protected Locale locale = LocaleUtil.US;
+	protected Locale locale = Locale.US;
 
 	@Mock
 	protected PermissionChecker permissionChecker;
