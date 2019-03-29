@@ -89,12 +89,7 @@ public class BeanPortletImpl implements BeanPortlet {
 		_supportedPublicRenderParameters = supportedPublicRenderParameters;
 		_containerRuntimeOptions = containerRuntimeOptions;
 		_portletDependencies = portletDependencies;
-
-		if (!asyncSupported) {
-			asyncSupported = _isAsyncSupported(beanMethodMap);
-		}
-
-		_asyncSupported = asyncSupported;
+		_asyncSupported = asyncSupported || _isAsyncSupported(beanMethodMap);
 		_multipartConfig = multipartConfig;
 		_displayCategory = displayCategory;
 		_liferayConfiguration = liferayConfiguration;
