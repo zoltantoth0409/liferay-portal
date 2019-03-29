@@ -187,10 +187,10 @@ public class XMLMessageBodyWriterTest {
 
 	}
 
-	private Document _getDocument(String spec)
+	private Document _getDocument(String urlString)
 		throws DocumentException, IOException {
 
-		URL url = new URL(spec);
+		URL url = new URL(urlString);
 
 		URLConnection urlConnection = url.openConnection();
 
