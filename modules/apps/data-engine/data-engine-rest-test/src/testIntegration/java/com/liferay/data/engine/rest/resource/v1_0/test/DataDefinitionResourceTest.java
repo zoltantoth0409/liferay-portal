@@ -90,6 +90,7 @@ public class DataDefinitionResourceTest
 		return false;
 	}
 
+	@Override
 	protected DataDefinition randomDataDefinition() {
 		return new DataDefinition() {
 			{
@@ -105,6 +106,7 @@ public class DataDefinitionResourceTest
 		};
 	}
 
+	@Override
 	protected DataDefinition testDeleteDataDefinition_addDataDefinition()
 		throws Exception {
 
@@ -112,6 +114,7 @@ public class DataDefinitionResourceTest
 			testGroup.getGroupId(), randomDataDefinition());
 	}
 
+	@Override
 	protected DataDefinition
 			testGetContentSpaceDataDefinitionsPage_addDataDefinition(
 				Long contentSpaceId, DataDefinition dataDefinition)
@@ -121,12 +124,14 @@ public class DataDefinitionResourceTest
 			contentSpaceId, dataDefinition);
 	}
 
+	@Override
 	protected Long testGetContentSpaceDataDefinitionsPage_getContentSpaceId()
 		throws Exception {
 
 		return testGroup.getGroupId();
 	}
 
+	@Override
 	protected DataDefinition testGetDataDefinition_addDataDefinition()
 		throws Exception {
 
@@ -134,6 +139,7 @@ public class DataDefinitionResourceTest
 			testGroup.getGroupId(), randomDataDefinition());
 	}
 
+	@Override
 	protected DataDefinition
 			testPostContentSpaceDataDefinition_addDataDefinition(
 				DataDefinition dataDefinition)
@@ -143,6 +149,7 @@ public class DataDefinitionResourceTest
 			testGroup.getGroupId(), dataDefinition);
 	}
 
+	@Override
 	protected DataDefinition testPutDataDefinition_addDataDefinition()
 		throws Exception {
 
