@@ -95,15 +95,12 @@ public class SegmentsServicePreAction extends Action {
 			!layout.isTypeControlPanel()) {
 
 			try {
-				Context context = _requestContextMapper.map(request);
-
-				long[] userSegmentsEntryIds =
+				segmentsEntryIds = ArrayUtil.append(
 					_segmentsEntryProvider.getSegmentsEntryIds(
 						themeDisplay.getScopeGroupId(), User.class.getName(),
-						themeDisplay.getUserId(), context);
-
-				segmentsEntryIds = ArrayUtil.append(
-					userSegmentsEntryIds, segmentsEntryIds);
+						themeDisplay.getUserId(),
+						_requestContextMapper.map(request)),
+					segmentsEntryIds);
 			}
 			catch (PortalException pe) {
 				if (_log.isWarnEnabled()) {
