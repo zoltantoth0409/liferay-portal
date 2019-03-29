@@ -1,3 +1,7 @@
+create index IX_783ADE40 on BigDecimalEntries_LVEntries (bigDecimalEntryId);
+create index IX_838D8DFC on BigDecimalEntries_LVEntries (companyId);
+create index IX_67100507 on BigDecimalEntries_LVEntries (lvEntryId);
+
 create index IX_867C5A9 on BigDecimalEntry (bigDecimalValue);
 
 create index IX_B49A8200 on LVEntries_BigDecimalEntries (bigDecimalEntryId);

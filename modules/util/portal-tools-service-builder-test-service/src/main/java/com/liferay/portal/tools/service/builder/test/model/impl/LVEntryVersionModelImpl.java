@@ -131,25 +131,25 @@ public class LVEntryVersionModelImpl
 
 	public static final long VERSION_COLUMN_BITMASK = 32L;
 
-	public static final String MAPPING_TABLE_LVENTRIES_BIGDECIMALENTRIES_NAME =
-		"LVEntries_BigDecimalEntries";
+	public static final String MAPPING_TABLE_BIGDECIMALENTRIES_LVENTRIES_NAME =
+		"BigDecimalEntries_LVEntries";
 
 	public static final Object[][]
-		MAPPING_TABLE_LVENTRIES_BIGDECIMALENTRIES_COLUMNS = {
+		MAPPING_TABLE_BIGDECIMALENTRIES_LVENTRIES_COLUMNS = {
 			{"companyId", Types.BIGINT}, {"bigDecimalEntryId", Types.BIGINT},
 			{"lvEntryId", Types.BIGINT}
 		};
 
 	public static final String
-		MAPPING_TABLE_LVENTRIES_BIGDECIMALENTRIES_SQL_CREATE =
-			"create table LVEntries_BigDecimalEntries (companyId LONG not null,bigDecimalEntryId LONG not null,lvEntryId LONG not null,primary key (bigDecimalEntryId, lvEntryId))";
+		MAPPING_TABLE_BIGDECIMALENTRIES_LVENTRIES_SQL_CREATE =
+			"create table BigDecimalEntries_LVEntries (companyId LONG not null,bigDecimalEntryId LONG not null,lvEntryId LONG not null,primary key (bigDecimalEntryId, lvEntryId))";
 
 	public static final boolean
-		FINDER_CACHE_ENABLED_LVENTRIES_BIGDECIMALENTRIES =
+		FINDER_CACHE_ENABLED_BIGDECIMALENTRIES_LVENTRIES =
 			GetterUtil.getBoolean(
 				com.liferay.portal.tools.service.builder.test.service.util.
 					ServiceProps.get(
-						"value.object.finder.cache.enabled.LVEntries_BigDecimalEntries"),
+						"value.object.finder.cache.enabled.BigDecimalEntries_LVEntries"),
 				true);
 
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(

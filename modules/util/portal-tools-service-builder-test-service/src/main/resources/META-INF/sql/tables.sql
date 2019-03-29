@@ -1,3 +1,10 @@
+create table BigDecimalEntries_LVEntries (
+	companyId LONG not null,
+	bigDecimalEntryId LONG not null,
+	lvEntryId LONG not null,
+	primary key (bigDecimalEntryId, lvEntryId)
+);
+
 create table BigDecimalEntry (
 	bigDecimalEntryId LONG not null primary key,
 	companyId LONG,

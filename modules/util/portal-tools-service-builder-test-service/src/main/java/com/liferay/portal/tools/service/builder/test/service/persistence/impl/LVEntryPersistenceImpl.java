@@ -4020,7 +4020,7 @@ public class LVEntryPersistenceImpl
 	 */
 	public void afterPropertiesSet() {
 		lvEntryToBigDecimalEntryTableMapper = TableMapperFactory.getTableMapper(
-			"LVEntries_BigDecimalEntries", "companyId", "lvEntryId",
+			"BigDecimalEntries_LVEntries", "companyId", "lvEntryId",
 			"bigDecimalEntryId", this, bigDecimalEntryPersistence);
 
 		_finderPathWithPaginationFindAll = new FinderPath(
@@ -4176,7 +4176,7 @@ public class LVEntryPersistenceImpl
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		TableMapperFactory.removeTableMapper("LVEntries_BigDecimalEntries");
+		TableMapperFactory.removeTableMapper("BigDecimalEntries_LVEntries");
 	}
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
