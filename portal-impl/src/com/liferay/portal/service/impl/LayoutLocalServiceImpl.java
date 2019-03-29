@@ -698,9 +698,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 					layoutVersion = layoutVersionPersistence.remove(
 						layoutVersion);
 
+					layoutVersion.setNew(true);
 					layoutVersion.setUserId(anonymousUser.getUserId());
 					layoutVersion.setUserName(anonymousUser.getFullName());
-					layoutVersion.setNew(true);
 
 					layoutVersionPersistence.update(layoutVersion);
 				}
