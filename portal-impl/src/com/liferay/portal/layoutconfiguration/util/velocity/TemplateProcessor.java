@@ -315,26 +315,27 @@ public class TemplateProcessor implements ColumnProcessor {
 			LayoutTypePortlet layoutTypePortlet, List<Portlet> portlets)
 		throws PortletContainerException {
 
-		StringBundler sb = new StringBundler(portlets.size() * 3 + 10);
+		StringBundler sb = new StringBundler(portlets.size() * 3 + 11);
 
-		sb.append("<div class=\"portlet-dropzone");
+		sb.append("<div class=\"");
+
+		if (layoutTypePortlet.isColumnCustomizable(columnId)) {
+			sb.append("customizable ");
+		}
+
+		if (portlets.isEmpty()) {
+			sb.append("empty ");
+		}
+
+		sb.append("portlet-dropzone ");
 
 		if (layoutTypePortlet.isColumnDisabled(columnId) &&
 			layoutTypePortlet.isCustomizable()) {
 
-			sb.append(" portlet-dropzone-disabled");
-		}
-
-		if (layoutTypePortlet.isColumnCustomizable(columnId)) {
-			sb.append(" customizable");
-		}
-
-		if (portlets.isEmpty()) {
-			sb.append(" empty");
+			sb.append("portlet-dropzone-disabled" );
 		}
 
 		if (Validator.isNotNull(classNames)) {
-			sb.append(" ");
 			sb.append(classNames);
 		}
 
