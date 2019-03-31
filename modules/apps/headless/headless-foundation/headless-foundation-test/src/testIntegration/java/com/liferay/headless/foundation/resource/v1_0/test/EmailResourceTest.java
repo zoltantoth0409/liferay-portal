@@ -56,8 +56,8 @@ public class EmailResourceTest extends BaseEmailResourceTestCase {
 	protected void assertValid(Email email) {
 		boolean valid = false;
 
-		if ((email.getEmail() != null) && (email.getPrimary() != null) &&
-			(email.getId() != null)) {
+		if ((email.getEmail() != null) && (email.getId() != null) &&
+			(email.getPrimary() != null)) {
 
 			valid = true;
 		}
