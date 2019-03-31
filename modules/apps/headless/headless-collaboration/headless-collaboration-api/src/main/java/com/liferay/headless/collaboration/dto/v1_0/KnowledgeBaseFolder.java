@@ -25,6 +25,7 @@ import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 
 import java.util.Date;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -291,6 +292,28 @@ public class KnowledgeBaseFolder {
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	protected Long parentKnowledgeBaseFolderId;
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
+		if (!(object instanceof KnowledgeBaseFolder)) {
+			return false;
+		}
+
+		KnowledgeBaseFolder knowledgeBaseFolder = (KnowledgeBaseFolder)object;
+
+		return Objects.equals(toString(), knowledgeBaseFolder.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		String string = toString();
+
+		return string.hashCode();
+	}
 
 	public String toString() {
 		StringBundler sb = new StringBundler();

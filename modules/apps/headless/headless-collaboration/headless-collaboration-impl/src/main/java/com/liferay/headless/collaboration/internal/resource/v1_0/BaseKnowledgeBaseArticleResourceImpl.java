@@ -329,7 +329,7 @@ public abstract class BaseKnowledgeBaseArticleResourceImpl
 	@Tags(value = {@Tag(name = "KnowledgeBaseArticle")})
 	public Page<KnowledgeBaseArticle>
 			getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-				@PathParam("knowledge-base-folder-id") Long
+				@NotNull @PathParam("knowledge-base-folder-id") Long
 					knowledgeBaseFolderId,
 				@QueryParam("flatten") Boolean flatten, @Context Filter filter,
 				@Context Pagination pagination, @Context Sort[] sorts)
