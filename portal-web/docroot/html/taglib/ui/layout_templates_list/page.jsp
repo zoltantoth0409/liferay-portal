@@ -33,7 +33,7 @@ List<LayoutTemplate> layoutTemplates = (List<LayoutTemplate>)request.getAttribut
 
 			String templateId = layoutTemplate.getLayoutTemplateId();
 
-			//LPS-90259
+			// LPS-90259
 
 			if (!templateId.equals("1_column_dynamic")) {
 		%>
