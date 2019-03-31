@@ -43,6 +43,7 @@ public class SPIRatingResource<T> {
 
 	public void deleteRating(Long ratingId) throws Exception {
 		_checkPermission();
+
 		_ratingsEntryLocalService.deleteRatingsEntry(ratingId);
 	}
 
