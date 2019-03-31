@@ -93,7 +93,7 @@ public class TaxonomyCategoryResourceImpl
 
 		ContentLanguageUtil.addContentLanguageHeader(
 			assetCategory.getAvailableLanguageIds(),
-			assetCategory.getDefaultLanguageId(), _contextHttpServletResponse,
+			assetCategory.getDefaultLanguageId(), _httpServletResponse,
 			contextAcceptLanguage.getPreferredLocale());
 
 		return _toTaxonomyCategory(assetCategory);
@@ -342,7 +342,7 @@ public class TaxonomyCategoryResourceImpl
 	private AssetVocabularyService _assetVocabularyService;
 
 	@Context
-	private HttpServletResponse _contextHttpServletResponse;
+	private HttpServletResponse _httpServletResponse;
 
 	@Reference
 	private Portal _portal;

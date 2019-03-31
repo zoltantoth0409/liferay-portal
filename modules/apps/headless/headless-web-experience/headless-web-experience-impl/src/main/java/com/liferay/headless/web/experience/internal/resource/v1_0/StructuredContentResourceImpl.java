@@ -221,14 +221,14 @@ public class StructuredContentResourceImpl
 
 		EventsProcessorUtil.process(
 			PropsKeys.SERVLET_SERVICE_EVENTS_PRE,
-			PropsValues.SERVLET_SERVICE_EVENTS_PRE, _contextHttpServletRequest,
+			PropsValues.SERVLET_SERVICE_EVENTS_PRE, _httpServletRequest,
 			new DummyHttpServletResponse());
 
 		ThemeDisplay themeDisplay =
-			(ThemeDisplay)_contextHttpServletRequest.getAttribute(
+			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		themeDisplay.setLocale(_contextHttpServletRequest.getLocale());
+		themeDisplay.setLocale(_httpServletRequest.getLocale());
 		themeDisplay.setScopeGroupId(journalArticle.getGroupId());
 		themeDisplay.setSiteGroupId(journalArticle.getGroupId());
 
@@ -544,7 +544,7 @@ public class StructuredContentResourceImpl
 
 		ContentLanguageUtil.addContentLanguageHeader(
 			journalArticle.getAvailableLanguageIds(),
-			journalArticle.getDefaultLanguageId(), _contextHttpServletResponse,
+			journalArticle.getDefaultLanguageId(), _httpServletResponse,
 			contextAcceptLanguage.getPreferredLocale());
 
 		return _toStructuredContent(journalArticle);
@@ -720,12 +720,6 @@ public class StructuredContentResourceImpl
 		}
 	}
 
-	@Context
-	private HttpServletRequest _contextHttpServletRequest;
-
-	@Context
-	private HttpServletResponse _contextHttpServletResponse;
-
 	@Reference
 	private DDM _ddm;
 
@@ -746,6 +740,12 @@ public class StructuredContentResourceImpl
 
 	@Reference
 	private EntityFieldsProvider _entityFieldsProvider;
+
+	@Context
+	private HttpServletRequest _httpServletRequest;
+
+	@Context
+	private HttpServletResponse _httpServletResponse;
 
 	@Reference
 	private JournalArticleLocalService _journalArticleLocalService;

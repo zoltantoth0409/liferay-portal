@@ -128,7 +128,7 @@ public class TaxonomyVocabularyResourceImpl
 
 		ContentLanguageUtil.addContentLanguageHeader(
 			assetVocabulary.getAvailableLanguageIds(),
-			assetVocabulary.getDefaultLanguageId(), _contextHttpServletResponse,
+			assetVocabulary.getDefaultLanguageId(), _httpServletResponse,
 			contextAcceptLanguage.getPreferredLocale());
 
 		return _toTaxonomyVocabulary(assetVocabulary);
@@ -475,7 +475,7 @@ public class TaxonomyVocabularyResourceImpl
 	private ClassNameLocalService _classNameLocalService;
 
 	@Context
-	private HttpServletResponse _contextHttpServletResponse;
+	private HttpServletResponse _httpServletResponse;
 
 	@Reference
 	private Portal _portal;
