@@ -123,7 +123,6 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 		deleteLayoutPageTemplateEntryURL.setParameter(
 			ActionRequest.ACTION_NAME,
 			"/layout/delete_layout_page_template_entry");
-
 		deleteLayoutPageTemplateEntryURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
 		deleteLayoutPageTemplateEntryURL.setParameter(
