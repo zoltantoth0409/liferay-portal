@@ -176,13 +176,13 @@ public class MessageBoardThreadResourceImpl
 			Long messageBoardThreadId)
 		throws Exception {
 
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
 		MBThread mbThread = _mbThreadLocalService.getMBThread(
 			messageBoardThreadId);
 
-		return ratingSPIRatingResource.getRatingsPage(
+		return spiRatingResource.getRatingsPage(
 			mbThread.getRootMessageId());
 	}
 
@@ -211,13 +211,13 @@ public class MessageBoardThreadResourceImpl
 			Long messageBoardThreadId, Rating rating)
 		throws Exception {
 
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
 		MBThread mbThread = _mbThreadLocalService.getThread(
 			messageBoardThreadId);
 
-		return ratingSPIRatingResource.postRating(
+		return spiRatingResource.postRating(
 			mbThread.getRootMessageId(),
 			GetterUtil.getDouble(rating.getRatingValue()));
 	}

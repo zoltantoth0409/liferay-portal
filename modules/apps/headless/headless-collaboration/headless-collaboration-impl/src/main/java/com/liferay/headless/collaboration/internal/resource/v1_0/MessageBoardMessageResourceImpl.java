@@ -113,10 +113,10 @@ public class MessageBoardMessageResourceImpl
 			Long messageBoardMessageId)
 		throws Exception {
 
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
-		return ratingSPIRatingResource.getRatingsPage(messageBoardMessageId);
+		return spiRatingResource.getRatingsPage(messageBoardMessageId);
 	}
 
 	@Override
@@ -147,10 +147,10 @@ public class MessageBoardMessageResourceImpl
 			Long messageBoardMessageId, Rating rating)
 		throws Exception {
 
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
-		return ratingSPIRatingResource.postRating(
+		return spiRatingResource.postRating(
 			messageBoardMessageId,
 			GetterUtil.getDouble(rating.getRatingValue()));
 	}

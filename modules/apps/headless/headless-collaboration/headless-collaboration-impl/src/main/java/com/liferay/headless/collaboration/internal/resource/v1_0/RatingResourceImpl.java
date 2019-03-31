@@ -41,26 +41,26 @@ public class RatingResourceImpl extends BaseRatingResourceImpl {
 
 	@Override
 	public void deleteRating(Long ratingId) throws Exception {
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
-		ratingSPIRatingResource.deleteRating(ratingId);
+		spiRatingResource.deleteRating(ratingId);
 	}
 
 	@Override
 	public Rating getRating(Long ratingId) throws Exception {
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
-		return ratingSPIRatingResource.getRating(ratingId);
+		return spiRatingResource.getRating(ratingId);
 	}
 
 	@Override
 	public Rating putRating(Long ratingId, Rating rating) throws Exception {
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
-		return ratingSPIRatingResource.putRating(
+		return spiRatingResource.putRating(
 			ratingId, GetterUtil.getDouble(rating.getRatingValue()));
 	}
 

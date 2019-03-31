@@ -94,10 +94,10 @@ public class BlogPostingResourceImpl
 	public Page<Rating> getBlogPostingsRatingsPage(Long blogPostingId)
 		throws Exception {
 
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
-		return ratingSPIRatingResource.getRatingsPage(blogPostingId);
+		return spiRatingResource.getRatingsPage(blogPostingId);
 	}
 
 	@Override
@@ -133,10 +133,10 @@ public class BlogPostingResourceImpl
 	public Rating postBlogPostingRating(Long blogPostingId, Rating rating)
 		throws Exception {
 
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
-		return ratingSPIRatingResource.postRating(
+		return spiRatingResource.postRating(
 			blogPostingId, GetterUtil.getDouble(rating.getRatingValue()));
 	}
 

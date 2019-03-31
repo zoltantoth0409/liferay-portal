@@ -278,10 +278,10 @@ public class StructuredContentResourceImpl
 			Long structuredContentId)
 		throws Exception {
 
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
-		return ratingSPIRatingResource.getRatingsPage(structuredContentId);
+		return spiRatingResource.getRatingsPage(structuredContentId);
 	}
 
 	@Override
@@ -412,10 +412,10 @@ public class StructuredContentResourceImpl
 			Long structuredContentId, Rating rating)
 		throws Exception {
 
-		SPIRatingResource<Rating> ratingSPIRatingResource =
+		SPIRatingResource<Rating> spiRatingResource =
 			_getSPIRatingResource();
 
-		return ratingSPIRatingResource.postRating(
+		return spiRatingResource.postRating(
 			structuredContentId, GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
