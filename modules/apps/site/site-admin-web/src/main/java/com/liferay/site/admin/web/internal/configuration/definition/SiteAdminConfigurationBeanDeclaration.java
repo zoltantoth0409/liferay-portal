@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.site.admin.web.internal.definition;
+package com.liferay.site.admin.web.internal.configuration.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.site.admin.web.configuration.SiteAdminConfiguration;
+import com.liferay.site.admin.web.internal.configuration.SiteAdminConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
