@@ -319,8 +319,8 @@ public class TemplateProcessor implements ColumnProcessor {
 
 		sb.append("<div class=\"portlet-dropzone");
 
-		if (layoutTypePortlet.isCustomizable() &&
-			layoutTypePortlet.isColumnDisabled(columnId)) {
+		if (layoutTypePortlet.isColumnDisabled(columnId) &&
+			layoutTypePortlet.isCustomizable()) {
 
 			sb.append(" portlet-dropzone-disabled");
 		}
