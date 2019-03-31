@@ -23,12 +23,7 @@ import com.liferay.headless.web.experience.internal.dto.v1_0.converter.DTOConver
 import com.liferay.headless.web.experience.resource.v1_0.ContentListElementResource;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-import com.liferay.segments.model.SegmentsEntry;
-import com.liferay.segments.service.SegmentsEntryLocalService;
-
-import javax.servlet.http.HttpServletRequest;
-
-import javax.ws.rs.core.Context;
+import com.liferay.segments.constants.SegmentsConstants;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -52,22 +47,18 @@ public class ContentListElementResourceImpl
 		AssetListEntry assetListEntry =
 			_assetListEntryService.fetchAssetListEntry(contentListId);
 
-		SegmentsEntry segmentsEntry =
-			_segmentsEntryLocalService.getDefaultSegmentsEntry(
-				assetListEntry.getGroupId());
-
 		return Page.of(
 			transform(
 				assetListEntry.getAssetEntries(
-					segmentsEntry.getSegmentsEntryId(),
+					SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT,
 					pagination.getStartPosition(), pagination.getEndPosition()),
-				this::_toAssetListElement),
+				this::_toContentListElement),
 			pagination,
 			assetListEntry.getAssetEntriesCount(
-				segmentsEntry.getSegmentsEntryId()));
+				SegmentsConstants.SEGMENTS_ENTRY_ID_DEFAULT));
 	}
 
-	private ContentListElement _toAssetListElement(AssetEntry assetEntry) {
+	private ContentListElement _toContentListElement(AssetEntry assetEntry) {
 		return new ContentListElement() {
 			{
 				contentType = assetEntry.getClassName();
@@ -95,13 +86,7 @@ public class ContentListElementResourceImpl
 	@Reference
 	private AssetListEntryService _assetListEntryService;
 
-	@Context
-	private HttpServletRequest _contextHttpServletRequest;
-
 	@Reference
 	private DTOConverterRegistry _dtoConverterRegistry;
-
-	@Reference
-	private SegmentsEntryLocalService _segmentsEntryLocalService;
 
 }
