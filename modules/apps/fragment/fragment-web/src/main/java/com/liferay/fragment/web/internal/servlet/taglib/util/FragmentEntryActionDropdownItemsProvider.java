@@ -150,7 +150,6 @@ public class FragmentEntryActionDropdownItemsProvider {
 
 		deleteFragmentEntryURL.setParameter(
 			ActionRequest.ACTION_NAME, "/fragment/delete_fragment_entries");
-
 		deleteFragmentEntryURL.setParameter(
 			"redirect", _themeDisplay.getURLCurrent());
 		deleteFragmentEntryURL.setParameter(
@@ -174,7 +173,6 @@ public class FragmentEntryActionDropdownItemsProvider {
 		deleteFragmentEntryPreviewURL.setParameter(
 			ActionRequest.ACTION_NAME,
 			"/fragment/delete_fragment_entry_preview");
-
 		deleteFragmentEntryPreviewURL.setParameter(
 			"fragmentEntryId",
 			String.valueOf(_fragmentEntry.getFragmentEntryId()));
