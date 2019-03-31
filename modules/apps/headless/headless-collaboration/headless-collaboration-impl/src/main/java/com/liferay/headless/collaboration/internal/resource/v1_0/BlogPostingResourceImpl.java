@@ -94,8 +94,7 @@ public class BlogPostingResourceImpl
 	public Page<Rating> getBlogPostingsRatingsPage(Long blogPostingId)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.getRatingsPage(blogPostingId);
 	}
@@ -133,8 +132,7 @@ public class BlogPostingResourceImpl
 	public Rating postBlogPostingRating(Long blogPostingId, Rating rating)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
 			blogPostingId, GetterUtil.getDouble(rating.getRatingValue()));

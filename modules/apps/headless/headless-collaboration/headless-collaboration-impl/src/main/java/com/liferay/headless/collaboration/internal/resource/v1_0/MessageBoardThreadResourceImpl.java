@@ -176,14 +176,12 @@ public class MessageBoardThreadResourceImpl
 			Long messageBoardThreadId)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		MBThread mbThread = _mbThreadLocalService.getMBThread(
 			messageBoardThreadId);
 
-		return spiRatingResource.getRatingsPage(
-			mbThread.getRootMessageId());
+		return spiRatingResource.getRatingsPage(mbThread.getRootMessageId());
 	}
 
 	@Override
@@ -211,8 +209,7 @@ public class MessageBoardThreadResourceImpl
 			Long messageBoardThreadId, Rating rating)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		MBThread mbThread = _mbThreadLocalService.getThread(
 			messageBoardThreadId);

@@ -155,8 +155,7 @@ public class KnowledgeBaseArticleResourceImpl
 			Long knowledgeBaseArticleId)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.getRatingsPage(knowledgeBaseArticleId);
 	}
@@ -223,8 +222,7 @@ public class KnowledgeBaseArticleResourceImpl
 			Long knowledgeBaseArticleId, Rating rating)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
 			knowledgeBaseArticleId,

@@ -135,8 +135,7 @@ public class DocumentResourceImpl
 	public Page<Rating> getDocumentsRatingsPage(Long documentId)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.getRatingsPage(documentId);
 	}
@@ -242,8 +241,7 @@ public class DocumentResourceImpl
 	public Rating postDocumentRating(Long documentId, Rating rating)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
 			documentId, GetterUtil.getDouble(rating.getRatingValue()));

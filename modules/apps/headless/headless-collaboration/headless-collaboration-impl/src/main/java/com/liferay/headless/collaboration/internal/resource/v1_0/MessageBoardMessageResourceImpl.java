@@ -113,8 +113,7 @@ public class MessageBoardMessageResourceImpl
 			Long messageBoardMessageId)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.getRatingsPage(messageBoardMessageId);
 	}
@@ -147,8 +146,7 @@ public class MessageBoardMessageResourceImpl
 			Long messageBoardMessageId, Rating rating)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
 			messageBoardMessageId,

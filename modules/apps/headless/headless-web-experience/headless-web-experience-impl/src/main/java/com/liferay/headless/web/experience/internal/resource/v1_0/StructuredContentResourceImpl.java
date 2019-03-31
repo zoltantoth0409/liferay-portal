@@ -278,8 +278,7 @@ public class StructuredContentResourceImpl
 			Long structuredContentId)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.getRatingsPage(structuredContentId);
 	}
@@ -412,8 +411,7 @@ public class StructuredContentResourceImpl
 			Long structuredContentId, Rating rating)
 		throws Exception {
 
-		SPIRatingResource<Rating> spiRatingResource =
-			_getSPIRatingResource();
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
 			structuredContentId, GetterUtil.getDouble(rating.getRatingValue()));
