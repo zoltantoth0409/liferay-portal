@@ -35,33 +35,34 @@ List<LayoutTemplate> layoutTemplates = (List<LayoutTemplate>)request.getAttribut
 
 			// LPS-90259
 
-			if (!templateId.equals("1_column_dynamic")) {
+			if (templateId.equals("1_column_dynamic")) {
+				continue;
+			}
 		%>
 
-				<li class="col-lg-3 col-md-4 col-sm-6 lfr-layout-template">
-					<div class="checkbox-card">
-						<label for="<portlet:namespace /><%= layoutTemplateIdPrefix + "layoutTemplateId" + i %>">
-							<aui:input checked="<%= layoutTemplateId.equals(layoutTemplate.getLayoutTemplateId()) %>" cssClass="hide" id='<%= layoutTemplateIdPrefix + "layoutTemplateId" + i %>' label="" name="layoutTemplateId" type="radio" value="<%= layoutTemplate.getLayoutTemplateId() %>" wrappedField="<%= true %>" />
+			<li class="col-lg-3 col-md-4 col-sm-6 lfr-layout-template">
+				<div class="checkbox-card">
+					<label for="<portlet:namespace /><%= layoutTemplateIdPrefix + "layoutTemplateId" + i %>">
+						<aui:input checked="<%= layoutTemplateId.equals(layoutTemplate.getLayoutTemplateId()) %>" cssClass="hide" id='<%= layoutTemplateIdPrefix + "layoutTemplateId" + i %>' label="" name="layoutTemplateId" type="radio" value="<%= layoutTemplate.getLayoutTemplateId() %>" wrappedField="<%= true %>" />
 
-							<div class="card card-horizontal">
-								<div class="card-row card-row-padded">
-									<div class="card-col-field">
-										<img alt="" class="layout-template-entry modify-link <%= layoutTemplateId.equals(layoutTemplate.getLayoutTemplateId()) ? "layout-selected" : StringPool.BLANK %>" height="28" onclick="document.getElementById('<portlet:namespace /><%= layoutTemplateIdPrefix + "layoutTemplateId" + i %>').checked = true;" src="<%= layoutTemplate.getStaticResourcePath() %><%= HtmlUtil.escapeAttribute(layoutTemplate.getThumbnailPath()) %>" width="28" />
-									</div>
+						<div class="card card-horizontal">
+							<div class="card-row card-row-padded">
+								<div class="card-col-field">
+									<img alt="" class="layout-template-entry modify-link <%= layoutTemplateId.equals(layoutTemplate.getLayoutTemplateId()) ? "layout-selected" : StringPool.BLANK %>" height="28" onclick="document.getElementById('<portlet:namespace /><%= layoutTemplateIdPrefix + "layoutTemplateId" + i %>').checked = true;" src="<%= layoutTemplate.getStaticResourcePath() %><%= HtmlUtil.escapeAttribute(layoutTemplate.getThumbnailPath()) %>" width="28" />
+								</div>
 
-									<div class="card-col-content card-col-gutters clamp-horizontal">
-										<div class="clamp-container">
-											<span class="truncate-text" title="<%= HtmlUtil.escape(layoutTemplate.getName(locale)) %>"><%= HtmlUtil.escape(layoutTemplate.getName(locale)) %></span>
-										</div>
+								<div class="card-col-content card-col-gutters clamp-horizontal">
+									<div class="clamp-container">
+										<span class="truncate-text" title="<%= HtmlUtil.escape(layoutTemplate.getName(locale)) %>"><%= HtmlUtil.escape(layoutTemplate.getName(locale)) %></span>
 									</div>
 								</div>
 							</div>
-						</label>
-					</div>
-				</li>
+						</div>
+					</label>
+				</div>
+			</li>
 
 		<%
-			}
 		}
 		%>
 
