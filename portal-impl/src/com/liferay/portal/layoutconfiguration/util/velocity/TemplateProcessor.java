@@ -332,7 +332,7 @@ public class TemplateProcessor implements ColumnProcessor {
 		if (layoutTypePortlet.isColumnDisabled(columnId) &&
 			layoutTypePortlet.isCustomizable()) {
 
-			sb.append("portlet-dropzone-disabled" );
+			sb.append("portlet-dropzone-disabled");
 		}
 
 		if (Validator.isNotNull(classNames)) {
