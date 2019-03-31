@@ -26,7 +26,7 @@ import com.liferay.ratings.kernel.model.RatingsEntry;
 public class RatingUtil {
 
 	public static Rating toRating(
-			RatingsEntry ratingsEntry, Portal portal,
+			Portal portal, RatingsEntry ratingsEntry,
 			UserLocalService userLocalService)
 		throws PortalException {
 

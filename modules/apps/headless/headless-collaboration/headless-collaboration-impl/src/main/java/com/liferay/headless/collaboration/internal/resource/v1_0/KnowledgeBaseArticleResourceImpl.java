@@ -312,7 +312,7 @@ public class KnowledgeBaseArticleResourceImpl
 		return new SPIRatingResource<>(
 			KBArticle.class.getName(), _ratingsEntryLocalService,
 			ratingsEntry -> RatingUtil.toRating(
-				ratingsEntry, _portal, _userLocalService),
+				_portal, ratingsEntry, _userLocalService),
 			_user);
 	}
 
