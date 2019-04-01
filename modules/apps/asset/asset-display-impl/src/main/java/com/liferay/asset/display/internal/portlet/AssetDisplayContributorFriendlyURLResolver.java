@@ -150,7 +150,8 @@ public class AssetDisplayContributorFriendlyURLResolver
 
 		if (assetDisplayContributor == null) {
 			throw new PortalException(
-				"Display page is not available for " + assetURLSeparator);
+				"Asset display contributor is not available for " +
+					assetURLSeparator);
 		}
 
 		return assetDisplayContributor;
