@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.async.advice.internal;
+package com.liferay.portal.async.advice.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.messaging.DestinationNames;
  */
 @ExtendedObjectClassDefinition(category = "infrastructure")
 @Meta.OCD(
-	id = "com.liferay.portal.async.advice.internal.AsyncAdviceConfiguration",
+	id = "com.liferay.portal.async.advice.internal.configuration.AsyncAdviceConfiguration",
 	localization = "content/Language",
 	name = "portal-async-advice-configuration-name"
 )

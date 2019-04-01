@@ -15,6 +15,7 @@
 package com.liferay.portal.async.advice.internal;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.async.advice.internal.configuration.AsyncAdviceConfiguration;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.aop.AopMethodInvocation;
 import com.liferay.portal.kernel.aop.ChainableMethodAdvice;
@@ -41,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	configurationPid = "com.liferay.portal.async.advice.internal.AsyncAdviceConfiguration",
+	configurationPid = "com.liferay.portal.async.advice.internal.configuration.AsyncAdviceConfiguration",
 	immediate = true, service = ChainableMethodAdvice.class
 )
 public class AsyncAdvice extends ChainableMethodAdvice {
