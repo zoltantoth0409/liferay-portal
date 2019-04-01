@@ -51,11 +51,6 @@ public interface DataRecordCollectionResource {
 			Long dataDefinitionId, DataRecordCollection dataRecordCollection)
 		throws Exception;
 
-	public void postDataRecordCollectionDataRecordCollectionPermission(
-			Long dataRecordCollectionId, String operation,
-			DataRecordCollectionPermission dataRecordCollectionPermission)
-		throws Exception;
-
 	public void deleteDataRecordCollection(Long dataRecordCollectionId)
 		throws Exception;
 
@@ -66,6 +61,11 @@ public interface DataRecordCollectionResource {
 	public DataRecordCollection putDataRecordCollection(
 			Long dataRecordCollectionId,
 			DataRecordCollection dataRecordCollection)
+		throws Exception;
+
+	public void postDataRecordCollectionDataRecordCollectionPermission(
+			Long dataRecordCollectionId, String operation,
+			DataRecordCollectionPermission dataRecordCollectionPermission)
 		throws Exception;
 
 	public void setContextCompany(Company contextCompany);

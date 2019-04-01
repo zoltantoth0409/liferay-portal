@@ -631,77 +631,6 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	}
 
 	@Test
-	public void testPostDataRecordCollectionDataRecordCollectionPermission()
-		throws Exception {
-
-		DataRecordCollection randomDataRecordCollection =
-			randomDataRecordCollection();
-
-		DataRecordCollection postDataRecordCollection =
-			testPostDataRecordCollectionDataRecordCollectionPermission_addDataRecordCollection(
-				randomDataRecordCollection);
-
-		assertEquals(randomDataRecordCollection, postDataRecordCollection);
-		assertValid(postDataRecordCollection);
-	}
-
-	protected DataRecordCollection
-			testPostDataRecordCollectionDataRecordCollectionPermission_addDataRecordCollection(
-				DataRecordCollection dataRecordCollection)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected void invokePostDataRecordCollectionDataRecordCollectionPermission(
-			Long dataRecordCollectionId, String operation,
-			DataRecordCollectionPermission dataRecordCollectionPermission)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/data-record-collections/{data-record-collection-id}/data-record-collection-permissions",
-					dataRecordCollectionId);
-
-		options.setLocation(location);
-
-		options.setPost(true);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-	}
-
-	protected Http.Response
-			invokePostDataRecordCollectionDataRecordCollectionPermissionResponse(
-				Long dataRecordCollectionId, String operation,
-				DataRecordCollectionPermission dataRecordCollectionPermission)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/data-record-collections/{data-record-collection-id}/data-record-collection-permissions",
-					dataRecordCollectionId);
-
-		options.setLocation(location);
-
-		options.setPost(true);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
 	public void testDeleteDataRecordCollection() throws Exception {
 		DataRecordCollection dataRecordCollection =
 			testDeleteDataRecordCollection_addDataRecordCollection();
@@ -926,6 +855,77 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		options.setLocation(location);
 
 		options.setPut(true);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPostDataRecordCollectionDataRecordCollectionPermission()
+		throws Exception {
+
+		DataRecordCollection randomDataRecordCollection =
+			randomDataRecordCollection();
+
+		DataRecordCollection postDataRecordCollection =
+			testPostDataRecordCollectionDataRecordCollectionPermission_addDataRecordCollection(
+				randomDataRecordCollection);
+
+		assertEquals(randomDataRecordCollection, postDataRecordCollection);
+		assertValid(postDataRecordCollection);
+	}
+
+	protected DataRecordCollection
+			testPostDataRecordCollectionDataRecordCollectionPermission_addDataRecordCollection(
+				DataRecordCollection dataRecordCollection)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected void invokePostDataRecordCollectionDataRecordCollectionPermission(
+			Long dataRecordCollectionId, String operation,
+			DataRecordCollectionPermission dataRecordCollectionPermission)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/data-record-collections/{data-record-collection-id}/data-record-collection-permissions",
+					dataRecordCollectionId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+	}
+
+	protected Http.Response
+			invokePostDataRecordCollectionDataRecordCollectionPermissionResponse(
+				Long dataRecordCollectionId, String operation,
+				DataRecordCollectionPermission dataRecordCollectionPermission)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/data-record-collections/{data-record-collection-id}/data-record-collection-permissions",
+					dataRecordCollectionId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
 
 		HttpUtil.URLtoByteArray(options);
 

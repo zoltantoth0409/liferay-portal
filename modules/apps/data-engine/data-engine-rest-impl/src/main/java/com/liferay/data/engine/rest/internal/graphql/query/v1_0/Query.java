@@ -148,21 +148,6 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public String getDataRecordCollectionDataRecordExport(
-			@GraphQLName("data-record-collection-id") Long
-				dataRecordCollectionId)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_dataRecordResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			dataRecordResource ->
-				dataRecordResource.getDataRecordCollectionDataRecordExport(
-					dataRecordCollectionId));
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public Collection<DataRecord> getDataRecordCollectionDataRecordsPage(
 			@GraphQLName("data-record-collection-id") Long
 				dataRecordCollectionId,
@@ -180,6 +165,21 @@ public class Query {
 
 				return paginationPage.getItems();
 			});
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public String getDataRecordCollectionDataRecordExport(
+			@GraphQLName("data-record-collection-id") Long
+				dataRecordCollectionId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_dataRecordResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataRecordResource ->
+				dataRecordResource.getDataRecordCollectionDataRecordExport(
+					dataRecordCollectionId));
 	}
 
 	@GraphQLField

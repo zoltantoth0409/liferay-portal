@@ -78,21 +78,6 @@ public class Mutation {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public DataDefinition postContentSpaceDataDefinition(
-			@GraphQLName("content-space-id") Long contentSpaceId,
-			@GraphQLName("DataDefinition") DataDefinition dataDefinition)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_dataDefinitionResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			dataDefinitionResource ->
-				dataDefinitionResource.postContentSpaceDataDefinition(
-					contentSpaceId, dataDefinition));
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public void postContentSpaceDataDefinitionPermission(
 			@GraphQLName("content-space-id") Long contentSpaceId,
 			@GraphQLName("operation") String operation,
@@ -110,20 +95,17 @@ public class Mutation {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public void postDataDefinitionDataDefinitionPermission(
-			@GraphQLName("data-definition-id") Long dataDefinitionId,
-			@GraphQLName("operation") String operation,
-			@GraphQLName("DataDefinitionPermission") DataDefinitionPermission
-				dataDefinitionPermission)
+	public DataDefinition postContentSpaceDataDefinition(
+			@GraphQLName("content-space-id") Long contentSpaceId,
+			@GraphQLName("DataDefinition") DataDefinition dataDefinition)
 		throws Exception {
 
-		_applyVoidComponentServiceObjects(
+		return _applyComponentServiceObjects(
 			_dataDefinitionResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			dataDefinitionResource ->
-				dataDefinitionResource.
-					postDataDefinitionDataDefinitionPermission(
-						dataDefinitionId, operation, dataDefinitionPermission));
+				dataDefinitionResource.postContentSpaceDataDefinition(
+					contentSpaceId, dataDefinition));
 	}
 
 	@GraphQLInvokeDetached
@@ -149,6 +131,24 @@ public class Mutation {
 			this::_populateResourceContext,
 			dataDefinitionResource -> dataDefinitionResource.putDataDefinition(
 				dataDefinitionId, dataDefinition));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public void postDataDefinitionDataDefinitionPermission(
+			@GraphQLName("data-definition-id") Long dataDefinitionId,
+			@GraphQLName("operation") String operation,
+			@GraphQLName("DataDefinitionPermission") DataDefinitionPermission
+				dataDefinitionPermission)
+		throws Exception {
+
+		_applyVoidComponentServiceObjects(
+			_dataDefinitionResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataDefinitionResource ->
+				dataDefinitionResource.
+					postDataDefinitionDataDefinitionPermission(
+						dataDefinitionId, operation, dataDefinitionPermission));
 	}
 
 	@GraphQLField
@@ -268,26 +268,6 @@ public class Mutation {
 						dataDefinitionId, dataRecordCollection));
 	}
 
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public void postDataRecordCollectionDataRecordCollectionPermission(
-			@GraphQLName("data-record-collection-id") Long
-				dataRecordCollectionId,
-			@GraphQLName("operation") String operation,
-			@GraphQLName("DataRecordCollectionPermission")
-				DataRecordCollectionPermission dataRecordCollectionPermission)
-		throws Exception {
-
-		_applyVoidComponentServiceObjects(
-			_dataRecordCollectionResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			dataRecordCollectionResource ->
-				dataRecordCollectionResource.
-					postDataRecordCollectionDataRecordCollectionPermission(
-						dataRecordCollectionId, operation,
-						dataRecordCollectionPermission));
-	}
-
 	@GraphQLInvokeDetached
 	public void deleteDataRecordCollection(
 			@GraphQLName("data-record-collection-id") Long
@@ -316,6 +296,26 @@ public class Mutation {
 			dataRecordCollectionResource ->
 				dataRecordCollectionResource.putDataRecordCollection(
 					dataRecordCollectionId, dataRecordCollection));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public void postDataRecordCollectionDataRecordCollectionPermission(
+			@GraphQLName("data-record-collection-id") Long
+				dataRecordCollectionId,
+			@GraphQLName("operation") String operation,
+			@GraphQLName("DataRecordCollectionPermission")
+				DataRecordCollectionPermission dataRecordCollectionPermission)
+		throws Exception {
+
+		_applyVoidComponentServiceObjects(
+			_dataRecordCollectionResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			dataRecordCollectionResource ->
+				dataRecordCollectionResource.
+					postDataRecordCollectionDataRecordCollectionPermission(
+						dataRecordCollectionId, operation,
+						dataRecordCollectionPermission));
 	}
 
 	private <T, R, E1 extends Throwable, E2 extends Throwable> R

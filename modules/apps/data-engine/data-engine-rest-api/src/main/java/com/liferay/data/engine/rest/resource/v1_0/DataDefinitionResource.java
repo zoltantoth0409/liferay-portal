@@ -33,22 +33,17 @@ import javax.annotation.Generated;
 @Generated("")
 public interface DataDefinitionResource {
 
+	public void postContentSpaceDataDefinitionPermission(
+			Long contentSpaceId, String operation,
+			DataDefinitionPermission dataDefinitionPermission)
+		throws Exception;
+
 	public Page<DataDefinition> getContentSpaceDataDefinitionsPage(
 			Long contentSpaceId, String keywords, Pagination pagination)
 		throws Exception;
 
 	public DataDefinition postContentSpaceDataDefinition(
 			Long contentSpaceId, DataDefinition dataDefinition)
-		throws Exception;
-
-	public void postContentSpaceDataDefinitionPermission(
-			Long contentSpaceId, String operation,
-			DataDefinitionPermission dataDefinitionPermission)
-		throws Exception;
-
-	public void postDataDefinitionDataDefinitionPermission(
-			Long dataDefinitionId, String operation,
-			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception;
 
 	public void deleteDataDefinition(Long dataDefinitionId) throws Exception;
@@ -58,6 +53,11 @@ public interface DataDefinitionResource {
 
 	public DataDefinition putDataDefinition(
 			Long dataDefinitionId, DataDefinition dataDefinition)
+		throws Exception;
+
+	public void postDataDefinitionDataDefinitionPermission(
+			Long dataDefinitionId, String operation,
+			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception;
 
 	public void setContextCompany(Company contextCompany);

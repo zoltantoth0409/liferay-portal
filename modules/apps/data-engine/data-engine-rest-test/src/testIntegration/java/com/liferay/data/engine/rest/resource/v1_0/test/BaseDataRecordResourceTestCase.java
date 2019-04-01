@@ -107,54 +107,6 @@ public abstract class BaseDataRecordResourceTestCase {
 	}
 
 	@Test
-	public void testGetDataRecordCollectionDataRecordExport() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	protected String invokeGetDataRecordCollectionDataRecordExport(
-			Long dataRecordCollectionId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/data-record-collections/{data-record-collection-id}/data-records/export",
-					dataRecordCollectionId);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		return string;
-	}
-
-	protected Http.Response
-			invokeGetDataRecordCollectionDataRecordExportResponse(
-				Long dataRecordCollectionId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/data-record-collections/{data-record-collection-id}/data-records/export",
-					dataRecordCollectionId);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
 	public void testGetDataRecordCollectionDataRecordsPage() throws Exception {
 		Long dataRecordCollectionId =
 			testGetDataRecordCollectionDataRecordsPage_getDataRecordCollectionId();
@@ -398,6 +350,54 @@ public abstract class BaseDataRecordResourceTestCase {
 		options.setLocation(location);
 
 		options.setPost(true);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testGetDataRecordCollectionDataRecordExport() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	protected String invokeGetDataRecordCollectionDataRecordExport(
+			Long dataRecordCollectionId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/data-record-collections/{data-record-collection-id}/data-records/export",
+					dataRecordCollectionId);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		return string;
+	}
+
+	protected Http.Response
+			invokeGetDataRecordCollectionDataRecordExportResponse(
+				Long dataRecordCollectionId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/data-record-collections/{data-record-collection-id}/data-records/export",
+					dataRecordCollectionId);
+
+		options.setLocation(location);
 
 		HttpUtil.URLtoByteArray(options);
 

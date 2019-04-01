@@ -30,8 +30,6 @@ import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 
-import java.net.URI;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -49,7 +47,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 /**
@@ -59,21 +56,6 @@ import javax.ws.rs.core.UriInfo;
 @Generated("")
 @Path("/v1.0")
 public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
-
-	@Override
-	@GET
-	@Path(
-		"/data-record-collections/{data-record-collection-id}/data-records/export"
-	)
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "DataRecord")})
-	public String getDataRecordCollectionDataRecordExport(
-			@NotNull @PathParam("data-record-collection-id") Long
-				dataRecordCollectionId)
-		throws Exception {
-
-		return StringPool.BLANK;
-	}
 
 	@Override
 	@GET
@@ -108,6 +90,21 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 		throws Exception {
 
 		return new DataRecord();
+	}
+
+	@Override
+	@GET
+	@Path(
+		"/data-record-collections/{data-record-collection-id}/data-records/export"
+	)
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "DataRecord")})
+	public String getDataRecordCollectionDataRecordExport(
+			@NotNull @PathParam("data-record-collection-id") Long
+				dataRecordCollectionId)
+		throws Exception {
+
+		return StringPool.BLANK;
 	}
 
 	@Override
@@ -148,27 +145,6 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 
 	public void setContextCompany(Company contextCompany) {
 		this.contextCompany = contextCompany;
-	}
-
-	protected String getJAXRSLink(String methodName, Object... values) {
-		String baseURIString = String.valueOf(contextUriInfo.getBaseUri());
-
-		if (baseURIString.endsWith(StringPool.FORWARD_SLASH)) {
-			baseURIString = baseURIString.substring(
-				0, baseURIString.length() - 1);
-		}
-
-		URI resourceURI = UriBuilder.fromResource(
-			BaseDataRecordResourceImpl.class
-		).build();
-
-		URI methodURI = UriBuilder.fromMethod(
-			BaseDataRecordResourceImpl.class, methodName
-		).build(
-			values
-		);
-
-		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
 	protected void preparePatch(DataRecord dataRecord) {
