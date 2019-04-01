@@ -3598,8 +3598,9 @@ public class ServiceBuilder {
 						indexMetadata.getColumnNames());
 
 					for (String columnName : indexMetadata.getColumnNames()) {
-						EntityColumn entityColumn = _fetchEntityColumnByColumnDBName(
-							entity, columnName);
+						EntityColumn entityColumn =
+							_fetchEntityColumnByColumnDBName(
+								entity, columnName);
 
 						if (entityColumn == null) {
 							System.out.println(
