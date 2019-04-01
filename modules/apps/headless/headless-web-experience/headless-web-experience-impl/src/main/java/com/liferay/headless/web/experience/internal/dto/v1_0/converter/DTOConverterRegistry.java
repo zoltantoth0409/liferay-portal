@@ -14,7 +14,7 @@
 
 package com.liferay.headless.web.experience.internal.dto.v1_0.converter;
 
-import com.liferay.headless.common.spi.dto.converter.DTOConverter;
+import com.liferay.headless.web.experience.dto.v1_0.converter.DTOConverter;
 import com.liferay.osgi.service.tracker.collections.map.ServiceReferenceMapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;

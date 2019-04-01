@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.common.spi.dto.converter;
+package com.liferay.headless.web.experience.dto.v1_0.converter;
 
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
