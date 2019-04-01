@@ -14,14 +14,13 @@
 
 package com.liferay.headless.common.spi.resource;
 
-import static com.liferay.portal.vulcan.util.TransformUtil.transform;
-
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.vulcan.pagination.Page;
+import com.liferay.portal.vulcan.util.TransformUtil;
 import com.liferay.ratings.kernel.model.RatingsEntry;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
 
@@ -55,7 +54,7 @@ public class SPIRatingResource<T> {
 		throws Exception {
 
 		return Page.of(
-			transform(
+			TransformUtil.transform(
 				_ratingsEntryLocalService.getEntries(className, classPK),
 				_transformUnsafeFunction));
 	}

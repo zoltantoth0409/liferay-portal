@@ -14,8 +14,6 @@
 
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
-import static com.liferay.portal.vulcan.util.LocalDateTimeUtil.toLocalDateTime;
-
 import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
@@ -48,6 +46,7 @@ import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
+import com.liferay.portal.vulcan.util.LocalDateTimeUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
@@ -121,7 +120,7 @@ public class BlogPostingResourceImpl
 			Long contentSpaceId, BlogPosting blogPosting)
 		throws Exception {
 
-		LocalDateTime localDateTime = toLocalDateTime(
+		LocalDateTime localDateTime = LocalDateTimeUtil.toLocalDateTime(
 			blogPosting.getDatePublished());
 		Optional<Image> imageOptional = Optional.ofNullable(
 			blogPosting.getImage());
@@ -157,7 +156,7 @@ public class BlogPostingResourceImpl
 			Long blogPostingId, BlogPosting blogPosting)
 		throws Exception {
 
-		LocalDateTime localDateTime = toLocalDateTime(
+		LocalDateTime localDateTime = LocalDateTimeUtil.toLocalDateTime(
 			blogPosting.getDatePublished());
 		Optional<Image> imageOptional = Optional.ofNullable(
 			blogPosting.getImage());
