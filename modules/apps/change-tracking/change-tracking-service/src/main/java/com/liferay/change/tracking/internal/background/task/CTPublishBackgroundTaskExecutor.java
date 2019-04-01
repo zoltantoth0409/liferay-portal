@@ -208,6 +208,11 @@ public class CTPublishBackgroundTaskExecutor
 
 		dynamicQuery.add(companyIdProperty.eq(ctEntry.getCompanyId()));
 
+		Property modelClassPKProperty = PropertyFactoryUtil.forName(
+			"modelClassPK");
+
+		dynamicQuery.add(modelClassPKProperty.lt(ctEntry.getModelClassPK()));
+
 		Property modelResourcePrimKeyProperty = PropertyFactoryUtil.forName(
 			"modelResourcePrimKey");
 
@@ -217,11 +222,6 @@ public class CTPublishBackgroundTaskExecutor
 		Property statusProperty = PropertyFactoryUtil.forName("status");
 
 		dynamicQuery.add(statusProperty.eq(WorkflowConstants.STATUS_DRAFT));
-
-		Property modelClassPKProperty = PropertyFactoryUtil.forName(
-			"modelClassPK");
-
-		dynamicQuery.add(modelClassPKProperty.lt(ctEntry.getModelClassPK()));
 
 		return CTEntryLocalServiceUtil.dynamicQuery(dynamicQuery);
 	}
