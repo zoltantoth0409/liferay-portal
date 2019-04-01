@@ -75,24 +75,25 @@ public class AssetDisplayContributorFriendlyURLResolver
 			AssetDisplayWebKeys.ASSET_DISPLAY_CONTRIBUTOR,
 			assetDisplayContributor);
 
+		request.setAttribute(
+			AssetDisplayWebKeys.VERSION_CLASS_PK,
+			_getVersionClassPK(friendlyURL));
+
 		AssetEntry assetEntry = _getAssetEntry(
 			assetDisplayContributor, groupId, friendlyURL);
 
 		request.setAttribute(WebKeys.LAYOUT_ASSET_ENTRY, assetEntry);
 
-		request.setAttribute(
-			AssetDisplayWebKeys.VERSION_CLASS_PK,
-			_getVersionClassPK(friendlyURL));
-
 		Locale locale = _portal.getLocale(request);
 
-		_portal.setPageTitle(assetEntry.getTitle(locale), request);
 		_portal.setPageDescription(assetEntry.getDescription(locale), request);
 
 		_portal.setPageKeywords(
 			_assetHelper.getAssetKeywords(
 				assetEntry.getClassName(), assetEntry.getClassPK()),
 			request);
+
+		_portal.setPageTitle(assetEntry.getTitle(locale), request);
 
 		Layout layout = _getAssetEntryLayout(assetEntry);
 
