@@ -18,16 +18,13 @@ import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.headless.collaboration.dto.v1_0.KnowledgeBaseArticle;
-import com.liferay.headless.collaboration.dto.v1_0.Rating;
 import com.liferay.headless.collaboration.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.ParentKnowledgeBaseFolderUtil;
-import com.liferay.headless.collaboration.internal.dto.v1_0.util.RatingUtil;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.TaxonomyCategoryUtil;
 import com.liferay.headless.collaboration.internal.odata.entity.v1_0.KnowledgeBaseArticleEntityModel;
 import com.liferay.headless.collaboration.resource.v1_0.KnowledgeBaseArticleResource;
-import com.liferay.headless.common.spi.resource.SPIRatingResource;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
 import com.liferay.knowledge.base.model.KBArticle;
@@ -151,17 +148,6 @@ public class KnowledgeBaseArticleResourceImpl
 	}
 
 	@Override
-	public Page<Rating> getKnowledgeBaseArticlesRatingsPage(
-			Long knowledgeBaseArticleId)
-		throws Exception {
-
-		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
-
-		return spiRatingResource.getRatingsPage(
-			KBArticle.class.getName(), knowledgeBaseArticleId);
-	}
-
-	@Override
 	public Page<KnowledgeBaseArticle>
 			getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
 				Long knowledgeBaseFolderId, Boolean flatten, Filter filter,
@@ -216,18 +202,6 @@ public class KnowledgeBaseArticleResourceImpl
 			kbArticle.getGroupId(), knowledgeBaseArticleId,
 			_classNameLocalService.fetchClassName(KBArticle.class.getName()),
 			knowledgeBaseArticle);
-	}
-
-	@Override
-	public Rating postKnowledgeBaseArticleRating(
-			Long knowledgeBaseArticleId, Rating rating)
-		throws Exception {
-
-		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
-
-		return spiRatingResource.postRating(
-			KBArticle.class.getName(), knowledgeBaseArticleId,
-			GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
 	@Override
@@ -305,14 +279,6 @@ public class KnowledgeBaseArticleResourceImpl
 					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)),
 					WorkflowConstants.STATUS_APPROVED)),
 			sorts);
-	}
-
-	private SPIRatingResource<Rating> _getSPIRatingResource() {
-		return new SPIRatingResource<>(
-			_ratingsEntryLocalService,
-			ratingsEntry -> RatingUtil.toRating(
-				_portal, ratingsEntry, _userLocalService),
-			_user);
 	}
 
 	private KnowledgeBaseArticle _toKBArticle(KBArticle kbArticle)

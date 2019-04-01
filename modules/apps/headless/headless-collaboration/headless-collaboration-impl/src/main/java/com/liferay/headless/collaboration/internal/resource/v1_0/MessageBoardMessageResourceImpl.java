@@ -18,15 +18,12 @@ import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.headless.collaboration.dto.v1_0.MessageBoardMessage;
-import com.liferay.headless.collaboration.dto.v1_0.Rating;
 import com.liferay.headless.collaboration.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.CreatorUtil;
-import com.liferay.headless.collaboration.internal.dto.v1_0.util.RatingUtil;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.TaxonomyCategoryUtil;
 import com.liferay.headless.collaboration.internal.odata.entity.v1_0.MessageBoardMessageEntityModel;
 import com.liferay.headless.collaboration.resource.v1_0.MessageBoardMessageResource;
-import com.liferay.headless.common.spi.resource.SPIRatingResource;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.message.boards.constants.MBMessageConstants;
 import com.liferay.message.boards.model.MBMessage;
@@ -109,17 +106,6 @@ public class MessageBoardMessageResourceImpl
 	}
 
 	@Override
-	public Page<Rating> getMessageBoardMessagesRatingsPage(
-			Long messageBoardMessageId)
-		throws Exception {
-
-		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
-
-		return spiRatingResource.getRatingsPage(
-			MBMessage.class.getName(), messageBoardMessageId);
-	}
-
-	@Override
 	public Page<MessageBoardMessage>
 			getMessageBoardThreadMessageBoardMessagesPage(
 				Long messageBoardThreadId, Filter filter, Pagination pagination,
@@ -140,18 +126,6 @@ public class MessageBoardMessageResourceImpl
 
 		return _addMessageBoardThread(
 			messageBoardMessageId, messageBoardMessage);
-	}
-
-	@Override
-	public Rating postMessageBoardMessageRating(
-			Long messageBoardMessageId, Rating rating)
-		throws Exception {
-
-		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
-
-		return spiRatingResource.postRating(
-			MBMessage.class.getName(), messageBoardMessageId,
-			GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
 	@Override
@@ -263,14 +237,6 @@ public class MessageBoardMessageResourceImpl
 				_mbMessageService.getMessage(
 					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))),
 			sorts);
-	}
-
-	private SPIRatingResource<Rating> _getSPIRatingResource() {
-		return new SPIRatingResource<>(
-			_ratingsEntryLocalService,
-			ratingsEntry -> RatingUtil.toRating(
-				_portal, ratingsEntry, _userLocalService),
-			_user);
 	}
 
 	private MessageBoardMessage _toMessageBoardMessage(MBMessage mbMessage)

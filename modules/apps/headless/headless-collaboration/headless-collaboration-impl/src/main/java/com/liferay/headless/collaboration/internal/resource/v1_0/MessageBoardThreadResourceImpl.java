@@ -18,15 +18,12 @@ import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.headless.collaboration.dto.v1_0.MessageBoardThread;
-import com.liferay.headless.collaboration.dto.v1_0.Rating;
 import com.liferay.headless.collaboration.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.CreatorUtil;
-import com.liferay.headless.collaboration.internal.dto.v1_0.util.RatingUtil;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.TaxonomyCategoryUtil;
 import com.liferay.headless.collaboration.internal.odata.entity.v1_0.MessageBoardMessageEntityModel;
 import com.liferay.headless.collaboration.resource.v1_0.MessageBoardThreadResource;
-import com.liferay.headless.common.spi.resource.SPIRatingResource;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.message.boards.constants.MBMessageConstants;
 import com.liferay.message.boards.model.MBCategory;
@@ -172,20 +169,6 @@ public class MessageBoardThreadResourceImpl
 	}
 
 	@Override
-	public Page<Rating> getMessageBoardThreadsRatingsPage(
-			Long messageBoardThreadId)
-		throws Exception {
-
-		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
-
-		MBThread mbThread = _mbThreadLocalService.getMBThread(
-			messageBoardThreadId);
-
-		return spiRatingResource.getRatingsPage(
-			MBMessage.class.getName(), mbThread.getRootMessageId());
-	}
-
-	@Override
 	public MessageBoardThread postContentSpaceMessageBoardThread(
 			Long contentSpaceId, MessageBoardThread messageBoardThread)
 		throws Exception {
@@ -203,21 +186,6 @@ public class MessageBoardThreadResourceImpl
 
 		return _addMessageBoardThread(
 			mbCategory.getGroupId(), messageBoardSectionId, messageBoardThread);
-	}
-
-	@Override
-	public Rating postMessageBoardThreadRating(
-			Long messageBoardThreadId, Rating rating)
-		throws Exception {
-
-		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
-
-		MBThread mbThread = _mbThreadLocalService.getThread(
-			messageBoardThreadId);
-
-		return spiRatingResource.postRating(
-			MBMessage.class.getName(), mbThread.getRootMessageId(),
-			GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
 	@Override
@@ -264,14 +232,6 @@ public class MessageBoardThreadResourceImpl
 		_updateQuestion(mbMessage, messageBoardThread);
 
 		return _toMessageBoardThread(mbMessage);
-	}
-
-	private SPIRatingResource<Rating> _getSPIRatingResource() {
-		return new SPIRatingResource<>(
-			_ratingsEntryLocalService,
-			ratingsEntry -> RatingUtil.toRating(
-				_portal, ratingsEntry, _userLocalService),
-			_user);
 	}
 
 	private MessageBoardThread _toMessageBoardThread(MBMessage mbMessage)

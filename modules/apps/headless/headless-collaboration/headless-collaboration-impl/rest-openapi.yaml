@@ -590,7 +590,7 @@ paths:
                                     $ref: "#/components/schemas/Rating"
                                 type: array
                     description: ""
-            tags: ["BlogPosting"]
+            tags: ["Rating"]
         post:
             parameters:
                 - in: path
@@ -611,7 +611,7 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/Rating"
                     description: ""
-            tags: ["BlogPosting"]
+            tags: ["Rating"]
     "/blog-postings/{blog-posting-id}/comments":
         get:
             parameters:
@@ -1213,7 +1213,7 @@ paths:
                                     $ref: "#/components/schemas/Rating"
                                 type: array
                     description: ""
-            tags: ["KnowledgeBaseArticle"]
+            tags: ["Rating"]
         post:
             parameters:
                 - in: path
@@ -1234,7 +1234,7 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/Rating"
                     description: ""
-            tags: ["KnowledgeBaseArticle"]
+            tags: ["Rating"]
     "/knowledge-base-articles/{knowledge-base-article-id}/knowledge-base-articles":
         get:
             parameters:
@@ -1671,7 +1671,7 @@ paths:
                                     $ref: "#/components/schemas/Rating"
                                 type: array
                     description: ""
-            tags: ["MessageBoardMessage"]
+            tags: ["Rating"]
         post:
             parameters:
                 - in: path
@@ -1692,7 +1692,7 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/Rating"
                     description: ""
-            tags: ["MessageBoardMessage"]
+            tags: ["Rating"]
     "/message-board-messages/{message-board-message-id}/message-board-attachments":
         get:
             parameters:
@@ -2071,7 +2071,7 @@ paths:
                                     $ref: "#/components/schemas/Rating"
                                 type: array
                     description: ""
-            tags: ["MessageBoardThread"]
+            tags: ["Rating"]
         post:
             parameters:
                 - in: path
@@ -2092,7 +2092,7 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/Rating"
                     description: ""
-            tags: ["MessageBoardThread"]
+            tags: ["Rating"]
     "/message-board-threads/{message-board-thread-id}/message-board-attachments":
         get:
             parameters:
