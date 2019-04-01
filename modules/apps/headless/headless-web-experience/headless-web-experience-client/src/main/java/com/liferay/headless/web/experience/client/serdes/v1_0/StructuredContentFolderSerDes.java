@@ -98,9 +98,10 @@ public class StructuredContentFolderSerDes {
 		sb.append("\"");
 		sb.append(", ");
 
-		sb.append("\"numberOfFolders\": ");
+		sb.append("\"numberOfStructuredContentFolders\": ");
 
-		sb.append(structuredContentFolder.getNumberOfFolders());
+		sb.append(
+			structuredContentFolder.getNumberOfStructuredContentFolders());
 		sb.append(", ");
 
 		sb.append("\"numberOfStructuredContents\": ");
@@ -201,9 +202,12 @@ public class StructuredContentFolderSerDes {
 						(String)jsonParserFieldValue);
 				}
 			}
-			else if (Objects.equals(jsonParserFieldName, "numberOfFolders")) {
+			else if (Objects.equals(
+						jsonParserFieldName,
+						"numberOfStructuredContentFolders")) {
+
 				if (jsonParserFieldValue != null) {
-					structuredContentFolder.setNumberOfFolders(
+					structuredContentFolder.setNumberOfStructuredContentFolders(
 						(Number)jsonParserFieldValue);
 				}
 			}

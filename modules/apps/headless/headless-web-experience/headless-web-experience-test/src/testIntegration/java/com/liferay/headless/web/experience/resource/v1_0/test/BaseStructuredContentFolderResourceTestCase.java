@@ -1514,7 +1514,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("numberOfFolders")) {
+		if (entityFieldName.equals("numberOfStructuredContentFolders")) {
 			throw new IllegalArgumentException(
 				"Invalid entity field " + entityFieldName);
 		}

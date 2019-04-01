@@ -202,26 +202,31 @@ public class StructuredContentFolder {
 
 	protected String name;
 
-	public Number getNumberOfFolders() {
-		return numberOfFolders;
+	public Number getNumberOfStructuredContentFolders() {
+		return numberOfStructuredContentFolders;
 	}
 
-	public void setNumberOfFolders(Number numberOfFolders) {
-		this.numberOfFolders = numberOfFolders;
+	public void setNumberOfStructuredContentFolders(
+		Number numberOfStructuredContentFolders) {
+
+		this.numberOfStructuredContentFolders =
+			numberOfStructuredContentFolders;
 	}
 
-	public void setNumberOfFolders(
-		UnsafeSupplier<Number, Exception> numberOfFoldersUnsafeSupplier) {
+	public void setNumberOfStructuredContentFolders(
+		UnsafeSupplier<Number, Exception>
+			numberOfStructuredContentFoldersUnsafeSupplier) {
 
 		try {
-			numberOfFolders = numberOfFoldersUnsafeSupplier.get();
+			numberOfStructuredContentFolders =
+				numberOfStructuredContentFoldersUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	protected Number numberOfFolders;
+	protected Number numberOfStructuredContentFolders;
 
 	public Number getNumberOfStructuredContents() {
 		return numberOfStructuredContents;
