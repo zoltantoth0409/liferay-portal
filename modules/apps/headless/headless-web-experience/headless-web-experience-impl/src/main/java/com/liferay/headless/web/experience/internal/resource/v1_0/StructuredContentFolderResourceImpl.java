@@ -72,14 +72,16 @@ public class StructuredContentFolderResourceImpl
 				Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		Long folderId = null;
+		Long parentStructuredContentFolderId = null;
 
 		if (!GetterUtil.getBoolean(flatten)) {
-			folderId = JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID;
+			parentStructuredContentFolderId =
+				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 		}
 
 		return _getFoldersPage(
-			contentSpaceId, search, filter, pagination, folderId, sorts);
+			contentSpaceId, parentStructuredContentFolderId, search, filter,
+			pagination, sorts);
 	}
 
 	@Override
@@ -107,8 +109,8 @@ public class StructuredContentFolderResourceImpl
 			structuredContentFolderId);
 
 		return _getFoldersPage(
-			journalFolder.getGroupId(), search, filter, pagination,
-			structuredContentFolderId, sorts);
+			journalFolder.getGroupId(), structuredContentFolderId, search,
+			filter, pagination, sorts);
 	}
 
 	@Override
@@ -173,19 +175,20 @@ public class StructuredContentFolderResourceImpl
 	}
 
 	private Page<StructuredContentFolder> _getFoldersPage(
-			Long contentSpaceId, String search, Filter filter,
-			Pagination pagination, Long parentFolderId, Sort[] sorts)
+			Long contentSpaceId, Long parentStructuredContentFolderId,
+			String search, Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		return SearchUtil.search(
 			booleanQuery -> {
-				if (parentFolderId != null) {
+				if (parentStructuredContentFolderId != null) {
 					BooleanFilter booleanFilter =
 						booleanQuery.getPreBooleanFilter();
 
 					booleanFilter.add(
 						new TermFilter(
-							Field.FOLDER_ID, String.valueOf(parentFolderId)),
+							Field.FOLDER_ID,
+							String.valueOf(parentStructuredContentFolderId)),
 						BooleanClauseOccur.MUST);
 				}
 			},
