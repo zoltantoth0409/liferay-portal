@@ -299,19 +299,21 @@ OrderByComparator<BackgroundTask> orderByComparator = BackgroundTaskComparatorFa
 						/>
 					</c:if>
 
-					<portlet:actionURL name="deleteBackgroundTasks" var="deleteBackgroundTaskURL">
-						<portlet:param name="redirect" value="<%= currentURL.toString() %>" />
-						<portlet:param name="deleteBackgroundTaskIds" value="<%= String.valueOf(backgroundTask.getBackgroundTaskId()) %>" />
-					</portlet:actionURL>
+					<c:if test="<%= !backgroundTask.isInProgress() %>">
+						<portlet:actionURL name="deleteBackgroundTasks" var="deleteBackgroundTaskURL">
+							<portlet:param name="redirect" value="<%= currentURL.toString() %>" />
+							<portlet:param name="deleteBackgroundTaskIds" value="<%= String.valueOf(backgroundTask.getBackgroundTaskId()) %>" />
+						</portlet:actionURL>
 
-					<%
-					Date completionDate = backgroundTask.getCompletionDate();
-					%>
+						<%
+						Date completionDate = backgroundTask.getCompletionDate();
+						%>
 
-					<liferay-ui:icon
-						message='<%= LanguageUtil.get(request, ((completionDate != null) && completionDate.before(new Date())) ? "clear" : "cancel") %>'
-						url="<%= deleteBackgroundTaskURL %>"
-					/>
+						<liferay-ui:icon
+							message='<%= LanguageUtil.get(request, ((completionDate != null) && completionDate.before(new Date())) ? "clear" : "cancel") %>'
+							url="<%= deleteBackgroundTaskURL %>"
+						/>
+					</c:if>
 				</liferay-ui:icon-menu>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
