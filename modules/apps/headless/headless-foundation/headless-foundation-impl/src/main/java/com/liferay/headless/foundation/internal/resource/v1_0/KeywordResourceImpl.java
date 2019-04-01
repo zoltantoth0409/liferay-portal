@@ -68,10 +68,9 @@ public class KeywordResourceImpl
 		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			filter, AssetTag.class, pagination,
+			filter, AssetTag.class, search, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setGroupIds(new long[] {contentSpaceId});

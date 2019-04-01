@@ -189,10 +189,9 @@ public class StructuredContentFolderResourceImpl
 						BooleanClauseOccur.MUST);
 				}
 			},
-			filter, JournalFolder.class, pagination,
+			filter, JournalFolder.class, search, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setGroupIds(new long[] {contentSpaceId});

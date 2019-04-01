@@ -225,10 +225,9 @@ public class MessageBoardMessageResourceImpl
 						String.valueOf(messageBoardMessageId)),
 					BooleanClauseOccur.MUST);
 			},
-			filter, MBMessage.class, pagination,
+			filter, MBMessage.class, search, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 			},

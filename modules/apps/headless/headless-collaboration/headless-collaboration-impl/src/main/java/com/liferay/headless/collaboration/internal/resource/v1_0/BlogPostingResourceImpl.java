@@ -94,10 +94,9 @@ public class BlogPostingResourceImpl
 		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			filter, BlogsEntry.class, pagination,
+			filter, BlogsEntry.class, search, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> {
 				searchContext.setAttribute(
 					Field.STATUS, WorkflowConstants.STATUS_APPROVED);

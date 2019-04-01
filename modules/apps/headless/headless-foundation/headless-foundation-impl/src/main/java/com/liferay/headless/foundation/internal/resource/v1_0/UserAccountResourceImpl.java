@@ -309,10 +309,9 @@ public class UserAccountResourceImpl
 		throws Exception {
 
 		return SearchUtil.search(
-			booleanQueryUnsafeConsumer, filter, User.class, pagination,
+			booleanQueryUnsafeConsumer, filter, User.class, search, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> searchContext.setCompanyId(
 				contextCompany.getCompanyId()),
 			document -> _toUserAccount(

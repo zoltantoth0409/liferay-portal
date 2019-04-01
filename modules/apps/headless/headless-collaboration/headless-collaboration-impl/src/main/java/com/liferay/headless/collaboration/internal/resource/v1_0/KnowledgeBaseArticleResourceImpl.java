@@ -261,10 +261,10 @@ public class KnowledgeBaseArticleResourceImpl
 		throws Exception {
 
 		return SearchUtil.search(
-			booleanQueryUnsafeConsumer, filter, KBArticle.class, pagination,
+			booleanQueryUnsafeConsumer, filter, KBArticle.class, search,
+			pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> {
 				searchContext.setAttribute(
 					Field.STATUS, WorkflowConstants.STATUS_APPROVED);

@@ -601,12 +601,11 @@ public class StructuredContentResourceImpl
 		throws Exception {
 
 		return SearchUtil.search(
-			booleanQueryUnsafeConsumer, filter, JournalArticle.class,
+			booleanQueryUnsafeConsumer, filter, JournalArticle.class, search,
 			pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				com.liferay.portal.kernel.search.Field.ARTICLE_ID,
 				com.liferay.portal.kernel.search.Field.SCOPE_GROUP_ID),
-			search,
 			searchContext -> {
 				searchContext.setAttribute(
 					com.liferay.portal.kernel.search.Field.STATUS,

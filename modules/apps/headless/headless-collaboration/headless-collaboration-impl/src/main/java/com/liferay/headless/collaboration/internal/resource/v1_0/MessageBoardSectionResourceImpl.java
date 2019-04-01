@@ -184,10 +184,10 @@ public class MessageBoardSectionResourceImpl
 		throws Exception {
 
 		return SearchUtil.search(
-			booleanQueryUnsafeConsumer, filter, MBCategory.class, pagination,
+			booleanQueryUnsafeConsumer, filter, MBCategory.class, search,
+			pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 			},

@@ -383,10 +383,10 @@ public class DocumentResourceImpl
 		throws Exception {
 
 		return SearchUtil.search(
-			booleanQueryUnsafeConsumer, filter, DLFileEntry.class, pagination,
+			booleanQueryUnsafeConsumer, filter, DLFileEntry.class, search,
+			pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> searchContext.setCompanyId(
 				contextCompany.getCompanyId()),
 			document -> _toDocument(

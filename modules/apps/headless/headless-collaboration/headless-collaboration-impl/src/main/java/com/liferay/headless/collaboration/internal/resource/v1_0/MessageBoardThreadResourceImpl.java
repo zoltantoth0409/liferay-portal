@@ -222,10 +222,10 @@ public class MessageBoardThreadResourceImpl
 		throws Exception {
 
 		return SearchUtil.search(
-			booleanQueryUnsafeConsumer, filter, MBMessage.class, pagination,
+			booleanQueryUnsafeConsumer, filter, MBMessage.class, search,
+			pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 			},

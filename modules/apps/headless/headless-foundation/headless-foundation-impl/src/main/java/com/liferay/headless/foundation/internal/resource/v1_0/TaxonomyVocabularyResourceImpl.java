@@ -100,10 +100,9 @@ public class TaxonomyVocabularyResourceImpl
 		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			filter, AssetVocabulary.class, pagination,
+			filter, AssetVocabulary.class, search, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ASSET_VOCABULARY_ID),
-			search,
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setGroupIds(new long[] {contentSpaceId});

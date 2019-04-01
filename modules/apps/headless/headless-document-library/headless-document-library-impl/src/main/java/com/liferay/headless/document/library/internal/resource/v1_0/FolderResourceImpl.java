@@ -171,10 +171,9 @@ public class FolderResourceImpl
 						BooleanClauseOccur.MUST);
 				}
 			},
-			filter, DLFolder.class, pagination,
+			filter, DLFolder.class, search, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setGroupIds(new long[] {contentSpaceId});

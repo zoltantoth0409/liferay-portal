@@ -58,10 +58,9 @@ public class ContentStructureResourceImpl
 		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			filter, DDMStructure.class, pagination,
+			filter, DDMStructure.class, search, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> {
 				searchContext.setAttribute(
 					"searchPermissionContext", StringPool.BLANK);

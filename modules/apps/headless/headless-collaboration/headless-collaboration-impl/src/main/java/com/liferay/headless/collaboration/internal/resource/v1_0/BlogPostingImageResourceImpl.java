@@ -84,10 +84,9 @@ public class BlogPostingImageResourceImpl
 		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			filter, DLFileEntry.class, pagination,
+			filter, DLFileEntry.class, search, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			search,
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setFolderIds(new long[] {folder.getFolderId()});
