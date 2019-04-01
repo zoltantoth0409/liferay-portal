@@ -180,20 +180,6 @@ public class Mutation {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Rating postDocumentRating(
-			@GraphQLName("document-id") Long documentId,
-			@GraphQLName("Rating") Rating rating)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_documentResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			documentResource -> documentResource.postDocumentRating(
-				documentId, rating));
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	@GraphQLName("postFolderDocumentFolderIdMultipartBody")
 	public Document postFolderDocument(
 			@GraphQLName("folder-id") Long folderId,
@@ -267,6 +253,20 @@ public class Mutation {
 			this::_populateResourceContext,
 			folderResource -> folderResource.postFolderFolder(
 				folderId, folder));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Rating postDocumentRating(
+			@GraphQLName("document-id") Long documentId,
+			@GraphQLName("Rating") Rating rating)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_ratingResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			ratingResource -> ratingResource.postDocumentRating(
+				documentId, rating));
 	}
 
 	@GraphQLInvokeDetached

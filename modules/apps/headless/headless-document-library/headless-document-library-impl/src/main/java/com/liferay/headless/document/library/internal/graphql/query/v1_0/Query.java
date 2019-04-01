@@ -167,23 +167,6 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<Rating> getDocumentsRatingsPage(
-			@GraphQLName("document-id") Long documentId)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_documentResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			documentResource -> {
-				Page paginationPage = documentResource.getDocumentsRatingsPage(
-					documentId);
-
-				return paginationPage.getItems();
-			});
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public Collection<Document> getFolderDocumentsPage(
 			@GraphQLName("folder-id") Long folderId,
 			@GraphQLName("filter") Filter filter,
@@ -250,6 +233,23 @@ public class Query {
 			folderResource -> {
 				Page paginationPage = folderResource.getFolderFoldersPage(
 					folderId, filter, Pagination.of(pageSize, page), sorts);
+
+				return paginationPage.getItems();
+			});
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<Rating> getDocumentRatingsPage(
+			@GraphQLName("document-id") Long documentId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_ratingResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			ratingResource -> {
+				Page paginationPage = ratingResource.getDocumentRatingsPage(
+					documentId);
 
 				return paginationPage.getItems();
 			});

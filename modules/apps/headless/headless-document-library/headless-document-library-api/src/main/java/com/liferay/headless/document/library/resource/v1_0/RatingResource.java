@@ -16,6 +16,7 @@ package com.liferay.headless.document.library.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Rating;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.pagination.Page;
 
 import javax.annotation.Generated;
 
@@ -29,6 +30,12 @@ import javax.annotation.Generated;
  */
 @Generated("")
 public interface RatingResource {
+
+	public Page<Rating> getDocumentRatingsPage(Long documentId)
+		throws Exception;
+
+	public Rating postDocumentRating(Long documentId, Rating rating)
+		throws Exception;
 
 	public void deleteRating(Long ratingId) throws Exception;
 

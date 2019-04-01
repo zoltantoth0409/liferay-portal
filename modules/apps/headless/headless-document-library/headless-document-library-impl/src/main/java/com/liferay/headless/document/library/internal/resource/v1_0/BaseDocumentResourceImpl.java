@@ -15,7 +15,6 @@
 package com.liferay.headless.document.library.internal.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Document;
-import com.liferay.headless.document.library.dto.v1_0.Rating;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -146,31 +145,6 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 		throws Exception {
 
 		return new Document();
-	}
-
-	@Override
-	@GET
-	@Path("/documents/{document-id}/ratings")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "Document")})
-	public Page<Rating> getDocumentsRatingsPage(
-			@NotNull @PathParam("document-id") Long documentId)
-		throws Exception {
-
-		return Page.of(Collections.emptyList());
-	}
-
-	@Override
-	@Consumes("application/json")
-	@POST
-	@Path("/documents/{document-id}/ratings")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "Document")})
-	public Rating postDocumentRating(
-			@NotNull @PathParam("document-id") Long documentId, Rating rating)
-		throws Exception {
-
-		return new Rating();
 	}
 
 	@Override
