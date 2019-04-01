@@ -186,20 +186,6 @@ public class Mutation {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Rating postBlogPostingRating(
-			@GraphQLName("blog-posting-id") Long blogPostingId,
-			@GraphQLName("Rating") Rating rating)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_blogPostingResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			blogPostingResource -> blogPostingResource.postBlogPostingRating(
-				blogPostingId, rating));
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public BlogPosting postContentSpaceBlogPosting(
 			@GraphQLName("content-space-id") Long contentSpaceId,
 			@GraphQLName("BlogPosting") BlogPosting blogPosting)
@@ -353,22 +339,6 @@ public class Mutation {
 			knowledgeBaseArticleResource ->
 				knowledgeBaseArticleResource.putKnowledgeBaseArticle(
 					knowledgeBaseArticleId, knowledgeBaseArticle));
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Rating postKnowledgeBaseArticleRating(
-			@GraphQLName("knowledge-base-article-id") Long
-				knowledgeBaseArticleId,
-			@GraphQLName("Rating") Rating rating)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_knowledgeBaseArticleResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			knowledgeBaseArticleResource ->
-				knowledgeBaseArticleResource.postKnowledgeBaseArticleRating(
-					knowledgeBaseArticleId, rating));
 	}
 
 	@GraphQLField
@@ -614,21 +584,6 @@ public class Mutation {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Rating postMessageBoardMessageRating(
-			@GraphQLName("message-board-message-id") Long messageBoardMessageId,
-			@GraphQLName("Rating") Rating rating)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_messageBoardMessageResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			messageBoardMessageResource ->
-				messageBoardMessageResource.postMessageBoardMessageRating(
-					messageBoardMessageId, rating));
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public MessageBoardMessage postMessageBoardMessageMessageBoardMessage(
 			@GraphQLName("message-board-message-id") Long messageBoardMessageId,
 			@GraphQLName("MessageBoardMessage") MessageBoardMessage
@@ -815,17 +770,59 @@ public class Mutation {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
+	public Rating postBlogPostingRating(
+			@GraphQLName("blog-posting-id") Long blogPostingId,
+			@GraphQLName("Rating") Rating rating)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_ratingResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			ratingResource -> ratingResource.postBlogPostingRating(
+				blogPostingId, rating));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Rating postKnowledgeBaseArticleRating(
+			@GraphQLName("knowledge-base-article-id") Long
+				knowledgeBaseArticleId,
+			@GraphQLName("Rating") Rating rating)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_ratingResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			ratingResource -> ratingResource.postKnowledgeBaseArticleRating(
+				knowledgeBaseArticleId, rating));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Rating postMessageBoardMessageRating(
+			@GraphQLName("message-board-message-id") Long messageBoardMessageId,
+			@GraphQLName("Rating") Rating rating)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_ratingResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			ratingResource -> ratingResource.postMessageBoardMessageRating(
+				messageBoardMessageId, rating));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
 	public Rating postMessageBoardThreadRating(
 			@GraphQLName("message-board-thread-id") Long messageBoardThreadId,
 			@GraphQLName("Rating") Rating rating)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
-			_messageBoardThreadResourceComponentServiceObjects,
+			_ratingResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			messageBoardThreadResource ->
-				messageBoardThreadResource.postMessageBoardThreadRating(
-					messageBoardThreadId, rating));
+			ratingResource -> ratingResource.postMessageBoardThreadRating(
+				messageBoardThreadId, rating));
 	}
 
 	@GraphQLInvokeDetached

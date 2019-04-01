@@ -19,12 +19,14 @@ import com.liferay.headless.collaboration.resource.v1_0.RatingResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -34,6 +36,7 @@ import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -48,6 +51,116 @@ import javax.ws.rs.core.UriInfo;
 @Generated("")
 @Path("/v1.0")
 public abstract class BaseRatingResourceImpl implements RatingResource {
+
+	@Override
+	@GET
+	@Path("/blog-postings/{blog-posting-id}/ratings")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Rating")})
+	public Page<Rating> getBlogPostingRatingsPage(
+			@NotNull @PathParam("blog-posting-id") Long blogPostingId)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	@Consumes("application/json")
+	@POST
+	@Path("/blog-postings/{blog-posting-id}/ratings")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Rating")})
+	public Rating postBlogPostingRating(
+			@NotNull @PathParam("blog-posting-id") Long blogPostingId,
+			Rating rating)
+		throws Exception {
+
+		return new Rating();
+	}
+
+	@Override
+	@GET
+	@Path("/knowledge-base-articles/{knowledge-base-article-id}/ratings")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Rating")})
+	public Page<Rating> getKnowledgeBaseArticleRatingsPage(
+			@NotNull @PathParam("knowledge-base-article-id") Long
+				knowledgeBaseArticleId)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	@Consumes("application/json")
+	@POST
+	@Path("/knowledge-base-articles/{knowledge-base-article-id}/ratings")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Rating")})
+	public Rating postKnowledgeBaseArticleRating(
+			@NotNull @PathParam("knowledge-base-article-id") Long
+				knowledgeBaseArticleId,
+			Rating rating)
+		throws Exception {
+
+		return new Rating();
+	}
+
+	@Override
+	@GET
+	@Path("/message-board-messages/{message-board-message-id}/ratings")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Rating")})
+	public Page<Rating> getMessageBoardMessageRatingsPage(
+			@NotNull @PathParam("message-board-message-id") Long
+				messageBoardMessageId)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	@Consumes("application/json")
+	@POST
+	@Path("/message-board-messages/{message-board-message-id}/ratings")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Rating")})
+	public Rating postMessageBoardMessageRating(
+			@NotNull @PathParam("message-board-message-id") Long
+				messageBoardMessageId,
+			Rating rating)
+		throws Exception {
+
+		return new Rating();
+	}
+
+	@Override
+	@GET
+	@Path("/message-board-threads/{message-board-thread-id}/ratings")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Rating")})
+	public Page<Rating> getMessageBoardThreadRatingsPage(
+			@NotNull @PathParam("message-board-thread-id") Long
+				messageBoardThreadId)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	@Consumes("application/json")
+	@POST
+	@Path("/message-board-threads/{message-board-thread-id}/ratings")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Rating")})
+	public Rating postMessageBoardThreadRating(
+			@NotNull @PathParam("message-board-thread-id") Long
+				messageBoardThreadId,
+			Rating rating)
+		throws Exception {
+
+		return new Rating();
+	}
 
 	@Override
 	@DELETE

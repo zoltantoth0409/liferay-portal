@@ -15,7 +15,6 @@
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
-import com.liferay.headless.collaboration.dto.v1_0.Rating;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -177,32 +176,6 @@ public abstract class BaseBlogPostingResourceImpl
 		throws Exception {
 
 		return new BlogPosting();
-	}
-
-	@Override
-	@GET
-	@Path("/blog-postings/{blog-posting-id}/ratings")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "BlogPosting")})
-	public Page<Rating> getBlogPostingsRatingsPage(
-			@NotNull @PathParam("blog-posting-id") Long blogPostingId)
-		throws Exception {
-
-		return Page.of(Collections.emptyList());
-	}
-
-	@Override
-	@Consumes("application/json")
-	@POST
-	@Path("/blog-postings/{blog-posting-id}/ratings")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "BlogPosting")})
-	public Rating postBlogPostingRating(
-			@NotNull @PathParam("blog-posting-id") Long blogPostingId,
-			Rating rating)
-		throws Exception {
-
-		return new Rating();
 	}
 
 	@Override

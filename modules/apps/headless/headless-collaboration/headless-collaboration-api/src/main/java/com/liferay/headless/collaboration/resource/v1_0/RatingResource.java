@@ -16,6 +16,7 @@ package com.liferay.headless.collaboration.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.Rating;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.pagination.Page;
 
 import javax.annotation.Generated;
 
@@ -29,6 +30,36 @@ import javax.annotation.Generated;
  */
 @Generated("")
 public interface RatingResource {
+
+	public Page<Rating> getBlogPostingRatingsPage(Long blogPostingId)
+		throws Exception;
+
+	public Rating postBlogPostingRating(Long blogPostingId, Rating rating)
+		throws Exception;
+
+	public Page<Rating> getKnowledgeBaseArticleRatingsPage(
+			Long knowledgeBaseArticleId)
+		throws Exception;
+
+	public Rating postKnowledgeBaseArticleRating(
+			Long knowledgeBaseArticleId, Rating rating)
+		throws Exception;
+
+	public Page<Rating> getMessageBoardMessageRatingsPage(
+			Long messageBoardMessageId)
+		throws Exception;
+
+	public Rating postMessageBoardMessageRating(
+			Long messageBoardMessageId, Rating rating)
+		throws Exception;
+
+	public Page<Rating> getMessageBoardThreadRatingsPage(
+			Long messageBoardThreadId)
+		throws Exception;
+
+	public Rating postMessageBoardThreadRating(
+			Long messageBoardThreadId, Rating rating)
+		throws Exception;
 
 	public void deleteRating(Long ratingId) throws Exception;
 

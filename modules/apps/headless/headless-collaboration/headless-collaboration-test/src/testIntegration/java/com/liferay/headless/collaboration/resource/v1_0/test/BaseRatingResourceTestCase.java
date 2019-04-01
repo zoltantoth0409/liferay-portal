@@ -16,6 +16,7 @@ package com.liferay.headless.collaboration.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
@@ -49,6 +50,7 @@ import java.net.URL;
 import java.text.DateFormat;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -102,6 +104,735 @@ public abstract class BaseRatingResourceTestCase {
 	public void tearDown() throws Exception {
 		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
+	}
+
+	@Test
+	public void testGetBlogPostingRatingsPage() throws Exception {
+		Long blogPostingId = testGetBlogPostingRatingsPage_getBlogPostingId();
+		Long irrelevantBlogPostingId =
+			testGetBlogPostingRatingsPage_getIrrelevantBlogPostingId();
+
+		if ((irrelevantBlogPostingId != null)) {
+			Rating irrelevantRating = testGetBlogPostingRatingsPage_addRating(
+				irrelevantBlogPostingId, randomIrrelevantRating());
+
+			Page<Rating> page = invokeGetBlogPostingRatingsPage(
+				irrelevantBlogPostingId);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantRating), (List<Rating>)page.getItems());
+			assertValid(page);
+		}
+
+		Rating rating1 = testGetBlogPostingRatingsPage_addRating(
+			blogPostingId, randomRating());
+
+		Rating rating2 = testGetBlogPostingRatingsPage_addRating(
+			blogPostingId, randomRating());
+
+		Page<Rating> page = invokeGetBlogPostingRatingsPage(blogPostingId);
+
+		Assert.assertEquals(2, page.getTotalCount());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(rating1, rating2), (List<Rating>)page.getItems());
+		assertValid(page);
+	}
+
+	protected Rating testGetBlogPostingRatingsPage_addRating(
+			Long blogPostingId, Rating rating)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetBlogPostingRatingsPage_getBlogPostingId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetBlogPostingRatingsPage_getIrrelevantBlogPostingId()
+		throws Exception {
+
+		return null;
+	}
+
+	protected Page<Rating> invokeGetBlogPostingRatingsPage(Long blogPostingId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/blog-postings/{blog-posting-id}/ratings", blogPostingId);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		return _outputObjectMapper.readValue(
+			string,
+			new TypeReference<Page<Rating>>() {
+			});
+	}
+
+	protected Http.Response invokeGetBlogPostingRatingsPageResponse(
+			Long blogPostingId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/blog-postings/{blog-posting-id}/ratings", blogPostingId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPostBlogPostingRating() throws Exception {
+		Rating randomRating = randomRating();
+
+		Rating postRating = testPostBlogPostingRating_addRating(randomRating);
+
+		assertEquals(randomRating, postRating);
+		assertValid(postRating);
+	}
+
+	protected Rating testPostBlogPostingRating_addRating(Rating rating)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Rating invokePostBlogPostingRating(
+			Long blogPostingId, Rating rating)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(rating),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/blog-postings/{blog-posting-id}/ratings", blogPostingId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(string, Rating.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokePostBlogPostingRatingResponse(
+			Long blogPostingId, Rating rating)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(rating),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/blog-postings/{blog-posting-id}/ratings", blogPostingId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testGetKnowledgeBaseArticleRatingsPage() throws Exception {
+		Long knowledgeBaseArticleId =
+			testGetKnowledgeBaseArticleRatingsPage_getKnowledgeBaseArticleId();
+		Long irrelevantKnowledgeBaseArticleId =
+			testGetKnowledgeBaseArticleRatingsPage_getIrrelevantKnowledgeBaseArticleId();
+
+		if ((irrelevantKnowledgeBaseArticleId != null)) {
+			Rating irrelevantRating =
+				testGetKnowledgeBaseArticleRatingsPage_addRating(
+					irrelevantKnowledgeBaseArticleId, randomIrrelevantRating());
+
+			Page<Rating> page = invokeGetKnowledgeBaseArticleRatingsPage(
+				irrelevantKnowledgeBaseArticleId);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantRating), (List<Rating>)page.getItems());
+			assertValid(page);
+		}
+
+		Rating rating1 = testGetKnowledgeBaseArticleRatingsPage_addRating(
+			knowledgeBaseArticleId, randomRating());
+
+		Rating rating2 = testGetKnowledgeBaseArticleRatingsPage_addRating(
+			knowledgeBaseArticleId, randomRating());
+
+		Page<Rating> page = invokeGetKnowledgeBaseArticleRatingsPage(
+			knowledgeBaseArticleId);
+
+		Assert.assertEquals(2, page.getTotalCount());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(rating1, rating2), (List<Rating>)page.getItems());
+		assertValid(page);
+	}
+
+	protected Rating testGetKnowledgeBaseArticleRatingsPage_addRating(
+			Long knowledgeBaseArticleId, Rating rating)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetKnowledgeBaseArticleRatingsPage_getKnowledgeBaseArticleId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetKnowledgeBaseArticleRatingsPage_getIrrelevantKnowledgeBaseArticleId()
+		throws Exception {
+
+		return null;
+	}
+
+	protected Page<Rating> invokeGetKnowledgeBaseArticleRatingsPage(
+			Long knowledgeBaseArticleId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/knowledge-base-articles/{knowledge-base-article-id}/ratings",
+					knowledgeBaseArticleId);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		return _outputObjectMapper.readValue(
+			string,
+			new TypeReference<Page<Rating>>() {
+			});
+	}
+
+	protected Http.Response invokeGetKnowledgeBaseArticleRatingsPageResponse(
+			Long knowledgeBaseArticleId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/knowledge-base-articles/{knowledge-base-article-id}/ratings",
+					knowledgeBaseArticleId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPostKnowledgeBaseArticleRating() throws Exception {
+		Rating randomRating = randomRating();
+
+		Rating postRating = testPostKnowledgeBaseArticleRating_addRating(
+			randomRating);
+
+		assertEquals(randomRating, postRating);
+		assertValid(postRating);
+	}
+
+	protected Rating testPostKnowledgeBaseArticleRating_addRating(Rating rating)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Rating invokePostKnowledgeBaseArticleRating(
+			Long knowledgeBaseArticleId, Rating rating)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(rating),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/knowledge-base-articles/{knowledge-base-article-id}/ratings",
+					knowledgeBaseArticleId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(string, Rating.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokePostKnowledgeBaseArticleRatingResponse(
+			Long knowledgeBaseArticleId, Rating rating)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(rating),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/knowledge-base-articles/{knowledge-base-article-id}/ratings",
+					knowledgeBaseArticleId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testGetMessageBoardMessageRatingsPage() throws Exception {
+		Long messageBoardMessageId =
+			testGetMessageBoardMessageRatingsPage_getMessageBoardMessageId();
+		Long irrelevantMessageBoardMessageId =
+			testGetMessageBoardMessageRatingsPage_getIrrelevantMessageBoardMessageId();
+
+		if ((irrelevantMessageBoardMessageId != null)) {
+			Rating irrelevantRating =
+				testGetMessageBoardMessageRatingsPage_addRating(
+					irrelevantMessageBoardMessageId, randomIrrelevantRating());
+
+			Page<Rating> page = invokeGetMessageBoardMessageRatingsPage(
+				irrelevantMessageBoardMessageId);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantRating), (List<Rating>)page.getItems());
+			assertValid(page);
+		}
+
+		Rating rating1 = testGetMessageBoardMessageRatingsPage_addRating(
+			messageBoardMessageId, randomRating());
+
+		Rating rating2 = testGetMessageBoardMessageRatingsPage_addRating(
+			messageBoardMessageId, randomRating());
+
+		Page<Rating> page = invokeGetMessageBoardMessageRatingsPage(
+			messageBoardMessageId);
+
+		Assert.assertEquals(2, page.getTotalCount());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(rating1, rating2), (List<Rating>)page.getItems());
+		assertValid(page);
+	}
+
+	protected Rating testGetMessageBoardMessageRatingsPage_addRating(
+			Long messageBoardMessageId, Rating rating)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetMessageBoardMessageRatingsPage_getMessageBoardMessageId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetMessageBoardMessageRatingsPage_getIrrelevantMessageBoardMessageId()
+		throws Exception {
+
+		return null;
+	}
+
+	protected Page<Rating> invokeGetMessageBoardMessageRatingsPage(
+			Long messageBoardMessageId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/message-board-messages/{message-board-message-id}/ratings",
+					messageBoardMessageId);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		return _outputObjectMapper.readValue(
+			string,
+			new TypeReference<Page<Rating>>() {
+			});
+	}
+
+	protected Http.Response invokeGetMessageBoardMessageRatingsPageResponse(
+			Long messageBoardMessageId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/message-board-messages/{message-board-message-id}/ratings",
+					messageBoardMessageId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPostMessageBoardMessageRating() throws Exception {
+		Rating randomRating = randomRating();
+
+		Rating postRating = testPostMessageBoardMessageRating_addRating(
+			randomRating);
+
+		assertEquals(randomRating, postRating);
+		assertValid(postRating);
+	}
+
+	protected Rating testPostMessageBoardMessageRating_addRating(Rating rating)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Rating invokePostMessageBoardMessageRating(
+			Long messageBoardMessageId, Rating rating)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(rating),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/message-board-messages/{message-board-message-id}/ratings",
+					messageBoardMessageId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(string, Rating.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokePostMessageBoardMessageRatingResponse(
+			Long messageBoardMessageId, Rating rating)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(rating),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/message-board-messages/{message-board-message-id}/ratings",
+					messageBoardMessageId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testGetMessageBoardThreadRatingsPage() throws Exception {
+		Long messageBoardThreadId =
+			testGetMessageBoardThreadRatingsPage_getMessageBoardThreadId();
+		Long irrelevantMessageBoardThreadId =
+			testGetMessageBoardThreadRatingsPage_getIrrelevantMessageBoardThreadId();
+
+		if ((irrelevantMessageBoardThreadId != null)) {
+			Rating irrelevantRating =
+				testGetMessageBoardThreadRatingsPage_addRating(
+					irrelevantMessageBoardThreadId, randomIrrelevantRating());
+
+			Page<Rating> page = invokeGetMessageBoardThreadRatingsPage(
+				irrelevantMessageBoardThreadId);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantRating), (List<Rating>)page.getItems());
+			assertValid(page);
+		}
+
+		Rating rating1 = testGetMessageBoardThreadRatingsPage_addRating(
+			messageBoardThreadId, randomRating());
+
+		Rating rating2 = testGetMessageBoardThreadRatingsPage_addRating(
+			messageBoardThreadId, randomRating());
+
+		Page<Rating> page = invokeGetMessageBoardThreadRatingsPage(
+			messageBoardThreadId);
+
+		Assert.assertEquals(2, page.getTotalCount());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(rating1, rating2), (List<Rating>)page.getItems());
+		assertValid(page);
+	}
+
+	protected Rating testGetMessageBoardThreadRatingsPage_addRating(
+			Long messageBoardThreadId, Rating rating)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetMessageBoardThreadRatingsPage_getMessageBoardThreadId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetMessageBoardThreadRatingsPage_getIrrelevantMessageBoardThreadId()
+		throws Exception {
+
+		return null;
+	}
+
+	protected Page<Rating> invokeGetMessageBoardThreadRatingsPage(
+			Long messageBoardThreadId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/message-board-threads/{message-board-thread-id}/ratings",
+					messageBoardThreadId);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		return _outputObjectMapper.readValue(
+			string,
+			new TypeReference<Page<Rating>>() {
+			});
+	}
+
+	protected Http.Response invokeGetMessageBoardThreadRatingsPageResponse(
+			Long messageBoardThreadId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/message-board-threads/{message-board-thread-id}/ratings",
+					messageBoardThreadId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPostMessageBoardThreadRating() throws Exception {
+		Rating randomRating = randomRating();
+
+		Rating postRating = testPostMessageBoardThreadRating_addRating(
+			randomRating);
+
+		assertEquals(randomRating, postRating);
+		assertValid(postRating);
+	}
+
+	protected Rating testPostMessageBoardThreadRating_addRating(Rating rating)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Rating invokePostMessageBoardThreadRating(
+			Long messageBoardThreadId, Rating rating)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(rating),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/message-board-threads/{message-board-thread-id}/ratings",
+					messageBoardThreadId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(string, Rating.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokePostMessageBoardThreadRatingResponse(
+			Long messageBoardThreadId, Rating rating)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(rating),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/message-board-threads/{message-board-thread-id}/ratings",
+					messageBoardThreadId);
+
+		options.setLocation(location);
+
+		options.setPost(true);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
 	}
 
 	@Test

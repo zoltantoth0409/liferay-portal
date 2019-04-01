@@ -166,24 +166,6 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<Rating> getBlogPostingsRatingsPage(
-			@GraphQLName("blog-posting-id") Long blogPostingId)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_blogPostingResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			blogPostingResource -> {
-				Page paginationPage =
-					blogPostingResource.getBlogPostingsRatingsPage(
-						blogPostingId);
-
-				return paginationPage.getItems();
-			});
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public Collection<BlogPosting> getContentSpaceBlogPostingsPage(
 			@GraphQLName("content-space-id") Long contentSpaceId,
 			@GraphQLName("filter") Filter filter,
@@ -333,26 +315,6 @@ public class Query {
 			knowledgeBaseArticleResource ->
 				knowledgeBaseArticleResource.getKnowledgeBaseArticle(
 					knowledgeBaseArticleId));
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Collection<Rating> getKnowledgeBaseArticlesRatingsPage(
-			@GraphQLName("knowledge-base-article-id") Long
-				knowledgeBaseArticleId)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_knowledgeBaseArticleResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			knowledgeBaseArticleResource -> {
-				Page paginationPage =
-					knowledgeBaseArticleResource.
-						getKnowledgeBaseArticlesRatingsPage(
-							knowledgeBaseArticleId);
-
-				return paginationPage.getItems();
-			});
 	}
 
 	@GraphQLField
@@ -577,25 +539,6 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<Rating> getMessageBoardMessagesRatingsPage(
-			@GraphQLName("message-board-message-id") Long messageBoardMessageId)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_messageBoardMessageResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			messageBoardMessageResource -> {
-				Page paginationPage =
-					messageBoardMessageResource.
-						getMessageBoardMessagesRatingsPage(
-							messageBoardMessageId);
-
-				return paginationPage.getItems();
-			});
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public Collection<MessageBoardMessage>
 			getMessageBoardMessageMessageBoardMessagesPage(
 				@GraphQLName("message-board-message-id") Long
@@ -780,17 +723,71 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<Rating> getMessageBoardThreadsRatingsPage(
+	public Collection<Rating> getBlogPostingRatingsPage(
+			@GraphQLName("blog-posting-id") Long blogPostingId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_ratingResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			ratingResource -> {
+				Page paginationPage = ratingResource.getBlogPostingRatingsPage(
+					blogPostingId);
+
+				return paginationPage.getItems();
+			});
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<Rating> getKnowledgeBaseArticleRatingsPage(
+			@GraphQLName("knowledge-base-article-id") Long
+				knowledgeBaseArticleId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_ratingResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			ratingResource -> {
+				Page paginationPage =
+					ratingResource.getKnowledgeBaseArticleRatingsPage(
+						knowledgeBaseArticleId);
+
+				return paginationPage.getItems();
+			});
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<Rating> getMessageBoardMessageRatingsPage(
+			@GraphQLName("message-board-message-id") Long messageBoardMessageId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_ratingResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			ratingResource -> {
+				Page paginationPage =
+					ratingResource.getMessageBoardMessageRatingsPage(
+						messageBoardMessageId);
+
+				return paginationPage.getItems();
+			});
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<Rating> getMessageBoardThreadRatingsPage(
 			@GraphQLName("message-board-thread-id") Long messageBoardThreadId)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
-			_messageBoardThreadResourceComponentServiceObjects,
+			_ratingResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			messageBoardThreadResource -> {
+			ratingResource -> {
 				Page paginationPage =
-					messageBoardThreadResource.
-						getMessageBoardThreadsRatingsPage(messageBoardThreadId);
+					ratingResource.getMessageBoardThreadRatingsPage(
+						messageBoardThreadId);
 
 				return paginationPage.getItems();
 			});

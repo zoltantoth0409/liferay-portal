@@ -15,7 +15,6 @@
 package com.liferay.headless.collaboration.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.MessageBoardThread;
-import com.liferay.headless.collaboration.dto.v1_0.Rating;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -66,14 +65,6 @@ public interface MessageBoardThreadResource {
 
 	public MessageBoardThread putMessageBoardThread(
 			Long messageBoardThreadId, MessageBoardThread messageBoardThread)
-		throws Exception;
-
-	public Page<Rating> getMessageBoardThreadsRatingsPage(
-			Long messageBoardThreadId)
-		throws Exception;
-
-	public Rating postMessageBoardThreadRating(
-			Long messageBoardThreadId, Rating rating)
 		throws Exception;
 
 	public void setContextCompany(Company contextCompany);
