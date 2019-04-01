@@ -100,7 +100,8 @@ public class StructuredContentDTOConverter implements DTOConverter {
 						JournalArticle.class.getName(),
 						journalArticle.getResourcePrimKey()));
 				contentFields = _toContentFields(
-					journalArticle, dtoConverterContext.getLocale(), _dlAppService, _dlURLHelper,
+					journalArticle, dtoConverterContext.getLocale(),
+					_dlAppService, _dlURLHelper,
 					_fieldsToDDMFormValuesConverter, _journalArticleService,
 					_journalConverter, _layoutLocalService);
 				contentSpaceId = journalArticle.getGroupId();
@@ -111,7 +112,8 @@ public class StructuredContentDTOConverter implements DTOConverter {
 				dateCreated = journalArticle.getCreateDate();
 				dateModified = journalArticle.getModifiedDate();
 				datePublished = journalArticle.getDisplayDate();
-				description = journalArticle.getDescription(dtoConverterContext.getLocale());
+				description = journalArticle.getDescription(
+					dtoConverterContext.getLocale());
 				id = journalArticle.getResourcePrimKey();
 				key = journalArticle.getArticleId();
 				keywords = ListUtil.toArray(
@@ -124,7 +126,8 @@ public class StructuredContentDTOConverter implements DTOConverter {
 					JournalArticle.class.getName(),
 					journalArticle.getResourcePrimKey());
 				renderedContents = _toRenderedContents(
-					ddmStructure, journalArticle, dtoConverterContext.getLocale(),
+					ddmStructure, journalArticle,
+					dtoConverterContext.getLocale(),
 					dtoConverterContext.getUriInfoOptional());
 				taxonomyCategories = TransformUtil.transformToArray(
 					_assetCategoryLocalService.getCategories(
@@ -137,7 +140,8 @@ public class StructuredContentDTOConverter implements DTOConverter {
 						}
 					},
 					TaxonomyCategory.class);
-				title = journalArticle.getTitle(dtoConverterContext.getLocale());
+				title = journalArticle.getTitle(
+					dtoConverterContext.getLocale());
 				uuid = journalArticle.getUuid();
 			}
 		};
