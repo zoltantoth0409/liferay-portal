@@ -916,7 +916,71 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	@Test
 	public void testGetKnowledgeBaseArticlesRatingsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long knowledgeBaseArticleId =
+			testGetKnowledgeBaseArticlesRatingsPage_getKnowledgeBaseArticleId();
+		Long irrelevantKnowledgeBaseArticleId =
+			testGetKnowledgeBaseArticlesRatingsPage_getIrrelevantKnowledgeBaseArticleId();
+
+		if ((irrelevantKnowledgeBaseArticleId != null)) {
+			KnowledgeBaseArticle irrelevantKnowledgeBaseArticle =
+				testGetKnowledgeBaseArticlesRatingsPage_addKnowledgeBaseArticle(
+					irrelevantKnowledgeBaseArticleId,
+					randomIrrelevantKnowledgeBaseArticle());
+
+			Page<KnowledgeBaseArticle> page =
+				invokeGetKnowledgeBaseArticlesRatingsPage(
+					irrelevantKnowledgeBaseArticleId);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantKnowledgeBaseArticle),
+				(List<KnowledgeBaseArticle>)page.getItems());
+			assertValid(page);
+		}
+
+		KnowledgeBaseArticle knowledgeBaseArticle1 =
+			testGetKnowledgeBaseArticlesRatingsPage_addKnowledgeBaseArticle(
+				knowledgeBaseArticleId, randomKnowledgeBaseArticle());
+
+		KnowledgeBaseArticle knowledgeBaseArticle2 =
+			testGetKnowledgeBaseArticlesRatingsPage_addKnowledgeBaseArticle(
+				knowledgeBaseArticleId, randomKnowledgeBaseArticle());
+
+		Page<KnowledgeBaseArticle> page =
+			invokeGetKnowledgeBaseArticlesRatingsPage(knowledgeBaseArticleId);
+
+		Assert.assertEquals(2, page.getTotalCount());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
+			(List<KnowledgeBaseArticle>)page.getItems());
+		assertValid(page);
+	}
+
+	protected KnowledgeBaseArticle
+			testGetKnowledgeBaseArticlesRatingsPage_addKnowledgeBaseArticle(
+				Long knowledgeBaseArticleId,
+				KnowledgeBaseArticle knowledgeBaseArticle)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetKnowledgeBaseArticlesRatingsPage_getKnowledgeBaseArticleId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long
+			testGetKnowledgeBaseArticlesRatingsPage_getIrrelevantKnowledgeBaseArticleId()
+		throws Exception {
+
+		return null;
 	}
 
 	protected Page<Rating> invokeGetKnowledgeBaseArticlesRatingsPage(

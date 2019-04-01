@@ -396,7 +396,64 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	@Test
 	public void testGetBlogPostingsRatingsPage() throws Exception {
-		Assert.assertTrue(true);
+		Long blogPostingId = testGetBlogPostingsRatingsPage_getBlogPostingId();
+		Long irrelevantBlogPostingId =
+			testGetBlogPostingsRatingsPage_getIrrelevantBlogPostingId();
+
+		if ((irrelevantBlogPostingId != null)) {
+			BlogPosting irrelevantBlogPosting =
+				testGetBlogPostingsRatingsPage_addBlogPosting(
+					irrelevantBlogPostingId, randomIrrelevantBlogPosting());
+
+			Page<BlogPosting> page = invokeGetBlogPostingsRatingsPage(
+				irrelevantBlogPostingId);
+
+			Assert.assertEquals(1, page.getTotalCount());
+
+			assertEquals(
+				Arrays.asList(irrelevantBlogPosting),
+				(List<BlogPosting>)page.getItems());
+			assertValid(page);
+		}
+
+		BlogPosting blogPosting1 =
+			testGetBlogPostingsRatingsPage_addBlogPosting(
+				blogPostingId, randomBlogPosting());
+
+		BlogPosting blogPosting2 =
+			testGetBlogPostingsRatingsPage_addBlogPosting(
+				blogPostingId, randomBlogPosting());
+
+		Page<BlogPosting> page = invokeGetBlogPostingsRatingsPage(
+			blogPostingId);
+
+		Assert.assertEquals(2, page.getTotalCount());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(blogPosting1, blogPosting2),
+			(List<BlogPosting>)page.getItems());
+		assertValid(page);
+	}
+
+	protected BlogPosting testGetBlogPostingsRatingsPage_addBlogPosting(
+			Long blogPostingId, BlogPosting blogPosting)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetBlogPostingsRatingsPage_getBlogPostingId()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Long testGetBlogPostingsRatingsPage_getIrrelevantBlogPostingId()
+		throws Exception {
+
+		return null;
 	}
 
 	protected Page<Rating> invokeGetBlogPostingsRatingsPage(Long blogPostingId)
