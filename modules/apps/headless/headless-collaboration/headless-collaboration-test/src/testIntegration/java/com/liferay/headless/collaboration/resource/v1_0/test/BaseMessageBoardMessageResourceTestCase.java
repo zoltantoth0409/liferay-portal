@@ -438,71 +438,7 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 
 	@Test
 	public void testGetMessageBoardMessagesRatingsPage() throws Exception {
-		Long messageBoardMessageId =
-			testGetMessageBoardMessagesRatingsPage_getMessageBoardMessageId();
-		Long irrelevantMessageBoardMessageId =
-			testGetMessageBoardMessagesRatingsPage_getIrrelevantMessageBoardMessageId();
-
-		if ((irrelevantMessageBoardMessageId != null)) {
-			MessageBoardMessage irrelevantMessageBoardMessage =
-				testGetMessageBoardMessagesRatingsPage_addMessageBoardMessage(
-					irrelevantMessageBoardMessageId,
-					randomIrrelevantMessageBoardMessage());
-
-			Page<MessageBoardMessage> page =
-				invokeGetMessageBoardMessagesRatingsPage(
-					irrelevantMessageBoardMessageId);
-
-			Assert.assertEquals(1, page.getTotalCount());
-
-			assertEquals(
-				Arrays.asList(irrelevantMessageBoardMessage),
-				(List<MessageBoardMessage>)page.getItems());
-			assertValid(page);
-		}
-
-		MessageBoardMessage messageBoardMessage1 =
-			testGetMessageBoardMessagesRatingsPage_addMessageBoardMessage(
-				messageBoardMessageId, randomMessageBoardMessage());
-
-		MessageBoardMessage messageBoardMessage2 =
-			testGetMessageBoardMessagesRatingsPage_addMessageBoardMessage(
-				messageBoardMessageId, randomMessageBoardMessage());
-
-		Page<MessageBoardMessage> page =
-			invokeGetMessageBoardMessagesRatingsPage(messageBoardMessageId);
-
-		Assert.assertEquals(2, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(messageBoardMessage1, messageBoardMessage2),
-			(List<MessageBoardMessage>)page.getItems());
-		assertValid(page);
-	}
-
-	protected MessageBoardMessage
-			testGetMessageBoardMessagesRatingsPage_addMessageBoardMessage(
-				Long messageBoardMessageId,
-				MessageBoardMessage messageBoardMessage)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long
-			testGetMessageBoardMessagesRatingsPage_getMessageBoardMessageId()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long
-			testGetMessageBoardMessagesRatingsPage_getIrrelevantMessageBoardMessageId()
-		throws Exception {
-
-		return null;
+		Assert.assertTrue(true);
 	}
 
 	protected Page<Rating> invokeGetMessageBoardMessagesRatingsPage(
