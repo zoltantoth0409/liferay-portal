@@ -569,6 +569,151 @@ public abstract class BaseStructuredContentResourceTestCase {
 	}
 
 	@Test
+	public void testGetContentSpaceStructuredContentByKey() throws Exception {
+		StructuredContent postStructuredContent =
+			testGetContentSpaceStructuredContentByKey_addStructuredContent();
+
+		StructuredContent getStructuredContent =
+			invokeGetContentSpaceStructuredContentByKey(
+				postStructuredContent.getContentSpaceId(),
+				postStructuredContent.getKey());
+
+		assertEquals(postStructuredContent, getStructuredContent);
+		assertValid(getStructuredContent);
+	}
+
+	protected StructuredContent
+			testGetContentSpaceStructuredContentByKey_addStructuredContent()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContent invokeGetContentSpaceStructuredContentByKey(
+			Long contentSpaceId, String key)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/structured-contents/by-key/{key}",
+					contentSpaceId, key);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, StructuredContent.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokeGetContentSpaceStructuredContentByKeyResponse(
+			Long contentSpaceId, String key)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/structured-contents/by-key/{key}",
+					contentSpaceId, key);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testGetContentSpaceStructuredContentByUuid() throws Exception {
+		StructuredContent postStructuredContent =
+			testGetContentSpaceStructuredContentByUuid_addStructuredContent();
+
+		StructuredContent getStructuredContent =
+			invokeGetContentSpaceStructuredContentByUuid(
+				postStructuredContent.getContentSpaceId(),
+				postStructuredContent.getUuid());
+
+		assertEquals(postStructuredContent, getStructuredContent);
+		assertValid(getStructuredContent);
+	}
+
+	protected StructuredContent
+			testGetContentSpaceStructuredContentByUuid_addStructuredContent()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected StructuredContent invokeGetContentSpaceStructuredContentByUuid(
+			Long contentSpaceId, String uuid)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/structured-contents/by-uuid/{uuid}",
+					contentSpaceId, uuid);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(
+				string, StructuredContent.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response
+			invokeGetContentSpaceStructuredContentByUuidResponse(
+				Long contentSpaceId, String uuid)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/structured-contents/by-uuid/{uuid}",
+					contentSpaceId, uuid);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
 	public void testGetContentStructureStructuredContentsPage()
 		throws Exception {
 
@@ -940,151 +1085,6 @@ public abstract class BaseStructuredContentResourceTestCase {
 			location, "pageSize", pagination.getPageSize());
 
 		location = HttpUtil.addParameter(location, "sort", sortString);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
-	public void testGetContentSpaceStructuredContentByKey() throws Exception {
-		StructuredContent postStructuredContent =
-			testGetContentSpaceStructuredContentByKey_addStructuredContent();
-
-		StructuredContent getStructuredContent =
-			invokeGetContentSpaceStructuredContentByKey(
-				postStructuredContent.getContentSpaceId(),
-				postStructuredContent.getKey());
-
-		assertEquals(postStructuredContent, getStructuredContent);
-		assertValid(getStructuredContent);
-	}
-
-	protected StructuredContent
-			testGetContentSpaceStructuredContentByKey_addStructuredContent()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected StructuredContent invokeGetContentSpaceStructuredContentByKey(
-			Long contentSpaceId, String key)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/structured-contents/by-key/{key}",
-					contentSpaceId, key);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return _outputObjectMapper.readValue(
-				string, StructuredContent.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokeGetContentSpaceStructuredContentByKeyResponse(
-			Long contentSpaceId, String key)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/structured-contents/by-key/{key}",
-					contentSpaceId, key);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
-	public void testGetContentSpaceStructuredContentByUuid() throws Exception {
-		StructuredContent postStructuredContent =
-			testGetContentSpaceStructuredContentByUuid_addStructuredContent();
-
-		StructuredContent getStructuredContent =
-			invokeGetContentSpaceStructuredContentByUuid(
-				postStructuredContent.getContentSpaceId(),
-				postStructuredContent.getUuid());
-
-		assertEquals(postStructuredContent, getStructuredContent);
-		assertValid(getStructuredContent);
-	}
-
-	protected StructuredContent
-			testGetContentSpaceStructuredContentByUuid_addStructuredContent()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected StructuredContent invokeGetContentSpaceStructuredContentByUuid(
-			Long contentSpaceId, String uuid)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/structured-contents/by-uuid/{uuid}",
-					contentSpaceId, uuid);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return _outputObjectMapper.readValue(
-				string, StructuredContent.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
-		}
-	}
-
-	protected Http.Response
-			invokeGetContentSpaceStructuredContentByUuidResponse(
-				Long contentSpaceId, String uuid)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/structured-contents/by-uuid/{uuid}",
-					contentSpaceId, uuid);
 
 		options.setLocation(location);
 

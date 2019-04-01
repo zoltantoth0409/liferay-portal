@@ -255,31 +255,6 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<StructuredContent>
-			getContentStructureStructuredContentsPage(
-				@GraphQLName("content-structure-id") Long contentStructureId,
-				@GraphQLName("filter") Filter filter,
-				@GraphQLName("pageSize") int pageSize,
-				@GraphQLName("page") int page,
-				@GraphQLName("Sort[]") Sort[] sorts)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_structuredContentResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			structuredContentResource -> {
-				Page paginationPage =
-					structuredContentResource.
-						getContentStructureStructuredContentsPage(
-							contentStructureId, filter,
-							Pagination.of(pageSize, page), sorts);
-
-				return paginationPage.getItems();
-			});
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public StructuredContent getContentSpaceStructuredContentByKey(
 			@GraphQLName("content-space-id") Long contentSpaceId,
 			@GraphQLName("key") String key)
@@ -307,6 +282,31 @@ public class Query {
 				structuredContentResource.
 					getContentSpaceStructuredContentByUuid(
 						contentSpaceId, uuid));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<StructuredContent>
+			getContentStructureStructuredContentsPage(
+				@GraphQLName("content-structure-id") Long contentStructureId,
+				@GraphQLName("filter") Filter filter,
+				@GraphQLName("pageSize") int pageSize,
+				@GraphQLName("page") int page,
+				@GraphQLName("Sort[]") Sort[] sorts)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_structuredContentResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			structuredContentResource -> {
+				Page paginationPage =
+					structuredContentResource.
+						getContentStructureStructuredContentsPage(
+							contentStructureId, filter,
+							Pagination.of(pageSize, page), sorts);
+
+				return paginationPage.getItems();
+			});
 	}
 
 	@GraphQLField

@@ -100,28 +100,6 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	@GET
-	@Parameters(
-		value = {
-			@Parameter(in = ParameterIn.QUERY, name = "filter"),
-			@Parameter(in = ParameterIn.QUERY, name = "page"),
-			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
-			@Parameter(in = ParameterIn.QUERY, name = "sorts")
-		}
-	)
-	@Path("/content-structures/{content-structure-id}/structured-contents")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "StructuredContent")})
-	public Page<StructuredContent> getContentStructureStructuredContentsPage(
-			@NotNull @PathParam("content-structure-id") Long contentStructureId,
-			@Context Filter filter, @Context Pagination pagination,
-			@Context Sort[] sorts)
-		throws Exception {
-
-		return Page.of(Collections.emptyList());
-	}
-
-	@Override
-	@GET
 	@Path("/content-spaces/{content-space-id}/structured-contents/by-key/{key}")
 	@Produces("application/json")
 	@Tags(value = {@Tag(name = "StructuredContent")})
@@ -146,6 +124,28 @@ public abstract class BaseStructuredContentResourceImpl
 		throws Exception {
 
 		return new StructuredContent();
+	}
+
+	@Override
+	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "filter"),
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
+			@Parameter(in = ParameterIn.QUERY, name = "sorts")
+		}
+	)
+	@Path("/content-structures/{content-structure-id}/structured-contents")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "StructuredContent")})
+	public Page<StructuredContent> getContentStructureStructuredContentsPage(
+			@NotNull @PathParam("content-structure-id") Long contentStructureId,
+			@Context Filter filter, @Context Pagination pagination,
+			@Context Sort[] sorts)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
