@@ -53,34 +53,6 @@ import javax.ws.rs.core.UriInfo;
 public abstract class BaseRatingResourceImpl implements RatingResource {
 
 	@Override
-	@GET
-	@Path("/structured-contents/{structured-content-id}/ratings")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "Rating")})
-	public Page<Rating> getStructuredContentRatingsPage(
-			@NotNull @PathParam("structured-content-id") Long
-				structuredContentId)
-		throws Exception {
-
-		return Page.of(Collections.emptyList());
-	}
-
-	@Override
-	@Consumes("application/json")
-	@POST
-	@Path("/structured-contents/{structured-content-id}/ratings")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "Rating")})
-	public Rating postStructuredContentRating(
-			@NotNull @PathParam("structured-content-id") Long
-				structuredContentId,
-			Rating rating)
-		throws Exception {
-
-		return new Rating();
-	}
-
-	@Override
 	@DELETE
 	@Path("/ratings/{rating-id}")
 	@Produces("application/json")
@@ -108,6 +80,34 @@ public abstract class BaseRatingResourceImpl implements RatingResource {
 	@Tags(value = {@Tag(name = "Rating")})
 	public Rating putRating(
 			@NotNull @PathParam("rating-id") Long ratingId, Rating rating)
+		throws Exception {
+
+		return new Rating();
+	}
+
+	@Override
+	@GET
+	@Path("/structured-contents/{structured-content-id}/ratings")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Rating")})
+	public Page<Rating> getStructuredContentRatingsPage(
+			@NotNull @PathParam("structured-content-id") Long
+				structuredContentId)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	@Consumes("application/json")
+	@POST
+	@Path("/structured-contents/{structured-content-id}/ratings")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Rating")})
+	public Rating postStructuredContentRating(
+			@NotNull @PathParam("structured-content-id") Long
+				structuredContentId,
+			Rating rating)
 		throws Exception {
 
 		return new Rating();

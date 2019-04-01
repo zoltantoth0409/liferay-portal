@@ -31,6 +31,12 @@ import javax.annotation.Generated;
 @Generated("")
 public interface RatingResource {
 
+	public void deleteRating(Long ratingId) throws Exception;
+
+	public Rating getRating(Long ratingId) throws Exception;
+
+	public Rating putRating(Long ratingId, Rating rating) throws Exception;
+
 	public Page<Rating> getStructuredContentRatingsPage(
 			Long structuredContentId)
 		throws Exception;
@@ -38,12 +44,6 @@ public interface RatingResource {
 	public Rating postStructuredContentRating(
 			Long structuredContentId, Rating rating)
 		throws Exception;
-
-	public void deleteRating(Long ratingId) throws Exception;
-
-	public Rating getRating(Long ratingId) throws Exception;
-
-	public Rating putRating(Long ratingId, Rating rating) throws Exception;
 
 	public void setContextCompany(Company contextCompany);
 

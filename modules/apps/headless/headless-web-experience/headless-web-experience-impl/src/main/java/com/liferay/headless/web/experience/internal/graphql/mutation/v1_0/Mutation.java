@@ -114,20 +114,6 @@ public class Mutation {
 				structuredContentId, comment));
 	}
 
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Rating postStructuredContentRating(
-			@GraphQLName("structured-content-id") Long structuredContentId,
-			@GraphQLName("Rating") Rating rating)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_ratingResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			ratingResource -> ratingResource.postStructuredContentRating(
-				structuredContentId, rating));
-	}
-
 	@GraphQLInvokeDetached
 	public void deleteRating(@GraphQLName("rating-id") Long ratingId)
 		throws Exception {
@@ -148,6 +134,20 @@ public class Mutation {
 			_ratingResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			ratingResource -> ratingResource.putRating(ratingId, rating));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Rating postStructuredContentRating(
+			@GraphQLName("structured-content-id") Long structuredContentId,
+			@GraphQLName("Rating") Rating rating)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_ratingResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			ratingResource -> ratingResource.postStructuredContentRating(
+				structuredContentId, rating));
 	}
 
 	@GraphQLField

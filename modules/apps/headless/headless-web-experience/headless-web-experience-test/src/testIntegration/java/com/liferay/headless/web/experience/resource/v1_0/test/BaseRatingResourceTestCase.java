@@ -107,6 +107,184 @@ public abstract class BaseRatingResourceTestCase {
 	}
 
 	@Test
+	public void testDeleteRating() throws Exception {
+		Rating rating = testDeleteRating_addRating();
+
+		assertResponseCode(204, invokeDeleteRatingResponse(rating.getId()));
+
+		assertResponseCode(404, invokeGetRatingResponse(rating.getId()));
+	}
+
+	protected Rating testDeleteRating_addRating() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected void invokeDeleteRating(Long ratingId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+	}
+
+	protected Http.Response invokeDeleteRatingResponse(Long ratingId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testGetRating() throws Exception {
+		Rating postRating = testGetRating_addRating();
+
+		Rating getRating = invokeGetRating(postRating.getId());
+
+		assertEquals(postRating, getRating);
+		assertValid(getRating);
+	}
+
+	protected Rating testGetRating_addRating() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Rating invokeGetRating(Long ratingId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(string, Rating.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokeGetRatingResponse(Long ratingId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPutRating() throws Exception {
+		Rating postRating = testPutRating_addRating();
+
+		Rating randomRating = randomRating();
+
+		Rating putRating = invokePutRating(postRating.getId(), randomRating);
+
+		assertEquals(randomRating, putRating);
+		assertValid(putRating);
+
+		Rating getRating = invokeGetRating(putRating.getId());
+
+		assertEquals(randomRating, getRating);
+		assertValid(getRating);
+	}
+
+	protected Rating testPutRating_addRating() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Rating invokePutRating(Long ratingId, Rating rating)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(rating),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
+
+		options.setLocation(location);
+
+		options.setPut(true);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(string, Rating.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokePutRatingResponse(
+			Long ratingId, Rating rating)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(rating),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		String location =
+			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
+
+		options.setLocation(location);
+
+		options.setPut(true);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
 	public void testGetStructuredContentRatingsPage() throws Exception {
 		Long structuredContentId =
 			testGetStructuredContentRatingsPage_getStructuredContentId();
@@ -284,184 +462,6 @@ public abstract class BaseRatingResourceTestCase {
 		options.setLocation(location);
 
 		options.setPost(true);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
-	public void testDeleteRating() throws Exception {
-		Rating rating = testDeleteRating_addRating();
-
-		assertResponseCode(204, invokeDeleteRatingResponse(rating.getId()));
-
-		assertResponseCode(404, invokeGetRatingResponse(rating.getId()));
-	}
-
-	protected Rating testDeleteRating_addRating() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected void invokeDeleteRating(Long ratingId) throws Exception {
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		String location =
-			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-	}
-
-	protected Http.Response invokeDeleteRatingResponse(Long ratingId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		String location =
-			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
-	public void testGetRating() throws Exception {
-		Rating postRating = testGetRating_addRating();
-
-		Rating getRating = invokeGetRating(postRating.getId());
-
-		assertEquals(postRating, getRating);
-		assertValid(getRating);
-	}
-
-	protected Rating testGetRating_addRating() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Rating invokeGetRating(Long ratingId) throws Exception {
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return _outputObjectMapper.readValue(string, Rating.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokeGetRatingResponse(Long ratingId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
-	public void testPutRating() throws Exception {
-		Rating postRating = testPutRating_addRating();
-
-		Rating randomRating = randomRating();
-
-		Rating putRating = invokePutRating(postRating.getId(), randomRating);
-
-		assertEquals(randomRating, putRating);
-		assertValid(putRating);
-
-		Rating getRating = invokeGetRating(putRating.getId());
-
-		assertEquals(randomRating, getRating);
-		assertValid(getRating);
-	}
-
-	protected Rating testPutRating_addRating() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Rating invokePutRating(Long ratingId, Rating rating)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(rating),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		String location =
-			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
-
-		options.setLocation(location);
-
-		options.setPut(true);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return _outputObjectMapper.readValue(string, Rating.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokePutRatingResponse(
-			Long ratingId, Rating rating)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			_inputObjectMapper.writeValueAsString(rating),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		String location =
-			_resourceURL + _toPath("/ratings/{rating-id}", ratingId);
-
-		options.setLocation(location);
-
-		options.setPut(true);
 
 		HttpUtil.URLtoByteArray(options);
 
