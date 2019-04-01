@@ -791,7 +791,7 @@ public class StagedLayoutSetStagedModelDataHandler
 			for (Layout layout : siblingLayouts) {
 				if (!updatedPlids.contains(layout.getPlid())) {
 					if (hasSiblingLayoutWithSamePriority(
-						layout, siblingLayouts)) {
+							layout, siblingLayouts)) {
 
 						do {
 							int priority = layout.getPriority();
@@ -799,7 +799,7 @@ public class StagedLayoutSetStagedModelDataHandler
 							layout.setPriority(++priority);
 						}
 						while (hasSiblingLayoutWithSamePriority(
-							layout, siblingLayouts));
+									layout, siblingLayouts));
 
 						_layoutLocalService.updateLayout(layout);
 					}
