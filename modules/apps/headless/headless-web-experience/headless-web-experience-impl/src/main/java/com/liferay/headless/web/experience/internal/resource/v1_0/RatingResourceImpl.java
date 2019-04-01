@@ -18,6 +18,7 @@ import com.liferay.headless.common.spi.resource.SPIRatingResource;
 import com.liferay.headless.web.experience.dto.v1_0.Rating;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.RatingUtil;
 import com.liferay.headless.web.experience.resource.v1_0.RatingResource;
+import com.liferay.journal.model.JournalArticle;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -61,7 +62,8 @@ public class RatingResourceImpl extends BaseRatingResourceImpl {
 
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
-		return spiRatingResource.getRatingsPage(structuredContentId);
+		return spiRatingResource.getRatingsPage(
+			JournalArticle.class.getName(), structuredContentId);
 	}
 
 	@Override
@@ -72,7 +74,8 @@ public class RatingResourceImpl extends BaseRatingResourceImpl {
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
-			structuredContentId, GetterUtil.getDouble(rating.getRatingValue()));
+			JournalArticle.class.getName(), structuredContentId,
+			GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
 	@Override
