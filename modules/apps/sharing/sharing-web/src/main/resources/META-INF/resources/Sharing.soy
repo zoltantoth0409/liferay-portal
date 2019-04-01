@@ -20,7 +20,7 @@
 	{@param? emailErrorMessage: string}
 	{@param? submitting: bool}
 
-	<div id="{$id}" class="sharing-modal-content">
+	<div class="sharing-modal-content" id="{$id}">
 		<form
 			action="{$shareActionURL}"
 			data-onsubmit="{$_handleSubmit}"
@@ -52,7 +52,7 @@
 				</div>
 
 				<div class="form-group">
-					<div class="custom-control custom-checkbox">
+					<div class="custom-checkbox custom-control">
 						<label>
 							<input
 								checked="checked"
@@ -139,7 +139,7 @@
 	{@param? _handleDropdownItemClick: any}
 
 	<li>
-		<a data-onclick="{$_handleDropdownItemClick}" data-dropdown-item-index="{$index}" id="item" class="dropdown-item" href="javascript:;">
+		<a class="dropdown-item" data-dropdown-item-index="{$index}" data-onclick="{$_handleDropdownItemClick}" href="javascript:;" id="item">
 			{call ClaySticker.render}
 				{param size: 'lg' /}
 				{param imageSrc: $data.data.portraitURL /}

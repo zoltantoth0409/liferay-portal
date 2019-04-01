@@ -51,8 +51,7 @@ public class SPIRatingResource<T> {
 			_ratingsEntryLocalService.getRatingsEntry(ratingId));
 	}
 
-	public Page<T> getRatingsPage(
-			String className, Long classPK)
+	public Page<T> getRatingsPage(String className, Long classPK)
 		throws Exception {
 
 		return Page.of(
@@ -68,8 +67,8 @@ public class SPIRatingResource<T> {
 
 		return _transformUnsafeFunction.apply(
 			_ratingsEntryLocalService.updateEntry(
-				_user.getUserId(), className, classPK,
-				ratingValue, new ServiceContext()));
+				_user.getUserId(), className, classPK, ratingValue,
+				new ServiceContext()));
 	}
 
 	public T putRating(Long ratingId, Double ratingValue) throws Exception {

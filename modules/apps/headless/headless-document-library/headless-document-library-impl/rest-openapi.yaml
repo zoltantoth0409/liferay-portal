@@ -511,46 +511,6 @@ paths:
                                 $ref: "#/components/schemas/Document"
                     description: ""
             tags: ["Document"]
-    "/documents/{document-id}/ratings":
-        get:
-            parameters:
-                - in: path
-                  name: document-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/Rating"
-                                type: array
-                    description: ""
-            tags: ["Rating"]
-        post:
-            parameters:
-                - in: path
-                  name: document-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: "#/components/schemas/Rating"
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/Rating"
-                    description: ""
-            tags: ["Rating"]
     "/documents/{document-id}/comments":
         get:
             parameters:
@@ -607,6 +567,46 @@ paths:
                                 $ref: "#/components/schemas/Comment"
                     description: ""
             tags: ["Comment"]
+    "/documents/{document-id}/ratings":
+        get:
+            parameters:
+                - in: path
+                  name: document-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/Rating"
+                                type: array
+                    description: ""
+            tags: ["Rating"]
+        post:
+            parameters:
+                - in: path
+                  name: document-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/Rating"
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Rating"
+                    description: ""
+            tags: ["Rating"]
     "/folders/{folder-id}":
         delete:
             parameters:
