@@ -165,7 +165,7 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 			if ((priority < _PRIORITY_BUFFER) &&
 				Validator.isNull(sourcePrototypeLayoutUuid)) {
 
-				LayoutSet layoutSet = layoutSetPersistence.fetchByG_P_Head(
+				LayoutSet layoutSet = layoutSetPersistence.fetchByG_P(
 					groupId, privateLayout, true);
 
 				if (Validator.isNotNull(
@@ -202,7 +202,7 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 
 			// Ensure parent layout exists
 
-			Layout parentLayout = layoutPersistence.fetchByG_P_L_Head(
+			Layout parentLayout = layoutPersistence.fetchByG_P_L(
 				groupId, privateLayout, parentLayoutId, true);
 
 			if (parentLayout == null) {
@@ -217,7 +217,7 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 			LayoutSetPrototype layoutSetPrototype, String layoutUuid)
 		throws PortalException {
 
-		Layout layout = layoutPersistence.fetchByUUID_G_P_Head(
+		Layout layout = layoutPersistence.fetchByUUID_G_P(
 			layoutUuid, layoutSetPrototype.getGroupId(), true, true);
 
 		if (layout != null) {
@@ -259,9 +259,9 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 			// Layout cannot become a child of a layout that is not sortable
 			// because it is linked to a layout set prototype
 
-			Layout layout = layoutPersistence.fetchByG_P_L_Head(
+			Layout layout = layoutPersistence.fetchByG_P_L(
 				groupId, privateLayout, layoutId, true);
-			Layout parentLayout = layoutPersistence.findByG_P_L_Head(
+			Layout parentLayout = layoutPersistence.findByG_P_L(
 				groupId, privateLayout, parentLayoutId, true);
 
 			if (((layout == null) ||
@@ -525,7 +525,7 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 			long parentLayoutId)
 		throws PortalException {
 
-		Layout layout = layoutPersistence.findByG_P_L_Head(
+		Layout layout = layoutPersistence.findByG_P_L(
 			groupId, privateLayout, layoutId, true);
 
 		if (parentLayoutId == layout.getParentLayoutId()) {
@@ -540,7 +540,7 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 
 		// Layout cannot become a child of a layout that is not parentable
 
-		Layout parentLayout = layoutPersistence.findByG_P_L_Head(
+		Layout parentLayout = layoutPersistence.findByG_P_L(
 			groupId, privateLayout, parentLayoutId, true);
 
 		LayoutType parentLayoutType = parentLayout.getLayoutType();
