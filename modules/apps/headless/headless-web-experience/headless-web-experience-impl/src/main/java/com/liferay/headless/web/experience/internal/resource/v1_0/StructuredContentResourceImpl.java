@@ -32,15 +32,12 @@ import com.liferay.dynamic.data.mapping.storage.Fields;
 import com.liferay.dynamic.data.mapping.util.DDM;
 import com.liferay.dynamic.data.mapping.validator.DDMFormValuesValidationException;
 import com.liferay.dynamic.data.mapping.validator.DDMFormValuesValidator;
-import com.liferay.headless.common.spi.resource.SPIRatingResource;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.headless.web.experience.dto.v1_0.ContentField;
-import com.liferay.headless.web.experience.dto.v1_0.Rating;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.internal.dto.v1_0.converter.StructuredContentDTOConverter;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.DDMFormValuesUtil;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.DDMValueUtil;
-import com.liferay.headless.web.experience.internal.dto.v1_0.util.RatingUtil;
 import com.liferay.headless.web.experience.internal.odata.entity.v1_0.EntityFieldsProvider;
 import com.liferay.headless.web.experience.internal.odata.entity.v1_0.StructuredContentEntityModel;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
@@ -246,17 +243,6 @@ public class StructuredContentResourceImpl
 	}
 
 	@Override
-	public Page<Rating> getStructuredContentsRatingsPage(
-			Long structuredContentId)
-		throws Exception {
-
-		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
-
-		return spiRatingResource.getRatingsPage(
-			JournalArticle.class.getName(), structuredContentId);
-	}
-
-	@Override
 	public StructuredContent patchStructuredContent(
 			Long structuredContentId, StructuredContent structuredContent)
 		throws Exception {
@@ -377,18 +363,6 @@ public class StructuredContentResourceImpl
 					structuredContent.getKeywords(),
 					structuredContent.getTaxonomyCategoryIds(), contentSpaceId,
 					structuredContent.getViewableByAsString())));
-	}
-
-	@Override
-	public Rating postStructuredContentRating(
-			Long structuredContentId, Rating rating)
-		throws Exception {
-
-		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
-
-		return spiRatingResource.postRating(
-			JournalArticle.class.getName(), structuredContentId,
-			GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
 	@Override
@@ -530,14 +504,6 @@ public class StructuredContentResourceImpl
 		return transform(
 			ddmStructure.getRootFieldNames(),
 			fieldName -> _getDDMFormField(ddmStructure, fieldName));
-	}
-
-	private SPIRatingResource<Rating> _getSPIRatingResource() {
-		return new SPIRatingResource<>(
-			_ratingsEntryLocalService,
-			ratingsEntry -> RatingUtil.toRating(
-				_portal, ratingsEntry, _userLocalService),
-			_user);
 	}
 
 	private StructuredContent _getStructuredContent(
