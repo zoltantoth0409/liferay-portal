@@ -402,7 +402,16 @@
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-settings-form">
 			{foreach $page in $pages}
-				<div class="active advanced{/if} basic{/if}{if isLast($page)} lfr-ddm-form-page{if isFirst($page)}">
+				{let $classes kind="text"}
+					lfr-ddm-form-page
+					{if isFirst($page)}
+						{sp}active basic
+					{elseif isLast($page)}
+						{sp}advanced
+					{/if}
+				{/let}
+
+				<div class="{$classes}">
 					{call .form_rows data="all"}
 						{param rows: $page.rows /}
 					{/call}
