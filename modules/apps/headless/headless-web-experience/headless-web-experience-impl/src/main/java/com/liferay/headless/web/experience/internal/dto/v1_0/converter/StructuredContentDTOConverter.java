@@ -220,26 +220,24 @@ public class StructuredContentDTOConverter implements DTOConverter {
 		DDMStructure ddmStructure, JournalArticle journalArticle, Locale locale,
 		Optional<UriInfo> uriInfoOptional) {
 
-		if (uriInfoOptional.isPresent()) {
-			RenderedContent[] renderedContents = TransformUtil.transformToArray(
-				ddmStructure.getTemplates(),
-				ddmTemplate -> new RenderedContent() {
-					{
-						renderedContentURL = JaxRsLinkUtil.getJaxRsLink(
-							BaseStructuredContentResourceImpl.class,
-							"getStructuredContentRenderedContentTemplate",
-							uriInfoOptional.get(),
-							journalArticle.getResourcePrimKey(),
-							ddmTemplate.getTemplateId());
-						templateName = ddmTemplate.getName(locale);
-					}
-				},
-				RenderedContent.class);
-
-			return renderedContents;
+		if (!uriInfoOptional.isPresent()) {
+			return null;
 		}
 
-		return null;
+		return TransformUtil.transformToArray(
+			ddmStructure.getTemplates(),
+			ddmTemplate -> new RenderedContent() {
+				{
+					renderedContentURL = JaxRsLinkUtil.getJaxRsLink(
+						BaseStructuredContentResourceImpl.class,
+						"getStructuredContentRenderedContentTemplate",
+						uriInfoOptional.get(),
+						journalArticle.getResourcePrimKey(),
+						ddmTemplate.getTemplateId());
+					templateName = ddmTemplate.getName(locale);
+				}
+			},
+			RenderedContent.class);
 	}
 
 	private Value _toValue(
