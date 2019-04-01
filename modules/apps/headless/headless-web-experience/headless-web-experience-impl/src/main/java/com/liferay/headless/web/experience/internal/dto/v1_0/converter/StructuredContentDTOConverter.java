@@ -89,8 +89,6 @@ public class StructuredContentDTOConverter implements DTOConverter {
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
 			dtoConverterContext.getResourcePrimKey());
 
-		Locale locale = dtoConverterContext.getLocale();
-
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
 		return new StructuredContent() {
@@ -102,7 +100,7 @@ public class StructuredContentDTOConverter implements DTOConverter {
 						JournalArticle.class.getName(),
 						journalArticle.getResourcePrimKey()));
 				contentFields = _toContentFields(
-					journalArticle, locale, _dlAppService, _dlURLHelper,
+					journalArticle, dtoConverterContext.getLocale(), _dlAppService, _dlURLHelper,
 					_fieldsToDDMFormValuesConverter, _journalArticleService,
 					_journalConverter, _layoutLocalService);
 				contentSpaceId = journalArticle.getGroupId();
@@ -113,7 +111,7 @@ public class StructuredContentDTOConverter implements DTOConverter {
 				dateCreated = journalArticle.getCreateDate();
 				dateModified = journalArticle.getModifiedDate();
 				datePublished = journalArticle.getDisplayDate();
-				description = journalArticle.getDescription(locale);
+				description = journalArticle.getDescription(dtoConverterContext.getLocale());
 				id = journalArticle.getResourcePrimKey();
 				key = journalArticle.getArticleId();
 				keywords = ListUtil.toArray(
@@ -126,7 +124,7 @@ public class StructuredContentDTOConverter implements DTOConverter {
 					JournalArticle.class.getName(),
 					journalArticle.getResourcePrimKey());
 				renderedContents = _toRenderedContents(
-					ddmStructure, journalArticle, locale,
+					ddmStructure, journalArticle, dtoConverterContext.getLocale(),
 					dtoConverterContext.getUriInfoOptional());
 				taxonomyCategories = TransformUtil.transformToArray(
 					_assetCategoryLocalService.getCategories(
@@ -139,7 +137,7 @@ public class StructuredContentDTOConverter implements DTOConverter {
 						}
 					},
 					TaxonomyCategory.class);
-				title = journalArticle.getTitle(locale);
+				title = journalArticle.getTitle(dtoConverterContext.getLocale());
 				uuid = journalArticle.getUuid();
 			}
 		};
