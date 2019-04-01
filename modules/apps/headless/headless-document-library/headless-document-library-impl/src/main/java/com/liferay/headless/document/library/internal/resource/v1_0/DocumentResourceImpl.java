@@ -29,15 +29,12 @@ import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.model.DLVersionNumberIncrease;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.util.DLURLHelper;
-import com.liferay.headless.common.spi.resource.SPIRatingResource;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.headless.document.library.dto.v1_0.AdaptedImage;
 import com.liferay.headless.document.library.dto.v1_0.Document;
-import com.liferay.headless.document.library.dto.v1_0.Rating;
 import com.liferay.headless.document.library.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.document.library.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.document.library.internal.dto.v1_0.util.CreatorUtil;
-import com.liferay.headless.document.library.internal.dto.v1_0.util.RatingUtil;
 import com.liferay.headless.document.library.internal.odata.entity.v1_0.DocumentEntityModel;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.petra.function.UnsafeConsumer;
@@ -129,16 +126,6 @@ public class DocumentResourceImpl
 		FileEntry fileEntry = _dlAppService.getFileEntry(documentId);
 
 		return _toDocument(fileEntry);
-	}
-
-	@Override
-	public Page<Rating> getDocumentsRatingsPage(Long documentId)
-		throws Exception {
-
-		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
-
-		return spiRatingResource.getRatingsPage(
-			DLFileEntry.class.getName(), documentId);
 	}
 
 	@Override
@@ -236,16 +223,6 @@ public class DocumentResourceImpl
 		throws Exception {
 
 		return _addDocument(contentSpaceId, 0L, contentSpaceId, multipartBody);
-	}
-
-	@Override
-	public Rating postDocumentRating(Long documentId, Rating rating)
-		throws Exception {
-
-		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
-
-		return spiRatingResource.postRating(
-			DLFileEntry.class.getName(), documentId, GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
 	@Override
@@ -414,14 +391,6 @@ public class DocumentResourceImpl
 				_dlAppService.getFileEntry(
 					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))),
 			sorts);
-	}
-
-	private SPIRatingResource<Rating> _getSPIRatingResource() {
-		return new SPIRatingResource<>(
-			_ratingsEntryLocalService,
-			ratingsEntry -> RatingUtil.toRating(
-				_portal, ratingsEntry, _userLocalService),
-			_user);
 	}
 
 	private <T, S> T _getValue(

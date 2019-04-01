@@ -529,7 +529,7 @@ paths:
                                     $ref: "#/components/schemas/Rating"
                                 type: array
                     description: ""
-            tags: ["Document"]
+            tags: ["Rating"]
         post:
             parameters:
                 - in: path
@@ -550,7 +550,7 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/Rating"
                     description: ""
-            tags: ["Document"]
+            tags: ["Rating"]
     "/documents/{document-id}/comments":
         get:
             parameters:

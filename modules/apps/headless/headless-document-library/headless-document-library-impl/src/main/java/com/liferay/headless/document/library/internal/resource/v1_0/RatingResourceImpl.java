@@ -14,6 +14,7 @@
 
 package com.liferay.headless.document.library.internal.resource.v1_0;
 
+import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.headless.common.spi.resource.SPIRatingResource;
 import com.liferay.headless.document.library.dto.v1_0.Rating;
 import com.liferay.headless.document.library.internal.dto.v1_0.util.RatingUtil;
@@ -22,6 +23,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
 
 import javax.ws.rs.core.Context;
@@ -47,10 +49,31 @@ public class RatingResourceImpl extends BaseRatingResourceImpl {
 	}
 
 	@Override
+	public Page<Rating> getDocumentRatingsPage(Long documentId)
+		throws Exception {
+
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
+
+		return spiRatingResource.getRatingsPage(
+			DLFileEntry.class.getName(), documentId);
+	}
+
+	@Override
 	public Rating getRating(Long ratingId) throws Exception {
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.getRating(ratingId);
+	}
+
+	@Override
+	public Rating postDocumentRating(Long documentId, Rating rating)
+		throws Exception {
+
+		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
+
+		return spiRatingResource.postRating(
+			DLFileEntry.class.getName(), documentId,
+			GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
 	@Override
