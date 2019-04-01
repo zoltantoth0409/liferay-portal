@@ -240,7 +240,7 @@ public abstract class BaseFormRecordResourceTestCase {
 		FormRecord postFormRecord = testGetFormFetchLatestDraft_addFormRecord();
 
 		FormRecord getFormRecord = invokeGetFormFetchLatestDraft(
-			postFormRecord.getId());
+			postFormRecord.getFormId());
 
 		assertEquals(postFormRecord, getFormRecord);
 		assertValid(getFormRecord);
@@ -266,6 +266,10 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		String string = HttpUtil.URLtoString(options);
 
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
 		try {
 			return _outputObjectMapper.readValue(string, FormRecord.class);
 		}
@@ -287,7 +291,7 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		options.setLocation(location);
 
-		HttpUtil.URLtoString(options);
+		HttpUtil.URLtoByteArray(options);
 
 		return options.getResponse();
 	}

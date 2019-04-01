@@ -80,6 +80,7 @@ public class Mutation {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
+	@GraphQLName("postFormUploadFileFormIdMultipartBody")
 	public FormDocument postFormUploadFile(
 			@GraphQLName("form-id") Long formId,
 			@GraphQLName("MultipartBody") MultipartBody multipartBody)

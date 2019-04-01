@@ -24,6 +24,8 @@ import com.liferay.petra.string.StringBundler;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 
+import java.util.Objects;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -53,6 +55,9 @@ public class FormRecordForm {
 		try {
 			draft = draftUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -77,6 +82,9 @@ public class FormRecordForm {
 		try {
 			fieldValues = fieldValuesUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -85,6 +93,28 @@ public class FormRecordForm {
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String fieldValues;
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
+		if (!(object instanceof FormRecordForm)) {
+			return false;
+		}
+
+		FormRecordForm formRecordForm = (FormRecordForm)object;
+
+		return Objects.equals(toString(), formRecordForm.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		String string = toString();
+
+		return string.hashCode();
+	}
 
 	public String toString() {
 		StringBundler sb = new StringBundler();

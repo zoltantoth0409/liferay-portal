@@ -26,6 +26,8 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.Objects;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -55,6 +57,9 @@ public class Field {
 		try {
 			autocomplete = autocompleteUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -78,6 +83,9 @@ public class Field {
 
 		try {
 			dataSourceType = dataSourceTypeUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -103,6 +111,9 @@ public class Field {
 		try {
 			dataType = dataTypeUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -127,6 +138,9 @@ public class Field {
 		try {
 			displayStyle = displayStyleUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -149,6 +163,9 @@ public class Field {
 	public void setGrid(UnsafeSupplier<Grid, Exception> gridUnsafeSupplier) {
 		try {
 			grid = gridUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -174,6 +191,9 @@ public class Field {
 		try {
 			hasFormRules = hasFormRulesUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -195,6 +215,9 @@ public class Field {
 	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -220,6 +243,9 @@ public class Field {
 		try {
 			immutable = immutableUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -243,6 +269,9 @@ public class Field {
 
 		try {
 			inline = inlineUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -268,6 +297,9 @@ public class Field {
 		try {
 			inputControl = inputControlUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -291,6 +323,9 @@ public class Field {
 
 		try {
 			label = labelUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -316,6 +351,9 @@ public class Field {
 		try {
 			localizable = localizableUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -340,6 +378,9 @@ public class Field {
 		try {
 			multiple = multipleUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -361,6 +402,9 @@ public class Field {
 	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
 			name = nameUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -387,6 +431,9 @@ public class Field {
 		try {
 			options = optionsUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -410,6 +457,9 @@ public class Field {
 
 		try {
 			placeholder = placeholderUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -435,6 +485,9 @@ public class Field {
 		try {
 			predefinedValue = predefinedValueUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -458,6 +511,9 @@ public class Field {
 
 		try {
 			readOnly = readOnlyUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -483,6 +539,9 @@ public class Field {
 		try {
 			repeatable = repeatableUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -506,6 +565,9 @@ public class Field {
 
 		try {
 			required = requiredUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -531,6 +593,9 @@ public class Field {
 		try {
 			showAsSwitcher = showAsSwitcherUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -554,6 +619,9 @@ public class Field {
 
 		try {
 			showLabel = showLabelUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -579,6 +647,9 @@ public class Field {
 		try {
 			style = styleUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -600,6 +671,9 @@ public class Field {
 	public void setText(UnsafeSupplier<String, Exception> textUnsafeSupplier) {
 		try {
 			text = textUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -624,6 +698,9 @@ public class Field {
 
 		try {
 			tooltip = tooltipUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -650,6 +727,9 @@ public class Field {
 		try {
 			validation = validationUnsafeSupplier.get();
 		}
+		catch (RuntimeException re) {
+			throw re;
+		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -658,6 +738,28 @@ public class Field {
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Validation validation;
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
+		if (!(object instanceof Field)) {
+			return false;
+		}
+
+		Field field = (Field)object;
+
+		return Objects.equals(toString(), field.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		String string = toString();
+
+		return string.hashCode();
+	}
 
 	public String toString() {
 		StringBundler sb = new StringBundler();
