@@ -220,8 +220,10 @@ public class StructuredContentFolderResourceImpl
 				description = journalFolder.getDescription();
 				id = journalFolder.getFolderId();
 				name = journalFolder.getName();
-				numberOfFolders = _journalFolderService.getFoldersCount(
-					journalFolder.getGroupId(), journalFolder.getFolderId());
+				numberOfStructuredContentFolders =
+					_journalFolderService.getFoldersCount(
+						journalFolder.getGroupId(),
+						journalFolder.getFolderId());
 				numberOfStructuredContents =
 					_journalArticleService.getArticlesCount(
 						journalFolder.getGroupId(), journalFolder.getFolderId(),

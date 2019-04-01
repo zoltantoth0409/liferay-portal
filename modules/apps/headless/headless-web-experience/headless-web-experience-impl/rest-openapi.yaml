@@ -346,7 +346,7 @@ components:
                     type: integer
                 name:
                     type: string
-                numberOfFolders:
+                numberOfStructuredContentFolders:
                     type: number
                 numberOfStructuredContents:
                     type: number
