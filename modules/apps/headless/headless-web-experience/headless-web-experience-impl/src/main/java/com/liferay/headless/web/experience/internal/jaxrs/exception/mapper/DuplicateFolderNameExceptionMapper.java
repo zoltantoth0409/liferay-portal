@@ -47,7 +47,7 @@ public class DuplicateFolderNameExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			"A StructuredContentFolder already exists with that name"
+			dfne.getMessage()
 		).build();
 	}
 

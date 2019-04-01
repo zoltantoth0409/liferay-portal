@@ -47,7 +47,7 @@ public class FolderNameExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			"Name is not valid"
+			fne.getMessage()
 		).build();
 	}
 
