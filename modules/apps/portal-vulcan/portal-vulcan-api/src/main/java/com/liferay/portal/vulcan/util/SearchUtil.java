@@ -49,7 +49,23 @@ public class SearchUtil {
 			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
 			Filter filter, Class<?> indexerClass, Pagination pagination,
 			UnsafeConsumer<QueryConfig, Exception> queryConfigUnsafeConsumer,
-			String search,
+			UnsafeConsumer<SearchContext, Exception>
+				searchContextUnsafeConsumer,
+			UnsafeFunction<Document, T, Exception> transformUnsafeFunction,
+			Sort[] sorts)
+		throws Exception {
+
+		return search(
+			booleanQueryUnsafeConsumer, filter, indexerClass, "", pagination,
+			queryConfigUnsafeConsumer, searchContextUnsafeConsumer,
+			transformUnsafeFunction, sorts);
+	}
+
+	public static <T> Page<T> search(
+			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
+			Filter filter, Class<?> indexerClass, String keywords,
+			Pagination pagination,
+			UnsafeConsumer<QueryConfig, Exception> queryConfigUnsafeConsumer,
 			UnsafeConsumer<SearchContext, Exception>
 				searchContextUnsafeConsumer,
 			UnsafeFunction<Document, T, Exception> transformUnsafeFunction,
@@ -67,8 +83,8 @@ public class SearchUtil {
 		Indexer<?> indexer = IndexerRegistryUtil.getIndexer(indexerClass);
 
 		SearchContext searchContext = _createSearchContext(
-			_getBooleanClause(booleanQueryUnsafeConsumer, filter), pagination,
-			queryConfigUnsafeConsumer, search, sorts);
+			_getBooleanClause(booleanQueryUnsafeConsumer, filter), keywords,
+			pagination, queryConfigUnsafeConsumer, sorts);
 
 		searchContextUnsafeConsumer.accept(searchContext);
 
@@ -85,33 +101,18 @@ public class SearchUtil {
 		return Page.of(items, pagination, indexer.searchCount(searchContext));
 	}
 
-	public static <T> Page<T> search(
-			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
-			Filter filter, Class<?> indexerClass, Pagination pagination,
-			UnsafeConsumer<QueryConfig, Exception> queryConfigUnsafeConsumer,
-			UnsafeConsumer<SearchContext, Exception>
-				searchContextUnsafeConsumer,
-			UnsafeFunction<Document, T, Exception> transformUnsafeFunction,
-			Sort[] sorts)
-		throws Exception {
-
-		return search(
-			booleanQueryUnsafeConsumer, filter, indexerClass, pagination,
-			queryConfigUnsafeConsumer, "", searchContextUnsafeConsumer,
-			transformUnsafeFunction, sorts);
-	}
-
 	private static SearchContext _createSearchContext(
-			BooleanClause<?> booleanClause, Pagination pagination,
+			BooleanClause<?> booleanClause, String keywords,
+			Pagination pagination,
 			UnsafeConsumer<QueryConfig, Exception> queryConfigUnsafeConsumer,
-			String search, Sort[] sorts)
+			Sort[] sorts)
 		throws Exception {
 
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setBooleanClauses(new BooleanClause[] {booleanClause});
 		searchContext.setEnd(pagination.getEndPosition());
-		searchContext.setKeywords(search);
+		searchContext.setKeywords(keywords);
 		searchContext.setSorts(sorts);
 		searchContext.setStart(pagination.getStartPosition());
 
