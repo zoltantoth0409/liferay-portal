@@ -115,7 +115,8 @@ public class MessageBoardMessageResourceImpl
 
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
-		return spiRatingResource.getRatingsPage(messageBoardMessageId);
+		return spiRatingResource.getRatingsPage(
+			MBMessage.class.getName(), messageBoardMessageId);
 	}
 
 	@Override
@@ -149,7 +150,7 @@ public class MessageBoardMessageResourceImpl
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
-			messageBoardMessageId,
+			MBMessage.class.getName(), messageBoardMessageId,
 			GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
@@ -266,7 +267,7 @@ public class MessageBoardMessageResourceImpl
 
 	private SPIRatingResource<Rating> _getSPIRatingResource() {
 		return new SPIRatingResource<>(
-			MBMessage.class.getName(), _ratingsEntryLocalService,
+			_ratingsEntryLocalService,
 			ratingsEntry -> RatingUtil.toRating(
 				_portal, ratingsEntry, _userLocalService),
 			_user);

@@ -96,7 +96,8 @@ public class BlogPostingResourceImpl
 
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
-		return spiRatingResource.getRatingsPage(blogPostingId);
+		return spiRatingResource.getRatingsPage(
+			BlogsEntry.class.getName(), blogPostingId);
 	}
 
 	@Override
@@ -135,7 +136,7 @@ public class BlogPostingResourceImpl
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
-			blogPostingId, GetterUtil.getDouble(rating.getRatingValue()));
+			BlogsEntry.class.getName(), blogPostingId, GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
 	@Override
@@ -262,7 +263,7 @@ public class BlogPostingResourceImpl
 
 	private SPIRatingResource<Rating> _getSPIRatingResource() {
 		return new SPIRatingResource<>(
-			BlogsEntry.class.getName(), _ratingsEntryLocalService,
+			_ratingsEntryLocalService,
 			ratingsEntry -> RatingUtil.toRating(
 				_portal, ratingsEntry, _userLocalService),
 			_user);

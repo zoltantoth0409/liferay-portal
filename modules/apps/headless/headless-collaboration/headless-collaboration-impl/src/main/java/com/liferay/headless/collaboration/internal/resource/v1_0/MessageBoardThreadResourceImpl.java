@@ -181,7 +181,8 @@ public class MessageBoardThreadResourceImpl
 		MBThread mbThread = _mbThreadLocalService.getMBThread(
 			messageBoardThreadId);
 
-		return spiRatingResource.getRatingsPage(mbThread.getRootMessageId());
+		return spiRatingResource.getRatingsPage(
+			MBMessage.class.getName(), mbThread.getRootMessageId());
 	}
 
 	@Override
@@ -215,7 +216,7 @@ public class MessageBoardThreadResourceImpl
 			messageBoardThreadId);
 
 		return spiRatingResource.postRating(
-			mbThread.getRootMessageId(),
+			MBMessage.class.getName(), mbThread.getRootMessageId(),
 			GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
@@ -267,7 +268,7 @@ public class MessageBoardThreadResourceImpl
 
 	private SPIRatingResource<Rating> _getSPIRatingResource() {
 		return new SPIRatingResource<>(
-			MBMessage.class.getName(), _ratingsEntryLocalService,
+			_ratingsEntryLocalService,
 			ratingsEntry -> RatingUtil.toRating(
 				_portal, ratingsEntry, _userLocalService),
 			_user);

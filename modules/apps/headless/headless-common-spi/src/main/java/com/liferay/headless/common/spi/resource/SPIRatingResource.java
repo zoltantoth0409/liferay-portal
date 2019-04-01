@@ -31,11 +31,10 @@ import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
 public class SPIRatingResource<T> {
 
 	public SPIRatingResource(
-		String className, RatingsEntryLocalService ratingsEntryLocalService,
+		RatingsEntryLocalService ratingsEntryLocalService,
 		UnsafeFunction<RatingsEntry, T, Exception> transformUnsafeFunction,
 		User user) {
 
-		_className = className;
 		_ratingsEntryLocalService = ratingsEntryLocalService;
 		_transformUnsafeFunction = transformUnsafeFunction;
 		_user = user;
@@ -52,21 +51,24 @@ public class SPIRatingResource<T> {
 			_ratingsEntryLocalService.getRatingsEntry(ratingId));
 	}
 
-	public Page<T> getRatingsPage(Long classPK) throws Exception {
+	public Page<T> getRatingsPage(
+			String className, Long classPK)
+		throws Exception {
+
 		return Page.of(
 			transform(
-				_ratingsEntryLocalService.getEntries(_className, classPK),
+				_ratingsEntryLocalService.getEntries(className, classPK),
 				_transformUnsafeFunction));
 	}
 
-	public T postRating(Long messageBoardMessageId, Double ratingValue)
+	public T postRating(String className, Long classPK, Double ratingValue)
 		throws Exception {
 
 		_checkPermission();
 
 		return _transformUnsafeFunction.apply(
 			_ratingsEntryLocalService.updateEntry(
-				_user.getUserId(), _className, messageBoardMessageId,
+				_user.getUserId(), className, classPK,
 				ratingValue, new ServiceContext()));
 	}
 
@@ -89,7 +91,6 @@ public class SPIRatingResource<T> {
 		}
 	}
 
-	private final String _className;
 	private final RatingsEntryLocalService _ratingsEntryLocalService;
 	private final UnsafeFunction<RatingsEntry, T, Exception>
 		_transformUnsafeFunction;

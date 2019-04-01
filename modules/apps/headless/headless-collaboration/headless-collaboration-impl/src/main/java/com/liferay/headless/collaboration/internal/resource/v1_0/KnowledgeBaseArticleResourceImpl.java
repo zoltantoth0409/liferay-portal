@@ -157,7 +157,8 @@ public class KnowledgeBaseArticleResourceImpl
 
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
-		return spiRatingResource.getRatingsPage(knowledgeBaseArticleId);
+		return spiRatingResource.getRatingsPage(
+			KBArticle.class.getName(), knowledgeBaseArticleId);
 	}
 
 	@Override
@@ -225,7 +226,7 @@ public class KnowledgeBaseArticleResourceImpl
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
-			knowledgeBaseArticleId,
+			KBArticle.class.getName(), knowledgeBaseArticleId,
 			GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
@@ -308,7 +309,7 @@ public class KnowledgeBaseArticleResourceImpl
 
 	private SPIRatingResource<Rating> _getSPIRatingResource() {
 		return new SPIRatingResource<>(
-			KBArticle.class.getName(), _ratingsEntryLocalService,
+			_ratingsEntryLocalService,
 			ratingsEntry -> RatingUtil.toRating(
 				_portal, ratingsEntry, _userLocalService),
 			_user);

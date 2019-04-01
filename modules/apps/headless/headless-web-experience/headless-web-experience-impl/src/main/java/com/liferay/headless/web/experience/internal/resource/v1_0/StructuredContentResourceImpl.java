@@ -252,7 +252,8 @@ public class StructuredContentResourceImpl
 
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
-		return spiRatingResource.getRatingsPage(structuredContentId);
+		return spiRatingResource.getRatingsPage(
+			JournalArticle.class.getName(), structuredContentId);
 	}
 
 	@Override
@@ -386,7 +387,8 @@ public class StructuredContentResourceImpl
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
-			structuredContentId, GetterUtil.getDouble(rating.getRatingValue()));
+			JournalArticle.class.getName(), structuredContentId,
+			GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
 	@Override
@@ -532,7 +534,7 @@ public class StructuredContentResourceImpl
 
 	private SPIRatingResource<Rating> _getSPIRatingResource() {
 		return new SPIRatingResource<>(
-			JournalArticle.class.getName(), _ratingsEntryLocalService,
+			_ratingsEntryLocalService,
 			ratingsEntry -> RatingUtil.toRating(
 				_portal, ratingsEntry, _userLocalService),
 			_user);

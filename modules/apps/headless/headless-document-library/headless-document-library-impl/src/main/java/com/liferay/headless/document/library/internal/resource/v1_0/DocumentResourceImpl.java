@@ -137,7 +137,8 @@ public class DocumentResourceImpl
 
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
-		return spiRatingResource.getRatingsPage(documentId);
+		return spiRatingResource.getRatingsPage(
+			DLFileEntry.class.getName(), documentId);
 	}
 
 	@Override
@@ -244,7 +245,7 @@ public class DocumentResourceImpl
 		SPIRatingResource<Rating> spiRatingResource = _getSPIRatingResource();
 
 		return spiRatingResource.postRating(
-			documentId, GetterUtil.getDouble(rating.getRatingValue()));
+			DLFileEntry.class.getName(), documentId, GetterUtil.getDouble(rating.getRatingValue()));
 	}
 
 	@Override
@@ -417,7 +418,7 @@ public class DocumentResourceImpl
 
 	private SPIRatingResource<Rating> _getSPIRatingResource() {
 		return new SPIRatingResource<>(
-			DLFileEntry.class.getName(), _ratingsEntryLocalService,
+			_ratingsEntryLocalService,
 			ratingsEntry -> RatingUtil.toRating(
 				_portal, ratingsEntry, _userLocalService),
 			_user);
