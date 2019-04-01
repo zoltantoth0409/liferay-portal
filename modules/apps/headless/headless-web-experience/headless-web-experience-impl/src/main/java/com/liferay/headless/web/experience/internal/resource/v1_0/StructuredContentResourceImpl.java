@@ -432,7 +432,7 @@ public class StructuredContentResourceImpl
 	}
 
 	private StructuredContent _addStructuredContent(
-			Long contentSpaceId, Long folderId,
+			Long contentSpaceId, Long parentStructuredContentFolderId,
 			StructuredContent structuredContent)
 		throws Exception {
 
@@ -456,7 +456,8 @@ public class StructuredContentResourceImpl
 
 		return _toStructuredContent(
 			_journalArticleService.addArticle(
-				contentSpaceId, folderId, 0, 0, null, true,
+				contentSpaceId, parentStructuredContentFolderId, 0, 0, null,
+				true,
 				new HashMap<Locale, String>() {
 					{
 						put(
