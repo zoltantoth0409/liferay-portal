@@ -20,6 +20,8 @@ import com.liferay.frontend.js.loader.modules.extender.npm.JSPackage;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSPackageDependency;
 import com.liferay.frontend.js.loader.modules.extender.npm.NPMRegistry;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -41,8 +43,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.felix.utils.log.Logger;
 
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
@@ -82,8 +82,6 @@ public class JSLoaderModulesServlet extends HttpServlet {
 		_details = ConfigurableUtil.createConfigurable(
 			Details.class, properties);
 
-		_logger = new Logger(componentContext.getBundleContext());
-
 		_componentContext = componentContext;
 	}
 
@@ -100,6 +98,10 @@ public class JSLoaderModulesServlet extends HttpServlet {
 			_writeResponse(response, _lastServedContent.getValue());
 
 			return;
+		}
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Generating js_loader_modules");
 		}
 
 		StringWriter stringWriter = new StringWriter();
@@ -411,12 +413,14 @@ public class JSLoaderModulesServlet extends HttpServlet {
 		printWriter.close();
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		JSLoaderModulesServlet.class);
+
 	private ComponentContext _componentContext;
 	private volatile Details _details;
 	private JSLoaderModulesTracker _jsLoaderModulesTracker;
 	private volatile ObjectValuePair<Long, String> _lastServedContent =
 		new ObjectValuePair<>(0L, null);
-	private Logger _logger;
 
 	@Reference
 	private Minifier _minifier;
