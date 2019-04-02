@@ -74,13 +74,13 @@ public class OpenIdConnectMetadataFactoryImpl
 			_oidcProviderMetadata.setAuthorizationEndpointURI(
 				new URI(authorizationEndPointURL));
 
-			List<JWSAlgorithm> idTokenJWSAlgs = new ArrayList<>();
+			List<JWSAlgorithm> jwsAlgorithms = new ArrayList<>();
 
 			for (String idTokenSigningAlgValue : idTokenSigningAlgValues) {
-				idTokenJWSAlgs.add(JWSAlgorithm.parse(idTokenSigningAlgValue));
+				jwsAlgorithms.add(JWSAlgorithm.parse(idTokenSigningAlgValue));
 			}
 
-			_oidcProviderMetadata.setIDTokenJWSAlgs(idTokenJWSAlgs);
+			_oidcProviderMetadata.setIDTokenJWSAlgs(jwsAlgorithms);
 
 			_oidcProviderMetadata.setTokenEndpointURI(
 				new URI(tokenEndPointURL));
