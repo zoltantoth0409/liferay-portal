@@ -33,16 +33,15 @@ addPanelURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 </li>
 
 <%
+AssetRenderer<?> assetRenderer = null;
+Map<String, Object> data = new HashMap<String, Object>();
+
 String namespace = PortalUtil.getPortletNamespace(ParamUtil.getString(request, "p_p_id"));
 
 String className = ParamUtil.getString(request, namespace + "className");
 long classPK = ParamUtil.getLong(request, namespace + "classPK");
 
 String portletId = PortletProviderUtil.getPortletId(className, PortletProvider.Action.ADD);
-
-AssetRenderer<?> assetRenderer = null;
-
-Map<String, Object> data = new HashMap<String, Object>();
 
 if (Validator.isNotNull(className) && (classPK > 0)) {
 	AssetRendererFactory<?> assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(className);
