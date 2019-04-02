@@ -138,13 +138,6 @@ components:
                     format: int64
                     type: integer
             type: object
-        FormRecordForm:
-            description: https://www.schema.org/FormRecordForm
-            properties:
-                draft:
-                    type: boolean
-                fieldValues:
-                    type: string
         FormStructure:
             description: https://www.schema.org/FormStructure
             properties:
@@ -214,8 +207,6 @@ components:
                                                         type: object
                                                     type: array
                                             type: object
-                                        hasFormRules:
-                                            type: boolean
                                         id:
                                             format: int64
                                             type: integer
@@ -233,6 +224,8 @@ components:
                                             type: boolean
                                         name:
                                             type: string
+                                        numberOfFormRules:
+                                            type: boolean
                                         options:
                                             description: https://www.schema.org/FormFieldOption
                                             items:
@@ -244,8 +237,8 @@ components:
                                                         type: string
                                                     value:
                                                         type: string
-                                                type: object
-                                            type: array
+                                                type: array
+                                            type: object
                                         placeholder:
                                             type: string
                                         predefinedValue:
@@ -305,18 +298,6 @@ components:
                             type: integer
                     type: object
             type: object
-        MediaForm:
-            description: https://www.schema.org/MediaForm
-            properties:
-                description:
-                    type: string
-                folderId:
-                    format: int64
-                    type: integer
-                name:
-                    type: string
-                title:
-                    type: string
 info:
     description: ""
     title: "Headless Form"
@@ -441,7 +422,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: "#/components/schemas/FormRecordForm"
+                            $ref: "#/components/schemas/FormRecord"
             responses:
                 200:
                     content:
@@ -524,9 +505,9 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/FormRecord"
+                                $ref: "#/components/schemas/Form"
                     description: ""
-            tags: ["FormRecord"]
+            tags: ["Form"]
     "/forms/{form-id}/form-records":
         get:
             parameters:
@@ -570,7 +551,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: "#/components/schemas/FormRecordForm"
+                            $ref: "#/components/schemas/FormRecord"
             responses:
                 200:
                     content:
@@ -590,20 +571,14 @@ paths:
                       type: integer
             requestBody:
                 content:
-                    multipart/form-data:
+                    application/json:
                         schema:
-                            properties:
-                                file:
-                                    format: binary
-                                    type: string
-                                mediaForm:
-                                    $ref: "#/components/schemas/MediaForm"
-                            type: object
+                            $ref: "#/components/schemas/Form"
             responses:
                 200:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/FormDocument"
+                                $ref: "#/components/schemas/Form"
                     description: ""
             tags: ["Form"]
