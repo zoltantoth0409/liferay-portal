@@ -66,6 +66,10 @@ if (showPrototypes && (group != null)) {
 	catch (Exception e) {
 	}
 }
+
+SiteAdminConfiguration siteAdminConfiguration = ConfigurationProviderUtil.getSystemConfiguration(SiteAdminConfiguration.class);
+
+boolean enableCustomLanguagesWithTemplatePropagation = siteAdminConfiguration.enableCustomLanguagesWithTemplatePropagation();
 %>
 
 <liferay-ui:error-marker
@@ -78,7 +82,7 @@ if (showPrototypes && (group != null)) {
 <%
 boolean disableLayoutSetPrototypeInput = false;
 
-if ((group != null) && !LanguageUtil.isInheritLocales(group.getGroupId())) {
+if ((group != null) && !LanguageUtil.isInheritLocales(group.getGroupId()) && !enableCustomLanguagesWithTemplatePropagation) {
 	disableLayoutSetPrototypeInput = true;
 }
 
