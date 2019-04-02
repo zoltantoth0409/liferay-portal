@@ -119,9 +119,6 @@ public class ManageCollaboratorsViewMVCRenderCommand
 				JSONObject collaboratorJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
-				collaboratorJSONObject.put(
-					"userId", Long.valueOf(sharingEntryToUser.getUserId()));
-
 				String portraitURL = StringPool.BLANK;
 
 				if (sharingEntryToUser.getPortraitId() > 0) {
@@ -165,6 +162,8 @@ public class ManageCollaboratorsViewMVCRenderCommand
 					"sharingEntryPermissionDisplaySelectOptions",
 					_getSharingEntryPermissionDisplaySelectOptions(
 						sharingEntry, renderRequest));
+				collaboratorJSONObject.put(
+					"userId", Long.valueOf(sharingEntryToUser.getUserId()));
 
 				collaboratorsJSONArray.put(collaboratorJSONObject);
 			}
