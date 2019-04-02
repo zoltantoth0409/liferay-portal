@@ -180,16 +180,6 @@ public class BlogPostingResourceImpl
 	protected void preparePatch(
 		BlogPosting blogPosting, BlogPosting existingBlogPosting) {
 
-		TaxonomyCategory[] taxonomyCategories =
-			blogPosting.getTaxonomyCategories();
-
-		if (taxonomyCategories != null) {
-			blogPosting.setTaxonomyCategoryIds(
-				transform(
-					taxonomyCategories, TaxonomyCategory::getTaxonomyCategoryId,
-					Long[].class));
-		}
-
 		Image image = blogPosting.getImage();
 		Image existingImage = existingBlogPosting.getImage();
 
@@ -209,6 +199,16 @@ public class BlogPostingResourceImpl
 					);
 				}
 			});
+
+		TaxonomyCategory[] taxonomyCategories =
+			blogPosting.getTaxonomyCategories();
+
+		if (taxonomyCategories != null) {
+			blogPosting.setTaxonomyCategoryIds(
+				transform(
+					taxonomyCategories, TaxonomyCategory::getTaxonomyCategoryId,
+					Long[].class));
+		}
 	}
 
 	private ImageSelector _getImageSelector(Long imageId) {
