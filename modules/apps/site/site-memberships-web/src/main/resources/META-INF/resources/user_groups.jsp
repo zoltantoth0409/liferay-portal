@@ -20,6 +20,8 @@
 UserGroupsDisplayContext userGroupsDisplayContext = new UserGroupsDisplayContext(request, renderRequest, renderResponse);
 
 Role role = userGroupsDisplayContext.getRole();
+
+UserGroupsWebConfiguration userGroupsWebConfiguration = ConfigurationProviderUtil.getSystemConfiguration(UserGroupsWebConfiguration.class);
 %>
 
 <clay:navigation-bar
@@ -86,19 +88,31 @@ Role role = userGroupsDisplayContext.getRole();
 	<aui:input name="tabs1" type="hidden" value="user-groups" />
 </aui:form>
 
-<portlet:actionURL name="addUserGroupGroupRole" var="addUserGroupGroupRoleURL" />
+<c:choose>
+	<c:when test="<%= userGroupsWebConfiguration.enableAssignUnassignRoleActions() %>">
+		<portlet:actionURL name="addUserGroupGroupRole" var="addUserGroupGroupRoleURL" />
 
-<aui:form action="<%= addUserGroupGroupRoleURL %>" cssClass="hide" name="addUserGroupGroupRoleFm">
-	<aui:input name="tabs1" type="hidden" value="user-groups" />
-	<aui:input name="userGroupId" type="hidden" />
-</aui:form>
+		<aui:form action="<%= addUserGroupGroupRoleURL %>" cssClass="hide" name="addUserGroupGroupRoleFm">
+			<aui:input name="tabs1" type="hidden" value="user-groups" />
+			<aui:input name="userGroupId" type="hidden" />
+		</aui:form>
 
-<portlet:actionURL name="unassignUserGroupGroupRole" var="unassignUserGroupGroupRoleURL" />
+		<portlet:actionURL name="unassignUserGroupGroupRole" var="unassignUserGroupGroupRoleURL" />
 
-<aui:form action="<%= unassignUserGroupGroupRoleURL %>" cssClass="hide" name="unassignUserGroupGroupRoleFm">
-	<aui:input name="tabs1" type="hidden" value="user-groups" />
-	<aui:input name="userGroupId" type="hidden" />
-</aui:form>
+		<aui:form action="<%= unassignUserGroupGroupRoleURL %>" cssClass="hide" name="unassignUserGroupGroupRoleFm">
+			<aui:input name="tabs1" type="hidden" value="user-groups" />
+			<aui:input name="userGroupId" type="hidden" />
+		</aui:form>
+	</c:when>
+	<c:otherwise>
+		<portlet:actionURL name="editUserGroupGroupRole" var="editUserGroupGroupRoleURL" />
+
+		<aui:form action="<%= editUserGroupGroupRoleURL %>" cssClass="hide" name="editUserGroupGroupRoleFm">
+			<aui:input name="tabs1" type="hidden" value="user-groups" />
+			<aui:input name="userGroupId" type="hidden" />
+		</aui:form>
+	</c:otherwise>
+</c:choose>
 
 <aui:script use="liferay-item-selector-dialog">
 	var form = $(document.<portlet:namespace />fm);
