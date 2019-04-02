@@ -112,11 +112,11 @@ public class GoogleDriveConnectedAppProvider implements ConnectedAppProvider {
 
 			Drive.About driveAbout = drive.about();
 
-			Drive.About.Get getRequest = driveAbout.get();
+			Drive.About.Get get = driveAbout.get();
 
-			getRequest.setFields("user");
+			get.setFields("user");
 
-			About about = getRequest.execute();
+			About about = get.execute();
 
 			com.google.api.services.drive.model.User user = about.getUser();
 
