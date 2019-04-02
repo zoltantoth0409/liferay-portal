@@ -76,7 +76,7 @@ public class ServicePreActionTest {
 	public void testHiddenLayoutsVirtualHostLayoutCompositeWithNonexistentLayout()
 		throws Exception {
 
-		_request.setRequestURI("/non/existent/page");
+		_request.setRequestURI("/nonexistent_page");
 
 		long plid = getThemeDisplayPlid(true, false);
 
