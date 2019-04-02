@@ -44,13 +44,13 @@ public class UnrecognizedPropertyExceptionMapper
 
 		String entity = stream.map(
 			reference -> {
-				Object from = reference.getFrom();
+				Object object = reference.getFrom();
 
-				Class<?> clazz = from.getClass();
+				Class<?> clazz = object.getClass();
 
 				return StringBundler.concat(
-					"Property: ", reference.getFieldName(),
-					" is not defined in ", clazz.getSimpleName());
+					"Property \"", reference.getFieldName(),
+					"\" is not defined in ", clazz.getSimpleName());
 			}
 		).collect(
 			Collectors.joining(".")
