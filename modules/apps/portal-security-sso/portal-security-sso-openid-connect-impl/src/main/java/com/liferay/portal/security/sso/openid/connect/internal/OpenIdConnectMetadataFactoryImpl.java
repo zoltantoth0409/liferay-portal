@@ -73,10 +73,6 @@ public class OpenIdConnectMetadataFactoryImpl
 
 			_oidcProviderMetadata.setAuthorizationEndpointURI(
 				new URI(authorizationEndPointURL));
-			_oidcProviderMetadata.setTokenEndpointURI(
-				new URI(tokenEndPointURL));
-			_oidcProviderMetadata.setUserInfoEndpointURI(
-				new URI(userInfoEndPointURL));
 
 			List<JWSAlgorithm> idTokenJWSAlgs = new ArrayList<>();
 
@@ -85,6 +81,11 @@ public class OpenIdConnectMetadataFactoryImpl
 			}
 
 			_oidcProviderMetadata.setIDTokenJWSAlgs(idTokenJWSAlgs);
+
+			_oidcProviderMetadata.setTokenEndpointURI(
+				new URI(tokenEndPointURL));
+			_oidcProviderMetadata.setUserInfoEndpointURI(
+				new URI(userInfoEndPointURL));
 
 			refreshClientMetadata(_oidcProviderMetadata);
 		}
