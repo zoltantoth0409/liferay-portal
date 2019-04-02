@@ -25,14 +25,10 @@ if (Validator.isNull(redirect)) {
 	redirect = portletURL.toString();
 }
 
-AssetListEntry assetListEntry = assetListDisplayContext.getAssetListEntry();
-
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
 renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
-
-List<AssetListEntrySegmentsEntryRel> assetEntryListSegmentsEntryRels = editAssetListDisplayContext.getAssetListEntrySegmentsEntryRels();
 %>
 
 <div class="container-fluid container-fluid-max-xl container-view">
@@ -41,6 +37,11 @@ List<AssetListEntrySegmentsEntryRel> assetEntryListSegmentsEntryRels = editAsset
 			<nav class="menubar menubar-transparent menubar-vertical-expand-lg">
 				<ul class="nav nav-nested">
 					<li class="nav-item">
+
+						<%
+						List<AssetListEntrySegmentsEntryRel> assetEntryListSegmentsEntryRels = editAssetListDisplayContext.getAssetListEntrySegmentsEntryRels();
+						%>
+
 						<c:choose>
 							<c:when test="<%= assetEntryListSegmentsEntryRels.size() > 1 %>">
 								<div class="autofit-row autofit-row-center">
@@ -96,6 +97,10 @@ List<AssetListEntrySegmentsEntryRel> assetEntryListSegmentsEntryRels = editAsset
 				</ul>
 			</nav>
 		</div>
+
+		<%
+		AssetListEntry assetListEntry = assetListDisplayContext.getAssetListEntry();
+		%>
 
 		<div class="col-lg-9">
 			<c:choose>
