@@ -278,11 +278,12 @@ public class FragmentEntryLinkLocalServiceWrapper
 	}
 
 	@Override
-	public int getClassModelFragmentEntryLinksCount(
+	public int getClassedModelFragmentEntryLinksCount(
 		long groupId, long classNameId, long classPK) {
 
 		return _fragmentEntryLinkLocalService.
-			getClassModelFragmentEntryLinksCount(groupId, classNameId, classPK);
+			getClassedModelFragmentEntryLinksCount(
+				groupId, classNameId, classPK);
 	}
 
 	@Override
@@ -492,10 +493,10 @@ public class FragmentEntryLinkLocalServiceWrapper
 	}
 
 	@Override
-	public void updateClassModel(long classNameId, long classPK)
+	public void updateClassedModel(long classNameId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		_fragmentEntryLinkLocalService.updateClassModel(classNameId, classPK);
+		_fragmentEntryLinkLocalService.updateClassedModel(classNameId, classPK);
 	}
 
 	/**

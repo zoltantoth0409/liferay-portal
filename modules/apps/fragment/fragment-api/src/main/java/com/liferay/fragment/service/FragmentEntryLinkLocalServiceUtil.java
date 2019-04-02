@@ -261,10 +261,10 @@ public class FragmentEntryLinkLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
-	public static int getClassModelFragmentEntryLinksCount(
+	public static int getClassedModelFragmentEntryLinksCount(
 		long groupId, long classNameId, long classPK) {
 
-		return getService().getClassModelFragmentEntryLinksCount(
+		return getService().getClassedModelFragmentEntryLinksCount(
 			groupId, classNameId, classPK);
 	}
 
@@ -455,10 +455,10 @@ public class FragmentEntryLinkLocalServiceUtil {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	public static void updateClassModel(long classNameId, long classPK)
+	public static void updateClassedModel(long classNameId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		getService().updateClassModel(classNameId, classPK);
+		getService().updateClassedModel(classNameId, classPK);
 	}
 
 	/**

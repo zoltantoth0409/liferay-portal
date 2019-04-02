@@ -220,7 +220,7 @@ public interface FragmentEntryLinkLocalService
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getClassModelFragmentEntryLinksCount(
+	public int getClassedModelFragmentEntryLinksCount(
 		long groupId, long classNameId, long classPK);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -346,7 +346,7 @@ public interface FragmentEntryLinkLocalService
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
-	public void updateClassModel(long classNameId, long classPK)
+	public void updateClassedModel(long classNameId, long classPK)
 		throws PortalException;
 
 	/**
