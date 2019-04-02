@@ -64,7 +64,6 @@ public class LayoutPageTemplateStructureHelperUtil {
 			structureJSONObject.put("columns", columnJSONArray);
 
 			structureJSONObject.put("rowId", String.valueOf(i));
-
 			structureJSONObject.put("type", _getRowType(fragmentEntryLink));
 
 			structureJSONArray.put(structureJSONObject);
