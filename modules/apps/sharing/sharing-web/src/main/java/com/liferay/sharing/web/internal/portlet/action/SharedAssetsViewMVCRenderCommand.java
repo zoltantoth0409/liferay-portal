@@ -173,10 +173,10 @@ public class SharedAssetsViewMVCRenderCommand implements MVCRenderCommand {
 
 		return new SharedAssetsViewDisplayContext(
 			liferayPortletRequest, liferayPortletResponse,
-			sharedAssetsFilterItems, _sharingEntryLocalService,
+			sharedAssetsFilterItems,
 			_sharingEntryInterpreterProvider::getSharingEntryInterpreter,
-			_sharingMenuItemFactory, _sharingEntryMenuItemContributorRegistry,
-			_sharingPermission);
+			_sharingEntryLocalService, _sharingEntryMenuItemContributorRegistry,
+			_sharingMenuItemFactory, _sharingPermission);
 	}
 
 	private SharingEntry _getSharingEntry(

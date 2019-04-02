@@ -72,22 +72,22 @@ public class SharedAssetsViewDisplayContext {
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse,
 		List<SharedAssetsFilterItem> sharedAssetsFilterItems,
-		SharingEntryLocalService sharingEntryLocalService,
 		Function<SharingEntry, SharingEntryInterpreter>
 			sharingEntryInterpreterFunction,
-		SharingMenuItemFactory sharingMenuItemFactory,
+		SharingEntryLocalService sharingEntryLocalService,
 		SharingEntryMenuItemContributorRegistry
 			sharingEntryMenuItemContributorRegistry,
+		SharingMenuItemFactory sharingMenuItemFactory,
 		SharingPermission sharingPermission) {
 
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
 		_sharedAssetsFilterItems = sharedAssetsFilterItems;
-		_sharingEntryLocalService = sharingEntryLocalService;
 		_sharingEntryInterpreterFunction = sharingEntryInterpreterFunction;
-		_sharingMenuItemFactory = sharingMenuItemFactory;
+		_sharingEntryLocalService = sharingEntryLocalService;
 		_sharingEntryMenuItemContributorRegistry =
 			sharingEntryMenuItemContributorRegistry;
+		_sharingMenuItemFactory = sharingMenuItemFactory;
 		_sharingPermission = sharingPermission;
 
 		_currentURLObj = PortletURLUtil.getCurrent(
