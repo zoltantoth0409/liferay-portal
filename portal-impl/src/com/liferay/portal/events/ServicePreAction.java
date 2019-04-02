@@ -1017,9 +1017,9 @@ public class ServicePreAction extends Action {
 
 		Group group = null;
 
+		boolean loginRequest = _isLoginRequest(request);
 		boolean stagingGroup = false;
 		boolean viewableGroup = false;
-		boolean loginRequest = _isLoginRequest(request);
 
 		if (layout != null) {
 			group = layout.getGroup();
