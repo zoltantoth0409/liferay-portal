@@ -196,7 +196,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Usuarios",
 			panel = "Control Panel",
-			portlet = "Usuarios y Organizaciones"
+			portlet = "Usuarios y organizaciones"
 		);
 
 		Organization.addWithLocalizedCountryCP(
@@ -212,7 +212,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Usuarios",
 			panel = "Control Panel",
-			portlet = "Usuarios y Organizaciones"
+			portlet = "Usuarios y organizaciones"
 		);
 
 		Organization.viewLocalizedCountryCP(
