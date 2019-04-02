@@ -51,13 +51,13 @@ public class RevokeConnectedAppMVCActionCommand extends BaseMVCActionCommand {
 
 		User user = _portal.getSelectedUser(actionRequest);
 
-		String revokeKey = ParamUtil.getString(
+		String connectedAppKey = ParamUtil.getString(
 			actionRequest, "connectedAppKey", StringPool.BLANK);
 
 		for (ConnectedApp connectedApp :
 				_connectedAppManager.getConnectedApps(user)) {
 
-			if (revokeKey.equals(connectedApp.getKey())) {
+			if (connectedAppKey.equals(connectedApp.getKey())) {
 				connectedApp.revoke();
 			}
 		}
