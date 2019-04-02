@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.SessionFactory;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
+import com.liferay.portal.kernel.test.rule.AssumeTestRule;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.TransactionalTestRule;
 
@@ -31,7 +32,6 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Assume;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -47,10 +47,10 @@ public class DB2DialectTest {
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
 		new AggregateTestRule(
-			new LiferayIntegrationTestRule(), TransactionalTestRule.INSTANCE);
+			new AssumeTestRule("assume"), new LiferayIntegrationTestRule(),
+			TransactionalTestRule.INSTANCE);
 
-	@Before
-	public void setUp() throws Exception {
+	public static void assume() {
 		DB db = DBManagerUtil.getDB();
 
 		Assume.assumeTrue(db.getDBType() == DBType.DB2);
