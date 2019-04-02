@@ -129,7 +129,8 @@ public abstract class BaseDataLayoutResourceImpl implements DataLayoutResource {
 		this.contextCompany = contextCompany;
 	}
 
-	protected void preparePatch(DataLayout dataLayout) {
+	protected void preparePatch(
+		DataLayout dataLayout, DataLayout existingDataLayout) {
 	}
 
 	protected <T, R> List<R> transform(

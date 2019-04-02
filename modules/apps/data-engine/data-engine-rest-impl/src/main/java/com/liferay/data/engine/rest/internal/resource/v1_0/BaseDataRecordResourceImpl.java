@@ -147,7 +147,8 @@ public abstract class BaseDataRecordResourceImpl implements DataRecordResource {
 		this.contextCompany = contextCompany;
 	}
 
-	protected void preparePatch(DataRecord dataRecord) {
+	protected void preparePatch(
+		DataRecord dataRecord, DataRecord existingDataRecord) {
 	}
 
 	protected <T, R> List<R> transform(

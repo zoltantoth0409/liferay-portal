@@ -159,7 +159,8 @@ public abstract class BaseDataDefinitionResourceImpl
 		this.contextCompany = contextCompany;
 	}
 
-	protected void preparePatch(DataDefinition dataDefinition) {
+	protected void preparePatch(
+		DataDefinition dataDefinition, DataDefinition existingDataDefinition) {
 	}
 
 	protected <T, R> List<R> transform(

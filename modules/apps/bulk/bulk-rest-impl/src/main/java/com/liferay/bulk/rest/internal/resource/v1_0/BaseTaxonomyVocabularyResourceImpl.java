@@ -70,7 +70,9 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 		this.contextCompany = contextCompany;
 	}
 
-	protected void preparePatch(TaxonomyVocabulary taxonomyVocabulary) {
+	protected void preparePatch(
+		TaxonomyVocabulary taxonomyVocabulary,
+		TaxonomyVocabulary existingTaxonomyVocabulary) {
 	}
 
 	protected <T, R> List<R> transform(
