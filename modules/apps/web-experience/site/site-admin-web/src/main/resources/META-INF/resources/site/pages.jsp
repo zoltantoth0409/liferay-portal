@@ -66,10 +66,6 @@ if (showPrototypes && (group != null)) {
 	catch (Exception e) {
 	}
 }
-
-SiteAdminConfiguration siteAdminConfiguration = ConfigurationProviderUtil.getSystemConfiguration(SiteAdminConfiguration.class);
-
-boolean enableCustomLanguagesWithTemplatePropagation = siteAdminConfiguration.enableCustomLanguagesWithTemplatePropagation();
 %>
 
 <liferay-ui:error-marker
