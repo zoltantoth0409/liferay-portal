@@ -1039,7 +1039,7 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		return CalendarUtil.isStagingCalendar(
-			groupLocalService, calendarBooking.getCalendar());
+			calendarBooking.getCalendar(), groupLocalService);
 	}
 
 	@Override

@@ -255,7 +255,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 	@Override
 	public boolean isStagingCalendar(Calendar calendar) {
-		return CalendarUtil.isStagingCalendar(groupLocalService, calendar);
+		return CalendarUtil.isStagingCalendar(calendar, groupLocalService);
 	}
 
 	@Override

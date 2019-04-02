@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.service.GroupLocalService;
 public class CalendarUtil {
 
 	public static boolean isStagingCalendar(
-		GroupLocalService groupLocalService, Calendar calendar) {
+		Calendar calendar, GroupLocalService groupLocalService) {
 
 		long groupId = calendar.getGroupId();
 
