@@ -25,9 +25,7 @@ import javax.ws.rs.core.UriInfo;
  */
 public class DefaultDTOConverterContext implements DTOConverterContext {
 
-	public DefaultDTOConverterContext(
-		Locale locale, long resourcePrimKey) {
-
+	public DefaultDTOConverterContext(Locale locale, long resourcePrimKey) {
 		_locale = locale;
 		_resourcePrimKey = resourcePrimKey;
 	}
