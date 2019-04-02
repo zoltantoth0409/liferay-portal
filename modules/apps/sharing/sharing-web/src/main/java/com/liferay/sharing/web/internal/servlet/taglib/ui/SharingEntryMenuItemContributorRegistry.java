@@ -91,18 +91,18 @@ public class SharingEntryMenuItemContributorRegistry {
 				return Collections.emptyList();
 			}
 
-			List<MenuItem> list = new ArrayList<>();
+			List<MenuItem> menuItems = new ArrayList<>();
 
 			for (SharingEntryMenuItemContributor
 					sharingEntryMenuItemContributor :
 						_sharingEntryMenuItemContributors) {
 
-				list.addAll(
+				menuItems.addAll(
 					sharingEntryMenuItemContributor.getSharingEntryMenuItems(
 						sharingEntry, themeDisplay));
 			}
 
-			return list;
+			return menuItems;
 		}
 
 		private final List<SharingEntryMenuItemContributor>
