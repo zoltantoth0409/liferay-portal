@@ -109,7 +109,7 @@ public class DiscardDraftLayoutMVCActionCommand extends BaseMVCActionCommand {
 
 			int fragmentEntryLinksCount =
 				_fragmentEntryLinkLocalService.
-					getClassModelFragmentEntryLinksCount(
+					getClassedModelFragmentEntryLinksCount(
 						layout.getGroupId(),
 						_portal.getClassNameId(Layout.class), layout.getPlid());
 

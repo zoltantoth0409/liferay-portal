@@ -178,7 +178,7 @@ public class FragmentEntryLinkLocalServiceImpl
 	}
 
 	@Override
-	public int getClassModelFragmentEntryLinksCount(
+	public int getClassedModelFragmentEntryLinksCount(
 		long groupId, long classNameId, long classPK) {
 
 		return fragmentEntryLinkPersistence.countByG_C_C(
@@ -246,7 +246,7 @@ public class FragmentEntryLinkLocalServiceImpl
 	}
 
 	@Override
-	public void updateClassModel(long classNameId, long classPK)
+	public void updateClassedModel(long classNameId, long classPK)
 		throws PortalException {
 
 		if (classNameId != _portal.getClassNameId(Layout.class)) {
@@ -322,7 +322,7 @@ public class FragmentEntryLinkLocalServiceImpl
 
 		fragmentEntryLink.setEditableValues(editableValues);
 
-		updateClassModel(
+		updateClassedModel(
 			fragmentEntryLink.getClassNameId(), fragmentEntryLink.getClassPK());
 
 		fragmentEntryLinkPersistence.update(fragmentEntryLink);
@@ -385,7 +385,7 @@ public class FragmentEntryLinkLocalServiceImpl
 
 			fragmentEntryLink.setLastPropagationDate(new Date());
 
-			updateClassModel(
+			updateClassedModel(
 				fragmentEntryLink.getClassNameId(),
 				fragmentEntryLink.getClassPK());
 

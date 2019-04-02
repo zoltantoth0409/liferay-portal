@@ -73,7 +73,7 @@ public class LayoutPageTemplateStructureLocalServiceImpl
 		layoutPageTemplateStructurePersistence.update(
 			layoutPageTemplateStructure);
 
-		_fragmentEntryLinkLocalService.updateClassModel(classNameId, classPK);
+		_fragmentEntryLinkLocalService.updateClassedModel(classNameId, classPK);
 
 		return layoutPageTemplateStructure;
 	}
@@ -181,12 +181,12 @@ public class LayoutPageTemplateStructureLocalServiceImpl
 		layoutPageTemplateStructurePersistence.update(
 			layoutPageTemplateStructure);
 
-		_updateClassModel(classNameId, classPK);
+		_updateClassedModel(classNameId, classPK);
 
 		return layoutPageTemplateStructure;
 	}
 
-	private void _updateClassModel(long classNameId, long classPK)
+	private void _updateClassedModel(long classNameId, long classPK)
 		throws PortalException {
 
 		if (classNameId == _portal.getClassNameId(Layout.class)) {
