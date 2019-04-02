@@ -16,7 +16,6 @@ package com.liferay.connected.app.web.internal.portlet.action;
 
 import com.liferay.connected.app.ConnectedApp;
 import com.liferay.connected.app.ConnectedAppManager;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;

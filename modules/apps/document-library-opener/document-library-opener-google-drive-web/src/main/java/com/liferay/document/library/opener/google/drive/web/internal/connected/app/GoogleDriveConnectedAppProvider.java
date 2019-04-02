@@ -62,8 +62,8 @@ public class GoogleDriveConnectedAppProvider implements ConnectedAppProvider {
 
 			@Override
 			public String getName(Locale locale) {
-				ResourceBundle resourceBundle =
-					ResourceBundleUtil.getBundle(locale, getClass());
+				ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+					locale, getClass());
 
 				return LanguageUtil.get(resourceBundle, "google-drive");
 			}
