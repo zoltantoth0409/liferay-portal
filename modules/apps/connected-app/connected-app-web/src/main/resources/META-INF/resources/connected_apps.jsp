@@ -42,9 +42,7 @@
 			ConnectedAppManager connectedAppManager = (ConnectedAppManager)request.getAttribute(ConnectedAppManager.class.getName());
 
 			List<ConnectedApp> connectedApps = connectedAppManager.getConnectedApps(user);
-			%>
 
-			<%
 			for (ConnectedApp connectedApp : connectedApps) {
 			%>
 
