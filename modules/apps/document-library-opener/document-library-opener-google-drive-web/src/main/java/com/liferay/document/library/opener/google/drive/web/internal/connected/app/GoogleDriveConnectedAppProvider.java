@@ -52,7 +52,7 @@ public class GoogleDriveConnectedAppProvider implements ConnectedAppProvider {
 			@Override
 			public String getImageURL() {
 				return _servletContext.getContextPath() +
-					"/img/google-drive-logo.png";
+					"/images/google_drive.png";
 			}
 
 			@Override
