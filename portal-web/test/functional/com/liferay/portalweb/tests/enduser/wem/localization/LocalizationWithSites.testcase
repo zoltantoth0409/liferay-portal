@@ -491,7 +491,7 @@ definition {
 		Alert.closePortalLocalizationWarning();
 
 		ProductMenu.gotoPortlet(
-			category = "Estructuración",
+			category = "Compilación",
 			panel = "Site Administration",
 			portlet = "Páginas del sitio web"
 		);
@@ -510,7 +510,7 @@ definition {
 		Alert.closePortalLocalizationWarning();
 
 		ProductMenu.gotoPortlet(
-			category = "Estructuración",
+			category = "Compilación",
 			panel = "Site Administration",
 			portlet = "Páginas del sitio web"
 		);
@@ -934,7 +934,7 @@ definition {
 		Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Estructuración",
+			category = "Compilación",
 			panel = "Site Administration",
 			portlet = "Páginas del sitio web"
 		);
