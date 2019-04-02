@@ -83,7 +83,7 @@ public class UserPortraitTag extends IncludeTag {
 
 		StringBundler sb = new StringBundler(6);
 
-		sb.append("<span class=\"sticker sticker-primary rounded-circle ");
+		sb.append("<span class=\"rounded-circle sticker sticker-primary ");
 		sb.append(cssClass);
 		sb.append("\"><span class=\"sticker-overlay\">");
 		sb.append("<img alt=\"thumbnail\" class=\"img-fluid\" src=\"");
