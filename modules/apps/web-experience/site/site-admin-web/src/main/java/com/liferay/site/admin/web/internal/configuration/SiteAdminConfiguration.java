@@ -22,7 +22,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 /**
  * @author Vendel Töreki
  */
-@ExtendedObjectClassDefinition(category = "infrastructure")
+@ExtendedObjectClassDefinition(category = "web-experience")
 @Meta.OCD(
 	id = "com.liferay.site.admin.web.internal.configuration.SiteAdminConfiguration",
 	localization = "content/Language", name = "site-admin-configuration-name"
