@@ -52,8 +52,8 @@ public class CommentResourceImpl
 
 	@Override
 	public void deleteComment(Long commentId) throws Exception {
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			null);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		spiCommentResource.deleteComment(commentId);
 	}
@@ -64,20 +64,20 @@ public class CommentResourceImpl
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			BlogsEntry.class.getName());
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogPostingId);
 
 		return spiCommentResource.getEntityCommentsPage(
-			blogsEntry.getGroupId(), blogPostingId, search, filter, pagination,
-			sorts);
+			blogsEntry.getGroupId(), BlogsEntry.class.getName(), blogPostingId,
+			search, filter, pagination, sorts);
 	}
 
 	@Override
 	public Comment getComment(Long commentId) throws Exception {
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			null);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		return spiCommentResource.getComment(commentId);
 	}
@@ -88,8 +88,8 @@ public class CommentResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			null);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		return spiCommentResource.getCommentCommentsPage(
 			commentId, search, filter, pagination, sorts);
@@ -101,20 +101,20 @@ public class CommentResourceImpl
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			DLFileEntry.class.getName());
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		DLFileEntry dlFileEntry = _dlFileEntryService.getFileEntry(documentId);
 
 		return spiCommentResource.getEntityCommentsPage(
-			dlFileEntry.getGroupId(), documentId, search, filter, pagination,
-			sorts);
+			dlFileEntry.getGroupId(), DLFileEntry.class.getName(), documentId,
+			search, filter, pagination, sorts);
 	}
 
 	@Override
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			null);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		return spiCommentResource.getEntityModel(multivaluedMap);
 	}
@@ -125,43 +125,44 @@ public class CommentResourceImpl
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			JournalArticle.class.getName());
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
 			structuredContentId);
 
 		return spiCommentResource.getEntityCommentsPage(
-			journalArticle.getGroupId(), structuredContentId, search, filter,
-			pagination, sorts);
+			journalArticle.getGroupId(), JournalArticle.class.getName(),
+			structuredContentId, search, filter, pagination, sorts);
 	}
 
 	@Override
 	public Comment postBlogPostingComment(Long blogPostingId, Comment comment)
 		throws Exception {
 
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			BlogsEntry.class.getName());
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogPostingId);
 
 		return spiCommentResource.postEntityComment(
-			blogsEntry.getGroupId(), blogPostingId, comment.getText());
+			blogsEntry.getGroupId(), BlogsEntry.class.getName(), blogPostingId,
+			comment.getText());
 	}
 
 	@Override
-	public Comment postCommentComment(Long commentId, Comment comment)
+	public Comment postCommentComment(Long parentCommentId, Comment comment)
 		throws Exception {
 
 		com.liferay.portal.kernel.comment.Comment parentComment =
-			_commentManager.fetchComment(commentId);
+			_commentManager.fetchComment(parentCommentId);
 
 		if (parentComment == null) {
 			throw new NotFoundException();
 		}
 
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			parentComment.getClassName());
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		return spiCommentResource.postCommentComment(
 			parentComment, comment.getText());
@@ -171,13 +172,14 @@ public class CommentResourceImpl
 	public Comment postDocumentComment(Long documentId, Comment comment)
 		throws Exception {
 
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			DLFileEntry.class.getName());
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		DLFileEntry fileEntry = _dlFileEntryService.getFileEntry(documentId);
 
 		return spiCommentResource.postEntityComment(
-			fileEntry.getGroupId(), documentId, comment.getText());
+			fileEntry.getGroupId(), DLFileEntry.class.getName(), documentId,
+			comment.getText());
 	}
 
 	@Override
@@ -185,32 +187,30 @@ public class CommentResourceImpl
 			Long structuredContentId, Comment comment)
 		throws Exception {
 
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			JournalArticle.class.getName());
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
 			structuredContentId);
 
 		return spiCommentResource.postEntityComment(
-			journalArticle.getGroupId(), structuredContentId,
-			comment.getText());
+			journalArticle.getGroupId(), JournalArticle.class.getName(),
+			structuredContentId, comment.getText());
 	}
 
 	@Override
 	public Comment putComment(Long commentId, Comment comment)
 		throws Exception {
 
-		SPICommentResource<Comment> spiCommentResource = _getSPICommentResource(
-			null);
+		SPICommentResource<Comment> spiCommentResource =
+			_getSPICommentResource();
 
 		return spiCommentResource.putComment(commentId, comment.getText());
 	}
 
-	private SPICommentResource<Comment> _getSPICommentResource(
-		String className) {
-
+	private SPICommentResource<Comment> _getSPICommentResource() {
 		return new SPICommentResource<>(
-			className, _commentManager, contextCompany,
+			_commentManager, contextCompany,
 			comment -> CommentUtil.toComment(
 				comment, _commentManager, _portal));
 	}
