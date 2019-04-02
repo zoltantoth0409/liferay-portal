@@ -287,7 +287,7 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 		JavadocManagerUtil.load(servletContextName, classLoader);
 
 		DirectServletRegistryUtil.clearServlets();
-		FileTimestampUtil.reset();
+		FileTimestampUtil.reset(servletContext);
 
 		_portlets.put(servletContextName, portlets);
 
