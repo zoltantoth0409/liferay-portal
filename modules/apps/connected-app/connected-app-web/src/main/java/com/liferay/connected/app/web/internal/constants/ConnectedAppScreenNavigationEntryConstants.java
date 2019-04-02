@@ -17,7 +17,7 @@ package com.liferay.connected.app.web.internal.constants;
 /**
  * @author Alejandro Tardín
  */
-public class ConnectedAppConstants {
+public class ConnectedAppScreenNavigationEntryConstants {
 
 	public static final String ENTRY_KEY_CONNECTED_APP = "connected-app";
 

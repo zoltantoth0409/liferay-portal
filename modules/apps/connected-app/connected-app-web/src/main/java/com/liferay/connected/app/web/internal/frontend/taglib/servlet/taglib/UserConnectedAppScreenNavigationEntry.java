@@ -15,7 +15,7 @@
 package com.liferay.connected.app.web.internal.frontend.taglib.servlet.taglib;
 
 import com.liferay.connected.app.ConnectedAppManager;
-import com.liferay.connected.app.web.internal.constants.ConnectedAppConstants;
+import com.liferay.connected.app.web.internal.constants.ConnectedAppScreenNavigationEntryConstants;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
@@ -53,7 +53,8 @@ public class UserConnectedAppScreenNavigationEntry
 
 	@Override
 	public String getEntryKey() {
-		return ConnectedAppConstants.ENTRY_KEY_CONNECTED_APP;
+		return ConnectedAppScreenNavigationEntryConstants.
+			ENTRY_KEY_CONNECTED_APP;
 	}
 
 	@Override
