@@ -275,13 +275,12 @@ public class DLOpenerGoogleDriveManagerImpl
 
 			Drive.Files driveFiles = drive.files();
 
-			Drive.Files.Get getRequest = driveFiles.get(
+			Drive.Files.Get get = driveFiles.get(
 				_getGoogleDriveFileId(fileEntry));
 
-			getRequest.setFields("exportLinks");
+			get.setFields("exportLinks");
 
-			com.google.api.services.drive.model.File file =
-				getRequest.execute();
+			com.google.api.services.drive.model.File file = get.execute();
 
 			Map<String, String> exportLinks = file.getExportLinks();
 
