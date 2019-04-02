@@ -15,7 +15,6 @@
 package com.liferay.headless.form.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.FormRecord;
-import com.liferay.headless.form.dto.v1_0.FormRecordForm;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -35,18 +34,14 @@ public interface FormRecordResource {
 
 	public FormRecord getFormRecord(Long formRecordId) throws Exception;
 
-	public FormRecord putFormRecord(
-			Long formRecordId, FormRecordForm formRecordForm)
+	public FormRecord putFormRecord(Long formRecordId, FormRecord formRecord)
 		throws Exception;
-
-	public FormRecord getFormFetchLatestDraft(Long formId) throws Exception;
 
 	public Page<FormRecord> getFormFormRecordsPage(
 			Long formId, Pagination pagination)
 		throws Exception;
 
-	public FormRecord postFormFormRecord(
-			Long formId, FormRecordForm formRecordForm)
+	public FormRecord postFormFormRecord(Long formId, FormRecord formRecord)
 		throws Exception;
 
 	public void setContextCompany(Company contextCompany);

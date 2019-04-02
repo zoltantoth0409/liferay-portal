@@ -176,33 +176,6 @@ public class Field {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Grid grid;
 
-	public Boolean getHasFormRules() {
-		return hasFormRules;
-	}
-
-	public void setHasFormRules(Boolean hasFormRules) {
-		this.hasFormRules = hasFormRules;
-	}
-
-	@JsonIgnore
-	public void setHasFormRules(
-		UnsafeSupplier<Boolean, Exception> hasFormRulesUnsafeSupplier) {
-
-		try {
-			hasFormRules = hasFormRulesUnsafeSupplier.get();
-		}
-		catch (RuntimeException re) {
-			throw re;
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected Boolean hasFormRules;
-
 	public Long getId() {
 		return id;
 	}
@@ -415,21 +388,20 @@ public class Field {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String name;
 
-	@Schema(description = "https://www.schema.org/FormFieldOption")
-	public Option[] getOptions() {
-		return options;
+	public Boolean getNumberOfFormRules() {
+		return numberOfFormRules;
 	}
 
-	public void setOptions(Option[] options) {
-		this.options = options;
+	public void setNumberOfFormRules(Boolean numberOfFormRules) {
+		this.numberOfFormRules = numberOfFormRules;
 	}
 
 	@JsonIgnore
-	public void setOptions(
-		UnsafeSupplier<Option[], Exception> optionsUnsafeSupplier) {
+	public void setNumberOfFormRules(
+		UnsafeSupplier<Boolean, Exception> numberOfFormRulesUnsafeSupplier) {
 
 		try {
-			options = optionsUnsafeSupplier.get();
+			numberOfFormRules = numberOfFormRulesUnsafeSupplier.get();
 		}
 		catch (RuntimeException re) {
 			throw re;
@@ -441,7 +413,35 @@ public class Field {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected Option[] options;
+	protected Boolean numberOfFormRules;
+
+	@Schema(description = "https://www.schema.org/FormFieldOption")
+	public Option getOption() {
+		return option;
+	}
+
+	public void setOption(Option option) {
+		this.option = option;
+	}
+
+	@JsonIgnore
+	public void setOption(
+		UnsafeSupplier<Option, Exception> optionUnsafeSupplier) {
+
+		try {
+			option = optionUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected Option option;
 
 	public String getPlaceholder() {
 		return placeholder;
@@ -797,11 +797,6 @@ public class Field {
 		sb.append(grid);
 		sb.append(", ");
 
-		sb.append("\"hasFormRules\": ");
-
-		sb.append(hasFormRules);
-		sb.append(", ");
-
 		sb.append("\"id\": ");
 
 		sb.append(id);
@@ -848,25 +843,14 @@ public class Field {
 		sb.append("\"");
 		sb.append(", ");
 
-		sb.append("\"options\": ");
+		sb.append("\"numberOfFormRules\": ");
 
-		if (options == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("[");
+		sb.append(numberOfFormRules);
+		sb.append(", ");
 
-			for (int i = 0; i < options.length; i++) {
-				sb.append(options[i]);
+		sb.append("\"option\": ");
 
-				if ((i + 1) < options.length) {
-					sb.append(", ");
-				}
-			}
-
-			sb.append("]");
-		}
-
+		sb.append(option);
 		sb.append(", ");
 
 		sb.append("\"placeholder\": ");

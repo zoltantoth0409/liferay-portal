@@ -108,6 +108,17 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
+	public Form getFormFetchLatestDraft(@GraphQLName("form-id") Long formId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_formResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			formResource -> formResource.getFormFetchLatestDraft(formId));
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
 	public FormDocument getFormDocument(
 			@GraphQLName("form-document-id") Long formDocumentId)
 		throws Exception {
@@ -130,19 +141,6 @@ public class Query {
 			this::_populateResourceContext,
 			formRecordResource -> formRecordResource.getFormRecord(
 				formRecordId));
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public FormRecord getFormFetchLatestDraft(
-			@GraphQLName("form-id") Long formId)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_formRecordResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			formRecordResource -> formRecordResource.getFormFetchLatestDraft(
-				formId));
 	}
 
 	@GraphQLField

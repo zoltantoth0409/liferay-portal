@@ -22,7 +22,6 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.headless.form.dto.v1_0.Form;
-import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.headless.form.resource.v1_0.FormResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -41,7 +40,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
@@ -380,8 +378,69 @@ public abstract class BaseFormResourceTestCase {
 	}
 
 	@Test
+	public void testGetFormFetchLatestDraft() throws Exception {
+		Form postForm = testGetFormFetchLatestDraft_addForm();
+
+		Form getForm = invokeGetFormFetchLatestDraft(postForm.getId());
+
+		assertEquals(postForm, getForm);
+		assertValid(getForm);
+	}
+
+	protected Form testGetFormFetchLatestDraft_addForm() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Form invokeGetFormFetchLatestDraft(Long formId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath("/forms/{form-id}/fetch-latest-draft", formId);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(string, Form.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokeGetFormFetchLatestDraftResponse(Long formId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL +
+				_toPath("/forms/{form-id}/fetch-latest-draft", formId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
 	public void testPostFormUploadFile() throws Exception {
-		Assert.assertTrue(true);
+		Form randomForm = randomForm();
+
+		Form postForm = testPostFormUploadFile_addForm(randomForm);
+
+		assertEquals(randomForm, postForm);
+		assertValid(postForm);
 	}
 
 	protected Form testPostFormUploadFile_addForm(Form form) throws Exception {
@@ -389,11 +448,14 @@ public abstract class BaseFormResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected FormDocument invokePostFormUploadFile(
-			Long formId, MultipartBody multipartBody)
+	protected Form invokePostFormUploadFile(Long formId, Form form)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(form),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/forms/{form-id}/upload-file", formId);
@@ -409,7 +471,7 @@ public abstract class BaseFormResourceTestCase {
 		}
 
 		try {
-			return _outputObjectMapper.readValue(string, FormDocument.class);
+			return _outputObjectMapper.readValue(string, Form.class);
 		}
 		catch (Exception e) {
 			_log.error("Unable to process HTTP response: " + string, e);
@@ -419,10 +481,14 @@ public abstract class BaseFormResourceTestCase {
 	}
 
 	protected Http.Response invokePostFormUploadFileResponse(
-			Long formId, MultipartBody multipartBody)
+			Long formId, Form form)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(form),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/forms/{form-id}/upload-file", formId);

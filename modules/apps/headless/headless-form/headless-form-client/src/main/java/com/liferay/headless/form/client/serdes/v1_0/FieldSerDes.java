@@ -15,12 +15,10 @@
 package com.liferay.headless.form.client.serdes.v1_0;
 
 import com.liferay.headless.form.client.dto.v1_0.Field;
-import com.liferay.headless.form.client.dto.v1_0.Option;
 import com.liferay.headless.form.client.json.BaseJSONParser;
 
 import java.util.Collection;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -83,11 +81,6 @@ public class FieldSerDes {
 		sb.append(field.getGrid());
 		sb.append(", ");
 
-		sb.append("\"hasFormRules\": ");
-
-		sb.append(field.getHasFormRules());
-		sb.append(", ");
-
 		sb.append("\"id\": ");
 
 		sb.append(field.getId());
@@ -134,25 +127,14 @@ public class FieldSerDes {
 		sb.append("\"");
 		sb.append(", ");
 
-		sb.append("\"options\": ");
+		sb.append("\"numberOfFormRules\": ");
 
-		if (field.getOptions() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("[");
+		sb.append(field.getNumberOfFormRules());
+		sb.append(", ");
 
-			for (int i = 0; i < field.getOptions().length; i++) {
-				sb.append(field.getOptions()[i]);
+		sb.append("\"option\": ");
 
-				if ((i + 1) < field.getOptions().length) {
-					sb.append(", ");
-				}
-			}
-
-			sb.append("]");
-		}
-
+		sb.append(field.getOption());
 		sb.append(", ");
 
 		sb.append("\"placeholder\": ");
@@ -286,11 +268,6 @@ public class FieldSerDes {
 						GridSerDes.toDTO((String)jsonParserFieldValue));
 				}
 			}
-			else if (Objects.equals(jsonParserFieldName, "hasFormRules")) {
-				if (jsonParserFieldValue != null) {
-					field.setHasFormRules((Boolean)jsonParserFieldValue);
-				}
-			}
 			else if (Objects.equals(jsonParserFieldName, "id")) {
 				if (jsonParserFieldValue != null) {
 					field.setId((Long)jsonParserFieldValue);
@@ -331,16 +308,15 @@ public class FieldSerDes {
 					field.setName((String)jsonParserFieldValue);
 				}
 			}
-			else if (Objects.equals(jsonParserFieldName, "options")) {
+			else if (Objects.equals(jsonParserFieldName, "numberOfFormRules")) {
 				if (jsonParserFieldValue != null) {
-					field.setOptions(
-						Stream.of(
-							toStrings((Object[])jsonParserFieldValue)
-						).map(
-							object -> OptionSerDes.toDTO((String)object)
-						).toArray(
-							size -> new Option[size]
-						));
+					field.setNumberOfFormRules((Boolean)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "option")) {
+				if (jsonParserFieldValue != null) {
+					field.setOption(
+						OptionSerDes.toDTO((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "placeholder")) {

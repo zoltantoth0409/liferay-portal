@@ -128,27 +128,6 @@ public class Field {
 
 	protected Grid grid;
 
-	public Boolean getHasFormRules() {
-		return hasFormRules;
-	}
-
-	public void setHasFormRules(Boolean hasFormRules) {
-		this.hasFormRules = hasFormRules;
-	}
-
-	public void setHasFormRules(
-		UnsafeSupplier<Boolean, Exception> hasFormRulesUnsafeSupplier) {
-
-		try {
-			hasFormRules = hasFormRulesUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	protected Boolean hasFormRules;
-
 	public Long getId() {
 		return id;
 	}
@@ -313,26 +292,47 @@ public class Field {
 
 	protected String name;
 
-	public Option[] getOptions() {
-		return options;
+	public Boolean getNumberOfFormRules() {
+		return numberOfFormRules;
 	}
 
-	public void setOptions(Option[] options) {
-		this.options = options;
+	public void setNumberOfFormRules(Boolean numberOfFormRules) {
+		this.numberOfFormRules = numberOfFormRules;
 	}
 
-	public void setOptions(
-		UnsafeSupplier<Option[], Exception> optionsUnsafeSupplier) {
+	public void setNumberOfFormRules(
+		UnsafeSupplier<Boolean, Exception> numberOfFormRulesUnsafeSupplier) {
 
 		try {
-			options = optionsUnsafeSupplier.get();
+			numberOfFormRules = numberOfFormRulesUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	protected Option[] options;
+	protected Boolean numberOfFormRules;
+
+	public Option getOption() {
+		return option;
+	}
+
+	public void setOption(Option option) {
+		this.option = option;
+	}
+
+	public void setOption(
+		UnsafeSupplier<Option, Exception> optionUnsafeSupplier) {
+
+		try {
+			option = optionUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	protected Option option;
 
 	public String getPlaceholder() {
 		return placeholder;
