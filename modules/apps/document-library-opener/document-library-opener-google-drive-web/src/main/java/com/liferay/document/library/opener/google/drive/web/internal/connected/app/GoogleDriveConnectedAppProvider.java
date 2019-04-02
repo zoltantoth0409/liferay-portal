@@ -43,38 +43,38 @@ public class GoogleDriveConnectedAppProvider implements ConnectedAppProvider {
 		Credential credential = _oAuth2Manager.getCredential(
 			user.getCompanyId(), user.getUserId());
 
-		if (credential != null) {
-			return new ConnectedApp() {
-
-				@Override
-				public String getImageURL() {
-					return _servletContext.getContextPath() +
-						"/img/google-drive-logo.png";
-				}
-
-				@Override
-				public String getKey() {
-					return "google-drive";
-				}
-
-				@Override
-				public String getName(Locale locale) {
-					ResourceBundle resourceBundle =
-						ResourceBundleUtil.getBundle(locale, getClass());
-
-					return LanguageUtil.get(resourceBundle, "google-drive");
-				}
-
-				@Override
-				public void revoke() throws PortalException {
-					_oAuth2Manager.revokeCredential(
-						user.getCompanyId(), user.getUserId());
-				}
-
-			};
+		if (credential == null) {
+			return null;
 		}
 
-		return null;
+		return new ConnectedApp() {
+
+			@Override
+			public String getImageURL() {
+				return _servletContext.getContextPath() +
+					"/img/google-drive-logo.png";
+			}
+
+			@Override
+			public String getKey() {
+				return "google-drive";
+			}
+
+			@Override
+			public String getName(Locale locale) {
+				ResourceBundle resourceBundle =
+					ResourceBundleUtil.getBundle(locale, getClass());
+
+				return LanguageUtil.get(resourceBundle, "google-drive");
+			}
+
+			@Override
+			public void revoke() throws PortalException {
+				_oAuth2Manager.revokeCredential(
+					user.getCompanyId(), user.getUserId());
+			}
+
+		};
 	}
 
 	@Reference
