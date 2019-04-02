@@ -1085,6 +1085,7 @@ public class ModulesStructureTest {
 				Matcher matcher = gradlePropertiesPattern.matcher(key);
 
 				if (!_gitRepoGradlePropertiesKeys.contains(key) &&
+					!key.endsWith(".ignore.local") &&
 					!key.endsWith(".version") && !matcher.matches()) {
 
 					StringBundler sb = new StringBundler(
