@@ -1713,10 +1713,10 @@ public abstract class BaseBuild implements Build {
 			Element nameElement = Dom4JUtil.getNewElement(
 				"td", buildInfoElement, expanderAnchorElement, getShortName());
 
-			int indent = getDepth() * _INDENT_SIZE_PIXELS;
+			int indent = getDepth() * _PIXELS_SIZE_INDENT;
 
 			if (expanderAnchorElement != null) {
-				indent -= _EXPANDER_SIZE_PIXELS;
+				indent -= _PIXELS_SIZE_EXPANDER;
 			}
 
 			nameElement.addAttribute(
@@ -2313,10 +2313,10 @@ public abstract class BaseBuild implements Build {
 			Dom4JUtil.getNewAnchorElement(
 				getBuildURL(), null, getDisplayName()));
 
-		int indent = getDepth() * _INDENT_SIZE_PIXELS;
+		int indent = getDepth() * _PIXELS_SIZE_INDENT;
 
 		if (stopWatchRecordsExpanderAnchorElement != null) {
-			indent -= _EXPANDER_SIZE_PIXELS;
+			indent -= _PIXELS_SIZE_EXPANDER;
 		}
 
 		nameCellElement.addAttribute("style", "text-indent: " + indent);
@@ -3222,7 +3222,7 @@ public abstract class BaseBuild implements Build {
 
 	private static final String _CONSOLE_TEXT_CACHE_PREFIX = "console-text-";
 
-	private static final int _EXPANDER_SIZE_PIXELS = 20;
+	private static final int _PIXELS_SIZE_EXPANDER = 20;
 
 	private static final FailureMessageGenerator[] _FAILURE_MESSAGE_GENERATORS =
 		{new GenericFailureMessageGenerator()};
@@ -3231,7 +3231,7 @@ public abstract class BaseBuild implements Build {
 		"compileJSP", "SourceFormatter.format", "Unable to compile JSPs"
 	};
 
-	private static final int _INDENT_SIZE_PIXELS = 35;
+	private static final int _PIXELS_SIZE_INDENT = 35;
 
 	private static final String _JENKINS_REPORT_TIME_ZONE_NAME;
 
