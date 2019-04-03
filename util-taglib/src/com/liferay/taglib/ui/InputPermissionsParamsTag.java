@@ -146,8 +146,6 @@ public class InputPermissionsParamsTag extends TagSupport {
 		if (layout.isTypeControlPanel()) {
 			long refererPlid = themeDisplay.getRefererPlid();
 
-			Group group = themeDisplay.getScopeGroup();
-
 			if (refererPlid > 0) {
 				Layout refererLayout = LayoutLocalServiceUtil.getLayout(
 					refererPlid);
@@ -158,10 +156,14 @@ public class InputPermissionsParamsTag extends TagSupport {
 					return RoleConstants.GUEST;
 				}
 			}
-			else if (!group.hasPrivateLayouts() &&
+			else {
+				Group group = themeDisplay.getScopeGroup();
+
+				if (!group.hasPrivateLayouts() &&
 					 guestDefaultActions.contains(ActionKeys.VIEW)) {
 
-				return RoleConstants.GUEST;
+					return RoleConstants.GUEST;
+				}
 			}
 		}
 		else if (layout.isPublicLayout() &&
