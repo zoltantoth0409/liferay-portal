@@ -57,7 +57,7 @@ public class LazyWorkflowTaskAssigneeListTest {
 					public int getKaleoTaskAssignmentInstancesCount(
 						long kaleoTaskInstanceTokenId) {
 
-						_executedMethodsSet.add(
+						_executedMethodsNames.add(
 							"getKaleoTaskAssignmentInstancesCount");
 
 						return -1;
@@ -75,7 +75,7 @@ public class LazyWorkflowTaskAssigneeListTest {
 		Assert.assertEquals(2, lazyWorkflowTaskAssigneeList.size());
 
 		Assert.assertFalse(
-			_executedMethodsSet.contains(
+			_executedMethodsNames.contains(
 				"getKaleoTaskAssignmentInstancesCount"));
 	}
 
@@ -106,7 +106,7 @@ public class LazyWorkflowTaskAssigneeListTest {
 					public int getKaleoTaskAssignmentInstancesCount(
 						long kaleoTaskInstanceTokenId) {
 
-						_executedMethodsSet.add(
+						_executedMethodsNames.add(
 							"getKaleoTaskAssignmentInstancesCount");
 
 						if (kaleoTaskInstanceTokenId ==
@@ -128,7 +128,7 @@ public class LazyWorkflowTaskAssigneeListTest {
 		Assert.assertEquals(expectedCount, lazyWorkflowTaskAssigneeList.size());
 
 		Assert.assertTrue(
-			_executedMethodsSet.contains(
+			_executedMethodsNames.contains(
 				"getKaleoTaskAssignmentInstancesCount"));
 	}
 
@@ -151,10 +151,10 @@ public class LazyWorkflowTaskAssigneeListTest {
 			User.class.getName(), 2, lazyWorkflowTaskAssigneeList.get(1));
 
 		Assert.assertTrue(
-			_executedMethodsSet.contains("getKaleoTaskAssignmentInstances"));
+			_executedMethodsNames.contains("getKaleoTaskAssignmentInstances"));
 
 		Assert.assertFalse(
-			_executedMethodsSet.contains(
+			_executedMethodsNames.contains(
 				"getFirstKaleoTaskAssignmentInstance"));
 	}
 
@@ -179,10 +179,10 @@ public class LazyWorkflowTaskAssigneeListTest {
 			lazyWorkflowTaskAssigneeList.get(0));
 
 		Assert.assertFalse(
-			_executedMethodsSet.contains("getKaleoTaskAssignmentInstances"));
+			_executedMethodsNames.contains("getKaleoTaskAssignmentInstances"));
 
 		Assert.assertTrue(
-			_executedMethodsSet.contains(
+			_executedMethodsNames.contains(
 				"getFirstKaleoTaskAssignmentInstance"));
 	}
 
@@ -208,7 +208,7 @@ public class LazyWorkflowTaskAssigneeListTest {
 			public KaleoTaskAssignmentInstance
 				getFirstKaleoTaskAssignmentInstance() {
 
-				_executedMethodsSet.add("getFirstKaleoTaskAssignmentInstance");
+				_executedMethodsNames.add("getFirstKaleoTaskAssignmentInstance");
 
 				return super.getFirstKaleoTaskAssignmentInstance();
 			}
@@ -217,7 +217,7 @@ public class LazyWorkflowTaskAssigneeListTest {
 			public List<KaleoTaskAssignmentInstance>
 				getKaleoTaskAssignmentInstances() {
 
-				_executedMethodsSet.add("getKaleoTaskAssignmentInstances");
+				_executedMethodsNames.add("getKaleoTaskAssignmentInstances");
 
 				return super.getKaleoTaskAssignmentInstances();
 			}
@@ -225,6 +225,6 @@ public class LazyWorkflowTaskAssigneeListTest {
 		};
 	}
 
-	private final Set<String> _executedMethodsSet = new HashSet<>();
+	private final Set<String> _executedMethodsNames = new HashSet<>();
 
 }
