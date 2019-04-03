@@ -103,7 +103,6 @@ public class ResourceConfigurationFactory {
 		V1EnvVar v1EnvVar = new V1EnvVar();
 
 		v1EnvVar.setName(variableName);
-
 		v1EnvVar.setValue(variableValue);
 
 		return v1EnvVar;
