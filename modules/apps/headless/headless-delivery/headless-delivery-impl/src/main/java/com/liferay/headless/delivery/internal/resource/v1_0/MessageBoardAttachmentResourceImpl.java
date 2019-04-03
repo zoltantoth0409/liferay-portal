@@ -116,7 +116,7 @@ public class MessageBoardAttachmentResourceImpl
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
 		if (binaryFile == null) {
-			throw new BadRequestException("File can not be null");
+			throw new BadRequestException("No file found in body");
 		}
 
 		Folder folder = mbMessage.addAttachmentsFolder();

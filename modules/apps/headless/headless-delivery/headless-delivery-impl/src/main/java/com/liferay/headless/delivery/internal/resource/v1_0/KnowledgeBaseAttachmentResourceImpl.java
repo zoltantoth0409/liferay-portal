@@ -91,7 +91,7 @@ public class KnowledgeBaseAttachmentResourceImpl
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
 		if (binaryFile == null) {
-			throw new BadRequestException("File can not be null");
+			throw new BadRequestException("No file found in body");
 		}
 
 		return _toKnowledgeBaseAttachment(
