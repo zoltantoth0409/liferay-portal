@@ -74,7 +74,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 	@Test
 	public void testGetTagNamesWithEpubFile() throws Exception {
 		String fileName =
-			"Alice's Adventures in Wonderland, by Lewis Carroll.epub";
+			_FILE_NAME + ".epub";
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			_serviceContext.getScopeGroupId(),
@@ -109,7 +109,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 	@Test
 	public void testGetTagNamesWithHTMLFile() throws Exception {
 		String fileName =
-			"Alice's Adventures in Wonderland, by Lewis Carroll.html";
+			_FILE_NAME + ".html";
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			_serviceContext.getScopeGroupId(),
@@ -164,7 +164,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 	@Test
 	public void testGetTagNamesWithPDFFile() throws Exception {
 		String fileName =
-			"Alice's Adventures in Wonderland, by Lewis Carroll.pdf";
+			_FILE_NAME + ".pdf";
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			_serviceContext.getScopeGroupId(),
@@ -202,7 +202,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 		User user = TestPropsValues.getUser();
 
 		String fileName =
-			"Alice's Adventures in Wonderland, by Lewis Carroll.txt";
+			_FILE_NAME + ".txt";
 
 		FileEntry fileEntry = TempFileEntryUtil.addTempFileEntry(
 			_group.getGroupId(), user.getUserId(),
@@ -221,7 +221,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 	@Test
 	public void testGetTagNamesWithTextFile() throws Exception {
 		String fileName =
-			"Alice's Adventures in Wonderland, by Lewis Carroll.txt";
+			_FILE_NAME + ".txt";
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			_serviceContext.getScopeGroupId(),
@@ -258,7 +258,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 		throws Exception {
 
 		String fileName =
-			"Alice's Adventures in Wonderland, by Lewis Carroll.txt";
+			_FILE_NAME + ".txt";
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			_serviceContext.getScopeGroupId(),
@@ -316,6 +316,9 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 			unsafeRunnable.run();
 		}
 	}
+
+	private static final String _FILE_NAME =
+		"Alice's Adventures in Wonderland, by Lewis Carroll";
 
 	private static final String _OPENNLP_AUTO_TAG_CONFIGURATION_CLASS_NAME =
 		"com.liferay.document.library.asset.auto.tagger.opennlp.internal." +
