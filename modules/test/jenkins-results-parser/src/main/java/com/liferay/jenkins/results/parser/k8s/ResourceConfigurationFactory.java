@@ -91,9 +91,8 @@ public class ResourceConfigurationFactory {
 
 		V1ContainerPort v1ContainerPort = new V1ContainerPort();
 
-		v1ContainerPort.setName(dockerBaseImageName);
-
 		v1ContainerPort.setContainerPort(containerPort);
+		v1ContainerPort.setName(dockerBaseImageName);
 
 		return v1ContainerPort;
 	}
