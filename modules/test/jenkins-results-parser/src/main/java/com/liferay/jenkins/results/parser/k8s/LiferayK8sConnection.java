@@ -143,9 +143,9 @@ public class LiferayK8sConnection {
 	public static class Pod {
 
 		public String getName() {
-			V1ObjectMeta meta = _v1Pod.getMetadata();
+			V1ObjectMeta v1ObjectMeta = _v1Pod.getMetadata();
 
-			return meta.getName();
+			return v1ObjectMeta.getName();
 		}
 
 		protected Pod(V1Pod v1Pod) {
