@@ -3222,8 +3222,6 @@ public abstract class BaseBuild implements Build {
 
 	private static final String _CONSOLE_TEXT_CACHE_PREFIX = "console-text-";
 
-	private static final int _PIXELS_SIZE_EXPANDER = 20;
-
 	private static final FailureMessageGenerator[] _FAILURE_MESSAGE_GENERATORS =
 		{new GenericFailureMessageGenerator()};
 
@@ -3231,9 +3229,11 @@ public abstract class BaseBuild implements Build {
 		"compileJSP", "SourceFormatter.format", "Unable to compile JSPs"
 	};
 
-	private static final int _PIXELS_SIZE_INDENT = 35;
-
 	private static final String _JENKINS_REPORT_TIME_ZONE_NAME;
+
+	private static final int _PIXELS_SIZE_EXPANDER = 20;
+
+	private static final int _PIXELS_SIZE_INDENT = 35;
 
 	private static final Pattern _archiveBuildURLPattern = Pattern.compile(
 		JenkinsResultsParserUtil.combine(
