@@ -118,10 +118,10 @@ public class ResourceConfigurationFactory {
 		return v1ObjectMeta;
 	}
 
-	protected static V1PodSpec newConfigurationPodSpec(V1Container container) {
+	protected static V1PodSpec newConfigurationPodSpec(V1Container v1Container) {
 		V1PodSpec v1PodSpec = new V1PodSpec();
 
-		v1PodSpec.addContainersItem(container);
+		v1PodSpec.addContainersItem(v1Container);
 
 		return v1PodSpec;
 	}
