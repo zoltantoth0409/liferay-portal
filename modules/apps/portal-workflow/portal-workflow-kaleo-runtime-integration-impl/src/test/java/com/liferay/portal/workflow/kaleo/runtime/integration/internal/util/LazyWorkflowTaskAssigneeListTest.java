@@ -130,15 +130,12 @@ public class LazyWorkflowTaskAssigneeListTest {
 
 	@Test
 	public void testGetWhenIndexIsGreaterThanZero() {
-		KaleoTaskAssignmentInstance[] kaleoTaskAssignmentInstances = {
-			KaleoRuntimeTestUtil.mockKaleoTaskAssignmentInstance(
-				Role.class.getName(), 1),
-			KaleoRuntimeTestUtil.mockKaleoTaskAssignmentInstance(
-				User.class.getName(), 2)
-		};
-
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			_getKaleoTaskInstanceToken(kaleoTaskAssignmentInstances);
+			_getKaleoTaskInstanceToken(
+				KaleoRuntimeTestUtil.mockKaleoTaskAssignmentInstance(
+					Role.class.getName(), 1),
+				KaleoRuntimeTestUtil.mockKaleoTaskAssignmentInstance(
+					User.class.getName(), 2));
 
 		LazyWorkflowTaskAssigneeList lazyWorkflowTaskAssigneeList =
 			new LazyWorkflowTaskAssigneeList(kaleoTaskInstanceToken, null);
@@ -146,12 +143,11 @@ public class LazyWorkflowTaskAssigneeListTest {
 		KaleoRuntimeTestUtil.assertWorkflowTaskAssignee(
 			User.class.getName(), 2, lazyWorkflowTaskAssigneeList.get(1));
 
-		Assert.assertTrue(
-			_executedMethodsNames.contains("getKaleoTaskAssignmentInstances"));
-
 		Assert.assertFalse(
 			_executedMethodsNames.contains(
 				"getFirstKaleoTaskAssignmentInstance"));
+		Assert.assertTrue(
+			_executedMethodsNames.contains("getKaleoTaskAssignmentInstances"));
 	}
 
 	@Test
