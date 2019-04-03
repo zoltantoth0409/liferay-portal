@@ -73,8 +73,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 
 	@Test
 	public void testGetTagNamesWithEpubFile() throws Exception {
-		String fileName =
-			_FILE_NAME + ".epub";
+		String fileName = _FILE_NAME + ".epub";
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			_serviceContext.getScopeGroupId(),
@@ -108,8 +107,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 
 	@Test
 	public void testGetTagNamesWithHTMLFile() throws Exception {
-		String fileName =
-			_FILE_NAME + ".html";
+		String fileName = _FILE_NAME + ".html";
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			_serviceContext.getScopeGroupId(),
@@ -163,8 +161,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 
 	@Test
 	public void testGetTagNamesWithPDFFile() throws Exception {
-		String fileName =
-			_FILE_NAME + ".pdf";
+		String fileName = _FILE_NAME + ".pdf";
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			_serviceContext.getScopeGroupId(),
@@ -201,8 +198,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 	public void testGetTagNamesWithTemporaryTextFile() throws Exception {
 		User user = TestPropsValues.getUser();
 
-		String fileName =
-			_FILE_NAME + ".txt";
+		String fileName = _FILE_NAME + ".txt";
 
 		FileEntry fileEntry = TempFileEntryUtil.addTempFileEntry(
 			_group.getGroupId(), user.getUserId(),
@@ -220,8 +216,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 
 	@Test
 	public void testGetTagNamesWithTextFile() throws Exception {
-		String fileName =
-			_FILE_NAME + ".txt";
+		String fileName = _FILE_NAME + ".txt";
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			_serviceContext.getScopeGroupId(),
@@ -257,8 +252,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 	public void testGetTagNamesWithTextFileAndDisabledConfiguration()
 		throws Exception {
 
-		String fileName =
-			_FILE_NAME + ".txt";
+		String fileName = _FILE_NAME + ".txt";
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			_serviceContext.getScopeGroupId(),
