@@ -62,7 +62,7 @@ public class KaleoRuntimeTestUtil {
 	}
 
 	public static KaleoTaskInstanceToken mockKaleoTaskInstanceToken(
-		KaleoTaskAssignmentInstance... returnKaleoTaskAssignmentInstances) {
+		KaleoTaskAssignmentInstance... kaleoTaskAssignmentInstances) {
 
 		return new KaleoTaskInstanceTokenWrapper(null) {
 
@@ -70,20 +70,20 @@ public class KaleoRuntimeTestUtil {
 			public KaleoTaskAssignmentInstance
 				getFirstKaleoTaskAssignmentInstance() {
 
-				if ((returnKaleoTaskAssignmentInstances.length == 0) ||
-					(returnKaleoTaskAssignmentInstances.length > 1)) {
+				if ((kaleoTaskAssignmentInstances.length == 0) ||
+					(kaleoTaskAssignmentInstances.length > 1)) {
 
 					return null;
 				}
 
-				return returnKaleoTaskAssignmentInstances[0];
+				return kaleoTaskAssignmentInstances[0];
 			}
 
 			@Override
 			public List<KaleoTaskAssignmentInstance>
 				getKaleoTaskAssignmentInstances() {
 
-				return Arrays.asList(returnKaleoTaskAssignmentInstances);
+				return Arrays.asList(kaleoTaskAssignmentInstances);
 			}
 
 		};
