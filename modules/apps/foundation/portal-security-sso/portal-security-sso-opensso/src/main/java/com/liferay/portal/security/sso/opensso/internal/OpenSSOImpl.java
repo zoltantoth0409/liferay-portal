@@ -382,7 +382,7 @@ public class OpenSSOImpl implements OpenSSO {
 					_log.debug(
 						StringBundler.concat(
 							"URL ", url, " is invalid with response code ",
-							responseCode));
+							String.valueOf(responseCode)));
 				}
 
 				return false;
@@ -392,7 +392,7 @@ public class OpenSSOImpl implements OpenSSO {
 				_log.debug(
 					StringBundler.concat(
 						"URL ", url, " is valid with response code ",
-						responseCode));
+						String.valueOf(responseCode)));
 			}
 		}
 		catch (IOException ioe) {
