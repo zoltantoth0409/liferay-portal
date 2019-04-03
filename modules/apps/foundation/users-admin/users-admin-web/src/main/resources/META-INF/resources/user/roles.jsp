@@ -18,8 +18,11 @@
 
 <%
 User selUser = (User)request.getAttribute("user.selUser");
-List<Group> groups = (List<Group>)request.getAttribute("user.groups");
-List<Group> inheritedSites = (List<Group>)request.getAttribute("user.inheritedSites");
+List<Group> groups = new ArrayList<>();
+
+groups.addAll((List<Group>)request.getAttribute("user.groups"));
+groups.addAll((List<Group>)request.getAttribute("user.inheritedSites"));
+
 List<Organization> organizations = (List<Organization>)request.getAttribute("user.organizations");
 Long[] organizationIds = UsersAdminUtil.getOrganizationIds(organizations);
 List<Role> roles = (List<Role>)request.getAttribute("user.roles");
@@ -400,7 +403,7 @@ String organizationRoleSyncEntitiesEventName = liferayPortletResponse.getNamespa
 <h3><liferay-ui:message key="site-roles" /></h3>
 
 <c:choose>
-	<c:when test="<%= groups.isEmpty() && inheritedSites.isEmpty() %>">
+	<c:when test="<%= groups.isEmpty() %>">
 		<liferay-ui:message key="this-user-does-not-belong-to-a-site-to-which-a-site-role-can-be-assigned" />
 	</c:when>
 	<c:otherwise>
