@@ -308,8 +308,8 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 					_OPENNLP_AUTO_TAG_CONFIGURATION_CLASS_NAME,
 					new HashMapDictionary<String, Object>() {
 						{
-							put("enabled", true);
 							put("confidenceThreshold", 0.9);
+							put("enabled", true);
 						}
 					})) {
 
