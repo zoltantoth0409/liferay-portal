@@ -441,6 +441,12 @@ AUI.add(
 						return defaultLocale;
 					},
 
+					getEditor: function() {
+						var instance = this;
+
+						return window[instance.getInputName() + 'Editor'];
+					},
+
 					getFieldByNameInFieldDefinition: function(name) {
 						var instance = this;
 
@@ -780,8 +786,10 @@ AUI.add(
 
 						var value = instance.getValue();
 
-						if (!editor._dataReady) {
-							return;
+						if (editor) {
+							if (!editor._dataReady) {
+								return;
+							}
 						}
 
 						if (Lang.isObject(localizationMap)) {
