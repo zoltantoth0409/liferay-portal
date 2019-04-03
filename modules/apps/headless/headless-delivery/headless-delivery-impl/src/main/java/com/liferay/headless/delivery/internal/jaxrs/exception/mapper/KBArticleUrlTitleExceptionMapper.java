@@ -54,7 +54,7 @@ public class KBArticleUrlTitleExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("URL title", "FriendlyURLPath")
+			message.replace("URL title", "Friendly URL")
 		).build();
 	}
 
