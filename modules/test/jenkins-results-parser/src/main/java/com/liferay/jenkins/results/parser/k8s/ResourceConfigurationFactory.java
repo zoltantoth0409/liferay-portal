@@ -131,12 +131,12 @@ public class ResourceConfigurationFactory {
 
 		V1Volume v1Volume = new V1Volume();
 
-		v1Volume.setName(dockerImageName);
-
 		V1EmptyDirVolumeSource v1EmptyDirVolumeSource =
 			new V1EmptyDirVolumeSource();
 
 		v1Volume.setEmptyDir(v1EmptyDirVolumeSource);
+
+		v1Volume.setName(dockerImageName);
 
 		return v1Volume;
 	}
