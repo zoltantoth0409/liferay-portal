@@ -34,6 +34,7 @@ import com.liferay.message.boards.service.MBThreadLocalService;
 import com.liferay.message.boards.service.MBThreadService;
 import com.liferay.message.boards.settings.MBGroupServiceSettings;
 import com.liferay.petra.function.UnsafeConsumer;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
@@ -306,18 +307,19 @@ public class MessageBoardThreadResourceImpl
 			}
 		}
 
-		String[] validPriorities = transform(
-			priorities,
-			priority -> {
-				String[] parts = StringUtil.split(priority, StringPool.PIPE);
-
-				return parts[0];
-			},
-			String.class);
-
 		throw new BadRequestException(
-			"Thread type not valid, valid priorities are " +
-				Arrays.toString(validPriorities));
+			StringBundler.concat(
+				"Thread type \"", threadType, "\" is not available in ",
+				Arrays.toString(
+					transform(
+						priorities,
+						priority -> {
+							String[] parts = StringUtil.split(
+								priority, StringPool.PIPE);
+
+							return parts[0];
+						},
+						String.class))));
 	}
 
 	private String _toThreadType(Long contentSpaceId, double priority)
