@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.internal.jaxrs.exception.mapper;
 
 import com.liferay.blogs.exception.EntryTitleException;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,14 +42,12 @@ public class EntryTitleExceptionMapper
 
 	@Override
 	public Response toResponse(EntryTitleException ete) {
-		String message = ete.getMessage();
-
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("Title", "Headline")
+			StringUtil.replace(ete.getMessage(), "Title", "Headline")
 		).build();
 	}
 

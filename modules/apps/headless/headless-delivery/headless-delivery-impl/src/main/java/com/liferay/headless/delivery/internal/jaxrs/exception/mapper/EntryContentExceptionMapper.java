@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.internal.jaxrs.exception.mapper;
 
 import com.liferay.blogs.exception.EntryContentException;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,14 +42,12 @@ public class EntryContentExceptionMapper
 
 	@Override
 	public Response toResponse(EntryContentException ece) {
-		String message = ece.getMessage();
-
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("Content", "Article body")
+			StringUtil.replace(ece.getMessage(), "Content", "Article body")
 		).build();
 	}
 

@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.internal.jaxrs.exception.mapper;
 
 import com.liferay.message.boards.exception.CategoryNameException;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,14 +42,12 @@ public class CategoryNameExceptionMapper
 
 	@Override
 	public Response toResponse(CategoryNameException cne) {
-		String message = cne.getMessage();
-
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("Name", "Title")
+			StringUtil.replace(cne.getMessage(), "Name", "Title")
 		).build();
 	}
 

@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.internal.jaxrs.exception.mapper;
 
 import com.liferay.knowledge.base.exception.KBArticleUrlTitleException;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,8 +42,6 @@ public class KBArticleUrlTitleExceptionMapper
 
 	@Override
 	public Response toResponse(KBArticleUrlTitleException kbaute) {
-		String message = kbaute.getMessage();
-
 		int statusCode = 400;
 
 		if (kbaute instanceof KBArticleUrlTitleException.MustNotBeDuplicate) {
@@ -54,7 +53,7 @@ public class KBArticleUrlTitleExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("URL title", "Friendly URL")
+			StringUtil.replace(kbaute.getMessage(), "URL title", "Friendly URL")
 		).build();
 	}
 

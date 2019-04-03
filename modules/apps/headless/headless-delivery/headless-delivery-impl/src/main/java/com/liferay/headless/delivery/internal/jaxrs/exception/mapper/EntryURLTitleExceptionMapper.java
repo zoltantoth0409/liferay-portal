@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.internal.jaxrs.exception.mapper;
 
 import com.liferay.blogs.exception.EntryUrlTitleException;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,14 +42,12 @@ public class EntryURLTitleExceptionMapper
 
 	@Override
 	public Response toResponse(EntryUrlTitleException eute) {
-		String message = eute.getMessage();
-
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("URL title", "FriendlyURLPath")
+			StringUtil.replace(eute.getMessage(), "URL title", "Friendly URL")
 		).build();
 	}
 

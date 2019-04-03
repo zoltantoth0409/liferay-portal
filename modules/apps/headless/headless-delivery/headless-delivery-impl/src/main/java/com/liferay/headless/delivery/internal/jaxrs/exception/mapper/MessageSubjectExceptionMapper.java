@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.internal.jaxrs.exception.mapper;
 
 import com.liferay.message.boards.exception.MessageSubjectException;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,16 +42,14 @@ public class MessageSubjectExceptionMapper
 
 	@Override
 	public Response toResponse(MessageSubjectException mse) {
-		String message = mse.getMessage();
-
-		message = message.replace("Subject", "Headline");
-
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("body", "article body")
+			StringUtil.replace(
+				mse.getMessage(), new String[] {"Subject", "body"},
+				new String[] {"Headline", "article body"})
 		).build();
 	}
 

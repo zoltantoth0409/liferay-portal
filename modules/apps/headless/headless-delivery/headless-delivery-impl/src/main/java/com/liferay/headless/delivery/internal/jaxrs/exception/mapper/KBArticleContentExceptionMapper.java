@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.internal.jaxrs.exception.mapper;
 
 import com.liferay.knowledge.base.exception.KBArticleContentException;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,14 +42,12 @@ public class KBArticleContentExceptionMapper
 
 	@Override
 	public Response toResponse(KBArticleContentException kbace) {
-		String message = kbace.getMessage();
-
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("Content", "Article body")
+			StringUtil.replace(kbace.getMessage(), "Content", "Article body")
 		).build();
 	}
 

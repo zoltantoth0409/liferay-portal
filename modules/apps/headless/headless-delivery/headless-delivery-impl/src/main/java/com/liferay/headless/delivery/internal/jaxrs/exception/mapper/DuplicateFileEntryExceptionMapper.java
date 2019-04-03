@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.internal.jaxrs.exception.mapper;
 
 import com.liferay.document.library.kernel.exception.DuplicateFileEntryException;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,16 +42,12 @@ public class DuplicateFileEntryExceptionMapper
 
 	@Override
 	public Response toResponse(DuplicateFileEntryException dfee) {
-		String message = dfee.getMessage();
-
-		message = message.replace("file entry", "document");
-
 		return Response.status(
 			409
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message
+			StringUtil.replace(dfee.getMessage(), "file entry", "document")
 		).build();
 	}
 
