@@ -84,11 +84,9 @@ public class OpenNLPDocumentAssetAutoTagProvider
 		_sentenceModel = new SentenceModel(
 			bundle.getResource(
 				"/lib/org.apache.opennlp.model.en.sent-1.5.0-bin.bin"));
-
 		_tokenizerModel = new TokenizerModel(
 			bundle.getResource(
 				"/lib/org.apache.opennlp.model.en.token-1.5.0-bin.bin"));
-
 		_tokenNameFinderModels = Arrays.asList(
 			new TokenNameFinderModel(
 				bundle.getResource(
