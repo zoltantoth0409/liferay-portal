@@ -17,10 +17,10 @@
 <%@ include file="/personal_menu/init.jsp" %>
 
 <%
+String namespace = StringUtil.randomId() + StringPool.UNDERLINE;
+
 boolean expanded = (boolean)request.getAttribute("liferay-product-navigation:personal-menu:expanded");
 String label = (String)request.getAttribute("liferay-product-navigation:personal-menu:label");
-
-String namespace = StringUtil.randomId() + StringPool.UNDERLINE;
 %>
 
 <style type="text/css">
