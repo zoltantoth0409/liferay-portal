@@ -25,10 +25,6 @@ long formInstanceId = BeanParamUtil.getLong(formInstance, request, "formInstance
 long groupId = BeanParamUtil.getLong(formInstance, request, "groupId", scopeGroupId);
 long ddmStructureId = BeanParamUtil.getLong(formInstance, request, "structureId");
 
-String defaultLanguageId = ddmFormAdminDisplayContext.getDefaultLanguageId();
-
-Locale[] availableLocales = ddmFormAdminDisplayContext.getAvailableLocales();
-
 boolean disableCopyButton = false;
 
 if (!ddmFormAdminDisplayContext.isFormPublished() && (formInstance != null)) {
@@ -69,7 +65,7 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 
 			<ul class="navbar-nav toolbar-group-field">
 				<li class="nav-item">
-					<button class="btn btn-secondary lfr-ddm-share-url-button nav-btn nav-btn-monospaced share-form-icon <%= disableCopyButton ? "ddm-btn-disabled" : "" %> <%= (!ddmFormAdminDisplayContext.isFormPublished() && (formInstance == null)) ? "hide" : "" %>" data-original-title="<liferay-ui:message key="copy-url" />" id="<portlet:namespace />publishIcon" title="<%= disableCopyButton ? LanguageUtil.get(request, "publish-the-form-to-get-its-shareable-link") : LanguageUtil.get(request, "copy-url") %>" type="button">
+					<button class="btn btn-secondary <%= disableCopyButton ? "ddm-btn-disabled" : "" %> <%= (!ddmFormAdminDisplayContext.isFormPublished() && (formInstance == null)) ? "hide" : "" %> lfr-ddm-share-url-button nav-btn nav-btn-monospaced share-form-icon" data-original-title="<liferay-ui:message key="copy-url" />" id="<portlet:namespace />publishIcon" title="<%= disableCopyButton ? LanguageUtil.get(request, "publish-the-form-to-get-its-shareable-link") : LanguageUtil.get(request, "copy-url") %>" type="button">
 						<svg class="lexicon-icon">
 							<use xlink:href="<%= ddmFormAdminDisplayContext.getLexiconIconsPath() %>link" />
 						</svg>
@@ -87,7 +83,7 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 	</nav>
 
 	<div class="container-fluid-1280 ddm-translation-manager">
-		<aui:translation-manager availableLocales="<%= availableLocales %>" changeableDefaultLanguage="<%= false %>" defaultLanguageId="<%= defaultLanguageId %>" id="translationManager" />
+		<aui:translation-manager availableLocales="<%= ddmFormAdminDisplayContext.getAvailableLocales() %>" changeableDefaultLanguage="<%= false %>" defaultLanguageId="<%= ddmFormAdminDisplayContext.getDefaultLanguageId() %>" id="translationManager" />
 	</div>
 
 	<aui:form action="<%= saveFormInstanceURL %>" cssClass="ddm-form-builder-form" enctype="multipart/form-data" method="post" name="editForm">
