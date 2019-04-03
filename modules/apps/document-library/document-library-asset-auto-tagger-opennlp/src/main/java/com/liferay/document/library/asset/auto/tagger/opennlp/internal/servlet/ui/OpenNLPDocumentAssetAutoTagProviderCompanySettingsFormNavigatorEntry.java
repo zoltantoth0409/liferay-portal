@@ -87,7 +87,7 @@ public class
 		throws IOException {
 
 		try {
-			_addConfigurationToRequest(request);
+			_addConfiguration(request);
 
 			super.include(request, response);
 		}
@@ -119,7 +119,7 @@ public class
 		return "/portal_settings/opennlp_auto_tag_provider.jsp";
 	}
 
-	private void _addConfigurationToRequest(HttpServletRequest request)
+	private void _addConfiguration(HttpServletRequest request)
 		throws ConfigurationException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
