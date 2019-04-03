@@ -129,4 +129,5 @@ FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFor
 </aui:script>
 
 <%@ include file="/admin/copy_form_publish_url.jspf" %>
+
 <%@ include file="/admin/export_form_instance.jspf" %>
