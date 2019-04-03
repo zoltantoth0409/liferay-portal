@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.internal.jaxrs.exception.mapper;
 
 import com.liferay.document.library.kernel.exception.FolderNameException;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,14 +42,12 @@ public class FolderNameExceptionMapper
 
 	@Override
 	public Response toResponse(FolderNameException fne) {
-		String message = fne.getMessage();
-
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("Folder", "Document folder")
+			StringUtil.replace(fne.getMessage(), "Folder", "Document folder")
 		).build();
 	}
 

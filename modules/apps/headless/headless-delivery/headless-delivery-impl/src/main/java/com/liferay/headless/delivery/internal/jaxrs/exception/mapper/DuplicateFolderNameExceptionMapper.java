@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.internal.jaxrs.exception.mapper;
 
 import com.liferay.document.library.kernel.exception.DuplicateFolderNameException;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,14 +42,12 @@ public class DuplicateFolderNameExceptionMapper
 
 	@Override
 	public Response toResponse(DuplicateFolderNameException dfne) {
-		String message = dfne.getMessage();
-
 		return Response.status(
 			409
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("folder", "document folder")
+			StringUtil.replace(dfne.getMessage(), "folder", "document folder")
 		).build();
 	}
 
