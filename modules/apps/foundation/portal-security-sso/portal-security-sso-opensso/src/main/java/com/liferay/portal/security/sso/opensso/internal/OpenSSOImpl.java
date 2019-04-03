@@ -65,11 +65,11 @@ public class OpenSSOImpl implements OpenSSO {
 
 	@Override
 	public Map<String, String> getAttributes(
-		HttpServletRequest request, String serviceUrl) {
+		HttpServletRequest request, String serviceURL) {
 
 		Map<String, String> nameValues = new HashMap<>();
 
-		String url = serviceUrl.concat(_GET_ATTRIBUTES);
+		String url = serviceURL.concat(_GET_ATTRIBUTES);
 
 		try {
 			URL urlObj = new URL(url);
@@ -82,7 +82,7 @@ public class OpenSSOImpl implements OpenSSO {
 			httpURLConnection.setRequestProperty(
 				"Content-type", "application/x-www-form-urlencoded");
 
-			String[] cookieNames = getCookieNames(serviceUrl);
+			String[] cookieNames = getCookieNames(serviceURL);
 
 			setCookieProperty(request, httpURLConnection, cookieNames);
 
@@ -143,8 +143,8 @@ public class OpenSSOImpl implements OpenSSO {
 		return nameValues;
 	}
 
-	public String[] getCookieNames(String serviceUrl) {
-		String[] cookieNames = _cookieNamesMap.get(serviceUrl);
+	public String[] getCookieNames(String serviceURL) {
+		String[] cookieNames = _cookieNamesMap.get(serviceURL);
 
 		if (cookieNames != null) {
 			return cookieNames;
@@ -155,7 +155,7 @@ public class OpenSSOImpl implements OpenSSO {
 		try {
 			String cookieName = null;
 
-			String url = serviceUrl.concat(_GET_COOKIE_NAME);
+			String url = serviceURL.concat(_GET_COOKIE_NAME);
 
 			URL urlObj = new URL(url);
 
@@ -187,7 +187,7 @@ public class OpenSSOImpl implements OpenSSO {
 				}
 			}
 
-			url = serviceUrl.concat(_GET_COOKIE_NAMES);
+			url = serviceURL.concat(_GET_COOKIE_NAMES);
 
 			urlObj = new URL(url);
 
@@ -232,25 +232,25 @@ public class OpenSSOImpl implements OpenSSO {
 			new String[cookieNamesList.size()]);
 
 		if (cookieNames.length > 0) {
-			_cookieNamesMap.put(serviceUrl, cookieNames);
+			_cookieNamesMap.put(serviceURL, cookieNames);
 		}
 
 		return cookieNames;
 	}
 
 	@Override
-	public String getSubjectId(HttpServletRequest request, String serviceUrl) {
-		String cookieName = getCookieNames(serviceUrl)[0];
+	public String getSubjectId(HttpServletRequest request, String serviceURL) {
+		String cookieName = getCookieNames(serviceURL)[0];
 
 		return CookieKeys.getCookie(request, cookieName);
 	}
 
 	@Override
 	public boolean isAuthenticated(
-			HttpServletRequest request, String serviceUrl)
+			HttpServletRequest request, String serviceURL)
 		throws IOException {
 
-		String[] cookieNames = getCookieNames(serviceUrl);
+		String[] cookieNames = getCookieNames(serviceURL);
 
 		if (!hasCookieNames(request, cookieNames)) {
 			return false;
@@ -275,14 +275,14 @@ public class OpenSSOImpl implements OpenSSO {
 		}
 
 		if (version.equals(OpenSSOConfigurationKeys.VERSION_OPENAM_13)) {
-			String subjectId = getSubjectId(request, serviceUrl);
+			String subjectId = getSubjectId(request, serviceURL);
 
 			if (subjectId != null) {
 				String validateTokenUrl = StringUtil.replace(
 					_VALIDATE_TOKEN_VERSION_13, "{#subjectId}",
 					URLCodec.encodeURL(subjectId));
 
-				String url = serviceUrl.concat(validateTokenUrl);
+				String url = serviceURL.concat(validateTokenUrl);
 
 				String result = _http.URLtoString(url, true);
 
@@ -307,7 +307,7 @@ public class OpenSSOImpl implements OpenSSO {
 			}
 		}
 		else {
-			String url = serviceUrl.concat(_VALIDATE_TOKEN_VERSION_12);
+			String url = serviceURL.concat(_VALIDATE_TOKEN_VERSION_12);
 
 			URL urlObj = new URL(url);
 
@@ -347,12 +347,12 @@ public class OpenSSOImpl implements OpenSSO {
 	}
 
 	@Override
-	public boolean isValidServiceUrl(String serviceUrl) {
-		if (Validator.isNull(serviceUrl)) {
+	public boolean isValidServiceUrl(String serviceURL) {
+		if (Validator.isNull(serviceURL)) {
 			return false;
 		}
 
-		String[] cookieNames = getCookieNames(serviceUrl);
+		String[] cookieNames = getCookieNames(serviceURL);
 
 		if (cookieNames.length == 0) {
 			return false;
