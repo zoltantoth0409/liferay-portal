@@ -1064,18 +1064,7 @@ app.server.type=@{app.server.type}]]></echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -1134,18 +1123,7 @@ app.server.type=@{app.server.type}]]></echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -1191,18 +1169,7 @@ app.server.type=@{app.server.type}]]></echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -1437,22 +1404,11 @@ app.server.type=@{app.server.type}]]></echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
+					<setup-test-environment />
 
-							<antcall inheritAll="false" target="record-test-class-file-names">
-								<param name="test.class.groups.size" value="${test.batch.size}" />
-							</antcall>
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<antcall inheritAll="false" target="record-test-class-file-names">
+						<param name="test.class.groups.size" value="${test.batch.size}" />
+					</antcall>
 
 					<if>
 						<isset property="env.CI_TEST_SUITE" />
@@ -1563,18 +1519,7 @@ app.server.type=@{app.server.type}]]></echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -1631,18 +1576,7 @@ log.sanitizer.enabled=false</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -1685,18 +1619,7 @@ log.sanitizer.enabled=false</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -1820,18 +1743,7 @@ module.framework.properties.lpkg.index.validator.enabled=true</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -1941,18 +1853,7 @@ module.framework.properties.lpkg.index.validator.enabled=true</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -2016,18 +1917,7 @@ module.framework.properties.lpkg.index.validator.enabled=true</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -2102,18 +1992,7 @@ module.framework.properties.lpkg.index.validator.enabled=true</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -2246,18 +2125,7 @@ module.framework.properties.lpkg.index.validator.enabled=true</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -2532,18 +2400,7 @@ log.sanitizer.enabled=false</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -2612,18 +2469,7 @@ log.sanitizer.enabled=false</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -2672,18 +2518,7 @@ log.sanitizer.enabled=false</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -2730,6 +2565,23 @@ log.sanitizer.enabled=false</echo>
 			<setup-testable-tomcat-print-final-flags />
 
 			<setup-testable-tomcat />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="setup-test-environment">
+		<sequential>
+			<if>
+				<and>
+					<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
+					<available file="liferay-portal-source.tar.gz" />
+				</and>
+				<then>
+					<prepare-test-environment />
+				</then>
+				<else>
+					<prepare-test-build />
+				</else>
+			</if>
 		</sequential>
 	</macrodef>
 
@@ -3152,18 +3004,7 @@ log.sanitizer.enabled=false</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 
 				<prepare-database-upgrade-configuration />
 			</test-set-up>
@@ -3202,18 +3043,7 @@ log.sanitizer.enabled=false</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 
 				<database-test-action database.type="mysql">
 					<action>
@@ -4298,18 +4128,7 @@ log.sanitizer.enabled=false</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 			</test-set-up>
 		</run-batch-test>
 	</target>
@@ -4669,18 +4488,7 @@ log.sanitizer.enabled=false</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 			</test-set-up>
 		</run-batch-test>
 	</target>
@@ -4793,18 +4601,7 @@ log.sanitizer.enabled=false</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 
 				<echo>tar --extract --file=liferay-portal-source.tar.gz modules/core/portal-bootstrap/build/system.packages.extra.mf --gzip --to-stdout--verbose  > modules/core/portal-bootstrap/system.packages.extra.mf</echo>
 
@@ -5180,22 +4977,11 @@ log.sanitizer.enabled=false</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
+				<setup-test-environment />
 
-						<antcall inheritAll="false" target="record-test-class-file-names">
-							<param name="test.class.groups.size" value="${test.batch.size}" />
-						</antcall>
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<antcall inheritAll="false" target="record-test-class-file-names">
+					<param name="test.class.groups.size" value="${test.batch.size}" />
+				</antcall>
 
 				<if>
 					<isset property="env.CI_TEST_SUITE" />
@@ -5282,22 +5068,11 @@ ${output.content}</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
+				<setup-test-environment />
 
-						<antcall inheritAll="false" target="record-test-plugin-names">
-							<param name="test.plugin.groups.size" value="${test.batch.size}" />
-						</antcall>
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<antcall inheritAll="false" target="record-test-plugin-names">
+					<param name="test.plugin.groups.size" value="${test.batch.size}" />
+				</antcall>
 			</test-set-up>
 		</run-batch-test>
 	</target>
@@ -5434,18 +5209,7 @@ ${output.content}</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 			</test-set-up>
 		</run-batch-test>
 	</target>
@@ -5571,18 +5335,7 @@ ${output.content}</echo>
 				</test-action>
 
 				<test-set-up>
-					<if>
-						<and>
-							<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-							<available file="liferay-portal-source.tar.gz" />
-						</and>
-						<then>
-							<prepare-test-environment />
-						</then>
-						<else>
-							<prepare-test-build />
-						</else>
-					</if>
+					<setup-test-environment />
 				</test-set-up>
 			</run-batch-test>
 		</sequential>
@@ -5717,18 +5470,7 @@ ${output.content}</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 			</test-set-up>
 		</run-batch-test>
 	</target>
@@ -5837,18 +5579,7 @@ ${output.content}</echo>
 	<target name="ruby-sass-compiler-jdk8">
 		<antcall if:set="env.JENKINS_HOME" inheritAll="false" target="clean-up-java-processes" />
 
-		<if>
-			<and>
-				<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-				<available file="liferay-portal-source.tar.gz" />
-			</and>
-			<then>
-				<prepare-test-environment />
-			</then>
-			<else>
-				<prepare-test-build />
-			</else>
-		</if>
+		<setup-test-environment />
 
 		<echo file="build.${user.name}.properties">sass.compiler.class.name=ruby</echo>
 
@@ -6021,18 +5752,7 @@ information. Make sure to commit in all build services results.
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 			</test-set-up>
 		</run-batch-test>
 	</target>
@@ -6124,18 +5844,7 @@ information. Make sure to commit in all build services results.
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 			</test-set-up>
 		</run-batch-test>
 	</target>
@@ -6160,18 +5869,7 @@ information. Make sure to commit in all build services results.
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 			</test-set-up>
 		</run-batch-test>
 	</target>
@@ -6504,18 +6202,7 @@ ${output.content}</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 
 				<antcall target="prepare-portal-ext-properties">
 					<param name="hot.deploy.dependency.management.enabled" value="false" />
@@ -6547,25 +6234,14 @@ ${output.content}</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
+				<setup-test-environment />
 
-						<antcall inheritAll="false" target="record-test-class-file-names">
-							<param name="test.class.groups.size" value="${test.batch.size}" />
-						</antcall>
+				<antcall inheritAll="false" target="record-test-class-file-names">
+					<param name="test.class.groups.size" value="${test.batch.size}" />
+				</antcall>
 
-						<delete dir="${liferay.home}/osgi/static" />
-						<delete file="${app.server.lib.portal.dir}/util-taglib.jar" />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<delete dir="${liferay.home}/osgi/static" />
+				<delete file="${app.server.lib.portal.dir}/util-taglib.jar" />
 			</test-set-up>
 		</run-batch-test>
 	</target>
@@ -6577,18 +6253,7 @@ ${output.content}</echo>
 			</test-action>
 
 			<test-set-up>
-				<if>
-					<and>
-						<available file="liferay-portal-bundle-${app.server.type}.tar.gz" />
-						<available file="liferay-portal-source.tar.gz" />
-					</and>
-					<then>
-						<prepare-test-environment />
-					</then>
-					<else>
-						<prepare-test-build />
-					</else>
-				</if>
+				<setup-test-environment />
 			</test-set-up>
 		</run-batch-test>
 	</target>
