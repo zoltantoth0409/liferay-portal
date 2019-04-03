@@ -55,7 +55,7 @@ public class ContentListElementResourceImpl
 
 		if (assetListEntry == null) {
 			throw new BadRequestException(
-				"No asset list exists with ID " + contentListId);
+				"No content list element exists with ID " + contentListId);
 		}
 
 		long[] segmentsEntryIds = _segmentsEntryProvider.getSegmentsEntryIds(
