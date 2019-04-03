@@ -111,12 +111,12 @@ public class SegmentsServicePreAction extends Action {
 		request.setAttribute(
 			SegmentsWebKeys.SEGMENTS_ENTRY_IDS, segmentsEntryIds);
 
-		segmentsEntryIds = _getSegmentsExperienceIds(
-			layout.getGroupId(), segmentsEntryIds,
-			_portal.getClassNameId(Layout.class.getName()), layout.getPlid());
-
 		request.setAttribute(
-			SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS, segmentsEntryIds);
+			SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS,
+			_getSegmentsExperienceIds(
+				layout.getGroupId(), segmentsEntryIds,
+				_portal.getClassNameId(Layout.class.getName()),
+				layout.getPlid()));
 	}
 
 	private long[] _getSegmentsExperienceIds(
