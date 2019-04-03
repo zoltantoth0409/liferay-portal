@@ -80,9 +80,8 @@ public class ResourceConfigurationFactory {
 
 		V1Container v1Container = new V1Container();
 
-		v1Container.setName(dockerBaseImageName);
-
 		v1Container.setImage(dockerImageName);
+		v1Container.setName(dockerBaseImageName);
 
 		return v1Container;
 	}
