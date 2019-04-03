@@ -142,17 +142,17 @@ public class AssetBrowserDisplayContext {
 		assetBrowserSearch.setTotal(total);
 
 		if (AssetBrowserWebConfigurationValues.SEARCH_WITH_DATABASE) {
-			long[] subtypeSelectionId = null;
+			long[] subtypeSelectionIds = null;
 
 			if (getSubtypeSelectionId() > 0) {
-				subtypeSelectionId = new long[] {getSubtypeSelectionId()};
+				subtypeSelectionIds = new long[] {getSubtypeSelectionId()};
 			}
 
 			List<AssetEntry> assetEntries =
 				AssetEntryLocalServiceUtil.getEntries(
 					_getFilterGroupIds(),
 					new long[] {assetRendererFactory.getClassNameId()},
-					subtypeSelectionId, _getKeywords(), _getKeywords(),
+					subtypeSelectionIds, _getKeywords(), _getKeywords(),
 					_getKeywords(), _getKeywords(), _getListable(), false,
 					false, assetBrowserSearch.getStart(),
 					assetBrowserSearch.getEnd(), "modifiedDate",
@@ -607,11 +607,16 @@ public class AssetBrowserDisplayContext {
 		AssetRendererFactory assetRendererFactory = getAssetRendererFactory();
 
 		if (AssetBrowserWebConfigurationValues.SEARCH_WITH_DATABASE) {
+			long[] subtypeSelectionIds = null;
+
+			if (getSubtypeSelectionId() > 0) {
+				subtypeSelectionIds = new long[] {getSubtypeSelectionId()};
+			}
+
 			return AssetEntryLocalServiceUtil.getEntriesCount(
 				groupIds, new long[] {assetRendererFactory.getClassNameId()},
-				new long[] {getSubtypeSelectionId()}, _getKeywords(), 
-				_getKeywords(), _getKeywords(), _getKeywords(),
-				_getListable(), false, false);
+				subtypeSelectionIds, _getKeywords(), _getKeywords(),
+				_getKeywords(), _getKeywords(), _getListable(), false, false);
 		}
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
