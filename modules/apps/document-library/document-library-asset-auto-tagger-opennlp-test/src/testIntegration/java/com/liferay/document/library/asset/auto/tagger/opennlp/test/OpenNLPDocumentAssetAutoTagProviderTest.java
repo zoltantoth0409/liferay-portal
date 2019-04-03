@@ -82,7 +82,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			FileUtil.getBytes(getInputStream(fileName)), _serviceContext);
 
-		_withOpenNLPAutoTagProviderEnabled(
+		_testWithOpenNLPAutoTagProviderEnabled(
 			() -> {
 				Collection<String> expectedTagNames = Arrays.asList(
 					"ADVENTURES", "Adventures", "Ah", "Alice",
@@ -116,7 +116,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			FileUtil.getBytes(getInputStream(fileName)), _serviceContext);
 
-		_withOpenNLPAutoTagProviderEnabled(
+		_testWithOpenNLPAutoTagProviderEnabled(
 			() -> {
 				Collection<String> expectedTagNames = Arrays.asList(
 					"ADVENTURES", "Adventures", "Ah", "Alice",
@@ -150,7 +150,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			FileUtil.getBytes(getInputStream("test.jpg")), _serviceContext);
 
-		_withOpenNLPAutoTagProviderEnabled(
+		_testWithOpenNLPAutoTagProviderEnabled(
 			() -> {
 				Collection<String> tagNames = _assetAutoTagProvider.getTagNames(
 					fileEntry);
@@ -170,7 +170,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			FileUtil.getBytes(getInputStream(fileName)), _serviceContext);
 
-		_withOpenNLPAutoTagProviderEnabled(
+		_testWithOpenNLPAutoTagProviderEnabled(
 			() -> {
 				Collection<String> expectedTagNames = Arrays.asList(
 					"ADVENTURES", "AT ALL.", "Adventures", "Alice", "Australia",
@@ -204,7 +204,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 			RandomTestUtil.randomString(), fileName, getInputStream(fileName),
 			ContentTypes.TEXT_PLAIN);
 
-		_withOpenNLPAutoTagProviderEnabled(
+		_testWithOpenNLPAutoTagProviderEnabled(
 			() -> {
 				Collection<String> tagNames = _assetAutoTagProvider.getTagNames(
 					fileEntry);
@@ -224,7 +224,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			FileUtil.getBytes(getInputStream(fileName)), _serviceContext);
 
-		_withOpenNLPAutoTagProviderEnabled(
+		_testWithOpenNLPAutoTagProviderEnabled(
 			() -> {
 				Collection<String> expectedTagNames = Arrays.asList(
 					"AT ALL.", "Adventures", "Alice", "Australia", "Bill",
@@ -260,7 +260,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			FileUtil.getBytes(getInputStream(fileName)), _serviceContext);
 
-		_withOpenNLPAutoTagProviderDisabled(
+		_testWithOpenNLPAutoTagProviderDisabled(
 			() -> {
 				Collection<String> tagNames = _assetAutoTagProvider.getTagNames(
 					fileEntry);
@@ -275,7 +275,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 		return clazz.getResourceAsStream("dependencies/" + fileName);
 	}
 
-	private void _withOpenNLPAutoTagProviderDisabled(
+	private void _testWithOpenNLPAutoTagProviderDisabled(
 			UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
@@ -292,7 +292,7 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 		}
 	}
 
-	private void _withOpenNLPAutoTagProviderEnabled(
+	private void _testWithOpenNLPAutoTagProviderEnabled(
 			UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
