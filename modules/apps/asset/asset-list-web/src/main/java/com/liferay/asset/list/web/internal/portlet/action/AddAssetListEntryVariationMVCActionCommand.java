@@ -54,9 +54,15 @@ public class AddAssetListEntryVariationMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		int type = ParamUtil.getInteger(actionRequest, "type");
+		long assetListEntryId = ParamUtil.getLong(
+			actionRequest, "assetListEntryId");
+
+		long segmentsEntryId = ParamUtil.getLong(
+			actionRequest, "segmentsEntryId");
 
 		String typeSettings = null;
+
+		int type = ParamUtil.getInteger(actionRequest, "type");
 
 		if (type == AssetListEntryTypeConstants.TYPE_DYNAMIC) {
 			ThemeDisplay themeDisplay =
@@ -69,11 +75,6 @@ public class AddAssetListEntryVariationMVCActionCommand
 
 			typeSettings = properties.toString();
 		}
-
-		long assetListEntryId = ParamUtil.getLong(
-			actionRequest, "assetListEntryId");
-		long segmentsEntryId = ParamUtil.getLong(
-			actionRequest, "segmentsEntryId");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
