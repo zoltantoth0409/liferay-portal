@@ -47,24 +47,9 @@ public class OpenSSOV13Impl extends OpenSSOImpl {
 
 		boolean authenticated = false;
 
-		boolean hasCookieNames = false;
-
 		String[] cookieNames = getCookieNames(serviceUrl);
 
-		for (String cookieName : cookieNames) {
-			if (CookieKeys.getCookie(request, cookieName) != null) {
-				hasCookieNames = true;
-
-				break;
-			}
-		}
-
-		if (!hasCookieNames) {
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					"User is not logged in because he has no OpenSSO cookies");
-			}
-
+		if (!hasCookieNames(request, cookieNames)) {
 			return false;
 		}
 
