@@ -197,7 +197,6 @@ public class OpenNLPDocumentAssetAutoTagProviderTest {
 	@Test
 	public void testGetTagNamesWithTemporaryTextFile() throws Exception {
 		User user = TestPropsValues.getUser();
-
 		String fileName = _FILE_NAME + ".txt";
 
 		FileEntry fileEntry = TempFileEntryUtil.addTempFileEntry(
