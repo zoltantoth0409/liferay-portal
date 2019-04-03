@@ -79,15 +79,16 @@ public class LazyWorkflowTaskAssigneeListTest {
 	public void testGetSizeWhenWorkflowTaskAssigneesIsNotLoaded() {
 		long kaleoTaskInstanceTokenId = RandomTestUtil.randomLong();
 
-		KaleoTaskInstanceToken kaleoTaskInstanceToken = new KaleoTaskInstanceTokenWrapper(
-			KaleoRuntimeTestUtil.mockKaleoTaskInstanceToken()) {
+		KaleoTaskInstanceToken kaleoTaskInstanceToken =
+			new KaleoTaskInstanceTokenWrapper(
+				KaleoRuntimeTestUtil.mockKaleoTaskInstanceToken()) {
 
-			@Override
-			public long getKaleoTaskInstanceTokenId() {
-				return kaleoTaskInstanceTokenId;
-			}
+				@Override
+				public long getKaleoTaskInstanceTokenId() {
+					return kaleoTaskInstanceTokenId;
+				}
 
-		};
+			};
 
 		int kaleoTaskAssignmentInstancesCount = RandomTestUtil.randomInt();
 
@@ -103,7 +104,8 @@ public class LazyWorkflowTaskAssigneeListTest {
 							"getKaleoTaskAssignmentInstancesCount");
 
 						if (kaleoTaskInstanceTokenId ==
-								kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId()) {
+								kaleoTaskInstanceToken.
+									getKaleoTaskInstanceTokenId()) {
 
 							return kaleoTaskAssignmentInstancesCount;
 						}
@@ -118,7 +120,9 @@ public class LazyWorkflowTaskAssigneeListTest {
 				kaleoTaskInstanceToken,
 				kaleoTaskAssignmentInstanceLocalService);
 
-		Assert.assertEquals(kaleoTaskAssignmentInstancesCount, lazyWorkflowTaskAssigneeList.size());
+		Assert.assertEquals(
+			kaleoTaskAssignmentInstancesCount,
+			lazyWorkflowTaskAssigneeList.size());
 
 		Assert.assertTrue(
 			_executedMethodsNames.contains(
@@ -193,7 +197,8 @@ public class LazyWorkflowTaskAssigneeListTest {
 			public KaleoTaskAssignmentInstance
 				getFirstKaleoTaskAssignmentInstance() {
 
-				_executedMethodsNames.add("getFirstKaleoTaskAssignmentInstance");
+				_executedMethodsNames.add(
+					"getFirstKaleoTaskAssignmentInstance");
 
 				return super.getFirstKaleoTaskAssignmentInstance();
 			}
