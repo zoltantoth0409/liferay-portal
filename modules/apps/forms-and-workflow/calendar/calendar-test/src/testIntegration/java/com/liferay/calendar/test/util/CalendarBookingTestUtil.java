@@ -228,7 +228,8 @@ public class CalendarBookingTestUtil {
 
 		long startTime = System.currentTimeMillis();
 
-		User user = UserLocalServiceUtil.fetchUser(invitedCalendar.getUserId());
+		User user = UserLocalServiceUtil.fetchUser(
+			invitingCalendar.getUserId());
 
 		ServiceContext serviceContext = createServiceContext(user);
 
