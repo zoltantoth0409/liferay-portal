@@ -338,7 +338,9 @@ public abstract class OpenSSOImpl implements OpenSSO {
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"User is not logged in because he has no OpenSSO cookies");
+				StringBundler.concat(
+					"No OpenSSO cookies ", StringUtil.merge(cookieNames),
+					" found."));
 		}
 
 		return false;
