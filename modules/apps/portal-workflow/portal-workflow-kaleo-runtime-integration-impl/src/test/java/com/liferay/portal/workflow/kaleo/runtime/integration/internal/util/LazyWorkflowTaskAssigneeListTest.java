@@ -149,30 +149,26 @@ public class LazyWorkflowTaskAssigneeListTest {
 
 	@Test
 	public void testGetWhenIndexIsZeroAndAssignmentIsNotNull() {
-		String expectedAssigneeClassName = StringUtil.randomString();
-
-		long expectedAssigneeClassPK = RandomTestUtil.randomLong();
-
-		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
-			KaleoRuntimeTestUtil.mockKaleoTaskAssignmentInstance(
-				expectedAssigneeClassName, expectedAssigneeClassPK);
+		String assigneeClassName = StringUtil.randomString();
+		long assigneeClassPK = RandomTestUtil.randomLong();
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			_getKaleoTaskInstanceToken(kaleoTaskAssignmentInstance);
+			_getKaleoTaskInstanceToken(
+				KaleoRuntimeTestUtil.mockKaleoTaskAssignmentInstance(
+					assigneeClassName, assigneeClassPK));
 
 		LazyWorkflowTaskAssigneeList lazyWorkflowTaskAssigneeList =
 			new LazyWorkflowTaskAssigneeList(kaleoTaskInstanceToken, null);
 
 		KaleoRuntimeTestUtil.assertWorkflowTaskAssignee(
-			expectedAssigneeClassName, expectedAssigneeClassPK,
+			assigneeClassName, assigneeClassPK,
 			lazyWorkflowTaskAssigneeList.get(0));
-
-		Assert.assertFalse(
-			_executedMethodsNames.contains("getKaleoTaskAssignmentInstances"));
 
 		Assert.assertTrue(
 			_executedMethodsNames.contains(
 				"getFirstKaleoTaskAssignmentInstance"));
+		Assert.assertFalse(
+			_executedMethodsNames.contains("getKaleoTaskAssignmentInstances"));
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
