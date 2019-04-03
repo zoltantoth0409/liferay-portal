@@ -44,18 +44,18 @@ public class KaleoRuntimeTestUtil {
 	}
 
 	public static KaleoTaskAssignmentInstance mockKaleoTaskAssignmentInstance(
-		String returnAssigneeClassName, long returnAssigneeClassPK) {
+		String assigneeClassName, long assigneeClassPK) {
 
 		return new KaleoTaskAssignmentInstanceWrapper(null) {
 
 			@Override
 			public String getAssigneeClassName() {
-				return returnAssigneeClassName;
+				return assigneeClassName;
 			}
 
 			@Override
 			public long getAssigneeClassPK() {
-				return returnAssigneeClassPK;
+				return assigneeClassPK;
 			}
 
 		};
