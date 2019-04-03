@@ -50,7 +50,7 @@ public class MessageSubjectExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message.replace("body", "articleBody")
+			message.replace("body", "article body")
 		).build();
 	}
 

@@ -46,7 +46,7 @@ public class LockedThreadExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			"MessageBoardThread is locked"
+			lte.getMessage()
 		).build();
 	}
 

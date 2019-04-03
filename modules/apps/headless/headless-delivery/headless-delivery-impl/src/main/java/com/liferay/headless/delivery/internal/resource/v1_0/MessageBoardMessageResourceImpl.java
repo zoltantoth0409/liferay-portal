@@ -135,7 +135,7 @@ public class MessageBoardMessageResourceImpl
 			(messageBoardMessage.getHeadline() == null)) {
 
 			throw new BadRequestException(
-				"Headline or article body can not be null");
+				"Headline and article body are both null");
 		}
 
 		MBMessage mbMessage = _mbMessageService.getMessage(
