@@ -18,6 +18,7 @@
 
 <%
 User selUser = (User)request.getAttribute("user.selUser");
+
 List<Group> groups = new ArrayList<>();
 
 groups.addAll((List<Group>)request.getAttribute("user.groups"));
