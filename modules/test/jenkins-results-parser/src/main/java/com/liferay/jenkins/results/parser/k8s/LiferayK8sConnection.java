@@ -73,7 +73,7 @@ public class LiferayK8sConnection {
 	}
 
 	public boolean deletePod(Pod pod, String namespace) {
-		V1Status v1Status;
+		V1Status v1Status = null;
 
 		try {
 			v1Status = _coreV1Api.deleteNamespacedPod(
@@ -119,7 +119,7 @@ public class LiferayK8sConnection {
 	}
 
 	public List<Pod> getPods() {
-		V1PodList v1PodList;
+		V1PodList v1PodList = null;
 
 		try {
 			v1PodList = _coreV1Api.listPodForAllNamespaces(
