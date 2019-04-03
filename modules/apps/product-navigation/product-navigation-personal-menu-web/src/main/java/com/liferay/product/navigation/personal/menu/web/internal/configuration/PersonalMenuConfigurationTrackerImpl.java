@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Modified;
 	}
 )
 public class PersonalMenuConfigurationTrackerImpl
-	implements PersonalMenuConfigurationTracker, ManagedServiceFactory {
+	implements ManagedServiceFactory, PersonalMenuConfigurationTracker {
 
 	@Activate
 	@Modified
