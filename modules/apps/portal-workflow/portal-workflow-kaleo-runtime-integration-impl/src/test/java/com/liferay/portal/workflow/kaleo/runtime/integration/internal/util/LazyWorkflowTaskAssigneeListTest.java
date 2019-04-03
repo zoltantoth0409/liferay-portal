@@ -75,8 +75,6 @@ public class LazyWorkflowTaskAssigneeListTest {
 		Assert.assertEquals(2, lazyWorkflowTaskAssigneeList.size());
 
 		Assert.assertFalse(
-			"Method getKaleoTaskAssignmentInstancesCount should not be " +
-				"invoked on kaleoTaskAssignmentInstanceLocalService",
 			_executedMethodsSet.contains(
 				"getKaleoTaskAssignmentInstancesCount"));
 	}
@@ -130,8 +128,6 @@ public class LazyWorkflowTaskAssigneeListTest {
 		Assert.assertEquals(expectedCount, lazyWorkflowTaskAssigneeList.size());
 
 		Assert.assertTrue(
-			"Method getKaleoTaskAssignmentInstancesCount should be invoked " +
-				"on kaleoTaskAssignmentInstanceLocalService",
 			_executedMethodsSet.contains(
 				"getKaleoTaskAssignmentInstancesCount"));
 	}
@@ -155,13 +151,9 @@ public class LazyWorkflowTaskAssigneeListTest {
 			User.class.getName(), 2, lazyWorkflowTaskAssigneeList.get(1));
 
 		Assert.assertTrue(
-			"Method getKaleoTaskAssignmentInstances should be invoked on " +
-				"kaleoTaskInstanceToken",
 			_executedMethodsSet.contains("getKaleoTaskAssignmentInstances"));
 
 		Assert.assertFalse(
-			"Method getFirstKaleoTaskAssignmentInstance should not be " +
-				"invoked on kaleoTaskInstanceToken",
 			_executedMethodsSet.contains(
 				"getFirstKaleoTaskAssignmentInstance"));
 	}
@@ -187,13 +179,9 @@ public class LazyWorkflowTaskAssigneeListTest {
 			lazyWorkflowTaskAssigneeList.get(0));
 
 		Assert.assertFalse(
-			"Method getKaleoTaskAssignmentInstances should not be invoked on " +
-				"kaleoTaskInstanceToken",
 			_executedMethodsSet.contains("getKaleoTaskAssignmentInstances"));
 
 		Assert.assertTrue(
-			"Method getFirstKaleoTaskAssignmentInstance should be invoked on " +
-				"kaleoTaskInstanceToken",
 			_executedMethodsSet.contains(
 				"getFirstKaleoTaskAssignmentInstance"));
 	}
