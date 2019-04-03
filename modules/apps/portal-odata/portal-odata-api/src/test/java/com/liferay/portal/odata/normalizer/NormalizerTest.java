@@ -12,37 +12,22 @@
  * details.
  */
 
-package com.liferay.portal.odata.filter.expression;
+package com.liferay.portal.odata.normalizer;
 
-import java.util.List;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Represents a method expression in the expression tree
- *
- * @author Cristina González
- * @review
+ * @author Eduardo García
  */
-public interface MethodExpression extends Expression {
+public class NormalizerTest {
 
-	/**
-	 * @return The list of expression tree which form the actual method
-	 *         parameters
-	 * @review
-	 */
-	public List<Expression> getExpressions();
+	@Test
+	public void testNormalizeIdentifier() {
+		String identifier = Normalizer.normalizeIdentifier(
+			"Aaa Ááá Üüü B'bb (Ccc) Ñññ d_d _[]+-./&ªº!|\"·$=?¿¡`^*¨´Ç};:-");
 
-	/**
-	 * Returns the method type
-	 *
-	 * @return The type
-	 * @review
-	 */
-	public Type getType();
-
-	public static enum Type {
-
-		CONTAINS, STARTS_WITH
-
+		Assert.assertEquals("Aaa_Ááá_Üüü_Bbb_Ccc_Ñññ_d_d__ªºÇ", identifier);
 	}
 
 }
