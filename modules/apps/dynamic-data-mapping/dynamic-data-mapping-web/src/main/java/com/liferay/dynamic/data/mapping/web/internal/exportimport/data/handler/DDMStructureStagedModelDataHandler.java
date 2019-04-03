@@ -150,11 +150,7 @@ public class DDMStructureStagedModelDataHandler
 			return referenceAttributes;
 		}
 
-		boolean preloaded = false;
-
-		if (defaultUserId == structure.getUserId()) {
-			preloaded = true;
-		}
+		boolean preloaded = isPreloadedStructure(defaultUserId, structure);
 
 		referenceAttributes.put("preloaded", String.valueOf(preloaded));
 
@@ -222,7 +218,7 @@ public class DDMStructureStagedModelDataHandler
 		long defaultUserId = _userLocalService.getDefaultUserId(
 			structure.getCompanyId());
 
-		if (defaultUserId == structure.getUserId()) {
+		if (isPreloadedStructure(defaultUserId, structure)) {
 			structureElement.addAttribute("preloaded", "true");
 		}
 
