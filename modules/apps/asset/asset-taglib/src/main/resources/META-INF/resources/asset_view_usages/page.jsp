@@ -120,9 +120,7 @@ List<AssetEntryUsage> assetEntryUsages = AssetEntryUsageLocalServiceUtil.getAsse
 </liferay-ui:search-container>
 
 <aui:script require="metal-dom/src/all/dom as dom">
-	var assetEntryUsagesList = document.querySelector('#<portlet:namespace/>assetEntryUsagesList');
-
-	if (assetEntryUsagesList) {
+	if (document.querySelector('#<portlet:namespace/>assetEntryUsagesList')) {
 		var previewAssetEntryUsagesList = dom.delegate(
 			document.querySelector('#<portlet:namespace/>assetEntryUsagesList'),
 			'click',
