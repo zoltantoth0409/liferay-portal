@@ -70,7 +70,8 @@ public class PersonalMenuConfigurationTrackerImpl
 
 	@Override
 	public String getName() {
-		return _FACTORY_PID;
+		return "com.liferay.product.navigation.personal.menu.configuration." +
+			"PersonalMenuConfiguration.scoped";
 	}
 
 	@Override
@@ -99,10 +100,6 @@ public class PersonalMenuConfigurationTrackerImpl
 			_companyConfigurationBeans.remove(companyId);
 		}
 	}
-
-	private static final String _FACTORY_PID =
-		"com.liferay.product.navigation.personal.menu.configuration." +
-			"PersonalMenuConfiguration.scoped";
 
 	private final Map<Long, PersonalMenuConfiguration>
 		_companyConfigurationBeans = new ConcurrentHashMap<>();
