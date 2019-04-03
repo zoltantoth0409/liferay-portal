@@ -52,9 +52,9 @@ public class DocumentFolderDTOConverter implements DTOConverter {
 				description = folder.getDescription();
 				id = folder.getFolderId();
 				name = folder.getName();
-				numberOfDocuments = _dlAppService.getFileEntriesCount(
-					folder.getRepositoryId(), folder.getFolderId());
 				numberOfDocumentFolders = _dlAppService.getFoldersCount(
+					folder.getRepositoryId(), folder.getFolderId());
+				numberOfDocuments = _dlAppService.getFileEntriesCount(
 					folder.getRepositoryId(), folder.getFolderId());
 			}
 		};

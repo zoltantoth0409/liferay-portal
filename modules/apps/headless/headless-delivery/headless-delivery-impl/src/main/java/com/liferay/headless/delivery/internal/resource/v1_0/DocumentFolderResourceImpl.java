@@ -91,12 +91,12 @@ public class DocumentFolderResourceImpl
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		DocumentFolder parentFolder = _toDocumentFolder(
+		DocumentFolder parentDocumentFolder = _toDocumentFolder(
 			_dlAppService.getFolder(documentFolderId));
 
 		return _getDocumentFoldersPage(
-			parentFolder.getContentSpaceId(), search, filter,
-			parentFolder.getId(), pagination, sorts);
+			parentDocumentFolder.getContentSpaceId(), search, filter,
+			parentDocumentFolder.getId(), pagination, sorts);
 	}
 
 	@Override
@@ -138,12 +138,12 @@ public class DocumentFolderResourceImpl
 			Long documentFolderId, DocumentFolder documentFolder)
 		throws Exception {
 
-		DocumentFolder parentFolder = _toDocumentFolder(
+		DocumentFolder parentDocumentFolder = _toDocumentFolder(
 			_dlAppService.getFolder(documentFolderId));
 
 		return _addFolder(
-			parentFolder.getContentSpaceId(), parentFolder.getId(),
-			documentFolder);
+			parentDocumentFolder.getContentSpaceId(),
+			parentDocumentFolder.getId(), documentFolder);
 	}
 
 	@Override
@@ -157,32 +157,33 @@ public class DocumentFolderResourceImpl
 	}
 
 	private DocumentFolder _addFolder(
-			Long contentSpaceId, Long parentFolderId,
+			Long contentSpaceId, Long parentDocumentFolderId,
 			DocumentFolder documentFolder)
 		throws Exception {
 
 		return _toDocumentFolder(
 			_dlAppService.addFolder(
-				contentSpaceId, parentFolderId, documentFolder.getName(),
-				documentFolder.getDescription(),
+				contentSpaceId, parentDocumentFolderId,
+				documentFolder.getName(), documentFolder.getDescription(),
 				ServiceContextUtil.createServiceContext(
 					contentSpaceId, documentFolder.getViewableByAsString())));
 	}
 
 	private Page<DocumentFolder> _getDocumentFoldersPage(
 			Long contentSpaceId, String search, Filter filter,
-			Long parentFolderId, Pagination pagination, Sort[] sorts)
+			Long parentDocumentFolderId, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		return SearchUtil.search(
 			booleanQuery -> {
-				if (parentFolderId != null) {
+				if (parentDocumentFolderId != null) {
 					BooleanFilter booleanFilter =
 						booleanQuery.getPreBooleanFilter();
 
 					booleanFilter.add(
 						new TermFilter(
-							Field.FOLDER_ID, String.valueOf(parentFolderId)),
+							Field.FOLDER_ID,
+							String.valueOf(parentDocumentFolderId)),
 						BooleanClauseOccur.MUST);
 				}
 			},

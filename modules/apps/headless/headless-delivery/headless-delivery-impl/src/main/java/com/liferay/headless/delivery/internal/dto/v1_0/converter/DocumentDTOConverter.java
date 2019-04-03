@@ -83,9 +83,9 @@ public class DocumentDTOConverter implements DTOConverter {
 				dateCreated = fileEntry.getCreateDate();
 				dateModified = fileEntry.getModifiedDate();
 				description = fileEntry.getDescription();
+				documentFolderId = fileEntry.getFolderId();
 				encodingFormat = fileEntry.getMimeType();
 				fileExtension = fileEntry.getExtension();
-				documentFolderId = fileEntry.getFolderId();
 				id = fileEntry.getFileEntryId();
 				keywords = ListUtil.toArray(
 					_assetTagLocalService.getTags(

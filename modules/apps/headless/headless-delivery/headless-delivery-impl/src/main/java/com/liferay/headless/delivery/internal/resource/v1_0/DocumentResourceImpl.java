@@ -111,19 +111,19 @@ public class DocumentResourceImpl
 
 	@Override
 	public Page<Document> getDocumentFolderDocumentsPage(
-			Long folderId, String search, Filter filter, Pagination pagination,
-			Sort[] sorts)
+			Long documentFolderId, String search, Filter filter,
+			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		return _getDocumentsPage(
 			booleanQuery -> {
-				if (folderId != null) {
+				if (documentFolderId != null) {
 					BooleanFilter booleanFilter =
 						booleanQuery.getPreBooleanFilter();
 
 					booleanFilter.add(
 						new TermFilter(
-							Field.FOLDER_ID, String.valueOf(folderId)),
+							Field.FOLDER_ID, String.valueOf(documentFolderId)),
 						BooleanClauseOccur.MUST);
 				}
 			},
@@ -207,13 +207,13 @@ public class DocumentResourceImpl
 
 	@Override
 	public Document postDocumentFolderDocument(
-			Long folderId, MultipartBody multipartBody)
+			Long documentFolderId, MultipartBody multipartBody)
 		throws Exception {
 
-		Folder folder = _dlAppService.getFolder(folderId);
+		Folder folder = _dlAppService.getFolder(documentFolderId);
 
 		return _addDocument(
-			folder.getRepositoryId(), folderId, folder.getGroupId(),
+			folder.getRepositoryId(), documentFolderId, folder.getGroupId(),
 			multipartBody);
 	}
 
@@ -279,7 +279,7 @@ public class DocumentResourceImpl
 	}
 
 	private Document _addDocument(
-			Long repositoryId, long folderId, Long groupId,
+			Long repositoryId, long documentFolderId, Long groupId,
 			MultipartBody multipartBody)
 		throws Exception {
 
@@ -294,7 +294,7 @@ public class DocumentResourceImpl
 				"document", Document.class);
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
-			repositoryId, folderId, binaryFile.getFileName(),
+			repositoryId, documentFolderId, binaryFile.getFileName(),
 			binaryFile.getContentType(),
 			documentOptional.map(
 				Document::getTitle
