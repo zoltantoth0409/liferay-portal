@@ -29,16 +29,16 @@ String defaultLanguageId = ddmFormAdminDisplayContext.getDefaultLanguageId();
 
 Locale[] availableLocales = ddmFormAdminDisplayContext.getAvailableLocales();
 
-portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(redirect);
-
-renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-form") : LanguageUtil.get(request, "edit-form"));
-
 String disableCopyBtnClass = "";
 
 if (!ddmFormAdminDisplayContext.isFormPublished() && (formInstance != null)) {
 	disableCopyBtnClass = "ddm-btn-disabled";
 }
+
+portletDisplay.setShowBackIcon(true);
+portletDisplay.setURLBack(redirect);
+
+renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-form") : LanguageUtil.get(request, "edit-form"));
 %>
 
 <liferay-util:html-top>
