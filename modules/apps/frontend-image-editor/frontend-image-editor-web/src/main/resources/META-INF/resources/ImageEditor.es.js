@@ -118,7 +118,7 @@ class ImageEditor extends PortletBase {
 	 * @protected
 	 */
 	createHistoryEntry_(imageData) {
-	this.historyIndex_++;
+		this.historyIndex_++;
 		this.history_.length = this.historyIndex_ + 1;
 		this.history_[this.historyIndex_] = new ImageEditorHistoryEntry({data: imageData});
 
