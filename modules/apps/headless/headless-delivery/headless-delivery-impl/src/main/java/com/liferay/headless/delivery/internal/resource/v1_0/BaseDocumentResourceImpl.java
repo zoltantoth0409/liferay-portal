@@ -99,6 +99,42 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	}
 
 	@Override
+	@GET
+	@Parameters(
+		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "filter"),
+			@Parameter(in = ParameterIn.QUERY, name = "page"),
+			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
+			@Parameter(in = ParameterIn.QUERY, name = "sorts")
+		}
+	)
+	@Path("/document-folders/{documentFolderId}/documents")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Document")})
+	public Page<Document> getDocumentFolderDocumentsPage(
+			@NotNull @PathParam("documentFolderId") Long documentFolderId,
+			@QueryParam("search") String search, @Context Filter filter,
+			@Context Pagination pagination, @Context Sort[] sorts)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
+	@Override
+	@Consumes("multipart/form-data")
+	@POST
+	@Path("/document-folders/{documentFolderId}/documents")
+	@Produces("application/json")
+	@Tags(value = {@Tag(name = "Document")})
+	public Document postDocumentFolderDocument(
+			@NotNull @PathParam("documentFolderId") Long documentFolderId,
+			MultipartBody multipartBody)
+		throws Exception {
+
+		return new Document();
+	}
+
+	@Override
 	@DELETE
 	@Path("/documents/{documentId}")
 	@Produces("application/json")
@@ -142,42 +178,6 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	@Tags(value = {@Tag(name = "Document")})
 	public Document putDocument(
 			@NotNull @PathParam("documentId") Long documentId,
-			MultipartBody multipartBody)
-		throws Exception {
-
-		return new Document();
-	}
-
-	@Override
-	@GET
-	@Parameters(
-		value = {
-			@Parameter(in = ParameterIn.QUERY, name = "filter"),
-			@Parameter(in = ParameterIn.QUERY, name = "page"),
-			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
-			@Parameter(in = ParameterIn.QUERY, name = "sorts")
-		}
-	)
-	@Path("/document-folders/{documentFolderId}/documents")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "Document")})
-	public Page<Document> getDocumentFolderDocumentsPage(
-			@NotNull @PathParam("documentFolderId") Long documentFolderId,
-			@QueryParam("search") String search, @Context Filter filter,
-			@Context Pagination pagination, @Context Sort[] sorts)
-		throws Exception {
-
-		return Page.of(Collections.emptyList());
-	}
-
-	@Override
-	@Consumes("multipart/form-data")
-	@POST
-	@Path("/document-folders/{documentFolderId}/documents")
-	@Produces("application/json")
-	@Tags(value = {@Tag(name = "Document")})
-	public Document postDocumentFolderDocument(
-			@NotNull @PathParam("documentFolderId") Long documentFolderId,
 			MultipartBody multipartBody)
 		throws Exception {
 

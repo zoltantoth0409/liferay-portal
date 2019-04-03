@@ -44,6 +44,15 @@ public interface DocumentResource {
 			Long contentSpaceId, MultipartBody multipartBody)
 		throws Exception;
 
+	public Page<Document> getDocumentFolderDocumentsPage(
+			Long documentFolderId, String search, Filter filter,
+			Pagination pagination, Sort[] sorts)
+		throws Exception;
+
+	public Document postDocumentFolderDocument(
+			Long documentFolderId, MultipartBody multipartBody)
+		throws Exception;
+
 	public void deleteDocument(Long documentId) throws Exception;
 
 	public Document getDocument(Long documentId) throws Exception;
@@ -52,15 +61,6 @@ public interface DocumentResource {
 		throws Exception;
 
 	public Document putDocument(Long documentId, MultipartBody multipartBody)
-		throws Exception;
-
-	public Page<Document> getDocumentFolderDocumentsPage(
-			Long documentFolderId, String search, Filter filter,
-			Pagination pagination, Sort[] sorts)
-		throws Exception;
-
-	public Document postDocumentFolderDocument(
-			Long documentFolderId, MultipartBody multipartBody)
 		throws Exception;
 
 	public void setContextCompany(Company contextCompany);

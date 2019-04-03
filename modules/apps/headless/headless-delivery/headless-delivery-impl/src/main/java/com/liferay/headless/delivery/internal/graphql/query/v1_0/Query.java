@@ -472,17 +472,6 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Document getDocument(@GraphQLName("documentId") Long documentId)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_documentResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			documentResource -> documentResource.getDocument(documentId));
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public Collection<Document> getDocumentFolderDocumentsPage(
 			@GraphQLName("documentFolderId") Long documentFolderId,
 			@GraphQLName("search") String search,
@@ -502,6 +491,17 @@ public class Query {
 
 				return paginationPage.getItems();
 			});
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Document getDocument(@GraphQLName("documentId") Long documentId)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_documentResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			documentResource -> documentResource.getDocument(documentId));
 	}
 
 	@GraphQLField

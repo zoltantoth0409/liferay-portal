@@ -362,6 +362,21 @@ public class Mutation {
 				contentSpaceId, multipartBody));
 	}
 
+	@GraphQLField
+	@GraphQLInvokeDetached
+	@GraphQLName("postDocumentFolderDocumentDocumentFolderIdMultipartBody")
+	public Document postDocumentFolderDocument(
+			@GraphQLName("documentFolderId") Long documentFolderId,
+			@GraphQLName("MultipartBody") MultipartBody multipartBody)
+		throws Exception {
+
+		return _applyComponentServiceObjects(
+			_documentResourceComponentServiceObjects,
+			this::_populateResourceContext,
+			documentResource -> documentResource.postDocumentFolderDocument(
+				documentFolderId, multipartBody));
+	}
+
 	@GraphQLInvokeDetached
 	public void deleteDocument(@GraphQLName("documentId") Long documentId)
 		throws Exception {
@@ -398,21 +413,6 @@ public class Mutation {
 			this::_populateResourceContext,
 			documentResource -> documentResource.putDocument(
 				documentId, multipartBody));
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	@GraphQLName("postDocumentFolderDocumentDocumentFolderIdMultipartBody")
-	public Document postDocumentFolderDocument(
-			@GraphQLName("documentFolderId") Long documentFolderId,
-			@GraphQLName("MultipartBody") MultipartBody multipartBody)
-		throws Exception {
-
-		return _applyComponentServiceObjects(
-			_documentResourceComponentServiceObjects,
-			this::_populateResourceContext,
-			documentResource -> documentResource.postDocumentFolderDocument(
-				documentFolderId, multipartBody));
 	}
 
 	@GraphQLField

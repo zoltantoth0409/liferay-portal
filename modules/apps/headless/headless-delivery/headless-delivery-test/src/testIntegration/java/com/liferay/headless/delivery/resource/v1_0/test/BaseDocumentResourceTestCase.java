@@ -519,222 +519,6 @@ public abstract class BaseDocumentResourceTestCase {
 	}
 
 	@Test
-	public void testDeleteDocument() throws Exception {
-		Document document = testDeleteDocument_addDocument();
-
-		assertResponseCode(204, invokeDeleteDocumentResponse(document.getId()));
-
-		assertResponseCode(404, invokeGetDocumentResponse(document.getId()));
-	}
-
-	protected Document testDeleteDocument_addDocument() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected void invokeDeleteDocument(Long documentId) throws Exception {
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		String location =
-			_resourceURL + _toPath("/documents/{documentId}", documentId);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-	}
-
-	protected Http.Response invokeDeleteDocumentResponse(Long documentId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		String location =
-			_resourceURL + _toPath("/documents/{documentId}", documentId);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
-	public void testGetDocument() throws Exception {
-		Document postDocument = testGetDocument_addDocument();
-
-		Document getDocument = invokeGetDocument(postDocument.getId());
-
-		assertEquals(postDocument, getDocument);
-		assertValid(getDocument);
-	}
-
-	protected Document testGetDocument_addDocument() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Document invokeGetDocument(Long documentId) throws Exception {
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/documents/{documentId}", documentId);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return _outputObjectMapper.readValue(string, Document.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokeGetDocumentResponse(Long documentId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/documents/{documentId}", documentId);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
-	public void testPatchDocument() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	protected Document testPatchDocument_addDocument() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Document invokePatchDocument(
-			Long documentId, MultipartBody multipartBody)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/documents/{documentId}", documentId);
-
-		options.setLocation(location);
-
-		options.setPatch(true);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return _outputObjectMapper.readValue(string, Document.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokePatchDocumentResponse(
-			Long documentId, MultipartBody multipartBody)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/documents/{documentId}", documentId);
-
-		options.setLocation(location);
-
-		options.setPatch(true);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
-	public void testPutDocument() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	protected Document testPutDocument_addDocument() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Document invokePutDocument(
-			Long documentId, MultipartBody multipartBody)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/documents/{documentId}", documentId);
-
-		options.setLocation(location);
-
-		options.setPut(true);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return _outputObjectMapper.readValue(string, Document.class);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokePutDocumentResponse(
-			Long documentId, MultipartBody multipartBody)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/documents/{documentId}", documentId);
-
-		options.setLocation(location);
-
-		options.setPut(true);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
-	@Test
 	public void testGetDocumentFolderDocumentsPage() throws Exception {
 		Long documentFolderId =
 			testGetDocumentFolderDocumentsPage_getDocumentFolderId();
@@ -1137,6 +921,222 @@ public abstract class BaseDocumentResourceTestCase {
 		options.setLocation(location);
 
 		options.setPost(true);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testDeleteDocument() throws Exception {
+		Document document = testDeleteDocument_addDocument();
+
+		assertResponseCode(204, invokeDeleteDocumentResponse(document.getId()));
+
+		assertResponseCode(404, invokeGetDocumentResponse(document.getId()));
+	}
+
+	protected Document testDeleteDocument_addDocument() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected void invokeDeleteDocument(Long documentId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL + _toPath("/documents/{documentId}", documentId);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+	}
+
+	protected Http.Response invokeDeleteDocumentResponse(Long documentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		String location =
+			_resourceURL + _toPath("/documents/{documentId}", documentId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testGetDocument() throws Exception {
+		Document postDocument = testGetDocument_addDocument();
+
+		Document getDocument = invokeGetDocument(postDocument.getId());
+
+		assertEquals(postDocument, getDocument);
+		assertValid(getDocument);
+	}
+
+	protected Document testGetDocument_addDocument() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Document invokeGetDocument(Long documentId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL + _toPath("/documents/{documentId}", documentId);
+
+		options.setLocation(location);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(string, Document.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokeGetDocumentResponse(Long documentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL + _toPath("/documents/{documentId}", documentId);
+
+		options.setLocation(location);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPatchDocument() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	protected Document testPatchDocument_addDocument() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Document invokePatchDocument(
+			Long documentId, MultipartBody multipartBody)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL + _toPath("/documents/{documentId}", documentId);
+
+		options.setLocation(location);
+
+		options.setPatch(true);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(string, Document.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokePatchDocumentResponse(
+			Long documentId, MultipartBody multipartBody)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL + _toPath("/documents/{documentId}", documentId);
+
+		options.setLocation(location);
+
+		options.setPatch(true);
+
+		HttpUtil.URLtoByteArray(options);
+
+		return options.getResponse();
+	}
+
+	@Test
+	public void testPutDocument() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	protected Document testPutDocument_addDocument() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Document invokePutDocument(
+			Long documentId, MultipartBody multipartBody)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL + _toPath("/documents/{documentId}", documentId);
+
+		options.setLocation(location);
+
+		options.setPut(true);
+
+		String string = HttpUtil.URLtoString(options);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("HTTP response: " + string);
+		}
+
+		try {
+			return _outputObjectMapper.readValue(string, Document.class);
+		}
+		catch (Exception e) {
+			_log.error("Unable to process HTTP response: " + string, e);
+
+			throw e;
+		}
+	}
+
+	protected Http.Response invokePutDocumentResponse(
+			Long documentId, MultipartBody multipartBody)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		String location =
+			_resourceURL + _toPath("/documents/{documentId}", documentId);
+
+		options.setLocation(location);
+
+		options.setPut(true);
 
 		HttpUtil.URLtoByteArray(options);
 
