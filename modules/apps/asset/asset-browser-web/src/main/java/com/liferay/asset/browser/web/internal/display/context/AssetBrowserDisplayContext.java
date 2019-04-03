@@ -609,7 +609,8 @@ public class AssetBrowserDisplayContext {
 		if (AssetBrowserWebConfigurationValues.SEARCH_WITH_DATABASE) {
 			return AssetEntryLocalServiceUtil.getEntriesCount(
 				groupIds, new long[] {assetRendererFactory.getClassNameId()},
-				_getKeywords(), _getKeywords(), _getKeywords(), _getKeywords(),
+				new long[] {getSubtypeSelectionId()}, _getKeywords(), 
+				_getKeywords(), _getKeywords(), _getKeywords(),
 				_getListable(), false, false);
 		}
 
