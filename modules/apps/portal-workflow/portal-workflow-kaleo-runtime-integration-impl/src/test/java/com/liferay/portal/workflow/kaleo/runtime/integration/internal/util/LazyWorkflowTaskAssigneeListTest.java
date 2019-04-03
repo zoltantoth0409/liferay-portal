@@ -77,13 +77,10 @@ public class LazyWorkflowTaskAssigneeListTest {
 
 	@Test
 	public void testGetSizeWhenWorkflowTaskAssigneesIsNotLoaded() {
-		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			KaleoRuntimeTestUtil.mockKaleoTaskInstanceToken();
-
 		long expectedKaleoTaskInstanceTokenId = RandomTestUtil.randomLong();
 
-		kaleoTaskInstanceToken = new KaleoTaskInstanceTokenWrapper(
-			kaleoTaskInstanceToken) {
+		KaleoTaskInstanceToken kaleoTaskInstanceToken = new KaleoTaskInstanceTokenWrapper(
+			KaleoRuntimeTestUtil.mockKaleoTaskInstanceToken()) {
 
 			@Override
 			public long getKaleoTaskInstanceTokenId() {
