@@ -447,7 +447,7 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 			return assetHelper.getAssetEntries(hits);
 		}
 		catch (Exception e) {
-			_log.error("Unable to get asset entriers", e);
+			_log.error("Unable to get asset entries", e);
 		}
 
 		return Collections.emptyList();
