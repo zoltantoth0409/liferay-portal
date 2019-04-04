@@ -432,8 +432,8 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 
 		SearchContext searchContext = new SearchContext();
 
-		searchContext.setCompanyId(companyId);
 		searchContext.setClassTypeIds(assetEntryQuery.getClassTypeIds());
+		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(assetEntryQuery.getEnd());
 		searchContext.setStart(assetEntryQuery.getStart());
 
