@@ -94,7 +94,6 @@ public class AssetDisplayContributorTrackerImpl
 		_assetDisplayContributor.remove(assetDisplayContributor.getClassName());
 		_assetDisplayContributorByAssetURLSeparator.remove(
 			assetDisplayContributor.getAssetURLSeparator());
-
 		_serviceRegistrations.remove(assetDisplayContributor.getClassName());
 	}
 
