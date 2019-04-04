@@ -103,7 +103,7 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 	}
 
 	@Override
-	public Map<String, Object> getInfoVersionDisplayFieldsValues(
+	public Map<String, Object> getVersionInfoDisplayFieldsValues(
 			AssetEntry assetEntry, long versionClassPK, Locale locale)
 		throws PortalException {
 

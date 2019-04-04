@@ -48,7 +48,7 @@ public interface InfoDisplayContributor<T> {
 
 	public String getInfoURLSeparator();
 
-	public default Map<String, Object> getInfoVersionDisplayFieldsValues(
+	public default Map<String, Object> getVersionInfoDisplayFieldsValues(
 			T t, long versionClassPK, Locale locale)
 		throws PortalException {
 

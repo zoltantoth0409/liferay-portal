@@ -91,7 +91,7 @@ public class AssetDisplayLayoutTypeControllerDisplayContext {
 			_request.getAttribute(InfoDisplayWebKeys.VERSION_CLASS_PK));
 
 		if (versionClassPK > 0) {
-			return _infoDisplayContributor.getInfoVersionDisplayFieldsValues(
+			return _infoDisplayContributor.getVersionInfoDisplayFieldsValues(
 				_assetEntry, versionClassPK, themeDisplay.getLocale());
 		}
 
