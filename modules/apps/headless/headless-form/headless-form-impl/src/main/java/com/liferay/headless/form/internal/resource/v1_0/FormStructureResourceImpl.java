@@ -340,16 +340,21 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 				name = ddmStructure.getName(
 					contextAcceptLanguage.getPreferredLocale());
 
-				if (ddmFormSuccessPageSettings.isEnabled()) {
-					successPage = new SuccessPage() {
-						{
-							description = _toString(
-								ddmFormSuccessPageSettings.getBody());
-							headline = _toString(
-								ddmFormSuccessPageSettings.getTitle());
+				setSuccessPage(
+					() -> {
+						if (!ddmFormSuccessPageSettings.isEnabled()) {
+							return null;
 						}
-					};
-				}
+
+						return new SuccessPage() {
+							{
+								description = _toString(
+									ddmFormSuccessPageSettings.getBody());
+								headline = _toString(
+									ddmFormSuccessPageSettings.getTitle());
+							}
+						};
+					});
 			}
 		};
 	}
