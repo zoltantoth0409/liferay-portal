@@ -373,9 +373,9 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 		Map<String, LocalizedValue> options =
 			ddmFormFieldOptions.getOptions();
 
-		Set<Map.Entry<String, LocalizedValue>> entries = options.entrySet();
+		Set<Map.Entry<String, LocalizedValue>> set = options.entrySet();
 
-		return entries.toArray(new Map.Entry[entries.size()]);
+		return set.toArray(new Map.Entry[set.size()]);
 	}
 
 	private String _toString(LocalizedValue localizedValue) {
