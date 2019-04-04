@@ -21,7 +21,7 @@ import com.liferay.change.tracking.configuration.CTConfigurationRegistry;
 import com.liferay.change.tracking.exception.CTEntryException;
 import com.liferay.change.tracking.exception.CTException;
 import com.liferay.change.tracking.exception.DuplicateCTEntryException;
-import com.liferay.change.tracking.internal.util.CTEntryCollisionHelperUtil;
+import com.liferay.change.tracking.internal.util.CTEntryCollisionUtil;
 import com.liferay.change.tracking.internal.util.ChangeTrackingThreadLocal;
 import com.liferay.change.tracking.model.CTCollection;
 import com.liferay.change.tracking.model.CTEntry;
@@ -559,7 +559,7 @@ public class CTManagerImpl implements CTManager {
 			return;
 		}
 
-		CTEntryCollisionHelperUtil.checkCollidingCTEntries(ctEntry);
+		CTEntryCollisionUtil.checkCollidingCTEntries(ctEntry);
 	}
 
 	private boolean _containsResource(

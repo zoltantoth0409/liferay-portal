@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * @author Daniel Kocsis
  */
-public class CTEntryCollisionHelperUtil {
+public class CTEntryCollisionUtil {
 
 	public static void checkCollidingCTEntries(CTEntry ctEntry) {
 		List<CTEntry> collidingCTEntries = _getCollidingCTEntries(ctEntry);

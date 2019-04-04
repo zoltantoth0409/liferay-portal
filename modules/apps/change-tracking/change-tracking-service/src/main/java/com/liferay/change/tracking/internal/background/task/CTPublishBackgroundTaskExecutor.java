@@ -21,7 +21,7 @@ import com.liferay.change.tracking.exception.CTProcessException;
 import com.liferay.change.tracking.internal.background.task.display.CTPublishBackgroundTaskDisplay;
 import com.liferay.change.tracking.internal.process.log.CTProcessLog;
 import com.liferay.change.tracking.internal.process.util.CTProcessMessageSenderUtil;
-import com.liferay.change.tracking.internal.util.CTEntryCollisionHelperUtil;
+import com.liferay.change.tracking.internal.util.CTEntryCollisionUtil;
 import com.liferay.change.tracking.model.CTCollection;
 import com.liferay.change.tracking.model.CTEntry;
 import com.liferay.change.tracking.model.CTEntryAggregate;
@@ -280,7 +280,7 @@ public class CTPublishBackgroundTaskExecutor
 		CTEntryLocalServiceUtil.updateStatus(
 			ctEntry.getCtEntryId(), WorkflowConstants.STATUS_APPROVED);
 
-		CTEntryCollisionHelperUtil.checkCollidingCTEntries(ctEntry);
+		CTEntryCollisionUtil.checkCollidingCTEntries(ctEntry);
 	}
 
 	private void _publishCTEntryAggregate(
