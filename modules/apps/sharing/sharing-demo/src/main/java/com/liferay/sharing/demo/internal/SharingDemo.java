@@ -47,8 +47,6 @@ public class SharingDemo extends BasePortalInstanceLifecycleListener {
 
 	@Override
 	public void portalInstanceRegistered(Company company) throws Exception {
-		long classNameId = _portal.getClassNameId(DLFileEntry.class);
-
 		User sharerUser = _basicUserDemoDataCreator.create(
 			company.getCompanyId(), "sharing.sharer@liferay.com");
 
@@ -73,7 +71,8 @@ public class SharingDemo extends BasePortalInstanceLifecycleListener {
 				company.getCompanyId());
 
 			_sharingEntryLocalService.addSharingEntry(
-				sharerUser.getUserId(), user.getUserId(), classNameId,
+				sharerUser.getUserId(), user.getUserId(),
+				_portal.getClassNameId(DLFileEntry.class),
 				fileEntry.getFileEntryId(), guestGroup.getGroupId(), true,
 				Arrays.asList(SharingEntryAction.VIEW), null, serviceContext);
 		}
