@@ -362,13 +362,13 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 	private Map.Entry<String, LocalizedValue>[] _toLocalizedValueMapEntry(
 		DDMFormField ddmFormField, String element) {
 
-		Object property = ddmFormField.getProperty(element);
+		Object value = ddmFormField.getProperty(element);
 
-		if (property == null) {
+		if (value == null) {
 			return new Map.Entry[0];
 		}
 
-		DDMFormFieldOptions ddmFormFieldOptions = (DDMFormFieldOptions)property;
+		DDMFormFieldOptions ddmFormFieldOptions = (DDMFormFieldOptions)value;
 
 		Map<String, LocalizedValue> options =
 			ddmFormFieldOptions.getOptions();
