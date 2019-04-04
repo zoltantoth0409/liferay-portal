@@ -383,8 +383,8 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 
 		AssetEntryQuery assetEntryQuery = getAssetEntryQuery(segmentsEntryId);
 
-		assetEntryQuery.setStart(start);
 		assetEntryQuery.setEnd(end);
+		assetEntryQuery.setStart(start);
 
 		return _search(getCompanyId(), assetEntryQuery);
 	}
