@@ -79,50 +79,29 @@
 		</aui:select>
 
 		<%
+		String values = StringPool.BLANK;
+
 		if (type == ExpandoColumnConstants.DOUBLE_ARRAY) {
-		%>
-
-			<aui:input cssClass="lfr-textarea-container" helpMessage="enter-one-value-per-line" label="values" name="defaultValue" required="<%= true %>" type="textarea" value="<%= StringUtil.merge((double[])defaultValue, StringPool.NEW_LINE) %>" />
-
-		<%
+			values = StringUtil.merge((double[])defaultValue, StringPool.NEW_LINE);
 		}
 		else if (type == ExpandoColumnConstants.FLOAT_ARRAY) {
-		%>
-
-			<aui:input cssClass="lfr-textarea-container" helpMessage="enter-one-value-per-line" label="values" name="defaultValue" required="<%= true %>" type="textarea" value="<%= StringUtil.merge((float[])defaultValue, StringPool.NEW_LINE) %>" />
-
-		<%
-		}
-		else if (type == ExpandoColumnConstants.LONG_ARRAY) {
-		%>
-
-			<aui:input cssClass="lfr-textarea-container" helpMessage="enter-one-value-per-line" label="values" name="defaultValue" required="<%= true %>" type="textarea" value="<%= StringUtil.merge((long[])defaultValue, StringPool.NEW_LINE) %>" />
-
-		<%
+			values = StringUtil.merge((float[])defaultValue, StringPool.NEW_LINE);
 		}
 		else if (type == ExpandoColumnConstants.INTEGER_ARRAY) {
-		%>
-
-			<aui:input cssClass="lfr-textarea-container" helpMessage="enter-one-value-per-line" label="values" name="defaultValue" required="<%= true %>" type="textarea" value="<%= StringUtil.merge((int[])defaultValue, StringPool.NEW_LINE) %>" />
-
-		<%
+			values = StringUtil.merge((int[])defaultValue, StringPool.NEW_LINE);
+		}
+		else if (type == ExpandoColumnConstants.LONG_ARRAY) {
+			values = StringUtil.merge((long[])defaultValue, StringPool.NEW_LINE);
 		}
 		else if (type == ExpandoColumnConstants.SHORT_ARRAY) {
-		%>
-
-			<aui:input cssClass="lfr-textarea-container" helpMessage="enter-one-value-per-line" label="values" name="defaultValue" required="<%= true %>" type="textarea" value="<%= StringUtil.merge((short[])defaultValue, StringPool.NEW_LINE) %>" />
-
-		<%
+			values = StringUtil.merge((short[])defaultValue, StringPool.NEW_LINE);
 		}
 		else if (type == ExpandoColumnConstants.STRING_ARRAY) {
-		%>
-
-			<aui:input cssClass="lfr-textarea-container" helpMessage="enter-one-value-per-line" label="values" name="defaultValue" required="<%= true %>" type="textarea" value="<%= StringUtil.merge((String[])defaultValue, StringPool.NEW_LINE) %>" />
-
-		<%
+			values = StringUtil.merge((String[])defaultValue, StringPool.NEW_LINE);
 		}
 		%>
 
+		<aui:input cssClass="lfr-textarea-container" helpMessage="enter-one-value-per-line" label="values" name="defaultValue" required="<%= true %>" type="textarea" value="<%= values %>" />
 	</c:when>
 	<c:otherwise>
 		<aui:select disabled="<%= expandoColumn != null %>" label="data-type" name="dataType" onChange="setDataType()" value="<%= ExpandoColumnConstants.getDataType(type) %>">
