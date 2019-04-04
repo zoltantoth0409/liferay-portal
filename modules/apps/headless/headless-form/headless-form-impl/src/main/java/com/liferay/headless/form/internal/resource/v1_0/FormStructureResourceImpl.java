@@ -176,21 +176,6 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 
 						return ddmFormField.getDataType();
 					});
-				setHasFormRules(
-					() -> {
-						DDMForm ddmForm = ddmFormField.getDDMForm();
-
-						List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
-
-						Stream<DDMFormRule> stream = ddmFormRules.stream();
-
-						return stream.map(
-							DDMFormRule::getCondition
-						).anyMatch(
-							condition -> condition.contains(
-								ddmFormField.getName())
-						);
-					});
 				setGrid(
 					() -> {
 						if (!Objects.equals("grid", type)) {
@@ -221,6 +206,21 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 									Row.class);
 							}
 						};
+					});
+				setHasFormRules(
+					() -> {
+						DDMForm ddmForm = ddmFormField.getDDMForm();
+
+						List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
+
+						Stream<DDMFormRule> stream = ddmFormRules.stream();
+
+						return stream.map(
+							DDMFormRule::getCondition
+						).anyMatch(
+							condition -> condition.contains(
+								ddmFormField.getName())
+						);
 					});
 				setShowAsSwitcher(
 					() -> {
