@@ -213,11 +213,10 @@ public class UpstreamFailureUtil {
 			return;
 		}
 
-		String upstreamJobName = jobName.replace("pullrequest", "upstream");
-
 		String url = JenkinsResultsParserUtil.getLocalURL(
 			JenkinsResultsParserUtil.combine(
-				_UPSTREAM_FAILURES_JOB_BASE_URL, upstreamJobName,
+				_UPSTREAM_FAILURES_JOB_BASE_URL,
+				jobName.replace("pullrequest", "upstream"),
 				"/builds/latest/test.results.json"));
 
 		try {
