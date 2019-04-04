@@ -110,17 +110,17 @@ public class MySitesPersonalMenuEntry implements PersonalMenuEntry {
 
 		User user = permissionChecker.getUser();
 
-		List<Group> mySites = user.getMySiteGroups(
+		List<Group> mySiteGroups = user.getMySiteGroups(
 			new String[] {
 				Company.class.getName(), Group.class.getName(),
 				Organization.class.getName()
 			},
 			PropsValues.MY_SITES_MAX_ELEMENTS);
 
-		List<Group> recentSites = _recentGroupManager.getRecentGroups(
+		List<Group> recentGroups = _recentGroupManager.getRecentGroups(
 			_portal.getHttpServletRequest(portletRequest));
 
-		if (mySites.isEmpty() && recentSites.isEmpty()) {
+		if (mySiteGroups.isEmpty() && recentGroups.isEmpty()) {
 			return false;
 		}
 
