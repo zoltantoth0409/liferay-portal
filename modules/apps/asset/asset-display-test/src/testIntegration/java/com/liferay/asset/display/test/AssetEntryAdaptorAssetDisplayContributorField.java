@@ -28,17 +28,17 @@ import org.osgi.service.component.annotations.Component;
 	property = "model.class.name=com.liferay.asset.kernel.model.AssetEntry",
 	service = AssetDisplayContributorField.class
 )
-public class AssetEntryAdaptorAssetDisplayContributorField
+public class AssetEntryAdapterAssetDisplayContributorField
 	implements AssetDisplayContributorField<AssetEntry> {
 
 	@Override
 	public String getKey() {
-		return "assetEntryAdaptor";
+		return "assetEntryAdapter";
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return "assetEntryAdaptor";
+		return "assetEntryAdapter";
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class AssetEntryAdaptorAssetDisplayContributorField
 
 	@Override
 	public String getValue(AssetEntry assetEntry, Locale locale) {
-		return "assetEntryAdaptor";
+		return "assetEntryAdapter";
 	}
 
 }

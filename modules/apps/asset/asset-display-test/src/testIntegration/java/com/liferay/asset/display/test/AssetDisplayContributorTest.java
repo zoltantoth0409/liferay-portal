@@ -53,7 +53,7 @@ public class AssetDisplayContributorTest {
 
 			if (Objects.equals(
 					infoDisplayContributorField.getKey(),
-					"assetEntryAdaptor")) {
+					"assetEntryAdapter")) {
 
 				return;
 			}
