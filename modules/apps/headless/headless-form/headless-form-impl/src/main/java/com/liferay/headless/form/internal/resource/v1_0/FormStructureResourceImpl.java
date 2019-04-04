@@ -129,18 +129,6 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 
 		return new Field() {
 			{
-				DDMForm ddmForm = ddmFormField.getDDMForm();
-
-				List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
-
-				hasFormRules = ddmFormRules.stream(
-				).map(
-					DDMFormRule::getCondition
-				).anyMatch(
-					ruleCondition -> ruleCondition.contains(
-						ddmFormField.getName())
-				);
-
 				immutable = ddmFormField.isTransient();
 				inputControl = type;
 				label = _toString(ddmFormField.getLabel());
@@ -218,6 +206,21 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 
 						return ddmFormField.getDataType();
 					});
+				setHasFormRules(
+					() -> {
+						DDMForm ddmForm = ddmFormField.getDDMForm();
+
+						List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
+
+						return ddmFormRules.stream(
+						).map(
+							DDMFormRule::getCondition
+						).anyMatch(
+							ruleCondition -> ruleCondition.contains(
+								ddmFormField.getName())
+						);
+					});
+
 				setGrid(
 					() -> {
 						if (!Objects.equals("grid", type)) {
