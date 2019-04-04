@@ -59,7 +59,7 @@ public class AssetDisplayContributorTest {
 			}
 		}
 
-		Assert.fail("Asset Display Contributor not registered correctly");
+		Assert.fail("Asset display contributor was not registered");
 	}
 
 	@Inject
