@@ -29,6 +29,7 @@ public class UpgradeDDMFormParagraphFields
 		super(jsonFactory);
 	}
 
+	@Override
 	protected long getClassNameId() {
 		return PortalUtil.getClassNameId(DDMFormInstance.class);
 	}
