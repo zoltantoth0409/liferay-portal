@@ -31,15 +31,29 @@ if (Validator.isNull(backURL)) {
 
 WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 
-long classPK = workflowTaskDisplayContext.getWorkflowContextEntryClassPK(workflowTask);
+long workflowContextEntryClassPK =
+	workflowTaskDisplayContext.getWorkflowContextEntryClassPK(workflowTask);
 
-WorkflowHandler<?> workflowHandler = workflowTaskDisplayContext.getWorkflowHandler(workflowTask);
+WorkflowHandler<?> workflowHandler =
+	workflowTaskDisplayContext.getWorkflowHandler(workflowTask);
 
-AssetRenderer<?> assetRenderer = workflowHandler.getAssetRenderer(classPK);
+AssetRenderer<?> assetRenderer =
+	workflowHandler.getAssetRenderer(workflowContextEntryClassPK);
+
+long assetClassPK = assetRenderer.getClassPK();
 
 AssetRendererFactory<?> assetRendererFactory = assetRenderer.getAssetRendererFactory();
 
 AssetEntry assetEntry = assetRendererFactory.getAssetEntry(workflowHandler.getClassName(), assetRenderer.getClassPK());
+
+long assetEntryClassPK = assetEntry.getClassPK();
+
+AssetEntry assetRendererAssetEntry =
+	assetEntryLocalService.fetchAssetEntry(assetClassPK);
+
+if (assetRendererAssetEntry == null) {
+	assetClassPK = assetEntryClassPK;
+}
 
 String headerTitle = workflowTaskDisplayContext.getHeaderTitle(workflowTask);
 
@@ -212,8 +226,8 @@ renderResponse.setTitle(headerTitle);
 						<liferay-ui:discussion
 							assetEntryVisible="<%= false %>"
 							className="<%= assetRenderer.getClassName() %>"
-							classPK="<%= assetRenderer.getClassPK() %>"
-							formName='<%= "fm" + assetRenderer.getClassPK() %>'
+							classPK="<%= assetClassPK %>"
+							formName='<%= "fm" + assetClassPK %>'
 							ratingsEnabled="<%= false %>"
 							redirect="<%= currentURL %>"
 							userId="<%= user.getUserId() %>"
