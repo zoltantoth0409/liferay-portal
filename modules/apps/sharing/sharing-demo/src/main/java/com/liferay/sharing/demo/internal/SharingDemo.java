@@ -49,7 +49,6 @@ public class SharingDemo extends BasePortalInstanceLifecycleListener {
 	public void portalInstanceRegistered(Company company) throws Exception {
 		User sharerUser = _basicUserDemoDataCreator.create(
 			company.getCompanyId(), "sharing.sharer@liferay.com");
-
 		Group guestGroup = _groupLocalService.getGroup(
 			company.getCompanyId(), "Guest");
 
