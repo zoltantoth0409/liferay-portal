@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.display.internal;
+package com.liferay.asset.display.internal.contributor;
 
 import com.liferay.asset.display.contributor.AssetDisplayContributor;
 import com.liferay.asset.display.contributor.AssetDisplayContributorTracker;
