@@ -48,19 +48,13 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 			long classTypeId, Locale locale)
 		throws PortalException {
 
-		// Fields for asset entry
-
 		Set<InfoDisplayField> infoDisplayFields = _getInfoDisplayFields(
 			AssetEntry.class.getName(), locale);
-
-		// Fields for the specific asset type
 
 		Set<InfoDisplayField> assetTypeInfoDisplayFields =
 			_getInfoDisplayFields(getClassName(), locale);
 
 		infoDisplayFields.addAll(assetTypeInfoDisplayFields);
-
-		// Fields for the class type
 
 		List<InfoDisplayField> classTypeInfoDisplayFields = getClassTypeInfoDisplayFields(
 			classTypeId, locale);
