@@ -160,7 +160,7 @@ public class InputPermissionsParamsTag extends TagSupport {
 				Group group = themeDisplay.getScopeGroup();
 
 				if (!group.hasPrivateLayouts() &&
-					 guestDefaultActions.contains(ActionKeys.VIEW)) {
+					guestDefaultActions.contains(ActionKeys.VIEW)) {
 
 					return RoleConstants.GUEST;
 				}
