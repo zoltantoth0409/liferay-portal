@@ -554,7 +554,7 @@ public class CTManagerImpl implements CTManager {
 		return ctEntryAggregate;
 	}
 
-	private void _checkCollisions(CTEntry ctEntry, CTCollection ctCollection) {
+	private void _checkCollisions(CTCollection ctCollection, CTEntry ctEntry) {
 		if (!ctCollection.isProduction()) {
 			return;
 		}
@@ -665,7 +665,7 @@ public class CTManagerImpl implements CTManager {
 				userId, modelClassNameId, modelClassPK, modelResourcePrimKey,
 				changeType, ctCollection.getCtCollectionId(), serviceContext);
 
-			_checkCollisions(ctEntry, ctCollection);
+			_checkCollisions(ctCollection, ctEntry);
 
 			// Updating existing related change tracking entry aggregate
 
