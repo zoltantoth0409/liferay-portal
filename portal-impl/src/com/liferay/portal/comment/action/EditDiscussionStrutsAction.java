@@ -150,11 +150,11 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String className = ParamUtil.getString(request, "className");
-		long classPK = ParamUtil.getLong(request, "classPK");
-
 		DiscussionPermission discussionPermission = _getDiscussionPermission(
 			themeDisplay);
+
+		String className = ParamUtil.getString(request, "className");
+		long classPK = ParamUtil.getLong(request, "classPK");
 
 		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
 			className, classPK);
