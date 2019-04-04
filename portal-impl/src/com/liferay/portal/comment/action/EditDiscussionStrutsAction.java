@@ -23,6 +23,7 @@ import com.liferay.message.boards.kernel.exception.RequiredMessageException;
 import com.liferay.portal.kernel.comment.Comment;
 import com.liferay.portal.kernel.comment.CommentManagerUtil;
 import com.liferay.portal.kernel.comment.DiscussionPermission;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.User;
@@ -192,20 +193,7 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 		DiscussionPermission discussionPermission = _getDiscussionPermission(
 			themeDisplay);
 
-		AssetEntry assetEntry = null;
-
-		if (Validator.isNotNull(className) && (classPK != 0)) {
-			assetEntry = AssetEntryLocalServiceUtil.getEntry(
-				className, classPK);
-		}
-
-		long companyId = themeDisplay.getCompanyId();
-		long groupId = themeDisplay.getScopeGroupId();
-
-		if (assetEntry != null) {
-			companyId = assetEntry.getCompanyId();
-			groupId = assetEntry.getGroupId();
-		}
+		AssetEntry assetEntry = _getAssetEntry(commentId, className, classPK);
 
 		if (commentId <= 0) {
 
@@ -236,10 +224,12 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 
 			try {
 				discussionPermission.checkAddPermission(
-					companyId, groupId, className, classPK);
+					assetEntry.getCompanyId(), assetEntry.getGroupId(),
+					assetEntry.getClassName(), assetEntry.getClassPK());
 
 				commentId = CommentManagerUtil.addComment(
-					user.getUserId(), className, classPK, user.getFullName(),
+					user.getUserId(), assetEntry.getClassName(),
+					assetEntry.getClassPK(), user.getFullName(),
 					parentCommentId, subject, body, serviceContextFunction);
 			}
 			finally {
@@ -250,20 +240,12 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 
 			// Update message
 
-			if (Validator.isNull(className) || (classPK == 0)) {
-				Comment comment = CommentManagerUtil.fetchComment(commentId);
-
-				if (comment != null) {
-					className = comment.getClassName();
-					classPK = comment.getClassPK();
-				}
-			}
-
 			discussionPermission.checkUpdatePermission(commentId);
 
 			commentId = CommentManagerUtil.updateComment(
-				themeDisplay.getUserId(), className, classPK, commentId,
-				subject, body, serviceContextFunction);
+				themeDisplay.getUserId(), assetEntry.getClassName(),
+				assetEntry.getClassPK(), commentId, subject, body,
+				serviceContextFunction);
 		}
 
 		// Subscription
@@ -272,7 +254,8 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 
 		if (subscribe) {
 			CommentManagerUtil.subscribeDiscussion(
-				themeDisplay.getUserId(), groupId, className, classPK);
+				themeDisplay.getUserId(), assetEntry.getGroupId(),
+				assetEntry.getClassName(), assetEntry.getClassPK());
 		}
 
 		return commentId;
@@ -288,6 +271,20 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 		ServletResponseUtil.write(response, jsonObj.toString());
 
 		response.flushBuffer();
+	}
+
+	private AssetEntry _getAssetEntry(
+			long commentId, String className, long classPK)
+		throws PortalException {
+
+		if (Validator.isNotNull(className) && (classPK > 0)) {
+			return AssetEntryLocalServiceUtil.getEntry(className, classPK);
+		}
+
+		Comment comment = CommentManagerUtil.fetchComment(commentId);
+
+		return AssetEntryLocalServiceUtil.getEntry(
+			comment.getClassName(), comment.getClassPK());
 	}
 
 	private DiscussionPermission _getDiscussionPermission(
