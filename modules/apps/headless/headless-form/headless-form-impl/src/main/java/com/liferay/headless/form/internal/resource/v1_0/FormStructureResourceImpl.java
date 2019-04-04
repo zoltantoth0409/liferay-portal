@@ -125,22 +125,10 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 	}
 
 	private Field _toField(DDMFormField ddmFormField) {
+		String type = ddmFormField.getType();
+
 		return new Field() {
 			{
-				String type = ddmFormField.getType();
-
-				if (Objects.equals("document_library", type)) {
-					dataType = "document";
-				}
-				else if (Objects.equals("date", type) ||
-						 Objects.equals("paragraph", type)) {
-
-					dataType = type;
-				}
-				else {
-					dataType = ddmFormField.getDataType();
-				}
-
 				if (Objects.equals("grid", type)) {
 					grid = new Grid() {
 						{
@@ -241,6 +229,21 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 						}
 					};
 				}
+
+				setDataType(
+					() -> {
+						if (Objects.equals("document_library", type)) {
+							return "document";
+						}
+
+						if (Objects.equals("date", type) ||
+							Objects.equals("paragraph", type)) {
+
+							return type;
+						}
+
+						return ddmFormField.getDataType();
+					});
 			}
 		};
 	}
