@@ -33,12 +33,12 @@ public class AssetEntryAdapterAssetDisplayContributorField
 
 	@Override
 	public String getKey() {
-		return "assetEntryAdapter";
+		return "assetEntryAdapterKey";
 	}
 
 	@Override
 	public String getLabel(Locale locale) {
-		return "assetEntryAdapter";
+		return "assetEntryAdapterLabel";
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class AssetEntryAdapterAssetDisplayContributorField
 
 	@Override
 	public String getValue(AssetEntry assetEntry, Locale locale) {
-		return "assetEntryAdapter";
+		return "assetEntryAdapterValue";
 	}
 
 }
