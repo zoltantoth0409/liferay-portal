@@ -114,9 +114,11 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 				ddmFormField.getNestedDDMFormFields(),
 				nestedDDMFormField -> nestedDDMFormField.getName())
 		).map(
-			nestedDDMFormFieldNames -> _getNestedDDMFormFieldNames(nestedDDMFormFieldNames, ddmStructure)
+			nestedDDMFormFieldNames -> _getNestedDDMFormFieldNames(
+				nestedDDMFormFieldNames, ddmStructure)
 		).peek(
-			nestedDDMFormFieldNames -> nestedDDMFormFieldNames.addAll(ddmFormFieldNames)
+			nestedDDMFormFieldNames -> nestedDDMFormFieldNames.addAll(
+				ddmFormFieldNames)
 		).flatMap(
 			Collection::stream
 		).collect(
@@ -185,8 +187,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 						return new Grid() {
 							{
 								columns = TransformUtil.transform(
-									_toMapEntry(
-										ddmFormField, "columns"),
+									_toMapEntry(ddmFormField, "columns"),
 									entry -> new Column() {
 										{
 											label = _toString(entry.getValue());
@@ -195,8 +196,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 									},
 									Column.class);
 								rows = TransformUtil.transform(
-									_toMapEntry(
-										ddmFormField, "rows"),
+									_toMapEntry(ddmFormField, "rows"),
 									entry -> new Row() {
 										{
 											label = _toString(entry.getValue());
@@ -211,7 +211,8 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 					() -> {
 						DDMForm ddmForm = ddmFormField.getDDMForm();
 
-						List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
+						List<DDMFormRule> ddmFormRules =
+							ddmForm.getDDMFormRules();
 
 						Stream<DDMFormRule> stream = ddmFormRules.stream();
 
@@ -245,8 +246,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 					});
 				setValidation(
 					() -> {
-						Object object = ddmFormField.getProperty(
-							"validation");
+						Object object = ddmFormField.getProperty("validation");
 
 						if (!(object instanceof DDMFormFieldValidation)) {
 							return null;
@@ -282,7 +282,8 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 		).map(
 			DDMFormLayoutColumn::getDDMFormFieldNames
 		).map(
-			formFieldNames -> _getNestedDDMFormFieldNames(formFieldNames, ddmStructure)
+			formFieldNames -> _getNestedDDMFormFieldNames(
+				formFieldNames, ddmStructure)
 		).flatMap(
 			Collection::stream
 		).collect(
@@ -370,8 +371,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 
 		DDMFormFieldOptions ddmFormFieldOptions = (DDMFormFieldOptions)value;
 
-		Map<String, LocalizedValue> options =
-			ddmFormFieldOptions.getOptions();
+		Map<String, LocalizedValue> options = ddmFormFieldOptions.getOptions();
 
 		Set<Map.Entry<String, LocalizedValue>> set = options.entrySet();
 
