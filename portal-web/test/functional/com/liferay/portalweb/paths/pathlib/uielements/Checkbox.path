@@ -259,11 +259,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>SHOW_NAVIGATION_LINKS_CHECKBOX</td>
-	<td>//label[contains(@for,'showTabs')]//input[@type='checkbox']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>SHOW_TOTALS</td>
 	<td>//label[contains(.,'Show Totals')]/input[@type='checkbox']</td>
 	<td></td>
