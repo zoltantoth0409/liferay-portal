@@ -110,13 +110,19 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 		return ddmFormFieldsStream.filter(
 			ddmFormField -> ddmFormFieldNames.contains(ddmFormField.getName())
 		).map(
-			ddmFormField -> ddmFormField.getNestedDDMFormFields(
-			).stream(
-			).map(
-				DDMFormField::getName
-			).collect(
-				Collectors.toList()
-			)
+			ddmFormField -> {
+				List<DDMFormField> nestedDDMFormFields =
+					ddmFormField.getNestedDDMFormFields();
+
+				Stream<DDMFormField> nestedDDMFormFieldsStream =
+					nestedDDMFormFields.stream();
+
+				return nestedDDMFormFieldsStream.map(
+					DDMFormField::getName
+				).collect(
+					Collectors.toList()
+				);
+			}
 		).map(
 			fieldNames -> _getNestedFieldNames(fieldNames, ddmStructure)
 		).peek(
