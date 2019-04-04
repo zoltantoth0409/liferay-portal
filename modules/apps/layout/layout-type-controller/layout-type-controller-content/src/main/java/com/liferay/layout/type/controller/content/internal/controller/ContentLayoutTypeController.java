@@ -97,17 +97,16 @@ public class ContentLayoutTypeController extends BaseLayoutTypeControllerImpl {
 
 		if (layoutMode.equals(Constants.EDIT)) {
 			request.setAttribute(
+				ContentLayoutTypeControllerWebKeys.ITEM_SELECTOR,
+				_itemSelector);
+			request.setAttribute(
 				ContentPageEditorWebKeys.
 					FRAGMENT_COLLECTION_CONTRIBUTOR_TRACKER,
 				_fragmentCollectionContributorTracker);
-
 			request.setAttribute(
 				InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR_TRACKER,
 				_infoDisplayContributorTracker);
 
-			request.setAttribute(
-				ContentLayoutTypeControllerWebKeys.ITEM_SELECTOR,
-				_itemSelector);
 		}
 
 		String page = getViewPage();
