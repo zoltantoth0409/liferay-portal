@@ -156,7 +156,7 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 		String className = ParamUtil.getString(request, "className");
 		long classPK = ParamUtil.getLong(request, "classPK");
 
-		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
+		AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
 			className, classPK);
 
 		discussionPermission.checkSubscribePermission(
