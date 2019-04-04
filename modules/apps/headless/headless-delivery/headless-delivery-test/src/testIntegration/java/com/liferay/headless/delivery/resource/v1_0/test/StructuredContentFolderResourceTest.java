@@ -134,6 +134,7 @@ public class StructuredContentFolderResourceTest
 		return journalFolder.getFolderId();
 	}
 
+	@Override
 	protected StructuredContentFolder
 			testPatchStructuredContentFolder_addStructuredContentFolder()
 		throws Exception {
