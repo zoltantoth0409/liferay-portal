@@ -31,10 +31,14 @@ import com.liferay.asset.list.model.AssetListEntryAssetEntryRel;
 import com.liferay.asset.list.model.AssetListEntrySegmentsEntryRel;
 import com.liferay.asset.list.service.AssetListEntryAssetEntryRelLocalServiceUtil;
 import com.liferay.asset.list.service.AssetListEntrySegmentsEntryRelLocalServiceUtil;
-import com.liferay.asset.util.AssetHelperUtil;
+import com.liferay.asset.util.AssetHelper;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -45,11 +49,16 @@ import com.liferay.segments.constants.SegmentsConstants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Pavel Savinov
@@ -377,7 +386,7 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 		assetEntryQuery.setStart(start);
 		assetEntryQuery.setEnd(end);
 
-		return AssetHelperUtil.search(getCompanyId(), assetEntryQuery);
+		return _search(getCompanyId(), assetEntryQuery);
 	}
 
 	private long _getFirstSegmentsEntryId(long[] segmentsEntryIds) {
@@ -416,6 +425,32 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 		).collect(
 			Collectors.toList()
 		);
+	}
+
+	private List<AssetEntry> _search(
+		long companyId, AssetEntryQuery assetEntryQuery) {
+
+		SearchContext searchContext = new SearchContext();
+
+		searchContext.setCompanyId(companyId);
+		searchContext.setClassTypeIds(assetEntryQuery.getClassTypeIds());
+		searchContext.setEnd(assetEntryQuery.getEnd());
+		searchContext.setStart(assetEntryQuery.getStart());
+
+		AssetHelper assetHelper = _serviceTracker.getService();
+
+		try {
+			Hits hits = assetHelper.search(
+				searchContext, assetEntryQuery, assetEntryQuery.getStart(),
+				assetEntryQuery.getEnd());
+
+			return assetHelper.getAssetEntries(hits);
+		}
+		catch (Exception e) {
+			_log.error("Unable to get asset entriers", e);
+		}
+
+		return Collections.emptyList();
 	}
 
 	private void _setCategoriesAndTags(
@@ -523,6 +558,24 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 			siteGroupId, notAnyAssetTagNames);
 
 		assetEntryQuery.setNotAnyTagIds(notAnyAssetTagIds);
+	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetListEntryImpl.class);
+
+	private static final ServiceTracker<AssetHelper, AssetHelper>
+		_serviceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(AssetHelper.class);
+
+		ServiceTracker<AssetHelper, AssetHelper> serviceTracker =
+			new ServiceTracker<>(
+				bundle.getBundleContext(), AssetHelper.class, null);
+
+		serviceTracker.open();
+
+		_serviceTracker = serviceTracker;
 	}
 
 }
