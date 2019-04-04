@@ -185,7 +185,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 						return new Grid() {
 							{
 								columns = TransformUtil.transform(
-									_toLocalizedValueMapEntry(
+									_toMapEntry(
 										ddmFormField, "columns"),
 									entry -> new Column() {
 										{
@@ -195,7 +195,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 									},
 									Column.class);
 								rows = TransformUtil.transform(
-									_toLocalizedValueMapEntry(
+									_toMapEntry(
 										ddmFormField, "rows"),
 									entry -> new Row() {
 										{
@@ -359,7 +359,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 		};
 	}
 
-	private Map.Entry<String, LocalizedValue>[] _toLocalizedValueMapEntry(
+	private Map.Entry<String, LocalizedValue>[] _toMapEntry(
 		DDMFormField ddmFormField, String name) {
 
 		Object value = ddmFormField.getProperty(name);
