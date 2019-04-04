@@ -257,13 +257,12 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 
 						return new Validation() {
 							{
-								expression =
-									ddmFormFieldValidation.getExpression();
 								errorMessage =
 									ddmFormFieldValidation.getErrorMessage();
+								expression =
+									ddmFormFieldValidation.getExpression();
 							}
 						};
-
 					});
 			}
 		};
