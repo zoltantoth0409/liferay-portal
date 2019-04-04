@@ -102,7 +102,7 @@ public class CommentsSubscriptionTest {
 	}
 
 	@Test
-	public void testCantSubscribeToCommentsWithoutViewPermissions()
+	public void testCannotSubscribeToCommentsWithoutViewPermissions()
 		throws Exception {
 
 		ServiceContext serviceContext =
