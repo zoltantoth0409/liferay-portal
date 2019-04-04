@@ -32,7 +32,7 @@ public interface InfoDisplayContributor<T> {
 	public List<ClassType> getClassTypes(long groupId, Locale locale)
 		throws PortalException;
 
-	public List<InfoDisplayField> getInfoClassTypeFields(
+	public List<InfoDisplayField> getClassTypeInfoDisplayFields(
 			long classTypeId, Locale locale)
 		throws PortalException;
 

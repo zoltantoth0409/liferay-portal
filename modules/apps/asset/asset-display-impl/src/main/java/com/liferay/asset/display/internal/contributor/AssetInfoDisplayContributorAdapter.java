@@ -54,7 +54,7 @@ public class AssetInfoDisplayContributorAdapter
 	}
 
 	@Override
-	public List<InfoDisplayField> getInfoClassTypeFields(
+	public List<InfoDisplayField> getClassTypeInfoDisplayFields(
 			long classTypeId, Locale locale)
 		throws PortalException {
 

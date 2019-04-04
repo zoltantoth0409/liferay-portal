@@ -59,7 +59,7 @@ public interface AssetInfoDisplayContributor
 	}
 
 	@Override
-	public default List<InfoDisplayField> getInfoClassTypeFields(
+	public default List<InfoDisplayField> getClassTypeInfoDisplayFields(
 			long classTypeId, Locale locale)
 		throws PortalException {
 

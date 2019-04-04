@@ -71,11 +71,11 @@ public class JournalArticleInfoDisplayContributor
 	}
 
 	@Override
-	public List<InfoDisplayField> getInfoClassTypeFields(
+	public List<InfoDisplayField> getClassTypeInfoDisplayFields(
 			long classTypeId, Locale locale)
 		throws PortalException {
 
-		List<InfoDisplayField> infoDisplayFields = super.getInfoClassTypeFields(
+		List<InfoDisplayField> infoDisplayFields = super.getClassTypeInfoDisplayFields(
 			classTypeId, locale);
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.fetchDDMStructure(
