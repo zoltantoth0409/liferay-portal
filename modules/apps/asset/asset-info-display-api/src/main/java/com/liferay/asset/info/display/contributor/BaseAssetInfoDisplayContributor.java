@@ -14,7 +14,7 @@
 
 package com.liferay.asset.info.display.contributor;
 
-import com.liferay.asset.info.display.contributor.util.AssetInfoDisplayContributorFieldHelperUtil;
+import com.liferay.asset.info.display.contributor.util.AssetInfoDisplayContributorFieldUtil;
 import com.liferay.asset.info.display.contributor.util.ContentAccessor;
 import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.exception.NoSuchEntryException;
@@ -173,7 +173,7 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 	private List<InfoDisplayContributorField> _getInfoDisplayContributorFields(
 		String className) {
 
-		return AssetInfoDisplayContributorFieldHelperUtil.
+		return AssetInfoDisplayContributorFieldUtil.
 			getInfoDisplayContributorFields(className);
 	}
 
@@ -203,7 +203,7 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 			_getAssetEntryInfoDisplayFieldsValues(assetEntry, locale);
 
 		List<InfoDisplayContributorField> infoDisplayContributorFields =
-			AssetInfoDisplayContributorFieldHelperUtil.
+			AssetInfoDisplayContributorFieldUtil.
 				getInfoDisplayContributorFields(getClassName());
 
 		for (InfoDisplayContributorField infoDisplayContributorField :

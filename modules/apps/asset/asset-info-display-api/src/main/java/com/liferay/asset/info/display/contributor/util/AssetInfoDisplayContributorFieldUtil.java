@@ -28,7 +28,7 @@ import org.osgi.framework.FrameworkUtil;
 /**
  * @author Jürgen Kappler
  */
-public class AssetInfoDisplayContributorFieldHelperUtil {
+public class AssetInfoDisplayContributorFieldUtil {
 
 	public static List<InfoDisplayContributorField>
 		getInfoDisplayContributorFields(String className) {
@@ -48,7 +48,7 @@ public class AssetInfoDisplayContributorFieldHelperUtil {
 
 	static {
 		Bundle bundle = FrameworkUtil.getBundle(
-			AssetInfoDisplayContributorFieldHelperUtil.class);
+			AssetInfoDisplayContributorFieldUtil.class);
 
 		BundleContext bundleContext = bundle.getBundleContext();
 

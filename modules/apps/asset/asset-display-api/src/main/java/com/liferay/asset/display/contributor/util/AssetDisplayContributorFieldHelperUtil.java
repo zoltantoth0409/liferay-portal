@@ -28,7 +28,7 @@ import org.osgi.framework.FrameworkUtil;
 /**
  * @author Jürgen Kappler
  * @deprecated As of Judson (7.1.x), replaced by {@link
- *             com.liferay.asset.info.display.contributor.util.AssetInfoDisplayContributorFieldHelperUtil}
+ *             com.liferay.asset.info.display.contributor.util.AssetInfoDisplayContributorFieldUtil}
  */
 @Deprecated
 public class AssetDisplayContributorFieldHelperUtil {
