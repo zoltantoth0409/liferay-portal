@@ -212,15 +212,15 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 
 						List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-						return ddmFormRules.stream(
-						).map(
+						Stream<DDMFormRule> stream = ddmFormRules.stream();
+
+						return stream.map(
 							DDMFormRule::getCondition
 						).anyMatch(
-							ruleCondition -> ruleCondition.contains(
+							condition -> condition.contains(
 								ddmFormField.getName())
 						);
 					});
-
 				setGrid(
 					() -> {
 						if (!Objects.equals("grid", type)) {
