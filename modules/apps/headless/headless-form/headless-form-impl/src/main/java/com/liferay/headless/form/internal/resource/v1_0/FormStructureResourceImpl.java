@@ -160,14 +160,6 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 				predefinedValue = _toString(ddmFormField.getPredefinedValue());
 				repeatable = ddmFormField.isRepeatable();
 				required = ddmFormField.isRequired();
-
-				if (DDMFormFieldType.CHECKBOX.equals(type) ||
-					DDMFormFieldType.CHECKBOX_MULTIPLE.equals(type)) {
-
-					showAsSwitcher = GetterUtil.getBoolean(
-						ddmFormField.getProperty("showAsSwitcher"));
-				}
-
 				showLabel = ddmFormField.isShowLabel();
 
 				Object textPropertyObject = ddmFormField.getProperty("text");
@@ -252,7 +244,17 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 							}
 						};
 					});
+				setShowAsSwitcher(
+					() -> {
+						if (!DDMFormFieldType.CHECKBOX.equals(type) &&
+							!DDMFormFieldType.CHECKBOX_MULTIPLE.equals(type)) {
 
+							return null;
+						}
+
+						return GetterUtil.getBoolean(
+							ddmFormField.getProperty("showAsSwitcher"));
+					});
 			}
 		};
 	}
