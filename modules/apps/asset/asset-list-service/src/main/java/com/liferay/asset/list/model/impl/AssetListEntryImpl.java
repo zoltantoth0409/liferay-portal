@@ -333,11 +333,11 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	private long[] _getClassTypeIds(
 		UnicodeProperties properties, String className) {
 
+		long[] availableClassTypeIds = null;
+
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				className);
-
-		long[] availableClassTypeIds = null;
 
 		if (assetRendererFactory != null) {
 			ClassTypeReader classTypeReader =
