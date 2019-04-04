@@ -38,27 +38,6 @@ public interface AssetInfoDisplayContributor
 	extends InfoDisplayContributor<AssetEntry> {
 
 	@Override
-	public default List<ClassType> getClassTypes(long groupId, Locale locale)
-		throws PortalException {
-
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				getClassName());
-
-		if ((assetRendererFactory == null) ||
-			!assetRendererFactory.isSupportsClassTypes()) {
-
-			return Collections.emptyList();
-		}
-
-		ClassTypeReader classTypeReader =
-			assetRendererFactory.getClassTypeReader();
-
-		return classTypeReader.getAvailableClassTypes(
-			PortalUtil.getCurrentAndAncestorSiteGroupIds(groupId), locale);
-	}
-
-	@Override
 	public default List<InfoDisplayField> getClassTypeInfoDisplayFields(
 			long classTypeId, Locale locale)
 		throws PortalException {
@@ -97,6 +76,27 @@ public interface AssetInfoDisplayContributor
 		}
 
 		return classTypeInfoDisplayFields;
+	}
+
+	@Override
+	public default List<ClassType> getClassTypes(long groupId, Locale locale)
+		throws PortalException {
+
+		AssetRendererFactory assetRendererFactory =
+			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+				getClassName());
+
+		if ((assetRendererFactory == null) ||
+			!assetRendererFactory.isSupportsClassTypes()) {
+
+			return Collections.emptyList();
+		}
+
+		ClassTypeReader classTypeReader =
+			assetRendererFactory.getClassTypeReader();
+
+		return classTypeReader.getAvailableClassTypes(
+			PortalUtil.getCurrentAndAncestorSiteGroupIds(groupId), locale);
 	}
 
 }

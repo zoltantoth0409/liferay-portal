@@ -29,11 +29,11 @@ public interface InfoDisplayContributor<T> {
 
 	public String getClassName();
 
-	public List<ClassType> getClassTypes(long groupId, Locale locale)
-		throws PortalException;
-
 	public List<InfoDisplayField> getClassTypeInfoDisplayFields(
 			long classTypeId, Locale locale)
+		throws PortalException;
+
+	public List<ClassType> getClassTypes(long groupId, Locale locale)
 		throws PortalException;
 
 	public Set<InfoDisplayField> getInfoDisplayFields(
@@ -48,13 +48,13 @@ public interface InfoDisplayContributor<T> {
 
 	public String getInfoURLSeparator();
 
+	public String getLabel(Locale locale);
+
 	public default Map<String, Object> getVersionInfoDisplayFieldsValues(
 			T t, long versionClassPK, Locale locale)
 		throws PortalException {
 
 		return getInfoDisplayFieldsValues(t, locale);
 	}
-
-	public String getLabel(Locale locale);
 
 }

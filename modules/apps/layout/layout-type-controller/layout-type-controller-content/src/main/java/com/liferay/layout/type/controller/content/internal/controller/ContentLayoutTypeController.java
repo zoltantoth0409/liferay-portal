@@ -106,7 +106,6 @@ public class ContentLayoutTypeController extends BaseLayoutTypeControllerImpl {
 			request.setAttribute(
 				InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR_TRACKER,
 				_infoDisplayContributorTracker);
-
 		}
 
 		String page = getViewPage();

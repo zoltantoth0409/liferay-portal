@@ -75,8 +75,8 @@ public class JournalArticleInfoDisplayContributor
 			long classTypeId, Locale locale)
 		throws PortalException {
 
-		List<InfoDisplayField> infoDisplayFields = super.getClassTypeInfoDisplayFields(
-			classTypeId, locale);
+		List<InfoDisplayField> infoDisplayFields =
+			super.getClassTypeInfoDisplayFields(classTypeId, locale);
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.fetchDDMStructure(
 			classTypeId);

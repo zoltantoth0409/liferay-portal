@@ -56,8 +56,8 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 
 		infoDisplayFields.addAll(assetTypeInfoDisplayFields);
 
-		List<InfoDisplayField> classTypeInfoDisplayFields = getClassTypeInfoDisplayFields(
-			classTypeId, locale);
+		List<InfoDisplayField> classTypeInfoDisplayFields =
+			getClassTypeInfoDisplayFields(classTypeId, locale);
 
 		infoDisplayFields.addAll(classTypeInfoDisplayFields);
 
@@ -103,6 +103,11 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 	}
 
 	@Override
+	public String getLabel(Locale locale) {
+		return ResourceActionsUtil.getModelResource(locale, getClassName());
+	}
+
+	@Override
 	public Map<String, Object> getVersionInfoDisplayFieldsValues(
 			AssetEntry assetEntry, long versionClassPK, Locale locale)
 		throws PortalException {
@@ -124,11 +129,6 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 		}
 
 		return _getParameterMap(assetEntry, assetObject, locale);
-	}
-
-	@Override
-	public String getLabel(Locale locale) {
-		return ResourceActionsUtil.getModelResource(locale, getClassName());
 	}
 
 	protected Object getClassTypeFieldValue(
