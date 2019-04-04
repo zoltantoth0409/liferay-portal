@@ -76,9 +76,9 @@ public class DDMValueUtil {
 						DDMFormFieldType.DOCUMENT_LIBRARY,
 						ddmFormField.getType())) {
 
-				ContentDocument contentDocument = value.getDocument();
-
 				String valueString = StringPool.BLANK;
+
+				ContentDocument contentDocument = value.getDocument();
 
 				if ((contentDocument != null) &&
 					(contentDocument.getId() != null)) {
@@ -93,16 +93,16 @@ public class DDMValueUtil {
 			else if (Objects.equals(
 						DDMFormFieldType.IMAGE, ddmFormField.getType())) {
 
-				ContentDocument imageContentDocument = value.getImage();
-
 				String valueString = StringPool.BLANK;
 
-				if ((imageContentDocument != null) &&
-					(imageContentDocument.getId() != null)) {
+				ContentDocument contentDocument = value.getImage();
+
+				if ((contentDocument != null) &&
+					(contentDocument.getId() != null)) {
 
 					valueString = _toJSON(
-						dlAppService, imageContentDocument.getDescription(),
-						imageContentDocument.getId());
+						dlAppService, contentDocument.getDescription(),
+						contentDocument.getId());
 				}
 
 				localizedValue.addString(locale, valueString);
@@ -111,10 +111,10 @@ public class DDMValueUtil {
 						DDMFormFieldType.JOURNAL_ARTICLE,
 						ddmFormField.getType())) {
 
+				String valueString = StringPool.BLANK;
+
 				StructuredContentLink structuredContentLink =
 					value.getStructuredContentLink();
-
-				String valueString = StringPool.BLANK;
 
 				if ((structuredContentLink != null) &&
 					(structuredContentLink.getId() != null)) {
