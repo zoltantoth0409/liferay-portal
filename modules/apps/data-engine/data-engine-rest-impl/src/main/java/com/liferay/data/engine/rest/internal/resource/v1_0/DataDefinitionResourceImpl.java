@@ -82,13 +82,13 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 					dataDefinitionId);
 		}
 
-		List<DDMStructureVersion> structureVersions =
+		List<DDMStructureVersion> ddmStructureVersions =
 			_ddmStructureVersionLocalService.getStructureVersions(
 				dataDefinitionId);
 
-		for (DDMStructureVersion structureVersion : structureVersions) {
+		for (DDMStructureVersion ddmStructureVersion : ddmStructureVersions) {
 			_ddmStructureVersionLocalService.deleteDDMStructureVersion(
-				structureVersion);
+				ddmStructureVersion);
 		}
 
 		_ddmStructureLocalService.deleteDDMStructure(dataDefinitionId);
