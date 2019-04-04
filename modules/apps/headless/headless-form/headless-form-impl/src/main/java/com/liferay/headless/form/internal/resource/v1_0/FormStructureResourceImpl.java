@@ -129,32 +129,6 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 
 		return new Field() {
 			{
-				if (Objects.equals("grid", type)) {
-					grid = new Grid() {
-						{
-							columns = TransformUtil.transform(
-								_toLocalizedValueMapEntry(
-									ddmFormField, "columns"),
-								entry -> new Column() {
-									{
-										label = _toString(entry.getValue());
-										value = entry.getKey();
-									}
-								},
-								Column.class);
-							rows = TransformUtil.transform(
-								_toLocalizedValueMapEntry(ddmFormField, "rows"),
-								entry -> new Row() {
-									{
-										label = _toString(entry.getValue());
-										value = entry.getKey();
-									}
-								},
-								Row.class);
-						}
-					};
-				}
-
 				DDMForm ddmForm = ddmFormField.getDDMForm();
 
 				List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
@@ -244,6 +218,38 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 
 						return ddmFormField.getDataType();
 					});
+				setGrid(
+					() -> {
+						if (!Objects.equals("grid", type)) {
+							return null;
+						}
+
+						return new Grid() {
+							{
+								columns = TransformUtil.transform(
+									_toLocalizedValueMapEntry(
+										ddmFormField, "columns"),
+									entry -> new Column() {
+										{
+											label = _toString(entry.getValue());
+											value = entry.getKey();
+										}
+									},
+									Column.class);
+								rows = TransformUtil.transform(
+									_toLocalizedValueMapEntry(
+										ddmFormField, "rows"),
+									entry -> new Row() {
+										{
+											label = _toString(entry.getValue());
+											value = entry.getKey();
+										}
+									},
+									Row.class);
+							}
+						};
+					});
+
 			}
 		};
 	}
