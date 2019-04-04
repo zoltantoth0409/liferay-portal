@@ -294,13 +294,7 @@ definition {
 	macro viewNoSiteOrWorkflowLinksCP {
 		LexiconEntry.viewEntryName(rowEntry = "Site Template Name");
 
-		Click(locator1 = "SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS");
-
-		AssertClick(
-			locator1 = "MenuItem#ANY_MENU_ITEM",
-			value1 = "Manage",
-			key_menuItem = "Manage"
-		);
+		LexiconEntry.gotoEntryMenuItem( menuItem = "Manage", rowEntry = "Site Template Name" );
 
 		ProductMenuHelper.expandPanel(panel = "Site Administration");
 
