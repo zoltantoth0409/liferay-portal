@@ -162,22 +162,6 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 				required = ddmFormField.isRequired();
 				showLabel = ddmFormField.isShowLabel();
 
-				Object validationObject = ddmFormField.getProperty(
-					"validation");
-
-				if (validationObject instanceof DDMFormFieldValidation) {
-					DDMFormFieldValidation ddmFormFieldValidation =
-						(DDMFormFieldValidation)validationObject;
-
-					validation = new Validation() {
-						{
-							expression = ddmFormFieldValidation.getExpression();
-							errorMessage =
-								ddmFormFieldValidation.getErrorMessage();
-						}
-					};
-				}
-
 				setDataType(
 					() -> {
 						if (Objects.equals("document_library", type)) {
@@ -258,6 +242,28 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 						}
 
 						return _toString((LocalizedValue)object);
+					});
+				setValidation(
+					() -> {
+						Object object = ddmFormField.getProperty(
+							"validation");
+
+						if (!(object instanceof DDMFormFieldValidation)) {
+							return null;
+						}
+
+						DDMFormFieldValidation ddmFormFieldValidation =
+							(DDMFormFieldValidation)object;
+
+						return new Validation() {
+							{
+								expression =
+									ddmFormFieldValidation.getExpression();
+								errorMessage =
+									ddmFormFieldValidation.getErrorMessage();
+							}
+						};
+
 					});
 			}
 		};
