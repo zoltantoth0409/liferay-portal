@@ -52,7 +52,7 @@ public class ContentSetElementResourceImpl
 		AssetListEntry assetListEntry =
 			_assetListEntryService.getAssetListEntry(contentSetId);
 
-		return _getContentSetContentSetElementsPage(pagination, assetListEntry);
+		return _getContentSetContentSetElementsPage(assetListEntry, pagination);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class ContentSetElementResourceImpl
 		AssetListEntry assetListEntry =
 			_assetListEntryService.getAssetListEntry(contentSpaceId, key);
 
-		return _getContentSetContentSetElementsPage(pagination, assetListEntry);
+		return _getContentSetContentSetElementsPage(assetListEntry, pagination);
 	}
 
 	@Override
@@ -77,11 +77,11 @@ public class ContentSetElementResourceImpl
 			_assetListEntryService.getAssetListEntryByUuidAndGroupId(
 				uuid, contentSpaceId);
 
-		return _getContentSetContentSetElementsPage(pagination, assetListEntry);
+		return _getContentSetContentSetElementsPage(assetListEntry, pagination);
 	}
 
 	private Page<ContentSetElement> _getContentSetContentSetElementsPage(
-			Pagination pagination, AssetListEntry assetListEntry)
+			AssetListEntry assetListEntry, Pagination pagination)
 		throws Exception {
 
 		long[] segmentsEntryIds = _segmentsEntryProvider.getSegmentsEntryIds(
