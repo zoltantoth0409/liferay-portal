@@ -49,11 +49,11 @@ public class SharingDemo extends BasePortalInstanceLifecycleListener {
 	public void portalInstanceRegistered(Company company) throws Exception {
 		User sharerUser = _basicUserDemoDataCreator.create(
 			company.getCompanyId(), "sharing.sharer@liferay.com");
-		Group guestGroup = _groupLocalService.getGroup(
+		Group group = _groupLocalService.getGroup(
 			company.getCompanyId(), "Guest");
 
 		Folder folder = _rootFolderDemoDataCreator.create(
-			sharerUser.getUserId(), guestGroup.getGroupId(), "Sharing");
+			sharerUser.getUserId(), group.getGroupId(), "Sharing");
 
 		FileEntry fileEntry = _fileEntryDemoDataCreator.create(
 			sharerUser.getUserId(), folder.getFolderId());
@@ -62,7 +62,7 @@ public class SharingDemo extends BasePortalInstanceLifecycleListener {
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(guestGroup.getGroupId());
+		serviceContext.setScopeGroupId(group.getGroupId());
 		serviceContext.setUserId(sharerUser.getUserId());
 
 		for (int i = 0; i < 15; i++) {
@@ -72,7 +72,7 @@ public class SharingDemo extends BasePortalInstanceLifecycleListener {
 			_sharingEntryLocalService.addSharingEntry(
 				sharerUser.getUserId(), user.getUserId(),
 				_portal.getClassNameId(DLFileEntry.class),
-				fileEntry.getFileEntryId(), guestGroup.getGroupId(), true,
+				fileEntry.getFileEntryId(), group.getGroupId(), true,
 				Arrays.asList(SharingEntryAction.VIEW), null, serviceContext);
 		}
 	}

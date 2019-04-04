@@ -50,11 +50,11 @@ public class BlogsDemo extends BasePortalInstanceLifecycleListener {
 
 		User user1 = _basicUserDemoDataCreator.create(
 			company.getCompanyId(), "nikki.prudencio@liferay.com");
-		Group guestGroup = _groupLocalService.getGroup(
+		Group group = _groupLocalService.getGroup(
 			company.getCompanyId(), "Guest");
 
 		BlogsEntry blogsEntry1 = randomBlogsEntryDemoDataCreator.create(
-			user1.getUserId(), guestGroup.getGroupId());
+			user1.getUserId(), group.getGroupId());
 
 		_multipleCommentDemoDataCreator.create(blogsEntry1);
 
@@ -62,15 +62,15 @@ public class BlogsDemo extends BasePortalInstanceLifecycleListener {
 			company.getCompanyId(), "sergio.gonzalez@liferay.com");
 
 		BlogsEntry blogsEntry2 = randomBlogsEntryDemoDataCreator.create(
-			user2.getUserId(), guestGroup.getGroupId());
+			user2.getUserId(), group.getGroupId());
 
 		_multipleCommentDemoDataCreator.create(blogsEntry2);
 
 		User user3 = _siteAdminUserDemoDataCreator.create(
-			guestGroup.getGroupId(), "sharon.choi@liferay.com");
+			group.getGroupId(), "sharon.choi@liferay.com");
 
 		BlogsEntry blogsEntry3 = randomBlogsEntryDemoDataCreator.create(
-			user3.getUserId(), guestGroup.getGroupId());
+			user3.getUserId(), group.getGroupId());
 
 		_multipleCommentDemoDataCreator.create(blogsEntry3);
 
@@ -87,7 +87,7 @@ public class BlogsDemo extends BasePortalInstanceLifecycleListener {
 			User user = _getRandomElement(users);
 
 			BlogsEntry blogsEntry = blogsEntryDemoDataCreator.create(
-				user.getUserId(), guestGroup.getGroupId());
+				user.getUserId(), group.getGroupId());
 
 			_multipleCommentDemoDataCreator.create(blogsEntry);
 		}
