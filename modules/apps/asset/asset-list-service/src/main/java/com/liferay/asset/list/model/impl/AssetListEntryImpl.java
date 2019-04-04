@@ -361,11 +361,11 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 			return availableClassTypeIds;
 		}
 
-		long defaultClassTypeId = GetterUtil.getLong(
+		long anyClassTypeId = GetterUtil.getLong(
 			properties.getProperty("anyClassType" + className, null), -1);
 
-		if (defaultClassTypeId > -1) {
-			return new long[] {defaultClassTypeId};
+		if (anyClassTypeId > -1) {
+			return new long[] {anyClassTypeId};
 		}
 
 		long[] classTypeIds = StringUtil.split(
