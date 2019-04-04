@@ -146,7 +146,7 @@
 			return;
 		}
 
-		var precisionTypeElement = document.getElementById('<portlet:namespace />precisionType');
+		var precisionTypeElement = document.getElementById('<portlet:namespace />precisionTypeSelect');
 
 		if (precisionTypeElement) {
 			precisionTypeElement.options.length = 0;

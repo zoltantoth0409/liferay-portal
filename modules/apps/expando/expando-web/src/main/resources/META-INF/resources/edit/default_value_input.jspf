@@ -231,6 +231,8 @@
 				updateElement(["precisionTypeAdvanced", "searchableAsKeyword"], "unhide");
 
 				updateElement(["searchableAsKeywordOrText"], "hide");
+
+				setPrecisionType(currentSelectedDataArrayType);
 			}
 		}
 	}
