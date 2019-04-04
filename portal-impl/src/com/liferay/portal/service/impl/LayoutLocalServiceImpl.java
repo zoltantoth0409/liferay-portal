@@ -1413,11 +1413,11 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 					start, end)) {
 
 				return layoutPersistence.findByG_P_P(
-					groupId, privateLayout, parentLayoutId);
+					groupId, privateLayout, parentLayoutId, start, end);
 			}
 
 			List<Layout> layouts = layoutPersistence.findByG_P_P(
-				groupId, privateLayout, parentLayoutId);
+				groupId, privateLayout, parentLayoutId, start, end);
 
 			return _injectVirtualLayouts(
 				group, layoutSet, layouts, parentLayoutId);
