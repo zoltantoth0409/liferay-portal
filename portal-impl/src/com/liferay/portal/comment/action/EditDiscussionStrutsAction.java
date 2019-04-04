@@ -159,17 +159,18 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 			className, classPK);
 
 		discussionPermission.checkSubscribePermission(
-			assetEntry.getCompanyId(), assetEntry.getGroupId(), className,
-			classPK);
+			assetEntry.getCompanyId(), assetEntry.getGroupId(),
+			assetEntry.getClassName(), assetEntry.getClassPK());
 
 		if (subscribe) {
 			CommentManagerUtil.subscribeDiscussion(
-				themeDisplay.getUserId(), assetEntry.getGroupId(), className,
-				classPK);
+				themeDisplay.getUserId(), assetEntry.getGroupId(),
+				assetEntry.getClassName(), assetEntry.getClassPK());
 		}
 		else {
 			CommentManagerUtil.unsubscribeDiscussion(
-				themeDisplay.getUserId(), className, classPK);
+				themeDisplay.getUserId(), assetEntry.getClassName(),
+				assetEntry.getClassPK());
 		}
 	}
 
