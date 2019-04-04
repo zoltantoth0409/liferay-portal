@@ -282,8 +282,8 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 		).map(
 			DDMFormLayoutColumn::getDDMFormFieldNames
 		).map(
-			formFieldNames -> _getNestedDDMFormFieldNames(
-				formFieldNames, ddmStructure)
+			nestedDDMFormFieldNames -> _getNestedDDMFormFieldNames(
+				nestedDDMFormFieldNames, ddmStructure)
 		).flatMap(
 			Collection::stream
 		).collect(
