@@ -434,8 +434,10 @@ public class ExpandoPortlet extends MVCPortlet {
 			precisionType.equals(ExpandoColumnConstants.PRECISION_32_BIT)) {
 
 			if (type == ExpandoColumnConstants.STRING_ARRAY) {
-				return ExpandoColumnConstants.INTEGER;
+				return ExpandoColumnConstants.INTEGER_ARRAY;
 			}
+
+			return ExpandoColumnConstants.INTEGER;
 		}
 
 		if (dataType.equals(ExpandoColumnConstants.DATA_TYPE_INTEGER) &&
