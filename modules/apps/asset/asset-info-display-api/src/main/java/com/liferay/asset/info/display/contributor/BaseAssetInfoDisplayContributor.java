@@ -199,12 +199,8 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 			AssetEntry assetEntry, T assetObject, Locale locale)
 		throws PortalException {
 
-		// Field values for asset entry
-
 		Map<String, Object> parameterMap =
 			_getAssetEntryInfoDisplayFieldsValues(assetEntry, locale);
-
-		// Field values for the specific asset type
 
 		List<InfoDisplayContributorField> infoDisplayContributorFields =
 			AssetInfoDisplayContributorFieldHelperUtil.
@@ -227,8 +223,6 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 			parameterMap.putIfAbsent(
 				infoDisplayContributorField.getKey(), infoDisplayFieldValue);
 		}
-
-		// Field values for the class type
 
 		Map<String, Object> classTypeValues = getClassTypeValues(
 			assetObject, locale);
