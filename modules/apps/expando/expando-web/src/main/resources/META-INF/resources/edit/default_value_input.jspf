@@ -72,7 +72,7 @@
 	<c:when test="<%= type == ExpandoColumnConstants.DATE_ARRAY %>">
 	</c:when>
 	<c:when test="<%= (type == ExpandoColumnConstants.DOUBLE_ARRAY) || (type == ExpandoColumnConstants.FLOAT_ARRAY) || (type == ExpandoColumnConstants.INTEGER_ARRAY) || (type == ExpandoColumnConstants.LONG_ARRAY) || (type == ExpandoColumnConstants.SHORT_ARRAY) || (type == ExpandoColumnConstants.STRING_ARRAY) %>">
-		<aui:select disabled="<%= expandoColumn != null %>" id="dataArrayType" label="data-type" name="dataType" onChange="setDataArrayType()" value="<%= ExpandoColumnConstants.getDataType(type) %>">
+		<aui:select disabled="<%= expandoColumn != null %>" label="data-type" name="dataType" onChange="setDataType(true)" value="<%= ExpandoColumnConstants.getDataType(type) %>">
 			<aui:option label="<%= ExpandoColumnConstants.DATA_TYPE_TEXT %>" />
 			<aui:option label="<%= ExpandoColumnConstants.DATA_TYPE_DECIMAL %>" />
 			<aui:option label="<%= ExpandoColumnConstants.DATA_TYPE_INTEGER %>" />
@@ -104,7 +104,7 @@
 		<aui:input cssClass="lfr-textarea-container" helpMessage="enter-one-value-per-line" label="values" name="defaultValue" required="<%= true %>" type="textarea" value="<%= values %>" />
 	</c:when>
 	<c:otherwise>
-		<aui:select disabled="<%= expandoColumn != null %>" label="data-type" name="dataType" onChange="setDataType()" value="<%= ExpandoColumnConstants.getDataType(type) %>">
+		<aui:select disabled="<%= expandoColumn != null %>" label="data-type" name="dataType" onChange="setDataType(false)" value="<%= ExpandoColumnConstants.getDataType(type) %>">
 			<aui:option label="<%= ExpandoColumnConstants.DATA_TYPE_TEXT %>" />
 			<aui:option label="<%= ExpandoColumnConstants.DATA_TYPE_DECIMAL %>" />
 			<aui:option label="<%= ExpandoColumnConstants.DATA_TYPE_INTEGER %>" />
@@ -158,60 +158,39 @@
 </aui:script>
 
 <script>
-	function setDataType() {
+	function setDataType(isSelectionType) {
 		var dataTypeElement = document.getElementById('<portlet:namespace />dataType');
 
 		var currentSelectedDataType = dataTypeElement.value;
 
 		if (currentSelectedDataType) {
 			if (currentSelectedDataType == '<%= ExpandoColumnConstants.DATA_TYPE_TEXT %>') {
-				updateElement(["indexTypeSearchableAsKeyword", "indexTypeSearchableAsKeywordToggleSwitch", "precisionTypeSelect"], "disable")
+				updateElement(["indexTypeSearchableAsKeyword", "indexTypeSearchableAsKeywordToggleSwitch", "precisionTypeSelect"], "disable");
 
-				updateElement(["indexTypeKeyword", "indexTypeText", "searchableKeyWordOrText"], "enable")
+				updateElement(["indexTypeKeyword", "indexTypeText", "searchableKeyWordOrText"], "enable");
 
-				updateElement(["searchableAsKeywordOrText", "textFieldLocalizedCheckbox", "widthAdvancedSetting"], "unhide");
+				updateElement(["searchableAsKeywordOrText"], "unhide");
+
+				if (!isSelectionType) {
+					updateElement(["textFieldLocalizedCheckbox", "widthAdvancedSetting"], "unhide");
+				}
 
 				updateElement(["precisionTypeAdvanced", "searchableAsKeyword"], "hide");
 			}
 			else if ((currentSelectedDataType == '<%= ExpandoColumnConstants.DATA_TYPE_DECIMAL %>') || (currentSelectedDataType == '<%= ExpandoColumnConstants.DATA_TYPE_INTEGER %>')) {
-				updateElement(["indexTypeKeyword", "indexTypeText", "searchableKeyWordOrText"], "disable")
+				updateElement(["indexTypeKeyword", "indexTypeText", "searchableKeyWordOrText"], "disable");
 
-				updateElement(["indexTypeSearchableAsKeyword", "indexTypeSearchableAsKeywordToggleSwitch", "precisionTypeSelect"], "enable")
-
-				updateElement(["precisionTypeAdvanced", "searchableAsKeyword"], "unhide");
-
-				updateElement(["searchableAsKeywordOrText", "textFieldLocalizedCheckbox", "widthAdvancedSetting"], "hide");
-
-				setPrecisionType(currentSelectedDataType);
-			}
-		}
-	}
-
-	function setDataArrayType() {
-		var dataArrayTypeElement = document.getElementById('<portlet:namespace />dataArrayType');
-
-		var currentSelectedDataArrayType = dataArrayTypeElement.value;
-
-		if (currentSelectedDataArrayType) {
-			if (currentSelectedDataArrayType == '<%= ExpandoColumnConstants.DATA_TYPE_TEXT %>') {
-				updateElement(["indexTypeSearchableAsKeyword", "indexTypeSearchableAsKeywordToggleSwitch", "precisionTypeSelect"], "disable")
-
-				updateElement(["indexTypeKeyword", "indexTypeText", "searchableKeyWordOrText"], "enable")
-
-				updateElement(["searchableAsKeywordOrText"], "unhide");
-
-				updateElement(["precisionTypeAdvanced", "searchableAsKeyword"], "hide");
-			}
-			else if ((currentSelectedDataArrayType == '<%= ExpandoColumnConstants.DATA_TYPE_DECIMAL %>') || (currentSelectedDataArrayType == '<%= ExpandoColumnConstants.DATA_TYPE_INTEGER %>')) {
-				updateElement(["indexTypeSearchableAsKeyword", "indexTypeSearchableAsKeywordToggleSwitch", "precisionTypeSelect"], "enable")
-
-				updateElement(["indexTypeKeyword", "indexTypeText", "searchableKeyWordOrText"], "disable")
+				updateElement(["indexTypeSearchableAsKeyword", "indexTypeSearchableAsKeywordToggleSwitch", "precisionTypeSelect"], "enable");
 
 				updateElement(["precisionTypeAdvanced", "searchableAsKeyword"], "unhide");
 
 				updateElement(["searchableAsKeywordOrText"], "hide");
 
-				setPrecisionType(currentSelectedDataArrayType);
+				if (!isSelectionType) {
+					updateElement(["textFieldLocalizedCheckbox", "widthAdvancedSetting"], "hide");
+				}
+
+				setPrecisionType(currentSelectedDataType);
 			}
 		}
 	}
