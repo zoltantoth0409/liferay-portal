@@ -86,17 +86,17 @@ public interface AssetInfoDisplayContributor
 			return Collections.emptyList();
 		}
 
-		List<InfoDisplayField> infoClassTypeFields = new ArrayList<>();
+		List<InfoDisplayField> classTypeInfoDisplayFields = new ArrayList<>();
 
 		for (ClassTypeField classTypeField : classType.getClassTypeFields()) {
-			infoClassTypeFields.add(
+			classTypeInfoDisplayFields.add(
 				new InfoDisplayField(
 					classTypeField.getName(),
 					LanguageUtil.get(locale, classTypeField.getLabel()),
 					classTypeField.getType()));
 		}
 
-		return infoClassTypeFields;
+		return classTypeInfoDisplayFields;
 	}
 
 }
