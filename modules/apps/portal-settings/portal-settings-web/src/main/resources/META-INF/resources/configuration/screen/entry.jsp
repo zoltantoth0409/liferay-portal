@@ -25,12 +25,7 @@ if (Validator.isNull(redirect)) {
 	redirect = portletURL.toString();
 }
 
-String deleteConfirmationText = (String)request.getAttribute("deleteConfirmationText");
 PortalSettingsConfigurationScreenContributor portalSettingsConfigurationScreenContributor = (PortalSettingsConfigurationScreenContributor)request.getAttribute("portalSettingsConfigurationScreenContributor");
-
-String deleteMVCActionCommandName = portalSettingsConfigurationScreenContributor.getDeleteMVCActionCommandName();
-String testButtonOnClick = portalSettingsConfigurationScreenContributor.getTestButtonOnClick(renderRequest, renderResponse);
-String saveMVCActionCommandName = portalSettingsConfigurationScreenContributor.getSaveMVCActionCommandName();
 %>
 
 <portlet:actionURL var="editCompanyURL" />
@@ -41,7 +36,7 @@ String saveMVCActionCommandName = portalSettingsConfigurationScreenContributor.g
 			<liferay-ui:message key="<%= portalSettingsConfigurationScreenContributor.getName(locale) %>" />
 		</span>
 
-		<c:if test="<%= Validator.isNotNull(deleteMVCActionCommandName) || Validator.isNotNull(testButtonOnClick) %>">
+		<c:if test="<%= Validator.isNotNull(portalSettingsConfigurationScreenContributor.getDeleteMVCActionCommandName()) || Validator.isNotNull(portalSettingsConfigurationScreenContributor.getTestButtonOnClick(renderRequest, renderResponse)) %>">
 			<span class="autofit-col">
 				<liferay-ui:icon-menu
 					cssClass="float-right"
@@ -49,13 +44,13 @@ String saveMVCActionCommandName = portalSettingsConfigurationScreenContributor.g
 					markupView="lexicon"
 					showWhenSingleIcon="<%= true %>"
 				>
-					<c:if test="<%= Validator.isNotNull(deleteMVCActionCommandName) %>">
-						<portlet:actionURL name="<%= deleteMVCActionCommandName %>" var="resetValuesURL">
+					<c:if test="<%= Validator.isNotNull(portalSettingsConfigurationScreenContributor.getDeleteMVCActionCommandName()) %>">
+						<portlet:actionURL name="<%= portalSettingsConfigurationScreenContributor.getDeleteMVCActionCommandName() %>" var="resetValuesURL">
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 						</portlet:actionURL>
 
 						<%
-						String taglibOnClick = "if (confirm('" + deleteConfirmationText + "')) {submitForm(document.hrefFm, '" + resetValuesURL.toString() + "');}";
+						String taglibOnClick = "if (confirm('" + request.getAttribute("deleteConfirmationText") + "')) {submitForm(document.hrefFm, '" + resetValuesURL.toString() + "');}";
 						%>
 
 						<liferay-ui:icon
@@ -66,11 +61,11 @@ String saveMVCActionCommandName = portalSettingsConfigurationScreenContributor.g
 						/>
 					</c:if>
 
-					<c:if test="<%= Validator.isNotNull(testButtonOnClick) %>">
+					<c:if test="<%= Validator.isNotNull(portalSettingsConfigurationScreenContributor.getTestButtonOnClick(renderRequest, renderResponse)) %>">
 						<liferay-ui:icon
 							message='<%= GetterUtil.getString(portalSettingsConfigurationScreenContributor.getTestButtonLabel(locale), LanguageUtil.get(request, "test")) %>'
 							method="post"
-							onClick="<%= testButtonOnClick %>"
+							onClick="<%= portalSettingsConfigurationScreenContributor.getTestButtonOnClick(renderRequest, renderResponse) %>"
 							url="javascript:;"
 						/>
 					</c:if>
@@ -82,8 +77,8 @@ String saveMVCActionCommandName = portalSettingsConfigurationScreenContributor.g
 	<aui:form action="<%= editCompanyURL %>" data-senna-off="true" method="post" name="fm">
 		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
-		<c:if test="<%= Validator.isNotNull(saveMVCActionCommandName) %>">
-			<aui:input id="<%= PortalUtil.generateRandomKey(request, portalSettingsConfigurationScreenContributor.getKey()) %>" name="<%= ActionRequest.ACTION_NAME %>" type="hidden" value="<%= saveMVCActionCommandName %>" />
+		<c:if test="<%= Validator.isNotNull(portalSettingsConfigurationScreenContributor.getSaveMVCActionCommandName()) %>">
+			<aui:input id="<%= PortalUtil.generateRandomKey(request, portalSettingsConfigurationScreenContributor.getKey()) %>" name="<%= ActionRequest.ACTION_NAME %>" type="hidden" value="<%= portalSettingsConfigurationScreenContributor.getSaveMVCActionCommandName() %>" />
 		</c:if>
 
 		<liferay-util:include page="<%= portalSettingsConfigurationScreenContributor.getJspPath() %>" servletContext="<%= portalSettingsConfigurationScreenContributor.getServletContext() %>" />
