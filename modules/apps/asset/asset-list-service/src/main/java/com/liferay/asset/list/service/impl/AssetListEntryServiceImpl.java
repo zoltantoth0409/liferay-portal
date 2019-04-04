@@ -229,10 +229,8 @@ public class AssetListEntryServiceImpl extends AssetListEntryServiceBaseImpl {
 		AssetListEntry assetListEntry =
 			assetListEntryLocalService.getAssetListEntry(assetListEntryId);
 
-		if (assetListEntry != null) {
-			_assetListEntryModelResourcePermission.check(
-				getPermissionChecker(), assetListEntry, ActionKeys.VIEW);
-		}
+		_assetListEntryModelResourcePermission.check(
+			getPermissionChecker(), assetListEntry, ActionKeys.VIEW);
 
 		return assetListEntry;
 	}
@@ -246,10 +244,8 @@ public class AssetListEntryServiceImpl extends AssetListEntryServiceBaseImpl {
 			assetListEntryLocalService.getAssetListEntry(
 				groupId, assetListEntryKey);
 
-		if (assetListEntry != null) {
-			_assetListEntryModelResourcePermission.check(
-				getPermissionChecker(), assetListEntry, ActionKeys.VIEW);
-		}
+		_assetListEntryModelResourcePermission.check(
+			getPermissionChecker(), assetListEntry, ActionKeys.VIEW);
 
 		return assetListEntry;
 	}
@@ -263,10 +259,8 @@ public class AssetListEntryServiceImpl extends AssetListEntryServiceBaseImpl {
 			assetListEntryLocalService.getAssetListEntryByUuidAndGroupId(
 				uuid, groupId);
 
-		if (assetListEntry != null) {
-			_assetListEntryModelResourcePermission.check(
-				getPermissionChecker(), assetListEntry, ActionKeys.VIEW);
-		}
+		_assetListEntryModelResourcePermission.check(
+			getPermissionChecker(), assetListEntry, ActionKeys.VIEW);
 
 		return assetListEntry;
 	}
