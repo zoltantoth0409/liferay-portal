@@ -14,6 +14,8 @@
 
 package com.liferay.portal.comment.action;
 
+import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
 import com.liferay.message.boards.kernel.exception.DiscussionMaxCommentsException;
 import com.liferay.message.boards.kernel.exception.MessageBodyException;
 import com.liferay.message.boards.kernel.exception.NoSuchMessageException;
@@ -21,6 +23,7 @@ import com.liferay.message.boards.kernel.exception.RequiredMessageException;
 import com.liferay.portal.kernel.comment.Comment;
 import com.liferay.portal.kernel.comment.CommentManagerUtil;
 import com.liferay.portal.kernel.comment.DiscussionPermission;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.User;
@@ -40,6 +43,7 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Function;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -153,14 +157,28 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 		DiscussionPermission discussionPermission = _getDiscussionPermission(
 			themeDisplay);
 
-		discussionPermission.checkSubscribePermission(
-			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+		AssetEntry assetEntry = AssetEntryLocalServiceUtil.fetchEntry(
 			className, classPK);
+
+		if (assetEntry == null) {
+			StringBundler sb = new StringBundler(4);
+
+			sb.append("No asset entry exists with class name ");
+			sb.append(className);
+			sb.append(" and class PK ");
+			sb.append(classPK);
+
+			throw new PortalException(sb.toString());
+		}
+
+		discussionPermission.checkSubscribePermission(
+			assetEntry.getCompanyId(), assetEntry.getGroupId(), className,
+			classPK);
 
 		if (subscribe) {
 			CommentManagerUtil.subscribeDiscussion(
-				themeDisplay.getUserId(), themeDisplay.getScopeGroupId(),
-				className, classPK);
+				themeDisplay.getUserId(), assetEntry.getGroupId(), className,
+				classPK);
 		}
 		else {
 			CommentManagerUtil.unsubscribeDiscussion(
@@ -185,6 +203,20 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 
 		DiscussionPermission discussionPermission = _getDiscussionPermission(
 			themeDisplay);
+
+		AssetEntry assetEntry = AssetEntryLocalServiceUtil.fetchEntry(
+			className, classPK);
+
+		if (assetEntry == null) {
+			StringBundler sb = new StringBundler(4);
+
+			sb.append("No asset entry exists with class name ");
+			sb.append(className);
+			sb.append(" and class PK ");
+			sb.append(classPK);
+
+			throw new PortalException(sb.toString());
+		}
 
 		if (commentId <= 0) {
 
@@ -215,7 +247,7 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 
 			try {
 				discussionPermission.checkAddPermission(
-					themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+					assetEntry.getCompanyId(), assetEntry.getGroupId(),
 					className, classPK);
 
 				commentId = CommentManagerUtil.addComment(
@@ -252,8 +284,8 @@ public class EditDiscussionStrutsAction extends BaseStrutsAction {
 
 		if (subscribe) {
 			CommentManagerUtil.subscribeDiscussion(
-				themeDisplay.getUserId(), themeDisplay.getScopeGroupId(),
-				className, classPK);
+				themeDisplay.getUserId(), assetEntry.getGroupId(), className,
+				classPK);
 		}
 
 		return commentId;
