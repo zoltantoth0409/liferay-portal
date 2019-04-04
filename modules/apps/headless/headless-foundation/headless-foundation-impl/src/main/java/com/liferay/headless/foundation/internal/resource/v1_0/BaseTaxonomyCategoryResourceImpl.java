@@ -20,7 +20,6 @@ import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -98,43 +97,41 @@ public abstract class BaseTaxonomyCategoryResourceImpl
 		TaxonomyCategory existingTaxonomyCategory = getTaxonomyCategory(
 			taxonomyCategoryId);
 
-		if (Validator.isNotNull(taxonomyCategory.getAvailableLanguages())) {
+		if (taxonomyCategory.getAvailableLanguages() != null) {
 			existingTaxonomyCategory.setAvailableLanguages(
 				taxonomyCategory.getAvailableLanguages());
 		}
 
-		if (Validator.isNotNull(taxonomyCategory.getDateCreated())) {
+		if (taxonomyCategory.getDateCreated() != null) {
 			existingTaxonomyCategory.setDateCreated(
 				taxonomyCategory.getDateCreated());
 		}
 
-		if (Validator.isNotNull(taxonomyCategory.getDateModified())) {
+		if (taxonomyCategory.getDateModified() != null) {
 			existingTaxonomyCategory.setDateModified(
 				taxonomyCategory.getDateModified());
 		}
 
-		if (Validator.isNotNull(taxonomyCategory.getDescription())) {
+		if (taxonomyCategory.getDescription() != null) {
 			existingTaxonomyCategory.setDescription(
 				taxonomyCategory.getDescription());
 		}
 
-		if (Validator.isNotNull(taxonomyCategory.getName())) {
+		if (taxonomyCategory.getName() != null) {
 			existingTaxonomyCategory.setName(taxonomyCategory.getName());
 		}
 
-		if (Validator.isNotNull(
-				taxonomyCategory.getNumberOfTaxonomyCategories())) {
-
+		if (taxonomyCategory.getNumberOfTaxonomyCategories() != null) {
 			existingTaxonomyCategory.setNumberOfTaxonomyCategories(
 				taxonomyCategory.getNumberOfTaxonomyCategories());
 		}
 
-		if (Validator.isNotNull(taxonomyCategory.getParentVocabularyId())) {
+		if (taxonomyCategory.getParentVocabularyId() != null) {
 			existingTaxonomyCategory.setParentVocabularyId(
 				taxonomyCategory.getParentVocabularyId());
 		}
 
-		if (Validator.isNotNull(taxonomyCategory.getViewableBy())) {
+		if (taxonomyCategory.getViewableBy() != null) {
 			existingTaxonomyCategory.setViewableBy(
 				taxonomyCategory.getViewableBy());
 		}

@@ -50,7 +50,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 @Generated("")
 @OpenAPIDefinition(
-	info = @Info(description = "", title = "Headless Collaboration", version = "v1.0")
+	info = @Info(description = "", title = "Headless Delivery", version = "v1.0")
 )
 @Path("/v1.0")
 public class OpenAPIResourceImpl {

@@ -384,11 +384,6 @@ public abstract class BaseFormResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected Form testPostFormUploadFile_addForm(Form form) throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
 	protected FormDocument invokePostFormUploadFile(
 			Long formId, MultipartBody multipartBody)
 		throws Exception {
