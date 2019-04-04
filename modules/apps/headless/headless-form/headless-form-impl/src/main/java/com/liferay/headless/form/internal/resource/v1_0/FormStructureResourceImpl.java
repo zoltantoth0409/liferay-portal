@@ -100,7 +100,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 		return _portal.getClassNameId(DDMFormInstance.class.getName());
 	}
 
-	private List<String> _getNestedFieldNames(
+	private List<String> _getNestedDDMFormFieldNames(
 		List<String> ddmFormFieldNames, DDMStructure ddmStructure) {
 
 		List<DDMFormField> ddmFormFields = ddmStructure.getDDMFormFields(true);
@@ -114,9 +114,9 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 				ddmFormField.getNestedDDMFormFields(),
 				nestedDDMFormField -> nestedDDMFormField.getName())
 		).map(
-			fieldNames -> _getNestedFieldNames(fieldNames, ddmStructure)
+			nestedDDMFormFieldNames -> _getNestedDDMFormFieldNames(nestedDDMFormFieldNames, ddmStructure)
 		).peek(
-			fieldNames -> fieldNames.addAll(ddmFormFieldNames)
+			nestedDDMFormFieldNames -> nestedDDMFormFieldNames.addAll(ddmFormFieldNames)
 		).flatMap(
 			Collection::stream
 		).collect(
@@ -271,7 +271,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 	private FormPage _toFormPage(
 		DDMFormLayoutPage ddmFormLayoutPage, DDMStructure ddmStructure) {
 
-		List<String> fieldNames = Stream.of(
+		List<String> ddmFormFieldNames = Stream.of(
 			ddmFormLayoutPage.getDDMFormLayoutRows()
 		).flatMap(
 			Collection::stream
@@ -282,7 +282,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 		).map(
 			DDMFormLayoutColumn::getDDMFormFieldNames
 		).map(
-			formFieldNames -> _getNestedFieldNames(formFieldNames, ddmStructure)
+			formFieldNames -> _getNestedDDMFormFieldNames(formFieldNames, ddmStructure)
 		).flatMap(
 			Collection::stream
 		).collect(
@@ -293,7 +293,7 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 			true
 		).stream(
 		).filter(
-			ddmFormField -> fieldNames.contains(ddmFormField.getName())
+			ddmFormField -> ddmFormFieldNames.contains(ddmFormField.getName())
 		).toArray(
 			DDMFormField[]::new
 		);
