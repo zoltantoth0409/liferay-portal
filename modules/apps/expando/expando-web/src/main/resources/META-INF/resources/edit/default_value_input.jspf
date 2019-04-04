@@ -158,7 +158,7 @@
 </aui:script>
 
 <script>
-	function setDataType(isSelectionType) {
+	function setDataType(selectionType) {
 		var dataTypeElement = document.getElementById('<portlet:namespace />dataType');
 
 		var currentSelectedDataType = dataTypeElement.value;
@@ -171,7 +171,7 @@
 
 				updateElement(["searchableAsKeywordOrText"], "unhide");
 
-				if (!isSelectionType) {
+				if (!selectionType) {
 					updateElement(["textFieldLocalizedCheckbox", "widthAdvancedSetting"], "unhide");
 				}
 
@@ -186,7 +186,7 @@
 
 				updateElement(["searchableAsKeywordOrText"], "hide");
 
-				if (!isSelectionType) {
+				if (!selectionType) {
 					updateElement(["textFieldLocalizedCheckbox", "widthAdvancedSetting"], "hide");
 				}
 
