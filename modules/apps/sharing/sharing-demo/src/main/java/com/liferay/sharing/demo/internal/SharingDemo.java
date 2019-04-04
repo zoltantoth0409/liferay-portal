@@ -61,10 +61,10 @@ public class SharingDemo extends BasePortalInstanceLifecycleListener {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setUserId(sharerUser.getUserId());
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(guestGroup.getGroupId());
+		serviceContext.setUserId(sharerUser.getUserId());
 
 		for (int i = 0; i < 15; i++) {
 			User user = _basicUserDemoDataCreator.create(
