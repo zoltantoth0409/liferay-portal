@@ -162,12 +162,6 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 				required = ddmFormField.isRequired();
 				showLabel = ddmFormField.isShowLabel();
 
-				Object textPropertyObject = ddmFormField.getProperty("text");
-
-				if (textPropertyObject instanceof LocalizedValue) {
-					text = _toString((LocalizedValue)textPropertyObject);
-				}
-
 				Object validationObject = ddmFormField.getProperty(
 					"validation");
 
@@ -254,6 +248,16 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 
 						return GetterUtil.getBoolean(
 							ddmFormField.getProperty("showAsSwitcher"));
+					});
+				setText(
+					() -> {
+						Object object = ddmFormField.getProperty("text");
+
+						if (!(object instanceof LocalizedValue)) {
+							return null;
+						}
+
+						return _toString((LocalizedValue)object);
 					});
 			}
 		};
