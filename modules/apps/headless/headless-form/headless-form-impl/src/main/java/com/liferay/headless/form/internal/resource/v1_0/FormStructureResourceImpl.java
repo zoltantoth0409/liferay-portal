@@ -149,8 +149,8 @@ public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 				).map(
 					entry -> new Option() {
 						{
-							setLabel(_toString(entry.getValue()));
-							setValue(entry.getKey());
+							label = _toString(entry.getValue());
+							value = entry.getKey();
 						}
 					}
 				).toArray(
