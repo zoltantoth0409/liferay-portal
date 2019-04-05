@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,16 +57,21 @@ public abstract class FieldType {
 					jsonObject.getBoolean("showLabel"));
 				fieldType = jsonObject.getString("type");
 				indexable = jsonObject.getBoolean("indexable", true);
-				label = (LocalizedValue[])GetterUtil.getObject(
-					LocalizedValueUtil.getLocalizedProperty(
-						jsonObject, "label"),
-					new LocalizedValue[0]);
+				label = LocalizedValueUtil.toLocalizedValues(
+					Optional.ofNullable(
+						jsonObject.getJSONObject("label")
+					).orElse(
+						JSONFactoryUtil.createJSONObject()
+					));
 				localizable = jsonObject.getBoolean("localizable", false);
 				name = jsonObject.getString("name");
 				repeatable = jsonObject.getBoolean("repeatable", false);
-				tip = (LocalizedValue[])GetterUtil.getObject(
-					LocalizedValueUtil.getLocalizedProperty(jsonObject, "tip"),
-					new LocalizedValue[0]);
+				tip = LocalizedValueUtil.toLocalizedValues(
+					Optional.ofNullable(
+						jsonObject.getJSONObject("tip")
+					).orElse(
+						JSONFactoryUtil.createJSONObject()
+					));
 			}
 		};
 	}

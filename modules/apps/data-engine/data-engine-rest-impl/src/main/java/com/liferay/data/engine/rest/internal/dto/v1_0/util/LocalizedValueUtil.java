@@ -36,16 +36,6 @@ import java.util.stream.Stream;
  */
 public class LocalizedValueUtil {
 
-	public static LocalizedValue[] getLocalizedProperty(
-		JSONObject jsonObject, String property) {
-
-		if (!jsonObject.has(property)) {
-			return null;
-		}
-
-		return toLocalizedValues(jsonObject.getJSONObject(property));
-	}
-
 	public static String getLocalizedValue(
 		Locale locale, LocalizedValue[] localizedValues) {
 
