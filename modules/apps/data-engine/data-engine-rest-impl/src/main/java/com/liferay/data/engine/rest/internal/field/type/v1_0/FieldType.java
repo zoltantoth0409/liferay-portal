@@ -126,7 +126,7 @@ public abstract class FieldType {
 			throw new Exception("Type is required");
 		}
 
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"indexable", dataDefinitionField.getIndexable()
 		).put(
 			"label",
@@ -145,8 +145,6 @@ public abstract class FieldType {
 			"tip",
 			LocalizedValueUtil.toJSONObject(dataDefinitionField.getTip())
 		).put("type", type);
-
-		return jsonObject;
 	}
 
 }
