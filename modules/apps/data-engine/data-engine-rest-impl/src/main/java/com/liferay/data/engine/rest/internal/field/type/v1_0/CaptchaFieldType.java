@@ -49,7 +49,7 @@ public class CaptchaFieldType extends FieldType {
 		String html = StringPool.BLANK;
 
 		try {
-			html = renderCaptchaTag(
+			html = _renderCaptchaTag(
 				dataDefinitionField, httpServletRequest, httpServletResponse);
 		}
 		catch (Exception e) {
@@ -59,7 +59,7 @@ public class CaptchaFieldType extends FieldType {
 		context.put("html", soyDataFactory.createSoyHTMLData(html));
 	}
 
-	protected String renderCaptchaTag(
+	private String _renderCaptchaTag(
 			DataDefinitionField dataDefinitionField,
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
