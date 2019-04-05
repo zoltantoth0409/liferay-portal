@@ -79,14 +79,11 @@ public abstract class FieldType {
 			"dir",
 			LanguageUtil.get(httpServletRequest, LanguageConstants.KEY_DIR));
 		context.put("indexable", dataDefinitionField.getIndexable());
-
-		String languageId = LanguageUtil.getLanguageId(httpServletRequest);
-
 		context.put(
 			"label",
 			LocalizedValueUtil.getLocalizedValue(
-				dataDefinitionField.getLabel(), languageId));
-
+				dataDefinitionField.getLabel(),
+			httpServletRequest.getLocale()));
 		context.put("localizable", dataDefinitionField.getLocalizable());
 		context.put("name", dataDefinitionField.getName());
 
@@ -110,7 +107,7 @@ public abstract class FieldType {
 		context.put(
 			"tip",
 			LocalizedValueUtil.getLocalizedValue(
-				dataDefinitionField.getTip(), languageId));
+				dataDefinitionField.getTip(), httpServletRequest.getLocale()));
 		context.put("type", dataDefinitionField.getFieldType());
 		context.put(
 			"visible",
