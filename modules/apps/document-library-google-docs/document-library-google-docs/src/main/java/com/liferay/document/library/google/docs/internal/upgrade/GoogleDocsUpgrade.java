@@ -35,6 +35,7 @@ public class GoogleDocsUpgrade implements UpgradeStepRegistrator {
 		registry.register(
 			"0.0.0", "1.0.0",
 			new UpgradeFileEntryTypeName(_dlFileEntryTypeLocalService));
+
 		registry.register(
 			"1.0.0", "1.0.1",
 			new UpgradePortletPreferences(_configurationProvider, _prefsProps));

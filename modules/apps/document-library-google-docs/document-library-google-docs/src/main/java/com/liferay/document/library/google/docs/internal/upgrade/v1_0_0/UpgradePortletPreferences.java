@@ -50,7 +50,6 @@ public class UpgradePortletPreferences extends UpgradeProcess {
 
 			String apiKey = portletPreferences.getValue(
 				"googleAppsAPIKey", StringPool.BLANK);
-
 			String clientId = portletPreferences.getValue(
 				"googleClientId", StringPool.BLANK);
 
