@@ -17,12 +17,14 @@ package com.liferay.data.engine.rest.internal.dto.v1_0.util;
 import com.liferay.data.engine.rest.dto.v1_0.CustomProperty;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.petra.string.StringPool;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author Marcela Cunha
@@ -47,37 +49,25 @@ public class CustomPropertyUtil {
 		CustomProperty[] customProperties, String property,
 		boolean defaultValue) {
 
-		Map<String, Object> propertyMap = toCustomPropertyMap(customProperties);
-
-		if (propertyMap.isEmpty()) {
-			return defaultValue;
+		for (CustomProperty customProperty : customProperties) {
+			if (Objects.equals(property, customProperty.getKey())) {
+				return GetterUtil.getBoolean(customProperty.getValue());
+			}
 		}
 
-		return GetterUtil.getBoolean(propertyMap.get(property));
+		return defaultValue;
 	}
 
 	public static String getStringCustomProperty(
 		CustomProperty[] customProperties, String property) {
 
-		Map<String, Object> propertyMap = toCustomPropertyMap(customProperties);
-
-		return GetterUtil.getString(propertyMap.get(property));
-	}
-
-	public static Map<String, Object> toCustomPropertyMap(
-		CustomProperty[] customProperties) {
-
-		if (customProperties == null) {
-			return Collections.emptyMap();
-		}
-
-		Map<String, Object> propertyMap = new HashMap<>();
-
 		for (CustomProperty customProperty : customProperties) {
-			propertyMap.put(customProperty.getKey(), customProperty.getValue());
+			if (Objects.equals(property, customProperty.getKey())) {
+				return GetterUtil.getString(customProperty.getValue());
+			}
 		}
 
-		return propertyMap;
+		return StringPool.BLANK;
 	}
 
 }
