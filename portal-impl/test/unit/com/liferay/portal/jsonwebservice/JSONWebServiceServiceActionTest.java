@@ -60,6 +60,10 @@ public class JSONWebServiceServiceActionTest
 	public static void setUpClass() throws Exception {
 		initPortalServices();
 
+		FileUtil fileUtil = new FileUtil();
+
+		fileUtil.setFile(new FileImpl());
+
 		Class<?> clazz = JSONWebServiceServiceAction.class;
 
 		PortalClassLoaderUtil.setClassLoader(clazz.getClassLoader());
@@ -67,10 +71,6 @@ public class JSONWebServiceServiceActionTest
 		PortalUtil portalUtil = new PortalUtil();
 
 		portalUtil.setPortal(new PortalImpl());
-
-		FileUtil fileUtil = new FileUtil();
-
-		fileUtil.setFile(new FileImpl());
 
 		_jsonWebServiceServiceAction = new JSONWebServiceServiceAction();
 	}
