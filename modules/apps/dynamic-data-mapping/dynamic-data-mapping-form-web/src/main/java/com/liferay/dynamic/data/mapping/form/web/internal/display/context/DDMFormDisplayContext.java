@@ -448,7 +448,9 @@ public class DDMFormDisplayContext {
 	protected String createCaptchaResourceURL() {
 		ResourceURL resourceURL = _renderResponse.createResourceURL();
 
-		((LiferayPortletURL)resourceURL).setCopyCurrentRenderParameters(false);
+		LiferayPortletURL liferayPortletURL = (LiferayPortletURL)resourceURL;
+
+		liferayPortletURL.setCopyCurrentRenderParameters(false);
 
 		resourceURL.setResourceID("captcha");
 
