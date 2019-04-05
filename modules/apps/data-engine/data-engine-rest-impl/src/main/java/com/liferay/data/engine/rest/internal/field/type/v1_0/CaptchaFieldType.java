@@ -37,20 +37,20 @@ import javax.servlet.jsp.PageContext;
 public class CaptchaFieldType extends FieldType {
 
 	public void includeContext(
+		Map<String, Object> context, DataDefinitionField dataDefinitionField,
 		HttpServletRequest httpServletRequest,
-		HttpServletResponse httpServletResponse, Map<String, Object> context,
-		DataDefinitionField dataDefinitionField, boolean readOnly,
+		HttpServletResponse httpServletResponse, boolean readOnly,
 		SoyDataFactory soyDataFactory) {
 
 		super.includeContext(
-			httpServletRequest, httpServletResponse, context,
-			dataDefinitionField, readOnly);
+			context, dataDefinitionField, httpServletRequest,
+			httpServletResponse, readOnly);
 
 		String html = StringPool.BLANK;
 
 		try {
 			html = renderCaptchaTag(
-				httpServletRequest, httpServletResponse, dataDefinitionField);
+				dataDefinitionField, httpServletRequest, httpServletResponse);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -60,9 +60,9 @@ public class CaptchaFieldType extends FieldType {
 	}
 
 	protected String renderCaptchaTag(
+			DataDefinitionField dataDefinitionField,
 			HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse,
-			DataDefinitionField dataDefinitionField)
+			HttpServletResponse httpServletResponse)
 		throws Exception {
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
