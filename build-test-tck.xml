@@ -15,7 +15,9 @@
 
 	<target name="prepare-tck">
 
-		<!-- Prepare TCK target is expected by CI. -->
+		<!--
+		Prepare TCK target is expected by CI.
+		-->
 
 		<echo>prepare-tck</echo>
 	</target>
