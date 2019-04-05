@@ -43,9 +43,9 @@ import org.junit.runner.RunWith;
 public class DataDefinitionResourceTest
 	extends BaseDataDefinitionResourceTestCase {
 
-	public static final String OPERATION_SAVE_PERMISSION = "save";
+	private static final String _OPERATION_SAVE_PERMISSION = "save";
 
-	public static final String RESOURCE_NAME =
+	private static final String _RESOURCE_NAME =
 		"com.liferay.data.engine.rest.internal.model.InternalDataDefinition";
 
 	@Override
@@ -55,7 +55,7 @@ public class DataDefinitionResourceTest
 		Role role = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
 
 		invokePostContentSpaceDataDefinitionPermission(
-			testGroup.getGroupId(), OPERATION_SAVE_PERMISSION,
+			testGroup.getGroupId(), _OPERATION_SAVE_PERMISSION,
 			new DataDefinitionPermission() {
 				{
 					addDataDefinition = true;
@@ -73,7 +73,7 @@ public class DataDefinitionResourceTest
 		Role role = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
 
 		invokePostDataDefinitionDataDefinitionPermission(
-			_ddmStructure.getStructureId(), OPERATION_SAVE_PERMISSION,
+			_ddmStructure.getStructureId(), _OPERATION_SAVE_PERMISSION,
 			new DataDefinitionPermission() {
 				{
 					view = true;
@@ -183,10 +183,10 @@ public class DataDefinitionResourceTest
 	private DDMStructure _addDDMStructure(Group group) throws Exception {
 		DDMStructureTestHelper ddmStructureTestHelper =
 			new DDMStructureTestHelper(
-				PortalUtil.getClassNameId(RESOURCE_NAME), group);
+				PortalUtil.getClassNameId(_RESOURCE_NAME), group);
 
 		return ddmStructureTestHelper.addStructure(
-			PortalUtil.getClassNameId(RESOURCE_NAME),
+			PortalUtil.getClassNameId(_RESOURCE_NAME),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			_read("test-structured-content-structure.json"),
 			StorageType.JSON.getValue());
