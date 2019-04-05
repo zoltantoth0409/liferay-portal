@@ -16,6 +16,7 @@ package com.liferay.document.library.asset.auto.tagger.microsoft.cognitive.servi
 
 import com.liferay.asset.auto.tagger.AssetAutoTagProvider;
 import com.liferay.document.library.asset.auto.tagger.microsoft.cognitive.services.internal.configuration.MSCognitiveServicesAssetAutoTagProviderCompanyConfiguration;
+import com.liferay.document.library.asset.auto.tagger.microsoft.cognitive.services.internal.constants.MSCognitiveServicesAssetAutoTagProviderConstants;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -29,6 +30,7 @@ import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.repository.capabilities.TemporaryFileEntriesCapability;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.settings.CompanyServiceSettingsLocator;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -97,9 +99,11 @@ public class MSCognitiveServicesImageAssetAutoTagProvider
 			_getConfiguration(FileEntry fileEntry)
 		throws ConfigurationException {
 
-		return _configurationProvider.getCompanyConfiguration(
+		return _configurationProvider.getConfiguration(
 			MSCognitiveServicesAssetAutoTagProviderCompanyConfiguration.class,
-			fileEntry.getCompanyId());
+			new CompanyServiceSettingsLocator(
+				fileEntry.getCompanyId(),
+				MSCognitiveServicesAssetAutoTagProviderConstants.SERVICE_NAME));
 	}
 
 	private boolean _isSupportedFormat(FileEntry fileEntry) {
