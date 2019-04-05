@@ -20,6 +20,7 @@ import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.CustomPropertyUtil;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.LocalizedValueUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageConstants;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -117,7 +118,7 @@ public abstract class FieldType {
 	}
 
 	public JSONObject toJSONObject(
-			DataDefinitionField dataDefinitionField, JSONFactory jsonFactory)
+			DataDefinitionField dataDefinitionField)
 		throws Exception {
 
 		String name = dataDefinitionField.getName();
@@ -132,12 +133,12 @@ public abstract class FieldType {
 			throw new Exception("Type is required");
 		}
 
-		JSONObject jsonObject = jsonFactory.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("indexable", dataDefinitionField.getIndexable());
 
 		LocalizedValueUtil.setLocalizedProperty(
-			"label", jsonFactory, jsonObject,
+			"label", jsonObject,
 			LocalizedValueUtil.toLocalizationMap(
 				dataDefinitionField.getLabel()));
 
@@ -153,7 +154,7 @@ public abstract class FieldType {
 				dataDefinitionField.getCustomProperties(), "showLabel", true));
 
 		LocalizedValueUtil.setLocalizedProperty(
-			"tip", jsonFactory, jsonObject,
+			"tip", jsonObject,
 			LocalizedValueUtil.toLocalizationMap(dataDefinitionField.getTip()));
 
 		jsonObject.put("type", type);

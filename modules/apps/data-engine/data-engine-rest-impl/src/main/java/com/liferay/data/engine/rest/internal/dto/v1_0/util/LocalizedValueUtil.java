@@ -75,10 +75,10 @@ public class LocalizedValueUtil {
 	}
 
 	public static void setLocalizedProperty(
-		String property, JSONFactory jsonFactory, JSONObject jsonObject,
+		String property, JSONObject jsonObject,
 		Map<Locale, String> map) {
 
-		JSONObject languageJSONObject = jsonFactory.createJSONObject();
+		JSONObject languageJSONObject = JSONFactoryUtil.createJSONObject();
 
 		Set<Map.Entry<Locale, String>> set = map.entrySet();
 
