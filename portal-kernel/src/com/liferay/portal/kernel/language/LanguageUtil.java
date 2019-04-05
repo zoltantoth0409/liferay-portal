@@ -240,6 +240,10 @@ public class LanguageUtil {
 		return getLanguage().getLanguageId(portletRequest);
 	}
 
+	public static long getLastModified() {
+		return getLanguage().getLastModified();
+	}
+
 	public static Locale getLocale(long groupId, String languageCode) {
 		return getLanguage().getLocale(groupId, languageCode);
 	}

@@ -131,6 +131,8 @@ public interface Language {
 
 	public String getLanguageId(PortletRequest portletRequest);
 
+	public long getLastModified();
+
 	public Locale getLocale(long groupId, String languageCode);
 
 	public Locale getLocale(String languageCode);
