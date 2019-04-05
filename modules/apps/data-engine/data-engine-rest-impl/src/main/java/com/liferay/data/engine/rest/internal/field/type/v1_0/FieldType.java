@@ -58,13 +58,13 @@ public abstract class FieldType {
 				indexable = jsonObject.getBoolean("indexable", true);
 				label = (LocalizedValue[])GetterUtil.getObject(
 					LocalizedValueUtil.getLocalizedProperty(
-						"label", jsonObject),
+						jsonObject, "label"),
 					new LocalizedValue[0]);
 				localizable = jsonObject.getBoolean("localizable", false);
 				name = jsonObject.getString("name");
 				repeatable = jsonObject.getBoolean("repeatable", false);
 				tip = (LocalizedValue[])GetterUtil.getObject(
-					LocalizedValueUtil.getLocalizedProperty("tip", jsonObject),
+					LocalizedValueUtil.getLocalizedProperty(jsonObject, "tip"),
 					new LocalizedValue[0]);
 			}
 		};

@@ -37,7 +37,7 @@ import java.util.stream.Stream;
 public class LocalizedValueUtil {
 
 	public static LocalizedValue[] getLocalizedProperty(
-		String property, JSONObject jsonObject) {
+		JSONObject jsonObject, String property) {
 
 		if (!jsonObject.has(property)) {
 			return null;
