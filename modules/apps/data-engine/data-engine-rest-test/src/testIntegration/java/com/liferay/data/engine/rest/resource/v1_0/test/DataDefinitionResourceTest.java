@@ -43,8 +43,6 @@ import org.junit.runner.RunWith;
 public class DataDefinitionResourceTest
 	extends BaseDataDefinitionResourceTestCase {
 
-	public static final String OPERATION_DELETE_PERMISSION = "delete";
-
 	public static final String OPERATION_SAVE_PERMISSION = "save";
 
 	public static final String RESOURCE_NAME =
