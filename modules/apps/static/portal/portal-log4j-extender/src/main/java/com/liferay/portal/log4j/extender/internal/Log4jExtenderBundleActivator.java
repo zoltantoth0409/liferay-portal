@@ -43,7 +43,7 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 
 	@Override
 	public void start(BundleContext bundleContext) throws Exception {
-		_tracker = new BundleTracker<Bundle>(
+		_bundleTracker = new BundleTracker<Bundle>(
 			bundleContext, ~(Bundle.INSTALLED | Bundle.UNINSTALLED), null) {
 
 			@Override
@@ -65,12 +65,12 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 
 		};
 
-		_tracker.open();
+		_bundleTracker.open();
 	}
 
 	@Override
 	public void stop(BundleContext context) {
-		_tracker.close();
+		_bundleTracker.close();
 	}
 
 	private void _configureLog4j(Bundle bundle, String resourcePath)
@@ -112,6 +112,6 @@ public class Log4jExtenderBundleActivator implements BundleActivator {
 	private static final Logger _logger = Logger.getLogger(
 		Log4jExtenderBundleActivator.class);
 
-	private volatile BundleTracker<Bundle> _tracker;
+	private volatile BundleTracker<Bundle> _bundleTracker;
 
 }
