@@ -52,7 +52,7 @@ public abstract class FieldType {
 
 		return new DataDefinitionField() {
 			{
-				customProperties = CustomPropertyUtil.addCustomProperty(
+				customProperties = CustomPropertyUtil.add(
 					customProperties, "showLabel",
 					jsonObject.getBoolean("showLabel"));
 				fieldType = jsonObject.getString("type");
@@ -94,16 +94,16 @@ public abstract class FieldType {
 		context.put("name", dataDefinitionField.getName());
 		context.put(
 			"readOnly",
-			CustomPropertyUtil.getBooleanCustomProperty(
+			CustomPropertyUtil.getBoolean(
 				dataDefinitionField.getCustomProperties(), "readOnly", false));
 		context.put("repeatable", dataDefinitionField.getRepeatable());
 		context.put(
 			"required",
-			CustomPropertyUtil.getBooleanCustomProperty(
+			CustomPropertyUtil.getBoolean(
 				dataDefinitionField.getCustomProperties(), "required", false));
 		context.put(
 			"showLabel",
-			CustomPropertyUtil.getBooleanCustomProperty(
+			CustomPropertyUtil.getBoolean(
 				dataDefinitionField.getCustomProperties(), "showLabel", true));
 		context.put(
 			"tip",
@@ -112,7 +112,7 @@ public abstract class FieldType {
 		context.put("type", dataDefinitionField.getFieldType());
 		context.put(
 			"visible",
-			CustomPropertyUtil.getBooleanCustomProperty(
+			CustomPropertyUtil.getBoolean(
 				dataDefinitionField.getCustomProperties(), "visible", true));
 	}
 
@@ -145,7 +145,7 @@ public abstract class FieldType {
 			"repeatable", dataDefinitionField.getRepeatable()
 		).put(
 			"showLabel",
-			CustomPropertyUtil.getBooleanCustomProperty(
+			CustomPropertyUtil.getBoolean(
 				dataDefinitionField.getCustomProperties(), "showLabel", true)
 		).put(
 			"tip",

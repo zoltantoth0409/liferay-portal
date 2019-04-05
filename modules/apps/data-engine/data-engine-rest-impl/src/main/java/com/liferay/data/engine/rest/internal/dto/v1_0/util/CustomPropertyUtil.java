@@ -31,7 +31,7 @@ import java.util.Objects;
  */
 public class CustomPropertyUtil {
 
-	public static CustomProperty[] addCustomProperty(
+	public static CustomProperty[] add(
 		CustomProperty[] customProperties, String property,
 		Object valueObject) {
 
@@ -45,7 +45,7 @@ public class CustomPropertyUtil {
 		return ArrayUtil.append(customProperties, customProperty);
 	}
 
-	public static Boolean getBooleanCustomProperty(
+	public static Boolean getBoolean(
 		CustomProperty[] customProperties, String property,
 		boolean defaultValue) {
 
@@ -58,7 +58,7 @@ public class CustomPropertyUtil {
 		return defaultValue;
 	}
 
-	public static String getStringCustomProperty(
+	public static String getString(
 		CustomProperty[] customProperties, String property) {
 
 		for (CustomProperty customProperty : customProperties) {
