@@ -21,7 +21,6 @@ import com.liferay.dynamic.data.mapping.storage.FieldConstants;
 import com.liferay.dynamic.data.mapping.util.DDMIndexer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -53,7 +52,7 @@ import org.osgi.service.component.annotations.Reference;
 public class EntityFieldsProvider {
 
 	public List<EntityField> provide(DDMStructure ddmStructure)
-		throws PortalException {
+		throws Exception {
 
 		List<EntityField> entityFields = new ArrayList<>();
 
@@ -73,7 +72,7 @@ public class EntityFieldsProvider {
 
 	private EntityField _createEntityField(
 			DDMStructure ddmStructure, DDMFormField ddmFormField)
-		throws PortalException {
+		throws Exception {
 
 		String indexType = ddmStructure.getFieldProperty(
 			ddmFormField.getName(), "indexType");

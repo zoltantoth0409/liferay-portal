@@ -32,7 +32,6 @@ import com.liferay.headless.foundation.internal.dto.v1_0.util.WebUrlUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.OrganizationEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.OrganizationResource;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Country;
 import com.liferay.portal.kernel.model.ListType;
 import com.liferay.portal.kernel.model.OrgLabor;
@@ -161,7 +160,7 @@ public class OrganizationResourceImpl
 	}
 
 	private Page<Organization> _getOrganizationsPage(Long userAccountId)
-		throws PortalException {
+		throws Exception {
 
 		User user = _userService.getUserById(userAccountId);
 
@@ -198,7 +197,7 @@ public class OrganizationResourceImpl
 
 	private Organization _toOrganization(
 			com.liferay.portal.kernel.model.Organization organization)
-		throws PortalException {
+		throws Exception {
 
 		if (organization == null) {
 			return null;
@@ -304,7 +303,7 @@ public class OrganizationResourceImpl
 		};
 	}
 
-	private Service _toService(OrgLabor orgLabor) throws PortalException {
+	private Service _toService(OrgLabor orgLabor) throws Exception {
 		ListType listType = orgLabor.getType();
 
 		return new Service() {

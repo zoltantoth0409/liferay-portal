@@ -36,7 +36,6 @@ import com.liferay.message.boards.settings.MBGroupServiceSettings;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
@@ -287,7 +286,7 @@ public class MessageBoardThreadResourceImpl
 	}
 
 	private double _toPriority(Long contentSpaceId, String threadType)
-		throws PortalException {
+		throws Exception {
 
 		if (threadType == null) {
 			return MBThreadConstants.PRIORITY_NOT_GIVEN;

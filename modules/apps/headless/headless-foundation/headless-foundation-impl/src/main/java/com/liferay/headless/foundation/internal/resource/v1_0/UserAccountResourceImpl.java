@@ -30,7 +30,6 @@ import com.liferay.headless.foundation.internal.odata.entity.v1_0.UserAccountEnt
 import com.liferay.headless.foundation.resource.v1_0.UserAccountResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Contact;
 import com.liferay.portal.kernel.model.Group;
@@ -223,7 +222,7 @@ public class UserAccountResourceImpl
 				user.getUserGroupIds(), new ServiceContext()));
 	}
 
-	private User _addUser(UserAccount userAccount) throws PortalException {
+	private User _addUser(UserAccount userAccount) throws Exception {
 		long prefixId = _getListTypeId(
 			userAccount.getHonorificPrefix(), ListTypeConstants.CONTACT_PREFIX);
 		long suffixId = _getListTypeId(
@@ -270,7 +269,7 @@ public class UserAccountResourceImpl
 		);
 	}
 
-	private String _getListTypeMessage(long listTypeId) throws PortalException {
+	private String _getListTypeMessage(long listTypeId) throws Exception {
 		if (listTypeId == 0) {
 			return null;
 		}
@@ -320,7 +319,7 @@ public class UserAccountResourceImpl
 			sorts);
 	}
 
-	private UserAccount _toUserAccount(User user) throws PortalException {
+	private UserAccount _toUserAccount(User user) throws Exception {
 		Contact contact = user.getContact();
 
 		return new UserAccount() {

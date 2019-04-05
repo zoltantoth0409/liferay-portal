@@ -55,7 +55,6 @@ import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.events.EventsProcessorUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
@@ -495,7 +494,7 @@ public class StructuredContentResourceImpl
 
 	private DDMStructure _checkDDMStructurePermission(
 			StructuredContent structuredContent)
-		throws PortalException {
+		throws Exception {
 
 		try {
 			return _ddmStructureService.getStructure(

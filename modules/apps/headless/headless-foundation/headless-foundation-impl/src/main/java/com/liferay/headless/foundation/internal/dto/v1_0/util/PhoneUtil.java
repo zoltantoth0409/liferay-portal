@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.dto.v1_0.util;
 
 import com.liferay.headless.foundation.dto.v1_0.Phone;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ListType;
 
 /**
@@ -24,7 +23,7 @@ import com.liferay.portal.kernel.model.ListType;
 public class PhoneUtil {
 
 	public static Phone toPhone(com.liferay.portal.kernel.model.Phone phone)
-		throws PortalException {
+		throws Exception {
 
 		ListType listType = phone.getType();
 

@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.dto.v1_0.util;
 
 import com.liferay.headless.foundation.dto.v1_0.Email;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.EmailAddress;
 import com.liferay.portal.kernel.model.ListType;
 
@@ -24,9 +23,7 @@ import com.liferay.portal.kernel.model.ListType;
  */
 public class EmailUtil {
 
-	public static Email toEmail(EmailAddress emailAddress)
-		throws PortalException {
-
+	public static Email toEmail(EmailAddress emailAddress) throws Exception {
 		ListType listType = emailAddress.getType();
 
 		return new Email() {

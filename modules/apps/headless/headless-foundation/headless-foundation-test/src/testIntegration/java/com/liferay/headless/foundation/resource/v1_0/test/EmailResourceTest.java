@@ -16,7 +16,6 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.foundation.dto.v1_0.Email;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Contact;
 import com.liferay.portal.kernel.model.EmailAddress;
 import com.liferay.portal.kernel.model.ListType;
@@ -132,7 +131,7 @@ public class EmailResourceTest extends BaseEmailResourceTestCase {
 
 	private Email _addEmailAddress(
 			Email email, String className, long classPK, String listTypeId)
-		throws PortalException {
+		throws Exception {
 
 		return _toEmail(
 			EmailAddressLocalServiceUtil.addEmailAddress(

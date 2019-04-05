@@ -17,7 +17,6 @@ package com.liferay.headless.workflow.internal.resource.v1_0;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
 import com.liferay.headless.workflow.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowLogResource;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.workflow.WorkflowLogManager;
@@ -66,7 +65,7 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 
 	private WorkflowLog _toWorkflowLog(
 			com.liferay.portal.kernel.workflow.WorkflowLog workflowLog)
-		throws PortalException {
+		throws Exception {
 
 		return new WorkflowLog() {
 			{

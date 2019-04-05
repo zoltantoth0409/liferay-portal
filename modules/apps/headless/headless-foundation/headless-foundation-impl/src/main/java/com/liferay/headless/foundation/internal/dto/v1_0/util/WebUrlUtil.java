@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.dto.v1_0.util;
 
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ListType;
 import com.liferay.portal.kernel.model.Website;
 
@@ -24,7 +23,7 @@ import com.liferay.portal.kernel.model.Website;
  */
 public class WebUrlUtil {
 
-	public static WebUrl toWebUrl(Website website) throws PortalException {
+	public static WebUrl toWebUrl(Website website) throws Exception {
 		ListType listType = website.getType();
 
 		return new WebUrl() {

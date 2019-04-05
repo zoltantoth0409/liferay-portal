@@ -22,7 +22,6 @@ import com.liferay.headless.workflow.dto.v1_0.WorkflowTaskAssignToMe;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTaskAssignToUser;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
 import com.liferay.message.boards.model.MBDiscussion;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -189,7 +188,7 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 
 	private List<String> _getTaskTransitionsNames(
 			com.liferay.portal.kernel.workflow.WorkflowTask workflowTask)
-		throws PortalException {
+		throws Exception {
 
 		if (workflowTask.getAssigneeUserId() > 0) {
 			User user = _userLocalService.getUserById(
@@ -216,7 +215,7 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 
 	private WorkflowTask _toWorkflowTask(
 			com.liferay.portal.kernel.workflow.WorkflowTask workflowTask)
-		throws PortalException {
+		throws Exception {
 
 		return new WorkflowTask() {
 			{
