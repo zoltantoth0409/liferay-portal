@@ -1069,6 +1069,11 @@ public class LanguageImpl implements Language, Serializable {
 	}
 
 	@Override
+	public long getLastModified() {
+		return _lastModified;
+	}
+
+	@Override
 	public Locale getLocale(long groupId, String languageCode) {
 		try {
 			if (isInheritLocales(groupId)) {
@@ -1715,6 +1720,8 @@ public class LanguageImpl implements Language, Serializable {
 			groupId, groupLanguageCodeLocalesMap);
 		_groupLanguageIdLocalesMap.put(groupId, groupLanguageIdLocalesMap);
 
+		_updateLastModified();
+
 		return new ObjectValuePair<>(
 			groupLanguageCodeLocalesMap, groupLanguageIdLocalesMap);
 	}
@@ -1902,10 +1909,18 @@ public class LanguageImpl implements Language, Serializable {
 
 	private void _resetAvailableGroupLocales(long groupId) {
 		_groupLocalesPortalCache.remove(groupId);
+
+		_updateLastModified();
 	}
 
 	private void _resetAvailableLocales(long companyId) {
 		_companyLocalesPortalCache.remove(companyId);
+
+		_updateLastModified();
+	}
+
+	private static void _updateLastModified() {
+		_lastModified = System.currentTimeMillis();
 	}
 
 	private static final String _COMPANY_LOCALES_PORTAL_CACHE_NAME =
@@ -1940,6 +1955,8 @@ public class LanguageImpl implements Language, Serializable {
 		_groupLanguageCodeLocalesMapMap = new ConcurrentHashMap<>();
 	private final Map<Long, HashMap<String, Locale>>
 		_groupLanguageIdLocalesMap = new ConcurrentHashMap<>();
+
+	private static volatile long _lastModified = System.currentTimeMillis();
 
 	private static class CompanyLocalesBag implements Serializable {
 
