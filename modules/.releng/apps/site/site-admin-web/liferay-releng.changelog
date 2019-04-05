@@ -112,3 +112,8 @@ e9525fa28d6265c9cba0592f5d694a071a26a1d2^..68cf51efb33a640b075bd5dab7a9fcd8b46c3
 # Bundle Version 2.0.22
 #
 68cf51efb33a640b075bd5dab7a9fcd8b46c33f3^..cd1dcecbd308bc3ffcd6fe7c51352cf9f8ee621c=LPS-77699 LPS-91722
+
+#
+# Bundle Version 2.0.23
+#
+cd1dcecbd308bc3ffcd6fe7c51352cf9f8ee621c^..05592016e85c278f8499cce0f4f858c84d1d86ee=LPS-73136 LPS-77699
