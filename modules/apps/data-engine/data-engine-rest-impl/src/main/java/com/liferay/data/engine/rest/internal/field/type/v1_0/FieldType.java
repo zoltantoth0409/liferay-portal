@@ -73,25 +73,29 @@ public abstract class FieldType {
 		HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse, boolean readOnly) {
 
+		context.put(
+			"dir",
+			LanguageUtil.get(httpServletRequest, LanguageConstants.KEY_DIR));
+		context.put("indexable", dataDefinitionField.getIndexable());
+
 		String languageId = LanguageUtil.getLanguageId(httpServletRequest);
+
+		context.put(
+			"label",
+			LocalizedValueUtil.getLocalizedValue(
+				dataDefinitionField.getLabel(), languageId));
+
+		context.put("localizable", dataDefinitionField.getLocalizable());
+		context.put("name", dataDefinitionField.getName());
 
 		CustomProperty[] customProperties =
 			dataDefinitionField.getCustomProperties();
 
 		context.put(
-			"dir",
-			LanguageUtil.get(httpServletRequest, LanguageConstants.KEY_DIR));
-		context.put("indexable", dataDefinitionField.getIndexable());
-		context.put(
-			"label",
-			LocalizedValueUtil.getLocalizedValue(
-				dataDefinitionField.getLabel(), languageId));
-		context.put("localizable", dataDefinitionField.getLocalizable());
-		context.put("name", dataDefinitionField.getName());
-		context.put(
 			"readOnly",
 			CustomPropertyUtil.getBooleanCustomProperty(
 				customProperties, "readOnly", false));
+
 		context.put("repeatable", dataDefinitionField.getRepeatable());
 		context.put(
 			"required",
