@@ -70,7 +70,7 @@ public class DataEnginePermissionUtil {
 		}
 	}
 
-	public static void checkPermissionOperation(
+	public static void checkOperationPermission(
 			long contentSpaceId, GroupLocalService groupLocalService,
 			String operation)
 		throws Exception {

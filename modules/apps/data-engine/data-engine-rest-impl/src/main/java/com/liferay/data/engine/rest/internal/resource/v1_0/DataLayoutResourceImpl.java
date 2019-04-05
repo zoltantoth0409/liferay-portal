@@ -101,7 +101,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			DataLayoutPermission dataLayoutPermission)
 		throws Exception {
 
-		DataEnginePermissionUtil.checkPermissionOperation(
+		DataEnginePermissionUtil.checkOperationPermission(
 			contentSpaceId, _groupLocalService, operation);
 
 		List<String> actionIds = new ArrayList<>();
@@ -170,7 +170,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 		DDMStructureLayout ddmStructureLayout =
 			_ddmStructureLayoutLocalService.getStructureLayout(dataLayoutId);
 
-		DataEnginePermissionUtil.checkPermissionOperation(
+		DataEnginePermissionUtil.checkOperationPermission(
 			ddmStructureLayout.getGroupId(), _groupLocalService, operation);
 
 		List<String> actionIds = new ArrayList<>();

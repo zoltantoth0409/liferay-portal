@@ -150,7 +150,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			DataDefinitionPermission dataDefinitionPermission)
 		throws Exception {
 
-		DataEnginePermissionUtil.checkPermissionOperation(
+		DataEnginePermissionUtil.checkOperationPermission(
 			contentSpaceId, _groupLocalService, operation);
 
 		List<String> actionIds = new ArrayList<>();
@@ -182,7 +182,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
 			dataDefinitionId);
 
-		DataEnginePermissionUtil.checkPermissionOperation(
+		DataEnginePermissionUtil.checkOperationPermission(
 			ddmStructure.getGroupId(), _groupLocalService, operation);
 
 		List<String> actionIds = new ArrayList<>();

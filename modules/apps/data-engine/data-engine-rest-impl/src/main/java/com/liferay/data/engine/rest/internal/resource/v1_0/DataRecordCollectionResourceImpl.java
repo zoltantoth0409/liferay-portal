@@ -157,7 +157,7 @@ public class DataRecordCollectionResourceImpl
 			DataRecordCollectionPermission dataRecordCollectionPermission)
 		throws Exception {
 
-		DataEnginePermissionUtil.checkPermissionOperation(
+		DataEnginePermissionUtil.checkOperationPermission(
 			contentSpaceId, _groupLocalService, operation);
 
 		List<String> actionIds = new ArrayList<>();
@@ -222,7 +222,7 @@ public class DataRecordCollectionResourceImpl
 		DDLRecordSet ddlRecordSet = _ddlRecordSetLocalService.getRecordSet(
 			dataRecordCollectionId);
 
-		DataEnginePermissionUtil.checkPermissionOperation(
+		DataEnginePermissionUtil.checkOperationPermission(
 			ddlRecordSet.getGroupId(), _groupLocalService, operation);
 
 		List<String> actionIds = new ArrayList<>();
