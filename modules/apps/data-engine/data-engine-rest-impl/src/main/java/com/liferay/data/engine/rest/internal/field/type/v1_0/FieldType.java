@@ -82,8 +82,8 @@ public abstract class FieldType {
 		context.put(
 			"label",
 			LocalizedValueUtil.getLocalizedValue(
-				dataDefinitionField.getLabel(),
-			httpServletRequest.getLocale()));
+				httpServletRequest.getLocale(),
+				dataDefinitionField.getLabel()));
 		context.put("localizable", dataDefinitionField.getLocalizable());
 		context.put("name", dataDefinitionField.getName());
 		context.put(
@@ -102,7 +102,7 @@ public abstract class FieldType {
 		context.put(
 			"tip",
 			LocalizedValueUtil.getLocalizedValue(
-				dataDefinitionField.getTip(), httpServletRequest.getLocale()));
+				httpServletRequest.getLocale(), dataDefinitionField.getTip()));
 		context.put("type", dataDefinitionField.getFieldType());
 		context.put(
 			"visible",

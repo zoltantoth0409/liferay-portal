@@ -65,7 +65,7 @@ public class LocalizedValueUtil {
 	}
 
 	public static String getLocalizedValue(
-		LocalizedValue[] localizedValues, Locale locale) {
+		Locale locale, LocalizedValue[] localizedValues) {
 
 		Map<Locale, String> localizedValue = toLocalizationMap(localizedValues);
 
