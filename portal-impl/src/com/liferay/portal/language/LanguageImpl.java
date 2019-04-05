@@ -1672,6 +1672,10 @@ public class LanguageImpl implements Language, Serializable {
 		return companyLocalesBag;
 	}
 
+	private static void _updateLastModified() {
+		_lastModified = System.currentTimeMillis();
+	}
+
 	private ObjectValuePair<HashMap<String, Locale>, HashMap<String, Locale>>
 		_createGroupLocales(long groupId) {
 
@@ -1925,10 +1929,6 @@ public class LanguageImpl implements Language, Serializable {
 		_updateLastModified();
 	}
 
-	private static void _updateLastModified() {
-		_lastModified = System.currentTimeMillis();
-	}
-
 	private static final String _COMPANY_LOCALES_PORTAL_CACHE_NAME =
 		LanguageImpl.class.getName() + "._companyLocalesPortalCache";
 
@@ -1941,6 +1941,7 @@ public class LanguageImpl implements Language, Serializable {
 		new ConcurrentHashMap<>();
 	private static PortalCache<Long, Serializable> _companyLocalesPortalCache;
 	private static PortalCache<Long, Serializable> _groupLocalesPortalCache;
+	private static volatile long _lastModified = System.currentTimeMillis();
 	private static final Pattern _pattern = Pattern.compile(
 		"Liferay\\.Language\\.get\\([\"']([^)]+)[\"']\\)");
 
@@ -1961,8 +1962,6 @@ public class LanguageImpl implements Language, Serializable {
 		_groupLanguageCodeLocalesMapMap = new ConcurrentHashMap<>();
 	private final Map<Long, HashMap<String, Locale>>
 		_groupLanguageIdLocalesMap = new ConcurrentHashMap<>();
-
-	private static volatile long _lastModified = System.currentTimeMillis();
 
 	private static class CompanyLocalesBag implements Serializable {
 
