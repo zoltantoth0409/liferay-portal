@@ -128,8 +128,8 @@ public class ConfigFileConfigurationDescriptionFactoryImplTest {
 
 		Dictionary<String, Object> properties = propertiesSupplier.get();
 
-		Assert.assertEquals("value", properties.get("key"));
 		Assert.assertEquals("anotherValue", properties.get("anotherKey"));
+		Assert.assertEquals("value", properties.get("key"));
 	}
 
 }
