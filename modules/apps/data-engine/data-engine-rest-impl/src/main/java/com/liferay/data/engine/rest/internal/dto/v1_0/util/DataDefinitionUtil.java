@@ -150,7 +150,9 @@ public class DataDefinitionUtil {
 			throw new Exception("Type is required");
 		}
 
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
+			"defaultValue", dataDefinitionField.getDefaultValue()
+		).put(
 			"indexable", dataDefinitionField.getIndexable()
 		).put(
 			"label",
@@ -167,14 +169,6 @@ public class DataDefinitionUtil {
 		).put(
 			"type", type
 		);
-
-		Object defaultValue = dataDefinitionField.getDefaultValue();
-
-		if (defaultValue != null) {
-			jsonObject.put("defaultValue", defaultValue);
-		}
-
-		return jsonObject;
 	}
 
 	private static JSONObject _toJSONObject(
