@@ -6505,7 +6505,7 @@ ${output.content}</echo>
 
 						<ant antfile="build-test-tck.xml" target="run-tck-tests" />
 
-						<ant antfile="build-test-tck.xml" target="cleanup-tck" />
+						<ant antfile="build-test-tck.xml" target="clean-up-tck" />
 					</test-action>
 				</database-test-run-test>
 			</test-action>

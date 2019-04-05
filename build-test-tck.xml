@@ -5,7 +5,7 @@
 
 	<fail message="Please set the property ${tck.home}." unless="tck.home" />
 
-	<target name="cleanup-tck">
+	<target name="clean-up-tck">
 		<exec dir="${tck.home}/.." executable="git" failonerror="false">
 			<arg value="apply" />
 			<arg value="--reverse" />
