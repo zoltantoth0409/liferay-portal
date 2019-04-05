@@ -14,18 +14,14 @@
 
 package com.liferay.data.engine.rest.internal.field.type.v1_0;
 
-import com.liferay.data.engine.rest.dto.v1_0.CustomProperty;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
-import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.CustomPropertyUtil;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.LocalizedValueUtil;
-import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageConstants;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
@@ -116,8 +112,7 @@ public abstract class FieldType {
 				dataDefinitionField.getCustomProperties(), "visible", true));
 	}
 
-	public JSONObject toJSONObject(
-			DataDefinitionField dataDefinitionField)
+	public JSONObject toJSONObject(DataDefinitionField dataDefinitionField)
 		throws Exception {
 
 		String name = dataDefinitionField.getName();
@@ -148,9 +143,10 @@ public abstract class FieldType {
 			CustomPropertyUtil.getBoolean(
 				dataDefinitionField.getCustomProperties(), "showLabel", true)
 		).put(
-			"tip",
-			LocalizedValueUtil.toJSONObject(dataDefinitionField.getTip())
-		).put("type", type);
+			"tip", LocalizedValueUtil.toJSONObject(dataDefinitionField.getTip())
+		).put(
+			"type", type
+		);
 	}
 
 }

@@ -164,8 +164,7 @@ public class DataDefinitionUtil {
 		).put(
 			"repeatable", dataDefinitionField.getRepeatable()
 		).put(
-			"tip",
-			LocalizedValueUtil.toJSONObject(dataDefinitionField.getTip())
+			"tip", LocalizedValueUtil.toJSONObject(dataDefinitionField.getTip())
 		).put(
 			"type", type
 		);

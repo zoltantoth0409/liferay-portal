@@ -15,15 +15,10 @@
 package com.liferay.data.engine.rest.internal.dto.v1_0.util;
 
 import com.liferay.data.engine.rest.dto.v1_0.CustomProperty;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.petra.string.StringPool;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -32,11 +27,10 @@ import java.util.Objects;
 public class CustomPropertyUtil {
 
 	public static CustomProperty[] add(
-		CustomProperty[] customProperties, String key,
-		Object value) {
+		CustomProperty[] customProperties, String key, Object value) {
 
 		CustomProperty customProperty = new CustomProperty();
-		
+
 		customProperty.setKey(key);
 		customProperty.setValue(value);
 
@@ -44,8 +38,7 @@ public class CustomPropertyUtil {
 	}
 
 	public static Boolean getBoolean(
-		CustomProperty[] customProperties, String key,
-		boolean defaultValue) {
+		CustomProperty[] customProperties, String key, boolean defaultValue) {
 
 		for (CustomProperty customProperty : customProperties) {
 			if (Objects.equals(key, customProperty.getKey())) {
