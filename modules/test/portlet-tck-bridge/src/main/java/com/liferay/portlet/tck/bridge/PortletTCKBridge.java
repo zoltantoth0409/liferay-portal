@@ -79,10 +79,10 @@ public class PortletTCKBridge {
 
 		String configFile = portletTCKBridgeConfiguration.configFile();
 
-		_setupPortletTCKSite(company, configFile);
+		_setUpPortletTCKSite(company, configFile);
 	}
 
-	private void _setupPortletTCKSite(Company company, String configFile)
+	private void _setUpPortletTCKSite(Company company, String configFile)
 		throws Exception {
 
 		User user = _userLocalService.getUserByEmailAddress(
