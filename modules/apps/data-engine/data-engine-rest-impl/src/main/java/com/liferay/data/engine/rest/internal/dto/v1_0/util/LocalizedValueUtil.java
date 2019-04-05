@@ -43,25 +43,7 @@ public class LocalizedValueUtil {
 			return null;
 		}
 
-		List<LocalizedValue> localizedValues = new ArrayList<>();
-
-		JSONObject languageJSONObject = jsonObject.getJSONObject(property);
-
-		Iterator<String> keys = languageJSONObject.keys();
-
-		while (keys.hasNext()) {
-			String key = keys.next();
-
-			LocalizedValue localizedValue = new LocalizedValue();
-
-			localizedValue.setKey(key);
-			localizedValue.setValue(languageJSONObject.getString(key));
-
-			localizedValues.add(localizedValue);
-		}
-
-		return localizedValues.toArray(
-			new LocalizedValue[localizedValues.size()]);
+		return toLocalizedValues(jsonObject.getJSONObject(property));
 	}
 
 	public static String getLocalizedValue(
