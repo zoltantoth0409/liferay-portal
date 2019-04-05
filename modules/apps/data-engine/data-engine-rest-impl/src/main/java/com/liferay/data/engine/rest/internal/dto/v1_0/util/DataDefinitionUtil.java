@@ -138,32 +138,11 @@ public class DataDefinitionUtil {
 			DataDefinitionField dataDefinitionField)
 		throws Exception {
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		Object defaultValue = dataDefinitionField.getDefaultValue();
-
-		if (defaultValue != null) {
-			jsonObject.put("defaultValue", defaultValue);
-		}
-
-		jsonObject.put("indexable", dataDefinitionField.getIndexable());
-		jsonObject.put(
-			"label",
-			LocalizedValueUtil.toJSONObject(dataDefinitionField.getLabel()));
-		jsonObject.put("localizable", dataDefinitionField.getLocalizable());
-
 		String name = dataDefinitionField.getName();
 
 		if (Validator.isNull(name)) {
 			throw new Exception("Name is required");
 		}
-
-		jsonObject.put("name", name);
-
-		jsonObject.put("repeatable", dataDefinitionField.getRepeatable());
-		jsonObject.put(
-			"tip",
-			LocalizedValueUtil.toJSONObject(dataDefinitionField.getTip()));
 
 		String type = dataDefinitionField.getFieldType();
 
@@ -171,7 +150,29 @@ public class DataDefinitionUtil {
 			throw new Exception("Type is required");
 		}
 
-		jsonObject.put("type", type);
+		JSONObject jsonObject = JSONUtil.put(
+			"indexable", dataDefinitionField.getIndexable()
+		).put(
+			"label",
+			LocalizedValueUtil.toJSONObject(dataDefinitionField.getLabel())
+		).put(
+			"localizable", dataDefinitionField.getLocalizable()
+		).put(
+			"name", name
+		).put(
+			"repeatable", dataDefinitionField.getRepeatable()
+		).put(
+			"tip",
+			LocalizedValueUtil.toJSONObject(dataDefinitionField.getTip())
+		).put(
+			"type", type
+		);
+
+		Object defaultValue = dataDefinitionField.getDefaultValue();
+
+		if (defaultValue != null) {
+			jsonObject.put("defaultValue", defaultValue);
+		}
 
 		return jsonObject;
 	}
