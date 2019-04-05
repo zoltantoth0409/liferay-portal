@@ -2074,6 +2074,7 @@ public abstract class BaseCommentResourceTestCase {
 
 	protected Group irrelevantGroup;
 	protected Group testGroup;
+	protected String userNameAndPassword = "test@liferay.com:test";
 
 	protected static class Page<T> {
 
@@ -2118,8 +2119,6 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = new Http.Options();
 
 		options.addHeader("Accept", "application/json");
-
-		String userNameAndPassword = "test@liferay.com:test";
 
 		String encodedUserNameAndPassword = Base64.encode(
 			userNameAndPassword.getBytes());
