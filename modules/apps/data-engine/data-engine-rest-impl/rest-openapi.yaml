@@ -372,6 +372,7 @@ paths:
             tags: ["DataLayout"]
     "/content-spaces/{contentSpaceId}/data-layout-permissions":
         post:
+            operationId: postContentSpaceDataLayoutPermission
             parameters:
                 - in: path
                   name: contentSpaceId
@@ -618,6 +619,7 @@ paths:
             tags: ["DataRecordCollection"]
     "/data-layout/{dataLayoutId}/data-layout-permissions":
         post:
+            operationId: postDataLayoutDataLayoutPermission
             parameters:
                 - in: path
                   name: dataLayoutId
