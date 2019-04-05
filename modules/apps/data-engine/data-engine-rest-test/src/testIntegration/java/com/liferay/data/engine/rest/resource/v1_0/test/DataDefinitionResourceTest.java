@@ -34,11 +34,13 @@ import java.io.InputStream;
 import java.util.Objects;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 /**
  * @author Jeyvison Nascimento
  */
+@Ignore
 @RunWith(Arquillian.class)
 public class DataDefinitionResourceTest
 	extends BaseDataDefinitionResourceTestCase {
@@ -46,6 +48,8 @@ public class DataDefinitionResourceTest
 	@Override
 	public void testPostContentSpaceDataDefinitionPermission()
 		throws Exception {
+
+		super.testPostContentSpaceDataDefinitionPermission();
 
 		Role role = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
 
@@ -62,6 +66,8 @@ public class DataDefinitionResourceTest
 	@Override
 	public void testPostDataDefinitionDataDefinitionPermission()
 		throws Exception {
+
+		super.testPostDataDefinitionDataDefinitionPermission();
 
 		_ddmStructure = _addDDMStructure(testGroup);
 
