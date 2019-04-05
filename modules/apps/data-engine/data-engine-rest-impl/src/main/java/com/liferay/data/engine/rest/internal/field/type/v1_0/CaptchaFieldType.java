@@ -67,14 +67,13 @@ public class CaptchaFieldType extends FieldType {
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
-		PageContext pageContextObject = PageContextFactoryUtil.create(
-			httpServletRequest,
-			new PipingServletResponse(httpServletResponse, unsyncStringWriter));
-
 		CaptchaTag captchaTag = new CaptchaTag() {
 			{
-				setPageContext(pageContextObject);
-
+				setPageContext(
+					PageContextFactoryUtil.create(
+						httpServletRequest,
+						new PipingServletResponse(
+							httpServletResponse, unsyncStringWriter)));
 				setUrl(
 					CustomPropertyUtil.getStringCustomProperty(
 						dataDefinitionField.getCustomProperties(), "url"));
