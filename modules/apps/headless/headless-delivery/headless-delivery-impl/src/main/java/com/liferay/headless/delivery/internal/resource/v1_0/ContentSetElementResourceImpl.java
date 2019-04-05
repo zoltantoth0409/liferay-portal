@@ -105,11 +105,7 @@ public class ContentSetElementResourceImpl
 
 			String value = values.get(0);
 
-			if (key.startsWith("x-")) {
-				context.put(
-					CamelCaseUtil.toCamelCase(key.replace("x-", "")), value);
-			}
-			else if (key.equals("accept-language")) {
+			if (key.equals("accept-language")) {
 				context.put(
 					com.liferay.segments.context.Context.LANGUAGE_ID,
 					value.replace("-", "_"));
@@ -124,6 +120,10 @@ public class ContentSetElementResourceImpl
 			else if (key.equals("user-agent")) {
 				context.put(
 					com.liferay.segments.context.Context.USER_AGENT, value);
+			}
+			else if (key.startsWith("x-")) {
+				context.put(
+					CamelCaseUtil.toCamelCase(key.replace("x-", "")), value);
 			}
 			else {
 				context.put(key, value);
