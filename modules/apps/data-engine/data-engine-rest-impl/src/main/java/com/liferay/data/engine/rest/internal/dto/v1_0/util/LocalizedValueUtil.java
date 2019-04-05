@@ -74,25 +74,6 @@ public class LocalizedValueUtil {
 		return localizedValue.get(locale);
 	}
 
-	public static void setLocalizedProperty(
-		String property, JSONObject jsonObject,
-		Map<Locale, String> map) {
-
-		JSONObject languageJSONObject = JSONFactoryUtil.createJSONObject();
-
-		Set<Map.Entry<Locale, String>> set = map.entrySet();
-
-		Stream<Map.Entry<Locale, String>> stream = set.stream();
-
-		stream.forEach(
-			entry -> languageJSONObject.put(
-				entry.getKey(
-				).getLanguage(),
-				entry.getValue()));
-
-		jsonObject.put(property, languageJSONObject);
-	}
-
 	public static JSONObject toJSONObject(LocalizedValue[] localizedValues)
 		throws Exception {
 

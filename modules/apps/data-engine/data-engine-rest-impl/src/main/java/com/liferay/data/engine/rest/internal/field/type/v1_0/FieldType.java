@@ -137,6 +137,9 @@ public abstract class FieldType {
 		JSONObject jsonObject = JSONUtil.put(
 			"indexable", dataDefinitionField.getIndexable()
 		).put(
+			"label",
+			LocalizedValueUtil.toJSONObject(dataDefinitionField.getLabel())
+		).put(
 			"localizable", dataDefinitionField.getLocalizable()
 		).put(
 			"name", name
@@ -146,17 +149,10 @@ public abstract class FieldType {
 			"showLabel",
 			CustomPropertyUtil.getBooleanCustomProperty(
 				dataDefinitionField.getCustomProperties(), "showLabel", true)
+		).put(
+			"tip",
+			LocalizedValueUtil.toJSONObject(dataDefinitionField.getTip())
 		).put("type", type);
-
-
-		/*LocalizedValueUtil.setLocalizedProperty(
-			"label", jsonObject,
-			LocalizedValueUtil.toLocalizationMap(
-				dataDefinitionField.getLabel()));
-
-		LocalizedValueUtil.setLocalizedProperty(
-			"tip", jsonObject,
-			LocalizedValueUtil.toLocalizationMap(dataDefinitionField.getTip()));*/
 
 		return jsonObject;
 	}
