@@ -46,6 +46,25 @@ import javax.ws.rs.BadRequestException;
  */
 public class DataEnginePermissionUtil {
 
+	public static void checkOperationPermission(
+			long contentSpaceId, GroupLocalService groupLocalService,
+			String operation)
+		throws Exception {
+
+		if (!StringUtil.equalsIgnoreCase(
+				DataEngineConstants.OPERATION_DELETE_PERMISSION, operation) &&
+			!StringUtil.equalsIgnoreCase(
+				DataEngineConstants.OPERATION_SAVE_PERMISSION, operation)) {
+
+			throw new BadRequestException(
+				"Operation must be 'delete' or 'save'");
+		}
+
+		checkPermission(
+			DataActionKeys.DEFINE_PERMISSIONS, contentSpaceId,
+			groupLocalService);
+	}
+
 	public static void checkPermission(
 			String actionId, Long contentSpaceId,
 			GroupLocalService groupLocalService)
@@ -68,25 +87,6 @@ public class DataEnginePermissionUtil {
 				permissionChecker, DataEngineConstants.RESOURCE_NAME,
 				contentSpaceId, actionId);
 		}
-	}
-
-	public static void checkOperationPermission(
-			long contentSpaceId, GroupLocalService groupLocalService,
-			String operation)
-		throws Exception {
-
-		if (!StringUtil.equalsIgnoreCase(
-				DataEngineConstants.OPERATION_DELETE_PERMISSION, operation) &&
-			!StringUtil.equalsIgnoreCase(
-				DataEngineConstants.OPERATION_SAVE_PERMISSION, operation)) {
-
-			throw new BadRequestException(
-				"Operation must be 'delete' or 'save'");
-		}
-
-		checkPermission(
-			DataActionKeys.DEFINE_PERMISSIONS, contentSpaceId,
-			groupLocalService);
 	}
 
 	public static List<Role> getRoles(
