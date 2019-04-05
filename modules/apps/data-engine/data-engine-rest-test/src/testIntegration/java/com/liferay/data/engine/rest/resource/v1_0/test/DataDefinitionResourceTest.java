@@ -203,7 +203,8 @@ public class DataDefinitionResourceTest
 	private String _read(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
-		InputStream inputStream = clazz.getResourceAsStream(fileName);
+		InputStream inputStream = clazz.getResourceAsStream(
+			"dependencies/" + fileName);
 
 		return StringUtil.read(inputStream);
 	}
