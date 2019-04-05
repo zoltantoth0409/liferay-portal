@@ -61,9 +61,9 @@ public class ConfigFileConfigurationDescriptionFactoryImplTest {
 			(FactoryConfigurationDescription)configurationDescription;
 
 		Assert.assertEquals(
-			"factory.pid", factoryConfigurationDescription.getFactoryPid());
-		Assert.assertEquals(
 			"config.pid", factoryConfigurationDescription.getPid());
+		Assert.assertEquals(
+			"factory.pid", factoryConfigurationDescription.getFactoryPid());
 
 		Supplier<Dictionary<String, Object>> propertiesSupplier =
 			factoryConfigurationDescription.getPropertiesSupplier();

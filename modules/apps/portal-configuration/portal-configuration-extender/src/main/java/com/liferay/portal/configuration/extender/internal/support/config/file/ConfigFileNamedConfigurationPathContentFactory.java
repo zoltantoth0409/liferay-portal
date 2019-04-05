@@ -45,12 +45,12 @@ public class ConfigFileNamedConfigurationPathContentFactory
 			return null;
 		}
 
-		final Enumeration<URL> entries = bundleStorage.findEntries(
+		Enumeration<URL> enumeration = bundleStorage.findEntries(
 			configurationPath, "*.config", true);
 
 		return ListUtil.fromEnumeration(
 			new MappingEnumeration<>(
-				entries,
+				enumeration,
 				new MappingEnumeration.Mapper
 					<URL, NamedConfigurationContent>() {
 
