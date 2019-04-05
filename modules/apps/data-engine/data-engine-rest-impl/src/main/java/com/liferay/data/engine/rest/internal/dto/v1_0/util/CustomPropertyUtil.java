@@ -15,6 +15,7 @@
 package com.liferay.data.engine.rest.internal.dto.v1_0.util;
 
 import com.liferay.data.engine.rest.dto.v1_0.CustomProperty;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.util.Arrays;
@@ -39,11 +40,7 @@ public class CustomPropertyUtil {
 			}
 		};
 
-		List<CustomProperty> list = Arrays.asList(customProperties);
-
-		list.add(customProperty);
-
-		return list.toArray(new CustomProperty[list.size()]);
+		return ArrayUtil.append(customProperties, customProperty);
 	}
 
 	public static Boolean getBooleanCustomProperty(
