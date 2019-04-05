@@ -744,7 +744,7 @@ public class StagedLayoutSetStagedModelDataHandler
 			if (action.equals(Constants.SKIP) ||
 				hasSkippedSiblingLayout(layoutElement, siblingActionsMap)) {
 
-				// We don't want to update priorities if there are elements at
+				// We do not want to update priorities if there are elements at
 				// the same level of the page hierarchy with the SKIP action
 
 				continue;
