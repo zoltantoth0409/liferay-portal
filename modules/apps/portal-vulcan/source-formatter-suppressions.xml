@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<suppressions>
+	<source-check>
+		<suppress checks="BNDExportsCheck" files="modules/apps/portal-vulcan/portal-vulcan-api/bnd\.bnd" />
+		<suppress checks="JavaPackagePathCheck" files="modules/apps/portal-vulcan/portal-vulcan-api/src/main/java/com/liferay/portal/aop/AopService\.java" />
+		<suppress checks="JavaPackagePathCheck" files="modules/apps/portal-vulcan/portal-vulcan-impl/src/main/java/com/liferay/portal/aop/internal/AopServiceManagerPlaceholder\.java" />
+	</source-check>
+</suppressions>
