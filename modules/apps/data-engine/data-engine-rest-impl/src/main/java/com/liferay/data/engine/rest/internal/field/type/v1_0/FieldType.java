@@ -49,22 +49,18 @@ public abstract class FieldType {
 
 		return new DataDefinitionField() {
 			{
+				customProperties = CustomPropertyUtil.addCustomProperty(
+					customProperties, "showLabel",
+					jsonObject.getBoolean("showLabel"));
 				fieldType = jsonObject.getString("type");
 				indexable = jsonObject.getBoolean("indexable", true);
-
 				label = (LocalizedValue[])GetterUtil.getObject(
 					LocalizedValueUtil.getLocalizedProperty(
 						"label", jsonObject),
 					new LocalizedValue[0]);
-
 				localizable = jsonObject.getBoolean("localizable", false);
 				name = jsonObject.getString("name");
 				repeatable = jsonObject.getBoolean("repeatable", false);
-
-				customProperties = CustomPropertyUtil.addCustomProperty(
-					customProperties, "showLabel",
-					jsonObject.getBoolean("showLabel"));
-
 				tip = (LocalizedValue[])GetterUtil.getObject(
 					LocalizedValueUtil.getLocalizedProperty("tip", jsonObject),
 					new LocalizedValue[0]);
