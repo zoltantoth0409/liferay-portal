@@ -56,17 +56,14 @@ public class DataDefinitionResourceTest
 
 		Role role = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
 
-		DataDefinitionPermission dataDefinitionPermission =
+		invokePostContentSpaceDataDefinitionPermission(
+			testGroup.getGroupId(), OPERATION_SAVE_PERMISSION,
 			new DataDefinitionPermission() {
 				{
 					addDataDefinition = true;
 					roleNames = new String[] {role.getName()};
 				}
-			};
-
-		invokePostContentSpaceDataDefinitionPermission(
-			testGroup.getGroupId(), OPERATION_SAVE_PERMISSION,
-			dataDefinitionPermission);
+			});
 	}
 
 	@Override
@@ -77,17 +74,14 @@ public class DataDefinitionResourceTest
 
 		Role role = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
 
-		DataDefinitionPermission dataDefinitionPermission =
+		invokePostDataDefinitionDataDefinitionPermission(
+			_ddmStructure.getStructureId(), OPERATION_SAVE_PERMISSION,
 			new DataDefinitionPermission() {
 				{
 					view = true;
 					roleNames = new String[] {role.getName()};
 				}
-			};
-
-		invokePostDataDefinitionDataDefinitionPermission(
-			_ddmStructure.getStructureId(), OPERATION_SAVE_PERMISSION,
-			dataDefinitionPermission);
+			});
 	}
 
 	protected void assertValid(DataDefinition dataDefinition) {
