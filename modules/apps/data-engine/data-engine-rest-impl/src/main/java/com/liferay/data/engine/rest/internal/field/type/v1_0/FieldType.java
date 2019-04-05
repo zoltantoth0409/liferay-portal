@@ -86,24 +86,19 @@ public abstract class FieldType {
 			httpServletRequest.getLocale()));
 		context.put("localizable", dataDefinitionField.getLocalizable());
 		context.put("name", dataDefinitionField.getName());
-
-		CustomProperty[] customProperties =
-			dataDefinitionField.getCustomProperties();
-
 		context.put(
 			"readOnly",
 			CustomPropertyUtil.getBooleanCustomProperty(
-				customProperties, "readOnly", false));
-
+				dataDefinitionField.getCustomProperties(), "readOnly", false));
 		context.put("repeatable", dataDefinitionField.getRepeatable());
 		context.put(
 			"required",
 			CustomPropertyUtil.getBooleanCustomProperty(
-				customProperties, "required", false));
+				dataDefinitionField.getCustomProperties(), "required", false));
 		context.put(
 			"showLabel",
 			CustomPropertyUtil.getBooleanCustomProperty(
-				customProperties, "showLabel", true));
+				dataDefinitionField.getCustomProperties(), "showLabel", true));
 		context.put(
 			"tip",
 			LocalizedValueUtil.getLocalizedValue(
@@ -112,7 +107,7 @@ public abstract class FieldType {
 		context.put(
 			"visible",
 			CustomPropertyUtil.getBooleanCustomProperty(
-				customProperties, "visible", true));
+				dataDefinitionField.getCustomProperties(), "visible", true));
 	}
 
 	public JSONObject toJSONObject(
