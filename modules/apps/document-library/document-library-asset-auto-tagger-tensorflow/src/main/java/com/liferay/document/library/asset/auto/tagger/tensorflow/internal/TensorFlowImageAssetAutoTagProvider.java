@@ -17,6 +17,7 @@ package com.liferay.document.library.asset.auto.tagger.tensorflow.internal;
 import com.liferay.asset.auto.tagger.AssetAutoTagProvider;
 import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.configuration.TensorFlowImageAssetAutoTagProviderCompanyConfiguration;
 import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.configuration.TensorFlowImageAssetAutoTagProviderProcessConfiguration;
+import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.constants.TensorflowAssetAutoTagProviderConstants;
 import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.petra.process.GetLabelProbabilitiesProcessCallable;
 import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.util.TensorflowProcessHolder;
 import com.liferay.petra.process.ProcessExecutor;
@@ -27,6 +28,7 @@ import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.repository.capabilities.TemporaryFileEntriesCapability;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.settings.CompanyServiceSettingsLocator;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -70,10 +72,13 @@ public class TensorFlowImageAssetAutoTagProvider
 		try {
 			TensorFlowImageAssetAutoTagProviderCompanyConfiguration
 				tensorFlowImageAssetAutoTagProviderCompanyConfiguration =
-					_configurationProvider.getCompanyConfiguration(
+					_configurationProvider.getConfiguration(
 						TensorFlowImageAssetAutoTagProviderCompanyConfiguration.
 							class,
-						fileEntry.getCompanyId());
+						new CompanyServiceSettingsLocator(
+							fileEntry.getCompanyId(),
+							TensorflowAssetAutoTagProviderConstants.
+								SERVICE_NAME));
 
 			if (tensorFlowImageAssetAutoTagProviderCompanyConfiguration.
 					enabled() &&
