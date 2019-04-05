@@ -22,6 +22,7 @@ import com.liferay.data.engine.rest.internal.dto.v1_0.util.LocalizedValueUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageConstants;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -133,31 +134,29 @@ public abstract class FieldType {
 			throw new Exception("Type is required");
 		}
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = JSONUtil.put(
+			"indexable", dataDefinitionField.getIndexable()
+		).put(
+			"localizable", dataDefinitionField.getLocalizable()
+		).put(
+			"name", name
+		).put(
+			"repeatable", dataDefinitionField.getRepeatable()
+		).put(
+			"showLabel",
+			CustomPropertyUtil.getBooleanCustomProperty(
+				dataDefinitionField.getCustomProperties(), "showLabel", true)
+		).put("type", type);
 
-		jsonObject.put("indexable", dataDefinitionField.getIndexable());
 
-		LocalizedValueUtil.setLocalizedProperty(
+		/*LocalizedValueUtil.setLocalizedProperty(
 			"label", jsonObject,
 			LocalizedValueUtil.toLocalizationMap(
 				dataDefinitionField.getLabel()));
 
-		jsonObject.put("localizable", dataDefinitionField.getLocalizable());
-
-		jsonObject.put("name", name);
-
-		jsonObject.put("repeatable", dataDefinitionField.getRepeatable());
-
-		jsonObject.put(
-			"showLabel",
-			CustomPropertyUtil.getBooleanCustomProperty(
-				dataDefinitionField.getCustomProperties(), "showLabel", true));
-
 		LocalizedValueUtil.setLocalizedProperty(
 			"tip", jsonObject,
-			LocalizedValueUtil.toLocalizationMap(dataDefinitionField.getTip()));
-
-		jsonObject.put("type", type);
+			LocalizedValueUtil.toLocalizationMap(dataDefinitionField.getTip()));*/
 
 		return jsonObject;
 	}
