@@ -162,19 +162,29 @@ public class ContentSetElementResourceImpl
 
 		return new ContentSetElement() {
 			{
-				contentType = "Unknown";
 				id = assetEntry.getClassPK();
 				title = assetEntry.getTitle(
 					contextAcceptLanguage.getPreferredLocale());
 
-				if (dtoConverter != null) {
-					content = dtoConverter.toDTO(
-						new DefaultDTOConverterContext(
-							contextAcceptLanguage.getPreferredLocale(),
-							assetEntry.getClassPK(), contextUriInfo));
+				setContent(
+					() -> {
+						if (dtoConverter == null) {
+							return null;
+						}
 
-					contentType = dtoConverter.getContentType();
-				}
+						return dtoConverter.toDTO(
+							new DefaultDTOConverterContext(
+								contextAcceptLanguage.getPreferredLocale(),
+								assetEntry.getClassPK(), contextUriInfo));
+					});
+				setContentType(
+					() -> {
+						if (dtoConverter == null) {
+							return "Unknown";
+						}
+
+						return dtoConverter.getContentType();
+					});
 			}
 		};
 	}
