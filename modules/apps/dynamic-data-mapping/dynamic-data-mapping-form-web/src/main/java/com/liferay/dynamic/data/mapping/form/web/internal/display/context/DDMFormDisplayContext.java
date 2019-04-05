@@ -446,15 +446,13 @@ public class DDMFormDisplayContext {
 	}
 
 	protected String createCaptchaResourceURL() {
-		ResourceURL resourceURL = _renderResponse.createResourceURL();
-
-		LiferayPortletURL liferayPortletURL = (LiferayPortletURL)resourceURL;
+		LiferayPortletURL liferayPortletURL =
+			(LiferayPortletURL)_renderResponse.createResourceURL();
 
 		liferayPortletURL.setCopyCurrentRenderParameters(false);
+		liferayPortletURL.setResourceID("captcha");
 
-		resourceURL.setResourceID("captcha");
-
-		return resourceURL.toString();
+		return liferayPortletURL.toString();
 	}
 
 	protected DDMFormRenderingContext createDDMFormRenderingContext(
