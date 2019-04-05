@@ -264,8 +264,8 @@ public class JSONWebServiceServiceActionTest
 			StringUtil.randomString(), StringUtil.randomString(), true,
 			StringUtil.randomString());
 
-		try (OutputStream out = liferayFileItem.getOutputStream()) {
-			out.write(content.getBytes());
+		try (OutputStream outputStream = liferayFileItem.getOutputStream()) {
+			outputStream.write(content.getBytes());
 		}
 
 		return liferayFileItem;
