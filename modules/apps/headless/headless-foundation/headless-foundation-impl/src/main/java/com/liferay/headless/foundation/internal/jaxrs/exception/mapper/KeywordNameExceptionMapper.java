@@ -47,7 +47,7 @@ public class KeywordNameExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(atne.getMessage(), "Tag", "keyword")
+			StringUtil.replace(atne.getMessage(), "Tag", "Keyword")
 		).build();
 	}
 
