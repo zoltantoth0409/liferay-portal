@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.data.engine.rest.internal.field;
+package com.liferay.data.engine.rest.internal.field.type.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.CustomProperty;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
