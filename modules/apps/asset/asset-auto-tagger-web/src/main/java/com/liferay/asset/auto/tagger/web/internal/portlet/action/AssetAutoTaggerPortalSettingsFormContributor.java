@@ -12,18 +12,21 @@
  * details.
  */
 
-package com.liferay.asset.auto.tagger.internal.configuration;
+package com.liferay.asset.auto.tagger.web.internal.portlet.action;
 
 import com.liferay.asset.auto.tagger.configuration.AssetAutoTaggerConfiguration;
 import com.liferay.asset.auto.tagger.configuration.AssetAutoTaggerConfigurationFactory;
-import com.liferay.portal.configuration.persistence.listener.ConfigurationModelListener;
-import com.liferay.portal.configuration.persistence.listener.ConfigurationModelListenerException;
+import com.liferay.asset.auto.tagger.constants.AssetAutoTaggerConstants;
+import com.liferay.asset.auto.tagger.web.internal.constants.PortalSettingsAssetAutoTaggerConstants;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.LocaleThreadLocal;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
+import com.liferay.portal.settings.portlet.action.PortalSettingsFormContributor;
+import com.liferay.portal.settings.portlet.action.PortalSettingsParameterUtil;
 
-import java.util.Dictionary;
-import java.util.ResourceBundle;
+import java.util.Optional;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -31,23 +34,37 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Alejandro Tardín
  */
-@Component(
-	immediate = true,
-	property = {
-		"model.class.name=com.liferay.asset.auto.tagger.internal.configuration.AssetAutoTaggerCompanyConfiguration",
-		"model.class.name=com.liferay.asset.auto.tagger.internal.configuration.AssetAutoTaggerCompanyConfiguration.scoped"
-	},
-	service = ConfigurationModelListener.class
-)
-public class AssetAutoTaggerCompanyConfigurationModelListener
-	implements ConfigurationModelListener {
+@Component(immediate = true, service = PortalSettingsFormContributor.class)
+public class AssetAutoTaggerPortalSettingsFormContributor
+	implements PortalSettingsFormContributor {
 
 	@Override
-	public void onBeforeSave(String pid, Dictionary<String, Object> properties)
-		throws ConfigurationModelListenerException {
+	public Optional<String> getDeleteMVCActionCommandNameOptional() {
+		return Optional.empty();
+	}
+
+	@Override
+	public String getParameterNamespace() {
+		return PortalSettingsAssetAutoTaggerConstants.FORM_PARAMETER_NAMESPACE;
+	}
+
+	@Override
+	public Optional<String> getSaveMVCActionCommandNameOptional() {
+		return Optional.of(PortalSettingsAssetAutoTaggerConstants.ACTION_NAME);
+	}
+
+	@Override
+	public String getSettingsId() {
+		return AssetAutoTaggerConstants.SERVICE_NAME;
+	}
+
+	@Override
+	public void validateForm(
+		ActionRequest actionRequest, ActionResponse actionResponse) {
 
 		int maximumNumberOfTagsPerAsset = GetterUtil.getInteger(
-			properties.get("maximumNumberOfTagsPerAsset"));
+			PortalSettingsParameterUtil.getString(
+				actionRequest, this, "maximumNumberOfTagsPerAsset"));
 
 		AssetAutoTaggerConfiguration systemAssetAutoTaggerConfiguration =
 			_assetAutoTaggerConfigurationFactory.
@@ -61,18 +78,9 @@ public class AssetAutoTaggerCompanyConfigurationModelListener
 			 (systemMaximumNumberOfTagsPerAsset <
 				 maximumNumberOfTagsPerAsset))) {
 
-			throw new ConfigurationModelListenerException(
-				ResourceBundleUtil.getString(
-					_getResourceBundle(),
-					"maximum-number-of-tags-per-asset-invalid"),
-				AssetAutoTaggerCompanyConfiguration.class, getClass(),
-				properties);
+			SessionErrors.add(
+				actionRequest, "maximumNumberOfTagsPerAssetInvalid");
 		}
-	}
-
-	private ResourceBundle _getResourceBundle() {
-		return ResourceBundleUtil.getBundle(
-			LocaleThreadLocal.getThemeDisplayLocale(), getClass());
 	}
 
 	@Reference

@@ -1,4 +1,3 @@
-<%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -12,12 +11,17 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
---%>
 
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %><%@
-taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+package com.liferay.asset.auto.tagger.web.internal.constants;
 
-<%@ page import="com.liferay.asset.auto.tagger.configuration.AssetAutoTaggerConfiguration" %><%@
-page import="com.liferay.asset.auto.tagger.web.internal.constants.PortalSettingsAssetAutoTaggerConstants" %>
+/**
+ * @author Alejandro Tardín
+ */
+public class PortalSettingsAssetAutoTaggerConstants {
 
-<%@ page import="javax.portlet.ActionRequest" %>
+	public static final String ACTION_NAME =
+		"/portal_settings/asset_auto_tagger";
+
+	public static final String FORM_PARAMETER_NAMESPACE = "assetAutoTagger_";
+
+}
