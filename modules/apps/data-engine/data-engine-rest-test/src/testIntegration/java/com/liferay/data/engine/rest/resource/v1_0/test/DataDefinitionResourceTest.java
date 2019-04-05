@@ -43,11 +43,6 @@ import org.junit.runner.RunWith;
 public class DataDefinitionResourceTest
 	extends BaseDataDefinitionResourceTestCase {
 
-	private static final String _OPERATION_SAVE_PERMISSION = "save";
-
-	private static final String _RESOURCE_NAME =
-		"com.liferay.data.engine.rest.internal.model.InternalDataDefinition";
-
 	@Override
 	public void testPostContentSpaceDataDefinitionPermission()
 		throws Exception {
@@ -200,6 +195,11 @@ public class DataDefinitionResourceTest
 
 		return StringUtil.read(inputStream);
 	}
+
+	private static final String _OPERATION_SAVE_PERMISSION = "save";
+
+	private static final String _RESOURCE_NAME =
+		"com.liferay.data.engine.rest.internal.model.InternalDataDefinition";
 
 	private DDMStructure _ddmStructure;
 
