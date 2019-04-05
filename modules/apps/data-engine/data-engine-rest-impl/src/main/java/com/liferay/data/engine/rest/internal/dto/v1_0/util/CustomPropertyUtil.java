@@ -32,25 +32,23 @@ import java.util.Objects;
 public class CustomPropertyUtil {
 
 	public static CustomProperty[] add(
-		CustomProperty[] customProperties, String property,
-		Object valueObject) {
+		CustomProperty[] customProperties, String key,
+		Object value) {
 
-		CustomProperty customProperty = new CustomProperty() {
-			{
-				key = property;
-				value = valueObject;
-			}
-		};
+		CustomProperty customProperty = new CustomProperty();
+		
+		customProperty.setKey(key);
+		customProperty.setValue(value);
 
 		return ArrayUtil.append(customProperties, customProperty);
 	}
 
 	public static Boolean getBoolean(
-		CustomProperty[] customProperties, String property,
+		CustomProperty[] customProperties, String key,
 		boolean defaultValue) {
 
 		for (CustomProperty customProperty : customProperties) {
-			if (Objects.equals(property, customProperty.getKey())) {
+			if (Objects.equals(key, customProperty.getKey())) {
 				return GetterUtil.getBoolean(customProperty.getValue());
 			}
 		}
@@ -59,10 +57,10 @@ public class CustomPropertyUtil {
 	}
 
 	public static String getString(
-		CustomProperty[] customProperties, String property) {
+		CustomProperty[] customProperties, String key) {
 
 		for (CustomProperty customProperty : customProperties) {
-			if (Objects.equals(property, customProperty.getKey())) {
+			if (Objects.equals(key, customProperty.getKey())) {
 				return GetterUtil.getString(customProperty.getValue());
 			}
 		}
