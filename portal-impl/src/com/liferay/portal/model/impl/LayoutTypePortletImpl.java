@@ -1195,9 +1195,6 @@ public class LayoutTypePortletImpl
 			return;
 		}
 
-		setTypeSettingsProperty(
-			LayoutTypePortletConstants.LAYOUT_TEMPLATE_ID, newLayoutTemplateId);
-
 		List<String> newColumns = newLayoutTemplate.getColumns();
 
 		LayoutTemplate oldLayoutTemplate = getLayoutTemplate();
@@ -1205,6 +1202,9 @@ public class LayoutTypePortletImpl
 		List<String> oldColumns = oldLayoutTemplate.getColumns();
 
 		reorganizePortlets(newColumns, oldColumns);
+
+		setTypeSettingsProperty(
+			LayoutTypePortletConstants.LAYOUT_TEMPLATE_ID, newLayoutTemplateId);
 	}
 
 	@Override
