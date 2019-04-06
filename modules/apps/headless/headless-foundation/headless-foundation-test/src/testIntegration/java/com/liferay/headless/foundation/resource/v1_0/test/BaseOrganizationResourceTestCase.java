@@ -1368,6 +1368,35 @@ public abstract class BaseOrganizationResourceTestCase {
 		return randomOrganization();
 	}
 
+	protected static final ObjectMapper _inputObjectMapper =
+		new ObjectMapper() {
+			{
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+	protected static final ObjectMapper _outputObjectMapper =
+		new ObjectMapper() {
+			{
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+			}
+		};
+
+	protected String contentType = "application/json";
 	protected Group irrelevantGroup;
 	protected Group testGroup;
 	protected String userNameAndPassword = "test@liferay.com:test";
@@ -1422,7 +1451,7 @@ public abstract class BaseOrganizationResourceTestCase {
 		options.addHeader(
 			"Authorization", "Basic " + encodedUserNameAndPassword);
 
-		options.addHeader("Content-Type", "application/json");
+		options.addHeader("Content-Type", contentType);
 
 		return options;
 	}
@@ -1456,31 +1485,6 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	};
 	private static DateFormat _dateFormat;
-	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
-		{
-			setFilterProvider(
-				new SimpleFilterProvider() {
-					{
-						addFilter(
-							"Liferay.Vulcan",
-							SimpleBeanPropertyFilter.serializeAll());
-					}
-				});
-			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-		}
-	};
-	private final static ObjectMapper _outputObjectMapper = new ObjectMapper() {
-		{
-			setFilterProvider(
-				new SimpleFilterProvider() {
-					{
-						addFilter(
-							"Liferay.Vulcan",
-							SimpleBeanPropertyFilter.serializeAll());
-					}
-				});
-		}
-	};
 
 	@Inject
 	private OrganizationResource _organizationResource;

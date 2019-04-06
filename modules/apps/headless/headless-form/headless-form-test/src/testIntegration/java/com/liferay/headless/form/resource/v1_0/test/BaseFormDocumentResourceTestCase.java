@@ -412,6 +412,35 @@ public abstract class BaseFormDocumentResourceTestCase {
 		return randomFormDocument();
 	}
 
+	protected static final ObjectMapper _inputObjectMapper =
+		new ObjectMapper() {
+			{
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+	protected static final ObjectMapper _outputObjectMapper =
+		new ObjectMapper() {
+			{
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+			}
+		};
+
+	protected String contentType = "application/json";
 	protected Group irrelevantGroup;
 	protected Group testGroup;
 	protected String userNameAndPassword = "test@liferay.com:test";
@@ -466,7 +495,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 		options.addHeader(
 			"Authorization", "Basic " + encodedUserNameAndPassword);
 
-		options.addHeader("Content-Type", "application/json");
+		options.addHeader("Content-Type", contentType);
 
 		return options;
 	}
@@ -500,31 +529,6 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 	};
 	private static DateFormat _dateFormat;
-	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
-		{
-			setFilterProvider(
-				new SimpleFilterProvider() {
-					{
-						addFilter(
-							"Liferay.Vulcan",
-							SimpleBeanPropertyFilter.serializeAll());
-					}
-				});
-			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-		}
-	};
-	private final static ObjectMapper _outputObjectMapper = new ObjectMapper() {
-		{
-			setFilterProvider(
-				new SimpleFilterProvider() {
-					{
-						addFilter(
-							"Liferay.Vulcan",
-							SimpleBeanPropertyFilter.serializeAll());
-					}
-				});
-		}
-	};
 
 	@Inject
 	private FormDocumentResource _formDocumentResource;
