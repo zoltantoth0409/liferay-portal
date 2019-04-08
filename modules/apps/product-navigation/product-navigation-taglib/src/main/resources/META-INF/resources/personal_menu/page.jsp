@@ -42,8 +42,8 @@ String label = (String)request.getAttribute("liferay-product-navigation:personal
 <%
 ResourceURL resourceURL = PortletURLFactoryUtil.create(request, PersonalMenuPortletKeys.PERSONAL_MENU, PortletRequest.RESOURCE_PHASE);
 
-resourceURL.setResourceID("/get_personal_menu_items");
 resourceURL.setParameter("portletId", themeDisplay.getPpid());
+resourceURL.setResourceID("/get_personal_menu_items");
 %>
 
 <aui:script require="clay-dropdown/src/ClayDropdown as ClayDropdown,metal-dom/src/dom as dom">
