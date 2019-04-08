@@ -79,14 +79,14 @@ public class MessageBoardMessageResourceTest
 		MessageBoardMessage messageBoardMessage2) {
 
 		if (Objects.equals(
+				messageBoardMessage1.getArticleBody(),
+				messageBoardMessage2.getArticleBody()) &&
+			Objects.equals(
 				messageBoardMessage1.getContentSpaceId(),
 				messageBoardMessage2.getContentSpaceId()) &&
 			Objects.equals(
 				messageBoardMessage1.getHeadline(),
-				messageBoardMessage2.getHeadline()) &&
-			Objects.equals(
-				messageBoardMessage1.getArticleBody(),
-				messageBoardMessage2.getArticleBody())) {
+				messageBoardMessage2.getHeadline())) {
 
 			return true;
 		}

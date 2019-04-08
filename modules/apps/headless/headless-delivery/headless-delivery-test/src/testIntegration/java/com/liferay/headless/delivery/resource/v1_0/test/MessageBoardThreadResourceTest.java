@@ -77,14 +77,14 @@ public class MessageBoardThreadResourceTest
 		MessageBoardThread messageBoardThread2) {
 
 		if (Objects.equals(
+				messageBoardThread1.getArticleBody(),
+				messageBoardThread2.getArticleBody()) &&
+			Objects.equals(
 				messageBoardThread1.getContentSpaceId(),
 				messageBoardThread2.getContentSpaceId()) &&
 			Objects.equals(
 				messageBoardThread1.getHeadline(),
-				messageBoardThread2.getHeadline()) &&
-			Objects.equals(
-				messageBoardThread1.getArticleBody(),
-				messageBoardThread2.getArticleBody())) {
+				messageBoardThread2.getHeadline())) {
 
 			return true;
 		}
