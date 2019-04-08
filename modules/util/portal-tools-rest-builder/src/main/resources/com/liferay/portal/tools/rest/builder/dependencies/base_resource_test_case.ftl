@@ -812,9 +812,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 				options.addPart("${schemaVarName}", _inputObjectMapper.writeValueAsString(multipartBody.getValues()));
 
 				BinaryFile binaryFile = multipartBody.getBinaryFile("file");
-				options.addFilePart("file", binaryFile.getFileName(),
-					FileUtil.getBytes(binaryFile.getInputStream()), contentType, "UTF-8");
 
+				options.addFilePart("file", binaryFile.getFileName(), FileUtil.getBytes(binaryFile.getInputStream()), contentType, "UTF-8");
 			</#if>
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
@@ -1088,23 +1087,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		return random${schemaName}();
 	}
 
-	protected Group irrelevantGroup;
-	protected Group testGroup;
-	protected String contentType = "application/json";
-	protected String userNameAndPassword = "test@liferay.com:test";
-
-	protected final static ObjectMapper _outputObjectMapper = new ObjectMapper() {
-		{
-			setFilterProvider(
-				new SimpleFilterProvider() {
-					{
-						addFilter("Liferay.Vulcan", SimpleBeanPropertyFilter.serializeAll());
-					}
-			});
-		}
-	};
-
-	protected final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	protected static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setFilterProvider(
 				new SimpleFilterProvider() {
@@ -1115,6 +1098,21 @@ public abstract class Base${schemaName}ResourceTestCase {
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		}
 	};
+	protected static final ObjectMapper _outputObjectMapper = new ObjectMapper() {
+		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter("Liferay.Vulcan", SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
+		}
+	};
+
+	protected String contentType = "application/json";
+	protected Group irrelevantGroup;
+	protected Group testGroup;
+	protected String userNameAndPassword = "test@liferay.com:test";
 
 	protected static class Page<T> {
 
