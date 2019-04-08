@@ -85,8 +85,9 @@ public class SearchBarPortletSharedSearchContributor
 		SearchContext searchContext =
 			portletSharedSearchSettings.getSearchContext();
 
-		searchContext.setGroupIds(
-			new long[] {getScopeGroupId(portletSharedSearchSettings)});
+		searchContext.setAttribute(
+			"groupId",
+			String.valueOf(getScopeGroupId(portletSharedSearchSettings)));
 	}
 
 	protected Optional<Portlet> findTopSearchBarPortletOptional(
