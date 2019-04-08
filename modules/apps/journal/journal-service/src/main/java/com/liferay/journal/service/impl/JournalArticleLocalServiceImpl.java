@@ -6873,6 +6873,14 @@ public class JournalArticleLocalServiceImpl
 	protected void checkArticlesByDisplayDate(Date displayDate)
 		throws PortalException {
 
+		if (_log.isDebugEnabled()) {
+			_log.debug(
+				StringBundler.concat(
+					"Publishing articles with displayDate less than ",
+					displayDate, " and status ",
+					WorkflowConstants.STATUS_SCHEDULED));
+		}
+
 		ActionableDynamicQuery actionableDynamicQuery =
 			getActionableDynamicQuery();
 
@@ -6890,6 +6898,10 @@ public class JournalArticleLocalServiceImpl
 			});
 		actionableDynamicQuery.setPerformActionMethod(
 			(JournalArticle article) -> {
+				if (_log.isDebugEnabled()) {
+					_log.debug("Publishing article " + article.getId());
+				}
+
 				long userId = PortalUtil.getValidUserId(
 					article.getCompanyId(), article.getUserId());
 
@@ -6921,6 +6933,19 @@ public class JournalArticleLocalServiceImpl
 	protected void checkArticlesByExpirationDate(Date expirationDate)
 		throws PortalException {
 
+		long checkInterval = getArticleCheckInterval();
+
+		Date nextExpirationDate = new Date(
+			expirationDate.getTime() + checkInterval);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug(
+				StringBundler.concat(
+					"Expiring articles with expirationDate less or equal than ",
+					nextExpirationDate, " and status ",
+					WorkflowConstants.STATUS_APPROVED));
+		}
+
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
 			getIndexableActionableDynamicQuery();
 
@@ -6939,11 +6964,7 @@ public class JournalArticleLocalServiceImpl
 				Property expirationDateProperty = PropertyFactoryUtil.forName(
 					"expirationDate");
 
-				long checkInterval = getArticleCheckInterval();
-
-				dynamicQuery.add(
-					expirationDateProperty.le(
-						new Date(expirationDate.getTime() + checkInterval)));
+				dynamicQuery.add(expirationDateProperty.le(nextExpirationDate));
 
 				Property statusProperty = PropertyFactoryUtil.forName("status");
 
@@ -6952,6 +6973,10 @@ public class JournalArticleLocalServiceImpl
 			});
 		indexableActionableDynamicQuery.setPerformActionMethod(
 			(JournalArticle article) -> {
+				if (_log.isDebugEnabled()) {
+					_log.debug("Expiring article " + article.getId());
+				}
+
 				if (isExpireAllArticleVersions(article.getCompanyId())) {
 					List<JournalArticle> currentArticles =
 						journalArticlePersistence.findByG_A(
@@ -7006,6 +7031,13 @@ public class JournalArticleLocalServiceImpl
 
 	protected void checkArticlesByReviewDate(Date reviewDate)
 		throws PortalException {
+
+		if (_log.isDebugEnabled()) {
+			_log.debug(
+				StringBundler.concat(
+					"Sending review notification for articles with reviewDate ",
+					"between ", _previousCheckDate, " and ", reviewDate));
+		}
 
 		Set<Long> latestArticleIds = new HashSet<>();
 
