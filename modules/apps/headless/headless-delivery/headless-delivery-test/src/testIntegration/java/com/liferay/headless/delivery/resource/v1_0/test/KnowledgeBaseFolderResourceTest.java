@@ -18,11 +18,10 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.delivery.dto.v1_0.KnowledgeBaseFolder;
 import com.liferay.knowledge.base.model.KBFolder;
 import com.liferay.knowledge.base.service.KBFolderLocalServiceUtil;
-import com.liferay.portal.kernel.model.ClassName;
-import com.liferay.portal.kernel.service.ClassNameServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.util.Objects;
 
@@ -136,16 +135,14 @@ public class KnowledgeBaseFolderResourceTest
 			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_getParentKnowledgeBaseFolderId()
 		throws Exception {
 
-		ClassName className = ClassNameServiceUtil.fetchClassName(
-			KBFolder.class.getName());
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setScopeGroupId(testGroup.getGroupId());
 
 		KBFolder kbFolder = KBFolderLocalServiceUtil.addKBFolder(
 			UserLocalServiceUtil.getDefaultUserId(testGroup.getCompanyId()),
-			testGroup.getGroupId(), className.getClassNameId(), 0,
+			testGroup.getGroupId(),
+			PortalUtil.getClassNameId(KBFolder.class.getName()), 0,
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			serviceContext);
 

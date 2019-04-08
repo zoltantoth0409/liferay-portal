@@ -20,11 +20,10 @@ import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.model.KBFolder;
 import com.liferay.knowledge.base.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledge.base.service.KBFolderLocalServiceUtil;
-import com.liferay.portal.kernel.model.ClassName;
-import com.liferay.portal.kernel.service.ClassNameServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.util.Objects;
 
@@ -44,16 +43,14 @@ public class KnowledgeBaseArticleResourceTest
 	public void setUp() throws Exception {
 		super.setUp();
 
-		ClassName className = ClassNameServiceUtil.fetchClassName(
-			KBFolder.class.getName());
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setScopeGroupId(testGroup.getGroupId());
 
 		_kbFolder = KBFolderLocalServiceUtil.addKBFolder(
 			UserLocalServiceUtil.getDefaultUserId(testGroup.getCompanyId()),
-			testGroup.getGroupId(), className.getClassNameId(), 0,
+			testGroup.getGroupId(),
+			PortalUtil.getClassNameId(KBFolder.class.getName()), 0,
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			serviceContext);
 	}
@@ -167,18 +164,16 @@ public class KnowledgeBaseArticleResourceTest
 			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_getParentKnowledgeBaseArticleId()
 		throws Exception {
 
-		ClassName className = ClassNameServiceUtil.fetchClassName(
-			KBFolder.class.getName());
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setScopeGroupId(testGroup.getGroupId());
 
 		KBArticle kbArticle = KBArticleLocalServiceUtil.addKBArticle(
 			UserLocalServiceUtil.getDefaultUserId(testGroup.getCompanyId()),
-			className.getClassNameId(), 0, RandomTestUtil.randomString(),
+			PortalUtil.getClassNameId(KBFolder.class.getName()), 0,
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-			RandomTestUtil.randomString(), null, null, null, serviceContext);
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(), null,
+			null, null, serviceContext);
 
 		return kbArticle.getResourcePrimKey();
 	}
