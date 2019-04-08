@@ -764,21 +764,20 @@ public abstract class BaseContentStructureResourceTestCase {
 		return randomContentStructure();
 	}
 
-	protected static final ObjectMapper _inputObjectMapper =
-		new ObjectMapper() {
-			{
-				setFilterProvider(
-					new SimpleFilterProvider() {
-						{
-							addFilter(
-								"Liferay.Vulcan",
-								SimpleBeanPropertyFilter.serializeAll());
-						}
-					});
-				setSerializationInclusion(JsonInclude.Include.NON_NULL);
-			}
-		};
-	protected static final ObjectMapper _outputObjectMapper =
+	protected static final ObjectMapper inputObjectMapper = new ObjectMapper() {
+		{
+			setFilterProvider(
+				new SimpleFilterProvider() {
+					{
+						addFilter(
+							"Liferay.Vulcan",
+							SimpleBeanPropertyFilter.serializeAll());
+					}
+				});
+			setSerializationInclusion(JsonInclude.Include.NON_NULL);
+		}
+	};
+	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
 				setFilterProvider(
