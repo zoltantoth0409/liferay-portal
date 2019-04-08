@@ -98,7 +98,7 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 	}
 
 	private Role _addRole(Role role) throws Exception {
-		com.liferay.portal.kernel.model.Role newRole =
+		com.liferay.portal.kernel.model.Role serviceBuilderRole =
 			RoleLocalServiceUtil.addRole(
 				_user.getUserId(), null, 0, role.getName(), null, null, 0, null,
 				new ServiceContext());
@@ -108,9 +108,9 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 			RoleLocalServiceUtil.getRole(
 				testGroup.getCompanyId(), RoleConstants.USER));
 
-		RoleLocalServiceUtil.addUserRole(_user.getUserId(), newRole);
+		RoleLocalServiceUtil.addUserRole(_user.getUserId(), serviceBuilderRole);
 
-		return _toRole(newRole);
+		return _toRole(serviceBuilderRole);
 	}
 
 	private Role _toRole(com.liferay.portal.kernel.model.Role role) {
