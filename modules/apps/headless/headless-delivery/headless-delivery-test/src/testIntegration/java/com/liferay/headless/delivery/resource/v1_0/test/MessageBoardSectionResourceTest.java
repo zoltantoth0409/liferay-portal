@@ -81,6 +81,7 @@ public class MessageBoardSectionResourceTest
 		return messageBoardSection;
 	}
 
+	@Override
 	protected MessageBoardSection randomMessageBoardSection() {
 		MessageBoardSection messageBoardSection =
 			super.randomMessageBoardSection();

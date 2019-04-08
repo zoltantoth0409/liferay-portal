@@ -92,6 +92,7 @@ public class MessageBoardThreadResourceTest
 		return false;
 	}
 
+	@Override
 	protected MessageBoardThread randomMessageBoardThread() {
 		MessageBoardThread messageBoardThread =
 			super.randomMessageBoardThread();
