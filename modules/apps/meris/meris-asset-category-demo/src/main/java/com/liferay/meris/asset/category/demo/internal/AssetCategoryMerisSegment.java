@@ -23,7 +23,7 @@ import java.util.Locale;
  * @author Eduardo García
  */
 public class AssetCategoryMerisSegment
-	implements MerisSegment, Comparable<AssetCategoryMerisSegment> {
+	implements Comparable<AssetCategoryMerisSegment>, MerisSegment {
 
 	public AssetCategoryMerisSegment(AssetCategory assetCategory) {
 		_assetCategory = assetCategory;

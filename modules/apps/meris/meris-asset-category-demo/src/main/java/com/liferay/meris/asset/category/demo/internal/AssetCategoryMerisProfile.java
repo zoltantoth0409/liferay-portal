@@ -24,7 +24,7 @@ import java.util.Map;
  * @author Eduardo García
  */
 public class AssetCategoryMerisProfile
-	implements MerisProfile, Comparable<AssetCategoryMerisProfile> {
+	implements Comparable<AssetCategoryMerisProfile>, MerisProfile {
 
 	public AssetCategoryMerisProfile(User user, long[] assetCategoryIds) {
 		_user = user;
