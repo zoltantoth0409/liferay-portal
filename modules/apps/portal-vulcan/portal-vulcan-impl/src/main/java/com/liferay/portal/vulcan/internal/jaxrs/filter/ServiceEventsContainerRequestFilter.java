@@ -35,10 +35,11 @@ import javax.ws.rs.ext.Provider;
  */
 @PreMatching
 @Provider
-public class ServiceEventsProcessorFilter implements ContainerRequestFilter {
+public class ServiceEventsContainerRequestFilter
+	implements ContainerRequestFilter {
 
 	@Override
-	public void filter(ContainerRequestContext requestContext) {
+	public void filter(ContainerRequestContext containerRequestContext) {
 		try {
 			EventsProcessorUtil.process(
 				PropsKeys.SERVLET_SERVICE_EVENTS_PRE,
@@ -51,7 +52,7 @@ public class ServiceEventsProcessorFilter implements ContainerRequestFilter {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		ServiceEventsProcessorFilter.class);
+		ServiceEventsContainerRequestFilter.class);
 
 	@Context
 	private HttpServletRequest _httpServletRequest;
