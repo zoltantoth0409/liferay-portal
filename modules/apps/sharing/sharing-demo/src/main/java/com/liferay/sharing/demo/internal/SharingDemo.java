@@ -76,7 +76,7 @@ public class SharingDemo extends BasePortalInstanceLifecycleListener {
 			_sharingEntryLocalService.addSharingEntry(
 				sharerUser.getUserId(), user.getUserId(),
 				_portal.getClassNameId(DLFileEntry.class),
-				fileEntry.getFileEntryId(), group.getGroupId(), i % 3 == 0,
+				fileEntry.getFileEntryId(), group.getGroupId(), (i % 3) == 0,
 				Arrays.asList(SharingEntryAction.VIEW),
 				(i % 2 == 0) ? _getExpirationDate(i + 1) : null,
 				serviceContext);
