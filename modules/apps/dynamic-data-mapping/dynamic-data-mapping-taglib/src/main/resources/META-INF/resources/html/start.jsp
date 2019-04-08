@@ -31,7 +31,7 @@
 
 			languageIds.add(defaultLanguageId);
 
-			Set<Locale> availableLocales = LanguageUtil.getAvailableLocales(themeDisplay.getSiteGroupId());
+			Set<Locale> availableLocales = LanguageUtil.getAvailableLocales(groupId);
 
 			String normalizedDefaultLanguageId = StringUtil.replace(defaultLanguageId, '_', '-');
 			%>
