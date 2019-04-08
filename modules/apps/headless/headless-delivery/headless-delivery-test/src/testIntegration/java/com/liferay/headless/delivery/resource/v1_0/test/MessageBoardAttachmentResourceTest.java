@@ -179,7 +179,7 @@ public class MessageBoardAttachmentResourceTest
 
 		return MultipartBody.of(
 			binaryFileMap, __ -> _inputObjectMapper,
-			_inputObjectMapper.convertValue(
+			inputObjectMapper.convertValue(
 				messageBoardAttachment, HashMap.class));
 	}
 

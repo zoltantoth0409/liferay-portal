@@ -1087,7 +1087,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		return random${schemaName}();
 	}
 
-	protected static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	protected static final ObjectMapper inputObjectMapper = new ObjectMapper() {
 		{
 			setFilterProvider(
 				new SimpleFilterProvider() {
@@ -1098,7 +1098,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		}
 	};
-	protected static final ObjectMapper _outputObjectMapper = new ObjectMapper() {
+	protected static final ObjectMapper outputObjectMapper = new ObjectMapper() {
 		{
 			setFilterProvider(
 				new SimpleFilterProvider() {
