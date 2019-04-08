@@ -61,6 +61,10 @@ public abstract class BaseHTMLTag extends com.liferay.taglib.util.IncludeTag {
 		return _fieldsNamespace;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
 	public boolean getIgnoreRequestValue() {
 		return _ignoreRequestValue;
 	}
@@ -121,6 +125,10 @@ public abstract class BaseHTMLTag extends com.liferay.taglib.util.IncludeTag {
 		_fieldsNamespace = fieldsNamespace;
 	}
 
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public void setIgnoreRequestValue(boolean ignoreRequestValue) {
 		_ignoreRequestValue = ignoreRequestValue;
 	}
@@ -171,6 +179,7 @@ public abstract class BaseHTMLTag extends com.liferay.taglib.util.IncludeTag {
 		_defaultEditLocale = null;
 		_documentLibrarySelectorURL = null;
 		_fieldsNamespace = null;
+		_groupId = 0;
 		_ignoreRequestValue = false;
 		_imageSelectorURL = null;
 		_localizable = true;
@@ -200,6 +209,7 @@ public abstract class BaseHTMLTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "defaultEditLocale", _defaultEditLocale);
 		setNamespacedAttribute(request, "documentLibrarySelectorURL", _documentLibrarySelectorURL);
 		setNamespacedAttribute(request, "fieldsNamespace", _fieldsNamespace);
+		setNamespacedAttribute(request, "groupId", _groupId);
 		setNamespacedAttribute(request, "ignoreRequestValue", _ignoreRequestValue);
 		setNamespacedAttribute(request, "imageSelectorURL", _imageSelectorURL);
 		setNamespacedAttribute(request, "localizable", _localizable);
@@ -222,6 +232,7 @@ public abstract class BaseHTMLTag extends com.liferay.taglib.util.IncludeTag {
 	private java.util.Locale _defaultEditLocale = null;
 	private java.lang.String _documentLibrarySelectorURL = null;
 	private java.lang.String _fieldsNamespace = null;
+	private long _groupId = 0;
 	private boolean _ignoreRequestValue = false;
 	private java.lang.String _imageSelectorURL = null;
 	private boolean _localizable = true;
