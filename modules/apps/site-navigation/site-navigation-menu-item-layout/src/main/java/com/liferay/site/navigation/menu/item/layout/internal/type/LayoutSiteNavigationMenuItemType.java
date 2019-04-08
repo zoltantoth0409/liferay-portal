@@ -279,9 +279,7 @@ public class LayoutSiteNavigationMenuItemType
 
 		if (layout == null) {
 			if (ExportImportThreadLocal.isPortletImportInProcess()) {
-				NoSuchLayoutException nsle = new NoSuchLayoutException();
-
-				throw nsle;
+				throw new NoSuchLayoutException();
 			}
 
 			return false;
