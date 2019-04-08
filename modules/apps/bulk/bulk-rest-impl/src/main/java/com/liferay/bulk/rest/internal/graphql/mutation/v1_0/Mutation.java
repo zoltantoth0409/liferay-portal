@@ -83,7 +83,7 @@ public class Mutation {
 
 	@GraphQLInvokeDetached
 	public Response patchKeywordBatch(
-			@GraphQLName("KeywordBulkSelection") KeywordBulkSelection
+			@GraphQLName("keywordBulkSelection") KeywordBulkSelection
 				keywordBulkSelection)
 		throws Exception {
 
@@ -96,7 +96,7 @@ public class Mutation {
 
 	@GraphQLInvokeDetached
 	public Response putKeywordBatch(
-			@GraphQLName("KeywordBulkSelection") KeywordBulkSelection
+			@GraphQLName("keywordBulkSelection") KeywordBulkSelection
 				keywordBulkSelection)
 		throws Exception {
 
@@ -110,7 +110,7 @@ public class Mutation {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<Keyword> postKeywordsCommonPage(
-			@GraphQLName("DocumentBulkSelection") DocumentBulkSelection
+			@GraphQLName("documentBulkSelection") DocumentBulkSelection
 				documentBulkSelection)
 		throws Exception {
 
@@ -128,7 +128,7 @@ public class Mutation {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public MessageSelection postBulkSelection(
-			@GraphQLName("DocumentBulkSelection") DocumentBulkSelection
+			@GraphQLName("documentBulkSelection") DocumentBulkSelection
 				documentBulkSelection)
 		throws Exception {
 
@@ -142,7 +142,7 @@ public class Mutation {
 
 	@GraphQLInvokeDetached
 	public Response patchTaxonomyCategoryBatch(
-			@GraphQLName("TaxonomyCategoryBulkSelection")
+			@GraphQLName("taxonomyCategoryBulkSelection")
 				TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception {
 
@@ -156,7 +156,7 @@ public class Mutation {
 
 	@GraphQLInvokeDetached
 	public Response putTaxonomyCategoryBatch(
-			@GraphQLName("TaxonomyCategoryBulkSelection")
+			@GraphQLName("taxonomyCategoryBulkSelection")
 				TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception {
 
@@ -173,7 +173,7 @@ public class Mutation {
 	public Collection<TaxonomyVocabulary>
 			postContentSpaceTaxonomyVocabulariesCommonPage(
 				@GraphQLName("contentSpaceId") Long contentSpaceId,
-				@GraphQLName("DocumentBulkSelection") DocumentBulkSelection
+				@GraphQLName("documentBulkSelection") DocumentBulkSelection
 					documentBulkSelection)
 		throws Exception {
 
