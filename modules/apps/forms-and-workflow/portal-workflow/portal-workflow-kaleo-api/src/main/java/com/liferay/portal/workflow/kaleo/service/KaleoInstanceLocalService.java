@@ -283,16 +283,30 @@ public interface KaleoInstanceLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoInstance> search(
-		Long userId, String assetType, String nodeName,
+		Long userId, String assetClassName, String nodeName,
 		String kaleoDefinitionName, Boolean completed, int start, int end,
 		OrderByComparator<KaleoInstance> orderByComparator,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KaleoInstance> search(
+		Long userId, String assetClassName, String assetTitle,
+		String assetDescription, String nodeName, String kaleoDefinitionName,
+		Boolean completed, int start, int end,
+		OrderByComparator<KaleoInstance> orderByComparator,
+		ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(
-		Long userId, String assetType, String nodeName,
+		Long userId, String assetClassName, String nodeName,
 		String kaleoDefinitionName, Boolean completed,
 		ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int searchCount(
+		Long userId, String assetClassName, String assetTitle,
+		String assetDescription, String nodeName, String kaleoDefinitionName,
+		Boolean completed, ServiceContext serviceContext);
 
 	/**
 	 * Updates the kaleo instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -302,6 +316,10 @@ public interface KaleoInstanceLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public KaleoInstance updateKaleoInstance(KaleoInstance kaleoInstance);
+
+	public KaleoInstance updateKaleoInstance(
+			long kaleoInstanceId, long rootKaleoInstanceTokenId)
+		throws PortalException;
 
 	public KaleoInstance updateKaleoInstance(
 			long kaleoInstanceId, Map<String, Serializable> workflowContext,
