@@ -146,7 +146,7 @@ public abstract class BasePersonalMenuEntry implements PersonalMenuEntry {
 
 		String layoutFriendlyURL = layout.getFriendlyURL();
 
-		if ((!layout.isSystem() && !layout.isTypeControlPanel()) ||
+		if ((!layout.isTypeControlPanel() && !layout.isSystem()) ||
 			!layoutFriendlyURL.equals(
 				PropsUtil.get(PropsKeys.CONTROL_PANEL_LAYOUT_FRIENDLY_URL))) {
 
