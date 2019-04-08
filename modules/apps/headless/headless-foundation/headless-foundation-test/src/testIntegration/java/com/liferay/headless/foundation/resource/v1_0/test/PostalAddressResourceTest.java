@@ -57,8 +57,8 @@ public class PostalAddressResourceTest
 		boolean valid = false;
 
 		if ((postalAddress.getId() != null) &&
-			(postalAddress.getStreetAddressLine1() != null) &&
-			(postalAddress.getPrimary() != null)) {
+			(postalAddress.getPrimary() != null) &&
+			(postalAddress.getStreetAddressLine1() != null)) {
 
 			valid = true;
 		}
