@@ -169,19 +169,18 @@ public class MessageBoardAttachmentResourceTest
 
 		Map<String, BinaryFile> binaryFileMap = new HashMap<>();
 
-		String randomText = RandomTestUtil.randomString();
+		String randomString = RandomTestUtil.randomString();
 
 		binaryFileMap.put(
 			"file",
 			new BinaryFile(
 				contentType, RandomTestUtil.randomString(),
-				new ByteArrayInputStream(randomText.getBytes()), 0));
-
-		Map<String, String> valuesMap = _inputObjectMapper.convertValue(
-			messageBoardAttachment, HashMap.class);
+				new ByteArrayInputStream(randomString.getBytes()), 0));
 
 		return MultipartBody.of(
-			binaryFileMap, __ -> _inputObjectMapper, valuesMap);
+			binaryFileMap, __ -> _inputObjectMapper,
+			_inputObjectMapper.convertValue(
+				messageBoardAttachment, HashMap.class));
 	}
 
 	private MBThread _mbThread;
