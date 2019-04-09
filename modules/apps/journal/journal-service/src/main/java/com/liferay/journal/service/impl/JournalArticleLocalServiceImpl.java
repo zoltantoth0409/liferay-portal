@@ -6876,7 +6876,7 @@ public class JournalArticleLocalServiceImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Publishing articles with displayDate less than ",
+					"Publishing articles with display date less than ",
 					displayDate, " and status ",
 					WorkflowConstants.STATUS_SCHEDULED));
 		}
@@ -6941,8 +6941,8 @@ public class JournalArticleLocalServiceImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Expiring articles with expirationDate less or equal than ",
-					nextExpirationDate, " and status ",
+					"Expiring articles with expiration date less than or ",
+					"equal to ", nextExpirationDate, " and status ",
 					WorkflowConstants.STATUS_APPROVED));
 		}
 
