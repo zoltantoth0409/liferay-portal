@@ -53,6 +53,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -162,7 +163,7 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 			String label = StringBundler.concat(
 				workflowDefinition.getName(), " (", version, ")");
 
-			ddmFormFieldOptions.addOptionLabel(value, Locale.US, label);
+			ddmFormFieldOptions.addOptionLabel(value, LocaleUtil.US, label);
 		}
 	}
 
@@ -177,7 +178,7 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 		ddmFormRenderingContext.setHttpServletResponse(
 			_portal.getHttpServletResponse(renderResponse));
 		ddmFormRenderingContext.setContainerId("settings");
-		ddmFormRenderingContext.setLocale(Locale.US);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setPortletNamespace(
 			renderResponse.getNamespace());
 
@@ -190,8 +191,8 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 
 		DDMForm ddmForm = DDMFormFactory.create(DDLRecordSetSettings.class);
 
-		ddmForm.addAvailableLocale(Locale.US);
-		ddmForm.setDefaultLocale(Locale.US);
+		ddmForm.addAvailableLocale(LocaleUtil.US);
+		ddmForm.setDefaultLocale(LocaleUtil.US);
 
 		Map<String, DDMFormField> ddmFormFieldsMap =
 			ddmForm.getDDMFormFieldsMap(false);
@@ -225,7 +226,7 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 			ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		Locale locale = Locale.US;
+		Locale locale = LocaleUtil.US;
 
 		DDMFormFieldOptions ddmFormFieldOptions = new DDMFormFieldOptions();
 
@@ -257,7 +258,7 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 			ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		Locale locale = Locale.US;
+		Locale locale = LocaleUtil.US;
 
 		DDMFormFieldOptions ddmFormFieldOptions = new DDMFormFieldOptions();
 

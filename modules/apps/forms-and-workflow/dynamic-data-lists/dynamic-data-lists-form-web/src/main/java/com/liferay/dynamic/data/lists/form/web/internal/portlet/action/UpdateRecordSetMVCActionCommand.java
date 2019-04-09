@@ -25,9 +25,8 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-
-import java.util.Locale;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -75,15 +74,15 @@ public class UpdateRecordSetMVCActionCommand
 		DDMForm ddmForm = getDDMForm(actionRequest);
 		DDMFormLayout ddmFormLayout = getDDMFormLayout(actionRequest);
 
-		ddmForm.addAvailableLocale(Locale.US);
+		ddmForm.addAvailableLocale(LocaleUtil.US);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			DDMStructure.class.getName(), actionRequest);
 
 		return ddmStructureService.updateStructure(
 			ddmStructureId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
-			getLocalizedMap(Locale.US, name),
-			getLocalizedMap(Locale.US, description), ddmForm, ddmFormLayout,
+			getLocalizedMap(LocaleUtil.US, name),
+			getLocalizedMap(LocaleUtil.US, description), ddmForm, ddmFormLayout,
 			serviceContext);
 	}
 
@@ -100,8 +99,8 @@ public class UpdateRecordSetMVCActionCommand
 			DDLRecordSet.class.getName(), actionRequest);
 
 		return ddlRecordSetService.updateRecordSet(
-			recordSetId, ddmStructureId, getLocalizedMap(Locale.US, name),
-			getLocalizedMap(Locale.US, description),
+			recordSetId, ddmStructureId, getLocalizedMap(LocaleUtil.US, name),
+			getLocalizedMap(LocaleUtil.US, description),
 			DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT, serviceContext);
 	}
 

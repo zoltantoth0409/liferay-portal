@@ -92,8 +92,8 @@ public class AddRecordSetMVCActionCommand
 		return ddmStructureService.addStructure(
 			groupId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 			portal.getClassNameId(DDLRecordSet.class), structureKey,
-			getLocalizedMap(Locale.US, name),
-			getLocalizedMap(Locale.US, description), ddmForm, ddmFormLayout,
+			getLocalizedMap(LocaleUtil.US, name),
+			getLocalizedMap(LocaleUtil.US, description), ddmForm, ddmFormLayout,
 			storageType, DDMStructureConstants.TYPE_AUTO, serviceContext);
 	}
 
@@ -112,8 +112,8 @@ public class AddRecordSetMVCActionCommand
 
 		return ddlRecordSetService.addRecordSet(
 			groupId, ddmStructureId, recordSetKey,
-			getLocalizedMap(Locale.US, name),
-			getLocalizedMap(Locale.US, description),
+			getLocalizedMap(LocaleUtil.US, name),
+			getLocalizedMap(LocaleUtil.US, description),
 			DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT,
 			DDLRecordSetConstants.SCOPE_FORMS, serviceContext);
 	}

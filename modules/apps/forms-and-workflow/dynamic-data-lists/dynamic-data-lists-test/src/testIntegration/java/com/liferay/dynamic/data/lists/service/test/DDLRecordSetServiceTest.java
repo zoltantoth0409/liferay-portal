@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.registry.Registry;
@@ -71,8 +72,9 @@ public class DDLRecordSetServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_availableLocales = DDMFormTestUtil.createAvailableLocales(Locale.US);
-		_defaultLocale = Locale.US;
+		_availableLocales = DDMFormTestUtil.createAvailableLocales(
+			LocaleUtil.US);
+		_defaultLocale = LocaleUtil.US;
 
 		_group = GroupTestUtil.addGroup();
 
