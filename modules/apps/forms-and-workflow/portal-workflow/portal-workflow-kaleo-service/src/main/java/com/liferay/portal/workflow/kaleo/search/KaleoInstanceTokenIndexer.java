@@ -103,6 +103,7 @@ public class KaleoInstanceTokenIndexer extends BaseIndexer<KaleoInstanceToken> {
 			contextBooleanFilter, kaleoInstanceTokenQuery);
 		appendParentKaleoInstanceTokenIdTerm(
 			contextBooleanFilter, kaleoInstanceTokenQuery);
+		appendUserIdTerm(contextBooleanFilter, kaleoInstanceTokenQuery);
 	}
 
 	@Override
@@ -306,6 +307,19 @@ public class KaleoInstanceTokenIndexer extends BaseIndexer<KaleoInstanceToken> {
 		booleanFilter.addRequiredTerm(
 			KaleoInstanceTokenField.PARENT_KALEO_INSTANCE_TOKEN_ID,
 			parentKaleoInstanceTokenId);
+	}
+
+	protected void appendUserIdTerm(
+		BooleanFilter booleanFilter,
+		KaleoInstanceTokenQuery kaleoInstanceTokenQuery) {
+
+		Long userId = kaleoInstanceTokenQuery.getUserId();
+
+		if (userId == null) {
+			return;
+		}
+
+		booleanFilter.addRequiredTerm(Field.USER_ID, userId);
 	}
 
 	@Override
