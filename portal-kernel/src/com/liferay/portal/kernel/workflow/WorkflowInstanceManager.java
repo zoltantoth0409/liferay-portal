@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.workflow;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.messaging.proxy.MessagingProxy;
 import com.liferay.portal.kernel.messaging.proxy.ProxyMode;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -30,6 +32,7 @@ import java.util.Map;
  * @author Marcellus Tavares
  */
 @MessagingProxy(mode = ProxyMode.SYNC)
+@ProviderType
 public interface WorkflowInstanceManager {
 
 	public void deleteWorkflowInstance(long companyId, long workflowInstanceId)
