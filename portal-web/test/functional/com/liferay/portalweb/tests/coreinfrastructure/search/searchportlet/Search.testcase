@@ -344,11 +344,8 @@ definition {
 		SearchResultPortlet.viewNoSearchResults(searchTerm = "Name1");
 	}
 
-	@ignore = "true"
 	@priority = "4"
 	test SearchBlogsEntryCategoryQuotes {
-		// Ignoring test until LPS-73326 is resolved
-
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
