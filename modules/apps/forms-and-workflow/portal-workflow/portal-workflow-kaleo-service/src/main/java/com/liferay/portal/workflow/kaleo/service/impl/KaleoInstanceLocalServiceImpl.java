@@ -323,7 +323,7 @@ public class KaleoInstanceLocalServiceImpl
 			List<KaleoInstance> kaleoInstances = new ArrayList<>();
 
 			Hits hits = kaleoInstanceTokenLocalService.search(
-				assetClassName, assetTitle, assetDescription, nodeName,
+				userId, assetClassName, assetTitle, assetDescription, nodeName,
 				kaleoDefinitionName, completed, start, end,
 				getSortsFromComparator(orderByComparator), serviceContext);
 
@@ -364,7 +364,7 @@ public class KaleoInstanceLocalServiceImpl
 		Boolean completed, ServiceContext serviceContext) {
 
 		return kaleoInstanceTokenLocalService.searchCount(
-			assetClassName, assetTitle, assetDescription, nodeName,
+			userId, assetClassName, assetTitle, assetDescription, nodeName,
 			kaleoDefinitionName, completed, serviceContext);
 	}
 
