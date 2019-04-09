@@ -14,6 +14,7 @@
 
 package com.liferay.portal.upgrade.internal.graph;
 
+import com.liferay.portal.kernel.util.Function;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.upgrade.internal.registry.UpgradeInfo;
 
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Function;
 
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.alg.DijkstraShortestPath;

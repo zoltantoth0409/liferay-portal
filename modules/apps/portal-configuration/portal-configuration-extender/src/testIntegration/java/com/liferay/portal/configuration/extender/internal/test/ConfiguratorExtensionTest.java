@@ -23,6 +23,7 @@ import com.liferay.portal.configuration.extender.internal.FactoryConfigurationDe
 import com.liferay.portal.configuration.extender.internal.NamedConfigurationContent;
 import com.liferay.portal.configuration.extender.internal.SingleConfigurationDescription;
 import com.liferay.portal.kernel.util.PropertiesUtil;
+import com.liferay.portal.kernel.util.Supplier;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -35,7 +36,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.function.Supplier;
 
 import org.apache.felix.utils.log.Logger;
 

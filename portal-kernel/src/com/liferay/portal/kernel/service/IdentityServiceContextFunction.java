@@ -14,7 +14,7 @@
 
 package com.liferay.portal.kernel.service;
 
-import java.util.function.Function;
+import com.liferay.portal.kernel.util.Function;
 
 /**
  * @author Adolfo Pérez
