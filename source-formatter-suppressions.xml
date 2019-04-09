@@ -128,6 +128,8 @@
 		<suppress checks="JavaXMLSecurityCheck" files="util-java/src/com/liferay/util/xml/XMLMergerRunner\.java" />
 		<suppress checks="JSPLineBreakCheck" files="portal-web/docroot/html/portal/progress_poller\.jsp" />
 		<suppress checks="JSPStylingCheck" files="portal-web/docroot/html/portal/api/jsonws/action\.jsp" />
+		<suppress checks="LocaleUtilCheck" files="portal-kernel/src/com/liferay/portal/kernel/util/LocaleUtil\.java" />
+		<suppress checks="LocaleUtilCheck" files="portal-kernel/test/unit/com/liferay/portal/kernel/util/LocaleUtilTest\.java" />
 		<suppress checks="MethodCallsOrderCheck" files="portal-impl/src/com/liferay/portal/util/PortalImpl\.java" />
 		<suppress checks="PropertiesEmptyLinesCheck" files="build\.properties" />
 		<suppress checks="PropertiesLongLinesCheck" files="portal-impl/src/portal_ja\.properties" />
