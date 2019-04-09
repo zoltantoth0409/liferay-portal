@@ -313,6 +313,9 @@ name = HtmlUtil.escapeJS(name);
 			if (win.instanceReady) {
 				setHTML(value);
 			}
+			else {
+				instancePendingData = value;
+			}
 		}
 	};
 
