@@ -124,7 +124,7 @@ public class AssetTagNamesMultiLanguageSearchTest {
 
 	@Test
 	public void testEnglishTags() throws Exception {
-		Locale locale = Locale.US;
+		Locale locale = LocaleUtil.US;
 		String title1 = "title should not match";
 		String tag = "searchtag";
 

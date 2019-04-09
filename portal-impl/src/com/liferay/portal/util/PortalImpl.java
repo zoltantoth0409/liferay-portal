@@ -9106,7 +9106,7 @@ public class PortalImpl implements Portal {
 	private static final Date _upTime = new Date();
 
 	static {
-		Locale locale = Locale.getDefault();
+		Locale locale = LocaleUtil.getDefault();
 
 		_NULL_LOCALE = (Locale)locale.clone();
 	}
