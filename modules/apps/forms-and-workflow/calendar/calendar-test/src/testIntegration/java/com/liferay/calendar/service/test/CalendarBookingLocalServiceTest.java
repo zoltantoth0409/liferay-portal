@@ -2301,6 +2301,9 @@ public class CalendarBookingLocalServiceTest {
 	private Group _liveGroup;
 
 	@DeleteAfterTestRun
+	private User _invitingUser;
+
+	@DeleteAfterTestRun
 	private User _user;
 
 }
