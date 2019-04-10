@@ -836,9 +836,9 @@ public class CalendarBookingLocalServiceTest {
 
 		CalendarWorkflowTestUtil.activateWorkflow(_group);
 
-		_user = UserTestUtil.addUser();
+		_invitingUser = UserTestUtil.addUser();
 
-		Calendar invitedCalendar = CalendarTestUtil.addCalendar(_user);
+		Calendar invitedCalendar = CalendarTestUtil.addCalendar(_invitingUser);
 
 		Calendar invitingCalendar = CalendarTestUtil.getDefaultCalendar(_group);
 
