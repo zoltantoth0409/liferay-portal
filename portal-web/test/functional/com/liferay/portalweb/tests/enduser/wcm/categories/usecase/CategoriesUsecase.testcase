@@ -1145,11 +1145,7 @@ definition {
 
 		LAR.exportSuccess();
 
-		Portlet.changeDisplayStyle(displayStyle = "List");
-
 		var larFileName = LAR.getLarFileName();
-
-		Portlet.changeDisplayStyle(displayStyle = "Descriptive");
 
 		Click(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD");
 
