@@ -36,6 +36,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -52,6 +53,12 @@ public class SQLDateTest {
 	public static final AggregateTestRule aggregateTestRule =
 		new AggregateTestRule(
 			new LiferayIntegrationTestRule(), TransactionalTestRule.INSTANCE);
+
+	@BeforeClass
+	public static void setUpClass() {
+		_sessionFactory = (SessionFactory)PortalBeanLocatorUtil.locate(
+			"liferaySessionFactory");
+	}
 
 	@Test
 	public void testMillisecondsHibernate() {
@@ -142,7 +149,6 @@ public class SQLDateTest {
 	private static final String _WRITE_RELEASE_MODIFIED_DATE =
 		"update Release_ set modifiedDate=? where releaseId = 1";
 
-	private final SessionFactory _sessionFactory =
-		(SessionFactory)PortalBeanLocatorUtil.locate("liferaySessionFactory");
+	private static SessionFactory _sessionFactory;
 
 }

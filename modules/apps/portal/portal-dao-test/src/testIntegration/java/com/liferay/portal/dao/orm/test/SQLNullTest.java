@@ -31,6 +31,7 @@ import com.liferay.portal.test.rule.TransactionalTestRule;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -505,6 +506,12 @@ public class SQLNullTest {
 	public static final AggregateTestRule aggregateTestRule =
 		new AggregateTestRule(
 			new LiferayIntegrationTestRule(), TransactionalTestRule.INSTANCE);
+
+	@BeforeClass
+	public static void setUpClass() {
+		_sessionFactory = (SessionFactory)PortalBeanLocatorUtil.locate(
+			"liferaySessionFactory");
+	}
 
 	@Test
 	public void testBlankStringEqualsNull() {
@@ -1084,7 +1091,6 @@ public class SQLNullTest {
 	private static final String _SQL_NOT_LIKE_NULL =
 		"SELECT DISTINCT 1 FROM Counter WHERE ? NOT LIKE NULL";
 
-	private final SessionFactory _sessionFactory =
-		(SessionFactory)PortalBeanLocatorUtil.locate("liferaySessionFactory");
+	private static SessionFactory _sessionFactory;
 
 }

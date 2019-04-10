@@ -56,6 +56,9 @@ public class QueryUtilTest {
 
 		_db.runSQL(_SQL_CREATE_TABLE);
 		_db.runSQL(createInserts(_SIZE));
+
+		_sessionFactory = (SessionFactory)PortalBeanLocatorUtil.locate(
+			"liferaySessionFactory");
 	}
 
 	@AfterClass
@@ -361,8 +364,6 @@ public class QueryUtilTest {
 			"ALL ( SELECT 'id' AS type, id as value from QueryUtilTest )";
 
 	private static DB _db;
-
-	private final SessionFactory _sessionFactory =
-		(SessionFactory)PortalBeanLocatorUtil.locate("liferaySessionFactory");
+	private static SessionFactory _sessionFactory;
 
 }

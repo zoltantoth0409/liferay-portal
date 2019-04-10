@@ -32,6 +32,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Assume;
+import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -54,6 +55,12 @@ public class DB2DialectTest {
 		DB db = DBManagerUtil.getDB();
 
 		Assume.assumeTrue(db.getDBType() == DBType.DB2);
+	}
+
+	@BeforeClass
+	public static void setUpClass() {
+		_sessionFactory = (SessionFactory)PortalBeanLocatorUtil.locate(
+			"liferaySessionFactory");
 	}
 
 	@Test
@@ -107,7 +114,6 @@ public class DB2DialectTest {
 		"SELECT tabname FROM syscat.tables WHERE tabschema = 'SYSIBM' ORDER " +
 			"BY tabname";
 
-	private final SessionFactory _sessionFactory =
-		(SessionFactory)PortalBeanLocatorUtil.locate("liferaySessionFactory");
+	private static SessionFactory _sessionFactory;
 
 }
