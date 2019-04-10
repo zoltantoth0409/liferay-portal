@@ -97,7 +97,7 @@ public class UpgradeStepRegistratorTracker {
 
 		String upgradeInfoFromSchemaVersionString = fromSchemaVersionString;
 
-		for (int i = 0; i < upgradeSteps.length - 1; i++) {
+		for (int i = 0; i < (upgradeSteps.length - 1); i++) {
 			UpgradeStep upgradeStep = upgradeSteps[i];
 
 			String upgradeInfoToSchemaVersionString =

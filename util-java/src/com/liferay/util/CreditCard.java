@@ -47,7 +47,7 @@ public class CreditCard {
 		if (numberLen > 4) {
 			StringBundler sb = new StringBundler(numberLen - 3);
 
-			for (int i = 0; i < numberLen - 4; i++) {
+			for (int i = 0; i < (numberLen - 4); i++) {
 				sb.append(x);
 			}
 

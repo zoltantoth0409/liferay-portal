@@ -1137,7 +1137,7 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 		sb.append(" AND (");
 
-		for (int i = 0; i < excludedNames.size() - 1; i++) {
+		for (int i = 0; i < (excludedNames.size() - 1); i++) {
 			sb.append("Role_.name != ? AND ");
 		}
 
@@ -1211,7 +1211,7 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 		sb.append(" AND (");
 
-		for (int i = 0; i < size - 1; i++) {
+		for (int i = 0; i < (size - 1); i++) {
 			sb.append("Role_.type_ = ? OR ");
 		}
 

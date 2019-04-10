@@ -409,7 +409,7 @@ public class CalendarResourceFinderImpl
 
 		sb.append(StringPool.OPEN_PARENTHESIS);
 
-		for (int i = 0; i < classNameIds.length - 1; i++) {
+		for (int i = 0; i < (classNameIds.length - 1); i++) {
 			sb.append("classNameId = ? OR ");
 		}
 
@@ -427,7 +427,7 @@ public class CalendarResourceFinderImpl
 
 		sb.append(StringPool.OPEN_PARENTHESIS);
 
-		for (int i = 0; i < groupIds.length - 1; i++) {
+		for (int i = 0; i < (groupIds.length - 1); i++) {
 			sb.append("groupId = ? OR ");
 		}
 

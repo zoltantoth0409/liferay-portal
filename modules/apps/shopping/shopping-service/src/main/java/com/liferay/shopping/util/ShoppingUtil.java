@@ -361,7 +361,7 @@ public class ShoppingUtil {
 		double[] range =
 			ShoppingGroupServiceOverriddenConfiguration.INSURANCE_RANGE;
 
-		for (int i = 0; i < range.length - 1; i++) {
+		for (int i = 0; i < (range.length - 1); i++) {
 			if ((subtotal > range[i]) && (subtotal <= range[i + 1])) {
 				int rangeId = i / 2;
 
@@ -449,7 +449,7 @@ public class ShoppingUtil {
 		double[] range =
 			ShoppingGroupServiceOverriddenConfiguration.SHIPPING_RANGE;
 
-		for (int i = 0; i < range.length - 1; i++) {
+		for (int i = 0; i < (range.length - 1); i++) {
 			if ((subtotal > range[i]) && (subtotal <= range[i + 1])) {
 				int rangeId = i / 2;
 

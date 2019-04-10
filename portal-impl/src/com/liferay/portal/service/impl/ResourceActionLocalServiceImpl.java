@@ -339,7 +339,7 @@ public class ResourceActionLocalServiceImpl
 
 								resourcePermission.setActionIds(actionIds);
 								resourcePermission.setViewActionId(
-									actionIds % 2 == 1);
+									(actionIds % 2) == 1);
 
 								resourcePermissionPersistence.update(
 									resourcePermission);
