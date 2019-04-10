@@ -231,6 +231,10 @@ public interface LayoutPageTemplateEntryLocalService
 	public LayoutPageTemplateEntry fetchLayoutPageTemplateEntry(
 		long layoutPageTemplateEntryId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public LayoutPageTemplateEntry fetchLayoutPageTemplateEntry(
+		long groupId, String name);
+
 	/**
 	 * Returns the layout page template entry matching the UUID and group.
 	 *

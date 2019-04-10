@@ -301,6 +301,12 @@ public class LayoutPageTemplateEntryLocalServiceUtil {
 			layoutPageTemplateEntryId);
 	}
 
+	public static com.liferay.layout.page.template.model.LayoutPageTemplateEntry
+		fetchLayoutPageTemplateEntry(long groupId, String name) {
+
+		return getService().fetchLayoutPageTemplateEntry(groupId, name);
+	}
+
 	/**
 	 * Returns the layout page template entry matching the UUID and group.
 	 *
