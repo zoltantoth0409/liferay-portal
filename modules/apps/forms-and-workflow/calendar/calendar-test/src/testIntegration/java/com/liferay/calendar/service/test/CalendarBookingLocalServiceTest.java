@@ -2298,10 +2298,10 @@ public class CalendarBookingLocalServiceTest {
 	private Group _group;
 
 	@DeleteAfterTestRun
-	private Group _liveGroup;
+	private User _invitingUser;
 
 	@DeleteAfterTestRun
-	private User _invitingUser;
+	private Group _liveGroup;
 
 	@DeleteAfterTestRun
 	private User _user;
