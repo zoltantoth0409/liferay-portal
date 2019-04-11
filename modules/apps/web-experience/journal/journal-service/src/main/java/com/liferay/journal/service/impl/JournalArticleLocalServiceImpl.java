@@ -6422,8 +6422,8 @@ public class JournalArticleLocalServiceImpl
 			_log.debug(
 				StringBundler.concat(
 					"Publishing articles with display date less than ",
-					displayDate, " and status ",
-					WorkflowConstants.STATUS_SCHEDULED));
+					String.valueOf(displayDate), " and status ",
+					String.valueOf(WorkflowConstants.STATUS_SCHEDULED)));
 		}
 
 		ActionableDynamicQuery actionableDynamicQuery =
@@ -6487,8 +6487,9 @@ public class JournalArticleLocalServiceImpl
 			_log.debug(
 				StringBundler.concat(
 					"Expiring articles with expiration date less than or ",
-					"equal to ", nextExpirationDate, " and status ",
-					WorkflowConstants.STATUS_APPROVED));
+					"equal to ", String.valueOf(nextExpirationDate),
+					" and status ",
+					String.valueOf(WorkflowConstants.STATUS_APPROVED)));
 		}
 
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
@@ -6581,7 +6582,8 @@ public class JournalArticleLocalServiceImpl
 			_log.debug(
 				StringBundler.concat(
 					"Sending review notification for articles with reviewDate ",
-					"between ", _previousCheckDate, " and ", reviewDate));
+					"between ", String.valueOf(_previousCheckDate), " and ",
+					String.valueOf(reviewDate)));
 		}
 
 		Set<Long> latestArticleIds = new HashSet<>();
