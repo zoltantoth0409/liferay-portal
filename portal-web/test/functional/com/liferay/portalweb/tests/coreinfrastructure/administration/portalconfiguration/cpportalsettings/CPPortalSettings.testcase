@@ -274,9 +274,8 @@ definition {
 
 	@priority = "5"
 	test EnterReservedEmailAddress {
-		property test.name.skip.portal.instance = "CPPortalSettings#EnterReservedEmailAddress";
-
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "CPPortalSettings#EnterReservedEmailAddress";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -304,9 +303,8 @@ definition {
 
 	@priority = "5"
 	test EnterReservedScreenName {
-		property test.name.skip.portal.instance = "CPPortalSettings#EnterReservedScreenName";
-
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "CPPortalSettings#EnterReservedScreenName";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
