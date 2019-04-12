@@ -1249,15 +1249,16 @@ public abstract class Base${schemaName}ResourceTestCase {
 	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	protected static class ${schemaName}Mixin {
-	<#list properties?keys as propertyName>
-		@JsonProperty
-		${properties[propertyName]}  ${propertyName};
+		<#assign enumSchemas = freeMarkerTool.getDTOEnumSchemas(schema) />
 
-	</#list>
-	<#assign enumSchemas = freeMarkerTool.getDTOEnumSchemas(schema) />
-	<#list enumSchemas?keys as enumName>
-		public static enum ${enumName} {}
-	</#list>
+		<#list enumSchemas?keys as enumName>
+			public static enum ${enumName} {}
+		</#list>
+
+		<#list properties?keys as propertyName>
+			@JsonProperty
+			${properties[propertyName]} ${propertyName};
+		</#list>
 	}
 
 	protected static class Page<T> {
