@@ -166,8 +166,8 @@ public class FragmentEntryFragmentRenderer implements FragmentRenderer {
 	}
 
 	private String _renderFragmentEntry(
-		long fragmentEntryId, String namespace, String css, String html,
-		String js) {
+		long fragmentEntryId, String css, String html, String js,
+		String namespace) {
 
 		StringBundler sb = new StringBundler(14);
 
@@ -248,9 +248,8 @@ public class FragmentEntryFragmentRenderer implements FragmentRenderer {
 			fragmentRendererContext.getFragmentEntryLink();
 
 		return _renderFragmentEntry(
-			fragmentEntryLink.getFragmentEntryId(),
-			fragmentEntryLink.getNamespace(), css, html,
-			fragmentEntryLink.getJs());
+			fragmentEntryLink.getFragmentEntryId(), css, html,
+			fragmentEntryLink.getJs(), fragmentEntryLink.getNamespace());
 	}
 
 	private String _writePortletPaths(
