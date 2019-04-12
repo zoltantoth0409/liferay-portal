@@ -1510,6 +1510,7 @@ class RuleEditor extends Component {
 					source,
 					target
 				} = action;
+
 				let newAction = {
 					action: actionType,
 					label,
