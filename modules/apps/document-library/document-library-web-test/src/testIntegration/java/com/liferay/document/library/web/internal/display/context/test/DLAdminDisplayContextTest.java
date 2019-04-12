@@ -18,7 +18,6 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.document.library.web.internal.display.context.DLAdminDisplayContext;
-import com.liferay.document.library.web.internal.display.context.DLAdminDisplayContextProvider;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -124,12 +123,17 @@ public class DLAdminDisplayContextTest {
 			_addDLFileEntry("alpha_" + i + ".txt", "alpha");
 		}
 
-		DLAdminDisplayContext dlAdminDisplayContext =
-			_dlAdminDisplayContextProvider.getDLAdminDisplayContext(
-				_getHttpServletRequest(_getMockHttpServletRequest()), null);
+		MockLiferayPortletRequest mockLiferayPortletRequest =
+			new MockLiferayPortletRequest(_getMockHttpServletRequest());
+
+		MockLiferayPortletresponse mockLiferayPortletresponse =
+			new MockLiferayPortletresponse();
+
+		_dlAdminDisplayContext = new DLAdminDisplayContext(
+			mockLiferayPortletRequest, mockLiferayPortletresponse);
 
 		SearchContainer searchContainer =
-			dlAdminDisplayContext.getSearchContainer();
+			_dlAdminDisplayContext.getSearchContainer();
 
 		Assert.assertEquals(25, searchContainer.getTotal());
 	}
@@ -140,14 +144,19 @@ public class DLAdminDisplayContextTest {
 			_addDLFileEntry("alpha_" + i + ".txt", "alpha");
 		}
 
-		DLAdminDisplayContext dlAdminDisplayContext =
-			_dlAdminDisplayContextProvider.getDLAdminDisplayContext(
+		MockLiferayPortletRequest mockLiferayPortletRequest =
+			new MockLiferayPortletRequest(
 				_getHttpServletRequest(
-					_getMockHttpServletRequestWithSearch("alpha")),
-				null);
+					_getMockHttpServletRequestWithSearch("alpha")));
+
+		MockLiferayPortletresponse mockLiferayPortletresponse =
+			new MockLiferayPortletresponse();
+
+		_dlAdminDisplayContext = new DLAdminDisplayContext(
+			mockLiferayPortletRequest, mockLiferayPortletresponse);
 
 		SearchContainer searchContainer =
-			dlAdminDisplayContext.getSearchContainer();
+			_dlAdminDisplayContext.getSearchContainer();
 
 		Assert.assertEquals(25, searchContainer.getTotal());
 	}
@@ -223,11 +232,10 @@ public class DLAdminDisplayContextTest {
 
 	private Company _company;
 
-	@Inject
-	private CompanyLocalService _companyLocalService;
+	private DLAdminDisplayContext _dlAdminDisplayContext;
 
 	@Inject
-	private DLAdminDisplayContextProvider _dlAdminDisplayContextProvider;
+	private CompanyLocalService _companyLocalService;
 
 	@Inject
 	private DLAppLocalService _dlAppLocalService;
