@@ -71,7 +71,7 @@ public class EditCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 					themeDisplay.getCompanyId(), name);
 
 			if (ctCollection != null) {
-				SessionErrors.add(actionRequest, "ctCollectionIsDuplicated");
+				SessionErrors.add(actionRequest, "ctCollectionDuplicate");
 
 				_portal.copyRequestParameters(actionRequest, actionResponse);
 

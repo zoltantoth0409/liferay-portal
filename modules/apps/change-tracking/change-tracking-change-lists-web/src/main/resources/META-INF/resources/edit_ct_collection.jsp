@@ -39,7 +39,7 @@ portletDisplay.setShowBackIcon(true);
 	<liferay-portlet:param name="backURL" value="<%= backURL.toString() %>" />
 </liferay-portlet:actionURL>
 
-<liferay-ui:error key="ctCollectionIsDuplicated" message="name-is-already-used-by-another-change-list" />
+<liferay-ui:error key="ctCollectionDuplicate" message="name-is-already-used-by-another-change-list" />
 
 <div class="custom-sheet sheet sheet-lg">
 	<aui:form action='<%= actionURL.toString() + "&etag=0&strip=0" %>' cssClass="lfr-export-dialog" method="post" name="addChangeListFm">
