@@ -252,10 +252,15 @@ class Sidebar extends Component {
 		return !this.isActionsDisabled();
 	}
 
-	isFieldReadOnly(field) {
+	isFieldReadOnly({localizable, type}) {
 		const {defaultLanguageId, editingLanguageId} = this.props;
 
-		return !field.localizable && editingLanguageId !== defaultLanguageId;
+		return (
+			defaultLanguageId !== editingLanguageId && (
+				!localizable ||
+				type === 'validation'
+			)
+		);
 	}
 
 	open() {
