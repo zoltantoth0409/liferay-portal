@@ -971,28 +971,20 @@ public abstract class BaseContentStructureResourceTestCase {
 
 		@JsonProperty
 		String[] availableLanguages;
-
 		@JsonProperty
 		ContentStructureField[] contentStructureFields;
-
 		@JsonProperty
 		Creator creator;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		Date dateModified;
-
 		@JsonProperty
 		String description;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String name;
-
 		@JsonProperty
 		Long siteId;
 

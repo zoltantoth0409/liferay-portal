@@ -1027,22 +1027,16 @@ public abstract class BaseKeywordResourceTestCase {
 
 		@JsonProperty
 		Creator creator;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		Date dateModified;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		Number keywordUsageCount;
-
 		@JsonProperty
 		String name;
-
 		@JsonProperty
 		Long siteId;
 

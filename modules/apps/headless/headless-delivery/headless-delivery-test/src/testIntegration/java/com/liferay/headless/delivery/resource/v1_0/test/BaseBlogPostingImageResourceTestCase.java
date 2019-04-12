@@ -1071,29 +1071,23 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 	protected static class BlogPostingImageMixin {
 
-		@JsonProperty
-		String contentUrl;
-
-		@JsonProperty
-		String encodingFormat;
-
-		@JsonProperty
-		String fileExtension;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		Number sizeInBytes;
-
-		@JsonProperty
-		String title;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		String contentUrl;
+		@JsonProperty
+		String encodingFormat;
+		@JsonProperty
+		String fileExtension;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		Number sizeInBytes;
+		@JsonProperty
+		String title;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

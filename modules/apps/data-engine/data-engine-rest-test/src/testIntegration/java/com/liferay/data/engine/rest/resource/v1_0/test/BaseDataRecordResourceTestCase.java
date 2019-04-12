@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataRecord;
+import com.liferay.data.engine.rest.dto.v1_0.DataRecordValue;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -853,6 +854,7 @@ public abstract class BaseDataRecordResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
+				addMixIn(DataRecord.class, DataRecordMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -869,6 +871,17 @@ public abstract class BaseDataRecordResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
+
+	protected static class DataRecordMixin {
+
+		@JsonProperty
+		Long dataRecordCollectionId;
+		@JsonProperty
+		DataRecordValue[] dataRecordValues;
+		@JsonProperty
+		Long id;
+
+	}
 
 	protected static class Page<T> {
 

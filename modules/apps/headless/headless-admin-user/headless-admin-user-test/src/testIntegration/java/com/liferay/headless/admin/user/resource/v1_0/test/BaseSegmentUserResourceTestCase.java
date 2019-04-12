@@ -545,10 +545,8 @@ public abstract class BaseSegmentUserResourceTestCase {
 
 		@JsonProperty
 		String email;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String name;
 

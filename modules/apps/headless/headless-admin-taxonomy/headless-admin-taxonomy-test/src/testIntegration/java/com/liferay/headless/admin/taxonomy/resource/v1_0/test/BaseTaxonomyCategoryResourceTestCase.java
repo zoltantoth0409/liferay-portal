@@ -1852,41 +1852,31 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 	protected static class TaxonomyCategoryMixin {
 
-		@JsonProperty
-		String[] availableLanguages;
-
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		String description;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		String name;
-
-		@JsonProperty
-		Number numberOfTaxonomyCategories;
-
-		@JsonProperty
-		ParentTaxonomyCategory parentTaxonomyCategory;
-
-		@JsonProperty
-		ParentTaxonomyVocabulary parentTaxonomyVocabulary;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		String[] availableLanguages;
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String description;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		String name;
+		@JsonProperty
+		Number numberOfTaxonomyCategories;
+		@JsonProperty
+		ParentTaxonomyCategory parentTaxonomyCategory;
+		@JsonProperty
+		ParentTaxonomyVocabulary parentTaxonomyVocabulary;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

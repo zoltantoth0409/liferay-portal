@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollectionPermission;
+import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -1182,6 +1183,9 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
+				addMixIn(
+					DataRecordCollection.class,
+					DataRecordCollectionMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -1198,6 +1202,19 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
+
+	protected static class DataRecordCollectionMixin {
+
+		@JsonProperty
+		Long dataDefinitionId;
+		@JsonProperty
+		LocalizedValue[] description;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		LocalizedValue[] name;
+
+	}
 
 	protected static class Page<T> {
 

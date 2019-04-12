@@ -1902,38 +1902,29 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 	protected static class StructuredContentFolderMixin {
 
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		String description;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		String name;
-
-		@JsonProperty
-		Number numberOfStructuredContentFolders;
-
-		@JsonProperty
-		Number numberOfStructuredContents;
-
-		@JsonProperty
-		Long siteId;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String description;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		String name;
+		@JsonProperty
+		Number numberOfStructuredContentFolders;
+		@JsonProperty
+		Number numberOfStructuredContents;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

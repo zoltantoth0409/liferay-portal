@@ -584,19 +584,14 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 		@JsonProperty
 		String contentUrl;
-
 		@JsonProperty
 		String encodingFormat;
-
 		@JsonProperty
 		String fileExtension;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		Number sizeInBytes;
-
 		@JsonProperty
 		String title;
 

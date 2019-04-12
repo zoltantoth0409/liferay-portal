@@ -879,31 +879,22 @@ public abstract class BasePostalAddressResourceTestCase {
 
 		@JsonProperty
 		String addressCountry;
-
 		@JsonProperty
 		String addressLocality;
-
 		@JsonProperty
 		String addressRegion;
-
 		@JsonProperty
 		String addressType;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String postalCode;
-
 		@JsonProperty
 		Boolean primary;
-
 		@JsonProperty
 		String streetAddressLine1;
-
 		@JsonProperty
 		String streetAddressLine2;
-
 		@JsonProperty
 		String streetAddressLine3;
 

@@ -2022,62 +2022,45 @@ public abstract class BaseDocumentResourceTestCase {
 
 	protected static class DocumentMixin {
 
-		@JsonProperty
-		AdaptedImage[] adaptedImages;
-
-		@JsonProperty
-		AggregateRating aggregateRating;
-
-		@JsonProperty
-		String contentUrl;
-
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		String description;
-
-		@JsonProperty
-		Long documentFolderId;
-
-		@JsonProperty
-		String encodingFormat;
-
-		@JsonProperty
-		String fileExtension;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		String[] keywords;
-
-		@JsonProperty
-		Number numberOfComments;
-
-		@JsonProperty
-		Number sizeInBytes;
-
-		@JsonProperty
-		TaxonomyCategory[] taxonomyCategories;
-
-		@JsonProperty
-		Long[] taxonomyCategoryIds;
-
-		@JsonProperty
-		String title;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		AdaptedImage[] adaptedImages;
+		@JsonProperty
+		AggregateRating aggregateRating;
+		@JsonProperty
+		String contentUrl;
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String description;
+		@JsonProperty
+		Long documentFolderId;
+		@JsonProperty
+		String encodingFormat;
+		@JsonProperty
+		String fileExtension;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		String[] keywords;
+		@JsonProperty
+		Number numberOfComments;
+		@JsonProperty
+		Number sizeInBytes;
+		@JsonProperty
+		TaxonomyCategory[] taxonomyCategories;
+		@JsonProperty
+		Long[] taxonomyCategoryIds;
+		@JsonProperty
+		String title;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

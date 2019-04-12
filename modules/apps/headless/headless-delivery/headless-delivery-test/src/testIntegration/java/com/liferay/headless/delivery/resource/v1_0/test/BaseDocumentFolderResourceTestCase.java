@@ -1733,38 +1733,29 @@ public abstract class BaseDocumentFolderResourceTestCase {
 
 	protected static class DocumentFolderMixin {
 
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		String description;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		String name;
-
-		@JsonProperty
-		Number numberOfDocumentFolders;
-
-		@JsonProperty
-		Number numberOfDocuments;
-
-		@JsonProperty
-		Long siteId;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String description;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		String name;
+		@JsonProperty
+		Number numberOfDocumentFolders;
+		@JsonProperty
+		Number numberOfDocuments;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

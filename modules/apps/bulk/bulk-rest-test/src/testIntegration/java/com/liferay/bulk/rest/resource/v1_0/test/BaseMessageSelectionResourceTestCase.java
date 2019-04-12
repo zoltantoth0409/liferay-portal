@@ -390,6 +390,7 @@ public abstract class BaseMessageSelectionResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
+				addMixIn(MessageSelection.class, MessageSelectionMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -406,6 +407,13 @@ public abstract class BaseMessageSelectionResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
+
+	protected static class MessageSelectionMixin {
+
+		@JsonProperty
+		String description;
+
+	}
 
 	protected static class Page<T> {
 

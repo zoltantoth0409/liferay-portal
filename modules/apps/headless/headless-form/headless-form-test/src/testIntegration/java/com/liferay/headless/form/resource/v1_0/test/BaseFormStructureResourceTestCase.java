@@ -775,31 +775,22 @@ public abstract class BaseFormStructureResourceTestCase {
 
 		@JsonProperty
 		String[] availableLanguages;
-
 		@JsonProperty
 		Creator creator;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		Date dateModified;
-
 		@JsonProperty
 		String description;
-
 		@JsonProperty
 		FormPage[] formPages;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String name;
-
 		@JsonProperty
 		Long siteId;
-
 		@JsonProperty
 		SuccessPage successPage;
 

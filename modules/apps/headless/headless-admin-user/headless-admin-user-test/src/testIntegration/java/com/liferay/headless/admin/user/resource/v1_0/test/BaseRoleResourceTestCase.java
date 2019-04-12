@@ -599,25 +599,18 @@ public abstract class BaseRoleResourceTestCase {
 
 		@JsonProperty
 		String[] availableLanguages;
-
 		@JsonProperty
 		Creator creator;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		Date dateModified;
-
 		@JsonProperty
 		String description;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String name;
-
 		@JsonProperty
 		String roleType;
 

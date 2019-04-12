@@ -2250,19 +2250,14 @@ public abstract class BaseCommentResourceTestCase {
 
 		@JsonProperty
 		Creator creator;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		Date dateModified;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		Number numberOfComments;
-
 		@JsonProperty
 		String text;
 

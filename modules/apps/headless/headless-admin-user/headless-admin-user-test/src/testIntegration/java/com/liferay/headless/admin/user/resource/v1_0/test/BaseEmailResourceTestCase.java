@@ -644,13 +644,10 @@ public abstract class BaseEmailResourceTestCase {
 
 		@JsonProperty
 		String email;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		Boolean primary;
-
 		@JsonProperty
 		String type;
 

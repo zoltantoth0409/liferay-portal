@@ -460,6 +460,7 @@ public abstract class BaseKeywordResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
+				addMixIn(Keyword.class, KeywordMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -476,6 +477,13 @@ public abstract class BaseKeywordResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
+
+	protected static class KeywordMixin {
+
+		@JsonProperty
+		String name;
+
+	}
 
 	protected static class Page<T> {
 

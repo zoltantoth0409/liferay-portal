@@ -22,7 +22,10 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
+import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionPermission;
+import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionRule;
+import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -55,6 +58,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -1079,6 +1083,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
+				addMixIn(DataDefinition.class, DataDefinitionMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -1095,6 +1100,31 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
+
+	protected static class DataDefinitionMixin {
+
+		@JsonProperty
+		DataDefinitionField[] dataDefinitionFields;
+		@JsonProperty
+		DataDefinitionRule[] dataDefinitionRules;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		LocalizedValue[] description;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		LocalizedValue[] name;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		String storageType;
+		@JsonProperty
+		Long userId;
+
+	}
 
 	protected static class Page<T> {
 

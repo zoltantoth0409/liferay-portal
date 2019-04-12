@@ -627,10 +627,8 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String url;
-
 		@JsonProperty
 		String urlType;
 

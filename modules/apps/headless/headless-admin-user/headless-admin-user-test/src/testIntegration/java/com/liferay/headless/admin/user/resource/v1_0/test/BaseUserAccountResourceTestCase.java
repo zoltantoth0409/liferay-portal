@@ -1942,64 +1942,44 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		@JsonProperty
 		String additionalName;
-
 		@JsonProperty
 		String alternateName;
-
 		@JsonProperty
 		Date birthDate;
-
 		@JsonProperty
 		ContactInformation contactInformation;
-
 		@JsonProperty
 		String dashboardURL;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		Date dateModified;
-
 		@JsonProperty
 		String email;
-
 		@JsonProperty
 		String familyName;
-
 		@JsonProperty
 		String givenName;
-
 		@JsonProperty
 		String honorificPrefix;
-
 		@JsonProperty
 		String honorificSuffix;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String image;
-
 		@JsonProperty
 		String jobTitle;
-
 		@JsonProperty
 		String[] keywords;
-
 		@JsonProperty
 		String name;
-
 		@JsonProperty
 		OrganizationBrief[] organizationBriefs;
-
 		@JsonProperty
 		String profileURL;
-
 		@JsonProperty
 		RoleBrief[] roleBriefs;
-
 		@JsonProperty
 		SiteBrief[] siteBriefs;
 

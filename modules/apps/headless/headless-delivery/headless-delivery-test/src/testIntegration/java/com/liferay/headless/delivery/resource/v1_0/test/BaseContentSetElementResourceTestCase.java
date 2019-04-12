@@ -993,13 +993,10 @@ public abstract class BaseContentSetElementResourceTestCase {
 
 		@JsonProperty
 		Object content;
-
 		@JsonProperty
 		String contentType;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String title;
 

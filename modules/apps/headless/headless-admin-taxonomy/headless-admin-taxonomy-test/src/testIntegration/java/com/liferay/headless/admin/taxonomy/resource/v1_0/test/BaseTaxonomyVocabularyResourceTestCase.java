@@ -1367,41 +1367,31 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 	protected static class TaxonomyVocabularyMixin {
 
-		@JsonProperty
-		AssetType[] assetTypes;
-
-		@JsonProperty
-		String[] availableLanguages;
-
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		String description;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		String name;
-
-		@JsonProperty
-		Number numberOfTaxonomyCategories;
-
-		@JsonProperty
-		Long siteId;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		AssetType[] assetTypes;
+		@JsonProperty
+		String[] availableLanguages;
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String description;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		String name;
+		@JsonProperty
+		Number numberOfTaxonomyCategories;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

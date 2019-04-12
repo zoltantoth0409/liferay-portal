@@ -786,31 +786,22 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		@JsonProperty
 		Creator auditPerson;
-
 		@JsonProperty
 		String commentLog;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		Creator person;
-
 		@JsonProperty
 		Creator previousPerson;
-
 		@JsonProperty
 		String previousState;
-
 		@JsonProperty
 		String state;
-
 		@JsonProperty
 		Long taskId;
-
 		@JsonProperty
 		String type;
 

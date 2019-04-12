@@ -1317,37 +1317,26 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		@JsonProperty
 		String comment;
-
 		@JsonProperty
 		ContactInformation contactInformation;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		Date dateModified;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String image;
-
 		@JsonProperty
 		String[] keywords;
-
 		@JsonProperty
 		Location location;
-
 		@JsonProperty
 		String name;
-
 		@JsonProperty
 		Number numberOfOrganizations;
-
 		@JsonProperty
 		Organization parentOrganization;
-
 		@JsonProperty
 		Service[] services;
 

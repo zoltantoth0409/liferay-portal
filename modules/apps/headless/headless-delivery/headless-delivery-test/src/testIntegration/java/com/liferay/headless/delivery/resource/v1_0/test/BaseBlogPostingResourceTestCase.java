@@ -1697,65 +1697,47 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	protected static class BlogPostingMixin {
 
-		@JsonProperty
-		AggregateRating aggregateRating;
-
-		@JsonProperty
-		String alternativeHeadline;
-
-		@JsonProperty
-		String articleBody;
-
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		Date datePublished;
-
-		@JsonProperty
-		String description;
-
-		@JsonProperty
-		String encodingFormat;
-
-		@JsonProperty
-		String friendlyUrlPath;
-
-		@JsonProperty
-		String headline;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		Image image;
-
-		@JsonProperty
-		String[] keywords;
-
-		@JsonProperty
-		Number numberOfComments;
-
-		@JsonProperty
-		Long siteId;
-
-		@JsonProperty
-		TaxonomyCategory[] taxonomyCategories;
-
-		@JsonProperty
-		Long[] taxonomyCategoryIds;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		AggregateRating aggregateRating;
+		@JsonProperty
+		String alternativeHeadline;
+		@JsonProperty
+		String articleBody;
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		Date datePublished;
+		@JsonProperty
+		String description;
+		@JsonProperty
+		String encodingFormat;
+		@JsonProperty
+		String friendlyUrlPath;
+		@JsonProperty
+		String headline;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		Image image;
+		@JsonProperty
+		String[] keywords;
+		@JsonProperty
+		Number numberOfComments;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		TaxonomyCategory[] taxonomyCategories;
+		@JsonProperty
+		Long[] taxonomyCategoryIds;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

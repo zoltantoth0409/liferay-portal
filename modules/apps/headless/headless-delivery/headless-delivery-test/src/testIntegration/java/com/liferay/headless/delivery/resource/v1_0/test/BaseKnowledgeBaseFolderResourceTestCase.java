@@ -1494,44 +1494,33 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 	protected static class KnowledgeBaseFolderMixin {
 
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		String description;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		String name;
-
-		@JsonProperty
-		Number numberOfKnowledgeBaseArticles;
-
-		@JsonProperty
-		Number numberOfKnowledgeBaseFolders;
-
-		@JsonProperty
-		ParentKnowledgeBaseFolder parentKnowledgeBaseFolder;
-
-		@JsonProperty
-		Long parentKnowledgeBaseFolderId;
-
-		@JsonProperty
-		Long siteId;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String description;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		String name;
+		@JsonProperty
+		Number numberOfKnowledgeBaseArticles;
+		@JsonProperty
+		Number numberOfKnowledgeBaseFolders;
+		@JsonProperty
+		ParentKnowledgeBaseFolder parentKnowledgeBaseFolder;
+		@JsonProperty
+		Long parentKnowledgeBaseFolderId;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

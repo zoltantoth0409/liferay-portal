@@ -2928,74 +2928,53 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	protected static class StructuredContentMixin {
 
-		@JsonProperty
-		AggregateRating aggregateRating;
-
-		@JsonProperty
-		String[] availableLanguages;
-
-		@JsonProperty
-		ContentField[] contentFields;
-
-		@JsonProperty
-		Long contentStructureId;
-
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		Date datePublished;
-
-		@JsonProperty
-		String description;
-
-		@JsonProperty
-		String friendlyUrlPath;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		String key;
-
-		@JsonProperty
-		String[] keywords;
-
-		@JsonProperty
-		Date lastReviewed;
-
-		@JsonProperty
-		Number numberOfComments;
-
-		@JsonProperty
-		RenderedContent[] renderedContents;
-
-		@JsonProperty
-		Long siteId;
-
-		@JsonProperty
-		TaxonomyCategory[] taxonomyCategories;
-
-		@JsonProperty
-		Long[] taxonomyCategoryIds;
-
-		@JsonProperty
-		String title;
-
-		@JsonProperty
-		String uuid;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		AggregateRating aggregateRating;
+		@JsonProperty
+		String[] availableLanguages;
+		@JsonProperty
+		ContentField[] contentFields;
+		@JsonProperty
+		Long contentStructureId;
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		Date datePublished;
+		@JsonProperty
+		String description;
+		@JsonProperty
+		String friendlyUrlPath;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		String key;
+		@JsonProperty
+		String[] keywords;
+		@JsonProperty
+		Date lastReviewed;
+		@JsonProperty
+		Number numberOfComments;
+		@JsonProperty
+		RenderedContent[] renderedContents;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		TaxonomyCategory[] taxonomyCategories;
+		@JsonProperty
+		Long[] taxonomyCategoryIds;
+		@JsonProperty
+		String title;
+		@JsonProperty
+		String uuid;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

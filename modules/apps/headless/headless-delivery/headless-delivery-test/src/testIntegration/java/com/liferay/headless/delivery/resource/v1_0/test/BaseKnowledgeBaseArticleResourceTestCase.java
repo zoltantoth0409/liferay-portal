@@ -2835,65 +2835,47 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	protected static class KnowledgeBaseArticleMixin {
 
-		@JsonProperty
-		AggregateRating aggregateRating;
-
-		@JsonProperty
-		String articleBody;
-
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		String description;
-
-		@JsonProperty
-		String encodingFormat;
-
-		@JsonProperty
-		String friendlyUrlPath;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		String[] keywords;
-
-		@JsonProperty
-		Number numberOfAttachments;
-
-		@JsonProperty
-		Number numberOfKnowledgeBaseArticles;
-
-		@JsonProperty
-		ParentKnowledgeBaseFolder parentKnowledgeBaseFolder;
-
-		@JsonProperty
-		Long parentKnowledgeBaseFolderId;
-
-		@JsonProperty
-		Long siteId;
-
-		@JsonProperty
-		TaxonomyCategory[] taxonomyCategories;
-
-		@JsonProperty
-		Long[] taxonomyCategoryIds;
-
-		@JsonProperty
-		String title;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		AggregateRating aggregateRating;
+		@JsonProperty
+		String articleBody;
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String description;
+		@JsonProperty
+		String encodingFormat;
+		@JsonProperty
+		String friendlyUrlPath;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		String[] keywords;
+		@JsonProperty
+		Number numberOfAttachments;
+		@JsonProperty
+		Number numberOfKnowledgeBaseArticles;
+		@JsonProperty
+		ParentKnowledgeBaseFolder parentKnowledgeBaseFolder;
+		@JsonProperty
+		Long parentKnowledgeBaseFolderId;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		TaxonomyCategory[] taxonomyCategories;
+		@JsonProperty
+		Long[] taxonomyCategoryIds;
+		@JsonProperty
+		String title;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

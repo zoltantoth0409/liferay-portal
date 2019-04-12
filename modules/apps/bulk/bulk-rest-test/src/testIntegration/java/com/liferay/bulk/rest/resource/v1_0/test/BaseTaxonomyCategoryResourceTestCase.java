@@ -460,6 +460,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
+				addMixIn(TaxonomyCategory.class, TaxonomyCategoryMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -476,6 +477,15 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
+
+	protected static class TaxonomyCategoryMixin {
+
+		@JsonProperty
+		Long taxonomyCategoryId;
+		@JsonProperty
+		String taxonomyCategoryName;
+
+	}
 
 	protected static class Page<T> {
 

@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.bulk.rest.dto.v1_0.DocumentBulkSelection;
+import com.liferay.bulk.rest.dto.v1_0.TaxonomyCategory;
 import com.liferay.bulk.rest.dto.v1_0.TaxonomyVocabulary;
 import com.liferay.bulk.rest.resource.v1_0.TaxonomyVocabularyResource;
 import com.liferay.petra.string.StringBundler;
@@ -491,6 +492,8 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
+				addMixIn(
+					TaxonomyVocabulary.class, TaxonomyVocabularyMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -507,6 +510,21 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
+
+	protected static class TaxonomyVocabularyMixin {
+
+		@JsonProperty
+		Boolean multiValued;
+		@JsonProperty
+		String name;
+		@JsonProperty
+		Boolean required;
+		@JsonProperty
+		TaxonomyCategory[] taxonomyCategories;
+		@JsonProperty
+		Long taxonomyVocabularyId;
+
+	}
 
 	protected static class Page<T> {
 

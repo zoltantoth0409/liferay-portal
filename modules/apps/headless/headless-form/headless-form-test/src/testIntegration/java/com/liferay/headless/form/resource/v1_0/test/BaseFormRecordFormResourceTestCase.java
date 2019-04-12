@@ -432,7 +432,6 @@ public abstract class BaseFormRecordFormResourceTestCase {
 
 		@JsonProperty
 		Boolean draft;
-
 		@JsonProperty
 		String fieldValues;
 

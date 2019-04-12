@@ -22,7 +22,9 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataLayout;
+import com.liferay.data.engine.rest.dto.v1_0.DataLayoutPage;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutPermission;
+import com.liferay.data.engine.rest.dto.v1_0.LocalizedValue;
 import com.liferay.data.engine.rest.resource.v1_0.DataLayoutResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -55,6 +57,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -1212,6 +1215,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
+				addMixIn(DataLayout.class, DataLayoutMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -1228,6 +1232,31 @@ public abstract class BaseDataLayoutResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
+
+	protected static class DataLayoutMixin {
+
+		@JsonProperty
+		Long dataDefinitionId;
+		@JsonProperty
+		DataLayoutPage[] dataLayoutPages;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String defaultLanguageId;
+		@JsonProperty
+		LocalizedValue[] description;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		LocalizedValue[] name;
+		@JsonProperty
+		String paginationMode;
+		@JsonProperty
+		Long userId;
+
+	}
 
 	protected static class Page<T> {
 

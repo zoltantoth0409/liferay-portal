@@ -1187,31 +1187,22 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		@JsonProperty
 		Boolean completed;
-
 		@JsonProperty
 		Date dateCompleted;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		String definitionName;
-
 		@JsonProperty
 		String description;
-
 		@JsonProperty
 		Date dueDate;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String name;
-
 		@JsonProperty
 		ObjectReviewed objectReviewed;
-
 		@JsonProperty
 		String[] transitions;
 

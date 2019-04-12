@@ -675,16 +675,12 @@ public abstract class BasePhoneResourceTestCase {
 
 		@JsonProperty
 		String extension;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String phoneNumber;
-
 		@JsonProperty
 		String phoneType;
-
 		@JsonProperty
 		Boolean primary;
 

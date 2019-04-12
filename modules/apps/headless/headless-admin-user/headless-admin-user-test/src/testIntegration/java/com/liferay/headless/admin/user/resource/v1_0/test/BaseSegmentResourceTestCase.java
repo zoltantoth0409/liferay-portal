@@ -810,25 +810,18 @@ public abstract class BaseSegmentResourceTestCase {
 
 		@JsonProperty
 		Boolean active;
-
 		@JsonProperty
 		String criteria;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		Date dateModified;
-
 		@JsonProperty
 		Long id;
-
 		@JsonProperty
 		String name;
-
 		@JsonProperty
 		Long siteId;
-
 		@JsonProperty
 		String source;
 

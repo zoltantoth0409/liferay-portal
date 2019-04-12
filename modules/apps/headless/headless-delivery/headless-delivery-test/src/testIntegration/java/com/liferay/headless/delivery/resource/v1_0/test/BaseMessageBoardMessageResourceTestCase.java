@@ -2232,53 +2232,39 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 
 	protected static class MessageBoardMessageMixin {
 
-		@JsonProperty
-		AggregateRating aggregateRating;
-
-		@JsonProperty
-		Boolean anonymous;
-
-		@JsonProperty
-		String articleBody;
-
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		String encodingFormat;
-
-		@JsonProperty
-		String headline;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		String[] keywords;
-
-		@JsonProperty
-		Integer numberOfMessageBoardAttachments;
-
-		@JsonProperty
-		Integer numberOfMessageBoardMessages;
-
-		@JsonProperty
-		Boolean showAsAnswer;
-
-		@JsonProperty
-		Long siteId;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		AggregateRating aggregateRating;
+		@JsonProperty
+		Boolean anonymous;
+		@JsonProperty
+		String articleBody;
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String encodingFormat;
+		@JsonProperty
+		String headline;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		String[] keywords;
+		@JsonProperty
+		Integer numberOfMessageBoardAttachments;
+		@JsonProperty
+		Integer numberOfMessageBoardMessages;
+		@JsonProperty
+		Boolean showAsAnswer;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

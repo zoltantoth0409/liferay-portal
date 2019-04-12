@@ -865,28 +865,20 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		@JsonProperty
 		Creator creator;
-
 		@JsonProperty
 		Date dateCreated;
-
 		@JsonProperty
 		Date dateModified;
-
 		@JsonProperty
 		Date datePublished;
-
 		@JsonProperty
 		Boolean draft;
-
 		@JsonProperty
 		FieldValue[] fieldValues;
-
 		@JsonProperty
 		Form form;
-
 		@JsonProperty
 		Long formId;
-
 		@JsonProperty
 		Long id;
 

@@ -2192,53 +2192,39 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 	protected static class MessageBoardThreadMixin {
 
-		@JsonProperty
-		AggregateRating aggregateRating;
-
-		@JsonProperty
-		String articleBody;
-
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		String encodingFormat;
-
-		@JsonProperty
-		String headline;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		String[] keywords;
-
-		@JsonProperty
-		Integer numberOfMessageBoardAttachments;
-
-		@JsonProperty
-		Integer numberOfMessageBoardMessages;
-
-		@JsonProperty
-		Boolean showAsQuestion;
-
-		@JsonProperty
-		Long siteId;
-
-		@JsonProperty
-		String threadType;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		AggregateRating aggregateRating;
+		@JsonProperty
+		String articleBody;
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String encodingFormat;
+		@JsonProperty
+		String headline;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		String[] keywords;
+		@JsonProperty
+		Integer numberOfMessageBoardAttachments;
+		@JsonProperty
+		Integer numberOfMessageBoardMessages;
+		@JsonProperty
+		Boolean showAsQuestion;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		String threadType;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

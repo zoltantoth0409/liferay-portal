@@ -1830,38 +1830,29 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 
 	protected static class MessageBoardSectionMixin {
 
-		@JsonProperty
-		Creator creator;
-
-		@JsonProperty
-		Date dateCreated;
-
-		@JsonProperty
-		Date dateModified;
-
-		@JsonProperty
-		String description;
-
-		@JsonProperty
-		Long id;
-
-		@JsonProperty
-		Integer numberOfMessageBoardSections;
-
-		@JsonProperty
-		Integer numberOfMessageBoardThreads;
-
-		@JsonProperty
-		Long siteId;
-
-		@JsonProperty
-		String title;
-
-		@JsonProperty
-		ViewableBy viewableBy;
-
 		public static enum ViewableBy {
 		}
+
+		@JsonProperty
+		Creator creator;
+		@JsonProperty
+		Date dateCreated;
+		@JsonProperty
+		Date dateModified;
+		@JsonProperty
+		String description;
+		@JsonProperty
+		Long id;
+		@JsonProperty
+		Integer numberOfMessageBoardSections;
+		@JsonProperty
+		Integer numberOfMessageBoardThreads;
+		@JsonProperty
+		Long siteId;
+		@JsonProperty
+		String title;
+		@JsonProperty
+		ViewableBy viewableBy;
 
 	}
 

@@ -348,6 +348,7 @@ public abstract class BaseStatusResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
+				addMixIn(Status.class, StatusMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -364,6 +365,13 @@ public abstract class BaseStatusResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
+
+	protected static class StatusMixin {
+
+		@JsonProperty
+		Boolean actionInProgress;
+
+	}
 
 	protected static class Page<T> {
 
