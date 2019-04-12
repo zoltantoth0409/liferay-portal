@@ -25,7 +25,7 @@ components:
             name: id
             required: true
             schema:
-                description: The resource Id, or external reference code Id if it's prefixed with ext-
+                description: The resource ID, or external reference code ID if it's prefixed with ext-
                 minLength: 1
                 type: string
             style: simple
@@ -35,7 +35,7 @@ components:
             name: id
             required: true
             schema:
-                description: The resource Id
+                description: The resource ID
                 example: 30130
                 format: int64
                 minimum: 0
@@ -776,7 +776,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -815,7 +815,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -881,7 +881,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -1553,7 +1553,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id
+                      description: The resource ID
                       example: 30130
                       format: int64
                       minimum: 0
@@ -1587,7 +1587,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id
+                      description: The resource ID
                       example: 30130
                       format: int64
                       minimum: 0
@@ -1648,7 +1648,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id
+                      description: The resource ID
                       example: 30130
                       format: int64
                       minimum: 0
@@ -1721,7 +1721,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -1803,7 +1803,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -1883,7 +1883,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -1965,7 +1965,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2035,7 +2035,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2101,7 +2101,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2169,7 +2169,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2251,7 +2251,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2331,7 +2331,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2415,7 +2415,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2485,7 +2485,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2551,7 +2551,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2619,7 +2619,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2701,7 +2701,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2781,7 +2781,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2847,7 +2847,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2915,7 +2915,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -2981,7 +2981,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3049,7 +3049,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3088,7 +3088,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3154,7 +3154,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3225,7 +3225,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3307,7 +3307,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3387,7 +3387,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3426,7 +3426,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3492,7 +3492,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3563,7 +3563,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3602,7 +3602,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3668,7 +3668,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id, or external reference code Id if it's prefixed with ext-
+                      description: The resource ID, or external reference code ID if it's prefixed with ext-
                       minLength: 1
                       type: string
                   style: simple
@@ -3732,7 +3732,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id
+                      description: The resource ID
                       example: 30130
                       format: int64
                       minimum: 0
@@ -3809,7 +3809,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id
+                      description: The resource ID
                       example: 30130
                       format: int64
                       minimum: 0
@@ -3884,7 +3884,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id
+                      description: The resource ID
                       example: 30130
                       format: int64
                       minimum: 0
@@ -3918,7 +3918,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id
+                      description: The resource ID
                       example: 30130
                       format: int64
                       minimum: 0
@@ -3979,7 +3979,7 @@ paths:
                   name: id
                   required: true
                   schema:
-                      description: The resource Id
+                      description: The resource ID
                       example: 30130
                       format: int64
                       minimum: 0

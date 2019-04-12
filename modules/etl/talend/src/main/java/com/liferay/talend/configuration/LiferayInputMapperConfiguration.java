@@ -25,6 +25,7 @@ import org.talend.sdk.component.api.meta.Documentation;
 
 /**
  * @author Zoltán Takács
+ * @review
  */
 @GridLayouts(
 	{
@@ -72,15 +73,15 @@ public class LiferayInputMapperConfiguration implements Serializable {
 		return this;
 	}
 
-	@Documentation("TODO fill the documentation for this parameter")
+	@Documentation("TODO Fill the documentation for this parameter")
 	@Option
 	private int _batchSize;
 
-	@Documentation("TODO fill the documentation for this parameter")
+	@Documentation("TODO Fill the documentation for this parameter")
 	@Option
 	private RestDataSet _restDataSet;
 
-	@Documentation("TODO fill the documentation for this parameter")
+	@Documentation("TODO Fill the documentation for this parameter")
 	@Option
 	private int _timeout;
 

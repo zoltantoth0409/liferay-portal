@@ -68,7 +68,7 @@ public class UIActionService {
 
 			return new HealthCheckStatus(
 				HealthCheckStatus.Status.KO,
-				"Username and Password are required");
+				"Username and password are required");
 		}
 
 		URL serverURL = inputDataStore.getServerURL();
@@ -144,7 +144,7 @@ public class UIActionService {
 				HealthCheckStatus.Status.KO, "Server URL is required");
 		}
 
-		// TODO perform connection check
+		// TODO Perform connection check
 
 		return new HealthCheckStatus(
 			HealthCheckStatus.Status.OK, "Connection success");

@@ -27,6 +27,7 @@ import org.talend.sdk.component.api.configuration.ui.layout.GridLayout;
 /**
  * @author Zoltán Takács
  * @author Igor Beslic
+ * @review
  */
 @DataSet("RestDataSet")
 @GridLayout({@GridLayout.Row("_inputDataStore"), @GridLayout.Row("_endpoint")})
