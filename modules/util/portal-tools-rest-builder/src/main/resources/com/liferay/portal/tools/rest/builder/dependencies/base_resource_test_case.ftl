@@ -1252,7 +1252,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 	<#list properties?keys as propertyName>
 		@JsonProperty
 		${properties[propertyName]}  ${propertyName};
-		
+
 	</#list>
 	<#assign enumSchemas = freeMarkerTool.getDTOEnumSchemas(schema) />
 	<#list enumSchemas?keys as enumName>
