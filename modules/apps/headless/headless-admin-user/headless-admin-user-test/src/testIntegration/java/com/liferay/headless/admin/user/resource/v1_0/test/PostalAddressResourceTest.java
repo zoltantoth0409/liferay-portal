@@ -140,7 +140,7 @@ public class PostalAddressResourceTest
 				addressLocality = address.getCity();
 				id = address.getAddressId();
 				postalCode = address.getZip();
-				primary = address.getPrimary();
+				primary = address.isPrimary();
 				streetAddressLine1 = address.getStreet1();
 			}
 		};
