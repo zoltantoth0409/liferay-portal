@@ -28,7 +28,7 @@ public interface OpenNLPDocumentAssetAutoTagger {
 	/**
 	 * Returns a list of tag names from the OpenNLP API.
 	 *
-	 * @param companyId the company id.
+	 * @param companyId the company ID
 	 * @param content the text to be tagged.
 	 * @param locale the text's locale.
 	 * @param mimeType the mime type of the text.

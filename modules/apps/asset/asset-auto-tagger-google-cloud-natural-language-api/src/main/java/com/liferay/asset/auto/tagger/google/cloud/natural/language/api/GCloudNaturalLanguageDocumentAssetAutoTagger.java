@@ -29,7 +29,7 @@ public interface GCloudNaturalLanguageDocumentAssetAutoTagger {
 	 * Returns a list of tag names from Google Cloud Natural Language
 	 * Classification API from the configuration, the text and its mimetype.
 	 *
-	 * @param companyId the company id.
+	 * @param companyId the company ID
 	 * @param content the text to be tagged.
 	 * @param locale the text's locale
 	 * @param mimeType the text mimeType.
@@ -44,7 +44,7 @@ public interface GCloudNaturalLanguageDocumentAssetAutoTagger {
 	 * Returns a list of tag names from Google Cloud Natural Language
 	 * Classification API from the configuration, the text and its mimetype.
 	 *
-	 * @param companyId the company id.
+	 * @param companyId the company ID
 	 * @param content the text to be tagged.
 	 * @param mimeType the text mimeType.
 	 * @return a list of tag names.
