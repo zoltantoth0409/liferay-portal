@@ -38,29 +38,20 @@ public class LiferayInputMapperTest {
 	public static final SimpleComponentRule COMPONENT_FACTORY =
 		new SimpleComponentRule("com.liferay.talend");
 
-	@Ignore("You need to complete this test")
+	@Ignore
 	@Test
 	public void testProduce() throws IOException {
 
-		// Source configuration
-		// Setup your component configuration for the test here
+		// TODO
 
-		final LiferayInputMapperConfiguration configuration =
+		LiferayInputMapperConfiguration configuration =
 			new LiferayInputMapperConfiguration();
 
-		// .setRestDataSet()
-		// .setTimeout()
-		// .setBatchSize() */;
-
-		// We create the component mapper instance using the configuration
-		// filled above
-
-		final Mapper mapper = COMPONENT_FACTORY.createMapper(
+		Mapper mapper = COMPONENT_FACTORY.createMapper(
 			LiferayInputMapper.class, configuration);
 
-        // Collect the source as a list
 		Assert.assertEquals(
-			Arrays.asList(/* TODO - give the expected data */),
+			Arrays.asList(),
 			COMPONENT_FACTORY.collectAsList(Record.class, mapper));
 	}
 
