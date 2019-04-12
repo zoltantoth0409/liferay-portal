@@ -299,6 +299,8 @@ schema=schema.xml</echo>
 	</target>
 
 	<target name="start-solr">
+		<antcall target="delete-commerce-modules" />
+
 		<unzip-solr />
 
 		<prepare-solr-configurations />
