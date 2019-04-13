@@ -59,7 +59,7 @@ class CriteriaGroup extends Component {
 		criteria: PropTypes.object,
 		dragging: PropTypes.bool,
 		editing: PropTypes.bool,
-		emptyContributors: PropTypes.bool,
+		empty: PropTypes.bool,
 		entityName: PropTypes.string,
 		groupId: PropTypes.string,
 		index: PropTypes.number,
@@ -319,7 +319,7 @@ class CriteriaGroup extends Component {
 			criteria,
 			dragging,
 			editing,
-			emptyContributors,
+			empty,
 			groupId,
 			onMove,
 			propertyKey,
@@ -343,7 +343,7 @@ class CriteriaGroup extends Component {
 			>
 				{this._isCriteriaEmpty() ?
 					<EmptyDropZone
-						emptyContributors={emptyContributors}
+						empty={empty}
 						onCriterionAdd={this._handleCriterionAdd}
 						propertyKey={propertyKey}
 					/> :
