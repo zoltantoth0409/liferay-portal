@@ -60,7 +60,7 @@ class EmptyDropZone extends Component {
 		);
 
 		const targetClasses = getCN(
-			emptyContributors ? 'empty-drop-zone-target' : 'drop-zone-target p-5',
+			emptyContributors ? 'empty-drop-zone-target' : 'drop-zone-target',
 			{
 				'empty-drop-zone-target-solid dnd-hover border-primary rounded': canDrop && hover
 			}

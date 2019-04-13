@@ -6,7 +6,7 @@ exports[`EmptyDropZone should render 1`] = `
     class="empty-drop-zone-root empty-drop-zone-dashed border-primary rounded"
   >
     <div
-      class="drop-zone-target p-5"
+      class="drop-zone-target"
     >
       <div
         class="empty-drop-zone-indicator"
