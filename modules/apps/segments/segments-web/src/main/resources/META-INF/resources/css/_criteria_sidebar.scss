@@ -28,11 +28,17 @@
 
 		.criteria-sidebar-item-root {
 			align-items: center;
-			border-left: 3px solid $white;
+			border-left: 3px solid $chartBlue;
 			display: flex;
 			font-size: 14px;
 			margin: 4px 0;
 			padding: 8px 16px 8px 8px;
+
+			@include generatePropertyGroupLoop(
+				$propertyGroupsColors,
+				'border-left-color',
+				'color--'
+			);
 
 			.criteria-sidebar-item-type {
 				margin: 0 8px;
@@ -51,14 +57,7 @@
 			}
 
 			&:hover {
-				border-left: 3px solid $chartBlue;
 				cursor: grab;
-
-				@include generatePropertyGroupLoop(
-					$propertyGroupsColors,
-					'border-left-color',
-					'color--'
-				);
 			}
 		}
 
