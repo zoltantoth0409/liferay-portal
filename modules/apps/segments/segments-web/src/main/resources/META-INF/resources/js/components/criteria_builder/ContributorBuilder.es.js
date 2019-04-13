@@ -238,7 +238,9 @@ class ContributorBuilder extends React.Component {
 									<h2 className="sheet-title">{Liferay.Language.get('conditions')}</h2>
 									<ContributorInputs contributors={contributors} />
 
-									{emptyContributors && (editingId == undefined || !editing) &&
+									{
+										emptyContributors &&
+										(editingId == undefined || !editing) &&
 										<EmptyPlaceholder />
 									}
 
