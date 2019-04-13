@@ -1,5 +1,4 @@
 import Conjunction from './Conjunction.es';
-import ContributorInputs from './ContributorInputs.es';
 import CriteriaBuilder from './CriteriaBuilder.es';
 import CriteriaSidebar from '../criteria_sidebar/CriteriaSidebar.es';
 import EmptyPlaceholder from './EmptyPlaceholder.es';
@@ -236,13 +235,33 @@ class ContributorBuilder extends React.Component {
 							<div className="content-wrapper">
 								<div className="sheet">
 									<h2 className="sheet-title">{Liferay.Language.get('conditions')}</h2>
-									<ContributorInputs contributors={contributors} />
 
-									{
-										emptyContributors &&
-										(editingId == undefined || !editing) &&
+									{((emptyContributors && editingId == undefined) || (!editing && emptyContributors)) &&
 										<EmptyPlaceholder />
 									}
+
+									{contributors.map(
+										(criteria, i) => {
+											return (<React.Fragment key={i}>
+												<input
+													className="field form-control"
+													data-testid={criteria.inputId}
+													id={criteria.inputId}
+													name={criteria.inputId}
+													readOnly
+													type="hidden"
+													value={criteria.query}
+												/>
+												<input
+													id={criteria.conjunctionInputId}
+													name={criteria.conjunctionInputId}
+													readOnly
+													type="hidden"
+													value={criteria.conjunctionId}
+												/>
+											</React.Fragment>);
+										}
+									)}
 
 									{contributors.filter(
 										criteria => {

@@ -14,8 +14,8 @@ describe(
 					<CriteriaBuilder
 						editing={false}
 						editingCriteria={false}
-						emptyContributors={false}
 						entityName="User"
+						emptyContributors={false}
 						id="0"
 						propertyKey="user"
 						supportedProperties={[]}
