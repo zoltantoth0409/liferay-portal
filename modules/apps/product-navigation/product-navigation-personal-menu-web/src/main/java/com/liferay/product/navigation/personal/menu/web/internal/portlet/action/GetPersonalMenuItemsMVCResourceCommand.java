@@ -241,14 +241,15 @@ public class GetPersonalMenuItemsMVCResourceCommand
 		for (int i = 0; i < groupedPersonalMenuEntries.size(); i++) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-			JSONArray items = _getPersonalMenuEntriesJSONArray(
-				portletRequest, groupedPersonalMenuEntries.get(i));
+			JSONArray personalMenuEntriesJSONArray =
+				_getPersonalMenuEntriesJSONArray(
+					portletRequest, groupedPersonalMenuEntries.get(i));
 
-			if (items.length() == 0) {
+			if (personalMenuEntriesJSONArray.length() == 0) {
 				continue;
 			}
 
-			jsonObject.put("items", items);
+			jsonObject.put("items", personalMenuEntriesJSONArray);
 
 			if (i < (groupedPersonalMenuEntries.size() - 1)) {
 				jsonObject.put("separator", true);
