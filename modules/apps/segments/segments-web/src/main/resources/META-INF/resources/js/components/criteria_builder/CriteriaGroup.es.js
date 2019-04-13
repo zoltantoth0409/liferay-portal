@@ -59,7 +59,6 @@ class CriteriaGroup extends Component {
 		criteria: PropTypes.object,
 		dragging: PropTypes.bool,
 		editing: PropTypes.bool,
-		empty: PropTypes.bool,
 		entityName: PropTypes.string,
 		groupId: PropTypes.string,
 		index: PropTypes.number,
@@ -319,7 +318,6 @@ class CriteriaGroup extends Component {
 			criteria,
 			dragging,
 			editing,
-			empty,
 			groupId,
 			onMove,
 			propertyKey,
@@ -327,9 +325,7 @@ class CriteriaGroup extends Component {
 		} = this.props;
 
 		const classes = getCN(
-			{
-				'criteria-group-root': criteria
-			},
+			'criteria-group-root',
 			`criteria-group-item${root ? '-root' : ''}`,
 			`color--${propertyKey}`,
 			{
@@ -343,7 +339,6 @@ class CriteriaGroup extends Component {
 			>
 				{this._isCriteriaEmpty() ?
 					<EmptyDropZone
-						empty={empty}
 						onCriterionAdd={this._handleCriterionAdd}
 						propertyKey={propertyKey}
 					/> :

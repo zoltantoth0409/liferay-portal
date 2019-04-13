@@ -164,13 +164,10 @@ class SegmentEdit extends Component {
 
 		const {editing} = this.state;
 
-		const emptyQuery = this._isQueryEmpty();
-
 		return (
 			(propertyGroups && contributors) ?
 				<ContributorBuilder
 					editing={editing}
-					empty={emptyQuery}
 					initialContributors={contributors}
 					onQueryChange={this._handleQueryChange}
 					propertyGroups={propertyGroups}
