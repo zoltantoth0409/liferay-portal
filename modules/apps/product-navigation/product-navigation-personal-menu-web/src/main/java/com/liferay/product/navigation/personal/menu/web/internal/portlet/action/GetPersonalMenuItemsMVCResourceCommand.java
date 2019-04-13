@@ -159,7 +159,7 @@ public class GetPersonalMenuItemsMVCResourceCommand
 		return jsonArray;
 	}
 
-	private JSONArray _getPersonalMenuEntriesAsJSONArray(
+	private JSONArray _getPersonalMenuEntriesJSONArray(
 			PortletRequest portletRequest,
 			List<PersonalMenuEntry> personalMenuEntries)
 		throws PortalException {
@@ -241,7 +241,7 @@ public class GetPersonalMenuItemsMVCResourceCommand
 		for (int i = 0; i < groupedPersonalMenuEntries.size(); i++) {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-			JSONArray items = _getPersonalMenuEntriesAsJSONArray(
+			JSONArray items = _getPersonalMenuEntriesJSONArray(
 				portletRequest, groupedPersonalMenuEntries.get(i));
 
 			if (items.length() == 0) {
