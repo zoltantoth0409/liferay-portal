@@ -111,7 +111,7 @@ public class NavItem implements Serializable {
 			while (iterator.hasNext()) {
 				Layout childLayout = iterator.next();
 
-				if (_isContentPageDraft(childLayout) ||
+				if (_isContentLayoutDraft(childLayout) ||
 					childLayout.isHidden() ||
 					!LayoutPermissionUtil.contains(
 						themeDisplay.getPermissionChecker(), childLayout,
@@ -128,7 +128,7 @@ public class NavItem implements Serializable {
 			List<Layout> childLayouts = layoutChildLayouts.get(
 				parentLayout.getPlid());
 
-			if (_isContentPageDraft(parentLayout)) {
+			if (_isContentLayoutDraft(parentLayout)) {
 				continue;
 			}
 
@@ -429,7 +429,7 @@ public class NavItem implements Serializable {
 		return navItems;
 	}
 
-	private static boolean _isContentPageDraft(Layout layout) {
+	private static boolean _isContentLayoutDraft(Layout layout) {
 		if (!Objects.equals(layout.getType(), LayoutConstants.TYPE_CONTENT)) {
 			return false;
 		}
