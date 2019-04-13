@@ -12930,7 +12930,7 @@ metal-uri@^3.1.0, metal-uri@^3.1.2:
     resolve-pathname "^2.2.0"
     url-parse "^1.1.9"
 
-metal-useragent@3.0.1, metal-useragent@^3.0.0:
+metal-useragent@3.0.1, metal-useragent@^3.0.0, metal-useragent@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/metal-useragent/-/metal-useragent-3.0.1.tgz#9bc3056a744eaef5e15ed6763c77da266e0f0330"
   integrity sha512-rld1rRGmis/Wt1O/d8nIeEDOBhzCzz2xvteTbsJzE+1sixoTYcCQk6cRBxFFKur6U5LUEEyC7sV4+mHndVHAgQ==
