@@ -115,7 +115,7 @@ public class ConnectionService {
 
 		if (jsonObjectResponse == null) {
 			throw new OAuth2Exception(
-				"Authorization request failed. OAuth2 end point did not " +
+				"Authorization request failed. OAuth 2.0 endpoint did not " +
 					"respond.");
 		}
 
