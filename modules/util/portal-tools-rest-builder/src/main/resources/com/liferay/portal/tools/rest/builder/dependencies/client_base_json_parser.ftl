@@ -116,17 +116,21 @@ public abstract class BaseJSONParser<T> {
 
 	protected abstract void setField(T dto, String jsonParserFieldName, Object jsonParserFieldValue);
 
+	protected Date toDate(String string) {
+		try {
+			return _dateFormat.parse(string);
+		}
+		catch (ParseException pe) {
+			throw new IllegalArgumentException("Unable to parse date from " + string, pe);
+		}
+	}
+
 	protected Date[] toDates(Object[] objects) {
 		return Stream.of(
 			objects
 		).map(
 			object -> {
-				try {
-					return _dateFormat.parse((String)object);
-				}
-				catch (ParseException pe) {
-					throw new IllegalArgumentException("Unable to parse date from " + object, pe);
-				}
+				return toDate((String)object);
 			}
 		).toArray(
 			size -> new Date[size]
@@ -165,6 +169,10 @@ public abstract class BaseJSONParser<T> {
 		).toArray(
 			size -> new Long[size]
 		);
+	}
+
+	protected String toString(Date date) {
+		return _dateFormat.format(date);
 	}
 
 	protected String[] toStrings(Object[] objects) {

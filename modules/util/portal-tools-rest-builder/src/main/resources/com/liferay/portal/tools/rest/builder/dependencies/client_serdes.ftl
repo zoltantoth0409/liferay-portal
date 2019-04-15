@@ -9,7 +9,6 @@ import ${configYAML.apiPackagePath}.client.json.BaseJSONParser;
 import java.math.BigDecimal;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.Collection;
@@ -54,6 +53,18 @@ public class ${schemaName}SerDes {
 		/>
 
 		<#list properties?keys as propertyName>
+			<#assign
+				propertyType = properties[propertyName]
+			/>
+
+			<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "Date[]")>
+				DateFormat liferayToJSONDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+				<#break>
+			</#if>
+		</#list>
+
+		<#list properties?keys as propertyName>
 			<#if !propertyName?is_first>
 				sb.append(", ");
 			</#if>
@@ -74,7 +85,13 @@ public class ${schemaName}SerDes {
 					for (int i = 0; i < ${schemaVarName}.get${propertyName?cap_first}().length; i++) {
 						<#if stringUtil.equals(propertyType, "Date[]") || stringUtil.equals(propertyType, "String[]") || enumSchemas?keys?seq_contains(propertyType)>
 							sb.append("\"");
-							sb.append(${schemaVarName}.get${propertyName?cap_first}()[i]);
+
+							<#if stringUtil.equals(propertyType, "Date[]")>
+								sb.append(liferayToJSONDateFormat.format(${schemaVarName}.get${propertyName?cap_first}()[i]));
+							<#else>
+								sb.append(${schemaVarName}.get${propertyName?cap_first}()[i]);
+							</#if>
+
 							sb.append("\"");
 						<#else>
 							sb.append(${schemaVarName}.get${propertyName?cap_first}()[i]);
@@ -89,7 +106,13 @@ public class ${schemaName}SerDes {
 				<#else>
 					<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "String") || enumSchemas?keys?seq_contains(propertyType)>
 						sb.append("\"");
-						sb.append(${schemaVarName}.get${propertyName?cap_first}());
+
+						<#if stringUtil.equals(propertyType, "Date")>
+							sb.append(liferayToJSONDateFormat.format(${schemaVarName}.get${propertyName?cap_first}()));
+						<#else>
+							sb.append(${schemaVarName}.get${propertyName?cap_first}());
+						</#if>
+
 						sb.append("\"");
 					<#else>
 						sb.append(${schemaVarName}.get${propertyName?cap_first}());
@@ -128,7 +151,7 @@ public class ${schemaName}SerDes {
 						/>
 
 						<#if stringUtil.equals(propertyType, "Date")>
-							_toDate((String)jsonParserFieldValue)
+							toDate((String)jsonParserFieldValue)
 						<#elseif stringUtil.equals(propertyType, "Date[]")>
 							toDates((Object[])jsonParserFieldValue)
 						<#elseif stringUtil.equals(propertyType, "Integer[]")>
@@ -168,27 +191,6 @@ public class ${schemaName}SerDes {
 				throw new IllegalArgumentException("Unsupported field name " + jsonParserFieldName);
 			}
 		}
-
-		<#list properties?keys as propertyName>
-			<#assign
-				propertyType = properties[propertyName]
-			/>
-
-			<#if stringUtil.equals(propertyType, "Date")>
-				private Date _toDate(String string) {
-					try {
-						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-						return dateFormat.parse(string);
-					}
-					catch (ParseException pe) {
-						throw new IllegalArgumentException("Unable to parse " + string);
-					}
-				}
-
-				<#break>
-			</#if>
-		</#list>
 	}
 
 }
