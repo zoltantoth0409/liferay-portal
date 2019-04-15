@@ -76,10 +76,10 @@ public class CopyLayoutMVCActionCommand extends BaseMVCActionCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		long sourcePlid = ParamUtil.getLong(uploadPortletRequest, "sourcePlid");
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		boolean privateLayout = ParamUtil.getBoolean(
 			actionRequest, "privateLayout");
-		long sourcePlid = ParamUtil.getLong(uploadPortletRequest, "sourcePlid");
 		String name = ParamUtil.getString(actionRequest, "name");
 
 		Map<Locale, String> nameMap = new HashMap<>();

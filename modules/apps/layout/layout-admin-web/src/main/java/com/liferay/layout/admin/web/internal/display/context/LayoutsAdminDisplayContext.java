@@ -308,10 +308,8 @@ public class LayoutsAdminDisplayContext {
 
 		copyLayoutRenderURL.setParameter(
 			"mvcRenderCommandName", "/layout/add_layout");
-
 		copyLayoutRenderURL.setParameter(
 			"sourcePlid", String.valueOf(layout.getPlid()));
-
 		copyLayoutRenderURL.setWindowState(LiferayWindowState.POP_UP);
 
 		return copyLayoutRenderURL.toString();
@@ -322,6 +320,7 @@ public class LayoutsAdminDisplayContext {
 
 		copyLayoutURL.setParameter(
 			ActionRequest.ACTION_NAME, "/layout/copy_layout");
+		copyLayoutURL.setParameter("sourcePlid", String.valueOf(sourcePlid));
 		copyLayoutURL.setParameter("groupId", String.valueOf(getGroupId()));
 		copyLayoutURL.setParameter(
 			"liveGroupId", String.valueOf(getLiveGroupId()));
@@ -329,7 +328,6 @@ public class LayoutsAdminDisplayContext {
 			"stagingGroupId", String.valueOf(getStagingGroupId()));
 		copyLayoutURL.setParameter(
 			"privateLayout", String.valueOf(isPrivateLayout()));
-		copyLayoutURL.setParameter("sourcePlid", String.valueOf(sourcePlid));
 
 		return copyLayoutURL.toString();
 	}
