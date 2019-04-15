@@ -212,6 +212,11 @@ public class RESTBuilder {
 		}
 
 		FileUtil.deleteFiles(_configYAML.getApiDir(), _files);
+
+		if (Validator.isNotNull(_configYAML.getClientDir())) {
+			FileUtil.deleteFiles(_configYAML.getClientDir(), _files);
+		}
+
 		FileUtil.deleteFiles(_configYAML.getImplDir(), _files);
 		FileUtil.deleteFiles(
 			_configYAML.getImplDir() + "/../resources/OSGI-INF/", _files);
