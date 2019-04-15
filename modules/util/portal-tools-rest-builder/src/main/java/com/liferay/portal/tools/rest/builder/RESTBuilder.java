@@ -193,7 +193,7 @@ public class RESTBuilder {
 					_createClientSerDesFile(
 						context, escapedVersion, schemaName);
 
-					String pageSchemaName = schemaName + "_Page";
+					String pageSchemaName = "Page_" + schemaName;
 
 					Schema pageSchema = _getPageSchema(schemaName);
 
