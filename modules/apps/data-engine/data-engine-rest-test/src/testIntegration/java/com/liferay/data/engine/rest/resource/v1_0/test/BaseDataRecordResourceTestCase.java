@@ -330,7 +330,9 @@ public abstract class BaseDataRecordResourceTestCase {
 			return outputObjectMapper.readValue(string, DataRecord.class);
 		}
 		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
+			if (_log.isDebugEnabled()) {
+				_log.debug("Unable to process HTTP response: " + string, e);
+			}
 
 			throw e;
 		}
@@ -497,7 +499,9 @@ public abstract class BaseDataRecordResourceTestCase {
 			return outputObjectMapper.readValue(string, DataRecord.class);
 		}
 		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
+			if (_log.isDebugEnabled()) {
+				_log.debug("Unable to process HTTP response: " + string, e);
+			}
 
 			throw e;
 		}
@@ -570,7 +574,9 @@ public abstract class BaseDataRecordResourceTestCase {
 			return outputObjectMapper.readValue(string, DataRecord.class);
 		}
 		catch (Exception e) {
-			_log.error("Unable to process HTTP response: " + string, e);
+			if (_log.isDebugEnabled()) {
+				_log.debug("Unable to process HTTP response: " + string, e);
+			}
 
 			throw e;
 		}
