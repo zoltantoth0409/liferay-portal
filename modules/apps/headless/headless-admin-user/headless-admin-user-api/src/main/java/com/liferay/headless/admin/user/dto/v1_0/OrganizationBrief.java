@@ -140,7 +140,9 @@ public class OrganizationBrief {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(name);
+			sb.append("\"");
 		}
 
 		sb.append("}");

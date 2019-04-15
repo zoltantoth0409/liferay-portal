@@ -55,7 +55,9 @@ public class ImageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(image.getCaption());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -66,7 +68,9 @@ public class ImageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(image.getContentUrl());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

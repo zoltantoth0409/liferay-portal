@@ -666,7 +666,9 @@ public class Document {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentUrl);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -688,7 +690,9 @@ public class Document {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateCreated);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -699,7 +703,9 @@ public class Document {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateModified);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -710,7 +716,9 @@ public class Document {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(description);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -732,7 +740,9 @@ public class Document {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(encodingFormat);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -743,7 +753,9 @@ public class Document {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(fileExtension);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -852,7 +864,9 @@ public class Document {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(title);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

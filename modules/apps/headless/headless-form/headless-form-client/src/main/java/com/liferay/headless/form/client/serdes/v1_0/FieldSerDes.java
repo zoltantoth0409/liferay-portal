@@ -68,7 +68,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getDataSourceType());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -79,7 +81,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getDataType());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -90,7 +94,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getDisplayStyle());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -156,7 +162,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getInputControl());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -167,7 +175,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getLabel());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -200,7 +210,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -232,7 +244,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getPlaceholder());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -243,7 +257,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getPredefinedValue());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -309,7 +325,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getStyle());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -320,7 +338,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getText());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -331,7 +351,9 @@ public class FieldSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(field.getTooltip());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

@@ -381,7 +381,9 @@ public class ContactInformation {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(facebook);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -403,7 +405,9 @@ public class ContactInformation {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(jabber);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -435,7 +439,9 @@ public class ContactInformation {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(skype);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -446,7 +452,9 @@ public class ContactInformation {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(sms);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -478,7 +486,9 @@ public class ContactInformation {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(twitter);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

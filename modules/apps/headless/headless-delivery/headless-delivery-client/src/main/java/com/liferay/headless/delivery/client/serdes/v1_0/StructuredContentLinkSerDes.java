@@ -68,7 +68,9 @@ public class StructuredContentLinkSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContentLink.getTitle());
+			sb.append("\"");
 		}
 
 		sb.append("}");

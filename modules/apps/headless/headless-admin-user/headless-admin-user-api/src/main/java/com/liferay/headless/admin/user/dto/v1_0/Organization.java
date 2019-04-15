@@ -422,7 +422,9 @@ public class Organization {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(comment);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -444,7 +446,9 @@ public class Organization {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateCreated);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -455,7 +459,9 @@ public class Organization {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateModified);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -477,7 +483,9 @@ public class Organization {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(image);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -522,7 +530,9 @@ public class Organization {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(name);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

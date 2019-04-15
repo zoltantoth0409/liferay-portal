@@ -161,7 +161,9 @@ public class Image {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(caption);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -172,7 +174,9 @@ public class Image {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentUrl);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

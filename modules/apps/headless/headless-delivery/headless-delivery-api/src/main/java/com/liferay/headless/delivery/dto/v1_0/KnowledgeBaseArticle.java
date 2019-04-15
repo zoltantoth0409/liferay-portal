@@ -703,7 +703,9 @@ public class KnowledgeBaseArticle {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(articleBody);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -725,7 +727,9 @@ public class KnowledgeBaseArticle {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateCreated);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -736,7 +740,9 @@ public class KnowledgeBaseArticle {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateModified);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -747,7 +753,9 @@ public class KnowledgeBaseArticle {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(description);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -758,7 +766,9 @@ public class KnowledgeBaseArticle {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(encodingFormat);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -769,7 +779,9 @@ public class KnowledgeBaseArticle {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(friendlyUrlPath);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -911,7 +923,9 @@ public class KnowledgeBaseArticle {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(title);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

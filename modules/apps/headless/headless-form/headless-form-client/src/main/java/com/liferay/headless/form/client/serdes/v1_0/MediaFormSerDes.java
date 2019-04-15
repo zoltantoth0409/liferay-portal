@@ -55,7 +55,9 @@ public class MediaFormSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(mediaForm.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -77,7 +79,9 @@ public class MediaFormSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(mediaForm.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -88,7 +92,9 @@ public class MediaFormSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(mediaForm.getTitle());
+			sb.append("\"");
 		}
 
 		sb.append("}");

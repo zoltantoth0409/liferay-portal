@@ -75,7 +75,9 @@ public class StructuredContentFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContentFolder.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -86,7 +88,9 @@ public class StructuredContentFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContentFolder.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -97,7 +101,9 @@ public class StructuredContentFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContentFolder.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -119,7 +125,9 @@ public class StructuredContentFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContentFolder.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

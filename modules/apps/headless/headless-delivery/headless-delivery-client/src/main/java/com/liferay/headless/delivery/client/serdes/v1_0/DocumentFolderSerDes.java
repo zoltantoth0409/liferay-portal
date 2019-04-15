@@ -73,7 +73,9 @@ public class DocumentFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(documentFolder.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -84,7 +86,9 @@ public class DocumentFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(documentFolder.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -95,7 +99,9 @@ public class DocumentFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(documentFolder.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -117,7 +123,9 @@ public class DocumentFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(documentFolder.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

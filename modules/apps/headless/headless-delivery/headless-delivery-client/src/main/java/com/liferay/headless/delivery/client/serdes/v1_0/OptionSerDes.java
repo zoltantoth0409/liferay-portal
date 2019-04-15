@@ -55,7 +55,9 @@ public class OptionSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(option.getLabel());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -66,7 +68,9 @@ public class OptionSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(option.getValue());
+			sb.append("\"");
 		}
 
 		sb.append("}");

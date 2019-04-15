@@ -170,7 +170,9 @@ public class AssetType {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(subtype);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -181,7 +183,9 @@ public class AssetType {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(type);
+			sb.append("\"");
 		}
 
 		sb.append("}");

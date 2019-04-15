@@ -84,7 +84,9 @@ public class MessageBoardMessageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardMessage.getArticleBody());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -106,7 +108,9 @@ public class MessageBoardMessageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardMessage.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -117,7 +121,9 @@ public class MessageBoardMessageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardMessage.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -128,7 +134,9 @@ public class MessageBoardMessageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardMessage.getEncodingFormat());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -139,7 +147,9 @@ public class MessageBoardMessageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardMessage.getHeadline());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

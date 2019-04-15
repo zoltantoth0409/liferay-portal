@@ -88,7 +88,9 @@ public class FieldValueSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(fieldValue.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -99,7 +101,9 @@ public class FieldValueSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(fieldValue.getValue());
+			sb.append("\"");
 		}
 
 		sb.append("}");

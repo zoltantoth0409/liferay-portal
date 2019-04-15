@@ -365,7 +365,9 @@ public class WorkflowLog {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(commentLog);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -376,7 +378,9 @@ public class WorkflowLog {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateCreated);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -420,7 +424,9 @@ public class WorkflowLog {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(previousState);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -431,7 +437,9 @@ public class WorkflowLog {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(state);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -453,7 +461,9 @@ public class WorkflowLog {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(type);
+			sb.append("\"");
 		}
 
 		sb.append("}");

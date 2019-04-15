@@ -161,7 +161,9 @@ public class Location {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(addressCountry);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -172,7 +174,9 @@ public class Location {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(addressRegion);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

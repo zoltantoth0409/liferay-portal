@@ -68,7 +68,9 @@ public class ParentTaxonomyCategorySerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(parentTaxonomyCategory.getName());
+			sb.append("\"");
 		}
 
 		sb.append("}");

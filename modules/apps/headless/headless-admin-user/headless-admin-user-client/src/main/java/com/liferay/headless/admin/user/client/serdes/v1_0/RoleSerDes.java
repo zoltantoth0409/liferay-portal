@@ -94,7 +94,9 @@ public class RoleSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(role.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -105,7 +107,9 @@ public class RoleSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(role.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -116,7 +120,9 @@ public class RoleSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(role.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -138,7 +144,9 @@ public class RoleSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(role.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -149,7 +157,9 @@ public class RoleSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(role.getRoleType());
+			sb.append("\"");
 		}
 
 		sb.append("}");

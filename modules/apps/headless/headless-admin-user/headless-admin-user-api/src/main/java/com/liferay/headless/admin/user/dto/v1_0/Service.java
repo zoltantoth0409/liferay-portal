@@ -192,7 +192,9 @@ public class Service {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(serviceType);
+			sb.append("\"");
 		}
 
 		sb.append("}");

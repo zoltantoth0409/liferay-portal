@@ -73,7 +73,9 @@ public class WorkflowLogSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowLog.getCommentLog());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -84,7 +86,9 @@ public class WorkflowLogSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowLog.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -128,7 +132,9 @@ public class WorkflowLogSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowLog.getPreviousState());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -139,7 +145,9 @@ public class WorkflowLogSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowLog.getState());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -161,7 +169,9 @@ public class WorkflowLogSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowLog.getType());
+			sb.append("\"");
 		}
 
 		sb.append("}");

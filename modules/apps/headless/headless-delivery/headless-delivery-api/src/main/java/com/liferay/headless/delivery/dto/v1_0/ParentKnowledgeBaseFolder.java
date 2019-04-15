@@ -143,7 +143,9 @@ public class ParentKnowledgeBaseFolder {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(folderName);
+			sb.append("\"");
 		}
 
 		sb.append("}");

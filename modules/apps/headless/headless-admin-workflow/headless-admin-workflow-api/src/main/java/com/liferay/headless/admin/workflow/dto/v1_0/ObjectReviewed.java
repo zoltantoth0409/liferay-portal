@@ -140,7 +140,9 @@ public class ObjectReviewed {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(resourceType);
+			sb.append("\"");
 		}
 
 		sb.append("}");

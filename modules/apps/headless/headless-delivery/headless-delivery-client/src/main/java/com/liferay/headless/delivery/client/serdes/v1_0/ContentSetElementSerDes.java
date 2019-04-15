@@ -68,7 +68,9 @@ public class ContentSetElementSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentSetElement.getContentType());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -90,7 +92,9 @@ public class ContentSetElementSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentSetElement.getTitle());
+			sb.append("\"");
 		}
 
 		sb.append("}");

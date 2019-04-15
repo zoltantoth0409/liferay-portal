@@ -96,7 +96,9 @@ public class FormSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(form.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -107,7 +109,9 @@ public class FormSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(form.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -118,7 +122,9 @@ public class FormSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(form.getDatePublished());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -129,7 +135,9 @@ public class FormSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(form.getDefaultLanguage());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -140,7 +148,9 @@ public class FormSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(form.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -204,7 +214,9 @@ public class FormSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(form.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

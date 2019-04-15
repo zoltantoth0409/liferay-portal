@@ -71,7 +71,9 @@ public class KeywordSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(keyword.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -82,7 +84,9 @@ public class KeywordSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(keyword.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -115,7 +119,9 @@ public class KeywordSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(keyword.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

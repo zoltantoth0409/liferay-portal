@@ -149,7 +149,9 @@ public class StructuredContentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContent.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -160,7 +162,9 @@ public class StructuredContentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContent.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -171,7 +175,9 @@ public class StructuredContentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContent.getDatePublished());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -182,7 +188,9 @@ public class StructuredContentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContent.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -193,7 +201,9 @@ public class StructuredContentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContent.getFriendlyUrlPath());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -215,7 +225,9 @@ public class StructuredContentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContent.getKey());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -344,7 +356,9 @@ public class StructuredContentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContent.getTitle());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -355,7 +369,9 @@ public class StructuredContentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(structuredContent.getUuid());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

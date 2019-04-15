@@ -71,7 +71,9 @@ public class CommentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(comment.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -82,7 +84,9 @@ public class CommentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(comment.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -115,7 +119,9 @@ public class CommentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(comment.getText());
+			sb.append("\"");
 		}
 
 		sb.append("}");

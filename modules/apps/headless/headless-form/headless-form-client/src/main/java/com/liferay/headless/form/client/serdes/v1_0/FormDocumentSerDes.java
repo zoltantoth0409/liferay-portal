@@ -57,7 +57,9 @@ public class FormDocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formDocument.getContentUrl());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -68,7 +70,9 @@ public class FormDocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formDocument.getEncodingFormat());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -79,7 +83,9 @@ public class FormDocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formDocument.getFileExtension());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -112,7 +118,9 @@ public class FormDocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formDocument.getTitle());
+			sb.append("\"");
 		}
 
 		sb.append("}");

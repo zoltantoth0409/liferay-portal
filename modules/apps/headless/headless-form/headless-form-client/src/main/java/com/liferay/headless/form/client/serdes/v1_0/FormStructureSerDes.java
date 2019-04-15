@@ -100,7 +100,9 @@ public class FormStructureSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formStructure.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -111,7 +113,9 @@ public class FormStructureSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formStructure.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -122,7 +126,9 @@ public class FormStructureSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formStructure.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -165,7 +171,9 @@ public class FormStructureSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formStructure.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

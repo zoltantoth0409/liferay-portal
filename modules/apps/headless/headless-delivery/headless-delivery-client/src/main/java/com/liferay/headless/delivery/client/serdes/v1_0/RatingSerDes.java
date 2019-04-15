@@ -82,7 +82,9 @@ public class RatingSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(rating.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -93,7 +95,9 @@ public class RatingSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(rating.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

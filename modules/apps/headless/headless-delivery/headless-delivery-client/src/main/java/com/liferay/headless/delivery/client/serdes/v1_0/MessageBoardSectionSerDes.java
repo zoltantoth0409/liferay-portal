@@ -73,7 +73,9 @@ public class MessageBoardSectionSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardSection.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -84,7 +86,9 @@ public class MessageBoardSectionSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardSection.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -95,7 +99,9 @@ public class MessageBoardSectionSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardSection.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -150,7 +156,9 @@ public class MessageBoardSectionSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardSection.getTitle());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

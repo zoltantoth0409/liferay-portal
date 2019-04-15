@@ -428,7 +428,9 @@ public class ContentStructureField {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dataType);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -439,7 +441,9 @@ public class ContentStructureField {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(inputControl);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -450,7 +454,9 @@ public class ContentStructureField {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(label);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -483,7 +489,9 @@ public class ContentStructureField {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(name);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -536,7 +544,9 @@ public class ContentStructureField {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(predefinedValue);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

@@ -125,7 +125,9 @@ public class ContentStructureSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentStructure.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -136,7 +138,9 @@ public class ContentStructureSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentStructure.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -147,7 +151,9 @@ public class ContentStructureSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentStructure.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -169,7 +175,9 @@ public class ContentStructureSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentStructure.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

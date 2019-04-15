@@ -64,7 +64,9 @@ public class OrganizationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(organization.getComment());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -86,7 +88,9 @@ public class OrganizationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(organization.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -97,7 +101,9 @@ public class OrganizationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(organization.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -119,7 +125,9 @@ public class OrganizationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(organization.getImage());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -164,7 +172,9 @@ public class OrganizationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(organization.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

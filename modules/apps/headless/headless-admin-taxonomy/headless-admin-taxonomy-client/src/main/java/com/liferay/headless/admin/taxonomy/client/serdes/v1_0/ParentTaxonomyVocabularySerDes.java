@@ -70,7 +70,9 @@ public class ParentTaxonomyVocabularySerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(parentTaxonomyVocabulary.getName());
+			sb.append("\"");
 		}
 
 		sb.append("}");

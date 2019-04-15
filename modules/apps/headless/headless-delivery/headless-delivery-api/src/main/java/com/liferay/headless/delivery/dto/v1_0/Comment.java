@@ -253,7 +253,9 @@ public class Comment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateCreated);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -264,7 +266,9 @@ public class Comment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateModified);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -297,7 +301,9 @@ public class Comment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(text);
+			sb.append("\"");
 		}
 
 		sb.append("}");

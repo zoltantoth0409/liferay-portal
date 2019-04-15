@@ -57,7 +57,9 @@ public class ChangeTransitionSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(changeTransition.getTransition());
+			sb.append("\"");
 		}
 
 		sb.append("}");

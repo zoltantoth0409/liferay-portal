@@ -125,7 +125,9 @@ public class TaxonomyVocabularySerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(taxonomyVocabulary.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -136,7 +138,9 @@ public class TaxonomyVocabularySerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(taxonomyVocabulary.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -147,7 +151,9 @@ public class TaxonomyVocabularySerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(taxonomyVocabulary.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -169,7 +175,9 @@ public class TaxonomyVocabularySerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(taxonomyVocabulary.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

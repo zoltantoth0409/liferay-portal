@@ -66,7 +66,9 @@ public class WebUrlSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(webUrl.getUrl());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -77,7 +79,9 @@ public class WebUrlSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(webUrl.getUrlType());
+			sb.append("\"");
 		}
 
 		sb.append("}");

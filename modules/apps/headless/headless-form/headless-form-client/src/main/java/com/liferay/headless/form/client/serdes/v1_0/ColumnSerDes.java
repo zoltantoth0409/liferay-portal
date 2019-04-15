@@ -66,7 +66,9 @@ public class ColumnSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(column.getLabel());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -77,7 +79,9 @@ public class ColumnSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(column.getValue());
+			sb.append("\"");
 		}
 
 		sb.append("}");

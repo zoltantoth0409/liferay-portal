@@ -73,7 +73,9 @@ public class FormRecordSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formRecord.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -84,7 +86,9 @@ public class FormRecordSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formRecord.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -95,7 +99,9 @@ public class FormRecordSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formRecord.getDatePublished());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

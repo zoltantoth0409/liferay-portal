@@ -57,7 +57,9 @@ public class BlogPostingImageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(blogPostingImage.getContentUrl());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -68,7 +70,9 @@ public class BlogPostingImageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(blogPostingImage.getEncodingFormat());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -79,7 +83,9 @@ public class BlogPostingImageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(blogPostingImage.getFileExtension());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -112,7 +118,9 @@ public class BlogPostingImageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(blogPostingImage.getTitle());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

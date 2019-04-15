@@ -73,7 +73,9 @@ public class MessageBoardThreadSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardThread.getArticleBody());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -95,7 +97,9 @@ public class MessageBoardThreadSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardThread.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -106,7 +110,9 @@ public class MessageBoardThreadSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardThread.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -117,7 +123,9 @@ public class MessageBoardThreadSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardThread.getEncodingFormat());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -128,7 +136,9 @@ public class MessageBoardThreadSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardThread.getHeadline());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -217,7 +227,9 @@ public class MessageBoardThreadSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(messageBoardThread.getThreadType());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

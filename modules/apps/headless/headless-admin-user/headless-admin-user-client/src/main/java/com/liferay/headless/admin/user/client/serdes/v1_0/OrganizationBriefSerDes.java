@@ -68,7 +68,9 @@ public class OrganizationBriefSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(organizationBrief.getName());
+			sb.append("\"");
 		}
 
 		sb.append("}");

@@ -89,7 +89,9 @@ public class ServiceSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(service.getServiceType());
+			sb.append("\"");
 		}
 
 		sb.append("}");

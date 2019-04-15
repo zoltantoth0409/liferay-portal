@@ -75,7 +75,9 @@ public class WorkflowTaskAssignToUserSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowTaskAssignToUser.getComment());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -86,7 +88,9 @@ public class WorkflowTaskAssignToUserSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowTaskAssignToUser.getDueDate());
+			sb.append("\"");
 		}
 
 		sb.append("}");

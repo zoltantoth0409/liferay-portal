@@ -83,7 +83,9 @@ public class ContactInformationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contactInformation.getFacebook());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -105,7 +107,9 @@ public class ContactInformationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contactInformation.getJabber());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -139,7 +143,9 @@ public class ContactInformationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contactInformation.getSkype());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -150,7 +156,9 @@ public class ContactInformationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contactInformation.getSms());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -184,7 +192,9 @@ public class ContactInformationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contactInformation.getTwitter());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

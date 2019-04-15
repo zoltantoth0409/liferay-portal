@@ -68,7 +68,9 @@ public class FormRecordFormSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formRecordForm.getFieldValues());
+			sb.append("\"");
 		}
 
 		sb.append("}");

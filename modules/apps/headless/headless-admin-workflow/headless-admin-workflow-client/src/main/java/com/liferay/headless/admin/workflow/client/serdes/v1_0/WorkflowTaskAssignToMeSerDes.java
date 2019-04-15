@@ -62,7 +62,9 @@ public class WorkflowTaskAssignToMeSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowTaskAssignToMe.getComment());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -73,7 +75,9 @@ public class WorkflowTaskAssignToMeSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowTaskAssignToMe.getDueDate());
+			sb.append("\"");
 		}
 
 		sb.append("}");

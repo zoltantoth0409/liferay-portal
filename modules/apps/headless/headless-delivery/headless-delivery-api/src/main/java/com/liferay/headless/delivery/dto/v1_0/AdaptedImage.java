@@ -215,7 +215,9 @@ public class AdaptedImage {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentUrl);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -237,7 +239,9 @@ public class AdaptedImage {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(resolutionName);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

@@ -71,7 +71,9 @@ public class SegmentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(segment.getCriteria());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -82,7 +84,9 @@ public class SegmentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(segment.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -93,7 +97,9 @@ public class SegmentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(segment.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -115,7 +121,9 @@ public class SegmentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(segment.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -137,7 +145,9 @@ public class SegmentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(segment.getSource());
+			sb.append("\"");
 		}
 
 		sb.append("}");

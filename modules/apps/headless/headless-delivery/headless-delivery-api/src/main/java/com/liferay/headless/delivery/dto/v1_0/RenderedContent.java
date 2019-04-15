@@ -133,7 +133,9 @@ public class RenderedContent {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(renderedContentURL);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -144,7 +146,9 @@ public class RenderedContent {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(templateName);
+			sb.append("\"");
 		}
 
 		sb.append("}");

@@ -368,7 +368,9 @@ public class WorkflowTask {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateCompleted);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -379,7 +381,9 @@ public class WorkflowTask {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateCreated);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -390,7 +394,9 @@ public class WorkflowTask {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(definitionName);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -401,7 +407,9 @@ public class WorkflowTask {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(description);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -412,7 +420,9 @@ public class WorkflowTask {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dueDate);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -434,7 +444,9 @@ public class WorkflowTask {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(name);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

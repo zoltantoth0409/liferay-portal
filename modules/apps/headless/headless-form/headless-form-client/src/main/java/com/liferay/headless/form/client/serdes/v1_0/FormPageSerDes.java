@@ -78,7 +78,9 @@ public class FormPageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formPage.getHeadline());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -100,7 +102,9 @@ public class FormPageSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(formPage.getText());
+			sb.append("\"");
 		}
 
 		sb.append("}");

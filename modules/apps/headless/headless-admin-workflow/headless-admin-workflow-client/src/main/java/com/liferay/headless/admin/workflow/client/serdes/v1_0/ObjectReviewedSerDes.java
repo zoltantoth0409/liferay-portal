@@ -68,7 +68,9 @@ public class ObjectReviewedSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(objectReviewed.getResourceType());
+			sb.append("\"");
 		}
 
 		sb.append("}");

@@ -141,7 +141,9 @@ public class StructuredContentLink {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(title);
+			sb.append("\"");
 		}
 
 		sb.append("}");

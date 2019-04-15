@@ -662,7 +662,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(additionalName);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -673,7 +675,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(alternateName);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -684,7 +688,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(birthDate);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -706,7 +712,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dashboardURL);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -717,7 +725,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateCreated);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -728,7 +738,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateModified);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -739,7 +751,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(email);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -750,7 +764,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(familyName);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -761,7 +777,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(givenName);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -772,7 +790,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(honorificPrefix);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -783,7 +803,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(honorificSuffix);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -805,7 +827,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(image);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -816,7 +840,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(jobTitle);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -850,7 +876,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(name);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -882,7 +910,9 @@ public class UserAccount {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(profileURL);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

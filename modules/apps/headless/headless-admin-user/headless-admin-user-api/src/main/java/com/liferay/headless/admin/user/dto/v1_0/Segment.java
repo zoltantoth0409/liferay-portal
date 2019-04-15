@@ -312,7 +312,9 @@ public class Segment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(criteria);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -323,7 +325,9 @@ public class Segment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateCreated);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -334,7 +338,9 @@ public class Segment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateModified);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -356,7 +362,9 @@ public class Segment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(name);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -378,7 +386,9 @@ public class Segment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(source);
+			sb.append("\"");
 		}
 
 		sb.append("}");

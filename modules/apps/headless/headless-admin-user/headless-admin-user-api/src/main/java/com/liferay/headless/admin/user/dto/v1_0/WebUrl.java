@@ -166,7 +166,9 @@ public class WebUrl {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(url);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -177,7 +179,9 @@ public class WebUrl {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(urlType);
+			sb.append("\"");
 		}
 
 		sb.append("}");

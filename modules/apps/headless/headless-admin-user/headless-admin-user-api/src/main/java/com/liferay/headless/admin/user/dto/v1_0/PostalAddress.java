@@ -359,7 +359,9 @@ public class PostalAddress {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(addressCountry);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -370,7 +372,9 @@ public class PostalAddress {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(addressLocality);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -381,7 +385,9 @@ public class PostalAddress {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(addressRegion);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -392,7 +398,9 @@ public class PostalAddress {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(addressType);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -414,7 +422,9 @@ public class PostalAddress {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(postalCode);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -436,7 +446,9 @@ public class PostalAddress {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(streetAddressLine1);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -447,7 +459,9 @@ public class PostalAddress {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(streetAddressLine2);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -458,7 +472,9 @@ public class PostalAddress {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(streetAddressLine3);
+			sb.append("\"");
 		}
 
 		sb.append("}");

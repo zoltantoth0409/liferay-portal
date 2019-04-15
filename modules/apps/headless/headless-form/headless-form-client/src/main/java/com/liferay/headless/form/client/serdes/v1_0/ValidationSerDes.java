@@ -55,7 +55,9 @@ public class ValidationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(validation.getErrorMessage());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -66,7 +68,9 @@ public class ValidationSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(validation.getExpression());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

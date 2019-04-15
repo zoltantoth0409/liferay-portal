@@ -135,7 +135,9 @@ public class WorkflowTaskAssignToMe {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(comment);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -146,7 +148,9 @@ public class WorkflowTaskAssignToMe {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dueDate);
+			sb.append("\"");
 		}
 
 		sb.append("}");

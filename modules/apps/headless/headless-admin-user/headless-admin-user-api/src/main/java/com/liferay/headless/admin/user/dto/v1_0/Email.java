@@ -185,7 +185,9 @@ public class Email {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(email);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -218,7 +220,9 @@ public class Email {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(type);
+			sb.append("\"");
 		}
 
 		sb.append("}");

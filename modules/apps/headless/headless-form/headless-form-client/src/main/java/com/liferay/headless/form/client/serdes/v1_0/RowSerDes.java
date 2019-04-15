@@ -66,7 +66,9 @@ public class RowSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(row.getLabel());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -77,7 +79,9 @@ public class RowSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(row.getValue());
+			sb.append("\"");
 		}
 
 		sb.append("}");

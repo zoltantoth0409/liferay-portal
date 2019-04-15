@@ -95,7 +95,9 @@ public class DocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(document.getContentUrl());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -117,7 +119,9 @@ public class DocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(document.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -128,7 +132,9 @@ public class DocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(document.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -139,7 +145,9 @@ public class DocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(document.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -161,7 +169,9 @@ public class DocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(document.getEncodingFormat());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -172,7 +182,9 @@ public class DocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(document.getFileExtension());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -281,7 +293,9 @@ public class DocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(document.getTitle());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

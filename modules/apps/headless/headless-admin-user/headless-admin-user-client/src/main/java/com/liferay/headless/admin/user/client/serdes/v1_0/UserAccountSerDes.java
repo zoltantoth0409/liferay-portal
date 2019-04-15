@@ -66,7 +66,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getAdditionalName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -77,7 +79,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getAlternateName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -88,7 +92,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getBirthDate());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -110,7 +116,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getDashboardURL());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -121,7 +129,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -132,7 +142,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -143,7 +155,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getEmail());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -154,7 +168,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getFamilyName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -165,7 +181,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getGivenName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -176,7 +194,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getHonorificPrefix());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -187,7 +207,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getHonorificSuffix());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -209,7 +231,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getImage());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -220,7 +244,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getJobTitle());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -254,7 +280,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -288,7 +316,9 @@ public class UserAccountSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(userAccount.getProfileURL());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

@@ -240,7 +240,9 @@ public class Value {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(data);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -284,7 +286,9 @@ public class Value {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(link);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

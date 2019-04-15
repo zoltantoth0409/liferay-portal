@@ -73,7 +73,9 @@ public class KnowledgeBaseFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(knowledgeBaseFolder.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -84,7 +86,9 @@ public class KnowledgeBaseFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(knowledgeBaseFolder.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -95,7 +99,9 @@ public class KnowledgeBaseFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(knowledgeBaseFolder.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -117,7 +123,9 @@ public class KnowledgeBaseFolderSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(knowledgeBaseFolder.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

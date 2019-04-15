@@ -215,7 +215,9 @@ public class Phone {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(extension);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -237,7 +239,9 @@ public class Phone {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(phoneNumber);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -248,7 +252,9 @@ public class Phone {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(phoneType);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

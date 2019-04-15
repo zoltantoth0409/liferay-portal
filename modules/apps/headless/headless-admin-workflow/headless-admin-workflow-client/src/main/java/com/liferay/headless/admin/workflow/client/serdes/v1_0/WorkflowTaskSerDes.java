@@ -73,7 +73,9 @@ public class WorkflowTaskSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowTask.getDateCompleted());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -84,7 +86,9 @@ public class WorkflowTaskSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowTask.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -95,7 +99,9 @@ public class WorkflowTaskSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowTask.getDefinitionName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -106,7 +112,9 @@ public class WorkflowTaskSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowTask.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -117,7 +125,9 @@ public class WorkflowTaskSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowTask.getDueDate());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -139,7 +149,9 @@ public class WorkflowTaskSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(workflowTask.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");

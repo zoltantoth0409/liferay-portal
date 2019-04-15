@@ -57,7 +57,9 @@ public class ContentDocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentDocument.getContentUrl());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -68,7 +70,9 @@ public class ContentDocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentDocument.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -79,7 +83,9 @@ public class ContentDocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentDocument.getEncodingFormat());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -90,7 +96,9 @@ public class ContentDocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentDocument.getFileExtension());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -123,7 +131,9 @@ public class ContentDocumentSerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentDocument.getTitle());
+			sb.append("\"");
 		}
 
 		sb.append("}");

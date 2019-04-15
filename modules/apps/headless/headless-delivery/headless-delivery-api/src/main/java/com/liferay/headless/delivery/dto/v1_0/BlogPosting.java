@@ -678,7 +678,9 @@ public class BlogPosting {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(alternativeHeadline);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -689,7 +691,9 @@ public class BlogPosting {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(articleBody);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -711,7 +715,9 @@ public class BlogPosting {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateCreated);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -722,7 +728,9 @@ public class BlogPosting {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(dateModified);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -733,7 +741,9 @@ public class BlogPosting {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(datePublished);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -744,7 +754,9 @@ public class BlogPosting {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(description);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -755,7 +767,9 @@ public class BlogPosting {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(encodingFormat);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -766,7 +780,9 @@ public class BlogPosting {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(friendlyUrlPath);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -777,7 +793,9 @@ public class BlogPosting {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(headline);
+			sb.append("\"");
 		}
 
 		sb.append(", ");

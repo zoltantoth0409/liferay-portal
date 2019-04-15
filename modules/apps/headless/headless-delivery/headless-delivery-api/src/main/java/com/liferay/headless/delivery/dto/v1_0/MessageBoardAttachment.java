@@ -244,7 +244,9 @@ public class MessageBoardAttachment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(contentUrl);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -255,7 +257,9 @@ public class MessageBoardAttachment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(encodingFormat);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -266,7 +270,9 @@ public class MessageBoardAttachment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(fileExtension);
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -299,7 +305,9 @@ public class MessageBoardAttachment {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(title);
+			sb.append("\"");
 		}
 
 		sb.append("}");

@@ -98,7 +98,9 @@ public class TaxonomyCategorySerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(taxonomyCategory.getDateCreated());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -109,7 +111,9 @@ public class TaxonomyCategorySerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(taxonomyCategory.getDateModified());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -120,7 +124,9 @@ public class TaxonomyCategorySerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(taxonomyCategory.getDescription());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
@@ -142,7 +148,9 @@ public class TaxonomyCategorySerDes {
 			sb.append("null");
 		}
 		else {
+			sb.append("\"");
 			sb.append(taxonomyCategory.getName());
+			sb.append("\"");
 		}
 
 		sb.append(", ");
