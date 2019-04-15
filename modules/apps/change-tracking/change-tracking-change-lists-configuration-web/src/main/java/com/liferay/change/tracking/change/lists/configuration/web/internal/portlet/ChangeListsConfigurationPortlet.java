@@ -57,7 +57,7 @@ public class ChangeListsConfigurationPortlet extends MVCPortlet {
 			renderRequest, "configurationSaved");
 
 		if (configurationSaved) {
-			SessionMessages.add(renderRequest, "success");
+			SessionMessages.add(renderRequest, "configurationSaved");
 		}
 
 		super.render(renderRequest, renderResponse);
