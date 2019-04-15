@@ -188,7 +188,7 @@ public class RESTBuilder {
 					_createClientSerDesFile(
 						context, escapedVersion, schemaName);
 
-					String pageSchemaName = schemaName + "LiferayPage";
+					String pageSchemaName = schemaName + "_Page";
 
 					_putSchema(
 						context, _getPageSchema(schemaName), pageSchemaName);
