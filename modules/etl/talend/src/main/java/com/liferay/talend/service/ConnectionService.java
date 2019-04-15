@@ -132,7 +132,8 @@ public class ConnectionService {
 
 			throw new OAuth2Exception(
 				String.format(
-					_OAUTH_FAILED_UNSUPPORTED_RESPONSE_CONTENT_TYPE,
+					"OAuth 2.0 check failed with response status and {%s} " +
+						"content type {%s}",
 					jsonObjectResponse.status(), contentTypeValues.get(0)));
 		}
 
@@ -212,11 +213,6 @@ public class ConnectionService {
 				"Request failed with response status " + response.status());
 		}
 	}
-
-	private static final String
-		_OAUTH_FAILED_UNSUPPORTED_RESPONSE_CONTENT_TYPE =
-			"OAuth 2.0 check failed. Unsupported content type. Response status " +
-				"{%s}  Content type {%s}";
 
 	@Service
 	private LiferayHttpClient _liferayHttpClient;
