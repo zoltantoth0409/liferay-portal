@@ -1174,7 +1174,7 @@ AUI.add(
 						var messageClass = EMPTY;
 						var type = SUCCESS;
 
-						if (obj.statusText.toLowerCase() != OK) {
+						if (obj.status != 200) {
 							type = ERROR;
 						}
 
