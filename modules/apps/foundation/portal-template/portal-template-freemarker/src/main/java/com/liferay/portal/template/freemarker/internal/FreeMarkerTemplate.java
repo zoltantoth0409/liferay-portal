@@ -74,8 +74,8 @@ public class FreeMarkerTemplate extends AbstractSingleResourceTemplate {
 	protected void handleException(Exception exception, Writer writer)
 		throws TemplateException {
 
-		if ((exception instanceof ParseException) ||
-			(exception instanceof freemarker.template.TemplateException)) {
+		if (exception instanceof ParseException ||
+			exception instanceof freemarker.template.TemplateException) {
 
 			put("exception", exception.getMessage());
 

@@ -136,7 +136,7 @@ public class BaseHandler implements Handler<Void> {
 
 				_scheduledExecutorService.schedule(_event, 1, TimeUnit.SECONDS);
 			}
-			else if (e instanceof FileNotFoundException &&
+			else if ((e instanceof FileNotFoundException) &&
 					 (syncFile.getVersion() == null)) {
 
 				SyncFileService.deleteSyncFile(syncFile, false);

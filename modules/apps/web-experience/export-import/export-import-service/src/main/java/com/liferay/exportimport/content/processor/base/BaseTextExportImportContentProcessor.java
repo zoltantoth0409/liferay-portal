@@ -1007,7 +1007,7 @@ public class BaseTextExportImportContentProcessor
 					PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
 			}
 			catch (Exception e) {
-				if (e instanceof NoSuchLayoutException &&
+				if ((e instanceof NoSuchLayoutException) &&
 					!isValidateLayoutReferences()) {
 
 					continue;

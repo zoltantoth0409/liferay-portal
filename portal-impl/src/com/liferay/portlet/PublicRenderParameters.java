@@ -47,7 +47,7 @@ public class PublicRenderParameters extends HashMap<String, String[]> {
 	}
 
 	@Override
-	public void putAll(Map<? extends String, ? extends String[]> map) {
+	public void putAll(Map<? extends String, ?> map) {
 		super.putAll(map);
 
 		_map.putAll(map);

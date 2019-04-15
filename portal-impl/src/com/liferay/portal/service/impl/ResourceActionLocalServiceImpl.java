@@ -302,7 +302,7 @@ public class ResourceActionLocalServiceImpl
 
 							if ((actionIds & bitwiseValue) != 0) {
 								resourceTypePermission.setActionIds(
-									actionIds & (~bitwiseValue));
+									actionIds & ~bitwiseValue);
 
 								resourceTypePermissionPersistence.update(
 									resourceTypePermission);
