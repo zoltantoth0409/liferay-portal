@@ -961,8 +961,8 @@ public class RESTBuilder {
 
 		Items items = new Items();
 
-		items.setType("object");
 		items.setReference("/" + schemaName);
+		items.setType("object");
 
 		Schema arraySchema = new Schema();
 
