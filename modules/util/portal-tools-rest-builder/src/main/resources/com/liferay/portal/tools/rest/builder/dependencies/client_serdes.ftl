@@ -41,7 +41,7 @@ public class ${schemaName}SerDes {
 
 	public static String toJSON(${schemaName} ${schemaVarName}) {
 		if (${schemaVarName} == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
