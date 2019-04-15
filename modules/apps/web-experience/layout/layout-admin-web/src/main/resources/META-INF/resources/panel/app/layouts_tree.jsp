@@ -250,7 +250,7 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 
 		<div class="dropdown dropdown-menu-no-arrow layout-tree-options" data-deleteable="{deleteable}" data-parentable="{parentable}" data-updateable="{updateable}">
 			<a aria-expanded="false" class="dropdown-toggle icon-monospaced" data-qa-id="pageOptions" data-toggle="dropdown" href="javascript:;">
-				<aui:icon image="ellipsis-v" markupView="lexicon" />
+				<aui:icon id="{id}_{plid}" image="ellipsis-v" markupView="lexicon" />
 			</a>
 
 			<ul class="dropdown-menu dropdown-menu-left-side">
