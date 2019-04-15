@@ -1580,8 +1580,8 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 		newPrimaryKeysMap.put(primaryKeyObj, newPrimaryKeyObj);
 
-		if (classedModel instanceof StagedGroupedModel &&
-			newClassedModel instanceof StagedGroupedModel) {
+		if ((classedModel instanceof StagedGroupedModel) &&
+			(newClassedModel instanceof StagedGroupedModel)) {
 
 			Map<Long, Long> groupIds = (Map<Long, Long>)getNewPrimaryKeysMap(
 				Group.class);
@@ -3081,10 +3081,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 			}
 
 			if ((workflowDefinition != null) &&
-				(!WorkflowDefinitionLinkLocalServiceUtil.
+				!WorkflowDefinitionLinkLocalServiceUtil.
 					hasWorkflowDefinitionLink(
 						getCompanyId(), getScopeGroupId(), className,
-						newPrimaryKey))) {
+						newPrimaryKey)) {
 
 				try {
 					long importedClassPK = GetterUtil.getLong(
