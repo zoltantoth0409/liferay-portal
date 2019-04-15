@@ -83,7 +83,7 @@ public class ${schemaName}SerDes {
 
 					sb.append("]");
 				<#else>
-					<#if stringUtil.equals(properties[propertyName], "Date[]") || stringUtil.equals(properties[propertyName], "String[]") || enumSchemas?keys?seq_contains(properties[propertyName])>
+					<#if stringUtil.equals(properties[propertyName], "Date") || stringUtil.equals(properties[propertyName], "String") || enumSchemas?keys?seq_contains(properties[propertyName])>
 						sb.append("\"");
 						sb.append(${schemaVarName}.get${propertyName?cap_first}());
 						sb.append("\"");
