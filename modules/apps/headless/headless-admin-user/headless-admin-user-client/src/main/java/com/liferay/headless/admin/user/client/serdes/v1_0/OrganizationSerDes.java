@@ -289,7 +289,7 @@ public class OrganizationSerDes {
 
 				if (jsonParserFieldValue != null) {
 					organization.setNumberOfOrganizations(
-						(Number)jsonParserFieldValue);
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(

@@ -173,7 +173,8 @@ public class KeywordSerDes {
 			}
 			else if (Objects.equals(jsonParserFieldName, "keywordUsageCount")) {
 				if (jsonParserFieldValue != null) {
-					keyword.setKeywordUsageCount((Number)jsonParserFieldValue);
+					keyword.setKeywordUsageCount(
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "name")) {

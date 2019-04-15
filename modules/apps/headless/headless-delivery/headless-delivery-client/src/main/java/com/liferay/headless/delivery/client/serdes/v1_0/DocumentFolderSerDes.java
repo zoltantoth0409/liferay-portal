@@ -225,13 +225,13 @@ public class DocumentFolderSerDes {
 
 				if (jsonParserFieldValue != null) {
 					documentFolder.setNumberOfDocumentFolders(
-						(Number)jsonParserFieldValue);
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "numberOfDocuments")) {
 				if (jsonParserFieldValue != null) {
 					documentFolder.setNumberOfDocuments(
-						(Number)jsonParserFieldValue);
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "siteId")) {

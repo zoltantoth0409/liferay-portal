@@ -162,7 +162,8 @@ public class CommentSerDes {
 			}
 			else if (Objects.equals(jsonParserFieldName, "numberOfComments")) {
 				if (jsonParserFieldValue != null) {
-					comment.setNumberOfComments((Number)jsonParserFieldValue);
+					comment.setNumberOfComments(
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "text")) {

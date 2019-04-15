@@ -233,7 +233,7 @@ public class StructuredContentFolderSerDes {
 
 				if (jsonParserFieldValue != null) {
 					structuredContentFolder.setNumberOfStructuredContentFolders(
-						(Number)jsonParserFieldValue);
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(
@@ -241,7 +241,7 @@ public class StructuredContentFolderSerDes {
 
 				if (jsonParserFieldValue != null) {
 					structuredContentFolder.setNumberOfStructuredContents(
-						(Number)jsonParserFieldValue);
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "siteId")) {

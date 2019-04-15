@@ -159,7 +159,8 @@ public class FormDocumentSerDes {
 			}
 			else if (Objects.equals(jsonParserFieldName, "sizeInBytes")) {
 				if (jsonParserFieldValue != null) {
-					formDocument.setSizeInBytes((Number)jsonParserFieldValue);
+					formDocument.setSizeInBytes(
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "title")) {

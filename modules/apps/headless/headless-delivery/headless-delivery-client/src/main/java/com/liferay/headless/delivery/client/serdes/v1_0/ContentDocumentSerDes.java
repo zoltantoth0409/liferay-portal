@@ -178,7 +178,7 @@ public class ContentDocumentSerDes {
 			else if (Objects.equals(jsonParserFieldName, "sizeInBytes")) {
 				if (jsonParserFieldValue != null) {
 					contentDocument.setSizeInBytes(
-						(Number)jsonParserFieldValue);
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "title")) {

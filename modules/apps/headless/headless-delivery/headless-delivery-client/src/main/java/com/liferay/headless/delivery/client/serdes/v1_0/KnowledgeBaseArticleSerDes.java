@@ -396,7 +396,7 @@ public class KnowledgeBaseArticleSerDes {
 
 				if (jsonParserFieldValue != null) {
 					knowledgeBaseArticle.setNumberOfAttachments(
-						(Number)jsonParserFieldValue);
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(
@@ -404,7 +404,7 @@ public class KnowledgeBaseArticleSerDes {
 
 				if (jsonParserFieldValue != null) {
 					knowledgeBaseArticle.setNumberOfKnowledgeBaseArticles(
-						(Number)jsonParserFieldValue);
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(

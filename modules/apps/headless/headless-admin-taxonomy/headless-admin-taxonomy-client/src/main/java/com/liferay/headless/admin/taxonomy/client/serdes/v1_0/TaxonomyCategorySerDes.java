@@ -257,7 +257,7 @@ public class TaxonomyCategorySerDes {
 
 				if (jsonParserFieldValue != null) {
 					taxonomyCategory.setNumberOfTaxonomyCategories(
-						(Number)jsonParserFieldValue);
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(

@@ -409,7 +409,7 @@ public class BlogPostingSerDes {
 			else if (Objects.equals(jsonParserFieldName, "numberOfComments")) {
 				if (jsonParserFieldValue != null) {
 					blogPosting.setNumberOfComments(
-						(Number)jsonParserFieldValue);
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "siteId")) {

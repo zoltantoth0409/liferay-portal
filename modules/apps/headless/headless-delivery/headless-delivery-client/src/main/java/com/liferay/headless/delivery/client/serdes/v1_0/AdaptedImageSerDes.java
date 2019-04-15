@@ -131,7 +131,8 @@ public class AdaptedImageSerDes {
 			}
 			else if (Objects.equals(jsonParserFieldName, "height")) {
 				if (jsonParserFieldValue != null) {
-					adaptedImage.setHeight((Number)jsonParserFieldValue);
+					adaptedImage.setHeight(
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "resolutionName")) {
@@ -142,12 +143,14 @@ public class AdaptedImageSerDes {
 			}
 			else if (Objects.equals(jsonParserFieldName, "sizeInBytes")) {
 				if (jsonParserFieldValue != null) {
-					adaptedImage.setSizeInBytes((Number)jsonParserFieldValue);
+					adaptedImage.setSizeInBytes(
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "width")) {
 				if (jsonParserFieldValue != null) {
-					adaptedImage.setWidth((Number)jsonParserFieldValue);
+					adaptedImage.setWidth(
+						Long.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else {
