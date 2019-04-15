@@ -62,9 +62,9 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 			dataDefinitionField, httpServletRequest, httpServletResponse,
 			soyDataFactory);
 
-		this.dlAppService = dlAppService;
-		this.html = html;
-		this.portal = portal;
+		_dlAppService = dlAppService;
+		_html = html;
+		_portal = portal;
 	}
 
 	public DataDefinitionField deserialize(JSONObject jsonObject)
@@ -132,11 +132,8 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 			if ((valueJSONObject != null) && (valueJSONObject.length() > 0)) {
 				FileEntry fileEntry = _getFileEntry(valueJSONObject);
 
-				context.put(
-					"fileEntryTitle", _getFileEntryTitle(fileEntry, html));
-				context.put(
-					"fileEntryURL",
-					_getFileEntryURL(fileEntry, html, httpServletRequest));
+				context.put("fileEntryTitle", _getFileEntryTitle(fileEntry));
+				context.put("fileEntryURL", _getFileEntryURL(fileEntry));
 			}
 		}
 
@@ -144,12 +141,9 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 			"groupId",
 			CustomPropertyUtil.getLong(
 				dataDefinitionField.getCustomProperties(), "groupId"));
-		context.put(
-			"itemSelectorAuthToken",
-			_getItemSelectorAuthToken(httpServletRequest, portal));
-		context.put(
-			"lexiconIconsPath", _getLexiconIconsPath(httpServletRequest));
-		context.put("strings", _getStrings(httpServletRequest, portal));
+		context.put("itemSelectorAuthToken", _getItemSelectorAuthToken());
+		context.put("lexiconIconsPath", _getLexiconIconsPath());
+		context.put("strings", _getStrings());
 		context.put(
 			"value",
 			JSONFactoryUtil.looseDeserialize(
@@ -157,13 +151,9 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 					dataDefinitionField.getCustomProperties(), "value", "{}")));
 	}
 
-	protected DLAppService dlAppService;
-	protected Html html;
-	protected Portal portal;
-
 	private FileEntry _getFileEntry(JSONObject valueJSONObject) {
 		try {
-			return dlAppService.getFileEntryByUuidAndGroupId(
+			return _dlAppService.getFileEntryByUuidAndGroupId(
 				valueJSONObject.getString("uuid"),
 				valueJSONObject.getLong("groupId"));
 		}
@@ -174,17 +164,15 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 		}
 	}
 
-	private String _getFileEntryTitle(FileEntry fileEntry, Html html) {
+	private String _getFileEntryTitle(FileEntry fileEntry) {
 		if (fileEntry == null) {
 			return StringPool.BLANK;
 		}
 
-		return html.escape(fileEntry.getTitle());
+		return _html.escape(fileEntry.getTitle());
 	}
 
-	private String _getFileEntryURL(
-		FileEntry fileEntry, Html html, HttpServletRequest httpServletRequest) {
-
+	private String _getFileEntryURL(FileEntry fileEntry) {
 		if (fileEntry == null) {
 			return StringPool.BLANK;
 		}
@@ -203,16 +191,14 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 		sb.append(fileEntry.getFolderId());
 		sb.append(StringPool.SLASH);
 		sb.append(
-			URLCodec.encodeURL(html.unescape(fileEntry.getTitle()), true));
+			URLCodec.encodeURL(_html.unescape(fileEntry.getTitle()), true));
 		sb.append(StringPool.SLASH);
 		sb.append(fileEntry.getUuid());
 
-		return html.escape(sb.toString());
+		return _html.escape(sb.toString());
 	}
 
-	private String _getItemSelectorAuthToken(
-		HttpServletRequest httpServletRequest, Portal portal) {
-
+	private String _getItemSelectorAuthToken() {
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
@@ -224,7 +210,7 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 		try {
 			return AuthTokenUtil.getToken(
 				httpServletRequest,
-				portal.getControlPanelPlid(themeDisplay.getCompanyId()),
+				_portal.getControlPanelPlid(themeDisplay.getCompanyId()),
 				PortletKeys.ITEM_SELECTOR);
 		}
 		catch (PortalException pe) {
@@ -234,7 +220,7 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 		return StringPool.BLANK;
 	}
 
-	private String _getLexiconIconsPath(HttpServletRequest httpServletRequest) {
+	private String _getLexiconIconsPath() {
 		StringBundler sb = new StringBundler(3);
 
 		ThemeDisplay themeDisplay =
@@ -249,9 +235,7 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 		return sb.toString();
 	}
 
-	private Map<String, String> _getStrings(
-		HttpServletRequest httpServletRequest, Portal portal) {
-
+	private Map<String, String> _getStrings() {
 		Map<String, String> values = new HashMap<>();
 
 		ThemeDisplay themeDisplay =
@@ -260,9 +244,8 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 
 		ResourceBundle resourceBundle = new AggregateResourceBundle(
 			ResourceBundleUtil.getBundle(
-				"content.Language", themeDisplay.getLocale(),
-				getClass()),
-			portal.getResourceBundle(themeDisplay.getLocale()));
+				"content.Language", themeDisplay.getLocale(), getClass()),
+			_portal.getResourceBundle(themeDisplay.getLocale()));
 
 		values.put("select", LanguageUtil.get(resourceBundle, "select"));
 
@@ -284,5 +267,9 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DocumentLibraryFieldType.class);
+
+	private final DLAppService _dlAppService;
+	private final Html _html;
+	private final Portal _portal;
 
 }
