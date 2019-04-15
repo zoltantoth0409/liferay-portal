@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Marcela Cunha
  */
-public class EditorFieldType extends FieldType {
+public class EditorFieldType extends BaseFieldType {
 
 	public EditorFieldType(
 		DataDefinitionField dataDefinitionField,

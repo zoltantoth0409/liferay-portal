@@ -50,7 +50,7 @@ import org.apache.commons.lang.StringUtils;
 /**
  * @author Marcela Cunha
  */
-public class DocumentLibraryFieldType extends FieldType {
+public class DocumentLibraryFieldType extends BaseFieldType {
 
 	public DocumentLibraryFieldType(
 		DataDefinitionField dataDefinitionField, DLAppService dlAppService,

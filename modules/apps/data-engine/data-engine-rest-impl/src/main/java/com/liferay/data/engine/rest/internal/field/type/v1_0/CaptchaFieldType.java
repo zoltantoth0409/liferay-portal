@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Marcela Cunha
  */
-public class CaptchaFieldType extends FieldType {
+public class CaptchaFieldType extends BaseFieldType {
 
 	public CaptchaFieldType(
 		DataDefinitionField dataDefinitionField,

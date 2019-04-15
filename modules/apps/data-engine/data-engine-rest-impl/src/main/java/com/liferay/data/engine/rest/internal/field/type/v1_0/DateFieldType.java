@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Marcela Cunha
  */
-public class DateFieldType extends FieldType {
+public class DateFieldType extends BaseFieldType {
 
 	public DateFieldType(
 		DataDefinitionField dataDefinitionField,

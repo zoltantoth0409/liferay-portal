@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Marcela Cunha
  */
-public class CheckboxMultipleFieldType extends FieldType {
+public class CheckboxMultipleFieldType extends BaseFieldType {
 
 	public CheckboxMultipleFieldType(
 		DataDefinitionField dataDefinitionField,

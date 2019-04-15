@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Marcela Cunha
  */
-public class CheckboxFieldType extends FieldType {
+public class CheckboxFieldType extends BaseFieldType {
 
 	public CheckboxFieldType(
 		DataDefinitionField dataDefinitionField,
