@@ -60,7 +60,7 @@ public class FormPageSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < formPage.getFields().length; i++) {
-				sb.append(formPage.getFields()[i]);
+				sb.append(FieldSerDes.toJSON(formPage.getFields()[i]));
 
 				if ((i + 1) < formPage.getFields().length) {
 					sb.append(", ");

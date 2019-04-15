@@ -57,13 +57,7 @@ public class KeywordSerDes {
 
 		sb.append("\"creator\": ");
 
-		if (keyword.getCreator() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(keyword.getCreator());
-		}
-
+		sb.append(CreatorSerDes.toJSON(keyword.getCreator()));
 		sb.append(", ");
 
 		sb.append("\"dateCreated\": ");

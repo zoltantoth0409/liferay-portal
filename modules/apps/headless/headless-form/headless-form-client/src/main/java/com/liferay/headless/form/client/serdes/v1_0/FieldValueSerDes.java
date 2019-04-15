@@ -51,13 +51,7 @@ public class FieldValueSerDes {
 
 		sb.append("\"document\": ");
 
-		if (fieldValue.getDocument() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(fieldValue.getDocument());
-		}
-
+		sb.append(FormDocumentSerDes.toJSON(fieldValue.getDocument()));
 		sb.append(", ");
 
 		sb.append("\"documentId\": ");

@@ -59,13 +59,7 @@ public class WorkflowLogSerDes {
 
 		sb.append("\"auditPerson\": ");
 
-		if (workflowLog.getAuditPerson() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(workflowLog.getAuditPerson());
-		}
-
+		sb.append(CreatorSerDes.toJSON(workflowLog.getAuditPerson()));
 		sb.append(", ");
 
 		sb.append("\"commentLog\": ");
@@ -112,24 +106,12 @@ public class WorkflowLogSerDes {
 
 		sb.append("\"person\": ");
 
-		if (workflowLog.getPerson() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(workflowLog.getPerson());
-		}
-
+		sb.append(CreatorSerDes.toJSON(workflowLog.getPerson()));
 		sb.append(", ");
 
 		sb.append("\"previousPerson\": ");
 
-		if (workflowLog.getPreviousPerson() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(workflowLog.getPreviousPerson());
-		}
-
+		sb.append(CreatorSerDes.toJSON(workflowLog.getPreviousPerson()));
 		sb.append(", ");
 
 		sb.append("\"previousState\": ");

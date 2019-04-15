@@ -76,13 +76,9 @@ public class OrganizationSerDes {
 
 		sb.append("\"contactInformation\": ");
 
-		if (organization.getContactInformation() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(organization.getContactInformation());
-		}
-
+		sb.append(
+			ContactInformationSerDes.toJSON(
+				organization.getContactInformation()));
 		sb.append(", ");
 
 		sb.append("\"dateCreated\": ");
@@ -170,13 +166,7 @@ public class OrganizationSerDes {
 
 		sb.append("\"location\": ");
 
-		if (organization.getLocation() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(organization.getLocation());
-		}
-
+		sb.append(LocationSerDes.toJSON(organization.getLocation()));
 		sb.append(", ");
 
 		sb.append("\"name\": ");
@@ -207,13 +197,8 @@ public class OrganizationSerDes {
 
 		sb.append("\"parentOrganization\": ");
 
-		if (organization.getParentOrganization() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(organization.getParentOrganization());
-		}
-
+		sb.append(
+			OrganizationSerDes.toJSON(organization.getParentOrganization()));
 		sb.append(", ");
 
 		sb.append("\"services\": ");
@@ -225,7 +210,7 @@ public class OrganizationSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < organization.getServices().length; i++) {
-				sb.append(organization.getServices()[i]);
+				sb.append(ServiceSerDes.toJSON(organization.getServices()[i]));
 
 				if ((i + 1) < organization.getServices().length) {
 					sb.append(", ");

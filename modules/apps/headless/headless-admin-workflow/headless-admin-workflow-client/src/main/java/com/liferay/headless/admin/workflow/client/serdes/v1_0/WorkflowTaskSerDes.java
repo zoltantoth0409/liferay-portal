@@ -175,13 +175,8 @@ public class WorkflowTaskSerDes {
 
 		sb.append("\"objectReviewed\": ");
 
-		if (workflowTask.getObjectReviewed() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(workflowTask.getObjectReviewed());
-		}
-
+		sb.append(
+			ObjectReviewedSerDes.toJSON(workflowTask.getObjectReviewed()));
 		sb.append(", ");
 
 		sb.append("\"transitions\": ");

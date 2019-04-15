@@ -70,7 +70,9 @@ public class TaxonomyVocabularySerDes {
 			for (int i = 0; i < taxonomyVocabulary.getAssetTypes().length;
 				 i++) {
 
-				sb.append(taxonomyVocabulary.getAssetTypes()[i]);
+				sb.append(
+					AssetTypeSerDes.toJSON(
+						taxonomyVocabulary.getAssetTypes()[i]));
 
 				if ((i + 1) < taxonomyVocabulary.getAssetTypes().length) {
 					sb.append(", ");
@@ -113,13 +115,7 @@ public class TaxonomyVocabularySerDes {
 
 		sb.append("\"creator\": ");
 
-		if (taxonomyVocabulary.getCreator() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(taxonomyVocabulary.getCreator());
-		}
-
+		sb.append(CreatorSerDes.toJSON(taxonomyVocabulary.getCreator()));
 		sb.append(", ");
 
 		sb.append("\"dateCreated\": ");

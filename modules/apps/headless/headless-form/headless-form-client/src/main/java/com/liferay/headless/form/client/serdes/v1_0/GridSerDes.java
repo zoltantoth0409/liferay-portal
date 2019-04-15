@@ -61,7 +61,7 @@ public class GridSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < grid.getColumns().length; i++) {
-				sb.append(grid.getColumns()[i]);
+				sb.append(ColumnSerDes.toJSON(grid.getColumns()[i]));
 
 				if ((i + 1) < grid.getColumns().length) {
 					sb.append(", ");
@@ -93,7 +93,7 @@ public class GridSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < grid.getRows().length; i++) {
-				sb.append(grid.getRows()[i]);
+				sb.append(RowSerDes.toJSON(grid.getRows()[i]));
 
 				if ((i + 1) < grid.getRows().length) {
 					sb.append(", ");

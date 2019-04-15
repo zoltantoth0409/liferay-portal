@@ -82,13 +82,7 @@ public class RoleSerDes {
 
 		sb.append("\"creator\": ");
 
-		if (role.getCreator() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(role.getCreator());
-		}
-
+		sb.append(CreatorSerDes.toJSON(role.getCreator()));
 		sb.append(", ");
 
 		sb.append("\"dateCreated\": ");

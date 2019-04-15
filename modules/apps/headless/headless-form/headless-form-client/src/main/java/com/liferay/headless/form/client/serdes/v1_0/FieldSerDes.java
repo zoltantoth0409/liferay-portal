@@ -109,13 +109,7 @@ public class FieldSerDes {
 
 		sb.append("\"grid\": ");
 
-		if (field.getGrid() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(field.getGrid());
-		}
-
+		sb.append(GridSerDes.toJSON(field.getGrid()));
 		sb.append(", ");
 
 		sb.append("\"hasFormRules\": ");
@@ -238,7 +232,7 @@ public class FieldSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < field.getOptions().length; i++) {
-				sb.append(field.getOptions()[i]);
+				sb.append(OptionSerDes.toJSON(field.getOptions()[i]));
 
 				if ((i + 1) < field.getOptions().length) {
 					sb.append(", ");
@@ -382,12 +376,7 @@ public class FieldSerDes {
 
 		sb.append("\"validation\": ");
 
-		if (field.getValidation() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(field.getValidation());
-		}
+		sb.append(ValidationSerDes.toJSON(field.getValidation()));
 
 		sb.append("}");
 

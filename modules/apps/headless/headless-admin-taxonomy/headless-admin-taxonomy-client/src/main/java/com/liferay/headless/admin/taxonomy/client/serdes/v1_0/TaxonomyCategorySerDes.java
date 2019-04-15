@@ -86,13 +86,7 @@ public class TaxonomyCategorySerDes {
 
 		sb.append("\"creator\": ");
 
-		if (taxonomyCategory.getCreator() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(taxonomyCategory.getCreator());
-		}
-
+		sb.append(CreatorSerDes.toJSON(taxonomyCategory.getCreator()));
 		sb.append(", ");
 
 		sb.append("\"dateCreated\": ");
@@ -183,24 +177,16 @@ public class TaxonomyCategorySerDes {
 
 		sb.append("\"parentTaxonomyCategory\": ");
 
-		if (taxonomyCategory.getParentTaxonomyCategory() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(taxonomyCategory.getParentTaxonomyCategory());
-		}
-
+		sb.append(
+			ParentTaxonomyCategorySerDes.toJSON(
+				taxonomyCategory.getParentTaxonomyCategory()));
 		sb.append(", ");
 
 		sb.append("\"parentTaxonomyVocabulary\": ");
 
-		if (taxonomyCategory.getParentTaxonomyVocabulary() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(taxonomyCategory.getParentTaxonomyVocabulary());
-		}
-
+		sb.append(
+			ParentTaxonomyVocabularySerDes.toJSON(
+				taxonomyCategory.getParentTaxonomyVocabulary()));
 		sb.append(", ");
 
 		sb.append("\"viewableBy\": ");

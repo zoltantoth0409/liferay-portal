@@ -88,13 +88,7 @@ public class FormStructureSerDes {
 
 		sb.append("\"creator\": ");
 
-		if (formStructure.getCreator() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(formStructure.getCreator());
-		}
-
+		sb.append(CreatorSerDes.toJSON(formStructure.getCreator()));
 		sb.append(", ");
 
 		sb.append("\"dateCreated\": ");
@@ -154,7 +148,8 @@ public class FormStructureSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < formStructure.getFormPages().length; i++) {
-				sb.append(formStructure.getFormPages()[i]);
+				sb.append(
+					FormPageSerDes.toJSON(formStructure.getFormPages()[i]));
 
 				if ((i + 1) < formStructure.getFormPages().length) {
 					sb.append(", ");
@@ -205,12 +200,7 @@ public class FormStructureSerDes {
 
 		sb.append("\"successPage\": ");
 
-		if (formStructure.getSuccessPage() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(formStructure.getSuccessPage());
-		}
+		sb.append(SuccessPageSerDes.toJSON(formStructure.getSuccessPage()));
 
 		sb.append("}");
 

@@ -109,13 +109,9 @@ public class UserAccountSerDes {
 
 		sb.append("\"contactInformation\": ");
 
-		if (userAccount.getContactInformation() == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(userAccount.getContactInformation());
-		}
-
+		sb.append(
+			ContactInformationSerDes.toJSON(
+				userAccount.getContactInformation()));
 		sb.append(", ");
 
 		sb.append("\"dashboardURL\": ");
@@ -332,7 +328,9 @@ public class UserAccountSerDes {
 			for (int i = 0; i < userAccount.getOrganizationBriefs().length;
 				 i++) {
 
-				sb.append(userAccount.getOrganizationBriefs()[i]);
+				sb.append(
+					OrganizationBriefSerDes.toJSON(
+						userAccount.getOrganizationBriefs()[i]));
 
 				if ((i + 1) < userAccount.getOrganizationBriefs().length) {
 					sb.append(", ");
@@ -368,7 +366,8 @@ public class UserAccountSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < userAccount.getRoleBriefs().length; i++) {
-				sb.append(userAccount.getRoleBriefs()[i]);
+				sb.append(
+					RoleBriefSerDes.toJSON(userAccount.getRoleBriefs()[i]));
 
 				if ((i + 1) < userAccount.getRoleBriefs().length) {
 					sb.append(", ");
@@ -389,7 +388,8 @@ public class UserAccountSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < userAccount.getSiteBriefs().length; i++) {
-				sb.append(userAccount.getSiteBriefs()[i]);
+				sb.append(
+					SiteBriefSerDes.toJSON(userAccount.getSiteBriefs()[i]));
 
 				if ((i + 1) < userAccount.getSiteBriefs().length) {
 					sb.append(", ");
