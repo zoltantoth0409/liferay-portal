@@ -51,8 +51,7 @@ public class CaptchaFieldType extends BaseFieldType {
 		String html = StringPool.BLANK;
 
 		try {
-			html = _renderCaptchaTag(
-				dataDefinitionField, httpServletRequest, httpServletResponse);
+			html = _renderCaptchaTag();
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -61,12 +60,7 @@ public class CaptchaFieldType extends BaseFieldType {
 		context.put("html", soyDataFactory.createSoyHTMLData(html));
 	}
 
-	private String _renderCaptchaTag(
-			DataDefinitionField dataDefinitionField,
-			HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse)
-		throws Exception {
-
+	private String _renderCaptchaTag() throws Exception {
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
 		CaptchaTag captchaTag = new CaptchaTag() {
