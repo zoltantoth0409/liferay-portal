@@ -115,42 +115,6 @@ public class DataLayoutRenderer {
 		return writer.toString();
 	}
 
-	private static FieldType _getFieldType(
-		DataDefinitionField dataDefinitionField,
-		HttpServletRequest httpServletRequest,
-		HttpServletResponse httpServletResponse, SoyDataFactory soyFactory) {
-
-		String fieldTypeName = dataDefinitionField.getFieldType();
-
-		if (StringUtils.equals(fieldTypeName, "captcha")) {
-			return new CaptchaFieldType(
-				dataDefinitionField, httpServletRequest, httpServletResponse,
-				soyFactory);
-		}
-		else if (StringUtils.equals(fieldTypeName, "checkbox")) {
-			return new CheckboxFieldType(
-				dataDefinitionField, httpServletRequest, httpServletResponse,
-				soyFactory);
-		}
-		else if (StringUtils.equals(fieldTypeName, "checkbox_multiple")) {
-			return new CheckboxMultipleFieldType(
-				dataDefinitionField, httpServletRequest, httpServletResponse,
-				soyFactory);
-		}
-		else if (StringUtils.equals(fieldTypeName, "date")) {
-			return new DateFieldType(
-				dataDefinitionField, httpServletRequest, httpServletResponse,
-				soyFactory);
-		}
-		else if (StringUtils.equals(fieldTypeName, "editor")) {
-			return new EditorFieldType(
-				dataDefinitionField, httpServletRequest, httpServletResponse,
-				soyFactory);
-		}
-
-		return null;
-	}
-
 	private static List<Object> _createDataLayoutColumnContexts(
 		Map<String, DataDefinitionField> dataDefinitionFields,
 		DataLayoutColumn[] dataLayoutColumns,
@@ -271,6 +235,42 @@ public class DataLayoutRenderer {
 
 		return stream.collect(
 			Collectors.toMap(field -> field.getName(), Function.identity()));
+	}
+
+	private static FieldType _getFieldType(
+		DataDefinitionField dataDefinitionField,
+		HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse, SoyDataFactory soyFactory) {
+
+		String fieldTypeName = dataDefinitionField.getFieldType();
+
+		if (StringUtils.equals(fieldTypeName, "captcha")) {
+			return new CaptchaFieldType(
+				dataDefinitionField, httpServletRequest, httpServletResponse,
+				soyFactory);
+		}
+		else if (StringUtils.equals(fieldTypeName, "checkbox")) {
+			return new CheckboxFieldType(
+				dataDefinitionField, httpServletRequest, httpServletResponse,
+				soyFactory);
+		}
+		else if (StringUtils.equals(fieldTypeName, "checkbox_multiple")) {
+			return new CheckboxMultipleFieldType(
+				dataDefinitionField, httpServletRequest, httpServletResponse,
+				soyFactory);
+		}
+		else if (StringUtils.equals(fieldTypeName, "date")) {
+			return new DateFieldType(
+				dataDefinitionField, httpServletRequest, httpServletResponse,
+				soyFactory);
+		}
+		else if (StringUtils.equals(fieldTypeName, "editor")) {
+			return new EditorFieldType(
+				dataDefinitionField, httpServletRequest, httpServletResponse,
+				soyFactory);
+		}
+
+		return null;
 	}
 
 	private static final String _MODULE_NAME =
