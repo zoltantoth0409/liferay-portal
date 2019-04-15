@@ -115,8 +115,8 @@ public class ConnectionService {
 
 		if (jsonObjectResponse == null) {
 			throw new OAuth2Exception(
-				"Authorization request failed. OAuth 2.0 endpoint did not " +
-					"respond.");
+				"Authorization request failed for unresponsive OAuth 2.0 " +
+					"endpoint");
 		}
 
 		if (jsonObjectResponse.status() != 200) {
