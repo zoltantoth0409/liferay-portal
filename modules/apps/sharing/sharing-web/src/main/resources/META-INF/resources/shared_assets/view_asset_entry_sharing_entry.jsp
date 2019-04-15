@@ -29,7 +29,9 @@ SharingEntry sharingEntry = (SharingEntry)renderRequest.getAttribute(SharingEntr
 
 String redirect = ParamUtil.getString(request, "redirect");
 
-boolean isControlPanel = themeDisplay.getScopeGroup().equals(themeDisplay.getControlPanelGroup());
+Group scopeGroup = themeDisplay.getScopeGroup();
+
+boolean isControlPanel = scopeGroup.equals(themeDisplay.getControlPanelGroup());
 
 if (Validator.isNull(redirect)) {
 	PortletURL portletURL = liferayPortletResponse.createRenderURL();
