@@ -3797,6 +3797,7 @@ log.sanitizer.enabled=false</echo>
 	<target name="integration-sybase160-jdk11_open">
 		<run-integration-test database.type="sybase" />
 	</target>
+
 	<target name="javadoc-jdk8">
 		<run-batch-test>
 			<test-action>
