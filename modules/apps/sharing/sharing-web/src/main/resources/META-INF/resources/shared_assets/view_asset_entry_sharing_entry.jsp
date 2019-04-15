@@ -29,17 +29,15 @@ SharingEntry sharingEntry = (SharingEntry)renderRequest.getAttribute(SharingEntr
 
 String redirect = ParamUtil.getString(request, "redirect");
 
-Group scopeGroup = themeDisplay.getScopeGroup();
-
-boolean isControlPanel = scopeGroup.equals(themeDisplay.getControlPanelGroup());
-
 if (Validator.isNull(redirect)) {
 	PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 	redirect = portletURL.toString();
 }
 
-if (isControlPanel) {
+Group scopeGroup = themeDisplay.getScopeGroup();
+
+if (scopeGroup.equals(themeDisplay.getControlPanelGroup())) {
 	portletDisplay.setShowBackIcon(true);
 	portletDisplay.setURLBack(redirect);
 }
@@ -49,14 +47,14 @@ else {
 }
 %>
 
-<c:if test="<%= isControlPanel %>">
+<c:if test="<%= scopeGroup.equals(themeDisplay.getControlPanelGroup()) %>">
 	<div class="upper-tbar-container-fixed">
 </c:if>
 
 <div class="tbar upper-tbar">
 	<div class="container-fluid container-fluid-max-xl">
 		<ul class="tbar-nav">
-			<c:if test="<%= !isControlPanel %>">
+			<c:if test="<%= !scopeGroup.equals(themeDisplay.getControlPanelGroup()) %>">
 				<li class="d-none d-sm-flex tbar-item">
 					<clay:link
 						elementClasses="btn btn-monospaced btn-outline-borderless btn-outline-secondary btn-sm"
@@ -82,7 +80,7 @@ else {
 	</div>
 </div>
 
-<c:if test="<%= isControlPanel %>">
+<c:if test="<%= scopeGroup.equals(themeDisplay.getControlPanelGroup()) %>">
 	</div>
 </c:if>
 
