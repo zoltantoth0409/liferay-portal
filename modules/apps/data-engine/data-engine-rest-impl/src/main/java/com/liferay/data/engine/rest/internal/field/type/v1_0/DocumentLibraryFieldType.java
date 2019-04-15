@@ -261,7 +261,7 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 		ResourceBundle resourceBundle = new AggregateResourceBundle(
 			ResourceBundleUtil.getBundle(
 				"content.Language", themeDisplay.getLocale(),
-				DocumentLibraryFieldType.class),
+				getClass()),
 			portal.getResourceBundle(themeDisplay.getLocale()));
 
 		values.put("select", LanguageUtil.get(resourceBundle, "select"));
