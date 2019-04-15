@@ -63,7 +63,7 @@ import org.apache.commons.lang.StringUtils;
  */
 public class DataLayoutRenderer {
 
-	public String render(
+	public static String render(
 			Long dataLayoutId,
 			DDMStructureLayoutLocalService ddmStructureLayoutLocalService,
 			DDMStructureVersionLocalService ddmStructureVersionLocalService,
@@ -151,7 +151,7 @@ public class DataLayoutRenderer {
 		return null;
 	}
 
-	private List<Object> _createDataLayoutColumnsContexts(
+	private static List<Object> _createDataLayoutColumnsContexts(
 		Map<String, DataDefinitionField> dataDefinitionFields,
 		DataLayoutColumn[] dataLayoutColumns,
 		HttpServletRequest httpServletRequest,
@@ -177,7 +177,7 @@ public class DataLayoutRenderer {
 		return dataLayoutColumnsContexts;
 	}
 
-	private List<Object> _createDataLayoutPagesContexts(
+	private static List<Object> _createDataLayoutPagesContexts(
 		Map<String, DataDefinitionField> dataDefinitionFields,
 		DataLayoutPage[] dataLayoutPages, HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse,
@@ -214,7 +214,7 @@ public class DataLayoutRenderer {
 		return dataLayoutPagesContexts;
 	}
 
-	private List<Object> _createDataLayoutRowsContexts(
+	private static List<Object> _createDataLayoutRowsContexts(
 		Map<String, DataDefinitionField> dataDefinitionFields,
 		DataLayoutRow[] dataLayoutRows, HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse,
@@ -237,7 +237,7 @@ public class DataLayoutRenderer {
 		return dataLayoutRowsContexts;
 	}
 
-	private List<Object> _createFieldTypesContexts(
+	private static List<Object> _createFieldTypesContexts(
 		Map<String, DataDefinitionField> dataDefinitionFields,
 		String[] fieldNames, HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse,
@@ -261,7 +261,7 @@ public class DataLayoutRenderer {
 		return fieldTypesContexts;
 	}
 
-	private Map<String, DataDefinitionField> _getDataDefinitionFieldsMap(
+	private static Map<String, DataDefinitionField> _getDataDefinitionFieldsMap(
 		DataDefinition dataDefinition) {
 
 		List<DataDefinitionField> dataDefinitionFields = Arrays.asList(
