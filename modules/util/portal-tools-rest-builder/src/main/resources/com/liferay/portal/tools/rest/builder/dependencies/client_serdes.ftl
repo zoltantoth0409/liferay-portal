@@ -74,6 +74,7 @@ public class ${schemaName}SerDes {
 			<#assign
 				propertyType = properties[propertyName]
 			/>
+
 			<#if allSchemas[propertyType]??>
 				sb.append(${propertyType}SerDes.toJSON(${schemaVarName}.get${propertyName?cap_first}()));
 			<#else>
