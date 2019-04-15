@@ -7,5 +7,7 @@ Provide-Capability:\
 		version:Version="${Bundle-Version}"
 Require-Capability:\
 	soy;\
+		filter:="(type=clay-taglib)",\
+	soy;\
 		filter:="(type=frontend-js-web)"
 Web-ContextPath: /frontend-image-editor-web
