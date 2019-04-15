@@ -4,6 +4,8 @@ package ${configYAML.apiPackagePath}.client.serdes.${escapedVersion};
 	import ${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName};
 </#list>
 
+<#-- Account for dto.${escapedVersion}.*_Page -->
+
 import ${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName};
 
 import ${configYAML.apiPackagePath}.client.json.BaseJSONParser;
