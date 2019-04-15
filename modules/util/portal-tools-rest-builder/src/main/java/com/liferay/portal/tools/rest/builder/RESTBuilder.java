@@ -46,9 +46,11 @@ import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author Peter Shin
@@ -175,7 +177,10 @@ public class RESTBuilder {
 				}
 			}
 
-			for (Map.Entry<String, Schema> entry : allSchemas.entrySet()) {
+			Set<Map.Entry<String, Schema>> set = new HashSet<>(
+				allSchemas.entrySet());
+
+			for (Map.Entry<String, Schema> entry : set) {
 				Schema schema = entry.getValue();
 				String schemaName = entry.getKey();
 
@@ -200,6 +205,8 @@ public class RESTBuilder {
 						context, escapedVersion, pageSchemaName);
 					_createClientSerDesFile(
 						context, escapedVersion, pageSchemaName);
+
+					allSchemas.remove(pageSchemaName);
 				}
 			}
 		}
