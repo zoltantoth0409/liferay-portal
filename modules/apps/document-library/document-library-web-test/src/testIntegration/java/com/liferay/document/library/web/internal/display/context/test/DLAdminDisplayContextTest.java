@@ -146,8 +146,7 @@ public class DLAdminDisplayContextTest {
 
 		MockLiferayPortletRequest mockLiferayPortletRequest =
 			new MockLiferayPortletRequest(
-				_getHttpServletRequest(
-					_getMockHttpServletRequestWithSearch("alpha")));
+				_getMockHttpServletRequestWithSearch("alpha"));
 
 		MockLiferayPortletresponse mockLiferayPortletresponse =
 			new MockLiferayPortletresponse();
@@ -173,22 +172,6 @@ public class DLAdminDisplayContextTest {
 			ContentTypes.TEXT_PLAIN, RandomTestUtil.randomString(),
 			StringPool.BLANK, StringPool.BLANK, content.getBytes(),
 			serviceContext);
-	}
-
-	private HttpServletRequest _getHttpServletRequest(
-		HttpServletRequest httpServletRequest) {
-
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setAttribute(
-			JavaConstants.JAVAX_PORTLET_REQUEST,
-			new MockLiferayPortletRequest(httpServletRequest));
-		mockHttpServletRequest.setAttribute(
-			JavaConstants.JAVAX_PORTLET_RESPONSE,
-			new MockLiferayPortletresponse());
-
-		return mockHttpServletRequest;
 	}
 
 	private MockHttpServletRequest _getMockHttpServletRequest()
