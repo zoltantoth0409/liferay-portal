@@ -947,35 +947,39 @@ public class RESTBuilder {
 	}
 
 	private Schema _getPageSchema(String schemaName) {
-		Map<String, Schema> propertySchemas = new HashMap<>();
-
 		Schema longSchema = new Schema();
 
 		longSchema.setFormat("int64");
 		longSchema.setType("integer");
 
-		propertySchemas.put("lastPage", longSchema);
-		propertySchemas.put("page", longSchema);
-		propertySchemas.put("pageSize", longSchema);
-		propertySchemas.put("totalCount", longSchema);
+		Map<String, Schema> propertySchemas = new HashMap<String, Schema>() {
+			{
+				put(
+					"items",
+					new Schema() {
+						{
+							setItems(
+								new Items() {
+									{
+										setReference("/" + schemaName);
+										setType("object");
+									}
+								});
+							setType("array");
+						}
+					});
+				put("lastPage", longSchema);
+				put("page", longSchema);
+				put("pageSize", longSchema);
+				put("totalCount", longSchema);
+			}
+		};
 
-		Items items = new Items();
-
-		items.setReference("/" + schemaName);
-		items.setType("object");
-
-		Schema arraySchema = new Schema();
-
-		arraySchema.setItems(items);
-		arraySchema.setType("array");
-
-		propertySchemas.put("items", arraySchema);
-
-		Schema schema = new Schema();
-
-		schema.setPropertySchemas(propertySchemas);
-
-		return schema;
+		return new Schema() {
+			{
+				setPropertySchemas(propertySchemas);
+			}
+		};
 	}
 
 	private void _putSchema(
