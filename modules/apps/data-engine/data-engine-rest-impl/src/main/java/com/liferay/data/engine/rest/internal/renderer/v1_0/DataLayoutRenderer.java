@@ -92,7 +92,7 @@ public class DataLayoutRenderer {
 
 		context.put(
 			"pages",
-			_createDataLayoutPagesContexts(
+			_createDataLayoutPageContexts(
 				_getDataDefinitionFieldsMap(
 					DataDefinitionUtil.toDataDefinition(
 						ddmStructureVersion.getStructure())),
@@ -151,39 +151,39 @@ public class DataLayoutRenderer {
 		return null;
 	}
 
-	private static List<Object> _createDataLayoutColumnsContexts(
+	private static List<Object> _createDataLayoutColumnContexts(
 		Map<String, DataDefinitionField> dataDefinitionFields,
 		DataLayoutColumn[] dataLayoutColumns,
 		HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse,
 		SoyDataFactory soyDataFactory) {
 
-		List<Object> dataLayoutColumnsContexts = new ArrayList<>();
+		List<Object> dataLayoutColumnContexts = new ArrayList<>();
 
 		for (DataLayoutColumn dataLayoutColumn : dataLayoutColumns) {
 			Map<String, Object> dataLayoutColumnsContext = new HashMap<>();
 
 			dataLayoutColumnsContext.put(
 				"fields",
-				_createFieldTypesContexts(
+				_createFieldTypeContexts(
 					dataDefinitionFields, dataLayoutColumn.getFieldNames(),
 					httpServletRequest, httpServletResponse, soyDataFactory));
 			dataLayoutColumnsContext.put(
 				"size", dataLayoutColumn.getColumnSize());
 
-			dataLayoutColumnsContexts.add(dataLayoutColumnsContext);
+			dataLayoutColumnContexts.add(dataLayoutColumnsContext);
 		}
 
-		return dataLayoutColumnsContexts;
+		return dataLayoutColumnContexts;
 	}
 
-	private static List<Object> _createDataLayoutPagesContexts(
+	private static List<Object> _createDataLayoutPageContexts(
 		Map<String, DataDefinitionField> dataDefinitionFields,
 		DataLayoutPage[] dataLayoutPages, HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse,
 		SoyDataFactory soyDataFactory) {
 
-		List<Object> dataLayoutPagesContexts = new ArrayList<>();
+		List<Object> dataLayoutPageContexts = new ArrayList<>();
 
 		for (DataLayoutPage dataLayoutPage : dataLayoutPages) {
 			Map<String, Object> dataLayoutPageContext = new HashMap<>();
@@ -197,7 +197,7 @@ public class DataLayoutRenderer {
 
 			dataLayoutPageContext.put(
 				"rows",
-				_createDataLayoutRowsContexts(
+				_createDataLayoutRowContexts(
 					dataDefinitionFields, dataLayoutPage.getDataLayoutRows(),
 					httpServletRequest, httpServletResponse, soyDataFactory));
 
@@ -208,42 +208,42 @@ public class DataLayoutRenderer {
 						httpServletRequest.getLocale(),
 						dataLayoutPage.getTitle())));
 
-			dataLayoutPagesContexts.add(dataLayoutPageContext);
+			dataLayoutPageContexts.add(dataLayoutPageContext);
 		}
 
-		return dataLayoutPagesContexts;
+		return dataLayoutPageContexts;
 	}
 
-	private static List<Object> _createDataLayoutRowsContexts(
+	private static List<Object> _createDataLayoutRowContexts(
 		Map<String, DataDefinitionField> dataDefinitionFields,
 		DataLayoutRow[] dataLayoutRows, HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse,
 		SoyDataFactory soyDataFactory) {
 
-		List<Object> dataLayoutRowsContexts = new ArrayList<>();
+		List<Object> dataLayoutRowContexts = new ArrayList<>();
 
 		for (DataLayoutRow dataLayoutRow : dataLayoutRows) {
 			Map<String, Object> dataLayoutRowContext = new HashMap<>();
 
 			dataLayoutRowContext.put(
 				"columns",
-				_createDataLayoutColumnsContexts(
+				_createDataLayoutColumnContexts(
 					dataDefinitionFields, dataLayoutRow.getDataLayoutColums(),
 					httpServletRequest, httpServletResponse, soyDataFactory));
 
-			dataLayoutRowsContexts.add(dataLayoutRowContext);
+			dataLayoutRowContexts.add(dataLayoutRowContext);
 		}
 
-		return dataLayoutRowsContexts;
+		return dataLayoutRowContexts;
 	}
 
-	private static List<Object> _createFieldTypesContexts(
+	private static List<Object> _createFieldTypeContexts(
 		Map<String, DataDefinitionField> dataDefinitionFields,
 		String[] fieldNames, HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse,
 		SoyDataFactory soyDataFactory) {
 
-		List<Object> fieldTypesContexts = new ArrayList<>();
+		List<Object> fieldTypeContexts = new ArrayList<>();
 
 		for (String fieldName : fieldNames) {
 			DataDefinitionField dataDefinitionField = dataDefinitionFields.get(
@@ -254,11 +254,11 @@ public class DataLayoutRenderer {
 				soyDataFactory);
 
 			if (fieldType != null) {
-				fieldTypesContexts.add(fieldType.createContext());
+				fieldTypeContexts.add(fieldType.createContext());
 			}
 		}
 
-		return fieldTypesContexts;
+		return fieldTypeContexts;
 	}
 
 	private static Map<String, DataDefinitionField> _getDataDefinitionFieldsMap(
