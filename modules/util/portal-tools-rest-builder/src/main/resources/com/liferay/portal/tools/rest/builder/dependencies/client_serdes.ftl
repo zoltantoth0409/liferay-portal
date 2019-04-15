@@ -133,6 +133,10 @@ public class ${schemaName}SerDes {
 							Long.valueOf((String)jsonParserFieldValue)
 						<#elseif stringUtil.equals(propertyType, "Long[]")>
 							toLongs((Object[])jsonParserFieldValue)
+						<#elseif stringUtil.equals(propertyType, "Number")>
+							Long.valueOf((String)jsonParserFieldValue)
+						<#elseif stringUtil.equals(propertyType, "Number[]")>
+							toLongs((Object[])jsonParserFieldValue)
 						<#elseif stringUtil.equals(propertyType, "String[]")>
 							toStrings((Object[])jsonParserFieldValue)
 						<#elseif allSchemas?keys?seq_contains(propertyType)>
