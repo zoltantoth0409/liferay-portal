@@ -67,6 +67,7 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 		_portal = portal;
 	}
 
+	@Override
 	public DataDefinitionField deserialize(JSONObject jsonObject)
 		throws Exception {
 
@@ -93,10 +94,9 @@ public class DocumentLibraryFieldType extends BaseFieldType {
 		return dataDefinitionField;
 	}
 
-	public JSONObject toJSONObject(DataDefinitionField dataDefinitionField)
-		throws Exception {
-
-		JSONObject jsonObject = super.toJSONObject(dataDefinitionField);
+	@Override
+	public JSONObject toJSONObject() throws Exception {
+		JSONObject jsonObject = super.toJSONObject();
 
 		return jsonObject.put(
 			"groupId",

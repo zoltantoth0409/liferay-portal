@@ -41,6 +41,7 @@ public class EditorFieldType extends BaseFieldType {
 			soyDataFactory);
 	}
 
+	@Override
 	public DataDefinitionField deserialize(JSONObject jsonObject)
 		throws Exception {
 
@@ -55,10 +56,9 @@ public class EditorFieldType extends BaseFieldType {
 		return dataDefinitionField;
 	}
 
-	public JSONObject toJSONObject(DataDefinitionField dataDefinitionField)
-		throws Exception {
-
-		JSONObject jsonObject = super.toJSONObject(dataDefinitionField);
+	@Override
+	public JSONObject toJSONObject() throws Exception {
+		JSONObject jsonObject = super.toJSONObject();
 
 		return jsonObject.put(
 			"placeholder",

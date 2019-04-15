@@ -29,7 +29,6 @@ public interface FieldType {
 	public DataDefinitionField deserialize(JSONObject jsonObject)
 		throws Exception;
 
-	public JSONObject toJSONObject(DataDefinitionField dataDefinitionField)
-		throws Exception;
+	public JSONObject toJSONObject() throws Exception;
 
 }

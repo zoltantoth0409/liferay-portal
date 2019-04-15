@@ -131,9 +131,7 @@ public abstract class BaseFieldType implements FieldType {
 	}
 
 	@Override
-	public JSONObject toJSONObject(DataDefinitionField dataDefinitionField)
-		throws Exception {
-
+	public JSONObject toJSONObject() throws Exception {
 		String name = dataDefinitionField.getName();
 
 		if (Validator.isNull(name)) {
