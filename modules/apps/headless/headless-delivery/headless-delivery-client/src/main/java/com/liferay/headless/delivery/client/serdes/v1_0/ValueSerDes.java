@@ -56,7 +56,9 @@ public class ValueSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(value.getData());
+
 			sb.append("\"");
 		}
 
@@ -102,7 +104,9 @@ public class ValueSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(value.getLink());
+
 			sb.append("\"");
 		}
 

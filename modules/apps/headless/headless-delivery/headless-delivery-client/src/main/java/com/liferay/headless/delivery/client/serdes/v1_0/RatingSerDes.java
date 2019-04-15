@@ -18,10 +18,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.Rating;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -54,6 +52,9 @@ public class RatingSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"bestRating\": ");
 
 		if (rating.getBestRating() == null) {
@@ -83,7 +84,9 @@ public class RatingSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(rating.getDateCreated());
+
+			sb.append(liferayToJSONDateFormat.format(rating.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -96,7 +99,9 @@ public class RatingSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(rating.getDateModified());
+
+			sb.append(liferayToJSONDateFormat.format(rating.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -166,14 +171,13 @@ public class RatingSerDes {
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
-					rating.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+					rating.setDateCreated(toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					rating.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "id")) {
@@ -196,18 +200,6 @@ public class RatingSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

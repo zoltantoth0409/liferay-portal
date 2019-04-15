@@ -58,7 +58,9 @@ public class ContentDocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentDocument.getContentUrl());
+
 			sb.append("\"");
 		}
 
@@ -71,7 +73,9 @@ public class ContentDocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentDocument.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -84,7 +88,9 @@ public class ContentDocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentDocument.getEncodingFormat());
+
 			sb.append("\"");
 		}
 
@@ -97,7 +103,9 @@ public class ContentDocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentDocument.getFileExtension());
+
 			sb.append("\"");
 		}
 
@@ -132,7 +140,9 @@ public class ContentDocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentDocument.getTitle());
+
 			sb.append("\"");
 		}
 

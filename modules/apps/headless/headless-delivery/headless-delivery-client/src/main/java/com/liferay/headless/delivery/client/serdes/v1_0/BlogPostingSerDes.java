@@ -19,10 +19,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -58,6 +56,9 @@ public class BlogPostingSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"aggregateRating\": ");
 
 		if (blogPosting.getAggregateRating() == null) {
@@ -76,7 +77,9 @@ public class BlogPostingSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPosting.getAlternativeHeadline());
+
 			sb.append("\"");
 		}
 
@@ -89,7 +92,9 @@ public class BlogPostingSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPosting.getArticleBody());
+
 			sb.append("\"");
 		}
 
@@ -113,7 +118,10 @@ public class BlogPostingSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(blogPosting.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(blogPosting.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -126,7 +134,10 @@ public class BlogPostingSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(blogPosting.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(blogPosting.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -139,7 +150,10 @@ public class BlogPostingSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(blogPosting.getDatePublished());
+
+			sb.append(
+				liferayToJSONDateFormat.format(blogPosting.getDatePublished()));
+
 			sb.append("\"");
 		}
 
@@ -152,7 +166,9 @@ public class BlogPostingSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPosting.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -165,7 +181,9 @@ public class BlogPostingSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPosting.getEncodingFormat());
+
 			sb.append("\"");
 		}
 
@@ -178,7 +196,9 @@ public class BlogPostingSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPosting.getFriendlyUrlPath());
+
 			sb.append("\"");
 		}
 
@@ -191,7 +211,9 @@ public class BlogPostingSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPosting.getHeadline());
+
 			sb.append("\"");
 		}
 
@@ -229,7 +251,9 @@ public class BlogPostingSerDes {
 
 			for (int i = 0; i < blogPosting.getKeywords().length; i++) {
 				sb.append("\"");
+
 				sb.append(blogPosting.getKeywords()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) < blogPosting.getKeywords().length) {
@@ -317,7 +341,9 @@ public class BlogPostingSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPosting.getViewableBy());
+
 			sb.append("\"");
 		}
 
@@ -370,19 +396,19 @@ public class BlogPostingSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					blogPosting.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					blogPosting.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "datePublished")) {
 				if (jsonParserFieldValue != null) {
 					blogPosting.setDatePublished(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
@@ -469,18 +495,6 @@ public class BlogPostingSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

@@ -67,7 +67,9 @@ public class SiteBriefSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(siteBrief.getName());
+
 			sb.append("\"");
 		}
 

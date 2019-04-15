@@ -67,7 +67,9 @@ public class ColumnSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(column.getLabel());
+
 			sb.append("\"");
 		}
 
@@ -80,7 +82,9 @@ public class ColumnSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(column.getValue());
+
 			sb.append("\"");
 		}
 

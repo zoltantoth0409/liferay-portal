@@ -18,10 +18,8 @@ import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowLog;
 import com.liferay.headless.admin.workflow.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -56,6 +54,9 @@ public class WorkflowLogSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"auditPerson\": ");
 
 		if (workflowLog.getAuditPerson() == null) {
@@ -74,7 +75,9 @@ public class WorkflowLogSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(workflowLog.getCommentLog());
+
 			sb.append("\"");
 		}
 
@@ -87,7 +90,10 @@ public class WorkflowLogSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(workflowLog.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(workflowLog.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -133,7 +139,9 @@ public class WorkflowLogSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(workflowLog.getPreviousState());
+
 			sb.append("\"");
 		}
 
@@ -146,7 +154,9 @@ public class WorkflowLogSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(workflowLog.getState());
+
 			sb.append("\"");
 		}
 
@@ -170,7 +180,9 @@ public class WorkflowLogSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(workflowLog.getType());
+
 			sb.append("\"");
 		}
 
@@ -208,7 +220,7 @@ public class WorkflowLogSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					workflowLog.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "id")) {
@@ -253,18 +265,6 @@ public class WorkflowLogSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

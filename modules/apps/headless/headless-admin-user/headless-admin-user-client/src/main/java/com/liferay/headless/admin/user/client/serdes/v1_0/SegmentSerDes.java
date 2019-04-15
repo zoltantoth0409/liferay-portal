@@ -18,10 +18,8 @@ import com.liferay.headless.admin.user.client.dto.v1_0.Segment;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -54,6 +52,9 @@ public class SegmentSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"active\": ");
 
 		if (segment.getActive() == null) {
@@ -72,7 +73,9 @@ public class SegmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(segment.getCriteria());
+
 			sb.append("\"");
 		}
 
@@ -85,7 +88,9 @@ public class SegmentSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(segment.getDateCreated());
+
+			sb.append(liferayToJSONDateFormat.format(segment.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -98,7 +103,10 @@ public class SegmentSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(segment.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(segment.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -122,7 +130,9 @@ public class SegmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(segment.getName());
+
 			sb.append("\"");
 		}
 
@@ -146,7 +156,9 @@ public class SegmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(segment.getSource());
+
 			sb.append("\"");
 		}
 
@@ -182,13 +194,13 @@ public class SegmentSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					segment.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					segment.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "id")) {
@@ -215,18 +227,6 @@ public class SegmentSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

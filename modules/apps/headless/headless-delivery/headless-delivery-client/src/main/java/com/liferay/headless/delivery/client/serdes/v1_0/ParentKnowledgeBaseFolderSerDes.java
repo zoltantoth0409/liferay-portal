@@ -73,7 +73,9 @@ public class ParentKnowledgeBaseFolderSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(parentKnowledgeBaseFolder.getFolderName());
+
 			sb.append("\"");
 		}
 

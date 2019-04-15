@@ -58,7 +58,9 @@ public class AdaptedImageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(adaptedImage.getContentUrl());
+
 			sb.append("\"");
 		}
 
@@ -82,7 +84,9 @@ public class AdaptedImageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(adaptedImage.getResolutionName());
+
 			sb.append("\"");
 		}
 

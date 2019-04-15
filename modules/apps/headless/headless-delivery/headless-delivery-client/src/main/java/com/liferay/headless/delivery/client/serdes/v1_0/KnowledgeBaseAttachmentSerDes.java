@@ -60,7 +60,9 @@ public class KnowledgeBaseAttachmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseAttachment.getContentUrl());
+
 			sb.append("\"");
 		}
 
@@ -73,7 +75,9 @@ public class KnowledgeBaseAttachmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseAttachment.getEncodingFormat());
+
 			sb.append("\"");
 		}
 
@@ -86,7 +90,9 @@ public class KnowledgeBaseAttachmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseAttachment.getFileExtension());
+
 			sb.append("\"");
 		}
 
@@ -121,7 +127,9 @@ public class KnowledgeBaseAttachmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseAttachment.getTitle());
+
 			sb.append("\"");
 		}
 

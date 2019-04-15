@@ -60,7 +60,9 @@ public class ContentStructureFieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentStructureField.getDataType());
+
 			sb.append("\"");
 		}
 
@@ -73,7 +75,9 @@ public class ContentStructureFieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentStructureField.getInputControl());
+
 			sb.append("\"");
 		}
 
@@ -86,7 +90,9 @@ public class ContentStructureFieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentStructureField.getLabel());
+
 			sb.append("\"");
 		}
 
@@ -121,7 +127,9 @@ public class ContentStructureFieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentStructureField.getName());
+
 			sb.append("\"");
 		}
 
@@ -185,7 +193,9 @@ public class ContentStructureFieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentStructureField.getPredefinedValue());
+
 			sb.append("\"");
 		}
 

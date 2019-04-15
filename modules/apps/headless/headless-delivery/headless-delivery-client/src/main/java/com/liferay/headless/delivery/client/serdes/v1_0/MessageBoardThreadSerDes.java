@@ -18,10 +18,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardThread;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -56,6 +54,9 @@ public class MessageBoardThreadSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"aggregateRating\": ");
 
 		if (messageBoardThread.getAggregateRating() == null) {
@@ -74,7 +75,9 @@ public class MessageBoardThreadSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardThread.getArticleBody());
+
 			sb.append("\"");
 		}
 
@@ -98,7 +101,11 @@ public class MessageBoardThreadSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(messageBoardThread.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					messageBoardThread.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -111,7 +118,11 @@ public class MessageBoardThreadSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(messageBoardThread.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					messageBoardThread.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -124,7 +135,9 @@ public class MessageBoardThreadSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardThread.getEncodingFormat());
+
 			sb.append("\"");
 		}
 
@@ -137,7 +150,9 @@ public class MessageBoardThreadSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardThread.getHeadline());
+
 			sb.append("\"");
 		}
 
@@ -164,7 +179,9 @@ public class MessageBoardThreadSerDes {
 
 			for (int i = 0; i < messageBoardThread.getKeywords().length; i++) {
 				sb.append("\"");
+
 				sb.append(messageBoardThread.getKeywords()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) < messageBoardThread.getKeywords().length) {
@@ -228,7 +245,9 @@ public class MessageBoardThreadSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardThread.getThreadType());
+
 			sb.append("\"");
 		}
 
@@ -241,7 +260,9 @@ public class MessageBoardThreadSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardThread.getViewableBy());
+
 			sb.append("\"");
 		}
 
@@ -287,13 +308,13 @@ public class MessageBoardThreadSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					messageBoardThread.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					messageBoardThread.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "encodingFormat")) {
@@ -365,18 +386,6 @@ public class MessageBoardThreadSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

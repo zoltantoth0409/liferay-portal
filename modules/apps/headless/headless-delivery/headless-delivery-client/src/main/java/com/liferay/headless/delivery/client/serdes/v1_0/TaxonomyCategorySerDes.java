@@ -69,7 +69,9 @@ public class TaxonomyCategorySerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(taxonomyCategory.getTaxonomyCategoryName());
+
 			sb.append("\"");
 		}
 

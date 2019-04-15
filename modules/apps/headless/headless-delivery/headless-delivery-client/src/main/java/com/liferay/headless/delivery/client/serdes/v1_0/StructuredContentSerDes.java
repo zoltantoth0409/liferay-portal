@@ -21,10 +21,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -60,6 +58,9 @@ public class StructuredContentSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"aggregateRating\": ");
 
 		if (structuredContent.getAggregateRating() == null) {
@@ -83,7 +84,9 @@ public class StructuredContentSerDes {
 				 i < structuredContent.getAvailableLanguages().length; i++) {
 
 				sb.append("\"");
+
 				sb.append(structuredContent.getAvailableLanguages()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) <
@@ -150,7 +153,11 @@ public class StructuredContentSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(structuredContent.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					structuredContent.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -163,7 +170,11 @@ public class StructuredContentSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(structuredContent.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					structuredContent.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -176,7 +187,11 @@ public class StructuredContentSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(structuredContent.getDatePublished());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					structuredContent.getDatePublished()));
+
 			sb.append("\"");
 		}
 
@@ -189,7 +204,9 @@ public class StructuredContentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(structuredContent.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -202,7 +219,9 @@ public class StructuredContentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(structuredContent.getFriendlyUrlPath());
+
 			sb.append("\"");
 		}
 
@@ -226,7 +245,9 @@ public class StructuredContentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(structuredContent.getKey());
+
 			sb.append("\"");
 		}
 
@@ -242,7 +263,9 @@ public class StructuredContentSerDes {
 
 			for (int i = 0; i < structuredContent.getKeywords().length; i++) {
 				sb.append("\"");
+
 				sb.append(structuredContent.getKeywords()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) < structuredContent.getKeywords().length) {
@@ -357,7 +380,9 @@ public class StructuredContentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(structuredContent.getTitle());
+
 			sb.append("\"");
 		}
 
@@ -370,7 +395,9 @@ public class StructuredContentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(structuredContent.getUuid());
+
 			sb.append("\"");
 		}
 
@@ -383,7 +410,9 @@ public class StructuredContentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(structuredContent.getViewableBy());
+
 			sb.append("\"");
 		}
 
@@ -451,19 +480,19 @@ public class StructuredContentSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					structuredContent.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					structuredContent.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "datePublished")) {
 				if (jsonParserFieldValue != null) {
 					structuredContent.setDatePublished(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
@@ -563,18 +592,6 @@ public class StructuredContentSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

@@ -84,7 +84,9 @@ public class ContactInformationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contactInformation.getFacebook());
+
 			sb.append("\"");
 		}
 
@@ -108,7 +110,9 @@ public class ContactInformationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contactInformation.getJabber());
+
 			sb.append("\"");
 		}
 
@@ -144,7 +148,9 @@ public class ContactInformationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contactInformation.getSkype());
+
 			sb.append("\"");
 		}
 
@@ -157,7 +163,9 @@ public class ContactInformationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contactInformation.getSms());
+
 			sb.append("\"");
 		}
 
@@ -193,7 +201,9 @@ public class ContactInformationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contactInformation.getTwitter());
+
 			sb.append("\"");
 		}
 

@@ -56,7 +56,9 @@ public class PhoneSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(phone.getExtension());
+
 			sb.append("\"");
 		}
 
@@ -80,7 +82,9 @@ public class PhoneSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(phone.getPhoneNumber());
+
 			sb.append("\"");
 		}
 
@@ -93,7 +97,9 @@ public class PhoneSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(phone.getPhoneType());
+
 			sb.append("\"");
 		}
 

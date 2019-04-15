@@ -58,7 +58,9 @@ public class HoursAvailableSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(hoursAvailable.getCloses());
+
 			sb.append("\"");
 		}
 
@@ -71,7 +73,9 @@ public class HoursAvailableSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(hoursAvailable.getDayOfWeek());
+
 			sb.append("\"");
 		}
 
@@ -95,7 +99,9 @@ public class HoursAvailableSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(hoursAvailable.getOpens());
+
 			sb.append("\"");
 		}
 

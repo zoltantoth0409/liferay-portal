@@ -58,7 +58,9 @@ public class BlogPostingImageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPostingImage.getContentUrl());
+
 			sb.append("\"");
 		}
 
@@ -71,7 +73,9 @@ public class BlogPostingImageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPostingImage.getEncodingFormat());
+
 			sb.append("\"");
 		}
 
@@ -84,7 +88,9 @@ public class BlogPostingImageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPostingImage.getFileExtension());
+
 			sb.append("\"");
 		}
 
@@ -119,7 +125,9 @@ public class BlogPostingImageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPostingImage.getTitle());
+
 			sb.append("\"");
 		}
 
@@ -132,7 +140,9 @@ public class BlogPostingImageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(blogPostingImage.getViewableBy());
+
 			sb.append("\"");
 		}
 

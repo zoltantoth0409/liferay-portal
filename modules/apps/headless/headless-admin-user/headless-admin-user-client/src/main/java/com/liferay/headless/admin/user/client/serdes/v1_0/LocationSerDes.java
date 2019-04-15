@@ -56,7 +56,9 @@ public class LocationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(location.getAddressCountry());
+
 			sb.append("\"");
 		}
 
@@ -69,7 +71,9 @@ public class LocationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(location.getAddressRegion());
+
 			sb.append("\"");
 		}
 

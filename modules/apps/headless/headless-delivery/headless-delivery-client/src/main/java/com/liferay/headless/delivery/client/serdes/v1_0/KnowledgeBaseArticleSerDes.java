@@ -19,10 +19,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -58,6 +56,9 @@ public class KnowledgeBaseArticleSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"aggregateRating\": ");
 
 		if (knowledgeBaseArticle.getAggregateRating() == null) {
@@ -76,7 +77,9 @@ public class KnowledgeBaseArticleSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseArticle.getArticleBody());
+
 			sb.append("\"");
 		}
 
@@ -100,7 +103,11 @@ public class KnowledgeBaseArticleSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(knowledgeBaseArticle.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					knowledgeBaseArticle.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -113,7 +120,11 @@ public class KnowledgeBaseArticleSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(knowledgeBaseArticle.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					knowledgeBaseArticle.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -126,7 +137,9 @@ public class KnowledgeBaseArticleSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseArticle.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -139,7 +152,9 @@ public class KnowledgeBaseArticleSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseArticle.getEncodingFormat());
+
 			sb.append("\"");
 		}
 
@@ -152,7 +167,9 @@ public class KnowledgeBaseArticleSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseArticle.getFriendlyUrlPath());
+
 			sb.append("\"");
 		}
 
@@ -181,7 +198,9 @@ public class KnowledgeBaseArticleSerDes {
 				 i++) {
 
 				sb.append("\"");
+
 				sb.append(knowledgeBaseArticle.getKeywords()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) < knowledgeBaseArticle.getKeywords().length) {
@@ -307,7 +326,9 @@ public class KnowledgeBaseArticleSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseArticle.getTitle());
+
 			sb.append("\"");
 		}
 
@@ -320,7 +341,9 @@ public class KnowledgeBaseArticleSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseArticle.getViewableBy());
+
 			sb.append("\"");
 		}
 
@@ -366,13 +389,13 @@ public class KnowledgeBaseArticleSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					knowledgeBaseArticle.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					knowledgeBaseArticle.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
@@ -482,18 +505,6 @@ public class KnowledgeBaseArticleSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

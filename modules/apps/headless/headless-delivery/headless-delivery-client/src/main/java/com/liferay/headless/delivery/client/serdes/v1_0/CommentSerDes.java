@@ -18,10 +18,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.Comment;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -54,6 +52,9 @@ public class CommentSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"creator\": ");
 
 		if (comment.getCreator() == null) {
@@ -72,7 +73,9 @@ public class CommentSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(comment.getDateCreated());
+
+			sb.append(liferayToJSONDateFormat.format(comment.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -85,7 +88,10 @@ public class CommentSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(comment.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(comment.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -120,7 +126,9 @@ public class CommentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(comment.getText());
+
 			sb.append("\"");
 		}
 
@@ -152,13 +160,13 @@ public class CommentSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					comment.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					comment.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "id")) {
@@ -180,18 +188,6 @@ public class CommentSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

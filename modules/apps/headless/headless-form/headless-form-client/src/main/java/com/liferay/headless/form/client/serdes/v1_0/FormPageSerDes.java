@@ -79,7 +79,9 @@ public class FormPageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(formPage.getHeadline());
+
 			sb.append("\"");
 		}
 
@@ -103,7 +105,9 @@ public class FormPageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(formPage.getText());
+
 			sb.append("\"");
 		}
 

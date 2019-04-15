@@ -19,10 +19,8 @@ import com.liferay.headless.admin.user.client.dto.v1_0.Service;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -58,6 +56,9 @@ public class OrganizationSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"comment\": ");
 
 		if (organization.getComment() == null) {
@@ -65,7 +66,9 @@ public class OrganizationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(organization.getComment());
+
 			sb.append("\"");
 		}
 
@@ -89,7 +92,10 @@ public class OrganizationSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(organization.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(organization.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -102,7 +108,10 @@ public class OrganizationSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(organization.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(organization.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -126,7 +135,9 @@ public class OrganizationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(organization.getImage());
+
 			sb.append("\"");
 		}
 
@@ -142,7 +153,9 @@ public class OrganizationSerDes {
 
 			for (int i = 0; i < organization.getKeywords().length; i++) {
 				sb.append("\"");
+
 				sb.append(organization.getKeywords()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) < organization.getKeywords().length) {
@@ -173,7 +186,9 @@ public class OrganizationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(organization.getName());
+
 			sb.append("\"");
 		}
 
@@ -257,13 +272,13 @@ public class OrganizationSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					organization.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					organization.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "id")) {
@@ -325,18 +340,6 @@ public class OrganizationSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

@@ -69,7 +69,9 @@ public class ContentSetElementSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentSetElement.getContentType());
+
 			sb.append("\"");
 		}
 
@@ -93,7 +95,9 @@ public class ContentSetElementSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(contentSetElement.getTitle());
+
 			sb.append("\"");
 		}
 

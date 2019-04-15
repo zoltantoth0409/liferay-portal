@@ -58,7 +58,9 @@ public class SegmentUserSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(segmentUser.getEmail());
+
 			sb.append("\"");
 		}
 
@@ -82,7 +84,9 @@ public class SegmentUserSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(segmentUser.getName());
+
 			sb.append("\"");
 		}
 

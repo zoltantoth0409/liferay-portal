@@ -18,10 +18,8 @@ import com.liferay.headless.admin.taxonomy.client.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.admin.taxonomy.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -56,6 +54,9 @@ public class TaxonomyCategorySerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"availableLanguages\": ");
 
 		if (taxonomyCategory.getAvailableLanguages() == null) {
@@ -68,7 +69,9 @@ public class TaxonomyCategorySerDes {
 				 i++) {
 
 				sb.append("\"");
+
 				sb.append(taxonomyCategory.getAvailableLanguages()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) < taxonomyCategory.getAvailableLanguages().length) {
@@ -99,7 +102,11 @@ public class TaxonomyCategorySerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(taxonomyCategory.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					taxonomyCategory.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -112,7 +119,11 @@ public class TaxonomyCategorySerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(taxonomyCategory.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					taxonomyCategory.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -125,7 +136,9 @@ public class TaxonomyCategorySerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(taxonomyCategory.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -149,7 +162,9 @@ public class TaxonomyCategorySerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(taxonomyCategory.getName());
+
 			sb.append("\"");
 		}
 
@@ -195,7 +210,9 @@ public class TaxonomyCategorySerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(taxonomyCategory.getViewableBy());
+
 			sb.append("\"");
 		}
 
@@ -234,13 +251,13 @@ public class TaxonomyCategorySerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					taxonomyCategory.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					taxonomyCategory.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
@@ -296,18 +313,6 @@ public class TaxonomyCategorySerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

@@ -18,10 +18,8 @@ import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowTaskAssignToU
 import com.liferay.headless.admin.workflow.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -58,6 +56,9 @@ public class WorkflowTaskAssignToUserSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"assigneeId\": ");
 
 		if (workflowTaskAssignToUser.getAssigneeId() == null) {
@@ -76,7 +77,9 @@ public class WorkflowTaskAssignToUserSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(workflowTaskAssignToUser.getComment());
+
 			sb.append("\"");
 		}
 
@@ -89,7 +92,11 @@ public class WorkflowTaskAssignToUserSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(workflowTaskAssignToUser.getDueDate());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					workflowTaskAssignToUser.getDueDate()));
+
 			sb.append("\"");
 		}
 
@@ -128,24 +135,12 @@ public class WorkflowTaskAssignToUserSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dueDate")) {
 				if (jsonParserFieldValue != null) {
 					workflowTaskAssignToUser.setDueDate(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

@@ -19,10 +19,8 @@ import com.liferay.headless.form.client.dto.v1_0.FormRecord;
 import com.liferay.headless.form.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -56,6 +54,9 @@ public class FormSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"availableLanguages\": ");
 
 		if (form.getAvailableLanguages() == null) {
@@ -66,7 +67,9 @@ public class FormSerDes {
 
 			for (int i = 0; i < form.getAvailableLanguages().length; i++) {
 				sb.append("\"");
+
 				sb.append(form.getAvailableLanguages()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) < form.getAvailableLanguages().length) {
@@ -97,7 +100,9 @@ public class FormSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(form.getDateCreated());
+
+			sb.append(liferayToJSONDateFormat.format(form.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -110,7 +115,9 @@ public class FormSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(form.getDateModified());
+
+			sb.append(liferayToJSONDateFormat.format(form.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -123,7 +130,9 @@ public class FormSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(form.getDatePublished());
+
+			sb.append(liferayToJSONDateFormat.format(form.getDatePublished()));
+
 			sb.append("\"");
 		}
 
@@ -136,7 +145,9 @@ public class FormSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(form.getDefaultLanguage());
+
 			sb.append("\"");
 		}
 
@@ -149,7 +160,9 @@ public class FormSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(form.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -215,7 +228,9 @@ public class FormSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(form.getName());
+
 			sb.append("\"");
 		}
 
@@ -285,18 +300,17 @@ public class FormSerDes {
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
-					form.setDateCreated(_toDate((String)jsonParserFieldValue));
+					form.setDateCreated(toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
-					form.setDateModified(_toDate((String)jsonParserFieldValue));
+					form.setDateModified(toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "datePublished")) {
 				if (jsonParserFieldValue != null) {
-					form.setDatePublished(
-						_toDate((String)jsonParserFieldValue));
+					form.setDatePublished(toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "defaultLanguage")) {
@@ -358,18 +372,6 @@ public class FormSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

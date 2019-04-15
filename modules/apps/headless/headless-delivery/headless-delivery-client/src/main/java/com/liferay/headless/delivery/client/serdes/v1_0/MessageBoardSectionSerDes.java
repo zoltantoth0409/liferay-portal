@@ -18,10 +18,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardSection;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -56,6 +54,9 @@ public class MessageBoardSectionSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"creator\": ");
 
 		if (messageBoardSection.getCreator() == null) {
@@ -74,7 +75,11 @@ public class MessageBoardSectionSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(messageBoardSection.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					messageBoardSection.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -87,7 +92,11 @@ public class MessageBoardSectionSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(messageBoardSection.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					messageBoardSection.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -100,7 +109,9 @@ public class MessageBoardSectionSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardSection.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -157,7 +168,9 @@ public class MessageBoardSectionSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardSection.getTitle());
+
 			sb.append("\"");
 		}
 
@@ -170,7 +183,9 @@ public class MessageBoardSectionSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardSection.getViewableBy());
+
 			sb.append("\"");
 		}
 
@@ -203,13 +218,13 @@ public class MessageBoardSectionSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					messageBoardSection.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					messageBoardSection.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
@@ -261,18 +276,6 @@ public class MessageBoardSectionSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

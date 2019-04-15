@@ -58,7 +58,9 @@ public class SuccessPageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(successPage.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -71,7 +73,9 @@ public class SuccessPageSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(successPage.getHeadline());
+
 			sb.append("\"");
 		}
 

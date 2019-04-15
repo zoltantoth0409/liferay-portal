@@ -90,7 +90,9 @@ public class ServiceSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(service.getServiceType());
+
 			sb.append("\"");
 		}
 

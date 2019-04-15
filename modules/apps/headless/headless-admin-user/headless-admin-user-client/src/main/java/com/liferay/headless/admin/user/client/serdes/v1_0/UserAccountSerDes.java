@@ -21,10 +21,8 @@ import com.liferay.headless.admin.user.client.dto.v1_0.UserAccount;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -60,6 +58,9 @@ public class UserAccountSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"additionalName\": ");
 
 		if (userAccount.getAdditionalName() == null) {
@@ -67,7 +68,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getAdditionalName());
+
 			sb.append("\"");
 		}
 
@@ -80,7 +83,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getAlternateName());
+
 			sb.append("\"");
 		}
 
@@ -93,7 +98,10 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(userAccount.getBirthDate());
+
+			sb.append(
+				liferayToJSONDateFormat.format(userAccount.getBirthDate()));
+
 			sb.append("\"");
 		}
 
@@ -117,7 +125,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getDashboardURL());
+
 			sb.append("\"");
 		}
 
@@ -130,7 +140,10 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(userAccount.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(userAccount.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -143,7 +156,10 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(userAccount.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(userAccount.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -156,7 +172,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getEmail());
+
 			sb.append("\"");
 		}
 
@@ -169,7 +187,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getFamilyName());
+
 			sb.append("\"");
 		}
 
@@ -182,7 +202,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getGivenName());
+
 			sb.append("\"");
 		}
 
@@ -195,7 +217,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getHonorificPrefix());
+
 			sb.append("\"");
 		}
 
@@ -208,7 +232,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getHonorificSuffix());
+
 			sb.append("\"");
 		}
 
@@ -232,7 +258,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getImage());
+
 			sb.append("\"");
 		}
 
@@ -245,7 +273,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getJobTitle());
+
 			sb.append("\"");
 		}
 
@@ -261,7 +291,9 @@ public class UserAccountSerDes {
 
 			for (int i = 0; i < userAccount.getKeywords().length; i++) {
 				sb.append("\"");
+
 				sb.append(userAccount.getKeywords()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) < userAccount.getKeywords().length) {
@@ -281,7 +313,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getName());
+
 			sb.append("\"");
 		}
 
@@ -317,7 +351,9 @@ public class UserAccountSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(userAccount.getProfileURL());
+
 			sb.append("\"");
 		}
 
@@ -396,7 +432,7 @@ public class UserAccountSerDes {
 			else if (Objects.equals(jsonParserFieldName, "birthDate")) {
 				if (jsonParserFieldValue != null) {
 					userAccount.setBirthDate(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(
@@ -416,13 +452,13 @@ public class UserAccountSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					userAccount.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					userAccount.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "email")) {
@@ -526,18 +562,6 @@ public class UserAccountSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

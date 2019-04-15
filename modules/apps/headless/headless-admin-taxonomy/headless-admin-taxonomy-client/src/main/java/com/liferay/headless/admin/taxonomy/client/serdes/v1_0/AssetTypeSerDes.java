@@ -67,7 +67,9 @@ public class AssetTypeSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(assetType.getSubtype());
+
 			sb.append("\"");
 		}
 
@@ -80,7 +82,9 @@ public class AssetTypeSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(assetType.getType());
+
 			sb.append("\"");
 		}
 

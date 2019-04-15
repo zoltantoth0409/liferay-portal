@@ -18,10 +18,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.DocumentFolder;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -56,6 +54,9 @@ public class DocumentFolderSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"creator\": ");
 
 		if (documentFolder.getCreator() == null) {
@@ -74,7 +75,11 @@ public class DocumentFolderSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(documentFolder.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					documentFolder.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -87,7 +92,11 @@ public class DocumentFolderSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(documentFolder.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					documentFolder.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -100,7 +109,9 @@ public class DocumentFolderSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(documentFolder.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -124,7 +135,9 @@ public class DocumentFolderSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(documentFolder.getName());
+
 			sb.append("\"");
 		}
 
@@ -170,7 +183,9 @@ public class DocumentFolderSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(documentFolder.getViewableBy());
+
 			sb.append("\"");
 		}
 
@@ -203,13 +218,13 @@ public class DocumentFolderSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					documentFolder.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					documentFolder.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
@@ -258,18 +273,6 @@ public class DocumentFolderSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

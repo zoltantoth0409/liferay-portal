@@ -56,7 +56,9 @@ public class ValidationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(validation.getErrorMessage());
+
 			sb.append("\"");
 		}
 
@@ -69,7 +71,9 @@ public class ValidationSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(validation.getExpression());
+
 			sb.append("\"");
 		}
 

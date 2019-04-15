@@ -67,7 +67,9 @@ public class WebUrlSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(webUrl.getUrl());
+
 			sb.append("\"");
 		}
 
@@ -80,7 +82,9 @@ public class WebUrlSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(webUrl.getUrlType());
+
 			sb.append("\"");
 		}
 

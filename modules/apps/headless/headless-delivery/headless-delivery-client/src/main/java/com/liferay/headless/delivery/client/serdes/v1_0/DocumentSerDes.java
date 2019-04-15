@@ -20,10 +20,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -56,6 +54,9 @@ public class DocumentSerDes {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("{");
+
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
 		sb.append("\"adaptedImages\": ");
 
@@ -96,7 +97,9 @@ public class DocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(document.getContentUrl());
+
 			sb.append("\"");
 		}
 
@@ -120,7 +123,10 @@ public class DocumentSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(document.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(document.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -133,7 +139,10 @@ public class DocumentSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(document.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(document.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -146,7 +155,9 @@ public class DocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(document.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -170,7 +181,9 @@ public class DocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(document.getEncodingFormat());
+
 			sb.append("\"");
 		}
 
@@ -183,7 +196,9 @@ public class DocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(document.getFileExtension());
+
 			sb.append("\"");
 		}
 
@@ -210,7 +225,9 @@ public class DocumentSerDes {
 
 			for (int i = 0; i < document.getKeywords().length; i++) {
 				sb.append("\"");
+
 				sb.append(document.getKeywords()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) < document.getKeywords().length) {
@@ -294,7 +311,9 @@ public class DocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(document.getTitle());
+
 			sb.append("\"");
 		}
 
@@ -307,7 +326,9 @@ public class DocumentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(document.getViewableBy());
+
 			sb.append("\"");
 		}
 
@@ -363,13 +384,13 @@ public class DocumentSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					document.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					document.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
@@ -454,18 +475,6 @@ public class DocumentSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

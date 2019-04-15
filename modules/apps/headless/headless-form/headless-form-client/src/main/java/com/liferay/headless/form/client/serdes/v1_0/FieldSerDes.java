@@ -69,7 +69,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getDataSourceType());
+
 			sb.append("\"");
 		}
 
@@ -82,7 +84,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getDataType());
+
 			sb.append("\"");
 		}
 
@@ -95,7 +99,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getDisplayStyle());
+
 			sb.append("\"");
 		}
 
@@ -163,7 +169,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getInputControl());
+
 			sb.append("\"");
 		}
 
@@ -176,7 +184,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getLabel());
+
 			sb.append("\"");
 		}
 
@@ -211,7 +221,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getName());
+
 			sb.append("\"");
 		}
 
@@ -245,7 +257,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getPlaceholder());
+
 			sb.append("\"");
 		}
 
@@ -258,7 +272,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getPredefinedValue());
+
 			sb.append("\"");
 		}
 
@@ -326,7 +342,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getStyle());
+
 			sb.append("\"");
 		}
 
@@ -339,7 +357,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getText());
+
 			sb.append("\"");
 		}
 
@@ -352,7 +372,9 @@ public class FieldSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(field.getTooltip());
+
 			sb.append("\"");
 		}
 

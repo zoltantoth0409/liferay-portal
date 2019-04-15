@@ -58,7 +58,9 @@ public class MessageBoardAttachmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardAttachment.getContentUrl());
+
 			sb.append("\"");
 		}
 
@@ -71,7 +73,9 @@ public class MessageBoardAttachmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardAttachment.getEncodingFormat());
+
 			sb.append("\"");
 		}
 
@@ -84,7 +88,9 @@ public class MessageBoardAttachmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardAttachment.getFileExtension());
+
 			sb.append("\"");
 		}
 
@@ -119,7 +125,9 @@ public class MessageBoardAttachmentSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(messageBoardAttachment.getTitle());
+
 			sb.append("\"");
 		}
 

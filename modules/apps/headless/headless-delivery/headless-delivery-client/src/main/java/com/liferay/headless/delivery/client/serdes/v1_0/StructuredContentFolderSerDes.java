@@ -18,10 +18,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.StructuredContentFolder;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -58,6 +56,9 @@ public class StructuredContentFolderSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"creator\": ");
 
 		if (structuredContentFolder.getCreator() == null) {
@@ -76,7 +77,11 @@ public class StructuredContentFolderSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(structuredContentFolder.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					structuredContentFolder.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -89,7 +94,11 @@ public class StructuredContentFolderSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(structuredContentFolder.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					structuredContentFolder.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -102,7 +111,9 @@ public class StructuredContentFolderSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(structuredContentFolder.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -126,7 +137,9 @@ public class StructuredContentFolderSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(structuredContentFolder.getName());
+
 			sb.append("\"");
 		}
 
@@ -175,7 +188,9 @@ public class StructuredContentFolderSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(structuredContentFolder.getViewableBy());
+
 			sb.append("\"");
 		}
 
@@ -208,13 +223,13 @@ public class StructuredContentFolderSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					structuredContentFolder.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					structuredContentFolder.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
@@ -268,18 +283,6 @@ public class StructuredContentFolderSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

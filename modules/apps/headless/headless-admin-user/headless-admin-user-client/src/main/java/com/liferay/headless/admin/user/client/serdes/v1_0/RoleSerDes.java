@@ -18,10 +18,8 @@ import com.liferay.headless.admin.user.client.dto.v1_0.Role;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -54,6 +52,9 @@ public class RoleSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"availableLanguages\": ");
 
 		if (role.getAvailableLanguages() == null) {
@@ -64,7 +65,9 @@ public class RoleSerDes {
 
 			for (int i = 0; i < role.getAvailableLanguages().length; i++) {
 				sb.append("\"");
+
 				sb.append(role.getAvailableLanguages()[i]);
+
 				sb.append("\"");
 
 				if ((i + 1) < role.getAvailableLanguages().length) {
@@ -95,7 +98,9 @@ public class RoleSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(role.getDateCreated());
+
+			sb.append(liferayToJSONDateFormat.format(role.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -108,7 +113,9 @@ public class RoleSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(role.getDateModified());
+
+			sb.append(liferayToJSONDateFormat.format(role.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -121,7 +128,9 @@ public class RoleSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(role.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -145,7 +154,9 @@ public class RoleSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(role.getName());
+
 			sb.append("\"");
 		}
 
@@ -158,7 +169,9 @@ public class RoleSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(role.getRoleType());
+
 			sb.append("\"");
 		}
 
@@ -195,12 +208,12 @@ public class RoleSerDes {
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
-					role.setDateCreated(_toDate((String)jsonParserFieldValue));
+					role.setDateCreated(toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
-					role.setDateModified(_toDate((String)jsonParserFieldValue));
+					role.setDateModified(toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
@@ -226,18 +239,6 @@ public class RoleSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 

@@ -67,7 +67,9 @@ public class RoleBriefSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(roleBrief.getName());
+
 			sb.append("\"");
 		}
 

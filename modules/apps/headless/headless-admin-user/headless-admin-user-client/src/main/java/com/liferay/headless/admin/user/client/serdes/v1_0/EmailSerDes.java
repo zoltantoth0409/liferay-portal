@@ -56,7 +56,9 @@ public class EmailSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(email.getEmail());
+
 			sb.append("\"");
 		}
 
@@ -91,7 +93,9 @@ public class EmailSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(email.getType());
+
 			sb.append("\"");
 		}
 

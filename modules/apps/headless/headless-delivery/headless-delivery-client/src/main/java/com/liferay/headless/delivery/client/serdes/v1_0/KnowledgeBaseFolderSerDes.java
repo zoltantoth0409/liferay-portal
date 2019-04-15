@@ -18,10 +18,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.KnowledgeBaseFolder;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -56,6 +54,9 @@ public class KnowledgeBaseFolderSerDes {
 
 		sb.append("{");
 
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
 		sb.append("\"creator\": ");
 
 		if (knowledgeBaseFolder.getCreator() == null) {
@@ -74,7 +75,11 @@ public class KnowledgeBaseFolderSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(knowledgeBaseFolder.getDateCreated());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					knowledgeBaseFolder.getDateCreated()));
+
 			sb.append("\"");
 		}
 
@@ -87,7 +92,11 @@ public class KnowledgeBaseFolderSerDes {
 		}
 		else {
 			sb.append("\"");
-			sb.append(knowledgeBaseFolder.getDateModified());
+
+			sb.append(
+				liferayToJSONDateFormat.format(
+					knowledgeBaseFolder.getDateModified()));
+
 			sb.append("\"");
 		}
 
@@ -100,7 +109,9 @@ public class KnowledgeBaseFolderSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseFolder.getDescription());
+
 			sb.append("\"");
 		}
 
@@ -124,7 +135,9 @@ public class KnowledgeBaseFolderSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseFolder.getName());
+
 			sb.append("\"");
 		}
 
@@ -192,7 +205,9 @@ public class KnowledgeBaseFolderSerDes {
 		}
 		else {
 			sb.append("\"");
+
 			sb.append(knowledgeBaseFolder.getViewableBy());
+
 			sb.append("\"");
 		}
 
@@ -225,13 +240,13 @@ public class KnowledgeBaseFolderSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {
 				if (jsonParserFieldValue != null) {
 					knowledgeBaseFolder.setDateCreated(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateModified")) {
 				if (jsonParserFieldValue != null) {
 					knowledgeBaseFolder.setDateModified(
-						_toDate((String)jsonParserFieldValue));
+						toDate((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "description")) {
@@ -300,18 +315,6 @@ public class KnowledgeBaseFolderSerDes {
 			else {
 				throw new IllegalArgumentException(
 					"Unsupported field name " + jsonParserFieldName);
-			}
-		}
-
-		private Date _toDate(String string) {
-			try {
-				DateFormat dateFormat = new SimpleDateFormat(
-					"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
-				return dateFormat.parse(string);
-			}
-			catch (ParseException pe) {
-				throw new IllegalArgumentException("Unable to parse " + string);
 			}
 		}
 
