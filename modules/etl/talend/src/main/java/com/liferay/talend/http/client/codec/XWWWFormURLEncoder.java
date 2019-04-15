@@ -25,13 +25,13 @@ import org.talend.sdk.component.api.service.http.Encoder;
 public class XWWWFormURLEncoder implements Encoder {
 
 	@Override
-	public byte[] encode(Object o) throws EncoderException {
-		if (o instanceof OAuthDataStore) {
-			return _encode((OAuthDataStore)o);
+	public byte[] encode(Object object) throws EncoderException {
+		if (object instanceof OAuthDataStore) {
+			return _encode((OAuthDataStore)object);
 		}
 
 		throw new EncoderException(
-			"Unable to encode payload of type " + o.getClass());
+			"Unable to encode payload of type " + object.getClass());
 	}
 
 	private byte[] _encode(OAuthDataStore oAuthDataStore) {
