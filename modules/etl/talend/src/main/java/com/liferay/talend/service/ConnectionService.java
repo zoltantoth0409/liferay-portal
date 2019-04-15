@@ -122,7 +122,7 @@ public class ConnectionService {
 		if (jsonObjectResponse.status() != 200) {
 			throw new OAuth2Exception(
 				String.format(
-					"OAuth 2.0 check failed. Response status {%s}.",
+					"OAuth 2.0 check failed with response status {%s}",
 					jsonObjectResponse.status()));
 		}
 
