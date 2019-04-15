@@ -382,7 +382,7 @@
 					var audioSrc = instance._getItemSrc(editor, selectedItem);
 
 					if (audioSrc) {
-						if (callback) {
+						if (callback instanceof Function) {
 							callback(audioSrc);
 						}
 						else {
