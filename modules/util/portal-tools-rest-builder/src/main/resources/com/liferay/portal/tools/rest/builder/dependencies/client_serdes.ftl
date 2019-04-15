@@ -64,11 +64,15 @@ public class ${schemaName}SerDes {
 				sb.append("null");
 			}
 			else {
-				<#if properties[propertyName]?contains("[]")>
+				<#assign
+					propertyType = properties[propertyName]
+				/>
+
+				<#if propertyType?contains("[]")>
 					sb.append("[");
 
 					for (int i = 0; i < ${schemaVarName}.get${propertyName?cap_first}().length; i++) {
-						<#if stringUtil.equals(properties[propertyName], "Date[]") || stringUtil.equals(properties[propertyName], "String[]") || enumSchemas?keys?seq_contains(properties[propertyName])>
+						<#if stringUtil.equals(propertyType, "Date[]") || stringUtil.equals(propertyType, "String[]") || enumSchemas?keys?seq_contains(propertyType)>
 							sb.append("\"");
 							sb.append(${schemaVarName}.get${propertyName?cap_first}()[i]);
 							sb.append("\"");
@@ -83,7 +87,7 @@ public class ${schemaName}SerDes {
 
 					sb.append("]");
 				<#else>
-					<#if stringUtil.equals(properties[propertyName], "Date") || stringUtil.equals(properties[propertyName], "String") || enumSchemas?keys?seq_contains(properties[propertyName])>
+					<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "String") || enumSchemas?keys?seq_contains(propertyType)>
 						sb.append("\"");
 						sb.append(${schemaVarName}.get${propertyName?cap_first}());
 						sb.append("\"");
