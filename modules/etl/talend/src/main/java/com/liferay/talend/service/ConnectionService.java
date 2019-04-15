@@ -204,13 +204,12 @@ public class ConnectionService {
 	private void _validateResponse(Response<?> response) {
 		if (response == null) {
 			throw new ConnectionException(
-				"Data request failed. Endpoint did not respond.");
+				"Data request failed for unresponsive endpoint");
 		}
 
 		if (response.status() != 200) {
 			throw new ConnectionException(
-				"Request failed. Received response status is " +
-					response.status());
+				"Request failed with response status " + response.status());
 		}
 	}
 
