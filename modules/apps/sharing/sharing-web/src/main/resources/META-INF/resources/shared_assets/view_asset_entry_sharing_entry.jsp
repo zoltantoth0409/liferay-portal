@@ -42,13 +42,13 @@ if (isControlPanel) {
 	portletDisplay.setURLBack(redirect);
 }
 else {
-	portletDisplay.setShowBackIcon(false);
 	portletDisplay.setPortletDecorate(false);
+	portletDisplay.setShowBackIcon(false);
 }
 %>
 
 <c:if test="<%= isControlPanel %>">
-<div class="upper-tbar-container-fixed">
+	<div class="upper-tbar-container-fixed">
 </c:if>
 
 <div class="tbar upper-tbar">
@@ -81,7 +81,7 @@ else {
 </div>
 
 <c:if test="<%= isControlPanel %>">
-</div>
+	</div>
 </c:if>
 
 <liferay-asset:asset-display
