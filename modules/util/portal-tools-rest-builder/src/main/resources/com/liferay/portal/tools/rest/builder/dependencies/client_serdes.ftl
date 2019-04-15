@@ -99,28 +99,6 @@ public class ${schemaName}SerDes {
 		return sb.toString();
 	}
 
-	public static String toJSON(Collection<${schemaName}> ${schemaVarNames}) {
-		if (${schemaVarNames} == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (${schemaName} ${schemaVarName} : ${schemaVarNames}) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(${schemaVarName}));
-		}
-
-		sb.append("]");
-
-		return sb.toString();
-	}
-
 	private static class ${schemaName}JSONParser extends BaseJSONParser<${schemaName}> {
 
 		protected ${schemaName} createDTO() {
