@@ -947,12 +947,12 @@ public class RESTBuilder {
 	}
 
 	private Schema _getPageSchema(String schemaName) {
+		Map<String, Schema> propertySchemas = new HashMap<>();
+
 		Schema longSchema = new Schema();
 
 		longSchema.setFormat("int64");
 		longSchema.setType("integer");
-
-		Map<String, Schema> propertySchemas = new HashMap<>();
 
 		propertySchemas.put("lastPage", longSchema);
 		propertySchemas.put("page", longSchema);
