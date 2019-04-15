@@ -204,7 +204,7 @@ public class ConnectionService {
 	private void _validateResponse(Response<?> response) {
 		if (response == null) {
 			throw new ConnectionException(
-				"Data request failed. End point did not respond.");
+				"Data request failed. Endpoint did not respond.");
 		}
 
 		if (response.status() != 200) {
