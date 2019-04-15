@@ -171,7 +171,7 @@ class EditTags extends Component {
 
 		let instance = this;
 
-		if (addedTags.length > 0 || removedTags.length > 0) {
+		if ((addedTags.length > 0) || (removedTags.length > 0)) {
 			this._fetchTagsRequest(
 				this.urlUpdateTags,
 				this.append ? 'PATCH' : 'PUT',
