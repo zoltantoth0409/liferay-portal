@@ -216,11 +216,11 @@ public class ConnectionService {
 
 	private static final String
 		_OAUTH_FAILED_UNSUPPORTED_RESPONSE_CONTENT_TYPE =
-			"OAuth2 check failed. Unsupported content type. Response status " +
+			"OAuth 2.0 check failed. Unsupported content type. Response status " +
 				"{%s}  Content type {%s}";
 
 	private static final String _OAUTH_FAILED_UNSUPPORTED_STATUS =
-		"OAuth2 check failed. Response status {%s}.";
+		"OAuth 2.0 check failed. Response status {%s}.";
 
 	@Service
 	private LiferayHttpClient _liferayHttpClient;
