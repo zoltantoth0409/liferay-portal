@@ -190,8 +190,11 @@ public class RESTBuilder {
 
 					String pageSchemaName = schemaName + "_Page";
 
-					_putSchema(
-						context, _getPageSchema(schemaName), pageSchemaName);
+					Schema pageSchema = _getPageSchema(schemaName);
+
+					allSchemas.put(pageSchemaName, pageSchema);
+
+					_putSchema(context, pageSchema, pageSchemaName);
 
 					_createClientDTOFile(
 						context, escapedVersion, pageSchemaName);
