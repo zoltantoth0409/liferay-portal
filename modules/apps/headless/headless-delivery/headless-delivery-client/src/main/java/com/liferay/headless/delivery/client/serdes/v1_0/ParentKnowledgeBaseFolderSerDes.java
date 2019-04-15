@@ -17,7 +17,6 @@ package com.liferay.headless.delivery.client.serdes.v1_0;
 import com.liferay.headless.delivery.client.dto.v1_0.ParentKnowledgeBaseFolder;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -49,7 +48,7 @@ public class ParentKnowledgeBaseFolderSerDes {
 		ParentKnowledgeBaseFolder parentKnowledgeBaseFolder) {
 
 		if (parentKnowledgeBaseFolder == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -77,32 +76,6 @@ public class ParentKnowledgeBaseFolderSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<ParentKnowledgeBaseFolder> parentKnowledgeBaseFolders) {
-
-		if (parentKnowledgeBaseFolders == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (ParentKnowledgeBaseFolder parentKnowledgeBaseFolder :
-				parentKnowledgeBaseFolders) {
-
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(parentKnowledgeBaseFolder));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

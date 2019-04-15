@@ -17,7 +17,6 @@ package com.liferay.headless.admin.user.client.serdes.v1_0;
 import com.liferay.headless.admin.user.client.dto.v1_0.Email;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -43,7 +42,7 @@ public class EmailSerDes {
 
 	public static String toJSON(Email email) {
 		if (email == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -93,28 +92,6 @@ public class EmailSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<Email> emails) {
-		if (emails == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (Email email : emails) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(email));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

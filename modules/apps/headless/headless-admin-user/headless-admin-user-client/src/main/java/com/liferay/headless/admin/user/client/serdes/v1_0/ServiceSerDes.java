@@ -18,7 +18,6 @@ import com.liferay.headless.admin.user.client.dto.v1_0.HoursAvailable;
 import com.liferay.headless.admin.user.client.dto.v1_0.Service;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -45,7 +44,7 @@ public class ServiceSerDes {
 
 	public static String toJSON(Service service) {
 		if (service == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -94,28 +93,6 @@ public class ServiceSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<Service> services) {
-		if (services == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (Service service : services) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(service));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

@@ -21,7 +21,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
@@ -50,7 +49,7 @@ public class MessageBoardMessageSerDes {
 
 	public static String toJSON(MessageBoardMessage messageBoardMessage) {
 		if (messageBoardMessage == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -235,30 +234,6 @@ public class MessageBoardMessageSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<MessageBoardMessage> messageBoardMessages) {
-
-		if (messageBoardMessages == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (MessageBoardMessage messageBoardMessage : messageBoardMessages) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(messageBoardMessage));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

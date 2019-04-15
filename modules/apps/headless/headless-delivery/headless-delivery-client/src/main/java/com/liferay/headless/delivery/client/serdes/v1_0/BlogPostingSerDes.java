@@ -22,7 +22,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -52,7 +51,7 @@ public class BlogPostingSerDes {
 
 	public static String toJSON(BlogPosting blogPosting) {
 		if (blogPosting == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -305,28 +304,6 @@ public class BlogPostingSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<BlogPosting> blogPostings) {
-		if (blogPostings == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (BlogPosting blogPosting : blogPostings) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(blogPosting));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

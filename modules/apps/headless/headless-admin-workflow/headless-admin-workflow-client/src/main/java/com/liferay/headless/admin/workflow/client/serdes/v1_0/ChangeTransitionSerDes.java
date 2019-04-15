@@ -17,7 +17,6 @@ package com.liferay.headless.admin.workflow.client.serdes.v1_0;
 import com.liferay.headless.admin.workflow.client.dto.v1_0.ChangeTransition;
 import com.liferay.headless.admin.workflow.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -45,7 +44,7 @@ public class ChangeTransitionSerDes {
 
 	public static String toJSON(ChangeTransition changeTransition) {
 		if (changeTransition == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -62,30 +61,6 @@ public class ChangeTransitionSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<ChangeTransition> changeTransitions) {
-
-		if (changeTransitions == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (ChangeTransition changeTransition : changeTransitions) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(changeTransition));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

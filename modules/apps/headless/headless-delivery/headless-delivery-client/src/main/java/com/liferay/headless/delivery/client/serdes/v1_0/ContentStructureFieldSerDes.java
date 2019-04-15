@@ -18,7 +18,6 @@ import com.liferay.headless.delivery.client.dto.v1_0.ContentStructureField;
 import com.liferay.headless.delivery.client.dto.v1_0.Option;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -47,7 +46,7 @@ public class ContentStructureFieldSerDes {
 
 	public static String toJSON(ContentStructureField contentStructureField) {
 		if (contentStructureField == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -214,32 +213,6 @@ public class ContentStructureFieldSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<ContentStructureField> contentStructureFields) {
-
-		if (contentStructureFields == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (ContentStructureField contentStructureField :
-				contentStructureFields) {
-
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(contentStructureField));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

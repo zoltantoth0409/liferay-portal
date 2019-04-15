@@ -21,7 +21,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
@@ -50,7 +49,7 @@ public class TaxonomyCategorySerDes {
 
 	public static String toJSON(TaxonomyCategory taxonomyCategory) {
 		if (taxonomyCategory == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -193,30 +192,6 @@ public class TaxonomyCategorySerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<TaxonomyCategory> taxonomyCategories) {
-
-		if (taxonomyCategories == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (TaxonomyCategory taxonomyCategory : taxonomyCategories) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(taxonomyCategory));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

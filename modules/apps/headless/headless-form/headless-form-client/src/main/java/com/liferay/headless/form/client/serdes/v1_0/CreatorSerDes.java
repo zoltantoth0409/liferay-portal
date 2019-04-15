@@ -17,7 +17,6 @@ package com.liferay.headless.form.client.serdes.v1_0;
 import com.liferay.headless.form.client.dto.v1_0.Creator;
 import com.liferay.headless.form.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -43,7 +42,7 @@ public class CreatorSerDes {
 
 	public static String toJSON(Creator creator) {
 		if (creator == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -126,28 +125,6 @@ public class CreatorSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<Creator> creators) {
-		if (creators == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (Creator creator : creators) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(creator));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

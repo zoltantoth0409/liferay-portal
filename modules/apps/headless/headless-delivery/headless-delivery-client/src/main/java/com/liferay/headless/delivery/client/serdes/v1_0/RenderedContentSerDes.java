@@ -17,7 +17,6 @@ package com.liferay.headless.delivery.client.serdes.v1_0;
 import com.liferay.headless.delivery.client.dto.v1_0.RenderedContent;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -45,7 +44,7 @@ public class RenderedContentSerDes {
 
 	public static String toJSON(RenderedContent renderedContent) {
 		if (renderedContent == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -73,28 +72,6 @@ public class RenderedContentSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<RenderedContent> renderedContents) {
-		if (renderedContents == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (RenderedContent renderedContent : renderedContents) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(renderedContent));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

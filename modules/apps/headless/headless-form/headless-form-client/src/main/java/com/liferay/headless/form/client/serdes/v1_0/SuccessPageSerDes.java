@@ -17,7 +17,6 @@ package com.liferay.headless.form.client.serdes.v1_0;
 import com.liferay.headless.form.client.dto.v1_0.SuccessPage;
 import com.liferay.headless.form.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -45,7 +44,7 @@ public class SuccessPageSerDes {
 
 	public static String toJSON(SuccessPage successPage) {
 		if (successPage == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -84,28 +83,6 @@ public class SuccessPageSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<SuccessPage> successPages) {
-		if (successPages == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (SuccessPage successPage : successPages) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(successPage));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

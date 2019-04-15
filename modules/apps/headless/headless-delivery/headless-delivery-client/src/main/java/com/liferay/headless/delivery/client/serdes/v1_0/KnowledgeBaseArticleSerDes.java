@@ -22,7 +22,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -52,7 +51,7 @@ public class KnowledgeBaseArticleSerDes {
 
 	public static String toJSON(KnowledgeBaseArticle knowledgeBaseArticle) {
 		if (knowledgeBaseArticle == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -312,32 +311,6 @@ public class KnowledgeBaseArticleSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<KnowledgeBaseArticle> knowledgeBaseArticles) {
-
-		if (knowledgeBaseArticles == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (KnowledgeBaseArticle knowledgeBaseArticle :
-				knowledgeBaseArticles) {
-
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(knowledgeBaseArticle));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

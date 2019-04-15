@@ -17,7 +17,6 @@ package com.liferay.headless.delivery.client.serdes.v1_0;
 import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardAttachment;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -45,7 +44,7 @@ public class MessageBoardAttachmentSerDes {
 
 	public static String toJSON(MessageBoardAttachment messageBoardAttachment) {
 		if (messageBoardAttachment == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -117,32 +116,6 @@ public class MessageBoardAttachmentSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<MessageBoardAttachment> messageBoardAttachments) {
-
-		if (messageBoardAttachments == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (MessageBoardAttachment messageBoardAttachment :
-				messageBoardAttachments) {
-
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(messageBoardAttachment));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

@@ -22,7 +22,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -52,7 +51,7 @@ public class OrganizationSerDes {
 
 	public static String toJSON(Organization organization) {
 		if (organization == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -212,28 +211,6 @@ public class OrganizationSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<Organization> organizations) {
-		if (organizations == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (Organization organization : organizations) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(organization));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

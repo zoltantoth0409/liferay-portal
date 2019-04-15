@@ -19,7 +19,6 @@ import com.liferay.headless.form.client.dto.v1_0.Grid;
 import com.liferay.headless.form.client.dto.v1_0.Row;
 import com.liferay.headless.form.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -46,7 +45,7 @@ public class GridSerDes {
 
 	public static String toJSON(Grid grid) {
 		if (grid == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -105,28 +104,6 @@ public class GridSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<Grid> grids) {
-		if (grids == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (Grid grid : grids) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(grid));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

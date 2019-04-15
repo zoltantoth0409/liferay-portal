@@ -21,7 +21,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
@@ -48,7 +47,7 @@ public class KeywordSerDes {
 
 	public static String toJSON(Keyword keyword) {
 		if (keyword == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -131,28 +130,6 @@ public class KeywordSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<Keyword> keywords) {
-		if (keywords == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (Keyword keyword : keywords) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(keyword));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

@@ -17,7 +17,6 @@ package com.liferay.headless.admin.taxonomy.client.serdes.v1_0;
 import com.liferay.headless.admin.taxonomy.client.dto.v1_0.AssetType;
 import com.liferay.headless.admin.taxonomy.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -43,7 +42,7 @@ public class AssetTypeSerDes {
 
 	public static String toJSON(AssetType assetType) {
 		if (assetType == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -82,28 +81,6 @@ public class AssetTypeSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<AssetType> assetTypes) {
-		if (assetTypes == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (AssetType assetType : assetTypes) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(assetType));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

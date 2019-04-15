@@ -17,7 +17,6 @@ package com.liferay.headless.delivery.client.serdes.v1_0;
 import com.liferay.headless.delivery.client.dto.v1_0.ContentDocument;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -45,7 +44,7 @@ public class ContentDocumentSerDes {
 
 	public static String toJSON(ContentDocument contentDocument) {
 		if (contentDocument == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -128,28 +127,6 @@ public class ContentDocumentSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<ContentDocument> contentDocuments) {
-		if (contentDocuments == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (ContentDocument contentDocument : contentDocuments) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(contentDocument));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

@@ -24,7 +24,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -54,7 +53,7 @@ public class StructuredContentSerDes {
 
 	public static String toJSON(StructuredContent structuredContent) {
 		if (structuredContent == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -373,30 +372,6 @@ public class StructuredContentSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<StructuredContent> structuredContents) {
-
-		if (structuredContents == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (StructuredContent structuredContent : structuredContents) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(structuredContent));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

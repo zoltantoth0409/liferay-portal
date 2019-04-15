@@ -17,7 +17,6 @@ package com.liferay.headless.admin.taxonomy.client.serdes.v1_0;
 import com.liferay.headless.admin.taxonomy.client.dto.v1_0.ParentTaxonomyVocabulary;
 import com.liferay.headless.admin.taxonomy.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -47,7 +46,7 @@ public class ParentTaxonomyVocabularySerDes {
 		ParentTaxonomyVocabulary parentTaxonomyVocabulary) {
 
 		if (parentTaxonomyVocabulary == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -75,32 +74,6 @@ public class ParentTaxonomyVocabularySerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<ParentTaxonomyVocabulary> parentTaxonomyVocabularies) {
-
-		if (parentTaxonomyVocabularies == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (ParentTaxonomyVocabulary parentTaxonomyVocabulary :
-				parentTaxonomyVocabularies) {
-
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(parentTaxonomyVocabulary));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

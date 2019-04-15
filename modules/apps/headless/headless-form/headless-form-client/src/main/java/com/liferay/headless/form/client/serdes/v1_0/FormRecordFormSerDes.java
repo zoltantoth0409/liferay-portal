@@ -17,7 +17,6 @@ package com.liferay.headless.form.client.serdes.v1_0;
 import com.liferay.headless.form.client.dto.v1_0.FormRecordForm;
 import com.liferay.headless.form.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -45,7 +44,7 @@ public class FormRecordFormSerDes {
 
 	public static String toJSON(FormRecordForm formRecordForm) {
 		if (formRecordForm == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -73,28 +72,6 @@ public class FormRecordFormSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<FormRecordForm> formRecordForms) {
-		if (formRecordForms == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (FormRecordForm formRecordForm : formRecordForms) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(formRecordForm));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

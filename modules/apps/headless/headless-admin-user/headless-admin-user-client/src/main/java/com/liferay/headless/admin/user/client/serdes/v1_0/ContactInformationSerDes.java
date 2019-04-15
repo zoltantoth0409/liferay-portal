@@ -21,7 +21,6 @@ import com.liferay.headless.admin.user.client.dto.v1_0.PostalAddress;
 import com.liferay.headless.admin.user.client.dto.v1_0.WebUrl;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -50,7 +49,7 @@ public class ContactInformationSerDes {
 
 	public static String toJSON(ContactInformation contactInformation) {
 		if (contactInformation == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -210,30 +209,6 @@ public class ContactInformationSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<ContactInformation> contactInformations) {
-
-		if (contactInformations == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (ContactInformation contactInformation : contactInformations) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(contactInformation));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

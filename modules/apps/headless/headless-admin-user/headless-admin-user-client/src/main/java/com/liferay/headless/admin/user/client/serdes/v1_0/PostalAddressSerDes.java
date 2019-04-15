@@ -17,7 +17,6 @@ package com.liferay.headless.admin.user.client.serdes.v1_0;
 import com.liferay.headless.admin.user.client.dto.v1_0.PostalAddress;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -45,7 +44,7 @@ public class PostalAddressSerDes {
 
 	public static String toJSON(PostalAddress postalAddress) {
 		if (postalAddress == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -161,28 +160,6 @@ public class PostalAddressSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<PostalAddress> postalAddresses) {
-		if (postalAddresses == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (PostalAddress postalAddress : postalAddresses) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(postalAddress));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

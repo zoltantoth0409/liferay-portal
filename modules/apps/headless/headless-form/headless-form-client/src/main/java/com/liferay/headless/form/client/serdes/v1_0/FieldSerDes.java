@@ -18,7 +18,6 @@ import com.liferay.headless.form.client.dto.v1_0.Field;
 import com.liferay.headless.form.client.dto.v1_0.Option;
 import com.liferay.headless.form.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -45,7 +44,7 @@ public class FieldSerDes {
 
 	public static String toJSON(Field field) {
 		if (field == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -347,28 +346,6 @@ public class FieldSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<Field> fields) {
-		if (fields == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (Field field : fields) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(field));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

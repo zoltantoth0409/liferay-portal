@@ -21,7 +21,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
@@ -52,7 +51,7 @@ public class StructuredContentFolderSerDes {
 		StructuredContentFolder structuredContentFolder) {
 
 		if (structuredContentFolder == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -173,32 +172,6 @@ public class StructuredContentFolderSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<StructuredContentFolder> structuredContentFolders) {
-
-		if (structuredContentFolders == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (StructuredContentFolder structuredContentFolder :
-				structuredContentFolders) {
-
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(structuredContentFolder));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

@@ -17,7 +17,6 @@ package com.liferay.headless.admin.user.client.serdes.v1_0;
 import com.liferay.headless.admin.user.client.dto.v1_0.RoleBrief;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -43,7 +42,7 @@ public class RoleBriefSerDes {
 
 	public static String toJSON(RoleBrief roleBrief) {
 		if (roleBrief == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -71,28 +70,6 @@ public class RoleBriefSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<RoleBrief> roleBriefs) {
-		if (roleBriefs == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (RoleBrief roleBrief : roleBriefs) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(roleBrief));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

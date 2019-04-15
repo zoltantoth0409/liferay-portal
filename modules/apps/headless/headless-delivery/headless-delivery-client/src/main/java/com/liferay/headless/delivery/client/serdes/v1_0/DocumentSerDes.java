@@ -23,7 +23,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -51,7 +50,7 @@ public class DocumentSerDes {
 
 	public static String toJSON(Document document) {
 		if (document == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -299,28 +298,6 @@ public class DocumentSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<Document> documents) {
-		if (documents == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (Document document : documents) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(document));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

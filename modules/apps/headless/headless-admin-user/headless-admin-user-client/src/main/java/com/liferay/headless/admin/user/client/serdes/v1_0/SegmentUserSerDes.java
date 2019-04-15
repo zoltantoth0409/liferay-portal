@@ -17,7 +17,6 @@ package com.liferay.headless.admin.user.client.serdes.v1_0;
 import com.liferay.headless.admin.user.client.dto.v1_0.SegmentUser;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -45,7 +44,7 @@ public class SegmentUserSerDes {
 
 	public static String toJSON(SegmentUser segmentUser) {
 		if (segmentUser == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -84,28 +83,6 @@ public class SegmentUserSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<SegmentUser> segmentUsers) {
-		if (segmentUsers == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (SegmentUser segmentUser : segmentUsers) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(segmentUser));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

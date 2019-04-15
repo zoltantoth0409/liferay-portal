@@ -22,7 +22,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -50,7 +49,7 @@ public class FormRecordSerDes {
 
 	public static String toJSON(FormRecord formRecord) {
 		if (formRecord == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -165,28 +164,6 @@ public class FormRecordSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<FormRecord> formRecords) {
-		if (formRecords == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (FormRecord formRecord : formRecords) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(formRecord));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

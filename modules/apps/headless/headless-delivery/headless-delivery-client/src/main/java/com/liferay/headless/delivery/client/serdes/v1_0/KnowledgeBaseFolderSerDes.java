@@ -21,7 +21,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
@@ -50,7 +49,7 @@ public class KnowledgeBaseFolderSerDes {
 
 	public static String toJSON(KnowledgeBaseFolder knowledgeBaseFolder) {
 		if (knowledgeBaseFolder == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -190,30 +189,6 @@ public class KnowledgeBaseFolderSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<KnowledgeBaseFolder> knowledgeBaseFolders) {
-
-		if (knowledgeBaseFolders == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (KnowledgeBaseFolder knowledgeBaseFolder : knowledgeBaseFolders) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(knowledgeBaseFolder));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

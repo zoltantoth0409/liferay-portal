@@ -17,7 +17,6 @@ package com.liferay.headless.delivery.client.serdes.v1_0;
 import com.liferay.headless.delivery.client.dto.v1_0.KnowledgeBaseAttachment;
 import com.liferay.headless.delivery.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -47,7 +46,7 @@ public class KnowledgeBaseAttachmentSerDes {
 		KnowledgeBaseAttachment knowledgeBaseAttachment) {
 
 		if (knowledgeBaseAttachment == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -119,32 +118,6 @@ public class KnowledgeBaseAttachmentSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<KnowledgeBaseAttachment> knowledgeBaseAttachments) {
-
-		if (knowledgeBaseAttachments == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (KnowledgeBaseAttachment knowledgeBaseAttachment :
-				knowledgeBaseAttachments) {
-
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(knowledgeBaseAttachment));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

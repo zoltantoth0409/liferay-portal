@@ -17,7 +17,6 @@ package com.liferay.headless.admin.workflow.client.serdes.v1_0;
 import com.liferay.headless.admin.workflow.client.dto.v1_0.ObjectReviewed;
 import com.liferay.headless.admin.workflow.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -45,7 +44,7 @@ public class ObjectReviewedSerDes {
 
 	public static String toJSON(ObjectReviewed objectReviewed) {
 		if (objectReviewed == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -73,28 +72,6 @@ public class ObjectReviewedSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<ObjectReviewed> objectRevieweds) {
-		if (objectRevieweds == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (ObjectReviewed objectReviewed : objectRevieweds) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(objectReviewed));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

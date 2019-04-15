@@ -21,7 +21,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
@@ -50,7 +49,7 @@ public class WorkflowTaskSerDes {
 
 	public static String toJSON(WorkflowTask workflowTask) {
 		if (workflowTask == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -178,28 +177,6 @@ public class WorkflowTaskSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<WorkflowTask> workflowTasks) {
-		if (workflowTasks == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (WorkflowTask workflowTask : workflowTasks) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(workflowTask));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

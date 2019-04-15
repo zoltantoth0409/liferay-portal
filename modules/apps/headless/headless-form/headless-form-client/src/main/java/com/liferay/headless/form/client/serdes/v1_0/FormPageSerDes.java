@@ -18,7 +18,6 @@ import com.liferay.headless.form.client.dto.v1_0.Field;
 import com.liferay.headless.form.client.dto.v1_0.FormPage;
 import com.liferay.headless.form.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -45,7 +44,7 @@ public class FormPageSerDes {
 
 	public static String toJSON(FormPage formPage) {
 		if (formPage == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -105,28 +104,6 @@ public class FormPageSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(Collection<FormPage> formPages) {
-		if (formPages == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (FormPage formPage : formPages) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(formPage));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}

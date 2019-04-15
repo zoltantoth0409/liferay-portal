@@ -17,7 +17,6 @@ package com.liferay.headless.admin.user.client.serdes.v1_0;
 import com.liferay.headless.admin.user.client.dto.v1_0.OrganizationBrief;
 import com.liferay.headless.admin.user.client.json.BaseJSONParser;
 
-import java.util.Collection;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -45,7 +44,7 @@ public class OrganizationBriefSerDes {
 
 	public static String toJSON(OrganizationBrief organizationBrief) {
 		if (organizationBrief == null) {
-			return "{}";
+			return "null";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -73,30 +72,6 @@ public class OrganizationBriefSerDes {
 		}
 
 		sb.append("}");
-
-		return sb.toString();
-	}
-
-	public static String toJSON(
-		Collection<OrganizationBrief> organizationBriefs) {
-
-		if (organizationBriefs == null) {
-			return "[]";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("[");
-
-		for (OrganizationBrief organizationBrief : organizationBriefs) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append(toJSON(organizationBrief));
-		}
-
-		sb.append("]");
 
 		return sb.toString();
 	}
