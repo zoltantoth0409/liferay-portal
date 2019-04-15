@@ -949,8 +949,8 @@ public class RESTBuilder {
 	private Schema _getPageSchema(String schemaName) {
 		Schema longSchema = new Schema();
 
-		longSchema.setType("integer");
 		longSchema.setFormat("int64");
+		longSchema.setType("integer");
 
 		Map<String, Schema> propertySchemas = new HashMap<>();
 
