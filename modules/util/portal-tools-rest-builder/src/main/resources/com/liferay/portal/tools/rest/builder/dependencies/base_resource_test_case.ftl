@@ -1157,11 +1157,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 						sb.append("(");
 						sb.append(entityFieldName);
-
 						sb.append(" gt ");
-
 						sb.append(_dateFormat.format(DateUtils.addSeconds(${schemaVarName}.get${propertyName?cap_first}(), -2)));
-
 						sb.append(" and ");
 						sb.append(entityFieldName);
 						sb.append(" lt ");
@@ -1177,9 +1174,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 						sb.append(_dateFormat.format(${schemaVarName}.get${propertyName?cap_first}()));
 					}
+
 					return sb.toString();
 				<#elseif stringUtil.equals(properties[propertyName], "String")>
-
 					sb.append("'");
 					sb.append(String.valueOf(${schemaVarName}.get${propertyName?cap_first}()));
 					sb.append("'");
