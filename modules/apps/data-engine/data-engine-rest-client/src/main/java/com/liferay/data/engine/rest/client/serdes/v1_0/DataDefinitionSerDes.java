@@ -253,13 +253,23 @@ public class DataDefinitionSerDes {
 		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		map.put(
-			"dataDefinitionFields",
-			String.valueOf(dataDefinition.getDataDefinitionFields()));
+		if (dataDefinition.getDataDefinitionFields() == null) {
+			map.put("dataDefinitionFields", null);
+		}
+		else {
+			map.put(
+				"dataDefinitionFields",
+				String.valueOf(dataDefinition.getDataDefinitionFields()));
+		}
 
-		map.put(
-			"dataDefinitionRules",
-			String.valueOf(dataDefinition.getDataDefinitionRules()));
+		if (dataDefinition.getDataDefinitionRules() == null) {
+			map.put("dataDefinitionRules", null);
+		}
+		else {
+			map.put(
+				"dataDefinitionRules",
+				String.valueOf(dataDefinition.getDataDefinitionRules()));
+		}
 
 		map.put(
 			"dateCreated",
@@ -269,17 +279,49 @@ public class DataDefinitionSerDes {
 			"dateModified",
 			liferayToJSONDateFormat.format(dataDefinition.getDateModified()));
 
-		map.put("description", String.valueOf(dataDefinition.getDescription()));
+		if (dataDefinition.getDescription() == null) {
+			map.put("description", null);
+		}
+		else {
+			map.put(
+				"description", String.valueOf(dataDefinition.getDescription()));
+		}
 
-		map.put("id", String.valueOf(dataDefinition.getId()));
+		if (dataDefinition.getId() == null) {
+			map.put("id", null);
+		}
+		else {
+			map.put("id", String.valueOf(dataDefinition.getId()));
+		}
 
-		map.put("name", String.valueOf(dataDefinition.getName()));
+		if (dataDefinition.getName() == null) {
+			map.put("name", null);
+		}
+		else {
+			map.put("name", String.valueOf(dataDefinition.getName()));
+		}
 
-		map.put("siteId", String.valueOf(dataDefinition.getSiteId()));
+		if (dataDefinition.getSiteId() == null) {
+			map.put("siteId", null);
+		}
+		else {
+			map.put("siteId", String.valueOf(dataDefinition.getSiteId()));
+		}
 
-		map.put("storageType", String.valueOf(dataDefinition.getStorageType()));
+		if (dataDefinition.getStorageType() == null) {
+			map.put("storageType", null);
+		}
+		else {
+			map.put(
+				"storageType", String.valueOf(dataDefinition.getStorageType()));
+		}
 
-		map.put("userId", String.valueOf(dataDefinition.getUserId()));
+		if (dataDefinition.getUserId() == null) {
+			map.put("userId", null);
+		}
+		else {
+			map.put("userId", String.valueOf(dataDefinition.getUserId()));
+		}
 
 		return map;
 	}

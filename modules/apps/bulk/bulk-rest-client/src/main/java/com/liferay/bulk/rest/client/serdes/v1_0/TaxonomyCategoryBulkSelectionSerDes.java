@@ -138,21 +138,41 @@ public class TaxonomyCategoryBulkSelectionSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"documentBulkSelection",
-			DocumentBulkSelectionSerDes.toJSON(
-				taxonomyCategoryBulkSelection.getDocumentBulkSelection()));
+		if (taxonomyCategoryBulkSelection.getDocumentBulkSelection() == null) {
+			map.put("documentBulkSelection", null);
+		}
+		else {
+			map.put(
+				"documentBulkSelection",
+				DocumentBulkSelectionSerDes.toJSON(
+					taxonomyCategoryBulkSelection.getDocumentBulkSelection()));
+		}
 
-		map.put(
-			"taxonomyCategoryIdsToAdd",
-			String.valueOf(
-				taxonomyCategoryBulkSelection.getTaxonomyCategoryIdsToAdd()));
+		if (taxonomyCategoryBulkSelection.getTaxonomyCategoryIdsToAdd() ==
+				null) {
 
-		map.put(
-			"taxonomyCategoryIdsToRemove",
-			String.valueOf(
-				taxonomyCategoryBulkSelection.
-					getTaxonomyCategoryIdsToRemove()));
+			map.put("taxonomyCategoryIdsToAdd", null);
+		}
+		else {
+			map.put(
+				"taxonomyCategoryIdsToAdd",
+				String.valueOf(
+					taxonomyCategoryBulkSelection.
+						getTaxonomyCategoryIdsToAdd()));
+		}
+
+		if (taxonomyCategoryBulkSelection.getTaxonomyCategoryIdsToRemove() ==
+				null) {
+
+			map.put("taxonomyCategoryIdsToRemove", null);
+		}
+		else {
+			map.put(
+				"taxonomyCategoryIdsToRemove",
+				String.valueOf(
+					taxonomyCategoryBulkSelection.
+						getTaxonomyCategoryIdsToRemove()));
+		}
 
 		return map;
 	}

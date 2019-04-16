@@ -136,13 +136,29 @@ public class DataLayoutPageSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"dataLayoutRows",
-			String.valueOf(dataLayoutPage.getDataLayoutRows()));
+		if (dataLayoutPage.getDataLayoutRows() == null) {
+			map.put("dataLayoutRows", null);
+		}
+		else {
+			map.put(
+				"dataLayoutRows",
+				String.valueOf(dataLayoutPage.getDataLayoutRows()));
+		}
 
-		map.put("description", String.valueOf(dataLayoutPage.getDescription()));
+		if (dataLayoutPage.getDescription() == null) {
+			map.put("description", null);
+		}
+		else {
+			map.put(
+				"description", String.valueOf(dataLayoutPage.getDescription()));
+		}
 
-		map.put("title", String.valueOf(dataLayoutPage.getTitle()));
+		if (dataLayoutPage.getTitle() == null) {
+			map.put("title", null);
+		}
+		else {
+			map.put("title", String.valueOf(dataLayoutPage.getTitle()));
+		}
 
 		return map;
 	}

@@ -89,9 +89,19 @@ public class DataRecordValueSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("key", String.valueOf(dataRecordValue.getKey()));
+		if (dataRecordValue.getKey() == null) {
+			map.put("key", null);
+		}
+		else {
+			map.put("key", String.valueOf(dataRecordValue.getKey()));
+		}
 
-		map.put("value", String.valueOf(dataRecordValue.getValue()));
+		if (dataRecordValue.getValue() == null) {
+			map.put("value", null);
+		}
+		else {
+			map.put("value", String.valueOf(dataRecordValue.getValue()));
+		}
 
 		return map;
 	}

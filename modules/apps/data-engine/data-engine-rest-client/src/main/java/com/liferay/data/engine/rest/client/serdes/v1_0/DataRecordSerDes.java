@@ -108,15 +108,30 @@ public class DataRecordSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"dataRecordCollectionId",
-			String.valueOf(dataRecord.getDataRecordCollectionId()));
+		if (dataRecord.getDataRecordCollectionId() == null) {
+			map.put("dataRecordCollectionId", null);
+		}
+		else {
+			map.put(
+				"dataRecordCollectionId",
+				String.valueOf(dataRecord.getDataRecordCollectionId()));
+		}
 
-		map.put(
-			"dataRecordValues",
-			String.valueOf(dataRecord.getDataRecordValues()));
+		if (dataRecord.getDataRecordValues() == null) {
+			map.put("dataRecordValues", null);
+		}
+		else {
+			map.put(
+				"dataRecordValues",
+				String.valueOf(dataRecord.getDataRecordValues()));
+		}
 
-		map.put("id", String.valueOf(dataRecord.getId()));
+		if (dataRecord.getId() == null) {
+			map.put("id", null);
+		}
+		else {
+			map.put("id", String.valueOf(dataRecord.getId()));
+		}
 
 		return map;
 	}

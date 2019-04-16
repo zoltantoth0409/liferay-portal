@@ -212,53 +212,114 @@ public class DataRecordCollectionPermissionSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"addDataRecord",
-			String.valueOf(dataRecordCollectionPermission.getAddDataRecord()));
+		if (dataRecordCollectionPermission.getAddDataRecord() == null) {
+			map.put("addDataRecord", null);
+		}
+		else {
+			map.put(
+				"addDataRecord",
+				String.valueOf(
+					dataRecordCollectionPermission.getAddDataRecord()));
+		}
 
-		map.put(
-			"addDataRecordCollection",
-			String.valueOf(
-				dataRecordCollectionPermission.getAddDataRecordCollection()));
+		if (dataRecordCollectionPermission.getAddDataRecordCollection() ==
+				null) {
 
-		map.put(
-			"definePermissions",
-			String.valueOf(
-				dataRecordCollectionPermission.getDefinePermissions()));
+			map.put("addDataRecordCollection", null);
+		}
+		else {
+			map.put(
+				"addDataRecordCollection",
+				String.valueOf(
+					dataRecordCollectionPermission.
+						getAddDataRecordCollection()));
+		}
 
-		map.put(
-			"delete",
-			String.valueOf(dataRecordCollectionPermission.getDelete()));
+		if (dataRecordCollectionPermission.getDefinePermissions() == null) {
+			map.put("definePermissions", null);
+		}
+		else {
+			map.put(
+				"definePermissions",
+				String.valueOf(
+					dataRecordCollectionPermission.getDefinePermissions()));
+		}
 
-		map.put(
-			"deleteDataRecord",
-			String.valueOf(
-				dataRecordCollectionPermission.getDeleteDataRecord()));
+		if (dataRecordCollectionPermission.getDelete() == null) {
+			map.put("delete", null);
+		}
+		else {
+			map.put(
+				"delete",
+				String.valueOf(dataRecordCollectionPermission.getDelete()));
+		}
 
-		map.put(
-			"exportDataRecord",
-			String.valueOf(
-				dataRecordCollectionPermission.getExportDataRecord()));
+		if (dataRecordCollectionPermission.getDeleteDataRecord() == null) {
+			map.put("deleteDataRecord", null);
+		}
+		else {
+			map.put(
+				"deleteDataRecord",
+				String.valueOf(
+					dataRecordCollectionPermission.getDeleteDataRecord()));
+		}
 
-		map.put(
-			"roleNames",
-			String.valueOf(dataRecordCollectionPermission.getRoleNames()));
+		if (dataRecordCollectionPermission.getExportDataRecord() == null) {
+			map.put("exportDataRecord", null);
+		}
+		else {
+			map.put(
+				"exportDataRecord",
+				String.valueOf(
+					dataRecordCollectionPermission.getExportDataRecord()));
+		}
 
-		map.put(
-			"update",
-			String.valueOf(dataRecordCollectionPermission.getUpdate()));
+		if (dataRecordCollectionPermission.getRoleNames() == null) {
+			map.put("roleNames", null);
+		}
+		else {
+			map.put(
+				"roleNames",
+				String.valueOf(dataRecordCollectionPermission.getRoleNames()));
+		}
 
-		map.put(
-			"updateDataRecord",
-			String.valueOf(
-				dataRecordCollectionPermission.getUpdateDataRecord()));
+		if (dataRecordCollectionPermission.getUpdate() == null) {
+			map.put("update", null);
+		}
+		else {
+			map.put(
+				"update",
+				String.valueOf(dataRecordCollectionPermission.getUpdate()));
+		}
 
-		map.put(
-			"view", String.valueOf(dataRecordCollectionPermission.getView()));
+		if (dataRecordCollectionPermission.getUpdateDataRecord() == null) {
+			map.put("updateDataRecord", null);
+		}
+		else {
+			map.put(
+				"updateDataRecord",
+				String.valueOf(
+					dataRecordCollectionPermission.getUpdateDataRecord()));
+		}
 
-		map.put(
-			"viewDataRecord",
-			String.valueOf(dataRecordCollectionPermission.getViewDataRecord()));
+		if (dataRecordCollectionPermission.getView() == null) {
+			map.put("view", null);
+		}
+		else {
+			map.put(
+				"view",
+				String.valueOf(dataRecordCollectionPermission.getView()));
+		}
+
+		if (dataRecordCollectionPermission.getViewDataRecord() == null) {
+			map.put("viewDataRecord", null);
+		}
+		else {
+			map.put(
+				"viewDataRecord",
+				String.valueOf(
+					dataRecordCollectionPermission.getViewDataRecord()));
+		}
 
 		return map;
 	}

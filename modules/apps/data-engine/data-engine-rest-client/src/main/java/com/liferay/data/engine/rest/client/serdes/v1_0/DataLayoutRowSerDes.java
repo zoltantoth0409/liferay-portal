@@ -90,9 +90,14 @@ public class DataLayoutRowSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"dataLayoutColums",
-			String.valueOf(dataLayoutRow.getDataLayoutColums()));
+		if (dataLayoutRow.getDataLayoutColums() == null) {
+			map.put("dataLayoutColums", null);
+		}
+		else {
+			map.put(
+				"dataLayoutColums",
+				String.valueOf(dataLayoutRow.getDataLayoutColums()));
+		}
 
 		return map;
 	}

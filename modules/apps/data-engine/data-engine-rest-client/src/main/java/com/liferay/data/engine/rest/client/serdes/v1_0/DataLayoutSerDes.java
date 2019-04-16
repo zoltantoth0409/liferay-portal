@@ -235,12 +235,23 @@ public class DataLayoutSerDes {
 		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		map.put(
-			"dataDefinitionId",
-			String.valueOf(dataLayout.getDataDefinitionId()));
+		if (dataLayout.getDataDefinitionId() == null) {
+			map.put("dataDefinitionId", null);
+		}
+		else {
+			map.put(
+				"dataDefinitionId",
+				String.valueOf(dataLayout.getDataDefinitionId()));
+		}
 
-		map.put(
-			"dataLayoutPages", String.valueOf(dataLayout.getDataLayoutPages()));
+		if (dataLayout.getDataLayoutPages() == null) {
+			map.put("dataLayoutPages", null);
+		}
+		else {
+			map.put(
+				"dataLayoutPages",
+				String.valueOf(dataLayout.getDataLayoutPages()));
+		}
 
 		map.put(
 			"dateCreated",
@@ -250,20 +261,51 @@ public class DataLayoutSerDes {
 			"dateModified",
 			liferayToJSONDateFormat.format(dataLayout.getDateModified()));
 
-		map.put(
-			"defaultLanguageId",
-			String.valueOf(dataLayout.getDefaultLanguageId()));
+		if (dataLayout.getDefaultLanguageId() == null) {
+			map.put("defaultLanguageId", null);
+		}
+		else {
+			map.put(
+				"defaultLanguageId",
+				String.valueOf(dataLayout.getDefaultLanguageId()));
+		}
 
-		map.put("description", String.valueOf(dataLayout.getDescription()));
+		if (dataLayout.getDescription() == null) {
+			map.put("description", null);
+		}
+		else {
+			map.put("description", String.valueOf(dataLayout.getDescription()));
+		}
 
-		map.put("id", String.valueOf(dataLayout.getId()));
+		if (dataLayout.getId() == null) {
+			map.put("id", null);
+		}
+		else {
+			map.put("id", String.valueOf(dataLayout.getId()));
+		}
 
-		map.put("name", String.valueOf(dataLayout.getName()));
+		if (dataLayout.getName() == null) {
+			map.put("name", null);
+		}
+		else {
+			map.put("name", String.valueOf(dataLayout.getName()));
+		}
 
-		map.put(
-			"paginationMode", String.valueOf(dataLayout.getPaginationMode()));
+		if (dataLayout.getPaginationMode() == null) {
+			map.put("paginationMode", null);
+		}
+		else {
+			map.put(
+				"paginationMode",
+				String.valueOf(dataLayout.getPaginationMode()));
+		}
 
-		map.put("userId", String.valueOf(dataLayout.getUserId()));
+		if (dataLayout.getUserId() == null) {
+			map.put("userId", null);
+		}
+		else {
+			map.put("userId", String.valueOf(dataLayout.getUserId()));
+		}
 
 		return map;
 	}

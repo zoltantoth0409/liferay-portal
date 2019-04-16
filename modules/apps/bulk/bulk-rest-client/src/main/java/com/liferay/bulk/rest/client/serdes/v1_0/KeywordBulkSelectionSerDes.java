@@ -128,18 +128,33 @@ public class KeywordBulkSelectionSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"documentBulkSelection",
-			DocumentBulkSelectionSerDes.toJSON(
-				keywordBulkSelection.getDocumentBulkSelection()));
+		if (keywordBulkSelection.getDocumentBulkSelection() == null) {
+			map.put("documentBulkSelection", null);
+		}
+		else {
+			map.put(
+				"documentBulkSelection",
+				DocumentBulkSelectionSerDes.toJSON(
+					keywordBulkSelection.getDocumentBulkSelection()));
+		}
 
-		map.put(
-			"keywordsToAdd",
-			String.valueOf(keywordBulkSelection.getKeywordsToAdd()));
+		if (keywordBulkSelection.getKeywordsToAdd() == null) {
+			map.put("keywordsToAdd", null);
+		}
+		else {
+			map.put(
+				"keywordsToAdd",
+				String.valueOf(keywordBulkSelection.getKeywordsToAdd()));
+		}
 
-		map.put(
-			"keywordsToRemove",
-			String.valueOf(keywordBulkSelection.getKeywordsToRemove()));
+		if (keywordBulkSelection.getKeywordsToRemove() == null) {
+			map.put("keywordsToRemove", null);
+		}
+		else {
+			map.put(
+				"keywordsToRemove",
+				String.valueOf(keywordBulkSelection.getKeywordsToRemove()));
+		}
 
 		return map;
 	}

@@ -89,9 +89,19 @@ public class LocalizedValueSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("key", String.valueOf(localizedValue.getKey()));
+		if (localizedValue.getKey() == null) {
+			map.put("key", null);
+		}
+		else {
+			map.put("key", String.valueOf(localizedValue.getKey()));
+		}
 
-		map.put("value", String.valueOf(localizedValue.getValue()));
+		if (localizedValue.getValue() == null) {
+			map.put("value", null);
+		}
+		else {
+			map.put("value", String.valueOf(localizedValue.getValue()));
+		}
 
 		return map;
 	}

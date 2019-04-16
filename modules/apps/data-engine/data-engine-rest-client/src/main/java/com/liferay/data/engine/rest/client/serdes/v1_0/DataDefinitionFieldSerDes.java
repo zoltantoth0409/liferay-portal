@@ -240,34 +240,87 @@ public class DataDefinitionFieldSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"customProperties",
-			String.valueOf(dataDefinitionField.getCustomProperties()));
+		if (dataDefinitionField.getCustomProperties() == null) {
+			map.put("customProperties", null);
+		}
+		else {
+			map.put(
+				"customProperties",
+				String.valueOf(dataDefinitionField.getCustomProperties()));
+		}
 
-		map.put(
-			"defaultValue",
-			String.valueOf(dataDefinitionField.getDefaultValue()));
+		if (dataDefinitionField.getDefaultValue() == null) {
+			map.put("defaultValue", null);
+		}
+		else {
+			map.put(
+				"defaultValue",
+				String.valueOf(dataDefinitionField.getDefaultValue()));
+		}
 
-		map.put(
-			"fieldType", String.valueOf(dataDefinitionField.getFieldType()));
+		if (dataDefinitionField.getFieldType() == null) {
+			map.put("fieldType", null);
+		}
+		else {
+			map.put(
+				"fieldType",
+				String.valueOf(dataDefinitionField.getFieldType()));
+		}
 
-		map.put("id", String.valueOf(dataDefinitionField.getId()));
+		if (dataDefinitionField.getId() == null) {
+			map.put("id", null);
+		}
+		else {
+			map.put("id", String.valueOf(dataDefinitionField.getId()));
+		}
 
-		map.put(
-			"indexable", String.valueOf(dataDefinitionField.getIndexable()));
+		if (dataDefinitionField.getIndexable() == null) {
+			map.put("indexable", null);
+		}
+		else {
+			map.put(
+				"indexable",
+				String.valueOf(dataDefinitionField.getIndexable()));
+		}
 
-		map.put("label", String.valueOf(dataDefinitionField.getLabel()));
+		if (dataDefinitionField.getLabel() == null) {
+			map.put("label", null);
+		}
+		else {
+			map.put("label", String.valueOf(dataDefinitionField.getLabel()));
+		}
 
-		map.put(
-			"localizable",
-			String.valueOf(dataDefinitionField.getLocalizable()));
+		if (dataDefinitionField.getLocalizable() == null) {
+			map.put("localizable", null);
+		}
+		else {
+			map.put(
+				"localizable",
+				String.valueOf(dataDefinitionField.getLocalizable()));
+		}
 
-		map.put("name", String.valueOf(dataDefinitionField.getName()));
+		if (dataDefinitionField.getName() == null) {
+			map.put("name", null);
+		}
+		else {
+			map.put("name", String.valueOf(dataDefinitionField.getName()));
+		}
 
-		map.put(
-			"repeatable", String.valueOf(dataDefinitionField.getRepeatable()));
+		if (dataDefinitionField.getRepeatable() == null) {
+			map.put("repeatable", null);
+		}
+		else {
+			map.put(
+				"repeatable",
+				String.valueOf(dataDefinitionField.getRepeatable()));
+		}
 
-		map.put("tip", String.valueOf(dataDefinitionField.getTip()));
+		if (dataDefinitionField.getTip() == null) {
+			map.put("tip", null);
+		}
+		else {
+			map.put("tip", String.valueOf(dataDefinitionField.getTip()));
+		}
 
 		return map;
 	}

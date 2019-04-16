@@ -149,23 +149,57 @@ public class DataDefinitionPermissionSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"addDataDefinition",
-			String.valueOf(dataDefinitionPermission.getAddDataDefinition()));
+		if (dataDefinitionPermission.getAddDataDefinition() == null) {
+			map.put("addDataDefinition", null);
+		}
+		else {
+			map.put(
+				"addDataDefinition",
+				String.valueOf(
+					dataDefinitionPermission.getAddDataDefinition()));
+		}
 
-		map.put(
-			"definePermissions",
-			String.valueOf(dataDefinitionPermission.getDefinePermissions()));
+		if (dataDefinitionPermission.getDefinePermissions() == null) {
+			map.put("definePermissions", null);
+		}
+		else {
+			map.put(
+				"definePermissions",
+				String.valueOf(
+					dataDefinitionPermission.getDefinePermissions()));
+		}
 
-		map.put("delete", String.valueOf(dataDefinitionPermission.getDelete()));
+		if (dataDefinitionPermission.getDelete() == null) {
+			map.put("delete", null);
+		}
+		else {
+			map.put(
+				"delete", String.valueOf(dataDefinitionPermission.getDelete()));
+		}
 
-		map.put(
-			"roleNames",
-			String.valueOf(dataDefinitionPermission.getRoleNames()));
+		if (dataDefinitionPermission.getRoleNames() == null) {
+			map.put("roleNames", null);
+		}
+		else {
+			map.put(
+				"roleNames",
+				String.valueOf(dataDefinitionPermission.getRoleNames()));
+		}
 
-		map.put("update", String.valueOf(dataDefinitionPermission.getUpdate()));
+		if (dataDefinitionPermission.getUpdate() == null) {
+			map.put("update", null);
+		}
+		else {
+			map.put(
+				"update", String.valueOf(dataDefinitionPermission.getUpdate()));
+		}
 
-		map.put("view", String.valueOf(dataDefinitionPermission.getView()));
+		if (dataDefinitionPermission.getView() == null) {
+			map.put("view", null);
+		}
+		else {
+			map.put("view", String.valueOf(dataDefinitionPermission.getView()));
+		}
 
 		return map;
 	}

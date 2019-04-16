@@ -89,9 +89,19 @@ public class CustomPropertySerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("key", String.valueOf(customProperty.getKey()));
+		if (customProperty.getKey() == null) {
+			map.put("key", null);
+		}
+		else {
+			map.put("key", String.valueOf(customProperty.getKey()));
+		}
 
-		map.put("value", String.valueOf(customProperty.getValue()));
+		if (customProperty.getValue() == null) {
+			map.put("value", null);
+		}
+		else {
+			map.put("value", String.valueOf(customProperty.getValue()));
+		}
 
 		return map;
 	}

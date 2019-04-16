@@ -100,14 +100,24 @@ public class DocumentBulkSelectionSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"documentIds",
-			String.valueOf(documentBulkSelection.getDocumentIds()));
+		if (documentBulkSelection.getDocumentIds() == null) {
+			map.put("documentIds", null);
+		}
+		else {
+			map.put(
+				"documentIds",
+				String.valueOf(documentBulkSelection.getDocumentIds()));
+		}
 
-		map.put(
-			"selectionScope",
-			SelectionScopeSerDes.toJSON(
-				documentBulkSelection.getSelectionScope()));
+		if (documentBulkSelection.getSelectionScope() == null) {
+			map.put("selectionScope", null);
+		}
+		else {
+			map.put(
+				"selectionScope",
+				SelectionScopeSerDes.toJSON(
+					documentBulkSelection.getSelectionScope()));
+		}
 
 		return map;
 	}

@@ -46,10 +46,12 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -799,14 +801,25 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		sb.append("{");
 
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			sb.append("\"" + entry.getKey() + "\": ");
-			sb.append("\"" + entry.getValue() + "\"");
-			sb.append(", ");
-		}
+		Set<Map.Entry<String, String>> set = map.entrySet();
 
-		if (sb.length() > 1) {
-			sb.setLength(sb.length() - 1);
+		Iterator<Map.Entry<String, String>> iterator = set.iterator();
+
+		while (iterator.hasNext()) {
+			Map.Entry<String, String> entry = iterator.next();
+
+			sb.append("\"" + entry.getKey() + "\": ");
+
+			if (entry.getValue() == null) {
+				sb.append("null");
+			}
+			else {
+				sb.append("\"" + entry.getValue() + "\"");
+			}
+
+			if (iterator.hasNext()) {
+				sb.append(", ");
+			}
 		}
 
 		sb.append("}");

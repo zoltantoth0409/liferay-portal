@@ -72,8 +72,14 @@ public class StatusSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"actionInProgress", String.valueOf(status.getActionInProgress()));
+		if (status.getActionInProgress() == null) {
+			map.put("actionInProgress", null);
+		}
+		else {
+			map.put(
+				"actionInProgress",
+				String.valueOf(status.getActionInProgress()));
+		}
 
 		return map;
 	}

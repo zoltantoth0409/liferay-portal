@@ -159,18 +159,40 @@ public class DataDefinitionRuleSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"dataDefinitionFieldNames",
-			String.valueOf(dataDefinitionRule.getDataDefinitionFieldNames()));
+		if (dataDefinitionRule.getDataDefinitionFieldNames() == null) {
+			map.put("dataDefinitionFieldNames", null);
+		}
+		else {
+			map.put(
+				"dataDefinitionFieldNames",
+				String.valueOf(
+					dataDefinitionRule.getDataDefinitionFieldNames()));
+		}
 
-		map.put(
-			"dataDefinitionRuleParameters",
-			String.valueOf(
-				dataDefinitionRule.getDataDefinitionRuleParameters()));
+		if (dataDefinitionRule.getDataDefinitionRuleParameters() == null) {
+			map.put("dataDefinitionRuleParameters", null);
+		}
+		else {
+			map.put(
+				"dataDefinitionRuleParameters",
+				String.valueOf(
+					dataDefinitionRule.getDataDefinitionRuleParameters()));
+		}
 
-		map.put("name", String.valueOf(dataDefinitionRule.getName()));
+		if (dataDefinitionRule.getName() == null) {
+			map.put("name", null);
+		}
+		else {
+			map.put("name", String.valueOf(dataDefinitionRule.getName()));
+		}
 
-		map.put("ruleType", String.valueOf(dataDefinitionRule.getRuleType()));
+		if (dataDefinitionRule.getRuleType() == null) {
+			map.put("ruleType", null);
+		}
+		else {
+			map.put(
+				"ruleType", String.valueOf(dataDefinitionRule.getRuleType()));
+		}
 
 		return map;
 	}

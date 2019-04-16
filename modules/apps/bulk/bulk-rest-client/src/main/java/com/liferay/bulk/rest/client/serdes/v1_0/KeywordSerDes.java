@@ -76,7 +76,12 @@ public class KeywordSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("name", String.valueOf(keyword.getName()));
+		if (keyword.getName() == null) {
+			map.put("name", null);
+		}
+		else {
+			map.put("name", String.valueOf(keyword.getName()));
+		}
 
 		return map;
 	}

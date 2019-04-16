@@ -78,7 +78,12 @@ public class GenericErrorSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("message", String.valueOf(genericError.getMessage()));
+		if (genericError.getMessage() == null) {
+			map.put("message", null);
+		}
+		else {
+			map.put("message", String.valueOf(genericError.getMessage()));
+		}
 
 		return map;
 	}

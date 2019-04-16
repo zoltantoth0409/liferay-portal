@@ -142,20 +142,47 @@ public class TaxonomyVocabularySerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"multiValued", String.valueOf(taxonomyVocabulary.getMultiValued()));
+		if (taxonomyVocabulary.getMultiValued() == null) {
+			map.put("multiValued", null);
+		}
+		else {
+			map.put(
+				"multiValued",
+				String.valueOf(taxonomyVocabulary.getMultiValued()));
+		}
 
-		map.put("name", String.valueOf(taxonomyVocabulary.getName()));
+		if (taxonomyVocabulary.getName() == null) {
+			map.put("name", null);
+		}
+		else {
+			map.put("name", String.valueOf(taxonomyVocabulary.getName()));
+		}
 
-		map.put("required", String.valueOf(taxonomyVocabulary.getRequired()));
+		if (taxonomyVocabulary.getRequired() == null) {
+			map.put("required", null);
+		}
+		else {
+			map.put(
+				"required", String.valueOf(taxonomyVocabulary.getRequired()));
+		}
 
-		map.put(
-			"taxonomyCategories",
-			String.valueOf(taxonomyVocabulary.getTaxonomyCategories()));
+		if (taxonomyVocabulary.getTaxonomyCategories() == null) {
+			map.put("taxonomyCategories", null);
+		}
+		else {
+			map.put(
+				"taxonomyCategories",
+				String.valueOf(taxonomyVocabulary.getTaxonomyCategories()));
+		}
 
-		map.put(
-			"taxonomyVocabularyId",
-			String.valueOf(taxonomyVocabulary.getTaxonomyVocabularyId()));
+		if (taxonomyVocabulary.getTaxonomyVocabularyId() == null) {
+			map.put("taxonomyVocabularyId", null);
+		}
+		else {
+			map.put(
+				"taxonomyVocabularyId",
+				String.valueOf(taxonomyVocabulary.getTaxonomyVocabularyId()));
+		}
 
 		return map;
 	}

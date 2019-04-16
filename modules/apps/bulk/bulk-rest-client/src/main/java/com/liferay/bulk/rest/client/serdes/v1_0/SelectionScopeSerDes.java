@@ -96,12 +96,28 @@ public class SelectionScopeSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("folderId", String.valueOf(selectionScope.getFolderId()));
+		if (selectionScope.getFolderId() == null) {
+			map.put("folderId", null);
+		}
+		else {
+			map.put("folderId", String.valueOf(selectionScope.getFolderId()));
+		}
 
-		map.put(
-			"repositoryId", String.valueOf(selectionScope.getRepositoryId()));
+		if (selectionScope.getRepositoryId() == null) {
+			map.put("repositoryId", null);
+		}
+		else {
+			map.put(
+				"repositoryId",
+				String.valueOf(selectionScope.getRepositoryId()));
+		}
 
-		map.put("selectAll", String.valueOf(selectionScope.getSelectAll()));
+		if (selectionScope.getSelectAll() == null) {
+			map.put("selectAll", null);
+		}
+		else {
+			map.put("selectAll", String.valueOf(selectionScope.getSelectAll()));
+		}
 
 		return map;
 	}

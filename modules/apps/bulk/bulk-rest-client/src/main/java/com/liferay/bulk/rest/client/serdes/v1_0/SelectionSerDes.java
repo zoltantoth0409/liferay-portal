@@ -72,7 +72,12 @@ public class SelectionSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("size", String.valueOf(selection.getSize()));
+		if (selection.getSize() == null) {
+			map.put("size", null);
+		}
+		else {
+			map.put("size", String.valueOf(selection.getSize()));
+		}
 
 		return map;
 	}

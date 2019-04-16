@@ -95,10 +95,22 @@ public class DataDefinitionRuleParameterSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("key", String.valueOf(dataDefinitionRuleParameter.getKey()));
+		if (dataDefinitionRuleParameter.getKey() == null) {
+			map.put("key", null);
+		}
+		else {
+			map.put(
+				"key", String.valueOf(dataDefinitionRuleParameter.getKey()));
+		}
 
-		map.put(
-			"value", String.valueOf(dataDefinitionRuleParameter.getValue()));
+		if (dataDefinitionRuleParameter.getValue() == null) {
+			map.put("value", null);
+		}
+		else {
+			map.put(
+				"value",
+				String.valueOf(dataDefinitionRuleParameter.getValue()));
+		}
 
 		return map;
 	}

@@ -147,22 +147,53 @@ public class DataLayoutPermissionSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"addDataLayout",
-			String.valueOf(dataLayoutPermission.getAddDataLayout()));
+		if (dataLayoutPermission.getAddDataLayout() == null) {
+			map.put("addDataLayout", null);
+		}
+		else {
+			map.put(
+				"addDataLayout",
+				String.valueOf(dataLayoutPermission.getAddDataLayout()));
+		}
 
-		map.put(
-			"definePermissions",
-			String.valueOf(dataLayoutPermission.getDefinePermissions()));
+		if (dataLayoutPermission.getDefinePermissions() == null) {
+			map.put("definePermissions", null);
+		}
+		else {
+			map.put(
+				"definePermissions",
+				String.valueOf(dataLayoutPermission.getDefinePermissions()));
+		}
 
-		map.put("delete", String.valueOf(dataLayoutPermission.getDelete()));
+		if (dataLayoutPermission.getDelete() == null) {
+			map.put("delete", null);
+		}
+		else {
+			map.put("delete", String.valueOf(dataLayoutPermission.getDelete()));
+		}
 
-		map.put(
-			"roleNames", String.valueOf(dataLayoutPermission.getRoleNames()));
+		if (dataLayoutPermission.getRoleNames() == null) {
+			map.put("roleNames", null);
+		}
+		else {
+			map.put(
+				"roleNames",
+				String.valueOf(dataLayoutPermission.getRoleNames()));
+		}
 
-		map.put("update", String.valueOf(dataLayoutPermission.getUpdate()));
+		if (dataLayoutPermission.getUpdate() == null) {
+			map.put("update", null);
+		}
+		else {
+			map.put("update", String.valueOf(dataLayoutPermission.getUpdate()));
+		}
 
-		map.put("view", String.valueOf(dataLayoutPermission.getView()));
+		if (dataLayoutPermission.getView() == null) {
+			map.put("view", null);
+		}
+		else {
+			map.put("view", String.valueOf(dataLayoutPermission.getView()));
+		}
 
 		return map;
 	}

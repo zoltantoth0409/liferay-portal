@@ -137,17 +137,37 @@ public class DataRecordCollectionSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put(
-			"dataDefinitionId",
-			String.valueOf(dataRecordCollection.getDataDefinitionId()));
+		if (dataRecordCollection.getDataDefinitionId() == null) {
+			map.put("dataDefinitionId", null);
+		}
+		else {
+			map.put(
+				"dataDefinitionId",
+				String.valueOf(dataRecordCollection.getDataDefinitionId()));
+		}
 
-		map.put(
-			"description",
-			String.valueOf(dataRecordCollection.getDescription()));
+		if (dataRecordCollection.getDescription() == null) {
+			map.put("description", null);
+		}
+		else {
+			map.put(
+				"description",
+				String.valueOf(dataRecordCollection.getDescription()));
+		}
 
-		map.put("id", String.valueOf(dataRecordCollection.getId()));
+		if (dataRecordCollection.getId() == null) {
+			map.put("id", null);
+		}
+		else {
+			map.put("id", String.valueOf(dataRecordCollection.getId()));
+		}
 
-		map.put("name", String.valueOf(dataRecordCollection.getName()));
+		if (dataRecordCollection.getName() == null) {
+			map.put("name", null);
+		}
+		else {
+			map.put("name", String.valueOf(dataRecordCollection.getName()));
+		}
 
 		return map;
 	}

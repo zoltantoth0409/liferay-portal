@@ -99,9 +99,21 @@ public class DataLayoutColumnSerDes {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("columnSize", String.valueOf(dataLayoutColumn.getColumnSize()));
+		if (dataLayoutColumn.getColumnSize() == null) {
+			map.put("columnSize", null);
+		}
+		else {
+			map.put(
+				"columnSize", String.valueOf(dataLayoutColumn.getColumnSize()));
+		}
 
-		map.put("fieldNames", String.valueOf(dataLayoutColumn.getFieldNames()));
+		if (dataLayoutColumn.getFieldNames() == null) {
+			map.put("fieldNames", null);
+		}
+		else {
+			map.put(
+				"fieldNames", String.valueOf(dataLayoutColumn.getFieldNames()));
+		}
 
 		return map;
 	}
