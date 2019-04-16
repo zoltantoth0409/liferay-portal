@@ -678,19 +678,6 @@ public class LayoutImportController implements ImportController {
 			PROCESS_FLAG_LAYOUT_IMPORT_IN_PROCESS;
 	}
 
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void importLayout(
-			PortletDataContext portletDataContext,
-			List<String> sourceLayoutsUuids, Element layoutElement)
-		throws Exception {
-
-		StagedModelDataHandlerUtil.importStagedModel(
-			portletDataContext, layoutElement);
-	}
-
 	protected void importLayoutsFromLegacyLar(
 			PortletDataContext portletDataContext,
 			String layoutSetPrototypeUuid, ServiceContext serviceContext,
@@ -780,10 +767,9 @@ public class LayoutImportController implements ImportController {
 			}
 		}
 
-		List<String> sourceLayoutsUuids = new ArrayList<>();
-
 		for (Element layoutElement : layoutElements) {
-			importLayout(portletDataContext, sourceLayoutsUuids, layoutElement);
+			StagedModelDataHandlerUtil.importStagedModel(
+				portletDataContext, layoutElement);
 		}
 
 		// Import portlets
