@@ -39,9 +39,9 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class EmailAddressResourceImpl extends BaseEmailAddressResourceImpl {
 
 	@Override
-	public EmailAddress getEmailAddress(Long emailId) throws Exception {
+	public EmailAddress getEmailAddress(Long emailAddressId) throws Exception {
 		return EmailAddressUtil.toEmail(
-			_emailAddressService.getEmailAddress(emailId));
+			_emailAddressService.getEmailAddress(emailAddressId));
 	}
 
 	@Override
