@@ -295,7 +295,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(knowledgeBaseArticle),
+			KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -390,7 +390,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(knowledgeBaseArticle),
+			KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1105,7 +1105,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(knowledgeBaseArticle),
+			KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1574,7 +1574,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(knowledgeBaseArticle),
+			KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -2016,7 +2016,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(knowledgeBaseArticle),
+			KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =

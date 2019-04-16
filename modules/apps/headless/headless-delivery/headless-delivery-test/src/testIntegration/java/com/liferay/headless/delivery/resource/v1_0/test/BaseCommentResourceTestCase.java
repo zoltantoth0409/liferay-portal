@@ -454,8 +454,8 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			CommentSerDes.toJSON(comment), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -641,8 +641,8 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			CommentSerDes.toJSON(comment), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/comments/{commentId}", commentId);
@@ -1025,8 +1025,8 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			CommentSerDes.toJSON(comment), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1404,8 +1404,8 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			CommentSerDes.toJSON(comment), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1809,8 +1809,8 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			CommentSerDes.toJSON(comment), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +

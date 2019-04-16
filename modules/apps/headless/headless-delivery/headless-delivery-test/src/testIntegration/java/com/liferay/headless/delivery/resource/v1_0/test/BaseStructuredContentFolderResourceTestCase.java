@@ -506,7 +506,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(structuredContentFolder),
+			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -982,7 +982,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(structuredContentFolder),
+			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1226,7 +1226,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(structuredContentFolder),
+			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1323,7 +1323,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(structuredContentFolder),
+			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =

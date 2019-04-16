@@ -297,8 +297,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(dataLayout),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			DataLayoutSerDes.toJSON(dataLayout), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -546,8 +546,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(dataLayout),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			DataLayoutSerDes.toJSON(dataLayout), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +

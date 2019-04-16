@@ -190,8 +190,8 @@ public abstract class BaseFormResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(form),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			FormSerDes.toJSON(form), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/forms/{formId}/evaluate-context", formId);

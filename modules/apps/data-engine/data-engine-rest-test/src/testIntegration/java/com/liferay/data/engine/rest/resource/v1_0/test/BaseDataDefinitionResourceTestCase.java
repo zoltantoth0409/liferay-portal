@@ -271,7 +271,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(dataDefinition),
+			DataDefinitionSerDes.toJSON(dataDefinition),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -604,7 +604,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(dataDefinition),
+			DataDefinitionSerDes.toJSON(dataDefinition),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =

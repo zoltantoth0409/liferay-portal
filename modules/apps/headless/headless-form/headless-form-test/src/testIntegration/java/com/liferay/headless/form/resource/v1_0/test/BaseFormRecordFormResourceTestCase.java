@@ -118,7 +118,7 @@ public abstract class BaseFormRecordFormResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(formRecordForm),
+			FormRecordFormSerDes.toJSON(formRecordForm),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =

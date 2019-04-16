@@ -510,7 +510,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(taxonomyCategory),
+			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -737,7 +737,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(taxonomyCategory),
+			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -827,7 +827,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(taxonomyCategory),
+			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1276,7 +1276,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(taxonomyCategory),
+			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =

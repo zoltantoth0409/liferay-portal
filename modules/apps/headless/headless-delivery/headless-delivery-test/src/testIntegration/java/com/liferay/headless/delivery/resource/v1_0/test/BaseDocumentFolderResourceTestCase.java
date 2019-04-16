@@ -277,7 +277,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(documentFolder),
+			DocumentFolderSerDes.toJSON(documentFolder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -365,7 +365,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(documentFolder),
+			DocumentFolderSerDes.toJSON(documentFolder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -804,7 +804,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(documentFolder),
+			DocumentFolderSerDes.toJSON(documentFolder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1209,7 +1209,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(documentFolder),
+			DocumentFolderSerDes.toJSON(documentFolder),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =

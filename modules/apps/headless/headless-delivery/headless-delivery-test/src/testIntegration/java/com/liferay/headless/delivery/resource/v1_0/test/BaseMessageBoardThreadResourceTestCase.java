@@ -514,7 +514,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardThread),
+			MessageBoardThreadSerDes.toJSON(messageBoardThread),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -748,7 +748,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardThread),
+			MessageBoardThreadSerDes.toJSON(messageBoardThread),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -840,7 +840,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardThread),
+			MessageBoardThreadSerDes.toJSON(messageBoardThread),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1515,7 +1515,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardThread),
+			MessageBoardThreadSerDes.toJSON(messageBoardThread),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =

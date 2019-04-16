@@ -243,8 +243,8 @@ public abstract class BaseKeywordResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(keyword),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			KeywordSerDes.toJSON(keyword), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/keywords/{keywordId}", keywordId);
@@ -610,8 +610,8 @@ public abstract class BaseKeywordResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(keyword),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			KeywordSerDes.toJSON(keyword), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/sites/{siteId}/keywords", siteId);

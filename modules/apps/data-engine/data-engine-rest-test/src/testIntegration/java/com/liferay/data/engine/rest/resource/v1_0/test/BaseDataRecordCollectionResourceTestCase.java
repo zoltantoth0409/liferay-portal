@@ -320,7 +320,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(dataRecordCollection),
+			DataRecordCollectionSerDes.toJSON(dataRecordCollection),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -554,7 +554,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(dataRecordCollection),
+			DataRecordCollectionSerDes.toJSON(dataRecordCollection),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =

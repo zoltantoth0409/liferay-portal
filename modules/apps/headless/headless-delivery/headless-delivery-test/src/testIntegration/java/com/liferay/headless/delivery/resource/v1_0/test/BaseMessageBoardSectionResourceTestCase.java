@@ -291,7 +291,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardSection),
+			MessageBoardSectionSerDes.toJSON(messageBoardSection),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -384,7 +384,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardSection),
+			MessageBoardSectionSerDes.toJSON(messageBoardSection),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -844,7 +844,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardSection),
+			MessageBoardSectionSerDes.toJSON(messageBoardSection),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1276,7 +1276,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardSection),
+			MessageBoardSectionSerDes.toJSON(messageBoardSection),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
