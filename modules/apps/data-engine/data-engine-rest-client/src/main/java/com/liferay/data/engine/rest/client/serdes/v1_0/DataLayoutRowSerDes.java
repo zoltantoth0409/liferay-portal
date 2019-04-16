@@ -18,6 +18,8 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataLayoutColumn;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataLayoutRow;
 import com.liferay.data.engine.rest.client.json.BaseJSONParser;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -79,6 +81,20 @@ public class DataLayoutRowSerDes {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	public static Map<String, String> toMap(DataLayoutRow dataLayoutRow) {
+		if (dataLayoutRow == null) {
+			return null;
+		}
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put(
+			"dataLayoutColums",
+			String.valueOf(dataLayoutRow.getDataLayoutColums()));
+
+		return map;
 	}
 
 	private static class DataLayoutRowJSONParser

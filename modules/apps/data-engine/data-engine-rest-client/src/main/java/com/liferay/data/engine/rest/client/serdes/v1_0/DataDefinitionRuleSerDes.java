@@ -18,6 +18,8 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinitionRule;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinitionRuleParameter;
 import com.liferay.data.engine.rest.client.json.BaseJSONParser;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -146,6 +148,31 @@ public class DataDefinitionRuleSerDes {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	public static Map<String, String> toMap(
+		DataDefinitionRule dataDefinitionRule) {
+
+		if (dataDefinitionRule == null) {
+			return null;
+		}
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put(
+			"dataDefinitionFieldNames",
+			String.valueOf(dataDefinitionRule.getDataDefinitionFieldNames()));
+
+		map.put(
+			"dataDefinitionRuleParameters",
+			String.valueOf(
+				dataDefinitionRule.getDataDefinitionRuleParameters()));
+
+		map.put("name", String.valueOf(dataDefinitionRule.getName()));
+
+		map.put("ruleType", String.valueOf(dataDefinitionRule.getRuleType()));
+
+		return map;
 	}
 
 	private static class DataDefinitionRuleJSONParser

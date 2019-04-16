@@ -19,6 +19,8 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataLayoutRow;
 import com.liferay.data.engine.rest.client.dto.v1_0.LocalizedValue;
 import com.liferay.data.engine.rest.client.json.BaseJSONParser;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -125,6 +127,24 @@ public class DataLayoutPageSerDes {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	public static Map<String, String> toMap(DataLayoutPage dataLayoutPage) {
+		if (dataLayoutPage == null) {
+			return null;
+		}
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put(
+			"dataLayoutRows",
+			String.valueOf(dataLayoutPage.getDataLayoutRows()));
+
+		map.put("description", String.valueOf(dataLayoutPage.getDescription()));
+
+		map.put("title", String.valueOf(dataLayoutPage.getTitle()));
+
+		return map;
 	}
 
 	private static class DataLayoutPageJSONParser

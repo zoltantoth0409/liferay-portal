@@ -22,6 +22,8 @@ import com.liferay.data.engine.rest.client.json.BaseJSONParser;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -221,6 +223,49 @@ public class DataLayoutSerDes {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	public static Map<String, String> toMap(DataLayout dataLayout) {
+		if (dataLayout == null) {
+			return null;
+		}
+
+		Map<String, String> map = new HashMap<>();
+
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+		map.put(
+			"dataDefinitionId",
+			String.valueOf(dataLayout.getDataDefinitionId()));
+
+		map.put(
+			"dataLayoutPages", String.valueOf(dataLayout.getDataLayoutPages()));
+
+		map.put(
+			"dateCreated",
+			liferayToJSONDateFormat.format(dataLayout.getDateCreated()));
+
+		map.put(
+			"dateModified",
+			liferayToJSONDateFormat.format(dataLayout.getDateModified()));
+
+		map.put(
+			"defaultLanguageId",
+			String.valueOf(dataLayout.getDefaultLanguageId()));
+
+		map.put("description", String.valueOf(dataLayout.getDescription()));
+
+		map.put("id", String.valueOf(dataLayout.getId()));
+
+		map.put("name", String.valueOf(dataLayout.getName()));
+
+		map.put(
+			"paginationMode", String.valueOf(dataLayout.getPaginationMode()));
+
+		map.put("userId", String.valueOf(dataLayout.getUserId()));
+
+		return map;
 	}
 
 	private static class DataLayoutJSONParser

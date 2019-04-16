@@ -23,6 +23,8 @@ import com.liferay.data.engine.rest.client.json.BaseJSONParser;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -239,6 +241,47 @@ public class DataDefinitionSerDes {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	public static Map<String, String> toMap(DataDefinition dataDefinition) {
+		if (dataDefinition == null) {
+			return null;
+		}
+
+		Map<String, String> map = new HashMap<>();
+
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+		map.put(
+			"dataDefinitionFields",
+			String.valueOf(dataDefinition.getDataDefinitionFields()));
+
+		map.put(
+			"dataDefinitionRules",
+			String.valueOf(dataDefinition.getDataDefinitionRules()));
+
+		map.put(
+			"dateCreated",
+			liferayToJSONDateFormat.format(dataDefinition.getDateCreated()));
+
+		map.put(
+			"dateModified",
+			liferayToJSONDateFormat.format(dataDefinition.getDateModified()));
+
+		map.put("description", String.valueOf(dataDefinition.getDescription()));
+
+		map.put("id", String.valueOf(dataDefinition.getId()));
+
+		map.put("name", String.valueOf(dataDefinition.getName()));
+
+		map.put("siteId", String.valueOf(dataDefinition.getSiteId()));
+
+		map.put("storageType", String.valueOf(dataDefinition.getStorageType()));
+
+		map.put("userId", String.valueOf(dataDefinition.getUserId()));
+
+		return map;
 	}
 
 	private static class DataDefinitionJSONParser

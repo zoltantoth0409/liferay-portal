@@ -19,6 +19,8 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.client.dto.v1_0.LocalizedValue;
 import com.liferay.data.engine.rest.client.json.BaseJSONParser;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -227,6 +229,47 @@ public class DataDefinitionFieldSerDes {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	public static Map<String, String> toMap(
+		DataDefinitionField dataDefinitionField) {
+
+		if (dataDefinitionField == null) {
+			return null;
+		}
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put(
+			"customProperties",
+			String.valueOf(dataDefinitionField.getCustomProperties()));
+
+		map.put(
+			"defaultValue",
+			String.valueOf(dataDefinitionField.getDefaultValue()));
+
+		map.put(
+			"fieldType", String.valueOf(dataDefinitionField.getFieldType()));
+
+		map.put("id", String.valueOf(dataDefinitionField.getId()));
+
+		map.put(
+			"indexable", String.valueOf(dataDefinitionField.getIndexable()));
+
+		map.put("label", String.valueOf(dataDefinitionField.getLabel()));
+
+		map.put(
+			"localizable",
+			String.valueOf(dataDefinitionField.getLocalizable()));
+
+		map.put("name", String.valueOf(dataDefinitionField.getName()));
+
+		map.put(
+			"repeatable", String.valueOf(dataDefinitionField.getRepeatable()));
+
+		map.put("tip", String.valueOf(dataDefinitionField.getTip()));
+
+		return map;
 	}
 
 	private static class DataDefinitionFieldJSONParser

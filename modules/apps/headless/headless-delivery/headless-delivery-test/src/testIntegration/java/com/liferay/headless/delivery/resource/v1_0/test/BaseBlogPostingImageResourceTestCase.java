@@ -14,11 +14,6 @@
 
 package com.liferay.headless.delivery.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-
 import com.liferay.headless.delivery.client.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.BlogPostingImageSerDes;
@@ -602,9 +597,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
-		options.addPart(
-			"blogPostingImage",
-			inputObjectMapper.writeValueAsString(multipartBody.getValues()));
+		options.addPart("blogPostingImage", _toJSON(multipartBody.getValues()));
 
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
@@ -1020,33 +1013,6 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			"This method needs to be implemented");
 	}
 
-	protected static final ObjectMapper inputObjectMapper = new ObjectMapper() {
-		{
-			setFilterProvider(
-				new SimpleFilterProvider() {
-					{
-						addFilter(
-							"Liferay.Vulcan",
-							SimpleBeanPropertyFilter.serializeAll());
-					}
-				});
-			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-		}
-	};
-	protected static final ObjectMapper outputObjectMapper =
-		new ObjectMapper() {
-			{
-				setFilterProvider(
-					new SimpleFilterProvider() {
-						{
-							addFilter(
-								"Liferay.Vulcan",
-								SimpleBeanPropertyFilter.serializeAll());
-						}
-					});
-			}
-		};
-
 	protected Group irrelevantGroup;
 	protected String testContentType = "application/json";
 	protected Group testGroup;
@@ -1069,6 +1035,30 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		options.addHeader("Content-Type", testContentType);
 
 		return options;
+	}
+
+	private String _toJSON(Map<String, String> map) {
+		if (map == null) {
+			return "null";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			sb.append("\"" + entry.getKey() + "\": ");
+			sb.append("\"" + entry.getValue() + "\"");
+			sb.append(", ");
+		}
+
+		if (sb.length() > 1) {
+			sb.setLength(sb.length() - 1);
+		}
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	private String _toPath(String template, Object... values) {

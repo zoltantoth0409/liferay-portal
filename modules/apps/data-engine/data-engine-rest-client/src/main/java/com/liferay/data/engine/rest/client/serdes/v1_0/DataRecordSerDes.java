@@ -18,6 +18,8 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataRecord;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataRecordValue;
 import com.liferay.data.engine.rest.client.json.BaseJSONParser;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -97,6 +99,26 @@ public class DataRecordSerDes {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	public static Map<String, String> toMap(DataRecord dataRecord) {
+		if (dataRecord == null) {
+			return null;
+		}
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put(
+			"dataRecordCollectionId",
+			String.valueOf(dataRecord.getDataRecordCollectionId()));
+
+		map.put(
+			"dataRecordValues",
+			String.valueOf(dataRecord.getDataRecordValues()));
+
+		map.put("id", String.valueOf(dataRecord.getId()));
+
+		return map;
 	}
 
 	private static class DataRecordJSONParser

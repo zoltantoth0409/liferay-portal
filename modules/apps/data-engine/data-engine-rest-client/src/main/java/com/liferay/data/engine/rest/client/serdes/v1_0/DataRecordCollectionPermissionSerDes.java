@@ -17,6 +17,8 @@ package com.liferay.data.engine.rest.client.serdes.v1_0;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataRecordCollectionPermission;
 import com.liferay.data.engine.rest.client.json.BaseJSONParser;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -199,6 +201,66 @@ public class DataRecordCollectionPermissionSerDes {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	public static Map<String, String> toMap(
+		DataRecordCollectionPermission dataRecordCollectionPermission) {
+
+		if (dataRecordCollectionPermission == null) {
+			return null;
+		}
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put(
+			"addDataRecord",
+			String.valueOf(dataRecordCollectionPermission.getAddDataRecord()));
+
+		map.put(
+			"addDataRecordCollection",
+			String.valueOf(
+				dataRecordCollectionPermission.getAddDataRecordCollection()));
+
+		map.put(
+			"definePermissions",
+			String.valueOf(
+				dataRecordCollectionPermission.getDefinePermissions()));
+
+		map.put(
+			"delete",
+			String.valueOf(dataRecordCollectionPermission.getDelete()));
+
+		map.put(
+			"deleteDataRecord",
+			String.valueOf(
+				dataRecordCollectionPermission.getDeleteDataRecord()));
+
+		map.put(
+			"exportDataRecord",
+			String.valueOf(
+				dataRecordCollectionPermission.getExportDataRecord()));
+
+		map.put(
+			"roleNames",
+			String.valueOf(dataRecordCollectionPermission.getRoleNames()));
+
+		map.put(
+			"update",
+			String.valueOf(dataRecordCollectionPermission.getUpdate()));
+
+		map.put(
+			"updateDataRecord",
+			String.valueOf(
+				dataRecordCollectionPermission.getUpdateDataRecord()));
+
+		map.put(
+			"view", String.valueOf(dataRecordCollectionPermission.getView()));
+
+		map.put(
+			"viewDataRecord",
+			String.valueOf(dataRecordCollectionPermission.getViewDataRecord()));
+
+		return map;
 	}
 
 	private static class DataRecordCollectionPermissionJSONParser

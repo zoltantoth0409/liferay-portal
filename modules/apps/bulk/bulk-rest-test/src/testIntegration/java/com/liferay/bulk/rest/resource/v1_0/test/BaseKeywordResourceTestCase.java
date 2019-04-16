@@ -14,11 +14,6 @@
 
 package com.liferay.bulk.rest.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-
 import com.liferay.bulk.rest.client.dto.v1_0.DocumentBulkSelection;
 import com.liferay.bulk.rest.client.dto.v1_0.Keyword;
 import com.liferay.bulk.rest.client.dto.v1_0.KeywordBulkSelection;
@@ -110,7 +105,7 @@ public abstract class BaseKeywordResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected Response invokePatchKeywordBatch(
+	protected void invokePatchKeywordBatch(
 			KeywordBulkSelection keywordBulkSelection)
 		throws Exception {
 
@@ -126,17 +121,6 @@ public abstract class BaseKeywordResourceTestCase {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return outputObjectMapper.readValue(string, Response.class);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to process HTTP response: " + string, e);
-			}
-
-			throw e;
 		}
 	}
 
@@ -162,7 +146,7 @@ public abstract class BaseKeywordResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected Response invokePutKeywordBatch(
+	protected void invokePutKeywordBatch(
 			KeywordBulkSelection keywordBulkSelection)
 		throws Exception {
 
@@ -178,17 +162,6 @@ public abstract class BaseKeywordResourceTestCase {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return outputObjectMapper.readValue(string, Response.class);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to process HTTP response: " + string, e);
-			}
-
-			throw e;
 		}
 	}
 
@@ -443,33 +416,6 @@ public abstract class BaseKeywordResourceTestCase {
 		return randomKeyword();
 	}
 
-	protected static final ObjectMapper inputObjectMapper = new ObjectMapper() {
-		{
-			setFilterProvider(
-				new SimpleFilterProvider() {
-					{
-						addFilter(
-							"Liferay.Vulcan",
-							SimpleBeanPropertyFilter.serializeAll());
-					}
-				});
-			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-		}
-	};
-	protected static final ObjectMapper outputObjectMapper =
-		new ObjectMapper() {
-			{
-				setFilterProvider(
-					new SimpleFilterProvider() {
-						{
-							addFilter(
-								"Liferay.Vulcan",
-								SimpleBeanPropertyFilter.serializeAll());
-						}
-					});
-			}
-		};
-
 	protected Group irrelevantGroup;
 	protected String testContentType = "application/json";
 	protected Group testGroup;
@@ -492,6 +438,30 @@ public abstract class BaseKeywordResourceTestCase {
 		options.addHeader("Content-Type", testContentType);
 
 		return options;
+	}
+
+	private String _toJSON(Map<String, String> map) {
+		if (map == null) {
+			return "null";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			sb.append("\"" + entry.getKey() + "\": ");
+			sb.append("\"" + entry.getValue() + "\"");
+			sb.append(", ");
+		}
+
+		if (sb.length() > 1) {
+			sb.setLength(sb.length() - 1);
+		}
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	private String _toPath(String template, Object... values) {

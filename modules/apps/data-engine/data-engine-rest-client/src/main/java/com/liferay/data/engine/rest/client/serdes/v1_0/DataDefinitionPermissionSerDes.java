@@ -17,6 +17,8 @@ package com.liferay.data.engine.rest.client.serdes.v1_0;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinitionPermission;
 import com.liferay.data.engine.rest.client.json.BaseJSONParser;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -136,6 +138,36 @@ public class DataDefinitionPermissionSerDes {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	public static Map<String, String> toMap(
+		DataDefinitionPermission dataDefinitionPermission) {
+
+		if (dataDefinitionPermission == null) {
+			return null;
+		}
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put(
+			"addDataDefinition",
+			String.valueOf(dataDefinitionPermission.getAddDataDefinition()));
+
+		map.put(
+			"definePermissions",
+			String.valueOf(dataDefinitionPermission.getDefinePermissions()));
+
+		map.put("delete", String.valueOf(dataDefinitionPermission.getDelete()));
+
+		map.put(
+			"roleNames",
+			String.valueOf(dataDefinitionPermission.getRoleNames()));
+
+		map.put("update", String.valueOf(dataDefinitionPermission.getUpdate()));
+
+		map.put("view", String.valueOf(dataDefinitionPermission.getView()));
+
+		return map;
 	}
 
 	private static class DataDefinitionPermissionJSONParser
