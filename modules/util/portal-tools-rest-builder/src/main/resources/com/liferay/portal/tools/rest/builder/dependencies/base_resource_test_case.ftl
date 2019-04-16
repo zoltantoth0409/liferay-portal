@@ -52,10 +52,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -1247,7 +1249,13 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 		sb.append("{");
 
-		for (Map.Entry<String, String> entry : map.entrySet()) {
+		Set<Map.Entry<String, String>> set = map.entrySet();
+
+		Iterator<Map.Entry<String, String>> iterator = set.iterator();
+
+		while (iterator.hasNext()) {
+			Map.Entry<String, String> entry = iterator.next();
+
 			sb.append("\"" + entry.getKey() + "\": ");
 
 			if (entry.getValue() == null) {
@@ -1257,11 +1265,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 				sb.append("\"" + entry.getValue() + "\"");
 			}
 
-			sb.append(", ");
-		}
-
-		if (sb.length() > 1) {
-			sb.setLength(sb.length() - 2);
+			if (iterator.hasNext()) {
+				sb.append(", ");
+			}
 		}
 
 		sb.append("}");
