@@ -303,17 +303,18 @@ public class Organization {
 	@Schema(
 		description = "The number of child Organizations that belong to this Organization."
 	)
-	public Number getNumberOfOrganizations() {
+	public Integer getNumberOfOrganizations() {
 		return numberOfOrganizations;
 	}
 
-	public void setNumberOfOrganizations(Number numberOfOrganizations) {
+	public void setNumberOfOrganizations(Integer numberOfOrganizations) {
 		this.numberOfOrganizations = numberOfOrganizations;
 	}
 
 	@JsonIgnore
 	public void setNumberOfOrganizations(
-		UnsafeSupplier<Number, Exception> numberOfOrganizationsUnsafeSupplier) {
+		UnsafeSupplier<Integer, Exception>
+			numberOfOrganizationsUnsafeSupplier) {
 
 		try {
 			numberOfOrganizations = numberOfOrganizationsUnsafeSupplier.get();
@@ -328,7 +329,7 @@ public class Organization {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	protected Number numberOfOrganizations;
+	protected Integer numberOfOrganizations;
 
 	@Schema(description = "The parent Organization of this resource, if any.")
 	public Organization getParentOrganization() {

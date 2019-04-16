@@ -311,7 +311,7 @@ public class TaxonomyVocabularySerDes {
 
 				if (jsonParserFieldValue != null) {
 					taxonomyVocabulary.setNumberOfTaxonomyCategories(
-						Long.valueOf((String)jsonParserFieldValue));
+						Integer.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "siteId")) {

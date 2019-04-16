@@ -311,19 +311,19 @@ public class TaxonomyVocabulary {
 	@Schema(
 		description = "The number of TaxonomyCategories that directly depend on this resource."
 	)
-	public Number getNumberOfTaxonomyCategories() {
+	public Integer getNumberOfTaxonomyCategories() {
 		return numberOfTaxonomyCategories;
 	}
 
 	public void setNumberOfTaxonomyCategories(
-		Number numberOfTaxonomyCategories) {
+		Integer numberOfTaxonomyCategories) {
 
 		this.numberOfTaxonomyCategories = numberOfTaxonomyCategories;
 	}
 
 	@JsonIgnore
 	public void setNumberOfTaxonomyCategories(
-		UnsafeSupplier<Number, Exception>
+		UnsafeSupplier<Integer, Exception>
 			numberOfTaxonomyCategoriesUnsafeSupplier) {
 
 		try {
@@ -340,7 +340,7 @@ public class TaxonomyVocabulary {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	protected Number numberOfTaxonomyCategories;
+	protected Integer numberOfTaxonomyCategories;
 
 	@Schema(
 		description = "The site identificator where this TaxonomyVocabulary is scoped."

@@ -279,19 +279,19 @@ public class TaxonomyCategory {
 	@Schema(
 		description = "The number of times this TaxonomyCategory has been used in other Assets."
 	)
-	public Number getNumberOfTaxonomyCategories() {
+	public Integer getNumberOfTaxonomyCategories() {
 		return numberOfTaxonomyCategories;
 	}
 
 	public void setNumberOfTaxonomyCategories(
-		Number numberOfTaxonomyCategories) {
+		Integer numberOfTaxonomyCategories) {
 
 		this.numberOfTaxonomyCategories = numberOfTaxonomyCategories;
 	}
 
 	@JsonIgnore
 	public void setNumberOfTaxonomyCategories(
-		UnsafeSupplier<Number, Exception>
+		UnsafeSupplier<Integer, Exception>
 			numberOfTaxonomyCategoriesUnsafeSupplier) {
 
 		try {
@@ -308,7 +308,7 @@ public class TaxonomyCategory {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	protected Number numberOfTaxonomyCategories;
+	protected Integer numberOfTaxonomyCategories;
 
 	@Schema(
 		description = "In the hierarchical structure of categories, the parent TaxonomyCategory, if exists."
