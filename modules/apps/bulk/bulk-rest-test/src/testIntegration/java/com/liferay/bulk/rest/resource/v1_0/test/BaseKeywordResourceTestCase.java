@@ -15,15 +15,15 @@
 package com.liferay.bulk.rest.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.liferay.bulk.rest.dto.v1_0.DocumentBulkSelection;
-import com.liferay.bulk.rest.dto.v1_0.Keyword;
-import com.liferay.bulk.rest.dto.v1_0.KeywordBulkSelection;
+import com.liferay.bulk.rest.client.dto.v1_0.DocumentBulkSelection;
+import com.liferay.bulk.rest.client.dto.v1_0.Keyword;
+import com.liferay.bulk.rest.client.dto.v1_0.KeywordBulkSelection;
+import com.liferay.bulk.rest.client.pagination.Page;
+import com.liferay.bulk.rest.client.serdes.v1_0.KeywordSerDes;
 import com.liferay.bulk.rest.resource.v1_0.KeywordResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
@@ -41,7 +41,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -50,7 +49,6 @@ import java.net.URL;
 
 import java.text.DateFormat;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -234,10 +232,7 @@ public abstract class BaseKeywordResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<Keyword>>() {
-			});
+		return Page.of(string, KeywordSerDes::toDTO);
 	}
 
 	protected Http.Response invokePostKeywordsCommonPageResponse(
@@ -464,7 +459,6 @@ public abstract class BaseKeywordResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
-				addMixIn(Keyword.class, KeywordMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -481,52 +475,6 @@ public abstract class BaseKeywordResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	protected static class KeywordMixin {
-
-		@JsonProperty
-		String name;
-
-	}
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(items);
-		}
-
-		public long getLastPage() {
-			return lastPage;
-		}
-
-		public long getPage() {
-			return page;
-		}
-
-		public long getPageSize() {
-			return pageSize;
-		}
-
-		public long getTotalCount() {
-			return totalCount;
-		}
-
-		@JsonProperty
-		protected Collection<T> items;
-
-		@JsonProperty
-		protected long lastPage;
-
-		@JsonProperty
-		protected long page;
-
-		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
-		protected long totalCount;
-
-	}
 
 	private Http.Options _createHttpOptions() {
 		Http.Options options = new Http.Options();

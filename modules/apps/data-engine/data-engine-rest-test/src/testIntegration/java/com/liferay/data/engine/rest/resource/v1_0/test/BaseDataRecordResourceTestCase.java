@@ -15,14 +15,13 @@
 package com.liferay.data.engine.rest.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.liferay.data.engine.rest.dto.v1_0.DataRecord;
-import com.liferay.data.engine.rest.dto.v1_0.DataRecordValue;
+import com.liferay.data.engine.rest.client.dto.v1_0.DataRecord;
+import com.liferay.data.engine.rest.client.pagination.Page;
+import com.liferay.data.engine.rest.client.serdes.v1_0.DataRecordSerDes;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -42,7 +41,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
@@ -248,10 +246,7 @@ public abstract class BaseDataRecordResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<DataRecord>>() {
-			});
+		return Page.of(string, DataRecordSerDes::toDTO);
 	}
 
 	protected Http.Response
@@ -327,7 +322,7 @@ public abstract class BaseDataRecordResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, DataRecord.class);
+			return DataRecordSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -345,8 +340,8 @@ public abstract class BaseDataRecordResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(dataRecord),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			DataRecordSerDes.toJSON(dataRecord), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -496,7 +491,7 @@ public abstract class BaseDataRecordResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, DataRecord.class);
+			return DataRecordSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -571,7 +566,7 @@ public abstract class BaseDataRecordResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, DataRecord.class);
+			return DataRecordSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -589,8 +584,8 @@ public abstract class BaseDataRecordResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(dataRecord),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			DataRecordSerDes.toJSON(dataRecord), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -860,7 +855,6 @@ public abstract class BaseDataRecordResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
-				addMixIn(DataRecord.class, DataRecordMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -877,56 +871,6 @@ public abstract class BaseDataRecordResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	protected static class DataRecordMixin {
-
-		@JsonProperty
-		Long dataRecordCollectionId;
-		@JsonProperty
-		DataRecordValue[] dataRecordValues;
-		@JsonProperty
-		Long id;
-
-	}
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(items);
-		}
-
-		public long getLastPage() {
-			return lastPage;
-		}
-
-		public long getPage() {
-			return page;
-		}
-
-		public long getPageSize() {
-			return pageSize;
-		}
-
-		public long getTotalCount() {
-			return totalCount;
-		}
-
-		@JsonProperty
-		protected Collection<T> items;
-
-		@JsonProperty
-		protected long lastPage;
-
-		@JsonProperty
-		protected long page;
-
-		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
-		protected long totalCount;
-
-	}
 
 	private Http.Options _createHttpOptions() {
 		Http.Options options = new Http.Options();

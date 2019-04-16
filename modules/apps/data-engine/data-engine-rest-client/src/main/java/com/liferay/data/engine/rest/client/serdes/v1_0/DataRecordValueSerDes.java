@@ -1,0 +1,119 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.data.engine.rest.client.serdes.v1_0;
+
+import com.liferay.data.engine.rest.client.dto.v1_0.DataRecordValue;
+import com.liferay.data.engine.rest.client.json.BaseJSONParser;
+
+import java.util.Objects;
+
+import javax.annotation.Generated;
+
+/**
+ * @author Jeyvison Nascimento
+ * @generated
+ */
+@Generated("")
+public class DataRecordValueSerDes {
+
+	public static DataRecordValue toDTO(String json) {
+		DataRecordValueJSONParser dataRecordValueJSONParser =
+			new DataRecordValueJSONParser();
+
+		return dataRecordValueJSONParser.parseToDTO(json);
+	}
+
+	public static DataRecordValue[] toDTOs(String json) {
+		DataRecordValueJSONParser dataRecordValueJSONParser =
+			new DataRecordValueJSONParser();
+
+		return dataRecordValueJSONParser.parseToDTOs(json);
+	}
+
+	public static String toJSON(DataRecordValue dataRecordValue) {
+		if (dataRecordValue == null) {
+			return "null";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		sb.append("\"key\": ");
+
+		if (dataRecordValue.getKey() == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append("\"");
+
+			sb.append(dataRecordValue.getKey());
+
+			sb.append("\"");
+		}
+
+		sb.append(", ");
+
+		sb.append("\"value\": ");
+
+		if (dataRecordValue.getValue() == null) {
+			sb.append("null");
+		}
+		else {
+			sb.append(dataRecordValue.getValue());
+		}
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	private static class DataRecordValueJSONParser
+		extends BaseJSONParser<DataRecordValue> {
+
+		@Override
+		protected DataRecordValue createDTO() {
+			return new DataRecordValue();
+		}
+
+		@Override
+		protected DataRecordValue[] createDTOArray(int size) {
+			return new DataRecordValue[size];
+		}
+
+		@Override
+		protected void setField(
+			DataRecordValue dataRecordValue, String jsonParserFieldName,
+			Object jsonParserFieldValue) {
+
+			if (Objects.equals(jsonParserFieldName, "key")) {
+				if (jsonParserFieldValue != null) {
+					dataRecordValue.setKey((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "value")) {
+				if (jsonParserFieldValue != null) {
+					dataRecordValue.setValue((Object)jsonParserFieldValue);
+				}
+			}
+			else {
+				throw new IllegalArgumentException(
+					"Unsupported field name " + jsonParserFieldName);
+			}
+		}
+
+	}
+
+}
