@@ -40,10 +40,12 @@ public class OAuth2ServiceUpgrade implements UpgradeStepRegistrator {
 			"1.0.0", "1.1.0",
 			new com.liferay.oauth2.provider.internal.upgrade.v1_1_0.
 				UpgradeOAuth2ScopeGrant());
+
 		registry.register(
 			"1.1.0", "1.2.0",
 			getAddColumnsUpgradeProcess(
 				OAuth2ScopeGrantTable.class, "scopeAliases TEXT null"));
+
 		registry.register(
 			"1.2.0", "2.0.0",
 			new UpgradeOAuth2ApplicationScopeAliases(
