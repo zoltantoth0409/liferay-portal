@@ -1253,7 +1253,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 			sb.append(", ");
 		}
 
-		sb.setLength(sb.length() - 1);
+		if (sb.length() > 1) {
+			sb.setLength(sb.length() - 1);
+		}
 
 		sb.append("}");
 
