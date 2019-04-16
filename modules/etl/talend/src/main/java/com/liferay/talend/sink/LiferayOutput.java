@@ -70,7 +70,7 @@ public class LiferayOutput implements Serializable {
 	public void onNext(
 		@Input final Record inputRecord,
 		@Output final OutputEmitter<Record> mainFlowEmitter,
-		@Output("REJECT") final OutputEmitter<Record> rejectFlowEmitter) {
+		@Output("REJECT") final OutputEmitter<Record> rejectFlowOutputEmitter) {
 	}
 
 	@PreDestroy
