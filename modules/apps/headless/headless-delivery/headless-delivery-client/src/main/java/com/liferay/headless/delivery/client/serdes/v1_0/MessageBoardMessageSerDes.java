@@ -342,7 +342,7 @@ public class MessageBoardMessageSerDes {
 
 				if (jsonParserFieldValue != null) {
 					messageBoardMessage.setNumberOfMessageBoardAttachments(
-						(Integer)jsonParserFieldValue);
+						Integer.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(
@@ -350,7 +350,7 @@ public class MessageBoardMessageSerDes {
 
 				if (jsonParserFieldValue != null) {
 					messageBoardMessage.setNumberOfMessageBoardMessages(
-						(Integer)jsonParserFieldValue);
+						Integer.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "showAsAnswer")) {

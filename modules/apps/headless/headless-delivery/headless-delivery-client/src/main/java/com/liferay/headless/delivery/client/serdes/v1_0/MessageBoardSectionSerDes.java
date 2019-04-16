@@ -241,7 +241,7 @@ public class MessageBoardSectionSerDes {
 
 				if (jsonParserFieldValue != null) {
 					messageBoardSection.setNumberOfMessageBoardSections(
-						(Integer)jsonParserFieldValue);
+						Integer.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(
@@ -249,7 +249,7 @@ public class MessageBoardSectionSerDes {
 
 				if (jsonParserFieldValue != null) {
 					messageBoardSection.setNumberOfMessageBoardThreads(
-						(Integer)jsonParserFieldValue);
+						Integer.valueOf((String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "siteId")) {
