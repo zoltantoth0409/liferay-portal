@@ -66,11 +66,11 @@ public class UpgradeProcess_7_0_0 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
+		upgrade(UpgradeSharding.class);
+
 		upgrade(UpgradeSchema.class);
 
 		upgrade(UpgradeKernelPackage.class);
-
-		upgrade(UpgradeSharding.class);
 
 		upgrade(UpgradeAddress.class);
 		upgrade(UpgradeAsset.class);
