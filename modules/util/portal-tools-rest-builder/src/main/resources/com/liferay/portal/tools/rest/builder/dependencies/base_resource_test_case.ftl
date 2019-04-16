@@ -840,7 +840,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			Http.Options options = _createHttpOptions();
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("${schemaVarName}")>
-				options.setBody(inputObjectMapper.writeValueAsString(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+				options.setBody(${schemaName}SerDes.toJSON(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("multipartBody")>
 				options.addPart("${schemaVarName}", inputObjectMapper.writeValueAsString(multipartBody.getValues()));
 
