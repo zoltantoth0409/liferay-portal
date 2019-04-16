@@ -1249,12 +1249,14 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			sb.append("\"" + entry.getKey() + "\": ");
+
 			if (entry.getValue() == null) {
 				sb.append("null");
 			}
 			else {
 				sb.append("\"" + entry.getValue() + "\"");
 			}
+
 			sb.append(", ");
 		}
 
