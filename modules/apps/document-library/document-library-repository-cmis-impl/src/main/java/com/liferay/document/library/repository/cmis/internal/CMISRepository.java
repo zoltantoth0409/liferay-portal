@@ -463,7 +463,7 @@ public class CMISRepository extends BaseCmisRepository {
 		}
 	}
 
-	public CMISRepositoryDetector getCmisRepositoryDetector() {
+	public CMISRepositoryDetector getCMISRepositoryDetector() {
 		return _cmisRepositoryDetector;
 	}
 

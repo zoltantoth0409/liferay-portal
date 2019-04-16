@@ -88,7 +88,7 @@ public class CMISFolder extends CMISModel implements Folder {
 		PermissionChecker permissionChecker, String actionId) {
 
 		CMISRepositoryDetector cmisRepositoryDetector =
-			_cmisRepository.getCmisRepositoryDetector();
+			_cmisRepository.getCMISRepositoryDetector();
 
 		ObjectType objectType = _cmisFolder.getType();
 
