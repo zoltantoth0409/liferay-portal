@@ -1217,27 +1217,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 		}
 	</#if>
 
-	private String _mapToJSON(Map<String, String> map) {
-		if (map == null) {
-			return "null";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("{");
-
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			sb.append("\"" + entry.getKey() + "\": ");
-			sb.append("\"" + entry.getValue() + "\"");
-			sb.append(",");
-		}
-		sb.setLength(sb.length() - 1);
-
-		sb.append("}");
-
-		return sb.toString();
-	}
-
 	protected Group irrelevantGroup;
 	protected String testContentType = "application/json";
 	protected Group testGroup;
@@ -1257,6 +1236,27 @@ public abstract class Base${schemaName}ResourceTestCase {
 		options.addHeader("Content-Type", testContentType);
 
 		return options;
+	}
+
+	private String _mapToJSON(Map<String, String> map) {
+		if (map == null) {
+			return "null";
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("{");
+
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			sb.append("\"" + entry.getKey() + "\": ");
+			sb.append("\"" + entry.getValue() + "\"");
+			sb.append(",");
+		}
+		sb.setLength(sb.length() - 1);
+
+		sb.append("}");
+
+		return sb.toString();
 	}
 
 	private String _toPath(String template, Object... values) {
