@@ -67,6 +67,7 @@ AUI.add(
 
 							if (layoutConfig && layoutConfig.sortable && layoutConfig.id == item.getData('layoutId')) {
 								item.append(TPL_DRAG_HANDLE);
+								item.addClass('lfr-nav-sortable');
 							}
 						}
 					);
@@ -75,7 +76,38 @@ AUI.add(
 				_onWindowResize: function() {
 					var instance = this;
 
-					instance._toggleDragConfig(instance._sortableDD);
+					if (!Util.isPhone() && Util.isTablet()) {
+						instance._removeDragHandle();
+					}
+					else {
+						var navItems = instance.get('navBlock').all(instance._navItemSelector);
+
+						var navClass = navItems.hasClass('lfr-nav-sortable')
+
+						if (navClass && !navClass[0]) {
+							instance._createDragHandles(navItems);
+						}
+
+						instance._toggleDragConfig(instance._sortableDD);
+					}
+				},
+
+				_removeDragHandle: function() {
+					var instance = this;
+
+					var items = instance.get('navBlock').all(instance._navItemSelector);
+
+					items.each(
+						function(item) {
+							var svgElement = item._node.children[1];
+
+							if (svgElement && svgElement.tagName == 'svg') {
+								svgElement.remove();
+
+								item.removeClass('lfr-nav-sortable');
+							}
+						}
+					);
 				},
 
 				_toggleDragConfig: function(dd) {
