@@ -22,11 +22,13 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 /**
  * @author Javier Gamarra
  */
+@Ignore
 @RunWith(Arquillian.class)
 public class KnowledgeBaseFolderResourceTest
 	extends BaseKnowledgeBaseFolderResourceTestCase {
