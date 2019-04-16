@@ -191,14 +191,17 @@ public class DocumentFolderSerDes {
 	private static class DocumentFolderJSONParser
 		extends BaseJSONParser<DocumentFolder> {
 
+		@Override
 		protected DocumentFolder createDTO() {
 			return new DocumentFolder();
 		}
 
+		@Override
 		protected DocumentFolder[] createDTOArray(int size) {
 			return new DocumentFolder[size];
 		}
 
+		@Override
 		protected void setField(
 			DocumentFolder documentFolder, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

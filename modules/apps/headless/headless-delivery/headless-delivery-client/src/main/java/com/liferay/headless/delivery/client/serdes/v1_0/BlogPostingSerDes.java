@@ -340,14 +340,17 @@ public class BlogPostingSerDes {
 	private static class BlogPostingJSONParser
 		extends BaseJSONParser<BlogPosting> {
 
+		@Override
 		protected BlogPosting createDTO() {
 			return new BlogPosting();
 		}
 
+		@Override
 		protected BlogPosting[] createDTOArray(int size) {
 			return new BlogPosting[size];
 		}
 
+		@Override
 		protected void setField(
 			BlogPosting blogPosting, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

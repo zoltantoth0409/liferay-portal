@@ -110,14 +110,17 @@ public class MediaFormSerDes {
 
 	private static class MediaFormJSONParser extends BaseJSONParser<MediaForm> {
 
+		@Override
 		protected MediaForm createDTO() {
 			return new MediaForm();
 		}
 
+		@Override
 		protected MediaForm[] createDTOArray(int size) {
 			return new MediaForm[size];
 		}
 
+		@Override
 		protected void setField(
 			MediaForm mediaForm, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

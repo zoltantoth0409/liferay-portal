@@ -98,14 +98,17 @@ public class SegmentUserSerDes {
 	private static class SegmentUserJSONParser
 		extends BaseJSONParser<SegmentUser> {
 
+		@Override
 		protected SegmentUser createDTO() {
 			return new SegmentUser();
 		}
 
+		@Override
 		protected SegmentUser[] createDTOArray(int size) {
 			return new SegmentUser[size];
 		}
 
+		@Override
 		protected void setField(
 			SegmentUser segmentUser, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

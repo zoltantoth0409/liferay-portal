@@ -343,14 +343,17 @@ public class KnowledgeBaseArticleSerDes {
 	private static class KnowledgeBaseArticleJSONParser
 		extends BaseJSONParser<KnowledgeBaseArticle> {
 
+		@Override
 		protected KnowledgeBaseArticle createDTO() {
 			return new KnowledgeBaseArticle();
 		}
 
+		@Override
 		protected KnowledgeBaseArticle[] createDTOArray(int size) {
 			return new KnowledgeBaseArticle[size];
 		}
 
+		@Override
 		protected void setField(
 			KnowledgeBaseArticle knowledgeBaseArticle,
 			String jsonParserFieldName, Object jsonParserFieldValue) {

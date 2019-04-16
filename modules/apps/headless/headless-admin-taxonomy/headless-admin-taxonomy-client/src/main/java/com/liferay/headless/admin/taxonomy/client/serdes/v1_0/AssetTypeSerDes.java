@@ -95,14 +95,17 @@ public class AssetTypeSerDes {
 
 	private static class AssetTypeJSONParser extends BaseJSONParser<AssetType> {
 
+		@Override
 		protected AssetType createDTO() {
 			return new AssetType();
 		}
 
+		@Override
 		protected AssetType[] createDTOArray(int size) {
 			return new AssetType[size];
 		}
 
+		@Override
 		protected void setField(
 			AssetType assetType, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

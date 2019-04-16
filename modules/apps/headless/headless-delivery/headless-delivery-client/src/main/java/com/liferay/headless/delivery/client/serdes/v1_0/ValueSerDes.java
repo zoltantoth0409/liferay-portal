@@ -107,14 +107,17 @@ public class ValueSerDes {
 
 	private static class ValueJSONParser extends BaseJSONParser<Value> {
 
+		@Override
 		protected Value createDTO() {
 			return new Value();
 		}
 
+		@Override
 		protected Value[] createDTOArray(int size) {
 			return new Value[size];
 		}
 
+		@Override
 		protected void setField(
 			Value value, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

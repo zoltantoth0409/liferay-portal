@@ -15,13 +15,13 @@
 package com.liferay.headless.admin.user.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.liferay.headless.admin.user.dto.v1_0.Segment;
+import com.liferay.headless.admin.user.client.dto.v1_0.Segment;
+import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.serdes.v1_0.SegmentSerDes;
 import com.liferay.headless.admin.user.resource.v1_0.SegmentResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
@@ -39,7 +39,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
@@ -52,7 +51,6 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -225,10 +223,7 @@ public abstract class BaseSegmentResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<Segment>>() {
-			});
+		return Page.of(string, SegmentSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetSiteSegmentsPageResponse(
@@ -397,10 +392,7 @@ public abstract class BaseSegmentResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<Segment>>() {
-			});
+		return Page.of(string, SegmentSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetSiteUserAccountSegmentsPageResponse(
@@ -839,7 +831,6 @@ public abstract class BaseSegmentResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
-				addMixIn(Segment.class, SegmentMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -856,66 +847,6 @@ public abstract class BaseSegmentResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	protected static class SegmentMixin {
-
-		@JsonProperty
-		Boolean active;
-		@JsonProperty
-		String criteria;
-		@JsonProperty
-		Date dateCreated;
-		@JsonProperty
-		Date dateModified;
-		@JsonProperty
-		Long id;
-		@JsonProperty
-		String name;
-		@JsonProperty
-		Long siteId;
-		@JsonProperty
-		String source;
-
-	}
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(items);
-		}
-
-		public long getLastPage() {
-			return lastPage;
-		}
-
-		public long getPage() {
-			return page;
-		}
-
-		public long getPageSize() {
-			return pageSize;
-		}
-
-		public long getTotalCount() {
-			return totalCount;
-		}
-
-		@JsonProperty
-		protected Collection<T> items;
-
-		@JsonProperty
-		protected long lastPage;
-
-		@JsonProperty
-		protected long page;
-
-		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
-		protected long totalCount;
-
-	}
 
 	private Http.Options _createHttpOptions() {
 		Http.Options options = new Http.Options();

@@ -260,14 +260,17 @@ public class MessageBoardMessageSerDes {
 	private static class MessageBoardMessageJSONParser
 		extends BaseJSONParser<MessageBoardMessage> {
 
+		@Override
 		protected MessageBoardMessage createDTO() {
 			return new MessageBoardMessage();
 		}
 
+		@Override
 		protected MessageBoardMessage[] createDTOArray(int size) {
 			return new MessageBoardMessage[size];
 		}
 
+		@Override
 		protected void setField(
 			MessageBoardMessage messageBoardMessage, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

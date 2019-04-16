@@ -176,14 +176,17 @@ public class WorkflowLogSerDes {
 	private static class WorkflowLogJSONParser
 		extends BaseJSONParser<WorkflowLog> {
 
+		@Override
 		protected WorkflowLog createDTO() {
 			return new WorkflowLog();
 		}
 
+		@Override
 		protected WorkflowLog[] createDTOArray(int size) {
 			return new WorkflowLog[size];
 		}
 
+		@Override
 		protected void setField(
 			WorkflowLog workflowLog, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

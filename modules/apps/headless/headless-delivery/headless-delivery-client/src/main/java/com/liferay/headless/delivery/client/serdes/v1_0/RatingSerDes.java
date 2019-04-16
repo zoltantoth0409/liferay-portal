@@ -139,14 +139,17 @@ public class RatingSerDes {
 
 	private static class RatingJSONParser extends BaseJSONParser<Rating> {
 
+		@Override
 		protected Rating createDTO() {
 			return new Rating();
 		}
 
+		@Override
 		protected Rating[] createDTOArray(int size) {
 			return new Rating[size];
 		}
 
+		@Override
 		protected void setField(
 			Rating rating, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

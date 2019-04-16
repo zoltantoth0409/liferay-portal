@@ -72,14 +72,17 @@ public class ChangeTransitionSerDes {
 	private static class ChangeTransitionJSONParser
 		extends BaseJSONParser<ChangeTransition> {
 
+		@Override
 		protected ChangeTransition createDTO() {
 			return new ChangeTransition();
 		}
 
+		@Override
 		protected ChangeTransition[] createDTOArray(int size) {
 			return new ChangeTransition[size];
 		}
 
+		@Override
 		protected void setField(
 			ChangeTransition changeTransition, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

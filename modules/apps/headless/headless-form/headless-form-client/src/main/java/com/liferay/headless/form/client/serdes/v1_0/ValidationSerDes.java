@@ -96,14 +96,17 @@ public class ValidationSerDes {
 	private static class ValidationJSONParser
 		extends BaseJSONParser<Validation> {
 
+		@Override
 		protected Validation createDTO() {
 			return new Validation();
 		}
 
+		@Override
 		protected Validation[] createDTOArray(int size) {
 			return new Validation[size];
 		}
 
+		@Override
 		protected void setField(
 			Validation validation, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

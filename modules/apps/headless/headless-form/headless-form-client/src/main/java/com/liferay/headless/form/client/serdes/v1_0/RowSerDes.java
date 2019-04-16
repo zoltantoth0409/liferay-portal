@@ -95,14 +95,17 @@ public class RowSerDes {
 
 	private static class RowJSONParser extends BaseJSONParser<Row> {
 
+		@Override
 		protected Row createDTO() {
 			return new Row();
 		}
 
+		@Override
 		protected Row[] createDTOArray(int size) {
 			return new Row[size];
 		}
 
+		@Override
 		protected void setField(
 			Row row, String jsonParserFieldName, Object jsonParserFieldValue) {
 

@@ -110,14 +110,17 @@ public class GridSerDes {
 
 	private static class GridJSONParser extends BaseJSONParser<Grid> {
 
+		@Override
 		protected Grid createDTO() {
 			return new Grid();
 		}
 
+		@Override
 		protected Grid[] createDTOArray(int size) {
 			return new Grid[size];
 		}
 
+		@Override
 		protected void setField(
 			Grid grid, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

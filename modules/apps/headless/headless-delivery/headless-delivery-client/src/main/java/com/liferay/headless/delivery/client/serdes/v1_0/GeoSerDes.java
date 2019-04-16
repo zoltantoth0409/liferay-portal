@@ -76,14 +76,17 @@ public class GeoSerDes {
 
 	private static class GeoJSONParser extends BaseJSONParser<Geo> {
 
+		@Override
 		protected Geo createDTO() {
 			return new Geo();
 		}
 
+		@Override
 		protected Geo[] createDTOArray(int size) {
 			return new Geo[size];
 		}
 
+		@Override
 		protected void setField(
 			Geo geo, String jsonParserFieldName, Object jsonParserFieldValue) {
 

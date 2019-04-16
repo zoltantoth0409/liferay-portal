@@ -169,14 +169,17 @@ public class SegmentSerDes {
 
 	private static class SegmentJSONParser extends BaseJSONParser<Segment> {
 
+		@Override
 		protected Segment createDTO() {
 			return new Segment();
 		}
 
+		@Override
 		protected Segment[] createDTOArray(int size) {
 			return new Segment[size];
 		}
 
+		@Override
 		protected void setField(
 			Segment segment, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

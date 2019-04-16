@@ -199,14 +199,17 @@ public class PostalAddressSerDes {
 	private static class PostalAddressJSONParser
 		extends BaseJSONParser<PostalAddress> {
 
+		@Override
 		protected PostalAddress createDTO() {
 			return new PostalAddress();
 		}
 
+		@Override
 		protected PostalAddress[] createDTOArray(int size) {
 			return new PostalAddress[size];
 		}
 
+		@Override
 		protected void setField(
 			PostalAddress postalAddress, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

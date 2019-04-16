@@ -228,14 +228,17 @@ public class OrganizationSerDes {
 	private static class OrganizationJSONParser
 		extends BaseJSONParser<Organization> {
 
+		@Override
 		protected Organization createDTO() {
 			return new Organization();
 		}
 
+		@Override
 		protected Organization[] createDTOArray(int size) {
 			return new Organization[size];
 		}
 
+		@Override
 		protected void setField(
 			Organization organization, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

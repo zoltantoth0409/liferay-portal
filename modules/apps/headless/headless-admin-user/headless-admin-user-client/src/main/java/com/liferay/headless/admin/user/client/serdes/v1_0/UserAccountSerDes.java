@@ -407,14 +407,17 @@ public class UserAccountSerDes {
 	private static class UserAccountJSONParser
 		extends BaseJSONParser<UserAccount> {
 
+		@Override
 		protected UserAccount createDTO() {
 			return new UserAccount();
 		}
 
+		@Override
 		protected UserAccount[] createDTOArray(int size) {
 			return new UserAccount[size];
 		}
 
+		@Override
 		protected void setField(
 			UserAccount userAccount, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

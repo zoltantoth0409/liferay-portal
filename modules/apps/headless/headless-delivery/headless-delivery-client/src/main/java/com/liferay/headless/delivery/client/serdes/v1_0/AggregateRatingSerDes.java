@@ -101,14 +101,17 @@ public class AggregateRatingSerDes {
 	private static class AggregateRatingJSONParser
 		extends BaseJSONParser<AggregateRating> {
 
+		@Override
 		protected AggregateRating createDTO() {
 			return new AggregateRating();
 		}
 
+		@Override
 		protected AggregateRating[] createDTOArray(int size) {
 			return new AggregateRating[size];
 		}
 
+		@Override
 		protected void setField(
 			AggregateRating aggregateRating, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

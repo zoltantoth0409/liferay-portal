@@ -83,14 +83,17 @@ public class StructuredContentLinkSerDes {
 	private static class StructuredContentLinkJSONParser
 		extends BaseJSONParser<StructuredContentLink> {
 
+		@Override
 		protected StructuredContentLink createDTO() {
 			return new StructuredContentLink();
 		}
 
+		@Override
 		protected StructuredContentLink[] createDTOArray(int size) {
 			return new StructuredContentLink[size];
 		}
 
+		@Override
 		protected void setField(
 			StructuredContentLink structuredContentLink,
 			String jsonParserFieldName, Object jsonParserFieldValue) {

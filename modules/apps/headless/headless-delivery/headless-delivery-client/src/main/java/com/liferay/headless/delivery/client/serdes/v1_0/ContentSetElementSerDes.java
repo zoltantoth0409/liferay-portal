@@ -109,14 +109,17 @@ public class ContentSetElementSerDes {
 	private static class ContentSetElementJSONParser
 		extends BaseJSONParser<ContentSetElement> {
 
+		@Override
 		protected ContentSetElement createDTO() {
 			return new ContentSetElement();
 		}
 
+		@Override
 		protected ContentSetElement[] createDTOArray(int size) {
 			return new ContentSetElement[size];
 		}
 
+		@Override
 		protected void setField(
 			ContentSetElement contentSetElement, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

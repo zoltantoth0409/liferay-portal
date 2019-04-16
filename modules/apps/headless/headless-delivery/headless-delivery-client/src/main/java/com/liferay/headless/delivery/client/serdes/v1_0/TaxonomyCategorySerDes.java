@@ -83,14 +83,17 @@ public class TaxonomyCategorySerDes {
 	private static class TaxonomyCategoryJSONParser
 		extends BaseJSONParser<TaxonomyCategory> {
 
+		@Override
 		protected TaxonomyCategory createDTO() {
 			return new TaxonomyCategory();
 		}
 
+		@Override
 		protected TaxonomyCategory[] createDTOArray(int size) {
 			return new TaxonomyCategory[size];
 		}
 
+		@Override
 		protected void setField(
 			TaxonomyCategory taxonomyCategory, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

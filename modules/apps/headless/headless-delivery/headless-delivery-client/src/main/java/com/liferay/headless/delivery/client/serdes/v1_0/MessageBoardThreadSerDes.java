@@ -264,14 +264,17 @@ public class MessageBoardThreadSerDes {
 	private static class MessageBoardThreadJSONParser
 		extends BaseJSONParser<MessageBoardThread> {
 
+		@Override
 		protected MessageBoardThread createDTO() {
 			return new MessageBoardThread();
 		}
 
+		@Override
 		protected MessageBoardThread[] createDTOArray(int size) {
 			return new MessageBoardThread[size];
 		}
 
+		@Override
 		protected void setField(
 			MessageBoardThread messageBoardThread, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

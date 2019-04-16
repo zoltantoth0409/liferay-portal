@@ -144,14 +144,17 @@ public class KeywordSerDes {
 
 	private static class KeywordJSONParser extends BaseJSONParser<Keyword> {
 
+		@Override
 		protected Keyword createDTO() {
 			return new Keyword();
 		}
 
+		@Override
 		protected Keyword[] createDTOArray(int size) {
 			return new Keyword[size];
 		}
 
+		@Override
 		protected void setField(
 			Keyword keyword, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

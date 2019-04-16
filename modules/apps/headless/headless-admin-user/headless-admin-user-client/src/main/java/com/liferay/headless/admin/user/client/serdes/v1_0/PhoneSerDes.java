@@ -121,14 +121,17 @@ public class PhoneSerDes {
 
 	private static class PhoneJSONParser extends BaseJSONParser<Phone> {
 
+		@Override
 		protected Phone createDTO() {
 			return new Phone();
 		}
 
+		@Override
 		protected Phone[] createDTOArray(int size) {
 			return new Phone[size];
 		}
 
+		@Override
 		protected void setField(
 			Phone phone, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

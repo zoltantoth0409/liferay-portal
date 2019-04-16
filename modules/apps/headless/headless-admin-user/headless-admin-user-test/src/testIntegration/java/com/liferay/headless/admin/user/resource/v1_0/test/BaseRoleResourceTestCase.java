@@ -15,14 +15,13 @@
 package com.liferay.headless.admin.user.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.liferay.headless.admin.user.dto.v1_0.Creator;
-import com.liferay.headless.admin.user.dto.v1_0.Role;
+import com.liferay.headless.admin.user.client.dto.v1_0.Role;
+import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.serdes.v1_0.RoleSerDes;
 import com.liferay.headless.admin.user.resource.v1_0.RoleResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
@@ -40,7 +39,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
@@ -50,9 +48,7 @@ import java.net.URL;
 
 import java.text.DateFormat;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -135,10 +131,7 @@ public abstract class BaseRoleResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<Role>>() {
-			});
+		return Page.of(string, RoleSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetRolesPageResponse(Pagination pagination)
@@ -189,7 +182,7 @@ public abstract class BaseRoleResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, Role.class);
+			return RoleSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -630,7 +623,6 @@ public abstract class BaseRoleResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
-				addMixIn(Role.class, RoleMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -647,66 +639,6 @@ public abstract class BaseRoleResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	protected static class RoleMixin {
-
-		@JsonProperty
-		String[] availableLanguages;
-		@JsonProperty
-		Creator creator;
-		@JsonProperty
-		Date dateCreated;
-		@JsonProperty
-		Date dateModified;
-		@JsonProperty
-		String description;
-		@JsonProperty
-		Long id;
-		@JsonProperty
-		String name;
-		@JsonProperty
-		String roleType;
-
-	}
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(items);
-		}
-
-		public long getLastPage() {
-			return lastPage;
-		}
-
-		public long getPage() {
-			return page;
-		}
-
-		public long getPageSize() {
-			return pageSize;
-		}
-
-		public long getTotalCount() {
-			return totalCount;
-		}
-
-		@JsonProperty
-		protected Collection<T> items;
-
-		@JsonProperty
-		protected long lastPage;
-
-		@JsonProperty
-		protected long page;
-
-		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
-		protected long totalCount;
-
-	}
 
 	private Http.Options _createHttpOptions() {
 		Http.Options options = new Http.Options();

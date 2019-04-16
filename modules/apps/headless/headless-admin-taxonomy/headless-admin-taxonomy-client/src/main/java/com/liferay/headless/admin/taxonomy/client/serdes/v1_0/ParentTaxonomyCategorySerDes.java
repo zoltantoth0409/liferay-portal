@@ -83,14 +83,17 @@ public class ParentTaxonomyCategorySerDes {
 	private static class ParentTaxonomyCategoryJSONParser
 		extends BaseJSONParser<ParentTaxonomyCategory> {
 
+		@Override
 		protected ParentTaxonomyCategory createDTO() {
 			return new ParentTaxonomyCategory();
 		}
 
+		@Override
 		protected ParentTaxonomyCategory[] createDTOArray(int size) {
 			return new ParentTaxonomyCategory[size];
 		}
 
+		@Override
 		protected void setField(
 			ParentTaxonomyCategory parentTaxonomyCategory,
 			String jsonParserFieldName, Object jsonParserFieldValue) {

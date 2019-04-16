@@ -210,14 +210,17 @@ public class FormStructureSerDes {
 	private static class FormStructureJSONParser
 		extends BaseJSONParser<FormStructure> {
 
+		@Override
 		protected FormStructure createDTO() {
 			return new FormStructure();
 		}
 
+		@Override
 		protected FormStructure[] createDTOArray(int size) {
 			return new FormStructure[size];
 		}
 
+		@Override
 		protected void setField(
 			FormStructure formStructure, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

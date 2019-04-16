@@ -139,14 +139,17 @@ public class MessageBoardAttachmentSerDes {
 	private static class MessageBoardAttachmentJSONParser
 		extends BaseJSONParser<MessageBoardAttachment> {
 
+		@Override
 		protected MessageBoardAttachment createDTO() {
 			return new MessageBoardAttachment();
 		}
 
+		@Override
 		protected MessageBoardAttachment[] createDTOArray(int size) {
 			return new MessageBoardAttachment[size];
 		}
 
+		@Override
 		protected void setField(
 			MessageBoardAttachment messageBoardAttachment,
 			String jsonParserFieldName, Object jsonParserFieldValue) {

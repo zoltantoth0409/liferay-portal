@@ -236,14 +236,17 @@ public class TaxonomyVocabularySerDes {
 	private static class TaxonomyVocabularyJSONParser
 		extends BaseJSONParser<TaxonomyVocabulary> {
 
+		@Override
 		protected TaxonomyVocabulary createDTO() {
 			return new TaxonomyVocabulary();
 		}
 
+		@Override
 		protected TaxonomyVocabulary[] createDTOArray(int size) {
 			return new TaxonomyVocabulary[size];
 		}
 
+		@Override
 		protected void setField(
 			TaxonomyVocabulary taxonomyVocabulary, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

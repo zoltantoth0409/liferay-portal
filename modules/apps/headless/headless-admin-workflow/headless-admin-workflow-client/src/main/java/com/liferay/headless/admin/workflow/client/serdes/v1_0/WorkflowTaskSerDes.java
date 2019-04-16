@@ -210,14 +210,17 @@ public class WorkflowTaskSerDes {
 	private static class WorkflowTaskJSONParser
 		extends BaseJSONParser<WorkflowTask> {
 
+		@Override
 		protected WorkflowTask createDTO() {
 			return new WorkflowTask();
 		}
 
+		@Override
 		protected WorkflowTask[] createDTOArray(int size) {
 			return new WorkflowTask[size];
 		}
 
+		@Override
 		protected void setField(
 			WorkflowTask workflowTask, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

@@ -141,14 +141,17 @@ public class KnowledgeBaseAttachmentSerDes {
 	private static class KnowledgeBaseAttachmentJSONParser
 		extends BaseJSONParser<KnowledgeBaseAttachment> {
 
+		@Override
 		protected KnowledgeBaseAttachment createDTO() {
 			return new KnowledgeBaseAttachment();
 		}
 
+		@Override
 		protected KnowledgeBaseAttachment[] createDTOArray(int size) {
 			return new KnowledgeBaseAttachment[size];
 		}
 
+		@Override
 		protected void setField(
 			KnowledgeBaseAttachment knowledgeBaseAttachment,
 			String jsonParserFieldName, Object jsonParserFieldValue) {

@@ -196,14 +196,17 @@ public class StructuredContentFolderSerDes {
 	private static class StructuredContentFolderJSONParser
 		extends BaseJSONParser<StructuredContentFolder> {
 
+		@Override
 		protected StructuredContentFolder createDTO() {
 			return new StructuredContentFolder();
 		}
 
+		@Override
 		protected StructuredContentFolder[] createDTOArray(int size) {
 			return new StructuredContentFolder[size];
 		}
 
+		@Override
 		protected void setField(
 			StructuredContentFolder structuredContentFolder,
 			String jsonParserFieldName, Object jsonParserFieldValue) {

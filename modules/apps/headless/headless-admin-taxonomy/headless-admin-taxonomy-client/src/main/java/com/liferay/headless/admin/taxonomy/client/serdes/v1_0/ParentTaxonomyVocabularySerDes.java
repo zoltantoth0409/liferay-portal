@@ -85,14 +85,17 @@ public class ParentTaxonomyVocabularySerDes {
 	private static class ParentTaxonomyVocabularyJSONParser
 		extends BaseJSONParser<ParentTaxonomyVocabulary> {
 
+		@Override
 		protected ParentTaxonomyVocabulary createDTO() {
 			return new ParentTaxonomyVocabulary();
 		}
 
+		@Override
 		protected ParentTaxonomyVocabulary[] createDTOArray(int size) {
 			return new ParentTaxonomyVocabulary[size];
 		}
 
+		@Override
 		protected void setField(
 			ParentTaxonomyVocabulary parentTaxonomyVocabulary,
 			String jsonParserFieldName, Object jsonParserFieldValue) {

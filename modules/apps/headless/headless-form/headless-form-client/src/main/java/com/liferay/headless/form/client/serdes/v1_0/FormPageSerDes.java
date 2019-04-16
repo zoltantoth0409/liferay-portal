@@ -118,14 +118,17 @@ public class FormPageSerDes {
 
 	private static class FormPageJSONParser extends BaseJSONParser<FormPage> {
 
+		@Override
 		protected FormPage createDTO() {
 			return new FormPage();
 		}
 
+		@Override
 		protected FormPage[] createDTOArray(int size) {
 			return new FormPage[size];
 		}
 
+		@Override
 		protected void setField(
 			FormPage formPage, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

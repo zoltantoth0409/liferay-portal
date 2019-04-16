@@ -113,14 +113,17 @@ public class HoursAvailableSerDes {
 	private static class HoursAvailableJSONParser
 		extends BaseJSONParser<HoursAvailable> {
 
+		@Override
 		protected HoursAvailable createDTO() {
 			return new HoursAvailable();
 		}
 
+		@Override
 		protected HoursAvailable[] createDTOArray(int size) {
 			return new HoursAvailable[size];
 		}
 
+		@Override
 		protected void setField(
 			HoursAvailable hoursAvailable, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

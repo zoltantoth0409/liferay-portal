@@ -84,14 +84,17 @@ public class OptionSerDes {
 
 	private static class OptionJSONParser extends BaseJSONParser<Option> {
 
+		@Override
 		protected Option createDTO() {
 			return new Option();
 		}
 
+		@Override
 		protected Option[] createDTOArray(int size) {
 			return new Option[size];
 		}
 
+		@Override
 		protected void setField(
 			Option option, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

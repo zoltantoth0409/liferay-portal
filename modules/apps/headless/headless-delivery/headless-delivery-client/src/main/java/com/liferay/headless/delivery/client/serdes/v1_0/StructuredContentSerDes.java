@@ -420,14 +420,17 @@ public class StructuredContentSerDes {
 	private static class StructuredContentJSONParser
 		extends BaseJSONParser<StructuredContent> {
 
+		@Override
 		protected StructuredContent createDTO() {
 			return new StructuredContent();
 		}
 
+		@Override
 		protected StructuredContent[] createDTOArray(int size) {
 			return new StructuredContent[size];
 		}
 
+		@Override
 		protected void setField(
 			StructuredContent structuredContent, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

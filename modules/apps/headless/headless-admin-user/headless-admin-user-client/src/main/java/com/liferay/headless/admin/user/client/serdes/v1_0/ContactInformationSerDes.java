@@ -241,14 +241,17 @@ public class ContactInformationSerDes {
 	private static class ContactInformationJSONParser
 		extends BaseJSONParser<ContactInformation> {
 
+		@Override
 		protected ContactInformation createDTO() {
 			return new ContactInformation();
 		}
 
+		@Override
 		protected ContactInformation[] createDTOArray(int size) {
 			return new ContactInformation[size];
 		}
 
+		@Override
 		protected void setField(
 			ContactInformation contactInformation, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

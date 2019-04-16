@@ -133,14 +133,17 @@ public class CommentSerDes {
 
 	private static class CommentJSONParser extends BaseJSONParser<Comment> {
 
+		@Override
 		protected Comment createDTO() {
 			return new Comment();
 		}
 
+		@Override
 		protected Comment[] createDTOArray(int size) {
 			return new Comment[size];
 		}
 
+		@Override
 		protected void setField(
 			Comment comment, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

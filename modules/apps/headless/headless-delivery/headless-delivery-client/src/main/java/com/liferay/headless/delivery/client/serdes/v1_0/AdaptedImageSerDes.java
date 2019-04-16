@@ -120,14 +120,17 @@ public class AdaptedImageSerDes {
 	private static class AdaptedImageJSONParser
 		extends BaseJSONParser<AdaptedImage> {
 
+		@Override
 		protected AdaptedImage createDTO() {
 			return new AdaptedImage();
 		}
 
+		@Override
 		protected AdaptedImage[] createDTOArray(int size) {
 			return new AdaptedImage[size];
 		}
 
+		@Override
 		protected void setField(
 			AdaptedImage adaptedImage, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

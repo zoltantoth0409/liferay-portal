@@ -385,14 +385,17 @@ public class FieldSerDes {
 
 	private static class FieldJSONParser extends BaseJSONParser<Field> {
 
+		@Override
 		protected Field createDTO() {
 			return new Field();
 		}
 
+		@Override
 		protected Field[] createDTOArray(int size) {
 			return new Field[size];
 		}
 
+		@Override
 		protected void setField(
 			Field field, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

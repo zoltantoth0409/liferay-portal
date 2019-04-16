@@ -95,14 +95,17 @@ public class ColumnSerDes {
 
 	private static class ColumnJSONParser extends BaseJSONParser<Column> {
 
+		@Override
 		protected Column createDTO() {
 			return new Column();
 		}
 
+		@Override
 		protected Column[] createDTOArray(int size) {
 			return new Column[size];
 		}
 
+		@Override
 		protected void setField(
 			Column column, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

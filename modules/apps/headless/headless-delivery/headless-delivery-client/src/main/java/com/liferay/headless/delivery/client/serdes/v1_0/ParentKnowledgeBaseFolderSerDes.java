@@ -87,14 +87,17 @@ public class ParentKnowledgeBaseFolderSerDes {
 	private static class ParentKnowledgeBaseFolderJSONParser
 		extends BaseJSONParser<ParentKnowledgeBaseFolder> {
 
+		@Override
 		protected ParentKnowledgeBaseFolder createDTO() {
 			return new ParentKnowledgeBaseFolder();
 		}
 
+		@Override
 		protected ParentKnowledgeBaseFolder[] createDTOArray(int size) {
 			return new ParentKnowledgeBaseFolder[size];
 		}
 
+		@Override
 		protected void setField(
 			ParentKnowledgeBaseFolder parentKnowledgeBaseFolder,
 			String jsonParserFieldName, Object jsonParserFieldValue) {

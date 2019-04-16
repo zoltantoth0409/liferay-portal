@@ -80,14 +80,17 @@ public class SiteBriefSerDes {
 
 	private static class SiteBriefJSONParser extends BaseJSONParser<SiteBrief> {
 
+		@Override
 		protected SiteBrief createDTO() {
 			return new SiteBrief();
 		}
 
+		@Override
 		protected SiteBrief[] createDTOArray(int size) {
 			return new SiteBrief[size];
 		}
 
+		@Override
 		protected void setField(
 			SiteBrief siteBrief, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

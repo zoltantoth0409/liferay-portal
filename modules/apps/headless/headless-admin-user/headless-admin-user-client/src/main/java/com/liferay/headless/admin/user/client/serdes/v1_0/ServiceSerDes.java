@@ -105,14 +105,17 @@ public class ServiceSerDes {
 
 	private static class ServiceJSONParser extends BaseJSONParser<Service> {
 
+		@Override
 		protected Service createDTO() {
 			return new Service();
 		}
 
+		@Override
 		protected Service[] createDTOArray(int size) {
 			return new Service[size];
 		}
 
+		@Override
 		protected void setField(
 			Service service, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

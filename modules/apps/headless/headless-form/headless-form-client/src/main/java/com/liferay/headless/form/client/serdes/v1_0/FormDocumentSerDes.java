@@ -139,14 +139,17 @@ public class FormDocumentSerDes {
 	private static class FormDocumentJSONParser
 		extends BaseJSONParser<FormDocument> {
 
+		@Override
 		protected FormDocument createDTO() {
 			return new FormDocument();
 		}
 
+		@Override
 		protected FormDocument[] createDTOArray(int size) {
 			return new FormDocument[size];
 		}
 
+		@Override
 		protected void setField(
 			FormDocument formDocument, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

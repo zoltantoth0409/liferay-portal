@@ -15,17 +15,13 @@
 package com.liferay.headless.admin.user.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.liferay.headless.admin.user.dto.v1_0.ContactInformation;
-import com.liferay.headless.admin.user.dto.v1_0.OrganizationBrief;
-import com.liferay.headless.admin.user.dto.v1_0.RoleBrief;
-import com.liferay.headless.admin.user.dto.v1_0.SiteBrief;
-import com.liferay.headless.admin.user.dto.v1_0.UserAccount;
+import com.liferay.headless.admin.user.client.dto.v1_0.UserAccount;
+import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.serdes.v1_0.UserAccountSerDes;
 import com.liferay.headless.admin.user.resource.v1_0.UserAccountResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
@@ -43,7 +39,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
@@ -147,7 +142,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, UserAccount.class);
+			return UserAccountSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -473,10 +468,7 @@ public abstract class BaseUserAccountResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<UserAccount>>() {
-			});
+		return Page.of(string, UserAccountSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetOrganizationUserAccountsPageResponse(
@@ -736,10 +728,7 @@ public abstract class BaseUserAccountResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<UserAccount>>() {
-			});
+		return Page.of(string, UserAccountSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetUserAccountsPageResponse(
@@ -801,7 +790,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, UserAccount.class);
+			return UserAccountSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -1121,10 +1110,7 @@ public abstract class BaseUserAccountResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<UserAccount>>() {
-			});
+		return Page.of(string, UserAccountSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetWebSiteUserAccountsPageResponse(
@@ -1967,7 +1953,6 @@ public abstract class BaseUserAccountResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
-				addMixIn(UserAccount.class, UserAccountMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -1984,92 +1969,6 @@ public abstract class BaseUserAccountResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	protected static class UserAccountMixin {
-
-		@JsonProperty
-		String additionalName;
-		@JsonProperty
-		String alternateName;
-		@JsonProperty
-		Date birthDate;
-		@JsonProperty
-		ContactInformation contactInformation;
-		@JsonProperty
-		String dashboardURL;
-		@JsonProperty
-		Date dateCreated;
-		@JsonProperty
-		Date dateModified;
-		@JsonProperty
-		String email;
-		@JsonProperty
-		String familyName;
-		@JsonProperty
-		String givenName;
-		@JsonProperty
-		String honorificPrefix;
-		@JsonProperty
-		String honorificSuffix;
-		@JsonProperty
-		Long id;
-		@JsonProperty
-		String image;
-		@JsonProperty
-		String jobTitle;
-		@JsonProperty
-		String[] keywords;
-		@JsonProperty
-		String name;
-		@JsonProperty
-		OrganizationBrief[] organizationBriefs;
-		@JsonProperty
-		String profileURL;
-		@JsonProperty
-		RoleBrief[] roleBriefs;
-		@JsonProperty
-		SiteBrief[] siteBriefs;
-
-	}
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(items);
-		}
-
-		public long getLastPage() {
-			return lastPage;
-		}
-
-		public long getPage() {
-			return page;
-		}
-
-		public long getPageSize() {
-			return pageSize;
-		}
-
-		public long getTotalCount() {
-			return totalCount;
-		}
-
-		@JsonProperty
-		protected Collection<T> items;
-
-		@JsonProperty
-		protected long lastPage;
-
-		@JsonProperty
-		protected long page;
-
-		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
-		protected long totalCount;
-
-	}
 
 	private Http.Options _createHttpOptions() {
 		Http.Options options = new Http.Options();

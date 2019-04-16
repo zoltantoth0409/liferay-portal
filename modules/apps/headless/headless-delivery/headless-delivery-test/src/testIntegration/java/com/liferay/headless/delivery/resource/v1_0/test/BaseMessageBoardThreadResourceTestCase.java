@@ -15,16 +15,14 @@
 package com.liferay.headless.delivery.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.liferay.headless.delivery.dto.v1_0.AggregateRating;
-import com.liferay.headless.delivery.dto.v1_0.Creator;
-import com.liferay.headless.delivery.dto.v1_0.MessageBoardThread;
-import com.liferay.headless.delivery.dto.v1_0.Rating;
+import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardThread;
+import com.liferay.headless.delivery.client.dto.v1_0.Rating;
+import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.serdes.v1_0.MessageBoardThreadSerDes;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardThreadResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -44,7 +42,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
@@ -450,10 +447,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<MessageBoardThread>>() {
-			});
+		return Page.of(string, MessageBoardThreadSerDes::toDTO);
 	}
 
 	protected Http.Response
@@ -540,8 +534,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(
-				string, MessageBoardThread.class);
+			return MessageBoardThreadSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -561,7 +554,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardThread),
+			MessageBoardThreadSerDes.toJSON(messageBoardThread),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -685,8 +678,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(
-				string, MessageBoardThread.class);
+			return MessageBoardThreadSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -776,8 +768,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(
-				string, MessageBoardThread.class);
+			return MessageBoardThreadSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -795,7 +786,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardThread),
+			MessageBoardThreadSerDes.toJSON(messageBoardThread),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -869,8 +860,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(
-				string, MessageBoardThread.class);
+			return MessageBoardThreadSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -888,7 +878,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardThread),
+			MessageBoardThreadSerDes.toJSON(messageBoardThread),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1000,7 +990,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, Rating.class);
+			return com.liferay.headless.delivery.client.serdes.v1_0.
+				RatingSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -1058,7 +1049,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, Rating.class);
+			return com.liferay.headless.delivery.client.serdes.v1_0.
+				RatingSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -1118,7 +1110,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, Rating.class);
+			return com.liferay.headless.delivery.client.serdes.v1_0.
+				RatingSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -1463,10 +1456,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<MessageBoardThread>>() {
-			});
+		return Page.of(string, MessageBoardThreadSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetSiteMessageBoardThreadsPageResponse(
@@ -1543,8 +1533,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(
-				string, MessageBoardThread.class);
+			return MessageBoardThreadSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -1562,7 +1551,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(messageBoardThread),
+			MessageBoardThreadSerDes.toJSON(messageBoardThread),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -2219,8 +2208,6 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
-				addMixIn(
-					MessageBoardThread.class, MessageBoardThreadMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -2237,83 +2224,6 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	protected static class MessageBoardThreadMixin {
-
-		public static enum ViewableBy {
-		}
-
-		@JsonProperty
-		AggregateRating aggregateRating;
-		@JsonProperty
-		String articleBody;
-		@JsonProperty
-		Creator creator;
-		@JsonProperty
-		Date dateCreated;
-		@JsonProperty
-		Date dateModified;
-		@JsonProperty
-		String encodingFormat;
-		@JsonProperty
-		String headline;
-		@JsonProperty
-		Long id;
-		@JsonProperty
-		String[] keywords;
-		@JsonProperty
-		Integer numberOfMessageBoardAttachments;
-		@JsonProperty
-		Integer numberOfMessageBoardMessages;
-		@JsonProperty
-		Boolean showAsQuestion;
-		@JsonProperty
-		Long siteId;
-		@JsonProperty
-		String threadType;
-		@JsonProperty
-		ViewableBy viewableBy;
-
-	}
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(items);
-		}
-
-		public long getLastPage() {
-			return lastPage;
-		}
-
-		public long getPage() {
-			return page;
-		}
-
-		public long getPageSize() {
-			return pageSize;
-		}
-
-		public long getTotalCount() {
-			return totalCount;
-		}
-
-		@JsonProperty
-		protected Collection<T> items;
-
-		@JsonProperty
-		protected long lastPage;
-
-		@JsonProperty
-		protected long page;
-
-		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
-		protected long totalCount;
-
-	}
 
 	private Http.Options _createHttpOptions() {
 		Http.Options options = new Http.Options();

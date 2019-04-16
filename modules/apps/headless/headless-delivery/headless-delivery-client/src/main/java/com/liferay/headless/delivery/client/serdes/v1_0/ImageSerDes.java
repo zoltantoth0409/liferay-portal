@@ -95,14 +95,17 @@ public class ImageSerDes {
 
 	private static class ImageJSONParser extends BaseJSONParser<Image> {
 
+		@Override
 		protected Image createDTO() {
 			return new Image();
 		}
 
+		@Override
 		protected Image[] createDTOArray(int size) {
 			return new Image[size];
 		}
 
+		@Override
 		protected void setField(
 			Image image, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

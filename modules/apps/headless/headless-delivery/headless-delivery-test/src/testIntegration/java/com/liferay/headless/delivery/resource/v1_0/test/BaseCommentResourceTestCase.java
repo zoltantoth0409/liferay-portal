@@ -15,14 +15,13 @@
 package com.liferay.headless.delivery.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.liferay.headless.delivery.dto.v1_0.Comment;
-import com.liferay.headless.delivery.dto.v1_0.Creator;
+import com.liferay.headless.delivery.client.dto.v1_0.Comment;
+import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.serdes.v1_0.CommentSerDes;
 import com.liferay.headless.delivery.resource.v1_0.CommentResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -42,7 +41,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
@@ -400,10 +398,7 @@ public abstract class BaseCommentResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<Comment>>() {
-			});
+		return Page.of(string, CommentSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetBlogPostingCommentsPageResponse(
@@ -478,7 +473,7 @@ public abstract class BaseCommentResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, Comment.class);
+			return CommentSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -496,8 +491,8 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			CommentSerDes.toJSON(comment), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -591,7 +586,7 @@ public abstract class BaseCommentResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, Comment.class);
+			return CommentSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -663,7 +658,7 @@ public abstract class BaseCommentResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, Comment.class);
+			return CommentSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -681,8 +676,8 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			CommentSerDes.toJSON(comment), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/comments/{commentId}", commentId);
@@ -975,10 +970,7 @@ public abstract class BaseCommentResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<Comment>>() {
-			});
+		return Page.of(string, CommentSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetCommentCommentsPageResponse(
@@ -1052,7 +1044,7 @@ public abstract class BaseCommentResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, Comment.class);
+			return CommentSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -1070,8 +1062,8 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			CommentSerDes.toJSON(comment), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1358,10 +1350,7 @@ public abstract class BaseCommentResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<Comment>>() {
-			});
+		return Page.of(string, CommentSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetDocumentCommentsPageResponse(
@@ -1433,7 +1422,7 @@ public abstract class BaseCommentResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, Comment.class);
+			return CommentSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -1451,8 +1440,8 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			CommentSerDes.toJSON(comment), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1761,10 +1750,7 @@ public abstract class BaseCommentResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<Comment>>() {
-			});
+		return Page.of(string, CommentSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetStructuredContentCommentsPageResponse(
@@ -1843,7 +1829,7 @@ public abstract class BaseCommentResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, Comment.class);
+			return CommentSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -1861,8 +1847,8 @@ public abstract class BaseCommentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(comment),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			CommentSerDes.toJSON(comment), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -2244,7 +2230,6 @@ public abstract class BaseCommentResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
-				addMixIn(Comment.class, CommentMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -2261,62 +2246,6 @@ public abstract class BaseCommentResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	protected static class CommentMixin {
-
-		@JsonProperty
-		Creator creator;
-		@JsonProperty
-		Date dateCreated;
-		@JsonProperty
-		Date dateModified;
-		@JsonProperty
-		Long id;
-		@JsonProperty
-		Number numberOfComments;
-		@JsonProperty
-		String text;
-
-	}
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(items);
-		}
-
-		public long getLastPage() {
-			return lastPage;
-		}
-
-		public long getPage() {
-			return page;
-		}
-
-		public long getPageSize() {
-			return pageSize;
-		}
-
-		public long getTotalCount() {
-			return totalCount;
-		}
-
-		@JsonProperty
-		protected Collection<T> items;
-
-		@JsonProperty
-		protected long lastPage;
-
-		@JsonProperty
-		protected long page;
-
-		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
-		protected long totalCount;
-
-	}
 
 	private Http.Options _createHttpOptions() {
 		Http.Options options = new Http.Options();

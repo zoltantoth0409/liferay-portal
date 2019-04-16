@@ -176,14 +176,17 @@ public class RoleSerDes {
 
 	private static class RoleJSONParser extends BaseJSONParser<Role> {
 
+		@Override
 		protected Role createDTO() {
 			return new Role();
 		}
 
+		@Override
 		protected Role[] createDTOArray(int size) {
 			return new Role[size];
 		}
 
+		@Override
 		protected void setField(
 			Role role, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

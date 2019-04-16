@@ -98,14 +98,17 @@ public class SuccessPageSerDes {
 	private static class SuccessPageJSONParser
 		extends BaseJSONParser<SuccessPage> {
 
+		@Override
 		protected SuccessPage createDTO() {
 			return new SuccessPage();
 		}
 
+		@Override
 		protected SuccessPage[] createDTOArray(int size) {
 			return new SuccessPage[size];
 		}
 
+		@Override
 		protected void setField(
 			SuccessPage successPage, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

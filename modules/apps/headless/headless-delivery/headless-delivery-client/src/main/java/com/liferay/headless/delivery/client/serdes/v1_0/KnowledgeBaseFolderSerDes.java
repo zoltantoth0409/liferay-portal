@@ -209,14 +209,17 @@ public class KnowledgeBaseFolderSerDes {
 	private static class KnowledgeBaseFolderJSONParser
 		extends BaseJSONParser<KnowledgeBaseFolder> {
 
+		@Override
 		protected KnowledgeBaseFolder createDTO() {
 			return new KnowledgeBaseFolder();
 		}
 
+		@Override
 		protected KnowledgeBaseFolder[] createDTOArray(int size) {
 			return new KnowledgeBaseFolder[size];
 		}
 
+		@Override
 		protected void setField(
 			KnowledgeBaseFolder knowledgeBaseFolder, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

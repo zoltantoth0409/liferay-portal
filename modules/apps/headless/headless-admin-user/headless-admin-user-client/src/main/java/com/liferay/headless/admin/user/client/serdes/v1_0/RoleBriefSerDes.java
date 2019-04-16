@@ -80,14 +80,17 @@ public class RoleBriefSerDes {
 
 	private static class RoleBriefJSONParser extends BaseJSONParser<RoleBrief> {
 
+		@Override
 		protected RoleBrief createDTO() {
 			return new RoleBrief();
 		}
 
+		@Override
 		protected RoleBrief[] createDTOArray(int size) {
 			return new RoleBrief[size];
 		}
 
+		@Override
 		protected void setField(
 			RoleBrief roleBrief, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

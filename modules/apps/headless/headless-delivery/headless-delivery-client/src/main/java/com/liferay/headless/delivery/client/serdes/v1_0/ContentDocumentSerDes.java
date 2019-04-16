@@ -154,14 +154,17 @@ public class ContentDocumentSerDes {
 	private static class ContentDocumentJSONParser
 		extends BaseJSONParser<ContentDocument> {
 
+		@Override
 		protected ContentDocument createDTO() {
 			return new ContentDocument();
 		}
 
+		@Override
 		protected ContentDocument[] createDTOArray(int size) {
 			return new ContentDocument[size];
 		}
 
+		@Override
 		protected void setField(
 			ContentDocument contentDocument, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

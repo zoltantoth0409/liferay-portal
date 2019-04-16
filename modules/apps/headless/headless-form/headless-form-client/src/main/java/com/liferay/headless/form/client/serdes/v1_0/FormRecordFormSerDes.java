@@ -83,14 +83,17 @@ public class FormRecordFormSerDes {
 	private static class FormRecordFormJSONParser
 		extends BaseJSONParser<FormRecordForm> {
 
+		@Override
 		protected FormRecordForm createDTO() {
 			return new FormRecordForm();
 		}
 
+		@Override
 		protected FormRecordForm[] createDTOArray(int size) {
 			return new FormRecordForm[size];
 		}
 
+		@Override
 		protected void setField(
 			FormRecordForm formRecordForm, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

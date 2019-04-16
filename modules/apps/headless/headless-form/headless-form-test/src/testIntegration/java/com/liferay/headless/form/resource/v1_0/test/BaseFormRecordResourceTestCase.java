@@ -15,16 +15,13 @@
 package com.liferay.headless.form.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.liferay.headless.form.dto.v1_0.Creator;
-import com.liferay.headless.form.dto.v1_0.FieldValue;
-import com.liferay.headless.form.dto.v1_0.Form;
-import com.liferay.headless.form.dto.v1_0.FormRecord;
+import com.liferay.headless.form.client.dto.v1_0.FormRecord;
+import com.liferay.headless.form.client.pagination.Page;
+import com.liferay.headless.form.client.serdes.v1_0.FormRecordSerDes;
 import com.liferay.headless.form.resource.v1_0.FormRecordResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -44,7 +41,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
@@ -57,7 +53,6 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -147,7 +142,7 @@ public abstract class BaseFormRecordResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, FormRecord.class);
+			return FormRecordSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -292,10 +287,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<FormRecord>>() {
-			});
+		return Page.of(string, FormRecordSerDes::toDTO);
 	}
 
 	protected Http.Response invokeGetFormFormRecordsPageResponse(
@@ -362,7 +354,7 @@ public abstract class BaseFormRecordResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, FormRecord.class);
+			return FormRecordSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -380,8 +372,8 @@ public abstract class BaseFormRecordResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(formRecord),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			FormRecordSerDes.toJSON(formRecord), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/forms/{formId}/form-records", formId);
@@ -432,7 +424,7 @@ public abstract class BaseFormRecordResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, FormRecord.class);
+			return FormRecordSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -928,7 +920,6 @@ public abstract class BaseFormRecordResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
-				addMixIn(FormRecord.class, FormRecordMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -945,68 +936,6 @@ public abstract class BaseFormRecordResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	protected static class FormRecordMixin {
-
-		@JsonProperty
-		Creator creator;
-		@JsonProperty
-		Date dateCreated;
-		@JsonProperty
-		Date dateModified;
-		@JsonProperty
-		Date datePublished;
-		@JsonProperty
-		Boolean draft;
-		@JsonProperty
-		FieldValue[] fieldValues;
-		@JsonProperty
-		Form form;
-		@JsonProperty
-		Long formId;
-		@JsonProperty
-		Long id;
-
-	}
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(items);
-		}
-
-		public long getLastPage() {
-			return lastPage;
-		}
-
-		public long getPage() {
-			return page;
-		}
-
-		public long getPageSize() {
-			return pageSize;
-		}
-
-		public long getTotalCount() {
-			return totalCount;
-		}
-
-		@JsonProperty
-		protected Collection<T> items;
-
-		@JsonProperty
-		protected long lastPage;
-
-		@JsonProperty
-		protected long page;
-
-		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
-		protected long totalCount;
-
-	}
 
 	private Http.Options _createHttpOptions() {
 		Http.Options options = new Http.Options();

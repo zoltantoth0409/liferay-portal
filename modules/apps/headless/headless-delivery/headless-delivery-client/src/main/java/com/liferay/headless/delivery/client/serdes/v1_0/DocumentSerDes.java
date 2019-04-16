@@ -330,14 +330,17 @@ public class DocumentSerDes {
 
 	private static class DocumentJSONParser extends BaseJSONParser<Document> {
 
+		@Override
 		protected Document createDTO() {
 			return new Document();
 		}
 
+		@Override
 		protected Document[] createDTOArray(int size) {
 			return new Document[size];
 		}
 
+		@Override
 		protected void setField(
 			Document document, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

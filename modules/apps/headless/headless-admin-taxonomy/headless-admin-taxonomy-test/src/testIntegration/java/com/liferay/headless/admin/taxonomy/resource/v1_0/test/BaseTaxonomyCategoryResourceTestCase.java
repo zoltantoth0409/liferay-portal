@@ -15,16 +15,13 @@
 package com.liferay.headless.admin.taxonomy.resource.v1_0.test;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
-import com.liferay.headless.admin.taxonomy.dto.v1_0.Creator;
-import com.liferay.headless.admin.taxonomy.dto.v1_0.ParentTaxonomyCategory;
-import com.liferay.headless.admin.taxonomy.dto.v1_0.ParentTaxonomyVocabulary;
-import com.liferay.headless.admin.taxonomy.dto.v1_0.TaxonomyCategory;
+import com.liferay.headless.admin.taxonomy.client.dto.v1_0.TaxonomyCategory;
+import com.liferay.headless.admin.taxonomy.client.pagination.Page;
+import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.TaxonomyCategorySerDes;
 import com.liferay.headless.admin.taxonomy.resource.v1_0.TaxonomyCategoryResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -44,7 +41,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
@@ -452,10 +448,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<TaxonomyCategory>>() {
-			});
+		return Page.of(string, TaxonomyCategorySerDes::toDTO);
 	}
 
 	protected Http.Response
@@ -537,7 +530,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, TaxonomyCategory.class);
+			return TaxonomyCategorySerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -555,7 +548,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(taxonomyCategory),
+			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -676,7 +669,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, TaxonomyCategory.class);
+			return TaxonomyCategorySerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -764,7 +757,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, TaxonomyCategory.class);
+			return TaxonomyCategorySerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -782,7 +775,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(taxonomyCategory),
+			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -854,7 +847,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, TaxonomyCategory.class);
+			return TaxonomyCategorySerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -872,7 +865,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(taxonomyCategory),
+			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1221,10 +1214,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			_log.debug("HTTP response: " + string);
 		}
 
-		return outputObjectMapper.readValue(
-			string,
-			new TypeReference<Page<TaxonomyCategory>>() {
-			});
+		return Page.of(string, TaxonomyCategorySerDes::toDTO);
 	}
 
 	protected Http.Response
@@ -1306,7 +1296,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		}
 
 		try {
-			return outputObjectMapper.readValue(string, TaxonomyCategory.class);
+			return TaxonomyCategorySerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -1325,7 +1315,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			inputObjectMapper.writeValueAsString(taxonomyCategory),
+			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
 			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
@@ -1872,7 +1862,6 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	protected static final ObjectMapper outputObjectMapper =
 		new ObjectMapper() {
 			{
-				addMixIn(TaxonomyCategory.class, TaxonomyCategoryMixin.class);
 				setFilterProvider(
 					new SimpleFilterProvider() {
 						{
@@ -1889,75 +1878,6 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	protected static class TaxonomyCategoryMixin {
-
-		public static enum ViewableBy {
-		}
-
-		@JsonProperty
-		String[] availableLanguages;
-		@JsonProperty
-		Creator creator;
-		@JsonProperty
-		Date dateCreated;
-		@JsonProperty
-		Date dateModified;
-		@JsonProperty
-		String description;
-		@JsonProperty
-		Long id;
-		@JsonProperty
-		String name;
-		@JsonProperty
-		Number numberOfTaxonomyCategories;
-		@JsonProperty
-		ParentTaxonomyCategory parentTaxonomyCategory;
-		@JsonProperty
-		ParentTaxonomyVocabulary parentTaxonomyVocabulary;
-		@JsonProperty
-		ViewableBy viewableBy;
-
-	}
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(items);
-		}
-
-		public long getLastPage() {
-			return lastPage;
-		}
-
-		public long getPage() {
-			return page;
-		}
-
-		public long getPageSize() {
-			return pageSize;
-		}
-
-		public long getTotalCount() {
-			return totalCount;
-		}
-
-		@JsonProperty
-		protected Collection<T> items;
-
-		@JsonProperty
-		protected long lastPage;
-
-		@JsonProperty
-		protected long page;
-
-		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
-		protected long totalCount;
-
-	}
 
 	private Http.Options _createHttpOptions() {
 		Http.Options options = new Http.Options();

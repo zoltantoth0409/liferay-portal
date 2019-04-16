@@ -154,14 +154,17 @@ public class BlogPostingImageSerDes {
 	private static class BlogPostingImageJSONParser
 		extends BaseJSONParser<BlogPostingImage> {
 
+		@Override
 		protected BlogPostingImage createDTO() {
 			return new BlogPostingImage();
 		}
 
+		@Override
 		protected BlogPostingImage[] createDTOArray(int size) {
 			return new BlogPostingImage[size];
 		}
 
+		@Override
 		protected void setField(
 			BlogPostingImage blogPostingImage, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

@@ -95,14 +95,17 @@ public class WebUrlSerDes {
 
 	private static class WebUrlJSONParser extends BaseJSONParser<WebUrl> {
 
+		@Override
 		protected WebUrl createDTO() {
 			return new WebUrl();
 		}
 
+		@Override
 		protected WebUrl[] createDTOArray(int size) {
 			return new WebUrl[size];
 		}
 
+		@Override
 		protected void setField(
 			WebUrl webUrl, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

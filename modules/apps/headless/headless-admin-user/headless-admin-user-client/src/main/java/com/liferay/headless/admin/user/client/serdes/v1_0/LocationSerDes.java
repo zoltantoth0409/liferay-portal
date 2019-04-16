@@ -95,14 +95,17 @@ public class LocationSerDes {
 
 	private static class LocationJSONParser extends BaseJSONParser<Location> {
 
+		@Override
 		protected Location createDTO() {
 			return new Location();
 		}
 
+		@Override
 		protected Location[] createDTOArray(int size) {
 			return new Location[size];
 		}
 
+		@Override
 		protected void setField(
 			Location location, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

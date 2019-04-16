@@ -106,14 +106,17 @@ public class EmailSerDes {
 
 	private static class EmailJSONParser extends BaseJSONParser<Email> {
 
+		@Override
 		protected Email createDTO() {
 			return new Email();
 		}
 
+		@Override
 		protected Email[] createDTOArray(int size) {
 			return new Email[size];
 		}
 
+		@Override
 		protected void setField(
 			Email email, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

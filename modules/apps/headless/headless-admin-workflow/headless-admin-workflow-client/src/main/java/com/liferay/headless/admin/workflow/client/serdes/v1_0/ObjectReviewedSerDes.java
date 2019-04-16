@@ -83,14 +83,17 @@ public class ObjectReviewedSerDes {
 	private static class ObjectReviewedJSONParser
 		extends BaseJSONParser<ObjectReviewed> {
 
+		@Override
 		protected ObjectReviewed createDTO() {
 			return new ObjectReviewed();
 		}
 
+		@Override
 		protected ObjectReviewed[] createDTOArray(int size) {
 			return new ObjectReviewed[size];
 		}
 
+		@Override
 		protected void setField(
 			ObjectReviewed objectReviewed, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

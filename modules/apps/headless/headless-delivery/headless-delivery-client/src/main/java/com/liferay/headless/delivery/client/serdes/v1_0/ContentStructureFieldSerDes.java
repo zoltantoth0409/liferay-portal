@@ -243,14 +243,17 @@ public class ContentStructureFieldSerDes {
 	private static class ContentStructureFieldJSONParser
 		extends BaseJSONParser<ContentStructureField> {
 
+		@Override
 		protected ContentStructureField createDTO() {
 			return new ContentStructureField();
 		}
 
+		@Override
 		protected ContentStructureField[] createDTOArray(int size) {
 			return new ContentStructureField[size];
 		}
 
+		@Override
 		protected void setField(
 			ContentStructureField contentStructureField,
 			String jsonParserFieldName, Object jsonParserFieldValue) {

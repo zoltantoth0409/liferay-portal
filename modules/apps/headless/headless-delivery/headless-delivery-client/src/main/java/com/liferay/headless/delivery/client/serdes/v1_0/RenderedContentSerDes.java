@@ -87,14 +87,17 @@ public class RenderedContentSerDes {
 	private static class RenderedContentJSONParser
 		extends BaseJSONParser<RenderedContent> {
 
+		@Override
 		protected RenderedContent createDTO() {
 			return new RenderedContent();
 		}
 
+		@Override
 		protected RenderedContent[] createDTOArray(int size) {
 			return new RenderedContent[size];
 		}
 
+		@Override
 		protected void setField(
 			RenderedContent renderedContent, String jsonParserFieldName,
 			Object jsonParserFieldValue) {

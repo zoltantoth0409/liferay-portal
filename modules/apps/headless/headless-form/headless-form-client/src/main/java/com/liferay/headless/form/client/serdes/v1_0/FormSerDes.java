@@ -262,14 +262,17 @@ public class FormSerDes {
 
 	private static class FormJSONParser extends BaseJSONParser<Form> {
 
+		@Override
 		protected Form createDTO() {
 			return new Form();
 		}
 
+		@Override
 		protected Form[] createDTOArray(int size) {
 			return new Form[size];
 		}
 
+		@Override
 		protected void setField(
 			Form form, String jsonParserFieldName,
 			Object jsonParserFieldValue) {
