@@ -20,6 +20,6 @@ package com.liferay.oauth2.provider.shortcut.internal.constants;
 public class OAuth2ProviderShortcutConstants {
 
 	public static final String APPLICATION_NAME =
-		"liferay-json-web-services-analytics";
+		"Liferay.JSON.Web.Services.Analytics";
 
 }
