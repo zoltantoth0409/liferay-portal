@@ -999,6 +999,10 @@ public class RESTBuilder {
 
 			Map<String, Schema> propertySchemas = schema.getPropertySchemas();
 
+			if (propertySchemas == null) {
+				continue;
+			}
+
 			for (Map.Entry<String, Schema> entry2 :
 					propertySchemas.entrySet()) {
 
