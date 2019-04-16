@@ -142,12 +142,7 @@ public abstract class BaseJSONParser<T> {
 			objects
 		).map(
 			object -> {
-				try {
-					return Integer.parseInt(object.toString());
-				}
-				catch (NumberFormatException nfe) {
-					throw new RuntimeException(nfe);
-				}
+				return Integer.valueOf(object.toString());
 			}
 		).toArray(
 			size -> new Integer[size]
@@ -159,12 +154,7 @@ public abstract class BaseJSONParser<T> {
 			objects
 		).map(
 			object -> {
-				try {
-					return Long.parseLong(object.toString());
-				}
-				catch (NumberFormatException nfe) {
-					throw new RuntimeException(nfe);
-				}
+				return Long.valueOf(object.toString());
 			}
 		).toArray(
 			size -> new Long[size]
