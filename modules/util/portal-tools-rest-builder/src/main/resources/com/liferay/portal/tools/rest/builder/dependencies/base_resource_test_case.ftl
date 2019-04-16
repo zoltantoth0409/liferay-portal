@@ -839,7 +839,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("${schemaVarName}")>
 				options.setBody(${schemaName}SerDes.toJSON(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("multipartBody")>
-				options.addPart("${schemaVarName}", mapToJSON(multipartBody.getValues()));
+				options.addPart("${schemaVarName}", _mapToJSON(multipartBody.getValues()));
 
 				BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
@@ -1217,8 +1217,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		}
 	</#if>
 
-	private String mapToJSON(Map<String, String> map) {
-
+	private String _mapToJSON(Map<String, String> map) {
 		if (map == null) {
 			return "null";
 		}
