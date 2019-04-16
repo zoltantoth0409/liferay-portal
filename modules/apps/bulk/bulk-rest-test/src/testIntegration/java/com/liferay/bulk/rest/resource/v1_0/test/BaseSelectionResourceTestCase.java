@@ -14,9 +14,18 @@
 
 package com.liferay.bulk.rest.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
+
 import com.liferay.bulk.rest.client.dto.v1_0.DocumentBulkSelection;
 import com.liferay.bulk.rest.client.dto.v1_0.Selection;
 import com.liferay.bulk.rest.client.pagination.Page;
+import com.liferay.bulk.rest.client.serdes.v1_0.SelectionSerDes;
 import com.liferay.bulk.rest.resource.v1_0.SelectionResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
@@ -101,6 +110,35 @@ public abstract class BaseSelectionResourceTestCase {
 	}
 
 	@Test
+	public void testClientSerDes() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				enable(SerializationFeature.INDENT_OUTPUT);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		Selection selection1 = randomSelection();
+
+		String json = objectMapper.writeValueAsString(selection1);
+
+		Selection selection2 = SelectionSerDes.toDTO(json);
+
+		Assert.assertTrue(equals(selection1, selection2));
+	}
+
+	@Test
 	public void testPostBulkSelection() throws Exception {
 		Selection randomSelection = randomSelection();
 
@@ -137,8 +175,7 @@ public abstract class BaseSelectionResourceTestCase {
 		}
 
 		try {
-			return com.liferay.bulk.rest.client.serdes.v1_0.SelectionSerDes.
-				toDTO(string);
+			return SelectionSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {

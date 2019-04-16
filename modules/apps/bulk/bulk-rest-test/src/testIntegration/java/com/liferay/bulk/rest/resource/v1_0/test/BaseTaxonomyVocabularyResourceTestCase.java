@@ -14,6 +14,14 @@
 
 package com.liferay.bulk.rest.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
+
 import com.liferay.bulk.rest.client.dto.v1_0.DocumentBulkSelection;
 import com.liferay.bulk.rest.client.dto.v1_0.TaxonomyVocabulary;
 import com.liferay.bulk.rest.client.pagination.Page;
@@ -99,6 +107,36 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	public void tearDown() throws Exception {
 		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
+	}
+
+	@Test
+	public void testClientSerDes() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				enable(SerializationFeature.INDENT_OUTPUT);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		TaxonomyVocabulary taxonomyVocabulary1 = randomTaxonomyVocabulary();
+
+		String json = objectMapper.writeValueAsString(taxonomyVocabulary1);
+
+		TaxonomyVocabulary taxonomyVocabulary2 = TaxonomyVocabularySerDes.toDTO(
+			json);
+
+		Assert.assertTrue(equals(taxonomyVocabulary1, taxonomyVocabulary2));
 	}
 
 	@Test

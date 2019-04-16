@@ -117,7 +117,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 	}
 
 	@Test
-	public void testDeserializeKnowledgeBaseFolder() throws Exception {
+	public void testClientSerDes() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);

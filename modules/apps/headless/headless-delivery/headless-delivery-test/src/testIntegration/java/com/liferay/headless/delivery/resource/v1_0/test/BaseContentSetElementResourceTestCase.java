@@ -113,7 +113,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 	}
 
 	@Test
-	public void testDeserializeContentSetElement() throws Exception {
+	public void testClientSerDes() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);

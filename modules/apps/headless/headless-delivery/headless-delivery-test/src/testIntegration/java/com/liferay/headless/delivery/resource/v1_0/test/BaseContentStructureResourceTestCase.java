@@ -117,7 +117,7 @@ public abstract class BaseContentStructureResourceTestCase {
 	}
 
 	@Test
-	public void testDeserializeContentStructure() throws Exception {
+	public void testClientSerDes() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);

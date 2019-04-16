@@ -112,7 +112,7 @@ public abstract class BaseFormRecordFormResourceTestCase {
 	}
 
 	@Test
-	public void testDeserializeFormRecordForm() throws Exception {
+	public void testClientSerDes() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);

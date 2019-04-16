@@ -114,7 +114,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 	}
 
 	@Test
-	public void testDeserializeKnowledgeBaseAttachment() throws Exception {
+	public void testClientSerDes() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);

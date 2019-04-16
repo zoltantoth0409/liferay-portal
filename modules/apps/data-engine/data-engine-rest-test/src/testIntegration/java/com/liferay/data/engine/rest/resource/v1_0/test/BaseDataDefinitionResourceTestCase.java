@@ -14,6 +14,14 @@
 
 package com.liferay.data.engine.rest.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
+
 import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinitionPermission;
 import com.liferay.data.engine.rest.client.pagination.Page;
@@ -105,6 +113,35 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	public void tearDown() throws Exception {
 		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
+	}
+
+	@Test
+	public void testClientSerDes() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				enable(SerializationFeature.INDENT_OUTPUT);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		DataDefinition dataDefinition1 = randomDataDefinition();
+
+		String json = objectMapper.writeValueAsString(dataDefinition1);
+
+		DataDefinition dataDefinition2 = DataDefinitionSerDes.toDTO(json);
+
+		Assert.assertTrue(equals(dataDefinition1, dataDefinition2));
 	}
 
 	@Test

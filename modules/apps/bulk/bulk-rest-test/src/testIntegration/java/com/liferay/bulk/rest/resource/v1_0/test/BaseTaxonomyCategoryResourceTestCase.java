@@ -14,9 +14,18 @@
 
 package com.liferay.bulk.rest.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
+
 import com.liferay.bulk.rest.client.dto.v1_0.TaxonomyCategory;
 import com.liferay.bulk.rest.client.dto.v1_0.TaxonomyCategoryBulkSelection;
 import com.liferay.bulk.rest.client.pagination.Page;
+import com.liferay.bulk.rest.client.serdes.v1_0.TaxonomyCategorySerDes;
 import com.liferay.bulk.rest.resource.v1_0.TaxonomyCategoryResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
@@ -98,6 +107,35 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	public void tearDown() throws Exception {
 		GroupTestUtil.deleteGroup(irrelevantGroup);
 		GroupTestUtil.deleteGroup(testGroup);
+	}
+
+	@Test
+	public void testClientSerDes() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				enable(SerializationFeature.INDENT_OUTPUT);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		TaxonomyCategory taxonomyCategory1 = randomTaxonomyCategory();
+
+		String json = objectMapper.writeValueAsString(taxonomyCategory1);
+
+		TaxonomyCategory taxonomyCategory2 = TaxonomyCategorySerDes.toDTO(json);
+
+		Assert.assertTrue(equals(taxonomyCategory1, taxonomyCategory2));
 	}
 
 	@Test

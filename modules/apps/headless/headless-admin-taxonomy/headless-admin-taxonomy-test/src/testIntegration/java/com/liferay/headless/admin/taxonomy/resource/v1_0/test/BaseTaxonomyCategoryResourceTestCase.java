@@ -119,7 +119,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	}
 
 	@Test
-	public void testDeserializeTaxonomyCategory() throws Exception {
+	public void testClientSerDes() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);

@@ -14,8 +14,17 @@
 
 package com.liferay.bulk.rest.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
+
 import com.liferay.bulk.rest.client.dto.v1_0.Status;
 import com.liferay.bulk.rest.client.pagination.Page;
+import com.liferay.bulk.rest.client.serdes.v1_0.StatusSerDes;
 import com.liferay.bulk.rest.resource.v1_0.StatusResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
@@ -100,6 +109,35 @@ public abstract class BaseStatusResourceTestCase {
 	}
 
 	@Test
+	public void testClientSerDes() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				enable(SerializationFeature.INDENT_OUTPUT);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		Status status1 = randomStatus();
+
+		String json = objectMapper.writeValueAsString(status1);
+
+		Status status2 = StatusSerDes.toDTO(json);
+
+		Assert.assertTrue(equals(status1, status2));
+	}
+
+	@Test
 	public void testGetStatus() throws Exception {
 		Assert.assertTrue(true);
 	}
@@ -118,8 +156,7 @@ public abstract class BaseStatusResourceTestCase {
 		}
 
 		try {
-			return com.liferay.bulk.rest.client.serdes.v1_0.StatusSerDes.toDTO(
-				string);
+			return StatusSerDes.toDTO(string);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
