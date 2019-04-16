@@ -113,7 +113,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 	}
 
 	@Test
-	public void testDeserialize${schemaName}() throws Exception {
+	public void testClientSerDes() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
