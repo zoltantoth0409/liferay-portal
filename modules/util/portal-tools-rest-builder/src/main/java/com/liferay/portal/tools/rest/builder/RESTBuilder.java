@@ -1004,9 +1004,7 @@ public class RESTBuilder {
 
 				Schema propertySchema = entry2.getValue();
 
-				if (Objects.equals(propertySchema.getType(), "number") &&
-					(propertySchema.getFormat() == null)) {
-
+				if (Objects.equals(propertySchema.getType(), "number")) {
 					StringBuilder sb = new StringBuilder();
 
 					sb.append("The property \"");
