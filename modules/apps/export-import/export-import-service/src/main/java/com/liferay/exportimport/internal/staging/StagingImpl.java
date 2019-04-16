@@ -3931,19 +3931,6 @@ public class StagingImpl implements Staging {
 		return false;
 	}
 
-	/**
-	 * @deprecated As of Judson (7.1.x), with no direct replacement
-	 */
-	@Deprecated
-	protected long publishLayouts(
-			PortletRequest portletRequest, long sourceGroupId,
-			long targetGroupId, Map<String, String[]> parameterMap,
-			boolean schedule)
-		throws PortalException {
-
-		return 0;
-	}
-
 	protected long publishPortlet(
 			long userId, long scopeGroupId, long plid, String portletId,
 			Map<String, String[]> parameterMap, boolean copyFromLive)
@@ -4032,79 +4019,6 @@ public class StagingImpl implements Staging {
 			sourceLayout.getPlid(), targetLayoutPlid, portletId, parameterMap);
 	}
 
-	/**
-	 * @deprecated As of Judson (7.1.x), with no direct replacement
-	 */
-	@Deprecated
-	protected long publishToRemote(
-			PortletRequest portletRequest, boolean schedule)
-		throws PortalException {
-
-		return 0;
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setExportImportConfigurationLocalService(
-		ExportImportConfigurationLocalService
-			exportImportConfigurationLocalService) {
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setGroupLocalService(GroupLocalService groupLocalService) {
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setLayoutBranchLocalService(
-		LayoutBranchLocalService layoutBranchLocalService) {
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setLayoutLocalService(
-		LayoutLocalService layoutLocalService) {
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setLayoutRevisionLocalService(
-		LayoutRevisionLocalService layoutRevisionLocalService) {
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setLayoutService(LayoutService layoutService) {
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setLayoutSetBranchLocalService(
-		LayoutSetBranchLocalService layoutSetBranchLocalService) {
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setLockManager(LockManager lockManager) {
-	}
-
 	protected void setRecentLayoutBranchId(
 			long userId, long layoutSetBranchId, long plid, long layoutBranchId)
 		throws PortalException {
@@ -4140,14 +4054,6 @@ public class StagingImpl implements Staging {
 		}
 
 		ProxiedLayoutsThreadLocal.clearProxiedLayouts();
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setRecentLayoutBranchLocalService(
-		RecentLayoutBranchLocalService recentLayoutBranchLocalService) {
 	}
 
 	protected void setRecentLayoutRevisionId(
@@ -4209,14 +4115,6 @@ public class StagingImpl implements Staging {
 			userId, layoutSetBranchId, plid, layoutBranchId);
 	}
 
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setRecentLayoutRevisionLocalService(
-		RecentLayoutRevisionLocalService recentLayoutRevisionLocalService) {
-	}
-
 	protected void setRecentLayoutSetBranchId(
 			long userId, long layoutSetId, long layoutSetBranchId)
 		throws PortalException {
@@ -4253,37 +4151,6 @@ public class StagingImpl implements Staging {
 		}
 
 		ProxiedLayoutsThreadLocal.clearProxiedLayouts();
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setRecentLayoutSetBranchLocalService(
-		RecentLayoutSetBranchLocalService recentLayoutSetBranchLocalService) {
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setStagingLocalService(
-		StagingLocalService stagingLocalService) {
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setUserLocalService(UserLocalService userLocalService) {
-	}
-
-	/**
-	 * @deprecated As of Judson (7.1.x)
-	 */
-	@Deprecated
-	protected void setWorkflowInstanceLinkLocalService(
-		WorkflowInstanceLinkLocalService workflowInstanceLinkLocalService) {
 	}
 
 	private void _setGroupTypeSetting(long groupId, String key, String value) {
