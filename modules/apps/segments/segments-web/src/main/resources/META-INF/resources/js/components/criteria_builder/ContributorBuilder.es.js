@@ -246,6 +246,7 @@ class ContributorBuilder extends React.Component {
 										criteria => {
 											const editingCriteria = (editingId === criteria.propertyKey) && editing;
 											const emptyCriteriaQuery = criteria.query == '';
+
 											return editingCriteria || !emptyCriteriaQuery;
 										}
 									).map(
