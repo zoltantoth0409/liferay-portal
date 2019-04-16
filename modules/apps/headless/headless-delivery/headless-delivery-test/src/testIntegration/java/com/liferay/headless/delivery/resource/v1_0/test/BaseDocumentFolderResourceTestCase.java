@@ -119,7 +119,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -145,6 +145,33 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		DocumentFolder documentFolder2 = DocumentFolderSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(documentFolder1, documentFolder2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		DocumentFolder documentFolder = randomDocumentFolder();
+
+		String json1 = objectMapper.writeValueAsString(documentFolder);
+		String json2 = DocumentFolderSerDes.toJSON(documentFolder);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

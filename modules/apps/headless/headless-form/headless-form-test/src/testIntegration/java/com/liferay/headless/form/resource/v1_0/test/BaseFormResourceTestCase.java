@@ -119,7 +119,7 @@ public abstract class BaseFormResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -145,6 +145,33 @@ public abstract class BaseFormResourceTestCase {
 		Form form2 = FormSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(form1, form2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		Form form = randomForm();
+
+		String json1 = objectMapper.writeValueAsString(form);
+		String json2 = FormSerDes.toJSON(form);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

@@ -53,12 +53,13 @@ public class GenericErrorSerDes {
 
 		sb.append("{");
 
-		sb.append("\"message\": ");
+		if (genericError.getMessage() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (genericError.getMessage() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"message\":");
+
 			sb.append("\"");
 
 			sb.append(genericError.getMessage());

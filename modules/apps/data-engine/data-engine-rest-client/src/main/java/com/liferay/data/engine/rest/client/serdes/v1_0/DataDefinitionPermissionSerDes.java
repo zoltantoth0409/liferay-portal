@@ -55,45 +55,43 @@ public class DataDefinitionPermissionSerDes {
 
 		sb.append("{");
 
-		sb.append("\"addDataDefinition\": ");
+		if (dataDefinitionPermission.getAddDataDefinition() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataDefinitionPermission.getAddDataDefinition() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"addDataDefinition\":");
+
 			sb.append(dataDefinitionPermission.getAddDataDefinition());
 		}
 
-		sb.append(", ");
+		if (dataDefinitionPermission.getDefinePermissions() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"definePermissions\": ");
+			sb.append("\"definePermissions\":");
 
-		if (dataDefinitionPermission.getDefinePermissions() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataDefinitionPermission.getDefinePermissions());
 		}
 
-		sb.append(", ");
+		if (dataDefinitionPermission.getDelete() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"delete\": ");
+			sb.append("\"delete\":");
 
-		if (dataDefinitionPermission.getDelete() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataDefinitionPermission.getDelete());
 		}
 
-		sb.append(", ");
+		if (dataDefinitionPermission.getRoleNames() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"roleNames\": ");
+			sb.append("\"roleNames\":");
 
-		if (dataDefinitionPermission.getRoleNames() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinitionPermission.getRoleNames().length;
@@ -113,25 +111,23 @@ public class DataDefinitionPermissionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataDefinitionPermission.getUpdate() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"update\": ");
+			sb.append("\"update\":");
 
-		if (dataDefinitionPermission.getUpdate() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataDefinitionPermission.getUpdate());
 		}
 
-		sb.append(", ");
+		if (dataDefinitionPermission.getView() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"view\": ");
+			sb.append("\"view\":");
 
-		if (dataDefinitionPermission.getView() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataDefinitionPermission.getView());
 		}
 

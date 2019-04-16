@@ -53,12 +53,13 @@ public class LocalizedValueSerDes {
 
 		sb.append("{");
 
-		sb.append("\"key\": ");
+		if (localizedValue.getKey() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (localizedValue.getKey() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"key\":");
+
 			sb.append("\"");
 
 			sb.append(localizedValue.getKey());
@@ -66,14 +67,13 @@ public class LocalizedValueSerDes {
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (localizedValue.getValue() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"value\": ");
+			sb.append("\"value\":");
 
-		if (localizedValue.getValue() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(localizedValue.getValue());
 		}
 

@@ -110,7 +110,7 @@ public abstract class BaseSelectionResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -136,6 +136,33 @@ public abstract class BaseSelectionResourceTestCase {
 		Selection selection2 = SelectionSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(selection1, selection2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		Selection selection = randomSelection();
+
+		String json1 = objectMapper.writeValueAsString(selection);
+		String json2 = SelectionSerDes.toJSON(selection);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

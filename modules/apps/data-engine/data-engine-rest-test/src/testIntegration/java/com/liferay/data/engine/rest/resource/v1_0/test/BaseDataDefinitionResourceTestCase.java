@@ -116,7 +116,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -142,6 +142,33 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		DataDefinition dataDefinition2 = DataDefinitionSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(dataDefinition1, dataDefinition2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		DataDefinition dataDefinition = randomDataDefinition();
+
+		String json1 = objectMapper.writeValueAsString(dataDefinition);
+		String json2 = DataDefinitionSerDes.toJSON(dataDefinition);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

@@ -55,12 +55,13 @@ public class DataLayoutRowSerDes {
 
 		sb.append("{");
 
-		sb.append("\"dataLayoutColums\": ");
+		if (dataLayoutRow.getDataLayoutColums() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataLayoutRow.getDataLayoutColums() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataLayoutColums\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < dataLayoutRow.getDataLayoutColums().length;

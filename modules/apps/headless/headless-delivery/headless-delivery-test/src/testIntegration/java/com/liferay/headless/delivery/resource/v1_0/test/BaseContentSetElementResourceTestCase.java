@@ -113,7 +113,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -140,6 +140,33 @@ public abstract class BaseContentSetElementResourceTestCase {
 			json);
 
 		Assert.assertTrue(equals(contentSetElement1, contentSetElement2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		ContentSetElement contentSetElement = randomContentSetElement();
+
+		String json1 = objectMapper.writeValueAsString(contentSetElement);
+		String json2 = ContentSetElementSerDes.toJSON(contentSetElement);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

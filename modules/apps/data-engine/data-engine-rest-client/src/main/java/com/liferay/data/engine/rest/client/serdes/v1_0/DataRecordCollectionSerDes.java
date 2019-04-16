@@ -55,23 +55,23 @@ public class DataRecordCollectionSerDes {
 
 		sb.append("{");
 
-		sb.append("\"dataDefinitionId\": ");
+		if (dataRecordCollection.getDataDefinitionId() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataRecordCollection.getDataDefinitionId() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataDefinitionId\":");
+
 			sb.append(dataRecordCollection.getDataDefinitionId());
 		}
 
-		sb.append(", ");
+		if (dataRecordCollection.getDescription() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"description\": ");
+			sb.append("\"description\":");
 
-		if (dataRecordCollection.getDescription() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataRecordCollection.getDescription().length;
@@ -89,25 +89,23 @@ public class DataRecordCollectionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataRecordCollection.getId() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (dataRecordCollection.getId() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecordCollection.getId());
 		}
 
-		sb.append(", ");
+		if (dataRecordCollection.getName() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (dataRecordCollection.getName() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataRecordCollection.getName().length; i++) {

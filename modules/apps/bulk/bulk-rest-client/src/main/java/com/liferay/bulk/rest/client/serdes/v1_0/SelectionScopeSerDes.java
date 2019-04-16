@@ -53,34 +53,33 @@ public class SelectionScopeSerDes {
 
 		sb.append("{");
 
-		sb.append("\"folderId\": ");
+		if (selectionScope.getFolderId() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (selectionScope.getFolderId() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"folderId\":");
+
 			sb.append(selectionScope.getFolderId());
 		}
 
-		sb.append(", ");
+		if (selectionScope.getRepositoryId() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"repositoryId\": ");
+			sb.append("\"repositoryId\":");
 
-		if (selectionScope.getRepositoryId() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(selectionScope.getRepositoryId());
 		}
 
-		sb.append(", ");
+		if (selectionScope.getSelectAll() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"selectAll\": ");
+			sb.append("\"selectAll\":");
 
-		if (selectionScope.getSelectAll() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(selectionScope.getSelectAll());
 		}
 

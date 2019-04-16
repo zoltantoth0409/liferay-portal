@@ -63,12 +63,13 @@ public class DataDefinitionSerDes {
 		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		sb.append("\"dataDefinitionFields\": ");
+		if (dataDefinition.getDataDefinitionFields() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataDefinition.getDataDefinitionFields() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataDefinitionFields\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinition.getDataDefinitionFields().length;
@@ -86,14 +87,13 @@ public class DataDefinitionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataDefinition.getDataDefinitionRules() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"dataDefinitionRules\": ");
+			sb.append("\"dataDefinitionRules\":");
 
-		if (dataDefinition.getDataDefinitionRules() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinition.getDataDefinitionRules().length;
@@ -111,14 +111,13 @@ public class DataDefinitionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataDefinition.getDateCreated() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"dateCreated\": ");
+			sb.append("\"dateCreated\":");
 
-		if (dataDefinition.getDateCreated() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
 
 			sb.append(
@@ -128,14 +127,13 @@ public class DataDefinitionSerDes {
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dataDefinition.getDateModified() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"dateModified\": ");
+			sb.append("\"dateModified\":");
 
-		if (dataDefinition.getDateModified() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
 
 			sb.append(
@@ -145,14 +143,13 @@ public class DataDefinitionSerDes {
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dataDefinition.getDescription() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"description\": ");
+			sb.append("\"description\":");
 
-		if (dataDefinition.getDescription() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinition.getDescription().length; i++) {
@@ -168,25 +165,23 @@ public class DataDefinitionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataDefinition.getId() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (dataDefinition.getId() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataDefinition.getId());
 		}
 
-		sb.append(", ");
+		if (dataDefinition.getName() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (dataDefinition.getName() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinition.getName().length; i++) {
@@ -201,25 +196,23 @@ public class DataDefinitionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataDefinition.getSiteId() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"siteId\": ");
+			sb.append("\"siteId\":");
 
-		if (dataDefinition.getSiteId() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataDefinition.getSiteId());
 		}
 
-		sb.append(", ");
+		if (dataDefinition.getStorageType() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"storageType\": ");
+			sb.append("\"storageType\":");
 
-		if (dataDefinition.getStorageType() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
 
 			sb.append(dataDefinition.getStorageType());
@@ -227,14 +220,13 @@ public class DataDefinitionSerDes {
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dataDefinition.getUserId() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"userId\": ");
+			sb.append("\"userId\":");
 
-		if (dataDefinition.getUserId() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataDefinition.getUserId());
 		}
 

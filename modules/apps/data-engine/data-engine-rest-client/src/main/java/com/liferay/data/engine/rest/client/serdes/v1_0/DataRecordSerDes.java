@@ -53,23 +53,23 @@ public class DataRecordSerDes {
 
 		sb.append("{");
 
-		sb.append("\"dataRecordCollectionId\": ");
+		if (dataRecord.getDataRecordCollectionId() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataRecord.getDataRecordCollectionId() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataRecordCollectionId\":");
+
 			sb.append(dataRecord.getDataRecordCollectionId());
 		}
 
-		sb.append(", ");
+		if (dataRecord.getDataRecordValues() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"dataRecordValues\": ");
+			sb.append("\"dataRecordValues\":");
 
-		if (dataRecord.getDataRecordValues() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataRecord.getDataRecordValues().length; i++) {
@@ -85,14 +85,13 @@ public class DataRecordSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataRecord.getId() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (dataRecord.getId() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecord.getId());
 		}
 

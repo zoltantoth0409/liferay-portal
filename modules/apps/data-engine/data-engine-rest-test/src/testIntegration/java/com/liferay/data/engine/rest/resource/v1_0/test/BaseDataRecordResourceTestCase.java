@@ -114,7 +114,7 @@ public abstract class BaseDataRecordResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -140,6 +140,33 @@ public abstract class BaseDataRecordResourceTestCase {
 		DataRecord dataRecord2 = DataRecordSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(dataRecord1, dataRecord2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		DataRecord dataRecord = randomDataRecord();
+
+		String json1 = objectMapper.writeValueAsString(dataRecord);
+		String json2 = DataRecordSerDes.toJSON(dataRecord);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

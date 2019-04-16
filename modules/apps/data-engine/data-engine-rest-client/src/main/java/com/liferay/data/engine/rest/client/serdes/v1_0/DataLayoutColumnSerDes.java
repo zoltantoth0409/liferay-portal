@@ -53,23 +53,23 @@ public class DataLayoutColumnSerDes {
 
 		sb.append("{");
 
-		sb.append("\"columnSize\": ");
+		if (dataLayoutColumn.getColumnSize() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataLayoutColumn.getColumnSize() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"columnSize\":");
+
 			sb.append(dataLayoutColumn.getColumnSize());
 		}
 
-		sb.append(", ");
+		if (dataLayoutColumn.getFieldNames() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"fieldNames\": ");
+			sb.append("\"fieldNames\":");
 
-		if (dataLayoutColumn.getFieldNames() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataLayoutColumn.getFieldNames().length; i++) {

@@ -120,7 +120,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -148,6 +148,34 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			KnowledgeBaseArticleSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(knowledgeBaseArticle1, knowledgeBaseArticle2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		KnowledgeBaseArticle knowledgeBaseArticle =
+			randomKnowledgeBaseArticle();
+
+		String json1 = objectMapper.writeValueAsString(knowledgeBaseArticle);
+		String json2 = KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

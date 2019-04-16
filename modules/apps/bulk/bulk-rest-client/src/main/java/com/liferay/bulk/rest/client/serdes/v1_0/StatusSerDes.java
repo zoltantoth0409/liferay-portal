@@ -51,12 +51,13 @@ public class StatusSerDes {
 
 		sb.append("{");
 
-		sb.append("\"actionInProgress\": ");
+		if (status.getActionInProgress() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (status.getActionInProgress() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"actionInProgress\":");
+
 			sb.append(status.getActionInProgress());
 		}
 

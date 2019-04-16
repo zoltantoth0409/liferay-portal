@@ -53,45 +53,43 @@ public class DataLayoutPermissionSerDes {
 
 		sb.append("{");
 
-		sb.append("\"addDataLayout\": ");
+		if (dataLayoutPermission.getAddDataLayout() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataLayoutPermission.getAddDataLayout() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"addDataLayout\":");
+
 			sb.append(dataLayoutPermission.getAddDataLayout());
 		}
 
-		sb.append(", ");
+		if (dataLayoutPermission.getDefinePermissions() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"definePermissions\": ");
+			sb.append("\"definePermissions\":");
 
-		if (dataLayoutPermission.getDefinePermissions() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataLayoutPermission.getDefinePermissions());
 		}
 
-		sb.append(", ");
+		if (dataLayoutPermission.getDelete() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"delete\": ");
+			sb.append("\"delete\":");
 
-		if (dataLayoutPermission.getDelete() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataLayoutPermission.getDelete());
 		}
 
-		sb.append(", ");
+		if (dataLayoutPermission.getRoleNames() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"roleNames\": ");
+			sb.append("\"roleNames\":");
 
-		if (dataLayoutPermission.getRoleNames() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataLayoutPermission.getRoleNames().length;
@@ -111,25 +109,23 @@ public class DataLayoutPermissionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataLayoutPermission.getUpdate() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"update\": ");
+			sb.append("\"update\":");
 
-		if (dataLayoutPermission.getUpdate() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataLayoutPermission.getUpdate());
 		}
 
-		sb.append(", ");
+		if (dataLayoutPermission.getView() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"view\": ");
+			sb.append("\"view\":");
 
-		if (dataLayoutPermission.getView() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataLayoutPermission.getView());
 		}
 

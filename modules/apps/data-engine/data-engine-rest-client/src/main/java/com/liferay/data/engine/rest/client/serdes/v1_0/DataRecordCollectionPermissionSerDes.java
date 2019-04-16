@@ -57,81 +57,76 @@ public class DataRecordCollectionPermissionSerDes {
 
 		sb.append("{");
 
-		sb.append("\"addDataRecord\": ");
+		if (dataRecordCollectionPermission.getAddDataRecord() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataRecordCollectionPermission.getAddDataRecord() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"addDataRecord\":");
+
 			sb.append(dataRecordCollectionPermission.getAddDataRecord());
 		}
 
-		sb.append(", ");
-
-		sb.append("\"addDataRecordCollection\": ");
-
-		if (dataRecordCollectionPermission.getAddDataRecordCollection() ==
+		if (dataRecordCollectionPermission.getAddDataRecordCollection() !=
 				null) {
 
-			sb.append("null");
-		}
-		else {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
+
+			sb.append("\"addDataRecordCollection\":");
+
 			sb.append(
 				dataRecordCollectionPermission.getAddDataRecordCollection());
 		}
 
-		sb.append(", ");
+		if (dataRecordCollectionPermission.getDefinePermissions() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"definePermissions\": ");
+			sb.append("\"definePermissions\":");
 
-		if (dataRecordCollectionPermission.getDefinePermissions() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecordCollectionPermission.getDefinePermissions());
 		}
 
-		sb.append(", ");
+		if (dataRecordCollectionPermission.getDelete() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"delete\": ");
+			sb.append("\"delete\":");
 
-		if (dataRecordCollectionPermission.getDelete() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecordCollectionPermission.getDelete());
 		}
 
-		sb.append(", ");
+		if (dataRecordCollectionPermission.getDeleteDataRecord() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"deleteDataRecord\": ");
+			sb.append("\"deleteDataRecord\":");
 
-		if (dataRecordCollectionPermission.getDeleteDataRecord() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecordCollectionPermission.getDeleteDataRecord());
 		}
 
-		sb.append(", ");
+		if (dataRecordCollectionPermission.getExportDataRecord() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"exportDataRecord\": ");
+			sb.append("\"exportDataRecord\":");
 
-		if (dataRecordCollectionPermission.getExportDataRecord() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecordCollectionPermission.getExportDataRecord());
 		}
 
-		sb.append(", ");
+		if (dataRecordCollectionPermission.getRoleNames() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"roleNames\": ");
+			sb.append("\"roleNames\":");
 
-		if (dataRecordCollectionPermission.getRoleNames() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0;
@@ -154,47 +149,43 @@ public class DataRecordCollectionPermissionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataRecordCollectionPermission.getUpdate() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"update\": ");
+			sb.append("\"update\":");
 
-		if (dataRecordCollectionPermission.getUpdate() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecordCollectionPermission.getUpdate());
 		}
 
-		sb.append(", ");
+		if (dataRecordCollectionPermission.getUpdateDataRecord() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"updateDataRecord\": ");
+			sb.append("\"updateDataRecord\":");
 
-		if (dataRecordCollectionPermission.getUpdateDataRecord() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecordCollectionPermission.getUpdateDataRecord());
 		}
 
-		sb.append(", ");
+		if (dataRecordCollectionPermission.getView() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"view\": ");
+			sb.append("\"view\":");
 
-		if (dataRecordCollectionPermission.getView() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecordCollectionPermission.getView());
 		}
 
-		sb.append(", ");
+		if (dataRecordCollectionPermission.getViewDataRecord() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"viewDataRecord\": ");
+			sb.append("\"viewDataRecord\":");
 
-		if (dataRecordCollectionPermission.getViewDataRecord() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecordCollectionPermission.getViewDataRecord());
 		}
 

@@ -56,12 +56,13 @@ public class DataLayoutPageSerDes {
 
 		sb.append("{");
 
-		sb.append("\"dataLayoutRows\": ");
+		if (dataLayoutPage.getDataLayoutRows() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataLayoutPage.getDataLayoutRows() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataLayoutRows\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < dataLayoutPage.getDataLayoutRows().length;
@@ -79,14 +80,13 @@ public class DataLayoutPageSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataLayoutPage.getDescription() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"description\": ");
+			sb.append("\"description\":");
 
-		if (dataLayoutPage.getDescription() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataLayoutPage.getDescription().length; i++) {
@@ -102,14 +102,13 @@ public class DataLayoutPageSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataLayoutPage.getTitle() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"title\": ");
+			sb.append("\"title\":");
 
-		if (dataLayoutPage.getTitle() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataLayoutPage.getTitle().length; i++) {

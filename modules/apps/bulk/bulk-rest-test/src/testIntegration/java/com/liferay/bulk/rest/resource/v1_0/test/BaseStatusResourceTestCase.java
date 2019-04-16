@@ -109,7 +109,7 @@ public abstract class BaseStatusResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -135,6 +135,33 @@ public abstract class BaseStatusResourceTestCase {
 		Status status2 = StatusSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(status1, status2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		Status status = randomStatus();
+
+		String json1 = objectMapper.writeValueAsString(status);
+		String json2 = StatusSerDes.toJSON(status);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

@@ -53,19 +53,25 @@ public class KeywordBulkSelectionSerDes {
 
 		sb.append("{");
 
-		sb.append("\"documentBulkSelection\": ");
+		if (keywordBulkSelection.getDocumentBulkSelection() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append(
-			DocumentBulkSelectionSerDes.toJSON(
-				keywordBulkSelection.getDocumentBulkSelection()));
-		sb.append(", ");
+			sb.append("\"documentBulkSelection\":");
 
-		sb.append("\"keywordsToAdd\": ");
-
-		if (keywordBulkSelection.getKeywordsToAdd() == null) {
-			sb.append("null");
+			sb.append(
+				DocumentBulkSelectionSerDes.toJSON(
+					keywordBulkSelection.getDocumentBulkSelection()));
 		}
-		else {
+
+		if (keywordBulkSelection.getKeywordsToAdd() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
+
+			sb.append("\"keywordsToAdd\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < keywordBulkSelection.getKeywordsToAdd().length;
@@ -85,14 +91,13 @@ public class KeywordBulkSelectionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (keywordBulkSelection.getKeywordsToRemove() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"keywordsToRemove\": ");
+			sb.append("\"keywordsToRemove\":");
 
-		if (keywordBulkSelection.getKeywordsToRemove() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0;

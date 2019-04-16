@@ -119,7 +119,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -146,6 +146,33 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			MessageBoardSectionSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(messageBoardSection1, messageBoardSection2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		MessageBoardSection messageBoardSection = randomMessageBoardSection();
+
+		String json1 = objectMapper.writeValueAsString(messageBoardSection);
+		String json2 = MessageBoardSectionSerDes.toJSON(messageBoardSection);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

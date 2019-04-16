@@ -112,7 +112,7 @@ public abstract class BaseRoleResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -138,6 +138,33 @@ public abstract class BaseRoleResourceTestCase {
 		Role role2 = RoleSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(role1, role2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		Role role = randomRole();
+
+		String json1 = objectMapper.writeValueAsString(role);
+		String json2 = RoleSerDes.toJSON(role);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

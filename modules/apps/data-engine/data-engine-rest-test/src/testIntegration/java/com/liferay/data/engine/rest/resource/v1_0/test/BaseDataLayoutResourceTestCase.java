@@ -116,7 +116,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -142,6 +142,33 @@ public abstract class BaseDataLayoutResourceTestCase {
 		DataLayout dataLayout2 = DataLayoutSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(dataLayout1, dataLayout2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		DataLayout dataLayout = randomDataLayout();
+
+		String json1 = objectMapper.writeValueAsString(dataLayout);
+		String json2 = DataLayoutSerDes.toJSON(dataLayout);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

@@ -53,12 +53,13 @@ public class DocumentBulkSelectionSerDes {
 
 		sb.append("{");
 
-		sb.append("\"documentIds\": ");
+		if (documentBulkSelection.getDocumentIds() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (documentBulkSelection.getDocumentIds() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"documentIds\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < documentBulkSelection.getDocumentIds().length;
@@ -78,13 +79,17 @@ public class DocumentBulkSelectionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (documentBulkSelection.getSelectionScope() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"selectionScope\": ");
+			sb.append("\"selectionScope\":");
 
-		sb.append(
-			SelectionScopeSerDes.toJSON(
-				documentBulkSelection.getSelectionScope()));
+			sb.append(
+				SelectionScopeSerDes.toJSON(
+					documentBulkSelection.getSelectionScope()));
+		}
 
 		sb.append("}");
 

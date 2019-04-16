@@ -53,12 +53,13 @@ public class DataRecordValueSerDes {
 
 		sb.append("{");
 
-		sb.append("\"key\": ");
+		if (dataRecordValue.getKey() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataRecordValue.getKey() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"key\":");
+
 			sb.append("\"");
 
 			sb.append(dataRecordValue.getKey());
@@ -66,14 +67,13 @@ public class DataRecordValueSerDes {
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dataRecordValue.getValue() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"value\": ");
+			sb.append("\"value\":");
 
-		if (dataRecordValue.getValue() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataRecordValue.getValue());
 		}
 

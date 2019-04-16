@@ -53,12 +53,13 @@ public class CustomPropertySerDes {
 
 		sb.append("{");
 
-		sb.append("\"key\": ");
+		if (customProperty.getKey() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (customProperty.getKey() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"key\":");
+
 			sb.append("\"");
 
 			sb.append(customProperty.getKey());
@@ -66,14 +67,13 @@ public class CustomPropertySerDes {
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (customProperty.getValue() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"value\": ");
+			sb.append("\"value\":");
 
-		if (customProperty.getValue() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(customProperty.getValue());
 		}
 

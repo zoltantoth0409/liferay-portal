@@ -57,21 +57,27 @@ public class TaxonomyCategoryBulkSelectionSerDes {
 
 		sb.append("{");
 
-		sb.append("\"documentBulkSelection\": ");
+		if (taxonomyCategoryBulkSelection.getDocumentBulkSelection() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append(
-			DocumentBulkSelectionSerDes.toJSON(
-				taxonomyCategoryBulkSelection.getDocumentBulkSelection()));
-		sb.append(", ");
+			sb.append("\"documentBulkSelection\":");
 
-		sb.append("\"taxonomyCategoryIdsToAdd\": ");
+			sb.append(
+				DocumentBulkSelectionSerDes.toJSON(
+					taxonomyCategoryBulkSelection.getDocumentBulkSelection()));
+		}
 
-		if (taxonomyCategoryBulkSelection.getTaxonomyCategoryIdsToAdd() ==
+		if (taxonomyCategoryBulkSelection.getTaxonomyCategoryIdsToAdd() !=
 				null) {
 
-			sb.append("null");
-		}
-		else {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
+
+			sb.append("\"taxonomyCategoryIdsToAdd\":");
+
 			sb.append("[");
 
 			for (int i = 0;
@@ -93,16 +99,15 @@ public class TaxonomyCategoryBulkSelectionSerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
-
-		sb.append("\"taxonomyCategoryIdsToRemove\": ");
-
-		if (taxonomyCategoryBulkSelection.getTaxonomyCategoryIdsToRemove() ==
+		if (taxonomyCategoryBulkSelection.getTaxonomyCategoryIdsToRemove() !=
 				null) {
 
-			sb.append("null");
-		}
-		else {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
+
+			sb.append("\"taxonomyCategoryIdsToRemove\":");
+
 			sb.append("[");
 
 			for (int i = 0;

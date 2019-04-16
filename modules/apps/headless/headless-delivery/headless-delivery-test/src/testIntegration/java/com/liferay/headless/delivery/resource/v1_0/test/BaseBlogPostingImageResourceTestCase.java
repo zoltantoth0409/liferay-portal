@@ -120,7 +120,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -146,6 +146,33 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		BlogPostingImage blogPostingImage2 = BlogPostingImageSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(blogPostingImage1, blogPostingImage2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		BlogPostingImage blogPostingImage = randomBlogPostingImage();
+
+		String json1 = objectMapper.writeValueAsString(blogPostingImage);
+		String json2 = BlogPostingImageSerDes.toJSON(blogPostingImage);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

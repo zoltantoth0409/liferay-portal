@@ -114,7 +114,7 @@ public abstract class BaseSegmentResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDes() throws Exception {
+	public void testClientSerDesToDTO() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
@@ -140,6 +140,33 @@ public abstract class BaseSegmentResourceTestCase {
 		Segment segment2 = SegmentSerDes.toDTO(json);
 
 		Assert.assertTrue(equals(segment1, segment2));
+	}
+
+	@Test
+	public void testClientSerDesToJSON() throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper() {
+			{
+				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+				setDateFormat(new ISO8601DateFormat());
+				setFilterProvider(
+					new SimpleFilterProvider() {
+						{
+							addFilter(
+								"Liferay.Vulcan",
+								SimpleBeanPropertyFilter.serializeAll());
+						}
+					});
+				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+				setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			}
+		};
+
+		Segment segment = randomSegment();
+
+		String json1 = objectMapper.writeValueAsString(segment);
+		String json2 = SegmentSerDes.toJSON(segment);
+
+		Assert.assertEquals(json1, json2);
 	}
 
 	@Test

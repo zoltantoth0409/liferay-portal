@@ -57,12 +57,13 @@ public class DataDefinitionRuleParameterSerDes {
 
 		sb.append("{");
 
-		sb.append("\"key\": ");
+		if (dataDefinitionRuleParameter.getKey() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (dataDefinitionRuleParameter.getKey() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"key\":");
+
 			sb.append("\"");
 
 			sb.append(dataDefinitionRuleParameter.getKey());
@@ -70,14 +71,13 @@ public class DataDefinitionRuleParameterSerDes {
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dataDefinitionRuleParameter.getValue() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"value\": ");
+			sb.append("\"value\":");
 
-		if (dataDefinitionRuleParameter.getValue() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(dataDefinitionRuleParameter.getValue());
 		}
 

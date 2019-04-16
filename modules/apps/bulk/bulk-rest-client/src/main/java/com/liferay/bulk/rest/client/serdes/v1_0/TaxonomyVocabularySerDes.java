@@ -55,23 +55,23 @@ public class TaxonomyVocabularySerDes {
 
 		sb.append("{");
 
-		sb.append("\"multiValued\": ");
+		if (taxonomyVocabulary.getMultiValued() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (taxonomyVocabulary.getMultiValued() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"multiValued\":");
+
 			sb.append(taxonomyVocabulary.getMultiValued());
 		}
 
-		sb.append(", ");
+		if (taxonomyVocabulary.getName() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (taxonomyVocabulary.getName() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
 
 			sb.append(taxonomyVocabulary.getName());
@@ -79,25 +79,23 @@ public class TaxonomyVocabularySerDes {
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (taxonomyVocabulary.getRequired() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"required\": ");
+			sb.append("\"required\":");
 
-		if (taxonomyVocabulary.getRequired() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(taxonomyVocabulary.getRequired());
 		}
 
-		sb.append(", ");
+		if (taxonomyVocabulary.getTaxonomyCategories() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"taxonomyCategories\": ");
+			sb.append("\"taxonomyCategories\":");
 
-		if (taxonomyVocabulary.getTaxonomyCategories() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0;
@@ -117,14 +115,13 @@ public class TaxonomyVocabularySerDes {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (taxonomyVocabulary.getTaxonomyVocabularyId() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		sb.append("\"taxonomyVocabularyId\": ");
+			sb.append("\"taxonomyVocabularyId\":");
 
-		if (taxonomyVocabulary.getTaxonomyVocabularyId() == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(taxonomyVocabulary.getTaxonomyVocabularyId());
 		}
 

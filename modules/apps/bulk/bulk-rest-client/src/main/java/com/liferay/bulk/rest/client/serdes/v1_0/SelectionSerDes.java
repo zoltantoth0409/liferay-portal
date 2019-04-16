@@ -51,12 +51,13 @@ public class SelectionSerDes {
 
 		sb.append("{");
 
-		sb.append("\"size\": ");
+		if (selection.getSize() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (selection.getSize() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"size\":");
+
 			sb.append(selection.getSize());
 		}
 

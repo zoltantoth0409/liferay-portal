@@ -51,12 +51,13 @@ public class KeywordSerDes {
 
 		sb.append("{");
 
-		sb.append("\"name\": ");
+		if (keyword.getName() != null) {
+			if (sb.length() > 1) {
+				sb.append(",");
+			}
 
-		if (keyword.getName() == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"name\":");
+
 			sb.append("\"");
 
 			sb.append(keyword.getName());
