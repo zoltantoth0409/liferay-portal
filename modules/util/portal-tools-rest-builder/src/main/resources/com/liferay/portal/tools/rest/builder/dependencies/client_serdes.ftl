@@ -134,14 +134,17 @@ public class ${schemaName}SerDes {
 
 	private static class ${schemaName}JSONParser extends BaseJSONParser<${schemaName}> {
 
+		@Override
 		protected ${schemaName} createDTO() {
 			return new ${schemaName}();
 		}
 
+		@Override
 		protected ${schemaName}[] createDTOArray(int size) {
 			return new ${schemaName}[size];
 		}
 
+		@Override
 		protected void setField(${schemaName} ${schemaVarName}, String jsonParserFieldName, Object jsonParserFieldValue) {
 			<#list properties?keys as propertyName>
 				<#if !propertyName?is_first>

@@ -1,9 +1,12 @@
 package ${configYAML.apiPackagePath}.resource.${escapedVersion}.test;
 
 <#list allSchemas?keys as schemaName>
-	import ${configYAML.apiPackagePath}.dto.${escapedVersion}.${schemaName};
+	import ${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName};
+	import ${configYAML.apiPackagePath}.client.serdes.${escapedVersion}.${schemaName}SerDes;
 	import ${configYAML.apiPackagePath}.resource.${escapedVersion}.${schemaName}Resource;
 </#list>
+
+import ${configYAML.apiPackagePath}.client.pagination.Page;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -36,7 +39,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
@@ -831,10 +833,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 		<#assign
 			invokeArguments = arguments?replace("filter", "filterString")?replace("sorts", "sortString")
-			invokeParameters = parameters?replace("com.liferay.portal.kernel.search.filter.Filter filter", "String filterString")?replace("com.liferay.portal.kernel.search.Sort[] sorts", "String sortString")
+			invokeParameters = parameters?replace("com.liferay.portal.kernel.search.filter.Filter filter", "String filterString")?replace("com.liferay.portal.kernel.search.Sort[] sorts", "String sortString")?replace(".dto.", ".client.dto.")
 		/>
 
-		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(${invokeParameters}) throws Exception {
+		protected ${javaMethodSignature.returnType?replace(".dto.", ".client.dto.")?replace("com.liferay.portal.vulcan.pagination", "${configYAML.apiPackagePath}.client.pagination")} invoke${javaMethodSignature.methodName?cap_first}(${invokeParameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("${schemaVarName}")>
@@ -904,12 +906,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 					throw e;
 				}
 			<#elseif javaMethodSignature.returnType?contains("Page<")>
-				return outputObjectMapper.readValue(string, new TypeReference<Page<${schemaName}>>() {});
+				return Page.of(string, ${schemaName}SerDes::toDTO);
 			<#elseif javaMethodSignature.returnType?ends_with("String")>
 				return string;
 			<#elseif !stringUtil.equals(javaMethodSignature.returnType, "void")>
 				try {
-					return outputObjectMapper.readValue(string, ${javaMethodSignature.returnType}.class);
+					return ${javaMethodSignature.returnType?replace(".dto.", ".client.serdes.")}SerDes.toDTO(string);
 				}
 				catch (Exception e) {
 					if (_log.isDebugEnabled()) {
@@ -925,7 +927,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			Http.Options options = _createHttpOptions();
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with(",${schemaVarName}")>
-				options.setBody(inputObjectMapper.writeValueAsString(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+				options.setBody(${schemaName}SerDes.toJSON(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 			</#if>
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
@@ -1242,7 +1244,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 	};
 	protected static final ObjectMapper outputObjectMapper = new ObjectMapper() {
 		{
-			addMixIn(${schemaName}.class, ${schemaName}Mixin.class);
 			setFilterProvider(
 				new SimpleFilterProvider() {
 					{
@@ -1257,58 +1258,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	protected static class ${schemaName}Mixin {
-		<#assign enumSchemas = freeMarkerTool.getDTOEnumSchemas(schema) />
-
-		<#list enumSchemas?keys as enumName>
-			public static enum ${enumName} {}
-		</#list>
-
-		<#list properties?keys as propertyName>
-			@JsonProperty
-			${properties[propertyName]} ${propertyName};
-		</#list>
-	}
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(items);
-		}
-
-		public long getLastPage() {
-			return lastPage;
-		}
-
-		public long getPage() {
-			return page;
-		}
-
-		public long getPageSize() {
-			return pageSize;
-		}
-
-		public long getTotalCount() {
-			return totalCount;
-		}
-
-		@JsonProperty
-		protected Collection<T> items;
-
-		@JsonProperty
-		protected long lastPage;
-
-		@JsonProperty
-		protected long page;
-
-		@JsonProperty
-		protected long pageSize;
-
-		@JsonProperty
-		protected long totalCount;
-
-	}
 
 	private Http.Options _createHttpOptions() {
 		Http.Options options = new Http.Options();

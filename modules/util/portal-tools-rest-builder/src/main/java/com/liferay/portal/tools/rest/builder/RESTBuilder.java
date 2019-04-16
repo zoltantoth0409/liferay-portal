@@ -33,7 +33,6 @@ import com.liferay.portal.vulcan.yaml.config.Application;
 import com.liferay.portal.vulcan.yaml.config.ConfigYAML;
 import com.liferay.portal.vulcan.yaml.openapi.Components;
 import com.liferay.portal.vulcan.yaml.openapi.Info;
-import com.liferay.portal.vulcan.yaml.openapi.Items;
 import com.liferay.portal.vulcan.yaml.openapi.OpenAPIYAML;
 import com.liferay.portal.vulcan.yaml.openapi.Operation;
 import com.liferay.portal.vulcan.yaml.openapi.Parameter;
@@ -102,6 +101,7 @@ public class RESTBuilder {
 
 		if (Validator.isNotNull(_configYAML.getClientDir())) {
 			_createClientBaseJSONParserFile(context);
+			_createClientPageFile(context);
 			_createClientUnsafeSupplierFile(context);
 		}
 
@@ -192,21 +192,6 @@ public class RESTBuilder {
 					_createClientDTOFile(context, escapedVersion, schemaName);
 					_createClientSerDesFile(
 						context, escapedVersion, schemaName);
-
-					String pageSchemaName = "Page_" + schemaName;
-
-					Schema pageSchema = _getPageSchema(schemaName);
-
-					allSchemas.put(pageSchemaName, pageSchema);
-
-					_putSchema(context, pageSchema, pageSchemaName);
-
-					_createClientDTOFile(
-						context, escapedVersion, pageSchemaName);
-					_createClientSerDesFile(
-						context, escapedVersion, pageSchemaName);
-
-					allSchemas.remove(pageSchemaName);
 				}
 			}
 		}
@@ -380,6 +365,30 @@ public class RESTBuilder {
 			file,
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "client_dto", context));
+	}
+
+	private void _createClientPageFile(Map<String, Object> context)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getClientDir());
+		sb.append("/");
+
+		String apiPackagePath = _configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/client/pagination/Page.java");
+
+		File file = new File(sb.toString());
+
+		_files.add(file);
+
+		FileUtil.write(
+			file,
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "client_page", context));
 	}
 
 	private void _createClientResourceFile(
@@ -956,42 +965,6 @@ public class RESTBuilder {
 		}
 
 		return operations;
-	}
-
-	private Schema _getPageSchema(String schemaName) {
-		Schema longSchema = new Schema();
-
-		longSchema.setFormat("int64");
-		longSchema.setType("integer");
-
-		Map<String, Schema> propertySchemas = new HashMap<String, Schema>() {
-			{
-				put(
-					"items",
-					new Schema() {
-						{
-							setItems(
-								new Items() {
-									{
-										setReference("/" + schemaName);
-										setType("object");
-									}
-								});
-							setType("array");
-						}
-					});
-				put("lastPage", longSchema);
-				put("page", longSchema);
-				put("pageSize", longSchema);
-				put("totalCount", longSchema);
-			}
-		};
-
-		return new Schema() {
-			{
-				setPropertySchemas(propertySchemas);
-			}
-		};
 	}
 
 	private void _putSchema(
