@@ -911,7 +911,11 @@ public abstract class Base${schemaName}ResourceTestCase {
 				return string;
 			<#elseif !stringUtil.equals(javaMethodSignature.returnType, "void")>
 				try {
-					return ${javaMethodSignature.returnType?replace(".dto.", ".client.serdes.")}SerDes.toDTO(string);
+					<#if stringUtil.equals(javaMethodSignature.returnType, "javax.ws.rs.core.Response")>
+						return outputObjectMapper.readValue(string, ${javaMethodSignature.returnType}.class);
+					<#else>
+						return ${javaMethodSignature.returnType?replace(".dto.", ".client.serdes.")}SerDes.toDTO(string);
+					</#if>
 				}
 				catch (Exception e) {
 					if (_log.isDebugEnabled()) {
