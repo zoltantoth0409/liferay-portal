@@ -54,9 +54,7 @@ public class ${schemaName}SerDes {
 		/>
 
 		<#list properties?keys as propertyName>
-			<#assign
-				propertyType = properties[propertyName]
-			/>
+			<#assign propertyType = properties[propertyName] />
 
 			<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "Date[]")>
 				DateFormat liferayToJSONDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -72,9 +70,7 @@ public class ${schemaName}SerDes {
 
 			sb.append("\"${propertyName}\": ");
 
-			<#assign
-				propertyType = properties[propertyName]
-			/>
+			<#assign propertyType = properties[propertyName] />
 
 			<#if allSchemas[propertyType]??>
 				sb.append(${propertyType}SerDes.toJSON(${schemaVarName}.get${propertyName?cap_first}()));
@@ -141,13 +137,11 @@ public class ${schemaName}SerDes {
 		Map<String, String> map = new HashMap<>();
 
 		<#assign
-		properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema)
+			properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema)
 		/>
 
 		<#list properties?keys as propertyName>
-			<#assign
-			propertyType = properties[propertyName]
-			/>
+			<#assign propertyType = properties[propertyName] />
 
 			<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "Date[]")>
 				DateFormat liferayToJSONDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -156,10 +150,7 @@ public class ${schemaName}SerDes {
 		</#list>
 
 		<#list properties?keys as propertyName>
-
-			<#assign
-				propertyType = properties[propertyName]
-			/>
+			<#assign propertyType = properties[propertyName] />
 
 			<#if allSchemas[propertyType]??>
 				map.put("${propertyName}", ${propertyType}SerDes.toJSON(${schemaVarName}.get${propertyName?cap_first}()));
@@ -196,9 +187,7 @@ public class ${schemaName}SerDes {
 					if (jsonParserFieldValue != null) {
 						${schemaVarName}.set${propertyName?cap_first}(
 
-						<#assign
-							propertyType = properties[propertyName]
-						/>
+						<#assign propertyType = properties[propertyName] />
 
 						<#if stringUtil.equals(propertyType, "Date")>
 							toDate((String)jsonParserFieldValue)

@@ -220,9 +220,7 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 				sb.append("null");
 			}
 			else {
-				<#assign
-					propertyType = properties[propertyName]
-				/>
+				<#assign propertyType = properties[propertyName] />
 
 				<#if propertyType?contains("[]")>
 					sb.append("[");
