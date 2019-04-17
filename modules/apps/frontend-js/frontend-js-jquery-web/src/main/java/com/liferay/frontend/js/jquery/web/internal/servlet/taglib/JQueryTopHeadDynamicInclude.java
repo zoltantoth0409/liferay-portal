@@ -124,8 +124,6 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 
 		_bundleContext = bundleContext;
 
-		_lastModified = System.currentTimeMillis();
-
 		_jsJQueryConfiguration = ConfigurableUtil.createConfigurable(
 			JSJQueryConfiguration.class, properties);
 	}
@@ -140,7 +138,7 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 	private BundleContext _bundleContext;
 	private String _comboContextPath;
 	private volatile JSJQueryConfiguration _jsJQueryConfiguration;
-	private long _lastModified;
+	private long _lastModified = System.currentTimeMillis();
 	private Portal _portal;
 
 }
