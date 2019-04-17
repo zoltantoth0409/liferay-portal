@@ -71,20 +71,18 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Bundle bundle = _bundleContext.getBundle();
-
 		if (themeDisplay.isThemeJsFastLoad()) {
-			String comboURL = _portal.getStaticResourceURL(
-				request, _comboContextPath, "minifierType=js", _lastModified);
-
 			sb.append("<script data-senna-track=\"permanent\" src=\"");
-			sb.append(comboURL);
+			sb.append(
+				_portal.getStaticResourceURL(
+					request, _comboContextPath, "minifierType=js",
+					_lastModified));
 
 			for (String fileName : _FILE_NAMES) {
 				sb.append("&");
 				sb.append(
 					absolutePortalURLBuilder.forModule(
-						bundle, fileName
+						_bundleContext.getBundle(), fileName
 					).build());
 			}
 
@@ -95,7 +93,7 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 				sb.append("<script data-senna-track=\"permanent\" src=\"");
 				sb.append(
 					absolutePortalURLBuilder.forModule(
-						bundle, fileName
+						_bundleContext.getBundle(), fileName
 					).build());
 				sb.append("\" type=\"text/javascript\"></script>");
 			}
