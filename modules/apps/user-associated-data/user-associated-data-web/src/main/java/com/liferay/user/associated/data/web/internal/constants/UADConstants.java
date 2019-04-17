@@ -30,6 +30,8 @@ public class UADConstants {
 	/**
 	 * Order matters here. These correspond to filter buttons presented in the
 	 * UI.
+	 *
+	 * @review
 	 */
 	public static final String[] SCOPES = {
 		SCOPE_PERSONAL_SITE, SCOPE_REGULAR_SITES, SCOPE_INSTANCE
