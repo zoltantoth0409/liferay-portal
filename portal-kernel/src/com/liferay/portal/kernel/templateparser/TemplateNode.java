@@ -329,14 +329,13 @@ public class TemplateNode extends LinkedHashMap<String, Object> {
 				return StringPool.BLANK;
 			}
 
-			HttpServletRequest request = _themeDisplay.getRequest();
+			HttpServletRequest httpServletRequest = _themeDisplay.getRequest();
 
 			PortletRequest portletRequest =
-				(PortletRequest)request.getAttribute(
+				(PortletRequest)httpServletRequest.getAttribute(
 					JavaConstants.JAVAX_PORTLET_REQUEST);
-
 			PortletResponse portletResponse =
-				(PortletResponse)request.getAttribute(
+				(PortletResponse)httpServletRequest.getAttribute(
 					JavaConstants.JAVAX_PORTLET_RESPONSE);
 
 			return assetRenderer.getURLViewInContext(
