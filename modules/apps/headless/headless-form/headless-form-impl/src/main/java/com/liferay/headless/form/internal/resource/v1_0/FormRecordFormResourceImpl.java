@@ -127,15 +127,14 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 			String name = jsonObject.getString("name");
 
 			ddmFormFieldValue.setName(name);
-			DDMFormField ddmFormField = ddmFormFieldsMap.get(name);
 
 			Value value = _VALUE;
 
-			if (ddmFormField != null) {
-				Object rawValue = jsonObject.get("value");
+			DDMFormField ddmFormField = ddmFormFieldsMap.get(name);
 
+			if (ddmFormField != null) {
 				value = Optional.ofNullable(
-					rawValue
+					jsonObject.get("value")
 				).map(
 					Object::toString
 				).map(
