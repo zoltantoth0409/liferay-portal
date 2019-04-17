@@ -55,7 +55,11 @@ String redirect = PortalUtil.getLayoutFullURL(layout, themeDisplay);
 
 						<%
 						for (AssetPublisherAddItemHolder assetPublisherAddItemHolder : assetPublisherAddItemHolders) {
+							Map<String, Object> data = new HashMap<String, Object>();
+
 							String message = assetPublisherAddItemHolder.getModelResource();
+
+							data.put("title", LanguageUtil.format((HttpServletRequest)pageContext.getRequest(), "new-x", HtmlUtil.escape(message), false));
 
 							long curGroupId = groupId;
 
@@ -69,9 +73,6 @@ String redirect = PortalUtil.getLayoutFullURL(layout, themeDisplay);
 
 							portletURL.setParameter("redirect", redirect);
 
-							Map<String, Object> data = new HashMap<String, Object>();
-
-							data.put("title", LanguageUtil.format((HttpServletRequest)pageContext.getRequest(), "new-x", HtmlUtil.escape(message), false));
 							data.put("url", assetHelper.getAddURLPopUp(curGroupId, plid, portletURL, false, null));
 						%>
 
