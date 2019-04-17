@@ -129,7 +129,7 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 			ddmFormFieldValue.setName(name);
 			DDMFormField ddmFormField = ddmFormFieldsMap.get(name);
 
-			Value value = _EMPTY_VALUE;
+			Value value = _VALUE;
 
 			if (ddmFormField != null) {
 				Object rawValue = jsonObject.get("value");
@@ -141,7 +141,7 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 				).map(
 					stringValue -> _getValue(ddmFormField, locale, stringValue)
 				).orElse(
-					_EMPTY_VALUE
+					_VALUE
 				);
 			}
 
@@ -184,10 +184,10 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 			return value;
 		}
 
-		return _EMPTY_VALUE;
+		return _VALUE;
 	}
 
-	private static final Value _EMPTY_VALUE = new UnlocalizedValue(
+	private static final Value _VALUE = new UnlocalizedValue(
 		(String)null);
 
 	@Reference
