@@ -82,7 +82,6 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 
 			for (String fileName : _FILE_NAMES) {
 				sb.append("&");
-
 				sb.append(
 					absolutePortalURLBuilder.forModule(
 						bundle, fileName
@@ -94,12 +93,10 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 		else {
 			for (String fileName : _FILE_NAMES) {
 				sb.append("<script data-senna-track=\"permanent\" src=\"");
-
 				sb.append(
 					absolutePortalURLBuilder.forModule(
 						bundle, fileName
 					).build());
-
 				sb.append("\" type=\"text/javascript\"></script>");
 			}
 		}
@@ -132,7 +129,6 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 
 		_jsJQueryConfiguration = ConfigurableUtil.createConfigurable(
 			JSJQueryConfiguration.class, properties);
-
 		_lastModified = System.currentTimeMillis();
 	}
 
