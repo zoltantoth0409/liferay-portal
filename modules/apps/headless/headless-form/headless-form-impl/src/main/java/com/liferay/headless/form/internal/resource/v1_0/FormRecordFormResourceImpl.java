@@ -73,7 +73,7 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 			_ddmFormInstanceRecordService.addFormInstanceRecord(
 				ddmFormInstance.getGroupId(),
 				ddmFormInstance.getFormInstanceId(),
-				_getDDMFormValues(
+				_createDDMFormValues(
 					ddmFormInstance, formRecordForm.getFieldValues(),
 					contextAcceptLanguage.getPreferredLocale()),
 				_createServiceContext(formRecordForm.getDraft())),
@@ -92,7 +92,7 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 		return FormRecordUtil.toFormRecord(
 			_ddmFormInstanceRecordService.updateFormInstanceRecord(
 				formRecordId, false,
-				_getDDMFormValues(
+				_createDDMFormValues(
 					ddmFormInstanceRecord.getFormInstance(),
 					formRecordForm.getFieldValues(),
 					contextAcceptLanguage.getPreferredLocale()),
@@ -121,7 +121,7 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 		return serviceContext;
 	}
 
-	private DDMFormValues _getDDMFormValues(
+	private DDMFormValues _createDDMFormValues(
 			DDMFormInstance ddmFormInstance, String fieldValues, Locale locale)
 		throws Exception {
 
