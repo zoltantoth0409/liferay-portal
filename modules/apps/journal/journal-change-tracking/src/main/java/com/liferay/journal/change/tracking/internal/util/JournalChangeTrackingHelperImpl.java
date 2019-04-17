@@ -89,11 +89,11 @@ public class JournalChangeTrackingHelperImpl
 			_ctManager.getActiveCTCollectionCTEntryOptional(
 				userId, classNameId, id);
 
-		if (ctEntryOptional.filter(
-				ctEntry ->
-					ctEntry.getOriginalCTCollectionId() ==
-						activeCTCollectionId).isPresent()) {
+		ctEntryOptional = ctEntryOptional.filter(
+			ctEntry ->
+				ctEntry.getOriginalCTCollectionId() == activeCTCollectionId);
 
+		if (ctEntryOptional.isPresent()) {
 			return true;
 		}
 
