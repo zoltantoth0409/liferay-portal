@@ -101,6 +101,26 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 			_userLocalService);
 	}
 
+	private ServiceContext _createServiceContext(boolean draft)
+		throws PortalException {
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			DDMFormInstanceRecord.class.getName(), _httpServletRequest);
+
+		if (draft) {
+			serviceContext.setAttribute(
+				"status", WorkflowConstants.STATUS_DRAFT);
+			serviceContext.setAttribute("validateDDMFormValues", Boolean.FALSE);
+			serviceContext.setWorkflowAction(
+				WorkflowConstants.ACTION_SAVE_DRAFT);
+		}
+		else {
+			serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
+		}
+
+		return serviceContext;
+	}
+
 	private DDMFormValues _getDDMFormValues(
 			DDMFormInstance ddmFormInstance, String fieldValues, Locale locale)
 		throws Exception {
@@ -160,26 +180,6 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 		}
 
 		return ddmFormValues;
-	}
-
-	private ServiceContext _createServiceContext(boolean draft)
-		throws PortalException {
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			DDMFormInstanceRecord.class.getName(), _httpServletRequest);
-
-		if (draft) {
-			serviceContext.setAttribute(
-				"status", WorkflowConstants.STATUS_DRAFT);
-			serviceContext.setAttribute("validateDDMFormValues", Boolean.FALSE);
-			serviceContext.setWorkflowAction(
-				WorkflowConstants.ACTION_SAVE_DRAFT);
-		}
-		else {
-			serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
-		}
-
-		return serviceContext;
 	}
 
 	private static final Value _VALUE = new UnlocalizedValue((String)null);
