@@ -142,7 +142,7 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 	private BundleContext _bundleContext;
 	private String _comboContextPath;
 	private volatile JSJQueryConfiguration _jsJQueryConfiguration;
-	private volatile long _lastModified;
+	private long _lastModified;
 	private Portal _portal;
 
 }
