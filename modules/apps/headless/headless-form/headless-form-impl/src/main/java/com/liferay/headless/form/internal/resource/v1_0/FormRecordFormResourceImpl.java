@@ -69,20 +69,16 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 		DDMFormInstance ddmFormInstance =
 			_ddmFormInstanceService.getFormInstance(formId);
 
-		Locale locale = contextAcceptLanguage.getPreferredLocale();
-
-		DDMFormValues ddmFormValues = _getDDMFormValues(
-			ddmFormInstance, formRecordForm.getFieldValues(), locale);
-
-		ServiceContext formServiceContext = _getServiceContext(
-			formRecordForm.getDraft());
-
 		return FormRecordUtil.toFormRecord(
 			_ddmFormInstanceRecordService.addFormInstanceRecord(
 				ddmFormInstance.getGroupId(),
-				ddmFormInstance.getFormInstanceId(), ddmFormValues,
-				formServiceContext),
-			locale, _portal, _userLocalService);
+				ddmFormInstance.getFormInstanceId(),
+				_getDDMFormValues(
+					ddmFormInstance, formRecordForm.getFieldValues(),
+					contextAcceptLanguage.getPreferredLocale()),
+				_getServiceContext(formRecordForm.getDraft())),
+			contextAcceptLanguage.getPreferredLocale(), _portal,
+			_userLocalService);
 	}
 
 	@Override
@@ -93,21 +89,16 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 		DDMFormInstanceRecord ddmFormInstanceRecord =
 			_ddmFormInstanceRecordService.getFormInstanceRecord(formRecordId);
 
-		DDMFormInstance ddmFormInstance =
-			ddmFormInstanceRecord.getFormInstance();
-
-		Locale locale = contextAcceptLanguage.getPreferredLocale();
-
-		DDMFormValues ddmFormValues = _getDDMFormValues(
-			ddmFormInstance, formRecordForm.getFieldValues(), locale);
-
-		ServiceContext formServiceContext = _getServiceContext(
-			formRecordForm.getDraft());
-
 		return FormRecordUtil.toFormRecord(
 			_ddmFormInstanceRecordService.updateFormInstanceRecord(
-				formRecordId, false, ddmFormValues, formServiceContext),
-			locale, _portal, _userLocalService);
+				formRecordId, false,
+				_getDDMFormValues(
+					ddmFormInstanceRecord.getFormInstance(),
+					formRecordForm.getFieldValues(),
+					contextAcceptLanguage.getPreferredLocale()),
+				_getServiceContext(formRecordForm.getDraft())),
+			contextAcceptLanguage.getPreferredLocale(), _portal,
+			_userLocalService);
 	}
 
 	private DDMFormValues _getDDMFormValues(
