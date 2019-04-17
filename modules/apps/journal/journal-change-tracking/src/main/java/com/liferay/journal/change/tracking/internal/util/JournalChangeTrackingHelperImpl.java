@@ -83,7 +83,7 @@ public class JournalChangeTrackingHelperImpl
 		long classNameId = _portal.getClassNameId(
 			JournalArticle.class.getName());
 
-		long activeCTCollectionId = _getActiveCTCollection(userId);
+		long activeCTCollectionId = _getActiveCTCollectionId(userId);
 
 		Optional<CTEntry> ctEntryOptional =
 			_ctManager.getActiveCTCollectionCTEntryOptional(
@@ -100,7 +100,7 @@ public class JournalChangeTrackingHelperImpl
 		return false;
 	}
 
-	private long _getActiveCTCollection(long userId) {
+	private long _getActiveCTCollectionId(long userId) {
 		Optional<CTCollection> ctCollectionOptional =
 			_ctManager.getActiveCTCollectionOptional(userId);
 
