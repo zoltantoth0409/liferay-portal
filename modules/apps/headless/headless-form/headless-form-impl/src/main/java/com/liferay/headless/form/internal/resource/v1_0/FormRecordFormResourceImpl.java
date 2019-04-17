@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.service.UserLocalService;
@@ -116,48 +117,46 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 
 		ddmFormValues.addAvailableLocale(locale);
 		ddmFormValues.setDefaultLocale(locale);
+		ddmFormValues.setDDMFormFieldValues(
+			JSONUtil.toList(
+				JSONFactoryUtil.createJSONArray(fieldValues),
+				jsonObject -> {
+					DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray(fieldValues);
+					String name = jsonObject.getString("name");
 
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
+					ddmFormFieldValue.setName(name);
 
-			DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
+					Value value = _VALUE;
 
-			String name = jsonObject.getString("name");
+					DDMFormField ddmFormField = ddmFormFieldsMap.get(name);
 
-			ddmFormFieldValue.setName(name);
-
-			Value value = _VALUE;
-
-			DDMFormField ddmFormField = ddmFormFieldsMap.get(name);
-
-			if (ddmFormField != null) {
-				value = Optional.ofNullable(
-					jsonObject.get("value")
-				).map(
-					Object::toString
-				).map(
-					stringValue -> {
-						if (ddmFormField.isLocalizable()) {
-							return new LocalizedValue() {
-								{
-									addString(locale, stringValue);
+					if (ddmFormField != null) {
+						value = Optional.ofNullable(
+							jsonObject.get("value")
+						).map(
+							Object::toString
+						).map(
+							stringValue -> {
+								if (ddmFormField.isLocalizable()) {
+									return new LocalizedValue() {
+										{
+											addString(locale, stringValue);
+										}
+									};
 								}
-							};
-						}
 
-						return _VALUE;
+								return _VALUE;
+							}
+						).orElse(
+							_VALUE
+						);
 					}
-				).orElse(
-					_VALUE
-				);
-			}
 
-			ddmFormFieldValue.setValue(value);
+					ddmFormFieldValue.setValue(value);
 
-			ddmFormValues.addDDMFormFieldValue(ddmFormFieldValue);
-		}
+					return ddmFormFieldValue;
+				}));
 
 		return ddmFormValues;
 	}
