@@ -59,7 +59,6 @@ public class SimulateSegmentsEntriesMVCActionCommand
 			SegmentsActionKeys.SIMULATE_SEGMENTS_ENTRIES);
 
 		long userId = _portal.getUserId(actionRequest);
-
 		long[] selectedSegmentsEntryIds = ParamUtil.getLongValues(
 			actionRequest, "segmentsEntryId");
 
