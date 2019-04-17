@@ -2,16 +2,16 @@
 
 <#assign
 	variableData = name + ".getData()"
-	variableFriendlyUr = name + ".getFriendlyUrl()"
+	variableFriendlyUrl = name + ".getFriendlyUrl()"
 />
 
 <#if repeatable>
 	<#assign
 		variableData = "cur_" + variableData
-		variableFriendlyUr = "cur_" + variableFriendlyUr
+		variableFriendlyUrl = "cur_" + variableFriendlyUrl
 	/>
 </#if>
 
-<a href="${getVariableReferenceCode(variableFriendlyUr)}">
+<a href="${getVariableReferenceCode(variableFriendlyUrl)}">
 	${getVariableReferenceCode(variableData)}
 </a>
