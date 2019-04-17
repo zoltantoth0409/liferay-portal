@@ -180,6 +180,7 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "userGr
 						%>
 
 						id: '<%= eventName %>',
+
 						selectedData: searchContainerData,
 						title: '<liferay-ui:message arguments="user-group" key="select-x" />',
 
