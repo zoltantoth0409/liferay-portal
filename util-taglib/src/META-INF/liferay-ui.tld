@@ -2129,7 +2129,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<description>Deprecated since 7.2, unused.</description>
+		<description>Deprecated as of 7.2.0, with no direct replacement.</description>
 		<name>input-scheduler</name>
 		<tag-class>com.liferay.taglib.ui.InputSchedulerTag</tag-class>
 		<body-content>JSP</body-content>
@@ -2590,7 +2590,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<description>Deprecated since 7.2, unused.</description>
+		<description>Deprecated as of 7.2.0, with no direct replacement.</description>
 		<name>organization-search-form</name>
 		<tag-class>com.liferay.taglib.ui.OrganizationSearchFormTag</tag-class>
 		<body-content>JSP</body-content>
@@ -3696,7 +3696,7 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Deprecated since 7.2, unused.</description>
+			<description>Deprecated as of 7.2.0, with no direct replacement.</description>
 			<name>servletContext</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -4411,7 +4411,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<description>Deprecated since 7.2, unused.</description>
+		<description>Deprecated as of 7.2.0, with no direct replacement.</description>
 		<name>user-search-form</name>
 		<tag-class>com.liferay.taglib.ui.UserSearchFormTag</tag-class>
 		<body-content>JSP</body-content>
