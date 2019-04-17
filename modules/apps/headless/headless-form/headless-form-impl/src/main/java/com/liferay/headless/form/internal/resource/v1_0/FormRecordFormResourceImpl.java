@@ -139,7 +139,17 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 				).map(
 					Object::toString
 				).map(
-					stringValue -> _getValue(ddmFormField, locale, stringValue)
+					stringValue -> {
+						if (ddmFormField.isLocalizable()) {
+							return new LocalizedValue() {
+								{
+									addString(locale, stringValue);
+								}
+							};
+						}
+
+						return _VALUE;
+					}
 				).orElse(
 					_VALUE
 				);
@@ -173,22 +183,7 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 		return serviceContext;
 	}
 
-	private Value _getValue(
-		DDMFormField ddmFormField, Locale locale, String stringValue) {
-
-		if (ddmFormField.isLocalizable()) {
-			Value value = new LocalizedValue();
-
-			value.addString(locale, stringValue);
-
-			return value;
-		}
-
-		return _VALUE;
-	}
-
-	private static final Value _VALUE = new UnlocalizedValue(
-		(String)null);
+	private static final Value _VALUE = new UnlocalizedValue((String)null);
 
 	@Reference
 	private DDMFormInstanceRecordService _ddmFormInstanceRecordService;
