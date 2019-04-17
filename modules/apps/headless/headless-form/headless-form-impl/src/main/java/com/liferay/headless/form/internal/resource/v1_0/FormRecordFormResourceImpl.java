@@ -120,45 +120,51 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 		ddmFormValues.setDDMFormFieldValues(
 			JSONUtil.toList(
 				JSONFactoryUtil.createJSONArray(fieldValues),
-				jsonObject -> {
-					DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
-
-					String name = jsonObject.getString("name");
-
-					ddmFormFieldValue.setName(name);
-
-					Value value = _VALUE;
-
-					DDMFormField ddmFormField = ddmFormFieldsMap.get(name);
-
-					if (ddmFormField != null) {
-						value = Optional.ofNullable(
-							jsonObject.get("value")
-						).map(
-							Object::toString
-						).map(
-							stringValue -> {
-								if (ddmFormField.isLocalizable()) {
-									return new LocalizedValue() {
-										{
-											addString(locale, stringValue);
-										}
-									};
-								}
-
-								return _VALUE;
-							}
-						).orElse(
-							_VALUE
-						);
-					}
-
-					ddmFormFieldValue.setValue(value);
-
-					return ddmFormFieldValue;
-				}));
+				jsonObject -> _toDDMFormFieldValue(ddmFormFieldsMap, jsonObject)));
 
 		return ddmFormValues;
+	}
+
+	private DDMFormFieldValue _toDDMFormFieldValue(
+		Map<String, DDMFormField> ddmFormFieldsMap, JSONObject jsonObject) {
+
+		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
+
+		String name = jsonObject.getString("name");
+
+		ddmFormFieldValue.setName(name);
+
+		Value value = _VALUE;
+
+		DDMFormField ddmFormField = ddmFormFieldsMap.get(name);
+
+		if (ddmFormField != null) {
+			value = Optional.ofNullable(
+				jsonObject.get("value")
+			).map(
+				Object::toString
+			).map(
+				stringValue -> {
+					if (ddmFormField.isLocalizable()) {
+						return new LocalizedValue() {
+							{
+								addString(
+									contextAcceptLanguage.getPreferredLocale(),
+									stringValue);
+							}
+						};
+					}
+
+					return _VALUE;
+				}
+			).orElse(
+				_VALUE
+			);
+		}
+
+		ddmFormFieldValue.setValue(value);
+
+		return ddmFormFieldValue;
 	}
 
 	private ServiceContext _createServiceContext(boolean draft)
