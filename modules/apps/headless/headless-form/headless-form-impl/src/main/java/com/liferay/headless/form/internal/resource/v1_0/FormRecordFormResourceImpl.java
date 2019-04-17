@@ -31,7 +31,6 @@ import com.liferay.headless.form.dto.v1_0.FormRecordForm;
 import com.liferay.headless.form.internal.dto.v1_0.util.FormRecordUtil;
 import com.liferay.headless.form.resource.v1_0.FormRecordFormResource;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -120,9 +119,30 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 		ddmFormValues.setDDMFormFieldValues(
 			JSONUtil.toList(
 				JSONFactoryUtil.createJSONArray(fieldValues),
-				jsonObject -> _toDDMFormFieldValue(ddmFormFieldsMap, jsonObject)));
+				jsonObject -> _toDDMFormFieldValue(
+					ddmFormFieldsMap, jsonObject)));
 
 		return ddmFormValues;
+	}
+
+	private ServiceContext _createServiceContext(boolean draft)
+		throws PortalException {
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			DDMFormInstanceRecord.class.getName(), _httpServletRequest);
+
+		if (draft) {
+			serviceContext.setAttribute(
+				"status", WorkflowConstants.STATUS_DRAFT);
+			serviceContext.setAttribute("validateDDMFormValues", Boolean.FALSE);
+			serviceContext.setWorkflowAction(
+				WorkflowConstants.ACTION_SAVE_DRAFT);
+		}
+		else {
+			serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
+		}
+
+		return serviceContext;
 	}
 
 	private DDMFormFieldValue _toDDMFormFieldValue(
@@ -165,26 +185,6 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 		ddmFormFieldValue.setValue(value);
 
 		return ddmFormFieldValue;
-	}
-
-	private ServiceContext _createServiceContext(boolean draft)
-		throws PortalException {
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			DDMFormInstanceRecord.class.getName(), _httpServletRequest);
-
-		if (draft) {
-			serviceContext.setAttribute(
-				"status", WorkflowConstants.STATUS_DRAFT);
-			serviceContext.setAttribute("validateDDMFormValues", Boolean.FALSE);
-			serviceContext.setWorkflowAction(
-				WorkflowConstants.ACTION_SAVE_DRAFT);
-		}
-		else {
-			serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
-		}
-
-		return serviceContext;
 	}
 
 	private static final Value _VALUE = new UnlocalizedValue((String)null);
