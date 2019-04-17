@@ -172,7 +172,9 @@ definition {
 
 		WebContentTemplates.inputScript(templateScript = "${templateScript}");
 
-		WebContentTemplates.addFields(templateFieldNames = "${templateFieldNames}");
+		if (("${templateLanguage}" == "ftl") || ("${templateLanguage}" =="vm")) {
+			WebContentTemplates.addFields(templateFieldNames = "${templateFieldNames}");
+		}
 
 		WebContentTemplates.inputTemplateFile(templateFile = "${templateFile}");
 	}
