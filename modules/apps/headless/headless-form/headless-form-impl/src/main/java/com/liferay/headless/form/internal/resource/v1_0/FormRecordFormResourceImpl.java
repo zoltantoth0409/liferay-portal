@@ -76,7 +76,7 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 				_getDDMFormValues(
 					ddmFormInstance, formRecordForm.getFieldValues(),
 					contextAcceptLanguage.getPreferredLocale()),
-				_getServiceContext(formRecordForm.getDraft())),
+				_createServiceContext(formRecordForm.getDraft())),
 			contextAcceptLanguage.getPreferredLocale(), _portal,
 			_userLocalService);
 	}
@@ -96,7 +96,7 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 					ddmFormInstanceRecord.getFormInstance(),
 					formRecordForm.getFieldValues(),
 					contextAcceptLanguage.getPreferredLocale()),
-				_getServiceContext(formRecordForm.getDraft())),
+				_createServiceContext(formRecordForm.getDraft())),
 			contextAcceptLanguage.getPreferredLocale(), _portal,
 			_userLocalService);
 	}
@@ -162,7 +162,7 @@ public class FormRecordFormResourceImpl extends BaseFormRecordFormResourceImpl {
 		return ddmFormValues;
 	}
 
-	private ServiceContext _getServiceContext(boolean draft)
+	private ServiceContext _createServiceContext(boolean draft)
 		throws PortalException {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
