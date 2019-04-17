@@ -310,7 +310,9 @@ AUI.add(
 					toggleList: function(event) {
 						var instance = this;
 
-						event.stopPropagation();
+						if (event) {
+							event.stopPropagation();
+						}
 
 						var container = instance.get('container');
 
@@ -324,7 +326,7 @@ AUI.add(
 
 							var userView = container.ancestor('.ddm-user-view-content');
 
-							if (userView) {
+							if (event && userView) {
 								var selectInputNode = event.currentTarget.one('.input-select-wrapper')._node;
 
 								var dropdownMenu = event.currentTarget.one('.dropdown-menu');
