@@ -281,7 +281,7 @@ public class JournalArticleAssetInfoDisplayContributor
 			return numberFormat.format(GetterUtil.getDouble(valueString));
 		}
 		else if (Objects.equals(ddmFormFieldValue.getType(), "ddm-image")) {
-			return _transformFileEntryURL(value.getString(locale));
+			return _transformFileEntryURL(valueString);
 		}
 
 		return SanitizerUtil.sanitize(
