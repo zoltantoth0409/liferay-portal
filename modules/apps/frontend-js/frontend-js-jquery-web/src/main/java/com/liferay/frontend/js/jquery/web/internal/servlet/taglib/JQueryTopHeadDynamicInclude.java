@@ -74,8 +74,8 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 			sb.append("<script data-senna-track=\"permanent\" src=\"");
 			sb.append(
 				_portal.getStaticResourceURL(
-					request, _comboContextPath, "minifierType=js",
-					_lastModified));
+					request, _portal.getPathContext() + "/combo",
+					"minifierType=js", _lastModified));
 
 			for (String fileName : _FILE_NAMES) {
 				sb.append("&");
@@ -106,15 +106,6 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 		dynamicIncludeRegistry.register("/html/common/themes/top_head.jsp#pre");
 	}
 
-	@Reference(unbind = "-")
-	public void setPortal(Portal portal) {
-		String pathContext = portal.getPathContext();
-
-		_comboContextPath = pathContext.concat("/combo");
-
-		_portal = portal;
-	}
-
 	@Activate
 	@Modified
 	protected void activate(
@@ -132,13 +123,15 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 		"/jquery/jquery.js", "/jquery/fm.js", "/jquery/form.js"
 	};
 
+	private static final long _lastModified = System.currentTimeMillis();
+
 	@Reference
 	private AbsolutePortalURLBuilderFactory _absolutePortalURLBuilderFactory;
 
 	private BundleContext _bundleContext;
-	private String _comboContextPath;
 	private volatile JSJQueryConfiguration _jsJQueryConfiguration;
-	private long _lastModified = System.currentTimeMillis();
+
+	@Reference
 	private Portal _portal;
 
 }
