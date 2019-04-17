@@ -419,7 +419,7 @@ public class TemplateNode extends LinkedHashMap<String, Object> {
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Error finding friendly URL on page " +
+					"Unable to get friendly URL for URL " +
 						_themeDisplay.getURLCurrent(),
 					e);
 			}
