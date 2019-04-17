@@ -30,7 +30,7 @@ class Overview extends PortletBase {
 			method: 'GET'
 		};
 
-		let url = this.urlCollectionsBase + '?type=production&companyId=' + Liferay.ThemeDisplay.getCompanyId();
+		let url = this.urlCollectionsBase + '?companyId=' + Liferay.ThemeDisplay.getCompanyId() + '&type=production';
 
 		fetch(url, init)
 			.then(r => r.json())
@@ -346,7 +346,7 @@ class Overview extends PortletBase {
 
 		// Change Lists dropdown Menu
 
-		let urlRecentCollections = this.urlCollectionsBase + '?companyId=' + Liferay.ThemeDisplay.getCompanyId() + '&type=recent&limit=5&sort=modifiedDate:desc';
+		let urlRecentCollections = this.urlCollectionsBase + '?companyId=' + Liferay.ThemeDisplay.getCompanyId() + '&limit=5&type=recent&sort=modifiedDate:desc';
 
 		this._fetchRecentCollections(urlRecentCollections, 'GET');
 
