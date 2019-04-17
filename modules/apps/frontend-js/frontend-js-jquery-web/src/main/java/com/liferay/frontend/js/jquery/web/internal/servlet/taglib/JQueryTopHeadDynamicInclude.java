@@ -123,7 +123,7 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 		"/jquery/jquery.js", "/jquery/fm.js", "/jquery/form.js"
 	};
 
-	private long _lastModified = System.currentTimeMillis();
+	private static final long _lastModified = System.currentTimeMillis();
 
 	@Reference
 	private AbsolutePortalURLBuilderFactory _absolutePortalURLBuilderFactory;
