@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.util.ReflectionUtil;
 import java.lang.reflect.Field;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.Assert;
