@@ -279,8 +279,8 @@ public class UserGroupRolesDisplayContext {
 			role -> {
 				if (!userGroupsWebConfiguration.
 						enableAssignUnassignRoleActions() ||
-					((_isAssignRoles() && !selectedRoles.contains(role)) ||
-					 (!_isAssignRoles() && selectedRoles.contains(role)))) {
+					(_isAssignRoles() && !selectedRoles.contains(role)) ||
+					(!_isAssignRoles() && selectedRoles.contains(role))) {
 
 					return true;
 				}
