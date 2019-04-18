@@ -4820,10 +4820,12 @@ public class ServiceBuilder {
 			}
 		}
 
-		String deleteEntityName = "delete" + entityName;
+		String deleteEntityMethodName = "delete" + entityName;
 
-		if (methodNames.isEmpty() || methodNames.contains(deleteEntityName)) {
-			return deleteEntityName;
+		if (methodNames.isEmpty() ||
+			methodNames.contains(deleteEntityMethodName)) {
+
+			return deleteEntityMethodName;
 		}
 
 		methodNames.sort(null);
