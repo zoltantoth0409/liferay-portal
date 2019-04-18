@@ -73,8 +73,7 @@ public class InetAddressUtil {
 			}
 			else {
 				_log.error(
-					"Thread limit exceeded to determine address for host: " +
-						domain);
+					"Thread limit exceeded to resolve domain: " + domain);
 			}
 		}
 		catch (ExecutionException | InterruptedException | TimeoutException e) {
@@ -82,7 +81,7 @@ public class InetAddressUtil {
 				_log.debug(e, e);
 			}
 
-			throw new UnknownHostException("Unable to resolve URL: " + domain);
+			throw new UnknownHostException("Unable to resolve domain: " + domain);
 		}
 		finally {
 			atomicInteger.incrementAndGet();
