@@ -100,6 +100,12 @@ public class GeoSerDes {
 		return map;
 	}
 
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
+	}
+
 	private static class GeoJSONParser extends BaseJSONParser<Geo> {
 
 		@Override

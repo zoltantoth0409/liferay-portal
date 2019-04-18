@@ -70,7 +70,7 @@ public class WebUrlSerDes {
 
 			sb.append("\"");
 
-			sb.append(webUrl.getUrl());
+			sb.append(_escape(webUrl.getUrl()));
 
 			sb.append("\"");
 		}
@@ -84,7 +84,7 @@ public class WebUrlSerDes {
 
 			sb.append("\"");
 
-			sb.append(webUrl.getUrlType());
+			sb.append(_escape(webUrl.getUrlType()));
 
 			sb.append("\"");
 		}
@@ -123,6 +123,12 @@ public class WebUrlSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class WebUrlJSONParser extends BaseJSONParser<WebUrl> {

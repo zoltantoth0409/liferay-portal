@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.client.dto.v1_0;
 
 import com.liferay.headless.delivery.client.function.UnsafeSupplier;
+import com.liferay.headless.delivery.client.serdes.v1_0.DocumentSerDes;
 
 import java.util.Date;
 import java.util.Objects;
@@ -444,5 +445,31 @@ public class Document {
 	}
 
 	protected ViewableBy viewableBy;
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
+		if (!(object instanceof Document)) {
+			return false;
+		}
+
+		Document document = (Document)object;
+
+		return Objects.equals(toString(), document.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		String string = toString();
+
+		return string.hashCode();
+	}
+
+	public String toString() {
+		return DocumentSerDes.toJSON(this);
+	}
 
 }

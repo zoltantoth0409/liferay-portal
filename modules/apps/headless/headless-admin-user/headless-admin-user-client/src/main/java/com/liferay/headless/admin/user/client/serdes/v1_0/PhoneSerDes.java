@@ -60,7 +60,7 @@ public class PhoneSerDes {
 
 			sb.append("\"");
 
-			sb.append(phone.getExtension());
+			sb.append(_escape(phone.getExtension()));
 
 			sb.append("\"");
 		}
@@ -84,7 +84,7 @@ public class PhoneSerDes {
 
 			sb.append("\"");
 
-			sb.append(phone.getPhoneNumber());
+			sb.append(_escape(phone.getPhoneNumber()));
 
 			sb.append("\"");
 		}
@@ -98,7 +98,7 @@ public class PhoneSerDes {
 
 			sb.append("\"");
 
-			sb.append(phone.getPhoneType());
+			sb.append(_escape(phone.getPhoneType()));
 
 			sb.append("\"");
 		}
@@ -161,6 +161,12 @@ public class PhoneSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class PhoneJSONParser extends BaseJSONParser<Phone> {

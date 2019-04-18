@@ -60,7 +60,7 @@ public class ValueSerDes {
 
 			sb.append("\"");
 
-			sb.append(value.getData());
+			sb.append(_escape(value.getData()));
 
 			sb.append("\"");
 		}
@@ -104,7 +104,7 @@ public class ValueSerDes {
 
 			sb.append("\"");
 
-			sb.append(value.getLink());
+			sb.append(_escape(value.getLink()));
 
 			sb.append("\"");
 		}
@@ -180,6 +180,12 @@ public class ValueSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class ValueJSONParser extends BaseJSONParser<Value> {

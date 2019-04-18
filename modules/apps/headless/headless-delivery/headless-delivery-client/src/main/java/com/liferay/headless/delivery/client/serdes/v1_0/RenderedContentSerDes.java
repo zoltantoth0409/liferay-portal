@@ -62,7 +62,7 @@ public class RenderedContentSerDes {
 
 			sb.append("\"");
 
-			sb.append(renderedContent.getRenderedContentURL());
+			sb.append(_escape(renderedContent.getRenderedContentURL()));
 
 			sb.append("\"");
 		}
@@ -76,7 +76,7 @@ public class RenderedContentSerDes {
 
 			sb.append("\"");
 
-			sb.append(renderedContent.getTemplateName());
+			sb.append(_escape(renderedContent.getTemplateName()));
 
 			sb.append("\"");
 		}
@@ -112,6 +112,12 @@ public class RenderedContentSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class RenderedContentJSONParser

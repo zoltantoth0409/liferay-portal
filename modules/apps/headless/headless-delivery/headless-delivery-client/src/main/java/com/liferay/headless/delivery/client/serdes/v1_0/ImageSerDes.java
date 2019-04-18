@@ -60,7 +60,7 @@ public class ImageSerDes {
 
 			sb.append("\"");
 
-			sb.append(image.getCaption());
+			sb.append(_escape(image.getCaption()));
 
 			sb.append("\"");
 		}
@@ -74,7 +74,7 @@ public class ImageSerDes {
 
 			sb.append("\"");
 
-			sb.append(image.getContentUrl());
+			sb.append(_escape(image.getContentUrl()));
 
 			sb.append("\"");
 		}
@@ -123,6 +123,12 @@ public class ImageSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class ImageJSONParser extends BaseJSONParser<Image> {

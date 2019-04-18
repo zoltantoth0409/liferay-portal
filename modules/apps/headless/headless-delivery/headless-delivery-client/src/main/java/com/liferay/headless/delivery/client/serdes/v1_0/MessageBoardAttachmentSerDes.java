@@ -62,7 +62,7 @@ public class MessageBoardAttachmentSerDes {
 
 			sb.append("\"");
 
-			sb.append(messageBoardAttachment.getContentUrl());
+			sb.append(_escape(messageBoardAttachment.getContentUrl()));
 
 			sb.append("\"");
 		}
@@ -76,7 +76,7 @@ public class MessageBoardAttachmentSerDes {
 
 			sb.append("\"");
 
-			sb.append(messageBoardAttachment.getEncodingFormat());
+			sb.append(_escape(messageBoardAttachment.getEncodingFormat()));
 
 			sb.append("\"");
 		}
@@ -90,7 +90,7 @@ public class MessageBoardAttachmentSerDes {
 
 			sb.append("\"");
 
-			sb.append(messageBoardAttachment.getFileExtension());
+			sb.append(_escape(messageBoardAttachment.getFileExtension()));
 
 			sb.append("\"");
 		}
@@ -124,7 +124,7 @@ public class MessageBoardAttachmentSerDes {
 
 			sb.append("\"");
 
-			sb.append(messageBoardAttachment.getTitle());
+			sb.append(_escape(messageBoardAttachment.getTitle()));
 
 			sb.append("\"");
 		}
@@ -194,6 +194,12 @@ public class MessageBoardAttachmentSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class MessageBoardAttachmentJSONParser

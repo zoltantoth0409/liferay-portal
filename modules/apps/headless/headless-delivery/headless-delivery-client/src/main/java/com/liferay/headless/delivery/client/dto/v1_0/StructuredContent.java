@@ -15,6 +15,7 @@
 package com.liferay.headless.delivery.client.dto.v1_0;
 
 import com.liferay.headless.delivery.client.function.UnsafeSupplier;
+import com.liferay.headless.delivery.client.serdes.v1_0.StructuredContentSerDes;
 
 import java.util.Date;
 import java.util.Objects;
@@ -504,5 +505,31 @@ public class StructuredContent {
 	}
 
 	protected ViewableBy viewableBy;
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
+		if (!(object instanceof StructuredContent)) {
+			return false;
+		}
+
+		StructuredContent structuredContent = (StructuredContent)object;
+
+		return Objects.equals(toString(), structuredContent.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		String string = toString();
+
+		return string.hashCode();
+	}
+
+	public String toString() {
+		return StructuredContentSerDes.toJSON(this);
+	}
 
 }

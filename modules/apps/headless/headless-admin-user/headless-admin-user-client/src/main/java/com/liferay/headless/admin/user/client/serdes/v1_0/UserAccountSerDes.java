@@ -72,7 +72,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getAdditionalName());
+			sb.append(_escape(userAccount.getAdditionalName()));
 
 			sb.append("\"");
 		}
@@ -86,7 +86,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getAlternateName());
+			sb.append(_escape(userAccount.getAlternateName()));
 
 			sb.append("\"");
 		}
@@ -127,7 +127,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getDashboardURL());
+			sb.append(_escape(userAccount.getDashboardURL()));
 
 			sb.append("\"");
 		}
@@ -171,7 +171,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getEmailAddress());
+			sb.append(_escape(userAccount.getEmailAddress()));
 
 			sb.append("\"");
 		}
@@ -185,7 +185,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getFamilyName());
+			sb.append(_escape(userAccount.getFamilyName()));
 
 			sb.append("\"");
 		}
@@ -199,7 +199,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getGivenName());
+			sb.append(_escape(userAccount.getGivenName()));
 
 			sb.append("\"");
 		}
@@ -213,7 +213,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getHonorificPrefix());
+			sb.append(_escape(userAccount.getHonorificPrefix()));
 
 			sb.append("\"");
 		}
@@ -227,7 +227,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getHonorificSuffix());
+			sb.append(_escape(userAccount.getHonorificSuffix()));
 
 			sb.append("\"");
 		}
@@ -251,7 +251,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getImage());
+			sb.append(_escape(userAccount.getImage()));
 
 			sb.append("\"");
 		}
@@ -265,7 +265,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getJobTitle());
+			sb.append(_escape(userAccount.getJobTitle()));
 
 			sb.append("\"");
 		}
@@ -282,7 +282,7 @@ public class UserAccountSerDes {
 			for (int i = 0; i < userAccount.getKeywords().length; i++) {
 				sb.append("\"");
 
-				sb.append(userAccount.getKeywords()[i]);
+				sb.append(_escape(userAccount.getKeywords()[i]));
 
 				sb.append("\"");
 
@@ -303,7 +303,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getName());
+			sb.append(_escape(userAccount.getName()));
 
 			sb.append("\"");
 		}
@@ -341,7 +341,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(userAccount.getProfileURL());
+			sb.append(_escape(userAccount.getProfileURL()));
 
 			sb.append("\"");
 		}
@@ -557,6 +557,12 @@ public class UserAccountSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class UserAccountJSONParser

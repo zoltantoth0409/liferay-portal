@@ -72,7 +72,7 @@ public class StructuredContentLinkSerDes {
 
 			sb.append("\"");
 
-			sb.append(structuredContentLink.getTitle());
+			sb.append(_escape(structuredContentLink.getTitle()));
 
 			sb.append("\"");
 		}
@@ -106,6 +106,12 @@ public class StructuredContentLinkSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class StructuredContentLinkJSONParser

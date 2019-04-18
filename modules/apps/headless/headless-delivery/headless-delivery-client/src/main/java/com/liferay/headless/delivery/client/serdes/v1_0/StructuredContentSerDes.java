@@ -89,7 +89,8 @@ public class StructuredContentSerDes {
 
 				sb.append("\"");
 
-				sb.append(structuredContent.getAvailableLanguages()[i]);
+				sb.append(
+					_escape(structuredContent.getAvailableLanguages()[i]));
 
 				sb.append("\"");
 
@@ -204,7 +205,7 @@ public class StructuredContentSerDes {
 
 			sb.append("\"");
 
-			sb.append(structuredContent.getDescription());
+			sb.append(_escape(structuredContent.getDescription()));
 
 			sb.append("\"");
 		}
@@ -218,7 +219,7 @@ public class StructuredContentSerDes {
 
 			sb.append("\"");
 
-			sb.append(structuredContent.getFriendlyUrlPath());
+			sb.append(_escape(structuredContent.getFriendlyUrlPath()));
 
 			sb.append("\"");
 		}
@@ -242,7 +243,7 @@ public class StructuredContentSerDes {
 
 			sb.append("\"");
 
-			sb.append(structuredContent.getKey());
+			sb.append(_escape(structuredContent.getKey()));
 
 			sb.append("\"");
 		}
@@ -259,7 +260,7 @@ public class StructuredContentSerDes {
 			for (int i = 0; i < structuredContent.getKeywords().length; i++) {
 				sb.append("\"");
 
-				sb.append(structuredContent.getKeywords()[i]);
+				sb.append(_escape(structuredContent.getKeywords()[i]));
 
 				sb.append("\"");
 
@@ -374,7 +375,7 @@ public class StructuredContentSerDes {
 
 			sb.append("\"");
 
-			sb.append(structuredContent.getTitle());
+			sb.append(_escape(structuredContent.getTitle()));
 
 			sb.append("\"");
 		}
@@ -388,7 +389,7 @@ public class StructuredContentSerDes {
 
 			sb.append("\"");
 
-			sb.append(structuredContent.getUuid());
+			sb.append(_escape(structuredContent.getUuid()));
 
 			sb.append("\"");
 		}
@@ -591,6 +592,12 @@ public class StructuredContentSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class StructuredContentJSONParser

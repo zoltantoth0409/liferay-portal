@@ -15,6 +15,9 @@
 package com.liferay.headless.admin.user.client.dto.v1_0;
 
 import com.liferay.headless.admin.user.client.function.UnsafeSupplier;
+import com.liferay.headless.admin.user.client.serdes.v1_0.HoursAvailableSerDes;
+
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -106,5 +109,31 @@ public class HoursAvailable {
 	}
 
 	protected String opens;
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
+		if (!(object instanceof HoursAvailable)) {
+			return false;
+		}
+
+		HoursAvailable hoursAvailable = (HoursAvailable)object;
+
+		return Objects.equals(toString(), hoursAvailable.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		String string = toString();
+
+		return string.hashCode();
+	}
+
+	public String toString() {
+		return HoursAvailableSerDes.toJSON(this);
+	}
 
 }

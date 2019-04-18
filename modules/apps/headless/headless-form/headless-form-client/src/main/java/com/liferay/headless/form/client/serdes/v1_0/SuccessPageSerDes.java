@@ -62,7 +62,7 @@ public class SuccessPageSerDes {
 
 			sb.append("\"");
 
-			sb.append(successPage.getDescription());
+			sb.append(_escape(successPage.getDescription()));
 
 			sb.append("\"");
 		}
@@ -76,7 +76,7 @@ public class SuccessPageSerDes {
 
 			sb.append("\"");
 
-			sb.append(successPage.getHeadline());
+			sb.append(_escape(successPage.getHeadline()));
 
 			sb.append("\"");
 		}
@@ -126,6 +126,12 @@ public class SuccessPageSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class SuccessPageJSONParser

@@ -70,7 +70,7 @@ public class SiteBriefSerDes {
 
 			sb.append("\"");
 
-			sb.append(siteBrief.getName());
+			sb.append(_escape(siteBrief.getName()));
 
 			sb.append("\"");
 		}
@@ -102,6 +102,12 @@ public class SiteBriefSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class SiteBriefJSONParser extends BaseJSONParser<SiteBrief> {

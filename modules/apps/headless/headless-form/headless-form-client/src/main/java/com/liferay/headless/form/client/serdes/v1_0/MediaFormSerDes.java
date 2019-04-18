@@ -60,7 +60,7 @@ public class MediaFormSerDes {
 
 			sb.append("\"");
 
-			sb.append(mediaForm.getDescription());
+			sb.append(_escape(mediaForm.getDescription()));
 
 			sb.append("\"");
 		}
@@ -84,7 +84,7 @@ public class MediaFormSerDes {
 
 			sb.append("\"");
 
-			sb.append(mediaForm.getName());
+			sb.append(_escape(mediaForm.getName()));
 
 			sb.append("\"");
 		}
@@ -98,7 +98,7 @@ public class MediaFormSerDes {
 
 			sb.append("\"");
 
-			sb.append(mediaForm.getTitle());
+			sb.append(_escape(mediaForm.getTitle()));
 
 			sb.append("\"");
 		}
@@ -144,6 +144,12 @@ public class MediaFormSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class MediaFormJSONParser extends BaseJSONParser<MediaForm> {

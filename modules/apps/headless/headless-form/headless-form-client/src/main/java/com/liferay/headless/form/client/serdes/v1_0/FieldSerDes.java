@@ -72,7 +72,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getDataSourceType());
+			sb.append(_escape(field.getDataSourceType()));
 
 			sb.append("\"");
 		}
@@ -86,7 +86,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getDataType());
+			sb.append(_escape(field.getDataType()));
 
 			sb.append("\"");
 		}
@@ -100,7 +100,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getDisplayStyle());
+			sb.append(_escape(field.getDisplayStyle()));
 
 			sb.append("\"");
 		}
@@ -164,7 +164,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getInputControl());
+			sb.append(_escape(field.getInputControl()));
 
 			sb.append("\"");
 		}
@@ -178,7 +178,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getLabel());
+			sb.append(_escape(field.getLabel()));
 
 			sb.append("\"");
 		}
@@ -212,7 +212,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getName());
+			sb.append(_escape(field.getName()));
 
 			sb.append("\"");
 		}
@@ -246,7 +246,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getPlaceholder());
+			sb.append(_escape(field.getPlaceholder()));
 
 			sb.append("\"");
 		}
@@ -260,7 +260,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getPredefinedValue());
+			sb.append(_escape(field.getPredefinedValue()));
 
 			sb.append("\"");
 		}
@@ -324,7 +324,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getStyle());
+			sb.append(_escape(field.getStyle()));
 
 			sb.append("\"");
 		}
@@ -338,7 +338,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getText());
+			sb.append(_escape(field.getText()));
 
 			sb.append("\"");
 		}
@@ -352,7 +352,7 @@ public class FieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(field.getTooltip());
+			sb.append(_escape(field.getTooltip()));
 
 			sb.append("\"");
 		}
@@ -566,6 +566,12 @@ public class FieldSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class FieldJSONParser extends BaseJSONParser<Field> {

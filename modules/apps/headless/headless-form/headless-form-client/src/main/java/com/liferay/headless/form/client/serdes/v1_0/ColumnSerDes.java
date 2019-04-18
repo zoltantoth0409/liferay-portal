@@ -70,7 +70,7 @@ public class ColumnSerDes {
 
 			sb.append("\"");
 
-			sb.append(column.getLabel());
+			sb.append(_escape(column.getLabel()));
 
 			sb.append("\"");
 		}
@@ -84,7 +84,7 @@ public class ColumnSerDes {
 
 			sb.append("\"");
 
-			sb.append(column.getValue());
+			sb.append(_escape(column.getValue()));
 
 			sb.append("\"");
 		}
@@ -123,6 +123,12 @@ public class ColumnSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class ColumnJSONParser extends BaseJSONParser<Column> {

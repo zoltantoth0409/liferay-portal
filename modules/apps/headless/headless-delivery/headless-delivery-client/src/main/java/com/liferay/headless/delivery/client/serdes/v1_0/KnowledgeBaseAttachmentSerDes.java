@@ -64,7 +64,7 @@ public class KnowledgeBaseAttachmentSerDes {
 
 			sb.append("\"");
 
-			sb.append(knowledgeBaseAttachment.getContentUrl());
+			sb.append(_escape(knowledgeBaseAttachment.getContentUrl()));
 
 			sb.append("\"");
 		}
@@ -78,7 +78,7 @@ public class KnowledgeBaseAttachmentSerDes {
 
 			sb.append("\"");
 
-			sb.append(knowledgeBaseAttachment.getEncodingFormat());
+			sb.append(_escape(knowledgeBaseAttachment.getEncodingFormat()));
 
 			sb.append("\"");
 		}
@@ -92,7 +92,7 @@ public class KnowledgeBaseAttachmentSerDes {
 
 			sb.append("\"");
 
-			sb.append(knowledgeBaseAttachment.getFileExtension());
+			sb.append(_escape(knowledgeBaseAttachment.getFileExtension()));
 
 			sb.append("\"");
 		}
@@ -126,7 +126,7 @@ public class KnowledgeBaseAttachmentSerDes {
 
 			sb.append("\"");
 
-			sb.append(knowledgeBaseAttachment.getTitle());
+			sb.append(_escape(knowledgeBaseAttachment.getTitle()));
 
 			sb.append("\"");
 		}
@@ -197,6 +197,12 @@ public class KnowledgeBaseAttachmentSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class KnowledgeBaseAttachmentJSONParser

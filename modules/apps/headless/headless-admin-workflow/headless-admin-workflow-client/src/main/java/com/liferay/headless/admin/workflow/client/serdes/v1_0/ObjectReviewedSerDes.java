@@ -72,7 +72,7 @@ public class ObjectReviewedSerDes {
 
 			sb.append("\"");
 
-			sb.append(objectReviewed.getResourceType());
+			sb.append(_escape(objectReviewed.getResourceType()));
 
 			sb.append("\"");
 		}
@@ -106,6 +106,12 @@ public class ObjectReviewedSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class ObjectReviewedJSONParser

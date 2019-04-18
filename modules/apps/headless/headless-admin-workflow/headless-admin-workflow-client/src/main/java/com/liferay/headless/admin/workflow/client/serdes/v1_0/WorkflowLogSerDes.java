@@ -78,7 +78,7 @@ public class WorkflowLogSerDes {
 
 			sb.append("\"");
 
-			sb.append(workflowLog.getCommentLog());
+			sb.append(_escape(workflowLog.getCommentLog()));
 
 			sb.append("\"");
 		}
@@ -137,7 +137,7 @@ public class WorkflowLogSerDes {
 
 			sb.append("\"");
 
-			sb.append(workflowLog.getPreviousState());
+			sb.append(_escape(workflowLog.getPreviousState()));
 
 			sb.append("\"");
 		}
@@ -151,7 +151,7 @@ public class WorkflowLogSerDes {
 
 			sb.append("\"");
 
-			sb.append(workflowLog.getState());
+			sb.append(_escape(workflowLog.getState()));
 
 			sb.append("\"");
 		}
@@ -175,7 +175,7 @@ public class WorkflowLogSerDes {
 
 			sb.append("\"");
 
-			sb.append(workflowLog.getType());
+			sb.append(_escape(workflowLog.getType()));
 
 			sb.append("\"");
 		}
@@ -269,6 +269,12 @@ public class WorkflowLogSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class WorkflowLogJSONParser

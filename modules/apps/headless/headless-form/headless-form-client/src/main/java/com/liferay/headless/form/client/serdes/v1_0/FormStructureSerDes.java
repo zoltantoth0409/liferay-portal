@@ -75,7 +75,7 @@ public class FormStructureSerDes {
 
 				sb.append("\"");
 
-				sb.append(formStructure.getAvailableLanguages()[i]);
+				sb.append(_escape(formStructure.getAvailableLanguages()[i]));
 
 				sb.append("\"");
 
@@ -137,7 +137,7 @@ public class FormStructureSerDes {
 
 			sb.append("\"");
 
-			sb.append(formStructure.getDescription());
+			sb.append(_escape(formStructure.getDescription()));
 
 			sb.append("\"");
 		}
@@ -182,7 +182,7 @@ public class FormStructureSerDes {
 
 			sb.append("\"");
 
-			sb.append(formStructure.getName());
+			sb.append(_escape(formStructure.getName()));
 
 			sb.append("\"");
 		}
@@ -293,6 +293,12 @@ public class FormStructureSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class FormStructureJSONParser

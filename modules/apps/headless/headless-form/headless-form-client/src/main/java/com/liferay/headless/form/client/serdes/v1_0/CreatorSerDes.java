@@ -60,7 +60,7 @@ public class CreatorSerDes {
 
 			sb.append("\"");
 
-			sb.append(creator.getAdditionalName());
+			sb.append(_escape(creator.getAdditionalName()));
 
 			sb.append("\"");
 		}
@@ -74,7 +74,7 @@ public class CreatorSerDes {
 
 			sb.append("\"");
 
-			sb.append(creator.getFamilyName());
+			sb.append(_escape(creator.getFamilyName()));
 
 			sb.append("\"");
 		}
@@ -88,7 +88,7 @@ public class CreatorSerDes {
 
 			sb.append("\"");
 
-			sb.append(creator.getGivenName());
+			sb.append(_escape(creator.getGivenName()));
 
 			sb.append("\"");
 		}
@@ -112,7 +112,7 @@ public class CreatorSerDes {
 
 			sb.append("\"");
 
-			sb.append(creator.getImage());
+			sb.append(_escape(creator.getImage()));
 
 			sb.append("\"");
 		}
@@ -126,7 +126,7 @@ public class CreatorSerDes {
 
 			sb.append("\"");
 
-			sb.append(creator.getName());
+			sb.append(_escape(creator.getName()));
 
 			sb.append("\"");
 		}
@@ -140,7 +140,7 @@ public class CreatorSerDes {
 
 			sb.append("\"");
 
-			sb.append(creator.getProfileURL());
+			sb.append(_escape(creator.getProfileURL()));
 
 			sb.append("\"");
 		}
@@ -208,6 +208,12 @@ public class CreatorSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class CreatorJSONParser extends BaseJSONParser<Creator> {

@@ -110,7 +110,7 @@ public class DocumentFolderSerDes {
 
 			sb.append("\"");
 
-			sb.append(documentFolder.getDescription());
+			sb.append(_escape(documentFolder.getDescription()));
 
 			sb.append("\"");
 		}
@@ -134,7 +134,7 @@ public class DocumentFolderSerDes {
 
 			sb.append("\"");
 
-			sb.append(documentFolder.getName());
+			sb.append(_escape(documentFolder.getName()));
 
 			sb.append("\"");
 		}
@@ -270,6 +270,12 @@ public class DocumentFolderSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class DocumentFolderJSONParser

@@ -62,7 +62,7 @@ public class ChangeTransitionSerDes {
 
 			sb.append("\"");
 
-			sb.append(changeTransition.getTransition());
+			sb.append(_escape(changeTransition.getTransition()));
 
 			sb.append("\"");
 		}
@@ -88,6 +88,12 @@ public class ChangeTransitionSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class ChangeTransitionJSONParser

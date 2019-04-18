@@ -110,7 +110,7 @@ public class MessageBoardSectionSerDes {
 
 			sb.append("\"");
 
-			sb.append(messageBoardSection.getDescription());
+			sb.append(_escape(messageBoardSection.getDescription()));
 
 			sb.append("\"");
 		}
@@ -164,7 +164,7 @@ public class MessageBoardSectionSerDes {
 
 			sb.append("\"");
 
-			sb.append(messageBoardSection.getTitle());
+			sb.append(_escape(messageBoardSection.getTitle()));
 
 			sb.append("\"");
 		}
@@ -279,6 +279,12 @@ public class MessageBoardSectionSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class MessageBoardSectionJSONParser

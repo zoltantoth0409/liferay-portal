@@ -15,6 +15,9 @@
 package com.liferay.headless.form.client.dto.v1_0;
 
 import com.liferay.headless.form.client.function.UnsafeSupplier;
+import com.liferay.headless.form.client.serdes.v1_0.FormDocumentSerDes;
+
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
@@ -148,5 +151,31 @@ public class FormDocument {
 	}
 
 	protected String title;
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+
+		if (!(object instanceof FormDocument)) {
+			return false;
+		}
+
+		FormDocument formDocument = (FormDocument)object;
+
+		return Objects.equals(toString(), formDocument.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		String string = toString();
+
+		return string.hashCode();
+	}
+
+	public String toString() {
+		return FormDocumentSerDes.toJSON(this);
+	}
 
 }

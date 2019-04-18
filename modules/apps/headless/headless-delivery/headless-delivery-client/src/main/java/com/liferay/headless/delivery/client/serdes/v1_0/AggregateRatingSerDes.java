@@ -143,6 +143,12 @@ public class AggregateRatingSerDes {
 		return map;
 	}
 
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
+	}
+
 	private static class AggregateRatingJSONParser
 		extends BaseJSONParser<AggregateRating> {
 

@@ -62,7 +62,7 @@ public class SegmentUserSerDes {
 
 			sb.append("\"");
 
-			sb.append(segmentUser.getEmailAddress());
+			sb.append(_escape(segmentUser.getEmailAddress()));
 
 			sb.append("\"");
 		}
@@ -86,7 +86,7 @@ public class SegmentUserSerDes {
 
 			sb.append("\"");
 
-			sb.append(segmentUser.getName());
+			sb.append(_escape(segmentUser.getName()));
 
 			sb.append("\"");
 		}
@@ -126,6 +126,12 @@ public class SegmentUserSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class SegmentUserJSONParser

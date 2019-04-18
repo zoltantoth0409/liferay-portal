@@ -70,7 +70,7 @@ public class AssetTypeSerDes {
 
 			sb.append("\"");
 
-			sb.append(assetType.getSubtype());
+			sb.append(_escape(assetType.getSubtype()));
 
 			sb.append("\"");
 		}
@@ -84,7 +84,7 @@ public class AssetTypeSerDes {
 
 			sb.append("\"");
 
-			sb.append(assetType.getType());
+			sb.append(_escape(assetType.getType()));
 
 			sb.append("\"");
 		}
@@ -123,6 +123,12 @@ public class AssetTypeSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class AssetTypeJSONParser extends BaseJSONParser<AssetType> {

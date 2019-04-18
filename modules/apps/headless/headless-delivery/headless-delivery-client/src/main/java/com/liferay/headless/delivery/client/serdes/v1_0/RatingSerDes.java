@@ -196,6 +196,12 @@ public class RatingSerDes {
 		return map;
 	}
 
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
+	}
+
 	private static class RatingJSONParser extends BaseJSONParser<Rating> {
 
 		@Override

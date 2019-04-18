@@ -80,7 +80,7 @@ public class WorkflowTaskAssignToUserSerDes {
 
 			sb.append("\"");
 
-			sb.append(workflowTaskAssignToUser.getComment());
+			sb.append(_escape(workflowTaskAssignToUser.getComment()));
 
 			sb.append("\"");
 		}
@@ -142,6 +142,12 @@ public class WorkflowTaskAssignToUserSerDes {
 				workflowTaskAssignToUser.getDueDate()));
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class WorkflowTaskAssignToUserJSONParser

@@ -60,7 +60,11 @@ public class ContentSetElementSerDes {
 
 			sb.append("\"content\":");
 
-			sb.append(contentSetElement.getContent());
+			sb.append("\"");
+
+			sb.append(_escape(contentSetElement.getContent()));
+
+			sb.append("\"");
 		}
 
 		if (contentSetElement.getContentType() != null) {
@@ -72,7 +76,7 @@ public class ContentSetElementSerDes {
 
 			sb.append("\"");
 
-			sb.append(contentSetElement.getContentType());
+			sb.append(_escape(contentSetElement.getContentType()));
 
 			sb.append("\"");
 		}
@@ -96,7 +100,7 @@ public class ContentSetElementSerDes {
 
 			sb.append("\"");
 
-			sb.append(contentSetElement.getTitle());
+			sb.append(_escape(contentSetElement.getTitle()));
 
 			sb.append("\"");
 		}
@@ -146,6 +150,12 @@ public class ContentSetElementSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class ContentSetElementJSONParser

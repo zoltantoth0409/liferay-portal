@@ -63,7 +63,7 @@ public class ContentFieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(contentField.getDataType());
+			sb.append(_escape(contentField.getDataType()));
 
 			sb.append("\"");
 		}
@@ -77,7 +77,7 @@ public class ContentFieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(contentField.getInputControl());
+			sb.append(_escape(contentField.getInputControl()));
 
 			sb.append("\"");
 		}
@@ -91,7 +91,7 @@ public class ContentFieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(contentField.getLabel());
+			sb.append(_escape(contentField.getLabel()));
 
 			sb.append("\"");
 		}
@@ -105,7 +105,7 @@ public class ContentFieldSerDes {
 
 			sb.append("\"");
 
-			sb.append(contentField.getName());
+			sb.append(_escape(contentField.getName()));
 
 			sb.append("\"");
 		}
@@ -216,6 +216,12 @@ public class ContentFieldSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class ContentFieldJSONParser

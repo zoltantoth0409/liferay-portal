@@ -91,7 +91,7 @@ public class ContactInformationSerDes {
 
 			sb.append("\"");
 
-			sb.append(contactInformation.getFacebook());
+			sb.append(_escape(contactInformation.getFacebook()));
 
 			sb.append("\"");
 		}
@@ -115,7 +115,7 @@ public class ContactInformationSerDes {
 
 			sb.append("\"");
 
-			sb.append(contactInformation.getJabber());
+			sb.append(_escape(contactInformation.getJabber()));
 
 			sb.append("\"");
 		}
@@ -153,7 +153,7 @@ public class ContactInformationSerDes {
 
 			sb.append("\"");
 
-			sb.append(contactInformation.getSkype());
+			sb.append(_escape(contactInformation.getSkype()));
 
 			sb.append("\"");
 		}
@@ -167,7 +167,7 @@ public class ContactInformationSerDes {
 
 			sb.append("\"");
 
-			sb.append(contactInformation.getSms());
+			sb.append(_escape(contactInformation.getSms()));
 
 			sb.append("\"");
 		}
@@ -204,7 +204,7 @@ public class ContactInformationSerDes {
 
 			sb.append("\"");
 
-			sb.append(contactInformation.getTwitter());
+			sb.append(_escape(contactInformation.getTwitter()));
 
 			sb.append("\"");
 		}
@@ -322,6 +322,12 @@ public class ContactInformationSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class ContactInformationJSONParser

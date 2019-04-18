@@ -94,7 +94,7 @@ public class ServiceSerDes {
 
 			sb.append("\"");
 
-			sb.append(service.getServiceType());
+			sb.append(_escape(service.getServiceType()));
 
 			sb.append("\"");
 		}
@@ -134,6 +134,12 @@ public class ServiceSerDes {
 		}
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class ServiceJSONParser extends BaseJSONParser<Service> {

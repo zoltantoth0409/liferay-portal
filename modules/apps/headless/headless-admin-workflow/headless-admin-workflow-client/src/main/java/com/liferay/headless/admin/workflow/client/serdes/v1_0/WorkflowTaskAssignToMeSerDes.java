@@ -68,7 +68,7 @@ public class WorkflowTaskAssignToMeSerDes {
 
 			sb.append("\"");
 
-			sb.append(workflowTaskAssignToMe.getComment());
+			sb.append(_escape(workflowTaskAssignToMe.getComment()));
 
 			sb.append("\"");
 		}
@@ -120,6 +120,12 @@ public class WorkflowTaskAssignToMeSerDes {
 				workflowTaskAssignToMe.getDueDate()));
 
 		return map;
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 	private static class WorkflowTaskAssignToMeJSONParser
