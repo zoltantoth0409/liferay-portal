@@ -40,13 +40,19 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class InetAddressUtil {
 
+	private static final int _DNS_SECURITY_THREAD_LIMIT =
+		GetterUtil.getInteger(
+			PropsUtil.get(PropsKeys.DNS_SECURITY_THREAD_LIMIT));
+
+	private static final int _DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS =
+		GetterUtil.getInteger(
+			PropsUtil.get(PropsKeys.DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS));
+
 	public static InetAddress getInetAddressByName(String domain)
 		throws UnknownHostException {
 
-		int threadLimit = GetterUtil.getInteger(
-			PropsUtil.get(PropsKeys.DNS_SECURITY_THREAD_LIMIT));
-
-		AtomicInteger atomicInteger = new AtomicInteger(threadLimit);
+		AtomicInteger atomicInteger = new AtomicInteger(
+			_DNS_SECURITY_THREAD_LIMIT);
 
 		InetAddress inetAddress = null;
 
@@ -55,11 +61,8 @@ public class InetAddressUtil {
 				Future<InetAddress> result = _submit(
 					"InetAddressUtil", () -> InetAddress.getByName(domain));
 
-				int timeout = GetterUtil.getInteger(
-					PropsUtil.get(
-						PropsKeys.DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS));
-
-				inetAddress = result.get(timeout, TimeUnit.SECONDS);
+				inetAddress = result.get(
+					_DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS, TimeUnit.SECONDS);
 			}
 			else {
 				_log.error(
