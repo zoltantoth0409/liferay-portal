@@ -35,6 +35,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>REPORTS_TABLE_RESOURCE_ID_1</td>
+	<td>xpath=(//tr/td[3])[1]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>REPORTS_TABLE_RESOURCE_NAME</td>
 	<td>//tbody[@class='table-data']/tr[contains(.,'${key_resourceAction}') and contains(.,'${key_resourceName}')]/td[4]</td>
 	<td></td>
