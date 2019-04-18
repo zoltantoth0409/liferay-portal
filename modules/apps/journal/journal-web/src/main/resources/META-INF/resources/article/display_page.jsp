@@ -17,11 +17,11 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String layoutUuid = null;
+
 EditArticleDisplayPageDisplayContext editArticleDisplayPageDisplayContext = new EditArticleDisplayPageDisplayContext(request, liferayPortletRequest, liferayPortletResponse);
 
 JournalArticle article = editArticleDisplayPageDisplayContext.getArticle();
-
-String layoutUuid = null;
 
 if (article != null) {
 	layoutUuid = article.getLayoutUuid();
