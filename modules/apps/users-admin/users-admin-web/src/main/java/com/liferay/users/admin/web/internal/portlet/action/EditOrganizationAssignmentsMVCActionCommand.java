@@ -119,15 +119,13 @@ public class EditOrganizationAssignmentsMVCActionCommand
 
 				Group organizationGroup = organization.getGroup();
 
-				boolean site = organizationGroup.isSite();
-
 				_organizationService.updateOrganization(
 					removeOrganizationId,
 					OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
 					organization.getName(), organization.getType(),
 					organization.getRegionId(), organization.getCountryId(),
 					organization.getStatusId(), organization.getComments(),
-					site, serviceContext);
+					organizationGroup.isSite(), serviceContext);
 			}
 		}
 	}
