@@ -15,7 +15,6 @@
 package com.liferay.portal.kernel.util;
 
 import com.liferay.portal.kernel.concurrent.DefaultNoticeableFuture;
-import com.liferay.portal.kernel.concurrent.NoticeableFuture;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -26,9 +25,7 @@ import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 
 import java.util.Enumeration;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -39,14 +36,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Marta Medio
  */
 public class InetAddressUtil {
-
-	private static final int _DNS_SECURITY_THREAD_LIMIT =
-		GetterUtil.getInteger(
-			PropsUtil.get(PropsKeys.DNS_SECURITY_THREAD_LIMIT));
-
-	private static final int _DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS =
-		GetterUtil.getInteger(
-			PropsUtil.get(PropsKeys.DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS));
 
 	public static InetAddress getInetAddressByName(String domain)
 		throws UnknownHostException {
@@ -62,7 +51,8 @@ public class InetAddressUtil {
 					new DefaultNoticeableFuture<>(
 						() -> InetAddress.getByName(domain));
 
-				Thread thread = new Thread(defaultNoticeableFuture, "InetAddressUtil");
+				Thread thread = new Thread(
+					defaultNoticeableFuture, "InetAddressUtil");
 
 				thread.setDaemon(true);
 
@@ -81,7 +71,8 @@ public class InetAddressUtil {
 				_log.debug(e, e);
 			}
 
-			throw new UnknownHostException("Unable to resolve domain: " + domain);
+			throw new UnknownHostException(
+				"Unable to resolve domain: " + domain);
 		}
 		finally {
 			atomicInteger.incrementAndGet();
@@ -134,6 +125,13 @@ public class InetAddressUtil {
 
 		return false;
 	}
+
+	private static final int _DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS =
+		GetterUtil.getInteger(
+			PropsUtil.get(PropsKeys.DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS));
+
+	private static final int _DNS_SECURITY_THREAD_LIMIT = GetterUtil.getInteger(
+		PropsUtil.get(PropsKeys.DNS_SECURITY_THREAD_LIMIT));
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		InetAddressUtil.class);
