@@ -42,7 +42,7 @@ public class ConfigFileConfigurationDescriptionFactoryImpl
 		NamedConfigurationContent namedConfigurationContent) {
 
 		if (!(namedConfigurationContent instanceof
-			ConfigFileNamedConfigurationContent)) {
+				ConfigFileNamedConfigurationContent)) {
 
 			return null;
 		}
@@ -68,8 +68,7 @@ public class ConfigFileConfigurationDescriptionFactoryImpl
 
 		return new SingleConfigurationDescription(
 			pid,
-			new PropertiesSupplier(
-				namedConfigurationContent.getInputStream()));
+			new PropertiesSupplier(namedConfigurationContent.getInputStream()));
 	}
 
 	private class PropertiesSupplier
