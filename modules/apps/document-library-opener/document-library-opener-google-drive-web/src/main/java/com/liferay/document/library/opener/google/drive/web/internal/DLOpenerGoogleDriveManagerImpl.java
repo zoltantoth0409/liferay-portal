@@ -292,7 +292,7 @@ public class DLOpenerGoogleDriveManagerImpl
 
 			if (!StringUtil.startsWith(url.getProtocol(), Http.HTTP)) {
 				throw new SecurityException(
-					"Only HTTP(S) links are allowed: " + url);
+					"Only HTTP links are allowed: " + url);
 			}
 
 			if (InetAddressUtil.isLocalInetAddress(
