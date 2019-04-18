@@ -109,8 +109,8 @@ definition {
 		);
 
 		Audit.searchCP(
-			resourceAction = "Login",
-			searchTerm = "Login",
+			resourceAction = "LOGIN",
+			searchTerm = "LOGIN",
 			userName = "Test Test"
 		);
 
