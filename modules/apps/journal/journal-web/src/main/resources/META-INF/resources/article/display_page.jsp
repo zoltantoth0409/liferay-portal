@@ -103,18 +103,21 @@ Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
 				<aui:button name="chooseDisplayPage" value="choose" />
 
-				<%
-				Layout defaultDisplayLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(editArticleDisplayPageDisplayContext.getLayoutUuid(), themeDisplay.getScopeGroupId(), false);
+				<c:if test="<%= editArticleDisplayPageDisplayContext.isURLViewInContext() %>">
 
-				if (defaultDisplayLayout == null) {
-					defaultDisplayLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(editArticleDisplayPageDisplayContext.getLayoutUuid(), themeDisplay.getScopeGroupId(), true);
-				}
-				%>
+					<%
+					Layout defaultDisplayLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(editArticleDisplayPageDisplayContext.getLayoutUuid(), themeDisplay.getScopeGroupId(), false);
 
-				<c:if test="<%= editArticleDisplayPageDisplayContext.isURLViewInContext() && (defaultDisplayLayout != null) %>">
-					<aui:a href="<%= editArticleDisplayPageDisplayContext.getURLViewInContext() %>" target="blank">
-						<liferay-ui:message arguments="<%= HtmlUtil.escape(defaultDisplayLayout.getName(locale)) %>" key="view-content-in-x" translateArguments="<%= false %>" />
-					</aui:a>
+					if (defaultDisplayLayout == null) {
+						defaultDisplayLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(editArticleDisplayPageDisplayContext.getLayoutUuid(), themeDisplay.getScopeGroupId(), true);
+					}
+					%>
+
+					<c:if test="<%= defaultDisplayLayout != null %>">
+						<aui:a href="<%= editArticleDisplayPageDisplayContext.getURLViewInContext() %>" target="blank">
+							<liferay-ui:message arguments="<%= HtmlUtil.escape(defaultDisplayLayout.getName(locale)) %>" key="view-content-in-x" translateArguments="<%= false %>" />
+						</aui:a>
+					</c:if>
 				</c:if>
 			</div>
 
