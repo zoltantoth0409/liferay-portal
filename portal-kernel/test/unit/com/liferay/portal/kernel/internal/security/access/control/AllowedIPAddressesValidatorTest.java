@@ -31,16 +31,17 @@ public class AllowedIPAddressesValidatorTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		Map<String, Object> propertiesMap = new HashMap<String, Object>() {
-			{
-				put(
-					PropsKeys.DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS,
-					String.valueOf(2));
-				put(PropsKeys.DNS_SECURITY_THREAD_LIMIT, String.valueOf(10));
-			}
-		};
-
-		PropsTestUtil.setProps(propertiesMap);
+		PropsTestUtil.setProps(
+			new HashMap<String, Object>() {
+				{
+					put(
+						PropsKeys.DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS,
+						String.valueOf(2));
+					put(
+						PropsKeys.DNS_SECURITY_THREAD_LIMIT,
+						String.valueOf(10));
+				}
+			});
 	}
 
 	@Test
