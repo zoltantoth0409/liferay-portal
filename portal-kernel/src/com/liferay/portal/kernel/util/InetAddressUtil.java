@@ -43,8 +43,6 @@ public class InetAddressUtil {
 		AtomicInteger atomicInteger = new AtomicInteger(
 			_DNS_SECURITY_THREAD_LIMIT);
 
-		InetAddress inetAddress = null;
-
 		try {
 			if (atomicInteger.getAndDecrement() > 0) {
 				DefaultNoticeableFuture<InetAddress> defaultNoticeableFuture =
@@ -58,12 +56,14 @@ public class InetAddressUtil {
 
 				thread.start();
 
-				inetAddress = defaultNoticeableFuture.get(
+				return defaultNoticeableFuture.get(
 					_DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS, TimeUnit.SECONDS);
 			}
 			else {
 				_log.error(
 					"Thread limit exceeded to resolve domain: " + domain);
+
+				return null;
 			}
 		}
 		catch (ExecutionException | InterruptedException | TimeoutException e) {
@@ -77,8 +77,6 @@ public class InetAddressUtil {
 		finally {
 			atomicInteger.incrementAndGet();
 		}
-
-		return inetAddress;
 	}
 
 	public static String getLocalHostName() throws Exception {
