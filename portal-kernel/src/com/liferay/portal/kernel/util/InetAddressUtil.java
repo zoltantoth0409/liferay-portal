@@ -44,27 +44,26 @@ public class InetAddressUtil {
 			_DNS_SECURITY_THREAD_LIMIT);
 
 		try {
-			if (atomicInteger.getAndDecrement() > 0) {
-				DefaultNoticeableFuture<InetAddress> defaultNoticeableFuture =
-					new DefaultNoticeableFuture<>(
-						() -> InetAddress.getByName(domain));
-
-				Thread thread = new Thread(
-					defaultNoticeableFuture, "InetAddressUtil");
-
-				thread.setDaemon(true);
-
-				thread.start();
-
-				return defaultNoticeableFuture.get(
-					_DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-			}
-			else {
+			if (atomicInteger.getAndDecrement() <= 0) {
 				_log.error(
 					"Thread limit exceeded to resolve domain: " + domain);
 
 				return null;
 			}
+
+			DefaultNoticeableFuture<InetAddress> defaultNoticeableFuture =
+				new DefaultNoticeableFuture<>(
+					() -> InetAddress.getByName(domain));
+
+			Thread thread = new Thread(
+				defaultNoticeableFuture, "InetAddressUtil");
+
+			thread.setDaemon(true);
+
+			thread.start();
+
+			return defaultNoticeableFuture.get(
+				_DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS, TimeUnit.SECONDS);
 		}
 		catch (ExecutionException | InterruptedException | TimeoutException e) {
 			if (_log.isDebugEnabled()) {
