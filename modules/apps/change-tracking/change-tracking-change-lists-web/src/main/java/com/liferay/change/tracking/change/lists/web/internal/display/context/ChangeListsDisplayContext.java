@@ -366,9 +366,9 @@ public class ChangeListsDisplayContext {
 		PortletURL iteratorURL = _renderResponse.createRenderURL();
 
 		iteratorURL.setParameter("mvcPath", "/view.jsp");
-		iteratorURL.setParameter("select", "true");
 		iteratorURL.setParameter("redirect", currentURL.toString());
 		iteratorURL.setParameter("displayStyle", getDisplayStyle());
+		iteratorURL.setParameter("select", "true");
 
 		return iteratorURL;
 	}
