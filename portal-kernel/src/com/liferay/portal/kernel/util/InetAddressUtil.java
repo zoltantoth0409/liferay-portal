@@ -58,10 +58,17 @@ public class InetAddressUtil {
 
 		try {
 			if (atomicInteger.getAndDecrement() > 0) {
-				Future<InetAddress> future = _submit(
-					"InetAddressUtil", () -> InetAddress.getByName(domain));
+				DefaultNoticeableFuture<InetAddress> defaultNoticeableFuture =
+					new DefaultNoticeableFuture<>(
+						() -> InetAddress.getByName(domain));
 
-				inetAddress = future.get(
+				Thread thread = new Thread(defaultNoticeableFuture, "InetAddressUtil");
+
+				thread.setDaemon(true);
+
+				thread.start();
+
+				inetAddress = defaultNoticeableFuture.get(
 					_DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS, TimeUnit.SECONDS);
 			}
 			else {
@@ -127,21 +134,6 @@ public class InetAddressUtil {
 		}
 
 		return false;
-	}
-
-	private static <T> NoticeableFuture<T> _submit(
-		String threadName, Callable<T> callable) {
-
-		DefaultNoticeableFuture<T> defaultNoticeableFuture =
-			new DefaultNoticeableFuture<>(callable);
-
-		Thread thread = new Thread(defaultNoticeableFuture, threadName);
-
-		thread.setDaemon(true);
-
-		thread.start();
-
-		return defaultNoticeableFuture;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
