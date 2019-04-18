@@ -241,13 +241,6 @@ public class ChangeListsDisplayContext {
 			count += 1;
 		}
 
-		if (searchContainer.getStart() > 0) {
-			queryDefinition.setStart(searchContainer.getStart() - 1);
-		}
-		else {
-			queryDefinition.setStart(searchContainer.getStart());
-		}
-
 		if (searchContainer.getEnd() < count) {
 			queryDefinition.setEnd(searchContainer.getEnd() - 1);
 		}
@@ -255,12 +248,17 @@ public class ChangeListsDisplayContext {
 			queryDefinition.setEnd(searchContainer.getEnd());
 		}
 
-		OrderByComparator<CTCollection> orderByComparator =
+		queryDefinition.setOrderByComparator(
 			OrderByComparatorFactoryUtil.create(
 				"CTCollection", _getOrderByCol(),
-				getOrderByType().equals("asc"));
+				getOrderByType().equals("asc")));
 
-		queryDefinition.setOrderByComparator(orderByComparator);
+		if (searchContainer.getStart() > 0) {
+			queryDefinition.setStart(searchContainer.getStart() - 1);
+		}
+		else {
+			queryDefinition.setStart(searchContainer.getStart());
+		}
 
 		ctCollections.addAll(
 			_ctEngineManager.searchByKeywords(
