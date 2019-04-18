@@ -110,7 +110,7 @@ public class MSCognitiveServicesImageAssetAutoTagProvider
 
 			throw new SecurityException(
 				"Microsoft Cognitive Services Image Auto Tagging API " +
-					"Endpoint cannot be a local address");
+					"endpoint is a local address");
 		}
 	}
 
