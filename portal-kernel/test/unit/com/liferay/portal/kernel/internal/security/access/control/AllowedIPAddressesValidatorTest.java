@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;

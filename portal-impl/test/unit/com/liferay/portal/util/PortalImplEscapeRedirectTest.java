@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.Assert;
