@@ -97,8 +97,6 @@ public class EditOrganizationAssignmentsMVCActionCommand
 
 		long[] addUserIds = StringUtil.split(
 			ParamUtil.getString(actionRequest, "addUserIds"), 0L);
-		long[] removeOrganizationIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "removeOrganizationIds"), 0L);
 		long[] removeUserIds = StringUtil.split(
 			ParamUtil.getString(actionRequest, "removeUserIds"), 0L);
 
@@ -112,6 +110,10 @@ public class EditOrganizationAssignmentsMVCActionCommand
 
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				Organization.class.getName(), actionRequest);
+
+			long[] removeOrganizationIds = StringUtil.split(
+				ParamUtil.getString(actionRequest, "removeOrganizationIds"),
+				0L);
 
 			for (long removeOrganizationId : removeOrganizationIds) {
 				Organization organization =
