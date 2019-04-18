@@ -58,10 +58,10 @@ public class InetAddressUtil {
 
 		try {
 			if (atomicInteger.getAndDecrement() > 0) {
-				Future<InetAddress> result = _submit(
+				Future<InetAddress> future = _submit(
 					"InetAddressUtil", () -> InetAddress.getByName(domain));
 
-				inetAddress = result.get(
+				inetAddress = future.get(
 					_DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS, TimeUnit.SECONDS);
 			}
 			else {
