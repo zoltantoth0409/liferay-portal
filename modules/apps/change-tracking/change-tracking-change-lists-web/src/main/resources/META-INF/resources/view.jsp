@@ -226,16 +226,12 @@ DisplayTerms displayTerms = ctCollectionSearchContainer.getDisplayTerms();
 												</span>
 											</a>
 
-											<%
-											String description = curCTCollection.getDescription();
-											%>
-
-											<c:if test="<%= Validator.isNotNull(description) %>">
+											<c:if test="<%= Validator.isNotNull(curCTCollection.getDescription()) %>">
 												<div class="select-card-sheet-block">
 													<span class="card-h4"><liferay-ui:message key="description" /></span>
 
 													<div class="card-text" data-qa-id="description">
-														<%= HtmlUtil.escape(description) %>
+														<%= HtmlUtil.escape(curCTCollection.getDescription()) %>
 													</div>
 												</div>
 											</c:if>
