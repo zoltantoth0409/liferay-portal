@@ -18,6 +18,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
@@ -209,44 +212,78 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 
 		sb.append("{");
 
+		<#assign
+			enumSchemas = freeMarkerTool.getDTOEnumSchemas(schema)
+			properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema)
+		/>
+
 		<#list properties?keys as propertyName>
-			<#if !propertyName?is_first>
-				sb.append(", ");
+			<#assign propertyType = properties[propertyName] />
+
+			<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "Date[]")>
+				DateFormat liferayToJSONDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+				<#break>
 			</#if>
+		</#list>
 
-			sb.append("\"${propertyName}\": ");
+		<#list properties?keys as propertyName>
+			<#assign propertyType = properties[propertyName] />
 
-			if (${propertyName} == null) {
-				sb.append("null");
-			}
-			else {
-				<#assign propertyType = properties[propertyName] />
+			if (${propertyName} != null) {
+				if (sb.length() > 1) {
+					sb.append(", ");
+				}
 
-				<#if propertyType?contains("[]")>
-					sb.append("[");
+				sb.append("\"${propertyName}\":");
 
-					for (int i = 0; i < ${propertyName}.length; i++) {
-						<#if stringUtil.equals(propertyType, "Date[]") || stringUtil.equals(propertyType, "String[]") || enumSchemas?keys?seq_contains(propertyType)>
+				<#if allSchemas[propertyType]??>
+					sb.append(String.valueOf(${propertyName}));
+				<#else>
+					<#if propertyType?contains("[]")>
+						sb.append("[");
+
+						for (int i = 0; i < ${propertyName}.length; i++) {
+							<#if stringUtil.equals(propertyType, "Date[]") || stringUtil.equals(propertyType, "Object[]") || stringUtil.equals(propertyType, "String[]") || enumSchemas?keys?seq_contains(propertyType)>
+								sb.append("\"");
+
+								<#if stringUtil.equals(propertyType, "Date[]")>
+									sb.append(liferayToJSONDateFormat.format(${propertyName}[i]));
+								<#elseif stringUtil.equals(propertyType, "Object[]") || stringUtil.equals(propertyType, "String[]")>
+									sb.append(_escape(${propertyName}[i]));
+								<#else>
+									sb.append(${propertyName}[i]);
+								</#if>
+
+								sb.append("\"");
+							<#elseif allSchemas[propertyType?remove_ending("[]")]??>
+								sb.append(String.valueOf(${propertyName}[i]));
+							<#else>
+								sb.append(${propertyName}[i]);
+							</#if>
+
+							if ((i + 1) < ${propertyName}.length) {
+								sb.append(", ");
+							}
+						}
+
+						sb.append("]");
+					<#else>
+						<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "Object") || stringUtil.equals(propertyType, "String") || enumSchemas?keys?seq_contains(propertyType)>
 							sb.append("\"");
-							sb.append(${propertyName}[i]);
+
+							<#if stringUtil.equals(propertyType, "Date")>
+								sb.append(liferayToJSONDateFormat.format(${propertyName}));
+							<#elseif stringUtil.equals(propertyType, "Object") || stringUtil.equals(propertyType, "String")>
+								sb.append(_escape(${propertyName}));
+							<#else>
+								sb.append(${propertyName});
+							</#if>
+
 							sb.append("\"");
 						<#else>
-							sb.append(${propertyName}[i]);
+							sb.append(${propertyName});
 						</#if>
-
-						if ((i + 1) < ${propertyName}.length) {
-							sb.append(", ");
-						}
-					}
-
-					sb.append("]");
-				<#else>
-					<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "String") || enumSchemas?keys?seq_contains(propertyType)>
-						sb.append("\"");
-						sb.append(${propertyName});
-						sb.append("\"");
-					<#else>
-						sb.append(${propertyName});
 					</#if>
 				</#if>
 			}
@@ -255,6 +292,12 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }
