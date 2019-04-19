@@ -38,7 +38,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.function.ToLongFunction;
 
 /**
@@ -457,7 +456,7 @@ public class ListUtil {
 	}
 
 	public static <T, V extends T> List<T> toList(List<V> vlist) {
-		return new ArrayList<>(vlist);
+		return new ArrayList<T>(vlist);
 	}
 
 	public static List<Long> toList(long[] array) {
