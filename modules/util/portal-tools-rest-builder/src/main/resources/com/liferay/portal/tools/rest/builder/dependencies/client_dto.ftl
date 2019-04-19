@@ -1,6 +1,7 @@
 package ${configYAML.apiPackagePath}.client.dto.${escapedVersion};
 
 import ${configYAML.apiPackagePath}.client.function.UnsafeSupplier;
+import ${configYAML.apiPackagePath}.client.serdes.${escapedVersion}.${schemaName}SerDes;
 
 import java.math.BigDecimal;
 
@@ -118,56 +119,7 @@ public class ${schemaName} {
 	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("{");
-
-		<#list properties?keys as propertyName>
-			<#if !propertyName?is_first>
-				sb.append(", ");
-			</#if>
-
-			sb.append("\"${propertyName}\": ");
-
-			if (${propertyName} == null) {
-				sb.append("null");
-			}
-			else {
-				<#assign propertyType = properties[propertyName] />
-
-				<#if propertyType?contains("[]")>
-					sb.append("[");
-
-					for (int i = 0; i < ${propertyName}.length; i++) {
-						<#if stringUtil.equals(propertyType, "Date[]") || stringUtil.equals(propertyType, "String[]") || enumSchemas?keys?seq_contains(propertyType)>
-							sb.append("\"");
-							sb.append(${propertyName}[i]);
-							sb.append("\"");
-						<#else>
-							sb.append(${propertyName}[i]);
-						</#if>
-
-						if ((i + 1) < ${propertyName}.length) {
-							sb.append(", ");
-						}
-					}
-
-					sb.append("]");
-				<#else>
-					<#if stringUtil.equals(propertyType, "Date") || stringUtil.equals(propertyType, "String") || enumSchemas?keys?seq_contains(propertyType)>
-						sb.append("\"");
-						sb.append(${propertyName});
-						sb.append("\"");
-					<#else>
-						sb.append(${propertyName});
-					</#if>
-				</#if>
-			}
-		</#list>
-
-		sb.append("}");
-
-		return sb.toString();
+		return ${schemaName}SerDes.toJSON(this);
 	}
 
 }
