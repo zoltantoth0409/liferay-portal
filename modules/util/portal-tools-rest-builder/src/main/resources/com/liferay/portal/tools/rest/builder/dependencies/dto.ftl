@@ -235,7 +235,7 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 					sb.append(", ");
 				}
 
-				sb.append("\"${propertyName}\":");
+				sb.append("\"${propertyName}\": ");
 
 				<#if allSchemas[propertyType]??>
 					sb.append(String.valueOf(${propertyName}));

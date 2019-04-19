@@ -71,7 +71,7 @@ public class ${schemaName}SerDes {
 					sb.append(", ");
 				}
 
-				sb.append("\"${propertyName}\":");
+				sb.append("\"${propertyName}\": ");
 
 				<#if allSchemas[propertyType]??>
 					sb.append(String.valueOf(${schemaVarName}.get${propertyName?cap_first}()));
