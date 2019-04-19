@@ -67,6 +67,7 @@ AUI.add(
 
 							if (layoutConfig && layoutConfig.sortable && layoutConfig.id == item.getData('layoutId')) {
 								item.append(TPL_DRAG_HANDLE);
+
 								item.addClass('lfr-nav-sortable');
 							}
 						}
@@ -82,11 +83,13 @@ AUI.add(
 					else {
 						var navItems = instance.get('navBlock').all(instance._navItemSelector);
 
-						var navClass = navItems.hasClass('lfr-nav-sortable')
-
-						if (navClass && !navClass[0]) {
-							instance._createDragHandles(navItems);
-						}
+						navItems.each(
+							function(item) {
+								if (!item.hasClass('lfr-nav-sortable')) {
+									return instance._createDragHandles(navItems);
+								}
+							}
+						);
 
 						instance._toggleDragConfig(instance._sortableDD);
 					}
@@ -99,10 +102,10 @@ AUI.add(
 
 					items.each(
 						function(item) {
-							var svgElement = item._node.children[1];
+							var dragHandle = item.one('.drag-handle');
 
-							if (svgElement && svgElement.tagName == 'svg') {
-								svgElement.remove();
+							if (dragHandle) {
+								dragHandle.remove();
 
 								item.removeClass('lfr-nav-sortable');
 							}
