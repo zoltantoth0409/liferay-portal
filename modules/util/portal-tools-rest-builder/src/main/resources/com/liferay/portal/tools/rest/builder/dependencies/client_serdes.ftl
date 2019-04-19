@@ -74,7 +74,7 @@ public class ${schemaName}SerDes {
 				sb.append("\"${propertyName}\":");
 
 				<#if allSchemas[propertyType]??>
-					sb.append(${propertyType}SerDes.toJSON(${schemaVarName}.get${propertyName?cap_first}()));
+					sb.append(String.valueOf(${schemaVarName}.get${propertyName?cap_first}()));
 				<#else>
 					<#if propertyType?contains("[]")>
 						sb.append("[");
@@ -93,7 +93,7 @@ public class ${schemaName}SerDes {
 
 								sb.append("\"");
 							<#elseif allSchemas[propertyType?remove_ending("[]")]??>
-								sb.append(${propertyType?remove_ending("[]")}SerDes.toJSON(${schemaVarName}.get${propertyName?cap_first}()[i]));
+								sb.append(String.valueOf(${schemaVarName}.get${propertyName?cap_first}()[i]));
 							<#else>
 								sb.append(${schemaVarName}.get${propertyName?cap_first}()[i]);
 							</#if>
@@ -159,7 +159,7 @@ public class ${schemaName}SerDes {
 					map.put("${propertyName}", null);
 				}
 				else {
-					map.put("${propertyName}", ${propertyType}SerDes.toJSON(${schemaVarName}.get${propertyName?cap_first}()));
+					map.put("${propertyName}", String.valueOf(${schemaVarName}.get${propertyName?cap_first}()));
 				}
 			<#elseif stringUtil.equals(propertyType, "Date")>
 				map.put("${propertyName}", liferayToJSONDateFormat.format(${schemaVarName}.get${propertyName?cap_first}()));
