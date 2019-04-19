@@ -131,7 +131,7 @@ public class ParentKnowledgeBaseFolder {
 				sb.append(", ");
 			}
 
-			sb.append("\"folderId\":");
+			sb.append("\"folderId\": ");
 
 			sb.append(folderId);
 		}
@@ -141,7 +141,7 @@ public class ParentKnowledgeBaseFolder {
 				sb.append(", ");
 			}
 
-			sb.append("\"folderName\":");
+			sb.append("\"folderName\": ");
 
 			sb.append("\"");
 

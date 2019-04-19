@@ -58,7 +58,7 @@ public class GenericErrorSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"message\":");
+			sb.append("\"message\": ");
 
 			sb.append("\"");
 

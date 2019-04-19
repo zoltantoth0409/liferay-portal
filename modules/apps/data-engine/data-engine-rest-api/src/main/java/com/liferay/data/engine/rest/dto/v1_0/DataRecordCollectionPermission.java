@@ -371,7 +371,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"addDataRecord\":");
+			sb.append("\"addDataRecord\": ");
 
 			sb.append(addDataRecord);
 		}
@@ -381,7 +381,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"addDataRecordCollection\":");
+			sb.append("\"addDataRecordCollection\": ");
 
 			sb.append(addDataRecordCollection);
 		}
@@ -391,7 +391,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"definePermissions\":");
+			sb.append("\"definePermissions\": ");
 
 			sb.append(definePermissions);
 		}
@@ -401,7 +401,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"delete\":");
+			sb.append("\"delete\": ");
 
 			sb.append(delete);
 		}
@@ -411,7 +411,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"deleteDataRecord\":");
+			sb.append("\"deleteDataRecord\": ");
 
 			sb.append(deleteDataRecord);
 		}
@@ -421,7 +421,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"exportDataRecord\":");
+			sb.append("\"exportDataRecord\": ");
 
 			sb.append(exportDataRecord);
 		}
@@ -431,7 +431,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"roleNames\":");
+			sb.append("\"roleNames\": ");
 
 			sb.append("[");
 
@@ -455,7 +455,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"update\":");
+			sb.append("\"update\": ");
 
 			sb.append(update);
 		}
@@ -465,7 +465,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"updateDataRecord\":");
+			sb.append("\"updateDataRecord\": ");
 
 			sb.append(updateDataRecord);
 		}
@@ -475,7 +475,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"view\":");
+			sb.append("\"view\": ");
 
 			sb.append(view);
 		}
@@ -485,7 +485,7 @@ public class DataRecordCollectionPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewDataRecord\":");
+			sb.append("\"viewDataRecord\": ");
 
 			sb.append(viewDataRecord);
 		}

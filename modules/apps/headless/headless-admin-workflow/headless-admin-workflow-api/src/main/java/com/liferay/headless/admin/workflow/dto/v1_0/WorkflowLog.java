@@ -359,7 +359,7 @@ public class WorkflowLog {
 				sb.append(", ");
 			}
 
-			sb.append("\"auditPerson\":");
+			sb.append("\"auditPerson\": ");
 
 			sb.append(String.valueOf(auditPerson));
 		}
@@ -369,7 +369,7 @@ public class WorkflowLog {
 				sb.append(", ");
 			}
 
-			sb.append("\"commentLog\":");
+			sb.append("\"commentLog\": ");
 
 			sb.append("\"");
 
@@ -383,7 +383,7 @@ public class WorkflowLog {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -397,7 +397,7 @@ public class WorkflowLog {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -407,7 +407,7 @@ public class WorkflowLog {
 				sb.append(", ");
 			}
 
-			sb.append("\"person\":");
+			sb.append("\"person\": ");
 
 			sb.append(String.valueOf(person));
 		}
@@ -417,7 +417,7 @@ public class WorkflowLog {
 				sb.append(", ");
 			}
 
-			sb.append("\"previousPerson\":");
+			sb.append("\"previousPerson\": ");
 
 			sb.append(String.valueOf(previousPerson));
 		}
@@ -427,7 +427,7 @@ public class WorkflowLog {
 				sb.append(", ");
 			}
 
-			sb.append("\"previousState\":");
+			sb.append("\"previousState\": ");
 
 			sb.append("\"");
 
@@ -441,7 +441,7 @@ public class WorkflowLog {
 				sb.append(", ");
 			}
 
-			sb.append("\"state\":");
+			sb.append("\"state\": ");
 
 			sb.append("\"");
 
@@ -455,7 +455,7 @@ public class WorkflowLog {
 				sb.append(", ");
 			}
 
-			sb.append("\"taskId\":");
+			sb.append("\"taskId\": ");
 
 			sb.append(taskId);
 		}
@@ -465,7 +465,7 @@ public class WorkflowLog {
 				sb.append(", ");
 			}
 
-			sb.append("\"type\":");
+			sb.append("\"type\": ");
 
 			sb.append("\"");
 

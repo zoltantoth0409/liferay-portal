@@ -56,7 +56,7 @@ public class ValidationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"errorMessage\":");
+			sb.append("\"errorMessage\": ");
 
 			sb.append("\"");
 
@@ -70,7 +70,7 @@ public class ValidationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"expression\":");
+			sb.append("\"expression\": ");
 
 			sb.append("\"");
 
@@ -84,7 +84,7 @@ public class ValidationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(validation.getId());
 		}

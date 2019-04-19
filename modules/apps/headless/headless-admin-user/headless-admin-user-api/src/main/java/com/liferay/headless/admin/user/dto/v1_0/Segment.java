@@ -306,7 +306,7 @@ public class Segment {
 				sb.append(", ");
 			}
 
-			sb.append("\"active\":");
+			sb.append("\"active\": ");
 
 			sb.append(active);
 		}
@@ -316,7 +316,7 @@ public class Segment {
 				sb.append(", ");
 			}
 
-			sb.append("\"criteria\":");
+			sb.append("\"criteria\": ");
 
 			sb.append("\"");
 
@@ -330,7 +330,7 @@ public class Segment {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -344,7 +344,7 @@ public class Segment {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -358,7 +358,7 @@ public class Segment {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -368,7 +368,7 @@ public class Segment {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -382,7 +382,7 @@ public class Segment {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(siteId);
 		}
@@ -392,7 +392,7 @@ public class Segment {
 				sb.append(", ");
 			}
 
-			sb.append("\"source\":");
+			sb.append("\"source\": ");
 
 			sb.append("\"");
 

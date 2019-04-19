@@ -56,7 +56,7 @@ public class SelectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"size\":");
+			sb.append("\"size\": ");
 
 			sb.append(selection.getSize());
 		}

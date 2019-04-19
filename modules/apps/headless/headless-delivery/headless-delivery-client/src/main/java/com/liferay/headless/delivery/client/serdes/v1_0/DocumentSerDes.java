@@ -65,7 +65,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"adaptedImages\":");
+			sb.append("\"adaptedImages\": ");
 
 			sb.append("[");
 
@@ -85,7 +85,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"aggregateRating\":");
+			sb.append("\"aggregateRating\": ");
 
 			sb.append(String.valueOf(document.getAggregateRating()));
 		}
@@ -95,7 +95,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"contentUrl\":");
+			sb.append("\"contentUrl\": ");
 
 			sb.append("\"");
 
@@ -109,7 +109,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(document.getCreator()));
 		}
@@ -119,7 +119,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -134,7 +134,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -149,7 +149,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -163,7 +163,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"documentFolderId\":");
+			sb.append("\"documentFolderId\": ");
 
 			sb.append(document.getDocumentFolderId());
 		}
@@ -173,7 +173,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"encodingFormat\":");
+			sb.append("\"encodingFormat\": ");
 
 			sb.append("\"");
 
@@ -187,7 +187,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"fileExtension\":");
+			sb.append("\"fileExtension\": ");
 
 			sb.append("\"");
 
@@ -201,7 +201,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(document.getId());
 		}
@@ -211,7 +211,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywords\":");
+			sb.append("\"keywords\": ");
 
 			sb.append("[");
 
@@ -235,7 +235,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfComments\":");
+			sb.append("\"numberOfComments\": ");
 
 			sb.append(document.getNumberOfComments());
 		}
@@ -245,7 +245,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"sizeInBytes\":");
+			sb.append("\"sizeInBytes\": ");
 
 			sb.append(document.getSizeInBytes());
 		}
@@ -255,7 +255,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategories\":");
+			sb.append("\"taxonomyCategories\": ");
 
 			sb.append("[");
 
@@ -275,7 +275,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryIds\":");
+			sb.append("\"taxonomyCategoryIds\": ");
 
 			sb.append("[");
 
@@ -295,7 +295,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"title\":");
+			sb.append("\"title\": ");
 
 			sb.append("\"");
 
@@ -309,7 +309,7 @@ public class DocumentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

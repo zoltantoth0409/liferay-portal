@@ -56,7 +56,7 @@ public class GeoSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"latitude\":");
+			sb.append("\"latitude\": ");
 
 			sb.append(geo.getLatitude());
 		}
@@ -66,7 +66,7 @@ public class GeoSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"longitude\":");
+			sb.append("\"longitude\": ");
 
 			sb.append(geo.getLongitude());
 		}

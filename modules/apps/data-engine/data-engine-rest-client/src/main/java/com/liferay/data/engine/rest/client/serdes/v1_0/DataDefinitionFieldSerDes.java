@@ -61,7 +61,7 @@ public class DataDefinitionFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"customProperties\":");
+			sb.append("\"customProperties\": ");
 
 			sb.append("[");
 
@@ -87,7 +87,7 @@ public class DataDefinitionFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"defaultValue\":");
+			sb.append("\"defaultValue\": ");
 
 			sb.append("[");
 
@@ -110,7 +110,7 @@ public class DataDefinitionFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"fieldType\":");
+			sb.append("\"fieldType\": ");
 
 			sb.append("\"");
 
@@ -124,7 +124,7 @@ public class DataDefinitionFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(dataDefinitionField.getId());
 		}
@@ -134,7 +134,7 @@ public class DataDefinitionFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"indexable\":");
+			sb.append("\"indexable\": ");
 
 			sb.append(dataDefinitionField.getIndexable());
 		}
@@ -144,7 +144,7 @@ public class DataDefinitionFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"label\":");
+			sb.append("\"label\": ");
 
 			sb.append("[");
 
@@ -164,7 +164,7 @@ public class DataDefinitionFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"localizable\":");
+			sb.append("\"localizable\": ");
 
 			sb.append(dataDefinitionField.getLocalizable());
 		}
@@ -174,7 +174,7 @@ public class DataDefinitionFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -188,7 +188,7 @@ public class DataDefinitionFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"repeatable\":");
+			sb.append("\"repeatable\": ");
 
 			sb.append(dataDefinitionField.getRepeatable());
 		}
@@ -198,7 +198,7 @@ public class DataDefinitionFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"tip\":");
+			sb.append("\"tip\": ");
 
 			sb.append("[");
 

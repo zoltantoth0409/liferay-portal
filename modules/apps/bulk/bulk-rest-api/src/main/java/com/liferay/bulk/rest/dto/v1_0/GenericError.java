@@ -99,7 +99,7 @@ public class GenericError {
 				sb.append(", ");
 			}
 
-			sb.append("\"message\":");
+			sb.append("\"message\": ");
 
 			sb.append("\"");
 

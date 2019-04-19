@@ -66,7 +66,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"comment\":");
+			sb.append("\"comment\": ");
 
 			sb.append("\"");
 
@@ -80,7 +80,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"contactInformation\":");
+			sb.append("\"contactInformation\": ");
 
 			sb.append(String.valueOf(organization.getContactInformation()));
 		}
@@ -90,7 +90,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -105,7 +105,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -120,7 +120,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(organization.getId());
 		}
@@ -130,7 +130,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"image\":");
+			sb.append("\"image\": ");
 
 			sb.append("\"");
 
@@ -144,7 +144,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywords\":");
+			sb.append("\"keywords\": ");
 
 			sb.append("[");
 
@@ -168,7 +168,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"location\":");
+			sb.append("\"location\": ");
 
 			sb.append(String.valueOf(organization.getLocation()));
 		}
@@ -178,7 +178,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -192,7 +192,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfOrganizations\":");
+			sb.append("\"numberOfOrganizations\": ");
 
 			sb.append(organization.getNumberOfOrganizations());
 		}
@@ -202,7 +202,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"parentOrganization\":");
+			sb.append("\"parentOrganization\": ");
 
 			sb.append(String.valueOf(organization.getParentOrganization()));
 		}
@@ -212,7 +212,7 @@ public class OrganizationSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"services\":");
+			sb.append("\"services\": ");
 
 			sb.append("[");
 

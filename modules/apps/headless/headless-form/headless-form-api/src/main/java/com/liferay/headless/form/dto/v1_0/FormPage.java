@@ -179,7 +179,7 @@ public class FormPage {
 				sb.append(", ");
 			}
 
-			sb.append("\"fields\":");
+			sb.append("\"fields\": ");
 
 			sb.append("[");
 
@@ -199,7 +199,7 @@ public class FormPage {
 				sb.append(", ");
 			}
 
-			sb.append("\"headline\":");
+			sb.append("\"headline\": ");
 
 			sb.append("\"");
 
@@ -213,7 +213,7 @@ public class FormPage {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -223,7 +223,7 @@ public class FormPage {
 				sb.append(", ");
 			}
 
-			sb.append("\"text\":");
+			sb.append("\"text\": ");
 
 			sb.append("\"");
 

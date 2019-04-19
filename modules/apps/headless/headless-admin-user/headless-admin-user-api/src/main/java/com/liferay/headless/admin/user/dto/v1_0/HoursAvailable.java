@@ -188,7 +188,7 @@ public class HoursAvailable {
 				sb.append(", ");
 			}
 
-			sb.append("\"closes\":");
+			sb.append("\"closes\": ");
 
 			sb.append("\"");
 
@@ -202,7 +202,7 @@ public class HoursAvailable {
 				sb.append(", ");
 			}
 
-			sb.append("\"dayOfWeek\":");
+			sb.append("\"dayOfWeek\": ");
 
 			sb.append("\"");
 
@@ -216,7 +216,7 @@ public class HoursAvailable {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -226,7 +226,7 @@ public class HoursAvailable {
 				sb.append(", ");
 			}
 
-			sb.append("\"opens\":");
+			sb.append("\"opens\": ");
 
 			sb.append("\"");
 

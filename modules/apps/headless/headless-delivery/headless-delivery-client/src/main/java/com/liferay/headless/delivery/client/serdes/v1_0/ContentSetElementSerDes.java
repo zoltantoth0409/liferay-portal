@@ -58,7 +58,7 @@ public class ContentSetElementSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"content\":");
+			sb.append("\"content\": ");
 
 			sb.append("\"");
 
@@ -72,7 +72,7 @@ public class ContentSetElementSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"contentType\":");
+			sb.append("\"contentType\": ");
 
 			sb.append("\"");
 
@@ -86,7 +86,7 @@ public class ContentSetElementSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(contentSetElement.getId());
 		}
@@ -96,7 +96,7 @@ public class ContentSetElementSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"title\":");
+			sb.append("\"title\": ");
 
 			sb.append("\"");
 

@@ -233,7 +233,7 @@ public class DataLayoutPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"addDataLayout\":");
+			sb.append("\"addDataLayout\": ");
 
 			sb.append(addDataLayout);
 		}
@@ -243,7 +243,7 @@ public class DataLayoutPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"definePermissions\":");
+			sb.append("\"definePermissions\": ");
 
 			sb.append(definePermissions);
 		}
@@ -253,7 +253,7 @@ public class DataLayoutPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"delete\":");
+			sb.append("\"delete\": ");
 
 			sb.append(delete);
 		}
@@ -263,7 +263,7 @@ public class DataLayoutPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"roleNames\":");
+			sb.append("\"roleNames\": ");
 
 			sb.append("[");
 
@@ -287,7 +287,7 @@ public class DataLayoutPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"update\":");
+			sb.append("\"update\": ");
 
 			sb.append(update);
 		}
@@ -297,7 +297,7 @@ public class DataLayoutPermission {
 				sb.append(", ");
 			}
 
-			sb.append("\"view\":");
+			sb.append("\"view\": ");
 
 			sb.append(view);
 		}

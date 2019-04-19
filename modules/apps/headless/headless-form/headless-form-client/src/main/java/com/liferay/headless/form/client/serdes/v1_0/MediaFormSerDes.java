@@ -56,7 +56,7 @@ public class MediaFormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -70,7 +70,7 @@ public class MediaFormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"folderId\":");
+			sb.append("\"folderId\": ");
 
 			sb.append(mediaForm.getFolderId());
 		}
@@ -80,7 +80,7 @@ public class MediaFormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -94,7 +94,7 @@ public class MediaFormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"title\":");
+			sb.append("\"title\": ");
 
 			sb.append("\"");
 

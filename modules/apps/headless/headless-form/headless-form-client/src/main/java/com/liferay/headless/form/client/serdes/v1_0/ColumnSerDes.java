@@ -56,7 +56,7 @@ public class ColumnSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(column.getId());
 		}
@@ -66,7 +66,7 @@ public class ColumnSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"label\":");
+			sb.append("\"label\": ");
 
 			sb.append("\"");
 
@@ -80,7 +80,7 @@ public class ColumnSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"value\":");
+			sb.append("\"value\": ");
 
 			sb.append("\"");
 

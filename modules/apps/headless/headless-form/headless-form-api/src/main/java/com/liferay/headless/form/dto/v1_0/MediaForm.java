@@ -178,7 +178,7 @@ public class MediaForm {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -192,7 +192,7 @@ public class MediaForm {
 				sb.append(", ");
 			}
 
-			sb.append("\"folderId\":");
+			sb.append("\"folderId\": ");
 
 			sb.append(folderId);
 		}
@@ -202,7 +202,7 @@ public class MediaForm {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -216,7 +216,7 @@ public class MediaForm {
 				sb.append(", ");
 			}
 
-			sb.append("\"title\":");
+			sb.append("\"title\": ");
 
 			sb.append("\"");
 

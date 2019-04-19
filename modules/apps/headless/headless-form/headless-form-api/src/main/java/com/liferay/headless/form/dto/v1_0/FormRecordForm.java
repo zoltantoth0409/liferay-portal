@@ -126,7 +126,7 @@ public class FormRecordForm {
 				sb.append(", ");
 			}
 
-			sb.append("\"draft\":");
+			sb.append("\"draft\": ");
 
 			sb.append(draft);
 		}
@@ -136,7 +136,7 @@ public class FormRecordForm {
 				sb.append(", ");
 			}
 
-			sb.append("\"fieldValues\":");
+			sb.append("\"fieldValues\": ");
 
 			sb.append("\"");
 

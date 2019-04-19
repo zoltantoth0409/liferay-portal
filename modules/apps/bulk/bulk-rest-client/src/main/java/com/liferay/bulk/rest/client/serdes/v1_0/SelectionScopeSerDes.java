@@ -58,7 +58,7 @@ public class SelectionScopeSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"folderId\":");
+			sb.append("\"folderId\": ");
 
 			sb.append(selectionScope.getFolderId());
 		}
@@ -68,7 +68,7 @@ public class SelectionScopeSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"repositoryId\":");
+			sb.append("\"repositoryId\": ");
 
 			sb.append(selectionScope.getRepositoryId());
 		}
@@ -78,7 +78,7 @@ public class SelectionScopeSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"selectAll\":");
+			sb.append("\"selectAll\": ");
 
 			sb.append(selectionScope.getSelectAll());
 		}

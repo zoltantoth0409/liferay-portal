@@ -206,7 +206,7 @@ public class TaxonomyVocabulary {
 				sb.append(", ");
 			}
 
-			sb.append("\"multiValued\":");
+			sb.append("\"multiValued\": ");
 
 			sb.append(multiValued);
 		}
@@ -216,7 +216,7 @@ public class TaxonomyVocabulary {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -230,7 +230,7 @@ public class TaxonomyVocabulary {
 				sb.append(", ");
 			}
 
-			sb.append("\"required\":");
+			sb.append("\"required\": ");
 
 			sb.append(required);
 		}
@@ -240,7 +240,7 @@ public class TaxonomyVocabulary {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategories\":");
+			sb.append("\"taxonomyCategories\": ");
 
 			sb.append("[");
 
@@ -260,7 +260,7 @@ public class TaxonomyVocabulary {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyVocabularyId\":");
+			sb.append("\"taxonomyVocabularyId\": ");
 
 			sb.append(taxonomyVocabularyId);
 		}

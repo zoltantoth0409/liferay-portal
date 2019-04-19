@@ -348,7 +348,7 @@ public class DataLayout {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataDefinitionId\":");
+			sb.append("\"dataDefinitionId\": ");
 
 			sb.append(dataDefinitionId);
 		}
@@ -358,7 +358,7 @@ public class DataLayout {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataLayoutPages\":");
+			sb.append("\"dataLayoutPages\": ");
 
 			sb.append("[");
 
@@ -378,7 +378,7 @@ public class DataLayout {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -392,7 +392,7 @@ public class DataLayout {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -406,7 +406,7 @@ public class DataLayout {
 				sb.append(", ");
 			}
 
-			sb.append("\"defaultLanguageId\":");
+			sb.append("\"defaultLanguageId\": ");
 
 			sb.append("\"");
 
@@ -420,7 +420,7 @@ public class DataLayout {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("[");
 
@@ -440,7 +440,7 @@ public class DataLayout {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -450,7 +450,7 @@ public class DataLayout {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("[");
 
@@ -470,7 +470,7 @@ public class DataLayout {
 				sb.append(", ");
 			}
 
-			sb.append("\"paginationMode\":");
+			sb.append("\"paginationMode\": ");
 
 			sb.append("\"");
 
@@ -484,7 +484,7 @@ public class DataLayout {
 				sb.append(", ");
 			}
 
-			sb.append("\"userId\":");
+			sb.append("\"userId\": ");
 
 			sb.append(userId);
 		}

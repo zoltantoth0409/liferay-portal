@@ -214,7 +214,7 @@ public class Phone {
 				sb.append(", ");
 			}
 
-			sb.append("\"extension\":");
+			sb.append("\"extension\": ");
 
 			sb.append("\"");
 
@@ -228,7 +228,7 @@ public class Phone {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -238,7 +238,7 @@ public class Phone {
 				sb.append(", ");
 			}
 
-			sb.append("\"phoneNumber\":");
+			sb.append("\"phoneNumber\": ");
 
 			sb.append("\"");
 
@@ -252,7 +252,7 @@ public class Phone {
 				sb.append(", ");
 			}
 
-			sb.append("\"phoneType\":");
+			sb.append("\"phoneType\": ");
 
 			sb.append("\"");
 
@@ -266,7 +266,7 @@ public class Phone {
 				sb.append(", ");
 			}
 
-			sb.append("\"primary\":");
+			sb.append("\"primary\": ");
 
 			sb.append(primary);
 		}

@@ -59,7 +59,7 @@ public class ContentFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataType\":");
+			sb.append("\"dataType\": ");
 
 			sb.append("\"");
 
@@ -73,7 +73,7 @@ public class ContentFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"inputControl\":");
+			sb.append("\"inputControl\": ");
 
 			sb.append("\"");
 
@@ -87,7 +87,7 @@ public class ContentFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"label\":");
+			sb.append("\"label\": ");
 
 			sb.append("\"");
 
@@ -101,7 +101,7 @@ public class ContentFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -115,7 +115,7 @@ public class ContentFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"nestedFields\":");
+			sb.append("\"nestedFields\": ");
 
 			sb.append("[");
 
@@ -135,7 +135,7 @@ public class ContentFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"repeatable\":");
+			sb.append("\"repeatable\": ");
 
 			sb.append(contentField.getRepeatable());
 		}
@@ -145,7 +145,7 @@ public class ContentFieldSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"value\":");
+			sb.append("\"value\": ");
 
 			sb.append(String.valueOf(contentField.getValue()));
 		}

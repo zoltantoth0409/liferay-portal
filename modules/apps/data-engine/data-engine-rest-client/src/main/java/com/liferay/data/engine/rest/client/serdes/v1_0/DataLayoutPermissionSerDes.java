@@ -58,7 +58,7 @@ public class DataLayoutPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"addDataLayout\":");
+			sb.append("\"addDataLayout\": ");
 
 			sb.append(dataLayoutPermission.getAddDataLayout());
 		}
@@ -68,7 +68,7 @@ public class DataLayoutPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"definePermissions\":");
+			sb.append("\"definePermissions\": ");
 
 			sb.append(dataLayoutPermission.getDefinePermissions());
 		}
@@ -78,7 +78,7 @@ public class DataLayoutPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"delete\":");
+			sb.append("\"delete\": ");
 
 			sb.append(dataLayoutPermission.getDelete());
 		}
@@ -88,7 +88,7 @@ public class DataLayoutPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"roleNames\":");
+			sb.append("\"roleNames\": ");
 
 			sb.append("[");
 
@@ -114,7 +114,7 @@ public class DataLayoutPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"update\":");
+			sb.append("\"update\": ");
 
 			sb.append(dataLayoutPermission.getUpdate());
 		}
@@ -124,7 +124,7 @@ public class DataLayoutPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"view\":");
+			sb.append("\"view\": ");
 
 			sb.append(dataLayoutPermission.getView());
 		}

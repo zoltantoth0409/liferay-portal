@@ -58,7 +58,7 @@ public class FormRecordFormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"draft\":");
+			sb.append("\"draft\": ");
 
 			sb.append(formRecordForm.getDraft());
 		}
@@ -68,7 +68,7 @@ public class FormRecordFormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"fieldValues\":");
+			sb.append("\"fieldValues\": ");
 
 			sb.append("\"");
 

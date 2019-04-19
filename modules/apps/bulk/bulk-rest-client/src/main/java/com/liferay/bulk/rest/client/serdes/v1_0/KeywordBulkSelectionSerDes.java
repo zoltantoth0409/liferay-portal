@@ -58,7 +58,7 @@ public class KeywordBulkSelectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"documentBulkSelection\":");
+			sb.append("\"documentBulkSelection\": ");
 
 			sb.append(
 				String.valueOf(
@@ -70,7 +70,7 @@ public class KeywordBulkSelectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywordsToAdd\":");
+			sb.append("\"keywordsToAdd\": ");
 
 			sb.append("[");
 
@@ -96,7 +96,7 @@ public class KeywordBulkSelectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywordsToRemove\":");
+			sb.append("\"keywordsToRemove\": ");
 
 			sb.append("[");
 

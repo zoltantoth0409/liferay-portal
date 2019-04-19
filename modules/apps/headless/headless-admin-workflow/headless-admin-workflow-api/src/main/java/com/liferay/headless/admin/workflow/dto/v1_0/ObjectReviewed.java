@@ -128,7 +128,7 @@ public class ObjectReviewed {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -138,7 +138,7 @@ public class ObjectReviewed {
 				sb.append(", ");
 			}
 
-			sb.append("\"resourceType\":");
+			sb.append("\"resourceType\": ");
 
 			sb.append("\"");
 

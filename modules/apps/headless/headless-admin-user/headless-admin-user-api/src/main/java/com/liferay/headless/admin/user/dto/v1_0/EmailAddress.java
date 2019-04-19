@@ -184,7 +184,7 @@ public class EmailAddress {
 				sb.append(", ");
 			}
 
-			sb.append("\"emailAddress\":");
+			sb.append("\"emailAddress\": ");
 
 			sb.append("\"");
 
@@ -198,7 +198,7 @@ public class EmailAddress {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -208,7 +208,7 @@ public class EmailAddress {
 				sb.append(", ");
 			}
 
-			sb.append("\"primary\":");
+			sb.append("\"primary\": ");
 
 			sb.append(primary);
 		}
@@ -218,7 +218,7 @@ public class EmailAddress {
 				sb.append(", ");
 			}
 
-			sb.append("\"type\":");
+			sb.append("\"type\": ");
 
 			sb.append("\"");
 

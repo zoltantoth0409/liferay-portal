@@ -158,7 +158,7 @@ public class AssetType {
 				sb.append(", ");
 			}
 
-			sb.append("\"required\":");
+			sb.append("\"required\": ");
 
 			sb.append(required);
 		}
@@ -168,7 +168,7 @@ public class AssetType {
 				sb.append(", ");
 			}
 
-			sb.append("\"subtype\":");
+			sb.append("\"subtype\": ");
 
 			sb.append("\"");
 
@@ -182,7 +182,7 @@ public class AssetType {
 				sb.append(", ");
 			}
 
-			sb.append("\"type\":");
+			sb.append("\"type\": ");
 
 			sb.append("\"");
 

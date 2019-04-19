@@ -64,7 +64,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"aggregateRating\":");
+			sb.append("\"aggregateRating\": ");
 
 			sb.append(String.valueOf(messageBoardThread.getAggregateRating()));
 		}
@@ -74,7 +74,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"articleBody\":");
+			sb.append("\"articleBody\": ");
 
 			sb.append("\"");
 
@@ -88,7 +88,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(messageBoardThread.getCreator()));
 		}
@@ -98,7 +98,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -114,7 +114,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -130,7 +130,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"encodingFormat\":");
+			sb.append("\"encodingFormat\": ");
 
 			sb.append("\"");
 
@@ -144,7 +144,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"headline\":");
+			sb.append("\"headline\": ");
 
 			sb.append("\"");
 
@@ -158,7 +158,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(messageBoardThread.getId());
 		}
@@ -168,7 +168,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywords\":");
+			sb.append("\"keywords\": ");
 
 			sb.append("[");
 
@@ -192,7 +192,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfMessageBoardAttachments\":");
+			sb.append("\"numberOfMessageBoardAttachments\": ");
 
 			sb.append(messageBoardThread.getNumberOfMessageBoardAttachments());
 		}
@@ -202,7 +202,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfMessageBoardMessages\":");
+			sb.append("\"numberOfMessageBoardMessages\": ");
 
 			sb.append(messageBoardThread.getNumberOfMessageBoardMessages());
 		}
@@ -212,7 +212,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"showAsQuestion\":");
+			sb.append("\"showAsQuestion\": ");
 
 			sb.append(messageBoardThread.getShowAsQuestion());
 		}
@@ -222,7 +222,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(messageBoardThread.getSiteId());
 		}
@@ -232,7 +232,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"threadType\":");
+			sb.append("\"threadType\": ");
 
 			sb.append("\"");
 
@@ -246,7 +246,7 @@ public class MessageBoardThreadSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

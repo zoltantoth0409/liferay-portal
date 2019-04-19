@@ -99,7 +99,7 @@ public class ChangeTransition {
 				sb.append(", ");
 			}
 
-			sb.append("\"transition\":");
+			sb.append("\"transition\": ");
 
 			sb.append("\"");
 

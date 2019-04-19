@@ -153,7 +153,7 @@ public class Grid {
 				sb.append(", ");
 			}
 
-			sb.append("\"columns\":");
+			sb.append("\"columns\": ");
 
 			sb.append("[");
 
@@ -173,7 +173,7 @@ public class Grid {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -183,7 +183,7 @@ public class Grid {
 				sb.append(", ");
 			}
 
-			sb.append("\"rows\":");
+			sb.append("\"rows\": ");
 
 			sb.append("[");
 

@@ -68,7 +68,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"aggregateRating\":");
+			sb.append("\"aggregateRating\": ");
 
 			sb.append(String.valueOf(structuredContent.getAggregateRating()));
 		}
@@ -78,7 +78,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"availableLanguages\":");
+			sb.append("\"availableLanguages\": ");
 
 			sb.append("[");
 
@@ -107,7 +107,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"contentFields\":");
+			sb.append("\"contentFields\": ");
 
 			sb.append("[");
 
@@ -130,7 +130,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"contentStructureId\":");
+			sb.append("\"contentStructureId\": ");
 
 			sb.append(structuredContent.getContentStructureId());
 		}
@@ -140,7 +140,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(structuredContent.getCreator()));
 		}
@@ -150,7 +150,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -166,7 +166,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -182,7 +182,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"datePublished\":");
+			sb.append("\"datePublished\": ");
 
 			sb.append("\"");
 
@@ -198,7 +198,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -212,7 +212,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"friendlyUrlPath\":");
+			sb.append("\"friendlyUrlPath\": ");
 
 			sb.append("\"");
 
@@ -226,7 +226,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(structuredContent.getId());
 		}
@@ -236,7 +236,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"key\":");
+			sb.append("\"key\": ");
 
 			sb.append("\"");
 
@@ -250,7 +250,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywords\":");
+			sb.append("\"keywords\": ");
 
 			sb.append("[");
 
@@ -274,7 +274,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfComments\":");
+			sb.append("\"numberOfComments\": ");
 
 			sb.append(structuredContent.getNumberOfComments());
 		}
@@ -284,7 +284,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"renderedContents\":");
+			sb.append("\"renderedContents\": ");
 
 			sb.append("[");
 
@@ -307,7 +307,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(structuredContent.getSiteId());
 		}
@@ -317,7 +317,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategories\":");
+			sb.append("\"taxonomyCategories\": ");
 
 			sb.append("[");
 
@@ -343,7 +343,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryIds\":");
+			sb.append("\"taxonomyCategoryIds\": ");
 
 			sb.append("[");
 
@@ -367,7 +367,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"title\":");
+			sb.append("\"title\": ");
 
 			sb.append("\"");
 
@@ -381,7 +381,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"uuid\":");
+			sb.append("\"uuid\": ");
 
 			sb.append("\"");
 
@@ -395,7 +395,7 @@ public class StructuredContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

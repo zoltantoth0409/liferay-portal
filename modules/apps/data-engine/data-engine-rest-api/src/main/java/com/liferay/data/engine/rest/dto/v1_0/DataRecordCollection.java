@@ -179,7 +179,7 @@ public class DataRecordCollection {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataDefinitionId\":");
+			sb.append("\"dataDefinitionId\": ");
 
 			sb.append(dataDefinitionId);
 		}
@@ -189,7 +189,7 @@ public class DataRecordCollection {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("[");
 
@@ -209,7 +209,7 @@ public class DataRecordCollection {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -219,7 +219,7 @@ public class DataRecordCollection {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("[");
 

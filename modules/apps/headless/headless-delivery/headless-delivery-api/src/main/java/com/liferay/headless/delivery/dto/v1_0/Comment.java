@@ -247,7 +247,7 @@ public class Comment {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(creator));
 		}
@@ -257,7 +257,7 @@ public class Comment {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -271,7 +271,7 @@ public class Comment {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -285,7 +285,7 @@ public class Comment {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -295,7 +295,7 @@ public class Comment {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfComments\":");
+			sb.append("\"numberOfComments\": ");
 
 			sb.append(numberOfComments);
 		}
@@ -305,7 +305,7 @@ public class Comment {
 				sb.append(", ");
 			}
 
-			sb.append("\"text\":");
+			sb.append("\"text\": ");
 
 			sb.append("\"");
 

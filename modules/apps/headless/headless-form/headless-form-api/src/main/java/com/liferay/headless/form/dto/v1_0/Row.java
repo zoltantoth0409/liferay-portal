@@ -151,7 +151,7 @@ public class Row {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -161,7 +161,7 @@ public class Row {
 				sb.append(", ");
 			}
 
-			sb.append("\"label\":");
+			sb.append("\"label\": ");
 
 			sb.append("\"");
 
@@ -175,7 +175,7 @@ public class Row {
 				sb.append(", ");
 			}
 
-			sb.append("\"value\":");
+			sb.append("\"value\": ");
 
 			sb.append("\"");
 

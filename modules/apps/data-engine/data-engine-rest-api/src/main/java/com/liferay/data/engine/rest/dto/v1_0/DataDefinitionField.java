@@ -340,7 +340,7 @@ public class DataDefinitionField {
 				sb.append(", ");
 			}
 
-			sb.append("\"customProperties\":");
+			sb.append("\"customProperties\": ");
 
 			sb.append("[");
 
@@ -360,7 +360,7 @@ public class DataDefinitionField {
 				sb.append(", ");
 			}
 
-			sb.append("\"defaultValue\":");
+			sb.append("\"defaultValue\": ");
 
 			sb.append("[");
 
@@ -380,7 +380,7 @@ public class DataDefinitionField {
 				sb.append(", ");
 			}
 
-			sb.append("\"fieldType\":");
+			sb.append("\"fieldType\": ");
 
 			sb.append("\"");
 
@@ -394,7 +394,7 @@ public class DataDefinitionField {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -404,7 +404,7 @@ public class DataDefinitionField {
 				sb.append(", ");
 			}
 
-			sb.append("\"indexable\":");
+			sb.append("\"indexable\": ");
 
 			sb.append(indexable);
 		}
@@ -414,7 +414,7 @@ public class DataDefinitionField {
 				sb.append(", ");
 			}
 
-			sb.append("\"label\":");
+			sb.append("\"label\": ");
 
 			sb.append("[");
 
@@ -434,7 +434,7 @@ public class DataDefinitionField {
 				sb.append(", ");
 			}
 
-			sb.append("\"localizable\":");
+			sb.append("\"localizable\": ");
 
 			sb.append(localizable);
 		}
@@ -444,7 +444,7 @@ public class DataDefinitionField {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -458,7 +458,7 @@ public class DataDefinitionField {
 				sb.append(", ");
 			}
 
-			sb.append("\"repeatable\":");
+			sb.append("\"repeatable\": ");
 
 			sb.append(repeatable);
 		}
@@ -468,7 +468,7 @@ public class DataDefinitionField {
 				sb.append(", ");
 			}
 
-			sb.append("\"tip\":");
+			sb.append("\"tip\": ");
 
 			sb.append("[");
 

@@ -153,7 +153,7 @@ public class SelectionScope {
 				sb.append(", ");
 			}
 
-			sb.append("\"folderId\":");
+			sb.append("\"folderId\": ");
 
 			sb.append(folderId);
 		}
@@ -163,7 +163,7 @@ public class SelectionScope {
 				sb.append(", ");
 			}
 
-			sb.append("\"repositoryId\":");
+			sb.append("\"repositoryId\": ");
 
 			sb.append(repositoryId);
 		}
@@ -173,7 +173,7 @@ public class SelectionScope {
 				sb.append(", ");
 			}
 
-			sb.append("\"selectAll\":");
+			sb.append("\"selectAll\": ");
 
 			sb.append(selectAll);
 		}

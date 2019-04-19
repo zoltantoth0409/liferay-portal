@@ -58,7 +58,7 @@ public class PostalAddressSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"addressCountry\":");
+			sb.append("\"addressCountry\": ");
 
 			sb.append("\"");
 
@@ -72,7 +72,7 @@ public class PostalAddressSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"addressLocality\":");
+			sb.append("\"addressLocality\": ");
 
 			sb.append("\"");
 
@@ -86,7 +86,7 @@ public class PostalAddressSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"addressRegion\":");
+			sb.append("\"addressRegion\": ");
 
 			sb.append("\"");
 
@@ -100,7 +100,7 @@ public class PostalAddressSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"addressType\":");
+			sb.append("\"addressType\": ");
 
 			sb.append("\"");
 
@@ -114,7 +114,7 @@ public class PostalAddressSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(postalAddress.getId());
 		}
@@ -124,7 +124,7 @@ public class PostalAddressSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"postalCode\":");
+			sb.append("\"postalCode\": ");
 
 			sb.append("\"");
 
@@ -138,7 +138,7 @@ public class PostalAddressSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"primary\":");
+			sb.append("\"primary\": ");
 
 			sb.append(postalAddress.getPrimary());
 		}
@@ -148,7 +148,7 @@ public class PostalAddressSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"streetAddressLine1\":");
+			sb.append("\"streetAddressLine1\": ");
 
 			sb.append("\"");
 
@@ -162,7 +162,7 @@ public class PostalAddressSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"streetAddressLine2\":");
+			sb.append("\"streetAddressLine2\": ");
 
 			sb.append("\"");
 
@@ -176,7 +176,7 @@ public class PostalAddressSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"streetAddressLine3\":");
+			sb.append("\"streetAddressLine3\": ");
 
 			sb.append("\"");
 

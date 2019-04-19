@@ -152,7 +152,7 @@ public class DataRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataRecordCollectionId\":");
+			sb.append("\"dataRecordCollectionId\": ");
 
 			sb.append(dataRecordCollectionId);
 		}
@@ -162,7 +162,7 @@ public class DataRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataRecordValues\":");
+			sb.append("\"dataRecordValues\": ");
 
 			sb.append("[");
 
@@ -182,7 +182,7 @@ public class DataRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}

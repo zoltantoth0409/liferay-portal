@@ -64,7 +64,7 @@ public class MessageBoardSectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(messageBoardSection.getCreator()));
 		}
@@ -74,7 +74,7 @@ public class MessageBoardSectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -90,7 +90,7 @@ public class MessageBoardSectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -106,7 +106,7 @@ public class MessageBoardSectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -120,7 +120,7 @@ public class MessageBoardSectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(messageBoardSection.getId());
 		}
@@ -130,7 +130,7 @@ public class MessageBoardSectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfMessageBoardSections\":");
+			sb.append("\"numberOfMessageBoardSections\": ");
 
 			sb.append(messageBoardSection.getNumberOfMessageBoardSections());
 		}
@@ -140,7 +140,7 @@ public class MessageBoardSectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfMessageBoardThreads\":");
+			sb.append("\"numberOfMessageBoardThreads\": ");
 
 			sb.append(messageBoardSection.getNumberOfMessageBoardThreads());
 		}
@@ -150,7 +150,7 @@ public class MessageBoardSectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(messageBoardSection.getSiteId());
 		}
@@ -160,7 +160,7 @@ public class MessageBoardSectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"title\":");
+			sb.append("\"title\": ");
 
 			sb.append("\"");
 
@@ -174,7 +174,7 @@ public class MessageBoardSectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

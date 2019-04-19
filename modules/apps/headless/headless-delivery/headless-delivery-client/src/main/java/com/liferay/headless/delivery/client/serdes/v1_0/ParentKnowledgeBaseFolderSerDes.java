@@ -62,7 +62,7 @@ public class ParentKnowledgeBaseFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"folderId\":");
+			sb.append("\"folderId\": ");
 
 			sb.append(parentKnowledgeBaseFolder.getFolderId());
 		}
@@ -72,7 +72,7 @@ public class ParentKnowledgeBaseFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"folderName\":");
+			sb.append("\"folderName\": ");
 
 			sb.append("\"");
 

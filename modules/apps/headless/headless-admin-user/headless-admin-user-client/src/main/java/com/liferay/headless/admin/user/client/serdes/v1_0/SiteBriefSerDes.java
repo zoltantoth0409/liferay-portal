@@ -56,7 +56,7 @@ public class SiteBriefSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(siteBrief.getId());
 		}
@@ -66,7 +66,7 @@ public class SiteBriefSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 

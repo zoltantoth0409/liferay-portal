@@ -349,7 +349,7 @@ public class FormStructure {
 				sb.append(", ");
 			}
 
-			sb.append("\"availableLanguages\":");
+			sb.append("\"availableLanguages\": ");
 
 			sb.append("[");
 
@@ -373,7 +373,7 @@ public class FormStructure {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(creator));
 		}
@@ -383,7 +383,7 @@ public class FormStructure {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -397,7 +397,7 @@ public class FormStructure {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -411,7 +411,7 @@ public class FormStructure {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -425,7 +425,7 @@ public class FormStructure {
 				sb.append(", ");
 			}
 
-			sb.append("\"formPages\":");
+			sb.append("\"formPages\": ");
 
 			sb.append("[");
 
@@ -445,7 +445,7 @@ public class FormStructure {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -455,7 +455,7 @@ public class FormStructure {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -469,7 +469,7 @@ public class FormStructure {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(siteId);
 		}
@@ -479,7 +479,7 @@ public class FormStructure {
 				sb.append(", ");
 			}
 
-			sb.append("\"successPage\":");
+			sb.append("\"successPage\": ");
 
 			sb.append(String.valueOf(successPage));
 		}

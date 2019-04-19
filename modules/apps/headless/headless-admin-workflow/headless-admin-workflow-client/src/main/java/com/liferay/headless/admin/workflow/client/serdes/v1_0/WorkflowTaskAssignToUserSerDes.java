@@ -66,7 +66,7 @@ public class WorkflowTaskAssignToUserSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"assigneeId\":");
+			sb.append("\"assigneeId\": ");
 
 			sb.append(workflowTaskAssignToUser.getAssigneeId());
 		}
@@ -76,7 +76,7 @@ public class WorkflowTaskAssignToUserSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"comment\":");
+			sb.append("\"comment\": ");
 
 			sb.append("\"");
 
@@ -90,7 +90,7 @@ public class WorkflowTaskAssignToUserSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dueDate\":");
+			sb.append("\"dueDate\": ");
 
 			sb.append("\"");
 

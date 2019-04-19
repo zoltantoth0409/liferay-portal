@@ -574,7 +574,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"aggregateRating\":");
+			sb.append("\"aggregateRating\": ");
 
 			sb.append(String.valueOf(aggregateRating));
 		}
@@ -584,7 +584,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"articleBody\":");
+			sb.append("\"articleBody\": ");
 
 			sb.append("\"");
 
@@ -598,7 +598,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(creator));
 		}
@@ -608,7 +608,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -622,7 +622,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -636,7 +636,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"encodingFormat\":");
+			sb.append("\"encodingFormat\": ");
 
 			sb.append("\"");
 
@@ -650,7 +650,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"headline\":");
+			sb.append("\"headline\": ");
 
 			sb.append("\"");
 
@@ -664,7 +664,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -674,7 +674,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywords\":");
+			sb.append("\"keywords\": ");
 
 			sb.append("[");
 
@@ -698,7 +698,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfMessageBoardAttachments\":");
+			sb.append("\"numberOfMessageBoardAttachments\": ");
 
 			sb.append(numberOfMessageBoardAttachments);
 		}
@@ -708,7 +708,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfMessageBoardMessages\":");
+			sb.append("\"numberOfMessageBoardMessages\": ");
 
 			sb.append(numberOfMessageBoardMessages);
 		}
@@ -718,7 +718,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"showAsQuestion\":");
+			sb.append("\"showAsQuestion\": ");
 
 			sb.append(showAsQuestion);
 		}
@@ -728,7 +728,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(siteId);
 		}
@@ -738,7 +738,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"threadType\":");
+			sb.append("\"threadType\": ");
 
 			sb.append("\"");
 
@@ -752,7 +752,7 @@ public class MessageBoardThread {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

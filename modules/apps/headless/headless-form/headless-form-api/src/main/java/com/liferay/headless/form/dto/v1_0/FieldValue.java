@@ -203,7 +203,7 @@ public class FieldValue {
 				sb.append(", ");
 			}
 
-			sb.append("\"document\":");
+			sb.append("\"document\": ");
 
 			sb.append(String.valueOf(document));
 		}
@@ -213,7 +213,7 @@ public class FieldValue {
 				sb.append(", ");
 			}
 
-			sb.append("\"documentId\":");
+			sb.append("\"documentId\": ");
 
 			sb.append(documentId);
 		}
@@ -223,7 +223,7 @@ public class FieldValue {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -233,7 +233,7 @@ public class FieldValue {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -247,7 +247,7 @@ public class FieldValue {
 				sb.append(", ");
 			}
 
-			sb.append("\"value\":");
+			sb.append("\"value\": ");
 
 			sb.append("\"");
 

@@ -56,7 +56,7 @@ public class RoleBriefSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(roleBrief.getId());
 		}
@@ -66,7 +66,7 @@ public class RoleBriefSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 

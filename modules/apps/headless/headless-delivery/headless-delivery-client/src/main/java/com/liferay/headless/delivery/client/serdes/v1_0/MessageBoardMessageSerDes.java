@@ -64,7 +64,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"aggregateRating\":");
+			sb.append("\"aggregateRating\": ");
 
 			sb.append(String.valueOf(messageBoardMessage.getAggregateRating()));
 		}
@@ -74,7 +74,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"anonymous\":");
+			sb.append("\"anonymous\": ");
 
 			sb.append(messageBoardMessage.getAnonymous());
 		}
@@ -84,7 +84,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"articleBody\":");
+			sb.append("\"articleBody\": ");
 
 			sb.append("\"");
 
@@ -98,7 +98,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(messageBoardMessage.getCreator()));
 		}
@@ -108,7 +108,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -124,7 +124,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -140,7 +140,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"encodingFormat\":");
+			sb.append("\"encodingFormat\": ");
 
 			sb.append("\"");
 
@@ -154,7 +154,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"headline\":");
+			sb.append("\"headline\": ");
 
 			sb.append("\"");
 
@@ -168,7 +168,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(messageBoardMessage.getId());
 		}
@@ -178,7 +178,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywords\":");
+			sb.append("\"keywords\": ");
 
 			sb.append("[");
 
@@ -202,7 +202,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfMessageBoardAttachments\":");
+			sb.append("\"numberOfMessageBoardAttachments\": ");
 
 			sb.append(messageBoardMessage.getNumberOfMessageBoardAttachments());
 		}
@@ -212,7 +212,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfMessageBoardMessages\":");
+			sb.append("\"numberOfMessageBoardMessages\": ");
 
 			sb.append(messageBoardMessage.getNumberOfMessageBoardMessages());
 		}
@@ -222,7 +222,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"showAsAnswer\":");
+			sb.append("\"showAsAnswer\": ");
 
 			sb.append(messageBoardMessage.getShowAsAnswer());
 		}
@@ -232,7 +232,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(messageBoardMessage.getSiteId());
 		}
@@ -242,7 +242,7 @@ public class MessageBoardMessageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

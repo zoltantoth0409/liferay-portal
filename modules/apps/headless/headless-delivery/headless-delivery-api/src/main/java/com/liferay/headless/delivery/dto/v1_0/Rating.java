@@ -279,7 +279,7 @@ public class Rating {
 				sb.append(", ");
 			}
 
-			sb.append("\"bestRating\":");
+			sb.append("\"bestRating\": ");
 
 			sb.append(bestRating);
 		}
@@ -289,7 +289,7 @@ public class Rating {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(creator));
 		}
@@ -299,7 +299,7 @@ public class Rating {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -313,7 +313,7 @@ public class Rating {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -327,7 +327,7 @@ public class Rating {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -337,7 +337,7 @@ public class Rating {
 				sb.append(", ");
 			}
 
-			sb.append("\"ratingValue\":");
+			sb.append("\"ratingValue\": ");
 
 			sb.append(ratingValue);
 		}
@@ -347,7 +347,7 @@ public class Rating {
 				sb.append(", ");
 			}
 
-			sb.append("\"worstRating\":");
+			sb.append("\"worstRating\": ");
 
 			sb.append(worstRating);
 		}

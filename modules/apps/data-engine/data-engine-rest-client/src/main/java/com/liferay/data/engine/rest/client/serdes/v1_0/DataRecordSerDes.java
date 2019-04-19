@@ -58,7 +58,7 @@ public class DataRecordSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataRecordCollectionId\":");
+			sb.append("\"dataRecordCollectionId\": ");
 
 			sb.append(dataRecord.getDataRecordCollectionId());
 		}
@@ -68,7 +68,7 @@ public class DataRecordSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataRecordValues\":");
+			sb.append("\"dataRecordValues\": ");
 
 			sb.append("[");
 
@@ -88,7 +88,7 @@ public class DataRecordSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(dataRecord.getId());
 		}

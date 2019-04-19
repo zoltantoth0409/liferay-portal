@@ -64,7 +64,7 @@ public class WorkflowTaskSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"completed\":");
+			sb.append("\"completed\": ");
 
 			sb.append(workflowTask.getCompleted());
 		}
@@ -74,7 +74,7 @@ public class WorkflowTaskSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCompleted\":");
+			sb.append("\"dateCompleted\": ");
 
 			sb.append("\"");
 
@@ -90,7 +90,7 @@ public class WorkflowTaskSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -105,7 +105,7 @@ public class WorkflowTaskSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"definitionName\":");
+			sb.append("\"definitionName\": ");
 
 			sb.append("\"");
 
@@ -119,7 +119,7 @@ public class WorkflowTaskSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -133,7 +133,7 @@ public class WorkflowTaskSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dueDate\":");
+			sb.append("\"dueDate\": ");
 
 			sb.append("\"");
 
@@ -148,7 +148,7 @@ public class WorkflowTaskSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(workflowTask.getId());
 		}
@@ -158,7 +158,7 @@ public class WorkflowTaskSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -172,7 +172,7 @@ public class WorkflowTaskSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"objectReviewed\":");
+			sb.append("\"objectReviewed\": ");
 
 			sb.append(String.valueOf(workflowTask.getObjectReviewed()));
 		}
@@ -182,7 +182,7 @@ public class WorkflowTaskSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"transitions\":");
+			sb.append("\"transitions\": ");
 
 			sb.append("[");
 

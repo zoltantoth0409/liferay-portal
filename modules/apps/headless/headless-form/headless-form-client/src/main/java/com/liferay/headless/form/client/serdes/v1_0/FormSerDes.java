@@ -64,7 +64,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"availableLanguages\":");
+			sb.append("\"availableLanguages\": ");
 
 			sb.append("[");
 
@@ -88,7 +88,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(form.getCreator()));
 		}
@@ -98,7 +98,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -112,7 +112,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -126,7 +126,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"datePublished\":");
+			sb.append("\"datePublished\": ");
 
 			sb.append("\"");
 
@@ -140,7 +140,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"defaultLanguage\":");
+			sb.append("\"defaultLanguage\": ");
 
 			sb.append("\"");
 
@@ -154,7 +154,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -168,7 +168,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"formRecords\":");
+			sb.append("\"formRecords\": ");
 
 			sb.append("[");
 
@@ -188,7 +188,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"formRecordsIds\":");
+			sb.append("\"formRecordsIds\": ");
 
 			sb.append("[");
 
@@ -208,7 +208,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(form.getId());
 		}
@@ -218,7 +218,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -232,7 +232,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(form.getSiteId());
 		}
@@ -242,7 +242,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"structure\":");
+			sb.append("\"structure\": ");
 
 			sb.append(String.valueOf(form.getStructure()));
 		}
@@ -252,7 +252,7 @@ public class FormSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"structureId\":");
+			sb.append("\"structureId\": ");
 
 			sb.append(form.getStructureId());
 		}

@@ -159,7 +159,7 @@ public class Service {
 				sb.append(", ");
 			}
 
-			sb.append("\"hoursAvailable\":");
+			sb.append("\"hoursAvailable\": ");
 
 			sb.append("[");
 
@@ -179,7 +179,7 @@ public class Service {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -189,7 +189,7 @@ public class Service {
 				sb.append(", ");
 			}
 
-			sb.append("\"serviceType\":");
+			sb.append("\"serviceType\": ");
 
 			sb.append("\"");
 

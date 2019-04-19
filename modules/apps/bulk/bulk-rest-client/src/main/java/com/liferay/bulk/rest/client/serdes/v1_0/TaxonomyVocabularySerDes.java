@@ -60,7 +60,7 @@ public class TaxonomyVocabularySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"multiValued\":");
+			sb.append("\"multiValued\": ");
 
 			sb.append(taxonomyVocabulary.getMultiValued());
 		}
@@ -70,7 +70,7 @@ public class TaxonomyVocabularySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -84,7 +84,7 @@ public class TaxonomyVocabularySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"required\":");
+			sb.append("\"required\": ");
 
 			sb.append(taxonomyVocabulary.getRequired());
 		}
@@ -94,7 +94,7 @@ public class TaxonomyVocabularySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategories\":");
+			sb.append("\"taxonomyCategories\": ");
 
 			sb.append("[");
 
@@ -120,7 +120,7 @@ public class TaxonomyVocabularySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyVocabularyId\":");
+			sb.append("\"taxonomyVocabularyId\": ");
 
 			sb.append(taxonomyVocabulary.getTaxonomyVocabularyId());
 		}

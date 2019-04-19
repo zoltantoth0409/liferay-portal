@@ -58,7 +58,7 @@ public class AggregateRatingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"bestRating\":");
+			sb.append("\"bestRating\": ");
 
 			sb.append(aggregateRating.getBestRating());
 		}
@@ -68,7 +68,7 @@ public class AggregateRatingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"ratingCount\":");
+			sb.append("\"ratingCount\": ");
 
 			sb.append(aggregateRating.getRatingCount());
 		}
@@ -78,7 +78,7 @@ public class AggregateRatingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"ratingValue\":");
+			sb.append("\"ratingValue\": ");
 
 			sb.append(aggregateRating.getRatingValue());
 		}
@@ -88,7 +88,7 @@ public class AggregateRatingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"worstRating\":");
+			sb.append("\"worstRating\": ");
 
 			sb.append(aggregateRating.getWorstRating());
 		}

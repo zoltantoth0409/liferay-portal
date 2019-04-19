@@ -124,7 +124,7 @@ public class CustomProperty {
 				sb.append(", ");
 			}
 
-			sb.append("\"key\":");
+			sb.append("\"key\": ");
 
 			sb.append("\"");
 
@@ -138,7 +138,7 @@ public class CustomProperty {
 				sb.append(", ");
 			}
 
-			sb.append("\"value\":");
+			sb.append("\"value\": ");
 
 			sb.append("\"");
 

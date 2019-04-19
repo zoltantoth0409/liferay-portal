@@ -130,7 +130,7 @@ public class Geo {
 				sb.append(", ");
 			}
 
-			sb.append("\"latitude\":");
+			sb.append("\"latitude\": ");
 
 			sb.append(latitude);
 		}
@@ -140,7 +140,7 @@ public class Geo {
 				sb.append(", ");
 			}
 
-			sb.append("\"longitude\":");
+			sb.append("\"longitude\": ");
 
 			sb.append(longitude);
 		}

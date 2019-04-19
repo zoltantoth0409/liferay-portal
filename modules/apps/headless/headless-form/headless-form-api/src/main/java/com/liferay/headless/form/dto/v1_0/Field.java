@@ -771,7 +771,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"autocomplete\":");
+			sb.append("\"autocomplete\": ");
 
 			sb.append(autocomplete);
 		}
@@ -781,7 +781,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataSourceType\":");
+			sb.append("\"dataSourceType\": ");
 
 			sb.append("\"");
 
@@ -795,7 +795,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataType\":");
+			sb.append("\"dataType\": ");
 
 			sb.append("\"");
 
@@ -809,7 +809,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"displayStyle\":");
+			sb.append("\"displayStyle\": ");
 
 			sb.append("\"");
 
@@ -823,7 +823,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"grid\":");
+			sb.append("\"grid\": ");
 
 			sb.append(String.valueOf(grid));
 		}
@@ -833,7 +833,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"hasFormRules\":");
+			sb.append("\"hasFormRules\": ");
 
 			sb.append(hasFormRules);
 		}
@@ -843,7 +843,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -853,7 +853,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"immutable\":");
+			sb.append("\"immutable\": ");
 
 			sb.append(immutable);
 		}
@@ -863,7 +863,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"inline\":");
+			sb.append("\"inline\": ");
 
 			sb.append(inline);
 		}
@@ -873,7 +873,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"inputControl\":");
+			sb.append("\"inputControl\": ");
 
 			sb.append("\"");
 
@@ -887,7 +887,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"label\":");
+			sb.append("\"label\": ");
 
 			sb.append("\"");
 
@@ -901,7 +901,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"localizable\":");
+			sb.append("\"localizable\": ");
 
 			sb.append(localizable);
 		}
@@ -911,7 +911,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"multiple\":");
+			sb.append("\"multiple\": ");
 
 			sb.append(multiple);
 		}
@@ -921,7 +921,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -935,7 +935,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"options\":");
+			sb.append("\"options\": ");
 
 			sb.append("[");
 
@@ -955,7 +955,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"placeholder\":");
+			sb.append("\"placeholder\": ");
 
 			sb.append("\"");
 
@@ -969,7 +969,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"predefinedValue\":");
+			sb.append("\"predefinedValue\": ");
 
 			sb.append("\"");
 
@@ -983,7 +983,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"readOnly\":");
+			sb.append("\"readOnly\": ");
 
 			sb.append(readOnly);
 		}
@@ -993,7 +993,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"repeatable\":");
+			sb.append("\"repeatable\": ");
 
 			sb.append(repeatable);
 		}
@@ -1003,7 +1003,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"required\":");
+			sb.append("\"required\": ");
 
 			sb.append(required);
 		}
@@ -1013,7 +1013,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"showAsSwitcher\":");
+			sb.append("\"showAsSwitcher\": ");
 
 			sb.append(showAsSwitcher);
 		}
@@ -1023,7 +1023,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"showLabel\":");
+			sb.append("\"showLabel\": ");
 
 			sb.append(showLabel);
 		}
@@ -1033,7 +1033,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"style\":");
+			sb.append("\"style\": ");
 
 			sb.append("\"");
 
@@ -1047,7 +1047,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"text\":");
+			sb.append("\"text\": ");
 
 			sb.append("\"");
 
@@ -1061,7 +1061,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"tooltip\":");
+			sb.append("\"tooltip\": ");
 
 			sb.append("\"");
 
@@ -1075,7 +1075,7 @@ public class Field {
 				sb.append(", ");
 			}
 
-			sb.append("\"validation\":");
+			sb.append("\"validation\": ");
 
 			sb.append(String.valueOf(validation));
 		}

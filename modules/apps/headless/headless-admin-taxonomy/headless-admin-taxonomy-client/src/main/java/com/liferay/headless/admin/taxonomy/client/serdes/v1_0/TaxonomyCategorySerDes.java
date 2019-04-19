@@ -64,7 +64,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"availableLanguages\":");
+			sb.append("\"availableLanguages\": ");
 
 			sb.append("[");
 
@@ -90,7 +90,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(taxonomyCategory.getCreator()));
 		}
@@ -100,7 +100,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -116,7 +116,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -132,7 +132,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -146,7 +146,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(taxonomyCategory.getId());
 		}
@@ -156,7 +156,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -170,7 +170,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfTaxonomyCategories\":");
+			sb.append("\"numberOfTaxonomyCategories\": ");
 
 			sb.append(taxonomyCategory.getNumberOfTaxonomyCategories());
 		}
@@ -180,7 +180,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"parentTaxonomyCategory\":");
+			sb.append("\"parentTaxonomyCategory\": ");
 
 			sb.append(
 				String.valueOf(taxonomyCategory.getParentTaxonomyCategory()));
@@ -191,7 +191,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"parentTaxonomyVocabulary\":");
+			sb.append("\"parentTaxonomyVocabulary\": ");
 
 			sb.append(
 				String.valueOf(taxonomyCategory.getParentTaxonomyVocabulary()));
@@ -202,7 +202,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

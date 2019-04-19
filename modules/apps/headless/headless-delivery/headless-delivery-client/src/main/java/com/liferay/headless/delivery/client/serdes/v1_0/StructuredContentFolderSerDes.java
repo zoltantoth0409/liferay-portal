@@ -66,7 +66,7 @@ public class StructuredContentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(structuredContentFolder.getCreator()));
 		}
@@ -76,7 +76,7 @@ public class StructuredContentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -92,7 +92,7 @@ public class StructuredContentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -108,7 +108,7 @@ public class StructuredContentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -122,7 +122,7 @@ public class StructuredContentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(structuredContentFolder.getId());
 		}
@@ -132,7 +132,7 @@ public class StructuredContentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -148,7 +148,7 @@ public class StructuredContentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfStructuredContentFolders\":");
+			sb.append("\"numberOfStructuredContentFolders\": ");
 
 			sb.append(
 				structuredContentFolder.getNumberOfStructuredContentFolders());
@@ -159,7 +159,7 @@ public class StructuredContentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfStructuredContents\":");
+			sb.append("\"numberOfStructuredContents\": ");
 
 			sb.append(structuredContentFolder.getNumberOfStructuredContents());
 		}
@@ -169,7 +169,7 @@ public class StructuredContentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(structuredContentFolder.getSiteId());
 		}
@@ -179,7 +179,7 @@ public class StructuredContentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

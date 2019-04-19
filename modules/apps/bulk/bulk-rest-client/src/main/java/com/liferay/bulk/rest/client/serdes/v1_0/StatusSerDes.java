@@ -56,7 +56,7 @@ public class StatusSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"actionInProgress\":");
+			sb.append("\"actionInProgress\": ");
 
 			sb.append(status.getActionInProgress());
 		}

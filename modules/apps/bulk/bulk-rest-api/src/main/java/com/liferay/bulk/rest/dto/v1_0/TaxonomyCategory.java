@@ -126,7 +126,7 @@ public class TaxonomyCategory {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryId\":");
+			sb.append("\"taxonomyCategoryId\": ");
 
 			sb.append(taxonomyCategoryId);
 		}
@@ -136,7 +136,7 @@ public class TaxonomyCategory {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryName\":");
+			sb.append("\"taxonomyCategoryName\": ");
 
 			sb.append("\"");
 

@@ -126,7 +126,7 @@ public class DataLayoutColumn {
 				sb.append(", ");
 			}
 
-			sb.append("\"columnSize\":");
+			sb.append("\"columnSize\": ");
 
 			sb.append(columnSize);
 		}
@@ -136,7 +136,7 @@ public class DataLayoutColumn {
 				sb.append(", ");
 			}
 
-			sb.append("\"fieldNames\":");
+			sb.append("\"fieldNames\": ");
 
 			sb.append("[");
 

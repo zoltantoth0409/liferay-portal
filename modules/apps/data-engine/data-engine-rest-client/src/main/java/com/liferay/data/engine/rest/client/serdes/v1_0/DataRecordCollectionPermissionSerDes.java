@@ -62,7 +62,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"addDataRecord\":");
+			sb.append("\"addDataRecord\": ");
 
 			sb.append(dataRecordCollectionPermission.getAddDataRecord());
 		}
@@ -74,7 +74,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"addDataRecordCollection\":");
+			sb.append("\"addDataRecordCollection\": ");
 
 			sb.append(
 				dataRecordCollectionPermission.getAddDataRecordCollection());
@@ -85,7 +85,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"definePermissions\":");
+			sb.append("\"definePermissions\": ");
 
 			sb.append(dataRecordCollectionPermission.getDefinePermissions());
 		}
@@ -95,7 +95,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"delete\":");
+			sb.append("\"delete\": ");
 
 			sb.append(dataRecordCollectionPermission.getDelete());
 		}
@@ -105,7 +105,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"deleteDataRecord\":");
+			sb.append("\"deleteDataRecord\": ");
 
 			sb.append(dataRecordCollectionPermission.getDeleteDataRecord());
 		}
@@ -115,7 +115,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"exportDataRecord\":");
+			sb.append("\"exportDataRecord\": ");
 
 			sb.append(dataRecordCollectionPermission.getExportDataRecord());
 		}
@@ -125,7 +125,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"roleNames\":");
+			sb.append("\"roleNames\": ");
 
 			sb.append("[");
 
@@ -155,7 +155,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"update\":");
+			sb.append("\"update\": ");
 
 			sb.append(dataRecordCollectionPermission.getUpdate());
 		}
@@ -165,7 +165,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"updateDataRecord\":");
+			sb.append("\"updateDataRecord\": ");
 
 			sb.append(dataRecordCollectionPermission.getUpdateDataRecord());
 		}
@@ -175,7 +175,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"view\":");
+			sb.append("\"view\": ");
 
 			sb.append(dataRecordCollectionPermission.getView());
 		}
@@ -185,7 +185,7 @@ public class DataRecordCollectionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewDataRecord\":");
+			sb.append("\"viewDataRecord\": ");
 
 			sb.append(dataRecordCollectionPermission.getViewDataRecord());
 		}

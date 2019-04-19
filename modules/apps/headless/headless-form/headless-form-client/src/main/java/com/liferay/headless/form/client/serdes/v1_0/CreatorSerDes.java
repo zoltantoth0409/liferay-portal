@@ -56,7 +56,7 @@ public class CreatorSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"additionalName\":");
+			sb.append("\"additionalName\": ");
 
 			sb.append("\"");
 
@@ -70,7 +70,7 @@ public class CreatorSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"familyName\":");
+			sb.append("\"familyName\": ");
 
 			sb.append("\"");
 
@@ -84,7 +84,7 @@ public class CreatorSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"givenName\":");
+			sb.append("\"givenName\": ");
 
 			sb.append("\"");
 
@@ -98,7 +98,7 @@ public class CreatorSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(creator.getId());
 		}
@@ -108,7 +108,7 @@ public class CreatorSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"image\":");
+			sb.append("\"image\": ");
 
 			sb.append("\"");
 
@@ -122,7 +122,7 @@ public class CreatorSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -136,7 +136,7 @@ public class CreatorSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"profileURL\":");
+			sb.append("\"profileURL\": ");
 
 			sb.append("\"");
 

@@ -58,7 +58,7 @@ public class FormPageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"fields\":");
+			sb.append("\"fields\": ");
 
 			sb.append("[");
 
@@ -78,7 +78,7 @@ public class FormPageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"headline\":");
+			sb.append("\"headline\": ");
 
 			sb.append("\"");
 
@@ -92,7 +92,7 @@ public class FormPageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(formPage.getId());
 		}
@@ -102,7 +102,7 @@ public class FormPageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"text\":");
+			sb.append("\"text\": ");
 
 			sb.append("\"");
 

@@ -154,7 +154,7 @@ public class DataLayoutPage {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataLayoutRows\":");
+			sb.append("\"dataLayoutRows\": ");
 
 			sb.append("[");
 
@@ -174,7 +174,7 @@ public class DataLayoutPage {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("[");
 
@@ -194,7 +194,7 @@ public class DataLayoutPage {
 				sb.append(", ");
 			}
 
-			sb.append("\"title\":");
+			sb.append("\"title\": ");
 
 			sb.append("[");
 

@@ -140,7 +140,7 @@ public class WorkflowTaskAssignToMe {
 				sb.append(", ");
 			}
 
-			sb.append("\"comment\":");
+			sb.append("\"comment\": ");
 
 			sb.append("\"");
 
@@ -154,7 +154,7 @@ public class WorkflowTaskAssignToMe {
 				sb.append(", ");
 			}
 
-			sb.append("\"dueDate\":");
+			sb.append("\"dueDate\": ");
 
 			sb.append("\"");
 

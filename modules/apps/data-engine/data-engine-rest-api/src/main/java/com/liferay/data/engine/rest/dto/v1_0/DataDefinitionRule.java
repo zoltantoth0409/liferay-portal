@@ -184,7 +184,7 @@ public class DataDefinitionRule {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataDefinitionFieldNames\":");
+			sb.append("\"dataDefinitionFieldNames\": ");
 
 			sb.append("[");
 
@@ -208,7 +208,7 @@ public class DataDefinitionRule {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataDefinitionRuleParameters\":");
+			sb.append("\"dataDefinitionRuleParameters\": ");
 
 			sb.append("[");
 
@@ -228,7 +228,7 @@ public class DataDefinitionRule {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -242,7 +242,7 @@ public class DataDefinitionRule {
 				sb.append(", ");
 			}
 
-			sb.append("\"ruleType\":");
+			sb.append("\"ruleType\": ");
 
 			sb.append("\"");
 

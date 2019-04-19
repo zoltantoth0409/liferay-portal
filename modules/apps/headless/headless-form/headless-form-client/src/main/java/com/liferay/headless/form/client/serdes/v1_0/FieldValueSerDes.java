@@ -56,7 +56,7 @@ public class FieldValueSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"document\":");
+			sb.append("\"document\": ");
 
 			sb.append(String.valueOf(fieldValue.getDocument()));
 		}
@@ -66,7 +66,7 @@ public class FieldValueSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"documentId\":");
+			sb.append("\"documentId\": ");
 
 			sb.append(fieldValue.getDocumentId());
 		}
@@ -76,7 +76,7 @@ public class FieldValueSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(fieldValue.getId());
 		}
@@ -86,7 +86,7 @@ public class FieldValueSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -100,7 +100,7 @@ public class FieldValueSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"value\":");
+			sb.append("\"value\": ");
 
 			sb.append("\"");
 

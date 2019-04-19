@@ -151,7 +151,7 @@ public class Validation {
 				sb.append(", ");
 			}
 
-			sb.append("\"errorMessage\":");
+			sb.append("\"errorMessage\": ");
 
 			sb.append("\"");
 
@@ -165,7 +165,7 @@ public class Validation {
 				sb.append(", ");
 			}
 
-			sb.append("\"expression\":");
+			sb.append("\"expression\": ");
 
 			sb.append("\"");
 
@@ -179,7 +179,7 @@ public class Validation {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}

@@ -66,7 +66,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"aggregateRating\":");
+			sb.append("\"aggregateRating\": ");
 
 			sb.append(
 				String.valueOf(knowledgeBaseArticle.getAggregateRating()));
@@ -77,7 +77,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"articleBody\":");
+			sb.append("\"articleBody\": ");
 
 			sb.append("\"");
 
@@ -91,7 +91,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(knowledgeBaseArticle.getCreator()));
 		}
@@ -101,7 +101,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -117,7 +117,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -133,7 +133,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -147,7 +147,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"encodingFormat\":");
+			sb.append("\"encodingFormat\": ");
 
 			sb.append("\"");
 
@@ -161,7 +161,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"friendlyUrlPath\":");
+			sb.append("\"friendlyUrlPath\": ");
 
 			sb.append("\"");
 
@@ -175,7 +175,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(knowledgeBaseArticle.getId());
 		}
@@ -185,7 +185,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywords\":");
+			sb.append("\"keywords\": ");
 
 			sb.append("[");
 
@@ -211,7 +211,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfAttachments\":");
+			sb.append("\"numberOfAttachments\": ");
 
 			sb.append(knowledgeBaseArticle.getNumberOfAttachments());
 		}
@@ -221,7 +221,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfKnowledgeBaseArticles\":");
+			sb.append("\"numberOfKnowledgeBaseArticles\": ");
 
 			sb.append(knowledgeBaseArticle.getNumberOfKnowledgeBaseArticles());
 		}
@@ -231,7 +231,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"parentKnowledgeBaseFolder\":");
+			sb.append("\"parentKnowledgeBaseFolder\": ");
 
 			sb.append(
 				String.valueOf(
@@ -243,7 +243,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"parentKnowledgeBaseFolderId\":");
+			sb.append("\"parentKnowledgeBaseFolderId\": ");
 
 			sb.append(knowledgeBaseArticle.getParentKnowledgeBaseFolderId());
 		}
@@ -253,7 +253,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(knowledgeBaseArticle.getSiteId());
 		}
@@ -263,7 +263,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategories\":");
+			sb.append("\"taxonomyCategories\": ");
 
 			sb.append("[");
 
@@ -289,7 +289,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryIds\":");
+			sb.append("\"taxonomyCategoryIds\": ");
 
 			sb.append("[");
 
@@ -314,7 +314,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"title\":");
+			sb.append("\"title\": ");
 
 			sb.append("\"");
 
@@ -328,7 +328,7 @@ public class KnowledgeBaseArticleSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

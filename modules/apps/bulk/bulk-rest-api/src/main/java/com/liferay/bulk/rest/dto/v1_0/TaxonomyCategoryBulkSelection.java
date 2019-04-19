@@ -164,7 +164,7 @@ public class TaxonomyCategoryBulkSelection {
 				sb.append(", ");
 			}
 
-			sb.append("\"documentBulkSelection\":");
+			sb.append("\"documentBulkSelection\": ");
 
 			sb.append(String.valueOf(documentBulkSelection));
 		}
@@ -174,7 +174,7 @@ public class TaxonomyCategoryBulkSelection {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryIdsToAdd\":");
+			sb.append("\"taxonomyCategoryIdsToAdd\": ");
 
 			sb.append("[");
 
@@ -194,7 +194,7 @@ public class TaxonomyCategoryBulkSelection {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryIdsToRemove\":");
+			sb.append("\"taxonomyCategoryIdsToRemove\": ");
 
 			sb.append("[");
 

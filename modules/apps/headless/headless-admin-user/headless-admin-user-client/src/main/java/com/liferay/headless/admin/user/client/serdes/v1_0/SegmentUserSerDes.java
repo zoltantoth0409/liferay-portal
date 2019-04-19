@@ -58,7 +58,7 @@ public class SegmentUserSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"emailAddress\":");
+			sb.append("\"emailAddress\": ");
 
 			sb.append("\"");
 
@@ -72,7 +72,7 @@ public class SegmentUserSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(segmentUser.getId());
 		}
@@ -82,7 +82,7 @@ public class SegmentUserSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 

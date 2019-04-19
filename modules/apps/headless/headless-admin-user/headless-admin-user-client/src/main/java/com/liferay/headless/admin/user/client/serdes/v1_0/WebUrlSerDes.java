@@ -56,7 +56,7 @@ public class WebUrlSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(webUrl.getId());
 		}
@@ -66,7 +66,7 @@ public class WebUrlSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"url\":");
+			sb.append("\"url\": ");
 
 			sb.append("\"");
 
@@ -80,7 +80,7 @@ public class WebUrlSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"urlType\":");
+			sb.append("\"urlType\": ");
 
 			sb.append("\"");
 

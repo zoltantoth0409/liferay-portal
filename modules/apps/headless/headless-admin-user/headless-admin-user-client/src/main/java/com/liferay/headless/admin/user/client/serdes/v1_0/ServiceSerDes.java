@@ -58,7 +58,7 @@ public class ServiceSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"hoursAvailable\":");
+			sb.append("\"hoursAvailable\": ");
 
 			sb.append("[");
 
@@ -78,7 +78,7 @@ public class ServiceSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(service.getId());
 		}
@@ -88,7 +88,7 @@ public class ServiceSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"serviceType\":");
+			sb.append("\"serviceType\": ");
 
 			sb.append("\"");
 

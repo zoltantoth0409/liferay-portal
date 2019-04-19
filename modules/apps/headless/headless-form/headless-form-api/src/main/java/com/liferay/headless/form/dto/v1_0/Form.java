@@ -453,7 +453,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"availableLanguages\":");
+			sb.append("\"availableLanguages\": ");
 
 			sb.append("[");
 
@@ -477,7 +477,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(creator));
 		}
@@ -487,7 +487,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -501,7 +501,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -515,7 +515,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"datePublished\":");
+			sb.append("\"datePublished\": ");
 
 			sb.append("\"");
 
@@ -529,7 +529,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"defaultLanguage\":");
+			sb.append("\"defaultLanguage\": ");
 
 			sb.append("\"");
 
@@ -543,7 +543,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -557,7 +557,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"formRecords\":");
+			sb.append("\"formRecords\": ");
 
 			sb.append("[");
 
@@ -577,7 +577,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"formRecordsIds\":");
+			sb.append("\"formRecordsIds\": ");
 
 			sb.append("[");
 
@@ -597,7 +597,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -607,7 +607,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -621,7 +621,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(siteId);
 		}
@@ -631,7 +631,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"structure\":");
+			sb.append("\"structure\": ");
 
 			sb.append(String.valueOf(structure));
 		}
@@ -641,7 +641,7 @@ public class Form {
 				sb.append(", ");
 			}
 
-			sb.append("\"structureId\":");
+			sb.append("\"structureId\": ");
 
 			sb.append(structureId);
 		}

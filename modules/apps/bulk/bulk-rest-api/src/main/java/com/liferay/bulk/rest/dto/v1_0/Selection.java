@@ -97,7 +97,7 @@ public class Selection {
 				sb.append(", ");
 			}
 
-			sb.append("\"size\":");
+			sb.append("\"size\": ");
 
 			sb.append(size);
 		}

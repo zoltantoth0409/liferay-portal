@@ -60,7 +60,7 @@ public class DataLayoutRowSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataLayoutColums\":");
+			sb.append("\"dataLayoutColums\": ");
 
 			sb.append("[");
 

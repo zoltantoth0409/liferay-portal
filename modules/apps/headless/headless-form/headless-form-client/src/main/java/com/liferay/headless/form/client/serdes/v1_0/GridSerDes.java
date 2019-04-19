@@ -59,7 +59,7 @@ public class GridSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"columns\":");
+			sb.append("\"columns\": ");
 
 			sb.append("[");
 
@@ -79,7 +79,7 @@ public class GridSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(grid.getId());
 		}
@@ -89,7 +89,7 @@ public class GridSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"rows\":");
+			sb.append("\"rows\": ");
 
 			sb.append("[");
 

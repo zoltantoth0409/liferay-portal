@@ -58,7 +58,7 @@ public class DataLayoutColumnSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"columnSize\":");
+			sb.append("\"columnSize\": ");
 
 			sb.append(dataLayoutColumn.getColumnSize());
 		}
@@ -68,7 +68,7 @@ public class DataLayoutColumnSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"fieldNames\":");
+			sb.append("\"fieldNames\": ");
 
 			sb.append("[");
 

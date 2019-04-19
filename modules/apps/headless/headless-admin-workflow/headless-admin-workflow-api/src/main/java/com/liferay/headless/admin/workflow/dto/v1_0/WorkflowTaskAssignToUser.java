@@ -170,7 +170,7 @@ public class WorkflowTaskAssignToUser {
 				sb.append(", ");
 			}
 
-			sb.append("\"assigneeId\":");
+			sb.append("\"assigneeId\": ");
 
 			sb.append(assigneeId);
 		}
@@ -180,7 +180,7 @@ public class WorkflowTaskAssignToUser {
 				sb.append(", ");
 			}
 
-			sb.append("\"comment\":");
+			sb.append("\"comment\": ");
 
 			sb.append("\"");
 
@@ -194,7 +194,7 @@ public class WorkflowTaskAssignToUser {
 				sb.append(", ");
 			}
 
-			sb.append("\"dueDate\":");
+			sb.append("\"dueDate\": ");
 
 			sb.append("\"");
 

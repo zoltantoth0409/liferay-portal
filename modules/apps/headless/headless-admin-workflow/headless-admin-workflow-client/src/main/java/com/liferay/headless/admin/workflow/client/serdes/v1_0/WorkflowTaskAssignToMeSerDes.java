@@ -64,7 +64,7 @@ public class WorkflowTaskAssignToMeSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"comment\":");
+			sb.append("\"comment\": ");
 
 			sb.append("\"");
 
@@ -78,7 +78,7 @@ public class WorkflowTaskAssignToMeSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dueDate\":");
+			sb.append("\"dueDate\": ");
 
 			sb.append("\"");
 

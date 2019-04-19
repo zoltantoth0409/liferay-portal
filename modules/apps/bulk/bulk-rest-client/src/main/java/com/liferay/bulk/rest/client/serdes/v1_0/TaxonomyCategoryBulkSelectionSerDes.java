@@ -62,7 +62,7 @@ public class TaxonomyCategoryBulkSelectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"documentBulkSelection\":");
+			sb.append("\"documentBulkSelection\": ");
 
 			sb.append(
 				String.valueOf(
@@ -76,7 +76,7 @@ public class TaxonomyCategoryBulkSelectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryIdsToAdd\":");
+			sb.append("\"taxonomyCategoryIdsToAdd\": ");
 
 			sb.append("[");
 
@@ -106,7 +106,7 @@ public class TaxonomyCategoryBulkSelectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryIdsToRemove\":");
+			sb.append("\"taxonomyCategoryIdsToRemove\": ");
 
 			sb.append("[");
 

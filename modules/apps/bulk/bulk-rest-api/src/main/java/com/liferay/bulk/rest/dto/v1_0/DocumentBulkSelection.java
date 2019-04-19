@@ -128,7 +128,7 @@ public class DocumentBulkSelection {
 				sb.append(", ");
 			}
 
-			sb.append("\"documentIds\":");
+			sb.append("\"documentIds\": ");
 
 			sb.append("[");
 
@@ -152,7 +152,7 @@ public class DocumentBulkSelection {
 				sb.append(", ");
 			}
 
-			sb.append("\"selectionScope\":");
+			sb.append("\"selectionScope\": ");
 
 			sb.append(String.valueOf(selectionScope));
 		}

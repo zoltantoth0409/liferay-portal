@@ -425,7 +425,7 @@ public class MessageBoardSection {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(creator));
 		}
@@ -435,7 +435,7 @@ public class MessageBoardSection {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -449,7 +449,7 @@ public class MessageBoardSection {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -463,7 +463,7 @@ public class MessageBoardSection {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -477,7 +477,7 @@ public class MessageBoardSection {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -487,7 +487,7 @@ public class MessageBoardSection {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfMessageBoardSections\":");
+			sb.append("\"numberOfMessageBoardSections\": ");
 
 			sb.append(numberOfMessageBoardSections);
 		}
@@ -497,7 +497,7 @@ public class MessageBoardSection {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfMessageBoardThreads\":");
+			sb.append("\"numberOfMessageBoardThreads\": ");
 
 			sb.append(numberOfMessageBoardThreads);
 		}
@@ -507,7 +507,7 @@ public class MessageBoardSection {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(siteId);
 		}
@@ -517,7 +517,7 @@ public class MessageBoardSection {
 				sb.append(", ");
 			}
 
-			sb.append("\"title\":");
+			sb.append("\"title\": ");
 
 			sb.append("\"");
 
@@ -531,7 +531,7 @@ public class MessageBoardSection {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

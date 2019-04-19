@@ -60,7 +60,7 @@ public class DataDefinitionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"addDataDefinition\":");
+			sb.append("\"addDataDefinition\": ");
 
 			sb.append(dataDefinitionPermission.getAddDataDefinition());
 		}
@@ -70,7 +70,7 @@ public class DataDefinitionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"definePermissions\":");
+			sb.append("\"definePermissions\": ");
 
 			sb.append(dataDefinitionPermission.getDefinePermissions());
 		}
@@ -80,7 +80,7 @@ public class DataDefinitionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"delete\":");
+			sb.append("\"delete\": ");
 
 			sb.append(dataDefinitionPermission.getDelete());
 		}
@@ -90,7 +90,7 @@ public class DataDefinitionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"roleNames\":");
+			sb.append("\"roleNames\": ");
 
 			sb.append("[");
 
@@ -116,7 +116,7 @@ public class DataDefinitionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"update\":");
+			sb.append("\"update\": ");
 
 			sb.append(dataDefinitionPermission.getUpdate());
 		}
@@ -126,7 +126,7 @@ public class DataDefinitionPermissionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"view\":");
+			sb.append("\"view\": ");
 
 			sb.append(dataDefinitionPermission.getView());
 		}

@@ -427,7 +427,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataType\":");
+			sb.append("\"dataType\": ");
 
 			sb.append("\"");
 
@@ -441,7 +441,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"inputControl\":");
+			sb.append("\"inputControl\": ");
 
 			sb.append("\"");
 
@@ -455,7 +455,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"label\":");
+			sb.append("\"label\": ");
 
 			sb.append("\"");
 
@@ -469,7 +469,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"localizable\":");
+			sb.append("\"localizable\": ");
 
 			sb.append(localizable);
 		}
@@ -479,7 +479,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"multiple\":");
+			sb.append("\"multiple\": ");
 
 			sb.append(multiple);
 		}
@@ -489,7 +489,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -503,7 +503,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"nestedContentStructureFields\":");
+			sb.append("\"nestedContentStructureFields\": ");
 
 			sb.append("[");
 
@@ -523,7 +523,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"options\":");
+			sb.append("\"options\": ");
 
 			sb.append("[");
 
@@ -543,7 +543,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"predefinedValue\":");
+			sb.append("\"predefinedValue\": ");
 
 			sb.append("\"");
 
@@ -557,7 +557,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"repeatable\":");
+			sb.append("\"repeatable\": ");
 
 			sb.append(repeatable);
 		}
@@ -567,7 +567,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"required\":");
+			sb.append("\"required\": ");
 
 			sb.append(required);
 		}
@@ -577,7 +577,7 @@ public class ContentStructureField {
 				sb.append(", ");
 			}
 
-			sb.append("\"showLabel\":");
+			sb.append("\"showLabel\": ");
 
 			sb.append(showLabel);
 		}

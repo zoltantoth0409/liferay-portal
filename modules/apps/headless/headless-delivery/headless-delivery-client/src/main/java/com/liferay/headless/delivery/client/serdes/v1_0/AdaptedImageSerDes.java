@@ -58,7 +58,7 @@ public class AdaptedImageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"contentUrl\":");
+			sb.append("\"contentUrl\": ");
 
 			sb.append("\"");
 
@@ -72,7 +72,7 @@ public class AdaptedImageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"height\":");
+			sb.append("\"height\": ");
 
 			sb.append(adaptedImage.getHeight());
 		}
@@ -82,7 +82,7 @@ public class AdaptedImageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"resolutionName\":");
+			sb.append("\"resolutionName\": ");
 
 			sb.append("\"");
 
@@ -96,7 +96,7 @@ public class AdaptedImageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"sizeInBytes\":");
+			sb.append("\"sizeInBytes\": ");
 
 			sb.append(adaptedImage.getSizeInBytes());
 		}
@@ -106,7 +106,7 @@ public class AdaptedImageSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"width\":");
+			sb.append("\"width\": ");
 
 			sb.append(adaptedImage.getWidth());
 		}

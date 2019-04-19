@@ -60,7 +60,7 @@ public class DataRecordCollectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataDefinitionId\":");
+			sb.append("\"dataDefinitionId\": ");
 
 			sb.append(dataRecordCollection.getDataDefinitionId());
 		}
@@ -70,7 +70,7 @@ public class DataRecordCollectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("[");
 
@@ -93,7 +93,7 @@ public class DataRecordCollectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(dataRecordCollection.getId());
 		}
@@ -103,7 +103,7 @@ public class DataRecordCollectionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("[");
 

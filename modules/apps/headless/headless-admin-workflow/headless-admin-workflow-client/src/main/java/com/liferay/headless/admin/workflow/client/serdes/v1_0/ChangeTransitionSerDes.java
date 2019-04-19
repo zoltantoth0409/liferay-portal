@@ -58,7 +58,7 @@ public class ChangeTransitionSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"transition\":");
+			sb.append("\"transition\": ");
 
 			sb.append("\"");
 

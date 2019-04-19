@@ -58,7 +58,7 @@ public class RenderedContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"renderedContentURL\":");
+			sb.append("\"renderedContentURL\": ");
 
 			sb.append("\"");
 
@@ -72,7 +72,7 @@ public class RenderedContentSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"templateName\":");
+			sb.append("\"templateName\": ");
 
 			sb.append("\"");
 

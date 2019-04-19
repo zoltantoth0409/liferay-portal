@@ -360,7 +360,7 @@ public class ContactInformation {
 				sb.append(", ");
 			}
 
-			sb.append("\"emailAddresses\":");
+			sb.append("\"emailAddresses\": ");
 
 			sb.append("[");
 
@@ -380,7 +380,7 @@ public class ContactInformation {
 				sb.append(", ");
 			}
 
-			sb.append("\"facebook\":");
+			sb.append("\"facebook\": ");
 
 			sb.append("\"");
 
@@ -394,7 +394,7 @@ public class ContactInformation {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -404,7 +404,7 @@ public class ContactInformation {
 				sb.append(", ");
 			}
 
-			sb.append("\"jabber\":");
+			sb.append("\"jabber\": ");
 
 			sb.append("\"");
 
@@ -418,7 +418,7 @@ public class ContactInformation {
 				sb.append(", ");
 			}
 
-			sb.append("\"postalAddresses\":");
+			sb.append("\"postalAddresses\": ");
 
 			sb.append("[");
 
@@ -438,7 +438,7 @@ public class ContactInformation {
 				sb.append(", ");
 			}
 
-			sb.append("\"skype\":");
+			sb.append("\"skype\": ");
 
 			sb.append("\"");
 
@@ -452,7 +452,7 @@ public class ContactInformation {
 				sb.append(", ");
 			}
 
-			sb.append("\"sms\":");
+			sb.append("\"sms\": ");
 
 			sb.append("\"");
 
@@ -466,7 +466,7 @@ public class ContactInformation {
 				sb.append(", ");
 			}
 
-			sb.append("\"telephones\":");
+			sb.append("\"telephones\": ");
 
 			sb.append("[");
 
@@ -486,7 +486,7 @@ public class ContactInformation {
 				sb.append(", ");
 			}
 
-			sb.append("\"twitter\":");
+			sb.append("\"twitter\": ");
 
 			sb.append("\"");
 
@@ -500,7 +500,7 @@ public class ContactInformation {
 				sb.append(", ");
 			}
 
-			sb.append("\"webUrls\":");
+			sb.append("\"webUrls\": ");
 
 			sb.append("[");
 

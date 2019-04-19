@@ -60,7 +60,7 @@ public class ParentTaxonomyVocabularySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(parentTaxonomyVocabulary.getId());
 		}
@@ -70,7 +70,7 @@ public class ParentTaxonomyVocabularySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 

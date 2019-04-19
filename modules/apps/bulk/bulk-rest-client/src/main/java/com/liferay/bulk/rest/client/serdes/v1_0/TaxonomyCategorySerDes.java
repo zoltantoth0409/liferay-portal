@@ -58,7 +58,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryId\":");
+			sb.append("\"taxonomyCategoryId\": ");
 
 			sb.append(taxonomyCategory.getTaxonomyCategoryId());
 		}
@@ -68,7 +68,7 @@ public class TaxonomyCategorySerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryName\":");
+			sb.append("\"taxonomyCategoryName\": ");
 
 			sb.append("\"");
 

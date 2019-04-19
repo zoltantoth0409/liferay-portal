@@ -99,7 +99,7 @@ public class Status {
 				sb.append(", ");
 			}
 
-			sb.append("\"actionInProgress\":");
+			sb.append("\"actionInProgress\": ");
 
 			sb.append(actionInProgress);
 		}

@@ -58,7 +58,7 @@ public class StructuredContentLinkSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(structuredContentLink.getId());
 		}
@@ -68,7 +68,7 @@ public class StructuredContentLinkSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"title\":");
+			sb.append("\"title\": ");
 
 			sb.append("\"");
 

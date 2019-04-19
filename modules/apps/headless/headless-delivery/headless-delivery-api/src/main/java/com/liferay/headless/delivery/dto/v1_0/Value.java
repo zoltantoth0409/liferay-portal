@@ -239,7 +239,7 @@ public class Value {
 				sb.append(", ");
 			}
 
-			sb.append("\"data\":");
+			sb.append("\"data\": ");
 
 			sb.append("\"");
 
@@ -253,7 +253,7 @@ public class Value {
 				sb.append(", ");
 			}
 
-			sb.append("\"document\":");
+			sb.append("\"document\": ");
 
 			sb.append(String.valueOf(document));
 		}
@@ -263,7 +263,7 @@ public class Value {
 				sb.append(", ");
 			}
 
-			sb.append("\"geo\":");
+			sb.append("\"geo\": ");
 
 			sb.append(String.valueOf(geo));
 		}
@@ -273,7 +273,7 @@ public class Value {
 				sb.append(", ");
 			}
 
-			sb.append("\"image\":");
+			sb.append("\"image\": ");
 
 			sb.append(String.valueOf(image));
 		}
@@ -283,7 +283,7 @@ public class Value {
 				sb.append(", ");
 			}
 
-			sb.append("\"link\":");
+			sb.append("\"link\": ");
 
 			sb.append("\"");
 
@@ -297,7 +297,7 @@ public class Value {
 				sb.append(", ");
 			}
 
-			sb.append("\"structuredContentLink\":");
+			sb.append("\"structuredContentLink\": ");
 
 			sb.append(String.valueOf(structuredContentLink));
 		}

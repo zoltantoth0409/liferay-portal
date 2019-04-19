@@ -64,7 +64,7 @@ public class DocumentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(documentFolder.getCreator()));
 		}
@@ -74,7 +74,7 @@ public class DocumentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -90,7 +90,7 @@ public class DocumentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -106,7 +106,7 @@ public class DocumentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -120,7 +120,7 @@ public class DocumentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(documentFolder.getId());
 		}
@@ -130,7 +130,7 @@ public class DocumentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -144,7 +144,7 @@ public class DocumentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfDocumentFolders\":");
+			sb.append("\"numberOfDocumentFolders\": ");
 
 			sb.append(documentFolder.getNumberOfDocumentFolders());
 		}
@@ -154,7 +154,7 @@ public class DocumentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfDocuments\":");
+			sb.append("\"numberOfDocuments\": ");
 
 			sb.append(documentFolder.getNumberOfDocuments());
 		}
@@ -164,7 +164,7 @@ public class DocumentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(documentFolder.getSiteId());
 		}
@@ -174,7 +174,7 @@ public class DocumentFolderSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

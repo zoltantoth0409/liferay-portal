@@ -154,7 +154,7 @@ public class WebUrl {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -164,7 +164,7 @@ public class WebUrl {
 				sb.append(", ");
 			}
 
-			sb.append("\"url\":");
+			sb.append("\"url\": ");
 
 			sb.append("\"");
 
@@ -178,7 +178,7 @@ public class WebUrl {
 				sb.append(", ");
 			}
 
-			sb.append("\"urlType\":");
+			sb.append("\"urlType\": ");
 
 			sb.append("\"");
 

@@ -56,7 +56,7 @@ public class AssetTypeSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"required\":");
+			sb.append("\"required\": ");
 
 			sb.append(assetType.getRequired());
 		}
@@ -66,7 +66,7 @@ public class AssetTypeSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"subtype\":");
+			sb.append("\"subtype\": ");
 
 			sb.append("\"");
 
@@ -80,7 +80,7 @@ public class AssetTypeSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"type\":");
+			sb.append("\"type\": ");
 
 			sb.append("\"");
 

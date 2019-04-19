@@ -214,7 +214,7 @@ public class AdaptedImage {
 				sb.append(", ");
 			}
 
-			sb.append("\"contentUrl\":");
+			sb.append("\"contentUrl\": ");
 
 			sb.append("\"");
 
@@ -228,7 +228,7 @@ public class AdaptedImage {
 				sb.append(", ");
 			}
 
-			sb.append("\"height\":");
+			sb.append("\"height\": ");
 
 			sb.append(height);
 		}
@@ -238,7 +238,7 @@ public class AdaptedImage {
 				sb.append(", ");
 			}
 
-			sb.append("\"resolutionName\":");
+			sb.append("\"resolutionName\": ");
 
 			sb.append("\"");
 
@@ -252,7 +252,7 @@ public class AdaptedImage {
 				sb.append(", ");
 			}
 
-			sb.append("\"sizeInBytes\":");
+			sb.append("\"sizeInBytes\": ");
 
 			sb.append(sizeInBytes);
 		}
@@ -262,7 +262,7 @@ public class AdaptedImage {
 				sb.append(", ");
 			}
 
-			sb.append("\"width\":");
+			sb.append("\"width\": ");
 
 			sb.append(width);
 		}

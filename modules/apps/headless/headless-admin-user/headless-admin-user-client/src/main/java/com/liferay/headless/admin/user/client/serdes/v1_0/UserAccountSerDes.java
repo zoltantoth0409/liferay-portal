@@ -68,7 +68,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"additionalName\":");
+			sb.append("\"additionalName\": ");
 
 			sb.append("\"");
 
@@ -82,7 +82,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"alternateName\":");
+			sb.append("\"alternateName\": ");
 
 			sb.append("\"");
 
@@ -96,7 +96,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"birthDate\":");
+			sb.append("\"birthDate\": ");
 
 			sb.append("\"");
 
@@ -111,7 +111,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"contactInformation\":");
+			sb.append("\"contactInformation\": ");
 
 			sb.append(String.valueOf(userAccount.getContactInformation()));
 		}
@@ -121,7 +121,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dashboardURL\":");
+			sb.append("\"dashboardURL\": ");
 
 			sb.append("\"");
 
@@ -135,7 +135,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -150,7 +150,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -165,7 +165,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"emailAddress\":");
+			sb.append("\"emailAddress\": ");
 
 			sb.append("\"");
 
@@ -179,7 +179,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"familyName\":");
+			sb.append("\"familyName\": ");
 
 			sb.append("\"");
 
@@ -193,7 +193,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"givenName\":");
+			sb.append("\"givenName\": ");
 
 			sb.append("\"");
 
@@ -207,7 +207,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"honorificPrefix\":");
+			sb.append("\"honorificPrefix\": ");
 
 			sb.append("\"");
 
@@ -221,7 +221,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"honorificSuffix\":");
+			sb.append("\"honorificSuffix\": ");
 
 			sb.append("\"");
 
@@ -235,7 +235,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(userAccount.getId());
 		}
@@ -245,7 +245,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"image\":");
+			sb.append("\"image\": ");
 
 			sb.append("\"");
 
@@ -259,7 +259,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"jobTitle\":");
+			sb.append("\"jobTitle\": ");
 
 			sb.append("\"");
 
@@ -273,7 +273,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywords\":");
+			sb.append("\"keywords\": ");
 
 			sb.append("[");
 
@@ -297,7 +297,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -311,7 +311,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"organizationBriefs\":");
+			sb.append("\"organizationBriefs\": ");
 
 			sb.append("[");
 
@@ -334,7 +334,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"profileURL\":");
+			sb.append("\"profileURL\": ");
 
 			sb.append("\"");
 
@@ -348,7 +348,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"roleBriefs\":");
+			sb.append("\"roleBriefs\": ");
 
 			sb.append("[");
 
@@ -368,7 +368,7 @@ public class UserAccountSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteBriefs\":");
+			sb.append("\"siteBriefs\": ");
 
 			sb.append("[");
 

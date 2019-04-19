@@ -58,7 +58,7 @@ public class ObjectReviewedSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(objectReviewed.getId());
 		}
@@ -68,7 +68,7 @@ public class ObjectReviewedSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"resourceType\":");
+			sb.append("\"resourceType\": ");
 
 			sb.append("\"");
 

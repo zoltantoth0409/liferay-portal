@@ -66,7 +66,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"aggregateRating\":");
+			sb.append("\"aggregateRating\": ");
 
 			sb.append(String.valueOf(blogPosting.getAggregateRating()));
 		}
@@ -76,7 +76,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"alternativeHeadline\":");
+			sb.append("\"alternativeHeadline\": ");
 
 			sb.append("\"");
 
@@ -90,7 +90,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"articleBody\":");
+			sb.append("\"articleBody\": ");
 
 			sb.append("\"");
 
@@ -104,7 +104,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(blogPosting.getCreator()));
 		}
@@ -114,7 +114,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -129,7 +129,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -144,7 +144,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"datePublished\":");
+			sb.append("\"datePublished\": ");
 
 			sb.append("\"");
 
@@ -159,7 +159,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -173,7 +173,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"encodingFormat\":");
+			sb.append("\"encodingFormat\": ");
 
 			sb.append("\"");
 
@@ -187,7 +187,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"friendlyUrlPath\":");
+			sb.append("\"friendlyUrlPath\": ");
 
 			sb.append("\"");
 
@@ -201,7 +201,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"headline\":");
+			sb.append("\"headline\": ");
 
 			sb.append("\"");
 
@@ -215,7 +215,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(blogPosting.getId());
 		}
@@ -225,7 +225,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"image\":");
+			sb.append("\"image\": ");
 
 			sb.append(String.valueOf(blogPosting.getImage()));
 		}
@@ -235,7 +235,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywords\":");
+			sb.append("\"keywords\": ");
 
 			sb.append("[");
 
@@ -259,7 +259,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"numberOfComments\":");
+			sb.append("\"numberOfComments\": ");
 
 			sb.append(blogPosting.getNumberOfComments());
 		}
@@ -269,7 +269,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(blogPosting.getSiteId());
 		}
@@ -279,7 +279,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategories\":");
+			sb.append("\"taxonomyCategories\": ");
 
 			sb.append("[");
 
@@ -302,7 +302,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taxonomyCategoryIds\":");
+			sb.append("\"taxonomyCategoryIds\": ");
 
 			sb.append("[");
 
@@ -324,7 +324,7 @@ public class BlogPostingSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"viewableBy\":");
+			sb.append("\"viewableBy\": ");
 
 			sb.append("\"");
 

@@ -58,7 +58,7 @@ public class OrganizationBriefSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(organizationBrief.getId());
 		}
@@ -68,7 +68,7 @@ public class OrganizationBriefSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 

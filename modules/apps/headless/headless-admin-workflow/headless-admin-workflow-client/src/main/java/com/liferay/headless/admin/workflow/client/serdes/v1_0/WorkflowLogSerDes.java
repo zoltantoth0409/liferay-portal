@@ -64,7 +64,7 @@ public class WorkflowLogSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"auditPerson\":");
+			sb.append("\"auditPerson\": ");
 
 			sb.append(String.valueOf(workflowLog.getAuditPerson()));
 		}
@@ -74,7 +74,7 @@ public class WorkflowLogSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"commentLog\":");
+			sb.append("\"commentLog\": ");
 
 			sb.append("\"");
 
@@ -88,7 +88,7 @@ public class WorkflowLogSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -103,7 +103,7 @@ public class WorkflowLogSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(workflowLog.getId());
 		}
@@ -113,7 +113,7 @@ public class WorkflowLogSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"person\":");
+			sb.append("\"person\": ");
 
 			sb.append(String.valueOf(workflowLog.getPerson()));
 		}
@@ -123,7 +123,7 @@ public class WorkflowLogSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"previousPerson\":");
+			sb.append("\"previousPerson\": ");
 
 			sb.append(String.valueOf(workflowLog.getPreviousPerson()));
 		}
@@ -133,7 +133,7 @@ public class WorkflowLogSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"previousState\":");
+			sb.append("\"previousState\": ");
 
 			sb.append("\"");
 
@@ -147,7 +147,7 @@ public class WorkflowLogSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"state\":");
+			sb.append("\"state\": ");
 
 			sb.append("\"");
 
@@ -161,7 +161,7 @@ public class WorkflowLogSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"taskId\":");
+			sb.append("\"taskId\": ");
 
 			sb.append(workflowLog.getTaskId());
 		}
@@ -171,7 +171,7 @@ public class WorkflowLogSerDes {
 				sb.append(", ");
 			}
 
-			sb.append("\"type\":");
+			sb.append("\"type\": ");
 
 			sb.append("\"");
 

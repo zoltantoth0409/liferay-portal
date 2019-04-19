@@ -157,7 +157,7 @@ public class KeywordBulkSelection {
 				sb.append(", ");
 			}
 
-			sb.append("\"documentBulkSelection\":");
+			sb.append("\"documentBulkSelection\": ");
 
 			sb.append(String.valueOf(documentBulkSelection));
 		}
@@ -167,7 +167,7 @@ public class KeywordBulkSelection {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywordsToAdd\":");
+			sb.append("\"keywordsToAdd\": ");
 
 			sb.append("[");
 
@@ -191,7 +191,7 @@ public class KeywordBulkSelection {
 				sb.append(", ");
 			}
 
-			sb.append("\"keywordsToRemove\":");
+			sb.append("\"keywordsToRemove\": ");
 
 			sb.append("[");
 

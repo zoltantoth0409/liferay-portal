@@ -353,7 +353,7 @@ public class DataDefinition {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataDefinitionFields\":");
+			sb.append("\"dataDefinitionFields\": ");
 
 			sb.append("[");
 
@@ -373,7 +373,7 @@ public class DataDefinition {
 				sb.append(", ");
 			}
 
-			sb.append("\"dataDefinitionRules\":");
+			sb.append("\"dataDefinitionRules\": ");
 
 			sb.append("[");
 
@@ -393,7 +393,7 @@ public class DataDefinition {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -407,7 +407,7 @@ public class DataDefinition {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -421,7 +421,7 @@ public class DataDefinition {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("[");
 
@@ -441,7 +441,7 @@ public class DataDefinition {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -451,7 +451,7 @@ public class DataDefinition {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("[");
 
@@ -471,7 +471,7 @@ public class DataDefinition {
 				sb.append(", ");
 			}
 
-			sb.append("\"siteId\":");
+			sb.append("\"siteId\": ");
 
 			sb.append(siteId);
 		}
@@ -481,7 +481,7 @@ public class DataDefinition {
 				sb.append(", ");
 			}
 
-			sb.append("\"storageType\":");
+			sb.append("\"storageType\": ");
 
 			sb.append("\"");
 
@@ -495,7 +495,7 @@ public class DataDefinition {
 				sb.append(", ");
 			}
 
-			sb.append("\"userId\":");
+			sb.append("\"userId\": ");
 
 			sb.append(userId);
 		}

@@ -362,7 +362,7 @@ public class WorkflowTask {
 				sb.append(", ");
 			}
 
-			sb.append("\"completed\":");
+			sb.append("\"completed\": ");
 
 			sb.append(completed);
 		}
@@ -372,7 +372,7 @@ public class WorkflowTask {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCompleted\":");
+			sb.append("\"dateCompleted\": ");
 
 			sb.append("\"");
 
@@ -386,7 +386,7 @@ public class WorkflowTask {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -400,7 +400,7 @@ public class WorkflowTask {
 				sb.append(", ");
 			}
 
-			sb.append("\"definitionName\":");
+			sb.append("\"definitionName\": ");
 
 			sb.append("\"");
 
@@ -414,7 +414,7 @@ public class WorkflowTask {
 				sb.append(", ");
 			}
 
-			sb.append("\"description\":");
+			sb.append("\"description\": ");
 
 			sb.append("\"");
 
@@ -428,7 +428,7 @@ public class WorkflowTask {
 				sb.append(", ");
 			}
 
-			sb.append("\"dueDate\":");
+			sb.append("\"dueDate\": ");
 
 			sb.append("\"");
 
@@ -442,7 +442,7 @@ public class WorkflowTask {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -452,7 +452,7 @@ public class WorkflowTask {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
@@ -466,7 +466,7 @@ public class WorkflowTask {
 				sb.append(", ");
 			}
 
-			sb.append("\"objectReviewed\":");
+			sb.append("\"objectReviewed\": ");
 
 			sb.append(String.valueOf(objectReviewed));
 		}
@@ -476,7 +476,7 @@ public class WorkflowTask {
 				sb.append(", ");
 			}
 
-			sb.append("\"transitions\":");
+			sb.append("\"transitions\": ");
 
 			sb.append("[");
 

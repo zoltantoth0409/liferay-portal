@@ -321,7 +321,7 @@ public class FormRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"creator\":");
+			sb.append("\"creator\": ");
 
 			sb.append(String.valueOf(creator));
 		}
@@ -331,7 +331,7 @@ public class FormRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateCreated\":");
+			sb.append("\"dateCreated\": ");
 
 			sb.append("\"");
 
@@ -345,7 +345,7 @@ public class FormRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"dateModified\":");
+			sb.append("\"dateModified\": ");
 
 			sb.append("\"");
 
@@ -359,7 +359,7 @@ public class FormRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"datePublished\":");
+			sb.append("\"datePublished\": ");
 
 			sb.append("\"");
 
@@ -373,7 +373,7 @@ public class FormRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"draft\":");
+			sb.append("\"draft\": ");
 
 			sb.append(draft);
 		}
@@ -383,7 +383,7 @@ public class FormRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"fieldValues\":");
+			sb.append("\"fieldValues\": ");
 
 			sb.append("[");
 
@@ -403,7 +403,7 @@ public class FormRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"form\":");
+			sb.append("\"form\": ");
 
 			sb.append(String.valueOf(form));
 		}
@@ -413,7 +413,7 @@ public class FormRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"formId\":");
+			sb.append("\"formId\": ");
 
 			sb.append(formId);
 		}
@@ -423,7 +423,7 @@ public class FormRecord {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}

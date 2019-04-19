@@ -123,7 +123,7 @@ public class ParentTaxonomyVocabulary {
 				sb.append(", ");
 			}
 
-			sb.append("\"id\":");
+			sb.append("\"id\": ");
 
 			sb.append(id);
 		}
@@ -133,7 +133,7 @@ public class ParentTaxonomyVocabulary {
 				sb.append(", ");
 			}
 
-			sb.append("\"name\":");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 

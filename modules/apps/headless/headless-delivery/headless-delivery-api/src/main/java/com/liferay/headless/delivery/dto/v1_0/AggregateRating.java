@@ -190,7 +190,7 @@ public class AggregateRating {
 				sb.append(", ");
 			}
 
-			sb.append("\"bestRating\":");
+			sb.append("\"bestRating\": ");
 
 			sb.append(bestRating);
 		}
@@ -200,7 +200,7 @@ public class AggregateRating {
 				sb.append(", ");
 			}
 
-			sb.append("\"ratingCount\":");
+			sb.append("\"ratingCount\": ");
 
 			sb.append(ratingCount);
 		}
@@ -210,7 +210,7 @@ public class AggregateRating {
 				sb.append(", ");
 			}
 
-			sb.append("\"ratingValue\":");
+			sb.append("\"ratingValue\": ");
 
 			sb.append(ratingValue);
 		}
@@ -220,7 +220,7 @@ public class AggregateRating {
 				sb.append(", ");
 			}
 
-			sb.append("\"worstRating\":");
+			sb.append("\"worstRating\": ");
 
 			sb.append(worstRating);
 		}
