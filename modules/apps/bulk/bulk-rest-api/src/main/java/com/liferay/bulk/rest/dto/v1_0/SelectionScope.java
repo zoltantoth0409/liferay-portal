@@ -148,40 +148,45 @@ public class SelectionScope {
 
 		sb.append("{");
 
-		sb.append("\"folderId\": ");
+		if (folderId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (folderId == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"folderId\":");
+
 			sb.append(folderId);
 		}
 
-		sb.append(", ");
+		if (repositoryId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"repositoryId\": ");
+			sb.append("\"repositoryId\":");
 
-		if (repositoryId == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(repositoryId);
 		}
 
-		sb.append(", ");
+		if (selectAll != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"selectAll\": ");
+			sb.append("\"selectAll\":");
 
-		if (selectAll == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(selectAll);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

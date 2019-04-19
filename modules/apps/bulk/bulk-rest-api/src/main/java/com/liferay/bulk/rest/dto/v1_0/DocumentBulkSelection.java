@@ -123,17 +123,20 @@ public class DocumentBulkSelection {
 
 		sb.append("{");
 
-		sb.append("\"documentIds\": ");
+		if (documentIds != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (documentIds == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"documentIds\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < documentIds.length; i++) {
 				sb.append("\"");
-				sb.append(documentIds[i]);
+
+				sb.append(_escape(documentIds[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < documentIds.length) {
@@ -144,20 +147,25 @@ public class DocumentBulkSelection {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (selectionScope != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"selectionScope\": ");
+			sb.append("\"selectionScope\":");
 
-		if (selectionScope == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(selectionScope);
+			sb.append(String.valueOf(selectionScope));
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

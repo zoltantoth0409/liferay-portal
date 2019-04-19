@@ -155,44 +155,53 @@ public class Image {
 
 		sb.append("{");
 
-		sb.append("\"caption\": ");
+		if (caption != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (caption == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"caption\":");
+
 			sb.append("\"");
-			sb.append(caption);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(caption));
 
-		sb.append("\"contentUrl\": ");
-
-		if (contentUrl == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(contentUrl);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (contentUrl != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"imageId\": ");
+			sb.append("\"contentUrl\":");
 
-		if (imageId == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(contentUrl));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (imageId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"imageId\":");
+
 			sb.append(imageId);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

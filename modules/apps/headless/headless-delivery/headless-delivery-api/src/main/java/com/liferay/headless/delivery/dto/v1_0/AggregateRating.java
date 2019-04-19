@@ -185,51 +185,55 @@ public class AggregateRating {
 
 		sb.append("{");
 
-		sb.append("\"bestRating\": ");
+		if (bestRating != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (bestRating == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"bestRating\":");
+
 			sb.append(bestRating);
 		}
 
-		sb.append(", ");
+		if (ratingCount != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"ratingCount\": ");
+			sb.append("\"ratingCount\":");
 
-		if (ratingCount == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(ratingCount);
 		}
 
-		sb.append(", ");
+		if (ratingValue != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"ratingValue\": ");
+			sb.append("\"ratingValue\":");
 
-		if (ratingValue == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(ratingValue);
 		}
 
-		sb.append(", ");
+		if (worstRating != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"worstRating\": ");
+			sb.append("\"worstRating\":");
 
-		if (worstRating == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(worstRating);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

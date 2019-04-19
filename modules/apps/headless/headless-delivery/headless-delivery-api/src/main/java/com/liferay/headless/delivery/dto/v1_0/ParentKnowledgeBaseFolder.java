@@ -126,31 +126,39 @@ public class ParentKnowledgeBaseFolder {
 
 		sb.append("{");
 
-		sb.append("\"folderId\": ");
+		if (folderId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (folderId == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"folderId\":");
+
 			sb.append(folderId);
 		}
 
-		sb.append(", ");
+		if (folderName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"folderName\": ");
+			sb.append("\"folderName\":");
 
-		if (folderName == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(folderName);
+
+			sb.append(_escape(folderName));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

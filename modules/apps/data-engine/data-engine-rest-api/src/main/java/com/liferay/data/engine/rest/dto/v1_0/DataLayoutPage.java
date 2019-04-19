@@ -149,16 +149,17 @@ public class DataLayoutPage {
 
 		sb.append("{");
 
-		sb.append("\"dataLayoutRows\": ");
+		if (dataLayoutRows != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (dataLayoutRows == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataLayoutRows\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < dataLayoutRows.length; i++) {
-				sb.append(dataLayoutRows[i]);
+				sb.append(String.valueOf(dataLayoutRows[i]));
 
 				if ((i + 1) < dataLayoutRows.length) {
 					sb.append(", ");
@@ -168,18 +169,17 @@ public class DataLayoutPage {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (description != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"description\": ");
+			sb.append("\"description\":");
 
-		if (description == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < description.length; i++) {
-				sb.append(description[i]);
+				sb.append(String.valueOf(description[i]));
 
 				if ((i + 1) < description.length) {
 					sb.append(", ");
@@ -189,18 +189,17 @@ public class DataLayoutPage {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (title != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"title\": ");
+			sb.append("\"title\":");
 
-		if (title == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < title.length; i++) {
-				sb.append(title[i]);
+				sb.append(String.valueOf(title[i]));
 
 				if ((i + 1) < title.length) {
 					sb.append(", ");
@@ -213,6 +212,12 @@ public class DataLayoutPage {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

@@ -28,6 +28,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -628,16 +631,20 @@ public class Document {
 
 		sb.append("{");
 
-		sb.append("\"adaptedImages\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (adaptedImages == null) {
-			sb.append("null");
-		}
-		else {
+		if (adaptedImages != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"adaptedImages\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < adaptedImages.length; i++) {
-				sb.append(adaptedImages[i]);
+				sb.append(String.valueOf(adaptedImages[i]));
 
 				if ((i + 1) < adaptedImages.length) {
 					sb.append(", ");
@@ -647,141 +654,144 @@ public class Document {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (aggregateRating != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"aggregateRating\": ");
+			sb.append("\"aggregateRating\":");
 
-		if (aggregateRating == null) {
-			sb.append("null");
+			sb.append(String.valueOf(aggregateRating));
 		}
-		else {
-			sb.append(aggregateRating);
-		}
 
-		sb.append(", ");
+		if (contentUrl != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"contentUrl\": ");
+			sb.append("\"contentUrl\":");
 
-		if (contentUrl == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(contentUrl);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(contentUrl));
 
-		sb.append("\"creator\": ");
-
-		if (creator == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(creator);
-		}
-
-		sb.append(", ");
-
-		sb.append("\"dateCreated\": ");
-
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateCreated);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (creator != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dateModified\": ");
+			sb.append("\"creator\":");
 
-		if (dateModified == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateModified);
-			sb.append("\"");
+			sb.append(String.valueOf(creator));
 		}
 
-		sb.append(", ");
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"description\": ");
+			sb.append("\"dateCreated\":");
 
-		if (description == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(description);
+
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateModified != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"documentFolderId\": ");
+			sb.append("\"dateModified\":");
 
-		if (documentFolderId == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(liferayToJSONDateFormat.format(dateModified));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (description != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"description\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(description));
+
+			sb.append("\"");
+		}
+
+		if (documentFolderId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"documentFolderId\":");
+
 			sb.append(documentFolderId);
 		}
 
-		sb.append(", ");
+		if (encodingFormat != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"encodingFormat\": ");
+			sb.append("\"encodingFormat\":");
 
-		if (encodingFormat == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(encodingFormat);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(encodingFormat));
 
-		sb.append("\"fileExtension\": ");
-
-		if (fileExtension == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(fileExtension);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (fileExtension != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"fileExtension\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(fileExtension));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (keywords != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"keywords\": ");
+			sb.append("\"keywords\":");
 
-		if (keywords == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < keywords.length; i++) {
 				sb.append("\"");
-				sb.append(keywords[i]);
+
+				sb.append(_escape(keywords[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < keywords.length) {
@@ -792,40 +802,37 @@ public class Document {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (numberOfComments != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"numberOfComments\": ");
+			sb.append("\"numberOfComments\":");
 
-		if (numberOfComments == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(numberOfComments);
 		}
 
-		sb.append(", ");
+		if (sizeInBytes != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"sizeInBytes\": ");
+			sb.append("\"sizeInBytes\":");
 
-		if (sizeInBytes == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(sizeInBytes);
 		}
 
-		sb.append(", ");
+		if (taxonomyCategories != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"taxonomyCategories\": ");
+			sb.append("\"taxonomyCategories\":");
 
-		if (taxonomyCategories == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < taxonomyCategories.length; i++) {
-				sb.append(taxonomyCategories[i]);
+				sb.append(String.valueOf(taxonomyCategories[i]));
 
 				if ((i + 1) < taxonomyCategories.length) {
 					sb.append(", ");
@@ -835,14 +842,13 @@ public class Document {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (taxonomyCategoryIds != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"taxonomyCategoryIds\": ");
+			sb.append("\"taxonomyCategoryIds\":");
 
-		if (taxonomyCategoryIds == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < taxonomyCategoryIds.length; i++) {
@@ -856,35 +862,43 @@ public class Document {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (title != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"title\": ");
+			sb.append("\"title\":");
 
-		if (title == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(title);
+
+			sb.append(_escape(title));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (viewableBy != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"viewableBy\": ");
+			sb.append("\"viewableBy\":");
 
-		if (viewableBy == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
+
 			sb.append(viewableBy);
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

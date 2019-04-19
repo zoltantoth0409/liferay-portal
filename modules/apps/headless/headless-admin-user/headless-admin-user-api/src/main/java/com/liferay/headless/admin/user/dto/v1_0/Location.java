@@ -155,44 +155,53 @@ public class Location {
 
 		sb.append("{");
 
-		sb.append("\"addressCountry\": ");
+		if (addressCountry != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (addressCountry == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"addressCountry\":");
+
 			sb.append("\"");
-			sb.append(addressCountry);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(addressCountry));
 
-		sb.append("\"addressRegion\": ");
-
-		if (addressRegion == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(addressRegion);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (addressRegion != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"addressRegion\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(addressRegion));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

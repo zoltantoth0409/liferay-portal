@@ -422,90 +422,93 @@ public class ContentStructureField {
 
 		sb.append("{");
 
-		sb.append("\"dataType\": ");
+		if (dataType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (dataType == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataType\":");
+
 			sb.append("\"");
-			sb.append(dataType);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(dataType));
 
-		sb.append("\"inputControl\": ");
-
-		if (inputControl == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(inputControl);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (inputControl != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"label\": ");
+			sb.append("\"inputControl\":");
 
-		if (label == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(label);
+
+			sb.append(_escape(inputControl));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (label != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"localizable\": ");
+			sb.append("\"label\":");
 
-		if (localizable == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(label));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (localizable != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"localizable\":");
+
 			sb.append(localizable);
 		}
 
-		sb.append(", ");
+		if (multiple != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"multiple\": ");
+			sb.append("\"multiple\":");
 
-		if (multiple == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(multiple);
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (nestedContentStructureFields != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"nestedContentStructureFields\": ");
+			sb.append("\"nestedContentStructureFields\":");
 
-		if (nestedContentStructureFields == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < nestedContentStructureFields.length; i++) {
-				sb.append(nestedContentStructureFields[i]);
+				sb.append(String.valueOf(nestedContentStructureFields[i]));
 
 				if ((i + 1) < nestedContentStructureFields.length) {
 					sb.append(", ");
@@ -515,18 +518,17 @@ public class ContentStructureField {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (options != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"options\": ");
+			sb.append("\"options\":");
 
-		if (options == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < options.length; i++) {
-				sb.append(options[i]);
+				sb.append(String.valueOf(options[i]));
 
 				if ((i + 1) < options.length) {
 					sb.append(", ");
@@ -536,55 +538,59 @@ public class ContentStructureField {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (predefinedValue != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"predefinedValue\": ");
+			sb.append("\"predefinedValue\":");
 
-		if (predefinedValue == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(predefinedValue);
+
+			sb.append(_escape(predefinedValue));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (repeatable != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"repeatable\": ");
+			sb.append("\"repeatable\":");
 
-		if (repeatable == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(repeatable);
 		}
 
-		sb.append(", ");
+		if (required != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"required\": ");
+			sb.append("\"required\":");
 
-		if (required == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(required);
 		}
 
-		sb.append(", ");
+		if (showLabel != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"showLabel\": ");
+			sb.append("\"showLabel\":");
 
-		if (showLabel == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(showLabel);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

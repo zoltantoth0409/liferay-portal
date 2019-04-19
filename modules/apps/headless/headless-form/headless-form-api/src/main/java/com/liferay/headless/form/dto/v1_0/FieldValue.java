@@ -198,66 +198,73 @@ public class FieldValue {
 
 		sb.append("{");
 
-		sb.append("\"document\": ");
+		if (document != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (document == null) {
-			sb.append("null");
+			sb.append("\"document\":");
+
+			sb.append(String.valueOf(document));
 		}
-		else {
-			sb.append(document);
-		}
 
-		sb.append(", ");
+		if (documentId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"documentId\": ");
+			sb.append("\"documentId\":");
 
-		if (documentId == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(documentId);
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (value != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"value\": ");
+			sb.append("\"value\":");
 
-		if (value == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(value);
+
+			sb.append(_escape(value));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

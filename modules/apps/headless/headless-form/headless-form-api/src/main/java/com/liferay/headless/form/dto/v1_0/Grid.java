@@ -148,16 +148,17 @@ public class Grid {
 
 		sb.append("{");
 
-		sb.append("\"columns\": ");
+		if (columns != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (columns == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"columns\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < columns.length; i++) {
-				sb.append(columns[i]);
+				sb.append(String.valueOf(columns[i]));
 
 				if ((i + 1) < columns.length) {
 					sb.append(", ");
@@ -167,29 +168,27 @@ public class Grid {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (rows != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"rows\": ");
+			sb.append("\"rows\":");
 
-		if (rows == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < rows.length; i++) {
-				sb.append(rows[i]);
+				sb.append(String.valueOf(rows[i]));
 
 				if ((i + 1) < rows.length) {
 					sb.append(", ");
@@ -202,6 +201,12 @@ public class Grid {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

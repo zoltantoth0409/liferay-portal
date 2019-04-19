@@ -153,44 +153,53 @@ public class AssetType {
 
 		sb.append("{");
 
-		sb.append("\"required\": ");
+		if (required != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (required == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"required\":");
+
 			sb.append(required);
 		}
 
-		sb.append(", ");
+		if (subtype != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"subtype\": ");
+			sb.append("\"subtype\":");
 
-		if (subtype == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(subtype);
+
+			sb.append(_escape(subtype));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (type != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"type\": ");
+			sb.append("\"type\":");
 
-		if (type == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(type);
+
+			sb.append(_escape(type));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

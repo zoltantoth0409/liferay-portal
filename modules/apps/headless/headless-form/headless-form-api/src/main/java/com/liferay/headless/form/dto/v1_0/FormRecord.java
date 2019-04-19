@@ -26,6 +26,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -310,77 +313,82 @@ public class FormRecord {
 
 		sb.append("{");
 
-		sb.append("\"creator\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (creator == null) {
-			sb.append("null");
+		if (creator != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"creator\":");
+
+			sb.append(String.valueOf(creator));
 		}
-		else {
-			sb.append(creator);
-		}
 
-		sb.append(", ");
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dateCreated\": ");
+			sb.append("\"dateCreated\":");
 
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(dateCreated);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
 
-		sb.append("\"dateModified\": ");
-
-		if (dateModified == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateModified);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateModified != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"datePublished\": ");
+			sb.append("\"dateModified\":");
 
-		if (datePublished == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(datePublished);
+
+			sb.append(liferayToJSONDateFormat.format(dateModified));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (datePublished != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"draft\": ");
+			sb.append("\"datePublished\":");
 
-		if (draft == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(liferayToJSONDateFormat.format(datePublished));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (draft != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"draft\":");
+
 			sb.append(draft);
 		}
 
-		sb.append(", ");
+		if (fieldValues != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"fieldValues\": ");
+			sb.append("\"fieldValues\":");
 
-		if (fieldValues == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < fieldValues.length; i++) {
-				sb.append(fieldValues[i]);
+				sb.append(String.valueOf(fieldValues[i]));
 
 				if ((i + 1) < fieldValues.length) {
 					sb.append(", ");
@@ -390,42 +398,45 @@ public class FormRecord {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (form != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"form\": ");
+			sb.append("\"form\":");
 
-		if (form == null) {
-			sb.append("null");
+			sb.append(String.valueOf(form));
 		}
-		else {
-			sb.append(form);
-		}
 
-		sb.append(", ");
+		if (formId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"formId\": ");
+			sb.append("\"formId\":");
 
-		if (formId == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(formId);
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

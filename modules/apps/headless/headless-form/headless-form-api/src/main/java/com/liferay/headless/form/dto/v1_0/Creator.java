@@ -252,96 +252,109 @@ public class Creator {
 
 		sb.append("{");
 
-		sb.append("\"additionalName\": ");
+		if (additionalName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (additionalName == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"additionalName\":");
+
 			sb.append("\"");
-			sb.append(additionalName);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(additionalName));
 
-		sb.append("\"familyName\": ");
-
-		if (familyName == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(familyName);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (familyName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"givenName\": ");
+			sb.append("\"familyName\":");
 
-		if (givenName == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(givenName);
+
+			sb.append(_escape(familyName));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (givenName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"givenName\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(givenName));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (image != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"image\": ");
+			sb.append("\"image\":");
 
-		if (image == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(image);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(image));
 
-		sb.append("\"name\": ");
-
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(name);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"profileURL\": ");
+			sb.append("\"name\":");
 
-		if (profileURL == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(profileURL);
+
+			sb.append(_escape(name));
+
+			sb.append("\"");
+		}
+
+		if (profileURL != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"profileURL\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(profileURL));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

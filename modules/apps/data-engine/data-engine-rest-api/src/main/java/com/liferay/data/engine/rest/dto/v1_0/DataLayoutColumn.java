@@ -121,28 +121,30 @@ public class DataLayoutColumn {
 
 		sb.append("{");
 
-		sb.append("\"columnSize\": ");
+		if (columnSize != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (columnSize == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"columnSize\":");
+
 			sb.append(columnSize);
 		}
 
-		sb.append(", ");
+		if (fieldNames != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"fieldNames\": ");
+			sb.append("\"fieldNames\":");
 
-		if (fieldNames == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < fieldNames.length; i++) {
 				sb.append("\"");
-				sb.append(fieldNames[i]);
+
+				sb.append(_escape(fieldNames[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < fieldNames.length) {
@@ -156,6 +158,12 @@ public class DataLayoutColumn {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

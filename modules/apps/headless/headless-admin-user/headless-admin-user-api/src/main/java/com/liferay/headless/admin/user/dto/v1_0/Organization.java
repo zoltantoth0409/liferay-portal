@@ -26,6 +26,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -417,91 +420,99 @@ public class Organization {
 
 		sb.append("{");
 
-		sb.append("\"comment\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (comment == null) {
-			sb.append("null");
-		}
-		else {
+		if (comment != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"comment\":");
+
 			sb.append("\"");
-			sb.append(comment);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(comment));
 
-		sb.append("\"contactInformation\": ");
-
-		if (contactInformation == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(contactInformation);
-		}
-
-		sb.append(", ");
-
-		sb.append("\"dateCreated\": ");
-
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateCreated);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (contactInformation != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dateModified\": ");
+			sb.append("\"contactInformation\":");
 
-		if (dateModified == null) {
-			sb.append("null");
+			sb.append(String.valueOf(contactInformation));
 		}
-		else {
+
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"dateCreated\":");
+
 			sb.append("\"");
-			sb.append(dateModified);
+
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateModified != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"dateModified\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(liferayToJSONDateFormat.format(dateModified));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (image != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"image\": ");
+			sb.append("\"image\":");
 
-		if (image == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(image);
+
+			sb.append(_escape(image));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (keywords != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"keywords\": ");
+			sb.append("\"keywords\":");
 
-		if (keywords == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < keywords.length; i++) {
 				sb.append("\"");
-				sb.append(keywords[i]);
+
+				sb.append(_escape(keywords[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < keywords.length) {
@@ -512,64 +523,61 @@ public class Organization {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (location != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"location\": ");
+			sb.append("\"location\":");
 
-		if (location == null) {
-			sb.append("null");
+			sb.append(String.valueOf(location));
 		}
-		else {
-			sb.append(location);
-		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (numberOfOrganizations != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"numberOfOrganizations\": ");
+			sb.append("\"numberOfOrganizations\":");
 
-		if (numberOfOrganizations == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(numberOfOrganizations);
 		}
 
-		sb.append(", ");
+		if (parentOrganization != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"parentOrganization\": ");
+			sb.append("\"parentOrganization\":");
 
-		if (parentOrganization == null) {
-			sb.append("null");
+			sb.append(String.valueOf(parentOrganization));
 		}
-		else {
-			sb.append(parentOrganization);
-		}
 
-		sb.append(", ");
+		if (services != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"services\": ");
+			sb.append("\"services\":");
 
-		if (services == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < services.length; i++) {
-				sb.append(services[i]);
+				sb.append(String.valueOf(services[i]));
 
 				if ((i + 1) < services.length) {
 					sb.append(", ");
@@ -582,6 +590,12 @@ public class Organization {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

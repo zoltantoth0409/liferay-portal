@@ -121,31 +121,39 @@ public class FormRecordForm {
 
 		sb.append("{");
 
-		sb.append("\"draft\": ");
+		if (draft != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (draft == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"draft\":");
+
 			sb.append(draft);
 		}
 
-		sb.append(", ");
+		if (fieldValues != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"fieldValues\": ");
+			sb.append("\"fieldValues\":");
 
-		if (fieldValues == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(fieldValues);
+
+			sb.append(_escape(fieldValues));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

@@ -159,23 +159,23 @@ public class TaxonomyCategoryBulkSelection {
 
 		sb.append("{");
 
-		sb.append("\"documentBulkSelection\": ");
+		if (documentBulkSelection != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (documentBulkSelection == null) {
-			sb.append("null");
+			sb.append("\"documentBulkSelection\":");
+
+			sb.append(String.valueOf(documentBulkSelection));
 		}
-		else {
-			sb.append(documentBulkSelection);
-		}
 
-		sb.append(", ");
+		if (taxonomyCategoryIdsToAdd != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"taxonomyCategoryIdsToAdd\": ");
+			sb.append("\"taxonomyCategoryIdsToAdd\":");
 
-		if (taxonomyCategoryIdsToAdd == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < taxonomyCategoryIdsToAdd.length; i++) {
@@ -189,14 +189,13 @@ public class TaxonomyCategoryBulkSelection {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (taxonomyCategoryIdsToRemove != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"taxonomyCategoryIdsToRemove\": ");
+			sb.append("\"taxonomyCategoryIdsToRemove\":");
 
-		if (taxonomyCategoryIdsToRemove == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < taxonomyCategoryIdsToRemove.length; i++) {
@@ -213,6 +212,12 @@ public class TaxonomyCategoryBulkSelection {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

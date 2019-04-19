@@ -179,17 +179,20 @@ public class DataDefinitionRule {
 
 		sb.append("{");
 
-		sb.append("\"dataDefinitionFieldNames\": ");
+		if (dataDefinitionFieldNames != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (dataDefinitionFieldNames == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataDefinitionFieldNames\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinitionFieldNames.length; i++) {
 				sb.append("\"");
-				sb.append(dataDefinitionFieldNames[i]);
+
+				sb.append(_escape(dataDefinitionFieldNames[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < dataDefinitionFieldNames.length) {
@@ -200,18 +203,17 @@ public class DataDefinitionRule {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataDefinitionRuleParameters != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dataDefinitionRuleParameters\": ");
+			sb.append("\"dataDefinitionRuleParameters\":");
 
-		if (dataDefinitionRuleParameters == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinitionRuleParameters.length; i++) {
-				sb.append(dataDefinitionRuleParameters[i]);
+				sb.append(String.valueOf(dataDefinitionRuleParameters[i]));
 
 				if ((i + 1) < dataDefinitionRuleParameters.length) {
 					sb.append(", ");
@@ -221,35 +223,43 @@ public class DataDefinitionRule {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (ruleType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"ruleType\": ");
+			sb.append("\"ruleType\":");
 
-		if (ruleType == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(ruleType);
+
+			sb.append(_escape(ruleType));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

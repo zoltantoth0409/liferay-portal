@@ -94,18 +94,25 @@ public class Status {
 
 		sb.append("{");
 
-		sb.append("\"actionInProgress\": ");
+		if (actionInProgress != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (actionInProgress == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"actionInProgress\":");
+
 			sb.append(actionInProgress);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

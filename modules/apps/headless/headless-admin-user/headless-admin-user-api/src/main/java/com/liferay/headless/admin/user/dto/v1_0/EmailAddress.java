@@ -179,55 +179,63 @@ public class EmailAddress {
 
 		sb.append("{");
 
-		sb.append("\"emailAddress\": ");
+		if (emailAddress != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (emailAddress == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"emailAddress\":");
+
 			sb.append("\"");
-			sb.append(emailAddress);
+
+			sb.append(_escape(emailAddress));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (primary != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"primary\": ");
+			sb.append("\"primary\":");
 
-		if (primary == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(primary);
 		}
 
-		sb.append(", ");
+		if (type != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"type\": ");
+			sb.append("\"type\":");
 
-		if (type == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(type);
+
+			sb.append(_escape(type));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

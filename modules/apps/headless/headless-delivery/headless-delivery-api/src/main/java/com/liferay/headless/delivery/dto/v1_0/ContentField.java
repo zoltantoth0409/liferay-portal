@@ -268,68 +268,73 @@ public class ContentField {
 
 		sb.append("{");
 
-		sb.append("\"dataType\": ");
+		if (dataType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (dataType == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataType\":");
+
 			sb.append("\"");
-			sb.append(dataType);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(dataType));
 
-		sb.append("\"inputControl\": ");
-
-		if (inputControl == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(inputControl);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (inputControl != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"label\": ");
+			sb.append("\"inputControl\":");
 
-		if (label == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(label);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(inputControl));
 
-		sb.append("\"name\": ");
-
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(name);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (label != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"nestedFields\": ");
+			sb.append("\"label\":");
 
-		if (nestedFields == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(label));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"name\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(name));
+
+			sb.append("\"");
+		}
+
+		if (nestedFields != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"nestedFields\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < nestedFields.length; i++) {
-				sb.append(nestedFields[i]);
+				sb.append(String.valueOf(nestedFields[i]));
 
 				if ((i + 1) < nestedFields.length) {
 					sb.append(", ");
@@ -339,31 +344,35 @@ public class ContentField {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (repeatable != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"repeatable\": ");
+			sb.append("\"repeatable\":");
 
-		if (repeatable == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(repeatable);
 		}
 
-		sb.append(", ");
+		if (value != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"value\": ");
+			sb.append("\"value\":");
 
-		if (value == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(value);
+			sb.append(String.valueOf(value));
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

@@ -209,66 +209,73 @@ public class AdaptedImage {
 
 		sb.append("{");
 
-		sb.append("\"contentUrl\": ");
+		if (contentUrl != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (contentUrl == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"contentUrl\":");
+
 			sb.append("\"");
-			sb.append(contentUrl);
+
+			sb.append(_escape(contentUrl));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (height != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"height\": ");
+			sb.append("\"height\":");
 
-		if (height == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(height);
 		}
 
-		sb.append(", ");
+		if (resolutionName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"resolutionName\": ");
+			sb.append("\"resolutionName\":");
 
-		if (resolutionName == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(resolutionName);
+
+			sb.append(_escape(resolutionName));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (sizeInBytes != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"sizeInBytes\": ");
+			sb.append("\"sizeInBytes\":");
 
-		if (sizeInBytes == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(sizeInBytes);
 		}
 
-		sb.append(", ");
+		if (width != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"width\": ");
+			sb.append("\"width\":");
 
-		if (width == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(width);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

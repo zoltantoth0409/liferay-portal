@@ -183,57 +183,67 @@ public class HoursAvailable {
 
 		sb.append("{");
 
-		sb.append("\"closes\": ");
+		if (closes != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (closes == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"closes\":");
+
 			sb.append("\"");
-			sb.append(closes);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(closes));
 
-		sb.append("\"dayOfWeek\": ");
-
-		if (dayOfWeek == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dayOfWeek);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dayOfWeek != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"dayOfWeek\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(dayOfWeek));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (opens != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"opens\": ");
+			sb.append("\"opens\":");
 
-		if (opens == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(opens);
+
+			sb.append(_escape(opens));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

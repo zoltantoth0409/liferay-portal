@@ -209,68 +209,77 @@ public class Phone {
 
 		sb.append("{");
 
-		sb.append("\"extension\": ");
+		if (extension != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (extension == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"extension\":");
+
 			sb.append("\"");
-			sb.append(extension);
+
+			sb.append(_escape(extension));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (phoneNumber != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"phoneNumber\": ");
+			sb.append("\"phoneNumber\":");
 
-		if (phoneNumber == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(phoneNumber);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(phoneNumber));
 
-		sb.append("\"phoneType\": ");
-
-		if (phoneType == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(phoneType);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (phoneType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"primary\": ");
+			sb.append("\"phoneType\":");
 
-		if (primary == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(phoneType));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (primary != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"primary\":");
+
 			sb.append(primary);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

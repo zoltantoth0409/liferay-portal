@@ -26,6 +26,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -351,128 +354,137 @@ public class WorkflowTask {
 
 		sb.append("{");
 
-		sb.append("\"completed\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (completed == null) {
-			sb.append("null");
-		}
-		else {
+		if (completed != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"completed\":");
+
 			sb.append(completed);
 		}
 
-		sb.append(", ");
+		if (dateCompleted != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dateCompleted\": ");
+			sb.append("\"dateCompleted\":");
 
-		if (dateCompleted == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(dateCompleted);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(liferayToJSONDateFormat.format(dateCompleted));
 
-		sb.append("\"dateCreated\": ");
-
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateCreated);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"definitionName\": ");
+			sb.append("\"dateCreated\":");
 
-		if (definitionName == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(definitionName);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
 
-		sb.append("\"description\": ");
-
-		if (description == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(description);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (definitionName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dueDate\": ");
+			sb.append("\"definitionName\":");
 
-		if (dueDate == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(dueDate);
+
+			sb.append(_escape(definitionName));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (description != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"description\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(description));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (dueDate != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"dueDate\":");
+
+			sb.append("\"");
+
+			sb.append(liferayToJSONDateFormat.format(dueDate));
+
+			sb.append("\"");
+		}
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (objectReviewed != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"objectReviewed\": ");
+			sb.append("\"objectReviewed\":");
 
-		if (objectReviewed == null) {
-			sb.append("null");
+			sb.append(String.valueOf(objectReviewed));
 		}
-		else {
-			sb.append(objectReviewed);
-		}
 
-		sb.append(", ");
+		if (transitions != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"transitions\": ");
+			sb.append("\"transitions\":");
 
-		if (transitions == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < transitions.length; i++) {
 				sb.append("\"");
-				sb.append(transitions[i]);
+
+				sb.append(_escape(transitions[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < transitions.length) {
@@ -486,6 +498,12 @@ public class WorkflowTask {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

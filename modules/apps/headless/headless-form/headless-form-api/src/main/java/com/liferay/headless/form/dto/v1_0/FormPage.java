@@ -174,16 +174,17 @@ public class FormPage {
 
 		sb.append("{");
 
-		sb.append("\"fields\": ");
+		if (fields != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (fields == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"fields\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < fields.length; i++) {
-				sb.append(fields[i]);
+				sb.append(String.valueOf(fields[i]));
 
 				if ((i + 1) < fields.length) {
 					sb.append(", ");
@@ -193,46 +194,53 @@ public class FormPage {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (headline != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"headline\": ");
+			sb.append("\"headline\":");
 
-		if (headline == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(headline);
+
+			sb.append(_escape(headline));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (text != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"text\": ");
+			sb.append("\"text\":");
 
-		if (text == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(text);
+
+			sb.append(_escape(text));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

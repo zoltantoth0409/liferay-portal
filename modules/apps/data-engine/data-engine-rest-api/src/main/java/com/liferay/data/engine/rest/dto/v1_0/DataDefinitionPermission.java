@@ -228,50 +228,50 @@ public class DataDefinitionPermission {
 
 		sb.append("{");
 
-		sb.append("\"addDataDefinition\": ");
+		if (addDataDefinition != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (addDataDefinition == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"addDataDefinition\":");
+
 			sb.append(addDataDefinition);
 		}
 
-		sb.append(", ");
+		if (definePermissions != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"definePermissions\": ");
+			sb.append("\"definePermissions\":");
 
-		if (definePermissions == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(definePermissions);
 		}
 
-		sb.append(", ");
+		if (delete != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"delete\": ");
+			sb.append("\"delete\":");
 
-		if (delete == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(delete);
 		}
 
-		sb.append(", ");
+		if (roleNames != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"roleNames\": ");
+			sb.append("\"roleNames\":");
 
-		if (roleNames == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < roleNames.length; i++) {
 				sb.append("\"");
-				sb.append(roleNames[i]);
+
+				sb.append(_escape(roleNames[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < roleNames.length) {
@@ -282,31 +282,35 @@ public class DataDefinitionPermission {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (update != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"update\": ");
+			sb.append("\"update\":");
 
-		if (update == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(update);
 		}
 
-		sb.append(", ");
+		if (view != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"view\": ");
+			sb.append("\"view\":");
 
-		if (view == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(view);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

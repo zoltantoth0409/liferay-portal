@@ -26,6 +26,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -236,79 +239,90 @@ public class Comment {
 
 		sb.append("{");
 
-		sb.append("\"creator\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (creator == null) {
-			sb.append("null");
+		if (creator != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"creator\":");
+
+			sb.append(String.valueOf(creator));
 		}
-		else {
-			sb.append(creator);
-		}
 
-		sb.append(", ");
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dateCreated\": ");
+			sb.append("\"dateCreated\":");
 
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(dateCreated);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
 
-		sb.append("\"dateModified\": ");
-
-		if (dateModified == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateModified);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateModified != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"dateModified\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(liferayToJSONDateFormat.format(dateModified));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (numberOfComments != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"numberOfComments\": ");
+			sb.append("\"numberOfComments\":");
 
-		if (numberOfComments == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(numberOfComments);
 		}
 
-		sb.append(", ");
+		if (text != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"text\": ");
+			sb.append("\"text\":");
 
-		if (text == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(text);
+
+			sb.append(_escape(text));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

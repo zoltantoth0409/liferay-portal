@@ -154,16 +154,17 @@ public class Service {
 
 		sb.append("{");
 
-		sb.append("\"hoursAvailable\": ");
+		if (hoursAvailable != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (hoursAvailable == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"hoursAvailable\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < hoursAvailable.length; i++) {
-				sb.append(hoursAvailable[i]);
+				sb.append(String.valueOf(hoursAvailable[i]));
 
 				if ((i + 1) < hoursAvailable.length) {
 					sb.append(", ");
@@ -173,33 +174,39 @@ public class Service {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (serviceType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"serviceType\": ");
+			sb.append("\"serviceType\":");
 
-		if (serviceType == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(serviceType);
+
+			sb.append(_escape(serviceType));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

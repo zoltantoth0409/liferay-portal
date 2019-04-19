@@ -152,28 +152,30 @@ public class KeywordBulkSelection {
 
 		sb.append("{");
 
-		sb.append("\"documentBulkSelection\": ");
+		if (documentBulkSelection != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (documentBulkSelection == null) {
-			sb.append("null");
+			sb.append("\"documentBulkSelection\":");
+
+			sb.append(String.valueOf(documentBulkSelection));
 		}
-		else {
-			sb.append(documentBulkSelection);
-		}
 
-		sb.append(", ");
+		if (keywordsToAdd != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"keywordsToAdd\": ");
+			sb.append("\"keywordsToAdd\":");
 
-		if (keywordsToAdd == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < keywordsToAdd.length; i++) {
 				sb.append("\"");
-				sb.append(keywordsToAdd[i]);
+
+				sb.append(_escape(keywordsToAdd[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < keywordsToAdd.length) {
@@ -184,19 +186,20 @@ public class KeywordBulkSelection {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (keywordsToRemove != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"keywordsToRemove\": ");
+			sb.append("\"keywordsToRemove\":");
 
-		if (keywordsToRemove == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < keywordsToRemove.length; i++) {
 				sb.append("\"");
-				sb.append(keywordsToRemove[i]);
+
+				sb.append(_escape(keywordsToRemove[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < keywordsToRemove.length) {
@@ -210,6 +213,12 @@ public class KeywordBulkSelection {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

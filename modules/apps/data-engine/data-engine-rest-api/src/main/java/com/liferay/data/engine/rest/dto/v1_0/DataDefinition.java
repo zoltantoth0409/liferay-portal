@@ -24,6 +24,9 @@ import com.liferay.petra.string.StringBundler;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -342,16 +345,20 @@ public class DataDefinition {
 
 		sb.append("{");
 
-		sb.append("\"dataDefinitionFields\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (dataDefinitionFields == null) {
-			sb.append("null");
-		}
-		else {
+		if (dataDefinitionFields != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"dataDefinitionFields\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinitionFields.length; i++) {
-				sb.append(dataDefinitionFields[i]);
+				sb.append(String.valueOf(dataDefinitionFields[i]));
 
 				if ((i + 1) < dataDefinitionFields.length) {
 					sb.append(", ");
@@ -361,18 +368,17 @@ public class DataDefinition {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dataDefinitionRules != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dataDefinitionRules\": ");
+			sb.append("\"dataDefinitionRules\":");
 
-		if (dataDefinitionRules == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinitionRules.length; i++) {
-				sb.append(dataDefinitionRules[i]);
+				sb.append(String.valueOf(dataDefinitionRules[i]));
 
 				if ((i + 1) < dataDefinitionRules.length) {
 					sb.append(", ");
@@ -382,44 +388,45 @@ public class DataDefinition {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dateCreated\": ");
+			sb.append("\"dateCreated\":");
 
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(dateCreated);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
 
-		sb.append("\"dateModified\": ");
-
-		if (dateModified == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateModified);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateModified != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"description\": ");
+			sb.append("\"dateModified\":");
 
-		if (description == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(liferayToJSONDateFormat.format(dateModified));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (description != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"description\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < description.length; i++) {
-				sb.append(description[i]);
+				sb.append(String.valueOf(description[i]));
 
 				if ((i + 1) < description.length) {
 					sb.append(", ");
@@ -429,29 +436,27 @@ public class DataDefinition {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < name.length; i++) {
-				sb.append(name[i]);
+				sb.append(String.valueOf(name[i]));
 
 				if ((i + 1) < name.length) {
 					sb.append(", ");
@@ -461,44 +466,49 @@ public class DataDefinition {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (siteId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"siteId\": ");
+			sb.append("\"siteId\":");
 
-		if (siteId == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(siteId);
 		}
 
-		sb.append(", ");
+		if (storageType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"storageType\": ");
+			sb.append("\"storageType\":");
 
-		if (storageType == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(storageType);
+
+			sb.append(_escape(storageType));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (userId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"userId\": ");
+			sb.append("\"userId\":");
 
-		if (userId == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(userId);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

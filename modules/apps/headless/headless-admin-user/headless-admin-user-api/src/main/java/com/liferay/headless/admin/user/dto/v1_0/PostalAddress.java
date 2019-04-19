@@ -353,133 +353,147 @@ public class PostalAddress {
 
 		sb.append("{");
 
-		sb.append("\"addressCountry\": ");
+		if (addressCountry != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (addressCountry == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"addressCountry\":");
+
 			sb.append("\"");
-			sb.append(addressCountry);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(addressCountry));
 
-		sb.append("\"addressLocality\": ");
-
-		if (addressLocality == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(addressLocality);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (addressLocality != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"addressRegion\": ");
+			sb.append("\"addressLocality\":");
 
-		if (addressRegion == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(addressRegion);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(addressLocality));
 
-		sb.append("\"addressType\": ");
-
-		if (addressType == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(addressType);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (addressRegion != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"addressRegion\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(addressRegion));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (addressType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"addressType\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(addressType));
+
+			sb.append("\"");
+		}
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (postalCode != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"postalCode\": ");
+			sb.append("\"postalCode\":");
 
-		if (postalCode == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(postalCode);
+
+			sb.append(_escape(postalCode));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (primary != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"primary\": ");
+			sb.append("\"primary\":");
 
-		if (primary == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(primary);
 		}
 
-		sb.append(", ");
+		if (streetAddressLine1 != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"streetAddressLine1\": ");
+			sb.append("\"streetAddressLine1\":");
 
-		if (streetAddressLine1 == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(streetAddressLine1);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(streetAddressLine1));
 
-		sb.append("\"streetAddressLine2\": ");
-
-		if (streetAddressLine2 == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(streetAddressLine2);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (streetAddressLine2 != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"streetAddressLine3\": ");
+			sb.append("\"streetAddressLine2\":");
 
-		if (streetAddressLine3 == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(streetAddressLine3);
+
+			sb.append(_escape(streetAddressLine2));
+
+			sb.append("\"");
+		}
+
+		if (streetAddressLine3 != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"streetAddressLine3\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(streetAddressLine3));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

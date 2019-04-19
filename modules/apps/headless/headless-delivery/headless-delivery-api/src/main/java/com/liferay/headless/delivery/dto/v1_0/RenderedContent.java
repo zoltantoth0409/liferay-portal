@@ -127,33 +127,43 @@ public class RenderedContent {
 
 		sb.append("{");
 
-		sb.append("\"renderedContentURL\": ");
+		if (renderedContentURL != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (renderedContentURL == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"renderedContentURL\":");
+
 			sb.append("\"");
-			sb.append(renderedContentURL);
+
+			sb.append(_escape(renderedContentURL));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (templateName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"templateName\": ");
+			sb.append("\"templateName\":");
 
-		if (templateName == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(templateName);
+
+			sb.append(_escape(templateName));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

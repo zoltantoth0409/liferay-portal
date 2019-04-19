@@ -125,33 +125,43 @@ public class Option {
 
 		sb.append("{");
 
-		sb.append("\"label\": ");
+		if (label != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (label == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"label\":");
+
 			sb.append("\"");
-			sb.append(label);
+
+			sb.append(_escape(label));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (value != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"value\": ");
+			sb.append("\"value\":");
 
-		if (value == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(value);
+
+			sb.append(_escape(value));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

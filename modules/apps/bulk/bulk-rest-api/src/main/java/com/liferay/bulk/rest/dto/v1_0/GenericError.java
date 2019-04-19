@@ -94,20 +94,29 @@ public class GenericError {
 
 		sb.append("{");
 
-		sb.append("\"message\": ");
+		if (message != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (message == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"message\":");
+
 			sb.append("\"");
-			sb.append(message);
+
+			sb.append(_escape(message));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

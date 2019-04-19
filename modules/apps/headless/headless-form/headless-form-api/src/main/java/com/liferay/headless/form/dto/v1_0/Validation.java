@@ -146,44 +146,53 @@ public class Validation {
 
 		sb.append("{");
 
-		sb.append("\"errorMessage\": ");
+		if (errorMessage != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (errorMessage == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"errorMessage\":");
+
 			sb.append("\"");
-			sb.append(errorMessage);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(errorMessage));
 
-		sb.append("\"expression\": ");
-
-		if (expression == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(expression);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (expression != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"expression\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(expression));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

@@ -28,6 +28,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -438,16 +441,20 @@ public class TaxonomyVocabulary {
 
 		sb.append("{");
 
-		sb.append("\"assetTypes\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (assetTypes == null) {
-			sb.append("null");
-		}
-		else {
+		if (assetTypes != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"assetTypes\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < assetTypes.length; i++) {
-				sb.append(assetTypes[i]);
+				sb.append(String.valueOf(assetTypes[i]));
 
 				if ((i + 1) < assetTypes.length) {
 					sb.append(", ");
@@ -457,19 +464,20 @@ public class TaxonomyVocabulary {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (availableLanguages != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"availableLanguages\": ");
+			sb.append("\"availableLanguages\":");
 
-		if (availableLanguages == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < availableLanguages.length; i++) {
 				sb.append("\"");
-				sb.append(availableLanguages[i]);
+
+				sb.append(_escape(availableLanguages[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < availableLanguages.length) {
@@ -480,118 +488,125 @@ public class TaxonomyVocabulary {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (creator != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"creator\": ");
+			sb.append("\"creator\":");
 
-		if (creator == null) {
-			sb.append("null");
+			sb.append(String.valueOf(creator));
 		}
-		else {
-			sb.append(creator);
-		}
 
-		sb.append(", ");
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dateCreated\": ");
+			sb.append("\"dateCreated\":");
 
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(dateCreated);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
 
-		sb.append("\"dateModified\": ");
-
-		if (dateModified == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateModified);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateModified != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"description\": ");
+			sb.append("\"dateModified\":");
 
-		if (description == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(description);
+
+			sb.append(liferayToJSONDateFormat.format(dateModified));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (description != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"description\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(description));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (numberOfTaxonomyCategories != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"numberOfTaxonomyCategories\": ");
+			sb.append("\"numberOfTaxonomyCategories\":");
 
-		if (numberOfTaxonomyCategories == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(numberOfTaxonomyCategories);
 		}
 
-		sb.append(", ");
+		if (siteId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"siteId\": ");
+			sb.append("\"siteId\":");
 
-		if (siteId == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(siteId);
 		}
 
-		sb.append(", ");
+		if (viewableBy != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"viewableBy\": ");
+			sb.append("\"viewableBy\":");
 
-		if (viewableBy == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
+
 			sb.append(viewableBy);
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

@@ -26,6 +26,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -348,127 +351,138 @@ public class WorkflowLog {
 
 		sb.append("{");
 
-		sb.append("\"auditPerson\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (auditPerson == null) {
-			sb.append("null");
+		if (auditPerson != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"auditPerson\":");
+
+			sb.append(String.valueOf(auditPerson));
 		}
-		else {
-			sb.append(auditPerson);
-		}
 
-		sb.append(", ");
+		if (commentLog != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"commentLog\": ");
+			sb.append("\"commentLog\":");
 
-		if (commentLog == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(commentLog);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(commentLog));
 
-		sb.append("\"dateCreated\": ");
-
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateCreated);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"dateCreated\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (person != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"person\": ");
+			sb.append("\"person\":");
 
-		if (person == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(person);
-		}
-
-		sb.append(", ");
-
-		sb.append("\"previousPerson\": ");
-
-		if (previousPerson == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(previousPerson);
+			sb.append(String.valueOf(person));
 		}
 
-		sb.append(", ");
+		if (previousPerson != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"previousState\": ");
+			sb.append("\"previousPerson\":");
 
-		if (previousState == null) {
-			sb.append("null");
+			sb.append(String.valueOf(previousPerson));
 		}
-		else {
+
+		if (previousState != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"previousState\":");
+
 			sb.append("\"");
-			sb.append(previousState);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(previousState));
 
-		sb.append("\"state\": ");
-
-		if (state == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(state);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (state != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"taskId\": ");
+			sb.append("\"state\":");
 
-		if (taskId == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(state));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (taskId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"taskId\":");
+
 			sb.append(taskId);
 		}
 
-		sb.append(", ");
+		if (type != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"type\": ");
+			sb.append("\"type\":");
 
-		if (type == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(type);
+
+			sb.append(_escape(type));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

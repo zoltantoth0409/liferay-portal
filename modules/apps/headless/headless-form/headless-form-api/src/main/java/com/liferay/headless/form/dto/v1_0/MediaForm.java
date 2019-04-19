@@ -173,57 +173,67 @@ public class MediaForm {
 
 		sb.append("{");
 
-		sb.append("\"description\": ");
+		if (description != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (description == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"description\":");
+
 			sb.append("\"");
-			sb.append(description);
+
+			sb.append(_escape(description));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (folderId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"folderId\": ");
+			sb.append("\"folderId\":");
 
-		if (folderId == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(folderId);
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (title != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"title\": ");
+			sb.append("\"title\":");
 
-		if (title == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(title);
+
+			sb.append(_escape(title));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

@@ -28,6 +28,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -414,127 +417,138 @@ public class StructuredContentFolder {
 
 		sb.append("{");
 
-		sb.append("\"creator\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (creator == null) {
-			sb.append("null");
+		if (creator != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"creator\":");
+
+			sb.append(String.valueOf(creator));
 		}
-		else {
-			sb.append(creator);
-		}
 
-		sb.append(", ");
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dateCreated\": ");
+			sb.append("\"dateCreated\":");
 
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(dateCreated);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
 
-		sb.append("\"dateModified\": ");
-
-		if (dateModified == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateModified);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateModified != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"description\": ");
+			sb.append("\"dateModified\":");
 
-		if (description == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(description);
+
+			sb.append(liferayToJSONDateFormat.format(dateModified));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (description != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"description\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(description));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (numberOfStructuredContentFolders != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"numberOfStructuredContentFolders\": ");
+			sb.append("\"numberOfStructuredContentFolders\":");
 
-		if (numberOfStructuredContentFolders == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(numberOfStructuredContentFolders);
 		}
 
-		sb.append(", ");
+		if (numberOfStructuredContents != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"numberOfStructuredContents\": ");
+			sb.append("\"numberOfStructuredContents\":");
 
-		if (numberOfStructuredContents == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(numberOfStructuredContents);
 		}
 
-		sb.append(", ");
+		if (siteId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"siteId\": ");
+			sb.append("\"siteId\":");
 
-		if (siteId == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(siteId);
 		}
 
-		sb.append(", ");
+		if (viewableBy != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"viewableBy\": ");
+			sb.append("\"viewableBy\":");
 
-		if (viewableBy == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
+
 			sb.append(viewableBy);
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

@@ -335,16 +335,17 @@ public class DataDefinitionField {
 
 		sb.append("{");
 
-		sb.append("\"customProperties\": ");
+		if (customProperties != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (customProperties == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"customProperties\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < customProperties.length; i++) {
-				sb.append(customProperties[i]);
+				sb.append(String.valueOf(customProperties[i]));
 
 				if ((i + 1) < customProperties.length) {
 					sb.append(", ");
@@ -354,18 +355,17 @@ public class DataDefinitionField {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (defaultValue != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"defaultValue\": ");
+			sb.append("\"defaultValue\":");
 
-		if (defaultValue == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < defaultValue.length; i++) {
-				sb.append(defaultValue[i]);
+				sb.append(String.valueOf(defaultValue[i]));
 
 				if ((i + 1) < defaultValue.length) {
 					sb.append(", ");
@@ -375,53 +375,51 @@ public class DataDefinitionField {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (fieldType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"fieldType\": ");
+			sb.append("\"fieldType\":");
 
-		if (fieldType == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(fieldType);
+
+			sb.append(_escape(fieldType));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (indexable != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"indexable\": ");
+			sb.append("\"indexable\":");
 
-		if (indexable == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(indexable);
 		}
 
-		sb.append(", ");
+		if (label != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"label\": ");
+			sb.append("\"label\":");
 
-		if (label == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < label.length; i++) {
-				sb.append(label[i]);
+				sb.append(String.valueOf(label[i]));
 
 				if ((i + 1) < label.length) {
 					sb.append(", ");
@@ -431,53 +429,51 @@ public class DataDefinitionField {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (localizable != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"localizable\": ");
+			sb.append("\"localizable\":");
 
-		if (localizable == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(localizable);
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (repeatable != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"repeatable\": ");
+			sb.append("\"repeatable\":");
 
-		if (repeatable == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(repeatable);
 		}
 
-		sb.append(", ");
+		if (tip != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"tip\": ");
+			sb.append("\"tip\":");
 
-		if (tip == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < tip.length; i++) {
-				sb.append(tip[i]);
+				sb.append(String.valueOf(tip[i]));
 
 				if ((i + 1) < tip.length) {
 					sb.append(", ");
@@ -490,6 +486,12 @@ public class DataDefinitionField {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

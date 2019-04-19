@@ -265,94 +265,105 @@ public class ContentDocument {
 
 		sb.append("{");
 
-		sb.append("\"contentUrl\": ");
+		if (contentUrl != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (contentUrl == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"contentUrl\":");
+
 			sb.append("\"");
-			sb.append(contentUrl);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(contentUrl));
 
-		sb.append("\"description\": ");
-
-		if (description == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(description);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (description != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"encodingFormat\": ");
+			sb.append("\"description\":");
 
-		if (encodingFormat == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(encodingFormat);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(description));
 
-		sb.append("\"fileExtension\": ");
-
-		if (fileExtension == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(fileExtension);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (encodingFormat != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"encodingFormat\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(encodingFormat));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (fileExtension != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"fileExtension\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(fileExtension));
+
+			sb.append("\"");
+		}
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (sizeInBytes != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"sizeInBytes\": ");
+			sb.append("\"sizeInBytes\":");
 
-		if (sizeInBytes == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(sizeInBytes);
 		}
 
-		sb.append(", ");
+		if (title != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"title\": ");
+			sb.append("\"title\":");
 
-		if (title == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(title);
+
+			sb.append(_escape(title));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

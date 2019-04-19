@@ -149,44 +149,53 @@ public class WebUrl {
 
 		sb.append("{");
 
-		sb.append("\"id\": ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (url != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"url\": ");
+			sb.append("\"url\":");
 
-		if (url == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(url);
+
+			sb.append(_escape(url));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (urlType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"urlType\": ");
+			sb.append("\"urlType\":");
 
-		if (urlType == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(urlType);
+
+			sb.append(_escape(urlType));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

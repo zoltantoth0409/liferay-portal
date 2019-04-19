@@ -201,51 +201,51 @@ public class TaxonomyVocabulary {
 
 		sb.append("{");
 
-		sb.append("\"multiValued\": ");
+		if (multiValued != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (multiValued == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"multiValued\":");
+
 			sb.append(multiValued);
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (required != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"required\": ");
+			sb.append("\"required\":");
 
-		if (required == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(required);
 		}
 
-		sb.append(", ");
+		if (taxonomyCategories != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"taxonomyCategories\": ");
+			sb.append("\"taxonomyCategories\":");
 
-		if (taxonomyCategories == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < taxonomyCategories.length; i++) {
-				sb.append(taxonomyCategories[i]);
+				sb.append(String.valueOf(taxonomyCategories[i]));
 
 				if ((i + 1) < taxonomyCategories.length) {
 					sb.append(", ");
@@ -255,20 +255,25 @@ public class TaxonomyVocabulary {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (taxonomyVocabularyId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"taxonomyVocabularyId\": ");
+			sb.append("\"taxonomyVocabularyId\":");
 
-		if (taxonomyVocabularyId == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(taxonomyVocabularyId);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

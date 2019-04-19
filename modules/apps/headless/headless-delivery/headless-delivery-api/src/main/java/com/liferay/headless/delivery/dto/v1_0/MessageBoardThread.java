@@ -28,6 +28,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -563,115 +566,123 @@ public class MessageBoardThread {
 
 		sb.append("{");
 
-		sb.append("\"aggregateRating\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (aggregateRating == null) {
-			sb.append("null");
+		if (aggregateRating != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"aggregateRating\":");
+
+			sb.append(String.valueOf(aggregateRating));
 		}
-		else {
-			sb.append(aggregateRating);
-		}
 
-		sb.append(", ");
+		if (articleBody != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"articleBody\": ");
+			sb.append("\"articleBody\":");
 
-		if (articleBody == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(articleBody);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(articleBody));
 
-		sb.append("\"creator\": ");
-
-		if (creator == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(creator);
-		}
-
-		sb.append(", ");
-
-		sb.append("\"dateCreated\": ");
-
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateCreated);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (creator != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dateModified\": ");
+			sb.append("\"creator\":");
 
-		if (dateModified == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateModified);
-			sb.append("\"");
+			sb.append(String.valueOf(creator));
 		}
 
-		sb.append(", ");
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"encodingFormat\": ");
+			sb.append("\"dateCreated\":");
 
-		if (encodingFormat == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(encodingFormat);
+
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateModified != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"headline\": ");
+			sb.append("\"dateModified\":");
 
-		if (headline == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(headline);
+
+			sb.append(liferayToJSONDateFormat.format(dateModified));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (encodingFormat != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"encodingFormat\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(encodingFormat));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (headline != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"headline\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(headline));
+
+			sb.append("\"");
+		}
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (keywords != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"keywords\": ");
+			sb.append("\"keywords\":");
 
-		if (keywords == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < keywords.length; i++) {
 				sb.append("\"");
-				sb.append(keywords[i]);
+
+				sb.append(_escape(keywords[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < keywords.length) {
@@ -682,79 +693,83 @@ public class MessageBoardThread {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (numberOfMessageBoardAttachments != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"numberOfMessageBoardAttachments\": ");
+			sb.append("\"numberOfMessageBoardAttachments\":");
 
-		if (numberOfMessageBoardAttachments == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(numberOfMessageBoardAttachments);
 		}
 
-		sb.append(", ");
+		if (numberOfMessageBoardMessages != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"numberOfMessageBoardMessages\": ");
+			sb.append("\"numberOfMessageBoardMessages\":");
 
-		if (numberOfMessageBoardMessages == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(numberOfMessageBoardMessages);
 		}
 
-		sb.append(", ");
+		if (showAsQuestion != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"showAsQuestion\": ");
+			sb.append("\"showAsQuestion\":");
 
-		if (showAsQuestion == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(showAsQuestion);
 		}
 
-		sb.append(", ");
+		if (siteId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"siteId\": ");
+			sb.append("\"siteId\":");
 
-		if (siteId == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(siteId);
 		}
 
-		sb.append(", ");
+		if (threadType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"threadType\": ");
+			sb.append("\"threadType\":");
 
-		if (threadType == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(threadType);
+
+			sb.append(_escape(threadType));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (viewableBy != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"viewableBy\": ");
+			sb.append("\"viewableBy\":");
 
-		if (viewableBy == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
+
 			sb.append(viewableBy);
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

@@ -123,31 +123,39 @@ public class ObjectReviewed {
 
 		sb.append("{");
 
-		sb.append("\"id\": ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (resourceType != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"resourceType\": ");
+			sb.append("\"resourceType\":");
 
-		if (resourceType == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(resourceType);
+
+			sb.append(_escape(resourceType));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

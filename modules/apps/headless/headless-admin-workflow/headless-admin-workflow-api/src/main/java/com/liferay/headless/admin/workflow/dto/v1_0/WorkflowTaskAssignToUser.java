@@ -26,6 +26,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -159,44 +162,56 @@ public class WorkflowTaskAssignToUser {
 
 		sb.append("{");
 
-		sb.append("\"assigneeId\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (assigneeId == null) {
-			sb.append("null");
-		}
-		else {
+		if (assigneeId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"assigneeId\":");
+
 			sb.append(assigneeId);
 		}
 
-		sb.append(", ");
+		if (comment != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"comment\": ");
+			sb.append("\"comment\":");
 
-		if (comment == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(comment);
+
+			sb.append(_escape(comment));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dueDate != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dueDate\": ");
+			sb.append("\"dueDate\":");
 
-		if (dueDate == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(dueDate);
+
+			sb.append(liferayToJSONDateFormat.format(dueDate));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

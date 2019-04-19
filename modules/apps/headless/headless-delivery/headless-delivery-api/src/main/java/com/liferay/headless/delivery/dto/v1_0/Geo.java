@@ -125,29 +125,35 @@ public class Geo {
 
 		sb.append("{");
 
-		sb.append("\"latitude\": ");
+		if (latitude != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (latitude == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"latitude\":");
+
 			sb.append(latitude);
 		}
 
-		sb.append(", ");
+		if (longitude != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"longitude\": ");
+			sb.append("\"longitude\":");
 
-		if (longitude == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(longitude);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

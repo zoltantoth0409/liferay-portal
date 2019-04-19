@@ -124,31 +124,39 @@ public class StructuredContentLink {
 
 		sb.append("{");
 
-		sb.append("\"id\": ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (title != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"title\": ");
+			sb.append("\"title\":");
 
-		if (title == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(title);
+
+			sb.append(_escape(title));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

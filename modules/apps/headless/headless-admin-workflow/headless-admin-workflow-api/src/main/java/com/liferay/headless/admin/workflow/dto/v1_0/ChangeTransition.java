@@ -94,20 +94,29 @@ public class ChangeTransition {
 
 		sb.append("{");
 
-		sb.append("\"transition\": ");
+		if (transition != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (transition == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"transition\":");
+
 			sb.append("\"");
-			sb.append(transition);
+
+			sb.append(_escape(transition));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

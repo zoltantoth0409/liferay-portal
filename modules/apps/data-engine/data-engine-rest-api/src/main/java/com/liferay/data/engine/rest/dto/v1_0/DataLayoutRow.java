@@ -95,16 +95,17 @@ public class DataLayoutRow {
 
 		sb.append("{");
 
-		sb.append("\"dataLayoutColums\": ");
+		if (dataLayoutColums != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (dataLayoutColums == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataLayoutColums\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < dataLayoutColums.length; i++) {
-				sb.append(dataLayoutColums[i]);
+				sb.append(String.valueOf(dataLayoutColums[i]));
 
 				if ((i + 1) < dataLayoutColums.length) {
 					sb.append(", ");
@@ -117,6 +118,12 @@ public class DataLayoutRow {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

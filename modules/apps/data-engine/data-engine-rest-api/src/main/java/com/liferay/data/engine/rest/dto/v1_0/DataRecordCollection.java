@@ -174,27 +174,27 @@ public class DataRecordCollection {
 
 		sb.append("{");
 
-		sb.append("\"dataDefinitionId\": ");
+		if (dataDefinitionId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (dataDefinitionId == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"dataDefinitionId\":");
+
 			sb.append(dataDefinitionId);
 		}
 
-		sb.append(", ");
+		if (description != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"description\": ");
+			sb.append("\"description\":");
 
-		if (description == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < description.length; i++) {
-				sb.append(description[i]);
+				sb.append(String.valueOf(description[i]));
 
 				if ((i + 1) < description.length) {
 					sb.append(", ");
@@ -204,29 +204,27 @@ public class DataRecordCollection {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < name.length; i++) {
-				sb.append(name[i]);
+				sb.append(String.valueOf(name[i]));
 
 				if ((i + 1) < name.length) {
 					sb.append(", ");
@@ -239,6 +237,12 @@ public class DataRecordCollection {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

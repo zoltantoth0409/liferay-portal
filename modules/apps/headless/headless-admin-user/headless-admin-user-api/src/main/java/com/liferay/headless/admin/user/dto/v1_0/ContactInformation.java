@@ -355,16 +355,17 @@ public class ContactInformation {
 
 		sb.append("{");
 
-		sb.append("\"emailAddresses\": ");
+		if (emailAddresses != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (emailAddresses == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"emailAddresses\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < emailAddresses.length; i++) {
-				sb.append(emailAddresses[i]);
+				sb.append(String.valueOf(emailAddresses[i]));
 
 				if ((i + 1) < emailAddresses.length) {
 					sb.append(", ");
@@ -374,55 +375,55 @@ public class ContactInformation {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (facebook != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"facebook\": ");
+			sb.append("\"facebook\":");
 
-		if (facebook == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(facebook);
+
+			sb.append(_escape(facebook));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"id\":");
 
-		if (id == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (jabber != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"jabber\": ");
+			sb.append("\"jabber\":");
 
-		if (jabber == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(jabber);
+
+			sb.append(_escape(jabber));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (postalAddresses != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"postalAddresses\": ");
+			sb.append("\"postalAddresses\":");
 
-		if (postalAddresses == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < postalAddresses.length; i++) {
-				sb.append(postalAddresses[i]);
+				sb.append(String.valueOf(postalAddresses[i]));
 
 				if ((i + 1) < postalAddresses.length) {
 					sb.append(", ");
@@ -432,44 +433,45 @@ public class ContactInformation {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (skype != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"skype\": ");
+			sb.append("\"skype\":");
 
-		if (skype == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(skype);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(skype));
 
-		sb.append("\"sms\": ");
-
-		if (sms == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(sms);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (sms != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"telephones\": ");
+			sb.append("\"sms\":");
 
-		if (telephones == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(sms));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (telephones != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"telephones\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < telephones.length; i++) {
-				sb.append(telephones[i]);
+				sb.append(String.valueOf(telephones[i]));
 
 				if ((i + 1) < telephones.length) {
 					sb.append(", ");
@@ -479,31 +481,31 @@ public class ContactInformation {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (twitter != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"twitter\": ");
+			sb.append("\"twitter\":");
 
-		if (twitter == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(twitter);
+
+			sb.append(_escape(twitter));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (webUrls != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"webUrls\": ");
+			sb.append("\"webUrls\":");
 
-		if (webUrls == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < webUrls.length; i++) {
-				sb.append(webUrls[i]);
+				sb.append(String.valueOf(webUrls[i]));
 
 				if ((i + 1) < webUrls.length) {
 					sb.append(", ");
@@ -516,6 +518,12 @@ public class ContactInformation {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

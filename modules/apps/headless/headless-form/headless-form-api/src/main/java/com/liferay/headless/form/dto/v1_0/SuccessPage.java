@@ -146,44 +146,53 @@ public class SuccessPage {
 
 		sb.append("{");
 
-		sb.append("\"description\": ");
+		if (description != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (description == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"description\":");
+
 			sb.append("\"");
-			sb.append(description);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(description));
 
-		sb.append("\"headline\": ");
-
-		if (headline == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(headline);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (headline != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"headline\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(headline));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

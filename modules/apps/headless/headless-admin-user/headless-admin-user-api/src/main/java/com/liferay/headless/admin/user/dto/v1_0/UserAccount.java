@@ -26,6 +26,9 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -656,208 +659,225 @@ public class UserAccount {
 
 		sb.append("{");
 
-		sb.append("\"additionalName\": ");
+		DateFormat liferayToJSONDateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		if (additionalName == null) {
-			sb.append("null");
-		}
-		else {
+		if (additionalName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"additionalName\":");
+
 			sb.append("\"");
-			sb.append(additionalName);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(additionalName));
 
-		sb.append("\"alternateName\": ");
-
-		if (alternateName == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(alternateName);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (alternateName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"birthDate\": ");
+			sb.append("\"alternateName\":");
 
-		if (birthDate == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(birthDate);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(alternateName));
 
-		sb.append("\"contactInformation\": ");
-
-		if (contactInformation == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(contactInformation);
-		}
-
-		sb.append(", ");
-
-		sb.append("\"dashboardURL\": ");
-
-		if (dashboardURL == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dashboardURL);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (birthDate != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"dateCreated\": ");
+			sb.append("\"birthDate\":");
 
-		if (dateCreated == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(dateCreated);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(liferayToJSONDateFormat.format(birthDate));
 
-		sb.append("\"dateModified\": ");
-
-		if (dateModified == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(dateModified);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (contactInformation != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"emailAddress\": ");
+			sb.append("\"contactInformation\":");
 
-		if (emailAddress == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(emailAddress);
-			sb.append("\"");
+			sb.append(String.valueOf(contactInformation));
 		}
 
-		sb.append(", ");
+		if (dashboardURL != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"familyName\": ");
+			sb.append("\"dashboardURL\":");
 
-		if (familyName == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(familyName);
+
+			sb.append(_escape(dashboardURL));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateCreated != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"givenName\": ");
+			sb.append("\"dateCreated\":");
 
-		if (givenName == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(givenName);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(liferayToJSONDateFormat.format(dateCreated));
 
-		sb.append("\"honorificPrefix\": ");
-
-		if (honorificPrefix == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(honorificPrefix);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (dateModified != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"honorificSuffix\": ");
+			sb.append("\"dateModified\":");
 
-		if (honorificSuffix == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(honorificSuffix);
+
+			sb.append(liferayToJSONDateFormat.format(dateModified));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (emailAddress != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"id\": ");
+			sb.append("\"emailAddress\":");
 
-		if (id == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(emailAddress));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (familyName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"familyName\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(familyName));
+
+			sb.append("\"");
+		}
+
+		if (givenName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"givenName\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(givenName));
+
+			sb.append("\"");
+		}
+
+		if (honorificPrefix != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"honorificPrefix\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(honorificPrefix));
+
+			sb.append("\"");
+		}
+
+		if (honorificSuffix != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"honorificSuffix\":");
+
+			sb.append("\"");
+
+			sb.append(_escape(honorificSuffix));
+
+			sb.append("\"");
+		}
+
+		if (id != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"id\":");
+
 			sb.append(id);
 		}
 
-		sb.append(", ");
+		if (image != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"image\": ");
+			sb.append("\"image\":");
 
-		if (image == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(image);
-			sb.append("\"");
-		}
 
-		sb.append(", ");
+			sb.append(_escape(image));
 
-		sb.append("\"jobTitle\": ");
-
-		if (jobTitle == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append("\"");
-			sb.append(jobTitle);
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (jobTitle != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"keywords\": ");
+			sb.append("\"jobTitle\":");
 
-		if (keywords == null) {
-			sb.append("null");
+			sb.append("\"");
+
+			sb.append(_escape(jobTitle));
+
+			sb.append("\"");
 		}
-		else {
+
+		if (keywords != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"keywords\":");
+
 			sb.append("[");
 
 			for (int i = 0; i < keywords.length; i++) {
 				sb.append("\"");
-				sb.append(keywords[i]);
+
+				sb.append(_escape(keywords[i]));
+
 				sb.append("\"");
 
 				if ((i + 1) < keywords.length) {
@@ -868,31 +888,31 @@ public class UserAccount {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (name != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"name\": ");
+			sb.append("\"name\":");
 
-		if (name == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(name);
+
+			sb.append(_escape(name));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (organizationBriefs != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"organizationBriefs\": ");
+			sb.append("\"organizationBriefs\":");
 
-		if (organizationBriefs == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < organizationBriefs.length; i++) {
-				sb.append(organizationBriefs[i]);
+				sb.append(String.valueOf(organizationBriefs[i]));
 
 				if ((i + 1) < organizationBriefs.length) {
 					sb.append(", ");
@@ -902,31 +922,31 @@ public class UserAccount {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (profileURL != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"profileURL\": ");
+			sb.append("\"profileURL\":");
 
-		if (profileURL == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(profileURL);
+
+			sb.append(_escape(profileURL));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (roleBriefs != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"roleBriefs\": ");
+			sb.append("\"roleBriefs\":");
 
-		if (roleBriefs == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < roleBriefs.length; i++) {
-				sb.append(roleBriefs[i]);
+				sb.append(String.valueOf(roleBriefs[i]));
 
 				if ((i + 1) < roleBriefs.length) {
 					sb.append(", ");
@@ -936,18 +956,17 @@ public class UserAccount {
 			sb.append("]");
 		}
 
-		sb.append(", ");
+		if (siteBriefs != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"siteBriefs\": ");
+			sb.append("\"siteBriefs\":");
 
-		if (siteBriefs == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("[");
 
 			for (int i = 0; i < siteBriefs.length; i++) {
-				sb.append(siteBriefs[i]);
+				sb.append(String.valueOf(siteBriefs[i]));
 
 				if ((i + 1) < siteBriefs.length) {
 					sb.append(", ");
@@ -960,6 +979,12 @@ public class UserAccount {
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

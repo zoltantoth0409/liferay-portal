@@ -121,31 +121,39 @@ public class TaxonomyCategory {
 
 		sb.append("{");
 
-		sb.append("\"taxonomyCategoryId\": ");
+		if (taxonomyCategoryId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (taxonomyCategoryId == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"taxonomyCategoryId\":");
+
 			sb.append(taxonomyCategoryId);
 		}
 
-		sb.append(", ");
+		if (taxonomyCategoryName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"taxonomyCategoryName\": ");
+			sb.append("\"taxonomyCategoryName\":");
 
-		if (taxonomyCategoryName == null) {
-			sb.append("null");
-		}
-		else {
 			sb.append("\"");
-			sb.append(taxonomyCategoryName);
+
+			sb.append(_escape(taxonomyCategoryName));
+
 			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }

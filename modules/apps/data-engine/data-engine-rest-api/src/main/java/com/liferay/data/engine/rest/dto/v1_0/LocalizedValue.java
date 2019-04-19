@@ -119,31 +119,43 @@ public class LocalizedValue {
 
 		sb.append("{");
 
-		sb.append("\"key\": ");
+		if (key != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		if (key == null) {
-			sb.append("null");
-		}
-		else {
+			sb.append("\"key\":");
+
 			sb.append("\"");
-			sb.append(key);
+
+			sb.append(_escape(key));
+
 			sb.append("\"");
 		}
 
-		sb.append(", ");
+		if (value != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
 
-		sb.append("\"value\": ");
+			sb.append("\"value\":");
 
-		if (value == null) {
-			sb.append("null");
-		}
-		else {
-			sb.append(value);
+			sb.append("\"");
+
+			sb.append(_escape(value));
+
+			sb.append("\"");
 		}
 
 		sb.append("}");
 
 		return sb.toString();
+	}
+
+	private static String _escape(Object object) {
+		String string = String.valueOf(object);
+
+		return string.replaceAll("\"", "\\\\\"");
 	}
 
 }
