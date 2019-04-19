@@ -703,6 +703,7 @@
 						requires: [
 							'aui-dialog-iframe-deprecated',
 							'aui-modal',
+							'aui-url',
 							'event-resize',
 							'liferay-widget-zindex'
 						]
