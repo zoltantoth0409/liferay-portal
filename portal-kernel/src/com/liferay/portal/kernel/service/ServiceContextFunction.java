@@ -15,8 +15,7 @@
 package com.liferay.portal.kernel.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
-
-import java.util.function.Function;
+import com.liferay.portal.kernel.util.Function;
 
 import javax.portlet.PortletRequest;
 
