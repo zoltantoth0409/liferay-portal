@@ -100,7 +100,7 @@ public class ContentStructureSerDes {
 				 i < contentStructure.getContentStructureFields().length; i++) {
 
 				sb.append(
-					ContentStructureFieldSerDes.toJSON(
+					String.valueOf(
 						contentStructure.getContentStructureFields()[i]));
 
 				if ((i + 1) <
@@ -120,7 +120,7 @@ public class ContentStructureSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(contentStructure.getCreator()));
+			sb.append(String.valueOf(contentStructure.getCreator()));
 		}
 
 		if (contentStructure.getDateCreated() != null) {
@@ -240,8 +240,7 @@ public class ContentStructureSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put(
-				"creator", CreatorSerDes.toJSON(contentStructure.getCreator()));
+			map.put("creator", String.valueOf(contentStructure.getCreator()));
 		}
 
 		map.put(

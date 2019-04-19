@@ -74,8 +74,7 @@ public class TaxonomyVocabularySerDes {
 				 i++) {
 
 				sb.append(
-					AssetTypeSerDes.toJSON(
-						taxonomyVocabulary.getAssetTypes()[i]));
+					String.valueOf(taxonomyVocabulary.getAssetTypes()[i]));
 
 				if ((i + 1) < taxonomyVocabulary.getAssetTypes().length) {
 					sb.append(", ");
@@ -121,7 +120,7 @@ public class TaxonomyVocabularySerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(taxonomyVocabulary.getCreator()));
+			sb.append(String.valueOf(taxonomyVocabulary.getCreator()));
 		}
 
 		if (taxonomyVocabulary.getDateCreated() != null) {
@@ -267,9 +266,7 @@ public class TaxonomyVocabularySerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put(
-				"creator",
-				CreatorSerDes.toJSON(taxonomyVocabulary.getCreator()));
+			map.put("creator", String.valueOf(taxonomyVocabulary.getCreator()));
 		}
 
 		map.put(

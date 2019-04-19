@@ -146,7 +146,7 @@ public class ContentStructureFieldSerDes {
 				 i++) {
 
 				sb.append(
-					ContentStructureFieldSerDes.toJSON(
+					String.valueOf(
 						contentStructureField.getNestedContentStructureFields()
 							[i]));
 
@@ -173,7 +173,7 @@ public class ContentStructureFieldSerDes {
 				 i++) {
 
 				sb.append(
-					OptionSerDes.toJSON(contentStructureField.getOptions()[i]));
+					String.valueOf(contentStructureField.getOptions()[i]));
 
 				if ((i + 1) < contentStructureField.getOptions().length) {
 					sb.append(", ");

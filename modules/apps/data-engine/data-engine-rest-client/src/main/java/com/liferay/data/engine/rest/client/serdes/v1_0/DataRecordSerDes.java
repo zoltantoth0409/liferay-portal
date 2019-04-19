@@ -73,9 +73,7 @@ public class DataRecordSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < dataRecord.getDataRecordValues().length; i++) {
-				sb.append(
-					DataRecordValueSerDes.toJSON(
-						dataRecord.getDataRecordValues()[i]));
+				sb.append(String.valueOf(dataRecord.getDataRecordValues()[i]));
 
 				if ((i + 1) < dataRecord.getDataRecordValues().length) {
 					sb.append(", ");

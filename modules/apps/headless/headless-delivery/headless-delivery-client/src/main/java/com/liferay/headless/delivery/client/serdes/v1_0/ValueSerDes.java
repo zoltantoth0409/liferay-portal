@@ -72,7 +72,7 @@ public class ValueSerDes {
 
 			sb.append("\"document\":");
 
-			sb.append(ContentDocumentSerDes.toJSON(value.getDocument()));
+			sb.append(String.valueOf(value.getDocument()));
 		}
 
 		if (value.getGeo() != null) {
@@ -82,7 +82,7 @@ public class ValueSerDes {
 
 			sb.append("\"geo\":");
 
-			sb.append(GeoSerDes.toJSON(value.getGeo()));
+			sb.append(String.valueOf(value.getGeo()));
 		}
 
 		if (value.getImage() != null) {
@@ -92,7 +92,7 @@ public class ValueSerDes {
 
 			sb.append("\"image\":");
 
-			sb.append(ContentDocumentSerDes.toJSON(value.getImage()));
+			sb.append(String.valueOf(value.getImage()));
 		}
 
 		if (value.getLink() != null) {
@@ -116,9 +116,7 @@ public class ValueSerDes {
 
 			sb.append("\"structuredContentLink\":");
 
-			sb.append(
-				StructuredContentLinkSerDes.toJSON(
-					value.getStructuredContentLink()));
+			sb.append(String.valueOf(value.getStructuredContentLink()));
 		}
 
 		sb.append("}");
@@ -144,22 +142,21 @@ public class ValueSerDes {
 			map.put("document", null);
 		}
 		else {
-			map.put(
-				"document", ContentDocumentSerDes.toJSON(value.getDocument()));
+			map.put("document", String.valueOf(value.getDocument()));
 		}
 
 		if (value.getGeo() == null) {
 			map.put("geo", null);
 		}
 		else {
-			map.put("geo", GeoSerDes.toJSON(value.getGeo()));
+			map.put("geo", String.valueOf(value.getGeo()));
 		}
 
 		if (value.getImage() == null) {
 			map.put("image", null);
 		}
 		else {
-			map.put("image", ContentDocumentSerDes.toJSON(value.getImage()));
+			map.put("image", String.valueOf(value.getImage()));
 		}
 
 		if (value.getLink() == null) {
@@ -175,8 +172,7 @@ public class ValueSerDes {
 		else {
 			map.put(
 				"structuredContentLink",
-				StructuredContentLinkSerDes.toJSON(
-					value.getStructuredContentLink()));
+				String.valueOf(value.getStructuredContentLink()));
 		}
 
 		return map;

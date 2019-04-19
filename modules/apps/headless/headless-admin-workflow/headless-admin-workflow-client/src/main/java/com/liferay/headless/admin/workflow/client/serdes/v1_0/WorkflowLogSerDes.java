@@ -66,7 +66,7 @@ public class WorkflowLogSerDes {
 
 			sb.append("\"auditPerson\":");
 
-			sb.append(CreatorSerDes.toJSON(workflowLog.getAuditPerson()));
+			sb.append(String.valueOf(workflowLog.getAuditPerson()));
 		}
 
 		if (workflowLog.getCommentLog() != null) {
@@ -115,7 +115,7 @@ public class WorkflowLogSerDes {
 
 			sb.append("\"person\":");
 
-			sb.append(CreatorSerDes.toJSON(workflowLog.getPerson()));
+			sb.append(String.valueOf(workflowLog.getPerson()));
 		}
 
 		if (workflowLog.getPreviousPerson() != null) {
@@ -125,7 +125,7 @@ public class WorkflowLogSerDes {
 
 			sb.append("\"previousPerson\":");
 
-			sb.append(CreatorSerDes.toJSON(workflowLog.getPreviousPerson()));
+			sb.append(String.valueOf(workflowLog.getPreviousPerson()));
 		}
 
 		if (workflowLog.getPreviousState() != null) {
@@ -200,8 +200,7 @@ public class WorkflowLogSerDes {
 		}
 		else {
 			map.put(
-				"auditPerson",
-				CreatorSerDes.toJSON(workflowLog.getAuditPerson()));
+				"auditPerson", String.valueOf(workflowLog.getAuditPerson()));
 		}
 
 		if (workflowLog.getCommentLog() == null) {
@@ -226,7 +225,7 @@ public class WorkflowLogSerDes {
 			map.put("person", null);
 		}
 		else {
-			map.put("person", CreatorSerDes.toJSON(workflowLog.getPerson()));
+			map.put("person", String.valueOf(workflowLog.getPerson()));
 		}
 
 		if (workflowLog.getPreviousPerson() == null) {
@@ -235,7 +234,7 @@ public class WorkflowLogSerDes {
 		else {
 			map.put(
 				"previousPerson",
-				CreatorSerDes.toJSON(workflowLog.getPreviousPerson()));
+				String.valueOf(workflowLog.getPreviousPerson()));
 		}
 
 		if (workflowLog.getPreviousState() == null) {

@@ -76,7 +76,7 @@ public class DataDefinitionSerDes {
 				 i++) {
 
 				sb.append(
-					DataDefinitionFieldSerDes.toJSON(
+					String.valueOf(
 						dataDefinition.getDataDefinitionFields()[i]));
 
 				if ((i + 1) < dataDefinition.getDataDefinitionFields().length) {
@@ -100,8 +100,7 @@ public class DataDefinitionSerDes {
 				 i++) {
 
 				sb.append(
-					DataDefinitionRuleSerDes.toJSON(
-						dataDefinition.getDataDefinitionRules()[i]));
+					String.valueOf(dataDefinition.getDataDefinitionRules()[i]));
 
 				if ((i + 1) < dataDefinition.getDataDefinitionRules().length) {
 					sb.append(", ");
@@ -153,9 +152,7 @@ public class DataDefinitionSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinition.getDescription().length; i++) {
-				sb.append(
-					LocalizedValueSerDes.toJSON(
-						dataDefinition.getDescription()[i]));
+				sb.append(String.valueOf(dataDefinition.getDescription()[i]));
 
 				if ((i + 1) < dataDefinition.getDescription().length) {
 					sb.append(", ");
@@ -185,8 +182,7 @@ public class DataDefinitionSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinition.getName().length; i++) {
-				sb.append(
-					LocalizedValueSerDes.toJSON(dataDefinition.getName()[i]));
+				sb.append(String.valueOf(dataDefinition.getName()[i]));
 
 				if ((i + 1) < dataDefinition.getName().length) {
 					sb.append(", ");

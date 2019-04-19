@@ -66,9 +66,7 @@ public class MessageBoardMessageSerDes {
 
 			sb.append("\"aggregateRating\":");
 
-			sb.append(
-				AggregateRatingSerDes.toJSON(
-					messageBoardMessage.getAggregateRating()));
+			sb.append(String.valueOf(messageBoardMessage.getAggregateRating()));
 		}
 
 		if (messageBoardMessage.getAnonymous() != null) {
@@ -102,7 +100,7 @@ public class MessageBoardMessageSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(messageBoardMessage.getCreator()));
+			sb.append(String.valueOf(messageBoardMessage.getCreator()));
 		}
 
 		if (messageBoardMessage.getDateCreated() != null) {
@@ -276,8 +274,7 @@ public class MessageBoardMessageSerDes {
 		else {
 			map.put(
 				"aggregateRating",
-				AggregateRatingSerDes.toJSON(
-					messageBoardMessage.getAggregateRating()));
+				String.valueOf(messageBoardMessage.getAggregateRating()));
 		}
 
 		if (messageBoardMessage.getAnonymous() == null) {
@@ -303,8 +300,7 @@ public class MessageBoardMessageSerDes {
 		}
 		else {
 			map.put(
-				"creator",
-				CreatorSerDes.toJSON(messageBoardMessage.getCreator()));
+				"creator", String.valueOf(messageBoardMessage.getCreator()));
 		}
 
 		map.put(

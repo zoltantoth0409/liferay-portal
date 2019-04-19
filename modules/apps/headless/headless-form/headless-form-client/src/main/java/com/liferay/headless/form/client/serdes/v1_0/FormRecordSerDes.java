@@ -66,7 +66,7 @@ public class FormRecordSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(formRecord.getCreator()));
+			sb.append(String.valueOf(formRecord.getCreator()));
 		}
 
 		if (formRecord.getDateCreated() != null) {
@@ -134,8 +134,7 @@ public class FormRecordSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < formRecord.getFieldValues().length; i++) {
-				sb.append(
-					FieldValueSerDes.toJSON(formRecord.getFieldValues()[i]));
+				sb.append(String.valueOf(formRecord.getFieldValues()[i]));
 
 				if ((i + 1) < formRecord.getFieldValues().length) {
 					sb.append(", ");
@@ -152,7 +151,7 @@ public class FormRecordSerDes {
 
 			sb.append("\"form\":");
 
-			sb.append(FormSerDes.toJSON(formRecord.getForm()));
+			sb.append(String.valueOf(formRecord.getForm()));
 		}
 
 		if (formRecord.getFormId() != null) {
@@ -194,7 +193,7 @@ public class FormRecordSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put("creator", CreatorSerDes.toJSON(formRecord.getCreator()));
+			map.put("creator", String.valueOf(formRecord.getCreator()));
 		}
 
 		map.put(
@@ -227,7 +226,7 @@ public class FormRecordSerDes {
 			map.put("form", null);
 		}
 		else {
-			map.put("form", FormSerDes.toJSON(formRecord.getForm()));
+			map.put("form", String.valueOf(formRecord.getForm()));
 		}
 
 		if (formRecord.getFormId() == null) {

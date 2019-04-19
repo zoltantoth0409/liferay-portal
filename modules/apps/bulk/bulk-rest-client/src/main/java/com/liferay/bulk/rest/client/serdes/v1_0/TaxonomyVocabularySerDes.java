@@ -102,7 +102,7 @@ public class TaxonomyVocabularySerDes {
 				 i < taxonomyVocabulary.getTaxonomyCategories().length; i++) {
 
 				sb.append(
-					TaxonomyCategorySerDes.toJSON(
+					String.valueOf(
 						taxonomyVocabulary.getTaxonomyCategories()[i]));
 
 				if ((i + 1) <

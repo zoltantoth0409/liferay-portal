@@ -66,7 +66,7 @@ public class KnowledgeBaseFolderSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(knowledgeBaseFolder.getCreator()));
+			sb.append(String.valueOf(knowledgeBaseFolder.getCreator()));
 		}
 
 		if (knowledgeBaseFolder.getDateCreated() != null) {
@@ -167,7 +167,7 @@ public class KnowledgeBaseFolderSerDes {
 			sb.append("\"parentKnowledgeBaseFolder\":");
 
 			sb.append(
-				ParentKnowledgeBaseFolderSerDes.toJSON(
+				String.valueOf(
 					knowledgeBaseFolder.getParentKnowledgeBaseFolder()));
 		}
 
@@ -227,8 +227,7 @@ public class KnowledgeBaseFolderSerDes {
 		}
 		else {
 			map.put(
-				"creator",
-				CreatorSerDes.toJSON(knowledgeBaseFolder.getCreator()));
+				"creator", String.valueOf(knowledgeBaseFolder.getCreator()));
 		}
 
 		map.put(
@@ -290,7 +289,7 @@ public class KnowledgeBaseFolderSerDes {
 		else {
 			map.put(
 				"parentKnowledgeBaseFolder",
-				ParentKnowledgeBaseFolderSerDes.toJSON(
+				String.valueOf(
 					knowledgeBaseFolder.getParentKnowledgeBaseFolder()));
 		}
 

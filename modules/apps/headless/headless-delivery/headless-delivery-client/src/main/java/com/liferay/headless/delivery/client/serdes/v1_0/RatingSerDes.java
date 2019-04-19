@@ -74,7 +74,7 @@ public class RatingSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(rating.getCreator()));
+			sb.append(String.valueOf(rating.getCreator()));
 		}
 
 		if (rating.getDateCreated() != null) {
@@ -161,7 +161,7 @@ public class RatingSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put("creator", CreatorSerDes.toJSON(rating.getCreator()));
+			map.put("creator", String.valueOf(rating.getCreator()));
 		}
 
 		map.put(

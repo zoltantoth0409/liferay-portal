@@ -68,8 +68,7 @@ public class StructuredContentFolderSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(
-				CreatorSerDes.toJSON(structuredContentFolder.getCreator()));
+			sb.append(String.valueOf(structuredContentFolder.getCreator()));
 		}
 
 		if (structuredContentFolder.getDateCreated() != null) {
@@ -212,7 +211,7 @@ public class StructuredContentFolderSerDes {
 		else {
 			map.put(
 				"creator",
-				CreatorSerDes.toJSON(structuredContentFolder.getCreator()));
+				String.valueOf(structuredContentFolder.getCreator()));
 		}
 
 		map.put(

@@ -113,9 +113,7 @@ public class UserAccountSerDes {
 
 			sb.append("\"contactInformation\":");
 
-			sb.append(
-				ContactInformationSerDes.toJSON(
-					userAccount.getContactInformation()));
+			sb.append(String.valueOf(userAccount.getContactInformation()));
 		}
 
 		if (userAccount.getDashboardURL() != null) {
@@ -321,8 +319,7 @@ public class UserAccountSerDes {
 				 i++) {
 
 				sb.append(
-					OrganizationBriefSerDes.toJSON(
-						userAccount.getOrganizationBriefs()[i]));
+					String.valueOf(userAccount.getOrganizationBriefs()[i]));
 
 				if ((i + 1) < userAccount.getOrganizationBriefs().length) {
 					sb.append(", ");
@@ -356,8 +353,7 @@ public class UserAccountSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < userAccount.getRoleBriefs().length; i++) {
-				sb.append(
-					RoleBriefSerDes.toJSON(userAccount.getRoleBriefs()[i]));
+				sb.append(String.valueOf(userAccount.getRoleBriefs()[i]));
 
 				if ((i + 1) < userAccount.getRoleBriefs().length) {
 					sb.append(", ");
@@ -377,8 +373,7 @@ public class UserAccountSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < userAccount.getSiteBriefs().length; i++) {
-				sb.append(
-					SiteBriefSerDes.toJSON(userAccount.getSiteBriefs()[i]));
+				sb.append(String.valueOf(userAccount.getSiteBriefs()[i]));
 
 				if ((i + 1) < userAccount.getSiteBriefs().length) {
 					sb.append(", ");
@@ -431,8 +426,7 @@ public class UserAccountSerDes {
 		else {
 			map.put(
 				"contactInformation",
-				ContactInformationSerDes.toJSON(
-					userAccount.getContactInformation()));
+				String.valueOf(userAccount.getContactInformation()));
 		}
 
 		if (userAccount.getDashboardURL() == null) {

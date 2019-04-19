@@ -90,7 +90,7 @@ public class FormSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(form.getCreator()));
+			sb.append(String.valueOf(form.getCreator()));
 		}
 
 		if (form.getDateCreated() != null) {
@@ -173,7 +173,7 @@ public class FormSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < form.getFormRecords().length; i++) {
-				sb.append(FormRecordSerDes.toJSON(form.getFormRecords()[i]));
+				sb.append(String.valueOf(form.getFormRecords()[i]));
 
 				if ((i + 1) < form.getFormRecords().length) {
 					sb.append(", ");
@@ -244,7 +244,7 @@ public class FormSerDes {
 
 			sb.append("\"structure\":");
 
-			sb.append(FormStructureSerDes.toJSON(form.getStructure()));
+			sb.append(String.valueOf(form.getStructure()));
 		}
 
 		if (form.getStructureId() != null) {
@@ -285,7 +285,7 @@ public class FormSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put("creator", CreatorSerDes.toJSON(form.getCreator()));
+			map.put("creator", String.valueOf(form.getCreator()));
 		}
 
 		map.put(
@@ -354,8 +354,7 @@ public class FormSerDes {
 			map.put("structure", null);
 		}
 		else {
-			map.put(
-				"structure", FormStructureSerDes.toJSON(form.getStructure()));
+			map.put("structure", String.valueOf(form.getStructure()));
 		}
 
 		if (form.getStructureId() == null) {

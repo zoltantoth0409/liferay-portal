@@ -70,9 +70,7 @@ public class StructuredContentSerDes {
 
 			sb.append("\"aggregateRating\":");
 
-			sb.append(
-				AggregateRatingSerDes.toJSON(
-					structuredContent.getAggregateRating()));
+			sb.append(String.valueOf(structuredContent.getAggregateRating()));
 		}
 
 		if (structuredContent.getAvailableLanguages() != null) {
@@ -117,8 +115,7 @@ public class StructuredContentSerDes {
 				 i++) {
 
 				sb.append(
-					ContentFieldSerDes.toJSON(
-						structuredContent.getContentFields()[i]));
+					String.valueOf(structuredContent.getContentFields()[i]));
 
 				if ((i + 1) < structuredContent.getContentFields().length) {
 					sb.append(", ");
@@ -145,7 +142,7 @@ public class StructuredContentSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(structuredContent.getCreator()));
+			sb.append(String.valueOf(structuredContent.getCreator()));
 		}
 
 		if (structuredContent.getDateCreated() != null) {
@@ -295,8 +292,7 @@ public class StructuredContentSerDes {
 				 i++) {
 
 				sb.append(
-					RenderedContentSerDes.toJSON(
-						structuredContent.getRenderedContents()[i]));
+					String.valueOf(structuredContent.getRenderedContents()[i]));
 
 				if ((i + 1) < structuredContent.getRenderedContents().length) {
 					sb.append(", ");
@@ -329,7 +325,7 @@ public class StructuredContentSerDes {
 				 i < structuredContent.getTaxonomyCategories().length; i++) {
 
 				sb.append(
-					TaxonomyCategorySerDes.toJSON(
+					String.valueOf(
 						structuredContent.getTaxonomyCategories()[i]));
 
 				if ((i + 1) <
@@ -431,8 +427,7 @@ public class StructuredContentSerDes {
 		else {
 			map.put(
 				"aggregateRating",
-				AggregateRatingSerDes.toJSON(
-					structuredContent.getAggregateRating()));
+				String.valueOf(structuredContent.getAggregateRating()));
 		}
 
 		if (structuredContent.getAvailableLanguages() == null) {
@@ -466,9 +461,7 @@ public class StructuredContentSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put(
-				"creator",
-				CreatorSerDes.toJSON(structuredContent.getCreator()));
+			map.put("creator", String.valueOf(structuredContent.getCreator()));
 		}
 
 		map.put(

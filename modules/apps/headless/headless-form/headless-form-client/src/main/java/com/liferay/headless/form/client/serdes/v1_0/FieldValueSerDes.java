@@ -58,7 +58,7 @@ public class FieldValueSerDes {
 
 			sb.append("\"document\":");
 
-			sb.append(FormDocumentSerDes.toJSON(fieldValue.getDocument()));
+			sb.append(String.valueOf(fieldValue.getDocument()));
 		}
 
 		if (fieldValue.getDocumentId() != null) {
@@ -125,9 +125,7 @@ public class FieldValueSerDes {
 			map.put("document", null);
 		}
 		else {
-			map.put(
-				"document",
-				FormDocumentSerDes.toJSON(fieldValue.getDocument()));
+			map.put("document", String.valueOf(fieldValue.getDocument()));
 		}
 
 		if (fieldValue.getDocumentId() == null) {

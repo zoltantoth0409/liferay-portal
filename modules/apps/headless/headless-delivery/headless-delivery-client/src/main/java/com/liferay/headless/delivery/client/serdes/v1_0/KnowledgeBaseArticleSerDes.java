@@ -69,8 +69,7 @@ public class KnowledgeBaseArticleSerDes {
 			sb.append("\"aggregateRating\":");
 
 			sb.append(
-				AggregateRatingSerDes.toJSON(
-					knowledgeBaseArticle.getAggregateRating()));
+				String.valueOf(knowledgeBaseArticle.getAggregateRating()));
 		}
 
 		if (knowledgeBaseArticle.getArticleBody() != null) {
@@ -94,7 +93,7 @@ public class KnowledgeBaseArticleSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(knowledgeBaseArticle.getCreator()));
+			sb.append(String.valueOf(knowledgeBaseArticle.getCreator()));
 		}
 
 		if (knowledgeBaseArticle.getDateCreated() != null) {
@@ -235,7 +234,7 @@ public class KnowledgeBaseArticleSerDes {
 			sb.append("\"parentKnowledgeBaseFolder\":");
 
 			sb.append(
-				ParentKnowledgeBaseFolderSerDes.toJSON(
+				String.valueOf(
 					knowledgeBaseArticle.getParentKnowledgeBaseFolder()));
 		}
 
@@ -272,7 +271,7 @@ public class KnowledgeBaseArticleSerDes {
 				 i < knowledgeBaseArticle.getTaxonomyCategories().length; i++) {
 
 				sb.append(
-					TaxonomyCategorySerDes.toJSON(
+					String.valueOf(
 						knowledgeBaseArticle.getTaxonomyCategories()[i]));
 
 				if ((i + 1) <
@@ -361,8 +360,7 @@ public class KnowledgeBaseArticleSerDes {
 		else {
 			map.put(
 				"aggregateRating",
-				AggregateRatingSerDes.toJSON(
-					knowledgeBaseArticle.getAggregateRating()));
+				String.valueOf(knowledgeBaseArticle.getAggregateRating()));
 		}
 
 		if (knowledgeBaseArticle.getArticleBody() == null) {
@@ -379,8 +377,7 @@ public class KnowledgeBaseArticleSerDes {
 		}
 		else {
 			map.put(
-				"creator",
-				CreatorSerDes.toJSON(knowledgeBaseArticle.getCreator()));
+				"creator", String.valueOf(knowledgeBaseArticle.getCreator()));
 		}
 
 		map.put(
@@ -460,7 +457,7 @@ public class KnowledgeBaseArticleSerDes {
 		else {
 			map.put(
 				"parentKnowledgeBaseFolder",
-				ParentKnowledgeBaseFolderSerDes.toJSON(
+				String.valueOf(
 					knowledgeBaseArticle.getParentKnowledgeBaseFolder()));
 		}
 

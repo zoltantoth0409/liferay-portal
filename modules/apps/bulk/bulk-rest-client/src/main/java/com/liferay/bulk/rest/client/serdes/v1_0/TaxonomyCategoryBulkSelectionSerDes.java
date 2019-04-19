@@ -65,7 +65,7 @@ public class TaxonomyCategoryBulkSelectionSerDes {
 			sb.append("\"documentBulkSelection\":");
 
 			sb.append(
-				DocumentBulkSelectionSerDes.toJSON(
+				String.valueOf(
 					taxonomyCategoryBulkSelection.getDocumentBulkSelection()));
 		}
 
@@ -149,7 +149,7 @@ public class TaxonomyCategoryBulkSelectionSerDes {
 		else {
 			map.put(
 				"documentBulkSelection",
-				DocumentBulkSelectionSerDes.toJSON(
+				String.valueOf(
 					taxonomyCategoryBulkSelection.getDocumentBulkSelection()));
 		}
 

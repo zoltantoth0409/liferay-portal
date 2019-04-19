@@ -87,8 +87,7 @@ public class DocumentBulkSelectionSerDes {
 			sb.append("\"selectionScope\":");
 
 			sb.append(
-				SelectionScopeSerDes.toJSON(
-					documentBulkSelection.getSelectionScope()));
+				String.valueOf(documentBulkSelection.getSelectionScope()));
 		}
 
 		sb.append("}");
@@ -120,8 +119,7 @@ public class DocumentBulkSelectionSerDes {
 		else {
 			map.put(
 				"selectionScope",
-				SelectionScopeSerDes.toJSON(
-					documentBulkSelection.getSelectionScope()));
+				String.valueOf(documentBulkSelection.getSelectionScope()));
 		}
 
 		return map;

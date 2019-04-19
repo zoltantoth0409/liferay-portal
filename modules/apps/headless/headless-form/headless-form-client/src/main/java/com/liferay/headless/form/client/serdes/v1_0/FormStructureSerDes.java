@@ -94,7 +94,7 @@ public class FormStructureSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(formStructure.getCreator()));
+			sb.append(String.valueOf(formStructure.getCreator()));
 		}
 
 		if (formStructure.getDateCreated() != null) {
@@ -152,8 +152,7 @@ public class FormStructureSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < formStructure.getFormPages().length; i++) {
-				sb.append(
-					FormPageSerDes.toJSON(formStructure.getFormPages()[i]));
+				sb.append(String.valueOf(formStructure.getFormPages()[i]));
 
 				if ((i + 1) < formStructure.getFormPages().length) {
 					sb.append(", ");
@@ -204,7 +203,7 @@ public class FormStructureSerDes {
 
 			sb.append("\"successPage\":");
 
-			sb.append(SuccessPageSerDes.toJSON(formStructure.getSuccessPage()));
+			sb.append(String.valueOf(formStructure.getSuccessPage()));
 		}
 
 		sb.append("}");
@@ -235,8 +234,7 @@ public class FormStructureSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put(
-				"creator", CreatorSerDes.toJSON(formStructure.getCreator()));
+			map.put("creator", String.valueOf(formStructure.getCreator()));
 		}
 
 		map.put(
@@ -288,8 +286,7 @@ public class FormStructureSerDes {
 		}
 		else {
 			map.put(
-				"successPage",
-				SuccessPageSerDes.toJSON(formStructure.getSuccessPage()));
+				"successPage", String.valueOf(formStructure.getSuccessPage()));
 		}
 
 		return map;

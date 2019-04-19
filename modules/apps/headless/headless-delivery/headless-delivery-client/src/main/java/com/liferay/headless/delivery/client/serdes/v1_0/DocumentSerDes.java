@@ -70,8 +70,7 @@ public class DocumentSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < document.getAdaptedImages().length; i++) {
-				sb.append(
-					AdaptedImageSerDes.toJSON(document.getAdaptedImages()[i]));
+				sb.append(String.valueOf(document.getAdaptedImages()[i]));
 
 				if ((i + 1) < document.getAdaptedImages().length) {
 					sb.append(", ");
@@ -88,8 +87,7 @@ public class DocumentSerDes {
 
 			sb.append("\"aggregateRating\":");
 
-			sb.append(
-				AggregateRatingSerDes.toJSON(document.getAggregateRating()));
+			sb.append(String.valueOf(document.getAggregateRating()));
 		}
 
 		if (document.getContentUrl() != null) {
@@ -113,7 +111,7 @@ public class DocumentSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(document.getCreator()));
+			sb.append(String.valueOf(document.getCreator()));
 		}
 
 		if (document.getDateCreated() != null) {
@@ -262,9 +260,7 @@ public class DocumentSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < document.getTaxonomyCategories().length; i++) {
-				sb.append(
-					TaxonomyCategorySerDes.toJSON(
-						document.getTaxonomyCategories()[i]));
+				sb.append(String.valueOf(document.getTaxonomyCategories()[i]));
 
 				if ((i + 1) < document.getTaxonomyCategories().length) {
 					sb.append(", ");
@@ -351,7 +347,7 @@ public class DocumentSerDes {
 		else {
 			map.put(
 				"aggregateRating",
-				AggregateRatingSerDes.toJSON(document.getAggregateRating()));
+				String.valueOf(document.getAggregateRating()));
 		}
 
 		if (document.getContentUrl() == null) {
@@ -365,7 +361,7 @@ public class DocumentSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put("creator", CreatorSerDes.toJSON(document.getCreator()));
+			map.put("creator", String.valueOf(document.getCreator()));
 		}
 
 		map.put(

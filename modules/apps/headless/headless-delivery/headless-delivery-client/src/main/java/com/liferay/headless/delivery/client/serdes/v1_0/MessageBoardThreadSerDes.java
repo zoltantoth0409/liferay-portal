@@ -66,9 +66,7 @@ public class MessageBoardThreadSerDes {
 
 			sb.append("\"aggregateRating\":");
 
-			sb.append(
-				AggregateRatingSerDes.toJSON(
-					messageBoardThread.getAggregateRating()));
+			sb.append(String.valueOf(messageBoardThread.getAggregateRating()));
 		}
 
 		if (messageBoardThread.getArticleBody() != null) {
@@ -92,7 +90,7 @@ public class MessageBoardThreadSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(messageBoardThread.getCreator()));
+			sb.append(String.valueOf(messageBoardThread.getCreator()));
 		}
 
 		if (messageBoardThread.getDateCreated() != null) {
@@ -280,8 +278,7 @@ public class MessageBoardThreadSerDes {
 		else {
 			map.put(
 				"aggregateRating",
-				AggregateRatingSerDes.toJSON(
-					messageBoardThread.getAggregateRating()));
+				String.valueOf(messageBoardThread.getAggregateRating()));
 		}
 
 		if (messageBoardThread.getArticleBody() == null) {
@@ -297,9 +294,7 @@ public class MessageBoardThreadSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put(
-				"creator",
-				CreatorSerDes.toJSON(messageBoardThread.getCreator()));
+			map.put("creator", String.valueOf(messageBoardThread.getCreator()));
 		}
 
 		map.put(

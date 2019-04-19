@@ -78,8 +78,7 @@ public class DataRecordCollectionSerDes {
 				 i++) {
 
 				sb.append(
-					LocalizedValueSerDes.toJSON(
-						dataRecordCollection.getDescription()[i]));
+					String.valueOf(dataRecordCollection.getDescription()[i]));
 
 				if ((i + 1) < dataRecordCollection.getDescription().length) {
 					sb.append(", ");
@@ -109,9 +108,7 @@ public class DataRecordCollectionSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < dataRecordCollection.getName().length; i++) {
-				sb.append(
-					LocalizedValueSerDes.toJSON(
-						dataRecordCollection.getName()[i]));
+				sb.append(String.valueOf(dataRecordCollection.getName()[i]));
 
 				if ((i + 1) < dataRecordCollection.getName().length) {
 					sb.append(", ");

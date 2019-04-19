@@ -80,9 +80,7 @@ public class DataLayoutSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < dataLayout.getDataLayoutPages().length; i++) {
-				sb.append(
-					DataLayoutPageSerDes.toJSON(
-						dataLayout.getDataLayoutPages()[i]));
+				sb.append(String.valueOf(dataLayout.getDataLayoutPages()[i]));
 
 				if ((i + 1) < dataLayout.getDataLayoutPages().length) {
 					sb.append(", ");
@@ -146,9 +144,7 @@ public class DataLayoutSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < dataLayout.getDescription().length; i++) {
-				sb.append(
-					LocalizedValueSerDes.toJSON(
-						dataLayout.getDescription()[i]));
+				sb.append(String.valueOf(dataLayout.getDescription()[i]));
 
 				if ((i + 1) < dataLayout.getDescription().length) {
 					sb.append(", ");
@@ -178,7 +174,7 @@ public class DataLayoutSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < dataLayout.getName().length; i++) {
-				sb.append(LocalizedValueSerDes.toJSON(dataLayout.getName()[i]));
+				sb.append(String.valueOf(dataLayout.getName()[i]));
 
 				if ((i + 1) < dataLayout.getName().length) {
 					sb.append(", ");

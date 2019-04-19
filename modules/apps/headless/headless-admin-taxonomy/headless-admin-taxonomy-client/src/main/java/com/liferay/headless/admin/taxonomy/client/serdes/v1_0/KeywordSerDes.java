@@ -64,7 +64,7 @@ public class KeywordSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(keyword.getCreator()));
+			sb.append(String.valueOf(keyword.getCreator()));
 		}
 
 		if (keyword.getDateCreated() != null) {
@@ -159,7 +159,7 @@ public class KeywordSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put("creator", CreatorSerDes.toJSON(keyword.getCreator()));
+			map.put("creator", String.valueOf(keyword.getCreator()));
 		}
 
 		map.put(

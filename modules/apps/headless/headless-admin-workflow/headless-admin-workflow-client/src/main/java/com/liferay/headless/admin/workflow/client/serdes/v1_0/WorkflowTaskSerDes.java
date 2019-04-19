@@ -174,8 +174,7 @@ public class WorkflowTaskSerDes {
 
 			sb.append("\"objectReviewed\":");
 
-			sb.append(
-				ObjectReviewedSerDes.toJSON(workflowTask.getObjectReviewed()));
+			sb.append(String.valueOf(workflowTask.getObjectReviewed()));
 		}
 
 		if (workflowTask.getTransitions() != null) {
@@ -273,7 +272,7 @@ public class WorkflowTaskSerDes {
 		else {
 			map.put(
 				"objectReviewed",
-				ObjectReviewedSerDes.toJSON(workflowTask.getObjectReviewed()));
+				String.valueOf(workflowTask.getObjectReviewed()));
 		}
 
 		if (workflowTask.getTransitions() == null) {

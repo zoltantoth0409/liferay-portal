@@ -112,7 +112,7 @@ public class FieldSerDes {
 
 			sb.append("\"grid\":");
 
-			sb.append(GridSerDes.toJSON(field.getGrid()));
+			sb.append(String.valueOf(field.getGrid()));
 		}
 
 		if (field.getHasFormRules() != null) {
@@ -227,7 +227,7 @@ public class FieldSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < field.getOptions().length; i++) {
-				sb.append(OptionSerDes.toJSON(field.getOptions()[i]));
+				sb.append(String.valueOf(field.getOptions()[i]));
 
 				if ((i + 1) < field.getOptions().length) {
 					sb.append(", ");
@@ -364,7 +364,7 @@ public class FieldSerDes {
 
 			sb.append("\"validation\":");
 
-			sb.append(ValidationSerDes.toJSON(field.getValidation()));
+			sb.append(String.valueOf(field.getValidation()));
 		}
 
 		sb.append("}");
@@ -412,7 +412,7 @@ public class FieldSerDes {
 			map.put("grid", null);
 		}
 		else {
-			map.put("grid", GridSerDes.toJSON(field.getGrid()));
+			map.put("grid", String.valueOf(field.getGrid()));
 		}
 
 		if (field.getHasFormRules() == null) {
@@ -561,8 +561,7 @@ public class FieldSerDes {
 			map.put("validation", null);
 		}
 		else {
-			map.put(
-				"validation", ValidationSerDes.toJSON(field.getValidation()));
+			map.put("validation", String.valueOf(field.getValidation()));
 		}
 
 		return map;

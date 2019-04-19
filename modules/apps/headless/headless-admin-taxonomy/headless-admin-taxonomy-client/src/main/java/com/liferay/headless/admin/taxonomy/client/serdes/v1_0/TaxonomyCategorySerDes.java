@@ -92,7 +92,7 @@ public class TaxonomyCategorySerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(taxonomyCategory.getCreator()));
+			sb.append(String.valueOf(taxonomyCategory.getCreator()));
 		}
 
 		if (taxonomyCategory.getDateCreated() != null) {
@@ -183,8 +183,7 @@ public class TaxonomyCategorySerDes {
 			sb.append("\"parentTaxonomyCategory\":");
 
 			sb.append(
-				ParentTaxonomyCategorySerDes.toJSON(
-					taxonomyCategory.getParentTaxonomyCategory()));
+				String.valueOf(taxonomyCategory.getParentTaxonomyCategory()));
 		}
 
 		if (taxonomyCategory.getParentTaxonomyVocabulary() != null) {
@@ -195,8 +194,7 @@ public class TaxonomyCategorySerDes {
 			sb.append("\"parentTaxonomyVocabulary\":");
 
 			sb.append(
-				ParentTaxonomyVocabularySerDes.toJSON(
-					taxonomyCategory.getParentTaxonomyVocabulary()));
+				String.valueOf(taxonomyCategory.getParentTaxonomyVocabulary()));
 		}
 
 		if (taxonomyCategory.getViewableBy() != null) {
@@ -241,8 +239,7 @@ public class TaxonomyCategorySerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put(
-				"creator", CreatorSerDes.toJSON(taxonomyCategory.getCreator()));
+			map.put("creator", String.valueOf(taxonomyCategory.getCreator()));
 		}
 
 		map.put(
@@ -292,8 +289,7 @@ public class TaxonomyCategorySerDes {
 		else {
 			map.put(
 				"parentTaxonomyCategory",
-				ParentTaxonomyCategorySerDes.toJSON(
-					taxonomyCategory.getParentTaxonomyCategory()));
+				String.valueOf(taxonomyCategory.getParentTaxonomyCategory()));
 		}
 
 		if (taxonomyCategory.getParentTaxonomyVocabulary() == null) {
@@ -302,8 +298,7 @@ public class TaxonomyCategorySerDes {
 		else {
 			map.put(
 				"parentTaxonomyVocabulary",
-				ParentTaxonomyVocabularySerDes.toJSON(
-					taxonomyCategory.getParentTaxonomyVocabulary()));
+				String.valueOf(taxonomyCategory.getParentTaxonomyVocabulary()));
 		}
 
 		if (taxonomyCategory.getViewableBy() == null) {

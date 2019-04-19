@@ -61,7 +61,7 @@ public class KeywordBulkSelectionSerDes {
 			sb.append("\"documentBulkSelection\":");
 
 			sb.append(
-				DocumentBulkSelectionSerDes.toJSON(
+				String.valueOf(
 					keywordBulkSelection.getDocumentBulkSelection()));
 		}
 
@@ -140,7 +140,7 @@ public class KeywordBulkSelectionSerDes {
 		else {
 			map.put(
 				"documentBulkSelection",
-				DocumentBulkSelectionSerDes.toJSON(
+				String.valueOf(
 					keywordBulkSelection.getDocumentBulkSelection()));
 		}
 

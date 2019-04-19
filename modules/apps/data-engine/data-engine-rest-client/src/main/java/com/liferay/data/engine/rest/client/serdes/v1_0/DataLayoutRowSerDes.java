@@ -68,8 +68,7 @@ public class DataLayoutRowSerDes {
 				 i++) {
 
 				sb.append(
-					DataLayoutColumnSerDes.toJSON(
-						dataLayoutRow.getDataLayoutColums()[i]));
+					String.valueOf(dataLayoutRow.getDataLayoutColums()[i]));
 
 				if ((i + 1) < dataLayoutRow.getDataLayoutColums().length) {
 					sb.append(", ");

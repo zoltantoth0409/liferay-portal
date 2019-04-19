@@ -82,9 +82,7 @@ public class OrganizationSerDes {
 
 			sb.append("\"contactInformation\":");
 
-			sb.append(
-				ContactInformationSerDes.toJSON(
-					organization.getContactInformation()));
+			sb.append(String.valueOf(organization.getContactInformation()));
 		}
 
 		if (organization.getDateCreated() != null) {
@@ -172,7 +170,7 @@ public class OrganizationSerDes {
 
 			sb.append("\"location\":");
 
-			sb.append(LocationSerDes.toJSON(organization.getLocation()));
+			sb.append(String.valueOf(organization.getLocation()));
 		}
 
 		if (organization.getName() != null) {
@@ -206,9 +204,7 @@ public class OrganizationSerDes {
 
 			sb.append("\"parentOrganization\":");
 
-			sb.append(
-				OrganizationSerDes.toJSON(
-					organization.getParentOrganization()));
+			sb.append(String.valueOf(organization.getParentOrganization()));
 		}
 
 		if (organization.getServices() != null) {
@@ -221,7 +217,7 @@ public class OrganizationSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < organization.getServices().length; i++) {
-				sb.append(ServiceSerDes.toJSON(organization.getServices()[i]));
+				sb.append(String.valueOf(organization.getServices()[i]));
 
 				if ((i + 1) < organization.getServices().length) {
 					sb.append(", ");
@@ -259,8 +255,7 @@ public class OrganizationSerDes {
 		else {
 			map.put(
 				"contactInformation",
-				ContactInformationSerDes.toJSON(
-					organization.getContactInformation()));
+				String.valueOf(organization.getContactInformation()));
 		}
 
 		map.put(
@@ -296,8 +291,7 @@ public class OrganizationSerDes {
 			map.put("location", null);
 		}
 		else {
-			map.put(
-				"location", LocationSerDes.toJSON(organization.getLocation()));
+			map.put("location", String.valueOf(organization.getLocation()));
 		}
 
 		if (organization.getName() == null) {
@@ -322,8 +316,7 @@ public class OrganizationSerDes {
 		else {
 			map.put(
 				"parentOrganization",
-				OrganizationSerDes.toJSON(
-					organization.getParentOrganization()));
+				String.valueOf(organization.getParentOrganization()));
 		}
 
 		if (organization.getServices() == null) {

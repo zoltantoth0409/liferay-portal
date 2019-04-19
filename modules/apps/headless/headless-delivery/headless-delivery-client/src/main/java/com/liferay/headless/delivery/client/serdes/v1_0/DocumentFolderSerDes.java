@@ -66,7 +66,7 @@ public class DocumentFolderSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(documentFolder.getCreator()));
+			sb.append(String.valueOf(documentFolder.getCreator()));
 		}
 
 		if (documentFolder.getDateCreated() != null) {
@@ -202,8 +202,7 @@ public class DocumentFolderSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put(
-				"creator", CreatorSerDes.toJSON(documentFolder.getCreator()));
+			map.put("creator", String.valueOf(documentFolder.getCreator()));
 		}
 
 		map.put(

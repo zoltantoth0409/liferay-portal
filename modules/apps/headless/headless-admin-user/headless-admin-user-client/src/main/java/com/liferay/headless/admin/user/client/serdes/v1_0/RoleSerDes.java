@@ -88,7 +88,7 @@ public class RoleSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(role.getCreator()));
+			sb.append(String.valueOf(role.getCreator()));
 		}
 
 		if (role.getDateCreated() != null) {
@@ -199,7 +199,7 @@ public class RoleSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put("creator", CreatorSerDes.toJSON(role.getCreator()));
+			map.put("creator", String.valueOf(role.getCreator()));
 		}
 
 		map.put(

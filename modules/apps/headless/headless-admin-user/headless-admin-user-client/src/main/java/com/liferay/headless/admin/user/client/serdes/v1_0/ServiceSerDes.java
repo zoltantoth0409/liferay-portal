@@ -63,9 +63,7 @@ public class ServiceSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < service.getHoursAvailable().length; i++) {
-				sb.append(
-					HoursAvailableSerDes.toJSON(
-						service.getHoursAvailable()[i]));
+				sb.append(String.valueOf(service.getHoursAvailable()[i]));
 
 				if ((i + 1) < service.getHoursAvailable().length) {
 					sb.append(", ");

@@ -71,8 +71,7 @@ public class ContactInformationSerDes {
 				 i++) {
 
 				sb.append(
-					EmailAddressSerDes.toJSON(
-						contactInformation.getEmailAddresses()[i]));
+					String.valueOf(contactInformation.getEmailAddresses()[i]));
 
 				if ((i + 1) < contactInformation.getEmailAddresses().length) {
 					sb.append(", ");
@@ -133,8 +132,7 @@ public class ContactInformationSerDes {
 				 i++) {
 
 				sb.append(
-					PostalAddressSerDes.toJSON(
-						contactInformation.getPostalAddresses()[i]));
+					String.valueOf(contactInformation.getPostalAddresses()[i]));
 
 				if ((i + 1) < contactInformation.getPostalAddresses().length) {
 					sb.append(", ");
@@ -185,7 +183,7 @@ public class ContactInformationSerDes {
 				 i++) {
 
 				sb.append(
-					PhoneSerDes.toJSON(contactInformation.getTelephones()[i]));
+					String.valueOf(contactInformation.getTelephones()[i]));
 
 				if ((i + 1) < contactInformation.getTelephones().length) {
 					sb.append(", ");
@@ -219,8 +217,7 @@ public class ContactInformationSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < contactInformation.getWebUrls().length; i++) {
-				sb.append(
-					WebUrlSerDes.toJSON(contactInformation.getWebUrls()[i]));
+				sb.append(String.valueOf(contactInformation.getWebUrls()[i]));
 
 				if ((i + 1) < contactInformation.getWebUrls().length) {
 					sb.append(", ");

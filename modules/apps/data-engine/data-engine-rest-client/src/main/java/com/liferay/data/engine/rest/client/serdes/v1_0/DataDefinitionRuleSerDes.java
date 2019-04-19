@@ -103,7 +103,7 @@ public class DataDefinitionRuleSerDes {
 				 i++) {
 
 				sb.append(
-					DataDefinitionRuleParameterSerDes.toJSON(
+					String.valueOf(
 						dataDefinitionRule.getDataDefinitionRuleParameters()
 							[i]));
 

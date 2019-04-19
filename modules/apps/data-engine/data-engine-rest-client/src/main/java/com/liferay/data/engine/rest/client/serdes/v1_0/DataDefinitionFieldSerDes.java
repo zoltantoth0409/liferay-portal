@@ -69,7 +69,7 @@ public class DataDefinitionFieldSerDes {
 				 i < dataDefinitionField.getCustomProperties().length; i++) {
 
 				sb.append(
-					CustomPropertySerDes.toJSON(
+					String.valueOf(
 						dataDefinitionField.getCustomProperties()[i]));
 
 				if ((i + 1) <
@@ -95,8 +95,7 @@ public class DataDefinitionFieldSerDes {
 				 i++) {
 
 				sb.append(
-					LocalizedValueSerDes.toJSON(
-						dataDefinitionField.getDefaultValue()[i]));
+					String.valueOf(dataDefinitionField.getDefaultValue()[i]));
 
 				if ((i + 1) < dataDefinitionField.getDefaultValue().length) {
 					sb.append(", ");
@@ -150,9 +149,7 @@ public class DataDefinitionFieldSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinitionField.getLabel().length; i++) {
-				sb.append(
-					LocalizedValueSerDes.toJSON(
-						dataDefinitionField.getLabel()[i]));
+				sb.append(String.valueOf(dataDefinitionField.getLabel()[i]));
 
 				if ((i + 1) < dataDefinitionField.getLabel().length) {
 					sb.append(", ");
@@ -206,9 +203,7 @@ public class DataDefinitionFieldSerDes {
 			sb.append("[");
 
 			for (int i = 0; i < dataDefinitionField.getTip().length; i++) {
-				sb.append(
-					LocalizedValueSerDes.toJSON(
-						dataDefinitionField.getTip()[i]));
+				sb.append(String.valueOf(dataDefinitionField.getTip()[i]));
 
 				if ((i + 1) < dataDefinitionField.getTip().length) {
 					sb.append(", ");

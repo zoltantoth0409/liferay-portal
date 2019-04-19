@@ -66,7 +66,7 @@ public class MessageBoardSectionSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(messageBoardSection.getCreator()));
+			sb.append(String.valueOf(messageBoardSection.getCreator()));
 		}
 
 		if (messageBoardSection.getDateCreated() != null) {
@@ -205,8 +205,7 @@ public class MessageBoardSectionSerDes {
 		}
 		else {
 			map.put(
-				"creator",
-				CreatorSerDes.toJSON(messageBoardSection.getCreator()));
+				"creator", String.valueOf(messageBoardSection.getCreator()));
 		}
 
 		map.put(

@@ -68,8 +68,7 @@ public class BlogPostingSerDes {
 
 			sb.append("\"aggregateRating\":");
 
-			sb.append(
-				AggregateRatingSerDes.toJSON(blogPosting.getAggregateRating()));
+			sb.append(String.valueOf(blogPosting.getAggregateRating()));
 		}
 
 		if (blogPosting.getAlternativeHeadline() != null) {
@@ -107,7 +106,7 @@ public class BlogPostingSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(blogPosting.getCreator()));
+			sb.append(String.valueOf(blogPosting.getCreator()));
 		}
 
 		if (blogPosting.getDateCreated() != null) {
@@ -228,7 +227,7 @@ public class BlogPostingSerDes {
 
 			sb.append("\"image\":");
 
-			sb.append(ImageSerDes.toJSON(blogPosting.getImage()));
+			sb.append(String.valueOf(blogPosting.getImage()));
 		}
 
 		if (blogPosting.getKeywords() != null) {
@@ -288,8 +287,7 @@ public class BlogPostingSerDes {
 				 i++) {
 
 				sb.append(
-					TaxonomyCategorySerDes.toJSON(
-						blogPosting.getTaxonomyCategories()[i]));
+					String.valueOf(blogPosting.getTaxonomyCategories()[i]));
 
 				if ((i + 1) < blogPosting.getTaxonomyCategories().length) {
 					sb.append(", ");
@@ -356,7 +354,7 @@ public class BlogPostingSerDes {
 		else {
 			map.put(
 				"aggregateRating",
-				AggregateRatingSerDes.toJSON(blogPosting.getAggregateRating()));
+				String.valueOf(blogPosting.getAggregateRating()));
 		}
 
 		if (blogPosting.getAlternativeHeadline() == null) {
@@ -380,7 +378,7 @@ public class BlogPostingSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put("creator", CreatorSerDes.toJSON(blogPosting.getCreator()));
+			map.put("creator", String.valueOf(blogPosting.getCreator()));
 		}
 
 		map.put(
@@ -439,7 +437,7 @@ public class BlogPostingSerDes {
 			map.put("image", null);
 		}
 		else {
-			map.put("image", ImageSerDes.toJSON(blogPosting.getImage()));
+			map.put("image", String.valueOf(blogPosting.getImage()));
 		}
 
 		if (blogPosting.getKeywords() == null) {

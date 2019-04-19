@@ -64,7 +64,7 @@ public class CommentSerDes {
 
 			sb.append("\"creator\":");
 
-			sb.append(CreatorSerDes.toJSON(comment.getCreator()));
+			sb.append(String.valueOf(comment.getCreator()));
 		}
 
 		if (comment.getDateCreated() != null) {
@@ -149,7 +149,7 @@ public class CommentSerDes {
 			map.put("creator", null);
 		}
 		else {
-			map.put("creator", CreatorSerDes.toJSON(comment.getCreator()));
+			map.put("creator", String.valueOf(comment.getCreator()));
 		}
 
 		map.put(
