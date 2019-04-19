@@ -21,7 +21,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 String portletResource = ParamUtil.getString(request, "portletResource");
 
-long referringPlid = ParamUtil.getLong(request, "referringPlid");
+long refererPlid = ParamUtil.getLong(request, "refererPlid");
 String referringPortletResource = ParamUtil.getString(request, "referringPortletResource");
 
 boolean changeStructure = GetterUtil.getBoolean(ParamUtil.getString(request, "changeStructure"));
@@ -167,7 +167,7 @@ request.setAttribute("edit_article.jsp-changeStructure", changeStructure);
 	<aui:input name="hideDefaultSuccessMessage" type="hidden" value="<%= classNameId == PortalUtil.getClassNameId(DDMStructure.class) %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="portletResource" type="hidden" value="<%= portletResource %>" />
-	<aui:input name="referringPlid" type="hidden" value="<%= referringPlid %>" />
+	<aui:input name="refererPlid" type="hidden" value="<%= refererPlid %>" />
 	<aui:input name="referringPortletResource" type="hidden" value="<%= referringPortletResource %>" />
 	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 	<aui:input name="privateLayout" type="hidden" value="<%= layout.isPrivateLayout() %>" />
