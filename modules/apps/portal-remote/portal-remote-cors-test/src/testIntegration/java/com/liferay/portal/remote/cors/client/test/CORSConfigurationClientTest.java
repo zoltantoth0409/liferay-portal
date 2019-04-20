@@ -93,8 +93,8 @@ public class CORSConfigurationClientTest extends BaseCORSClientTestCase {
 	@Test
 	public void testCORSApplication() throws Exception {
 		assertURL("/cors/cors-app", true);
-		assertURL("/test-cors-url/cors-app", true);
 		assertURL("/no-cors/cors-app", false);
+		assertURL("/test-cors-url/cors-app", true);
 		assertURL("/test-cors-wrong-url/cors-app", false);
 	}
 
