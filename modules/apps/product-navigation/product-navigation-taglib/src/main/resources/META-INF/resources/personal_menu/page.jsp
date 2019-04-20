@@ -55,7 +55,7 @@ resourceURL.setParameter("portletId", themeDisplay.getPpid());
 resourceURL.setResourceID("/get_personal_menu_items");
 %>
 
-<aui:script require="clay-dropdown/src/ClayDropdown as ClayDropdown,metal-dom/src/dom as dom">
+<aui:script require="clay-dropdown/src/ClayDropdown as ClayDropdown,metal-dom/src/dom as dom, metal-position/src/Position">
 	var toggle = document.getElementById('<%= namespace + "personal_menu_dropdown_toggle" %>');
 
 	if (toggle) {
@@ -87,11 +87,30 @@ resourceURL.setResourceID("/get_personal_menu_items");
 										var dropdown = this;
 
 										this.refs.dropdown.refs.portal.on(
+											'menuExpanded',
+											function(event) {
+												var Position = metalPositionSrcPosition.default;
+
+												var menu = this.element;
+												var menuRegion = Position.getRegion(menu);
+
+												if (menuRegion.top < 0) {
+													var body = document.querySelector('body');
+													var bodyRegion = Position.getRegion(body);
+
+													menu.style.top = bodyRegion.top + 'px';
+												}
+											}
+										);
+
+										this.refs.dropdown.refs.portal.on(
 											'rendered',
 											function(event) {
 												if (dropdown.expanded) {
 													this.element.classList.add('dropdown-menu-personal-menu');
 													this.element.classList.remove('dropdown-menu-indicator-start');
+
+													this.emit('menuExpanded', event);
 												}
 											}
 										);
