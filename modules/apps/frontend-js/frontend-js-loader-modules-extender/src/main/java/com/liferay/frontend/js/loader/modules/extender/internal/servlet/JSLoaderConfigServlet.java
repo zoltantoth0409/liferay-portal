@@ -19,9 +19,8 @@ import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.minifier.MinifierUtil;
-import com.liferay.portal.url.builder.AbsolutePortalURLBuilder;
-import com.liferay.portal.url.builder.AbsolutePortalURLBuilderFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -95,13 +94,7 @@ public class JSLoaderConfigServlet extends HttpServlet {
 		stringWriter.write(
 			"Liferay.EXPOSE_GLOBAL = " + _details.exposeGlobal() + ";\n");
 
-		AbsolutePortalURLBuilder absolutePortalURLBuilder =
-			_absolutePortalURLBuilderFactory.getAbsolutePortalURLBuilder(
-				request);
-
-		String url = absolutePortalURLBuilder.forWhiteboard(
-			"/js_resolve_modules"
-		).build();
+		String url = _portal.getPathModule() + "/js_resolve_modules";
 
 		stringWriter.write("Liferay.RESOLVE_PATH = \"" + url + "\";\n");
 
@@ -145,12 +138,12 @@ public class JSLoaderConfigServlet extends HttpServlet {
 	private static final Log _log = LogFactoryUtil.getLog(
 		JSLoaderConfigServlet.class);
 
-	@Reference
-	private AbsolutePortalURLBuilderFactory _absolutePortalURLBuilderFactory;
-
 	private volatile Details _details;
 	private volatile long _lastModified;
 	private volatile ObjectValuePair<Long, String> _objectValuePair =
 		new ObjectValuePair<>(0L, null);
+
+	@Reference
+	private Portal _portal;
 
 }

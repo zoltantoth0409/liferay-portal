@@ -30,6 +30,7 @@ import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.util.Portal;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -102,6 +103,19 @@ public class BrowserModulesResolver {
 		return browserModulesMap;
 	}
 
+	private JSPackage _getResolvedJSPackage(String packageName) {
+		Collection<JSPackage> resolvedJSPackages =
+			_npmRegistry.getResolvedJSPackages();
+
+		for (JSPackage jsPackage : resolvedJSPackages) {
+			if (packageName.equals(jsPackage.getResolvedId())) {
+				return jsPackage;
+			}
+		}
+
+		return null;
+	}
+
 	private void _populateMappedModuleNames(
 		BrowserModulesResolution browserModulesResolution) {
 
@@ -112,8 +126,7 @@ public class BrowserModulesResolver {
 
 			String packageName = ModuleNameUtil.getPackageName(moduleName);
 
-			JSPackage jsPackage = _npmRegistry.getResolvedJSPackage(
-				packageName);
+			JSPackage jsPackage = _getResolvedJSPackage(packageName);
 
 			if (jsPackage == null) {
 				continue;

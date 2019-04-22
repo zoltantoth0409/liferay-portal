@@ -16,8 +16,6 @@ package com.liferay.frontend.js.loader.modules.extender.internal.resolution;
 
 import com.liferay.frontend.js.loader.modules.extender.internal.config.generator.JSConfigGeneratorPackage;
 import com.liferay.frontend.js.loader.modules.extender.internal.config.generator.JSConfigGeneratorPackagesTracker;
-import com.liferay.frontend.js.loader.modules.extender.npm.JSBundle;
-import com.liferay.frontend.js.loader.modules.extender.npm.JSBundleTracker;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSModuleAlias;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSPackage;
 import com.liferay.frontend.js.loader.modules.extender.npm.ModuleNameUtil;
@@ -25,16 +23,22 @@ import com.liferay.frontend.js.loader.modules.extender.npm.NPMRegistry;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.net.URL;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleEvent;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.util.tracker.BundleTracker;
+import org.osgi.util.tracker.BundleTrackerCustomizer;
 
 /**
  * @author Rodolfo Roza Miranda
@@ -85,13 +89,20 @@ public class BrowserModuleNameMapper {
 	}
 
 	@Activate
-	protected void activate() {
-		_npmRegistry.addJSBundleTracker(_jsBundleTracker);
+	protected void activate(BundleContext bundleContext) {
+		int stateMask = Bundle.ACTIVE | Bundle.RESOLVED;
+
+		_bundleTracker = new BundleTracker<>(
+			bundleContext, stateMask, _bundleTrackerCustomizer);
+
+		_bundleTracker.open();
 	}
 
 	@Deactivate
 	protected void deactivate() {
-		_npmRegistry.removeJSBundleTracker(_jsBundleTracker);
+		_bundleTracker.close();
+
+		_bundleTracker = null;
 	}
 
 	private void _clearCache() {
@@ -171,24 +182,43 @@ public class BrowserModuleNameMapper {
 
 	private final AtomicReference<BrowserModuleNameMapperCache>
 		_browserModuleNameMapperCache = new AtomicReference<>();
+	private BundleTracker<?> _bundleTracker;
 
-	private JSBundleTracker _jsBundleTracker = new JSBundleTracker() {
+	private BundleTrackerCustomizer<?> _bundleTrackerCustomizer =
+		new BundleTrackerCustomizer<Object>() {
 
-		@Override
-		public void addedJSBundle(
-			JSBundle jsBundle, Bundle bundle, NPMRegistry npmRegistry) {
+			@Override
+			public Object addingBundle(Bundle bundle, BundleEvent event) {
+				URL url = bundle.getResource("META-INF/resources/package.json");
 
-			_clearCache();
-		}
+				if (url == null) {
+					return null;
+				}
 
-		@Override
-		public void removedJSBundle(
-			JSBundle jsBundle, Bundle bundle, NPMRegistry npmRegistry) {
+				_clearCache();
 
-			_clearCache();
-		}
+				return null;
+			}
 
-	};
+			@Override
+			public void modifiedBundle(
+				Bundle bundle, BundleEvent event, Object object) {
+			}
+
+			@Override
+			public void removedBundle(
+				Bundle bundle, BundleEvent event, Object object) {
+
+				URL url = bundle.getResource("META-INF/resources/package.json");
+
+				if (url == null) {
+					return;
+				}
+
+				_clearCache();
+			}
+
+		};
 
 	@Reference
 	private JSConfigGeneratorPackagesTracker _jsConfigGeneratorPackagesTracker;
