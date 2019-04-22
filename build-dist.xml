@@ -3144,6 +3144,8 @@ and put it in ${app.server.parent.dir}. Then rerun this task.
 			<replacetoken><![CDATA[<secureSessionCookie xmi:id="SecureSessionCookie_1" cookieDomain="*" cookieName="JSESSIONID" cookiePath="/"/>]]></replacetoken>
 			<replacevalue><![CDATA[]]></replacevalue>
 		</replace>
+
+		<update-websphere-java-opts />
 	</target>
 
 	<target name="unzip-websphere-custom">
@@ -3227,6 +3229,8 @@ this task.
 				</replace>
 			</then>
 		</if>
+
+		<update-websphere-java-opts />
 	</target>
 
 	<target name="unzip-wildfly">
