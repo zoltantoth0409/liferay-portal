@@ -467,6 +467,7 @@ public class LayoutAdminPortlet extends MVCPortlet {
 			groupId, privateLayout, layoutId);
 
 		String currentType = layout.getType();
+		String oldFriendlyURL = layout.getFriendlyURL();
 
 		layout = layoutService.updateLayout(
 			groupId, privateLayout, layoutId, layout.getParentLayoutId(),
@@ -541,7 +542,7 @@ public class LayoutAdminPortlet extends MVCPortlet {
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
-		if (Validator.isNull(redirect)) {
+		if (Validator.isNull(redirect) || redirect.endsWith(oldFriendlyURL)) {
 			redirect = portal.getLayoutFullURL(layout, themeDisplay);
 		}
 
