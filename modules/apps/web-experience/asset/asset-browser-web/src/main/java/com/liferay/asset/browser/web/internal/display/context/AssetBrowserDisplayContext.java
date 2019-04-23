@@ -150,17 +150,17 @@ public class AssetBrowserDisplayContext {
 		assetBrowserSearch.setTotal(total);
 
 		if (AssetBrowserWebConfigurationValues.SEARCH_WITH_DATABASE) {
-			long[] subtypeSelectionId = null;
+			long[] subtypeSelectionIds = null;
 
 			if (getSubtypeSelectionId() > 0) {
-				subtypeSelectionId = new long[] {getSubtypeSelectionId()};
+				subtypeSelectionIds = new long[] {getSubtypeSelectionId()};
 			}
 
 			List<AssetEntry> assetEntries =
 				AssetEntryLocalServiceUtil.getEntries(
 					getFilterGroupIds(),
 					new long[] {assetRendererFactory.getClassNameId()},
-					subtypeSelectionId, getKeywords(), getKeywords(),
+					subtypeSelectionIds, getKeywords(), getKeywords(),
 					getKeywords(), getKeywords(), getListable(), false, false,
 					assetBrowserSearch.getStart(), assetBrowserSearch.getEnd(),
 					"modifiedDate", StringPool.BLANK, getOrderByType(),
@@ -446,11 +446,16 @@ public class AssetBrowserDisplayContext {
 		int total = 0;
 
 		if (AssetBrowserWebConfigurationValues.SEARCH_WITH_DATABASE) {
+			long[] subtypeSelectionIds = null;
+
+			if (getSubtypeSelectionId() > 0) {
+				subtypeSelectionIds = new long[] {getSubtypeSelectionId()};
+			}
+
 			total = AssetEntryLocalServiceUtil.getEntriesCount(
 				groupIds, new long[] {assetRendererFactory.getClassNameId()},
-				new long[] {getSubtypeSelectionId()}, getKeywords(), 
-				getKeywords(), getKeywords(), getKeywords(),
-				getListable(), false, false);
+				subtypeSelectionIds, getKeywords(), getKeywords(),
+				getKeywords(), getKeywords(), getListable(), false, false);
 		}
 		else {
 			total = (int)AssetEntryLocalServiceUtil.searchCount(
