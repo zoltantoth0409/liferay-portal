@@ -150,15 +150,21 @@ public class AssetBrowserDisplayContext {
 		assetBrowserSearch.setTotal(total);
 
 		if (AssetBrowserWebConfigurationValues.SEARCH_WITH_DATABASE) {
+			long[] subtypeSelectionId = null;
+
+			if (getSubtypeSelectionId() > 0) {
+				subtypeSelectionId = new long[] {getSubtypeSelectionId()};
+			}
+
 			List<AssetEntry> assetEntries =
 				AssetEntryLocalServiceUtil.getEntries(
 					getFilterGroupIds(),
 					new long[] {assetRendererFactory.getClassNameId()},
-					new long[] {getSubtypeSelectionId()}, getKeywords(),
-					getKeywords(), getKeywords(), getKeywords(), getListable(),
-					false, false, assetBrowserSearch.getStart(),
-					assetBrowserSearch.getEnd(), "modifiedDate",
-					StringPool.BLANK, getOrderByType(), StringPool.BLANK);
+					subtypeSelectionId, getKeywords(), getKeywords(),
+					getKeywords(), getKeywords(), getListable(), false, false,
+					assetBrowserSearch.getStart(), assetBrowserSearch.getEnd(),
+					"modifiedDate", StringPool.BLANK, getOrderByType(),
+					StringPool.BLANK);
 
 			assetBrowserSearch.setResults(assetEntries);
 		}
