@@ -21,10 +21,32 @@ EditArticleDisplayPageDisplayContext editArticleDisplayPageDisplayContext = new 
 
 JournalArticle article = editArticleDisplayPageDisplayContext.getArticle();
 
+String layoutUuid = null;
+
+if (article != null) {
+	layoutUuid = article.getLayoutUuid();
+}
+
+Layout articleLayout = null;
+
+if (Validator.isNotNull(layoutUuid)) {
+	articleLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(layoutUuid, article.getGroupId(), false);
+
+	if (articleLayout == null) {
+		articleLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(layoutUuid, article.getGroupId(), true);
+	}
+}
+
 long groupId = BeanParamUtil.getLong(article, request, "groupId", scopeGroupId);
 
 Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 %>
+
+<c:if test="<%= Validator.isNotNull(layoutUuid) && (articleLayout == null) %>">
+	<div class="alert alert-warning">
+		<liferay-ui:message arguments="<%= layoutUuid %>" key="this-article-is-configured-to-use-a-display-page-that-does-not-exist-on-the-current-site" />
+	</div>
+</c:if>
 
 <c:choose>
 	<c:when test="<%= group.isLayout() %>">
