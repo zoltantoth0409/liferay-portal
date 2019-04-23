@@ -16,7 +16,12 @@ definition {
 			var menuItem = "Content Page Template";
 		}
 
-		LexiconEntry.gotoAddMenuItem(menuItem = "${menuItem}");
+		if ("${siteTemplate}" == "true") {
+			LexiconEntry.gotoAdd();
+		}
+		else {
+			LexiconEntry.gotoAddMenuItem(menuItem = "${menuItem}");
+		}
 
 		PortletEntry.inputName(name = "${pageTemplateName}");
 
