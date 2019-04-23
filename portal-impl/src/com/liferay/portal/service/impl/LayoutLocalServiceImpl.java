@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.exception.SitemapPagePriorityException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.CustomizedPages;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Layout;
@@ -51,10 +52,12 @@ import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.model.impl.VirtualLayout;
+import com.liferay.portal.kernel.service.PortalPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntry;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntryThreadLocal;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -72,6 +75,7 @@ import com.liferay.portal.kernel.util.comparator.LayoutPriorityComparator;
 import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
 import com.liferay.portal.service.base.LayoutLocalServiceBaseImpl;
 import com.liferay.portal.util.PropsValues;
+import com.liferay.portlet.PortalPreferencesImpl;
 import com.liferay.sites.kernel.util.Sites;
 import com.liferay.sites.kernel.util.SitesUtil;
 
@@ -551,6 +555,14 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		// Layout
 
 		layout = layoutPersistence.remove(layout);
+
+		// User preferences for customizable pages
+
+		if (layout.isCustomizable()) {
+			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+			_removeUserPreferences(layout, themeDisplay.isSignedIn());
+		}
 
 		// Layout set
 
@@ -3508,6 +3520,29 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		}
 
 		return true;
+	}
+
+	private void _removeUserPreferences(Layout layout, boolean signedIn) {
+		List<com.liferay.portal.kernel.model.PortalPreferences>
+			portalPreferenceses =
+				PortalPreferencesLocalServiceUtil.getPortalPreferenceses(
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		long plid = layout.getPlid();
+
+		for (com.liferay.portal.kernel.model.PortalPreferences
+				portalPreferences : portalPreferenceses) {
+
+			if (portalPreferences.getPreferences().contains(
+					CustomizedPages.namespacePlid(plid))) {
+
+				PortalPreferencesImpl portalPreferencesImpl =
+					new PortalPreferencesImpl(portalPreferences, signedIn);
+
+				portalPreferencesImpl.resetValues(
+					CustomizedPages.namespacePlid(plid));
+			}
+		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
