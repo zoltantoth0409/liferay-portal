@@ -1136,9 +1136,7 @@ definition {
 				value1 = "${frequency}"
 			);
 
-			var currentDay = selenium.getElementValue("CalendarEditEvent#REPEAT_MONTHLY_CURRENT_DAY");
-			var currentDay = StringUtil.lowerCase("${currentDay}");
-			var currentDay = StringUtil.upperCaseFirstLetter("${currentDay}");
+			var currentDay = DateUtil.getCurrentDayOfWeek();
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "CalendarEditEvent#REPEAT_DIALOG_SUMMARY",
@@ -1160,9 +1158,7 @@ definition {
 				value1 = "${frequency}"
 			);
 
-			var currentDay = selenium.getElementValue("CalendarEditEvent#REPEAT_WEEKLY_CURRENT_DAY");
-			var currentDay = StringUtil.lowerCase("${currentDay}");
-			var currentDay = StringUtil.upperCaseFirstLetter("${currentDay}");
+			var currentDay = DateUtil.getCurrentDayOfWeek();
 
 			AssertTextEquals.assertPartialText(
 				locator1 = "CalendarEditEvent#REPEAT_DIALOG_SUMMARY",
