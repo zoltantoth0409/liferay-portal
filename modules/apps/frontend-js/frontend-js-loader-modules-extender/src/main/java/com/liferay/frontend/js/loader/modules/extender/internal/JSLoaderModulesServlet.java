@@ -126,17 +126,6 @@ public class JSLoaderModulesServlet extends HttpServlet {
 
 		_writeMaps(printWriter);
 
-		printWriter.println(
-			"Liferay.EXPLAIN_RESOLUTIONS = " + _details.explainResolutions() +
-				";\n");
-
-		printWriter.println(
-			"Liferay.EXPOSE_GLOBAL = " + _details.exposeGlobal() + ";\n");
-
-		printWriter.println(
-			"Liferay.WAIT_TIMEOUT = " + (_details.waitTimeout() * 1000) +
-				";\n");
-
 		printWriter.println("}());");
 
 		printWriter.close();

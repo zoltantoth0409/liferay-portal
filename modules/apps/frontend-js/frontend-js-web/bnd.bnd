@@ -36,9 +36,6 @@ Liferay-JS-Resources-Top-Head:\
 	\
 	/clay/bootstrap.js,\
 	\
-	/loader/config.js,\
-	/loader/loader.js,\
-	\
 	/aui/aui/aui.js,\
 	/aui/aui-base-html5-shiv/aui-base-html5-shiv.js,\
 	\
