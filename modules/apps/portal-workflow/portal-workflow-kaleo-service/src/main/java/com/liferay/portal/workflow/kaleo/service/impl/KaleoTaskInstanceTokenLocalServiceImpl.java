@@ -792,10 +792,10 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		return stream.map(
 			orderByCol -> {
-				String fieldName = _fieldNameOrderByCols.getOrDefault(
+				String fieldName = _fieldNameOrderByColMap.getOrDefault(
 					orderByCol, orderByCol);
 
-				int sortType = _fieldNameSortTypes.getOrDefault(
+				int sortType = _fieldNameSortTypeMap.getOrDefault(
 					fieldName, Sort.STRING_TYPE);
 
 				return new Sort(
@@ -809,7 +809,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	private static final Log _log = LogFactoryUtil.getLog(
 		KaleoTaskInstanceTokenLocalServiceImpl.class);
 
-	private static final Map<String, String> _fieldNameOrderByCols =
+	private static final Map<String, String> _fieldNameOrderByColMap =
 		new HashMap<String, String>() {
 			{
 				put("completed", KaleoTaskInstanceTokenField.COMPLETED);
@@ -827,7 +827,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				put("userId", Field.USER_ID);
 			}
 		};
-	private static final Map<String, Integer> _fieldNameSortTypes =
+	private static final Map<String, Integer> _fieldNameSortTypeMap =
 		new HashMap<String, Integer>() {
 			{
 				put(Field.CREATE_DATE, Sort.LONG_TYPE);
