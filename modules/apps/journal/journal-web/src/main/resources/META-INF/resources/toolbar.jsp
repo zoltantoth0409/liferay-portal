@@ -103,7 +103,9 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 				dialog: {
 					after: {
 						destroy: function(event) {
-							window.location.reload();
+							if (event.target.get('destroyOnHide')) {
+								window.location.reload();
+							}
 						}
 					},
 					destroyOnHide: true,
@@ -160,7 +162,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 		function(event) {
 			const selectAddMenuItemWindow = Liferay.Util.Window.getById('<portlet:namespace />selectAddMenuItem');
 
-			selectAddMenuItemWindow.detachAll();
+			selectAddMenuItemWindow.set('destroyOnHide', false);
 
 			Liferay.fire(
 				'closeWindow',
