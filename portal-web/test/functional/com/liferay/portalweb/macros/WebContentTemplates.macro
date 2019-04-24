@@ -172,11 +172,14 @@ definition {
 
 		WebContentTemplates.inputScript(templateScript = "${templateScript}");
 
-		if (("${templateLanguage}" == "ftl") || ("${templateLanguage}" =="vm")) {
-			WebContentTemplates.addFields(templateFieldNames = "${templateFieldNames}");
+		if ("${templateLanguage}" == "xsl") {
+			WebContentTemplates.inputTemplateFile(templateFile = "${templateFile}");
 		}
+		else {
+			WebContentTemplates.addFields(templateFieldNames = "${templateFieldNames}");
 
-		WebContentTemplates.inputTemplateFile(templateFile = "${templateFile}");
+			WebContentTemplates.inputTemplateFile(templateFile = "${templateFile}");
+		}
 	}
 
 	macro inputTemplateFile {
