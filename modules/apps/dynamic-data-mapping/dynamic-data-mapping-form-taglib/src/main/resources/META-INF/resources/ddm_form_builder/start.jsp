@@ -61,17 +61,30 @@
 		);
 	}
 
-	var modules = Object.keys(Liferay.MODULES);
+	if (Liferay.Loader.version().indexOf('3.') === 0) {
+		var modules = Object.keys(Liferay.MODULES);
 
-	var dependencies = modules.filter(
-		function(item) {
-			return /dynamic-data-mapping-form-builder.*\.es/.test(item);
-		}
-	);
+		var dependencies = modules.filter(
+			function(item) {
+				return /dynamic-data-mapping-form-builder.*\.es/.test(item);
+			}
+		);
 
-	Liferay.Loader.require.apply(
-		Liferay.Loader,
-		dependencies.concat(initTagLib)
-	);
+		Liferay.Loader.require.apply(
+			Liferay.Loader,
+			dependencies.concat(initTagLib)
+		);
+	}
+	else {
+		fetch(Liferay.MODULES_PATH + '?query=' + encodeURI('dynamic-data-mapping-form-builder.*\\.es'))
+			.then(response => response.json())
+			.then(modules => {
+				var dependencies = Object.keys(modules);
 
+				Liferay.Loader.require.apply(
+					Liferay.Loader,
+					dependencies.concat(initTagLib)
+				);
+			});
+	}
 </aui:script>

@@ -98,6 +98,10 @@ public class JSLoaderConfigServlet extends HttpServlet {
 
 		stringWriter.write("Liferay.RESOLVE_PATH = \"" + url + "\";\n");
 
+		url = _portal.getPathModule() + "/js_loader_modules";
+
+		stringWriter.write("Liferay.MODULES_PATH = \"" + url + "\";\n");
+
 		stringWriter.write(
 			"Liferay.WAIT_TIMEOUT = " + (_details.waitTimeout() * 1000) +
 				";\n");
