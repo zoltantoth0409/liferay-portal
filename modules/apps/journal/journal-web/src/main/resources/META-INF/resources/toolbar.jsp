@@ -162,11 +162,13 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 
 			selectAddMenuItemWindow.detachAll();
 
-			var uri = '<%= addArticleURL %>';
-
-			uri = Liferay.Util.addParams('<portlet:namespace />ddmStructureKey=' + event.ddmStructureKey, uri);
-
-			location.href = uri;
+			Liferay.fire(
+				'closeWindow',
+				{
+					id: '<portlet:namespace />selectAddMenuItem',
+					redirect: Liferay.Util.addParams('<portlet:namespace />ddmStructureKey=' + event.ddmStructureKey, '<%= addArticleURL %>')
+				}
+			);
 		}
 	);
 </aui:script>
