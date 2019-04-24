@@ -1137,6 +1137,7 @@ definition {
 			structureName = "WC Structure Name",
 			templateDescription = "WC Template Description",
 			templateFieldNames = "Image",
+			templateLanguage = "ftl",
 			templateName = "WC Template Name"
 		);
 
