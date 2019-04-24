@@ -158,6 +158,10 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 	Liferay.on(
 		'<portlet:namespace />selectAddMenuItem',
 		function(event) {
+			const selectAddMenuItemWindow = Liferay.Util.Window.getById('<portlet:namespace />selectAddMenuItem');
+
+			selectAddMenuItemWindow.detachAll();
+
 			var uri = '<%= addArticleURL %>';
 
 			uri = Liferay.Util.addParams('<portlet:namespace />ddmStructureKey=' + event.ddmStructureKey, uri);
