@@ -1189,8 +1189,7 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 
 		for (Group group : groups) {
 			if (GroupPermissionUtil.contains(
-					permissionChecker, group, ActionKeys.VIEW) ||
-				permissionChecker.isGroupMember(group.getGroupId())) {
+					permissionChecker, group, ActionKeys.VIEW)) {
 
 				filteredGroups.add(group);
 			}
