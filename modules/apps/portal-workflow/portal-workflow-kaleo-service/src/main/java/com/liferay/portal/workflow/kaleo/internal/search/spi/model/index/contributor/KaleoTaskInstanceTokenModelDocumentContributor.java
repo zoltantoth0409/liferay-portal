@@ -87,9 +87,6 @@ public class KaleoTaskInstanceTokenModelDocumentContributor
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.COMPLETED,
 			kaleoTaskInstanceToken.isCompleted());
-		document.addDate(
-			KaleoTaskInstanceTokenField.COMPLETION_DATE,
-			kaleoTaskInstanceToken.getCompletionDate());
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.CLASS_NAME,
 			kaleoTaskInstanceToken.getClassName());
@@ -101,12 +98,6 @@ public class KaleoTaskInstanceTokenModelDocumentContributor
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.KALEO_INSTANCE_ID,
 			kaleoTaskInstanceToken.getKaleoInstanceId());
-		document.addKeyword(
-			KaleoTaskInstanceTokenField.KALEO_TASK_ID,
-			kaleoTaskInstanceToken.getKaleoTaskId());
-		document.addKeyword(
-			KaleoTaskInstanceTokenField.KALEO_TASK_INSTANCE_TOKEN_ID,
-			kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.TASK_NAME,
 			kaleoTaskInstanceToken.getKaleoTaskName());
