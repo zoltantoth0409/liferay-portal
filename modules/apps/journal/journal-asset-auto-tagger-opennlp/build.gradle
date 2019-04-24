@@ -1,6 +1,6 @@
 dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd", version: "3.5.0"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly project(":apps:asset:asset-auto-tagger-api")
 	compileOnly project(":apps:asset:asset-auto-tagger-opennlp-api")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")

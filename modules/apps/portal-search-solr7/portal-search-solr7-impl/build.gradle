@@ -17,8 +17,8 @@ dependencies {
 	compileInclude group: "org.noggit", name: "noggit", version: "0.6"
 
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "commons-lang", name: "commons-lang", version: "2.6"
 	compileOnly group: "org.apache.lucene", name: "lucene-misc", version: luceneVersion
 	compileOnly group: "org.apache.lucene", name: "lucene-sandbox", version: luceneVersion
@@ -32,7 +32,7 @@ dependencies {
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":core:petra:petra-string")
 
-	testCompile group: "com.liferay.portal", name: "com.liferay.util.java", version: "default"
+	testCompile group: "com.liferay.portal", name: "com.liferay.util.java", version: "4.0.0"
 	testCompile group: "commons-collections", name: "commons-collections", version: "3.2.2"
 	testCompile group: "commons-configuration", name: "commons-configuration", version: "1.10"
 	testCompile group: "easyconf", name: "easyconf", version: "0.9.5"
