@@ -30,6 +30,8 @@ import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.util.Portal;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -103,6 +105,53 @@ public class BrowserModulesResolver {
 		return browserModulesMap;
 	}
 
+	private String _getDependencyPath(String moduleName, String dependency) {
+		if (!ModuleNameUtil.isLocalModuleName(dependency)) {
+			return dependency;
+		}
+
+		List<String> moduleDirNameParts = _getDirNameParts(moduleName);
+
+		List<String> dependencyDirNameParts = _getDirNameParts(dependency);
+
+		for (String dependencyDirNamePart : dependencyDirNameParts) {
+			if (dependencyDirNamePart.equals(StringPool.PERIOD)) {
+				continue;
+			}
+
+			if (dependencyDirNamePart.equals(StringPool.DOUBLE_PERIOD)) {
+				if (moduleDirNameParts.isEmpty()) {
+					throw new IllegalArgumentException(
+						"Invalid dependency " + dependency);
+				}
+
+				moduleDirNameParts.remove(moduleDirNameParts.size() - 1);
+			}
+			else {
+				moduleDirNameParts.add(dependencyDirNamePart);
+			}
+		}
+
+		moduleDirNameParts.add(_getFileName(dependency));
+
+		return String.join(StringPool.SLASH, moduleDirNameParts);
+	}
+
+	private List<String> _getDirNameParts(String modulePath) {
+		List<String> modulePathParts = new ArrayList<>(
+			Arrays.asList(modulePath.split(StringPool.SLASH)));
+
+		modulePathParts.remove(modulePathParts.size() - 1);
+
+		return modulePathParts;
+	}
+
+	private String _getFileName(String dependency) {
+		int pos = dependency.lastIndexOf(StringPool.SLASH);
+
+		return dependency.substring(pos + 1);
+	}
+
 	private JSPackage _getResolvedJSPackage(String packageName) {
 		Collection<JSPackage> resolvedJSPackages =
 			_npmRegistry.getResolvedJSPackages();
@@ -169,7 +218,7 @@ public class BrowserModulesResolver {
 				continue;
 			}
 
-			String dependencyModuleName = ModuleNameUtil.getDependencyPath(
+			String dependencyModuleName = _getDependencyPath(
 				moduleName, dependency);
 
 			dependencyModuleName = _browserModuleNameMapper.mapModuleName(

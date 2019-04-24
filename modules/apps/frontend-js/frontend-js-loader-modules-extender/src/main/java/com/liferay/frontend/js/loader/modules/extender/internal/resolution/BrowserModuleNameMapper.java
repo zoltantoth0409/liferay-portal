@@ -18,8 +18,8 @@ import com.liferay.frontend.js.loader.modules.extender.internal.config.generator
 import com.liferay.frontend.js.loader.modules.extender.internal.config.generator.JSConfigGeneratorPackagesTracker;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSModuleAlias;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSPackage;
-import com.liferay.frontend.js.loader.modules.extender.npm.ModuleNameUtil;
 import com.liferay.frontend.js.loader.modules.extender.npm.NPMRegistry;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -105,6 +105,18 @@ public class BrowserModuleNameMapper {
 		_bundleTracker = null;
 	}
 
+	private static String _getModuleResolvedId(
+		JSPackage jsPackage, String moduleName) {
+
+		StringBundler sb = new StringBundler(3);
+
+		sb.append(jsPackage.getResolvedId());
+		sb.append(StringPool.SLASH);
+		sb.append(moduleName);
+
+		return sb.toString();
+	}
+
 	private void _clearCache() {
 		_browserModuleNameMapperCache.set(
 			new BrowserModuleNameMapperCache(
@@ -115,15 +127,15 @@ public class BrowserModuleNameMapper {
 		Map<String, String> exactMatchMap = new HashMap<>();
 
 		for (JSPackage jsPackage : _npmRegistry.getResolvedJSPackages()) {
-			String mainModuleResolvedId = ModuleNameUtil.getModuleResolvedId(
+			String mainModuleResolvedId = _getModuleResolvedId(
 				jsPackage, jsPackage.getMainModuleName());
 
 			exactMatchMap.put(jsPackage.getResolvedId(), mainModuleResolvedId);
 
 			for (JSModuleAlias jsModuleAlias : jsPackage.getJSModuleAliases()) {
-				String aliasResolvedId = ModuleNameUtil.getModuleResolvedId(
+				String aliasResolvedId = _getModuleResolvedId(
 					jsPackage, jsModuleAlias.getAlias());
-				String moduleResolvedId = ModuleNameUtil.getModuleResolvedId(
+				String moduleResolvedId = _getModuleResolvedId(
 					jsPackage, jsModuleAlias.getModuleName());
 
 				exactMatchMap.put(aliasResolvedId, moduleResolvedId);
