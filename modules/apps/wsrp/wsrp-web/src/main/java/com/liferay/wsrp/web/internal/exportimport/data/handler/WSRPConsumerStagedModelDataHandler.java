@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.xml.Element;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -63,13 +63,9 @@ public class WSRPConsumerStagedModelDataHandler
 	public List<WSRPConsumer> fetchStagedModelsByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		List<WSRPConsumer> wsrpConsumers = new ArrayList<>();
-
-		wsrpConsumers.add(
+		return Arrays.asList(
 			WSRPConsumerLocalServiceUtil.fetchWSRPConsumerByUuidAndCompanyId(
 				uuid, companyId));
-
-		return wsrpConsumers;
 	}
 
 	@Override

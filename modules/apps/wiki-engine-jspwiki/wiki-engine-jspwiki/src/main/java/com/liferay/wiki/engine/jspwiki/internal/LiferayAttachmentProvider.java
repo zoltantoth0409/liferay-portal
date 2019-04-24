@@ -28,7 +28,7 @@ import com.liferay.wiki.service.WikiPageLocalServiceUtil;
 
 import java.io.InputStream;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -90,11 +90,7 @@ public class LiferayAttachmentProvider implements WikiAttachmentProvider {
 
 	@Override
 	public List<Attachment> getVersionHistory(Attachment attachment) {
-		List<Attachment> history = new ArrayList<>();
-
-		history.add(attachment);
-
-		return history;
+		return Arrays.asList(attachment);
 	}
 
 	@Override

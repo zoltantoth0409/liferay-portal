@@ -51,7 +51,7 @@ import com.liferay.wiki.service.base.WikiNodeLocalServiceBaseImpl;
 
 import java.io.InputStream;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -523,11 +523,7 @@ public class WikiNodeLocalServiceImpl extends WikiNodeLocalServiceBaseImpl {
 		WikiNode node = wikiNodeLocalService.addDefaultNode(
 			defaultUserId, serviceContext);
 
-		List<WikiNode> nodes = new ArrayList<>(1);
-
-		nodes.add(node);
-
-		return nodes;
+		return Arrays.asList(node);
 	}
 
 	protected void moveDependentsToTrash(long nodeId, long trashEntryId)

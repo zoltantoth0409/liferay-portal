@@ -37,6 +37,7 @@ import java.io.File;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -653,12 +654,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		QueryDefinition<JournalArticle> queryDefinition = new QueryDefinition<>(
 			WorkflowConstants.STATUS_ANY);
 
-		List<Long> folderIds = new ArrayList<>();
-
-		folderIds.add(folderId);
-
 		return journalArticleFinder.filterFindByG_F(
-			groupId, folderIds, queryDefinition);
+			groupId, Arrays.asList(folderId), queryDefinition);
 	}
 
 	/**
@@ -692,12 +689,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		QueryDefinition<JournalArticle> queryDefinition = new QueryDefinition<>(
 			WorkflowConstants.STATUS_ANY, start, end, obc);
 
-		List<Long> folderIds = new ArrayList<>();
-
-		folderIds.add(folderId);
-
 		return journalArticleFinder.filterFindByG_F(
-			groupId, folderIds, queryDefinition);
+			groupId, Arrays.asList(folderId), queryDefinition);
 	}
 
 	/**
@@ -895,12 +888,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		QueryDefinition<JournalArticle> queryDefinition = new QueryDefinition<>(
 			status);
 
-		List<Long> folderIds = new ArrayList<>();
-
-		folderIds.add(folderId);
-
 		return journalArticleFinder.filterCountByG_F(
-			groupId, folderIds, queryDefinition);
+			groupId, Arrays.asList(folderId), queryDefinition);
 	}
 
 	/**
