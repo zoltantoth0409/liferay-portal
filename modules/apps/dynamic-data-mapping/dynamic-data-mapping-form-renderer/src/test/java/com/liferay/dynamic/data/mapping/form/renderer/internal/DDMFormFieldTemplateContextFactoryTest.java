@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -447,13 +448,9 @@ public class DDMFormFieldTemplateContextFactoryTest {
 	protected DDMFormEvaluationResult getDDMFormEvaluationResult(
 		DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult) {
 
-		List<DDMFormFieldEvaluationResult> ddmFormFieldEvaluationResults =
-			new ArrayList<>();
-
-		ddmFormFieldEvaluationResults.add(ddmFormFieldEvaluationResult);
-
 		return DDMFormEvaluationResultBuilder.build(
-			ddmFormFieldEvaluationResults, Collections.emptySet());
+			Arrays.asList(ddmFormFieldEvaluationResult),
+			Collections.emptySet());
 	}
 
 	protected DDMFormFieldRenderer getTextDDMFormFieldRenderer() {

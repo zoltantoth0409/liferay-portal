@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -53,11 +54,7 @@ public class BlogsStatsUserFinderImpl
 
 	@Override
 	public int countByOrganizationId(long organizationId) {
-		List<Long> organizationIds = new ArrayList<>();
-
-		organizationIds.add(organizationId);
-
-		return countByOrganizationIds(organizationIds);
+		return countByOrganizationIds(Arrays.asList(organizationId));
 	}
 
 	@Override
@@ -162,11 +159,8 @@ public class BlogsStatsUserFinderImpl
 		long organizationId, int start, int end,
 		OrderByComparator<BlogsStatsUser> obc) {
 
-		List<Long> organizationIds = new ArrayList<>();
-
-		organizationIds.add(organizationId);
-
-		return findByOrganizationIds(organizationIds, start, end, obc);
+		return findByOrganizationIds(
+			Arrays.asList(organizationId), start, end, obc);
 	}
 
 	@Override

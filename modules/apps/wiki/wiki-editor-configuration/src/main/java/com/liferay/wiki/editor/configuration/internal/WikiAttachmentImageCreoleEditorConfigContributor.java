@@ -16,15 +16,13 @@ package com.liferay.wiki.editor.configuration.internal;
 
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;
-import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
 import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.wiki.constants.WikiPortletKeys;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import javax.portlet.PortletURL;
 
@@ -65,15 +63,10 @@ public class WikiAttachmentImageCreoleEditorConfigContributor
 				urlItemSelectorCriterion);
 		}
 		else {
-			List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
-				new ArrayList<>();
-
-			desiredItemSelectorReturnTypes.add(
-				new FileEntryItemSelectorReturnType());
-
 			ItemSelectorCriterion attachmentItemSelectorCriterion =
 				getWikiAttachmentItemSelectorCriterion(
-					wikiPageResourcePrimKey, desiredItemSelectorReturnTypes);
+					wikiPageResourcePrimKey,
+					Arrays.asList(new FileEntryItemSelectorReturnType()));
 
 			ItemSelectorCriterion uploadItemSelectorCriterion =
 				getUploadItemSelectorCriterion(

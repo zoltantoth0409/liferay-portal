@@ -52,11 +52,8 @@ public class CallFunctionTest {
 		CallFunction callFunction = new CallFunction(
 			null, ddmFormFieldEvaluationResults, null, _jsonFactory);
 
-		List<KeyValuePair> keyValuePairs = new ArrayList<>();
-
-		keyValuePairs.add(new KeyValuePair("key_1", "value_1"));
-
-		callFunction.setDDMFormFieldOptions("field0", keyValuePairs);
+		callFunction.setDDMFormFieldOptions(
+			"field0", Arrays.asList(new KeyValuePair("key_1", "value_1")));
 
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
