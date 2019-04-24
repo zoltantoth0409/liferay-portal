@@ -548,9 +548,9 @@ public class KaleoInstanceLocalServiceImpl
 			orderByComparator.getOrderByFields());
 
 		return stream.map(
-			orderByFieldName -> {
+			orderByCol -> {
 				String fieldName = _fieldNameOrderByCols.getOrDefault(
-					orderByFieldName, orderByFieldName);
+					orderByCol, orderByCol);
 
 				int sortType = _fieldNameSortTypes.getOrDefault(
 					fieldName, Sort.STRING_TYPE);
