@@ -29,7 +29,8 @@ import org.junit.runners.model.Statement;
 /**
  * @author Shuyang Zhou
  */
-public class BaseTestRule<C, M> implements TestRule {
+public class BaseTestRule<C, M>
+	implements ArquillianClassRuleHandler, TestRule {
 
 	public BaseTestRule(TestCallback<C, M> testCallback) {
 		_testCallback = testCallback;
@@ -76,6 +77,14 @@ public class BaseTestRule<C, M> implements TestRule {
 			}
 
 		};
+	}
+
+	@Override
+	public void handleAfterClass(boolean enable) {
+	}
+
+	@Override
+	public void handleBeforeClass(boolean enable) {
 	}
 
 	public abstract static class StatementWrapper extends Statement {
