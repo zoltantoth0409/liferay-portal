@@ -518,10 +518,8 @@ definition {
 
 		WebContent.addCP(
 			webContentTitle = "Web Content Title",
-			webContentContent = "${page2URL}"
+			webContentContent ='''<a href="${page2URL}">${page2URL}</a>'''
 		);
-
-		AlloyEditor.addEntryExternalURL(entryExternalURL = "${page2URL}");
 
 		PortletEntry.publish();
 
