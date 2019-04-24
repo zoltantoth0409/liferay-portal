@@ -102,7 +102,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 			{
 				dialog: {
 					after: {
-						destroy: function (event) {
+						destroy: function(event) {
 							window.location.reload();
 						}
 					},
