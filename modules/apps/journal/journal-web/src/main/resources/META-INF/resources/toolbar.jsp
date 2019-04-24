@@ -101,6 +101,11 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 		Liferay.Util.openWindow(
 			{
 				dialog: {
+					after: {
+						destroy: function (event) {
+							window.location.reload();
+						}
+					},
 					destroyOnHide: true,
 					modal: true
 				},
