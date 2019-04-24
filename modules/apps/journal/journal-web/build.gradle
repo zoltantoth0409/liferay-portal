@@ -31,6 +31,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.rss.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.taglib", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
