@@ -30,5 +30,5 @@ dependencies {
 	compileOnly project(":apps:asset:asset-api")
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly group: "com.liferay", name: "com.liferay.headless.common.spi", version: "1.0.0"
-	compileOnly project(":apps:headless:headless-delivery:headless-delivery-api")
+	compileOnly group: "com.liferay", name: "com.liferay.headless.delivery.api", version: "1.0.0"
 }
