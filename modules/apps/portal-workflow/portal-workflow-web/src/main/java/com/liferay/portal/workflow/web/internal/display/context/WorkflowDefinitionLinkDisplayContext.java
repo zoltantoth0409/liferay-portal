@@ -422,11 +422,9 @@ public class WorkflowDefinitionLinkDisplayContext {
 	public String getWorkflowDefinitionLabel(
 		WorkflowDefinition workflowDefinition) {
 
-		String workflowDefinitionName = workflowDefinition.getTitle(
+		return workflowDefinition.getTitle(
 			LanguageUtil.getLanguageId(
 				_workflowDefinitionLinkRequestHelper.getRequest()));
-
-		return workflowDefinitionName;
 	}
 
 	public List<WorkflowDefinition> getWorkflowDefinitions()

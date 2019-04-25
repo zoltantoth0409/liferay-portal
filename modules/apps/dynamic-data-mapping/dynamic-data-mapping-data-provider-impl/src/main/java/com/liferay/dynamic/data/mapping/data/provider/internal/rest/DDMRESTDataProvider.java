@@ -84,10 +84,7 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 			DDMDataProviderResponseOutput ddmDataProviderResponseOutput =
 				ddmDataProviderResponse.get("Default-Output");
 
-			List<KeyValuePair> results = ddmDataProviderResponseOutput.getValue(
-				List.class);
-
-			return results;
+			return ddmDataProviderResponseOutput.getValue(List.class);
 		}
 		catch (Exception e) {
 			throw new DDMDataProviderException(e);

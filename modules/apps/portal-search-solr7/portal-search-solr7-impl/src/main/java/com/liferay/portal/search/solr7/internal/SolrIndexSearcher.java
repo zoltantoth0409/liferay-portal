@@ -552,9 +552,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		QueryResponse queryResponse = doSearch(
 			searchContext, query, start, end, false);
 
-		Hits hits = processResponse(queryResponse, searchContext, query);
-
-		return hits;
+		return processResponse(queryResponse, searchContext, query);
 	}
 
 	protected void excludeTags(
@@ -613,7 +611,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		Stream<Map.Entry<String, JSONObject>> stream = entrySet.stream();
 
-		String jsonString = stream.map(
+		return stream.map(
 			entry -> StringBundler.concat(
 				StringPool.QUOTE, entry.getKey(), StringPool.QUOTE,
 				StringPool.COLON, entry.getValue())
@@ -622,8 +620,6 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 				StringPool.COMMA, StringPool.OPEN_CURLY_BRACE,
 				StringPool.CLOSE_CURLY_BRACE)
 		);
-
-		return jsonString;
 	}
 
 	protected String getSortFieldName(Sort sort, String scoreFieldName) {

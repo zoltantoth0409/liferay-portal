@@ -246,10 +246,7 @@ public class DDMExpressionImpl<T> implements DDMExpression<T> {
 			return null;
 		}
 
-		DDMExpression<Object> ddmExpression = createExpression(
-			variable.getExpressionString());
-
-		return ddmExpression;
+		return createExpression(variable.getExpressionString());
 	}
 
 	protected DDMExpressionParser.ExpressionContext createExpressionContext()

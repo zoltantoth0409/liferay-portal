@@ -552,10 +552,7 @@ public class DDMFormInstanceRecordLocalServiceImpl
 	}
 
 	protected Indexer<DDMFormInstanceRecord> getDDMFormInstanceRecordIndexer() {
-		Indexer<DDMFormInstanceRecord> indexer =
-			indexerRegistry.nullSafeGetIndexer(DDMFormInstanceRecord.class);
-
-		return indexer;
+		return indexerRegistry.nullSafeGetIndexer(DDMFormInstanceRecord.class);
 	}
 
 	protected List<DDMFormInstanceRecord> getFormInstanceRecords(Hits hits)

@@ -571,10 +571,7 @@ public class JournalArticleExportImportContentProcessor
 		}
 
 		try {
-			Fields fields = _journalConverter.getDDMFields(
-				ddmStructure, content);
-
-			return fields;
+			return _journalConverter.getDDMFields(ddmStructure, content);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {

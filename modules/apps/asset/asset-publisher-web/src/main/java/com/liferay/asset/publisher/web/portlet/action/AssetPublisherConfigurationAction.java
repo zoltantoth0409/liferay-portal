@@ -389,10 +389,7 @@ public class AssetPublisherConfigurationAction
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				className);
 
-		String assetClassName = assetPublisherWebUtil.getClassName(
-			assetRendererFactory);
-
-		return assetClassName;
+		return assetPublisherWebUtil.getClassName(assetRendererFactory);
 	}
 
 	protected String[] getClassTypeIds(
