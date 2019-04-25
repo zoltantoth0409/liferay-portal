@@ -8,6 +8,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.oauth2.provider.scope.api", version: "2.0.0"
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-scope-liferay-api")
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-scope-spi")
-	compileOnly project(":apps:portal-security:portal-security-service-access-policy-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.security.service.access.policy.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "2.0.0"
 }
