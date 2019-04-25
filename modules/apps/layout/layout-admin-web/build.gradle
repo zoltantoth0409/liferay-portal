@@ -46,5 +46,5 @@ dependencies {
 	compileOnly project(":apps:layout:layout-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.0.0"
 	compileOnly project(":apps:site-navigation:site-navigation-taglib")
-	compileOnly project(":apps:site:site-api")
+	compileOnly group: "com.liferay", name: "com.liferay.site.api", version: "4.0.0"
 }

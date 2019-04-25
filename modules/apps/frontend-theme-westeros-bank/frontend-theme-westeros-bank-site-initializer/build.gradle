@@ -14,5 +14,5 @@ dependencies {
 	compileOnly project(":apps:fragment:fragment-api")
 	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "4.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
-	compileOnly project(":apps:site:site-api")
+	compileOnly group: "com.liferay", name: "com.liferay.site.api", version: "4.0.0"
 }
