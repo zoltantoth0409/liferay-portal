@@ -42,7 +42,7 @@ dependencies {
 	compileOnly project(":apps:comment:comment-api")
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "4.0.0"
-	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "2.0.0"
 	compileOnly project(":apps:wiki:wiki-api")
 }
 
