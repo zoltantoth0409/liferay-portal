@@ -8,7 +8,7 @@ dependencies {
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
-	compileOnly project(":apps:rss:rss-api")
+	compileOnly group: "com.liferay", name: "com.liferay.rss.api", version: "3.0.0"
 	compileOnly project(":apps:site-navigation:site-navigation-language-api")
 	compileOnly project(":apps:social:social-activities-api")
 }

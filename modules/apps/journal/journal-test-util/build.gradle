@@ -6,7 +6,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.0.0"
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-test-util")
 	compileOnly project(":apps:journal:journal-api")
-	compileOnly project(":apps:rss:rss-api")
+	compileOnly group: "com.liferay", name: "com.liferay.rss.api", version: "3.0.0"
 }
 
 liferay {
