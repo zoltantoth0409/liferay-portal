@@ -7,6 +7,6 @@ dependencies {
 	compileOnly project(":apps:portal-security:portal-security-permission-api")
 	compileOnly project(":apps:portal:portal-dao-orm-custom-sql-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":core:osgi-service-tracker-collections")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
 	compileOnly project(":core:petra:petra-string")
 }
