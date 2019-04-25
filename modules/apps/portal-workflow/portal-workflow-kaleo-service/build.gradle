@@ -22,7 +22,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "3.0.0"
 	compileOnly project(":apps:portal-search:portal-search-spi")
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-api")
-	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-definition-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.definition.api", version: "4.0.0"
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-runtime-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.dao.orm.custom.sql.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "4.0.0"
