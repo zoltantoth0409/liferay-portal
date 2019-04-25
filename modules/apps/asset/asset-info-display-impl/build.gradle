@@ -9,6 +9,6 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.http.whiteboard", version: "1.0.0"
 	compileOnly project(":apps:asset:asset-api")
 	compileOnly project(":apps:asset:asset-display-page-api")
-	compileOnly project(":apps:asset:asset-info-display-api")
+	compileOnly group: "com.liferay", name: "com.liferay.asset.info.display.api", version: "1.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
 }
