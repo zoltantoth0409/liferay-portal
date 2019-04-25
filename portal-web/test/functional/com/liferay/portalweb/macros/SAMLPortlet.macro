@@ -25,6 +25,13 @@ definition {
 			);
 		}
 
+		if (isSet(IdpKeepAliveURL)) {
+			Type(
+				locator1 = "CPSAMLAdmin#SAML_KEEP_ALIVE_URL",
+				value1 = "${IdpKeepAliveURL}"
+			);
+		}
+
 		PortletEntry.save();
 	}
 
@@ -72,6 +79,13 @@ definition {
 			Type(
 				locator1 = "CPSAMLAdminServiceProviderConnections#SERVICE_PROVIDER_CONNECTION_ATTRIBUTE_TEXTAREA",
 				value1 = "${Attributes}"
+			);
+		}
+
+		if (isSet(SPKeepAliveURL)) {
+			Type(
+				locator1 = "CPSAMLAdmin#SAML_KEEP_ALIVE_URL",
+				value1 = "${SPKeepAliveURL}"
 			);
 		}
 
