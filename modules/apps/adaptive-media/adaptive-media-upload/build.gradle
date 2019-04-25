@@ -10,7 +10,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.adaptive.media.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.adaptive.media.content.transformer.api", version: "3.0.0"
 	compileOnly project(":apps:adaptive-media:adaptive-media-image-api")
-	compileOnly project(":apps:blogs:blogs-api")
+	compileOnly group: "com.liferay", name: "com.liferay.blogs.api", version: "5.0.0"
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:upload:upload-api")
 

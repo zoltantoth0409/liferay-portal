@@ -17,7 +17,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.adaptive.media.api", version: "4.0.0"
 	compileOnly project(":apps:adaptive-media:adaptive-media-image-api")
 	compileOnly group: "com.liferay", name: "com.liferay.application.list.api", version: "4.0.0"
-	compileOnly project(":apps:blogs:blogs-api")
+	compileOnly group: "com.liferay", name: "com.liferay.blogs.api", version: "5.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
