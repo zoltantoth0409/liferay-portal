@@ -21,6 +21,6 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
-	compileOnly project(":apps:petra:petra-log4j")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.log4j", version: "3.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 }
