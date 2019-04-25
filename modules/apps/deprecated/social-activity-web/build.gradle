@@ -10,5 +10,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.application.list.api", version: "4.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
-	compileOnly project(":apps:social:social-activity-api")
+	compileOnly group: "com.liferay", name: "com.liferay.social.activity.api", version: "3.0.0"
 }
