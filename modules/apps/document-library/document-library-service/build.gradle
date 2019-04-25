@@ -27,7 +27,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.0.0"
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.upgrade.api", version: "2.0.0"
-	compileOnly project(":apps:portal-instances:portal-instances-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.instances.api", version: "3.0.0"
 	compileOnly project(":apps:portal-search:portal-search-api")
 	compileOnly project(":apps:portal-search:portal-search-spi")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "2.0.0"
