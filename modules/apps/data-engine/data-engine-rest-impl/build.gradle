@@ -23,7 +23,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.data.engine.spi", version: "1.0.0"
 	compileOnly project(":apps:dynamic-data-lists:dynamic-data-lists-api")
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.0.0"
-	compileOnly project(":apps:frontend-js:frontend-js-loader-modules-extender-api")
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.js.loader.modules.extender.api", version: "3.0.0"
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-scope-api")
 	compileOnly project(":apps:portal-odata:portal-odata-api")
 	compileOnly project(":apps:portal-template:portal-template-soy-api")
