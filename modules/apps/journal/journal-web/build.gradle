@@ -44,7 +44,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.criteria.api", version: "4.0.0"
 	compileOnly project(":apps:journal:journal-item-selector-api")
 	compileOnly group: "com.liferay", name: "com.liferay.journal.taglib", version: "3.0.0"
-	compileOnly project(":apps:layout:layout-item-selector-api")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.item.selector.api", version: "3.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:site-navigation:site-navigation-taglib")
 }
