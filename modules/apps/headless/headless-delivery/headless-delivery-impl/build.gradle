@@ -30,5 +30,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "1.0.0"
-	compileOnly project(":apps:segments:segments-api")
+	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.0.0"
 }

@@ -29,5 +29,5 @@ dependencies {
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "4.0.0"
 	compileOnly project(":apps:fragment:fragment-api")
-	compileOnly project(":apps:segments:segments-api")
+	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.0.0"
 }

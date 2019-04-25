@@ -23,5 +23,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "4.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
-	compileOnly project(":apps:segments:segments-api")
+	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.0.0"
 }

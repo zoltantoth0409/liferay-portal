@@ -17,5 +17,5 @@ dependencies {
 	compileOnly project(":apps:headless:headless-admin-taxonomy:headless-admin-taxonomy-api")
 	compileOnly project(":apps:headless:headless-common-spi")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "1.0.0"
-	compileOnly project(":apps:segments:segments-api")
+	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.0.0"
 }
