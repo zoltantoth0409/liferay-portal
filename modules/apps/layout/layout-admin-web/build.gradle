@@ -46,5 +46,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "4.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:layout:layout-page-template-service")
-	compileOnly project(":apps:layout:layout-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.taglib", version: "4.0.0"
 }
