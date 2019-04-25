@@ -16,5 +16,5 @@ dependencies {
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:layout:layout-item-selector-api")
 	compileOnly project(":apps:layout:layout-taglib")
-	compileOnly project(":apps:site-navigation:site-navigation-menu-item-api")
+	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.menu.item.api", version: "2.0.0"
 }

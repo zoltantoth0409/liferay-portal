@@ -22,5 +22,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "4.0.0"
-	compileOnly project(":apps:site-navigation:site-navigation-menu-item-api")
+	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.menu.item.api", version: "2.0.0"
 }
