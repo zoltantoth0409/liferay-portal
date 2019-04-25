@@ -40,7 +40,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-display-page-api")
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.blogs.item.selector.api", version: "3.0.0"
-	compileOnly project(":apps:comment:comment-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.comment.taglib", version: "2.0.0"
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
