@@ -96,6 +96,7 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
+import com.liferay.portal.kernel.servlet.BrowserSnifferUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -1065,10 +1066,13 @@ public class JournalDisplayContext {
 
 			articleSearchContainer.setRowChecker(entriesChecker);
 
-			EntriesMover entriesMover = new EntriesMover(
-				_trashHelper.isTrashEnabled(themeDisplay.getScopeGroupId()));
+			if (!BrowserSnifferUtil.isMobile(_request)) {
+				EntriesMover entriesMover = new EntriesMover(
+					_trashHelper.isTrashEnabled(
+						themeDisplay.getScopeGroupId()));
 
-			articleSearchContainer.setRowMover(entriesMover);
+				articleSearchContainer.setRowMover(entriesMover);
+			}
 		}
 
 		if (isNavigationMine() || isNavigationRecent()) {
