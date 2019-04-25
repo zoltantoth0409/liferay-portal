@@ -10,7 +10,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.info.api", version: "1.0.0"
 	compileOnly project(":apps:item-selector:item-selector-api")
-	compileOnly project(":apps:layout:layout-api")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.api", version: "2.0.0"
 	compileOnly project(":apps:layout:layout-content-page-editor-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:product-navigation:product-navigation-control-menu-api")
