@@ -26,6 +26,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.control.menu.api", version: "5.0.0"
-	compileOnly project(":apps:staging:staging-api")
+	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
 	compileOnly project(":apps:upload:upload-api")
 }

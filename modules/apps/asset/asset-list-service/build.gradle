@@ -22,5 +22,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.dao.orm.custom.sql.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "4.0.0"
 	compileOnly project(":apps:segments:segments-api")
-	compileOnly project(":apps:staging:staging-api")
+	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
 }

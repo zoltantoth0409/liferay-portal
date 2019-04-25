@@ -26,5 +26,5 @@ dependencies {
 	compileOnly project(":apps:journal:journal-taglib")
 	compileOnly project(":apps:journal:journal-web")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
-	compileOnly project(":apps:staging:staging-api")
+	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
 }

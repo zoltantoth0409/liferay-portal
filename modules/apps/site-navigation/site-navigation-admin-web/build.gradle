@@ -17,5 +17,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.api", version: "3.0.0"
 	compileOnly project(":apps:site-navigation:site-navigation-menu-item-api")
 	compileOnly project(":apps:site-navigation:site-navigation-service")
-	compileOnly project(":apps:staging:staging-api")
+	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
 }

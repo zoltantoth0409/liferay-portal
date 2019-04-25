@@ -16,6 +16,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.changeset.api", version: "2.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:layout:layout-taglib")
-	compileOnly project(":apps:staging:staging-api")
+	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
 	compileOnly project(":apps:staging:staging-taglib")
 }

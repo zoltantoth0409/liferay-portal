@@ -17,5 +17,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.mobile.device.rules.api", version: "4.0.0"
 	compileOnly project(":apps:mobile-device-rules:mobile-device-rules-service")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
-	compileOnly project(":apps:staging:staging-api")
+	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
 }
