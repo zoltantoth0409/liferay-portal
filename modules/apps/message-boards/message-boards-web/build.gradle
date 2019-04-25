@@ -34,6 +34,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.document.library.api", version: "5.0.0"
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "4.0.0"
-	compileOnly project(":apps:message-boards:message-boards-service")
+	compileOnly group: "com.liferay", name: "com.liferay.message.boards.service", version: "3.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
 }
