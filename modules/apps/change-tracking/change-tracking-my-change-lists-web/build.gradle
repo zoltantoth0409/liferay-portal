@@ -11,5 +11,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.application.list.api", version: "4.0.0"
 	compileOnly project(":apps:application-list:application-list-taglib")
 	compileOnly project(":apps:change-tracking:change-tracking-api")
-	compileOnly project(":apps:product-navigation:product-navigation-personal-menu-api")
+	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.personal.menu.api", version: "1.0.0"
 }
