@@ -28,7 +28,7 @@ dependencies {
 	compileOnly project(":apps:headless:headless-common-spi")
 	compileOnly project(":apps:headless:headless-delivery:headless-delivery-api")
 	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "4.0.0"
-	compileOnly project(":apps:message-boards:message-boards-api")
+	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "5.0.0"
 	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
 	compileOnly project(":apps:segments:segments-api")
 }
