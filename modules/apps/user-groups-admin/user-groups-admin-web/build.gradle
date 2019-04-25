@@ -16,6 +16,6 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
-	compileOnly project(":apps:user-groups-admin:user-groups-admin-api")
+	compileOnly group: "com.liferay", name: "com.liferay.user.groups.admin.api", version: "4.0.0"
 	compileOnly project(":apps:users-admin:users-admin-api")
 }
