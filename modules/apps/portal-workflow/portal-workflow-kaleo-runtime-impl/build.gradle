@@ -14,6 +14,6 @@ dependencies {
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-definition-api")
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-runtime-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.aop.api", version: "1.0.0"
-	compileOnly project(":apps:portal:portal-instance-lifecycle-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "2.0.0"
 	compileOnly project(":apps:push-notifications:push-notifications-api")
 }
