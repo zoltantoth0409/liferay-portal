@@ -16,7 +16,7 @@ dependencies {
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
-	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "3.0.0"
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-api")
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-scope-liferay-api")
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-scope-spi")
