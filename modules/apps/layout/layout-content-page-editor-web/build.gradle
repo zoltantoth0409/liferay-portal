@@ -21,7 +21,7 @@ dependencies {
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:portal-template:portal-template-soy-api")
 	compileOnly project(":apps:segments:segments-api")
-	compileOnly project(":core:petra:petra-function")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
 }

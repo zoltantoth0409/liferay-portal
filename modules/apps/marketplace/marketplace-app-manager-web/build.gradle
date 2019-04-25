@@ -13,7 +13,7 @@ dependencies {
 	compileOnly project(":apps:marketplace:marketplace-api")
 	compileOnly project(":apps:static:portal-bundle-blacklist:portal-bundle-blacklist-api")
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
-	compileOnly project(":core:petra:petra-function")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
 }
