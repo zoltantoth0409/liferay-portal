@@ -18,5 +18,5 @@ dependencies {
 	compileOnly project(":apps:trash:trash-api")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
-	compileOnly project(":core:registry-api")
+	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "3.0.0"
 }
