@@ -250,7 +250,15 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
+		var browserType = PropsUtil.get("browser.type");
+
+		if (("${browserType}" == "edge") || ("${browserType}" == "internetexplorer")) {
+			DMDocument.viewCP(dmDocumentSize = "268B", dmDocumentTitle = "DM Document Title");
+		}
+
+		else {
+			DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
+		}
 
 		Navigator.openURL();
 
