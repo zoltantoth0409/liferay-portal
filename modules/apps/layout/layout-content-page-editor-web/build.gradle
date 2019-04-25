@@ -22,6 +22,6 @@ dependencies {
 	compileOnly project(":apps:asset:asset-api")
 	compileOnly group: "com.liferay", name: "com.liferay.fragment.api", version: "2.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly project(":apps:item-selector:item-selector-criteria-api")
+	compileOnly group: "com.liferay", name: "com.liferay.item.selector.criteria.api", version: "4.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
 }

@@ -45,7 +45,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.flags.taglib", version: "4.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "2.0.0"
-	compileOnly project(":apps:item-selector:item-selector-criteria-api")
+	compileOnly group: "com.liferay", name: "com.liferay.item.selector.criteria.api", version: "4.0.0"
 	compileOnly project(":apps:item-selector:item-selector-taglib")
 	compileOnly project(":apps:rss:rss-taglib")
 	compileOnly project(":apps:social:social-bookmarks-taglib")
