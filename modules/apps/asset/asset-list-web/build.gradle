@@ -13,7 +13,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-api")
 	compileOnly project(":apps:asset:asset-display-page-api")
 	compileOnly group: "com.liferay", name: "com.liferay.asset.list.api", version: "1.0.0"
-	compileOnly project(":apps:asset:asset-publisher-api")
+	compileOnly group: "com.liferay", name: "com.liferay.asset.publisher.api", version: "2.0.0"
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-taglib")
