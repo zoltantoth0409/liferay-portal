@@ -45,6 +45,6 @@ dependencies {
 	compileOnly project(":apps:asset:asset-display-page-api")
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
-	compileOnly project(":apps:layout:layout-page-template-api")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.api", version: "2.0.0"
 	compileOnly project(":apps:layout:layout-page-template-service")
 }
