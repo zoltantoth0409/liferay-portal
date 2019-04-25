@@ -11,5 +11,5 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
-	compileOnly project(":apps:portal-security-wedeploy-auth:portal-security-wedeploy-auth-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.security.wedeploy.auth.api", version: "3.0.0"
 }
