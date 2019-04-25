@@ -24,7 +24,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.adaptive.media.image.api", version: "3.0.0"
 	compileOnly project(":apps:asset:asset-api")
 	compileOnly project(":apps:document-library:document-library-api")
-	compileOnly project(":apps:dynamic-data-lists:dynamic-data-lists-api")
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.lists.api", version: "4.0.0"
 	compileOnly project(":apps:headless:headless-common-spi")
 	compileOnly project(":apps:headless:headless-delivery:headless-delivery-api")
 	compileOnly project(":apps:journal:journal-api")
