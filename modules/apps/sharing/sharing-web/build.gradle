@@ -15,7 +15,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
-	compileOnly project(":apps:portal-portlet-bridge:portal-portlet-bridge-soy-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.portlet.bridge.soy.api", version: "2.0.0"
 	compileOnly project(":apps:product-navigation:product-navigation-personal-menu-api")
 	compileOnly project(":apps:sharing:sharing-api")
 }
