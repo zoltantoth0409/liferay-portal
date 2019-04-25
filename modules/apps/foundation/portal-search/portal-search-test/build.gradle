@@ -8,6 +8,7 @@ dependencies {
 	testIntegrationCompile group: "com.liferay", name: "com.liferay.osgi.util", version: "3.0.0"
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "org.osgi", name: "org.osgi.service.cm", version: "1.5.0"
 	testIntegrationCompile project(":apps:foundation:portal-search:portal-search")
 	testIntegrationCompile project(":apps:foundation:portal-search:portal-search-api")
 	testIntegrationCompile project(":apps:foundation:portal-search:portal-search-test-util")
