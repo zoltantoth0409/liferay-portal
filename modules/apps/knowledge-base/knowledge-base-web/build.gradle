@@ -35,7 +35,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.document.library.taglib", version: "1.0.0"
 	compileOnly project(":apps:expando:expando-taglib")
-	compileOnly project(":apps:rss:rss-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.rss.taglib", version: "2.0.0"
 }
 
 findSecurityBugs {
