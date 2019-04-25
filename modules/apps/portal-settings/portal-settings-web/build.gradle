@@ -11,6 +11,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.settings.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.settings.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.users.admin.api", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "4.0.0"
@@ -23,6 +24,5 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:map:map-taglib")
 	compileOnly project(":apps:staging:staging-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.users.admin.api", version: "4.0.0"
 	compileOnly project(":apps:users-admin:users-admin-web")
 }

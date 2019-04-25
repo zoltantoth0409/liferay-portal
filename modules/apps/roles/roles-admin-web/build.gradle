@@ -1,9 +1,11 @@
 dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.application.list.api", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.roles.admin.api", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
@@ -15,6 +17,4 @@ dependencies {
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
-	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "2.0.0"
 }
