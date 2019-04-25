@@ -11,5 +11,5 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.security.sso.cas.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.settings.api", version: "4.0.0"
-	compileOnly project(":apps:portal-settings:portal-settings-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.settings.lang", version: "3.0.0"
 }
