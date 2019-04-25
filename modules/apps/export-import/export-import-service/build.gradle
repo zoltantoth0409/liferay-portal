@@ -29,5 +29,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly project(":apps:site:site-api")
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
-	compileOnly project(":apps:trash:trash-api")
+	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "2.0.0"
 }

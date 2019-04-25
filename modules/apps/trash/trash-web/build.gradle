@@ -17,6 +17,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.model.adapter", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly project(":apps:site-navigation:site-navigation-taglib")
-	compileOnly project(":apps:trash:trash-api")
+	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "2.0.0"
 	compileOnly project(":apps:trash:trash-taglib")
 }

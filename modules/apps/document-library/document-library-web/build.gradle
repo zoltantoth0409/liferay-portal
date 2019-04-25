@@ -43,7 +43,7 @@ dependencies {
 	compileOnly project(":apps:sharing:sharing-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "2.1.0"
-	compileOnly project(":apps:trash:trash-api")
+	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "2.0.0"
 	compileOnly project(":apps:trash:trash-taglib")
 	compileOnly project(":apps:upload:upload-api")
 }
