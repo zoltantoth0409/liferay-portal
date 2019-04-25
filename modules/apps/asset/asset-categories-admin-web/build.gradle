@@ -20,5 +20,5 @@ dependencies {
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "2.0.0"
-	compileOnly project(":apps:site-navigation:site-navigation-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.taglib", version: "4.0.0"
 }

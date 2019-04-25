@@ -46,5 +46,5 @@ dependencies {
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:layout:layout-page-template-service")
 	compileOnly project(":apps:layout:layout-taglib")
-	compileOnly project(":apps:site-navigation:site-navigation-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.taglib", version: "4.0.0"
 }
