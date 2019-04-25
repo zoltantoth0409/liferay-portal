@@ -227,6 +227,20 @@ definition {
 		return "${plid}";
 	}
 
+	macro getTextCountFromHtmlSource {
+		var pageSource = selenium.getHtmlSource();
+
+		echo("## * Page Source: ${pageSource}");
+
+		return "${pageSource}";
+
+		var count = StringUtil.count("${pageSource}", "${text}");
+
+		echo("## * Count: ${count}");
+
+		return "${count}";
+	}
+
 	macro gotoChildPagePG {
 		MouseOver(locator1 = "Home#PAGE", key_pageName = "${pageName}");
 
