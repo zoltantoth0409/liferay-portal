@@ -46,5 +46,5 @@ dependencies {
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:rss:rss-taglib")
 	compileOnly project(":apps:site:site-taglib")
-	compileOnly project(":apps:social:social-bookmarks-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.social.bookmarks.taglib", version: "2.0.0"
 }
