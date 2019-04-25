@@ -3,7 +3,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "2.1.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"

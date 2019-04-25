@@ -1,6 +1,6 @@
 dependencies {
-	compileOnly group: "com.liferay", name: "com.liferay.flags.api", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.frontend.js.loader.modules.extender.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.flags.api", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.js.loader.modules.extender.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
