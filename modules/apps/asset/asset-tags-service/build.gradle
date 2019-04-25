@@ -9,7 +9,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.tag.stats.api", version: "2.0.0"
 	compileOnly project(":apps:asset:asset-tags-api")
 	compileOnly project(":apps:export-import:export-import-api")
-	compileOnly project(":apps:portal-search:portal-search-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "3.0.0"
 	compileOnly project(":apps:portal-search:portal-search-spi")
 	compileOnly project(":apps:staging:staging-api")
 }
