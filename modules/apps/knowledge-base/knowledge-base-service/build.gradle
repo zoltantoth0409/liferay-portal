@@ -27,7 +27,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.rss.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
-	compileOnly project(":apps:subscription:subscription-api")
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "2.1.0"
 
 	testCompile group: "easyconf", name: "easyconf", version: "0.9.5"
 	testCompile group: "org.apache.tika", name: "tika-core", version: "1.14"

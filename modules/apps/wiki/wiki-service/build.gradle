@@ -41,7 +41,7 @@ dependencies {
 	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
 	compileOnly group: "com.liferay", name: "com.liferay.rss.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
-	compileOnly project(":apps:subscription:subscription-api")
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "2.1.0"
 	compileOnly project(":apps:trash:trash-api")
 	compileOnly project(":apps:wiki:wiki-api")
 }
