@@ -25,6 +25,6 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "3.0.0"
 	compileOnly project(":apps:staging:staging-taglib")
-	compileOnly project(":apps:text-localizer:text-localizer-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.text.localizer.taglib", version: "2.0.0"
 	compileOnly project(":apps:users-admin:users-admin-api")
 }
