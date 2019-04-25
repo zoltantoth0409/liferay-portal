@@ -43,7 +43,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-display-page-api")
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
-	compileOnly project(":apps:frontend-taglib:frontend-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "4.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:layout:layout-page-template-service")
 	compileOnly project(":apps:layout:layout-taglib")

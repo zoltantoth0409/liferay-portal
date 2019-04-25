@@ -20,7 +20,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.api", version: "2.0.0"
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.comment.taglib", version: "2.0.0"
-	compileOnly project(":apps:frontend-taglib:frontend-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "4.0.0"
 
 	testCompile group: "org.jodd", name: "jodd-bean", version: "3.6.4"
 	testCompile group: "org.jodd", name: "jodd-json", version: "3.6.4"

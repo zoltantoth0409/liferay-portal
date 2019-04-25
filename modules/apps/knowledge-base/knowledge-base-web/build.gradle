@@ -32,7 +32,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.document.library.api", version: "5.0.0"
 	compileOnly project(":apps:document-library:document-library-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
-	compileOnly project(":apps:frontend-taglib:frontend-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "4.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
 	compileOnly project(":apps:social:social-bookmarks-taglib")
 	compileOnly project(":apps:wiki:wiki-api")
