@@ -12,5 +12,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
-	compileOnly project(":apps:push-notifications:push-notifications-api")
+	compileOnly group: "com.liferay", name: "com.liferay.push.notifications.api", version: "3.0.0"
 }
