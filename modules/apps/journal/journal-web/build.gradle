@@ -46,5 +46,5 @@ dependencies {
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "5.0.0"
 	compileOnly project(":apps:site-navigation:site-navigation-taglib")
-	compileOnly project(":apps:trash:trash-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.trash.taglib", version: "4.0.0"
 }

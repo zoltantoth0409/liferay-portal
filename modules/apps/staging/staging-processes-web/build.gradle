@@ -17,5 +17,5 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "3.0.0"
 	compileOnly project(":apps:staging:staging-taglib")
-	compileOnly project(":apps:trash:trash-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.trash.taglib", version: "4.0.0"
 }

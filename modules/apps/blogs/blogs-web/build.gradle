@@ -48,5 +48,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.reading.time.taglib", version: "2.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
 	compileOnly project(":apps:social:social-bookmarks-taglib")
-	compileOnly project(":apps:trash:trash-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.trash.taglib", version: "4.0.0"
 }

@@ -35,5 +35,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "5.0.0"
 	compileOnly project(":apps:message-boards:message-boards-service")
 	compileOnly project(":apps:rss:rss-taglib")
-	compileOnly project(":apps:trash:trash-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.trash.taglib", version: "4.0.0"
 }

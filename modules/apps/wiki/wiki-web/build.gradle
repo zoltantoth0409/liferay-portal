@@ -37,6 +37,6 @@ dependencies {
 	compileOnly project(":apps:item-selector:item-selector-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "2.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
-	compileOnly project(":apps:trash:trash-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.trash.taglib", version: "4.0.0"
 	compileOnly project(":apps:wiki:wiki-api")
 }

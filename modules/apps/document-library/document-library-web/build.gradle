@@ -45,5 +45,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "2.0.0"
 	compileOnly project(":apps:sharing:sharing-taglib")
-	compileOnly project(":apps:trash:trash-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.trash.taglib", version: "4.0.0"
 }
