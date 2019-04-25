@@ -22,6 +22,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.layout.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.content.page.editor.api", version: "1.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
-	compileOnly project(":apps:portal-template:portal-template-soy-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "2.0.0"
 	compileOnly project(":apps:segments:segments-api")
 }

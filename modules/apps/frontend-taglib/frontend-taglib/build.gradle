@@ -14,6 +14,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.js.loader.modules.extender.api", version: "3.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
-	compileOnly project(":apps:portal-template:portal-template-soy-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "2.0.0"
 	compileOnly project(":apps:users-admin:users-admin-api")
 }

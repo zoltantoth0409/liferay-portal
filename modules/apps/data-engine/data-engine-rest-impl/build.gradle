@@ -26,7 +26,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.js.loader.modules.extender.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.oauth2.provider.scope.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "2.0.0"
-	compileOnly project(":apps:portal-template:portal-template-soy-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "2.0.0"
 	compileOnly project(":apps:portal-template:portal-template-soy-renderer-api")
 	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
 }

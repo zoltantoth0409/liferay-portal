@@ -38,7 +38,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.layout.prototype.api", version: "3.0.0"
 	compileOnly project(":apps:layout:layout-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.mobile.device.rules.api", version: "4.0.0"
-	compileOnly project(":apps:portal-template:portal-template-soy-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly project(":apps:product-navigation:product-navigation-control-menu-api")
 	compileOnly project(":apps:segments:segments-api")
