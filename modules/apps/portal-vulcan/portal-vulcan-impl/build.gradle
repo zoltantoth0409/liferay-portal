@@ -35,7 +35,7 @@ dependencies {
 	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.8"
 	compileOnly group: "com.fasterxml.jackson.jaxrs", name: "jackson-jaxrs-json-provider", version: "2.9.8"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
