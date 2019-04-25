@@ -298,9 +298,7 @@ public class JournalFolderTrashHandler extends JournalBaseTrashHandler {
 	protected JournalFolder getJournalFolder(long classPK)
 		throws PortalException {
 
-		JournalFolder folder = _journalFolderLocalService.getFolder(classPK);
-
-		return folder;
+		return _journalFolderLocalService.getFolder(classPK);
 	}
 
 	@Override

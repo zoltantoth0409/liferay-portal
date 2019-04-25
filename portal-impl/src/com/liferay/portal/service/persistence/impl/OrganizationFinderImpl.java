@@ -130,9 +130,7 @@ public class OrganizationFinderImpl
 		try {
 			session = openSession();
 
-			int count = countByOrganizationId(session, organizationId, params1);
-
-			return count;
+			return countByOrganizationId(session, organizationId, params1);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

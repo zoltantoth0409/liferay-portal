@@ -2303,9 +2303,7 @@ public class StringUtil {
 		}
 
 		try {
-			String s = read(is);
-
-			return s;
+			return read(is);
 		}
 		finally {
 			StreamUtil.cleanUp(is);

@@ -128,10 +128,8 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 		ResourceBundle languageResourceBundle = _getLanguageResourceBundle(
 			locale);
 
-		SoyMsgBundleBridge soyMsgBundleBridge = new SoyMsgBundleBridge(
+		return new SoyMsgBundleBridge(
 			soyMsgBundle, locale, languageResourceBundle);
-
-		return soyMsgBundleBridge;
 	}
 
 	protected SoyFileSet getSoyFileSet(List<TemplateResource> templateResources)

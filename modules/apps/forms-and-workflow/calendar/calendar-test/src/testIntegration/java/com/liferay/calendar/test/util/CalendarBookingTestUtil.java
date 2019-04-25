@@ -73,18 +73,13 @@ public class CalendarBookingTestUtil {
 			secondReminderTypeString = secondReminderType.getValue();
 		}
 
-		CalendarBooking calendarBooking =
-			CalendarBookingLocalServiceUtil.addCalendarBooking(
-				user.getUserId(), calendar.getCalendarId(),
-				childCalendarBookingIds,
-				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
-				titleMap, descriptionMap, RandomTestUtil.randomString(),
-				startTime, endTime, allDay,
-				RecurrenceSerializer.serialize(recurrence), firstReminder,
-				firstReminderTypeString, secondReminder,
-				secondReminderTypeString, serviceContext);
-
-		return calendarBooking;
+		return CalendarBookingLocalServiceUtil.addCalendarBooking(
+			user.getUserId(), calendar.getCalendarId(), childCalendarBookingIds,
+			CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
+			titleMap, descriptionMap, RandomTestUtil.randomString(), startTime,
+			endTime, allDay, RecurrenceSerializer.serialize(recurrence),
+			firstReminder, firstReminderTypeString, secondReminder,
+			secondReminderTypeString, serviceContext);
 	}
 
 	public static CalendarBooking addCalendarBooking(
@@ -235,12 +230,10 @@ public class CalendarBookingTestUtil {
 
 		serviceContext.setWorkflowAction(actionPublish);
 
-		CalendarBooking calendarBooking = addMasterCalendarBooking(
+		return addMasterCalendarBooking(
 			user, invitingCalendar,
 			new long[] {invitedCalendar.getCalendarId()}, startTime,
 			startTime + (Time.HOUR * 10), serviceContext);
-
-		return calendarBooking;
 	}
 
 	public static CalendarBooking addPublishedCalendarBooking(User user)

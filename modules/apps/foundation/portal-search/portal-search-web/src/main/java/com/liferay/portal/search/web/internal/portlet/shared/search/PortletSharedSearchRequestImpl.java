@@ -67,13 +67,9 @@ public class PortletSharedSearchRequestImpl
 
 	@Override
 	public PortletSharedSearchResponse search(RenderRequest renderRequest) {
-		PortletSharedSearchResponse portletSharedSearchResponse =
-			portletSharedTaskExecutor.executeOnlyOnce(
-				() -> doSearch(renderRequest),
-				PortletSharedSearchResponse.class.getSimpleName(),
-				renderRequest);
-
-		return portletSharedSearchResponse;
+		return portletSharedTaskExecutor.executeOnlyOnce(
+			() -> doSearch(renderRequest),
+			PortletSharedSearchResponse.class.getSimpleName(), renderRequest);
 	}
 
 	@Reference(
@@ -123,11 +119,9 @@ public class PortletSharedSearchRequestImpl
 		String emptyResultsMessage = null;
 		String cssClass = null;
 
-		SearchContainer<Document> searchContainer = new SearchContainer<>(
+		return new SearchContainer<>(
 			portletRequest, displayTerms, searchTerms, curParam, cur, delta,
 			portletURL, headerNames, emptyResultsMessage, cssClass);
-
-		return searchContainer;
 	}
 
 	protected SearchContext buildSearchContext(ThemeDisplay themeDisplay) {
@@ -229,13 +223,10 @@ public class PortletSharedSearchRequestImpl
 			portletSharedSearchContributorOptional =
 				getPortletSharedSearchContributor(portlet.getPortletClass());
 
-		Optional<SearchSettingsContributor> searchSettingsContributorOptional =
-			portletSharedSearchContributorOptional.map(
-				portletSharedSearchContributor -> getSearchSettingsContributor(
-					portletSharedSearchContributor, portlet.getPortletId(),
-					themeDisplay, renderRequest));
-
-		return searchSettingsContributorOptional;
+		return portletSharedSearchContributorOptional.map(
+			portletSharedSearchContributor -> getSearchSettingsContributor(
+				portletSharedSearchContributor, portlet.getPortletId(),
+				themeDisplay, renderRequest));
 	}
 
 	protected SearchSettingsContributor getSearchSettingsContributor(

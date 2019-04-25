@@ -140,10 +140,8 @@ public class ShoppingGroupServiceConfigurationOverrideImpl
 
 	@Override
 	public LocalizedValuesMap getEmailOrderConfirmationBody() {
-		LocalizedValuesMap emailOrderConfirmationBody =
-			_typedSettings.getLocalizedValuesMap("emailOrderConfirmationBody");
-
-		return emailOrderConfirmationBody;
+		return _typedSettings.getLocalizedValuesMap(
+			"emailOrderConfirmationBody");
 	}
 
 	@Override
@@ -154,11 +152,8 @@ public class ShoppingGroupServiceConfigurationOverrideImpl
 
 	@Override
 	public LocalizedValuesMap getEmailOrderConfirmationSubject() {
-		LocalizedValuesMap emailOrderConfirmationSubject =
-			_typedSettings.getLocalizedValuesMap(
-				"emailOrderConfirmationSubject");
-
-		return emailOrderConfirmationSubject;
+		return _typedSettings.getLocalizedValuesMap(
+			"emailOrderConfirmationSubject");
 	}
 
 	@Override

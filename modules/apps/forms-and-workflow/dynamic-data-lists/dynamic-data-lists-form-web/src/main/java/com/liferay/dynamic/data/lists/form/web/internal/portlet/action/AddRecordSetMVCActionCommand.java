@@ -187,11 +187,8 @@ public class AddRecordSetMVCActionCommand
 
 		DDMForm ddmForm = DDMFormFactory.create(DDLRecordSetSettings.class);
 
-		DDMFormValues settingsDDMFormValues =
-			ddmFormValuesJSONDeserializer.deserialize(
-				ddmForm, serializedSettingsDDMFormValues);
-
-		return settingsDDMFormValues;
+		return ddmFormValuesJSONDeserializer.deserialize(
+			ddmForm, serializedSettingsDDMFormValues);
 	}
 
 	protected String getStorageType(DDMFormValues ddmFormValues)

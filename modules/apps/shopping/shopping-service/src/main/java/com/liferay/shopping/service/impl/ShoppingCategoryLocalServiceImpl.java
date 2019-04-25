@@ -258,11 +258,8 @@ public class ShoppingCategoryLocalServiceImpl
 	public ShoppingCategory getParentCategory(ShoppingCategory category)
 		throws PortalException {
 
-		ShoppingCategory parentCategory =
-			shoppingCategoryPersistence.findByPrimaryKey(
-				category.getParentCategoryId());
-
-		return parentCategory;
+		return shoppingCategoryPersistence.findByPrimaryKey(
+			category.getParentCategoryId());
 	}
 
 	@Override

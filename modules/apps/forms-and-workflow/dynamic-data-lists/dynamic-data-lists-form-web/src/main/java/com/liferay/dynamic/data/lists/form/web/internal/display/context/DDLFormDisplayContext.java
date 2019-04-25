@@ -336,10 +336,7 @@ public class DDLFormDisplayContext {
 	}
 
 	protected ThemeDisplay getThemeDisplay() {
-		ThemeDisplay themeDisplay = (ThemeDisplay)_renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		return themeDisplay;
+		return (ThemeDisplay)_renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 	}
 
 	protected boolean hasViewPermission() throws PortalException {

@@ -523,9 +523,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		QueryResponse queryResponse = doSearch(
 			searchContext, query, start, end, false);
 
-		Hits hits = processResponse(queryResponse, searchContext, query);
-
-		return hits;
+		return processResponse(queryResponse, searchContext, query);
 	}
 
 	protected QueryResponse executeSearchRequest(SolrQuery solrQuery)

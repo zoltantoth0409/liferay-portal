@@ -383,9 +383,7 @@ public class V2MarkupServiceImpl
 	protected HandleEventsResponse doHandleEvents(HandleEvents handleEvents)
 		throws Exception {
 
-		HandleEventsResponse handleEventsResponse = new HandleEventsResponse();
-
-		return handleEventsResponse;
+		return new HandleEventsResponse();
 	}
 
 	protected Extension[] doInitCookie(InitCookie initCookie) throws Exception {

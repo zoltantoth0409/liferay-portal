@@ -107,10 +107,7 @@ public class DefaultWorkflowEngineImpl
 				_workflowValidator.validate(definition);
 			}
 
-			WorkflowDefinition workflowDefinition = _workflowDeployer.deploy(
-				title, definition, serviceContext);
-
-			return workflowDefinition;
+			return _workflowDeployer.deploy(title, definition, serviceContext);
 		}
 		catch (WorkflowException we) {
 			throw we;

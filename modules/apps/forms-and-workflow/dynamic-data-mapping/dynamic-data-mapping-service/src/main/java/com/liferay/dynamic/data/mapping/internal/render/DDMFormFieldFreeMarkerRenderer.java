@@ -565,10 +565,8 @@ public class DDMFormFieldFreeMarkerRenderer implements DDMFormFieldRenderer {
 	protected TemplateResource getTemplateResource(String resource) {
 		Class<?> clazz = getClass();
 
-		TemplateResource templateResource = new ClassLoaderTemplateResource(
+		return new ClassLoaderTemplateResource(
 			clazz.getClassLoader(), resource);
-
-		return templateResource;
 	}
 
 	protected String processFTL(

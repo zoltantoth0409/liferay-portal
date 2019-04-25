@@ -69,9 +69,7 @@ public class HttpTimelineProcessor implements TimelineProcessor {
 	}
 
 	protected String getUserAgent() {
-		String userAgent = _USER_AGENTS[_random.nextInt(_USER_AGENTS.length)];
-
-		return userAgent;
+		return _USER_AGENTS[_random.nextInt(_USER_AGENTS.length)];
 	}
 
 	protected JSONArray getUserTimelineJSONArray(

@@ -1033,11 +1033,8 @@ public class ConsumerPortlet extends MVCPortlet {
 		wsrpConsumerPortletUuid = PortalUUIDUtil.fromJsSafeUuid(
 			wsrpConsumerPortletUuid);
 
-		WSRPConsumerPortlet wsrpConsumerPortlet =
-			_wsrpConsumerPortletLocalService.getWSRPConsumerPortlet(
-				wsrpConsumerPortletUuid);
-
-		return wsrpConsumerPortlet;
+		return _wsrpConsumerPortletLocalService.getWSRPConsumerPortlet(
+			wsrpConsumerPortletUuid);
 	}
 
 	protected String getWSRPKey(String key) {
@@ -1998,9 +1995,7 @@ public class ConsumerPortlet extends MVCPortlet {
 			}
 		}
 
-		String url = liferayPortletURL.toString();
-
-		return url;
+		return liferayPortletURL.toString();
 	}
 
 	protected String rewriteURLs(

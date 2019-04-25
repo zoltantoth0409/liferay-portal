@@ -67,10 +67,8 @@ public class ReplicatedSolrClientFactory implements SolrClientFactory {
 		LBHttpSolrClient writerLBHttpSolrClient = new LBHttpSolrClient(
 			writerHttpClient, writeURLs);
 
-		ReadWriteSolrClient readWriteSolrClient = new ReadWriteSolrClient(
+		return new ReadWriteSolrClient(
 			readerLBHttpSolrClient, writerLBHttpSolrClient);
-
-		return readWriteSolrClient;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

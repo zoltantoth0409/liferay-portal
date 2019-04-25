@@ -632,12 +632,10 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 				groupId, BlogsConstants.SERVICE_NAME);
 
 		try {
-			Folder folder = PortletFileRepositoryUtil.getPortletFolder(
+			return PortletFileRepositoryUtil.getPortletFolder(
 				repository.getRepositoryId(),
 				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 				BlogsConstants.SERVICE_NAME);
-
-			return folder;
 		}
 		catch (Exception e) {
 		}
@@ -1574,12 +1572,10 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		Repository repository = PortletFileRepositoryUtil.addPortletRepository(
 			groupId, BlogsConstants.SERVICE_NAME, serviceContext);
 
-		Folder folder = PortletFileRepositoryUtil.addPortletFolder(
+		return PortletFileRepositoryUtil.addPortletFolder(
 			userId, repository.getRepositoryId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, folderName,
 			serviceContext);
-
-		return folder;
 	}
 
 	protected String getEntryURL(

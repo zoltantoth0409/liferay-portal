@@ -37,9 +37,7 @@ public class JournalContentConfigurationUtil {
 				_configurationProvider.getSystemConfiguration(
 					JournalContentConfiguration.class);
 
-			String menuStyle = journalContentConfiguration.menuStyle();
-
-			return menuStyle;
+			return journalContentConfiguration.menuStyle();
 		}
 		catch (ConfigurationException ce) {
 			if (_log.isDebugEnabled()) {
@@ -65,9 +63,7 @@ public class JournalContentConfigurationUtil {
 				_configurationProvider.getSystemConfiguration(
 					JournalContentConfiguration.class);
 
-			boolean menuStyle = journalContentConfiguration.singleMenu();
-
-			return menuStyle;
+			return journalContentConfiguration.singleMenu();
 		}
 		catch (ConfigurationException ce) {
 			if (_log.isDebugEnabled()) {

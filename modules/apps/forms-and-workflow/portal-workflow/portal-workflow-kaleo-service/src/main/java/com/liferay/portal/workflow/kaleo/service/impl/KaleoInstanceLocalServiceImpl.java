@@ -542,9 +542,7 @@ public class KaleoInstanceLocalServiceImpl
 			}
 		}
 
-		Sort[] sortsArray = sortsList.toArray(new Sort[sortsList.size()]);
-
-		return sortsArray;
+		return sortsList.toArray(new Sort[sortsList.size()]);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

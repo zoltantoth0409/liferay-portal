@@ -62,10 +62,8 @@ public class DLFileEntryTypeUtil {
 				Set<Locale> availableLocalesSet =
 					ddmFormValues.getAvailableLocales();
 
-				Locale[] availableLocales = availableLocalesSet.toArray(
+				return availableLocalesSet.toArray(
 					new Locale[availableLocalesSet.size()]);
-
-				return availableLocales;
 			}
 		}
 

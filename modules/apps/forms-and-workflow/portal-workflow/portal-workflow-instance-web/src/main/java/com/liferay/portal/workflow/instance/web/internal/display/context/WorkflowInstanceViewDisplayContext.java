@@ -242,9 +242,7 @@ public class WorkflowInstanceViewDisplayContext
 	}
 
 	public PortletURL getViewPortletURL() {
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
-		return portletURL;
+		return liferayPortletResponse.createRenderURL();
 	}
 
 	public boolean isNavigationAll() {

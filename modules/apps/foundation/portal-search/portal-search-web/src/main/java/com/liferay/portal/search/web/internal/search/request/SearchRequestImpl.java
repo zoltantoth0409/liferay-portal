@@ -81,10 +81,7 @@ public class SearchRequestImpl implements SearchRequest {
 
 		searchContainer.setTotal(hits.getLength());
 
-		SearchResponseImpl searchResponseImpl = buildSearchResponse(
-			hits, searchContext, searchContainer);
-
-		return searchResponseImpl;
+		return buildSearchResponse(hits, searchContext, searchContainer);
 	}
 
 	protected void addScopeFacet(SearchContext searchContext) {

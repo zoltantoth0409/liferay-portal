@@ -263,9 +263,7 @@ public class DDMExpressionImpl<T> implements DDMExpression<T> {
 			return null;
 		}
 
-		Expression expression = getExpression(variable.getExpressionString());
-
-		return expression;
+		return getExpression(variable.getExpressionString());
 	}
 
 	protected BigDecimal getVariableValue(Variable variable)

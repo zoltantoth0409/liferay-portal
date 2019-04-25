@@ -203,10 +203,7 @@ public class IMAPAccessor {
 
 			Part part = getPart(jxMessage, contentPath);
 
-			AttachmentHandler attachmentHandler = new IMAPAttachmentHandler(
-				part.getInputStream(), jxFolder);
-
-			return attachmentHandler;
+			return new IMAPAttachmentHandler(part.getInputStream(), jxFolder);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);

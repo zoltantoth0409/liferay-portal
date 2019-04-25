@@ -188,12 +188,9 @@ public class PortletPreferencesLocalServiceImpl
 			return null;
 		}
 
-		PortletPreferencesImpl portletPreferencesImpl =
-			(PortletPreferencesImpl)PortletPreferencesFactoryUtil.fromXML(
-				companyId, ownerId, ownerType, plid, portletId,
-				portletPreferences.getPreferences());
-
-		return portletPreferencesImpl;
+		return (PortletPreferencesImpl)PortletPreferencesFactoryUtil.fromXML(
+			companyId, ownerId, ownerType, plid, portletId,
+			portletPreferences.getPreferences());
 	}
 
 	@Override
@@ -373,12 +370,9 @@ public class PortletPreferencesLocalServiceImpl
 					defaultPreferences);
 		}
 
-		PortletPreferencesImpl portletPreferencesImpl =
-			(PortletPreferencesImpl)PortletPreferencesFactoryUtil.fromXML(
-				companyId, ownerId, ownerType, plid, portletId,
-				portletPreferences.getPreferences());
-
-		return portletPreferencesImpl;
+		return (PortletPreferencesImpl)PortletPreferencesFactoryUtil.fromXML(
+			companyId, ownerId, ownerType, plid, portletId,
+			portletPreferences.getPreferences());
 	}
 
 	@Override
@@ -491,12 +485,9 @@ public class PortletPreferencesLocalServiceImpl
 				defaultPreferences);
 		}
 
-		PortletPreferencesImpl portletPreferencesImpl =
-			(PortletPreferencesImpl)PortletPreferencesFactoryUtil.fromXML(
-				companyId, ownerId, ownerType, plid, portletId,
-				portletPreferences.getPreferences());
-
-		return portletPreferencesImpl;
+		return (PortletPreferencesImpl)PortletPreferencesFactoryUtil.fromXML(
+			companyId, ownerId, ownerType, plid, portletId,
+			portletPreferences.getPreferences());
 	}
 
 	@Override
