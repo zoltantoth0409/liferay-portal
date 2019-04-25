@@ -21,7 +21,7 @@ dependencies {
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly group: "com.liferay", name: "com.liferay.knowledge.base.api", version: "6.0.0"
-	compileOnly project(":apps:knowledge-base:knowledge-base-markdown-converter-api")
+	compileOnly group: "com.liferay", name: "com.liferay.knowledge.base.markdown.converter.api", version: "2.0.0"
 	compileOnly project(":apps:portal:portal-dao-orm-custom-sql-api")
 	compileOnly project(":apps:portal:portal-spring-extender-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
