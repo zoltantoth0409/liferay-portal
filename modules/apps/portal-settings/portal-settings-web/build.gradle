@@ -19,7 +19,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.map.api", version: "4.0.0"
 	compileOnly project(":apps:map:map-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "3.0.0"
-	compileOnly project(":apps:portal-settings:portal-settings-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.settings.api", version: "4.0.0"
 	compileOnly project(":apps:portal-settings:portal-settings-lang")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly project(":apps:staging:staging-taglib")
