@@ -36,7 +36,7 @@ dependencies {
 	compileOnly project(":apps:portal-security:portal-security-export-import-api")
 	compileOnly project(":apps:portal-security:portal-security-ldap-api")
 	compileOnly project(":apps:portal:portal-instance-lifecycle-api")
-	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
 }
 
 generateGrammarSource {

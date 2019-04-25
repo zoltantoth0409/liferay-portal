@@ -29,7 +29,7 @@ dependencies {
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:product-navigation:product-navigation-control-menu-api")
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
-	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
 
 	testCompile group: "commons-configuration", name: "commons-configuration", version: "1.10"
 	testCompile group: "commons-httpclient", name: "commons-httpclient", version: "3.1"
