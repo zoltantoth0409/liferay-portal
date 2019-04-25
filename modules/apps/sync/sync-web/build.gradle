@@ -13,6 +13,6 @@ dependencies {
 	compileOnly project(":apps:product-navigation:product-navigation-personal-menu-api")
 	compileOnly project(":apps:sync:sync-api")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly project(":core:petra:petra-string")
 }

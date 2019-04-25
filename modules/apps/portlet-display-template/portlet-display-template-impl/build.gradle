@@ -13,6 +13,6 @@ dependencies {
 	compileOnly project(":apps:petra:petra-model-adapter")
 	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
 	compileOnly project(":apps:static:osgi:osgi-util")
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly project(":core:petra:petra-string")
 }

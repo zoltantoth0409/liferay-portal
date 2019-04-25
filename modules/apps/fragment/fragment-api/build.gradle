@@ -12,6 +12,6 @@ dependencies {
 	compileOnly project(":apps:asset:asset-info-display-api")
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly project(":core:petra:petra-string")
 }

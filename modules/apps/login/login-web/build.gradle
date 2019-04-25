@@ -14,7 +14,7 @@ dependencies {
 	compileOnly project(":apps:petra:petra-content")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly project(":core:petra:petra-string")
 }
 
