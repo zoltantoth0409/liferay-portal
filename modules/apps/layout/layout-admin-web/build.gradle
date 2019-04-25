@@ -38,7 +38,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-display-page-api")
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
-	compileOnly project(":apps:fragment:fragment-api")
+	compileOnly group: "com.liferay", name: "com.liferay.fragment.api", version: "2.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
