@@ -9,6 +9,6 @@ dependencies {
 	compileOnly project(":apps:asset:asset-api")
 	compileOnly project(":apps:asset:asset-display-api")
 	compileOnly project(":apps:asset:asset-display-page-api")
-	compileOnly project(":apps:info:info-api")
+	compileOnly group: "com.liferay", name: "com.liferay.info.api", version: "1.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
 }

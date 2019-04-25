@@ -36,7 +36,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.dynamic.section", version: "2.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
-	compileOnly project(":apps:info:info-api")
+	compileOnly group: "com.liferay", name: "com.liferay.info.api", version: "1.0.0"
 	compileOnly project(":apps:item-selector:item-selector-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
