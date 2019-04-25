@@ -19,5 +19,5 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "2.0.0"
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-api")
-	compileOnly project(":apps:oauth2-provider:oauth2-provider-scope-liferay-api")
+	compileOnly group: "com.liferay", name: "com.liferay.oauth2.provider.scope.liferay.api", version: "2.0.0"
 }
