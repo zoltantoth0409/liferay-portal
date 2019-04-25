@@ -17,5 +17,5 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "3.0.0"
-	compileOnly project(":apps:mobile-device-rules:mobile-device-rules-service")
+	compileOnly group: "com.liferay", name: "com.liferay.mobile.device.rules.service", version: "3.0.0"
 }
