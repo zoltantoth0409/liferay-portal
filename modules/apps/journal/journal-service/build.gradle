@@ -14,6 +14,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.persistence.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "4.0.0"
@@ -50,5 +51,4 @@ dependencies {
 	compileOnly project(":apps:subscription:subscription-api")
 	compileOnly project(":apps:trash:trash-api")
 	compileOnly project(":apps:upload:upload-api")
-	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "4.0.0"
 }

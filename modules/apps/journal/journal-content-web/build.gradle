@@ -1,5 +1,6 @@
 dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
+	compileOnly group: "com.liferay", name: "com.liferay.journal.content.asset.addon.entry.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
@@ -22,7 +23,6 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly project(":apps:journal:journal-api")
-	compileOnly group: "com.liferay", name: "com.liferay.journal.content.asset.addon.entry.api", version: "2.0.0"
 	compileOnly project(":apps:journal:journal-taglib")
 	compileOnly project(":apps:journal:journal-web")
 	compileOnly project(":apps:portal:portal-upgrade-api")

@@ -1,5 +1,6 @@
 dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.test", version: "4.0.0"
@@ -12,7 +13,6 @@ dependencies {
 	compileOnly project(":apps:asset:asset-test-util")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:message-boards:message-boards-api")
-	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "4.0.0"
 }
 
 liferay {
