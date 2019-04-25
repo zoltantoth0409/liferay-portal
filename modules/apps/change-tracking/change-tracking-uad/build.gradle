@@ -5,7 +5,7 @@ dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly project(":apps:change-tracking:change-tracking-api")
 	compileOnly project(":apps:user-associated-data:user-associated-data-api")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 }
 
 mergeLang {

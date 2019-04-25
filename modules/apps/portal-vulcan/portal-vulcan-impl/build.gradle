@@ -53,7 +53,7 @@ dependencies {
 	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 
 	testCompile group: "org.hamcrest", name: "hamcrest-all", version: "1.3"
 }

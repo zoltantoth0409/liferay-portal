@@ -8,7 +8,7 @@ dependencies {
 	compileOnly project(":apps:portal-scheduler:portal-scheduler")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:static:portal:portal-profile-api")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 
 	testCompile project(":core:petra:petra-lang")
 }

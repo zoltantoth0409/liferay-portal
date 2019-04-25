@@ -10,5 +10,5 @@ dependencies {
 	compileOnly project(":apps:portal-search:portal-search-spi")
 	compileOnly project(":apps:staging:staging-api")
 	compileOnly project(":apps:xstream:xstream-configurator-api")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 }

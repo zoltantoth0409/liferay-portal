@@ -4,7 +4,7 @@ dependencies {
 	compileOnly project(":apps:adaptive-media:adaptive-media-api");
 	compileOnly project(":apps:adaptive-media:adaptive-media-content-transformer-api");
 	compileOnly project(":apps:adaptive-media:adaptive-media-image-api");
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 
 	testCompile project(":core:petra:petra-lang")
 }
