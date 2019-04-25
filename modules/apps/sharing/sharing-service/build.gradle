@@ -16,5 +16,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.dao.orm.custom.sql.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "4.0.0"
-	compileOnly project(":apps:sharing:sharing-api")
+	compileOnly group: "com.liferay", name: "com.liferay.sharing.api", version: "1.0.0"
 }
