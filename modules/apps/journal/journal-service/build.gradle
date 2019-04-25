@@ -32,7 +32,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.changeset.api", version: "2.0.0"
 	compileOnly project(":apps:comment:comment-api")
 	compileOnly project(":apps:document-library:document-library-api")
-	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.0.0"
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:friendly-url:friendly-url-api")
 	compileOnly project(":apps:journal:journal-api")

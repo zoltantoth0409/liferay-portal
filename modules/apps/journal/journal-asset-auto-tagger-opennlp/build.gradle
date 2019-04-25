@@ -5,7 +5,7 @@ dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly project(":apps:asset:asset-auto-tagger-api")
 	compileOnly group: "com.liferay", name: "com.liferay.asset.auto.tagger.opennlp.api", version: "1.0.0"
-	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.0.0"
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly project(":apps:portal-settings:portal-settings-api")
 }

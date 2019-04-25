@@ -11,7 +11,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly group: "com.liferay", name: "com.liferay.document.library.google.drive.api", version: "1.0.0"
-	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.0.0"
 	compileOnly project(":apps:portal:portal-instance-lifecycle-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 }
