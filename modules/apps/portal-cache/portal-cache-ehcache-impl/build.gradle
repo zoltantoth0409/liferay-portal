@@ -10,7 +10,7 @@ dependencies {
 	compileOnly project(":apps:portal-cache:portal-cache-ehcache-provider")
 	compileOnly project(":apps:portal-cache:portal-cache-ehcache-spi")
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
-	compileOnly project(":apps:static:portal:portal-profile-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.profile.api", version: "3.0.0"
 
 	testCompile group: "com.liferay", name: "com.liferay.portal.cache.test.util", version: "1.0.0"
 	testCompile project(":core:petra:petra-lang")

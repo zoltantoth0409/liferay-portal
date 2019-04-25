@@ -29,7 +29,7 @@ dependencies {
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":apps:static:portal-osgi-web:portal-osgi-web-servlet-api")
 	compileOnly project(":apps:static:portal-osgi-web:portal-osgi-web-servlet-context-helper-api")
-	compileOnly project(":apps:static:portal:portal-profile-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.profile.api", version: "3.0.0"
 }
 
 deployDependencies {
