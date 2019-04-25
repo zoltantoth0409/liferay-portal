@@ -15,6 +15,6 @@ dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "4.0.0"
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
-	compileOnly project(":apps:contacts:contacts-api")
+	compileOnly group: "com.liferay", name: "com.liferay.contacts.api", version: "4.0.0"
 	compileOnly project(":apps:portal-search:portal-search-spi")
 }
