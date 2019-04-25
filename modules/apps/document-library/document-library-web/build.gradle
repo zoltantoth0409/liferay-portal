@@ -21,7 +21,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-display-page-api")
 	compileOnly project(":apps:asset:asset-info-display-api")
 	compileOnly project(":apps:asset:asset-taglib")
-	compileOnly project(":apps:bulk:bulk-selection-api")
+	compileOnly group: "com.liferay", name: "com.liferay.bulk.selection.api", version: "1.0.0"
 	compileOnly project(":apps:comment:comment-taglib")
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly project(":apps:document-library:document-library-repository-authorization-api")
