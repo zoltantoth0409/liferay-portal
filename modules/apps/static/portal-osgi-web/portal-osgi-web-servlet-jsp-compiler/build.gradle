@@ -24,7 +24,7 @@ dependencies {
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly project(":apps:static:portal-osgi-web:portal-osgi-web-servlet-api")
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.felix.util", version: "3.0.0"
-	compileOnly project(":core:petra:petra-concurrent")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.concurrent", version: "3.0.0"
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-memory")
 	compileOnly project(":core:petra:petra-reflect")
