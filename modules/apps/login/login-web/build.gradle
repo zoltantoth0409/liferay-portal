@@ -14,7 +14,7 @@ dependencies {
 	compileOnly project(":apps:captcha:captcha-api")
 	compileOnly project(":apps:captcha:captcha-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly project(":apps:petra:petra-content")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "3.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 }
 
