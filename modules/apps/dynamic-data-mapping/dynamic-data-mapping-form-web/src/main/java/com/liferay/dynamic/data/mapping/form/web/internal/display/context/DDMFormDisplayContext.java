@@ -49,6 +49,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -74,6 +75,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -336,6 +338,18 @@ public class DDMFormDisplayContext {
 		return _autosaveEnabled;
 	}
 
+	public boolean isContentPage() {
+		ThemeDisplay themeDisplay = getThemeDisplay();
+
+		Layout layout = themeDisplay.getLayout();
+
+		if (Objects.equals(layout.getType(), "content")) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public boolean isFormAvailable() throws PortalException {
 		if (isPreview()) {
 			return true;
@@ -401,7 +415,9 @@ public class DDMFormDisplayContext {
 			return _showConfigurationIcon;
 		}
 
-		if (isPreview() || (isSharedURL() && isFormShared())) {
+		if (isContentPage() || isPreview() ||
+			(isSharedURL() && isFormShared())) {
+
 			_showConfigurationIcon = false;
 
 			return _showConfigurationIcon;
