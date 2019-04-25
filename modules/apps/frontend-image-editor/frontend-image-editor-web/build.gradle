@@ -12,5 +12,5 @@ dependencies {
 	compileOnly project(":apps:item-selector:item-selector-api")
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:portal-portlet-bridge:portal-portlet-bridge-soy-api")
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
 }

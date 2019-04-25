@@ -16,7 +16,7 @@ dependencies {
 	compileOnly project(":apps:portal-search:portal-search-api")
 	compileOnly project(":apps:portal-search:portal-search-spi")
 	compileOnly project(":apps:portal:portal-instance-lifecycle-api")
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 
 	testCompile project(":core:petra:petra-memory")

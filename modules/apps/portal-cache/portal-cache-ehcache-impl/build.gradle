@@ -9,7 +9,7 @@ dependencies {
 	compileOnly project(":apps:portal-cache:portal-cache-api")
 	compileOnly project(":apps:portal-cache:portal-cache-ehcache-provider")
 	compileOnly project(":apps:portal-cache:portal-cache-ehcache-spi")
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
 	compileOnly project(":apps:static:portal:portal-profile-api")
 
 	testCompile group: "com.liferay", name: "com.liferay.portal.cache.test.util", version: "1.0.0"

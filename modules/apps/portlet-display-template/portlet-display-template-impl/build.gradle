@@ -14,5 +14,5 @@ dependencies {
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:petra:petra-model-adapter")
 	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
 }

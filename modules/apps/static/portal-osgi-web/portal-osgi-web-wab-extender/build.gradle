@@ -25,7 +25,7 @@ dependencies {
 	compileOnly group: "org.springframework", name: "spring-context", version: "4.1.9.RELEASE"
 	compileOnly group: "org.springframework", name: "spring-core", version: "4.1.9.RELEASE"
 	compileOnly group: "org.springframework", name: "spring-web", version: "4.1.9.RELEASE"
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":apps:static:portal-osgi-web:portal-osgi-web-servlet-api")
 	compileOnly project(":apps:static:portal-osgi-web:portal-osgi-web-servlet-context-helper-api")

@@ -53,7 +53,7 @@ dependencies {
 	compileOnly group: "org.springframework", name: "spring-tx", version: "4.1.9.RELEASE"
 	compileOnly project(":apps:portal-odata:portal-odata-api")
 	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
 
 	testCompile group: "org.hamcrest", name: "hamcrest-all", version: "1.3"
 }
