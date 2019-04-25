@@ -9,6 +9,6 @@ dependencies {
 	compileOnly project(":apps:portal-remote:portal-remote-cors-api")
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":core:petra:petra-reflect")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "3.0.0"
 	compileOnly project(":core:petra:petra-string")
 }
