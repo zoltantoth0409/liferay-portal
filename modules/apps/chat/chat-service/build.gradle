@@ -22,6 +22,6 @@ dependencies {
 	compileOnly project(":apps:portal:portal-spring-extender-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
-	compileOnly project(":apps:static:portal-configuration:portal-configuration-persistence-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.persistence.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.profile.api", version: "3.0.0"
 }
