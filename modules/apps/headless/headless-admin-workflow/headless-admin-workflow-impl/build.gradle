@@ -16,5 +16,5 @@ dependencies {
 	compileOnly project(":apps:headless:headless-admin-workflow:headless-admin-workflow-api")
 	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "1.0.0"
-	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.api", version: "4.0.0"
 }
