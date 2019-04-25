@@ -26,7 +26,7 @@ dependencies {
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-taglib")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:flags:flags-taglib")
-	compileOnly project(":apps:friendly-url:friendly-url-api")
+	compileOnly group: "com.liferay", name: "com.liferay.friendly.url.api", version: "2.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
