@@ -16,5 +16,5 @@ dependencies {
 	compileOnly project(":apps:bulk:bulk-rest-api")
 	compileOnly project(":apps:bulk:bulk-rest-client")
 	compileOnly project(":apps:document-library:document-library-api")
-	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "1.0.0"
 }
