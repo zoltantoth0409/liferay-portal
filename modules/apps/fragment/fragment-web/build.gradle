@@ -3,6 +3,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "4.0.0"
@@ -26,6 +27,5 @@ dependencies {
 	compileOnly project(":apps:portal:portal-spring-extender-api")
 	compileOnly project(":apps:product-navigation:product-navigation-control-menu-api")
 	compileOnly project(":apps:staging:staging-api")
-	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
 	compileOnly project(":apps:upload:upload-api")
 }

@@ -1,6 +1,7 @@
 dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
@@ -13,7 +14,6 @@ dependencies {
 	compileOnly project(":apps:captcha:captcha-taglib")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
 	compileOnly project(":apps:portal-template:portal-template-soy-api")
-	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "5.0.0"
 
 	testCompile group: "com.google.template", name: "soy", version: "2015-04-10"
 	testCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
