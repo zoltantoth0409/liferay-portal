@@ -14,5 +14,5 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "3.0.0"
-	compileOnly project(":apps:sync:sync-api")
+	compileOnly group: "com.liferay", name: "com.liferay.sync.api", version: "5.0.0"
 }
