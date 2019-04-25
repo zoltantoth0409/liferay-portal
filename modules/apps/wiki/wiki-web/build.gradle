@@ -38,5 +38,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "4.0.0"
 	compileOnly project(":apps:item-selector:item-selector-taglib")
 	compileOnly project(":apps:rss:rss-taglib")
-	compileOnly project(":apps:wiki:wiki-api")
+	compileOnly group: "com.liferay", name: "com.liferay.wiki.api", version: "4.0.0"
 }
