@@ -1,7 +1,10 @@
 dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
+	compileOnly group: "com.liferay", name: "com.liferay.layout.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "2.1.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "4.0.0"
@@ -12,7 +15,4 @@ dependencies {
 	compileOnly project(":apps:comment:comment-api")
 	compileOnly project(":apps:comment:comment-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.layout.api", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "2.1.0"
 }

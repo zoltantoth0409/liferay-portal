@@ -9,7 +9,12 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.xml", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.control.menu.api", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "4.0.0"
@@ -24,12 +29,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly project(":apps:layout:layout-page-template-api")
-	compileOnly group: "com.liferay", name: "com.liferay.petra.xml", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "3.0.0"
 	compileOnly project(":apps:portal-search:portal-search-web-api")
-	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.control.menu.api", version: "5.0.0"
 
 	testCompile group: "commons-configuration", name: "commons-configuration", version: "1.10"
 	testCompile group: "commons-httpclient", name: "commons-httpclient", version: "3.1"
