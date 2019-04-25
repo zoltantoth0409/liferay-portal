@@ -168,6 +168,8 @@ public class RuntimeTag extends TagSupport implements DirectTag {
 			}
 		}
 
+		instanceId = PortalUtil.getJsSafePortletId(instanceId);
+
 		HttpServletRequest originalRequest =
 			PortalUtil.getOriginalServletRequest(request);
 
