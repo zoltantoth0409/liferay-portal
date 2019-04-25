@@ -20,7 +20,7 @@ dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.adaptive.media.image.api", version: "3.0.0"
-	compileOnly project(":apps:export-import:export-import-api")
+	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "4.0.0"
 
 	testCompile group: "org.mockito", name: "mockito-core", version: "1.10.8"
 }

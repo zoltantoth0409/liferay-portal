@@ -27,7 +27,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly group: "com.liferay", name: "com.liferay.changeset.service", version: "2.0.0"
 	compileOnly project(":apps:document-library:document-library-api")
-	compileOnly project(":apps:export-import:export-import-api")
+	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "4.0.0"
 	compileOnly project(":apps:portal-search:portal-search-spi")
 	compileOnly project(":apps:site:site-api")
 }

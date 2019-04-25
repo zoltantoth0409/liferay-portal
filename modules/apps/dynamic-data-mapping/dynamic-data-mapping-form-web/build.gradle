@@ -25,7 +25,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.captcha.api", version: "3.0.0"
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-data-provider-web")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-form-taglib")
-	compileOnly project(":apps:export-import:export-import-api")
+	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "4.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")

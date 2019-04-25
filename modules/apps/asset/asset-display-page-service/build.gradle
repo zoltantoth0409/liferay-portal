@@ -15,6 +15,6 @@ dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "6.0.0"
 	compileOnly project(":apps:asset:asset-display-page-api")
-	compileOnly project(":apps:export-import:export-import-api")
+	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "4.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
 }
