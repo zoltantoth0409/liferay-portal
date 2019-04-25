@@ -16,7 +16,7 @@ dependencies {
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.lists.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "4.0.0"
-	compileOnly project(":apps:journal:journal-api")
+	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "4.0.0"
 	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
 	compileOnly project(":apps:wiki:wiki-api")
 }

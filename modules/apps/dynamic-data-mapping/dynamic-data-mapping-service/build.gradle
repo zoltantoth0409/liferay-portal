@@ -37,7 +37,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.io", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.validator", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "4.0.0"
-	compileOnly project(":apps:journal:journal-api")
+	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "4.0.0"
 	compileOnly project(":apps:portal-search:portal-search-spi")
 
 	testCompile project(":apps:dynamic-data-mapping:dynamic-data-mapping-test-util")

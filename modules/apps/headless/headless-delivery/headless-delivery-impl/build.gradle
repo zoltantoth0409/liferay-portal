@@ -27,7 +27,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.lists.api", version: "4.0.0"
 	compileOnly project(":apps:headless:headless-common-spi")
 	compileOnly project(":apps:headless:headless-delivery:headless-delivery-api")
-	compileOnly project(":apps:journal:journal-api")
+	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "4.0.0"
 	compileOnly project(":apps:message-boards:message-boards-api")
 	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
 	compileOnly project(":apps:segments:segments-api")
