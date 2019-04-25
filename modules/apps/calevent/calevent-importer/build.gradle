@@ -9,6 +9,6 @@ dependencies {
 	compileOnly project(":apps:calendar:calendar-api")
 	compileOnly project(":apps:calendar:calendar-service")
 	compileOnly project(":apps:message-boards:message-boards-api")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly project(":apps:subscription:subscription-api")
 }

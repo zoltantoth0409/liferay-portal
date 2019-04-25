@@ -30,7 +30,7 @@ dependencies {
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly group: "com.liferay", name: "com.liferay.knowledge.base.api", version: "6.0.0"
 	compileOnly project(":apps:message-boards:message-boards-api")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
 	compileOnly project(":apps:social:social-bookmarks-taglib")
 	compileOnly project(":apps:subscription:subscription-api")

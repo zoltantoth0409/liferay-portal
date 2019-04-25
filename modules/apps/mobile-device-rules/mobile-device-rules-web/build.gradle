@@ -16,6 +16,6 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly group: "com.liferay", name: "com.liferay.mobile.device.rules.api", version: "4.0.0"
 	compileOnly project(":apps:mobile-device-rules:mobile-device-rules-service")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly project(":apps:staging:staging-api")
 }

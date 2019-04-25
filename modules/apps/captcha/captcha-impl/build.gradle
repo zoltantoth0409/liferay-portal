@@ -8,5 +8,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.cm", version: "1.5.0"
 	compileOnly project(":apps:captcha:captcha-api")
 	compileOnly project(":apps:portal-configuration:portal-configuration-upgrade-api")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 }

@@ -14,7 +14,7 @@ dependencies {
 	compileOnly project(":apps:contacts:contacts-api")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly project(":apps:social:social-activities-taglib")
 	compileOnly project(":apps:text-localizer:text-localizer-taglib")
 	compileOnly project(":apps:users-admin:users-admin-api")

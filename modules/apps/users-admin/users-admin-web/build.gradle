@@ -22,7 +22,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.form.navigator", version: "3.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly project(":apps:portal-configuration:portal-configuration-upgrade-api")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly project(":apps:product-navigation:product-navigation-personal-menu-api")
 	compileOnly project(":apps:staging:staging-taglib")
 	compileOnly project(":apps:text-localizer:text-localizer-taglib")

@@ -10,5 +10,5 @@ dependencies {
 	compileOnly project(":apps:asset:asset-api")
 	compileOnly group: "com.liferay", name: "com.liferay.asset.publisher.api", version: "2.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 }

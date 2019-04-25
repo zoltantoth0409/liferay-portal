@@ -15,7 +15,7 @@ dependencies {
 	compileOnly project(":apps:captcha:captcha-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "3.0.0"
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 }
 
 findSecurityBugs {

@@ -21,7 +21,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "3.0.0"
 	compileOnly project(":apps:portal-settings:portal-settings-api")
 	compileOnly project(":apps:portal-settings:portal-settings-lang")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 	compileOnly project(":apps:staging:staging-taglib")
 	compileOnly project(":apps:users-admin:users-admin-api")
 	compileOnly project(":apps:users-admin:users-admin-web")

@@ -17,5 +17,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.flags.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "4.0.0"
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "3.0.0"
 }
