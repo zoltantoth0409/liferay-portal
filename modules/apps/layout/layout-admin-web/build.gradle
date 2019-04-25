@@ -46,5 +46,5 @@ dependencies {
 	compileOnly project(":apps:site-navigation:site-navigation-taglib")
 	compileOnly project(":apps:site:site-api")
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "4.0.0"
-	compileOnly project(":apps:upload:upload-api")
+	compileOnly group: "com.liferay", name: "com.liferay.upload.api", version: "3.0.0"
 }

@@ -35,5 +35,5 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.background.task.api", version: "4.0.0"
-	compileOnly project(":apps:upload:upload-api")
+	compileOnly group: "com.liferay", name: "com.liferay.upload.api", version: "3.0.0"
 }
