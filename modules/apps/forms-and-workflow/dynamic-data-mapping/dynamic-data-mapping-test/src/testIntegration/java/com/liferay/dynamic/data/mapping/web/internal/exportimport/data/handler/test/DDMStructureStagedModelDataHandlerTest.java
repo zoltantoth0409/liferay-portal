@@ -112,58 +112,6 @@ public class DDMStructureStagedModelDataHandlerTest
 	}
 
 	@Test
-	public void testImportStructureWithDisabledDefaultLocale()
-		throws Exception {
-
-		DDMStructure structure = DDMStructureTestUtil.addStructure(
-			stagingGroup.getGroupId(), _CLASS_NAME);
-
-		Locale newLocale = LocaleUtil.BRAZIL;
-
-		if (newLocale.equals(_defaultLocale)) {
-			newLocale = LocaleUtil.CHINA;
-		}
-
-		LanguageUtil.init();
-
-		CompanyTestUtil.resetCompanyLocales(
-			stagingGroup.getCompanyId(), Arrays.asList(newLocale), newLocale);
-
-		initExport();
-
-		try {
-			ExportImportThreadLocal.setPortletExportInProcess(true);
-
-			StagedModelDataHandlerUtil.exportStagedModel(
-				portletDataContext, structure);
-		}
-		finally {
-			ExportImportThreadLocal.setPortletExportInProcess(false);
-		}
-
-		initImport();
-
-		StagedModel exportedStagedModel = readExportedStagedModel(structure);
-
-		Assert.assertNotNull(exportedStagedModel);
-
-		try {
-			ExportImportThreadLocal.setPortletImportInProcess(true);
-
-			StagedModelDataHandlerUtil.importStagedModel(
-				portletDataContext, exportedStagedModel);
-		}
-		finally {
-			ExportImportThreadLocal.setPortletImportInProcess(false);
-		}
-
-		StagedModel importedStagedModel = getStagedModel(
-			exportedStagedModel.getUuid(), liveGroup);
-
-		Assert.assertNotNull(importedStagedModel);
-	}
-
-	@Test
 	public void testImportStructureToGlobalSite() throws Exception {
 		long companyId = stagingGroup.getCompanyId();
 
@@ -218,6 +166,58 @@ public class DDMStructureStagedModelDataHandlerTest
 
 		StagedModel importedStagedModel = getStagedModel(
 			exportedStagedModel.getUuid(), _targetCompany.getGroup());
+
+		Assert.assertNotNull(importedStagedModel);
+	}
+
+	@Test
+	public void testImportStructureWithDisabledDefaultLocale()
+		throws Exception {
+
+		DDMStructure structure = DDMStructureTestUtil.addStructure(
+			stagingGroup.getGroupId(), _CLASS_NAME);
+
+		Locale newLocale = LocaleUtil.BRAZIL;
+
+		if (newLocale.equals(_defaultLocale)) {
+			newLocale = LocaleUtil.CHINA;
+		}
+
+		LanguageUtil.init();
+
+		CompanyTestUtil.resetCompanyLocales(
+			stagingGroup.getCompanyId(), Arrays.asList(newLocale), newLocale);
+
+		initExport();
+
+		try {
+			ExportImportThreadLocal.setPortletExportInProcess(true);
+
+			StagedModelDataHandlerUtil.exportStagedModel(
+				portletDataContext, structure);
+		}
+		finally {
+			ExportImportThreadLocal.setPortletExportInProcess(false);
+		}
+
+		initImport();
+
+		StagedModel exportedStagedModel = readExportedStagedModel(structure);
+
+		Assert.assertNotNull(exportedStagedModel);
+
+		try {
+			ExportImportThreadLocal.setPortletImportInProcess(true);
+
+			StagedModelDataHandlerUtil.importStagedModel(
+				portletDataContext, exportedStagedModel);
+		}
+		finally {
+			ExportImportThreadLocal.setPortletImportInProcess(false);
+		}
+
+		StagedModel importedStagedModel = getStagedModel(
+			exportedStagedModel.getUuid(), liveGroup);
 
 		Assert.assertNotNull(importedStagedModel);
 	}
