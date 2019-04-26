@@ -156,6 +156,7 @@ public class JournalContentPortletToolbarContributor
 				portletURL.toString(), "refererPlid", plid);
 
 			urlMenuItem.setURL(url);
+
 			urlMenuItem.setUseDialog(true);
 
 			menuItems.add(urlMenuItem);
