@@ -18,6 +18,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.journal.item.selector.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.journal.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.item.selector.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
@@ -46,5 +47,4 @@ dependencies {
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly project(":apps:export-import:export-import-changeset-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.api", version: "2.0.0"
 }

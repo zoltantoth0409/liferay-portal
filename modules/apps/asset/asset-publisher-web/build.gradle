@@ -16,6 +16,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.criteria.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
@@ -26,6 +27,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.rss.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.rss.taglib", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.site.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.site.item.selector.api", version: "3.0.0"
@@ -44,7 +46,5 @@ dependencies {
 	compileOnly project(":apps:asset:asset-display-page-api")
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.api", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.rss.taglib", version: "2.0.0"
 	compileOnly project(":apps:site:site-taglib")
 }

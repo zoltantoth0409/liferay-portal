@@ -17,6 +17,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.layout.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.content.page.editor.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.item.selector.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.prototype.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.taglib", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.mobile.device.rules.api", version: "4.0.0"
@@ -45,6 +46,5 @@ dependencies {
 	compileOnly project(":apps:asset:asset-display-page-api")
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.api", version: "2.0.0"
 	compileOnly project(":apps:layout:layout-page-template-service")
 }
