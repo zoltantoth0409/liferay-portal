@@ -207,11 +207,8 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 				companyId, groupId, privateLayout, friendlyURL, params,
 				requestContext);
 
-		LayoutFriendlyURLSeparatorComposite newLayoutFriendlyURLComposite =
-			new LayoutFriendlyURLSeparatorComposite(
-				layoutFriendlyURLComposite, Portal.FRIENDLY_URL_SEPARATOR);
-
-		return newLayoutFriendlyURLComposite;
+		return new LayoutFriendlyURLSeparatorComposite(
+			layoutFriendlyURLComposite, Portal.FRIENDLY_URL_SEPARATOR);
 	}
 
 	@Override
