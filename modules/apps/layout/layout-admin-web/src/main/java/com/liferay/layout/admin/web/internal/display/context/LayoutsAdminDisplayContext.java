@@ -102,9 +102,6 @@ public class LayoutsAdminDisplayContext {
 		_request = PortalUtil.getHttpServletRequest(_liferayPortletRequest);
 
 		_groupDisplayContextHelper = new GroupDisplayContextHelper(_request);
-
-		_liferayPortletRequest.setAttribute(
-			WebKeys.LAYOUT_DESCRIPTIONS, getLayoutDescriptions());
 	}
 
 	public List<DropdownItem> getActionDropdownItems() {
