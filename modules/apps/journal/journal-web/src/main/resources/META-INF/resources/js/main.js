@@ -48,6 +48,8 @@ AUI.add(
 						var instance = this;
 
 						instance._bindUI();
+
+						instance._setEditorInitialValues();
 					},
 
 					destructor: function() {
@@ -138,13 +140,9 @@ AUI.add(
 							A.Object.some(
 								CKEDITOR.instances,
 								function(item, index) {
-									var parentForm = A.one('#' + item.element.getId()).ancestor('form');
-
-									if (parentForm.compareTo(form)) {
-										unsavedChanges = item.checkDirty();
+									if (instance._editorValues[item.name].trim() !== item.getData().trim()) {
+										unsavedChanges = true;
 									}
-
-									return unsavedChanges;
 								}
 							);
 						}
@@ -262,6 +260,26 @@ AUI.add(
 						}
 					},
 
+					_setEditorInitialValues: function() {
+						var instance = this;
+
+						var editorKeys = Object.keys(CKEDITOR.instances);
+
+						instance._editorValues = {};
+
+						for (var editorKey in editorKeys) {
+							Liferay.componentReady(editorKeys[editorKey]).then(
+								function (key) {
+									if (key.getNativeEditor()._editor) {
+										instance._editorValues[key.getNativeEditor()._editor.name] = key.getHTML();
+									} else {
+										instance._editorValues[key.getNativeEditor().name] = key.getHTML();
+									}
+								}
+							);
+						}
+					},
+					
 					_updateStructureDefaultValues: function() {
 						var instance = this;
 
