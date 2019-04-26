@@ -7353,6 +7353,7 @@ memory.scheduler.org.quartz.threadPool.threadCount=1
 persisted.scheduler.org.quartz.threadPool.threadCount=1
 
 virtual.hosts.default.site.name=
+
 web.server.http.port=8080</echo>
 
 		<if>
