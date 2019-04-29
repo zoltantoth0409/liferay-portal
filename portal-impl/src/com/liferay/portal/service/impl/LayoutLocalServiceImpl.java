@@ -59,7 +59,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntry;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntryThreadLocal;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -561,9 +560,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		// User preferences for customizable pages
 
 		if (layout.isCustomizable()) {
-			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
-
-			_removeUserPreferences(layout, themeDisplay.isSignedIn());
+			_removeUserPreferences(layout);
 		}
 
 		// Layout set
@@ -2657,7 +2654,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 				LayoutConstants.CUSTOMIZABLE_LAYOUT, StringPool.FALSE));
 
 		if (!customizableLayout && wasCustomizableLayout) {
-			_removeUserPreferences(layout, false);
+			_removeUserPreferences(layout);
 		}
 
 		validateTypeSettingsProperties(layout, typeSettingsProperties);
@@ -3536,7 +3533,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		return true;
 	}
 
-	private void _removeUserPreferences(Layout layout, boolean signedIn) {
+	private void _removeUserPreferences(Layout layout) {
 		ClassLoader classLoader = getClass().getClassLoader();
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
@@ -3556,7 +3553,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 			if (preferences.contains(CustomizedPages.namespacePlid(plid))) {
 				PortalPreferencesImpl portalPreferencesImpl =
-					new PortalPreferencesImpl(portalPreferences, signedIn);
+					new PortalPreferencesImpl(portalPreferences, false);
 
 				portalPreferencesImpl.resetValues(
 					CustomizedPages.namespacePlid(plid));
