@@ -151,7 +151,9 @@ name = HtmlUtil.escapeJS(name);
 	var alloyEditor;
 
 	var documentBrowseLinkCallback = function(editor, linkHref, callback) {
-		AUI().use('liferay-item-selector-dialog', function(A) {
+		AUI().use(
+		'liferay-item-selector-dialog',
+		function(A) {
 			var itemSelectorDialog = new A.LiferayItemSelectorDialog(
 				{
 					eventName: editor.name + 'selectDocument',
