@@ -62,7 +62,7 @@ public class JSLoaderTopHeadDynamicInclude extends BaseDynamicInclude {
 		printWriter.println(
 			"<script src=\"" + url + "\" type=\"text/javascript\"></script>");
 
-		String loaderJs = _useLoader4 ? "loader.js" : "loader.3.js";
+		String loaderJs = _useLoaderVersion4x ? "loader.js" : "loader.3.js";
 
 		url = absolutePortalURLBuilder.forModule(
 			"frontend-js-web/loader/" + loaderJs
@@ -81,12 +81,13 @@ public class JSLoaderTopHeadDynamicInclude extends BaseDynamicInclude {
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
-		_useLoader4 = GetterUtil.getBoolean(properties.get("useLoader4"));
+		_useLoaderVersion4x = GetterUtil.getBoolean(
+			properties.get("useLoaderVersion4x"));
 	}
 
 	@Reference
 	private AbsolutePortalURLBuilderFactory _absolutePortalURLBuilderFactory;
 
-	private volatile boolean _useLoader4;
+	private volatile boolean _useLoaderVersion4x;
 
 }

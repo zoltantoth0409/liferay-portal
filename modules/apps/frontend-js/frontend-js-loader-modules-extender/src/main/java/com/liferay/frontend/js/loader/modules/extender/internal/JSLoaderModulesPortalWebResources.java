@@ -54,7 +54,7 @@ public class JSLoaderModulesPortalWebResources {
 		_portalWebResources = new InternalPortalWebResources(
 			_jsLoaderModulesServlet.getServletContext());
 
-		_setEnabled(!details.useLoader4());
+		_setEnabled(!details.useLoaderVersion4x());
 	}
 
 	@Deactivate
