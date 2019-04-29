@@ -7,3 +7,8 @@
 # Bundle Version 1.0.2
 #
 bf514b535a4f1aa216bb7acb41177cf013fa82a8^..27f225e5b7dcc4d6e88dd18637cca136638a7f17=LPS-77699 LRDOCS-6535
+
+#
+# Bundle Version 1.0.3
+#
+27f225e5b7dcc4d6e88dd18637cca136638a7f17^..53bf20d3b6874bbac38cf90ecc712137fc88770a=LPS-77699
