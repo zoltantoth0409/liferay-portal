@@ -93,6 +93,7 @@ public class JournalContentPortletToolbarContributor
 		portletURL.setParameter(
 			"redirect",
 			_getAddJournalArticleRedirectURL(themeDisplay, portletRequest));
+		portletURL.setParameter("refererPlid", String.valueOf(plid));
 		portletURL.setParameter("showHeader", Boolean.FALSE.toString());
 
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
