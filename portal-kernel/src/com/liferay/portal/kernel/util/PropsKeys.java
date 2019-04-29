@@ -2063,6 +2063,10 @@ public interface PropsKeys {
 	public static final String MODULE_FRAMEWORK_DYNAMIC_INSTALL_START_LEVEL =
 		"module.framework.dynamic.install.start.level";
 
+	//module.framework.export.password.attributes
+	public static final String MODULE_FRAMEWORK_EXPORT_PASSWORD_ATTRIBUTES =
+		"module.framework.export.password.attributes";
+
 	/**
 	 * @deprecated As of 7.0.0, As of Judson (7.1.x), with no direct replacement
 	 */
