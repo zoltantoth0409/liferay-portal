@@ -12,6 +12,7 @@ import {
 import {DRAG_POSITIONS, DROP_TARGET_TYPES} from './LayoutDragDrop.es';
 
 /**
+ * @param {object} layoutColumns
  * @param {object} sourceItem
  * @param {string} sourceItemColumnIndex
  * @param {string} targetId
@@ -21,11 +22,13 @@ import {DRAG_POSITIONS, DROP_TARGET_TYPES} from './LayoutDragDrop.es';
  */
 
 function dropIsValid(
+	layoutColumns,
 	sourceItem,
 	sourceItemColumnIndex,
 	targetId,
 	targetType
 ) {
+	let targetColumnHasLayoutAssociated = true;
 	let targetColumnIsChild = false;
 	let targetEqualsSource = false;
 
@@ -35,6 +38,18 @@ function dropIsValid(
 			sourceItem,
 			sourceItemColumnIndex
 		);
+
+		const sourceColumnHasActiveItem = getColumnActiveItem(
+			layoutColumns,
+			sourceItemColumnIndex
+		) !== null;
+
+		const targetColumnHasItems = layoutColumns[targetId].length > 0;
+
+		targetColumnHasLayoutAssociated = (
+			sourceColumnHasActiveItem ||
+			targetColumnHasItems
+		);
 	}
 	else if (targetType === DROP_TARGET_TYPES.item) {
 		targetEqualsSource = (sourceItem.plid === targetId);
@@ -42,7 +57,12 @@ function dropIsValid(
 
 	const targetExists = (targetId !== null);
 
-	return targetExists && !targetEqualsSource && !targetColumnIsChild;
+	return (
+		targetColumnHasLayoutAssociated &&
+		targetExists &&
+		!targetEqualsSource &&
+		!targetColumnIsChild
+	);
 }
 
 /**

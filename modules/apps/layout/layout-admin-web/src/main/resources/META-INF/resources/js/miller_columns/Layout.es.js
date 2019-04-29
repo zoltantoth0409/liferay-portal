@@ -254,6 +254,7 @@ class Layout extends Component {
 		const {sourceItemPlid, targetId, targetType} = eventData;
 
 		const itemDropIsValid = dropIsValid(
+			layoutColumns,
 			this._draggingItem,
 			this._draggingItemColumnIndex,
 			targetId,
