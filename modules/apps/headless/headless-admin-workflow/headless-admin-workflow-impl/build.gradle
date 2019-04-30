@@ -5,7 +5,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.definition.api", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
