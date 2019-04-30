@@ -77,14 +77,19 @@
 	}
 	else {
 		fetch(Liferay.MODULES_PATH + '?query=' + encodeURI('dynamic-data-mapping-form-builder.*\\.es'))
-			.then(response => response.json())
-			.then(modules => {
-				var dependencies = Object.keys(modules);
+			.then(
+				function(response) {
+					return response.json();
+				}
+			).then(
+				function(modules) {
+					var dependencies = Object.keys(modules);
 
-				Liferay.Loader.require.apply(
-					Liferay.Loader,
-					dependencies.concat(initTagLib)
-				);
-			});
+					Liferay.Loader.require.apply(
+						Liferay.Loader,
+						dependencies.concat(initTagLib)
+					);
+				}
+			);
 	}
 </aui:script>
