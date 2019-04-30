@@ -76,5 +76,5 @@
 		"webpack": "webpack --config webpack.prod.js",
 		"webpack:dev": "webpack --config webpack.dev.js"
 	},
-	"version": "3.0.2"
+	"version": "3.0.3"
 }
