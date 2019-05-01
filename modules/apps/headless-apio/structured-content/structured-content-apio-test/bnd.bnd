@@ -24,6 +24,6 @@ Import-Package:\
 	\
 	*
 -includeresource:\
-	@assertj-core-[0-9]*.jar,\
 	@cxf-rt-frontend-jaxrs-[0-9]*.jar,\
-	@jackson-databind-[0-9]*.jar
+	@jackson-databind-[0-9]*.jar,\
+	@lib/assertj-core.jar
