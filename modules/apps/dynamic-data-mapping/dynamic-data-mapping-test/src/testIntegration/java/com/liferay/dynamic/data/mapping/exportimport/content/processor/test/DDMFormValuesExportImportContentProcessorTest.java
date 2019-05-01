@@ -20,7 +20,6 @@ import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
 import com.liferay.dynamic.data.mapping.helper.DDMFormInstanceTestHelper;
-import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
@@ -186,10 +185,6 @@ public class DDMFormValuesExportImportContentProcessorTest {
 
 		DDMStructure structure = _formInstance.getStructure();
 
-		DDMForm ddmForm = _formInstance.getDDMForm();
-
-		structure.setDDMForm(ddmForm);
-
 		structure.setClassNameId(classNameId);
 
 		_ddmStructureLocalService.updateDDMStructure(structure);
@@ -244,8 +239,10 @@ public class DDMFormValuesExportImportContentProcessorTest {
 		DDMFormValues settingsDDMFormValues =
 			_formInstance.getSettingsDDMFormValues();
 
+		DDMStructure ddmStructure = _formInstance.getStructure();
+
 		DDMFormValues ddmFormValues = new DDMFormValues(
-			_formInstance.getDDMForm());
+			ddmStructure.getDDMForm());
 
 		for (DDMFormFieldValue ddmFormFieldValue :
 				settingsDDMFormValues.getDDMFormFieldValues()) {
