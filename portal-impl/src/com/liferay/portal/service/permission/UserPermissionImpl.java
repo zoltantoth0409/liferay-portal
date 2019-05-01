@@ -164,7 +164,7 @@ public class UserPermissionImpl
 						if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
 								permissionChecker.getUserId(),
 								curOrganization.getGroupId(),
-								RoleConstants.ORGANIZATION_OWNER, false)) {
+								RoleConstants.ORGANIZATION_OWNER, true)) {
 
 							return true;
 						}
@@ -176,14 +176,14 @@ public class UserPermissionImpl
 								permissionChecker.getUserId(),
 								curOrganization.getGroupId(),
 								RoleConstants.ORGANIZATION_ADMINISTRATOR,
-								false) &&
+								true) &&
 							!UserGroupRoleLocalServiceUtil.hasUserGroupRole(
 								user.getUserId(), organization.getGroupId(),
 								RoleConstants.ORGANIZATION_ADMINISTRATOR,
-								false) &&
+								true) &&
 							!UserGroupRoleLocalServiceUtil.hasUserGroupRole(
 								user.getUserId(), organization.getGroupId(),
-								RoleConstants.ORGANIZATION_OWNER, false)) {
+								RoleConstants.ORGANIZATION_OWNER, true)) {
 
 							return true;
 						}
