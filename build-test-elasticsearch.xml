@@ -211,6 +211,8 @@ shield.transport.ssl: true</echo>
 
 	<macrodef name="prepare-elasticsearch">
 		<sequential>
+			<lstopwatch action="start" name="prepare.elasticsearch" />
+
 			<chmod
 				file="${elasticsearch.dir}/bin/**"
 				perm="a+x"
@@ -312,6 +314,8 @@ shield.transport.ssl: true</echo>
 					</then>
 				</elseif>
 			</if>
+
+			<lstopwatch action="total" name="prepare.elasticsearch" />
 		</sequential>
 	</macrodef>
 
@@ -604,6 +608,8 @@ username=&quot;liferay&quot;</echo>
 	</target>
 
 	<target name="start-elasticsearch">
+		<lstopwatch action="start" name="start.elasticsearch" />
+
 		<unzip-elasticsearch />
 
 		<prepare-elasticsearch />
@@ -715,14 +721,20 @@ username=&quot;liferay&quot;</echo>
 						<echo>Elasticshield successfully started with Shield.</echo>
 					</then>
 					<else>
+						<lstopwatch action="total" name="start.elasticsearch" />
+
 						<fail>Elasticsearch failed to start with Shield.</fail>
 					</else>
 				</if>
+
+				<lstopwatch action="total" name="start.elasticsearch" />
 			</then>
 			<else>
 				<waitfor maxwait="20" maxwaitunit="second" timeoutproperty="elasticsearch.server.not.started">
 					<http url="http://localhost:9200/" />
 				</waitfor>
+
+				<lstopwatch action="total" name="start.elasticsearch" />
 
 				<fail if="elasticsearch.server.not.started" message="Elasticsearch server failed to initialize." />
 			</else>
