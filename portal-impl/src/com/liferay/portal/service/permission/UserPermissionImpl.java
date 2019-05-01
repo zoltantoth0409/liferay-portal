@@ -159,7 +159,7 @@ public class UserPermissionImpl
 
 					while (curOrganization != null) {
 
-						// Organization owners can manage all users.
+						// Organization owners can manage all users
 
 						if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
 								permissionChecker.getUserId(),
@@ -170,7 +170,7 @@ public class UserPermissionImpl
 						}
 
 						// Organization administrators can only manage normal
-						// users.
+						// users
 
 						if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
 								permissionChecker.getUserId(),
