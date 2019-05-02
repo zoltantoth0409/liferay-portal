@@ -6,4 +6,3 @@ Import-Package:\
 	\
 	*
 Liferay-Releng-Module-Group-Title: Data Management
--includeresource: test-classes/integration

@@ -10,4 +10,3 @@ Import-Package:\
 	\
 	*
 Liferay-Releng-Module-Group-Title: Site Management
--includeresource: test-classes/integration
