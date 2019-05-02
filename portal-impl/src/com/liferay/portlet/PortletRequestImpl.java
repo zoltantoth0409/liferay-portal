@@ -56,7 +56,6 @@ import java.security.Principal;
 import java.security.PrivilegedAction;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -543,7 +542,11 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 
 	@Override
 	public Enumeration<String> getResponseContentTypes() {
-		return Collections.enumeration(Arrays.asList(getResponseContentType()));
+		List<String> responseContentTypes = new ArrayList<>();
+
+		responseContentTypes.add(getResponseContentType());
+
+		return Collections.enumeration(responseContentTypes);
 	}
 
 	@Override

@@ -29,7 +29,7 @@ import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -72,9 +72,13 @@ public class WSRPConsumerPortletStagedModelDataHandler
 	public List<WSRPConsumerPortlet> fetchStagedModelsByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		return Arrays.asList(
+		List<WSRPConsumerPortlet> wsrpConsumerPortlets = new ArrayList<>();
+
+		wsrpConsumerPortlets.add(
 			WSRPConsumerPortletLocalServiceUtil.
 				fetchWSRPConsumerPortletByUuidAndCompanyId(uuid, companyId));
+
+		return wsrpConsumerPortlets;
 	}
 
 	@Override

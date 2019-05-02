@@ -31,7 +31,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.wiki.constants.WikiPortletKeys;
 import com.liferay.wiki.item.selector.criterion.WikiAttachmentItemSelectorCriterion;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -138,8 +138,14 @@ public abstract class BaseWikiAttachmentEditorConfigContributor
 				WikiPortletKeys.WIKI, uploadURL.toString(),
 				LanguageUtil.get(themeDisplay.getLocale(), "page-attachments"));
 
+		List<ItemSelectorReturnType> uploadDesiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		uploadDesiredItemSelectorReturnTypes.add(
+			new FileEntryItemSelectorReturnType());
+
 		uploadItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new FileEntryItemSelectorReturnType()));
+			uploadDesiredItemSelectorReturnTypes);
 
 		return uploadItemSelectorCriterion;
 	}
@@ -148,8 +154,13 @@ public abstract class BaseWikiAttachmentEditorConfigContributor
 		ItemSelectorCriterion urlItemSelectorCriterion =
 			new URLItemSelectorCriterion();
 
+		List<ItemSelectorReturnType> urlDesiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		urlDesiredItemSelectorReturnTypes.add(new URLItemSelectorReturnType());
+
 		urlItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new URLItemSelectorReturnType()));
+			urlDesiredItemSelectorReturnTypes);
 
 		return urlItemSelectorCriterion;
 	}

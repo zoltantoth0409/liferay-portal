@@ -25,7 +25,6 @@ import com.liferay.dynamic.data.mapping.test.util.DDMFormTestUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -146,8 +145,11 @@ public abstract class BaseDDMFormSerializerTestCase extends BaseDDMTestCase {
 
 		DDMFormField parentDDMFormField = createTextDDMFormField(parentName);
 
-		parentDDMFormField.setNestedDDMFormFields(
-			Arrays.asList(createSelectDDMFormField(childName)));
+		List<DDMFormField> nestedDDMFormFields = new ArrayList<>();
+
+		nestedDDMFormFields.add(createSelectDDMFormField(childName));
+
+		parentDDMFormField.setNestedDDMFormFields(nestedDDMFormFields);
 
 		return parentDDMFormField;
 	}

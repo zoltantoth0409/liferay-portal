@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.StringPool;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -491,7 +491,11 @@ public class AMJournalEditorConfigContributorTest extends PowerMockito {
 			Collections.<ItemSelectorReturnType>singletonList(
 				new FileEntryItemSelectorReturnType()));
 
-		return Arrays.asList(audioItemSelectorCriterion);
+		List<ItemSelectorCriterion> itemSelectorCriteria = new ArrayList<>();
+
+		itemSelectorCriteria.add(audioItemSelectorCriterion);
+
+		return itemSelectorCriteria;
 	}
 
 	private List<ItemSelectorCriterion>
@@ -504,7 +508,11 @@ public class AMJournalEditorConfigContributorTest extends PowerMockito {
 			Collections.<ItemSelectorReturnType>singletonList(
 				new FileEntryItemSelectorReturnType()));
 
-		return Arrays.asList(blogsItemSelectorCriterion);
+		List<ItemSelectorCriterion> itemSelectorCriteria = new ArrayList<>();
+
+		itemSelectorCriteria.add(blogsItemSelectorCriterion);
+
+		return itemSelectorCriteria;
 	}
 
 	private List<ItemSelectorCriterion>
@@ -517,7 +525,11 @@ public class AMJournalEditorConfigContributorTest extends PowerMockito {
 			Collections.<ItemSelectorReturnType>singletonList(
 				new FileEntryItemSelectorReturnType()));
 
-		return Arrays.asList(fileItemSelectorCriterion);
+		List<ItemSelectorCriterion> itemSelectorCriteria = new ArrayList<>();
+
+		itemSelectorCriteria.add(fileItemSelectorCriterion);
+
+		return itemSelectorCriteria;
 	}
 
 	private final Map<String, Object> _inputEditorTaglibAttributes =

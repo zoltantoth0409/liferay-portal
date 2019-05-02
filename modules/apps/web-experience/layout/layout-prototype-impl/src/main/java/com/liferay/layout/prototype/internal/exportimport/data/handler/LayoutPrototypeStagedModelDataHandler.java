@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.service.LayoutPrototypeLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.xml.Element;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -74,9 +74,13 @@ public class LayoutPrototypeStagedModelDataHandler
 	public List<LayoutPrototype> fetchStagedModelsByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		return Arrays.asList(
+		List<LayoutPrototype> layoutPrototypes = new ArrayList<>();
+
+		layoutPrototypes.add(
 			_layoutPrototypeLocalService.fetchLayoutPrototypeByUuidAndCompanyId(
 				uuid, companyId));
+
+		return layoutPrototypes;
 	}
 
 	@Override

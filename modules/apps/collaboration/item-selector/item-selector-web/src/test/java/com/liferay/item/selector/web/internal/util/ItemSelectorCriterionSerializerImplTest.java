@@ -23,7 +23,6 @@ import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -64,8 +63,13 @@ public class ItemSelectorCriterionSerializerImplTest {
 
 	@Test
 	public void testGetProperties() {
+		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		desiredItemSelectorReturnTypes.add(_testURLItemSelectorReturnType);
+
 		_flickrItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(_testURLItemSelectorReturnType));
+			desiredItemSelectorReturnTypes);
 
 		String json = _stubItemSelectorCriterionSerializerImpl.serialize(
 			_flickrItemSelectorCriterion);
@@ -106,8 +110,14 @@ public class ItemSelectorCriterionSerializerImplTest {
 			new String[] {"tag1", "tag2", "tag3"},
 			_flickrItemSelectorCriterion.getTags());
 
+		List<ItemSelectorReturnType> expectedDesiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		expectedDesiredItemSelectorReturnTypes.add(
+			_testURLItemSelectorReturnType);
+
 		Assert.assertEquals(
-			Arrays.asList(_testURLItemSelectorReturnType),
+			expectedDesiredItemSelectorReturnTypes,
 			_flickrItemSelectorCriterion.getDesiredItemSelectorReturnTypes());
 	}
 

@@ -61,7 +61,6 @@ import java.io.InputStream;
 import java.text.Format;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -141,9 +140,12 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		MBMessage parentMessage = mbMessageLocalService.getMBMessage(
 			parentMBMessageId);
 
+		List<User> recipients = new ArrayList<>();
+
+		recipients.add(userLocalService.getUser(parentMessage.getUserId()));
+
 		return addPrivateMessage(
-			userId, mbThreadId, parentMBMessageId,
-			Arrays.asList(userLocalService.getUser(parentMessage.getUserId())),
+			userId, mbThreadId, parentMBMessageId, recipients,
 			parentMessage.getSubject(), body, inputStreamOVPs, themeDisplay);
 	}
 

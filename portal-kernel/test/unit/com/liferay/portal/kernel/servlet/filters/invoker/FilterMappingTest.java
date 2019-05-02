@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.Filter;
@@ -67,9 +66,13 @@ public class FilterMappingTest extends PowerMockito {
 
 	@Test
 	public void testIsMatchURLPattern() {
+		List<String> urlPatterns = new ArrayList<>();
+
+		urlPatterns.add("/c/portal/login");
+
 		FilterMapping filterMapping = new FilterMapping(
-			StringPool.BLANK, _filter, _filterConfig,
-			Arrays.asList("/c/portal/login"), _dispatchers);
+			StringPool.BLANK, _filter, _filterConfig, urlPatterns,
+			_dispatchers);
 
 		String uri = "/c/portal/login";
 

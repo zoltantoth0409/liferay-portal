@@ -75,7 +75,6 @@ import com.sun.syndication.feed.synd.SyndLinkImpl;
 import com.sun.syndication.io.FeedException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -478,7 +477,11 @@ public class JournalRSSUtil {
 
 		selfSyndLink.setRel("self");
 
-		syndFeed.setLinks(Arrays.asList(selfSyndLink));
+		List<SyndLink> syndLinks = new ArrayList<>();
+
+		syndLinks.add(selfSyndLink);
+
+		syndFeed.setLinks(syndLinks);
 
 		syndFeed.setPublishedDate(new Date());
 		syndFeed.setTitle(feed.getName());
