@@ -334,7 +334,6 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 
 	private AssetEntryAssetCategoryRelLocalService
 		_assetEntryAssetCategoryRelLocalService;
-
 	private AssetEntryLocalService _assetEntryLocalService;
 	private AssetVocabularyLocalService _assetVocabularyLocalService;
 	private CompanyLocalService _companyLocalService;
