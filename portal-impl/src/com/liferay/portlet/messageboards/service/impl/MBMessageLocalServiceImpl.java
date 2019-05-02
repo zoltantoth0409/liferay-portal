@@ -2124,6 +2124,11 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 		long groupId = message.getGroupId();
 
+		GroupDescriptiveNameSerializableFunction
+			groupDescriptiveNameSerializableFunction =
+				new GroupDescriptiveNameSerializableFunction(
+					groupId, groupPersistence);
+
 		if (category.getCategoryId() !=
 				MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
 
@@ -2131,11 +2136,6 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				"[$CATEGORY_NAME$]", category.getName(), true);
 		}
 		else {
-			GroupDescriptiveNameSerializableFunction
-				groupDescriptiveNameSerializableFunction =
-					new GroupDescriptiveNameSerializableFunction(
-						groupId, groupPersistence);
-
 			subscriptionSender.setLocalizedContextAttribute(
 				"[$CATEGORY_NAME$]", groupDescriptiveNameSerializableFunction);
 		}
@@ -2153,6 +2153,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		subscriptionSender.setFullName(fullName);
 		subscriptionSender.setHtmlFormat(htmlFormat);
 		subscriptionSender.setInReplyTo(inReplyTo);
+
+		subscriptionSender.setLocalizedContextAttribute(
+			"[$SITE_NAME$]", groupDescriptiveNameSerializableFunction);
 
 		if (bodyLocalizedValuesMap != null) {
 			subscriptionSender.setLocalizedBodyMap(
