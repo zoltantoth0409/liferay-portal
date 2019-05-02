@@ -8812,7 +8812,7 @@ public class PortalImpl implements Portal {
 						themeDisplay.getSiteGroupId()) &&
 					 (group.getClassPK() != themeDisplay.getUserId()))) {
 
-					if (group.isControlPanel()) {
+					if (group.isControlPanel() || controlPanel) {
 						virtualHostname = themeDisplay.getServerName();
 
 						if (Validator.isNull(virtualHostname) ||
