@@ -39,6 +39,7 @@ import org.junit.runner.RunWith;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.wiring.BundleRevision;
 import org.osgi.framework.wiring.FrameworkWiring;
 
 /**
@@ -103,7 +104,14 @@ public class ModuleSelfContainedDependencyClosureTest {
 						"Unable to find module " + deployedJarPath);
 				}
 
-				testBundles.add(deployedBundle);
+				BundleRevision bundleRevision = deployedBundle.adapt(
+					BundleRevision.class);
+
+				if ((bundleRevision.getTypes() &
+					 BundleRevision.TYPE_FRAGMENT) == 0) {
+
+					testBundles.add(deployedBundle);
+				}
 			}
 		}
 
