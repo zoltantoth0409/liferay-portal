@@ -31,6 +31,7 @@ import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceLinkLocal
 import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLayoutLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
+import com.liferay.dynamic.data.mapping.service.DDMStructureVersionLocalService;
 import com.liferay.dynamic.data.mapping.service.permission.DDMStructurePermission;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -675,6 +676,34 @@ public class DDMStructureStagedModelDataHandler
 		return false;
 	}
 
+	protected boolean isPreloadedStructure(
+		long defaultUserId, DDMStructure structure) {
+
+		if (defaultUserId == structure.getUserId()) {
+			return true;
+		}
+
+		DDMStructureVersion ddmStructureVersion = null;
+
+		try {
+			ddmStructureVersion =
+				_ddmStructureVersionLocalService.getStructureVersion(
+					structure.getStructureId(),
+					DDMStructureConstants.VERSION_DEFAULT);
+		}
+		catch (PortalException pe) {
+			_log.error(pe, pe);
+		}
+
+		if ((ddmStructureVersion != null) &&
+			(defaultUserId == ddmStructureVersion.getUserId())) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	@Reference(unbind = "-")
 	protected void setDDMFormJSONDeserializer(
 		DDMFormJSONDeserializer ddmFormJSONDeserializer) {
@@ -704,6 +733,13 @@ public class DDMStructureStagedModelDataHandler
 	}
 
 	@Reference(unbind = "-")
+	protected void setDDMStructureVersionLocalService(
+		DDMStructureVersionLocalService ddmStructureVersionLocalService) {
+
+		_ddmStructureVersionLocalService = ddmStructureVersionLocalService;
+	}
+
+	@Reference(unbind = "-")
 	protected void setUserLocalService(UserLocalService userLocalService) {
 		_userLocalService = userLocalService;
 	}
@@ -729,6 +765,7 @@ public class DDMStructureStagedModelDataHandler
 	private DDMFormLayoutJSONDeserializer _ddmFormLayoutJSONDeserializer;
 	private DDMStructureLayoutLocalService _ddmStructureLayoutLocalService;
 	private DDMStructureLocalService _ddmStructureLocalService;
+	private DDMStructureVersionLocalService _ddmStructureVersionLocalService;
 
 	@Reference
 	private GroupLocalService _groupLocalService;
