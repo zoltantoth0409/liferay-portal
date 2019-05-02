@@ -93,11 +93,11 @@ public interface OpenIdConnectProviderConfiguration {
 	public String[] subjectTypes();
 
 	@Meta.AD(
-			deflt = "RS256", description = "id-token-signing-alg-values-help",
-			name = "id-token-signing-alg-values",   required = false
+		deflt = "RS256", description = "id-token-signing-alg-values-help",
+		name = "id-token-signing-alg-values", required = false
 	)
 	public String[] idTokenSigningAlgValues();
-	
+
 	@Meta.AD(
 		deflt = "", description = "token-endpoint-help",
 		name = "token-endpoint", required = false
