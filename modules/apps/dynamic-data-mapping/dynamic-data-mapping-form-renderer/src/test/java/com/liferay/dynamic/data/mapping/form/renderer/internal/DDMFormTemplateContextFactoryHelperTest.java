@@ -24,9 +24,10 @@ import com.liferay.dynamic.data.mapping.test.util.DDMFormTestUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.SetUtil;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -57,7 +58,11 @@ public class DDMFormTemplateContextFactoryHelperTest extends PowerMockito {
 
 		DDMForm ddmForm = DDMFormTestUtil.createDDMForm();
 
-		ddmForm.setDDMFormRules(Arrays.asList(createAutoFillDDMFormRule()));
+		List<DDMFormRule> ddmFormRules = new ArrayList<>();
+
+		ddmFormRules.add(createAutoFillDDMFormRule());
+
+		ddmForm.setDDMFormRules(ddmFormRules);
 
 		DDMFormField ddmFormField1 = DDMFormTestUtil.createDDMFormField(
 			"Field1", "Field1", "select", "string", false, false, false);

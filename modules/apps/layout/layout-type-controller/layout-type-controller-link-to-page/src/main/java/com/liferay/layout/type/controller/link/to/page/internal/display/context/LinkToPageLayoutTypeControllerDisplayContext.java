@@ -15,6 +15,7 @@
 package com.liferay.layout.type.controller.link.to.page.internal.display.context;
 
 import com.liferay.item.selector.ItemSelector;
+import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
 import com.liferay.layout.item.selector.criterion.LayoutItemSelectorCriterion;
 import com.liferay.layout.type.controller.link.to.page.internal.constants.LinkToPageLayoutTypeControllerWebKeys;
@@ -33,7 +34,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -80,8 +81,13 @@ public class LinkToPageLayoutTypeControllerDisplayContext {
 		layoutItemSelectorCriterion.setShowPrivatePages(privateLayout);
 		layoutItemSelectorCriterion.setShowPublicPages(!privateLayout);
 
+		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		desiredItemSelectorReturnTypes.add(new UUIDItemSelectorReturnType());
+
 		layoutItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new UUIDItemSelectorReturnType()));
+			desiredItemSelectorReturnTypes);
 
 		PortletURL itemSelectorURL = itemSelector.getItemSelectorURL(
 			RequestBackedPortletURLFactoryUtil.create(_liferayPortletRequest),

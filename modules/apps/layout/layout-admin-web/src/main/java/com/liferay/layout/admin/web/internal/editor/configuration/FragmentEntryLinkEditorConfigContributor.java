@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -119,8 +118,13 @@ public class FragmentEntryLinkEditorConfigContributor
 		ItemSelectorCriterion urlItemSelectorCriterion =
 			new URLItemSelectorCriterion();
 
+		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		desiredItemSelectorReturnTypes.add(new URLItemSelectorReturnType());
+
 		urlItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new URLItemSelectorReturnType()));
+			desiredItemSelectorReturnTypes);
 
 		return urlItemSelectorCriterion;
 	}

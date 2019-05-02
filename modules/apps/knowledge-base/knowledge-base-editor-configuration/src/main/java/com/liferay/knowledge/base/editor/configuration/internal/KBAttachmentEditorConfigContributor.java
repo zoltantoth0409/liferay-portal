@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.ResourceBundleLoaderUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -185,8 +184,14 @@ public class KBAttachmentEditorConfigContributor
 				ResourceBundleUtil.getString(
 					resourceBundle, "article-attachments"));
 
+		List<ItemSelectorReturnType> uploadDesiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		uploadDesiredItemSelectorReturnTypes.add(
+			new FileEntryItemSelectorReturnType());
+
 		uploadItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new FileEntryItemSelectorReturnType()));
+			uploadDesiredItemSelectorReturnTypes);
 
 		return uploadItemSelectorCriterion;
 	}
@@ -195,8 +200,13 @@ public class KBAttachmentEditorConfigContributor
 		ItemSelectorCriterion urlItemSelectorCriterion =
 			new URLItemSelectorCriterion();
 
+		List<ItemSelectorReturnType> urlDesiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		urlDesiredItemSelectorReturnTypes.add(new URLItemSelectorReturnType());
+
 		urlItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new URLItemSelectorReturnType()));
+			urlDesiredItemSelectorReturnTypes);
 
 		return urlItemSelectorCriterion;
 	}

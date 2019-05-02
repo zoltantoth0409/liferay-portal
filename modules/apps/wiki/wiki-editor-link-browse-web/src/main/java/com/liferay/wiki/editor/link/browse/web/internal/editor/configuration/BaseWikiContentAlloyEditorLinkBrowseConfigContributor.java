@@ -28,7 +28,6 @@ import com.liferay.wiki.item.selector.criterion.WikiAttachmentItemSelectorCriter
 import com.liferay.wiki.item.selector.criterion.WikiPageItemSelectorCriterion;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -137,8 +136,13 @@ public abstract class BaseWikiContentAlloyEditorLinkBrowseConfigContributor
 		WikiAttachmentItemSelectorCriterion itemSelectorCriterion =
 			new WikiAttachmentItemSelectorCriterion(wikiPageResourcePrimKey);
 
+		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		desiredItemSelectorReturnTypes.add(new URLItemSelectorReturnType());
+
 		itemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new URLItemSelectorReturnType()));
+			desiredItemSelectorReturnTypes);
 
 		return itemSelectorCriterion;
 	}
@@ -150,8 +154,13 @@ public abstract class BaseWikiContentAlloyEditorLinkBrowseConfigContributor
 			new WikiPageItemSelectorCriterion(
 				nodeId, WorkflowConstants.STATUS_APPROVED);
 
+		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		desiredItemSelectorReturnTypes.add(getItemSelectorReturnType());
+
 		itemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(getItemSelectorReturnType()));
+			desiredItemSelectorReturnTypes);
 
 		return itemSelectorCriterion;
 	}

@@ -25,6 +25,7 @@ import com.liferay.fragment.service.FragmentEntryServiceUtil;
 import com.liferay.fragment.util.FragmentEntryRenderUtil;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;
+import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
 import com.liferay.item.selector.criteria.URLItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
@@ -48,8 +49,9 @@ import com.liferay.portal.kernel.util.PrefsParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.template.soy.utils.SoyContext;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
@@ -133,8 +135,13 @@ public class FragmentEntryDisplayContext {
 		FragmentItemSelectorCriterion fragmentItemSelectorCriterion =
 			new FragmentItemSelectorCriterion();
 
+		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		desiredItemSelectorReturnTypes.add(new UUIDItemSelectorReturnType());
+
 		fragmentItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new UUIDItemSelectorReturnType()));
+			desiredItemSelectorReturnTypes);
 
 		PortletURL itemSelectorURL = itemSelector.getItemSelectorURL(
 			RequestBackedPortletURLFactoryUtil.create(_renderRequest),
@@ -245,8 +252,14 @@ public class FragmentEntryDisplayContext {
 		ItemSelectorCriterion imageItemSelectorCriterion =
 			new ImageItemSelectorCriterion();
 
+		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		desiredItemSelectorReturnTypes.add(
+			new FileEntryItemSelectorReturnType());
+
 		imageItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new FileEntryItemSelectorReturnType()));
+			desiredItemSelectorReturnTypes);
 
 		return imageItemSelectorCriterion;
 	}
@@ -291,8 +304,13 @@ public class FragmentEntryDisplayContext {
 		ItemSelectorCriterion urlItemSelectorCriterion =
 			new URLItemSelectorCriterion();
 
+		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		desiredItemSelectorReturnTypes.add(new URLItemSelectorReturnType());
+
 		urlItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new URLItemSelectorReturnType()));
+			desiredItemSelectorReturnTypes);
 
 		return urlItemSelectorCriterion;
 	}

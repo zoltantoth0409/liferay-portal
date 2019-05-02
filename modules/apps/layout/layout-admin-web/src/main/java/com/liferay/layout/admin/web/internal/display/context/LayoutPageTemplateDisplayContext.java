@@ -19,6 +19,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;
+import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
 import com.liferay.item.selector.criteria.upload.criterion.UploadItemSelectorCriterion;
 import com.liferay.layout.admin.constants.LayoutAdminPortletKeys;
@@ -50,7 +51,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -260,8 +261,14 @@ public class LayoutPageTemplateDisplayContext {
 				UploadServletRequestConfigurationHelperUtil.getMaxSize(),
 				_layoutAdminWebConfiguration.thumbnailExtensions());
 
+		List<ItemSelectorReturnType> uploadDesiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		uploadDesiredItemSelectorReturnTypes.add(
+			new FileEntryItemSelectorReturnType());
+
 		uploadItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new FileEntryItemSelectorReturnType()));
+			uploadDesiredItemSelectorReturnTypes);
 
 		return _itemSelector.getItemSelectorURL(
 			RequestBackedPortletURLFactoryUtil.create(_request),

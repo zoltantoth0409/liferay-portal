@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
 import com.liferay.portlet.LiferayPortletUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.portlet.PortletURL;
@@ -60,8 +59,15 @@ public class JournalItemSelectorHelper {
 		ItemSelectorCriterion fileItemSelectorCriterion =
 			new FileItemSelectorCriterion();
 
+		List<ItemSelectorReturnType>
+			fileItemSelectorCriterionDesiredItemSelectorReturnTypes =
+				new ArrayList<>();
+
+		fileItemSelectorCriterionDesiredItemSelectorReturnTypes.add(
+			new FileEntryItemSelectorReturnType());
+
 		fileItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new FileEntryItemSelectorReturnType()));
+			fileItemSelectorCriterionDesiredItemSelectorReturnTypes);
 
 		LiferayRenderRequest liferayRenderRequest =
 			(LiferayRenderRequest)LiferayPortletUtil.getLiferayPortletRequest(

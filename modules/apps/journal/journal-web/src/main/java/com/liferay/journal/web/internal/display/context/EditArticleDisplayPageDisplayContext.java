@@ -26,6 +26,7 @@ import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalServiceUtil;
 import com.liferay.item.selector.ItemSelector;
+import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
 import com.liferay.journal.constants.JournalWebKeys;
 import com.liferay.journal.model.JournalArticle;
@@ -53,7 +54,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -254,8 +255,14 @@ public class EditArticleDisplayPageDisplayContext {
 		assetDisplayPageSelectorCriterion.setClassTypeId(
 			ddmStructure.getStructureId());
 
+		List<ItemSelectorReturnType>
+			desiredAssetDisplayPageItemSelectorReturnTypes = new ArrayList<>();
+
+		desiredAssetDisplayPageItemSelectorReturnTypes.add(
+			new UUIDItemSelectorReturnType());
+
 		assetDisplayPageSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new UUIDItemSelectorReturnType()));
+			desiredAssetDisplayPageItemSelectorReturnTypes);
 
 		LayoutItemSelectorCriterion layoutItemSelectorCriterion =
 			new LayoutItemSelectorCriterion();
@@ -263,8 +270,13 @@ public class EditArticleDisplayPageDisplayContext {
 		layoutItemSelectorCriterion.setCheckDisplayPage(true);
 		layoutItemSelectorCriterion.setShowHiddenPages(true);
 
+		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		desiredItemSelectorReturnTypes.add(new UUIDItemSelectorReturnType());
+
 		layoutItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
-			Arrays.asList(new UUIDItemSelectorReturnType()));
+			desiredItemSelectorReturnTypes);
 
 		String eventName =
 			_liferayPortletResponse.getNamespace() + "selectDisplayPage";
