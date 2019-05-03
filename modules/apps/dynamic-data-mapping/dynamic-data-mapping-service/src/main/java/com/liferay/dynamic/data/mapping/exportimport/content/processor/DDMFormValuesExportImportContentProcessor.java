@@ -303,16 +303,17 @@ public class DDMFormValuesExportImportContentProcessor
 			long newClassPK = MapUtil.getLong(classPKs, classPK);
 
 			if (newClassPK > 0) {
-				Element disposableElement =
-					portletDataContext.getReferenceElement(
-						_stagedModel, DLFileEntry.class, (Serializable)classPK);
-
 				try {
 					return _dlAppLocalService.getFileEntry(newClassPK);
 				}
 				catch (NoSuchFileEntryException nsfee) {
+					Element referenceElement =
+						portletDataContext.getReferenceElement(
+							_stagedModel, DLFileEntry.class,
+							(Serializable)classPK);
+
 					if (PortletDataContext.REFERENCE_TYPE_DEPENDENCY_DISPOSABLE.
-							equals(disposableElement.attribute("type"))) {
+							equals(referenceElement.attributeValue("type"))) {
 
 						if (_log.isWarnEnabled()) {
 							_log.warn(
@@ -514,18 +515,18 @@ public class DDMFormValuesExportImportContentProcessor
 			long newClassPK = MapUtil.getLong(classPKs, classPK);
 
 			if (newClassPK > 0) {
-				Element disposableElement =
-					_portletDataContext.getReferenceElement(
-						_stagedModel, JournalArticle.class,
-						(Serializable)classPK);
-
 				try {
 					return _journalArticleLocalService.getLatestArticle(
 						newClassPK);
 				}
 				catch (NoSuchFileEntryException nsfee) {
+					Element referenceElement =
+						_portletDataContext.getReferenceElement(
+							_stagedModel, JournalArticle.class,
+							(Serializable)classPK);
+
 					if (PortletDataContext.REFERENCE_TYPE_DEPENDENCY_DISPOSABLE.
-							equals(disposableElement.attribute("type"))) {
+							equals(referenceElement.attributeValue("type"))) {
 
 						if (_log.isWarnEnabled()) {
 							_log.warn(
@@ -551,11 +552,8 @@ public class DDMFormValuesExportImportContentProcessor
 
 			groupId = MapUtil.getLong(groupIds, groupId);
 
-			JournalArticle journalArticle =
-				_journalArticleLocalService.fetchJournalArticleByUuidAndGroupId(
-					uuid, groupId);
-
-			return journalArticle;
+			return _journalArticleLocalService.
+				fetchJournalArticleByUuidAndGroupId(uuid, groupId);
 		}
 
 		private final PortletDataContext _portletDataContext;
