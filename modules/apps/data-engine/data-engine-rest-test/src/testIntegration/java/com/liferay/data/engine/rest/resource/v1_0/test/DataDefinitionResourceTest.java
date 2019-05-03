@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.RoleConstants;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.RoleTestUtil;
+import com.liferay.portal.kernel.test.util.TestPropsValues;
 
 import java.util.HashMap;
 
@@ -34,6 +35,13 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class DataDefinitionResourceTest
 	extends BaseDataDefinitionResourceTestCase {
+
+	@Override
+	public void setUp() throws Exception {
+		super.setUp();
+
+		_userId = TestPropsValues.getUserId();
+	}
 
 	@Override
 	public void testPostDataDefinitionDataDefinitionPermission()
@@ -74,7 +82,7 @@ public class DataDefinitionResourceTest
 
 	@Override
 	protected String[] getAdditionalAssertFieldNames() {
-		return new String[] {"name"};
+		return new String[] {"name", "userId"};
 	}
 
 	@Override
@@ -87,10 +95,13 @@ public class DataDefinitionResourceTest
 					}
 				};
 				siteId = testGroup.getGroupId();
+				userId = _userId;
 			}
 		};
 	}
 
 	private static final String _OPERATION_SAVE_PERMISSION = "save";
+
+	private long _userId;
 
 }
