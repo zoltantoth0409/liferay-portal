@@ -70,6 +70,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 				}
 
 				String title = curArticle.getTitle(locale);
+				DDMStructure ddmStructure = curArticle.getDDMStructure();
 
 				if (Validator.isNull(title)) {
 					title = curArticle.getTitle(LocaleUtil.fromLanguageId(curArticle.getDefaultLanguageId()));
@@ -243,7 +244,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 						<liferay-ui:search-container-column-text
 							cssClass="table-cell-expand-smallest table-cell-minw-100"
 							name="type"
-							value="<%= HtmlUtil.escape(title) %>"
+							value="<%= HtmlUtil.escape(ddmStructure.getName(locale)) %>"
 						/>
 
 						<c:if test="<%= journalDisplayContext.isShowEditActions() %>">
