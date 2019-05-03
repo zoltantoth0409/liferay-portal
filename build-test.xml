@@ -1250,7 +1250,9 @@ war.path=${app.server.portal.dir}/</echo>
 		<attribute name="task" />
 
 		<sequential>
-			<update-gradle-properties />
+			<propertyfile file="${project.dir}/.gradle/gradle.properties">
+				<entry key="sdk.dir" value="${sdk.dir}" />
+			</propertyfile>
 
 			<if>
 				<equals arg1="${test.poshi.runner.local.release}" arg2="true" />
