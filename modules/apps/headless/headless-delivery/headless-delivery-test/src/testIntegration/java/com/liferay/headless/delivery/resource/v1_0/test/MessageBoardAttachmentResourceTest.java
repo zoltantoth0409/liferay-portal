@@ -19,7 +19,7 @@ import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardAttachment;
 import com.liferay.headless.delivery.client.serdes.v1_0.MessageBoardAttachmentSerDes;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.model.MBThread;
-import com.liferay.message.boards.test.util.MBTestUtil;
+import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -50,10 +50,11 @@ public class MessageBoardAttachmentResourceTest
 
 		serviceContext.setScopeGroupId(testGroup.getGroupId());
 
-		MBMessage mbMessage = MBTestUtil.addMessage(
-			testGroup.getGroupId(),
+		MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
 			UserLocalServiceUtil.getDefaultUserId(testGroup.getCompanyId()),
-			RandomTestUtil.randomString(), RandomTestUtil.randomString());
+			RandomTestUtil.randomString(), testGroup.getGroupId(), 0,
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
+			new ServiceContext());
 
 		_mbThread = mbMessage.getThread();
 	}
