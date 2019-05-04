@@ -28,7 +28,7 @@ import com.liferay.asset.kernel.service.AssetLinkLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.document.library.util.DLURLHelper;
+import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.headless.delivery.dto.v1_0.AdaptedImage;
 import com.liferay.headless.delivery.dto.v1_0.Document;
 import com.liferay.headless.delivery.dto.v1_0.TaxonomyCategory;
@@ -85,7 +85,7 @@ public class DocumentDTOConverter implements DTOConverter {
 					_ratingsStatsLocalService.fetchStats(
 						DLFileEntry.class.getName(),
 						fileEntry.getFileEntryId()));
-				contentUrl = _dlURLHelper.getPreviewURL(
+				contentUrl = DLUtil.getPreviewURL(
 					fileEntry, fileVersion, null, "");
 				creator = CreatorUtil.toCreator(_portal, user);
 				dateCreated = fileEntry.getCreateDate();
@@ -201,9 +201,6 @@ public class DocumentDTOConverter implements DTOConverter {
 
 	@Reference
 	private DLAppService _dlAppService;
-
-	@Reference
-	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private Portal _portal;

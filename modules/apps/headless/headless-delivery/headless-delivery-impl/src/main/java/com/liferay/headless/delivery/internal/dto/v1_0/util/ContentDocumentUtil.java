@@ -14,7 +14,7 @@
 
 package com.liferay.headless.delivery.internal.dto.v1_0.util;
 
-import com.liferay.document.library.util.DLURLHelper;
+import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.headless.delivery.dto.v1_0.ContentDocument;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 
@@ -23,13 +23,12 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
  */
 public class ContentDocumentUtil {
 
-	public static ContentDocument toContentDocument(
-			DLURLHelper dlURLHelper, FileEntry fileEntry)
+	public static ContentDocument toContentDocument(FileEntry fileEntry)
 		throws Exception {
 
 		return new ContentDocument() {
 			{
-				contentUrl = dlURLHelper.getPreviewURL(
+				contentUrl = DLUtil.getPreviewURL(
 					fileEntry, fileEntry.getFileVersion(), null, "", false,
 					false);
 				description = fileEntry.getDescription();

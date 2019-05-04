@@ -20,7 +20,6 @@ import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.asset.kernel.service.AssetLinkLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldType;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
@@ -109,9 +108,9 @@ public class StructuredContentDTOConverter implements DTOConverter {
 						journalArticle.getResourcePrimKey()));
 				contentFields = _toContentFields(
 					journalArticle, dtoConverterContext.getLocale(),
-					_dlAppService, _dlURLHelper,
-					_fieldsToDDMFormValuesConverter, _journalArticleService,
-					_journalConverter, _layoutLocalService);
+					_dlAppService, _fieldsToDDMFormValuesConverter,
+					_journalArticleService, _journalConverter,
+					_layoutLocalService);
 				contentStructureId = ddmStructure.getStructureId();
 				creator = CreatorUtil.toCreator(
 					_portal,
@@ -163,7 +162,7 @@ public class StructuredContentDTOConverter implements DTOConverter {
 
 	private ContentField _toContentField(
 			DDMFormFieldValue ddmFormFieldValue, Locale locale,
-			DLAppService dlAppService, DLURLHelper dlURLHelper,
+			DLAppService dlAppService,
 			JournalArticleService journalArticleService,
 			LayoutLocalService layoutLocalService)
 		throws Exception {
@@ -179,20 +178,20 @@ public class StructuredContentDTOConverter implements DTOConverter {
 				nestedFields = TransformUtil.transformToArray(
 					ddmFormFieldValue.getNestedDDMFormFieldValues(),
 					value -> _toContentField(
-						value, locale, dlAppService, dlURLHelper,
-						journalArticleService, layoutLocalService),
+						value, locale, dlAppService, journalArticleService,
+						layoutLocalService),
 					ContentField.class);
 				repeatable = ddmFormField.isRepeatable();
 				value = _toValue(
-					ddmFormFieldValue, dlAppService, dlURLHelper,
-					journalArticleService, layoutLocalService, locale);
+					ddmFormFieldValue, dlAppService, journalArticleService,
+					layoutLocalService, locale);
 			}
 		};
 	}
 
 	private ContentField[] _toContentFields(
 			JournalArticle journalArticle, Locale locale,
-			DLAppService dlAppService, DLURLHelper dlURLHelper,
+			DLAppService dlAppService,
 			FieldsToDDMFormValuesConverter fieldsToDDMFormValuesConverter,
 			JournalArticleService journalArticleService,
 			JournalConverter journalConverter,
@@ -210,8 +209,8 @@ public class StructuredContentDTOConverter implements DTOConverter {
 		return TransformUtil.transformToArray(
 			ddmFormValues.getDDMFormFieldValues(),
 			aDDMFormFieldValue -> _toContentField(
-				aDDMFormFieldValue, locale, dlAppService, dlURLHelper,
-				journalArticleService, layoutLocalService),
+				aDDMFormFieldValue, locale, dlAppService, journalArticleService,
+				layoutLocalService),
 			ContentField.class);
 	}
 
@@ -258,7 +257,6 @@ public class StructuredContentDTOConverter implements DTOConverter {
 
 	private Value _toValue(
 			DDMFormFieldValue ddmFormFieldValue, DLAppService dlAppService,
-			DLURLHelper dlURLHelper,
 			JournalArticleService journalArticleService,
 			LayoutLocalService layoutLocalService, Locale locale)
 		throws Exception {
@@ -298,8 +296,7 @@ public class StructuredContentDTOConverter implements DTOConverter {
 
 			return new Value() {
 				{
-					document = ContentDocumentUtil.toContentDocument(
-						dlURLHelper, fileEntry);
+					document = ContentDocumentUtil.toContentDocument(fileEntry);
 				}
 			};
 		}
@@ -336,8 +333,7 @@ public class StructuredContentDTOConverter implements DTOConverter {
 
 			return new Value() {
 				{
-					image = ContentDocumentUtil.toContentDocument(
-						dlURLHelper, fileEntry);
+					image = ContentDocumentUtil.toContentDocument(fileEntry);
 
 					image.setDescription(jsonObject.getString("alt"));
 				}
@@ -420,9 +416,6 @@ public class StructuredContentDTOConverter implements DTOConverter {
 
 	@Reference
 	private DLAppService _dlAppService;
-
-	@Reference
-	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private FieldsToDDMFormValuesConverter _fieldsToDDMFormValuesConverter;

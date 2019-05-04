@@ -15,7 +15,6 @@
 package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceService;
 import com.liferay.headless.form.dto.v1_0.Form;
@@ -89,7 +88,6 @@ public class FormResourceImpl extends BaseFormResourceImpl {
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
 		return FormDocumentUtil.toFormDocument(
-			_dlurlHelper,
 			_dlAppService.addFileEntry(
 				ddmFormInstance.getGroupId(), folderId,
 				binaryFile.getFileName(), binaryFile.getContentType(),
@@ -132,9 +130,6 @@ public class FormResourceImpl extends BaseFormResourceImpl {
 
 	@Reference
 	private DLAppService _dlAppService;
-
-	@Reference
-	private DLURLHelper _dlurlHelper;
 
 	@Reference
 	private Portal _portal;

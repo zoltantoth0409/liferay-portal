@@ -15,7 +15,6 @@
 package com.liferay.headless.form.internal.dto.v1_0.util;
 
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord;
 import com.liferay.dynamic.data.mapping.model.Value;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
@@ -42,8 +41,8 @@ public class FormRecordUtil {
 
 	public static FormRecord toFormRecord(
 			DDMFormInstanceRecord ddmFormInstanceRecord,
-			DLAppService dlAppService, DLURLHelper dlurlHelper, Locale locale,
-			Portal portal, UserLocalService userLocalService)
+			DLAppService dlAppService, Locale locale, Portal portal,
+			UserLocalService userLocalService)
 		throws Exception {
 
 		DDMFormValues ddmFormValues = ddmFormInstanceRecord.getDDMFormValues();
@@ -72,8 +71,7 @@ public class FormRecordUtil {
 						return new FieldValue() {
 							{
 								formDocument = _toFormDocument(
-									dlAppService, dlurlHelper, locale,
-									localizedValue);
+									dlAppService, locale, localizedValue);
 								name = ddmFormFieldValue.getName();
 								value = localizedValue.getString(locale);
 							}
@@ -86,8 +84,7 @@ public class FormRecordUtil {
 	}
 
 	private static FormDocument _toFormDocument(
-			DLAppService dlAppService, DLURLHelper dlurlHelper, Locale locale,
-			Value localizedValue)
+			DLAppService dlAppService, Locale locale, Value localizedValue)
 		throws Exception {
 
 		FileEntry fileEntry = null;
@@ -112,7 +109,7 @@ public class FormRecordUtil {
 			return null;
 		}
 
-		return FormDocumentUtil.toFormDocument(dlurlHelper, fileEntry);
+		return FormDocumentUtil.toFormDocument(fileEntry);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(FormRecordUtil.class);

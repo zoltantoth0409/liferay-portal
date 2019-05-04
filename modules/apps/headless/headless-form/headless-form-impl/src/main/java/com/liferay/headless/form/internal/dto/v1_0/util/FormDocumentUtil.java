@@ -14,7 +14,7 @@
 
 package com.liferay.headless.form.internal.dto.v1_0.util;
 
-import com.liferay.document.library.util.DLURLHelper;
+import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -24,15 +24,14 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
  */
 public class FormDocumentUtil {
 
-	public static FormDocument toFormDocument(
-			DLURLHelper dlurlHelper, FileEntry fileEntry)
+	public static FormDocument toFormDocument(FileEntry fileEntry)
 		throws Exception {
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
 		return new FormDocument() {
 			{
-				contentUrl = dlurlHelper.getPreviewURL(
+				contentUrl = DLUtil.getPreviewURL(
 					fileEntry, fileVersion, null, "");
 				encodingFormat = fileEntry.getMimeType();
 				fileExtension = fileEntry.getExtension();

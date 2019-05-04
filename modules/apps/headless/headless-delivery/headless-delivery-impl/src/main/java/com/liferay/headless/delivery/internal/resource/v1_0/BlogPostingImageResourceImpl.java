@@ -17,7 +17,7 @@ package com.liferay.headless.delivery.internal.resource.v1_0;
 import com.liferay.blogs.service.BlogsEntryService;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.document.library.util.DLURLHelper;
+import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.headless.delivery.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.delivery.internal.odata.entity.v1_0.BlogPostingImageEntityModel;
@@ -159,7 +159,7 @@ public class BlogPostingImageResourceImpl
 
 		return new BlogPostingImage() {
 			{
-				contentUrl = _dlURLHelper.getPreviewURL(
+				contentUrl = DLUtil.getPreviewURL(
 					fileEntry, fileEntry.getFileVersion(), null, "");
 				encodingFormat = fileEntry.getMimeType();
 				fileExtension = fileEntry.getExtension();
@@ -179,7 +179,5 @@ public class BlogPostingImageResourceImpl
 	@Reference
 	private DLAppService _dlAppService;
 
-	@Reference
-	private DLURLHelper _dlURLHelper;
 
 }

@@ -22,7 +22,7 @@ import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryService;
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.document.library.util.DLURLHelper;
+import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.headless.delivery.dto.v1_0.BlogPosting;
 import com.liferay.headless.delivery.dto.v1_0.Image;
 import com.liferay.headless.delivery.dto.v1_0.TaxonomyCategory;
@@ -121,7 +121,7 @@ public class BlogPostingDTOConverter implements DTOConverter {
 		return new Image() {
 			{
 				caption = blogsEntry.getCoverImageCaption();
-				contentUrl = _dlURLHelper.getPreviewURL(
+				contentUrl = DLUtil.getPreviewURL(
 					fileEntry, fileEntry.getFileVersion(), null, "", false,
 					false);
 				imageId = coverImageFileEntryId;
@@ -149,9 +149,6 @@ public class BlogPostingDTOConverter implements DTOConverter {
 
 	@Reference
 	private DLAppService _dlAppService;
-
-	@Reference
-	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private Portal _portal;

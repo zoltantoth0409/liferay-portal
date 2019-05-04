@@ -15,7 +15,6 @@
 package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
@@ -94,7 +93,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 
 		return FormRecordUtil.toFormRecord(
 			ddmFormInstanceRecordVersion.getFormInstanceRecord(), _dlAppService,
-			_dlurlHelper, contextAcceptLanguage.getPreferredLocale(), _portal,
+			contextAcceptLanguage.getPreferredLocale(), _portal,
 			_userLocalService);
 	}
 
@@ -110,7 +109,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 					pagination.getStartPosition(), pagination.getEndPosition(),
 					null),
 				formRecord -> FormRecordUtil.toFormRecord(
-					formRecord, _dlAppService, _dlurlHelper,
+					formRecord, _dlAppService,
 					contextAcceptLanguage.getPreferredLocale(), _portal,
 					_userLocalService)),
 			pagination,
@@ -121,8 +120,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 	public FormRecord getFormRecord(Long formRecordId) throws Exception {
 		return FormRecordUtil.toFormRecord(
 			_ddmFormInstanceRecordService.getFormInstanceRecord(formRecordId),
-			_dlAppService, _dlurlHelper,
-			contextAcceptLanguage.getPreferredLocale(), _portal,
+			_dlAppService, contextAcceptLanguage.getPreferredLocale(), _portal,
 			_userLocalService);
 	}
 
@@ -144,8 +142,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 				ddmFormInstance.getGroupId(),
 				ddmFormInstance.getFormInstanceId(), ddmFormValues,
 				_createServiceContext(formRecord.getDraft())),
-			_dlAppService, _dlurlHelper,
-			contextAcceptLanguage.getPreferredLocale(), _portal,
+			_dlAppService, contextAcceptLanguage.getPreferredLocale(), _portal,
 			_userLocalService);
 	}
 
@@ -169,8 +166,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 			_ddmFormInstanceRecordService.updateFormInstanceRecord(
 				formRecordId, false, ddmFormValues,
 				_createServiceContext(formRecord.getDraft())),
-			_dlAppService, _dlurlHelper,
-			contextAcceptLanguage.getPreferredLocale(), _portal,
+			_dlAppService, contextAcceptLanguage.getPreferredLocale(), _portal,
 			_userLocalService);
 	}
 
@@ -363,9 +359,6 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 
 	@Reference
 	private DLAppService _dlAppService;
-
-	@Reference
-	private DLURLHelper _dlurlHelper;
 
 	@Context
 	private HttpServletRequest _httpServletRequest;

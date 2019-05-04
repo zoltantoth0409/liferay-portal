@@ -14,7 +14,7 @@
 
 package com.liferay.headless.delivery.internal.resource.v1_0;
 
-import com.liferay.document.library.util.DLURLHelper;
+import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.headless.delivery.dto.v1_0.KnowledgeBaseAttachment;
 import com.liferay.headless.delivery.resource.v1_0.KnowledgeBaseAttachmentResource;
 import com.liferay.knowledge.base.constants.KBConstants;
@@ -109,7 +109,7 @@ public class KnowledgeBaseAttachmentResourceImpl
 
 		return new KnowledgeBaseAttachment() {
 			{
-				contentUrl = _dlURLHelper.getPreviewURL(
+				contentUrl = DLUtil.getPreviewURL(
 					fileEntry, fileEntry.getFileVersion(), null, "", false,
 					false);
 				encodingFormat = fileEntry.getMimeType();
@@ -120,9 +120,6 @@ public class KnowledgeBaseAttachmentResourceImpl
 			}
 		};
 	}
-
-	@Reference
-	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private KBArticleService _kbArticleService;

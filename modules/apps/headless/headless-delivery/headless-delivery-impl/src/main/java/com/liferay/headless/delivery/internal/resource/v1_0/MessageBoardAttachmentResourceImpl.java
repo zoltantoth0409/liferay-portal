@@ -14,7 +14,7 @@
 
 package com.liferay.headless.delivery.internal.resource.v1_0;
 
-import com.liferay.document.library.util.DLURLHelper;
+import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.headless.delivery.dto.v1_0.MessageBoardAttachment;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardAttachmentResource;
 import com.liferay.message.boards.constants.MBConstants;
@@ -149,7 +149,7 @@ public class MessageBoardAttachmentResourceImpl
 
 		return new MessageBoardAttachment() {
 			{
-				contentUrl = _dlURLHelper.getPreviewURL(
+				contentUrl = DLUtil.getPreviewURL(
 					fileEntry, fileEntry.getFileVersion(), null, "", false,
 					false);
 				encodingFormat = fileEntry.getMimeType();
@@ -160,9 +160,6 @@ public class MessageBoardAttachmentResourceImpl
 			}
 		};
 	}
-
-	@Reference
-	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private MBMessageService _mbMessageService;

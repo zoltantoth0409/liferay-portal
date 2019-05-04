@@ -15,7 +15,6 @@
 package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.headless.form.internal.dto.v1_0.util.FormDocumentUtil;
 import com.liferay.headless.form.resource.v1_0.FormDocumentResource;
@@ -42,13 +41,10 @@ public class FormDocumentResourceImpl extends BaseFormDocumentResourceImpl {
 	@Override
 	public FormDocument getFormDocument(Long formDocumentId) throws Exception {
 		return FormDocumentUtil.toFormDocument(
-			_dlurlHelper, _dlAppService.getFileEntry(formDocumentId));
+			_dlAppService.getFileEntry(formDocumentId));
 	}
 
 	@Reference
 	private DLAppService _dlAppService;
-
-	@Reference
-	private DLURLHelper _dlurlHelper;
 
 }
