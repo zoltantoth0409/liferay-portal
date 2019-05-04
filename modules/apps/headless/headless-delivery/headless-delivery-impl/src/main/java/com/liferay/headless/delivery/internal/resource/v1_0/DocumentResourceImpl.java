@@ -18,7 +18,6 @@ import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
-import com.liferay.document.library.kernel.model.DLVersionNumberIncrease;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.headless.common.spi.resource.SPIRatingResource;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
@@ -200,8 +199,7 @@ public class DocumentResourceImpl
 			).orElse(
 				existingFileEntry.getDescription()
 			),
-			null, DLVersionNumberIncrease.AUTOMATIC,
-			binaryFile.getInputStream(), binaryFile.getSize(),
+			null, false, binaryFile.getInputStream(), binaryFile.getSize(),
 			ServiceContextUtil.createServiceContext(
 				keywords, categoryIds, existingFileEntry.getGroupId(),
 				documentOptional.map(
@@ -281,8 +279,7 @@ public class DocumentResourceImpl
 			).orElse(
 				null
 			),
-			null, DLVersionNumberIncrease.AUTOMATIC,
-			binaryFile.getInputStream(), binaryFile.getSize(),
+			null, false, binaryFile.getInputStream(), binaryFile.getSize(),
 			ServiceContextUtil.createServiceContext(
 				documentOptional.map(
 					Document::getKeywords
