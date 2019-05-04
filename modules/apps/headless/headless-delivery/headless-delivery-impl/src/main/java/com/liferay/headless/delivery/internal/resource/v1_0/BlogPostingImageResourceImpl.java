@@ -14,6 +14,7 @@
 
 package com.liferay.headless.delivery.internal.resource.v1_0;
 
+import com.liferay.blogs.service.BlogsEntryLocalService;
 import com.liferay.blogs.service.BlogsEntryService;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.service.DLAppService;
@@ -22,6 +23,7 @@ import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
 import com.liferay.headless.delivery.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.delivery.internal.odata.entity.v1_0.BlogPostingImageEntityModel;
 import com.liferay.headless.delivery.resource.v1_0.BlogPostingImageResource;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.search.Field;
@@ -39,6 +41,7 @@ import com.liferay.portal.vulcan.util.SearchUtil;
 import java.util.Optional;
 
 import javax.ws.rs.BadRequestException;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 
 import org.osgi.service.component.annotations.Component;
@@ -84,7 +87,8 @@ public class BlogPostingImageResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		Folder folder = _blogsEntryService.addAttachmentsFolder(siteId);
+		Folder folder = _blogsEntryLocalService.addAttachmentsFolder(
+			_user.getUserId(), siteId);
 
 		return SearchUtil.search(
 			booleanQuery -> {
@@ -107,7 +111,8 @@ public class BlogPostingImageResourceImpl
 			Long siteId, MultipartBody multipartBody)
 		throws Exception {
 
-		Folder folder = _blogsEntryService.addAttachmentsFolder(siteId);
+		Folder folder = _blogsEntryLocalService.addAttachmentsFolder(
+			_user.getUserId(), siteId);
 
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
@@ -142,8 +147,8 @@ public class BlogPostingImageResourceImpl
 	private FileEntry _getFileEntry(Long fileEntryId) throws Exception {
 		FileEntry fileEntry = _dlAppService.getFileEntry(fileEntryId);
 
-		Folder folder = _blogsEntryService.addAttachmentsFolder(
-			fileEntry.getGroupId());
+		Folder folder = _blogsEntryLocalService.addAttachmentsFolder(
+			_user.getUserId(), fileEntry.getGroupId());
 
 		if (fileEntry.getFolderId() != folder.getFolderId()) {
 			throw new BadRequestException(
@@ -174,10 +179,15 @@ public class BlogPostingImageResourceImpl
 		new BlogPostingImageEntityModel();
 
 	@Reference
+	private BlogsEntryLocalService _blogsEntryLocalService;
+
+	@Reference
 	private BlogsEntryService _blogsEntryService;
 
 	@Reference
 	private DLAppService _dlAppService;
 
+	@Context
+	private User _user;
 
 }
