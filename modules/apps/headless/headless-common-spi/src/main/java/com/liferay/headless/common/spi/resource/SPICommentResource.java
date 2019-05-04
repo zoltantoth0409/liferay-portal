@@ -191,7 +191,7 @@ public class SPICommentResource<T> {
 
 				booleanFilter.add(
 					new TermFilter(
-						"parentMessageId", String.valueOf(parentCommentId)),
+						"rootEntryClassPK", String.valueOf(parentCommentId)),
 					BooleanClauseOccur.MUST);
 			},
 			filter, MBMessage.class, search, pagination,
