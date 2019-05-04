@@ -54,9 +54,7 @@ Layout selLayout = layoutsAdminDisplayContext.getSelLayout();
 	<aui:select label="copy-from-page" name="copyLayoutId">
 
 		<%
-		List<LayoutDescription> layoutDescriptions = (List<LayoutDescription>)request.getAttribute(WebKeys.LAYOUT_DESCRIPTIONS);
-
-		for (LayoutDescription layoutDescription : layoutDescriptions) {
+		for (LayoutDescription layoutDescription : layoutsAdminDisplayContext.getLayoutDescriptions()) {
 			Layout layoutDescriptionLayout = LayoutLocalServiceUtil.fetchLayout(layoutDescription.getPlid());
 
 			if (layoutDescriptionLayout != null) {
