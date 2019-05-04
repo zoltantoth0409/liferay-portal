@@ -37,7 +37,6 @@ public class ExportImportProcessCallbackRegistryImpl
 	@Deprecated
 	@Override
 	public void registerCallback(Callable<?> callable) {
-		ExportImportProcessCallbackUtil.registerCallback(callable);
 	}
 
 	@Override
