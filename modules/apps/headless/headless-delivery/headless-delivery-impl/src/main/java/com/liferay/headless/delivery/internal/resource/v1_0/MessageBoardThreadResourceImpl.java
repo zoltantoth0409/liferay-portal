@@ -131,6 +131,9 @@ public class MessageBoardThreadResourceImpl
 						"categoryId",
 						String.valueOf(mbCategory.getCategoryId())),
 					BooleanClauseOccur.MUST);
+				booleanFilter.add(
+					new TermFilter("parentMessageId", "0"),
+					BooleanClauseOccur.MUST);
 			},
 			mbCategory.getGroupId(), search, filter, pagination, sorts);
 	}
@@ -171,6 +174,10 @@ public class MessageBoardThreadResourceImpl
 						new TermFilter(Field.CATEGORY_ID, "0"),
 						BooleanClauseOccur.MUST);
 				}
+
+				booleanFilter.add(
+					new TermFilter("parentMessageId", "0"),
+					BooleanClauseOccur.MUST);
 			},
 			siteId, search, filter, pagination, sorts);
 	}

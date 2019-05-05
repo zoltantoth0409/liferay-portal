@@ -258,7 +258,7 @@ public class MessageBoardMessageResourceImpl
 					BooleanClauseOccur.MUST_NOT);
 				booleanFilter.add(
 					new TermFilter(
-						"rootEntryClassPK",
+						"parentMessageId",
 						String.valueOf(messageBoardMessageId)),
 					BooleanClauseOccur.MUST);
 			},
