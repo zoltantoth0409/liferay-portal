@@ -30,7 +30,6 @@ import com.liferay.portlet.documentlibrary.util.test.DLAppTestUtil;
 
 import java.util.Objects;
 
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 /**
@@ -38,26 +37,6 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class CommentResourceTest extends BaseCommentResourceTestCase {
-
-	@Ignore
-	@Override
-	public void testGetCommentCommentsPage() {
-	}
-
-	@Ignore
-	@Override
-	public void testGetCommentCommentsPageWithFilterDateTimeEquals() {
-	}
-
-	@Ignore
-	@Override
-	public void testGetCommentCommentsPageWithPagination() {
-	}
-
-	@Ignore
-	@Override
-	public void testGetCommentCommentsPageWithSortDateTime() {
-	}
 
 	@Override
 	protected boolean equals(Comment comment1, Comment comment2) {
