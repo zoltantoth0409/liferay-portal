@@ -34,13 +34,11 @@ import com.liferay.portal.test.rule.Inject;
 
 import java.io.InputStream;
 
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 /**
  * @author Javier Gamarra
  */
-@Ignore
 @RunWith(Arquillian.class)
 public class ContentStructureResourceTest
 	extends BaseContentStructureResourceTestCase {
