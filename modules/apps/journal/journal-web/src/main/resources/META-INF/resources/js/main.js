@@ -269,17 +269,18 @@ AUI.add(
 
 						for (var editorKey in editorKeys) {
 							Liferay.componentReady(editorKeys[editorKey]).then(
-								function (key) {
+								function(key) {
 									if (key.getNativeEditor()._editor) {
 										instance._editorValues[key.getNativeEditor()._editor.name] = key.getHTML();
-									} else {
+									}
+else {
 										instance._editorValues[key.getNativeEditor().name] = key.getHTML();
 									}
 								}
 							);
 						}
 					},
-					
+
 					_updateStructureDefaultValues: function() {
 						var instance = this;
 
