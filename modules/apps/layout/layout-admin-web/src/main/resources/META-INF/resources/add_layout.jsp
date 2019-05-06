@@ -128,7 +128,7 @@ List<SiteNavigationMenu> autoSiteNavigationMenus = layoutsAdminDisplayContext.ge
 						new Liferay.Alert(
 							{
 								delay: {
-									hide: 500,
+									hide: 3000,
 									show: 0
 								},
 								duration: 500,
