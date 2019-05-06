@@ -675,9 +675,7 @@ definition {
 
 		User.logoutPG(specificURL = "http://www.able.com:9080");
 
-		// Workaround for LPS-94445
-
-		/*User.loginPG(
+		User.loginPG(
 			password = "test",
 			specificURL = "http://www.able.com:9080",
 			userEmailAddress = "ldapuseremail@liferay.com"
@@ -702,7 +700,7 @@ definition {
 			userFirstName = "ldapusergivenname",
 			userLastName = "ldapusersn",
 			userScreenName = "ldapusercn"
-		);*/
+		);
 	}
 
 	@priority = "4"
