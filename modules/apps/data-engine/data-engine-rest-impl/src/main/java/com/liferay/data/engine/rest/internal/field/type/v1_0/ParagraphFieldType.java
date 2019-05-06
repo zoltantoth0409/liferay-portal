@@ -16,7 +16,7 @@ package com.liferay.data.engine.rest.internal.field.type.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.internal.field.type.v1_0.util.CustomPropertiesUtil;
-import com.liferay.data.engine.rest.internal.util.LocalizationUtil;
+import com.liferay.data.engine.rest.internal.util.LocalizedValueUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.template.soy.data.SoyDataFactory;
 
@@ -50,7 +50,7 @@ public class ParagraphFieldType extends BaseFieldType {
 		dataDefinitionField.setCustomProperties(
 			CustomPropertiesUtil.add(
 				dataDefinitionField.getCustomProperties(), "text",
-				LocalizationUtil.toLocalizedValues(
+				LocalizedValueUtil.toLocalizedValues(
 					jsonObject.getJSONObject("text"))));
 
 		return dataDefinitionField;
@@ -62,7 +62,7 @@ public class ParagraphFieldType extends BaseFieldType {
 
 		return jsonObject.put(
 			"text",
-			LocalizationUtil.toJSONObject(
+			LocalizedValueUtil.toJSONObject(
 				CustomPropertiesUtil.getMap(
 					dataDefinitionField.getCustomProperties(), "text")));
 	}
@@ -71,7 +71,7 @@ public class ParagraphFieldType extends BaseFieldType {
 	protected void addContext(Map<String, Object> context) {
 		context.put(
 			"text",
-			LocalizationUtil.getLocalizedValue(
+			LocalizedValueUtil.getLocalizedValue(
 				httpServletRequest.getLocale(),
 				CustomPropertiesUtil.getMap(
 					dataDefinitionField.getCustomProperties(), "text")));

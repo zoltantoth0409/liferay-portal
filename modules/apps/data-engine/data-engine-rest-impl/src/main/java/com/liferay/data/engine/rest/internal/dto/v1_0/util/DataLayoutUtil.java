@@ -18,7 +18,7 @@ import com.liferay.data.engine.rest.dto.v1_0.DataLayout;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutColumn;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutPage;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayoutRow;
-import com.liferay.data.engine.rest.internal.util.LocalizationUtil;
+import com.liferay.data.engine.rest.internal.util.LocalizedValueUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -90,9 +90,9 @@ public class DataLayoutUtil {
 					jsonObject.getJSONArray("rows"),
 					rowJSONObject -> _toDataLayoutRow(rowJSONObject),
 					DataLayoutRow.class);
-				description = LocalizationUtil.toLocalizedValues(
+				description = LocalizedValueUtil.toLocalizedValues(
 					jsonObject.getJSONObject("description"));
-				title = LocalizationUtil.toLocalizedValues(
+				title = LocalizedValueUtil.toLocalizedValues(
 					jsonObject.getJSONObject("title"));
 			}
 		};
@@ -130,14 +130,14 @@ public class DataLayoutUtil {
 
 		return JSONUtil.put(
 			"description",
-			LocalizationUtil.toJSONObject(dataLayoutPage.getDescription())
+			LocalizedValueUtil.toJSONObject(dataLayoutPage.getDescription())
 		).put(
 			"rows",
 			JSONUtil.toJSONArray(
 				dataLayoutPage.getDataLayoutRows(),
 				dataLayoutRow -> _toJSONObject(dataLayoutRow))
 		).put(
-			"title", LocalizationUtil.toJSONObject(dataLayoutPage.getTitle())
+			"title", LocalizedValueUtil.toJSONObject(dataLayoutPage.getTitle())
 		);
 	}
 

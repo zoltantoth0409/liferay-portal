@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * @author Jeyvison Nascimento
  */
-public class LocalizationUtil {
+public class LocalizedValueUtil {
 
 	public static Object getLocalizedValue(
 		Locale locale, Map<String, Object> localizedValues) {
