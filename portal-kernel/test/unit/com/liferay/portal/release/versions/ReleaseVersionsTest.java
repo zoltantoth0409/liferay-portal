@@ -138,9 +138,9 @@ public class ReleaseVersionsTest {
 						return FileVisitResult.SKIP_SUBTREE;
 					}
 
-					Path bndBndPath = dirPath.resolve("bnd.bnd");
+					Path versionPath = dirPath.resolve("bnd.bnd");
 
-					if (Files.notExists(bndBndPath)) {
+					if (Files.notExists(versionPath)) {
 						return FileVisitResult.CONTINUE;
 					}
 
@@ -163,18 +163,18 @@ public class ReleaseVersionsTest {
 						return FileVisitResult.CONTINUE;
 					}
 
-					Path bndBndRelativePath = _portalPath.relativize(
-						bndBndPath);
+					Path versionRelativePath = _portalPath.relativize(
+						versionPath);
 
-					Path otherBndBndPath = otherPath.resolve(
-						bndBndRelativePath);
+					Path otherVersionPath = otherPath.resolve(
+						versionRelativePath);
 
-					if (Files.notExists(otherBndBndPath)) {
+					if (Files.notExists(otherVersionPath)) {
 						if (_log.isInfoEnabled()) {
 							_log.info(
 								StringBundler.concat(
 									"Ignoring ",
-									String.valueOf(bndBndRelativePath),
+									String.valueOf(versionRelativePath),
 									" as it does not exist in ",
 									String.valueOf(otherPath)));
 						}
@@ -183,7 +183,7 @@ public class ReleaseVersionsTest {
 					}
 
 					_checkReleaseVersion(
-						bndBndPath, otherBndBndPath, otherRelease, dirPath);
+						versionPath, otherVersionPath, otherRelease, dirPath);
 
 					return FileVisitResult.SKIP_SUBTREE;
 				}
@@ -192,12 +192,12 @@ public class ReleaseVersionsTest {
 	}
 
 	private void _checkReleaseVersion(
-			Path bndBndPath, Path otherBndBndPath, boolean otherRelease,
+			Path versionPath, Path otherVersionPath, boolean otherRelease,
 			Path dirPath)
 		throws IOException {
 
-		Properties bndProperties = _loadProperties(bndBndPath);
-		Properties otherBndProperties = _loadProperties(otherBndBndPath);
+		Properties bndProperties = _loadProperties(versionPath);
+		Properties otherBndProperties = _loadProperties(otherVersionPath);
 
 		String bundleSymbolicName = bndProperties.getProperty(
 			Constants.BUNDLE_SYMBOLICNAME);
@@ -207,10 +207,10 @@ public class ReleaseVersionsTest {
 		Assert.assertEquals(bundleSymbolicName, otherBundleSymbolicName);
 
 		ObjectValuePair<Version, Path> versionPathPair = _getVersion(
-			bndBndPath, bndProperties);
+			versionPath, bndProperties);
 
 		ObjectValuePair<Version, Path> otherVersionPathPair = _getVersion(
-			otherBndBndPath, otherBndProperties);
+			otherVersionPath, otherBndProperties);
 
 		ObjectValuePair<Version, Path> masterVersionPair = otherVersionPathPair;
 
