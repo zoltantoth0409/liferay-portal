@@ -137,7 +137,11 @@ public class StagedLayoutSetStagedModelDataHandler
 				layout.getSourcePrototypeLayoutUuid(),
 				layoutSetPrototype.getGroupId(), true);
 
-			if (sourcePrototypeLayout == null) {
+			if ((sourcePrototypeLayout == null) &&
+				_layoutLocalService.hasLayout(
+					layout.getUuid(), layout.getGroupId(),
+					layout.isPrivateLayout())) {
+
 				_layoutLocalService.deleteLayout(
 					layout, false,
 					ServiceContextThreadLocal.getServiceContext());
