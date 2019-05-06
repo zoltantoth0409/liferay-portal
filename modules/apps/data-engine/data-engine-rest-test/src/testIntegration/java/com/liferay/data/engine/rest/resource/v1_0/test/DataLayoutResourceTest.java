@@ -54,7 +54,6 @@ public class DataLayoutResourceTest extends BaseDataLayoutResourceTestCase {
 				dateModified = RandomTestUtil.nextDate();
 				defaultLanguageId = "en_US";
 				id = RandomTestUtil.randomLong();
-
 				name = new HashMap<String, Object>() {
 					{
 						put("en_US", RandomTestUtil.randomString());
