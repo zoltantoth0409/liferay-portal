@@ -28,7 +28,7 @@ import com.liferay.data.engine.rest.internal.field.type.v1_0.CheckboxMultipleFie
 import com.liferay.data.engine.rest.internal.field.type.v1_0.DateFieldType;
 import com.liferay.data.engine.rest.internal.field.type.v1_0.EditorFieldType;
 import com.liferay.data.engine.rest.internal.field.type.v1_0.FieldType;
-import com.liferay.data.engine.rest.internal.util.v1_0.LocalizationUtil;
+import com.liferay.data.engine.rest.internal.util.LocalizationUtil;
 import com.liferay.dynamic.data.mapping.model.DDMStructureLayout;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLayoutLocalService;

@@ -15,7 +15,7 @@
 package com.liferay.data.engine.rest.internal.field.type.v1_0.util;
 
 import com.liferay.data.engine.rest.internal.field.type.v1_0.DataFieldOption;
-import com.liferay.data.engine.rest.internal.util.v1_0.LocalizationUtil;
+import com.liferay.data.engine.rest.internal.util.LocalizationUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ListUtil;
