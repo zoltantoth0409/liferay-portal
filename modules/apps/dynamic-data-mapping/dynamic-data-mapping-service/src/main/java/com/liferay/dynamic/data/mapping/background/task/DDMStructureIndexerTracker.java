@@ -14,6 +14,7 @@
 
 package com.liferay.dynamic.data.mapping.background.task;
 
+import com.liferay.document.library.kernel.model.DLFileEntryMetadata;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
@@ -22,12 +23,14 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.DDMStructureIndexer;
-
 import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistry;
+
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Igor Fabiano Nazar
@@ -39,8 +42,14 @@ public class DDMStructureIndexerTracker {
 	public DDMStructureIndexer getDDMStructureIndexer(String className)
 		throws PortalException {
 
-		ServiceWrapper<Indexer> serviceWrapper =
-			_serviceTrackerMap.getService(className);
+		if (className.equals(DLFileEntryMetadata.class.getName())) {
+			Indexer<?> indexer = _indexerRegistry.nullSafeGetIndexer(className);
+
+			return (DDMStructureIndexer)indexer;
+		}
+
+		ServiceWrapper<Indexer> serviceWrapper = _serviceTrackerMap.getService(
+			className);
 
 		if (serviceWrapper == null) {
 			if (_log.isDebugEnabled()) {
@@ -50,19 +59,14 @@ public class DDMStructureIndexerTracker {
 			return null;
 		}
 
-		DDMStructureIndexer ddmStructureIndexer =
-			(DDMStructureIndexer) serviceWrapper.getService();
-
-		return ddmStructureIndexer;
+		return (DDMStructureIndexer)serviceWrapper.getService();
 	}
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, Indexer.class,
-			"ddm.structure.indexer.class.name",
-			ServiceTrackerCustomizerFactory.serviceWrapper(
-				bundleContext));
+			bundleContext, Indexer.class, "ddm.structure.indexer.class.name",
+			ServiceTrackerCustomizerFactory.serviceWrapper(bundleContext));
 	}
 
 	@Deactivate
@@ -70,9 +74,15 @@ public class DDMStructureIndexerTracker {
 		_serviceTrackerMap.close();
 	}
 
+	@Reference(unbind = "-")
+	protected void setIndexerRegistry(IndexerRegistry indexerRegistry) {
+		_indexerRegistry = indexerRegistry;
+	}
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		DDMStructureIndexerTracker.class);
 
+	private IndexerRegistry _indexerRegistry;
 	private ServiceTrackerMap<String, ServiceWrapper<Indexer>>
 		_serviceTrackerMap;
 
