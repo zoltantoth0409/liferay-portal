@@ -159,10 +159,6 @@ should define the generic type parameter like this:
 
     @param <T> the model's type
 
-See the
-[`BinaryFunction`](https://github.com/liferay/liferay-portal/blob/7.1.0-ga1/modules/apps/apio-architect/apio-architect-api/src/main/java/com/liferay/apio/architect/alias/BinaryFunction.java#L28)
-interface for the full example.
-
 ### @see tags
 
 Use `@see` tags to link other closely related classes whose Javadocs would give
