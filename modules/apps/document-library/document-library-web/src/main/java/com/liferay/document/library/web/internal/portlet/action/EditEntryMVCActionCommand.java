@@ -99,15 +99,14 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 	protected void checkInEntries(ActionRequest actionRequest)
 		throws Exception {
 
-		String changeLog = ParamUtil.getString(actionRequest, "changeLog");
+		long[] fileEntryIds = ParamUtil.getLongValues(
+			actionRequest, "rowIdsFileEntry");
 
 		DLVersionNumberIncrease dlVersionNumberIncrease =
 			DLVersionNumberIncrease.valueOf(
 				ParamUtil.getString(actionRequest, "versionIncrease"),
 				DLVersionNumberIncrease.MINOR);
-
-		long[] fileEntryIds = ParamUtil.getLongValues(
-			actionRequest, "rowIdsFileEntry");
+		String changeLog = ParamUtil.getString(actionRequest, "changeLog");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
