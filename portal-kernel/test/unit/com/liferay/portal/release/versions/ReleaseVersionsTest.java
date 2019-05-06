@@ -40,6 +40,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 
@@ -131,6 +132,12 @@ public class ReleaseVersionsTest {
 						return FileVisitResult.SKIP_SUBTREE;
 					}
 
+					String dirName = String.valueOf(dirPath.getFileName());
+
+					if (Objects.equals(dirName, "node_modules")) {
+						return FileVisitResult.SKIP_SUBTREE;
+					}
+
 					Path bndBndPath = dirPath.resolve("bnd.bnd");
 
 					if (Files.notExists(bndBndPath)) {
@@ -143,8 +150,6 @@ public class ReleaseVersionsTest {
 					if (Files.exists(lfrbuildRelengIgnorePath)) {
 						return FileVisitResult.CONTINUE;
 					}
-
-					String dirName = String.valueOf(dirPath.getFileName());
 
 					if (dirName.endsWith("-test") ||
 						dirName.endsWith("-test-api") ||
