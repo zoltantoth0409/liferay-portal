@@ -22,7 +22,7 @@ import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataLayoutUtil;
 import com.liferay.data.engine.rest.internal.model.InternalDataLayout;
 import com.liferay.data.engine.rest.internal.model.InternalDataRecordCollection;
 import com.liferay.data.engine.rest.internal.resource.v1_0.util.DataEnginePermissionUtil;
-import com.liferay.data.engine.rest.internal.util.LocalizationUtil;
+import com.liferay.data.engine.rest.internal.util.LocalizedValueUtil;
 import com.liferay.data.engine.rest.resource.v1_0.DataLayoutResource;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureLayout;
@@ -135,8 +135,9 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			_ddmStructureLayoutLocalService.addStructureLayout(
 				PrincipalThreadLocal.getUserId(), ddmStructure.getGroupId(),
 				_getDDMStructureVersionId(dataDefinitionId),
-				LocalizationUtil.toLocaleStringMap(dataLayout.getName()),
-				LocalizationUtil.toLocaleStringMap(dataLayout.getDescription()),
+				LocalizedValueUtil.toLocaleStringMap(dataLayout.getName()),
+				LocalizedValueUtil.toLocaleStringMap(
+					dataLayout.getDescription()),
 				DataLayoutUtil.toJSON(dataLayout), serviceContext);
 
 		dataLayout.setId(ddmStructureLayout.getStructureLayoutId());
@@ -231,8 +232,9 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			_ddmStructureLayoutLocalService.updateStructureLayout(
 				dataLayoutId,
 				_getDDMStructureVersionId(dataLayout.getDataDefinitionId()),
-				LocalizationUtil.toLocaleStringMap(dataLayout.getName()),
-				LocalizationUtil.toLocaleStringMap(dataLayout.getDescription()),
+				LocalizedValueUtil.toLocaleStringMap(dataLayout.getName()),
+				LocalizedValueUtil.toLocaleStringMap(
+					dataLayout.getDescription()),
 				DataLayoutUtil.toJSON(dataLayout), new ServiceContext()));
 	}
 
@@ -279,11 +281,11 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 		dataLayout.setDataDefinitionId(_getDDMStructureId(ddmStructureLayout));
 		dataLayout.setId(ddmStructureLayout.getStructureLayoutId());
 		dataLayout.setDescription(
-			LocalizationUtil.toStringObjectMap(
+			LocalizedValueUtil.toStringObjectMap(
 				ddmStructureLayout.getDescriptionMap()));
 		dataLayout.setDateModified(ddmStructureLayout.getModifiedDate());
 		dataLayout.setName(
-			LocalizationUtil.toStringObjectMap(
+			LocalizedValueUtil.toStringObjectMap(
 				ddmStructureLayout.getNameMap()));
 		dataLayout.setUserId(ddmStructureLayout.getUserId());
 

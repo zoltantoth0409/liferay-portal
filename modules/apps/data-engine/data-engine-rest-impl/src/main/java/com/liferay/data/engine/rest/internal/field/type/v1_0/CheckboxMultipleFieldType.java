@@ -17,7 +17,7 @@ package com.liferay.data.engine.rest.internal.field.type.v1_0;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.rest.internal.field.type.v1_0.util.CustomPropertiesUtil;
 import com.liferay.data.engine.rest.internal.field.type.v1_0.util.DataFieldOptionUtil;
-import com.liferay.data.engine.rest.internal.util.LocalizationUtil;
+import com.liferay.data.engine.rest.internal.util.LocalizedValueUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.template.soy.data.SoyDataFactory;
@@ -63,7 +63,7 @@ public class CheckboxMultipleFieldType extends BaseFieldType {
 				dataDefinitionField.getCustomProperties(), "showAsSwitcher",
 				jsonObject.getBoolean("showAsSwitcher")));
 		dataDefinitionField.setDefaultValue(
-			LocalizationUtil.toLocalizedValues(
+			LocalizedValueUtil.toLocalizedValues(
 				jsonObject.getJSONObject("predefinedValue")));
 
 		return dataDefinitionField;
@@ -84,7 +84,8 @@ public class CheckboxMultipleFieldType extends BaseFieldType {
 					dataDefinitionField.getCustomProperties(), "options"))
 		).put(
 			"predefinedValue",
-			LocalizationUtil.toJSONObject(dataDefinitionField.getDefaultValue())
+			LocalizedValueUtil.toJSONObject(
+				dataDefinitionField.getDefaultValue())
 		).put(
 			"showAsSwitcher",
 			CustomPropertiesUtil.getBoolean(
@@ -107,7 +108,7 @@ public class CheckboxMultipleFieldType extends BaseFieldType {
 				LanguageUtil.getLanguageId(httpServletRequest)));
 		context.put(
 			"predefinedValue",
-			LocalizationUtil.getLocalizedValue(
+			LocalizedValueUtil.getLocalizedValue(
 				httpServletRequest.getLocale(),
 				dataDefinitionField.getDefaultValue()));
 		context.put(
