@@ -65,17 +65,18 @@ public class ProductNavigationControlMenuTopHeadDynamicInclude
 
 		StringBundler sb = new StringBundler(6);
 
+		sb.append("<link data-senna-track=\"permanent\" href=\"");
+
 		AbsolutePortalURLBuilder absolutePortalURLBuilder =
 			_absolutePortalURLBuilderFactory.getAbsolutePortalURLBuilder(
 				request);
 
-		sb.append("<link data-senna-track=\"permanent\" href=\"");
 		sb.append(
 			absolutePortalURLBuilder.forModule(
 				_bundle, "/product_navigation_control_menu.css"
 			).build());
-		sb.append("\" rel=\"stylesheet\" type = \"text/css\" />\n");
 
+		sb.append("\" rel=\"stylesheet\" type = \"text/css\" />\n");
 		sb.append("<script data-senna-track=\"permanent\" src=\"");
 		sb.append(
 			absolutePortalURLBuilder.forModule(
