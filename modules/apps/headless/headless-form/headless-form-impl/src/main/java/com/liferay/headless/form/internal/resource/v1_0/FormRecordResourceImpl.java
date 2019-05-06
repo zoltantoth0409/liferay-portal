@@ -29,7 +29,7 @@ import com.liferay.dynamic.data.mapping.service.DDMFormInstanceRecordVersionServ
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceService;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
-import com.liferay.headless.form.dto.v1_0.FieldValue;
+import com.liferay.headless.form.dto.v1_0.FormFieldValue;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.headless.form.internal.dto.v1_0.util.FormRecordUtil;
 import com.liferay.headless.form.resource.v1_0.FormRecordResource;
@@ -175,7 +175,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 	}
 
 	private DDMFormValues _createDDMFormValues(
-			DDMFormInstance ddmFormInstance, FieldValue[] fieldValues,
+			DDMFormInstance ddmFormInstance, FormFieldValue[] fieldValues,
 			Locale locale)
 		throws Exception {
 
@@ -305,7 +305,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 	}
 
 	private DDMFormFieldValue _toDDMFormFieldValue(
-		Map<String, DDMFormField> ddmFormFieldsMap, FieldValue fieldValue) {
+		Map<String, DDMFormField> ddmFormFieldsMap, FormFieldValue fieldValue) {
 
 		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
 

@@ -15,7 +15,7 @@
 package com.liferay.headless.form.client.dto.v1_0;
 
 import com.liferay.headless.form.client.function.UnsafeSupplier;
-import com.liferay.headless.form.client.serdes.v1_0.SuccessPageSerDes;
+import com.liferay.headless.form.client.serdes.v1_0.FormSuccessPageSerDes;
 
 import java.util.Objects;
 
@@ -26,7 +26,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class SuccessPage {
+public class FormSuccessPage {
 
 	public String getDescription() {
 		return description;
@@ -95,13 +95,13 @@ public class SuccessPage {
 			return true;
 		}
 
-		if (!(object instanceof SuccessPage)) {
+		if (!(object instanceof FormSuccessPage)) {
 			return false;
 		}
 
-		SuccessPage successPage = (SuccessPage)object;
+		FormSuccessPage formSuccessPage = (FormSuccessPage)object;
 
-		return Objects.equals(toString(), successPage.toString());
+		return Objects.equals(toString(), formSuccessPage.toString());
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class SuccessPage {
 	}
 
 	public String toString() {
-		return SuccessPageSerDes.toJSON(this);
+		return FormSuccessPageSerDes.toJSON(this);
 	}
 
 }

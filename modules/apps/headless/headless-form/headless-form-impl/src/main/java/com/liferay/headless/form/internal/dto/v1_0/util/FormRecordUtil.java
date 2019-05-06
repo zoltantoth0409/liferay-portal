@@ -18,7 +18,7 @@ import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord;
 import com.liferay.dynamic.data.mapping.model.Value;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
-import com.liferay.headless.form.dto.v1_0.FieldValue;
+import com.liferay.headless.form.dto.v1_0.FormFieldValue;
 import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.portal.kernel.json.JSONException;
@@ -68,7 +68,7 @@ public class FormRecordUtil {
 							return null;
 						}
 
-						return new FieldValue() {
+						return new FormFieldValue() {
 							{
 								formDocument = _toFormDocument(
 									dlAppService, locale, localizedValue);
@@ -77,7 +77,7 @@ public class FormRecordUtil {
 							}
 						};
 					},
-					FieldValue.class);
+					FormFieldValue.class);
 				id = ddmFormInstanceRecord.getFormInstanceRecordId();
 			}
 		};

@@ -15,7 +15,7 @@
 package com.liferay.headless.form.client.dto.v1_0;
 
 import com.liferay.headless.form.client.function.UnsafeSupplier;
-import com.liferay.headless.form.client.serdes.v1_0.FieldValueSerDes;
+import com.liferay.headless.form.client.serdes.v1_0.FormFieldOptionSerDes;
 
 import java.util.Objects;
 
@@ -26,49 +26,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class FieldValue {
-
-	public FormDocument getFormDocument() {
-		return formDocument;
-	}
-
-	public void setFormDocument(FormDocument formDocument) {
-		this.formDocument = formDocument;
-	}
-
-	public void setFormDocument(
-		UnsafeSupplier<FormDocument, Exception> formDocumentUnsafeSupplier) {
-
-		try {
-			formDocument = formDocumentUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	protected FormDocument formDocument;
-
-	public Long getFormDocumentId() {
-		return formDocumentId;
-	}
-
-	public void setFormDocumentId(Long formDocumentId) {
-		this.formDocumentId = formDocumentId;
-	}
-
-	public void setFormDocumentId(
-		UnsafeSupplier<Long, Exception> formDocumentIdUnsafeSupplier) {
-
-		try {
-			formDocumentId = formDocumentIdUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	protected Long formDocumentId;
+public class FormFieldOption {
 
 	public Long getId() {
 		return id;
@@ -89,24 +47,26 @@ public class FieldValue {
 
 	protected Long id;
 
-	public String getName() {
-		return name;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
-	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
+	public void setLabel(
+		UnsafeSupplier<String, Exception> labelUnsafeSupplier) {
+
 		try {
-			name = nameUnsafeSupplier.get();
+			label = labelUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	protected String name;
+	protected String label;
 
 	public String getValue() {
 		return value;
@@ -135,13 +95,13 @@ public class FieldValue {
 			return true;
 		}
 
-		if (!(object instanceof FieldValue)) {
+		if (!(object instanceof FormFieldOption)) {
 			return false;
 		}
 
-		FieldValue fieldValue = (FieldValue)object;
+		FormFieldOption formFieldOption = (FormFieldOption)object;
 
-		return Objects.equals(toString(), fieldValue.toString());
+		return Objects.equals(toString(), formFieldOption.toString());
 	}
 
 	@Override
@@ -152,7 +112,7 @@ public class FieldValue {
 	}
 
 	public String toString() {
-		return FieldValueSerDes.toJSON(this);
+		return FormFieldOptionSerDes.toJSON(this);
 	}
 
 }

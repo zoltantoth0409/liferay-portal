@@ -40,10 +40,66 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @generated
  */
 @Generated("")
-@GraphQLName("Column")
+@GraphQLName("FormFieldValue")
 @JsonFilter("Liferay.Vulcan")
-@XmlRootElement(name = "Column")
-public class Column {
+@XmlRootElement(name = "FormFieldValue")
+public class FormFieldValue {
+
+	@Schema
+	public FormDocument getFormDocument() {
+		return formDocument;
+	}
+
+	public void setFormDocument(FormDocument formDocument) {
+		this.formDocument = formDocument;
+	}
+
+	@JsonIgnore
+	public void setFormDocument(
+		UnsafeSupplier<FormDocument, Exception> formDocumentUnsafeSupplier) {
+
+		try {
+			formDocument = formDocumentUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	protected FormDocument formDocument;
+
+	@Schema
+	public Long getFormDocumentId() {
+		return formDocumentId;
+	}
+
+	public void setFormDocumentId(Long formDocumentId) {
+		this.formDocumentId = formDocumentId;
+	}
+
+	@JsonIgnore
+	public void setFormDocumentId(
+		UnsafeSupplier<Long, Exception> formDocumentIdUnsafeSupplier) {
+
+		try {
+			formDocumentId = formDocumentIdUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	protected Long formDocumentId;
 
 	@Schema
 	public Long getId() {
@@ -68,24 +124,22 @@ public class Column {
 	}
 
 	@GraphQLField
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	protected Long id;
 
 	@Schema
-	public String getLabel() {
-		return label;
+	public String getName() {
+		return name;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@JsonIgnore
-	public void setLabel(
-		UnsafeSupplier<String, Exception> labelUnsafeSupplier) {
-
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
-			label = labelUnsafeSupplier.get();
+			name = nameUnsafeSupplier.get();
 		}
 		catch (RuntimeException re) {
 			throw re;
@@ -97,7 +151,7 @@ public class Column {
 
 	@GraphQLField
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String label;
+	protected String name;
 
 	@Schema
 	public String getValue() {
@@ -133,13 +187,13 @@ public class Column {
 			return true;
 		}
 
-		if (!(object instanceof Column)) {
+		if (!(object instanceof FormFieldValue)) {
 			return false;
 		}
 
-		Column column = (Column)object;
+		FormFieldValue formFieldValue = (FormFieldValue)object;
 
-		return Objects.equals(toString(), column.toString());
+		return Objects.equals(toString(), formFieldValue.toString());
 	}
 
 	@Override
@@ -154,6 +208,26 @@ public class Column {
 
 		sb.append("{");
 
+		if (formDocument != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"formDocument\": ");
+
+			sb.append(String.valueOf(formDocument));
+		}
+
+		if (formDocumentId != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"formDocumentId\": ");
+
+			sb.append(formDocumentId);
+		}
+
 		if (id != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
@@ -164,16 +238,16 @@ public class Column {
 			sb.append(id);
 		}
 
-		if (label != null) {
+		if (name != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"label\": ");
+			sb.append("\"name\": ");
 
 			sb.append("\"");
 
-			sb.append(_escape(label));
+			sb.append(_escape(name));
 
 			sb.append("\"");
 		}
