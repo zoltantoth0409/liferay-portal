@@ -14,8 +14,6 @@
 
 package com.liferay.portal.release.versions;
 
-import aQute.bnd.osgi.Constants;
-
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -216,11 +214,9 @@ public class ReleaseVersionsTest {
 		if (!releaseVersion.equals(new Version(1, 0, 0)) &&
 			(masterVersion.getMajor() != (releaseVersion.getMajor() + 1))) {
 
-			StringBundler sb = new StringBundler(22);
+			StringBundler sb = new StringBundler(19);
 
-			sb.append("The ");
-			sb.append(Constants.BUNDLE_VERSION);
-			sb.append(" for ");
+			sb.append("The Bundle-Version for ");
 			sb.append(_portalPath.relativize(dirPath));
 			sb.append(" on the 'master' branch (");
 			sb.append(masterVersion);
@@ -276,8 +272,7 @@ public class ReleaseVersionsTest {
 				sb.append("add");
 			}
 
-			sb.append(" \"");
-			sb.append(Constants.BUNDLE_VERSION);
+			sb.append(" \"Bundle-Version");
 			sb.append(updateVersionSeparator);
 			sb.append(new Version(releaseVersion.getMajor() + 1, 0, 0));
 			sb.append("\" in ");
@@ -318,8 +313,7 @@ public class ReleaseVersionsTest {
 		if (versionOverridePath != null) {
 			Properties versionOverrides = _loadProperties(versionOverridePath);
 
-			String version = versionOverrides.getProperty(
-				Constants.BUNDLE_VERSION);
+			String version = versionOverrides.getProperty("Bundle-Version");
 
 			if (Validator.isNotNull(version)) {
 				return new ObjectValuePair<>(
@@ -327,7 +321,7 @@ public class ReleaseVersionsTest {
 			}
 		}
 
-		String version = bndProperties.getProperty(Constants.BUNDLE_VERSION);
+		String version = bndProperties.getProperty("Bundle-Version");
 
 		return new ObjectValuePair<>(Version.parseVersion(version), bndBndPath);
 	}
