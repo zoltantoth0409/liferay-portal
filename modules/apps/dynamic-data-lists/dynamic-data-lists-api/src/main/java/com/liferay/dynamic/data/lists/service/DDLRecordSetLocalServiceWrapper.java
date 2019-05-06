@@ -605,7 +605,8 @@ public class DDLRecordSetLocalServiceWrapper
 	}
 
 	/**
-	 * Returns the number of all the record sets belonging the group and associated with the DDMStructure.
+	 * Returns the number of all the record sets belonging the group and
+	 * associated with the DDMStructure.
 	 *
 	 * @param groupId the primary key of the record set's group
 	 * @return the number of record sets belonging to the group
