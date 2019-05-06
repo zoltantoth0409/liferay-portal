@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.staging.StagingGroupHelper;
@@ -112,6 +113,12 @@ public class JournalDDMTemplateManagementToolbarDisplayContext
 
 	@Override
 	public CreationMenu getCreationMenu() {
+		if (ArrayUtil.isEmpty(
+				_journalDDMTemplateDisplayContext.getTemplateLanguageTypes())) {
+
+			return null;
+		}
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -177,6 +184,12 @@ public class JournalDDMTemplateManagementToolbarDisplayContext
 
 	@Override
 	public Boolean isShowCreationMenu() {
+		if (ArrayUtil.isEmpty(
+				_journalDDMTemplateDisplayContext.getTemplateLanguageTypes())) {
+
+			return false;
+		}
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
