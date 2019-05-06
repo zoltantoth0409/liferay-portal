@@ -60,6 +60,8 @@ import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.DDMStructureIndexer;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
@@ -122,6 +124,7 @@ import java.util.regex.Pattern;
 public class DDMStructureLocalServiceImpl
 	extends DDMStructureLocalServiceBaseImpl {
 
+	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public DDMStructure addStructure(
 			long userId, long groupId, long parentStructureId, long classNameId,
@@ -1368,6 +1371,7 @@ public class DDMStructureLocalServiceImpl
 			type, status, andOperator);
 	}
 
+	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public DDMStructure updateStructure(
 			long userId, long structureId, DDMForm ddmForm,
@@ -1383,6 +1387,7 @@ public class DDMStructureLocalServiceImpl
 			serviceContext, structure);
 	}
 
+	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public DDMStructure updateStructure(
 			long userId, long groupId, long parentStructureId, long classNameId,
@@ -1401,6 +1406,7 @@ public class DDMStructureLocalServiceImpl
 			ddmFormLayout, serviceContext, structure);
 	}
 
+	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public DDMStructure updateStructure(
 			long userId, long structureId, long parentStructureId,
