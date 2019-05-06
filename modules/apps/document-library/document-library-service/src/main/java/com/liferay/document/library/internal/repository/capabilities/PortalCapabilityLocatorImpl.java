@@ -15,6 +15,7 @@
 package com.liferay.document.library.internal.repository.capabilities;
 
 import com.liferay.document.library.kernel.service.DLAppHelperLocalService;
+import com.liferay.document.library.security.io.InputStreamSanitizer;
 import com.liferay.document.library.sync.service.DLSyncEventLocalService;
 import com.liferay.portal.kernel.repository.DocumentRepository;
 import com.liferay.portal.kernel.repository.capabilities.BulkOperationCapability;
@@ -41,6 +42,7 @@ import com.liferay.portal.repository.capabilities.util.RepositoryServiceAdapter;
 import com.liferay.trash.service.TrashEntryLocalService;
 import com.liferay.trash.service.TrashVersionLocalService;
 
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -167,9 +169,17 @@ public class PortalCapabilityLocatorImpl implements PortalCapabilityLocator {
 			DLFileVersionServiceAdapter.create(documentRepository));
 	}
 
-	private final ProcessorCapability _alwaysGeneratingProcessorCapability =
-		new LiferayProcessorCapability(
-			ProcessorCapability.ResourceGenerationStrategy.ALWAYS_GENERATE);
+	@Activate
+	protected void activate() {
+		_alwaysGeneratingProcessorCapability = new LiferayProcessorCapability(
+			ProcessorCapability.ResourceGenerationStrategy.ALWAYS_GENERATE,
+			_inputStreamSanitizer);
+		_reusingProcessorCapability = new LiferayProcessorCapability(
+			ProcessorCapability.ResourceGenerationStrategy.REUSE,
+			_inputStreamSanitizer);
+	}
+
+	private ProcessorCapability _alwaysGeneratingProcessorCapability;
 	private final CommentCapability _commentCapability =
 		new LiferayCommentCapability();
 
@@ -179,10 +189,12 @@ public class PortalCapabilityLocatorImpl implements PortalCapabilityLocator {
 	@Reference
 	private DLSyncEventLocalService _dlSyncEventLocalService;
 
+	@Reference
+	private InputStreamSanitizer _inputStreamSanitizer;
+
 	private final RepositoryEntryConverter _repositoryEntryConverter =
 		new RepositoryEntryConverter();
-	private final ProcessorCapability _reusingProcessorCapability =
-		new LiferayProcessorCapability();
+	private ProcessorCapability _reusingProcessorCapability;
 
 	@Reference
 	private TrashEntryLocalService _trashEntryLocalService;
