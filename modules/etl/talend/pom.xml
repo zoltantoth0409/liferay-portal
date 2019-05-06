@@ -79,7 +79,7 @@
 			<plugin>
 				<groupId>com.liferay</groupId>
 				<artifactId>com.liferay.javadoc.formatter</artifactId>
-				<version>1.0.31</version>
+				<version>1.0.32</version>
 			</plugin>
 			<plugin>
 				<groupId>com.liferay</groupId>
