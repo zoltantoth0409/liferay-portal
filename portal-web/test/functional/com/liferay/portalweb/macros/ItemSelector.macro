@@ -27,14 +27,6 @@ definition {
 		Click(locator1 = "AlloyEditor#CONTENT_ADD_MENUBAR_IMAGE");
 	}
 
-	macro gotoItemSelectorViaLinkBrowse {
-		SelectFieldText(locator1 = "AlloyEditor#CONTENT_FIELD");
-
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
-
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_BROWSE_BUTTON");
-	}
-
 	macro gotoItemSelectorViaSelectButton {
 		Click(locator1 = "Button#SELECT");
 	}
