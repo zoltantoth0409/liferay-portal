@@ -1106,10 +1106,8 @@ definition {
 		WebContentNavigator.gotoAddCP();
 
 		WebContent.addCP(
-			webContentContent = "${dmDocumentURL}",
+			webContentContent = '''<a href="${dmDocumentURL}">${dmDocumentURL}</a>''',
 			webContentTitle = "WC WebContent Title");
-
-		AlloyEditor.addEntryExternalURL(entryExternalURL = "${dmDocumentURL}");
 
 		PortletEntry.publish();
 	}
