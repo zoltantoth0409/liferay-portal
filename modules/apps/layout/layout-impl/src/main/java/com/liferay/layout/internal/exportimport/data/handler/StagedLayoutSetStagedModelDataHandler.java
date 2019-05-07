@@ -633,13 +633,6 @@ public class StagedLayoutSetStagedModelDataHandler
 		}
 	}
 
-	@Reference(unbind = "-")
-	protected void setLayoutLocalServiceHelper(
-		LayoutLocalServiceHelper layoutLocalServiceHelper) {
-
-		_layoutLocalServiceHelper = layoutLocalServiceHelper;
-	}
-
 	protected StagedLayoutSet unwrapLayoutSetStagingHandler(
 		StagedLayoutSet stagedLayoutSet) {
 
@@ -932,6 +925,7 @@ public class StagedLayoutSetStagedModelDataHandler
 	@Reference
 	private LayoutLocalService _layoutLocalService;
 
+	@Reference
 	private LayoutLocalServiceHelper _layoutLocalServiceHelper;
 
 	@Reference
