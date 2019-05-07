@@ -63,7 +63,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-
 /**
  * @author Pavel Savinov
  */
@@ -115,10 +114,9 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 		document.addLocalizedText(Field.NAME, layout.getNameMap());
 
 		List<FragmentEntryLink> fragmentEntryLinks =
-			_fragmentEntryLinkLocalService.
-				getFragmentEntryLinks(
-					layout.getGroupId(), _portal.getClassNameId(Layout.class),
-					layout.getPlid());
+			_fragmentEntryLinkLocalService.getFragmentEntryLinks(
+				layout.getGroupId(), _portal.getClassNameId(Layout.class),
+				layout.getPlid());
 
 		if (fragmentEntryLinks == null || fragmentEntryLinks.isEmpty()) {
 			return document;
@@ -255,11 +253,13 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 		indexableActionableDynamicQuery.performActions();
 	}
 
-	private static final String[] _ESCAPE_SAFE_HIGHLIGHTS =
-		{"[@HIGHLIGHT1@]", "[@HIGHLIGHT2@]"};
+	private static final String[] _ESCAPE_SAFE_HIGHLIGHTS = {
+		"[@HIGHLIGHT1@]", "[@HIGHLIGHT2@]"
+	};
 
-	private static final String[] _HIGHLIGHT_TAGS =
-		{HighlightUtil.HIGHLIGHT_TAG_OPEN, HighlightUtil.HIGHLIGHT_TAG_CLOSE};
+	private static final String[] _HIGHLIGHT_TAGS = {
+		HighlightUtil.HIGHLIGHT_TAG_OPEN, HighlightUtil.HIGHLIGHT_TAG_CLOSE
+	};
 
 	private static final Log _log = LogFactoryUtil.getLog(LayoutIndexer.class);
 
@@ -267,13 +267,13 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 	private BatchIndexingHelper _batchIndexingHelper;
 
 	@Reference
+	private FragmentEntryLinkLocalService _fragmentEntryLinkLocalService;
+
+	@Reference
 	private IndexWriterHelper _indexWriterHelper;
 
 	@Reference
 	private LayoutLocalService _layoutLocalService;
-
-	@Reference
-	private FragmentEntryLinkLocalService _fragmentEntryLinkLocalService;
 
 	@Reference
 	private Portal _portal;
