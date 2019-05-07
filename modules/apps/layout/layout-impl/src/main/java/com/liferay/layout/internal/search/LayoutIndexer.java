@@ -133,6 +133,10 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 		for (String languageId : layout.getAvailableLanguageIds()) {
 			Locale locale = LocaleUtil.fromLanguageId(languageId);
 
+			if ((request == null) || (response == null)) {
+				break;
+			}
+
 			StringBundler sb = new StringBundler(fragmentEntryLinks.size());
 
 			for (FragmentEntryLink fragmentEntryLink : fragmentEntryLinks) {
