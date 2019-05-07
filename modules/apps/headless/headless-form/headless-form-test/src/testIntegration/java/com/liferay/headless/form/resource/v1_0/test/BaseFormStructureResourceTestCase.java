@@ -823,7 +823,7 @@ public abstract class BaseFormStructureResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected FormStructure randomFormStructure() {
+	protected FormStructure randomFormStructure() throws Exception {
 		return new FormStructure() {
 			{
 				dateCreated = RandomTestUtil.nextDate();
@@ -836,7 +836,7 @@ public abstract class BaseFormStructureResourceTestCase {
 		};
 	}
 
-	protected FormStructure randomIrrelevantFormStructure() {
+	protected FormStructure randomIrrelevantFormStructure() throws Exception {
 		FormStructure randomIrrelevantFormStructure = randomFormStructure();
 
 		randomIrrelevantFormStructure.setSiteId(irrelevantGroup.getGroupId());
@@ -844,7 +844,7 @@ public abstract class BaseFormStructureResourceTestCase {
 		return randomIrrelevantFormStructure;
 	}
 
-	protected FormStructure randomPatchFormStructure() {
+	protected FormStructure randomPatchFormStructure() throws Exception {
 		return randomFormStructure();
 	}
 

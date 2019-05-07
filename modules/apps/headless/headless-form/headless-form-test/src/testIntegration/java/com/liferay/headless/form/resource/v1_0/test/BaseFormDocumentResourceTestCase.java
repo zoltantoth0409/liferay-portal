@@ -653,7 +653,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected FormDocument randomFormDocument() {
+	protected FormDocument randomFormDocument() throws Exception {
 		return new FormDocument() {
 			{
 				contentUrl = RandomTestUtil.randomString();
@@ -669,7 +669,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 		};
 	}
 
-	protected FormDocument randomIrrelevantFormDocument() {
+	protected FormDocument randomIrrelevantFormDocument() throws Exception {
 		FormDocument randomIrrelevantFormDocument = randomFormDocument();
 
 		randomIrrelevantFormDocument.setSiteId(irrelevantGroup.getGroupId());
@@ -677,7 +677,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 		return randomIrrelevantFormDocument;
 	}
 
-	protected FormDocument randomPatchFormDocument() {
+	protected FormDocument randomPatchFormDocument() throws Exception {
 		return randomFormDocument();
 	}
 

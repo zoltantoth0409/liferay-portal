@@ -1406,7 +1406,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected TaxonomyVocabulary randomTaxonomyVocabulary() {
+	protected TaxonomyVocabulary randomTaxonomyVocabulary() throws Exception {
 		return new TaxonomyVocabulary() {
 			{
 				dateCreated = RandomTestUtil.nextDate();
@@ -1419,7 +1419,9 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		};
 	}
 
-	protected TaxonomyVocabulary randomIrrelevantTaxonomyVocabulary() {
+	protected TaxonomyVocabulary randomIrrelevantTaxonomyVocabulary()
+		throws Exception {
+
 		TaxonomyVocabulary randomIrrelevantTaxonomyVocabulary =
 			randomTaxonomyVocabulary();
 
@@ -1429,7 +1431,9 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		return randomIrrelevantTaxonomyVocabulary;
 	}
 
-	protected TaxonomyVocabulary randomPatchTaxonomyVocabulary() {
+	protected TaxonomyVocabulary randomPatchTaxonomyVocabulary()
+		throws Exception {
+
 		return randomTaxonomyVocabulary();
 	}
 

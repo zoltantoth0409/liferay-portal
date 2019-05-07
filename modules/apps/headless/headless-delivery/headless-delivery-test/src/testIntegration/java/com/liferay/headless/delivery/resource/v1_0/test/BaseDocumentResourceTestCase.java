@@ -2064,7 +2064,7 @@ public abstract class BaseDocumentResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected Document randomDocument() {
+	protected Document randomDocument() throws Exception {
 		return new Document() {
 			{
 				contentUrl = RandomTestUtil.randomString();
@@ -2081,13 +2081,13 @@ public abstract class BaseDocumentResourceTestCase {
 		};
 	}
 
-	protected Document randomIrrelevantDocument() {
+	protected Document randomIrrelevantDocument() throws Exception {
 		Document randomIrrelevantDocument = randomDocument();
 
 		return randomIrrelevantDocument;
 	}
 
-	protected Document randomPatchDocument() {
+	protected Document randomPatchDocument() throws Exception {
 		return randomDocument();
 	}
 

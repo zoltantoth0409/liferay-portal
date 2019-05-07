@@ -1025,7 +1025,7 @@ public abstract class BaseFormResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected Form randomForm() {
+	protected Form randomForm() throws Exception {
 		return new Form() {
 			{
 				dateCreated = RandomTestUtil.nextDate();
@@ -1041,7 +1041,7 @@ public abstract class BaseFormResourceTestCase {
 		};
 	}
 
-	protected Form randomIrrelevantForm() {
+	protected Form randomIrrelevantForm() throws Exception {
 		Form randomIrrelevantForm = randomForm();
 
 		randomIrrelevantForm.setSiteId(irrelevantGroup.getGroupId());
@@ -1049,7 +1049,7 @@ public abstract class BaseFormResourceTestCase {
 		return randomIrrelevantForm;
 	}
 
-	protected Form randomPatchForm() {
+	protected Form randomPatchForm() throws Exception {
 		return randomForm();
 	}
 

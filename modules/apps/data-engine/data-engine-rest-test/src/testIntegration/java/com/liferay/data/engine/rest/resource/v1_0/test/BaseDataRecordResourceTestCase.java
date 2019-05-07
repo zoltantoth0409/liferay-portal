@@ -882,7 +882,7 @@ public abstract class BaseDataRecordResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected DataRecord randomDataRecord() {
+	protected DataRecord randomDataRecord() throws Exception {
 		return new DataRecord() {
 			{
 				dataRecordCollectionId = RandomTestUtil.randomLong();
@@ -891,13 +891,13 @@ public abstract class BaseDataRecordResourceTestCase {
 		};
 	}
 
-	protected DataRecord randomIrrelevantDataRecord() {
+	protected DataRecord randomIrrelevantDataRecord() throws Exception {
 		DataRecord randomIrrelevantDataRecord = randomDataRecord();
 
 		return randomIrrelevantDataRecord;
 	}
 
-	protected DataRecord randomPatchDataRecord() {
+	protected DataRecord randomPatchDataRecord() throws Exception {
 		return randomDataRecord();
 	}
 

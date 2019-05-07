@@ -2245,7 +2245,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected MessageBoardThread randomMessageBoardThread() {
+	protected MessageBoardThread randomMessageBoardThread() throws Exception {
 		return new MessageBoardThread() {
 			{
 				articleBody = RandomTestUtil.randomString();
@@ -2261,7 +2261,9 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		};
 	}
 
-	protected MessageBoardThread randomIrrelevantMessageBoardThread() {
+	protected MessageBoardThread randomIrrelevantMessageBoardThread()
+		throws Exception {
+
 		MessageBoardThread randomIrrelevantMessageBoardThread =
 			randomMessageBoardThread();
 
@@ -2271,7 +2273,9 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		return randomIrrelevantMessageBoardThread;
 	}
 
-	protected MessageBoardThread randomPatchMessageBoardThread() {
+	protected MessageBoardThread randomPatchMessageBoardThread()
+		throws Exception {
+
 		return randomMessageBoardThread();
 	}
 

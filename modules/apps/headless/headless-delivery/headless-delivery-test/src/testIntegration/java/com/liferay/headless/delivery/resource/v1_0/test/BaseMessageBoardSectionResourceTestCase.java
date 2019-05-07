@@ -1853,7 +1853,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected MessageBoardSection randomMessageBoardSection() {
+	protected MessageBoardSection randomMessageBoardSection() throws Exception {
 		return new MessageBoardSection() {
 			{
 				dateCreated = RandomTestUtil.nextDate();
@@ -1866,7 +1866,9 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		};
 	}
 
-	protected MessageBoardSection randomIrrelevantMessageBoardSection() {
+	protected MessageBoardSection randomIrrelevantMessageBoardSection()
+		throws Exception {
+
 		MessageBoardSection randomIrrelevantMessageBoardSection =
 			randomMessageBoardSection();
 
@@ -1876,7 +1878,9 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		return randomIrrelevantMessageBoardSection;
 	}
 
-	protected MessageBoardSection randomPatchMessageBoardSection() {
+	protected MessageBoardSection randomPatchMessageBoardSection()
+		throws Exception {
+
 		return randomMessageBoardSection();
 	}
 

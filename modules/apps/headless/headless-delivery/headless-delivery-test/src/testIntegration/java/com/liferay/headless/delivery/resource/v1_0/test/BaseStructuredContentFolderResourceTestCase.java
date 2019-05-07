@@ -1923,7 +1923,9 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected StructuredContentFolder randomStructuredContentFolder() {
+	protected StructuredContentFolder randomStructuredContentFolder()
+		throws Exception {
+
 		return new StructuredContentFolder() {
 			{
 				dateCreated = RandomTestUtil.nextDate();
@@ -1936,8 +1938,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		};
 	}
 
-	protected StructuredContentFolder
-		randomIrrelevantStructuredContentFolder() {
+	protected StructuredContentFolder randomIrrelevantStructuredContentFolder()
+		throws Exception {
 
 		StructuredContentFolder randomIrrelevantStructuredContentFolder =
 			randomStructuredContentFolder();
@@ -1948,7 +1950,9 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		return randomIrrelevantStructuredContentFolder;
 	}
 
-	protected StructuredContentFolder randomPatchStructuredContentFolder() {
+	protected StructuredContentFolder randomPatchStructuredContentFolder()
+		throws Exception {
+
 		return randomStructuredContentFolder();
 	}
 

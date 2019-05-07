@@ -177,7 +177,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 	}
 
 	@Override
-	protected UserAccount randomUserAccount() {
+	protected UserAccount randomUserAccount() throws Exception {
 		UserAccount userAccount = super.randomUserAccount();
 
 		userAccount.setEmailAddress(
