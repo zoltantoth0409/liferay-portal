@@ -48,8 +48,6 @@
 		<execute macro="ContentPages#addPage">
 			<var name="pageName" value="Test Content Page Name" />
 		</execute>
-
-		<execute macro="PageEditor#expandContentPageFragmentSidebar" />
 	</set-up>
 
 	<tear-down>
