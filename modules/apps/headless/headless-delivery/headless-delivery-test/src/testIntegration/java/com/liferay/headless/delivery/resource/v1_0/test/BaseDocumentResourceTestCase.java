@@ -588,6 +588,8 @@ public abstract class BaseDocumentResourceTestCase {
 		assertResponseCode(204, invokeDeleteDocumentResponse(document.getId()));
 
 		assertResponseCode(404, invokeGetDocumentResponse(document.getId()));
+
+		assertResponseCode(404, invokeGetDocumentResponse(0L));
 	}
 
 	protected Document testDeleteDocument_addDocument() throws Exception {
@@ -830,6 +832,8 @@ public abstract class BaseDocumentResourceTestCase {
 
 		assertResponseCode(
 			404, invokeGetDocumentMyRatingResponse(document.getId()));
+
+		assertResponseCode(404, invokeGetDocumentMyRatingResponse(0L));
 	}
 
 	protected Document testDeleteDocumentMyRating_addDocument()

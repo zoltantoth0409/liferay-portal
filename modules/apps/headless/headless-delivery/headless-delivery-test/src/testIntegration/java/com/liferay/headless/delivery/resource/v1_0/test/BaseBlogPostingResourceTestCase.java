@@ -185,6 +185,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		assertResponseCode(
 			404, invokeGetBlogPostingResponse(blogPosting.getId()));
+
+		assertResponseCode(404, invokeGetBlogPostingResponse(0L));
 	}
 
 	protected BlogPosting testDeleteBlogPosting_addBlogPosting()
@@ -474,6 +476,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		assertResponseCode(
 			404, invokeGetBlogPostingMyRatingResponse(blogPosting.getId()));
+
+		assertResponseCode(404, invokeGetBlogPostingMyRatingResponse(0L));
 	}
 
 	protected BlogPosting testDeleteBlogPostingMyRating_addBlogPosting()

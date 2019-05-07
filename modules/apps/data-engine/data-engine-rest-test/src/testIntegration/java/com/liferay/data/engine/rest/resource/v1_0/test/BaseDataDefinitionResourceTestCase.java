@@ -182,6 +182,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		assertResponseCode(
 			404, invokeGetDataDefinitionResponse(dataDefinition.getId()));
+
+		assertResponseCode(404, invokeGetDataDefinitionResponse(0L));
 	}
 
 	protected DataDefinition testDeleteDataDefinition_addDataDefinition()

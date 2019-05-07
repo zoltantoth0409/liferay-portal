@@ -645,6 +645,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		assertResponseCode(
 			404,
 			invokeGetMessageBoardThreadResponse(messageBoardThread.getId()));
+
+		assertResponseCode(404, invokeGetMessageBoardThreadResponse(0L));
 	}
 
 	protected MessageBoardThread
@@ -971,6 +973,9 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			404,
 			invokeGetMessageBoardThreadMyRatingResponse(
 				messageBoardThread.getId()));
+
+		assertResponseCode(
+			404, invokeGetMessageBoardThreadMyRatingResponse(0L));
 	}
 
 	protected MessageBoardThread

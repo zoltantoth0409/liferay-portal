@@ -187,6 +187,8 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		assertResponseCode(
 			404, invokeGetBlogPostingImageResponse(blogPostingImage.getId()));
+
+		assertResponseCode(404, invokeGetBlogPostingImageResponse(0L));
 	}
 
 	protected BlogPostingImage testDeleteBlogPostingImage_addBlogPostingImage()

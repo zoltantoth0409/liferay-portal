@@ -182,6 +182,8 @@ public abstract class BaseKeywordResourceTestCase {
 		assertResponseCode(204, invokeDeleteKeywordResponse(keyword.getId()));
 
 		assertResponseCode(404, invokeGetKeywordResponse(keyword.getId()));
+
+		assertResponseCode(404, invokeGetKeywordResponse(0L));
 	}
 
 	protected Keyword testDeleteKeyword_addKeyword() throws Exception {

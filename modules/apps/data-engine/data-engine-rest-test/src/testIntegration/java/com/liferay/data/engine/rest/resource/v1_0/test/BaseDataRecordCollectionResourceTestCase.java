@@ -457,6 +457,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			404,
 			invokeGetDataRecordCollectionResponse(
 				dataRecordCollection.getId()));
+
+		assertResponseCode(404, invokeGetDataRecordCollectionResponse(0L));
 	}
 
 	protected DataRecordCollection

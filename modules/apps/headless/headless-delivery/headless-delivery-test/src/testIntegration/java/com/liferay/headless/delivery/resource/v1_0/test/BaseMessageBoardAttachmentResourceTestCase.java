@@ -189,6 +189,8 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			404,
 			invokeGetMessageBoardAttachmentResponse(
 				messageBoardAttachment.getId()));
+
+		assertResponseCode(404, invokeGetMessageBoardAttachmentResponse(0L));
 	}
 
 	protected MessageBoardAttachment
