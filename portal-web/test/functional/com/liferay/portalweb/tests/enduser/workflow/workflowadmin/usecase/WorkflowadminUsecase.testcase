@@ -851,6 +851,8 @@ definition {
 
 	@priority = "4"
 	test AddWebContentWithCategorySpecificDefinition {
+		property test.name.skip.portal.instance = "WorkflowadminUsecase#AddWebContentWithCategorySpecificDefinition";
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
