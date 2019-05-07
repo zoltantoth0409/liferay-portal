@@ -3731,10 +3731,8 @@ public class ProjectTemplatesTest {
 			customArchetypesDirPath.resolve(
 				"custom.name.project.templates.foo.bar-1.2.3.jar"));
 
-		List<File> customArchetypesDirs = Arrays.asList(customArchetypesDir);
-
 		Map<String, String> customTemplatesMap = ProjectTemplates.getTemplates(
-			customArchetypesDirs);
+			Collections.singletonList(customArchetypesDir));
 
 		Map<String, String> templatesMap = ProjectTemplates.getTemplates();
 
