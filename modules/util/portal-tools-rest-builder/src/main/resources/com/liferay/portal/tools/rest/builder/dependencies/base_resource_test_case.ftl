@@ -189,6 +189,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 					assertResponseCode(204, invoke${javaMethodSignature.methodName?cap_first}Response(${schemaVarName}.getId()));
 
 					assertResponseCode(404, invokeGet${javaMethodSignature.methodName?remove_beginning("delete")}Response(${schemaVarName}.getId()));
+
+					assertResponseCode(404, invokeGet${javaMethodSignature.methodName?remove_beginning("delete")}Response(0L));
 				<#else>
 					Assert.assertTrue(true);
 				</#if>
