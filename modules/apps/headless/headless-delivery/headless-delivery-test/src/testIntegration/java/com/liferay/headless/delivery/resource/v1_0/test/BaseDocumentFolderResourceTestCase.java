@@ -185,6 +185,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 
 		assertResponseCode(
 			404, invokeGetDocumentFolderResponse(documentFolder.getId()));
+
+		assertResponseCode(404, invokeGetDocumentFolderResponse(0L));
 	}
 
 	protected DocumentFolder testDeleteDocumentFolder_addDocumentFolder()

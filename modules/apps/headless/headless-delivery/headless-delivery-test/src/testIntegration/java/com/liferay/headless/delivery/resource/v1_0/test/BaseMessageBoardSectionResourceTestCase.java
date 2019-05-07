@@ -189,6 +189,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		assertResponseCode(
 			404,
 			invokeGetMessageBoardSectionResponse(messageBoardSection.getId()));
+
+		assertResponseCode(404, invokeGetMessageBoardSectionResponse(0L));
 	}
 
 	protected MessageBoardSection

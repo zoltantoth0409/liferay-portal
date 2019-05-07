@@ -174,6 +174,8 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 		assertResponseCode(
 			404, invokeGetFormDocumentResponse(formDocument.getId()));
+
+		assertResponseCode(404, invokeGetFormDocumentResponse(0L));
 	}
 
 	protected FormDocument testDeleteFormDocument_addFormDocument()

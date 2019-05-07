@@ -187,6 +187,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		assertResponseCode(
 			404,
 			invokeGetKnowledgeBaseFolderResponse(knowledgeBaseFolder.getId()));
+
+		assertResponseCode(404, invokeGetKnowledgeBaseFolderResponse(0L));
 	}
 
 	protected KnowledgeBaseFolder

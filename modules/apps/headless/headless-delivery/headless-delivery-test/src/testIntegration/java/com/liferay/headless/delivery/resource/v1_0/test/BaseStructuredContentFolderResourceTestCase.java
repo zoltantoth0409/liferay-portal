@@ -1117,6 +1117,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			404,
 			invokeGetStructuredContentFolderResponse(
 				structuredContentFolder.getId()));
+
+		assertResponseCode(404, invokeGetStructuredContentFolderResponse(0L));
 	}
 
 	protected StructuredContentFolder

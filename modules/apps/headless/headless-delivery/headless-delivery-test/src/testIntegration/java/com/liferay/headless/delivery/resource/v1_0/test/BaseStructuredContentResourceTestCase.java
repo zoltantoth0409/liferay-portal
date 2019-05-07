@@ -1569,6 +1569,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		assertResponseCode(
 			404, invokeGetStructuredContentResponse(structuredContent.getId()));
+
+		assertResponseCode(404, invokeGetStructuredContentResponse(0L));
 	}
 
 	protected StructuredContent
@@ -1891,6 +1893,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 			404,
 			invokeGetStructuredContentMyRatingResponse(
 				structuredContent.getId()));
+
+		assertResponseCode(404, invokeGetStructuredContentMyRatingResponse(0L));
 	}
 
 	protected StructuredContent

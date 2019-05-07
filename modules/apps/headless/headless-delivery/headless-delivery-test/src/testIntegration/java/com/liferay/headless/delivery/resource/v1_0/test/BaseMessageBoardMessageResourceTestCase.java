@@ -190,6 +190,8 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 		assertResponseCode(
 			404,
 			invokeGetMessageBoardMessageResponse(messageBoardMessage.getId()));
+
+		assertResponseCode(404, invokeGetMessageBoardMessageResponse(0L));
 	}
 
 	protected MessageBoardMessage
@@ -518,6 +520,9 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 			404,
 			invokeGetMessageBoardMessageMyRatingResponse(
 				messageBoardMessage.getId()));
+
+		assertResponseCode(
+			404, invokeGetMessageBoardMessageMyRatingResponse(0L));
 	}
 
 	protected MessageBoardMessage

@@ -477,6 +477,8 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		assertResponseCode(
 			404, invokeGetDataRecordResponse(dataRecord.getId()));
+
+		assertResponseCode(404, invokeGetDataRecordResponse(0L));
 	}
 
 	protected DataRecord testDeleteDataRecord_addDataRecord() throws Exception {

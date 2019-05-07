@@ -475,6 +475,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		assertResponseCode(
 			404, invokeGetDataLayoutResponse(dataLayout.getId()));
+
+		assertResponseCode(404, invokeGetDataLayoutResponse(0L));
 	}
 
 	protected DataLayout testDeleteDataLayout_addDataLayout() throws Exception {

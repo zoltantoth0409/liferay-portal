@@ -193,6 +193,8 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			404,
 			invokeGetKnowledgeBaseArticleResponse(
 				knowledgeBaseArticle.getId()));
+
+		assertResponseCode(404, invokeGetKnowledgeBaseArticleResponse(0L));
 	}
 
 	protected KnowledgeBaseArticle
@@ -526,6 +528,9 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			404,
 			invokeGetKnowledgeBaseArticleMyRatingResponse(
 				knowledgeBaseArticle.getId()));
+
+		assertResponseCode(
+			404, invokeGetKnowledgeBaseArticleMyRatingResponse(0L));
 	}
 
 	protected KnowledgeBaseArticle
