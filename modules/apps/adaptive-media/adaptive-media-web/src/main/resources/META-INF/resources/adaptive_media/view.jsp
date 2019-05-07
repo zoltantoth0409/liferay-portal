@@ -167,7 +167,6 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 						context.put("adaptedImages", Math.min(adaptedImages, totalImages));
 						context.put("autoStartProgress", autoStartProgress);
-						context.put("autoStartProgress", autoStartProgress);
 						context.put("disabled", !amImageConfigurationEntry.isEnabled());
 						context.put("percentageUrl", adaptedImagesPercentageURL.toString());
 						context.put("totalImages", totalImages);
