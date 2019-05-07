@@ -1258,7 +1258,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		throw new IllegalArgumentException("Invalid entity field " + entityFieldName);
 	}
 
-	protected ${schemaName} random${schemaName}() {
+	protected ${schemaName} random${schemaName}() throws Exception {
 		return new ${schemaName}() {
 			{
 				<#assign randomDataTypes = ["Boolean", "Double", "Long", "String"] />
@@ -1276,7 +1276,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		};
 	}
 
-	protected ${schemaName} randomIrrelevant${schemaName}() {
+	protected ${schemaName} randomIrrelevant${schemaName}() throws Exception {
 		${schemaName} randomIrrelevant${schemaName} = random${schemaName}();
 
 		<#if properties?keys?seq_contains("siteId")>
@@ -1286,7 +1286,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		return randomIrrelevant${schemaName};
 	}
 
-	protected ${schemaName} randomPatch${schemaName}() {
+	protected ${schemaName} randomPatch${schemaName}() throws Exception {
 		return random${schemaName}();
 	}
 

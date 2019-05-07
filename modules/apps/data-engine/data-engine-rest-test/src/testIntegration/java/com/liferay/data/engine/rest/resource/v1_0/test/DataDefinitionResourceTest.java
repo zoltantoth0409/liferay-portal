@@ -19,7 +19,6 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinitionPermission;
 import com.liferay.data.engine.rest.resource.v1_0.test.util.DataDefinitionTestUtil;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.RoleConstants;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -80,7 +79,7 @@ public class DataDefinitionResourceTest
 	}
 
 	@Override
-	protected DataDefinition randomDataDefinition() {
+	protected DataDefinition randomDataDefinition() throws Exception {
 		return new DataDefinition() {
 			{
 				name = new HashMap<String, Object>() {
@@ -89,13 +88,7 @@ public class DataDefinitionResourceTest
 					}
 				};
 				siteId = testGroup.getGroupId();
-
-				try {
-					userId = TestPropsValues.getUserId();
-				}
-				catch (PortalException pe) {
-					throw new RuntimeException(pe.getMessage(), pe);
-				}
+				userId = TestPropsValues.getUserId();
 			}
 		};
 	}
