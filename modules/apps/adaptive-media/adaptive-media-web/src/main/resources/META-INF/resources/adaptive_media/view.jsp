@@ -162,11 +162,10 @@ PortletURL portletURL = renderResponse.createRenderURL();
 						</portlet:resourceURL>
 
 						<%
-						Boolean autoStartProgress = ((optimizeImagesAllConfigurationsBackgroundTasksCount > 0) && amImageConfigurationEntry.isEnabled()) || currentBackgroundTaskConfigurationEntryUuids.contains(uuid);
 						Map<String, Object> context = new HashMap<>();
 
 						context.put("adaptedImages", Math.min(adaptedImages, totalImages));
-						context.put("autoStartProgress", autoStartProgress);
+						context.put("autoStartProgress", ((optimizeImagesAllConfigurationsBackgroundTasksCount > 0) && amImageConfigurationEntry.isEnabled()) || currentBackgroundTaskConfigurationEntryUuids.contains(uuid));
 						context.put("disabled", !amImageConfigurationEntry.isEnabled());
 						context.put("percentageUrl", adaptedImagesPercentageURL.toString());
 						context.put("totalImages", totalImages);
