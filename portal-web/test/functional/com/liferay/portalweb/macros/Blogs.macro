@@ -98,7 +98,7 @@ definition {
 			entryTitle = "${entryTitle}"
 		);
 
-		ItemSelector.gotoItemSelectorViaLinkBrowse();
+		ItemSelector.gotoItemSelectorViaAlloyEditor();
 
 		ItemSelector.selectDMImage(imageFileName = "${imageFileName}");
 
