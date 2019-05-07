@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ListUtil;
 
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
