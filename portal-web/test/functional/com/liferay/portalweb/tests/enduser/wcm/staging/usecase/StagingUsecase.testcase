@@ -1465,10 +1465,7 @@ definition {
 
 		BlogsNavigator.gotoEntryCP(entryTitle = "Blogs Entry Title");
 
-		AssertElementPresent(
-			locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_NAME",
-			key_linkName = "Document_1.jpg"
-		);
+		BlogsEntry.viewInlineImage(uploadFileName = "Document_1.jpg");
 	}
 
 	@priority = "4"
