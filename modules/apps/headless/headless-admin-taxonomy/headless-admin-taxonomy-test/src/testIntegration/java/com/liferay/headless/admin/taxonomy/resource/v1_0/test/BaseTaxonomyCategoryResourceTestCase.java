@@ -1881,7 +1881,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected TaxonomyCategory randomTaxonomyCategory() {
+	protected TaxonomyCategory randomTaxonomyCategory() throws Exception {
 		return new TaxonomyCategory() {
 			{
 				dateCreated = RandomTestUtil.nextDate();
@@ -1893,14 +1893,16 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		};
 	}
 
-	protected TaxonomyCategory randomIrrelevantTaxonomyCategory() {
+	protected TaxonomyCategory randomIrrelevantTaxonomyCategory()
+		throws Exception {
+
 		TaxonomyCategory randomIrrelevantTaxonomyCategory =
 			randomTaxonomyCategory();
 
 		return randomIrrelevantTaxonomyCategory;
 	}
 
-	protected TaxonomyCategory randomPatchTaxonomyCategory() {
+	protected TaxonomyCategory randomPatchTaxonomyCategory() throws Exception {
 		return randomTaxonomyCategory();
 	}
 

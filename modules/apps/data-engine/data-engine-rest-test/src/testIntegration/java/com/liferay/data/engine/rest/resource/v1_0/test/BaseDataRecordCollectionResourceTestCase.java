@@ -1207,7 +1207,9 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected DataRecordCollection randomDataRecordCollection() {
+	protected DataRecordCollection randomDataRecordCollection()
+		throws Exception {
+
 		return new DataRecordCollection() {
 			{
 				dataDefinitionId = RandomTestUtil.randomLong();
@@ -1216,14 +1218,18 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		};
 	}
 
-	protected DataRecordCollection randomIrrelevantDataRecordCollection() {
+	protected DataRecordCollection randomIrrelevantDataRecordCollection()
+		throws Exception {
+
 		DataRecordCollection randomIrrelevantDataRecordCollection =
 			randomDataRecordCollection();
 
 		return randomIrrelevantDataRecordCollection;
 	}
 
-	protected DataRecordCollection randomPatchDataRecordCollection() {
+	protected DataRecordCollection randomPatchDataRecordCollection()
+		throws Exception {
+
 		return randomDataRecordCollection();
 	}
 

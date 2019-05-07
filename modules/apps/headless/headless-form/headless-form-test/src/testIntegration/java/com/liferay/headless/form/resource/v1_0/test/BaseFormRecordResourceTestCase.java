@@ -1025,7 +1025,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected FormRecord randomFormRecord() {
+	protected FormRecord randomFormRecord() throws Exception {
 		return new FormRecord() {
 			{
 				dateCreated = RandomTestUtil.nextDate();
@@ -1038,13 +1038,13 @@ public abstract class BaseFormRecordResourceTestCase {
 		};
 	}
 
-	protected FormRecord randomIrrelevantFormRecord() {
+	protected FormRecord randomIrrelevantFormRecord() throws Exception {
 		FormRecord randomIrrelevantFormRecord = randomFormRecord();
 
 		return randomIrrelevantFormRecord;
 	}
 
-	protected FormRecord randomPatchFormRecord() {
+	protected FormRecord randomPatchFormRecord() throws Exception {
 		return randomFormRecord();
 	}
 

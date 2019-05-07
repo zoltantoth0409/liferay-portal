@@ -1543,7 +1543,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
-	protected KnowledgeBaseFolder randomKnowledgeBaseFolder() {
+	protected KnowledgeBaseFolder randomKnowledgeBaseFolder() throws Exception {
 		return new KnowledgeBaseFolder() {
 			{
 				dateCreated = RandomTestUtil.nextDate();
@@ -1557,7 +1557,9 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		};
 	}
 
-	protected KnowledgeBaseFolder randomIrrelevantKnowledgeBaseFolder() {
+	protected KnowledgeBaseFolder randomIrrelevantKnowledgeBaseFolder()
+		throws Exception {
+
 		KnowledgeBaseFolder randomIrrelevantKnowledgeBaseFolder =
 			randomKnowledgeBaseFolder();
 
@@ -1567,7 +1569,9 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		return randomIrrelevantKnowledgeBaseFolder;
 	}
 
-	protected KnowledgeBaseFolder randomPatchKnowledgeBaseFolder() {
+	protected KnowledgeBaseFolder randomPatchKnowledgeBaseFolder()
+		throws Exception {
+
 		return randomKnowledgeBaseFolder();
 	}
 
