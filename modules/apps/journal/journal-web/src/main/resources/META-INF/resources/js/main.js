@@ -273,7 +273,7 @@ AUI.add(
 									if (key.getNativeEditor()._editor) {
 										instance._editorValues[key.getNativeEditor()._editor.name] = key.getHTML();
 									}
-else {
+									else {
 										instance._editorValues[key.getNativeEditor().name] = key.getHTML();
 									}
 								}
