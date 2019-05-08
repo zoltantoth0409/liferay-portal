@@ -70,7 +70,6 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 				}
 
 				String title = curArticle.getTitle(locale);
-				DDMStructure ddmStructure = curArticle.getDDMStructure();
 
 				if (Validator.isNull(title)) {
 					title = curArticle.getTitle(LocaleUtil.fromLanguageId(curArticle.getDefaultLanguageId()));
@@ -240,6 +239,10 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 							name="display-date"
 							value="<%= curArticle.getDisplayDate() %>"
 						/>
+
+						<%
+						DDMStructure ddmStructure = curArticle.getDDMStructure();
+						%>
 
 						<liferay-ui:search-container-column-text
 							cssClass="table-cell-expand-smallest table-cell-minw-100"
