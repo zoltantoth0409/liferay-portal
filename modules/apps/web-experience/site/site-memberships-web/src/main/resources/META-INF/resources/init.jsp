@@ -88,7 +88,6 @@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portal.util.PropsValues" %><%@
 page import="com.liferay.portlet.rolesadmin.search.RoleSearch" %><%@
 page import="com.liferay.portlet.rolesadmin.search.RoleSearchTerms" %><%@
-page import="com.liferay.portlet.sites.search.UserGroupGroupRoleRoleChecker" %><%@
 page import="com.liferay.portlet.sites.search.UserGroupRoleRoleChecker" %><%@
 page import="com.liferay.portlet.sitesadmin.search.OrganizationSiteMembershipChecker" %><%@
 page import="com.liferay.portlet.sitesadmin.search.UserGroupSiteMembershipChecker" %><%@

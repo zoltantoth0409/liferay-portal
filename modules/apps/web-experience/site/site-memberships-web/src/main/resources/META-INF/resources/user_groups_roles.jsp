@@ -94,7 +94,7 @@ roleSearch.setResults(roles);
 <aui:form cssClass="container-fluid-1280 portlet-site-memberships-assign-site-roles" name="fm">
 	<liferay-ui:search-container
 		id="userGroupGroupRoleRole"
-		rowChecker="<%= new UserGroupGroupRoleRoleChecker(renderResponse, siteMembershipsDisplayContext.getUserGroup(), siteMembershipsDisplayContext.getGroup()) %>"
+		rowChecker="<%= new EmptyOnClickRowChecker(renderResponse) %>"
 		searchContainer="<%= roleSearch %>"
 	>
 		<liferay-ui:search-container-row
