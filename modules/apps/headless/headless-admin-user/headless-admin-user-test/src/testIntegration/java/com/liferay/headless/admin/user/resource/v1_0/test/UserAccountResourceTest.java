@@ -69,13 +69,13 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		UserLocalServiceUtil.deleteGroupUser(
 			testGroup.getGroupId(), _testUser.getUserId());
 
+		Indexer<User> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			_testUser.getModelClassName());
+
 		List<User> users = UserLocalServiceUtil.getUsers(
 			PortalUtil.getDefaultCompanyId(), false,
 			WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
-
-		Indexer<User> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-			_testUser.getModelClassName());
 
 		indexer.reindex(users);
 	}
