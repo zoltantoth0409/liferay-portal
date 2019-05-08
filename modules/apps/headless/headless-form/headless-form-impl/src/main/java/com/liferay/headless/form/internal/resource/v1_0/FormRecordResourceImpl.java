@@ -15,7 +15,6 @@
 package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord;
@@ -31,6 +30,7 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.headless.form.dto.v1_0.FormFieldValue;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
+import com.liferay.headless.form.internal.dto.v1_0.util.DDMFormValuesUtil;
 import com.liferay.headless.form.internal.dto.v1_0.util.FormRecordUtil;
 import com.liferay.headless.form.resource.v1_0.FormRecordResource;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -49,23 +49,17 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import javax.servlet.http.HttpServletRequest;
-
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.core.Context;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.core.Context;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Javier Gamarra
@@ -99,7 +93,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 
 	@Override
 	public Page<FormRecord> getFormFormRecordsPage(
-			Long formId, Pagination pagination)
+		Long formId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(
@@ -133,8 +127,8 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 
 		DDMStructure ddmStructure = ddmFormInstance.getStructure();
 
-		DDMFormValues ddmFormValues = _createDDMFormValues(
-			ddmFormInstance, formRecord.getFieldValues(),
+		DDMFormValues ddmFormValues = DDMFormValuesUtil.createDDMFormValues(
+			ddmFormInstance, formRecord.getFormFieldValues(),
 			contextAcceptLanguage.getPreferredLocale());
 
 		_linkFileEntries(ddmStructure.getDDMFormFields(true), ddmFormValues);
@@ -160,8 +154,8 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 
 		DDMStructure ddmStructure = ddmFormInstance.getStructure();
 
-		DDMFormValues ddmFormValues = _createDDMFormValues(
-			ddmFormInstance, formRecord.getFieldValues(),
+		DDMFormValues ddmFormValues = DDMFormValuesUtil.createDDMFormValues(
+			ddmFormInstance, formRecord.getFormFieldValues(),
 			contextAcceptLanguage.getPreferredLocale());
 
 		_linkFileEntries(ddmStructure.getDDMFormFields(true), ddmFormValues);
@@ -172,33 +166,6 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 				_createServiceContext(formRecord.getDraft())),
 			_dlAppService, contextAcceptLanguage.getPreferredLocale(), _portal,
 			_userLocalService);
-	}
-
-	private DDMFormValues _createDDMFormValues(
-			DDMFormInstance ddmFormInstance, FormFieldValue[] fieldValues,
-			Locale locale)
-		throws Exception {
-
-		DDMStructure ddmStructure = ddmFormInstance.getStructure();
-
-		DDMForm ddmForm = ddmStructure.getDDMForm();
-
-		DDMFormValues ddmFormValues = new DDMFormValues(ddmForm);
-
-		ddmFormValues.addAvailableLocale(locale);
-
-		Map<String, DDMFormField> ddmFormFieldsMap =
-			ddmForm.getDDMFormFieldsMap(true);
-
-		ddmFormValues.setDDMFormFieldValues(
-			transformToList(
-				fieldValues,
-				fieldValue -> _toDDMFormFieldValue(
-					ddmFormFieldsMap, fieldValue)));
-
-		ddmFormValues.setDefaultLocale(locale);
-
-		return ddmFormValues;
 	}
 
 	private ServiceContext _createServiceContext(boolean draft)
@@ -247,7 +214,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 			ddmFormFieldValues -> {
 				try {
 					for (DDMFormFieldValue ddmFormFieldValue :
-							ddmFormFieldValues) {
+						ddmFormFieldValues) {
 
 						_setValue(ddmFormFieldValue);
 					}
@@ -303,48 +270,6 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 
 		ddmFormFieldValue.setValue(value);
 	}
-
-	private DDMFormFieldValue _toDDMFormFieldValue(
-		Map<String, DDMFormField> ddmFormFieldsMap, FormFieldValue fieldValue) {
-
-		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
-
-		ddmFormFieldValue.setName(fieldValue.getName());
-
-		Value value = _VALUE;
-
-		DDMFormField ddmFormField = ddmFormFieldsMap.get(fieldValue.getName());
-
-		if (ddmFormField != null) {
-			value = Optional.ofNullable(
-				fieldValue.getValue()
-			).map(
-				Object::toString
-			).map(
-				stringValue -> {
-					if (ddmFormField.isLocalizable()) {
-						return new LocalizedValue() {
-							{
-								addString(
-									contextAcceptLanguage.getPreferredLocale(),
-									stringValue);
-							}
-						};
-					}
-
-					return _VALUE;
-				}
-			).orElse(
-				_VALUE
-			);
-		}
-
-		ddmFormFieldValue.setValue(value);
-
-		return ddmFormFieldValue;
-	}
-
-	private static final Value _VALUE = new UnlocalizedValue((String)null);
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		FormRecordResourceImpl.class);
