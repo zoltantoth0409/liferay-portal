@@ -174,8 +174,8 @@ public class TopHeadDynamicInclude implements DynamicInclude {
 	}
 
 	private synchronized void _rebuild() {
-		if ((_portal == null) || (_portalWebResources == null) ||
-			(_bundleContext == null)) {
+		if ((_bundleContext == null) || (_portal == null) ||
+			(_portalWebResources == null)) {
 
 			return;
 		}
