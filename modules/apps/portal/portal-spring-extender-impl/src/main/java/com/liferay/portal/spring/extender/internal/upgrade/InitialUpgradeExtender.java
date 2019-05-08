@@ -103,13 +103,6 @@ public class InitialUpgradeExtender
 	private static ServiceRegistration<UpgradeStep> _processInitialUpgrade(
 		BundleContext bundleContext, Bundle bundle) {
 
-		Dictionary<String, String> headers = bundle.getHeaders(
-			StringPool.BLANK);
-
-		String upgradeToSchemaVersion = GetterUtil.getString(
-			headers.get("Liferay-Require-SchemaVersion"),
-			headers.get("Bundle-Version"));
-
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
@@ -133,6 +126,14 @@ public class InitialUpgradeExtender
 			"upgrade.bundle.symbolic.name", bundle.getSymbolicName());
 		properties.put("upgrade.db.type", "any");
 		properties.put("upgrade.from.schema.version", "0.0.0");
+
+		Dictionary<String, String> headers = bundle.getHeaders(
+			StringPool.BLANK);
+
+		String upgradeToSchemaVersion = GetterUtil.getString(
+			headers.get("Liferay-Require-SchemaVersion"),
+			headers.get("Bundle-Version"));
+
 		properties.put("upgrade.to.schema.version", upgradeToSchemaVersion);
 
 		return bundleContext.registerService(
