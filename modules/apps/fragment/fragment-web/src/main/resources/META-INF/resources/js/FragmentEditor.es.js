@@ -34,7 +34,7 @@ class FragmentEditor extends PortletBase {
 	 * @return {{
 	 *   css: string,
 	 *   html: string,
-	 *   js: string,
+	 *   js: string
 	 * }}
 	 * @review
 	 */
