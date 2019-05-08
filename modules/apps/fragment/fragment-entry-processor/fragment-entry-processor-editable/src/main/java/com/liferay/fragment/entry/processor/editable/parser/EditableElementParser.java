@@ -46,7 +46,7 @@ public interface EditableElementParser {
 	public String getValue(Element element);
 
 	/**
-	 * @deprecated As of Judson (7.1.x), as of 7.1.x, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	public default boolean isCss() {
