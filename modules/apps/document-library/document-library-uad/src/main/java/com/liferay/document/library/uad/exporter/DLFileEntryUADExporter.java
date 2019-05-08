@@ -46,8 +46,7 @@ public class DLFileEntryUADExporter extends BaseDLFileEntryUADExporter {
 				dynamicQuery.add(RestrictionsFactoryUtil.gt("size", 0L));
 			});
 
-		long nonemptyFileCount =
-			nonemptyFileActionableDynamicQuery.performCount() * 2L;
+		long count = nonemptyFileActionableDynamicQuery.performCount() * 2L;
 
 		ActionableDynamicQuery emptyFileActionableDynamicQuery =
 			getActionableDynamicQuery(userId);
@@ -62,9 +61,7 @@ public class DLFileEntryUADExporter extends BaseDLFileEntryUADExporter {
 				dynamicQuery.add(RestrictionsFactoryUtil.eq("size", 0L));
 			});
 
-		long emptyFileCount = emptyFileActionableDynamicQuery.performCount();
-
-		return nonemptyFileCount + emptyFileCount;
+		return count + emptyFileActionableDynamicQuery.performCount();
 	}
 
 	@Override
