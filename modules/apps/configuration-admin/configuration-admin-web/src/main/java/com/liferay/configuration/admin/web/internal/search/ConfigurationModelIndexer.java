@@ -340,19 +340,25 @@ public class ConfigurationModelIndexer extends BaseIndexer<ConfigurationModel> {
 		List<String> values = new ArrayList<>(attributeDescriptions.size());
 
 		for (String attributeDescription : attributeDescriptions) {
-			if (Validator.isNotNull(attributeDescription)) {
-				ResourceBundle resourceBundle = _getResourceBundle(
-					locale, resourceBundleLoader);
-
-				if (resourceBundle != null) {
-					String value = ResourceBundleUtil.getString(
-						resourceBundle, attributeDescription);
-
-					if (Validator.isNotNull(value)) {
-						values.add(value);
-					}
-				}
+			if (Validator.isNull(attributeDescription)) {
+				continue;
 			}
+
+			ResourceBundle resourceBundle = _getResourceBundle(
+				locale, resourceBundleLoader);
+
+			if (resourceBundle == null) {
+				continue;
+			}
+
+			String value = ResourceBundleUtil.getString(
+				resourceBundle, attributeDescription);
+
+			if (Validator.isNull(value)) {
+				continue;
+			}
+
+			values.add(value);
 		}
 
 		return values;
