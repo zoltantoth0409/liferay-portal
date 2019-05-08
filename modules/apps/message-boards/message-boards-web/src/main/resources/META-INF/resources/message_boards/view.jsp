@@ -42,13 +42,6 @@ boolean useAssetEntryQuery = Validator.isNotNull(assetTagName);
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("mvcRenderCommandName", mvcRenderCommandName);
-portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
-
-String keywords = ParamUtil.getString(request, "keywords");
-
-if (Validator.isNotNull(keywords)) {
-	portletURL.setParameter("keywords", keywords);
-}
 
 int cur1 = ParamUtil.getInteger(request, "cur1");
 
@@ -60,6 +53,14 @@ int cur2 = ParamUtil.getInteger(request, "cur2");
 
 if (cur2 > 0) {
 	portletURL.setParameter("cur2", String.valueOf(cur2));
+}
+
+portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
+
+String keywords = ParamUtil.getString(request, "keywords");
+
+if (Validator.isNotNull(keywords)) {
+	portletURL.setParameter("keywords", keywords);
 }
 
 String orderByCol = ParamUtil.getString(request, "orderByCol", "modified-date");
