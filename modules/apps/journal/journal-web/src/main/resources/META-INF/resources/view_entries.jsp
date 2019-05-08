@@ -57,7 +57,6 @@ String referringPortletResource = ParamUtil.getString(request, "referringPortlet
 				rowData.put("draggable", !BrowserSnifferUtil.isMobile(request) && (JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.DELETE) || JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.UPDATE)));
 
 				String title = curArticle.getTitle(locale);
-				DDMStructure ddmStructure = curArticle.getDDMStructure();
 
 				if (Validator.isNull(title)) {
 					title = curArticle.getTitle(LocaleUtil.fromLanguageId(curArticle.getDefaultLanguageId()));
@@ -229,6 +228,10 @@ String referringPortletResource = ParamUtil.getString(request, "referringPortlet
 							name="display-date"
 							value="<%= curArticle.getDisplayDate() %>"
 						/>
+
+						<%
+						DDMStructure ddmStructure = curArticle.getDDMStructure();
+						%>
 
 						<liferay-ui:search-container-column-text
 							cssClass="table-cell-expand-smallest table-cell-minw-100"
