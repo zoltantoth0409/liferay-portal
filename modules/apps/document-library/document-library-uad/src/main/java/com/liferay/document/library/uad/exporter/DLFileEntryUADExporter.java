@@ -33,21 +33,21 @@ public class DLFileEntryUADExporter extends BaseDLFileEntryUADExporter {
 
 	@Override
 	public long getExportDataCount(long userId) throws PortalException {
-		ActionableDynamicQuery nonEmptyFileActionableDynamicQuery =
+		ActionableDynamicQuery nonemptyFileActionableDynamicQuery =
 			getActionableDynamicQuery(userId);
 
-		ActionableDynamicQuery.AddCriteriaMethod nonEmptyFileAddCriteriaMethod =
-			nonEmptyFileActionableDynamicQuery.getAddCriteriaMethod();
+		ActionableDynamicQuery.AddCriteriaMethod nonemptyFileAddCriteriaMethod =
+			nonemptyFileActionableDynamicQuery.getAddCriteriaMethod();
 
-		nonEmptyFileActionableDynamicQuery.setAddCriteriaMethod(
+		nonemptyFileActionableDynamicQuery.setAddCriteriaMethod(
 			dynamicQuery -> {
-				nonEmptyFileAddCriteriaMethod.addCriteria(dynamicQuery);
+				nonemptyFileAddCriteriaMethod.addCriteria(dynamicQuery);
 
 				dynamicQuery.add(RestrictionsFactoryUtil.gt("size", 0L));
 			});
 
-		long nonEmptyFileCount =
-			nonEmptyFileActionableDynamicQuery.performCount() * 2L;
+		long nonemptyFileCount =
+			nonemptyFileActionableDynamicQuery.performCount() * 2L;
 
 		ActionableDynamicQuery emptyFileActionableDynamicQuery =
 			getActionableDynamicQuery(userId);
@@ -55,7 +55,7 @@ public class DLFileEntryUADExporter extends BaseDLFileEntryUADExporter {
 		ActionableDynamicQuery.AddCriteriaMethod emptyFileAddCriteriaMethod =
 			emptyFileActionableDynamicQuery.getAddCriteriaMethod();
 
-		nonEmptyFileActionableDynamicQuery.setAddCriteriaMethod(
+		nonemptyFileActionableDynamicQuery.setAddCriteriaMethod(
 			dynamicQuery -> {
 				emptyFileAddCriteriaMethod.addCriteria(dynamicQuery);
 
@@ -64,7 +64,7 @@ public class DLFileEntryUADExporter extends BaseDLFileEntryUADExporter {
 
 		long emptyFileCount = emptyFileActionableDynamicQuery.performCount();
 
-		return nonEmptyFileCount + emptyFileCount;
+		return nonemptyFileCount + emptyFileCount;
 	}
 
 	@Override
