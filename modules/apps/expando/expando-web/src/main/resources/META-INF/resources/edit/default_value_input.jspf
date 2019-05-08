@@ -112,7 +112,7 @@
 		%>
 
 		<div id="<portlet:namespace />CoordinatesContainer">
-			<div class="glyphicon glyphicon-map-marker" id="<%= portletDisplay.getNamespace() + name + "Location" %>">
+			<div class="glyphicon glyphicon-map-marker" id="<portlet:namespace /><%= name %>Location>
 			</div>
 
 			<%
@@ -131,14 +131,14 @@
 			var geolocationField = {
 				init: function() {
 					Liferay.MapBase.get(
-						"<%= portletDisplay.getNamespace() + name %>",
+						"<portlet:namespace /><%= name %>",
 						function(map) {
 							map.on('positionChange', geolocationField.onPositionChange, geolocationField);
 						}
 					);
 				},
 				onPositionChange: function(event) {
-					var inputName = "<%= portletDisplay.getNamespace() + name %>";
+					var inputName = "<portlet:namespace /><%= name %>";
 					var inputNode = document.querySelector('[name="' + inputName + '"]');
 
 					var location = event.newVal.location;
