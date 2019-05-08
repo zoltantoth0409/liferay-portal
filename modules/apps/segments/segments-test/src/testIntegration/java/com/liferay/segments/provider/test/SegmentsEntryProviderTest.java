@@ -116,7 +116,6 @@ public class SegmentsEntryProviderTest {
 		_organizations.add(organization);
 
 		_user1 = UserTestUtil.addUser();
-
 		_user2 = UserTestUtil.addUser();
 
 		Criteria criteria = new Criteria();
