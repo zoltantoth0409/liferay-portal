@@ -81,6 +81,7 @@ public interface DDMStructureLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public DDMStructure addDDMStructure(DDMStructure ddmStructure);
 
+	@Indexable(type = IndexableType.REINDEX)
 	public DDMStructure addStructure(
 			long userId, long groupId, long parentStructureId, long classNameId,
 			String structureKey, Map<Locale, String> nameMap,
@@ -1053,11 +1054,13 @@ public interface DDMStructureLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public DDMStructure updateDDMStructure(DDMStructure ddmStructure);
 
+	@Indexable(type = IndexableType.REINDEX)
 	public DDMStructure updateStructure(
 			long userId, long structureId, DDMForm ddmForm,
 			DDMFormLayout ddmFormLayout, ServiceContext serviceContext)
 		throws PortalException;
 
+	@Indexable(type = IndexableType.REINDEX)
 	public DDMStructure updateStructure(
 			long userId, long groupId, long parentStructureId, long classNameId,
 			String structureKey, Map<Locale, String> nameMap,
@@ -1065,6 +1068,7 @@ public interface DDMStructureLocalService
 			DDMFormLayout ddmFormLayout, ServiceContext serviceContext)
 		throws PortalException;
 
+	@Indexable(type = IndexableType.REINDEX)
 	public DDMStructure updateStructure(
 			long userId, long structureId, long parentStructureId,
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
