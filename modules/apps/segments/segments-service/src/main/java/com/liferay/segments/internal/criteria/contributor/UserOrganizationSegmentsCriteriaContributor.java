@@ -66,7 +66,6 @@ public class UserOrganizationSegmentsCriteriaContributor
 		criteria.addCriterion(getKey(), getType(), filterString, conjunction);
 
 		long companyId = CompanyThreadLocal.getCompanyId();
-
 		String newFilterString = null;
 
 		try {
