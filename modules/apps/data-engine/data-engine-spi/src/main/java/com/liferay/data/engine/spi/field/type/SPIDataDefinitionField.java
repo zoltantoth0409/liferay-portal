@@ -101,19 +101,12 @@ public class SPIDataDefinitionField {
 		int hash = HashUtil.hash(0, _customProperties);
 
 		hash = HashUtil.hash(hash, _defaultValue);
-
 		hash = HashUtil.hash(hash, _fieldType);
-
 		hash = HashUtil.hash(hash, _id);
-
 		hash = HashUtil.hash(hash, _indexable);
-
 		hash = HashUtil.hash(hash, _label);
-
 		hash = HashUtil.hash(hash, _localizable);
-
 		hash = HashUtil.hash(hash, _name);
-
 		hash = HashUtil.hash(hash, _repeatable);
 
 		return HashUtil.hash(hash, _tip);
