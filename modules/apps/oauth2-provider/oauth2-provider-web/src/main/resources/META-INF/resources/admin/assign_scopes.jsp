@@ -80,6 +80,7 @@ AssignScopesDisplayContext assignScopesDisplayContext = (AssignScopesDisplayCont
 			if (A.all('#<portlet:namespace />navGlobalScopes .panel').size() > 0) {
 				A.one('#<portlet:namespace />navScopeTypes').toggleClass('hidden', false);
 			}
+
 			A.one('#<portlet:namespace />navScopeTypesTabContents').toggleClass('hidden', false);
 
 			var handle;
