@@ -20,6 +20,8 @@
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 UserGroup userGroup = (UserGroup)row.getObject();
+
+SiteMembershipsConfiguration siteMembershipsConfiguration = ConfigurationProviderUtil.getSystemConfiguration(SiteMembershipsConfiguration.class);
 %>
 
 <liferay-ui:icon-menu
@@ -39,6 +41,7 @@ UserGroup userGroup = (UserGroup)row.getObject();
 		<%
 		Map<String, Object> assignData = new HashMap<>();
 
+		assignData.put("enableassignunassign", siteMembershipsConfiguration.enableAssignUnassignUserGroupsRolesActions());
 		assignData.put("href", assignURL.toString());
 		assignData.put("usergroupid", userGroup.getUserGroupId());
 		%>
@@ -51,27 +54,29 @@ UserGroup userGroup = (UserGroup)row.getObject();
 			url="javascript:;"
 		/>
 
-		<portlet:renderURL var="unassignURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<portlet:param name="mvcPath" value="/user_groups_roles.jsp" />
-			<portlet:param name="userGroupId" value="<%= String.valueOf(userGroup.getUserGroupId()) %>" />
-			<portlet:param name="groupId" value="<%= String.valueOf(siteMembershipsDisplayContext.getGroupId()) %>" />
-			<portlet:param name="assignRoles" value="<%= Boolean.FALSE.toString() %>" />
-		</portlet:renderURL>
+		<c:if test="<%= siteMembershipsConfiguration.enableAssignUnassignUserGroupsRolesActions() %>">
+			<portlet:renderURL var="unassignURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+				<portlet:param name="mvcPath" value="/user_groups_roles.jsp" />
+				<portlet:param name="userGroupId" value="<%= String.valueOf(userGroup.getUserGroupId()) %>" />
+				<portlet:param name="groupId" value="<%= String.valueOf(siteMembershipsDisplayContext.getGroupId()) %>" />
+				<portlet:param name="assignRoles" value="<%= Boolean.FALSE.toString() %>" />
+			</portlet:renderURL>
 
-		<%
-		Map<String, Object> unassignData = new HashMap<>();
+			<%
+			Map<String, Object> unassignData = new HashMap<>();
 
-		unassignData.put("href", unassignURL.toString());
-		unassignData.put("usergroupid", userGroup.getUserGroupId());
-		%>
+			unassignData.put("href", unassignURL.toString());
+			unassignData.put("usergroupid", userGroup.getUserGroupId());
+			%>
 
-		<liferay-ui:icon
-			cssClass="unassign-site-roles"
-			data="<%= unassignData %>"
-			id='<%= row.getRowId() + "unassignSiteRoles" %>'
-			message="unassign-site-roles"
-			url="javascript:;"
-		/>
+			<liferay-ui:icon
+				cssClass="unassign-site-roles"
+				data="<%= unassignData %>"
+				id='<%= row.getRowId() + "unassignSiteRoles" %>'
+				message="unassign-site-roles"
+				url="javascript:;"
+			/>
+		</c:if>
 	</c:if>
 
 	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, siteMembershipsDisplayContext.getGroup(), ActionKeys.ASSIGN_MEMBERS) %>">
@@ -96,9 +101,18 @@ UserGroup userGroup = (UserGroup)row.getObject();
 
 			var currentTarget = $(event.currentTarget);
 
-			var addUserGroupGroupRoleFm = $(document.<portlet:namespace />addUserGroupGroupRoleFm);
+			var enableAssignUnassign = currentTarget.data('enableassignunassign');
 
-			addUserGroupGroupRoleFm.fm('userGroupId').val(currentTarget.data('usergroupid'));
+			var actionUserGroupGroupRoleFm;
+
+			if (enableAssignUnassign) {
+				actionUserGroupGroupRoleFm = $(document.<portlet:namespace />addUserGroupGroupRoleFm);
+			}
+			else {
+				actionUserGroupGroupRoleFm = $(document.<portlet:namespace />editUserGroupGroupRoleFm);
+			}
+
+			actionUserGroupGroupRoleFm.fm('userGroupId').val(currentTarget.data('usergroupid'));
 
 			var itemSelectorDialog = new A.LiferayItemSelectorDialog(
 				{
@@ -108,9 +122,9 @@ UserGroup userGroup = (UserGroup)row.getObject();
 							var selectedItem = event.newVal;
 
 							if (selectedItem) {
-								addUserGroupGroupRoleFm.append(selectedItem);
+								actionUserGroupGroupRoleFm.append(selectedItem);
 
-								submitForm(addUserGroupGroupRoleFm);
+								submitForm(actionUserGroupGroupRoleFm);
 							}
 						}
 					},
@@ -124,38 +138,40 @@ UserGroup userGroup = (UserGroup)row.getObject();
 		}
 	);
 
-	$('#<portlet:namespace /><%= row.getRowId() %>unassignSiteRoles').on(
-		'click',
-		function(event) {
-			event.preventDefault();
+	<c:if test="<%= siteMembershipsConfiguration.enableAssignUnassignUserGroupsRolesActions() %>">
+		$('#<portlet:namespace /><%= row.getRowId() %>unassignSiteRoles').on(
+			'click',
+			function(event) {
+				event.preventDefault();
 
-			var currentTarget = $(event.currentTarget);
+				var currentTarget = $(event.currentTarget);
 
-			var unassignUserGroupGroupRoleFm = $(document.<portlet:namespace />unassignUserGroupGroupRoleFm);
+				var unassignUserGroupGroupRoleFm = $(document.<portlet:namespace />unassignUserGroupGroupRoleFm);
 
-			unassignUserGroupGroupRoleFm.fm('userGroupId').val(currentTarget.data('usergroupid'));
+				unassignUserGroupGroupRoleFm.fm('userGroupId').val(currentTarget.data('usergroupid'));
 
-			var itemSelectorDialog = new A.LiferayItemSelectorDialog(
-				{
-					eventName: '<portlet:namespace />selectUserGroupsRoles',
-					on: {
-						selectedItemChange: function(event) {
-							var selectedItem = event.newVal;
+				var itemSelectorDialog = new A.LiferayItemSelectorDialog(
+					{
+						eventName: '<portlet:namespace />selectUserGroupsRoles',
+						on: {
+							selectedItemChange: function(event) {
+								var selectedItem = event.newVal;
 
-							if (selectedItem) {
-								unassignUserGroupGroupRoleFm.append(selectedItem);
+								if (selectedItem) {
+									unassignUserGroupGroupRoleFm.append(selectedItem);
 
-								submitForm(unassignUserGroupGroupRoleFm);
+									submitForm(unassignUserGroupGroupRoleFm);
+								}
 							}
-						}
-					},
-					'strings.add': '<liferay-ui:message key="done" />',
-					title: '<liferay-ui:message key="unassign-site-roles" />',
-					url: currentTarget.data('href')
-				}
-			);
+						},
+						'strings.add': '<liferay-ui:message key="done" />',
+						title: '<liferay-ui:message key="unassign-site-roles" />',
+						url: currentTarget.data('href')
+					}
+				);
 
-			itemSelectorDialog.open();
-		}
-	);
+				itemSelectorDialog.open();
+			}
+		);
+	</c:if>
 </aui:script>

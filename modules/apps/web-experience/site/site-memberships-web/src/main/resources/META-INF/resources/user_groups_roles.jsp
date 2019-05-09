@@ -54,8 +54,6 @@ roleSearch.setOrderByType(orderByType);
 
 RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearch.getSearchTerms();
 
-List<Role> roles = RoleLocalServiceUtil.search(company.getCompanyId(), searchTerms.getKeywords(), new Integer[] {RoleConstants.TYPE_SITE}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
-
 long groupId = siteMembershipsDisplayContext.getGroupId();
 
 List<UserGroupGroupRole> userGroupGroupRoles = UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(userGroupId, groupId);
@@ -64,11 +62,28 @@ Stream<UserGroupGroupRole> userGroupGroupRoleStream = userGroupGroupRoles.stream
 
 List<Role> selectedRoles = userGroupGroupRoleStream.map(userGroupGroupRole -> RoleLocalServiceUtil.fetchRole(userGroupGroupRole.getRoleId())).collect(Collectors.toList());
 
+SiteMembershipsConfiguration siteMembershipsConfiguration = ConfigurationProviderUtil.getSystemConfiguration(SiteMembershipsConfiguration.class);
+
+RowChecker rowChecker = null;
+
+if (siteMembershipsConfiguration.enableAssignUnassignUserGroupsRolesActions()) {
+	rowChecker = new EmptyOnClickRowChecker(renderResponse);
+}
+else {
+	Group group = GroupLocalServiceUtil.fetchGroup(groupId);
+
+	UserGroup userGroup = UserGroupLocalServiceUtil.fetchUserGroup(userGroupId);
+
+	rowChecker = new UserGroupGroupRoleRoleChecker(renderResponse, userGroup, group);
+}
+
+List<Role> roles = RoleLocalServiceUtil.search(company.getCompanyId(), searchTerms.getKeywords(), new Integer[] {RoleConstants.TYPE_SITE}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
+
 Stream<Role> roleStream = roles.stream();
 
 roles = roleStream.filter(
 	role -> {
-		if ((assignRoles && !selectedRoles.contains(role)) || (!assignRoles && selectedRoles.contains(role))) {
+		if (!siteMembershipsConfiguration.enableAssignUnassignUserGroupsRolesActions() || (assignRoles && !selectedRoles.contains(role)) || (!assignRoles && selectedRoles.contains(role))) {
 				return true;
 			}
 
@@ -139,7 +154,7 @@ roleSearch.setResults(roles);
 <aui:form cssClass="container-fluid-1280 portlet-site-memberships-assign-site-roles" name="fm">
 	<liferay-ui:search-container
 		id="userGroupGroupRoleRole"
-		rowChecker="<%= new EmptyOnClickRowChecker(renderResponse) %>"
+		rowChecker="<%= rowChecker %>"
 		searchContainer="<%= roleSearch %>"
 	>
 		<liferay-ui:search-container-row
