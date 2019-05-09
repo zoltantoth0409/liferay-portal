@@ -82,7 +82,7 @@ public class FormResourceImpl extends BaseFormResourceImpl {
 
 	@Override
 	public FormContext postFormEvaluateContext(
-			Long formId, FormContext formContextForm)
+			Long formId, FormContext formContext)
 		throws Exception {
 
 		DDMFormInstance ddmFormInstance =
@@ -105,7 +105,7 @@ public class FormResourceImpl extends BaseFormResourceImpl {
 		return FormContextUtil.evaluateContext(
 			ddmFormInstance, ddmFormRenderingContext,
 			_ddmFormTemplateContextFactory,
-			formContextForm.getFormFieldValues(),
+			formContext.getFormFieldValues(),
 			contextAcceptLanguage.getPreferredLocale());
 	}
 
