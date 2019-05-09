@@ -33,8 +33,6 @@ if (Validator.isNotNull(backURL)) {
 }
 
 renderResponse.setTitle(editSegmentsEntryDisplayContext.getTitle(locale));
-
-JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
 %>
 
 <liferay-ui:error embed="<%= false %>" exception="<%= SegmentsEntryCriteriaException.class %>" message="invalid-criteria" />
@@ -90,13 +88,21 @@ JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
 				formId: '<portlet:namespace />editSegmentFm',
 				initialMembersCount: <%= editSegmentsEntryDisplayContext.getSegmentsEntryClassPKsCount() %>,
 				initialSegmentActive: <%= (segmentsEntry == null) ? false : segmentsEntry.isActive() %>,
-				initialSegmentName: <%= (segmentsEntry != null) ?
-					JSONFactoryUtil.createJSONObject(
-						jsonSerializer.serializeDeep(
-							segmentsEntry.getNameMap()
-						)
-					).toString()
-				: null %>,
+
+				<c:choose>
+					<c:when test="<%= segmentsEntry != null %>">
+
+						<%
+						JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
+						%>
+
+						initialSegmentName: <%= JSONFactoryUtil.createJSONObject(jsonSerializer.serializeDeep(segmentsEntry.getNameMap())) %>,
+					</c:when>
+					<c:otherwise>
+						initialSegmentName: null,
+					</c:otherwise>
+				</c:choose>
+
 				locale: '<%= locale %>',
 				portletNamespace: '<portlet:namespace />',
 				previewMembersURL: '<%= previewMembersURL %>',
