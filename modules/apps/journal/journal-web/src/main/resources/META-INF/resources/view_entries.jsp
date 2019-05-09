@@ -63,13 +63,18 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 			<c:when test="<%= curArticle != null %>">
 
 				<%
+				String title = curArticle.getTitle(locale);
+
+				if (Validator.isNull(title)) {
+					title = curArticle.getTitle(LocaleUtil.fromLanguageId(curArticle.getDefaultLanguageId()));
+				}
+
 				Map<String, Object> rowData = new HashMap<String, Object>();
 
 				if (journalDisplayContext.isShowEditActions()) {
 					rowData.put("draggable", !BrowserSnifferUtil.isMobile(request) && (JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.DELETE) || JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.UPDATE)));
 				}
-
-				rowData.put("title", HtmlUtil.escape(curArticle.getTitle(locale)));
+				rowData.put("title", HtmlUtil.escape(title));
 
 				row.setData(rowData);
 
@@ -116,7 +121,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 
 							<h5>
 								<aui:a href="<%= editURL %>" title='<%= !latestVersion ? LanguageUtil.get(request, "the-version-that-is-going-to-be-edited-is-not-the-one-shown-because-recent-versions-have-been-created-on-top-of-it") : StringPool.BLANK %>'>
-									<%= HtmlUtil.escape(curArticle.getTitle(locale)) %>
+									<%= HtmlUtil.escape(title) %>
 								</aui:a>
 							</h5>
 
@@ -161,7 +166,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 										imageUrl="<%= HtmlUtil.escape(articleImageURL) %>"
 										resultRow="<%= row %>"
 										rowChecker="<%= articleSearchContainer.getRowChecker() %>"
-										title="<%= curArticle.getTitle(locale) %>"
+										title="<%= title %>"
 										url="<%= editURL %>"
 									>
 										<%@ include file="/article_vertical_card.jspf" %>
@@ -174,7 +179,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 										icon="web-content"
 										resultRow="<%= row %>"
 										rowChecker="<%= articleSearchContainer.getRowChecker() %>"
-										title="<%= curArticle.getTitle(locale) %>"
+										title="<%= title %>"
 										url="<%= editURL %>"
 									>
 										<%@ include file="/article_vertical_card.jspf" %>
@@ -234,14 +239,10 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 							value="<%= curArticle.getDisplayDate() %>"
 						/>
 
-						<%
-						DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(scopeGroupId, PortalUtil.getClassNameId(JournalArticle.class), curArticle.getDDMStructureKey(), true);
-						%>
-
 						<liferay-ui:search-container-column-text
 							cssClass="table-cell-expand-smallest table-cell-minw-100"
 							name="type"
-							value="<%= HtmlUtil.escape(ddmStructure.getName(locale)) %>"
+							value="<%= HtmlUtil.escape(title) %>"
 						/>
 
 						<c:if test="<%= journalDisplayContext.isShowEditActions() %>">
