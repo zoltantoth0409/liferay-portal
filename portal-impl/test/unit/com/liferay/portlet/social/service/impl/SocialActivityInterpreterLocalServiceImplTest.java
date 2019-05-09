@@ -24,6 +24,7 @@ import com.liferay.social.kernel.model.SocialActivityInterpreter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -52,11 +53,11 @@ public class SocialActivityInterpreterLocalServiceImplTest {
 				SocialActivityInterpreter.class.getClassLoader(),
 				new Class<?>[] {SocialActivityInterpreter.class},
 				(proxy, method, args) -> {
-					if ("getClassNames".equals(method.getName())) {
+					if (Objects.equals(method.getName(), "getClassNames")) {
 						return _CLASS_NAMES;
 					}
 
-					if ("getSelector".equals(method.getName())) {
+					if (Objects.equals(method.getName(), "getSelector")) {
 						return _SELECTOR;
 					}
 
