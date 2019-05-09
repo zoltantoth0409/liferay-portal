@@ -57,7 +57,7 @@ boolean changeableDefaultLanguage = ddlDisplayContext.changeableDefaultLanguage(
 if (ddmFormValues != null) {
 	Set<Locale> availableLocalesSet = ddmFormValues.getAvailableLocales();
 
-	availableLocales = availableLocalesSet.toArray(new Locale[availableLocalesSet.size()]);
+	availableLocales = availableLocalesSet.toArray(new Locale[0]);
 
 	String ddmFormValueDefaultLanguageId = LocaleUtil.toLanguageId(ddmFormValues.getDefaultLocale());
 

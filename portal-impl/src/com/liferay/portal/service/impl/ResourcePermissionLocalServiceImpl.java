@@ -1038,7 +1038,7 @@ public class ResourcePermissionLocalServiceImpl
 
 		setResourcePermissions(
 			companyId, name, scope, primKey, toRoleId,
-			actionIds.toArray(new String[actionIds.size()]));
+			actionIds.toArray(new String[0]));
 
 		resourcePermissionPersistence.remove(resourcePermissionId);
 

@@ -129,8 +129,7 @@ public class AssetSearcher extends BaseSearcher {
 				Field.ASSET_CATEGORY_IDS);
 
 			categoryIdTermsFilter.addValues(
-				ArrayUtil.toStringArray(
-					categoryIds.toArray(new Long[categoryIds.size()])));
+				ArrayUtil.toStringArray(categoryIds.toArray(new Long[0])));
 
 			categoryIdsBooleanFilter.add(
 				categoryIdTermsFilter, BooleanClauseOccur.MUST);
@@ -214,8 +213,7 @@ public class AssetSearcher extends BaseSearcher {
 			}
 
 			categoryIdsTermsFilter.addValues(
-				ArrayUtil.toStringArray(
-					categoryIds.toArray(new Long[categoryIds.size()])));
+				ArrayUtil.toStringArray(categoryIds.toArray(new Long[0])));
 		}
 
 		queryBooleanFilter.add(categoryIdsTermsFilter, BooleanClauseOccur.MUST);
@@ -332,8 +330,7 @@ public class AssetSearcher extends BaseSearcher {
 				Field.ASSET_CATEGORY_IDS);
 
 			categoryIdTermsFilter.addValues(
-				ArrayUtil.toStringArray(
-					categoryIds.toArray(new Long[categoryIds.size()])));
+				ArrayUtil.toStringArray(categoryIds.toArray(new Long[0])));
 
 			categoryIdsBooleanFilter.add(
 				categoryIdTermsFilter, BooleanClauseOccur.MUST);
@@ -406,8 +403,7 @@ public class AssetSearcher extends BaseSearcher {
 			}
 
 			categoryIdsTermsFilter.addValues(
-				ArrayUtil.toStringArray(
-					categoryIds.toArray(new Long[categoryIds.size()])));
+				ArrayUtil.toStringArray(categoryIds.toArray(new Long[0])));
 		}
 
 		queryBooleanFilter.add(

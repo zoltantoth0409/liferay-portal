@@ -195,7 +195,7 @@ request.setAttribute("edit_article.jsp-changeStructure", changeStructure);
 		availableLocalesSet.addAll(ddmFormValues.getAvailableLocales());
 	}
 
-	Locale[] availableLocales = availableLocalesSet.toArray(new Locale[availableLocalesSet.size()]);
+	Locale[] availableLocales = availableLocalesSet.toArray(new Locale[0]);
 	%>
 
 	<div class="lfr-form-content">

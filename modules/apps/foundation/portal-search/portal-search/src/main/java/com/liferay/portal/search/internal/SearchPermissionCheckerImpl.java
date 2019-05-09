@@ -219,11 +219,9 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 			}
 		}
 
+		doc.addKeyword(Field.ROLE_ID, roleIds.toArray(new Long[0]));
 		doc.addKeyword(
-			Field.ROLE_ID, roleIds.toArray(new Long[roleIds.size()]));
-		doc.addKeyword(
-			Field.GROUP_ROLE_ID,
-			groupRoleIds.toArray(new String[groupRoleIds.size()]));
+			Field.GROUP_ROLE_ID, groupRoleIds.toArray(new String[0]));
 	}
 
 	private SearchPermissionContext _createSearchPermissionContext(

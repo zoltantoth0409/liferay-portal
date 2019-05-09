@@ -103,7 +103,7 @@ public abstract class AbstractTemplate implements Template {
 	public String[] getKeys() {
 		Set<String> keys = context.keySet();
 
-		return keys.toArray(new String[keys.size()]);
+		return keys.toArray(new String[0]);
 	}
 
 	@Override

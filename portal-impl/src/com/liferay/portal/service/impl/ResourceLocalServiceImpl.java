@@ -623,7 +623,7 @@ public class ResourceLocalServiceImpl extends ResourceLocalServiceBaseImpl {
 				name);
 		}
 
-		String[] actionIds = actions.toArray(new String[actions.size()]);
+		String[] actionIds = actions.toArray(new String[0]);
 
 		if (resourceBlockLocalService.isSupported(name)) {
 			addGroupPermissionsBlocks(
@@ -680,7 +680,7 @@ public class ResourceLocalServiceImpl extends ResourceLocalServiceBaseImpl {
 				name);
 		}
 
-		String[] actionIds = actions.toArray(new String[actions.size()]);
+		String[] actionIds = actions.toArray(new String[0]);
 
 		if (resourceBlockLocalService.isSupported(name)) {
 			addGuestPermissionsBlocks(
@@ -740,8 +740,7 @@ public class ResourceLocalServiceImpl extends ResourceLocalServiceBaseImpl {
 
 		filterOwnerActions(resource.getName(), ownerActionIds);
 
-		String[] ownerPermissions = ownerActionIds.toArray(
-			new String[ownerActionIds.size()]);
+		String[] ownerPermissions = ownerActionIds.toArray(new String[0]);
 
 		if (resourceBlockLocalService.isSupported(resource.getName())) {
 			if (permissionedModel == null) {
@@ -909,7 +908,7 @@ public class ResourceLocalServiceImpl extends ResourceLocalServiceBaseImpl {
 			resourcePermissionLocalService.setOwnerResourcePermissions(
 				resource.getCompanyId(), resource.getName(),
 				resource.getScope(), resource.getPrimKey(), role.getRoleId(),
-				userId, actionIds.toArray(new String[actionIds.size()]));
+				userId, actionIds.toArray(new String[0]));
 		}
 	}
 
@@ -1171,7 +1170,7 @@ public class ResourceLocalServiceImpl extends ResourceLocalServiceBaseImpl {
 			resourcePermissionLocalService.setResourcePermissions(
 				resource.getCompanyId(), resource.getName(),
 				resource.getScope(), resource.getPrimKey(), role.getRoleId(),
-				actionIds.toArray(new String[actionIds.size()]));
+				actionIds.toArray(new String[0]));
 		}
 	}
 

@@ -366,7 +366,7 @@ public class DocumentTest {
 			list.add(Double.valueOf(value));
 		}
 
-		return list.toArray(new Double[list.size()]);
+		return list.toArray(new Double[0]);
 	}
 
 	protected Float[] getFloatArray(Document document) {
@@ -376,7 +376,7 @@ public class DocumentTest {
 			list.add(Float.valueOf(value));
 		}
 
-		return list.toArray(new Float[list.size()]);
+		return list.toArray(new Float[0]);
 	}
 
 	protected Integer[] getIntegerArray(Document document) {
@@ -386,7 +386,7 @@ public class DocumentTest {
 			list.add(Integer.valueOf(value));
 		}
 
-		return list.toArray(new Integer[list.size()]);
+		return list.toArray(new Integer[0]);
 	}
 
 	protected Long[] getLongArray(Document document) {
@@ -396,7 +396,7 @@ public class DocumentTest {
 			list.add(Long.valueOf(value));
 		}
 
-		return list.toArray(new Long[list.size()]);
+		return list.toArray(new Long[0]);
 	}
 
 	protected String[] getSelectedFieldNames() {

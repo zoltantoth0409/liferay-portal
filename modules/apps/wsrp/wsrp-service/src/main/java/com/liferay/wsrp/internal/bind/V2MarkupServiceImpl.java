@@ -371,7 +371,7 @@ public class V2MarkupServiceImpl
 		}
 
 		resourceContext.setClientAttributes(
-			clientAttributes.toArray(new NamedString[clientAttributes.size()]));
+			clientAttributes.toArray(new NamedString[0]));
 
 		ResourceResponse resourceResponse = new ResourceResponse();
 

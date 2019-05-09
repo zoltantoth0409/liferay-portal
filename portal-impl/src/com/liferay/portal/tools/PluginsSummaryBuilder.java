@@ -522,7 +522,7 @@ public class PluginsSummaryBuilder {
 			}
 
 			String ticketIdsString = StringUtil.merge(
-				ticketIds.toArray(new String[ticketIds.size()]), " ");
+				ticketIds.toArray(new String[0]), " ");
 
 			changeLogVersion++;
 

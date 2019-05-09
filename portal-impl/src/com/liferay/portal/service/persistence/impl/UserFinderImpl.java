@@ -1191,8 +1191,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			}
 
 			if (!siteGroupIds.isEmpty()) {
-				Long[] siteGroupIdsArray = siteGroupIds.toArray(
-					new Long[siteGroupIds.size()]);
+				Long[] siteGroupIdsArray = siteGroupIds.toArray(new Long[0]);
 
 				params3 = new LinkedHashMap<>(params1);
 
@@ -1213,8 +1212,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 				params5.remove("usersGroups");
 
 				params5.put(
-					"usersUserGroups",
-					userGroupIds.toArray(new Long[userGroupIds.size()]));
+					"usersUserGroups", userGroupIds.toArray(new Long[0]));
 			}
 		}
 
@@ -1248,9 +1246,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 
 				if (PropsValues.ORGANIZATIONS_MEMBERSHIP_STRICT) {
 					params2.put(
-						"usersOrgs",
-						organizationIds.toArray(
-							new Long[organizationIds.size()]));
+						"usersOrgs", organizationIds.toArray(new Long[0]));
 				}
 				else {
 					Map<Serializable, Organization> organizations =
@@ -1264,8 +1260,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			}
 
 			if (!siteGroupIds.isEmpty()) {
-				Long[] siteGroupIdsArray = siteGroupIds.toArray(
-					new Long[siteGroupIds.size()]);
+				Long[] siteGroupIdsArray = siteGroupIds.toArray(new Long[0]);
 
 				params3 = new LinkedHashMap<>(params1);
 
@@ -1292,8 +1287,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 				params6.remove("usersRoles");
 
 				params6.put(
-					"usersUserGroups",
-					userGroupIds.toArray(new Long[userGroupIds.size()]));
+					"usersUserGroups", userGroupIds.toArray(new Long[0]));
 			}
 		}
 

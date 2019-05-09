@@ -428,7 +428,7 @@ public class WabBundleProcessor {
 			classNamesList.add(ServletRequestListener.class.getName());
 		}
 
-		return classNamesList.toArray(new String[classNamesList.size()]);
+		return classNamesList.toArray(new String[0]);
 	}
 
 	protected ServletContextHelperRegistration initContext() {

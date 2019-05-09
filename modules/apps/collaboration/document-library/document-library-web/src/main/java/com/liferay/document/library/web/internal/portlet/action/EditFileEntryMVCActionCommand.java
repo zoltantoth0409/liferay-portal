@@ -703,7 +703,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				extensions.addAll(MimeTypesUtil.getExtensions(mimeType));
 			}
 
-			return extensions.toArray(new String[extensions.size()]);
+			return extensions.toArray(new String[0]);
 		}
 	}
 

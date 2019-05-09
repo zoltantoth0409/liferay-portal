@@ -224,11 +224,10 @@ public class ConfigurationModelIndexer extends BaseIndexer<ConfigurationModel> {
 
 		document.addKeyword(
 			FieldNames.CONFIGURATION_MODEL_ATTRIBUTE_NAME,
-			attributeNames.toArray(new String[attributeNames.size()]));
+			attributeNames.toArray(new String[0]));
 		document.addText(
 			FieldNames.CONFIGURATION_MODEL_ATTRIBUTE_DESCRIPTION,
-			attributeDescriptions.toArray(
-				new String[attributeDescriptions.size()]));
+			attributeDescriptions.toArray(new String[0]));
 
 		document.addLocalizedText(
 			Field.TITLE,

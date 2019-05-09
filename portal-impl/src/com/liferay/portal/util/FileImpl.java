@@ -738,7 +738,7 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			}
 		}
 
-		return dirs.toArray(new String[dirs.size()]);
+		return dirs.toArray(new String[0]);
 	}
 
 	@Override
@@ -758,7 +758,7 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			}
 		}
 
-		return files.toArray(new String[files.size()]);
+		return files.toArray(new String[0]);
 	}
 
 	@Override
@@ -880,7 +880,7 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 
 		directoryList.addAll(fileList);
 
-		return directoryList.toArray(new File[directoryList.size()]);
+		return directoryList.toArray(new File[0]);
 	}
 
 	@Override

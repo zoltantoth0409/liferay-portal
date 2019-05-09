@@ -150,8 +150,7 @@ public class ShoppingCartLocalServiceImpl
 
 		if (!badItemIds.isEmpty()) {
 			throw new CartMinQuantityException(
-				StringUtil.merge(
-					badItemIds.toArray(new Long[badItemIds.size()])));
+				StringUtil.merge(badItemIds.toArray(new Long[0])));
 		}
 
 		String[] couponCodesArray = StringUtil.split(couponCodes);

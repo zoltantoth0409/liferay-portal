@@ -81,7 +81,7 @@ public class TermsOfUseContentProviderRegistryUtil {
 	private String[] _getClassNames() {
 		Set<String> classNames = _termsOfUseContentProviders.keySet();
 
-		return classNames.toArray(new String[classNames.size()]);
+		return classNames.toArray(new String[0]);
 	}
 
 	private TermsOfUseContentProvider _getTermsOfUseContentProvider() {

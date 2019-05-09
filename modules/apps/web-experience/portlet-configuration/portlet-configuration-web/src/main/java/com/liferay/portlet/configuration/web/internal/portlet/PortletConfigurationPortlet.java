@@ -533,7 +533,7 @@ public class PortletConfigurationPortlet extends MVCPortlet {
 					actionRequest, roleId, true);
 
 				roleIdsToActionIds.put(
-					roleId, actionIds.toArray(new String[actionIds.size()]));
+					roleId, actionIds.toArray(new String[0]));
 			}
 
 			_resourceBlockService.setIndividualScopePermissions(
@@ -678,7 +678,7 @@ public class PortletConfigurationPortlet extends MVCPortlet {
 		List<String> actionIds = getActionIdsList(
 			actionRequest, roleId, includePreselected);
 
-		return actionIds.toArray(new String[actionIds.size()]);
+		return actionIds.toArray(new String[0]);
 	}
 
 	protected List<String> getActionIdsList(

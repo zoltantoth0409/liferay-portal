@@ -62,8 +62,7 @@ public class BundleBlacklistManager {
 				Collections.addAll(
 					blacklistBundleSymbolicNamesSet, bundleSymbolicNames);
 
-				return blacklistBundleSymbolicNamesSet.toArray(
-					new String[blacklistBundleSymbolicNamesSet.size()]);
+				return blacklistBundleSymbolicNamesSet.toArray(new String[0]);
 			});
 	}
 
@@ -87,8 +86,7 @@ public class BundleBlacklistManager {
 					blacklistBundleSymbolicNamesSet.remove(bundleSymbolicName);
 				}
 
-				return blacklistBundleSymbolicNamesSet.toArray(
-					new String[blacklistBundleSymbolicNamesSet.size()]);
+				return blacklistBundleSymbolicNamesSet.toArray(new String[0]);
 			});
 	}
 

@@ -224,8 +224,7 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 			// PNG
 
 			RenderedImage renderedImage = MosaicDescriptor.create(
-				renderedImages.toArray(
-					new RenderedImage[renderedImages.size()]),
+				renderedImages.toArray(new RenderedImage[0]),
 				MosaicDescriptor.MOSAIC_TYPE_OVERLAY, null, null, null, null,
 				null);
 
@@ -323,8 +322,7 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 				bytesList.add(elem);
 			}
 
-			byte[] data = ArrayUtil.toArray(
-				bytesList.toArray(new Byte[bytesList.size()]));
+			byte[] data = ArrayUtil.toArray(bytesList.toArray(new Byte[0]));
 
 			DataBuffer newDataBuffer = new DataBufferByte(data, data.length);
 
@@ -358,8 +356,7 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 				}
 			}
 
-			byte[] data = ArrayUtil.toArray(
-				bytesList.toArray(new Byte[bytesList.size()]));
+			byte[] data = ArrayUtil.toArray(bytesList.toArray(new Byte[0]));
 
 			DataBuffer newDataBuffer = new DataBufferByte(data, data.length);
 
@@ -390,8 +387,7 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 				}
 			}
 
-			byte[] data = ArrayUtil.toArray(
-				bytesList.toArray(new Byte[bytesList.size()]));
+			byte[] data = ArrayUtil.toArray(bytesList.toArray(new Byte[0]));
 
 			DataBuffer newDataBuffer = new DataBufferByte(data, data.length);
 

@@ -258,8 +258,7 @@ public class DocumentConversionUtil {
 					}
 				}
 
-				conversions = conversionsList.toArray(
-					new String[conversionsList.size()]);
+				conversions = conversionsList.toArray(new String[0]);
 			}
 		}
 
@@ -365,8 +364,7 @@ public class DocumentConversionUtil {
 				}
 
 				_conversionsMap.put(
-					sourceExtension,
-					conversions.toArray(new String[conversions.size()]));
+					sourceExtension, conversions.toArray(new String[0]));
 			}
 		}
 	}

@@ -1337,8 +1337,7 @@ public class LayoutStagedModelDataHandler
 			if (!importedPortletIds.isEmpty()) {
 				_portletLocalService.deletePortlets(
 					importedLayout.getCompanyId(),
-					importedPortletIds.toArray(
-						new String[importedPortletIds.size()]),
+					importedPortletIds.toArray(new String[0]),
 					importedLayout.getPlid());
 			}
 

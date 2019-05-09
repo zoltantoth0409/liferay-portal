@@ -330,8 +330,7 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 		AggregateResourceBundleLoader aggregateResourceBundleLoader =
 			new AggregateResourceBundleLoader(
-				resourceBundleLoaders.toArray(
-					new ResourceBundleLoader[resourceBundleLoaders.size()]));
+				resourceBundleLoaders.toArray(new ResourceBundleLoader[0]));
 
 		return aggregateResourceBundleLoader.loadResourceBundle(locale);
 	}

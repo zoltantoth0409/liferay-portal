@@ -250,8 +250,7 @@ public abstract class BasePortletDataHandler implements PortletDataHandler {
 					"user-preferences", true, false, null, null, null));
 		}
 
-		return configurationControls.toArray(
-			new PortletDataHandlerBoolean[configurationControls.size()]);
+		return configurationControls.toArray(new PortletDataHandlerBoolean[0]);
 	}
 
 	@Override
@@ -324,8 +323,7 @@ public abstract class BasePortletDataHandler implements PortletDataHandler {
 					"user-preferences", true, false, null, null, null));
 		}
 
-		return configurationControls.toArray(
-			new PortletDataHandlerBoolean[configurationControls.size()]);
+		return configurationControls.toArray(new PortletDataHandlerBoolean[0]);
 	}
 
 	@Override

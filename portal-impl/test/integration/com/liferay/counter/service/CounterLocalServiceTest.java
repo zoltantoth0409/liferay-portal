@@ -276,7 +276,7 @@ public class CounterLocalServiceTest {
 				throw new ProcessException(se);
 			}
 
-			return ids.toArray(new Long[ids.size()]);
+			return ids.toArray(new Long[0]);
 		}
 
 		@Override

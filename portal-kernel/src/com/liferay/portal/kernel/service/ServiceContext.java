@@ -204,13 +204,11 @@ public class ServiceContext implements Cloneable, Serializable {
 			}
 		}
 
-		String[] groupPermissions = groupPermissionsList.toArray(
-			new String[groupPermissionsList.size()]);
+		String[] groupPermissions = groupPermissionsList.toArray(new String[0]);
 
 		setGroupPermissions(groupPermissions);
 
-		String[] guestPermissions = guestPermissionsList.toArray(
-			new String[guestPermissionsList.size()]);
+		String[] guestPermissions = guestPermissionsList.toArray(new String[0]);
 
 		setGuestPermissions(guestPermissions);
 	}

@@ -191,8 +191,7 @@ public class FieldsToDDMFormValuesConverterImpl
 				}
 			}
 
-			return fieldsDisplayValues.toArray(
-				new String[fieldsDisplayValues.size()]);
+			return fieldsDisplayValues.toArray(new String[0]);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
@@ -388,8 +387,7 @@ public class FieldsToDDMFormValuesConverterImpl
 				}
 			}
 
-			return fieldsDisplayValues.toArray(
-				new String[fieldsDisplayValues.size()]);
+			return fieldsDisplayValues.toArray(new String[0]);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);

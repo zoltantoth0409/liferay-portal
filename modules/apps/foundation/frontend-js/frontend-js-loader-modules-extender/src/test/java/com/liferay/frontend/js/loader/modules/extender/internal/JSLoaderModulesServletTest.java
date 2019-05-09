@@ -671,7 +671,7 @@ public class JSLoaderModulesServletTest extends PowerMockito {
 		public String[] getPropertyKeys() {
 			Set<String> keys = _properties.keySet();
 
-			return keys.toArray(new String[keys.size()]);
+			return keys.toArray(new String[0]);
 		}
 
 		@Override

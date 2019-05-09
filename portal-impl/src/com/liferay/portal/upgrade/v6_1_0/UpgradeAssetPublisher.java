@@ -101,8 +101,7 @@ public class UpgradeAssetPublisher extends BaseUpgradePortletPreferences {
 			}
 
 			portletPreferences.setValues(
-				"classNameIds",
-				classNameIdsList.toArray(new String[classNameIdsList.size()]));
+				"classNameIds", classNameIdsList.toArray(new String[0]));
 
 			if (classNameIdsList.size() == 1) {
 				long fileEntryTypeId = getIGImageFileEntryType(companyId);

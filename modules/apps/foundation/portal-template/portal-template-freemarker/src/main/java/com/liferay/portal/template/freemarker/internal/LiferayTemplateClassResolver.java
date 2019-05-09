@@ -107,8 +107,7 @@ public class LiferayTemplateClassResolver implements TemplateClassResolver {
 		if (allowed) {
 			try {
 				ClassLoader[] wwhitelistedClassLoaders =
-					_whitelistedClassLoaders.toArray(
-						new ClassLoader[_whitelistedClassLoaders.size()]);
+					_whitelistedClassLoaders.toArray(new ClassLoader[0]);
 
 				ClassLoader[] classLoaders = ArrayUtil.append(
 					wwhitelistedClassLoaders,

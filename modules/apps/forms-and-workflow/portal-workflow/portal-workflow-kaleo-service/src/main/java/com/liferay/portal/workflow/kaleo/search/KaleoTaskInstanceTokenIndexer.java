@@ -531,14 +531,13 @@ public class KaleoTaskInstanceTokenIndexer
 
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.ASSIGNEE_CLASS_NAME_IDS,
-			assigneeClassNameIds.toArray(
-				new Long[assigneeClassNameIds.size()]));
+			assigneeClassNameIds.toArray(new Long[0]));
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.ASSIGNEE_CLASS_PKS,
-			assigneeClassPKs.toArray(new Long[assigneeClassPKs.size()]));
+			assigneeClassPKs.toArray(new Long[0]));
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.ASSIGNEE_GROUP_IDS,
-			assigneeGroupIds.toArray(new Long[assigneeGroupIds.size()]));
+			assigneeGroupIds.toArray(new Long[0]));
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.COMPLETED,
 			kaleoTaskInstanceToken.isCompleted());

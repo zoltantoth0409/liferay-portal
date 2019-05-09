@@ -77,8 +77,7 @@ public abstract class AnnotationChainableMethodAdvice<T extends Annotation>
 		}
 
 		ServiceBeanAopCacheManager.putAnnotations(
-			methodInvocation,
-			annotations.toArray(new Annotation[annotations.size()]));
+			methodInvocation, annotations.toArray(new Annotation[0]));
 
 		Set<Class<? extends Annotation>> annotationClasses = new HashSet<>();
 

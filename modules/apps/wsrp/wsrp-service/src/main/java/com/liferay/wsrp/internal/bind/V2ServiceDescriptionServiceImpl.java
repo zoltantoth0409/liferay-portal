@@ -138,7 +138,7 @@ public class V2ServiceDescriptionServiceImpl
 			markupTypes.add(markupType);
 		}
 
-		return markupTypes.toArray(new MarkupType[markupTypes.size()]);
+		return markupTypes.toArray(new MarkupType[0]);
 	}
 
 	protected PortletDescription getPortletDescription(
@@ -208,8 +208,7 @@ public class V2ServiceDescriptionServiceImpl
 			portletDescriptions.add(portletDescription);
 		}
 
-		return portletDescriptions.toArray(
-			new PortletDescription[portletDescriptions.size()]);
+		return portletDescriptions.toArray(new PortletDescription[0]);
 	}
 
 	protected String[] getWSRPKeys(Set<String> keys) {

@@ -119,8 +119,7 @@ public class AMBlogsEditorConfigContributor
 
 		PortletURL itemSelectorPortletURL = _itemSelector.getItemSelectorURL(
 			requestBackedPortletURLFactory, itemSelectedEventName,
-			itemSelectorCriteria.toArray(
-				new ItemSelectorCriterion[itemSelectorCriteria.size()]));
+			itemSelectorCriteria.toArray(new ItemSelectorCriterion[0]));
 
 		jsonObject.put(
 			"filebrowserImageBrowseLinkUrl", itemSelectorPortletURL.toString());

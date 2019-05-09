@@ -271,7 +271,7 @@ public class JspServlet extends HttpServlet {
 
 		collectTaglibProviderBundles(bundles);
 
-		_allParticipatingBundles = bundles.toArray(new Bundle[bundles.size()]);
+		_allParticipatingBundles = bundles.toArray(new Bundle[0]);
 
 		_jspBundleClassloader = new JspBundleClassloader(
 			_allParticipatingBundles);
@@ -490,7 +490,7 @@ public class JspServlet extends HttpServlet {
 					"servlet listener interfaces");
 		}
 
-		return classNames.toArray(new String[classNames.size()]);
+		return classNames.toArray(new String[0]);
 	}
 
 	private static Map<Method, Method> _createContextAdapterMethods() {

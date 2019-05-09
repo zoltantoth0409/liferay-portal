@@ -83,8 +83,7 @@ public class SocialGroupStatisticsConfigurationAction
 			values.add(value);
 		}
 
-		setPreference(
-			actionRequest, key, values.toArray(new String[values.size()]));
+		setPreference(actionRequest, key, values.toArray(new String[0]));
 	}
 
 }

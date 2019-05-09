@@ -141,8 +141,7 @@ public class MySitesPortlet extends MVCPortlet {
 			}
 		}
 
-		return ArrayUtil.toArray(
-			filteredUserIds.toArray(new Long[filteredUserIds.size()]));
+		return ArrayUtil.toArray(filteredUserIds.toArray(new Long[0]));
 	}
 
 	protected long[] filterRemoveUserIds(long groupId, long[] userIds)
@@ -156,8 +155,7 @@ public class MySitesPortlet extends MVCPortlet {
 			}
 		}
 
-		return ArrayUtil.toArray(
-			filteredUserIds.toArray(new Long[filteredUserIds.size()]));
+		return ArrayUtil.toArray(filteredUserIds.toArray(new Long[0]));
 	}
 
 	@Override

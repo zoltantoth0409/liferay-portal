@@ -2386,7 +2386,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 			containerRuntimeOptions.put(
 				containerRuntimeOptionPrefix.concat(name),
-				values.toArray(new String[values.size()]));
+				values.toArray(new String[0]));
 		}
 
 		portletsMap.put(portletId, portletModel);
@@ -2491,8 +2491,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			Map<String, String[]> containerRuntimeOptions =
 				portletApp.getContainerRuntimeOptions();
 
-			containerRuntimeOptions.put(
-				name, values.toArray(new String[values.size()]));
+			containerRuntimeOptions.put(name, values.toArray(new String[0]));
 
 			if (name.equals(
 					LiferayPortletConfig.RUNTIME_OPTION_PORTAL_CONTEXT) &&

@@ -870,7 +870,7 @@ public class ArrayUtil {
 			set.add(s);
 		}
 
-		return set.toArray(new String[set.size()]);
+		return set.toArray(new String[0]);
 	}
 
 	public static <T> boolean exists(
@@ -904,7 +904,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(filteredList.toArray(new Boolean[filteredList.size()]));
+		return toArray(filteredList.toArray(new Boolean[0]));
 	}
 
 	public static byte[] filter(
@@ -922,7 +922,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(filteredList.toArray(new Byte[filteredList.size()]));
+		return toArray(filteredList.toArray(new Byte[0]));
 	}
 
 	public static char[] filter(
@@ -940,8 +940,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(
-			filteredList.toArray(new Character[filteredList.size()]));
+		return toArray(filteredList.toArray(new Character[0]));
 	}
 
 	public static double[] filter(
@@ -959,7 +958,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(filteredList.toArray(new Double[filteredList.size()]));
+		return toArray(filteredList.toArray(new Double[0]));
 	}
 
 	public static float[] filter(
@@ -977,7 +976,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(filteredList.toArray(new Float[filteredList.size()]));
+		return toArray(filteredList.toArray(new Float[0]));
 	}
 
 	public static int[] filter(
@@ -995,7 +994,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(filteredList.toArray(new Integer[filteredList.size()]));
+		return toArray(filteredList.toArray(new Integer[0]));
 	}
 
 	public static long[] filter(
@@ -1013,7 +1012,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(filteredList.toArray(new Long[filteredList.size()]));
+		return toArray(filteredList.toArray(new Long[0]));
 	}
 
 	public static short[] filter(
@@ -1031,7 +1030,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(filteredList.toArray(new Short[filteredList.size()]));
+		return toArray(filteredList.toArray(new Short[0]));
 	}
 
 	public static <T> T[] filter(
@@ -1194,7 +1193,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(list.toArray(new Boolean[list.size()]));
+		return toArray(list.toArray(new Boolean[0]));
 	}
 
 	public static byte[] remove(byte[] array, byte value) {
@@ -1210,7 +1209,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(list.toArray(new Byte[list.size()]));
+		return toArray(list.toArray(new Byte[0]));
 	}
 
 	public static char[] remove(char[] array, char value) {
@@ -1226,7 +1225,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(list.toArray(new Character[list.size()]));
+		return toArray(list.toArray(new Character[0]));
 	}
 
 	public static double[] remove(double[] array, double value) {
@@ -1242,7 +1241,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(list.toArray(new Double[list.size()]));
+		return toArray(list.toArray(new Double[0]));
 	}
 
 	public static float[] remove(float[] array, float value) {
@@ -1258,7 +1257,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(list.toArray(new Float[list.size()]));
+		return toArray(list.toArray(new Float[0]));
 	}
 
 	public static int[] remove(int[] array, int value) {
@@ -1274,7 +1273,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(list.toArray(new Integer[list.size()]));
+		return toArray(list.toArray(new Integer[0]));
 	}
 
 	public static long[] remove(long[] array, long value) {
@@ -1290,7 +1289,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(list.toArray(new Long[list.size()]));
+		return toArray(list.toArray(new Long[0]));
 	}
 
 	public static short[] remove(short[] array, short value) {
@@ -1306,7 +1305,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return toArray(list.toArray(new Short[list.size()]));
+		return toArray(list.toArray(new Short[0]));
 	}
 
 	public static String[] remove(String[] array, String value) {
@@ -1322,7 +1321,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return list.toArray(new String[list.size()]);
+		return list.toArray(new String[0]);
 	}
 
 	public static <T> T[] remove(T[] array, T value) {
@@ -1357,7 +1356,7 @@ public class ArrayUtil {
 			}
 		}
 
-		return list.toArray(new String[list.size()]);
+		return list.toArray(new String[0]);
 	}
 
 	public static void replace(
@@ -2184,7 +2183,7 @@ public class ArrayUtil {
 			set.add(b);
 		}
 
-		return toArray(set.toArray(new Byte[set.size()]));
+		return toArray(set.toArray(new Byte[0]));
 	}
 
 	public static double[] unique(double[] array) {
@@ -2194,7 +2193,7 @@ public class ArrayUtil {
 			set.add(d);
 		}
 
-		return toArray(set.toArray(new Double[set.size()]));
+		return toArray(set.toArray(new Double[0]));
 	}
 
 	public static float[] unique(float[] array) {
@@ -2204,7 +2203,7 @@ public class ArrayUtil {
 			set.add(f);
 		}
 
-		return toArray(set.toArray(new Float[set.size()]));
+		return toArray(set.toArray(new Float[0]));
 	}
 
 	public static int[] unique(int[] array) {
@@ -2214,7 +2213,7 @@ public class ArrayUtil {
 			set.add(i);
 		}
 
-		return toArray(set.toArray(new Integer[set.size()]));
+		return toArray(set.toArray(new Integer[0]));
 	}
 
 	public static long[] unique(long[] array) {
@@ -2224,7 +2223,7 @@ public class ArrayUtil {
 			set.add(l);
 		}
 
-		return toArray(set.toArray(new Long[set.size()]));
+		return toArray(set.toArray(new Long[0]));
 	}
 
 	public static short[] unique(short[] array) {
@@ -2234,7 +2233,7 @@ public class ArrayUtil {
 			set.add(s);
 		}
 
-		return toArray(set.toArray(new Short[set.size()]));
+		return toArray(set.toArray(new Short[0]));
 	}
 
 	public static String[] unique(String[] array) {
@@ -2244,7 +2243,7 @@ public class ArrayUtil {
 			set.add(s);
 		}
 
-		return toArray(set.toArray(new String[set.size()]));
+		return toArray(set.toArray(new String[0]));
 	}
 
 }

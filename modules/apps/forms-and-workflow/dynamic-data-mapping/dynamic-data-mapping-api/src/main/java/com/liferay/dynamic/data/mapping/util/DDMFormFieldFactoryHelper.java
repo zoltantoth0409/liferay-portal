@@ -355,7 +355,7 @@ public class DDMFormFieldFactoryHelper {
 			_method.getDeclaringClass(), resourceBundles, locale);
 
 		ResourceBundle[] resourceBundlesArray = resourceBundles.toArray(
-			new ResourceBundle[resourceBundles.size()]);
+			new ResourceBundle[0]);
 
 		return new AggregateResourceBundle(resourceBundlesArray);
 	}

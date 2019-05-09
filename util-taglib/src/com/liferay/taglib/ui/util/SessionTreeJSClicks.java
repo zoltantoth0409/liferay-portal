@@ -49,9 +49,7 @@ public class SessionTreeJSClicks {
 				getLayoutIds(request, privateLayout, layoutId, layoutIds);
 			}
 
-			closeNodes(
-				request, treeId,
-				layoutIds.toArray(new String[layoutIds.size()]));
+			closeNodes(request, treeId, layoutIds.toArray(new String[0]));
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -175,9 +173,7 @@ public class SessionTreeJSClicks {
 				getLayoutIds(request, privateLayout, layoutId, layoutIds);
 			}
 
-			openNodes(
-				request, treeId,
-				layoutIds.toArray(new String[layoutIds.size()]));
+			openNodes(request, treeId, layoutIds.toArray(new String[0]));
 		}
 		catch (Exception e) {
 			_log.error(e, e);

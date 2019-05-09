@@ -141,8 +141,7 @@ public class EmailNotificationSender
 			internetAddresses.add(notificationRecipient.getInternetAddress());
 		}
 
-		return internetAddresses.toArray(
-			new InternetAddress[internetAddresses.size()]);
+		return internetAddresses.toArray(new InternetAddress[0]);
 	}
 
 	private String _fromAddress;

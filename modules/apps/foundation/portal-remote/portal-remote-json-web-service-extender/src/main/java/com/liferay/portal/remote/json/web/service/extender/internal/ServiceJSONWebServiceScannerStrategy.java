@@ -62,8 +62,7 @@ public class ServiceJSONWebServiceScannerStrategy
 			methodDescriptors.add(new MethodDescriptor(method));
 		}
 
-		return methodDescriptors.toArray(
-			new MethodDescriptor[methodDescriptors.size()]);
+		return methodDescriptors.toArray(new MethodDescriptor[0]);
 	}
 
 	/**

@@ -198,7 +198,7 @@ public class ShoppingOrderLocalServiceImpl
 							item.getItemId());
 
 					ShoppingItemField[] itemFieldsArray = itemFields.toArray(
-						new ShoppingItemField[itemFields.size()]);
+						new ShoppingItemField[0]);
 
 					String[] fieldsArray = ShoppingCartItemImpl.getFieldsArray(
 						ShoppingUtil.getItemFields(orderItem.getItemId()));

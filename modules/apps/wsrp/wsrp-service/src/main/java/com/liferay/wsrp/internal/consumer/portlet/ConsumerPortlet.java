@@ -1258,7 +1258,7 @@ public class ConsumerPortlet extends MVCPortlet {
 		}
 
 		navigationalContext.setPublicValues(
-			publicValues.toArray(new NamedString[publicValues.size()]));
+			publicValues.toArray(new NamedString[0]));
 
 		mimeRequest.setNavigationalContext(navigationalContext);
 
@@ -1410,7 +1410,7 @@ public class ConsumerPortlet extends MVCPortlet {
 
 		if (!formParameters.isEmpty()) {
 			interactionParams.setFormParameters(
-				formParameters.toArray(new NamedString[formParameters.size()]));
+				formParameters.toArray(new NamedString[0]));
 		}
 	}
 
@@ -1482,7 +1482,7 @@ public class ConsumerPortlet extends MVCPortlet {
 
 		if (!formParameters.isEmpty()) {
 			resourceParams.setFormParameters(
-				formParameters.toArray(new NamedString[formParameters.size()]));
+				formParameters.toArray(new NamedString[0]));
 		}
 	}
 
@@ -1575,13 +1575,12 @@ public class ConsumerPortlet extends MVCPortlet {
 
 		if (!formParameters.isEmpty()) {
 			interactionParams.setFormParameters(
-				formParameters.toArray(new NamedString[formParameters.size()]));
+				formParameters.toArray(new NamedString[0]));
 		}
 
 		if (!uploadContexts.isEmpty()) {
 			interactionParams.setUploadContexts(
-				uploadContexts.toArray(
-					new UploadContext[uploadContexts.size()]));
+				uploadContexts.toArray(new UploadContext[0]));
 		}
 	}
 
@@ -1677,13 +1676,12 @@ public class ConsumerPortlet extends MVCPortlet {
 
 		if (!formParameters.isEmpty()) {
 			resourceParams.setFormParameters(
-				formParameters.toArray(new NamedString[formParameters.size()]));
+				formParameters.toArray(new NamedString[0]));
 		}
 
 		if (!uploadContexts.isEmpty()) {
 			resourceParams.setUploadContexts(
-				uploadContexts.toArray(
-					new UploadContext[uploadContexts.size()]));
+				uploadContexts.toArray(new UploadContext[0]));
 		}
 	}
 

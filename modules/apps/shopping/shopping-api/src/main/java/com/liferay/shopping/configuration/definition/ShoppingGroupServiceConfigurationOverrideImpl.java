@@ -59,7 +59,7 @@ public class ShoppingGroupServiceConfigurationOverrideImpl
 				}
 			}
 
-			ids = set.toArray(new String[set.size()]);
+			ids = set.toArray(new String[0]);
 		}
 		catch (Exception e) {
 			ids = new String[] {"USD", "CAD", "EUR", "GBP", "JPY"};
