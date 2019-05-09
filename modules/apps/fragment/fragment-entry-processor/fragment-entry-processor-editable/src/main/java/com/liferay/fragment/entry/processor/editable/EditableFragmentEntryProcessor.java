@@ -286,16 +286,18 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 			int previewType)
 		throws PortalException {
 
-		DefaultFragmentEntryProcessorContext fragmentEntryProcessorContext =
-			new DefaultFragmentEntryProcessorContext(null, null, mode, locale);
+		DefaultFragmentEntryProcessorContext
+			defaultFragmentEntryProcessorContext =
+				new DefaultFragmentEntryProcessorContext(
+					null, null, mode, locale);
 
-		fragmentEntryProcessorContext.setPreviewClassPK(previewClassPK);
-		fragmentEntryProcessorContext.setPreviewType(previewType);
-		fragmentEntryProcessorContext.setSegmentsExperienceIds(
+		defaultFragmentEntryProcessorContext.setPreviewClassPK(previewClassPK);
+		defaultFragmentEntryProcessorContext.setPreviewType(previewType);
+		defaultFragmentEntryProcessorContext.setSegmentsExperienceIds(
 			segmentsExperienceIds);
 
 		return processFragmentEntryLinkHTML(
-			fragmentEntryLink, html, fragmentEntryProcessorContext);
+			fragmentEntryLink, html, defaultFragmentEntryProcessorContext);
 	}
 
 	@Reference(
@@ -358,7 +360,6 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 		templateManager.addTaglibSupport(
 			template, fragmentEntryProcessorContext.getHttpServletRequest(),
 			fragmentEntryProcessorContext.getHttpServletResponse());
-
 		templateManager.addTaglibTheme(
 			template, "taglibLiferay",
 			fragmentEntryProcessorContext.getHttpServletRequest(),
