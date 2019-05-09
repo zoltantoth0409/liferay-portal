@@ -46,8 +46,6 @@ SelectRoleManagementToolbarDisplayContext SelectRoleManagementToolbarDisplayCont
 
 PortletURL portletURL = SelectRoleManagementToolbarDisplayContext.getPortletURL();
 
-SearchContainer roleSearchContainer = null;
-
 long organizationId = 0;
 Organization selectedOrganization = null;
 
@@ -56,6 +54,8 @@ if (step == 2) {
 
 	selectedOrganization = OrganizationServiceUtil.getOrganization(organizationId);
 }
+
+SearchContainer roleSearchContainer = null;
 
 if (selectedOrganization == null) {
 	roleSearchContainer = SelectRoleManagementToolbarDisplayContext.getRoleSearchContainer(filterManageableRoles);
