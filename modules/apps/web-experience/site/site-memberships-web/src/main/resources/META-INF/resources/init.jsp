@@ -114,7 +114,9 @@ page import="java.util.List" %><%@
 page import="java.util.Map" %><%@
 page import="java.util.Objects" %><%@
 page import="java.util.Set" %><%@
-page import="java.util.TreeSet" %>
+page import="java.util.TreeSet" %><%@
+page import="java.util.stream.Collectors" %><%@
+page import="java.util.stream.Stream" %>
 
 <%@ page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>

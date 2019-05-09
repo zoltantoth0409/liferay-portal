@@ -23,7 +23,14 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("mvcPath", "/user_groups_roles.jsp");
-portletURL.setParameter("userGroupId", String.valueOf(siteMembershipsDisplayContext.getUserGroupId()));
+
+long userGroupId = siteMembershipsDisplayContext.getUserGroupId();
+
+portletURL.setParameter("userGroupId", String.valueOf(userGroupId));
+
+boolean assignRoles = ParamUtil.getBoolean(request, "assignRoles", true);
+
+portletURL.setParameter("assignRoles", String.valueOf(assignRoles));
 
 RoleSearch roleSearch = new RoleSearch(renderRequest, PortletURLUtil.clone(portletURL, renderResponse));
 
@@ -48,6 +55,26 @@ roleSearch.setOrderByType(orderByType);
 RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearch.getSearchTerms();
 
 List<Role> roles = RoleLocalServiceUtil.search(company.getCompanyId(), searchTerms.getKeywords(), new Integer[] {RoleConstants.TYPE_SITE}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
+
+long groupId = siteMembershipsDisplayContext.getGroupId();
+
+List<UserGroupGroupRole> userGroupGroupRoles = UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRoles(userGroupId, groupId);
+
+Stream<UserGroupGroupRole> userGroupGroupRoleStream = userGroupGroupRoles.stream();
+
+List<Role> selectedRoles = userGroupGroupRoleStream.map(userGroupGroupRole -> RoleLocalServiceUtil.fetchRole(userGroupGroupRole.getRoleId())).collect(Collectors.toList());
+
+Stream<Role> roleStream = roles.stream();
+
+roles = roleStream.filter(
+	role -> {
+		if ((assignRoles && !selectedRoles.contains(role)) || (!assignRoles && selectedRoles.contains(role))) {
+				return true;
+			}
+
+			return false;
+		}
+	).collect(Collectors.toList());
 
 roles = UsersAdminUtil.filterGroupRoles(permissionChecker, siteMembershipsDisplayContext.getGroupId(), roles);
 
