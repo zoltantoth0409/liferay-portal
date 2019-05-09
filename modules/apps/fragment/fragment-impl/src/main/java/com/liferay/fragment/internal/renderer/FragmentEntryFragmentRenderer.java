@@ -130,32 +130,33 @@ public class FragmentEntryFragmentRenderer implements FragmentRenderer {
 		FragmentEntryLink fragmentEntryLink =
 			fragmentRendererContext.getFragmentEntryLink();
 
-		DefaultFragmentEntryProcessorContext fragmentEntryProcessorContext =
-			new DefaultFragmentEntryProcessorContext(
-				httpServletRequest, httpServletResponse,
-				fragmentRendererContext.getMode(),
-				fragmentRendererContext.getLocale());
+		DefaultFragmentEntryProcessorContext
+			defaultFragmentEntryProcessorContext =
+				new DefaultFragmentEntryProcessorContext(
+					httpServletRequest, httpServletResponse,
+					fragmentRendererContext.getMode(),
+					fragmentRendererContext.getLocale());
 
 		Optional<Map<String, Object>> fieldValuesOptional =
 			fragmentRendererContext.getFieldValuesOptional();
 
-		fragmentEntryProcessorContext.setFieldValues(
+		defaultFragmentEntryProcessorContext.setFieldValues(
 			fieldValuesOptional.orElse(null));
 
-		fragmentEntryProcessorContext.setPreviewClassPK(
+		defaultFragmentEntryProcessorContext.setPreviewClassPK(
 			fragmentRendererContext.getPreviewClassPK());
-		fragmentEntryProcessorContext.setPreviewType(
+		defaultFragmentEntryProcessorContext.setPreviewType(
 			fragmentRendererContext.getPreviewType());
-		fragmentEntryProcessorContext.setSegmentsExperienceIds(
+		defaultFragmentEntryProcessorContext.setSegmentsExperienceIds(
 			fragmentRendererContext.getSegmentsExperienceIds());
 
 		String css =
 			_fragmentEntryProcessorRegistry.processFragmentEntryLinkCSS(
-				fragmentEntryLink, fragmentEntryProcessorContext);
+				fragmentEntryLink, defaultFragmentEntryProcessorContext);
 
 		String html =
 			_fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
-				fragmentEntryLink, fragmentEntryProcessorContext);
+				fragmentEntryLink, defaultFragmentEntryProcessorContext);
 
 		html = _writePortletPaths(
 			fragmentEntryLink, html, httpServletRequest, httpServletResponse);
