@@ -559,9 +559,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		// User preferences for customizable pages
 
-		if (layout.isCustomizable()) {
-			_removeUserPreferences(layout);
-		}
+		_removeUserPreferences(layout);
 
 		// Layout set
 
@@ -2642,20 +2640,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		typeSettingsProperties.fastLoad(typeSettings);
 
-		boolean customizableLayout = Boolean.valueOf(
-			typeSettingsProperties.getProperty(
-				LayoutConstants.CUSTOMIZABLE_LAYOUT, StringPool.FALSE));
-
 		Layout layout = layoutPersistence.findByG_P_L(
 			groupId, privateLayout, layoutId);
-
-		boolean wasCustomizableLayout = Boolean.valueOf(
-			layout.getTypeSettingsProperty(
-				LayoutConstants.CUSTOMIZABLE_LAYOUT, StringPool.FALSE));
-
-		if (!customizableLayout && wasCustomizableLayout) {
-			_removeUserPreferences(layout);
-		}
 
 		validateTypeSettingsProperties(layout, typeSettingsProperties);
 
