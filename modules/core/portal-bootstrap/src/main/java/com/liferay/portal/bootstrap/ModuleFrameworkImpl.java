@@ -1299,7 +1299,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 
 		ServiceRegistration<?> serviceRegistration =
 			bundleContext.registerService(
-				names.toArray(new String[names.size()]), bean,
+				names.toArray(new String[0]), bean,
 				_getProperties(osgiBeanProperties, beanName));
 
 		if (_log.isDebugEnabled()) {

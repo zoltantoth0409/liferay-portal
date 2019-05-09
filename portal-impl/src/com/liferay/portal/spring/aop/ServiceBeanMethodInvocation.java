@@ -169,8 +169,7 @@ public class ServiceBeanMethodInvocation
 		List<MethodInterceptor> methodInterceptors) {
 
 		setMethodInterceptors(
-			methodInterceptors.toArray(
-				new MethodInterceptor[methodInterceptors.size()]));
+			methodInterceptors.toArray(new MethodInterceptor[0]));
 	}
 
 	public void setMethodInterceptors(MethodInterceptor[] methodInterceptors) {

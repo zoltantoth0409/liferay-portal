@@ -406,7 +406,7 @@ public class AssetTagLocalServiceImpl extends AssetTagLocalServiceBaseImpl {
 			tagIds.add(tag.getTagId());
 		}
 
-		return ArrayUtil.toArray(tagIds.toArray(new Long[tagIds.size()]));
+		return ArrayUtil.toArray(tagIds.toArray(new Long[0]));
 	}
 
 	/**
@@ -430,7 +430,7 @@ public class AssetTagLocalServiceImpl extends AssetTagLocalServiceBaseImpl {
 			tagIds.add(tag.getTagId());
 		}
 
-		return ArrayUtil.toArray(tagIds.toArray(new Long[tagIds.size()]));
+		return ArrayUtil.toArray(tagIds.toArray(new Long[0]));
 	}
 
 	/**
@@ -467,7 +467,7 @@ public class AssetTagLocalServiceImpl extends AssetTagLocalServiceBaseImpl {
 			tagIds.add(tag.getTagId());
 		}
 
-		return ArrayUtil.toArray(tagIds.toArray(new Long[tagIds.size()]));
+		return ArrayUtil.toArray(tagIds.toArray(new Long[0]));
 	}
 
 	/**

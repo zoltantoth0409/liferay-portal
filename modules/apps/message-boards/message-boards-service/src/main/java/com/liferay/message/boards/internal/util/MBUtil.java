@@ -72,8 +72,7 @@ public class MBUtil {
 		}
 		else {
 			serviceContext.setGroupPermissions(
-				defaultGroupActionIds.toArray(
-					new String[defaultGroupActionIds.size()]));
+				defaultGroupActionIds.toArray(new String[0]));
 		}
 
 		Set<String> guestActionIds = roleIdsToActionIds.get(
@@ -84,7 +83,7 @@ public class MBUtil {
 		}
 		else {
 			serviceContext.setGuestPermissions(
-				guestActionIds.toArray(new String[guestActionIds.size()]));
+				guestActionIds.toArray(new String[0]));
 		}
 	}
 

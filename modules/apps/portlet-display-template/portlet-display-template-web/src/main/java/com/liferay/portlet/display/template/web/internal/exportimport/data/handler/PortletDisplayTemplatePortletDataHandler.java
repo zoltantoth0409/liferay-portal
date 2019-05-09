@@ -219,8 +219,7 @@ public class PortletDisplayTemplatePortletDataHandler
 				new StagedModelType(ddmTemplateClassNameId, classNameId));
 		}
 
-		_stagedModelTypes = stagedModelTypes.toArray(
-			new StagedModelType[stagedModelTypes.size()]);
+		_stagedModelTypes = stagedModelTypes.toArray(new StagedModelType[0]);
 
 		return _stagedModelTypes;
 	}

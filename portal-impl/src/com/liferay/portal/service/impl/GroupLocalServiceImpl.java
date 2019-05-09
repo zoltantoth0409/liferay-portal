@@ -4883,8 +4883,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		List<String> actions = ResourceActionsUtil.getModelResourceActions(
 			name);
 
-		setRolePermissions(
-			group, role, name, actions.toArray(new String[actions.size()]));
+		setRolePermissions(group, role, name, actions.toArray(new String[0]));
 	}
 
 	protected void setRolePermissions(

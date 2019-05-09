@@ -592,8 +592,7 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 
 		Set<String> oldFieldNames = ddmFormFieldNamesMap.keySet();
 
-		String[] oldSub = oldFieldNames.toArray(
-			new String[oldFieldNames.size()]);
+		String[] oldSub = oldFieldNames.toArray(new String[0]);
 
 		String[] newSub = new String[oldFieldNames.size()];
 
@@ -1884,8 +1883,7 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 				}
 			}
 
-			return ddmFieldsDisplayValues.toArray(
-				new String[ddmFieldsDisplayValues.size()]);
+			return ddmFieldsDisplayValues.toArray(new String[0]);
 		}
 
 		protected DDMFormFieldValue getDDMFormFieldValue(

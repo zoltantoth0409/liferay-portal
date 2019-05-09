@@ -1330,8 +1330,7 @@ public class AssetPublisherUtil {
 		}
 
 		portletPreferences.setValues(
-			"assetEntryXml",
-			assetEntryXmlsList.toArray(new String[assetEntryXmlsList.size()]));
+			"assetEntryXml", assetEntryXmlsList.toArray(new String[0]));
 
 		portletPreferences.store();
 	}
@@ -1747,9 +1746,7 @@ public class AssetPublisherUtil {
 			assetCategoryIdsList.add(assetCategoryId);
 		}
 
-		return ArrayUtil.toArray(
-			assetCategoryIdsList.toArray(
-				new Long[assetCategoryIdsList.size()]));
+		return ArrayUtil.toArray(assetCategoryIdsList.toArray(new Long[0]));
 	}
 
 	private static List<AssetEntry> _filterAssetTagNamesAssetEntries(

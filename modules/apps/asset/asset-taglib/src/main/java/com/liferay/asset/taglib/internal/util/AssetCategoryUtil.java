@@ -113,8 +113,7 @@ public class AssetCategoryUtil {
 			}
 		}
 
-		return ArrayUtil.toArray(
-			filteredCategoryIds.toArray(new Long[filteredCategoryIds.size()]));
+		return ArrayUtil.toArray(filteredCategoryIds.toArray(new Long[0]));
 	}
 
 	public static String[] getCategoryIdsTitles(

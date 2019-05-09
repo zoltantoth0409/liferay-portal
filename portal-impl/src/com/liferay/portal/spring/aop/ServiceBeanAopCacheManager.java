@@ -125,9 +125,9 @@ public class ServiceBeanAopCacheManager {
 		}
 
 		_classLevelMethodInterceptors = classLevelMethodInterceptors.toArray(
-			new MethodInterceptor[classLevelMethodInterceptors.size()]);
+			new MethodInterceptor[0]);
 		_fullMethodInterceptors = fullMethodInterceptors.toArray(
-			new MethodInterceptor[fullMethodInterceptors.size()]);
+			new MethodInterceptor[0]);
 	}
 
 	public <T> T findAnnotation(
@@ -165,7 +165,7 @@ public class ServiceBeanAopCacheManager {
 
 			_setAnnotations(
 				_methodAnnotations, methodInvocation,
-				annotations.toArray(new Annotation[annotations.size()]));
+				annotations.toArray(new Annotation[0]));
 		}
 
 		return annotation;
@@ -246,8 +246,7 @@ public class ServiceBeanAopCacheManager {
 
 		putMethodInterceptors(
 			methodInvocation,
-			methodInterceptors.toArray(
-				new MethodInterceptor[methodInterceptors.size()]));
+			methodInterceptors.toArray(new MethodInterceptor[0]));
 	}
 
 	/**

@@ -233,8 +233,7 @@ public class AssetUtil {
 			}
 		}
 
-		return ArrayUtil.toArray(
-			viewableCategoryIds.toArray(new Long[viewableCategoryIds.size()]));
+		return ArrayUtil.toArray(viewableCategoryIds.toArray(new Long[0]));
 	}
 
 	public static List<AssetVocabulary> filterVocabularies(
@@ -272,9 +271,7 @@ public class AssetUtil {
 			}
 		}
 
-		return ArrayUtil.toArray(
-			viewableVocabularyIds.toArray(
-				new Long[viewableVocabularyIds.size()]));
+		return ArrayUtil.toArray(viewableVocabularyIds.toArray(new Long[0]));
 	}
 
 	public static PortletURL getAddPortletURL(

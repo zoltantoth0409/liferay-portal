@@ -194,8 +194,7 @@ public class PortalInstances {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 
-		return ArrayUtil.toArray(
-			companyIds.toArray(new Long[companyIds.size()]));
+		return ArrayUtil.toArray(companyIds.toArray(new Long[0]));
 	}
 
 	public static long getDefaultCompanyId() {
@@ -228,7 +227,7 @@ public class PortalInstances {
 				}
 			}
 
-			_webIds = webIdsList.toArray(new String[webIdsList.size()]);
+			_webIds = webIdsList.toArray(new String[0]);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

@@ -228,7 +228,7 @@ public class InitUtil {
 
 			ApplicationContext appApplicationContext =
 				new ClassPathXmlApplicationContext(
-					configLocations.toArray(new String[configLocations.size()]),
+					configLocations.toArray(new String[0]),
 					infrastructureApplicationContext) {
 
 					@Override

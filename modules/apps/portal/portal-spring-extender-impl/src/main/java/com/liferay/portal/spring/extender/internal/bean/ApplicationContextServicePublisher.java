@@ -142,7 +142,7 @@ public class ApplicationContextServicePublisher {
 
 		ServiceRegistration<?> serviceRegistration =
 			_bundleContext.registerService(
-				names.toArray(new String[names.size()]), bean, properties);
+				names.toArray(new String[0]), bean, properties);
 
 		_serviceRegistrations.add(serviceRegistration);
 	}

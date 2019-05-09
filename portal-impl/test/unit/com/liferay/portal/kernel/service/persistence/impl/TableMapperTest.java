@@ -1882,7 +1882,7 @@ public class TableMapperTest {
 
 		@Override
 		public ModelListener<T>[] getListeners() {
-			return _listeners.toArray(new ModelListener[_listeners.size()]);
+			return _listeners.toArray(new ModelListener[0]);
 		}
 
 		@Override

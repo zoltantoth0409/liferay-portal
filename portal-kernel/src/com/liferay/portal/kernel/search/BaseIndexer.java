@@ -508,7 +508,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 		indexerPostProcessorsList.add(indexerPostProcessor);
 
 		_indexerPostProcessors = indexerPostProcessorsList.toArray(
-			new IndexerPostProcessor[indexerPostProcessorsList.size()]);
+			new IndexerPostProcessor[0]);
 	}
 
 	@Override
@@ -728,7 +728,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 		indexerPostProcessorsList.remove(indexerPostProcessor);
 
 		_indexerPostProcessors = indexerPostProcessorsList.toArray(
-			new IndexerPostProcessor[indexerPostProcessorsList.size()]);
+			new IndexerPostProcessor[0]);
 	}
 
 	/**
@@ -838,8 +838,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 
 		if ((selectedFieldNames != null) && !selectedFieldNames.isEmpty()) {
 			queryConfig.setSelectedFieldNames(
-				selectedFieldNames.toArray(
-					new String[selectedFieldNames.size()]));
+				selectedFieldNames.toArray(new String[0]));
 		}
 	}
 
@@ -892,8 +891,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 
 		selectedFieldNameSet.addAll(facets.keySet());
 
-		selectedFieldNames = selectedFieldNameSet.toArray(
-			new String[selectedFieldNameSet.size()]);
+		selectedFieldNames = selectedFieldNameSet.toArray(new String[0]);
 
 		queryConfig.setSelectedFieldNames(selectedFieldNames);
 	}
@@ -978,7 +976,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 
 			List<String> titles = entry.getValue();
 
-			String[] titlesArray = titles.toArray(new String[titles.size()]);
+			String[] titlesArray = titles.toArray(new String[0]);
 
 			if (locale.equals(defaultLocale)) {
 				document.addText(field, titlesArray);
@@ -1680,12 +1678,11 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 			zips.add(StringUtil.toLowerCase(address.getZip()));
 		}
 
-		document.addText("city", cities.toArray(new String[cities.size()]));
-		document.addText(
-			"country", countries.toArray(new String[countries.size()]));
-		document.addText("region", regions.toArray(new String[regions.size()]));
-		document.addText("street", streets.toArray(new String[streets.size()]));
-		document.addText("zip", zips.toArray(new String[zips.size()]));
+		document.addText("city", cities.toArray(new String[0]));
+		document.addText("country", countries.toArray(new String[0]));
+		document.addText("region", regions.toArray(new String[0]));
+		document.addText("street", streets.toArray(new String[0]));
+		document.addText("zip", zips.toArray(new String[0]));
 	}
 
 	protected Map<Locale, String> populateMap(

@@ -3590,7 +3590,7 @@ public class StringUtil {
 
 		_split(nodeValues, s, 0, delimiter);
 
-		return nodeValues.toArray(new String[nodeValues.size()]);
+		return nodeValues.toArray(new String[0]);
 	}
 
 	/**
@@ -3725,7 +3725,7 @@ public class StringUtil {
 			nodeValues.add(s.substring(offset));
 		}
 
-		return nodeValues.toArray(new String[nodeValues.size()]);
+		return nodeValues.toArray(new String[0]);
 	}
 
 	/**
@@ -3953,7 +3953,7 @@ public class StringUtil {
 
 		_splitLines(s, lines);
 
-		return lines.toArray(new String[lines.size()]);
+		return lines.toArray(new String[0]);
 	}
 
 	/**

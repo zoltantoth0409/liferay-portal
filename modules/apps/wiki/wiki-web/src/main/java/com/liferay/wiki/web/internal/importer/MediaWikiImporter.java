@@ -611,7 +611,7 @@ public class MediaWikiImporter implements WikiImporter {
 			assetTagNames.add(_WORK_IN_PROGRESS_TAG);
 		}
 
-		return assetTagNames.toArray(new String[assetTagNames.size()]);
+		return assetTagNames.toArray(new String[0]);
 	}
 
 	protected String readParentTitle(String content) {

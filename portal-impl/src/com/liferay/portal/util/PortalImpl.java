@@ -8076,8 +8076,7 @@ public class PortalImpl implements Portal {
 		List<String> groupDefaultActions =
 			ResourceActionsUtil.getModelResourceGroupDefaultActions(className);
 
-		return groupDefaultActions.toArray(
-			new String[groupDefaultActions.size()]);
+		return groupDefaultActions.toArray(new String[0]);
 	}
 
 	protected String[] getGuestPermissions(
@@ -8093,8 +8092,7 @@ public class PortalImpl implements Portal {
 		List<String> guestDefaultActions =
 			ResourceActionsUtil.getModelResourceGuestDefaultActions(className);
 
-		return guestDefaultActions.toArray(
-			new String[guestDefaultActions.size()]);
+		return guestDefaultActions.toArray(new String[0]);
 	}
 
 	protected long getPlidFromPortletId(

@@ -175,7 +175,7 @@ public class XSLTemplate implements Template {
 	public String[] getKeys() {
 		Set<String> keys = _context.keySet();
 
-		return keys.toArray(new String[keys.size()]);
+		return keys.toArray(new String[0]);
 	}
 
 	@Override

@@ -98,9 +98,7 @@ public class VerifyAuditedModel extends VerifyProcess {
 		Collection<VerifiableAuditedModel> verifiableAuditedModels =
 			verifiableAuditedModelsMap.values();
 
-		verify(
-			verifiableAuditedModels.toArray(
-				new VerifiableAuditedModel[verifiableAuditedModels.size()]));
+		verify(verifiableAuditedModels.toArray(new VerifiableAuditedModel[0]));
 	}
 
 	protected Object[] getAuditedModelArray(

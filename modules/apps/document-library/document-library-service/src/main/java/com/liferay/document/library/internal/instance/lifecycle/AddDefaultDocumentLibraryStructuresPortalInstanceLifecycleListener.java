@@ -170,8 +170,7 @@ public class AddDefaultDocumentLibraryStructuresPortalInstanceLifecycleListener
 			_dlFileEntryTypeLocalService.addFileEntryType(
 				userId, groupId, dlFileEntryTypeKey, localizationMap,
 				localizationMap,
-				ArrayUtil.toArray(
-					ddmStructureIds.toArray(new Long[ddmStructureIds.size()])),
+				ArrayUtil.toArray(ddmStructureIds.toArray(new Long[0])),
 				serviceContext);
 		}
 	}

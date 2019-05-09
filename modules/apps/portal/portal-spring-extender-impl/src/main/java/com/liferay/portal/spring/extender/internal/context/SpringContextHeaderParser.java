@@ -51,8 +51,7 @@ public class SpringContextHeaderParser {
 				beanDefinitionFileNames, springContext.split(","));
 		}
 
-		return beanDefinitionFileNames.toArray(
-			new String[beanDefinitionFileNames.size()]);
+		return beanDefinitionFileNames.toArray(new String[0]);
 	}
 
 	private final Bundle _bundle;

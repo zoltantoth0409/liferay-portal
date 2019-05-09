@@ -339,8 +339,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			}
 		}
 
-		long[] groupIds = ArrayUtil.toArray(
-			groupIdsSet.toArray(new Long[groupIdsSet.size()]));
+		long[] groupIds = ArrayUtil.toArray(groupIdsSet.toArray(new Long[0]));
 
 		userPersistence.addGroups(userId, groupIds);
 
@@ -378,8 +377,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			}
 		}
 
-		long[] roleIds = ArrayUtil.toArray(
-			roleIdSet.toArray(new Long[roleIdSet.size()]));
+		long[] roleIds = ArrayUtil.toArray(roleIdSet.toArray(new Long[0]));
 
 		roleIds = UsersAdminUtil.addRequiredRoles(user, roleIds);
 
@@ -415,7 +413,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		}
 
 		long[] userGroupIds = ArrayUtil.toArray(
-			userGroupIdSet.toArray(new Long[userGroupIdSet.size()]));
+			userGroupIdSet.toArray(new Long[0]));
 
 		if (PropsValues.USER_GROUPS_COPY_LAYOUTS_TO_USER_PERSONAL_SITE) {
 			for (long userGroupId : userGroupIds) {
@@ -5772,7 +5770,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			}
 
 			long[] userRoleIds = ArrayUtil.toArray(
-				userRoleIdsSet.toArray(new Long[userRoleIdsSet.size()]));
+				userRoleIdsSet.toArray(new Long[0]));
 
 			userGroupRoleLocalService.addUserGroupRoles(
 				userId, groupId, userRoleIds);
@@ -5784,7 +5782,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			}
 
 			long[] userTeamIds = ArrayUtil.toArray(
-				userTeamIdsSet.toArray(new Long[userTeamIdsSet.size()]));
+				userTeamIdsSet.toArray(new Long[0]));
 
 			userPersistence.addTeams(userId, userTeamIds);
 		}

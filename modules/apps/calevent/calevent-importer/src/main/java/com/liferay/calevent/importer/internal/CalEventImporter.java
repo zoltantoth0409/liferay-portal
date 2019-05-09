@@ -561,7 +561,7 @@ public class CalEventImporter {
 			}
 		}
 
-		return actionIds.toArray(new String[actionIds.size()]);
+		return actionIds.toArray(new String[0]);
 	}
 
 	protected AssetCategory getAssetCategory(

@@ -150,11 +150,11 @@ public class PluginPackageIndexer extends BaseIndexer<PluginPackage> {
 
 		List<String> tags = pluginPackage.getTags();
 
-		document.addKeyword("tag", tags.toArray(new String[tags.size()]));
+		document.addKeyword("tag", tags.toArray(new String[0]));
 
 		List<String> types = pluginPackage.getTypes();
 
-		document.addKeyword("type", types.toArray(new String[types.size()]));
+		document.addKeyword("type", types.toArray(new String[0]));
 
 		document.addKeyword("version", pluginPackage.getVersion());
 

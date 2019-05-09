@@ -85,8 +85,7 @@ public abstract class BaseWikiLinksCKEditorConfigContributor
 
 		PortletURL itemSelectorURL = itemSelector.getItemSelectorURL(
 			requestBackedPortletURLFactory, itemSelectedEventName,
-			itemSelectorCriteria.toArray(
-				new ItemSelectorCriterion[itemSelectorCriteria.size()]));
+			itemSelectorCriteria.toArray(new ItemSelectorCriterion[0]));
 
 		jsonObject.put("filebrowserBrowseUrl", itemSelectorURL.toString());
 	}

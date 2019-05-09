@@ -443,8 +443,7 @@ public class DDMStructureStagedModelDataHandler
 		}
 
 		String ddmDataProviderInstanceIds = ArrayUtil.toString(
-			ddmDataProviderInstanceIdsSet.toArray(
-				new Long[ddmDataProviderInstanceIdsSet.size()]),
+			ddmDataProviderInstanceIdsSet.toArray(new Long[0]),
 			StringPool.BLANK);
 
 		structureElement.addAttribute(
