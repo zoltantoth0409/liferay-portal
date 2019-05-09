@@ -59,8 +59,6 @@ public class AssetInfoDisplayRequestAttributesContributor
 			return;
 		}
 
-		httpServletRequest.setAttribute(WebKeys.LAYOUT_ASSET_ENTRY, assetEntry);
-
 		InfoDisplayContributor infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(
 				assetEntry.getClassName());
@@ -81,6 +79,8 @@ public class AssetInfoDisplayRequestAttributesContributor
 		catch (Exception e) {
 			_log.error("Unable to get info display object provider", e);
 		}
+
+		httpServletRequest.setAttribute(WebKeys.LAYOUT_ASSET_ENTRY, assetEntry);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
