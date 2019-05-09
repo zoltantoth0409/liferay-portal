@@ -27,9 +27,27 @@ portletURL.setParameter("userGroupId", String.valueOf(siteMembershipsDisplayCont
 
 RoleSearch roleSearch = new RoleSearch(renderRequest, PortletURLUtil.clone(portletURL, renderResponse));
 
+String orderByCol = ParamUtil.getString(request, "orderByCol", "title");
+
+roleSearch.setOrderByCol(orderByCol);
+
+String orderByType = ParamUtil.getString(renderRequest, "orderByType", "asc");
+
+boolean orderByAsc = false;
+
+if (Objects.equals(orderByType, "asc")) {
+	orderByAsc = true;
+}
+
+OrderByComparator<Role> orderByComparator = new RoleNameComparator(orderByAsc);
+
+roleSearch.setOrderByComparator(orderByComparator);
+
+roleSearch.setOrderByType(orderByType);
+
 RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearch.getSearchTerms();
 
-List<Role> roles = RoleLocalServiceUtil.search(company.getCompanyId(), searchTerms.getKeywords(), new Integer[] {RoleConstants.TYPE_SITE}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, roleSearch.getOrderByComparator());
+List<Role> roles = RoleLocalServiceUtil.search(company.getCompanyId(), searchTerms.getKeywords(), new Integer[] {RoleConstants.TYPE_SITE}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
 
 roles = UsersAdminUtil.filterGroupRoles(permissionChecker, siteMembershipsDisplayContext.getGroupId(), roles);
 
