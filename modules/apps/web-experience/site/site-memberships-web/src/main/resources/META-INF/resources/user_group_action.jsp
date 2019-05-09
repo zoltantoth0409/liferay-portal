@@ -51,7 +51,7 @@ UserGroup userGroup = (UserGroup)row.getObject();
 			url="javascript:;"
 		/>
 
-		<portlet:renderURL var="unAssignURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+		<portlet:renderURL var="unassignURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 			<portlet:param name="mvcPath" value="/user_groups_roles.jsp" />
 			<portlet:param name="userGroupId" value="<%= String.valueOf(userGroup.getUserGroupId()) %>" />
 			<portlet:param name="groupId" value="<%= String.valueOf(siteMembershipsDisplayContext.getGroupId()) %>" />
@@ -59,16 +59,16 @@ UserGroup userGroup = (UserGroup)row.getObject();
 		</portlet:renderURL>
 
 		<%
-		Map<String, Object> unAssignData = new HashMap<>();
+		Map<String, Object> unassignData = new HashMap<>();
 
-		unAssignData.put("href", unAssignURL.toString());
-		unAssignData.put("usergroupid", userGroup.getUserGroupId());
+		unassignData.put("href", unassignURL.toString());
+		unassignData.put("usergroupid", userGroup.getUserGroupId());
 		%>
 
 		<liferay-ui:icon
 			cssClass="unassign-site-roles"
-			data="<%= unAssignData %>"
-			id='<%= row.getRowId() + "unAssignSiteRoles" %>'
+			data="<%= unassignData %>"
+			id='<%= row.getRowId() + "unassignSiteRoles" %>'
 			message="unassign-site-roles"
 			url="javascript:;"
 		/>
@@ -124,16 +124,16 @@ UserGroup userGroup = (UserGroup)row.getObject();
 		}
 	);
 
-	$('#<portlet:namespace /><%= row.getRowId() %>unAssignSiteRoles').on(
+	$('#<portlet:namespace /><%= row.getRowId() %>unassignSiteRoles').on(
 		'click',
 		function(event) {
 			event.preventDefault();
 
 			var currentTarget = $(event.currentTarget);
 
-			var unAssignUserGroupGroupRoleFm = $(document.<portlet:namespace />unAssignUserGroupGroupRoleFm);
+			var unassignUserGroupGroupRoleFm = $(document.<portlet:namespace />unassignUserGroupGroupRoleFm);
 
-			unAssignUserGroupGroupRoleFm.fm('userGroupId').val(currentTarget.data('usergroupid'));
+			unassignUserGroupGroupRoleFm.fm('userGroupId').val(currentTarget.data('usergroupid'));
 
 			var itemSelectorDialog = new A.LiferayItemSelectorDialog(
 				{
@@ -143,9 +143,9 @@ UserGroup userGroup = (UserGroup)row.getObject();
 							var selectedItem = event.newVal;
 
 							if (selectedItem) {
-								unAssignUserGroupGroupRoleFm.append(selectedItem);
+								unassignUserGroupGroupRoleFm.append(selectedItem);
 
-								submitForm(unAssignUserGroupGroupRoleFm);
+								submitForm(unassignUserGroupGroupRoleFm);
 							}
 						}
 					},

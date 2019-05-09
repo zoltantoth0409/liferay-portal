@@ -385,7 +385,7 @@ public class SiteMembershipsPortlet extends MVCPortlet {
 		sendRedirect(actionRequest, actionResponse);
 	}
 
-	public void unAssignUserGroupGroupRole(
+	public void unassignUserGroupGroupRole(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 

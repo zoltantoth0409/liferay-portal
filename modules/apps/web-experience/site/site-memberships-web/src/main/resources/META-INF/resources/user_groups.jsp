@@ -218,9 +218,9 @@ userGroupSearch.setResults(userGroups);
 	<aui:input name="userGroupId" type="hidden" />
 </aui:form>
 
-<portlet:actionURL name="unAssignUserGroupGroupRole" var="unAssignUserGroupGroupRoleURL" />
+<portlet:actionURL name="unassignUserGroupGroupRole" var="unassignUserGroupGroupRoleURL" />
 
-<aui:form action="<%= unAssignUserGroupGroupRoleURL %>" cssClass="hide" name="unAssignUserGroupGroupRoleFm">
+<aui:form action="<%= unassignUserGroupGroupRoleURL %>" cssClass="hide" name="unassignUserGroupGroupRoleFm">
 	<aui:input name="tabs1" type="hidden" value="user-groups" />
 	<aui:input name="userGroupId" type="hidden" />
 </aui:form>
