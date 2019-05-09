@@ -28,13 +28,10 @@ import com.liferay.headless.form.internal.dto.v1_0.util.FormContextUtil;
 import com.liferay.headless.form.internal.dto.v1_0.util.FormDocumentUtil;
 import com.liferay.headless.form.internal.dto.v1_0.util.StructureUtil;
 import com.liferay.headless.form.resource.v1_0.FormResource;
-import com.liferay.portal.kernel.service.CompanyService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -94,18 +91,9 @@ public class FormResourceImpl extends BaseFormResourceImpl {
 		ddmFormRenderingContext.setGroupId(ddmFormInstance.getGroupId());
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
 
-		ThemeDisplay themeDisplay = new ThemeDisplay();
-
-		themeDisplay.setCompany(
-			_companyService.getCompanyById(ddmFormInstance.getCompanyId()));
-		themeDisplay.setLocale(contextAcceptLanguage.getPreferredLocale());
-
-		_httpServletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
-
 		return FormContextUtil.evaluateContext(
 			ddmFormInstance, ddmFormRenderingContext,
-			_ddmFormTemplateContextFactory,
-			formContext.getFormFieldValues(),
+			_ddmFormTemplateContextFactory, formContext.getFormFieldValues(),
 			contextAcceptLanguage.getPreferredLocale());
 	}
 
@@ -166,9 +154,6 @@ public class FormResourceImpl extends BaseFormResourceImpl {
 			}
 		};
 	}
-
-	@Reference
-	private CompanyService _companyService;
 
 	@Reference
 	private DDMFormInstanceService _ddmFormInstanceService;
