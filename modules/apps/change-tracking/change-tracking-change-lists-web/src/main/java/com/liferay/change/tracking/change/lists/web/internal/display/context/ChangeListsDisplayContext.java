@@ -151,7 +151,7 @@ public class ChangeListsDisplayContext {
 		return creationMenu;
 	}
 
-	public long getCTCollectionAge(CTCollection ctCollection) {
+	public long getCTCollectionAgeTime(CTCollection ctCollection) {
 		if (ctCollection == null) {
 			return 0L;
 		}
