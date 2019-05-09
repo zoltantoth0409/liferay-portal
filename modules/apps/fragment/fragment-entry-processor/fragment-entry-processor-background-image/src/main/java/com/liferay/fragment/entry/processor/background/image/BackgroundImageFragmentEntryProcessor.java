@@ -136,9 +136,9 @@ public class BackgroundImageFragmentEntryProcessor
 
 		Elements elements = document.select("[data-lfr-background-image-id]");
 
-		Stream<Element> uniqueNodesStream = elements.stream();
+		Stream<Element> uniqueElementsStream = elements.stream();
 
-		Map<String, Long> idsMap = uniqueNodesStream.collect(
+		Map<String, Long> idsMap = uniqueElementsStream.collect(
 			Collectors.groupingBy(
 				element -> element.attr("data-lfr-background-image-id"),
 				Collectors.counting()));
