@@ -57,7 +57,6 @@ public abstract class BaseFieldType implements FieldType {
 					put("showLabel", jsonObject.getBoolean("showLabel"));
 				}
 			});
-
 		spiDataDefinitionField.setFieldType(jsonObject.getString("type"));
 		spiDataDefinitionField.setIndexable(
 			jsonObject.getBoolean("indexable", true));
