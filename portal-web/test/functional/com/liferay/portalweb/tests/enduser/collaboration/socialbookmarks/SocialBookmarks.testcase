@@ -146,7 +146,7 @@ definition {
 		SocialBookmarks.viewDefaultSharableBookmarks();
 
 		Blogs.disableSocialBookmarkSites(
-			disableSocialBookmarkSites = "AddThis,Delicious,Digg,Evernote,Reddit,Slashdot"
+			disableSocialBookmarkSites = "Google+,AddThis,Delicious,Digg,Evernote,Reddit,Slashdot"
 		);
 
 		Navigator.gotoPage(pageName = "Blogs Page");
@@ -154,7 +154,7 @@ definition {
 		SocialBookmarks.viewShareIconNotPresent();
 
 		Blogs.enableSocialBookmarkSites(
-			enableSocialBookmarkSites = "AddThis,Delicious,Digg,Evernote,Reddit,Slashdot"
+			enableSocialBookmarkSites = "Google+,AddThis,Delicious,Digg,Evernote,Reddit,Slashdot"
 		);
 
 		Navigator.gotoPage(pageName = "Blogs Page");
@@ -165,7 +165,7 @@ definition {
 		);
 
 		SocialBookmarks.viewBookmarkMenuItems(
-			socialBookmarks = "AddThis,Delicious,Digg,Evernote,Reddit,Slashdot"
+			socialBookmarks = "Google+,AddThis,Delicious,Digg,Evernote,Reddit,Slashdot"
 		);
 	}
 
