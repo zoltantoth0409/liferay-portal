@@ -40,12 +40,12 @@ public class FormContextUtil {
 			DDMFormInstance ddmFormInstance,
 			DDMFormRenderingContext ddmFormRenderingContext,
 			DDMFormTemplateContextFactory ddmFormTemplateContextFactory,
-			FormFieldValue[] fieldValues, Locale locale)
+			FormFieldValue[] formFieldValues, Locale locale)
 		throws Exception {
 
 		ddmFormRenderingContext.setDDMFormValues(
 			DDMFormValuesUtil.createDDMFormValues(
-				ddmFormInstance, fieldValues, locale));
+				ddmFormInstance, formFieldValues, locale));
 		ddmFormRenderingContext.setLocale(locale);
 
 		DDMStructure ddmStructure = ddmFormInstance.getStructure();
