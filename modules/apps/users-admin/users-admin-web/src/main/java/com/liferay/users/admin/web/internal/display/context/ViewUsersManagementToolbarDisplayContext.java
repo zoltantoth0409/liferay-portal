@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.usersadmin.search.UserSearch;
 import com.liferay.portlet.usersadmin.search.UserSearchTerms;
+import com.liferay.users.admin.web.internal.constants.UsersAdminWebKeys;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -236,7 +237,8 @@ public class ViewUsersManagementToolbarDisplayContext {
 		LinkedHashMap<String, Object> userParams = new LinkedHashMap<>();
 
 		boolean filterManageableOrganizations = GetterUtil.getBoolean(
-			_renderRequest.getAttribute("filterManageableOrganizations"));
+			_renderRequest.getAttribute(
+				UsersAdminWebKeys.FILTER_MANAGEABLE_ORGANIZATIONS));
 
 		String usersListView = GetterUtil.getString(
 			_renderRequest.getAttribute("view.jsp-usersListView"));

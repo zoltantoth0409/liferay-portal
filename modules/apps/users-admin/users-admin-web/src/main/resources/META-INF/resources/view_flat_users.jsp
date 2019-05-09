@@ -46,7 +46,7 @@ if (!ParamUtil.getBoolean(renderRequest, "advancedSearch")) {
 	currentURLObj.setParameter("status", String.valueOf(status));
 }
 
-request.setAttribute("filterManageableOrganizations", filterManageableOrganizations);
+request.setAttribute(UsersAdminWebKeys.FILTER_MANAGEABLE_ORGANIZATIONS, filterManageableOrganizations);
 request.setAttribute(UsersAdminWebKeys.STATUS, status);
 
 ViewUsersManagementToolbarDisplayContext viewUsersManagementToolbarDisplayContext = new ViewUsersManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle, navigation, status);
