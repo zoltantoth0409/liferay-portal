@@ -696,7 +696,11 @@ public class LayoutImportController implements ImportController {
 					sourcePrototypeLayoutUuid, layoutSetPrototype.getGroupId(),
 					true);
 
-				if (sourcePrototypeLayout == null) {
+				if ((sourcePrototypeLayout == null) &&
+					(_layoutLocalService.fetchLayout(
+						layout.getUuid(), layout.getGroupId(),
+						layout.isPrivateLayout()) != null)) {
+
 					_layoutLocalService.deleteLayout(
 						layout, false, serviceContext);
 				}
