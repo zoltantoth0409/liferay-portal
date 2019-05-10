@@ -12,3 +12,8 @@
 # Bundle Version 3.0.3
 #
 69d37001dc9ab684472c8bebb8976f055d499395^..ca5daf30e9b158f9ebbcd6f0710a9ac4d1ab489e=LPS-84119 LPS-95096
+
+#
+# Bundle Version 3.0.4
+#
+ca5daf30e9b158f9ebbcd6f0710a9ac4d1ab489e^..fd12f4c6b026e6369c761c9e9dfe7012d7664cf9=LPS-84119
