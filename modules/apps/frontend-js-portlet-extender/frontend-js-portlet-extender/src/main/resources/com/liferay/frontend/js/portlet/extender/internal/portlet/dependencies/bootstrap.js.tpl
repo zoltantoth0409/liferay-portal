@@ -14,10 +14,13 @@
 			if (initializer) {
 				initializer(
 					{
-						configuration: [$CONFIGURATION],
-						contextPath: "[$CONTEXT_PATH$]",
-						portletElementId: "[$PORTLET_ELEMENT_ID$]",
-						portletNamespace: "[$PORTLET_NAMESPACE$]"
+						configuration: {
+							portletInstance: JSON.parse('[$PORTLET_INSTANCE_CONFIGURATION$]'),
+							system: JSON.parse('[$SYSTEM_CONFIGURATION$]')
+						},
+						contextPath: '[$CONTEXT_PATH$]',
+						portletElementId: '[$PORTLET_ELEMENT_ID$]',
+						portletNamespace: '[$PORTLET_NAMESPACE$]'
 					});
 			}
 			else {
