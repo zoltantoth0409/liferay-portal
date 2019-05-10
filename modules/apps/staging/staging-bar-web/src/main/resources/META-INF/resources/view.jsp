@@ -319,15 +319,18 @@ if (liveLayout != null) {
 						if (stagingLink) {
 							stagingLink.classList.add('hide');
 						}
+
 						if (warningMessage) {
 							warningMessage.classList.remove('hide');
 						}
+
 						setTimeout(checkBackgroundTasks, 5000);
 					}
 					else {
 						if (stagingLink) {
 							stagingLink.classList.remove('hide');
 						}
+
 						if (warningMessage) {
 							warningMessage.classList.add('hide');
 						}
