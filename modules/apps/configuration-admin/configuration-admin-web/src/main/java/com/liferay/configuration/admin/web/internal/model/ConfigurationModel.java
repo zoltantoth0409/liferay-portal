@@ -311,8 +311,7 @@ public class ConfigurationModel implements ExtendedObjectClassDefinition {
 		}
 
 		return filteredExtendedAttributeDefinitionsList.toArray(
-			new ExtendedAttributeDefinition
-				[filteredExtendedAttributeDefinitionsList.size()]);
+			new ExtendedAttributeDefinition[0]);
 	}
 
 	private final String _bundleLocation;

@@ -1052,8 +1052,7 @@ public class ArrayUtil {
 		Class<?> arrayClass = array.getClass();
 
 		return filteredList.toArray(
-			(T[])Array.newInstance(
-				arrayClass.getComponentType(), filteredList.size()));
+			(T[])Array.newInstance(arrayClass.getComponentType(), 0));
 	}
 
 	public static int getLength(Object[] array) {
@@ -1344,7 +1343,7 @@ public class ArrayUtil {
 		Class<?> arrayClass = array.getClass();
 
 		return list.toArray(
-			(T[])Array.newInstance(arrayClass.getComponentType(), list.size()));
+			(T[])Array.newInstance(arrayClass.getComponentType(), 0));
 	}
 
 	public static String[] removeByPrefix(String[] array, String prefix) {
