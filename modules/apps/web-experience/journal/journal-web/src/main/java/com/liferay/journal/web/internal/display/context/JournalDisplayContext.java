@@ -46,6 +46,9 @@ import com.liferay.message.boards.kernel.service.MBMessageLocalServiceUtil;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
@@ -172,6 +175,28 @@ public class JournalDisplayContext {
 
 		for (String languageId : article.getAvailableLanguageIds()) {
 			availableLocales.add(LocaleUtil.fromLanguageId(languageId));
+		}
+
+		return availableLocales;
+	}
+
+	public List<Locale> getAvailableLocalesFromDDMFormValues(
+			String ddmFormValues)
+		throws PortalException {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(ddmFormValues);
+
+		JSONArray jsonArray = jsonObject.getJSONArray("availableLanguageIds");
+
+		if (jsonArray == null) {
+			return Collections.emptyList();
+		}
+
+		List<Locale> availableLocales = new ArrayList<>();
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			availableLocales.add(
+				LocaleUtil.fromLanguageId(jsonArray.getString(i)));
 		}
 
 		return availableLocales;

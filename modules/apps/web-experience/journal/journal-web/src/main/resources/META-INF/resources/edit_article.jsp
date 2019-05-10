@@ -194,6 +194,12 @@ request.setAttribute("edit_article.jsp-changeStructure", changeStructure);
 	if (ddmFormValues != null) {
 		availableLocalesSet.addAll(ddmFormValues.getAvailableLocales());
 	}
+	
+	String requestDDMFormValues = ParamUtil.getString(request, "ddmFormValues");
+
+	if (!requestDDMFormValues.equals("")) {
+		availableLocalesSet.addAll(journalDisplayContext.getAvailableLocalesFromDDMFormValues(requestDDMFormValues));
+	}
 
 	Locale[] availableLocales = availableLocalesSet.toArray(new Locale[0]);
 	%>
