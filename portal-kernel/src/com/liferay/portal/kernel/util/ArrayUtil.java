@@ -1344,7 +1344,7 @@ public class ArrayUtil {
 		Class<?> arrayClass = array.getClass();
 
 		return list.toArray(
-			(T[])Array.newInstance(arrayClass.getComponentType(), list.size()));
+			(T[])Array.newInstance(arrayClass.getComponentType(), 0));
 	}
 
 	public static String[] removeByPrefix(String[] array, String prefix) {
