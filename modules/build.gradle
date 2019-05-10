@@ -192,6 +192,10 @@ gradle.beforeProject {
 		}
 
 		pluginManager.withPlugin("com.liferay.osgi.plugin") {
+			afterEvaluate {
+				bundle.jarBuilderFactory.contextClassLoader = buildscript.classLoader
+			}
+
 			configurations {
 				xmltask
 			}
