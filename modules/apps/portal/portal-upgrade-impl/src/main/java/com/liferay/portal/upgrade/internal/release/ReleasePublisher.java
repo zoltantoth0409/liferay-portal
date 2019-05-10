@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Dictionary;
 import java.util.HashMap;
@@ -58,10 +59,8 @@ public final class ReleasePublisher {
 		properties.put("release.state", release.getState());
 
 		try {
-			String schemaVersion = release.getSchemaVersion();
-
-			if (!schemaVersion.isEmpty()) {
-				Version version = new Version(schemaVersion);
+			if (Validator.isNotNull(release.getSchemaVersion())) {
+				Version version = new Version(release.getSchemaVersion());
 
 				properties.put("release.schema.version", version);
 			}
