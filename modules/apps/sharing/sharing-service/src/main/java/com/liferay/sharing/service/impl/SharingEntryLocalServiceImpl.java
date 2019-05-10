@@ -627,22 +627,22 @@ public class SharingEntryLocalServiceImpl
 	/**
 	 * Updates the sharing entry in the database.
 	 *
-	 * @param  sharingEntryId the primary key of the sharing entry
-	 * @param  sharingEntryActions the sharing entry actions
-	 * @param  shareable whether the user the resource is shared with can also
-	 *         share it
-	 * @param  expirationDate the date when the sharing entry expires
-	 * @param  serviceContext the service context
-	 * @return the sharing entry
-	 * @throws PortalException if the sharing entry does not exist, if the
-	 *         sharing entry actions are invalid (e.g., empty, don't contain
-	 *         {@code SharingEntryAction#VIEW}, or contain a {@code null}
-	 *         value), or if the expiration date is a past value
-	 *
+	 * @param      sharingEntryId the primary key of the sharing entry
+	 * @param      sharingEntryActions the sharing entry actions
+	 * @param      shareable whether the user the resource is shared with can
+	 *             also share it
+	 * @param      expirationDate the date when the sharing entry expires
+	 * @param      serviceContext the service context
+	 * @return     the sharing entry
+	 * @throws     PortalException if the sharing entry does not exist, if the
+	 *             sharing entry actions are invalid (e.g., empty, don't contain
+	 *             {@code SharingEntryAction#VIEW}, or contain a {@code null}
+	 *             value), or if the expiration date is a past value
 	 * @deprecated As of Mueller (7.2.x), replaced by {@link
-	 * 		com.liferay.sharing.service.SharingEntryLocalService#
-	 * 			updateSharingEntry(
-	 * 				long, long, Collection, boolean, Date, ServiceContext)}
+	 *             com.liferay.sharing.service.SharingEntryLocalService#
+	 *             updateSharingEntry(long, long, Collection, boolean, Date,
+	 *             ServiceContext)}
+	 * @review
 	 */
 	@Deprecated
 	@Override
@@ -673,6 +673,7 @@ public class SharingEntryLocalServiceImpl
 	 *         sharing entry actions are invalid (e.g., empty, don't contain
 	 *         {@code SharingEntryAction#VIEW}, or contain a {@code null}
 	 *         value), or if the expiration date is a past value
+	 * @review
 	 */
 	@Override
 	public SharingEntry updateSharingEntry(
