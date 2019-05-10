@@ -20,7 +20,6 @@ import com.liferay.oauth2.provider.internal.upgrade.v2_0_0.util.OAuth2Applicatio
 import com.liferay.oauth2.provider.internal.upgrade.v2_0_0.util.OAuth2ApplicationTable;
 import com.liferay.oauth2.provider.internal.upgrade.v2_0_0.util.OAuth2ScopeGrantTable;
 import com.liferay.oauth2.provider.scope.liferay.ScopeLocator;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
@@ -71,10 +70,8 @@ public class OAuth2ServiceUpgrade implements UpgradeStepRegistrator {
 				OAuth2ApplicationTable.class,
 				"clientCredentialUserName VARCHAR(75) null"),
 			getRunSQLUpgradeProcess(
-				StringBundler.concat(
-					"update OAuth2Application set ",
-					"clientCredentialUserId=userId, clientCredentialUserName=",
-					"userName")));
+				"update OAuth2Application set clientCredentialUserId = " +
+					"userId, clientCredentialUserName = userName"));
 	}
 
 	protected UpgradeProcess getAddColumnsUpgradeProcess(
