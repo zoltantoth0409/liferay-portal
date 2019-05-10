@@ -298,7 +298,6 @@ public class UserGroupRolesDisplayContext {
 	private String _displayStyle;
 	private String _eventName;
 	private Long _groupId;
-	private String _keywords;
 	private String _orderByCol;
 	private String _orderByType;
 	private final RenderRequest _renderRequest;
