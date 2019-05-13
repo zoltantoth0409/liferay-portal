@@ -202,6 +202,8 @@ public class DDMStructureLocalServiceImpl
 
 		addDataProviderInstanceLinks(groupId, structureId, ddmForm);
 
+		reindexStructure(structure, serviceContext);
+
 		return structure;
 	}
 
