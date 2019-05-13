@@ -1,5 +1,7 @@
 package ${packagePath}.service.http;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 <#if hasHttpMethods>
 	import ${apiPackagePath}.service.${entity.name}ServiceUtil;
 </#if>
@@ -10,7 +12,6 @@ import com.liferay.portal.kernel.security.auth.HttpPrincipal;
 import com.liferay.portal.kernel.service.http.TunnelUtil;
 import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.MethodKey;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * Provides the HTTP utility for the

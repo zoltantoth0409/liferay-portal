@@ -1,5 +1,7 @@
 package ${packagePath}.service.http;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 import ${apiPackagePath}.model.${entity.name};
 
 import com.liferay.portal.kernel.json.JSONArray;
@@ -8,7 +10,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 
 import java.util.Date;
 import java.util.List;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * @author ${author}

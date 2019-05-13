@@ -24,6 +24,9 @@
 
 package ${packagePath}.service.persistence.impl;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+import ${serviceBuilder.getCompatJavaClassName("StringBundler")};
+
 <#assign noSuchEntity = serviceBuilder.getNoSuchEntityException(entity) />
 
 import ${apiPackagePath}.exception.${noSuchEntity}Exception;
@@ -39,8 +42,6 @@ import ${apiPackagePath}.service.persistence.${entity.name}Persistence;
 <#if dependencyInjectorDS>
 	import ${packagePath}.service.persistence.impl.constants.${portletShortName}PersistenceConstants;
 </#if>
-
-import ${serviceBuilder.getCompatJavaClassName("StringBundler")};
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.configuration.Configuration;
@@ -114,7 +115,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.sql.DataSource;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;

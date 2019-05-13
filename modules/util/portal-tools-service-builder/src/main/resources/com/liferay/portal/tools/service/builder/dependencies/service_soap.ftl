@@ -1,5 +1,7 @@
 package ${packagePath}.service.http;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 import ${apiPackagePath}.service.${entity.name}ServiceUtil;
 
 import com.liferay.portal.kernel.log.Log;
@@ -12,7 +14,6 @@ import java.rmi.RemoteException;
 
 import java.util.Locale;
 import java.util.Map;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * Provides the SOAP utility for the

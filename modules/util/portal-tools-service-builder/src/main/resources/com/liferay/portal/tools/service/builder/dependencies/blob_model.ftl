@@ -1,11 +1,12 @@
 package ${apiPackagePath}.model;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 <#if entity.hasCompoundPK()>
 	import ${apiPackagePath}.service.persistence.${entity.name}PK;
 </#if>
 
 import java.sql.Blob;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * The Blob model class for lazy loading the ${column.name} column in ${entity.name}.

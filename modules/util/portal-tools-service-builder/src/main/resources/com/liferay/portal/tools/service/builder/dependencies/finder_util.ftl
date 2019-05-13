@@ -1,8 +1,9 @@
 package ${apiPackagePath}.service.persistence;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * @author ${author}

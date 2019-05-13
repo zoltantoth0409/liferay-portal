@@ -1,7 +1,8 @@
 package ${apiPackagePath}.service;
 
-import com.liferay.portal.kernel.service.ServiceWrapper;
 import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
+import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
  * Provides a wrapper for {@link ${entity.name}${sessionTypeName}Service}.

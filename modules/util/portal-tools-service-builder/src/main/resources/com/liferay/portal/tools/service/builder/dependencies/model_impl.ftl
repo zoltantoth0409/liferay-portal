@@ -12,6 +12,9 @@
 
 package ${packagePath}.model.impl;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+import ${serviceBuilder.getCompatJavaClassName("StringBundler")};
+
 <#if entity.hasCompoundPK()>
 	import ${apiPackagePath}.service.persistence.${entity.name}PK;
 </#if>
@@ -48,7 +51,6 @@ import ${apiPackagePath}.model.${entity.name}Soap;
 </#if>
 
 import ${apiPackagePath}.service.${entity.name}LocalServiceUtil;
-import ${serviceBuilder.getCompatJavaClassName("StringBundler")};
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
@@ -96,7 +98,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * The base model implementation for the ${entity.name} service. Represents a row in the &quot;${entity.table}&quot; database table, with each column mapped to a property of this class.

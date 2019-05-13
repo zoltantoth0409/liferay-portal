@@ -1,11 +1,12 @@
 package ${servicePropsUtilPackagePath};
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 import com.liferay.portal.kernel.configuration.Filter;
 
 import java.util.Properties;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * @author ${author}

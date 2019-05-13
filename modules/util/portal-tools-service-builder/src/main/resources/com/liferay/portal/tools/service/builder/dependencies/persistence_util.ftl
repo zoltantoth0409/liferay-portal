@@ -1,5 +1,7 @@
 package ${apiPackagePath}.service.persistence;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 import ${apiPackagePath}.model.${entity.name};
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
@@ -16,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;

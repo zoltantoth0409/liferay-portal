@@ -1,8 +1,10 @@
 package ${apiPackagePath}.service;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;

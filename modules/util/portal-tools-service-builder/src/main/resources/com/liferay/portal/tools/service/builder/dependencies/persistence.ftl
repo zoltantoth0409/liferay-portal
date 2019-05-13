@@ -1,5 +1,7 @@
 package ${apiPackagePath}.service.persistence;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 <#assign noSuchEntity = serviceBuilder.getNoSuchEntityException(entity) />
 
 import ${apiPackagePath}.exception.${noSuchEntity}Exception;
@@ -17,7 +19,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * The persistence interface for the ${entity.humanName} service.

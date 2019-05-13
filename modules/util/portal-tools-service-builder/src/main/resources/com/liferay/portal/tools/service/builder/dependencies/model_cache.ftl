@@ -2,12 +2,13 @@ package ${packagePath}.model.impl;
 
 import ${apiPackagePath}.model.${entity.name};
 
+import ${serviceBuilder.getCompatJavaClassName("HashUtil")};
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+import ${serviceBuilder.getCompatJavaClassName("StringBundler")};
+
 <#if entity.hasCompoundPK()>
 	import ${apiPackagePath}.service.persistence.${entity.name}PK;
 </#if>
-
-import ${serviceBuilder.getCompatJavaClassName("HashUtil")};
-import ${serviceBuilder.getCompatJavaClassName("StringBundler")};
 
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.MVCCModel;
@@ -22,7 +23,6 @@ import java.math.BigDecimal;
 
 import java.util.Date;
 import java.util.Map;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * The cache model class for representing ${entity.name} in entity cache.

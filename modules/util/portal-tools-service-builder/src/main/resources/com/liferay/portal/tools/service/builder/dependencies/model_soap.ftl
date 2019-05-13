@@ -1,5 +1,7 @@
 package ${apiPackagePath}.model;
 
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
+
 <#if entity.hasCompoundPK()>
 	import ${apiPackagePath}.service.persistence.${entity.name}PK;
 </#if>
@@ -14,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * This class is used by SOAP remote services<#if entity.hasRemoteService()>, specifically {@link ${packagePath}.service.http.${entity.name}ServiceSoap}</#if>.
