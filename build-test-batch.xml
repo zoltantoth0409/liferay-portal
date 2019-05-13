@@ -3132,10 +3132,6 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-functional-test app.server.type="tomcat" database.type="mysql" test.portal.log.assert="true" />
 	</target>
 
-	<target name="functional-smoke-tomcat80-mysql56-jdk8_adopt">
-		<run-functional-test app.server.type="tomcat" database.type="mysql" test.portal.log.assert="true" />
-	</target>
-
 	<target name="functional-smoke-tomcat80-mysql56-jdk8_redhat">
 		<run-functional-test app.server.type="tomcat" database.type="mysql" test.portal.log.assert="true" />
 	</target>
@@ -3190,10 +3186,6 @@ app.server.type=@{app.server.type}]]></echo>
 
 	<target name="functional-tomcat80-mysql56-jdk8-quarantine">
 		<antcall target="functional-tomcat80-mysql56-jdk8" />
-	</target>
-
-	<target name="functional-tomcat80-mysql56-jdk8_adopt">
-		<run-functional-test app.server.type="tomcat" database.type="mysql" />
 	</target>
 
 	<target name="functional-tomcat80-mysql56-jdk8_redhat">
