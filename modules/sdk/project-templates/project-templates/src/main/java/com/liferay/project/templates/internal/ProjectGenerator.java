@@ -58,7 +58,6 @@ public class ProjectGenerator {
 
 		List<File> archetypesDirs = projectTemplatesArgs.getArchetypesDirs();
 		String artifactId = projectTemplatesArgs.getName();
-
 		String author = projectTemplatesArgs.getAuthor();
 		String className = projectTemplatesArgs.getClassName();
 		boolean dependencyManagementEnabled =
@@ -112,6 +111,7 @@ public class ProjectGenerator {
 		}
 
 		archetypeGenerationRequest.setArchetypeArtifactId(archetypeArtifactId);
+
 		archetypeGenerationRequest.setArchetypeGroupId("com.liferay");
 		archetypeGenerationRequest.setArchetypeVersion(
 			FileUtil.getManifestProperty(templateFile, "Bundle-Version"));
@@ -181,7 +181,6 @@ public class ProjectGenerator {
 		throws Exception {
 
 		String template = projectTemplatesArgs.getTemplate();
-
 		String templateVersion = projectTemplatesArgs.getTemplateVersion();
 
 		for (File archetypesDir : projectTemplatesArgs.getArchetypesDirs()) {
