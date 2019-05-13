@@ -1,6 +1,7 @@
 package ${apiPackagePath}.service.persistence;
 
 import ${serviceBuilder.getCompatJavaClassName("HashUtil")};
+import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 import ${serviceBuilder.getCompatJavaClassName("StringBundler")};
 
 import com.liferay.portal.kernel.util.DateUtil;
@@ -8,7 +9,6 @@ import com.liferay.portal.kernel.util.DateUtil;
 import java.io.Serializable;
 
 import java.util.Date;
-import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 
 /**
  * @author ${author}
