@@ -34,28 +34,28 @@ public class BndInvokerUtil {
 			String propertiesString, File baseDir, File output)
 		throws IOException {
 
+		BndTask bndTask = new BndTask();
+
+		bndTask.setClasspath("classes");
+		bndTask.setExceptions(true);
+		bndTask.setFiles("bnd.bnd");
+		bndTask.setOutput(output);
+
+		Project project = new Project();
+
+		project.setBaseDir(baseDir);
+
 		Properties properties = new Properties();
 
 		try (Reader reader = new StringReader(propertiesString)) {
 			properties.load(reader);
 		}
 
-		Project project = new Project();
-
-		project.setBaseDir(baseDir);
-
 		for (String key : properties.stringPropertyNames()) {
 			project.setProperty(key, properties.getProperty(key));
 		}
 
-		BndTask bndTask = new BndTask();
-
 		bndTask.setProject(project);
-
-		bndTask.setClasspath("classes");
-		bndTask.setExceptions(true);
-		bndTask.setFiles("bnd.bnd");
-		bndTask.setOutput(output);
 
 		bndTask.execute();
 	}
