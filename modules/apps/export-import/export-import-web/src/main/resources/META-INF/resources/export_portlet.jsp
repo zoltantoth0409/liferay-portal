@@ -23,13 +23,6 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("mvcRenderCommandName", "exportImport");
 portletURL.setParameter("portletResource", portletResource);
-
-if (layout instanceof VirtualLayout && layout.isTypeControlPanel()) {
-	VirtualLayout virtualLayout = (VirtualLayout)layout;
-
-	long targetGroupId = virtualLayout.getVirtualGroupId();
-	plid = LayoutLocalServiceUtil.getDefaultPlid(targetGroupId);
-}
 %>
 
 <clay:navigation-bar
@@ -89,7 +82,19 @@ if (layout instanceof VirtualLayout && layout.isTypeControlPanel()) {
 			<aui:input name="tabs1" type="hidden" value="export_import" />
 			<aui:input name="tabs2" type="hidden" value="export" />
 			<aui:input name="redirect" type="hidden" value="<%= redirectURL %>" />
+
+			<%
+			if (layout instanceof VirtualLayout && layout.isTypeControlPanel()) {
+				VirtualLayout virtualLayout = (VirtualLayout)layout;
+
+				long targetGroupId = virtualLayout.getVirtualGroupId();
+
+				plid = LayoutLocalServiceUtil.getDefaultPlid(targetGroupId);
+			}
+			%>
+
 			<aui:input name="plid" type="hidden" value="<%= plid %>" />
+
 			<aui:input name="groupId" type="hidden" value="<%= themeDisplay.getScopeGroupId() %>" />
 			<aui:input name="portletResource" type="hidden" value="<%= portletResource %>" />
 
