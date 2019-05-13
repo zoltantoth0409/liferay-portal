@@ -1,10 +1,10 @@
 package ${packagePath}.model.impl;
 
-import ${apiPackagePath}.model.${entity.name};
-
 import ${serviceBuilder.getCompatJavaClassName("HashUtil")};
 import ${serviceBuilder.getCompatJavaClassName("ProviderType")};
 import ${serviceBuilder.getCompatJavaClassName("StringBundler")};
+
+import ${apiPackagePath}.model.${entity.name};
 
 <#if entity.hasCompoundPK()>
 	import ${apiPackagePath}.service.persistence.${entity.name}PK;
