@@ -665,8 +665,8 @@ public class ConfigurationPersistenceManager
 	}
 
 	private void _verifyConfigurations() {
-		_verifyConfigurationsFileName();
 		_verifyConfigurationsBundleLocation();
+		_verifyConfigurationsFileName();
 	}
 
 	private void _verifyConfigurations(
