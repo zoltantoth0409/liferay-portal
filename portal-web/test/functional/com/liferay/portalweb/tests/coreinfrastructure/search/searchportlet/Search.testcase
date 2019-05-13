@@ -1692,7 +1692,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Search Page");
 
-		SearchPortlets.addWidgets(searchPortletList = "Custom Filter,Sort,Suggestions,Search Results,Search Bar");
+		SearchPortlets.addWidgets(searchPortletList = "Suggestions,Search Results,Search Bar");
 
 		PermissionsInline.gotoConfigurationPG(portletName = "Search Results");
 
@@ -1719,7 +1719,7 @@ definition {
 
 		AssertElementNotPresent(locator1 = "Portlet#ERROR");
 
-		for (var portlet : list "Custom Filter,Sort,Suggestions,Search Results,Search Bar") {
+		for (var portlet : list "Suggestions,Search Results,Search Bar") {
 			AssertElementPresent(
 				key_portletName = "${portlet}",
 				locator1 = "Portlet#BODY");
@@ -1738,7 +1738,7 @@ definition {
 
 		AssertElementNotPresent(locator1 = "Portlet#ERROR");
 
-		for (var portlet : list "Custom Filter,Sort,Suggestions,Search Results,Search Bar") {
+		for (var portlet : list "Suggestions,Search Results,Search Bar") {
 			AssertElementPresent(
 				key_portletName = "${portlet}",
 				locator1 = "Portlet#BODY");
