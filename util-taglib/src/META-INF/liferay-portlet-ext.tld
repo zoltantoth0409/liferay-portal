@@ -515,10 +515,10 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Deprecated as of Mueller (7.2.x), with no direct replacement.</description>
 			<name>settingsScope</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
+			<description>Deprecated as of Mueller (7.2.x), with no direct replacement.</description>
 		</attribute>
 	</tag>
 </taglib>
