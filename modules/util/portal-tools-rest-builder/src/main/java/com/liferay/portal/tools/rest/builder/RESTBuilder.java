@@ -230,6 +230,11 @@ public class RESTBuilder {
 				_putSchema(context, entry.getValue(), entry.getKey());
 
 				_createEnumFile(context, escapedVersion, entry.getKey());
+
+				if (Validator.isNotNull(_configYAML.getClientDir())) {
+					_createClientEnumFile(
+						context, escapedVersion, entry.getKey());
+				}
 			}
 
 			Set<Map.Entry<String, Schema>> set = new HashSet<>(
@@ -247,16 +252,6 @@ public class RESTBuilder {
 					_createClientDTOFile(context, escapedVersion, schemaName);
 					_createClientSerDesFile(
 						context, escapedVersion, schemaName);
-				}
-			}
-
-			for (Map.Entry<String, Schema> entry :
-					globalEnumSchemas.entrySet()) {
-
-				_putSchema(context, entry.getValue(), entry.getKey());
-
-				if (Validator.isNotNull(_configYAML.getClientDir())) {
-					_createClientEnumFile(context, escapedVersion, entry.getKey());
 				}
 			}
 		}
