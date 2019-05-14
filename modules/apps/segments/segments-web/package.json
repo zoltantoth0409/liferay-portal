@@ -90,5 +90,5 @@
 		"test:watch": "env TZ=utc liferay-npm-scripts test --watch",
 		"watch": "liferay-npm-scripts webpack --watch"
 	},
-	"version": "1.0.10"
+	"version": "1.0.11"
 }
