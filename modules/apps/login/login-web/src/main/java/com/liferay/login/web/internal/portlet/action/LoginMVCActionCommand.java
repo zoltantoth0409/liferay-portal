@@ -225,9 +225,9 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 
 				actionURL.setParameter(
 					ActionRequest.ACTION_NAME, "/login/login");
-				actionURL.setParameter("redirect", redirect);
 				actionURL.setParameter(
 					"saveLastPath", Boolean.FALSE.toString());
+				actionURL.setParameter("redirect", redirect);
 
 				actionRequest.setAttribute(
 					WebKeys.REDIRECT, actionURL.toString());
