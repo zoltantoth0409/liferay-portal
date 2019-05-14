@@ -17,8 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String state = ParamUtil.getString(request, "state");
-
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 ModuleGroupDisplay moduleGroupDisplay = (ModuleGroupDisplay)row.getObject();

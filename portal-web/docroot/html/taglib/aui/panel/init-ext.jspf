@@ -15,7 +15,3 @@
 --%>
 
 <%@ page import="com.liferay.portal.kernel.servlet.taglib.aui.ToolTag" %>
-
-<%
-List<ToolTag> toolTags = (List<ToolTag>)request.getAttribute("aui:panel:toolTags");
-%>

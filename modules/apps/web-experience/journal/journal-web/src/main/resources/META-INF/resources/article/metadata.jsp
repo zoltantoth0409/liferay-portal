@@ -19,8 +19,6 @@
 <%
 JournalArticle article = journalDisplayContext.getArticle();
 
-String defaultLanguageId = (String)request.getAttribute("edit_article.jsp-defaultLanguageId");
-
 DDMStructure ddmStructure = (DDMStructure)request.getAttribute("edit_article.jsp-structure");
 
 boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_article.jsp-changeStructure"));

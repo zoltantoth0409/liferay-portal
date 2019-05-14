@@ -27,7 +27,6 @@ int status = GetterUtil.getInteger(request.getAttribute("view.jsp-status"));
 String toolbarItem = GetterUtil.getString(request.getAttribute("view.jsp-toolbarItem"));
 int usersCount = GetterUtil.getInteger(request.getAttribute("view.jsp-usersCount"));
 String usersListView = GetterUtil.getString(request.getAttribute("view.jsp-usersListView"));
-String viewUsersRedirect = GetterUtil.getString(request.getAttribute("view.jsp-viewUsersRedirect"));
 
 String keywords = ParamUtil.getString(request, "keywords");
 

@@ -38,8 +38,6 @@ page import="java.util.Objects" %>
 
 <liferay-theme:defineObjects />
 
-<portlet:defineObjects />
-
 <%
 SiteNavigationSiteMapDisplayContext siteNavigationSiteMapDisplayContext = new SiteNavigationSiteMapDisplayContext(request);
 

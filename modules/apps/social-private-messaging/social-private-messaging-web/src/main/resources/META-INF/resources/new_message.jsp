@@ -17,8 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String redirect = ParamUtil.getString(request, "redirect");
-
 long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 
 String subject = StringPool.BLANK;

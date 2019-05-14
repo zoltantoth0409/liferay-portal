@@ -23,10 +23,6 @@ JournalArticle article = (JournalArticle)row.getObject();
 
 String href = (String)request.getAttribute(WebKeys.SEARCH_ENTRY_HREF);
 
-AssetRendererFactory<JournalArticle> assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClass(JournalArticle.class);
-
-AssetRenderer<JournalArticle> assetRenderer = assetRendererFactory.getAssetRenderer(JournalArticleAssetRenderer.getClassPK(article));
-
 Map<String, Object> data = new HashMap<String, Object>();
 
 data.put("placement", "top");

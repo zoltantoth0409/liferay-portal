@@ -19,8 +19,6 @@
 <%
 String tabs3 = (String)request.getAttribute("edit_role_assignments.jsp-tabs3");
 
-int cur = (Integer)request.getAttribute("edit_role_assignments.jsp-cur");
-
 Role role = (Role)request.getAttribute("edit_role_assignments.jsp-role");
 
 String displayStyle = (String)request.getAttribute("edit_role_assignments.jsp-displayStyle");
