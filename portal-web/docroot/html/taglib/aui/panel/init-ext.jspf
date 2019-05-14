@@ -13,5 +13,3 @@
  * details.
  */
 --%>
-
-<%@ page import="com.liferay.portal.kernel.servlet.taglib.aui.ToolTag" %>
