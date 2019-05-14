@@ -29,25 +29,7 @@ import org.osgi.service.metatype.AttributeDefinition;
  */
 public class AttributeDefinitionUtil {
 
-	public static String[] getDefaultValue(
-		AttributeDefinition attributeDefinition) {
-
-		String[] defaultValues = attributeDefinition.getDefaultValue();
-
-		if (ArrayUtil.isEmpty(defaultValues)) {
-			return new String[] {StringPool.BLANK};
-		}
-
-		if ((attributeDefinition.getCardinality() == 0) ||
-			(defaultValues.length > 1)) {
-
-			return defaultValues;
-		}
-
-		return StringUtil.split(defaultValues[0], StringPool.PIPE);
-	}
-
-	public static Object getObjectProperty(
+	public static Object gePropertyObject(
 		AttributeDefinition attributeDefinition, Configuration configuration) {
 
 		Dictionary<String, Object> properties = configuration.getProperties();
@@ -77,10 +59,28 @@ public class AttributeDefinitionUtil {
 		return ArrayUtil.toStringArray(vector.toArray());
 	}
 
-	public static String[] getProperty(
+	public static String[] getDefaultValue(
+		AttributeDefinition attributeDefinition) {
+
+		String[] defaultValues = attributeDefinition.getDefaultValue();
+
+		if (ArrayUtil.isEmpty(defaultValues)) {
+			return new String[] {StringPool.BLANK};
+		}
+
+		if ((attributeDefinition.getCardinality() == 0) ||
+			(defaultValues.length > 1)) {
+
+			return defaultValues;
+		}
+
+		return StringUtil.split(defaultValues[0], StringPool.PIPE);
+	}
+
+	public static String[] getPropertyStringArray(
 		AttributeDefinition attributeDefinition, Configuration configuration) {
 
-		Object value = getObjectProperty(attributeDefinition, configuration);
+		Object value = gePropertyObject(attributeDefinition, configuration);
 
 		if (value instanceof String[]) {
 			return (String[])value;
