@@ -634,7 +634,7 @@ definition {
 		Navigator.gotoStagedView();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content",
 			panel = "Site Administration",
 			portlet = "Web Content");
 
@@ -664,7 +664,7 @@ definition {
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/site-name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content",
 			panel = "Site Administration",
 			portlet = "Web Content");
 
