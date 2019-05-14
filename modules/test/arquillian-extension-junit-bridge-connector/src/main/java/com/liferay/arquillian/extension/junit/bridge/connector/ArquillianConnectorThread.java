@@ -99,7 +99,7 @@ public class ArquillianConnectorThread extends Thread {
 			}
 			catch (Exception e) {
 				_log.error(
-					"Dropped connecttion due to unrecoverable framework " +
+					"Dropped connection due to unrecoverable framework " +
 						"failure: ",
 					e);
 			}
