@@ -40,4 +40,29 @@ definition {
 			key_navItem = "Display Pages"
 		);
 	}
+
+	@description = "This tests one of the workarounds of LPS-92522."
+	@priority = "5"
+	test PublishDisplayPageWithFragment {
+		FragmentsAdmin.openFragmentsAdmin(siteURLKey = "test-site-name-staging");
+
+		FragmentsAdmin.importCollectionFromDependenciesFolder(
+			collectionZipFile = "fragment-collection.zip");
+
+		DisplayPagesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name-staging");
+
+		DisplayPagesAdmin.add(displayPageName = "Display Page Name");
+
+		PageEditor.addFragment(
+			collectionName = "Collection Name",
+			fragmentName = "Title");
+
+		PortletEntry.publish();
+
+		Staging.openStagingAdmin(siteURLKey = "test-site-name-staging");
+
+		Staging.publishCustomPublication();
+
+		AssertConsoleTextNotPresent(value1 = "PortletDataException");
+	}
 }
