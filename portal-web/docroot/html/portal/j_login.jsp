@@ -104,7 +104,7 @@ if (PropsValues.PORTAL_JAAS_ENABLE && (jUserName != null)) {
 			session.invalidate();
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 		%>
 
