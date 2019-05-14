@@ -392,7 +392,7 @@ public class FjordSiteInitializer implements SiteInitializer {
 		}
 
 		throw new IllegalArgumentException(
-			"Unable to find Fragment entry " + name);
+			"Unable to get fragment entry " + name);
 	}
 
 	private long _getPreviewFileEntryId(
