@@ -164,8 +164,6 @@ public class RESTBuilder {
 
 			Components components = openAPIYAML.getComponents();
 
-			Map<String, Schema> schemas = components.getSchemas();
-
 			Map<String, Schema> allSchemas = OpenAPIUtil.getAllSchemas(
 				openAPIYAML);
 
@@ -187,6 +185,8 @@ public class RESTBuilder {
 			_createGraphQLServletDataFile(context, escapedVersion);
 			_createOpenAPIResourceFile(context, escapedVersion);
 			_createPropertiesFile(context, escapedVersion, "openapi");
+
+			Map<String, Schema> schemas = components.getSchemas();
 
 			for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
 				String schemaName = entry.getKey();
