@@ -171,16 +171,16 @@ public class RESTBuilder {
 
 			context.put("allSchemas", allSchemas);
 
+			String escapedVersion = OpenAPIUtil.escapeVersion(openAPIYAML);
+
+			context.put("escapedVersion", escapedVersion);
+
 			Map<String, Schema> globalEnumSchemas =
 				OpenAPIUtil.getGlobalEnumSchemas(openAPIYAML);
 
 			context.put("globalEnumSchemas", globalEnumSchemas);
 
 			context.put("openAPIYAML", openAPIYAML);
-
-			String escapedVersion = OpenAPIUtil.escapeVersion(openAPIYAML);
-
-			context.put("escapedVersion", escapedVersion);
 
 			_createGraphQLMutationFile(context, escapedVersion);
 			_createGraphQLQueryFile(context, escapedVersion);
