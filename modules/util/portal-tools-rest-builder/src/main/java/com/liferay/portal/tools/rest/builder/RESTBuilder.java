@@ -255,7 +255,9 @@ public class RESTBuilder {
 
 				_putSchema(context, entry.getValue(), entry.getKey());
 
-				_createClientEnumFile(context, escapedVersion, entry.getKey());
+				if (Validator.isNotNull(_configYAML.getClientDir())) {
+					_createClientEnumFile(context, escapedVersion, entry.getKey());
+				}
 			}
 		}
 
