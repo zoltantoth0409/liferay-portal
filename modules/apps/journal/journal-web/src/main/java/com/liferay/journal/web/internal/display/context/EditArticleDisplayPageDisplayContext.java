@@ -241,8 +241,12 @@ public class EditArticleDisplayPageDisplayContext {
 		ItemSelector itemSelector = (ItemSelector)_request.getAttribute(
 			JournalWebKeys.ITEM_SELECTOR);
 
-		DDMStructure ddmStructure = (DDMStructure)_request.getAttribute(
-			"edit_article.jsp-structure");
+		JournalEditArticleDisplayContext journalEditArticleDisplayContext =
+			new JournalEditArticleDisplayContext(
+				_request, _liferayPortletResponse, _article);
+
+		DDMStructure ddmStructure =
+			journalEditArticleDisplayContext.getDDMStructure();
 
 		long displayPageClassNameId = PortalUtil.getClassNameId(
 			JournalArticle.class.getName());
