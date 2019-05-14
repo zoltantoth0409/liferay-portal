@@ -186,6 +186,37 @@ public class RESTBuilder {
 			_createOpenAPIResourceFile(context, escapedVersion);
 			_createPropertiesFile(context, escapedVersion, "openapi");
 
+			Set<Map.Entry<String, Schema>> set = new HashSet<>(
+				allSchemas.entrySet());
+
+			for (Map.Entry<String, Schema> entry : set) {
+				Schema schema = entry.getValue();
+				String schemaName = entry.getKey();
+
+				_putSchema(context, schema, schemaName);
+
+				_createDTOFile(context, escapedVersion, schemaName);
+
+				if (Validator.isNotNull(_configYAML.getClientDir())) {
+					_createClientDTOFile(context, escapedVersion, schemaName);
+					_createClientSerDesFile(
+						context, escapedVersion, schemaName);
+				}
+			}
+
+			for (Map.Entry<String, Schema> entry :
+					globalEnumSchemas.entrySet()) {
+
+				_putSchema(context, entry.getValue(), entry.getKey());
+
+				_createEnumFile(context, escapedVersion, entry.getKey());
+
+				if (Validator.isNotNull(_configYAML.getClientDir())) {
+					_createClientEnumFile(
+						context, escapedVersion, entry.getKey());
+				}
+			}
+
 			Map<String, Schema> schemas = components.getSchemas();
 
 			for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
@@ -220,37 +251,6 @@ public class RESTBuilder {
 					_createBaseResourceTestCaseFile(
 						context, escapedVersion, schemaName);
 					_createResourceTestFile(
-						context, escapedVersion, schemaName);
-				}
-			}
-
-			for (Map.Entry<String, Schema> entry :
-					globalEnumSchemas.entrySet()) {
-
-				_putSchema(context, entry.getValue(), entry.getKey());
-
-				_createEnumFile(context, escapedVersion, entry.getKey());
-
-				if (Validator.isNotNull(_configYAML.getClientDir())) {
-					_createClientEnumFile(
-						context, escapedVersion, entry.getKey());
-				}
-			}
-
-			Set<Map.Entry<String, Schema>> set = new HashSet<>(
-				allSchemas.entrySet());
-
-			for (Map.Entry<String, Schema> entry : set) {
-				Schema schema = entry.getValue();
-				String schemaName = entry.getKey();
-
-				_putSchema(context, schema, schemaName);
-
-				_createDTOFile(context, escapedVersion, schemaName);
-
-				if (Validator.isNotNull(_configYAML.getClientDir())) {
-					_createClientDTOFile(context, escapedVersion, schemaName);
-					_createClientSerDesFile(
 						context, escapedVersion, schemaName);
 				}
 			}
