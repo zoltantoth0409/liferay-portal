@@ -7,7 +7,7 @@ Provide-Capability:\
 		version:Version="${Bundle-Version}"
 Require-Capability:\
 	liferay.resource.bundle;\
-		filter:="(bundle.symbolic.name=com.liferay.layout.admin.web)"
+		filter:="(bundle.symbolic.name=com.liferay.layout.admin.web)",\
 	osgi.extender;\
 		filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/soy))"
 Web-ContextPath: /layout-item-selector-web
