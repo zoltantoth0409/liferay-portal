@@ -5,5 +5,4 @@ dependencies {
 	testIntegrationCompile project(":apps:asset:asset-test-util")
 	testIntegrationCompile project(":apps:segments:segments-api")
 	testIntegrationCompile project(":apps:segments:segments-test-util")
-	testIntegrationCompile project(":test:arquillian-extension-junit-bridge")
 }
