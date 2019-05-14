@@ -493,13 +493,12 @@ public abstract class BaseUserAccountResourceTestCase {
 					"/organizations/{organizationId}/user-accounts",
 					organizationId);
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -526,13 +525,12 @@ public abstract class BaseUserAccountResourceTestCase {
 					"/organizations/{organizationId}/user-accounts",
 					organizationId);
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -751,13 +749,12 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		String location = _resourceURL + _toPath("/user-accounts");
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -780,13 +777,12 @@ public abstract class BaseUserAccountResourceTestCase {
 
 		String location = _resourceURL + _toPath("/user-accounts");
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -1131,13 +1127,12 @@ public abstract class BaseUserAccountResourceTestCase {
 			_resourceURL +
 				_toPath("/web-sites/{webSiteId}/user-accounts", webSiteId);
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -1162,13 +1157,12 @@ public abstract class BaseUserAccountResourceTestCase {
 			_resourceURL +
 				_toPath("/web-sites/{webSiteId}/user-accounts", webSiteId);
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);

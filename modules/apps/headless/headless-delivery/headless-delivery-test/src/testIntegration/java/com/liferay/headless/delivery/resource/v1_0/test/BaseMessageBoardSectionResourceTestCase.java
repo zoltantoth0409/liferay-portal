@@ -803,13 +803,12 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 					"/message-board-sections/{parentMessageBoardSectionId}/message-board-sections",
 					parentMessageBoardSectionId);
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -837,13 +836,12 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 					"/message-board-sections/{parentMessageBoardSectionId}/message-board-sections",
 					parentMessageBoardSectionId);
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -1240,13 +1238,13 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			_resourceURL +
 				_toPath("/sites/{siteId}/message-board-sections", siteId);
 
+		location = HttpUtil.addParameter(location, "flatten", flatten);
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -1271,13 +1269,13 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			_resourceURL +
 				_toPath("/sites/{siteId}/message-board-sections", siteId);
 
+		location = HttpUtil.addParameter(location, "flatten", flatten);
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);

@@ -1051,13 +1051,12 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 					"/message-board-messages/{parentMessageBoardMessageId}/message-board-messages",
 					parentMessageBoardMessageId);
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -1085,13 +1084,12 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 					"/message-board-messages/{parentMessageBoardMessageId}/message-board-messages",
 					parentMessageBoardMessageId);
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -1508,13 +1506,12 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 					"/message-board-threads/{messageBoardThreadId}/message-board-messages",
 					messageBoardThreadId);
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
@@ -1542,13 +1539,12 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 					"/message-board-threads/{messageBoardThreadId}/message-board-messages",
 					messageBoardThreadId);
 
+		location = HttpUtil.addParameter(location, "search", search);
 		location = HttpUtil.addParameter(location, "filter", filterString);
-
 		location = HttpUtil.addParameter(
 			location, "page", pagination.getPage());
 		location = HttpUtil.addParameter(
 			location, "pageSize", pagination.getPageSize());
-
 		location = HttpUtil.addParameter(location, "sort", sortString);
 
 		options.setLocation(location);
