@@ -16,6 +16,8 @@ package com.liferay.change.tracking.change.lists.indicator.web.internal.display.
 
 import com.liferay.change.tracking.constants.CTPortletKeys;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -63,6 +65,9 @@ public class ChangeListsIndicatorDisplayContext {
 			portletURL.setWindowState(WindowState.MAXIMIZED);
 		}
 		catch (WindowStateException wse) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(wse, wse);
+			}
 		}
 
 		soyContext.put(
@@ -80,6 +85,9 @@ public class ChangeListsIndicatorDisplayContext {
 
 		return soyContext;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ChangeListsIndicatorDisplayContext.class);
 
 	private final HttpServletRequest _httpServletRequest;
 	private final RenderRequest _renderRequest;
