@@ -731,6 +731,8 @@ definition {
 	@description = "This is a use case for LPS-43214 and LPS-50269."
 	@priority = "3"
 	test PublishFromSourceTabAndViewNameChange {
+		property test.name.skip.portal.instance = "Kaleodesigner#PublishFromSourceTabAndViewNameChange";
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
@@ -1312,6 +1314,8 @@ definition {
 
 	@priority = "4"
 	test ViewAndPublishWorkflowDefinitionDraft {
+		property test.name.skip.portal.instance = "Kaleodesigner#ViewAndPublishWorkflowDefinitionDraft";
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",

@@ -2561,6 +2561,8 @@ definition {
 
 	@priority = "4"
 	test CompleteProcessWithEditedSingleApproverWorkflow {
+		property test.name.skip.portal.instance = "KaleoformsUsecase#CompleteProcessWithEditedSingleApproverWorkflow";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -2716,6 +2718,7 @@ definition {
 	test CompleteProcessWithUploadedDefinition {
 		property portal.acceptance = "true";
 		property testray.component.names = "Training";
+		property test.name.skip.portal.instance = "KaleoformsUsecase#CompleteProcessWithUploadedDefinition";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -3929,6 +3932,8 @@ definition {
 
 	@priority = "4"
 	test EditProcessWorkflowAfterFormSubmission {
+		property test.name.skip.portal.instance = "KaleoformsUsecase#EditProcessWorkflowAfterFormSubmission";
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
