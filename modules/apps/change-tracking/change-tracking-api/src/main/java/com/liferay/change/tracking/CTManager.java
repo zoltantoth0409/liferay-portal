@@ -126,6 +126,7 @@ public interface CTManager {
 	 * @param classNameId the class name primary key
 	 * @return the list change entries associated with the given change
 	 * collections and class name id.
+	 * @review
 	 */
 	public List<CTEntry> getCTCollectionCTEntries(
 		long companyId, long ctCollectionId, long classNameId);
@@ -178,6 +179,7 @@ public interface CTManager {
 	 *         model
 	 * @return a list of change tracking entries representing all the registered
 	 *         model changes
+	 * @review
 	 */
 	public List<CTEntry> getModelChangeCTEntries(
 		long userId, long modelResourcePrimKey);
@@ -193,6 +195,7 @@ public interface CTManager {
 	 *         filter
 	 * @return a list of change tracking entries representing the registered
 	 *         model changes
+	 * @review
 	 */
 	public List<CTEntry> getModelChangeCTEntries(
 		long userId, long modelResourcePrimKey,
