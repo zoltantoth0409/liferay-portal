@@ -85,7 +85,7 @@ public class ODataSearchAdapterImpl implements ODataSearchAdapter {
 		}
 		catch (Exception e) {
 			throw new PortalException(
-				"Unable to retrieve results with filter " + filterString, e);
+				"Unable to search with filter " + filterString, e);
 		}
 	}
 
@@ -126,7 +126,7 @@ public class ODataSearchAdapterImpl implements ODataSearchAdapter {
 		}
 		catch (Exception e) {
 			throw new PortalException(
-				"Unable to retrieve results with filter " + filterString, e);
+				"Unable to search with filter " + filterString, e);
 		}
 	}
 
