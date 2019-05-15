@@ -336,14 +336,15 @@ public class EditSegmentsEntryDisplayContext {
 			return _hasUpdatePermission;
 		}
 
-		_hasUpdatePermission = true;
-
 		SegmentsEntry segmentsEntry = getSegmentsEntry();
 
 		if (segmentsEntry != null) {
 			_hasUpdatePermission = SegmentsEntryPermission.contains(
 				_themeDisplay.getPermissionChecker(), segmentsEntry,
 				ActionKeys.UPDATE);
+		}
+		else {
+			_hasUpdatePermission = true;
 		}
 
 		return _hasUpdatePermission;
