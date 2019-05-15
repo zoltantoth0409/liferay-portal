@@ -119,13 +119,13 @@ public interface CTManager {
 
 	/**
 	 * Returns the list change entries associated with the given change
-	 * collections and class name id.
+	 * collections and class name ID.
 	 *
-	 * @param companyId the primary key of the company
-	 * @param ctCollectionId the primary key of the selected change collection
-	 * @param classNameId the class name primary key
+	 * @param  companyId the primary key of the company
+	 * @param  ctCollectionId the primary key of the selected change collection
+	 * @param  classNameId the class name primary key
 	 * @return the list change entries associated with the given change
-	 * collections and class name id.
+	 *         collections and class name ID.
 	 * @review
 	 */
 	public List<CTEntry> getCTCollectionCTEntries(
