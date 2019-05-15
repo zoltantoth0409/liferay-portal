@@ -266,7 +266,7 @@ public class ExportConfigurationMVCResourceCommand
 				continue;
 			}
 
-			Object value = AttributeDefinitionUtil.gePropertyObject(
+			Object value = AttributeDefinitionUtil.getPropertyObject(
 				attributeDefinition, configuration);
 
 			if (value == null) {
