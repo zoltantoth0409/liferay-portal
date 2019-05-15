@@ -3216,7 +3216,7 @@ AUI.add(
 
 								for (var localization in totalLocalizations) {
 									if (localization === currentLocale) {
-										return;
+										continue;
 									}
 
 									if (!newFieldLocalizations[localization]) {
