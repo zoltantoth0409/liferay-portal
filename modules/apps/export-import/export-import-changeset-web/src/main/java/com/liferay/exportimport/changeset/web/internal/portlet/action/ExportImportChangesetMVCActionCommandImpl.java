@@ -179,10 +179,10 @@ public class ExportImportChangesetMVCActionCommandImpl
 		Map<String, String[]> parameterMap =
 			_exportImportConfigurationParameterMapFactory.buildParameterMap();
 
-		parameterMap.put("changesetUuid", new String[] {changesetUuid});
 		parameterMap.put(
 			PortletDataHandlerKeys.DELETIONS,
 			new String[] {Boolean.FALSE.toString()});
+		parameterMap.put("changesetUuid", new String[] {changesetUuid});
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
