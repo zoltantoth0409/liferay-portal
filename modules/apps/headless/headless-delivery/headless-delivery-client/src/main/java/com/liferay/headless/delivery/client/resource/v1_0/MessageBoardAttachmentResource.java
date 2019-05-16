@@ -127,6 +127,8 @@ public class MessageBoardAttachmentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.multipart();
+
 		httpInvoker.part(
 			"messageBoardAttachment",
 			MessageBoardAttachmentSerDes.toJSON(messageBoardAttachment));
@@ -198,6 +200,8 @@ public class MessageBoardAttachmentResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.multipart();
 
 		httpInvoker.part(
 			"messageBoardAttachment",
