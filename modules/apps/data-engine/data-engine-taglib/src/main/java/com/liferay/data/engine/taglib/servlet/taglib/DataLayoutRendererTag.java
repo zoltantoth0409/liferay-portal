@@ -31,6 +31,13 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class DataLayoutRendererTag extends BaseDataLayoutRendererTag {
 
+	@Override
+	protected void setAttributes(HttpServletRequest httpServletRequest) {
+		super.setAttributes(httpServletRequest);
+
+		setNamespacedAttribute(request, "content", _getContent());
+	}
+
 	private String _getContent() {
 		String content = StringPool.BLANK;
 
@@ -48,13 +55,6 @@ public class DataLayoutRendererTag extends BaseDataLayoutRendererTag {
 		}
 
 		return content;
-	}
-
-	@Override
-	protected void setAttributes(HttpServletRequest httpServletRequest) {
-		super.setAttributes(httpServletRequest);
-
-		setNamespacedAttribute(request, "content", _getContent());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
