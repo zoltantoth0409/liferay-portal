@@ -104,7 +104,8 @@ public class SearchIteratorTag<R> extends SearchPaginatorTag<R> {
 		request.setAttribute(
 			"liferay-ui:search-iterator:displayStyle", getDisplayStyle());
 		request.setAttribute(
-			"liferay-ui:search-iterator:fixedHeader", String.valueOf(_fixedHeader));
+			"liferay-ui:search-iterator:fixedHeader",
+			String.valueOf(_fixedHeader));
 		request.setAttribute(
 			"liferay-ui:search-iterator:markupView", _markupView);
 		request.setAttribute(
@@ -117,7 +118,7 @@ public class SearchIteratorTag<R> extends SearchPaginatorTag<R> {
 	}
 
 	private String _displayStyle = DEFAULT_DISPLAY_STYLE;
-	private boolean _fixedHeader = false;
+	private boolean _fixedHeader;
 	private String _markupView;
 	private boolean _paginate = true;
 	private ResultRowSplitter _resultRowSplitter;
