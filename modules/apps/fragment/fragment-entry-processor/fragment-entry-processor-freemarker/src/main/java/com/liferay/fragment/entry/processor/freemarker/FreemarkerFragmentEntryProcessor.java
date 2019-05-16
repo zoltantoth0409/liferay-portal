@@ -70,8 +70,8 @@ public class FreemarkerFragmentEntryProcessor
 
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"HttpServletRequest or HttpServletResponse is absent in " +
-						"fragment entry processor context");
+					"HTTP servlet request or HTTP servlet response is not set " +
+						"in the fragment entry processor context");
 			}
 
 			return html;
