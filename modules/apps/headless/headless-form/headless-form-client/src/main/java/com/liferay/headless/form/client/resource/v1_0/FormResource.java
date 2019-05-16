@@ -110,6 +110,8 @@ public class FormResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.multipart();
+
 		httpInvoker.part("form", FormSerDes.toJSON(form));
 
 		for (Map.Entry<String, File> entry : files.entrySet()) {
