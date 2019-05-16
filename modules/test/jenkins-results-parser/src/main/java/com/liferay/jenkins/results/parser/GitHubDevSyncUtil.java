@@ -65,7 +65,7 @@ public class GitHubDevSyncUtil {
 				System.out.println("Retrying: " message);
 			}
 
-			return;
+			break;
 		}
 	}
 
