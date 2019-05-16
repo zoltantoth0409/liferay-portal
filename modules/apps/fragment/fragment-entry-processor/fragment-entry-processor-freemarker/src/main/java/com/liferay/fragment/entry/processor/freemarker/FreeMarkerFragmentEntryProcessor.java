@@ -65,7 +65,7 @@ public class FreeMarkerFragmentEntryProcessor
 			return html;
 		}
 
-		if ((fragmentEntryProcessorContext.getHttpServletRequest() == null)) {
+		if (fragmentEntryProcessorContext.getHttpServletRequest() == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"HTTP servlet request is not set in the fragment entry " +
@@ -75,7 +75,7 @@ public class FreeMarkerFragmentEntryProcessor
 			return html;
 		}
 
-		if ((fragmentEntryProcessorContext.getHttpServletResponse() == null) {
+		if (fragmentEntryProcessorContext.getHttpServletResponse() == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"HTTP servlet response is not set in the fragment entry " +
