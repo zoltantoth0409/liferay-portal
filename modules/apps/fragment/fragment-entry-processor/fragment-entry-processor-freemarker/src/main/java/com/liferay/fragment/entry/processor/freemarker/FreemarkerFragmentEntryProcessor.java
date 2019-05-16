@@ -112,7 +112,7 @@ public class FreemarkerFragmentEntryProcessor
 				"content.Language", getClass());
 
 			String message = LanguageUtil.get(
-				resourceBundle, "invalid-freemarker-syntax");
+				resourceBundle, "freemarker-syntax-is-invalid");
 
 			throw new FragmentEntryContentException(message, te);
 		}
