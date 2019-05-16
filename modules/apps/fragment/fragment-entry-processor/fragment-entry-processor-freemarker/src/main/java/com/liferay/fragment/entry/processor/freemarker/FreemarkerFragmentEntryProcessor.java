@@ -65,13 +65,21 @@ public class FreemarkerFragmentEntryProcessor
 			return html;
 		}
 
-		if ((fragmentEntryProcessorContext.getHttpServletRequest() == null) ||
-			(fragmentEntryProcessorContext.getHttpServletResponse() == null)) {
-
+		if ((fragmentEntryProcessorContext.getHttpServletRequest() == null)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"HTTP servlet request or HTTP servlet response is not set " +
-						"in the fragment entry processor context");
+					"HTTP servlet request is not set in the fragment entry " +
+						"processor context");
+			}
+
+			return html;
+		}
+
+		if ((fragmentEntryProcessorContext.getHttpServletResponse() == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"HTTP servlet response is not set in the fragment entry " +
+						"processor context");
 			}
 
 			return html;
