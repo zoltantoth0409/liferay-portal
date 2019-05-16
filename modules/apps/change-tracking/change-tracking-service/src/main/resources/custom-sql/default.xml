@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.change.tracking.service.persistence.CTEntryAggregateFinder.findByC_O">
+	<sql id="com.liferay.change.tracking.service.persistence.CTEntryAggregateFinder.findByCTCI_OCTEI">
 		<![CDATA[
 			SELECT
 				{CTEntryAggregate.*}
