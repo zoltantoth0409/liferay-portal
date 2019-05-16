@@ -45,16 +45,22 @@ public class ${schemaName}Resource {
 			httpInvoker.httpMethod(HttpInvoker.HttpMethod.${freeMarkerTool.getHTTPMethod(javaMethodSignature.operation)?upper_case});
 
 			<#if parameters?contains("Filter filter")>
-				httpInvoker.parameter("filter", filterString);
+				if (filterString != null) {
+					httpInvoker.parameter("filter", filterString);
+				}
 			</#if>
 
 			<#if parameters?contains("Pagination pagination")>
-				httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-				httpInvoker.parameter("pageSize", String.valueOf(pagination.getPageSize()));
+				if (pagination != null) {
+					httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+					httpInvoker.parameter("pageSize", String.valueOf(pagination.getPageSize()));
+				}
 			</#if>
 
 			<#if parameters?contains("Sort[] sorts")>
-				httpInvoker.parameter("sort", sortString);
+				if (sortString != null) {
+					httpInvoker.parameter("sort", sortString);
+				}
 			</#if>
 
 			httpInvoker.path("http://localhost:8080/o${configYAML.application.baseURI}/${openAPIYAML.info.version}${javaMethodSignature.path}"
