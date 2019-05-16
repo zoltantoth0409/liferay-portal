@@ -40,9 +40,11 @@ public class WorkflowTaskResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-admin-workflow/v1.0/roles/{roleId}/workflow-tasks",
@@ -70,9 +72,11 @@ public class WorkflowTaskResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-admin-workflow/v1.0/workflow-tasks/assigned-to-me");
@@ -99,9 +103,11 @@ public class WorkflowTaskResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-admin-workflow/v1.0/workflow-tasks/assigned-to-my-roles");

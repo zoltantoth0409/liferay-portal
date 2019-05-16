@@ -41,13 +41,19 @@ public class TaxonomyCategoryResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("filter", filterString);
+		if (filterString != null) {
+			httpInvoker.parameter("filter", filterString);
+		}
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
-		httpInvoker.parameter("sort", sortString);
+		if (sortString != null) {
+			httpInvoker.parameter("sort", sortString);
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-admin-taxonomy/v1.0/taxonomy-categories/{parentTaxonomyCategoryId}/taxonomy-categories",
@@ -250,13 +256,19 @@ public class TaxonomyCategoryResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("filter", filterString);
+		if (filterString != null) {
+			httpInvoker.parameter("filter", filterString);
+		}
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
-		httpInvoker.parameter("sort", sortString);
+		if (sortString != null) {
+			httpInvoker.parameter("sort", sortString);
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-admin-taxonomy/v1.0/taxonomy-vocabularies/{taxonomyVocabularyId}/taxonomy-categories",
