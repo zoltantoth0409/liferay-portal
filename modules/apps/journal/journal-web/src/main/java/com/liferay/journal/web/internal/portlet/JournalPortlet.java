@@ -954,10 +954,10 @@ public class JournalPortlet extends MVCPortlet {
 		long refererPlid = ParamUtil.getLong(actionRequest, "refererPlid");
 
 		if (Validator.isNotNull(portletResource) && (refererPlid > 0)) {
-			Layout layout = _layoutLocalService.getLayout(refererPlid);
-
 			AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
 				JournalArticle.class.getName(), article.getResourcePrimKey());
+
+			Layout layout = _layoutLocalService.getLayout(refererPlid);
 
 			PortletPreferences portletPreferences =
 				PortletPreferencesFactoryUtil.getStrictPortletSetup(
