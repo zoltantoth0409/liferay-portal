@@ -621,10 +621,12 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 					"/knowledge-base-folders/{parentKnowledgeBaseFolderId}/knowledge-base-folders",
 					parentKnowledgeBaseFolderId);
 
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
+		if (pagination != null) {
+			location = HttpUtil.addParameter(
+				location, "page", pagination.getPage());
+			location = HttpUtil.addParameter(
+				location, "pageSize", pagination.getPageSize());
+		}
 
 		options.setLocation(location);
 
@@ -650,10 +652,12 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 					"/knowledge-base-folders/{parentKnowledgeBaseFolderId}/knowledge-base-folders",
 					parentKnowledgeBaseFolderId);
 
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
+		if (pagination != null) {
+			location = HttpUtil.addParameter(
+				location, "page", pagination.getPage());
+			location = HttpUtil.addParameter(
+				location, "pageSize", pagination.getPageSize());
+		}
 
 		options.setLocation(location);
 
@@ -876,10 +880,12 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			_resourceURL +
 				_toPath("/sites/{siteId}/knowledge-base-folders", siteId);
 
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
+		if (pagination != null) {
+			location = HttpUtil.addParameter(
+				location, "page", pagination.getPage());
+			location = HttpUtil.addParameter(
+				location, "pageSize", pagination.getPageSize());
+		}
 
 		options.setLocation(location);
 
@@ -902,10 +908,12 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			_resourceURL +
 				_toPath("/sites/{siteId}/knowledge-base-folders", siteId);
 
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
+		if (pagination != null) {
+			location = HttpUtil.addParameter(
+				location, "page", pagination.getPage());
+			location = HttpUtil.addParameter(
+				location, "pageSize", pagination.getPageSize());
+		}
 
 		options.setLocation(location);
 

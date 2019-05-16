@@ -1066,13 +1066,24 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					"/knowledge-base-articles/{parentKnowledgeBaseArticleId}/knowledge-base-articles",
 					parentKnowledgeBaseArticleId);
 
-		location = HttpUtil.addParameter(location, "search", search);
-		location = HttpUtil.addParameter(location, "filter", filterString);
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
-		location = HttpUtil.addParameter(location, "sort", sortString);
+		if (search != null) {
+			location = HttpUtil.addParameter(location, "search", search);
+		}
+
+		if (filterString != null) {
+			location = HttpUtil.addParameter(location, "filter", filterString);
+		}
+
+		if (pagination != null) {
+			location = HttpUtil.addParameter(
+				location, "page", pagination.getPage());
+			location = HttpUtil.addParameter(
+				location, "pageSize", pagination.getPageSize());
+		}
+
+		if (sortString != null) {
+			location = HttpUtil.addParameter(location, "sort", sortString);
+		}
 
 		options.setLocation(location);
 
@@ -1099,13 +1110,24 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					"/knowledge-base-articles/{parentKnowledgeBaseArticleId}/knowledge-base-articles",
 					parentKnowledgeBaseArticleId);
 
-		location = HttpUtil.addParameter(location, "search", search);
-		location = HttpUtil.addParameter(location, "filter", filterString);
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
-		location = HttpUtil.addParameter(location, "sort", sortString);
+		if (search != null) {
+			location = HttpUtil.addParameter(location, "search", search);
+		}
+
+		if (filterString != null) {
+			location = HttpUtil.addParameter(location, "filter", filterString);
+		}
+
+		if (pagination != null) {
+			location = HttpUtil.addParameter(
+				location, "page", pagination.getPage());
+			location = HttpUtil.addParameter(
+				location, "pageSize", pagination.getPageSize());
+		}
+
+		if (sortString != null) {
+			location = HttpUtil.addParameter(location, "sort", sortString);
+		}
 
 		options.setLocation(location);
 
@@ -1531,14 +1553,28 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					"/knowledge-base-folders/{knowledgeBaseFolderId}/knowledge-base-articles",
 					knowledgeBaseFolderId);
 
-		location = HttpUtil.addParameter(location, "flatten", flatten);
-		location = HttpUtil.addParameter(location, "search", search);
-		location = HttpUtil.addParameter(location, "filter", filterString);
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
-		location = HttpUtil.addParameter(location, "sort", sortString);
+		if (flatten != null) {
+			location = HttpUtil.addParameter(location, "flatten", flatten);
+		}
+
+		if (search != null) {
+			location = HttpUtil.addParameter(location, "search", search);
+		}
+
+		if (filterString != null) {
+			location = HttpUtil.addParameter(location, "filter", filterString);
+		}
+
+		if (pagination != null) {
+			location = HttpUtil.addParameter(
+				location, "page", pagination.getPage());
+			location = HttpUtil.addParameter(
+				location, "pageSize", pagination.getPageSize());
+		}
+
+		if (sortString != null) {
+			location = HttpUtil.addParameter(location, "sort", sortString);
+		}
 
 		options.setLocation(location);
 
@@ -1565,14 +1601,28 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					"/knowledge-base-folders/{knowledgeBaseFolderId}/knowledge-base-articles",
 					knowledgeBaseFolderId);
 
-		location = HttpUtil.addParameter(location, "flatten", flatten);
-		location = HttpUtil.addParameter(location, "search", search);
-		location = HttpUtil.addParameter(location, "filter", filterString);
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
-		location = HttpUtil.addParameter(location, "sort", sortString);
+		if (flatten != null) {
+			location = HttpUtil.addParameter(location, "flatten", flatten);
+		}
+
+		if (search != null) {
+			location = HttpUtil.addParameter(location, "search", search);
+		}
+
+		if (filterString != null) {
+			location = HttpUtil.addParameter(location, "filter", filterString);
+		}
+
+		if (pagination != null) {
+			location = HttpUtil.addParameter(
+				location, "page", pagination.getPage());
+			location = HttpUtil.addParameter(
+				location, "pageSize", pagination.getPageSize());
+		}
+
+		if (sortString != null) {
+			location = HttpUtil.addParameter(location, "sort", sortString);
+		}
 
 		options.setLocation(location);
 
@@ -1978,14 +2028,28 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			_resourceURL +
 				_toPath("/sites/{siteId}/knowledge-base-articles", siteId);
 
-		location = HttpUtil.addParameter(location, "flatten", flatten);
-		location = HttpUtil.addParameter(location, "search", search);
-		location = HttpUtil.addParameter(location, "filter", filterString);
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
-		location = HttpUtil.addParameter(location, "sort", sortString);
+		if (flatten != null) {
+			location = HttpUtil.addParameter(location, "flatten", flatten);
+		}
+
+		if (search != null) {
+			location = HttpUtil.addParameter(location, "search", search);
+		}
+
+		if (filterString != null) {
+			location = HttpUtil.addParameter(location, "filter", filterString);
+		}
+
+		if (pagination != null) {
+			location = HttpUtil.addParameter(
+				location, "page", pagination.getPage());
+			location = HttpUtil.addParameter(
+				location, "pageSize", pagination.getPageSize());
+		}
+
+		if (sortString != null) {
+			location = HttpUtil.addParameter(location, "sort", sortString);
+		}
 
 		options.setLocation(location);
 
@@ -2009,14 +2073,28 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			_resourceURL +
 				_toPath("/sites/{siteId}/knowledge-base-articles", siteId);
 
-		location = HttpUtil.addParameter(location, "flatten", flatten);
-		location = HttpUtil.addParameter(location, "search", search);
-		location = HttpUtil.addParameter(location, "filter", filterString);
-		location = HttpUtil.addParameter(
-			location, "page", pagination.getPage());
-		location = HttpUtil.addParameter(
-			location, "pageSize", pagination.getPageSize());
-		location = HttpUtil.addParameter(location, "sort", sortString);
+		if (flatten != null) {
+			location = HttpUtil.addParameter(location, "flatten", flatten);
+		}
+
+		if (search != null) {
+			location = HttpUtil.addParameter(location, "search", search);
+		}
+
+		if (filterString != null) {
+			location = HttpUtil.addParameter(location, "filter", filterString);
+		}
+
+		if (pagination != null) {
+			location = HttpUtil.addParameter(
+				location, "page", pagination.getPage());
+			location = HttpUtil.addParameter(
+				location, "pageSize", pagination.getPageSize());
+		}
+
+		if (sortString != null) {
+			location = HttpUtil.addParameter(location, "sort", sortString);
+		}
 
 		options.setLocation(location);
 
