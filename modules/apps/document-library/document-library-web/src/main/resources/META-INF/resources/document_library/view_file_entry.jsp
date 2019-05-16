@@ -316,8 +316,12 @@ if (addPortletBreadcrumbEntries) {
 				'click',
 				function(event) {
 					event.currentTarget.classList.toggle('active');
-					document.querySelector('#<portlet:namespace />FileEntry .contextual-sidebar')
-						.classList.toggle('contextual-sidebar-visible');
+
+					document.querySelector(
+						'#<portlet:namespace />FileEntry .contextual-sidebar'
+					).classList.toggle(
+						'contextual-sidebar-visible'
+					);
 				}
 			);
 		}
