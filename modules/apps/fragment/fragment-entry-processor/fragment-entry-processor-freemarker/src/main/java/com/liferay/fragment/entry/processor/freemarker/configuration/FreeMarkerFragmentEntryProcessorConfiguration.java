@@ -26,11 +26,11 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 	scope = ExtendedObjectClassDefinition.Scope.COMPANY
 )
 @Meta.OCD(
-	id = "com.liferay.fragment.entry.processor.freemarker.configuration.FreemarkerFragmentEntryProcessorConfiguration",
+	id = "com.liferay.fragment.entry.processor.freemarker.configuration.FreeMarkerFragmentEntryProcessorConfiguration",
 	localization = "content/Language",
 	name = "freemarker-fragment-entry-processor-configuration-name"
 )
-public interface FreemarkerFragmentEntryProcessorConfiguration {
+public interface FreeMarkerFragmentEntryProcessorConfiguration {
 
 	@Meta.AD(
 		deflt = "false", description = "enable-freemarker-help",

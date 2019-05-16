@@ -14,7 +14,7 @@
 
 package com.liferay.fragment.entry.processor.freemarker;
 
-import com.liferay.fragment.entry.processor.freemarker.configuration.FreemarkerFragmentEntryProcessorConfiguration;
+import com.liferay.fragment.entry.processor.freemarker.configuration.FreeMarkerFragmentEntryProcessorConfiguration;
 import com.liferay.fragment.exception.FragmentEntryContentException;
 import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.fragment.processor.FragmentEntryProcessor;
@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, property = "fragment.entry.processor.priority:Integer=1",
 	service = FragmentEntryProcessor.class
 )
-public class FreemarkerFragmentEntryProcessor
+public class FreeMarkerFragmentEntryProcessor
 	implements FragmentEntryProcessor {
 
 	@Override
@@ -55,10 +55,10 @@ public class FreemarkerFragmentEntryProcessor
 			FragmentEntryProcessorContext fragmentEntryProcessorContext)
 		throws PortalException {
 
-		FreemarkerFragmentEntryProcessorConfiguration
+		FreeMarkerFragmentEntryProcessorConfiguration
 			freemarkerFragmentEntryProcessorConfiguration =
 				_configurationProvider.getCompanyConfiguration(
-					FreemarkerFragmentEntryProcessorConfiguration.class,
+					FreeMarkerFragmentEntryProcessorConfiguration.class,
 					fragmentEntryLink.getCompanyId());
 
 		if (!freemarkerFragmentEntryProcessorConfiguration.enable()) {
@@ -134,7 +134,7 @@ public class FreemarkerFragmentEntryProcessor
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		FreemarkerFragmentEntryProcessor.class);
+		FreeMarkerFragmentEntryProcessor.class);
 
 	@Reference
 	private ConfigurationProvider _configurationProvider;
