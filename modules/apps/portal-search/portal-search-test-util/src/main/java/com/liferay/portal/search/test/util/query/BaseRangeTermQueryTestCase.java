@@ -76,7 +76,8 @@ public abstract class BaseRangeTermQueryTestCase extends BaseIndexingTestCase {
 
 				List<SearchHit> searchHitsList = searchHits.getSearchHits();
 
-				Assert.assertEquals("Retrieved hits", 10, searchHitsList.size());
+				Assert.assertEquals(
+					"Retrieved hits", 10, searchHitsList.size());
 
 				int expectedValue = 5;
 
