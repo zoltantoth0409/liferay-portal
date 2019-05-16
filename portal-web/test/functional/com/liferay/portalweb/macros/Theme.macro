@@ -1,0 +1,61 @@
+definition {
+	macro configureLookAndFeelShowHeaderSearch {
+		if ("${showHeaderSearch}" == "true") {
+			Check.checkToggleSwitch(
+				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH",
+				key_toggleSwitchLabel = "Show Header Search"
+			);
+		}
+		else if ("${showHeaderSearch}" == "false") {
+			Uncheck.uncheckToggleSwitch(
+				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH",
+				key_toggleSwitchLabel = "Show Header Search"
+			);
+		}
+	}
+
+	macro configureLookAndFeelShowMaxMinAppLinks {
+		if ("${showMaxMinAppLinks}" == "true") {
+			Check.checkToggleSwitch(
+				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH",
+				key_toggleSwitchLabel = "Show Maximize/Minimize Application Links"
+			);
+		}
+		else if ("${showMaxMinAppLinks}" == "false") {
+			Uncheck.uncheckToggleSwitch(
+				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH",
+				key_toggleSwitchLabel = "Show Maximize/Minimize Application Links"
+			);
+		}
+	}
+
+	macro configureLookAndFeelSpecificLook {
+		Click(locator1 = "Radio#SPECIFIC_LOOK");
+	}
+
+	macro viewMaxPortletOption {
+		AssertTextEquals(
+			key_menuItem = "Maximize",
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Maximize");
+
+	}
+
+	macro viewMinPortlet {
+		AssertClick(
+			key_menuItem = "Minimize",
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Minimize");
+	}
+
+	macro viewRestorePortlet {
+		Click(
+			key_menuItem = "Restore",
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Restore");
+
+		// Refresh step is a workaround for LPS-91762
+
+		Refresh();
+	}
+}
