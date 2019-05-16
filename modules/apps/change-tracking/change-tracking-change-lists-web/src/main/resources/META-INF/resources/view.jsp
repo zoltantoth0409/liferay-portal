@@ -59,7 +59,6 @@ renderResponse.setTitle(title);
 
 					<%
 					boolean production = CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(curCTCollection.getName());
-					boolean changeListActive = changeListsDisplayContext.isChangeListActive(curCTCollection.getCtCollectionId());
 					%>
 
 					<liferay-portlet:actionURL name="/change_lists/checkout_ct_collection" var="checkoutCollectionURL">
@@ -111,7 +110,7 @@ renderResponse.setTitle(title);
 					<liferay-ui:search-container-column-text
 						name="status"
 					>
-						<c:if test="<%= changeListActive %>">
+						<c:if test="<%= changeListsDisplayContext.isChangeListActive(curCTCollection.getCtCollectionId()) %>">
 							<span class="label label-info">
 								<span class="label-item label-item-expand"><liferay-ui:message key="active" /></span>
 							</span>
@@ -126,7 +125,7 @@ renderResponse.setTitle(title);
 							showWhenSingleIcon="<%= true %>"
 						>
 							<c:choose>
-								<c:when test="<%= changeListActive %>">
+								<c:when test="<%= changeListsDisplayContext.isChangeListActive(curCTCollection.getCtCollectionId()) %>">
 									<liferay-ui:icon
 										cssClass="disabled"
 										message="make-active"
@@ -202,8 +201,6 @@ renderResponse.setTitle(title);
 
 					<%
 					CTCollection productionCTCollection = changeListsDisplayContext.getProductionCTCollection();
-
-					boolean productionChangeListActive = changeListsDisplayContext.isChangeListActive(productionCTCollection.getCtCollectionId());
 					%>
 
 					<liferay-portlet:actionURL name="/change_lists/checkout_ct_collection" var="checkoutProductionURL">
@@ -213,7 +210,7 @@ renderResponse.setTitle(title);
 
 					<c:if test="<%= (ctCollectionSearchContainer.getCur() == 1) && Validator.isNull(displayTerms.getKeywords()) %>">
 						<div class="col-sm-4">
-							<div class="<%= productionChangeListActive ? "border-left-green" : "border-left-gray" %> card select-card-sheet">
+							<div class="<%= changeListsDisplayContext.isChangeListActive(productionCTCollection.getCtCollectionId()) ? "border-left-green" : "border-left-gray" %> card select-card-sheet">
 								<div class="card-row card-row-layout-fixed card-row-padded card-row-valign-top select-card-header">
 									<div class="card-col-content lfr-card-details-column production-details-column">
 										<a href="<%= checkoutProductionURL.toString() %>">
@@ -237,7 +234,7 @@ renderResponse.setTitle(title);
 											showWhenSingleIcon="<%= true %>"
 										>
 											<c:choose>
-												<c:when test="<%= productionChangeListActive %>">
+												<c:when test="<%= changeListsDisplayContext.isChangeListActive(productionCTCollection.getCtCollectionId()) %>">
 													<liferay-ui:icon
 														cssClass="disabled"
 														message="make-active"
@@ -266,7 +263,6 @@ renderResponse.setTitle(title);
 
 						<%
 						boolean production = CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(curCTCollection.getName());
-						boolean changeListActive = changeListsDisplayContext.isChangeListActive(curCTCollection.getCtCollectionId());
 						%>
 
 						<liferay-portlet:actionURL name="/change_lists/checkout_ct_collection" var="checkoutCollectionURL">
@@ -276,7 +272,7 @@ renderResponse.setTitle(title);
 
 						<c:if test="<%= !production %>">
 							<div class="col-sm-4">
-								<div class="<%= changeListActive ? "border-left-blue" : "border-left-gray" %> card select-card-sheet">
+								<div class="<%= changeListsDisplayContext.isChangeListActive(curCTCollection.getCtCollectionId()) ? "border-left-blue" : "border-left-gray" %> card select-card-sheet">
 									<div class="card-row card-row-layout-fixed card-row-padded card-row-valign-top select-card-header">
 										<div class="card-col-content lfr-card-details-column">
 											<a href="<%= checkoutCollectionURL.toString() %>">
@@ -344,7 +340,7 @@ renderResponse.setTitle(title);
 												showWhenSingleIcon="<%= true %>"
 											>
 												<c:choose>
-													<c:when test="<%= changeListActive %>">
+													<c:when test="<%= changeListsDisplayContext.isChangeListActive(curCTCollection.getCtCollectionId()) %>">
 														<liferay-ui:icon
 															cssClass="disabled"
 															message="make-active"
