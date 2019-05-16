@@ -108,13 +108,13 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 		String name = null;
 
 		if (fileEntry != null) {
-			name = _FILE_ENTRY_SIMPLE_NAME;
+			name = _SIMPLE_NAME_FILE_ENTRY;
 		}
 		else if (fileShortcut != null) {
-			name = _DL_FILE_SHORTCUT_SIMPLE_NAME;
+			name = _SIMPLE_NAME_DL_FILE_SHORTCUT;
 		}
 		else if (folder != null) {
-			name = _FOLDER_SIMPLE_NAME;
+			name = _SIMPLE_NAME_FOLDER;
 		}
 
 		String checkBoxRowIds = getEntryRowIds();
@@ -135,27 +135,27 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 		sb.append("['");
 		sb.append(_liferayPortletResponse.getNamespace());
 		sb.append(RowChecker.ROW_IDS);
-		sb.append(_FOLDER_SIMPLE_NAME);
+		sb.append(_SIMPLE_NAME_FOLDER);
 		sb.append("', '");
 		sb.append(_liferayPortletResponse.getNamespace());
 		sb.append(RowChecker.ROW_IDS);
-		sb.append(_DL_FILE_SHORTCUT_SIMPLE_NAME);
+		sb.append(_SIMPLE_NAME_DL_FILE_SHORTCUT);
 		sb.append("', '");
 		sb.append(_liferayPortletResponse.getNamespace());
 		sb.append(RowChecker.ROW_IDS);
-		sb.append(_FILE_ENTRY_SIMPLE_NAME);
+		sb.append(_SIMPLE_NAME_FILE_ENTRY);
 		sb.append("']");
 
 		return sb.toString();
 	}
 
-	private static final String _DL_FILE_SHORTCUT_SIMPLE_NAME =
+	private static final String _SIMPLE_NAME_DL_FILE_SHORTCUT =
 		DLFileShortcut.class.getSimpleName();
 
-	private static final String _FILE_ENTRY_SIMPLE_NAME =
+	private static final String _SIMPLE_NAME_FILE_ENTRY =
 		FileEntry.class.getSimpleName();
 
-	private static final String _FOLDER_SIMPLE_NAME =
+	private static final String _SIMPLE_NAME_FOLDER =
 		Folder.class.getSimpleName();
 
 	private final LiferayPortletResponse _liferayPortletResponse;
