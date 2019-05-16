@@ -121,19 +121,6 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		return fetchCTEntries(_portal.getClassNameId(modelClassName));
 	}
 
-	/**
-	 * @deprecated As of Mueller (7.2.x)
-	 */
-	@Deprecated
-	@Override
-	public List<CTEntry> fetchCTEntriesByClassNameId(
-		long ctCollectionId, long modelClassNameId,
-		QueryDefinition<CTEntry> queryDefinition) {
-
-		return fetchCTEntriesByModelClassNameId(
-			ctCollectionId, modelClassNameId, queryDefinition);
-	}
-
 	@Override
 	public List<CTEntry> fetchCTEntriesByModelClassNameId(
 		long ctCollectionId, long modelClassNameId,
