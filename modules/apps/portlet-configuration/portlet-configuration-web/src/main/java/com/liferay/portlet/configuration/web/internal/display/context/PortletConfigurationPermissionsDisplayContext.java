@@ -437,7 +437,9 @@ public class PortletConfigurationPermissionsDisplayContext {
 			int count = 0;
 			List<Role> roles = null;
 
-			if (restrictPermissionSelectorRoleVisibility) {
+			if (stricterRoleVisibilityConfiguration.
+					restrictPermissionSelectorRoleVisibility()) {
+
 				count = RoleServiceUtil.getGroupRolesAndTeamRolesCount(
 					themeDisplay.getCompanyId(), searchTerms.getKeywords(),
 					excludedRoleNames, getRoleTypes(), modelResourceRoleId,
@@ -468,7 +470,9 @@ public class PortletConfigurationPermissionsDisplayContext {
 		else {
 			List<Role> roles = null;
 
-			if (restrictPermissionSelectorRoleVisibility) {
+			if (stricterRoleVisibilityConfiguration.
+					restrictPermissionSelectorRoleVisibility()) {
+
 				roles = RoleServiceUtil.getGroupRolesAndTeamRoles(
 					themeDisplay.getCompanyId(), searchTerms.getKeywords(),
 					excludedRoleNames, getRoleTypes(), modelResourceRoleId,
