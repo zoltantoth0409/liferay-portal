@@ -72,13 +72,19 @@ public class UserAccountResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("filter", filterString);
+		if (filterString != null) {
+			httpInvoker.parameter("filter", filterString);
+		}
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
-		httpInvoker.parameter("sort", sortString);
+		if (sortString != null) {
+			httpInvoker.parameter("sort", sortString);
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-admin-user/v1.0/organizations/{organizationId}/user-accounts",
@@ -107,13 +113,19 @@ public class UserAccountResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("filter", filterString);
+		if (filterString != null) {
+			httpInvoker.parameter("filter", filterString);
+		}
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
-		httpInvoker.parameter("sort", sortString);
+		if (sortString != null) {
+			httpInvoker.parameter("sort", sortString);
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-admin-user/v1.0/user-accounts");
@@ -173,13 +185,19 @@ public class UserAccountResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("filter", filterString);
+		if (filterString != null) {
+			httpInvoker.parameter("filter", filterString);
+		}
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
-		httpInvoker.parameter("sort", sortString);
+		if (sortString != null) {
+			httpInvoker.parameter("sort", sortString);
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-admin-user/v1.0/web-sites/{webSiteId}/user-accounts",

@@ -177,9 +177,11 @@ public class KnowledgeBaseFolderResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-delivery/v1.0/knowledge-base-folders/{parentKnowledgeBaseFolderId}/knowledge-base-folders",
@@ -247,9 +249,11 @@ public class KnowledgeBaseFolderResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-delivery/v1.0/sites/{siteId}/knowledge-base-folders",
