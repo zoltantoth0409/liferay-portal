@@ -35,7 +35,7 @@ public class DataLayoutRendererTag extends BaseDataLayoutRendererTag {
 	protected void setAttributes(HttpServletRequest httpServletRequest) {
 		super.setAttributes(httpServletRequest);
 
-		setNamespacedAttribute(request, "content", _getContent());
+		setNamespacedAttribute(httpServletRequest, "content", _getContent());
 	}
 
 	private String _getContent() {
