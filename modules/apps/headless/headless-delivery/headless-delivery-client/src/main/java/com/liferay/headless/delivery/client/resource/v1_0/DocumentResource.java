@@ -82,6 +82,8 @@ public class DocumentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.multipart();
+
 		httpInvoker.part("document", DocumentSerDes.toJSON(document));
 
 		for (Map.Entry<String, File> entry : files.entrySet()) {
@@ -176,6 +178,8 @@ public class DocumentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.multipart();
+
 		httpInvoker.part("document", DocumentSerDes.toJSON(document));
 
 		for (Map.Entry<String, File> entry : files.entrySet()) {
@@ -216,6 +220,8 @@ public class DocumentResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.multipart();
 
 		httpInvoker.part("document", DocumentSerDes.toJSON(document));
 
@@ -431,6 +437,8 @@ public class DocumentResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.multipart();
 
 		httpInvoker.part("document", DocumentSerDes.toJSON(document));
 

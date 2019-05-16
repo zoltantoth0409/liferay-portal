@@ -70,6 +70,8 @@ public class KnowledgeBaseAttachmentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.multipart();
+
 		httpInvoker.part(
 			"knowledgeBaseAttachment",
 			KnowledgeBaseAttachmentSerDes.toJSON(knowledgeBaseAttachment));

@@ -140,6 +140,8 @@ public class BlogPostingImageResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.multipart();
+
 		httpInvoker.part(
 			"blogPostingImage",
 			BlogPostingImageSerDes.toJSON(blogPostingImage));
