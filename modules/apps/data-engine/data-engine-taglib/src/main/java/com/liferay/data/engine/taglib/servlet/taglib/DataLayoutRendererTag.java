@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class DataLayoutRendererTag extends BaseDataLayoutRendererTag {
 
-	protected String getContent() {
+	private String _getContent() {
 		String content = StringPool.BLANK;
 
 		try {
@@ -54,7 +54,7 @@ public class DataLayoutRendererTag extends BaseDataLayoutRendererTag {
 	protected void setAttributes(HttpServletRequest httpServletRequest) {
 		super.setAttributes(httpServletRequest);
 
-		setNamespacedAttribute(request, "content", getContent());
+		setNamespacedAttribute(request, "content", _getContent());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
