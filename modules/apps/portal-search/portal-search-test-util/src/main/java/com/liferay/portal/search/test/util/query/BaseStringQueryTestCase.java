@@ -185,7 +185,8 @@ public abstract class BaseStringQueryTestCase extends BaseIndexingTestCase {
 
 				List<SearchHit> searchHitsList = searchHits.getSearchHits();
 
-				Assert.assertEquals("Retrieved hits", 20, searchHitsList.size());
+				Assert.assertEquals(
+					"Retrieved hits", 20, searchHitsList.size());
 
 				searchHitsList.forEach(
 					searchHit -> {

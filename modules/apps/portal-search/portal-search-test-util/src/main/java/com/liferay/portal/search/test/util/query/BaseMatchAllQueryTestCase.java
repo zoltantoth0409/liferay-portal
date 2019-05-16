@@ -67,7 +67,8 @@ public abstract class BaseMatchAllQueryTestCase extends BaseIndexingTestCase {
 
 				List<SearchHit> searchHitsList = searchHits.getSearchHits();
 
-				Assert.assertEquals("Retrieved hits", 20, searchHitsList.size());
+				Assert.assertEquals(
+					"Retrieved hits", 20, searchHitsList.size());
 
 				for (int i = 0; i < 20; i++) {
 					SearchHit searchHit = searchHitsList.get(i);

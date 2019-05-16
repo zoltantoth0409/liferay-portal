@@ -74,7 +74,8 @@ public abstract class BasePrefixQueryTestCase extends BaseIndexingTestCase {
 
 				List<SearchHit> searchHitsList = searchHits.getSearchHits();
 
-				Assert.assertEquals("Retrieved hits", 20, searchHitsList.size());
+				Assert.assertEquals(
+					"Retrieved hits", 20, searchHitsList.size());
 
 				searchHitsList.forEach(
 					searchHit -> {

@@ -74,7 +74,8 @@ public abstract class BaseWildcardQueryTestCase extends BaseIndexingTestCase {
 
 				List<SearchHit> searchHitsList = searchHits.getSearchHits();
 
-				Assert.assertEquals("Retrieved hits", 10, searchHitsList.size());
+				Assert.assertEquals(
+					"Retrieved hits", 10, searchHitsList.size());
 
 				searchHitsList.forEach(
 					searchHit -> {
