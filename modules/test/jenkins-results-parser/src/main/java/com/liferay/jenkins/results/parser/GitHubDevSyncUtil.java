@@ -62,7 +62,7 @@ public class GitHubDevSyncUtil {
 					throw new RuntimeException(message, e);
 				}
 
-				System.out.println("Retrying: " message);
+				System.out.println("Retrying: " + message);
 			}
 
 			break;
