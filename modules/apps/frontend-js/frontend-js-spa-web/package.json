@@ -11,8 +11,8 @@
 		}
 	},
 	"dependencies": {
-		"metal": "^2.4.7",
-		"metal-dom": "^2.4.7",
+		"metal": "^2.16.8",
+		"metal-dom": "^2.16.8",
 		"metal-uri": "^2.0.2",
 		"senna": "2.7.7"
 	},
