@@ -35,6 +35,8 @@ public class ${schemaName}Resource {
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && arguments?ends_with("${schemaVarName}")>
 				httpInvoker.body(${schemaName}SerDes.toJSON(${schemaVarName}), "application/json");
 			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && arguments?ends_with("multipartBody")>
+				httpInvoker.multipart();
+
 				httpInvoker.part("${schemaVarName}", ${schemaName}SerDes.toJSON(${schemaVarName}));
 
 				for (Map.Entry<String, File> entry : files.entrySet()) {
