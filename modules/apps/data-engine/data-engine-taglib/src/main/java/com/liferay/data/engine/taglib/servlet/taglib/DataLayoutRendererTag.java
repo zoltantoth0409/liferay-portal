@@ -51,8 +51,8 @@ public class DataLayoutRendererTag extends BaseDataLayoutRendererTag {
 	}
 
 	@Override
-	protected void setAttributes(HttpServletRequest request) {
-		super.setAttributes(request);
+	protected void setAttributes(HttpServletRequest httpServletRequest) {
+		super.setAttributes(httpServletRequest);
 
 		setNamespacedAttribute(request, "content", getContent());
 	}
