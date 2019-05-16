@@ -449,7 +449,7 @@ public class PDFProcessorImpl
 						destinationFileVersion.getVersion());
 
 					if (Objects.equals(
-							"PWC", destinationFileVersion.getVersion()) ||
+							destinationFileVersion.getVersion(), "PWC") ||
 						destinationFileVersion.isPending()) {
 
 						File file = new File(
