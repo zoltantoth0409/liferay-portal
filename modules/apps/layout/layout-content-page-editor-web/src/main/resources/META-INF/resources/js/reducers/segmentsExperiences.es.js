@@ -297,7 +297,7 @@ function createSegmentsExperienceReducer(state, action) {
  * @param {object} state.fragmentEntryLinks
  * @param {object} state.layoutData
  * @param {string} incomingExperienceId
- * @returns
+ * @returns {object}
  */
 function _provideDefaultValueToFragments(state, incomingExperienceId) {
 	let nextState = state;
