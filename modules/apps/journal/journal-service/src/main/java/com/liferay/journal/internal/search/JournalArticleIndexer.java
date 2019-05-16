@@ -943,8 +943,8 @@ public class JournalArticleIndexer extends BaseIndexer<JournalArticle> {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String articleId = document.get(Field.ARTICLE_ID);
 		long groupId = GetterUtil.getLong(document.get(Field.GROUP_ID));
+		String articleId = document.get(Field.ARTICLE_ID);
 		double version = GetterUtil.getDouble(document.get(Field.VERSION));
 
 		return _journalContent.getDisplay(
