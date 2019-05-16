@@ -39,9 +39,11 @@ public class SegmentUserResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-admin-user/v1.0/segments/{segmentId}/user-accounts",

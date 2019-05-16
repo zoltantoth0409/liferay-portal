@@ -178,13 +178,19 @@ public class MessageBoardSectionResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("filter", filterString);
+		if (filterString != null) {
+			httpInvoker.parameter("filter", filterString);
+		}
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
-		httpInvoker.parameter("sort", sortString);
+		if (sortString != null) {
+			httpInvoker.parameter("sort", sortString);
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-delivery/v1.0/message-board-sections/{parentMessageBoardSectionId}/message-board-sections",
@@ -253,13 +259,19 @@ public class MessageBoardSectionResource {
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-		httpInvoker.parameter("filter", filterString);
+		if (filterString != null) {
+			httpInvoker.parameter("filter", filterString);
+		}
 
-		httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-		httpInvoker.parameter(
-			"pageSize", String.valueOf(pagination.getPageSize()));
+		if (pagination != null) {
+			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
+			httpInvoker.parameter(
+				"pageSize", String.valueOf(pagination.getPageSize()));
+		}
 
-		httpInvoker.parameter("sort", sortString);
+		if (sortString != null) {
+			httpInvoker.parameter("sort", sortString);
+		}
 
 		httpInvoker.path(
 			"http://localhost:8080/o/headless-delivery/v1.0/sites/{siteId}/message-board-sections",
