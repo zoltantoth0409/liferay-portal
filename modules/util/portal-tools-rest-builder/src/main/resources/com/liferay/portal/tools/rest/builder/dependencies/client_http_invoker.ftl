@@ -25,6 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.annotation.Generated;
 
@@ -36,7 +37,8 @@ import javax.annotation.Generated;
 public class HttpInvoker {
 
 	public static HttpInvoker newHttpInvoker() {
-		_allowPatchForHttpURLConnection();
+		_updateHttpURLConnectionClass();
+
 		return new HttpInvoker();
 	}
 
@@ -150,38 +152,36 @@ public class HttpInvoker {
 
 	}
 
-	private HttpInvoker() {
-	}
-
-	private static void _allowPatchForHttpURLConnection() {
+	private static void _updateHttpURLConnectionClass() {
 		try {
 			Field methodsField = HttpURLConnection.class.getDeclaredField(
 				"methods");
 
+			methodsField.setAccessible(true);
+
+			Set<String> methodsFieldValue = new LinkedHashSet<>(
+				Arrays.asList((String[])methodsField.get(null)));
+
+			if (methodsFieldValue.contains("PATCH")) {
+				return;
+			}
+
 			Field modifiersField = Field.class.getDeclaredField("modifiers");
 
 			modifiersField.setAccessible(true);
-
 			modifiersField.setInt(
 				methodsField, methodsField.getModifiers() & ~Modifier.FINAL);
 
-			methodsField.setAccessible(true);
+			methodsFieldValue.add("PATCH");
 
-			String[] oldMethods = (String[])methodsField.get(null);
-
-			Set<String> methodsSet = new LinkedHashSet<>(
-				Arrays.asList(oldMethods));
-
-			methodsSet.add("PATCH");
-
-			String[] newMethods = methodsSet.toArray(new String[0]);
-
-			methodsField.set(null, newMethods);
-
+			methodsField.set(null, methodsFieldValue.toArray(new String[0]));
 		}
-		catch (NoSuchFieldException | IllegalAccessException e) {
-			throw new IllegalStateException(e);
+		catch (IllegalAccessException | NoSuchFieldException e) {
+			_logger.warning("Unable to update HttpURLConnection class");
 		}
+	}
+
+	private HttpInvoker() {
 	}
 
 	private void _appendPart(OutputStream outputStream, PrintWriter printWriter, String key, Object value) throws IOException {
@@ -361,6 +361,8 @@ public class HttpInvoker {
 			}
 		}
 	}
+
+	private static final Logger _logger = Logger.getLogger(HttpInvoker.class.getName());
 
 	private String _body;
 	private String _contentType;
