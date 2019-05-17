@@ -73,6 +73,11 @@
 	<td>//label[contains(.,'Remote Live')]/input[@type='radio']</td>
 	<td></td>
 </tr>
+<tr>
+	<td>SPECIFIC_LOOK</td>
+	<td>//input[contains(@id,'UniqueLookAndFeel')]</td>
+	<td></td>
+</tr>
 </tbody>
 </table>
 </body>

@@ -1,0 +1,5 @@
+definition {
+	macro viewSearchHidden {
+		AssertElementNotPresent(locator1 = "Search#EMBEDDED_SEARCH_BAR");
+	}
+}
