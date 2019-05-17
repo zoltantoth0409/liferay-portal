@@ -943,6 +943,12 @@ definition {
 			userScreenName = "usersn"
 		);
 
+		User.logoutPG();
+
+		User.loginUserPG(password = "test", userEmailAddress = "userea@liferay.com");
+
+		ProductMenu.gotoSite(site = "Moon Rocks 101");
+
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
@@ -988,6 +994,10 @@ definition {
 		Refresh();
 
 		ProductMenu.gotoSite(site = "Moon Rocks 101");
+
+		User.logoutPG();
+
+		User.loginUserPG(password = "test", userEmailAddress = "test@liferay.com");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
