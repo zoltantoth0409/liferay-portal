@@ -311,10 +311,8 @@ public class AopServiceManagerConcurrencyTest {
 		Bundle[] usingBundles = serviceReference.getUsingBundles();
 
 		Assert.assertNotNull(usingBundles);
-
 		Assert.assertEquals(
 			Arrays.toString(usingBundles), 1, usingBundles.length);
-
 		Assert.assertSame(_aopImplBundle, usingBundles[0]);
 	}
 
