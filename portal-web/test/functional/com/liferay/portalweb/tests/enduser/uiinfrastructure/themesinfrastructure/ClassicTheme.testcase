@@ -20,20 +20,13 @@ definition {
 
 	@priority = "5"
 	test ConfigureLookAndFeelSettingsSinglePage {
-		ProductMenu.gotoPortlet(
-			category = "Build",
-			panel = "Site Administration",
-			portlet = "Pages"
+		Page.add(pageName = "Classic Theme Page");
+
+		Page.viewCurrentTheme(
+			navTab = "Look and Feel",
+			page = "Classic Theme Page",
+			themeName = "Classic Theme"
 		);
-
-		SitePages.addPublicPage(pageName = "Classic Theme Page");
-
-		SitePages.gotoPageMenuItem(
-			menuItem = "Configure",
-			pageName = "Classic Theme Page"
-		);
-
-		Navigator.gotoNavTab(navTab = "Look and Feel");
 
 		Theme.configureLookAndFeelSpecificLook();
 
@@ -42,13 +35,6 @@ definition {
 		Theme.configureLookAndFeelShowMaxMinAppLinks(showMaxMinAppLinks = "true");
 
 		PortletEntry.save();
-
-		SitePages.gotoPageMenuItem(
-			menuItem = "Configure",
-			pageName = "Classic Theme Page"
-		);
-
-		Navigator.gotoNavTab(navTab = "Look and Feel");
 
 		Navigator.gotoPage(pageName = "Classic Theme Page");
 
