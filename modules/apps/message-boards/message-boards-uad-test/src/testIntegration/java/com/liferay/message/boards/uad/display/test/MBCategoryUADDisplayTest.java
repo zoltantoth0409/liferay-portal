@@ -120,7 +120,7 @@ public class MBCategoryUADDisplayTest
 			_getTopLevelContainer(
 				MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID, mbThread));
 
-		// A top-level thread should return null
+		// A top level thread should return null
 
 		MBThread topLevelMBThread = _addThread(
 			MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
