@@ -114,7 +114,7 @@ definition {
 		ProductMenu.gotoStagingSite();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content",
 			panel = "Site Administration",
 			portlet = "Web Content");
 
@@ -135,7 +135,7 @@ definition {
 		ProductMenu.gotoLiveSite();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content",
 			panel = "Site Administration",
 			portlet = "Web Content");
 
@@ -146,7 +146,7 @@ definition {
 		ProductMenu.gotoStagingSite();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content",
 			panel = "Site Administration",
 			portlet = "Web Content");
 
@@ -172,7 +172,7 @@ definition {
 		ProductMenu.gotoLiveSite();
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content",
 			panel = "Site Administration",
 			portlet = "Web Content");
 
