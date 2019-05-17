@@ -134,68 +134,6 @@ definition {
 		// AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
 	}
 
-	@description = "This is a use case for LPS-72807."
-	@priority = "4"
-	test ViewCustomFieldDocumentsFolderNoXSS {
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Control Panel",
-			portlet = "Custom Fields");
-
-		CustomFields.addCP(
-			customFieldName = '''<script>alert(123);</script>''',
-			customFieldType = "Input Field",
-			localization = "true",
-			resourceName = "Documents Folder");
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			panel = "Site Administration",
-			portlet = "Documents and Media");
-
-		LexiconEntry.gotoAddMenuItem(menuItem = "Folder");
-
-		AssertAlertNotPresent();
-
-		var actualScript = '''<script>alert(123);</script>''';
-
-		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
-
-		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
-
-		AssertHTMLSourceTextPresent(value1 = "${escapedScript}");
-
-		PortletEntry.inputName(name = "DM Folder Name");
-
-		Panel.expandPanel(panel = "Custom Fields");
-
-		AssertTextEquals(
-			key_customFieldName = "${actualScript}",
-			locator1 = "DocumentsAndMedia#CUSTOM_FIELD_NAME",
-			value1 = "${actualScript}");
-
-		PortletEntry.changeLocale(
-			fieldName = "${actualScript}",
-			locale = "zh_CN");
-
-		Click(locator1 = "DocumentsAndMedia#CUSTOM_FIELD");
-
-		Type(
-			locator1 = "DocumentsAndMedia#CUSTOM_FIELD",
-			value1 = "测试");
-
-		PortletEntry.save();
-
-		AssertAlertNotPresent();
-
-		LexiconEntry.changeDisplayStyle(displayStyle = "list");
-
-		AssertTextEquals(
-			key_dmDocumentTitle = "DM Folder Name",
-			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
-			value1 = "DM Folder Name");
-	}
-
 	@priority = "3"
 	test ViewGoogleAnalyticsID {
 		Navigator.openURL();
