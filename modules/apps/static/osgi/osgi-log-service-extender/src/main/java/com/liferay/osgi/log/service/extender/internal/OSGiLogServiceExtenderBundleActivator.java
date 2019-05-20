@@ -107,8 +107,9 @@ public class OSGiLogServiceExtenderBundleActivator implements BundleActivator {
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								StringBundler.concat(
-									"Bundle ", bundle, ", resource ",
-									resourcePath, ", and logger ", name,
+									"Bundle ", String.valueOf(bundle),
+									", resource ", resourcePath,
+									", and logger ", name,
 									" contains an invalid log level \"", value,
 									"\""));
 						}
@@ -187,7 +188,8 @@ public class OSGiLogServiceExtenderBundleActivator implements BundleActivator {
 
 			LoggerContext loggerContext = _loggerAdmin.getLoggerContext(
 				StringBundler.concat(
-					bundle.getSymbolicName(), "|", bundle.getVersion(), "|",
+					bundle.getSymbolicName(), "|",
+					String.valueOf(bundle.getVersion()), "|",
 					bundle.getLocation()));
 
 			loggerContext.setLogLevels(logLevels);
