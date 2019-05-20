@@ -63,8 +63,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		throws Exception {
 
 		testUserNameAndPassword =
-			_user.getEmailAddress() + ":" +
-				_user.getPasswordUnencrypted();
+			_user.getEmailAddress() + ":" + _user.getPasswordUnencrypted();
 
 		Long siteId = testGetSiteSegmentsPage_getSiteId();
 
@@ -89,8 +88,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		throws Exception {
 
 		testUserNameAndPassword =
-			_user.getEmailAddress() + ":" +
-				_user.getPasswordUnencrypted();
+			_user.getEmailAddress() + ":" + _user.getPasswordUnencrypted();
 
 		Long siteId = testGetSiteSegmentsPage_getSiteId();
 
