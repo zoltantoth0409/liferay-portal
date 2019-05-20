@@ -72,7 +72,7 @@ public class OSGiLogServiceExtenderBundleActivator implements BundleActivator {
 		}
 		catch (IOException ioe) {
 			_log.error(
-				"Unable to load osgi logging configurations for " + bundle,
+				"Unable to load OSGi logging configurations for " + bundle,
 				ioe);
 
 			return Collections.emptyMap();
@@ -107,10 +107,10 @@ public class OSGiLogServiceExtenderBundleActivator implements BundleActivator {
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								StringBundler.concat(
-									"Bundle : ", bundle, ", resource : ",
-									resourcePath, ", logger : ", name,
-									" contains an invalid LogLevel value : ",
-									value));
+									"Bundle ", bundle, ", resource ",
+									resourcePath, ", and logger ", name,
+									" contains an invalid log level \"",
+									value, "\""));
 						}
 					}
 				}
