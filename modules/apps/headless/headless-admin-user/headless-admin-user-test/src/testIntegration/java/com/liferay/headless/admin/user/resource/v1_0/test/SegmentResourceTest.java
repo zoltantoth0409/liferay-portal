@@ -55,9 +55,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		super.setUp();
 
 		_adminUser = UserTestUtil.addGroupAdminUser(testGroup);
-
-		_groupUser = UserTestUtil.addGroupUser(
-			testGroup, RoleConstants.POWER_USER);
+		_user = UserTestUtil.addGroupUser(testGroup, RoleConstants.POWER_USER);
 	}
 
 	@Test
@@ -65,8 +63,8 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		throws Exception {
 
 		testUserNameAndPassword =
-			_groupUser.getEmailAddress() + ":" +
-				_groupUser.getPasswordUnencrypted();
+			_user.getEmailAddress() + ":" +
+				_user.getPasswordUnencrypted();
 
 		Long siteId = testGetSiteSegmentsPage_getSiteId();
 
@@ -91,8 +89,8 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		throws Exception {
 
 		testUserNameAndPassword =
-			_groupUser.getEmailAddress() + ":" +
-				_groupUser.getPasswordUnencrypted();
+			_user.getEmailAddress() + ":" +
+				_user.getPasswordUnencrypted();
 
 		Long siteId = testGetSiteSegmentsPage_getSiteId();
 
@@ -138,7 +136,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 					).put(
 						"filterString",
 						String.format(
-							"(firstName eq '%s')", _groupUser.getFirstName())
+							"(firstName eq '%s')", _user.getFirstName())
 					).put(
 						"typeValue", "model"
 					))
@@ -166,7 +164,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 
 	@Override
 	protected Long testGetSiteUserAccountSegmentsPage_getUserAccountId() {
-		return _groupUser.getUserId();
+		return _user.getUserId();
 	}
 
 	private Segment _addSegment(Long siteId, Segment segment)
@@ -203,6 +201,6 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 	private User _adminUser;
 
 	@DeleteAfterTestRun
-	private User _groupUser;
+	private User _user;
 
 }
