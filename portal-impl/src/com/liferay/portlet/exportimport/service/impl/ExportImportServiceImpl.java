@@ -348,12 +348,11 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 		Map<String, Serializable> settingsMap =
 			exportImportConfiguration.getSettingsMap();
 
-		long targetPlid = MapUtil.getLong(settingsMap, "targetPlid");
-		String portletId = MapUtil.getString(settingsMap, "portletId");
+		long targetGroupId = MapUtil.getLong(settingsMap, "targetGroupId");
 
-		PortletPermissionUtil.check(
-			getPermissionChecker(), targetPlid, portletId,
-			ActionKeys.CONFIGURATION);
+		GroupPermissionUtil.check(
+			getPermissionChecker(), targetGroupId,
+			ActionKeys.EXPORT_IMPORT_PORTLET_INFO);
 
 		return exportImportLocalService.validateImportPortletInfo(
 			exportImportConfiguration, file);
@@ -368,12 +367,11 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 		Map<String, Serializable> settingsMap =
 			exportImportConfiguration.getSettingsMap();
 
-		long targetPlid = MapUtil.getLong(settingsMap, "targetPlid");
-		String portletId = MapUtil.getString(settingsMap, "portletId");
+		long targetGroupId = MapUtil.getLong(settingsMap, "targetGroupId");
 
-		PortletPermissionUtil.check(
-			getPermissionChecker(), targetPlid, portletId,
-			ActionKeys.CONFIGURATION);
+		GroupPermissionUtil.check(
+			getPermissionChecker(), targetGroupId,
+			ActionKeys.EXPORT_IMPORT_PORTLET_INFO);
 
 		return exportImportLocalService.validateImportPortletInfo(
 			exportImportConfiguration, inputStream);
