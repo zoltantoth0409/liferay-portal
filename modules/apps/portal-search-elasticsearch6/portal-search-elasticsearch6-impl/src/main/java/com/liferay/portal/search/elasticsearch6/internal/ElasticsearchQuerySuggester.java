@@ -76,24 +76,7 @@ public class ElasticsearchQuerySuggester implements QuerySuggester {
 			return StringPool.BLANK;
 		}
 
-		List<String> words = new ArrayList<>();
-
-		for (Suggest.Suggestion
-				<? extends Suggest.Suggestion.Entry
-					<? extends Suggest.Suggestion.Entry.Option>> suggestion :
-						suggest) {
-
-			for (Suggest.Suggestion.Entry
-					<? extends Suggest.Suggestion.Entry.Option>
-						suggestionEntry : suggestion) {
-
-				Text text = getWord(suggestionEntry);
-
-				if (text != null) {
-					words.add(text.string());
-				}
-			}
-		}
+		List<String> words = getWords(suggest);
 
 		return StringUtil.merge(words, StringPool.SPACE);
 	}
@@ -321,21 +304,33 @@ public class ElasticsearchQuerySuggester implements QuerySuggester {
 		}
 	}
 
-	protected Text getWord(
-		Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>
-			suggestionEntry) {
+	protected List<String> getWords(Suggest suggest) {
+		List<String> words = new ArrayList<>();
 
-		List<? extends Suggest.Suggestion.Entry.Option> suggestionEntryOptions =
-			suggestionEntry.getOptions();
+		for (Suggest.Suggestion
+				<? extends Suggest.Suggestion.Entry
+					<? extends Suggest.Suggestion.Entry.Option>> suggestion :
+						suggest) {
 
-		if (suggestionEntryOptions.isEmpty()) {
-			return null;
+			for (Suggest.Suggestion.Entry
+					<? extends Suggest.Suggestion.Entry.Option>
+						suggestionEntry : suggestion) {
+
+				List<? extends Suggest.Suggestion.Entry.Option>
+					suggestionEntryOptions = suggestionEntry.getOptions();
+
+				if (!suggestionEntryOptions.isEmpty()) {
+					Suggest.Suggestion.Entry.Option suggestionEntryOption =
+						suggestionEntryOptions.get(0);
+
+					Text text = suggestionEntryOption.getText();
+
+					words.add(text.string());
+				}
+			}
 		}
 
-		Suggest.Suggestion.Entry.Option suggestionEntryOption =
-			suggestionEntryOptions.get(0);
-
-		return suggestionEntryOption.getText();
+		return words;
 	}
 
 	protected SuggesterResult translate(
