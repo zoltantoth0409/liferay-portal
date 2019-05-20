@@ -110,15 +110,15 @@ public class BaseManagementToolbarDisplayContext
 	public String getSortingURL() {
 		PortletURL sortingURL = getPortletURL();
 
-		sortingURL.setParameter(
-			getOrderByTypeParam(),
-			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
-
 		String orderByCol = getOrderByCol();
 
 		if (Validator.isNotNull(orderByCol)) {
 			sortingURL.setParameter(getOrderByColParam(), orderByCol);
 		}
+
+		sortingURL.setParameter(
+			getOrderByTypeParam(),
+			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");
 
 		return sortingURL.toString();
 	}
