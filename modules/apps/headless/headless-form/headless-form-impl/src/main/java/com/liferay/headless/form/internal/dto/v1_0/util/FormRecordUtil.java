@@ -18,8 +18,8 @@ import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord;
 import com.liferay.dynamic.data.mapping.model.Value;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
-import com.liferay.headless.form.dto.v1_0.FormFieldValue;
 import com.liferay.headless.form.dto.v1_0.FormDocument;
+import com.liferay.headless.form.dto.v1_0.FormFieldValue;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -59,7 +59,7 @@ public class FormRecordUtil {
 				dateCreated = ddmFormInstanceRecord.getCreateDate();
 				dateModified = ddmFormInstanceRecord.getModifiedDate();
 				datePublished = ddmFormInstanceRecord.getLastPublishDate();
-				fieldValues = TransformUtil.transformToArray(
+				formFieldValues = TransformUtil.transformToArray(
 					ddmFormValues.getDDMFormFieldValues(),
 					ddmFormFieldValue -> {
 						Value localizedValue = ddmFormFieldValue.getValue();

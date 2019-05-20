@@ -28,7 +28,6 @@ import com.liferay.dynamic.data.mapping.service.DDMFormInstanceRecordVersionServ
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceService;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
-import com.liferay.headless.form.dto.v1_0.FormFieldValue;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.headless.form.internal.dto.v1_0.util.DDMFormValuesUtil;
 import com.liferay.headless.form.internal.dto.v1_0.util.FormRecordUtil;
@@ -48,17 +47,20 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ServiceScope;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.core.Context;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import javax.servlet.http.HttpServletRequest;
+
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.core.Context;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
@@ -92,7 +94,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 
 	@Override
 	public Page<FormRecord> getFormFormRecordsPage(
-		Long formId, Pagination pagination)
+			Long formId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(
@@ -213,7 +215,7 @@ public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 			ddmFormFieldValues -> {
 				try {
 					for (DDMFormFieldValue ddmFormFieldValue :
-						ddmFormFieldValues) {
+							ddmFormFieldValues) {
 
 						_setValue(ddmFormFieldValue);
 					}
