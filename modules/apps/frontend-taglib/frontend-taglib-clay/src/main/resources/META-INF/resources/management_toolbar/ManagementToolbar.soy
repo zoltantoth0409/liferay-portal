@@ -5,6 +5,7 @@
 */
 {template .render}
 	{@param spritemap: string}
+	{@param? _handleCreationMenuMoreButtonClicked: any}
 	{@param? _handleSelectPageCheckboxChanged: any}
 	{@param? _handleInfoButtonClicked: any }
 	{@param? _handleDeselectAllClicked: any}
@@ -120,6 +121,7 @@
 		{param disabled: $disabled /}
 		{param elementClasses: $elementClasses /}
 		{param events: [
+			'creationMenuMoreButtonClicked': $_handleCreationMenuMoreButtonClicked,
 			'deselectAllClicked': $_handleDeselectAllClicked,
 			'infoButtonClicked': $_handleInfoButtonClicked,
 			'selectPageCheckboxChanged': $_handleSelectPageCheckboxChanged,

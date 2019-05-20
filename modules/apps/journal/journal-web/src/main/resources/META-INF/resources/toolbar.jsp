@@ -97,7 +97,9 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 		);
 	}
 
-	var openViewMoreStructuresSelector = function() {
+	var openViewMoreStructuresSelector = function(event) {
+		event.preventDefault();
+
 		Liferay.Util.openWindow(
 			{
 				dialog: {
