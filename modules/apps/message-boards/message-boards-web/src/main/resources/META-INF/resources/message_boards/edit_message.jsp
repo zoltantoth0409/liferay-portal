@@ -470,18 +470,20 @@ if (portletTitleBasedNavigation) {
 				</portlet:resourceURL>
 
 				getAttachmentsURL: '<%= getAttachmentsURL %>',
+			</c:if>
 
+			namespace: '<portlet:namespace />',
+			rootNode: '#<portlet:namespace />mbEditPageContainer'
+
+			<c:if test="<%= message != null %>">
 				<portlet:renderURL var="viewTrashAttachmentsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcRenderCommandName" value="/message_boards/view_deleted_message_attachments" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="messageId" value="<%= String.valueOf(message.getMessageId()) %>" />
 				</portlet:renderURL>
 
-				viewTrashAttachmentsURL: '<%= viewTrashAttachmentsURL %>',
+				, viewTrashAttachmentsURL: '<%= viewTrashAttachmentsURL %>'
 			</c:if>
-
-			namespace: '<portlet:namespace />',
-			rootNode: '#<portlet:namespace />mbEditPageContainer'
 		}
 	);
 </aui:script>
