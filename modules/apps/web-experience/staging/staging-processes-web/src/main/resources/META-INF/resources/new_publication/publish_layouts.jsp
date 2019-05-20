@@ -281,6 +281,12 @@ renderResponse.setTitle(!configuredPublish ? LanguageUtil.get(request, "new-publ
 					<%@ include file="/new_publication/publish_layouts_scheduler.jspf" %>
 				</aui:fieldset>
 
+				<liferay-staging:deletions
+					cmd="<%= Constants.PUBLISH %>"
+					disableInputs="<%= configuredPublish %>"
+					exportImportConfigurationId="<%= exportImportConfigurationId %>"
+				/>
+
 				<c:if test="<%= !group.isCompany() %>">
 					<liferay-staging:select-pages
 						action="<%= Constants.PUBLISH %>"
@@ -297,12 +303,6 @@ renderResponse.setTitle(!configuredPublish ? LanguageUtil.get(request, "new-publ
 					disableInputs="<%= configuredPublish %>"
 					exportImportConfigurationId="<%= exportImportConfigurationId %>"
 					type="<%= localPublishing ? Constants.PUBLISH_TO_LIVE : Constants.PUBLISH_TO_REMOTE %>"
-				/>
-
-				<liferay-staging:deletions
-					cmd="<%= Constants.PUBLISH %>"
-					disableInputs="<%= configuredPublish %>"
-					exportImportConfigurationId="<%= exportImportConfigurationId %>"
 				/>
 
 				<liferay-staging:permissions
