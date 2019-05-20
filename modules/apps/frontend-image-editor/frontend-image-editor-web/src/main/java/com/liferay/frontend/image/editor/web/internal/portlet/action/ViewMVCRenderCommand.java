@@ -164,9 +164,8 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 				getImageEditorCapabilityDescriptorsList(
 					toolImageEditorCapabilityDescriptors);
 
-		for (Map.Entry<String, List<ImageEditorCapabilityDescriptor>>
-				imageEditorCapabilityDescriptorEntry :
-					imageEditorCapabilityDescriptorsMap.entrySet()) {
+		for (Map.Entry<String, List<ImageEditorCapabilityDescriptor>> entry :
+				imageEditorCapabilityDescriptorsMap.entrySet()) {
 
 			Map<String, Object> context = new HashMap<>();
 
@@ -174,8 +173,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 			String icon = StringPool.BLANK;
 
 			for (ImageEditorCapabilityDescriptor
-					imageEditorCapabilityDescriptor :
-						imageEditorCapabilityDescriptorEntry.getValue()) {
+					imageEditorCapabilityDescriptor : entry.getValue()) {
 
 				Map<String, Object> controlContext = new HashMap<>();
 
@@ -218,7 +216,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 			context.put("controls", controlContexts);
 			context.put("icon", icon);
 
-			String category = imageEditorCapabilityDescriptorEntry.getKey();
+			String category = entry.getKey();
 
 			context.put("title", LanguageUtil.get(resourceBundle, category));
 
