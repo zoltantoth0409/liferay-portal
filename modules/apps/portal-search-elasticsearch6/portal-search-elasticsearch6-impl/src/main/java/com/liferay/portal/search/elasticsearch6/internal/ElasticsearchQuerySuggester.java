@@ -89,7 +89,9 @@ public class ElasticsearchQuerySuggester implements QuerySuggester {
 
 				Text text = getWord(suggestionEntry);
 
-				words.add(text.string());
+				if (text != null) {
+					words.add(text.string());
+				}
 			}
 		}
 
@@ -327,7 +329,7 @@ public class ElasticsearchQuerySuggester implements QuerySuggester {
 			suggestionEntry.getOptions();
 
 		if (suggestionEntryOptions.isEmpty()) {
-			return suggestionEntry.getText();
+			return null;
 		}
 
 		Suggest.Suggestion.Entry.Option suggestionEntryOption =
