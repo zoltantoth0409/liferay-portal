@@ -3,5 +3,5 @@ dependencies {
 	compile group: "org.osgi", name: "osgi.core", version: "6.0.0"
 
 	compileOnly group: "junit", name: "junit", version: "4.12"
-	compileOnly project(":test:arquillian-extension-junit-bridge-connector")
+	compileOnly group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge.connector", version: "1.0.0"
 }
