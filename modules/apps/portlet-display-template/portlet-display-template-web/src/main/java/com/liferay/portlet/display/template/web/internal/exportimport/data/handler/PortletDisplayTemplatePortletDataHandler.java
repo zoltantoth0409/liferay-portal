@@ -266,7 +266,7 @@ public class PortletDisplayTemplatePortletDataHandler
 		}
 
 		return portletDataHandlerControls.toArray(
-			new PortletDataHandlerControl[portletDataHandlerControls.size()]);
+			new PortletDataHandlerControl[0]);
 	}
 
 	@Reference
