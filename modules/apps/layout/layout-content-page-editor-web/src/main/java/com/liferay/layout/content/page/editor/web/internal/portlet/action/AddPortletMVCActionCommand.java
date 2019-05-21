@@ -177,7 +177,7 @@ public class AddPortletMVCActionCommand extends BaseMVCActionCommand {
 			PortletPreferencesFactoryUtil.getPortletPreferences(
 				httpServletRequest, portletId);
 
-		FragmentPortletSetupUtil.setPortletBareboneCSSClass(portletPreferences);
+		FragmentPortletSetupUtil.setPortletBareboneCSSClassName(portletPreferences);
 
 		return _fragmentPortletRenderer.renderPortlet(
 			httpServletRequest, httpServletResponse, portletId, instanceId,
