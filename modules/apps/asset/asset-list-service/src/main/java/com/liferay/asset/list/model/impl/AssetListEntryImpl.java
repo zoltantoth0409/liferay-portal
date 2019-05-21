@@ -144,10 +144,8 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 
 		boolean anyAssetType = GetterUtil.getBoolean(
 			properties.getProperty("anyAssetType", null), true);
-
 		long[] availableClassNameIds =
 			AssetRendererFactoryRegistryUtil.getClassNameIds(getCompanyId());
-
 		long[] classTypeIds = {};
 
 		if (!anyAssetType) {
@@ -459,11 +457,6 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 
 		SearchContext searchContext = new SearchContext();
 
-		searchContext.setClassTypeIds(assetEntryQuery.getClassTypeIds());
-		searchContext.setCompanyId(companyId);
-		searchContext.setEnd(assetEntryQuery.getEnd());
-		searchContext.setStart(assetEntryQuery.getStart());
-
 		String ddmStructureFieldName = GetterUtil.getString(
 			assetEntryQuery.getAttribute("ddmStructureFieldName"));
 		Serializable ddmStructureFieldValue = assetEntryQuery.getAttribute(
@@ -477,6 +470,11 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 			searchContext.setAttribute(
 				"ddmStructureFieldValue", ddmStructureFieldValue);
 		}
+
+		searchContext.setClassTypeIds(assetEntryQuery.getClassTypeIds());
+		searchContext.setCompanyId(companyId);
+		searchContext.setEnd(assetEntryQuery.getEnd());
+		searchContext.setStart(assetEntryQuery.getStart());
 
 		AssetHelper assetHelper = _serviceTracker.getService();
 
