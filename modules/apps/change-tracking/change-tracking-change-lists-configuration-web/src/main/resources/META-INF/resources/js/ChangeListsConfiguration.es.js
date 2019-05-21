@@ -18,9 +18,9 @@ class ChangeListsConfiguration extends PortletBase {
 				if (response) {
 					this.changeTrackingAllowed = response.changeTrackingAllowed;
 					this.changeTrackingEnabled = response.changeTrackingEnabled;
+					this.currentPage = 'Global Settings';
 					this.initialFetch = true;
 					this.tooltipBody = '';
-					this.currentPage = 'Global Settings';
 
 					response.supportedContentTypes.forEach(
 						(supportedContentType) => {
