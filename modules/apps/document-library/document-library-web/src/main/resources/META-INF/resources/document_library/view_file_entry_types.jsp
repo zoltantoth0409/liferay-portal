@@ -17,9 +17,8 @@
 <%@ include file="/document_library/init.jsp" %>
 
 <%
-DLViewFileEntryTypesDisplayContext dlViewFileEntryTypesDisplayContext = new DLViewFileEntryTypesDisplayContext(renderRequest, renderResponse, request);
-
 DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletInstanceSettingsHelper(dlRequestHelper);
+DLViewFileEntryTypesDisplayContext dlViewFileEntryTypesDisplayContext = new DLViewFileEntryTypesDisplayContext(renderRequest, renderResponse, request);
 %>
 
 <%@ include file="/document_library/navigation.jspf" %>
