@@ -264,7 +264,8 @@ public class EditSegmentsEntryDisplayContext {
 		}
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to obtain the segment user count", pe);
+				_log.warn(
+					"Unable to get the segments entry class PKs count", pe);
 			}
 
 			return 0;
