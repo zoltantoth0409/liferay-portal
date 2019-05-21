@@ -41,10 +41,10 @@ public class CTApplicationExceptionMapper
 		Response.Status status = Response.Status.BAD_REQUEST;
 
 		if (exception instanceof CTJaxRsEngineException) {
-			CTJaxRsEngineException ctJaxRsException =
+			CTJaxRsEngineException ctJaxRsEngineException =
 				(CTJaxRsEngineException)exception;
 
-			status = ctJaxRsException.getResponseStatus();
+			status = ctJaxRsEngineException.getResponseStatus();
 		}
 		else if (exception instanceof SystemException) {
 			status = Response.Status.INTERNAL_SERVER_ERROR;
