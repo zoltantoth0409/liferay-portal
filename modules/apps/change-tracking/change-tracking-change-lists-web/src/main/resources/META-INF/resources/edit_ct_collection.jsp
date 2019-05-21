@@ -40,7 +40,7 @@ portletDisplay.setShowBackIcon(true);
 </liferay-portlet:actionURL>
 
 <liferay-ui:error key="ctCollectionDuplicate" message="name-is-already-used-by-another-change-list" />
-<liferay-ui:error key="ctCollectionNameIsNull" message="the-change-list-name-is-too-short" />
+<liferay-ui:error key="ctCollectionName" message="the-change-list-name-is-too-short" />
 <liferay-ui:error exception="<%= CTCollectionDescriptionCTEngineException.class %>" message="the-change-list-description-is-too-long" />
 <liferay-ui:error exception="<%= CTCollectionNameCTEngineException.class %>" message="the-change-list-name-is-too-long" />
 
