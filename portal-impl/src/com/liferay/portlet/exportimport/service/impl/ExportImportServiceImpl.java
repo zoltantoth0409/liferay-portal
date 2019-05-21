@@ -72,8 +72,13 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 			ExportImportConfiguration exportImportConfiguration)
 		throws PortalException {
 
+		Map<String, Serializable> settingsMap =
+			exportImportConfiguration.getSettingsMap();
+
+		long sourceGroupId = MapUtil.getLong(settingsMap, "sourceGroupId");
+
 		GroupPermissionUtil.check(
-			getPermissionChecker(), exportImportConfiguration.getGroupId(),
+			getPermissionChecker(), sourceGroupId,
 			ActionKeys.EXPORT_IMPORT_LAYOUTS);
 
 		return exportImportLocalService.exportLayoutsAsFileInBackground(
@@ -89,8 +94,13 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 			exportImportConfigurationLocalService.getExportImportConfiguration(
 				exportImportConfigurationId);
 
+		Map<String, Serializable> settingsMap =
+			exportImportConfiguration.getSettingsMap();
+
+		long sourceGroupId = MapUtil.getLong(settingsMap, "sourceGroupId");
+
 		GroupPermissionUtil.check(
-			getPermissionChecker(), exportImportConfiguration.getGroupId(),
+			getPermissionChecker(), sourceGroupId,
 			ActionKeys.EXPORT_IMPORT_LAYOUTS);
 
 		return exportImportLocalService.exportLayoutsAsFileInBackground(
@@ -102,8 +112,13 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 			ExportImportConfiguration exportImportConfiguration)
 		throws PortalException {
 
+		Map<String, Serializable> settingsMap =
+			exportImportConfiguration.getSettingsMap();
+
+		long sourceGroupId = MapUtil.getLong(settingsMap, "sourceGroupId");
+
 		GroupPermissionUtil.check(
-			getPermissionChecker(), exportImportConfiguration.getGroupId(),
+			getPermissionChecker(), sourceGroupId,
 			ActionKeys.EXPORT_IMPORT_PORTLET_INFO);
 
 		return exportImportLocalService.exportPortletInfoAsFile(
@@ -115,8 +130,13 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 			ExportImportConfiguration exportImportConfiguration)
 		throws PortalException {
 
+		Map<String, Serializable> settingsMap =
+			exportImportConfiguration.getSettingsMap();
+
+		long sourceGroupId = MapUtil.getLong(settingsMap, "sourceGroupId");
+
 		GroupPermissionUtil.check(
-			getPermissionChecker(), exportImportConfiguration.getGroupId(),
+			getPermissionChecker(), sourceGroupId,
 			ActionKeys.EXPORT_IMPORT_PORTLET_INFO);
 
 		return exportImportLocalService.exportPortletInfoAsFileInBackground(
