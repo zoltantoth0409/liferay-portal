@@ -1,13 +1,13 @@
 import com.liferay.gradle.util.copy.RenameDependencyClosure
 
-task deployTestLibs(type: Copy)
+task deployReqTestLibs(type: Copy)
 
 configurations {
 	compileOnly {
 		transitive = false
 	}
 
-	testLibs {
+	reqTestLibs {
 		transitive = false
 	}
 }
@@ -32,14 +32,14 @@ dependencies {
 	compileOnly group: "org.glassfish", name: "javax.el", version: "3.0.1-b05"
 	compileOnly group: "org.osgi", name: "org.osgi.service.metatype", version: "1.3.0"
 
-	testLibs group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge.connector", version: "1.0.0"
+	reqTestLibs group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge.connector", version: "1.0.0"
 }
 
 deploy {
 	setActions([])
 
 	dependsOn = []
-	finalizedBy deployTestLibs
+	finalizedBy deployReqTestLibs
 }
 
 deployDependencies {
@@ -47,12 +47,12 @@ deployDependencies {
 	rename(/javax.el-(.+)\.jar/, "javax.el" + renameSuffix)
 }
 
-deployTestLibs {
+deployReqTestLibs {
 	ext {
 		autoClean = false
 	}
 
-	from configurations.testLibs
+	from configurations.reqTestLibs
 
 	into {
 		"${liferay.liferayHome}/osgi/test"
@@ -62,5 +62,5 @@ deployTestLibs {
 		false
 	}
 
-	rename new RenameDependencyClosure(project, configurations.testLibs.name)
+	rename new RenameDependencyClosure(project, configurations.reqTestLibs.name)
 }
