@@ -81,7 +81,7 @@ public class ChangeListsHistoryDisplayContext {
 		).put(
 			"filterStatus", _getFilterByStatus()
 		).put(
-			"filterUseríí", _getFilterByUser()
+			"filterUser", _getFilterByUser()
 		).put(
 			"orderByCol", _getOrderByCol()
 		).put(
