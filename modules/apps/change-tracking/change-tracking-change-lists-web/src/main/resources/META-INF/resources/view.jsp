@@ -442,6 +442,14 @@ renderResponse.setTitle(title);
 				1000);
 	});
 
+	function <portlet:namespace/>checkoutCollection(url, message) {
+		var confirmationDisabled = <%= !changeListsDisplayContext.isCheckoutCtCollectionConfirmationEnabled() %>;
+
+		if (confirmationDisabled || confirm(message)) {
+			submitForm(document.hrefFm, url);
+		}
+	}
+
 	function <portlet:namespace/>handleClickPublish(url) {
 		this.event.preventDefault();
 		this.event.stopPropagation();
@@ -465,13 +473,5 @@ renderResponse.setTitle(title);
 				uri: url,
 				zIndex: 10000
 			});
-	}
-
-	function <portlet:namespace/>checkoutCollection(url, message) {
-		var confirmationDisabled = <%= !changeListsDisplayContext.isCheckoutCtCollectionConfirmationEnabled() %>;
-
-		if (confirmationDisabled || confirm(message)) {
-			submitForm(document.hrefFm, url);
-		}
 	}
 </script>
