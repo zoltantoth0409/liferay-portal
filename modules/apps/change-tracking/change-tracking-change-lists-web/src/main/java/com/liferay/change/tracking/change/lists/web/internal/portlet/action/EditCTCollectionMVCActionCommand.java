@@ -97,7 +97,7 @@ public class EditCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 			if ((pe instanceof CTCollectionNameException) &&
 				Validator.isNull(pe.getMessage())) {
 
-				SessionErrors.add(actionRequest, "ctCollectionNameIsNull");
+				SessionErrors.add(actionRequest, "ctCollectionName");
 			}
 			else {
 				SessionErrors.add(actionRequest, pe.getClass());
