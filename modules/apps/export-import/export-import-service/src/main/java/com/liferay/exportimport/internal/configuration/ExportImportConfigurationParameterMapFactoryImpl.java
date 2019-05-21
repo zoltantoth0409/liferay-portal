@@ -60,19 +60,20 @@ public class ExportImportConfigurationParameterMapFactoryImpl
 	@Override
 	public Map<String, String[]> buildFullPublishParameterMap() {
 		return buildParameterMap(
-			PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE, true, false,
-			true, true, false, true, true, true, true, true, null, true, true,
-			null, true, null, ExportImportDateUtil.RANGE_ALL, true, true,
+			PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE, true, true,
+			false, true, true, false, true, true, true, true, true, null, true,
+			true, null, true, null, ExportImportDateUtil.RANGE_ALL, true, true,
 			UserIdStrategy.CURRENT_USER_ID);
 	}
 
 	@Override
 	public Map<String, String[]> buildParameterMap() {
 		return buildParameterMap(
-			PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE, true, false,
-			true, false, false, true, true, true, true, true, null, true, true,
-			null, true, null, ExportImportDateUtil.RANGE_FROM_LAST_PUBLISH_DATE,
-			true, true, UserIdStrategy.CURRENT_USER_ID);
+			PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE, true, true,
+			false, true, false, false, true, true, true, true, true, null, true,
+			true, null, true, null,
+			ExportImportDateUtil.RANGE_FROM_LAST_PUBLISH_DATE, true, true,
+			UserIdStrategy.CURRENT_USER_ID);
 	}
 
 	@Override
@@ -101,6 +102,12 @@ public class ExportImportConfigurationParameterMapFactoryImpl
 				PortletDataHandlerKeys.DELETE_MISSING_LAYOUTS,
 				new String[] {Boolean.TRUE.toString()});
 		}*/
+
+		if (!parameterMap.containsKey(PortletDataHandlerKeys.DELETE_LAYOUTS)) {
+			parameterMap.put(
+				PortletDataHandlerKeys.DELETE_LAYOUTS,
+				new String[] {Boolean.FALSE.toString()});
+		}
 
 		if (!parameterMap.containsKey(
 				PortletDataHandlerKeys.DELETE_PORTLET_DATA)) {
@@ -189,11 +196,12 @@ public class ExportImportConfigurationParameterMapFactoryImpl
 
 	@Override
 	public Map<String, String[]> buildParameterMap(
-		String dataStrategy, Boolean deleteMissingLayouts,
-		Boolean deletePortletData, Boolean deletions,
-		Boolean ignoreLastPublishDate, Boolean layoutSetPrototypeLinkEnabled,
-		Boolean layoutSetSettings, Boolean logo, Boolean permissions,
-		Boolean portletConfiguration, Boolean portletConfigurationAll,
+		String dataStrategy, Boolean deleteLayouts,
+		Boolean deleteMissingLayouts, Boolean deletePortletData,
+		Boolean deletions, Boolean ignoreLastPublishDate,
+		Boolean layoutSetPrototypeLinkEnabled, Boolean layoutSetSettings,
+		Boolean logo, Boolean permissions, Boolean portletConfiguration,
+		Boolean portletConfigurationAll,
 		List<String> portletConfigurationPortletIds, Boolean portletData,
 		Boolean portletDataAll, List<String> portletDataPortletIds,
 		Boolean portletSetupAll, List<String> portletSetupPortletIds,
@@ -211,6 +219,16 @@ public class ExportImportConfigurationParameterMapFactoryImpl
 					PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE
 				});
 		}
+
+		boolean deleteLayoutsParameter = false;
+
+		if (deleteLayouts != null) {
+			deleteLayoutsParameter = deleteLayouts.booleanValue();
+		}
+
+		parameterMap.put(
+			PortletDataHandlerKeys.DELETE_LAYOUTS,
+			new String[] {String.valueOf(deleteLayoutsParameter)});
 
 		// Delete missing layouts
 
@@ -473,6 +491,29 @@ public class ExportImportConfigurationParameterMapFactoryImpl
 		}
 
 		return parameterMap;
+	}
+
+	@Override
+	public Map<String, String[]> buildParameterMap(
+		String dataStrategy, Boolean deleteMissingLayouts,
+		Boolean deletePortletData, Boolean deletions,
+		Boolean ignoreLastPublishDate, Boolean layoutSetPrototypeLinkEnabled,
+		Boolean layoutSetSettings, Boolean logo, Boolean permissions,
+		Boolean portletConfiguration, Boolean portletConfigurationAll,
+		List<String> portletConfigurationPortletIds, Boolean portletData,
+		Boolean portletDataAll, List<String> portletDataPortletIds,
+		Boolean portletSetupAll, List<String> portletSetupPortletIds,
+		String range, Boolean themeReference, Boolean updateLastPublishDate,
+		String userIdStrategy) {
+
+		return buildParameterMap(
+			dataStrategy, null, deleteMissingLayouts, deletePortletData,
+			deletions, ignoreLastPublishDate, layoutSetPrototypeLinkEnabled,
+			layoutSetSettings, logo, permissions, portletConfiguration,
+			portletConfigurationAll, portletConfigurationPortletIds,
+			portletData, portletDataAll, portletDataPortletIds, portletSetupAll,
+			portletSetupPortletIds, range, themeReference,
+			updateLastPublishDate, userIdStrategy);
 	}
 
 	private void _addModelParameter(
