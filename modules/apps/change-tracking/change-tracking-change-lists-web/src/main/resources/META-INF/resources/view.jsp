@@ -59,9 +59,10 @@ renderResponse.setTitle(title);
 
 					<%
 					boolean production = CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(curCTCollection.getName());
+
 					String ctCollectionName = production ? "work-on-production" : curCTCollection.getName();
 
-					String confirmMessage = changeListsDisplayContext.getConfirmationMessage(ctCollectionName);
+					String confirmationMessage = changeListsDisplayContext.getConfirmationMessage(ctCollectionName);
 					%>
 
 					<liferay-portlet:actionURL name="/change_lists/checkout_ct_collection" var="checkoutCollectionURL">
@@ -70,7 +71,7 @@ renderResponse.setTitle(title);
 					</liferay-portlet:actionURL>
 
 					<liferay-ui:search-container-column-text
-						href='<%= "javascript:" + renderResponse.getNamespace() + "checkoutCollection(\'" + checkoutCollectionURL.toString() + "\',\'" + confirmMessage + "\');" %>'
+						href='<%= "javascript:" + renderResponse.getNamespace() + "checkoutCollection(\'" + checkoutCollectionURL.toString() + "\', \'" + confirmationMessage + "\');" %>'
 						name="name"
 					>
 						<c:choose>
@@ -138,7 +139,7 @@ renderResponse.setTitle(title);
 								<c:otherwise>
 									<liferay-ui:icon
 										message="activate"
-										url='<%= "javascript:" + renderResponse.getNamespace() + "checkoutCollection(\'" + checkoutCollectionURL.toString() + "\',\'" + confirmMessage + "\');" %>'
+										url='<%= "javascript:" + renderResponse.getNamespace() + "checkoutCollection(\'" + checkoutCollectionURL.toString() + "\', \'" + confirmationMessage + "\');" %>'
 									/>
 								</c:otherwise>
 							</c:choose>
@@ -164,7 +165,7 @@ renderResponse.setTitle(title);
 
 										<liferay-ui:icon
 											message="publish"
-											onClick='<%= "javascript:" + renderResponse.getNamespace() + "handleClickPublish(\'" + publishModalURL.toString() + "\',\'" + confirmMessage +"\');" %>'
+											onClick='<%= "javascript:" + renderResponse.getNamespace() + "handleClickPublish(\'" + publishModalURL.toString() + "\', \'" + confirmationMessage +"\');" %>'
 											url="#"
 										/>
 									</c:when>
@@ -254,7 +255,7 @@ renderResponse.setTitle(title);
 												<c:otherwise>
 													<liferay-ui:icon
 														message="activate"
-														url='<%= "javascript:" + renderResponse.getNamespace() + "checkoutCollection(\'" + checkoutProductionURL.toString() + "\',\'" + productionConfirmMessage + "\');" %>'
+														url='<%= "javascript:" + renderResponse.getNamespace() + "checkoutCollection(\'" + checkoutProductionURL.toString() + "\', \'" + productionConfirmMessage + "\');" %>'
 													/>
 												</c:otherwise>
 											</c:choose>
@@ -272,8 +273,8 @@ renderResponse.setTitle(title);
 					>
 
 						<%
+						String confirmationMessage = changeListsDisplayContext.getConfirmationMessage(curCTCollection.getName());
 						boolean production = CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(curCTCollection.getName());
-						String confirmMessage = changeListsDisplayContext.getConfirmationMessage(curCTCollection.getName());
 						%>
 
 						<liferay-portlet:actionURL name="/change_lists/checkout_ct_collection" var="checkoutCollectionURL">
@@ -288,7 +289,7 @@ renderResponse.setTitle(title);
 										<div class="card-col-content lfr-card-details-column">
 											<script>
 												function <portlet:namespace/>checkoutLink<%= curCTCollection.getCtCollectionId() %>() {
-													<portlet:namespace/>checkoutCollection('<%= checkoutCollectionURL.toString() %>', '<%= confirmMessage %>');
+													<portlet:namespace/>checkoutCollection('<%= checkoutCollectionURL.toString() %>', '<%= confirmationMessage %>');
 												}
 											</script>
 
@@ -367,7 +368,7 @@ renderResponse.setTitle(title);
 													<c:otherwise>
 														<liferay-ui:icon
 															message="activate"
-															url='<%= "javascript:" + renderResponse.getNamespace() + "checkoutCollection(\'" + checkoutCollectionURL.toString() + "\',\'" + confirmMessage + "\');" %>'
+															url='<%= "javascript:" + renderResponse.getNamespace() + "checkoutCollection(\'" + checkoutCollectionURL.toString() + "\', \'" + confirmationMessage + "\');" %>'
 														/>
 													</c:otherwise>
 												</c:choose>
