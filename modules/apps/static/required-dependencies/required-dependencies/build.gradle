@@ -1,6 +1,6 @@
 import com.liferay.gradle.util.copy.RenameDependencyClosure
 
-task deployTestLibs(type: Copy)
+task deployReqTestLibs(type: Copy)
 
 configurations {
 	compileOnly {
@@ -56,7 +56,7 @@ deploy {
 	setActions([])
 
 	dependsOn = []
-	finalizedBy deployTestLibs
+	finalizedBy deployReqTestLibs
 }
 
 deployDependencies {
@@ -68,7 +68,7 @@ deployDependencies {
 	rename(/javax.el-(.+)\.jar/, "javax.el" + renameSuffix)
 }
 
-deployTestLibs {
+deployReqTestLibs {
 	ext {
 		autoClean = false
 	}
