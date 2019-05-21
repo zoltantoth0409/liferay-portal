@@ -7,7 +7,7 @@ configurations {
 		transitive = false
 	}
 
-	testLibs {
+	reqTestLibs {
 		transitive = false
 	}
 }
@@ -49,7 +49,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.util.function", version: "1.1.0"
 	compileOnly group: "org.osgi", name: "org.osgi.util.promise", version: "1.1.0"
 
-	testLibs project(":test:arquillian-extension-junit-bridge-connector")
+	reqTestLibs project(":test:arquillian-extension-junit-bridge-connector")
 }
 
 deploy {
@@ -73,7 +73,7 @@ deployReqTestLibs {
 		autoClean = false
 	}
 
-	from configurations.testLibs
+	from configurations.reqTestLibs
 
 	into {
 		"${liferay.liferayHome}/osgi/test"
@@ -83,5 +83,5 @@ deployReqTestLibs {
 		false
 	}
 
-	rename new RenameDependencyClosure(project, configurations.testLibs.name)
+	rename new RenameDependencyClosure(project, configurations.reqTestLibs.name)
 }
