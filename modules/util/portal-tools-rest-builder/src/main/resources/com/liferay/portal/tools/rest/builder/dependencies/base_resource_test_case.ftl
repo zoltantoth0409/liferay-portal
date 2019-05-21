@@ -931,8 +931,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 					<#elseif freeMarkerTool.isQueryParameter(parameter, javaMethodSignature.operation)>
 						if (${parameter.parameterName} != null) {
 							<#if stringUtil.startsWith(parameter.parameterType, "[")>
-								for (String parameter : ${parameter.parameterName}) {
-									location = HttpUtil.addParameter(location, "${parameter.parameterName}", parameter);
+								for (String parameterName : ${parameter.parameterName}) {
+									location = HttpUtil.addParameter(location, "${parameter.parameterName}", parameterName);
 								}
 							<#else>
 								location = HttpUtil.addParameter(location, "${parameter.parameterName}", ${parameter.parameterName});
@@ -1016,8 +1016,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 					<#elseif freeMarkerTool.isQueryParameter(parameter, javaMethodSignature.operation)>
 						if (${parameter.parameterName} != null) {
 							<#if stringUtil.startsWith(parameter.parameterType, "[")>
-								for (String parameter : ${parameter.parameterName}) {
-									location = HttpUtil.addParameter(location, "${parameter.parameterName}", parameter);
+								for (String parameterName : ${parameter.parameterName}) {
+									location = HttpUtil.addParameter(location, "${parameter.parameterName}", parameterName);
 								}
 							<#else>
 								location = HttpUtil.addParameter(location, "${parameter.parameterName}", ${parameter.parameterName});
