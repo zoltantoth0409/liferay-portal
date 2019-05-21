@@ -90,7 +90,7 @@ public class CTSettingsManagerImpl implements CTSettingsManager {
 	public void setGlobalCTSetting(long companyId, String key, String value) {
 		if (Validator.isNull(value)) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Value can not be empty");
+				_log.warn("Value is null");
 			}
 
 			return;
@@ -114,7 +114,7 @@ public class CTSettingsManagerImpl implements CTSettingsManager {
 	public void setUserCTSetting(long userId, String key, String value) {
 		if (Validator.isNull(value)) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Value can not be empty");
+				_log.warn("Value is null");
 			}
 
 			return;
