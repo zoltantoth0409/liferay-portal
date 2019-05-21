@@ -41,7 +41,6 @@ String openSSOSubjectScreenName = (String)request.getAttribute(OpenSSOWebKeys.OP
 </liferay-util:buffer>
 
 <script type="text/javascript">
-	// <![CDATA[
 	AUI().use(
 		'liferay-notification',
 		function(A) {
@@ -61,5 +60,4 @@ String openSSOSubjectScreenName = (String)request.getAttribute(OpenSSOWebKeys.OP
 			).render('body');
 		}
 	);
-	// ]]>
 </script>
