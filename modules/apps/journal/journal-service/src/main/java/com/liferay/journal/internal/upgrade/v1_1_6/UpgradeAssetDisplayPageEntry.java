@@ -79,14 +79,13 @@ public class UpgradeAssetDisplayPageEntry extends UpgradeProcess {
 		sb.append("JournalArticle.resourcePrimKey ) ");
 		sb.append("group by groupId, resourcePrimKey");
 
-		String sql = SQLTransformer.transform(sb.toString());
-
 		long journalArticleClassNameId = PortalUtil.getClassNameId(
 			JournalArticle.class);
 		User user = company.getDefaultUser();
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement ps1 = connection.prepareStatement(sql)) {
+			PreparedStatement ps1 = connection.prepareStatement(
+				SQLTransformer.transform(sb.toString()))) {
 
 			ps1.setLong(1, company.getCompanyId());
 			ps1.setLong(2, journalArticleClassNameId);
