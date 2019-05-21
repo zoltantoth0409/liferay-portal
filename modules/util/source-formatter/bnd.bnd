@@ -55,6 +55,7 @@ Main-Class: com.liferay.source.formatter.SourceFormatter
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/io/unsync/UnsyncStringReader.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/io/unsync/UnsyncStringWriter.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/json/JSONArray.class,\
+	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/json/JSONObject.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/language/Language.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/language/LanguageUtil.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/log/*,\
