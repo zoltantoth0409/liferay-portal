@@ -44,10 +44,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.exportimport.UserImporter;
-import com.liferay.portal.security.sso.opensso.StrangersNotAllowedException;
 import com.liferay.portal.security.sso.opensso.configuration.OpenSSOConfiguration;
 import com.liferay.portal.security.sso.opensso.constants.OpenSSOConstants;
 import com.liferay.portal.security.sso.opensso.constants.OpenSSOWebKeys;
+import com.liferay.portal.security.sso.opensso.exception.StrangersNotAllowedException;
 import com.liferay.portal.util.PropsValues;
 
 import java.util.Calendar;
