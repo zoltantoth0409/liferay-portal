@@ -189,13 +189,7 @@ class FragmentsEditor extends Component {
 	 * @param languageIds The set of languageIds to check
 	 * @param editableValues The current editable values state
 	 * @private
-	 * @returns {{
-	 * 	languageValues: {{
-	 * 		languageId: string
-	 * 		values: Array<string>
-	 *  }},
-	 *  translationKeys: Array<string>
-	 * }} A translation status object
+	 * @returns {object} A translation status object
 	 * @review
 	 */
 
