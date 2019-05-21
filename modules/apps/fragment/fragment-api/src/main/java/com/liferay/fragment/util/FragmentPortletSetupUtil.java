@@ -29,7 +29,7 @@ import javax.portlet.PortletPreferences;
  */
 public class FragmentPortletSetupUtil {
 
-	public static void setPortletBareboneCSSClass(
+	public static void setPortletBareboneCSSClassName(
 			PortletPreferences portletPreferences)
 		throws Exception {
 
@@ -42,18 +42,19 @@ public class FragmentPortletSetupUtil {
 			JSONFactoryUtil.createJSONObject()
 		);
 
-		String customCSSClasses = advancedDataJSONObject.getString(
+		String customCSSClassNames = advancedDataJSONObject.getString(
 			"customCSSClassName", StringPool.BLANK);
 
 		if (ArrayUtil.contains(
-				customCSSClasses.split(StringPool.SPACE), "portlet-barebone")) {
+				customCSSClassNames.split(StringPool.SPACE),
+				"portlet-barebone")) {
 
 			return;
 		}
 
 		advancedDataJSONObject.put(
 			"customCSSClassName",
-			customCSSClasses + StringPool.SPACE + "portlet-barebone");
+			customCSSClassNames + StringPool.SPACE + "portlet-barebone");
 
 		jsonObject.put("advancedData", advancedDataJSONObject);
 

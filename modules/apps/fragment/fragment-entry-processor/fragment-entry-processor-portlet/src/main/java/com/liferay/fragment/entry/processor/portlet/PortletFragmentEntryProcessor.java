@@ -393,7 +393,7 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		}
 
 		try {
-			FragmentPortletSetupUtil.setPortletBareboneCSSClass(
+			FragmentPortletSetupUtil.setPortletBareboneCSSClassName(
 				jxPortletPreferences);
 		}
 		catch (Exception e) {
