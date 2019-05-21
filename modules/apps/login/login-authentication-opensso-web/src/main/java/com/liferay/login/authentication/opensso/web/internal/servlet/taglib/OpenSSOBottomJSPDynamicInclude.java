@@ -54,11 +54,13 @@ public class OpenSSOBottomJSPDynamicInclude extends BaseJSPDynamicInclude {
 			HttpServletResponse httpServletResponse, String key)
 		throws IOException {
 
-		long companyId = _portal.getCompanyId(httpServletRequest);
-
 		try {
-			OpenSSOConfiguration openSSOConfiguration = getOpenSSOConfiguration(
-				companyId);
+			OpenSSOConfiguration openSSOConfiguration =
+				_configurationProvider.getConfiguration(
+					OpenSSOConfiguration.class,
+					new CompanyServiceSettingsLocator(
+						_portal.getCompanyId(httpServletRequest),
+						OpenSSOConstants.SERVICE_NAME));
 
 			if (!openSSOConfiguration.enabled()) {
 				return;
@@ -105,15 +107,6 @@ public class OpenSSOBottomJSPDynamicInclude extends BaseJSPDynamicInclude {
 	@Override
 	protected Log getLog() {
 		return _log;
-	}
-
-	protected OpenSSOConfiguration getOpenSSOConfiguration(long companyId)
-		throws Exception {
-
-		return _configurationProvider.getConfiguration(
-			OpenSSOConfiguration.class,
-			new CompanyServiceSettingsLocator(
-				companyId, OpenSSOConstants.SERVICE_NAME));
 	}
 
 	@Reference(
