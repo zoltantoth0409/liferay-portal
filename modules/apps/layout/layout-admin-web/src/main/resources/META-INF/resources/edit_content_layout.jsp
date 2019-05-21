@@ -19,9 +19,7 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-boolean pop_up = themeDisplay.isStatePopUp() || themeDisplay.isWidget();
-
-if (Validator.isNull(redirect) || !pop_up) {
+if (!themeDisplay.isStatePopUp() || !themeDisplay.isWidget() || Validator.isNull(redirect)) {
 	PortletURL backURL = renderResponse.createRenderURL();
 
 	redirect = backURL.toString();
