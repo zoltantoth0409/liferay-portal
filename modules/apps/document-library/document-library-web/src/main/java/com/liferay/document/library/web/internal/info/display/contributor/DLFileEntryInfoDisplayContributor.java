@@ -119,20 +119,11 @@ public class DLFileEntryInfoDisplayContributor
 
 			@Override
 			public long getClassTypeId() {
-				try {
-					InfoDisplayObjectProvider infoDisplayObjectProvider =
-						_dlFileEntryAssetInfoDisplayContributor.
-							getInfoDisplayObjectProvider(classPK);
+				InfoDisplayObjectProvider infoDisplayObjectProvider =
+					_dlFileEntryAssetInfoDisplayContributor.
+						getInfoDisplayObjectProvider(classPK);
 
-					return infoDisplayObjectProvider.getClassTypeId();
-				}
-				catch (PortalException pe) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(pe, pe);
-					}
-
-					return 0;
-				}
+				return infoDisplayObjectProvider.getClassTypeId();
 			}
 
 			@Override
@@ -152,20 +143,11 @@ public class DLFileEntryInfoDisplayContributor
 
 			@Override
 			public String getKeywords(Locale locale) {
-				try {
-					InfoDisplayObjectProvider infoDisplayObjectProvider =
-						_dlFileEntryAssetInfoDisplayContributor.
-							getInfoDisplayObjectProvider(classPK);
+				InfoDisplayObjectProvider infoDisplayObjectProvider =
+					_dlFileEntryAssetInfoDisplayContributor.
+						getInfoDisplayObjectProvider(classPK);
 
-					return infoDisplayObjectProvider.getKeywords(locale);
-				}
-				catch (PortalException pe) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(pe, pe);
-					}
-
-					return StringPool.BLANK;
-				}
+				return infoDisplayObjectProvider.getKeywords(locale);
 			}
 
 			@Override
