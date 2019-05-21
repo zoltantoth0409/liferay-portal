@@ -391,18 +391,15 @@ public class AssetEntryFinderImpl
 			sb.append("AssetLink.entryId2)");
 		}
 
-		String unsafeOrderByCol1 = entryQuery.getOrderByCol1();
-		String unsafeOrderByCol2 = entryQuery.getOrderByCol2();
-
 		String orderByCol1 = AssetEntryQuery.ORDER_BY_COLUMNS[2];
 		String orderByCol2 = AssetEntryQuery.ORDER_BY_COLUMNS[2];
 
 		for (String orderByColumn : AssetEntryQuery.ORDER_BY_COLUMNS) {
-			if (orderByColumn.equals(unsafeOrderByCol1)) {
+			if (orderByColumn.equals(entryQuery.getOrderByCol1())) {
 				orderByCol1 = orderByColumn;
 			}
 
-			if (orderByColumn.equals(unsafeOrderByCol2)) {
+			if (orderByColumn.equals(entryQuery.getOrderByCol1(2)) {
 				orderByCol2 = orderByColumn;
 			}
 		}
