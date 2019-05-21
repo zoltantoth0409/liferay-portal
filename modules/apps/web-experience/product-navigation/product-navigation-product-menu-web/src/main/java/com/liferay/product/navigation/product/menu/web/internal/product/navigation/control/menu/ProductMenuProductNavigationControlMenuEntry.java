@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.ReflectionUtil;
+import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.SessionClicks;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -86,8 +87,31 @@ public class ProductMenuProductNavigationControlMenuEntry
 			HttpServletRequest request, HttpServletResponse response)
 		throws IOException {
 
-		BodyBottomTag bodyBottomTag = new BodyBottomTag();
+		BodyBottomTag bodyBottomTag = new BodyBottomTag() {
 
+			@Override
+			public int doEndTag() throws JspException {
+				try {
+					String bodyContentString =
+						getBodyContentAsStringBundler().toString();
+
+					JspWriter jspWriter = pageContext.getOut();
+
+					jspWriter.write(bodyContentString);
+
+					return EVAL_PAGE;
+				}
+				catch (Exception e) {
+					throw new JspException(e);
+				}
+				finally {
+					if (!ServerDetector.isResin()) {
+						cleanUp();
+					}
+				}
+			}
+
+		};
 		bodyBottomTag.setOutputKey("productMenu");
 
 		try {
