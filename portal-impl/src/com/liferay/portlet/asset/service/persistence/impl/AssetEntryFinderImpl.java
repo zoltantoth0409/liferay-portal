@@ -348,7 +348,7 @@ public class AssetEntryFinderImpl
 				orderByCol1 = orderByColumn;
 			}
 
-			if (orderByColumn.equals(entryQuery.getOrderByCol1(2))) {
+			if (orderByColumn.equals(entryQuery.getOrderByCol2())) {
 				orderByCol2 = orderByColumn;
 			}
 		}
