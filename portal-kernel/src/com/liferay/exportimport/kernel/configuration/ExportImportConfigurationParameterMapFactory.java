@@ -162,8 +162,6 @@ public class ExportImportConfigurationParameterMapFactory {
 
 		Map<String, String[]> parameterMap = new LinkedHashMap<>();
 
-		// Data strategy
-
 		String dataStrategyParameter =
 			PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE;
 
@@ -183,8 +181,6 @@ public class ExportImportConfigurationParameterMapFactory {
 			PortletDataHandlerKeys.DELETE_LAYOUTS,
 			new String[] {String.valueOf(deleteLayoutsParameter)});
 
-		// Delete missing layouts
-
 		boolean deleteMissingLayoutsParameter = true;
 
 		if (deleteMissingLayouts != null) {
@@ -194,8 +190,6 @@ public class ExportImportConfigurationParameterMapFactory {
 		parameterMap.put(
 			PortletDataHandlerKeys.DELETE_MISSING_LAYOUTS,
 			new String[] {String.valueOf(deleteMissingLayoutsParameter)});
-
-		// Delete portlet data
 
 		boolean deletePortletDataParameter = false;
 
@@ -207,8 +201,6 @@ public class ExportImportConfigurationParameterMapFactory {
 			PortletDataHandlerKeys.DELETE_PORTLET_DATA,
 			new String[] {String.valueOf(deletePortletDataParameter)});
 
-		// Ignore last publish date
-
 		boolean ignoreLastPublishDateParameter = true;
 
 		if (ignoreLastPublishDate != null) {
@@ -219,8 +211,6 @@ public class ExportImportConfigurationParameterMapFactory {
 		parameterMap.put(
 			PortletDataHandlerKeys.IGNORE_LAST_PUBLISH_DATE,
 			new String[] {String.valueOf(ignoreLastPublishDateParameter)});
-
-		// Layout set prototype link enabled
 
 		boolean layoutSetPrototypeLinkEnabledParameter = false;
 
@@ -235,8 +225,6 @@ public class ExportImportConfigurationParameterMapFactory {
 				String.valueOf(layoutSetPrototypeLinkEnabledParameter)
 			});
 
-		// Layout set prototype settings
-
 		boolean layoutSetPrototypeSettingsParameter = false;
 
 		if (layoutSetPrototypeLinkEnabled != null) {
@@ -248,8 +236,6 @@ public class ExportImportConfigurationParameterMapFactory {
 			PortletDataHandlerKeys.LAYOUT_SET_PROTOTYPE_SETTINGS,
 			new String[] {String.valueOf(layoutSetPrototypeSettingsParameter)});
 
-		// Layout set settings
-
 		boolean layoutSetSettingsParameter = false;
 
 		if (layoutSetSettings != null) {
@@ -259,8 +245,6 @@ public class ExportImportConfigurationParameterMapFactory {
 		parameterMap.put(
 			PortletDataHandlerKeys.LAYOUT_SET_SETTINGS,
 			new String[] {String.valueOf(layoutSetSettingsParameter)});
-
-		// Logo
 
 		boolean logoParameter = false;
 
@@ -272,8 +256,6 @@ public class ExportImportConfigurationParameterMapFactory {
 			PortletDataHandlerKeys.LOGO,
 			new String[] {String.valueOf(logoParameter)});
 
-		// Permissions
-
 		boolean permissionsParameter = true;
 
 		if (permissions != null) {
@@ -284,8 +266,6 @@ public class ExportImportConfigurationParameterMapFactory {
 			PortletDataHandlerKeys.PERMISSIONS,
 			new String[] {String.valueOf(permissionsParameter)});
 
-		// Portlet configuration
-
 		boolean portletConfigurationParameter = true;
 
 		if (portletConfiguration != null) {
@@ -295,8 +275,6 @@ public class ExportImportConfigurationParameterMapFactory {
 		parameterMap.put(
 			PortletDataHandlerKeys.PORTLET_CONFIGURATION,
 			new String[] {String.valueOf(portletConfigurationParameter)});
-
-		// Portlet configuration all
 
 		boolean portletConfigurationAllParameter = true;
 
@@ -309,8 +287,6 @@ public class ExportImportConfigurationParameterMapFactory {
 			PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
 			new String[] {String.valueOf(portletConfigurationAllParameter)});
 
-		// Portlet data
-
 		boolean portletDataParameter = false;
 
 		if (portletData != null) {
@@ -320,8 +296,6 @@ public class ExportImportConfigurationParameterMapFactory {
 		parameterMap.put(
 			PortletDataHandlerKeys.PORTLET_DATA,
 			new String[] {String.valueOf(portletDataParameter)});
-
-		// Portlet data all
 
 		boolean portletDataAllParameter = false;
 
@@ -333,8 +307,6 @@ public class ExportImportConfigurationParameterMapFactory {
 			PortletDataHandlerKeys.PORTLET_DATA_ALL,
 			new String[] {String.valueOf(portletDataAllParameter)});
 
-		// Portlet setup all
-
 		boolean portletSetupAllParameter = true;
 
 		if (portletSetupAll != null) {
@@ -344,8 +316,6 @@ public class ExportImportConfigurationParameterMapFactory {
 		parameterMap.put(
 			PortletDataHandlerKeys.PORTLET_SETUP_ALL,
 			new String[] {String.valueOf(portletSetupAllParameter)});
-
-		// Range
 
 		String rangeParameter =
 			ExportImportDateUtil.RANGE_FROM_LAST_PUBLISH_DATE;
@@ -357,8 +327,6 @@ public class ExportImportConfigurationParameterMapFactory {
 		parameterMap.put(
 			ExportImportDateUtil.RANGE, new String[] {rangeParameter});
 
-		// Theme reference
-
 		boolean themeReferenceParameter = false;
 
 		if (themeReference != null) {
@@ -368,8 +336,6 @@ public class ExportImportConfigurationParameterMapFactory {
 		parameterMap.put(
 			PortletDataHandlerKeys.THEME_REFERENCE,
 			new String[] {String.valueOf(themeReferenceParameter)});
-
-		// Update last publish date
 
 		boolean updateLastPublishDateParameter = true;
 
@@ -381,8 +347,6 @@ public class ExportImportConfigurationParameterMapFactory {
 		parameterMap.put(
 			PortletDataHandlerKeys.UPDATE_LAST_PUBLISH_DATE,
 			new String[] {String.valueOf(updateLastPublishDateParameter)});
-
-		// User id strategy
 
 		String userIdStrategyParameter = UserIdStrategy.CURRENT_USER_ID;
 
