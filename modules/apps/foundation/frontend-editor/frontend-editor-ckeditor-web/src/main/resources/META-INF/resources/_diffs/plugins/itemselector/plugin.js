@@ -163,7 +163,7 @@
 						}
 						else if (dialogName === 'image') {
 							instance._bindBrowseButton(editor, dialogDefinition, 'info', 'imageselector', 'txtUrl');
-							instance._bindBrowseButton(editor, dialogDefinition, 'Link', 'imageselector', 'txtUrl');
+							instance._bindBrowseButton(editor, dialogDefinition, 'Link', 'linkselector', 'txtUrl');
 						}
 						else if (dialogName === 'video') {
 							instance._bindBrowseButton(editor, dialogDefinition, 'info', 'videoselector', 'poster');
