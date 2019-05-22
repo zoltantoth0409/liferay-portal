@@ -83,9 +83,7 @@ public class DataDefinitionResourceTest
 
 		boolean valid = true;
 
-		if ((dataDefinition != null) &&
-			(dataDefinition.getDataDefinitionFields() != null)) {
-
+		if (dataDefinition.getDataDefinitionFields() != null) {
 			for (DataDefinitionField dataDefinitionField :
 					dataDefinition.getDataDefinitionFields()) {
 
