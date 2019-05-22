@@ -48,17 +48,20 @@ public class DateRangeFactoryTest {
 
 	@Test(expected = ParseException.class)
 	public void testDateFormatShouldBeyyyyMMddHHmmss() throws Exception {
-		_dateRangeFactory.validateRange(_INVALID_DATE_FORMAT);
+		_dateRangeFactory.validateRange(
+			"[{\"label\":\"past-hour\", \"range\":\"20190908 TO *\"}]");
 	}
 
 	@Test(expected = ParseException.class)
 	public void testInvalidRangeAliases() throws Exception {
-		_dateRangeFactory.validateRange(_INVALID_RANGE_ALIASES);
+		_dateRangeFactory.validateRange(
+			"[{\"label\":\"past-hour\", \"range\":\"[past-test TO *]\"}]");
 	}
 
 	@Test(expected = ParseException.class)
 	public void testInvalidRangeWithoutBrackets() throws Exception {
-		_dateRangeFactory.validateRange(_WITHOUT_BRACKETS);
+		_dateRangeFactory.validateRange(
+			"[{\"label\":\"past-hour\", \"range\":\"past-hour TO *\"}]");
 	}
 
 	@Test
@@ -127,15 +130,6 @@ public class DateRangeFactoryTest {
 			_dateRangeFactory.replaceAliases(
 				"[past-year TO past-month]", calendar));
 	}
-
-	private static final String _INVALID_DATE_FORMAT =
-		"[{\"label\":\"past-hour\", \"range\":\"20190908 TO *\"}]";
-
-	private static final String _INVALID_RANGE_ALIASES =
-		"[{\"label\":\"past-hour\", \"range\":\"[past-test TO *]\"}]";
-
-	private static final String _WITHOUT_BRACKETS =
-		"[{\"label\":\"past-hour\", \"range\":\"past-hour TO *\"}]";
 
 	private final DateRangeFactory _dateRangeFactory = new DateRangeFactory(
 		new DateFormatFactoryImpl());
