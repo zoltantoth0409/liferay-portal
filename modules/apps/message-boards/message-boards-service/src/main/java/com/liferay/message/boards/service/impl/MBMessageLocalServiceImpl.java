@@ -293,6 +293,8 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 		Date now = new Date();
 
+		Date modifiedDate = serviceContext.getModifiedDate(now);
+
 		long messageId = counterLocalService.increment();
 
 		subject = getSubject(subject, body);
@@ -316,8 +318,6 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		validate(subject, body);
 
 		MBMessage message = mbMessagePersistence.create(messageId);
-
-		Date modifiedDate = serviceContext.getModifiedDate(now);
 
 		message.setUuid(serviceContext.getUuid());
 		message.setGroupId(groupId);
