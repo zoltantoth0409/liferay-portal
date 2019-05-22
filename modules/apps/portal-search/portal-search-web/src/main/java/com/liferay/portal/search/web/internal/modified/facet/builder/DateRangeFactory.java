@@ -148,11 +148,12 @@ public class DateRangeFactory {
 
 			from = from.substring(1);
 
+			validateDateFormat(from);
+
 			String to = range.split("TO")[1].trim();
 
 			to = to.substring(0, to.length() - 1);
 
-			validateDateFormat(from);
 			validateDateFormat(to);
 		}
 	}
