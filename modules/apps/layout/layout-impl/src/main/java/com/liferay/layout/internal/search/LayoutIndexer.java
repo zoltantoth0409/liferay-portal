@@ -22,6 +22,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
@@ -175,7 +176,10 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 			response = serviceContext.getResponse();
 		}
 
-		for (String languageId : layout.getAvailableLanguageIds()) {
+		String[] languageIds = LocaleUtil.toLanguageIds(
+			LanguageUtil.getAvailableLocales(layout.getGroupId()));
+
+		for (String languageId : languageIds) {
 			if ((request == null) || (response == null)) {
 				break;
 			}
