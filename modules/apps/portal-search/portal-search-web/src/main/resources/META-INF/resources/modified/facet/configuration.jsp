@@ -48,9 +48,10 @@ JSONArray rangesJSONArray = modifiedFacetPortletPreferences.getRangesJSONArray()
 >
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
-	<liferay-ui:error key="unparsableDate" message="unparsable-date" />
 
 	<liferay-frontend:edit-form-body>
+		<liferay-ui:error key="unparsableDate" message="unparsable-date" />
+
 		<liferay-frontend:fieldset-group>
 			<aui:fieldset id='<%= renderResponse.getNamespace() + "rangesId" %>'>
 
