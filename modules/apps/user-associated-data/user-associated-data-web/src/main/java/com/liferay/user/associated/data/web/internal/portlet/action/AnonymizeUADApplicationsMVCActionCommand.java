@@ -50,12 +50,12 @@ public class AnonymizeUADApplicationsMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long[] groupIds = ParamUtil.getLongValues(actionRequest, "groupIds");
-
 		User selectedUser = getSelectedUser(actionRequest);
 
 		User anonymousUser = _uadAnonymizerHelper.getAnonymousUser(
 			selectedUser.getCompanyId());
+
+		long[] groupIds = ParamUtil.getLongValues(actionRequest, "groupIds");
 
 		for (String applicationKey : getApplicationKeys(actionRequest)) {
 			for (UADDisplay uadDisplay :
