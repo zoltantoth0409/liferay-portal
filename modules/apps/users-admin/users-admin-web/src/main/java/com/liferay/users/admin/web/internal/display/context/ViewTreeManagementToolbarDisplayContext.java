@@ -53,6 +53,7 @@ import com.liferay.users.admin.web.internal.search.OrganizationUserChecker;
 import com.liferay.users.admin.web.internal.util.comparator.OrganizationUserNameComparator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -158,12 +159,7 @@ public class ViewTreeManagementToolbarDisplayContext {
 	public List<String> getAvailableActionDropdownItems(
 		Organization organization) {
 
-		List<String> availableActionDropdownItems = new ArrayList<>();
-
-		availableActionDropdownItems.add(Constants.DELETE);
-		availableActionDropdownItems.add(Constants.REMOVE);
-
-		return availableActionDropdownItems;
+		return Arrays.asList(Constants.DELETE, Constants.REMOVE);
 	}
 
 	public List<String> getAvailableActionDropdownItems(User user) {
