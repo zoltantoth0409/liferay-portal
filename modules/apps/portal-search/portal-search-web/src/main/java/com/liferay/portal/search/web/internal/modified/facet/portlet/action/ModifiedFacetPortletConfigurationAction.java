@@ -71,7 +71,8 @@ public class ModifiedFacetPortletConfigurationAction
 		}
 		catch (JSONException | ParseException e) {
 			SessionErrors.add(actionRequest, "unparsableDate");
-			_log.error(e.getMessage());
+
+			_log.error(e, e);
 		}
 
 		if (SessionErrors.isEmpty(actionRequest)) {
