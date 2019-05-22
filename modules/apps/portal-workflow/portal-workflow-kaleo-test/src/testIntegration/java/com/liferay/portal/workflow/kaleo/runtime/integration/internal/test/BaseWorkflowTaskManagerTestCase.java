@@ -814,8 +814,8 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 
 	protected void setUpWorkflow() throws Exception {
 		createJoinXorWorkflow();
-		createSiteMemberWorkflow();
 		createScriptedAssignmentWorkflow();
+		createSiteMemberWorkflow();
 	}
 
 	protected FileVersion updateFileVersion(long fileEntryId) throws Exception {
