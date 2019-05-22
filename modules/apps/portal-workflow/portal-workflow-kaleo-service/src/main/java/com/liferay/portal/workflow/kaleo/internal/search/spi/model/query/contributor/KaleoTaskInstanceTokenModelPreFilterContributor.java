@@ -437,7 +437,7 @@ public class KaleoTaskInstanceTokenModelPreFilterContributor
 				roleIdGroupIdsMap);
 		}
 
-		mapSiteMemberGroupId(
+		mapSiteMemberRoleIdGroupId(
 			kaleoTaskInstanceTokenQuery.getCompanyId(),
 			kaleoTaskInstanceTokenQuery.getUserId(), roleIdGroupIdsMap);
 
@@ -516,7 +516,7 @@ public class KaleoTaskInstanceTokenModelPreFilterContributor
 		groupIds.add(groupId);
 	}
 
-	protected void mapSiteMemberGroupId(
+	protected void mapSiteMemberRoleIdGroupId(
 		long companyId, long userId, Map<Long, Set<Long>> roleIdGroupIdsMap) {
 
 		try {
