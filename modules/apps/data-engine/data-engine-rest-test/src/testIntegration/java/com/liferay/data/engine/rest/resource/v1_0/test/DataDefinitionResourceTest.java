@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.HashMap;
 
 import org.junit.Assert;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
