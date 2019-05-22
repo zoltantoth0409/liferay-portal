@@ -15,6 +15,7 @@
 package com.liferay.portal.util;
 
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.InetAddressUtil;
 import com.liferay.portal.kernel.util.ReflectionUtil;
 
 import java.lang.reflect.Field;
@@ -37,6 +38,8 @@ public class PortalImplEscapeRedirectTest extends PowerMockito {
 		HttpUtil httpUtil = new HttpUtil();
 
 		httpUtil.setHttp(new HttpImpl());
+
+		InetAddressUtil.setInetAddressProvider(new InetAddressProviderImpl());
 	}
 
 	@Test
