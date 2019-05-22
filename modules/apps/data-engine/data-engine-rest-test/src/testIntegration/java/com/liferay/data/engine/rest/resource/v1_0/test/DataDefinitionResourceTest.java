@@ -77,20 +77,6 @@ public class DataDefinitionResourceTest
 			});
 	}
 
-	@Test
-	public void testPostSiteDataDefinitionWithDataDefinitionField()
-		throws Exception {
-
-		DataDefinition expectedDataDefinition = randomDataDefinition();
-
-		DataDefinition dataDefinition =
-			testPostSiteDataDefinition_addDataDefinition(
-				expectedDataDefinition);
-
-		assertEquals(expectedDataDefinition, dataDefinition);
-		assertValid(dataDefinition);
-	}
-
 	@Override
 	protected void assertValid(DataDefinition dataDefinition) {
 		super.assertValid(dataDefinition);
