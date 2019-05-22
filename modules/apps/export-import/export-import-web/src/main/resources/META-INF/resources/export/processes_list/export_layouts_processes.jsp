@@ -37,8 +37,6 @@ portletURL.setParameter("orderByType", orderByType);
 portletURL.setParameter("searchContainerId", searchContainerId);
 
 OrderByComparator<BackgroundTask> orderByComparator = BackgroundTaskComparatorFactoryUtil.getBackgroundTaskOrderByComparator(orderByCol, orderByType);
-
-boolean changeTrackingEnabled = StagingUtil.isChangeTrackingEnabled(company.getCompanyId());
 %>
 
 <portlet:actionURL name="deleteBackgroundTasks" var="deleteBackgroundTasksURL">
@@ -303,7 +301,7 @@ boolean changeTrackingEnabled = StagingUtil.isChangeTrackingEnabled(company.getC
 						markupView="lexicon"
 						showWhenSingleIcon="<%= true %>"
 					>
-						<c:if test="<%= !changeTrackingEnabled %>">
+						<c:if test="<%= !StagingUtil.isChangeTrackingEnabled(company.getCompanyId()) %>">
 							<portlet:actionURL name="editExportConfiguration" var="relaunchURL">
 								<portlet:param name="mvcRenderCommandName" value="exportLayoutsView" />
 								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.RELAUNCH %>" />

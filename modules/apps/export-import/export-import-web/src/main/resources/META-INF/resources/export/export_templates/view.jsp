@@ -37,11 +37,9 @@ if (liveGroup == null) {
 	liveGroup = group;
 	liveGroupId = groupId;
 }
-
-boolean changeTrackingEnabled = StagingUtil.isChangeTrackingEnabled(company.getCompanyId());
 %>
 
-<c:if test="<%= changeTrackingEnabled %>">
+<c:if test="<%= StagingUtil.isChangeTrackingEnabled(company.getCompanyId()) %>">
 	<liferay-staging:alert
 		dismissible="<%= true %>"
 		type="WARNING"
@@ -76,7 +74,7 @@ ExportTemplatesToolbarDisplayContext exportTemplatesToolbarDisplayContext = new 
 	displayContext="<%= exportTemplatesToolbarDisplayContext %>"
 	searchFormName="searchFm"
 	selectable="false"
-	showCreationMenu="<%= !changeTrackingEnabled %>"
+	showCreationMenu="<%= !StagingUtil.isChangeTrackingEnabled(company.getCompanyId()) %>"
 	showSearch="<%= true %>"
 />
 
