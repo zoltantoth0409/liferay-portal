@@ -24,8 +24,6 @@ boolean privateLayout = GetterUtil.getBoolean(request.getAttribute("view.jsp-pri
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 ExportImportConfiguration exportImportConfiguration = (ExportImportConfiguration)row.getObject();
-
-boolean changeTrackingEnabled = StagingUtil.isChangeTrackingEnabled(company.getCompanyId());
 %>
 
 <liferay-ui:icon-menu
@@ -34,7 +32,7 @@ boolean changeTrackingEnabled = StagingUtil.isChangeTrackingEnabled(company.getC
 	markupView="lexicon"
 	showWhenSingleIcon="<%= true %>"
 >
-	<c:if test="<%= !changeTrackingEnabled %>">
+	<c:if test="<%= !StagingUtil.isChangeTrackingEnabled(company.getCompanyId()) %>">
 		<portlet:renderURL var="newExportProcessURL">
 			<portlet:param name="mvcPath" value="/export/new_export/export_layouts.jsp" />
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EXPORT %>" />

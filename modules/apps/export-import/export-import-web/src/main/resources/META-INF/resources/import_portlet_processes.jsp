@@ -36,11 +36,9 @@ else {
 }
 
 OrderByComparator<BackgroundTask> orderByComparator = BackgroundTaskComparatorFactoryUtil.getBackgroundTaskOrderByComparator(orderByCol, orderByType);
-
-boolean changeTrackingEnabled = StagingUtil.isChangeTrackingEnabled(company.getCompanyId());
 %>
 
-<c:if test="<%= changeTrackingEnabled %>">
+<c:if test="<%= StagingUtil.isChangeTrackingEnabled(company.getCompanyId()) %>">
 	<liferay-staging:alert
 		dismissible="<%= true %>"
 		type="WARNING"
@@ -125,7 +123,7 @@ boolean changeTrackingEnabled = StagingUtil.isChangeTrackingEnabled(company.getC
 						markupView="lexicon"
 						showWhenSingleIcon="<%= true %>"
 					>
-						<c:if test="<%= !changeTrackingEnabled %>">
+						<c:if test="<%= !StagingUtil.isChangeTrackingEnabled(company.getCompanyId()) %>">
 							<liferay-ui:icon-delete
 								label="<%= true %>"
 								message='<%= ((completionDate != null) && completionDate.before(new Date())) ? "clear" : "cancel" %>'
