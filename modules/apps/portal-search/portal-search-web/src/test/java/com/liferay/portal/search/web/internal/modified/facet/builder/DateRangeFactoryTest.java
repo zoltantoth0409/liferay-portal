@@ -129,13 +129,13 @@ public class DateRangeFactoryTest {
 	}
 
 	private static final String _INVALID_DATE_FORMAT =
-		"[{\"label\":\"past-hour\",\"range\":\"20190908 TO *\"}]";
+		"[{\"label\":\"past-hour\", \"range\":\"20190908 TO *\"}]";
 
 	private static final String _INVALID_RANGE_ALIASES =
-		"[{\"label\":\"past-hour\",\"range\":\"[past-test TO *]\"}]";
+		"[{\"label\":\"past-hour\", \"range\":\"[past-test TO *]\"}]";
 
 	private static final String _WITHOUT_BRACKETS =
-		"[{\"label\":\"past-hour\",\"range\":\"past-hour TO *\"}]";
+		"[{\"label\":\"past-hour\", \"range\":\"past-hour TO *\"}]";
 
 	private final DateRangeFactory _dateRangeFactory = new DateRangeFactory(
 		new DateFormatFactoryImpl());
