@@ -48,7 +48,7 @@ public abstract class BasePortletToolbarContributor
 
 		Group group = layout.getGroup();
 
-		if ((group == null) || group.isLayoutPrototype()) {
+		if (group.isLayoutPrototype()) {
 			return Collections.emptyList();
 		}
 
