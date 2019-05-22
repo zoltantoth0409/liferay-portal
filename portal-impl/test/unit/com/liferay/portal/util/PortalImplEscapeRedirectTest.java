@@ -14,12 +14,15 @@
 
 package com.liferay.portal.util;
 
+import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.InetAddressUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ReflectionUtil;
 
 import java.lang.reflect.Field;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -39,7 +42,16 @@ public class PortalImplEscapeRedirectTest extends PowerMockito {
 
 		httpUtil.setHttp(new HttpImpl());
 
-		InetAddressUtil.setInetAddressProvider(new InetAddressProviderImpl());
+		Map<String, Object> propertiesMap = new HashMap<String, Object>() {
+			{
+				put(
+					PropsKeys.DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS,
+					String.valueOf(2));
+				put(PropsKeys.DNS_SECURITY_THREAD_LIMIT, String.valueOf(10));
+			}
+		};
+
+		PropsTestUtil.setProps(propertiesMap);
 	}
 
 	@Test
@@ -115,6 +127,9 @@ public class PortalImplEscapeRedirectTest extends PowerMockito {
 		String[] redirectURLIPsAllowed = PropsValues.REDIRECT_URL_IPS_ALLOWED;
 		String redirectURLSecurityMode = PropsValues.REDIRECT_URL_SECURITY_MODE;
 
+		setPropsValuesValue("DNS_SECURITY_THREAD_LIMIT", 10);
+		setPropsValuesValue("DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS", 2);
+
 		setPropsValuesValue("REDIRECT_URL_SECURITY_MODE", "ip");
 		setPropsValuesValue(
 			"REDIRECT_URL_IPS_ALLOWED",
@@ -158,6 +173,8 @@ public class PortalImplEscapeRedirectTest extends PowerMockito {
 			Assert.assertNull(_portalImpl.escapeRedirect("prefix.127.0.0.1"));
 		}
 		finally {
+			setPropsValuesValue("DNS_SECURITY_THREAD_LIMIT", 10);
+			setPropsValuesValue("DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS", 2);
 			setPropsValuesValue(
 				"REDIRECT_URL_IPS_ALLOWED", redirectURLIPsAllowed);
 			setPropsValuesValue(
