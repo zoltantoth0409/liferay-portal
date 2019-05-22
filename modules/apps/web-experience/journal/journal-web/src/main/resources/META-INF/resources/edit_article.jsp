@@ -41,6 +41,8 @@ double version = BeanParamUtil.getDouble(article, request, "version", JournalArt
 
 String ddmStructureKey = ParamUtil.getString(request, "ddmStructureKey");
 
+String requestDDMFormValues = ParamUtil.getString(request, "ddmFormValues");
+
 if (Validator.isNull(ddmStructureKey) && (article != null)) {
 	ddmStructureKey = article.getDDMStructureKey();
 }
@@ -99,6 +101,10 @@ if (article != null) {
 	}
 
 	defaultLanguageId = articleDefaultLanguageId;
+}
+
+if (!requestDDMFormValues.equals("")) {
+	defaultLanguageId = journalDisplayContext.getDefaultLanguageIdFromDDMFormValues(requestDDMFormValues);
 }
 
 if (editingDDMStructureDefaultValues) {
@@ -188,17 +194,16 @@ request.setAttribute("edit_article.jsp-changeStructure", changeStructure);
 
 	Set<Locale> availableLocalesSet = new HashSet<>();
 
-	availableLocalesSet.add(LocaleUtil.fromLanguageId(defaultLanguageId));
-	availableLocalesSet.addAll(journalDisplayContext.getAvailableArticleLocales());
-
-	if (ddmFormValues != null) {
-		availableLocalesSet.addAll(ddmFormValues.getAvailableLocales());
-	}
-	
-	String requestDDMFormValues = ParamUtil.getString(request, "ddmFormValues");
-
 	if (!requestDDMFormValues.equals("")) {
 		availableLocalesSet.addAll(journalDisplayContext.getAvailableLocalesFromDDMFormValues(requestDDMFormValues));
+	} else {
+
+		availableLocalesSet.add(LocaleUtil.fromLanguageId(defaultLanguageId));
+		availableLocalesSet.addAll(journalDisplayContext.getAvailableArticleLocales());
+
+		if (ddmFormValues != null) {
+			availableLocalesSet.addAll(ddmFormValues.getAvailableLocales());
+		}
 	}
 
 	Locale[] availableLocales = availableLocalesSet.toArray(new Locale[0]);

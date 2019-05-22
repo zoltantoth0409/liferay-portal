@@ -400,6 +400,14 @@ public class JournalDisplayContext {
 		return _ddmTemplateKey;
 	}
 
+	public String getDefaultLanguageIdFromDDMFormValues(String ddmFormValues)
+		throws PortalException {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(ddmFormValues);
+
+		return jsonObject.getString("defaultLanguageId");
+	}
+
 	public String getDisplayStyle() {
 		if (_displayStyle != null) {
 			return _displayStyle;
