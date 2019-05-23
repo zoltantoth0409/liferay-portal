@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.taxonomy.client.dto.v1_0.TaxonomyVocabulary;
 import com.liferay.headless.admin.taxonomy.client.http.HttpInvoker;
 import com.liferay.headless.admin.taxonomy.client.pagination.Page;
+import com.liferay.headless.admin.taxonomy.client.resource.v1_0.TaxonomyVocabularyResource;
 import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.TaxonomyVocabularySerDes;
-import com.liferay.headless.admin.taxonomy.resource.v1_0.TaxonomyVocabularyResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -608,28 +608,24 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
-				TaxonomyVocabularyResource.deleteTaxonomyVocabularyHttpResponse(
-					taxonomyVocabulary.getId()));
+			TaxonomyVocabularyResource.deleteTaxonomyVocabularyHttpResponse(
+				taxonomyVocabulary.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
-				TaxonomyVocabularyResource.getTaxonomyVocabularyHttpResponse(
-					taxonomyVocabulary.getId()));
+			TaxonomyVocabularyResource.getTaxonomyVocabularyHttpResponse(
+				taxonomyVocabulary.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
-				TaxonomyVocabularyResource.getTaxonomyVocabularyHttpResponse(
-					0L));
+			TaxonomyVocabularyResource.getTaxonomyVocabularyHttpResponse(0L));
 	}
 
 	protected TaxonomyVocabulary
 			testDeleteTaxonomyVocabulary_addTaxonomyVocabulary()
 		throws Exception {
 
-		return invokePostSiteTaxonomyVocabulary(
+		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			testGroup.getGroupId(), randomTaxonomyVocabulary());
 	}
 
@@ -1541,7 +1537,9 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private TaxonomyVocabularyResource _taxonomyVocabularyResource;
+	private
+		com.liferay.headless.admin.taxonomy.resource.v1_0.
+			TaxonomyVocabularyResource _taxonomyVocabularyResource;
 
 	private URL _resourceURL;
 

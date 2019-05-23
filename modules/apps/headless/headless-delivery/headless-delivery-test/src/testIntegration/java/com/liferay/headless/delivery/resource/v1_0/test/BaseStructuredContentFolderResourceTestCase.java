@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.StructuredContentFolder;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.StructuredContentFolderResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.StructuredContentFolderSerDes;
-import com.liferay.headless.delivery.resource.v1_0.StructuredContentFolderResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -1141,30 +1141,27 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				StructuredContentFolderResource.
-					deleteStructuredContentFolderHttpResponse(
-						structuredContentFolder.getId()));
+			StructuredContentFolderResource.
+				deleteStructuredContentFolderHttpResponse(
+					structuredContentFolder.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				StructuredContentFolderResource.
-					getStructuredContentFolderHttpResponse(
-						structuredContentFolder.getId()));
+			StructuredContentFolderResource.
+				getStructuredContentFolderHttpResponse(
+					structuredContentFolder.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				StructuredContentFolderResource.
-					getStructuredContentFolderHttpResponse(0L));
+			StructuredContentFolderResource.
+				getStructuredContentFolderHttpResponse(0L));
 	}
 
 	protected StructuredContentFolder
 			testDeleteStructuredContentFolder_addStructuredContentFolder()
 		throws Exception {
 
-		return invokePostSiteStructuredContentFolder(
+		return StructuredContentFolderResource.postSiteStructuredContentFolder(
 			testGroup.getGroupId(), randomStructuredContentFolder());
 	}
 
@@ -2088,7 +2085,9 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private StructuredContentFolderResource _structuredContentFolderResource;
+	private
+		com.liferay.headless.delivery.resource.v1_0.
+			StructuredContentFolderResource _structuredContentFolderResource;
 
 	private URL _resourceURL;
 

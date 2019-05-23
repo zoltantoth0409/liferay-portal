@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.user.client.dto.v1_0.Role;
 import com.liferay.headless.admin.user.client.http.HttpInvoker;
 import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.resource.v1_0.RoleResource;
 import com.liferay.headless.admin.user.client.serdes.v1_0.RoleSerDes;
-import com.liferay.headless.admin.user.resource.v1_0.RoleResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -747,7 +747,8 @@ public abstract class BaseRoleResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private RoleResource _roleResource;
+	private com.liferay.headless.admin.user.resource.v1_0.RoleResource
+		_roleResource;
 
 	private URL _resourceURL;
 

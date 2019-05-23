@@ -24,8 +24,8 @@ import com.liferay.bulk.rest.client.dto.v1_0.DocumentBulkSelection;
 import com.liferay.bulk.rest.client.dto.v1_0.TaxonomyVocabulary;
 import com.liferay.bulk.rest.client.http.HttpInvoker;
 import com.liferay.bulk.rest.client.pagination.Page;
+import com.liferay.bulk.rest.client.resource.v1_0.TaxonomyVocabularyResource;
 import com.liferay.bulk.rest.client.serdes.v1_0.TaxonomyVocabularySerDes;
-import com.liferay.bulk.rest.resource.v1_0.TaxonomyVocabularyResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -621,7 +621,8 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private TaxonomyVocabularyResource _taxonomyVocabularyResource;
+	private com.liferay.bulk.rest.resource.v1_0.TaxonomyVocabularyResource
+		_taxonomyVocabularyResource;
 
 	private URL _resourceURL;
 

@@ -25,8 +25,8 @@ import com.liferay.bulk.rest.client.dto.v1_0.Keyword;
 import com.liferay.bulk.rest.client.dto.v1_0.KeywordBulkSelection;
 import com.liferay.bulk.rest.client.http.HttpInvoker;
 import com.liferay.bulk.rest.client.pagination.Page;
+import com.liferay.bulk.rest.client.resource.v1_0.KeywordResource;
 import com.liferay.bulk.rest.client.serdes.v1_0.KeywordSerDes;
-import com.liferay.bulk.rest.resource.v1_0.KeywordResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -583,7 +583,8 @@ public abstract class BaseKeywordResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private KeywordResource _keywordResource;
+	private com.liferay.bulk.rest.resource.v1_0.KeywordResource
+		_keywordResource;
 
 	private URL _resourceURL;
 

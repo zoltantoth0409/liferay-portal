@@ -24,8 +24,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.Rating;
 import com.liferay.headless.delivery.client.dto.v1_0.StructuredContent;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.StructuredContentResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.StructuredContentSerDes;
-import com.liferay.headless.delivery.resource.v1_0.StructuredContentResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -1616,27 +1616,24 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				StructuredContentResource.deleteStructuredContentHttpResponse(
-					structuredContent.getId()));
+			StructuredContentResource.deleteStructuredContentHttpResponse(
+				structuredContent.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				StructuredContentResource.getStructuredContentHttpResponse(
-					structuredContent.getId()));
+			StructuredContentResource.getStructuredContentHttpResponse(
+				structuredContent.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				StructuredContentResource.getStructuredContentHttpResponse(0L));
+			StructuredContentResource.getStructuredContentHttpResponse(0L));
 	}
 
 	protected StructuredContent
 			testDeleteStructuredContent_addStructuredContent()
 		throws Exception {
 
-		return invokePostSiteStructuredContent(
+		return StructuredContentResource.postSiteStructuredContent(
 			testGroup.getGroupId(), randomStructuredContent());
 	}
 
@@ -1945,30 +1942,26 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				StructuredContentResource.
-					deleteStructuredContentMyRatingHttpResponse(
-						structuredContent.getId()));
+			StructuredContentResource.
+				deleteStructuredContentMyRatingHttpResponse(
+					structuredContent.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				StructuredContentResource.
-					getStructuredContentMyRatingHttpResponse(
-						structuredContent.getId()));
+			StructuredContentResource.getStructuredContentMyRatingHttpResponse(
+				structuredContent.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				StructuredContentResource.
-					getStructuredContentMyRatingHttpResponse(0L));
+			StructuredContentResource.getStructuredContentMyRatingHttpResponse(
+				0L));
 	}
 
 	protected StructuredContent
 			testDeleteStructuredContentMyRating_addStructuredContent()
 		throws Exception {
 
-		return invokePostSiteStructuredContent(
+		return StructuredContentResource.postSiteStructuredContent(
 			testGroup.getGroupId(), randomStructuredContent());
 	}
 
@@ -3171,7 +3164,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private StructuredContentResource _structuredContentResource;
+	private
+		com.liferay.headless.delivery.resource.v1_0.StructuredContentResource
+			_structuredContentResource;
 
 	private URL _resourceURL;
 

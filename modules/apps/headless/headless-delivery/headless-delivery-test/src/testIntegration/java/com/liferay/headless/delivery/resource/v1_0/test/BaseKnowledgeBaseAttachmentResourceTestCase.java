@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.KnowledgeBaseAttachment;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.KnowledgeBaseAttachmentResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.KnowledgeBaseAttachmentSerDes;
-import com.liferay.headless.delivery.resource.v1_0.KnowledgeBaseAttachmentResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -375,23 +375,20 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				KnowledgeBaseAttachmentResource.
-					deleteKnowledgeBaseAttachmentHttpResponse(
-						knowledgeBaseAttachment.getId()));
+			KnowledgeBaseAttachmentResource.
+				deleteKnowledgeBaseAttachmentHttpResponse(
+					knowledgeBaseAttachment.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				KnowledgeBaseAttachmentResource.
-					getKnowledgeBaseAttachmentHttpResponse(
-						knowledgeBaseAttachment.getId()));
+			KnowledgeBaseAttachmentResource.
+				getKnowledgeBaseAttachmentHttpResponse(
+					knowledgeBaseAttachment.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				KnowledgeBaseAttachmentResource.
-					getKnowledgeBaseAttachmentHttpResponse(0L));
+			KnowledgeBaseAttachmentResource.
+				getKnowledgeBaseAttachmentHttpResponse(0L));
 	}
 
 	protected KnowledgeBaseAttachment
@@ -974,7 +971,9 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private KnowledgeBaseAttachmentResource _knowledgeBaseAttachmentResource;
+	private
+		com.liferay.headless.delivery.resource.v1_0.
+			KnowledgeBaseAttachmentResource _knowledgeBaseAttachmentResource;
 
 	private URL _resourceURL;
 

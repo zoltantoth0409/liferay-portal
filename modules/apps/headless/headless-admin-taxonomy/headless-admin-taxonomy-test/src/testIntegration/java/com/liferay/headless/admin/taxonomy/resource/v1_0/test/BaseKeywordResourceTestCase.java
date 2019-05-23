@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.taxonomy.client.dto.v1_0.Keyword;
 import com.liferay.headless.admin.taxonomy.client.http.HttpInvoker;
 import com.liferay.headless.admin.taxonomy.client.pagination.Page;
+import com.liferay.headless.admin.taxonomy.client.resource.v1_0.KeywordResource;
 import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.KeywordSerDes;
-import com.liferay.headless.admin.taxonomy.resource.v1_0.KeywordResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -163,23 +163,18 @@ public abstract class BaseKeywordResourceTestCase {
 		Keyword keyword = testDeleteKeyword_addKeyword();
 
 		assertHttpResponseStatusCode(
-			204,
-			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
-				KeywordResource.deleteKeywordHttpResponse(keyword.getId()));
+			204, KeywordResource.deleteKeywordHttpResponse(keyword.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
-				KeywordResource.getKeywordHttpResponse(keyword.getId()));
+			404, KeywordResource.getKeywordHttpResponse(keyword.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
-				KeywordResource.getKeywordHttpResponse(0L));
+			404, KeywordResource.getKeywordHttpResponse(0L));
 	}
 
 	protected Keyword testDeleteKeyword_addKeyword() throws Exception {
-		return invokePostSiteKeyword(testGroup.getGroupId(), randomKeyword());
+		return KeywordResource.postSiteKeyword(
+			testGroup.getGroupId(), randomKeyword());
 	}
 
 	protected void invokeDeleteKeyword(Long keywordId) throws Exception {
@@ -1190,7 +1185,8 @@ public abstract class BaseKeywordResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private KeywordResource _keywordResource;
+	private com.liferay.headless.admin.taxonomy.resource.v1_0.KeywordResource
+		_keywordResource;
 
 	private URL _resourceURL;
 

@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.user.client.dto.v1_0.Phone;
 import com.liferay.headless.admin.user.client.http.HttpInvoker;
 import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.resource.v1_0.PhoneResource;
 import com.liferay.headless.admin.user.client.serdes.v1_0.PhoneSerDes;
-import com.liferay.headless.admin.user.resource.v1_0.PhoneResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -767,7 +767,8 @@ public abstract class BasePhoneResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private PhoneResource _phoneResource;
+	private com.liferay.headless.admin.user.resource.v1_0.PhoneResource
+		_phoneResource;
 
 	private URL _resourceURL;
 

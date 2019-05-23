@@ -24,8 +24,8 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataLayout;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataLayoutPermission;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
+import com.liferay.data.engine.rest.client.resource.v1_0.DataLayoutResource;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataLayoutSerDes;
-import com.liferay.data.engine.rest.resource.v1_0.DataLayoutResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -475,20 +475,15 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataLayoutResource.deleteDataLayoutHttpResponse(
-					dataLayout.getId()));
+			DataLayoutResource.deleteDataLayoutHttpResponse(
+				dataLayout.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataLayoutResource.getDataLayoutHttpResponse(
-					dataLayout.getId()));
+			DataLayoutResource.getDataLayoutHttpResponse(dataLayout.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataLayoutResource.getDataLayoutHttpResponse(0L));
+			404, DataLayoutResource.getDataLayoutHttpResponse(0L));
 	}
 
 	protected DataLayout testDeleteDataLayout_addDataLayout() throws Exception {
@@ -1434,7 +1429,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private DataLayoutResource _dataLayoutResource;
+	private com.liferay.data.engine.rest.resource.v1_0.DataLayoutResource
+		_dataLayoutResource;
 
 	private URL _resourceURL;
 

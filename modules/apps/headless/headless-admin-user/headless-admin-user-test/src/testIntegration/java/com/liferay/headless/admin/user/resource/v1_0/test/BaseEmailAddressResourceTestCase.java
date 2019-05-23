@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.user.client.dto.v1_0.EmailAddress;
 import com.liferay.headless.admin.user.client.http.HttpInvoker;
 import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.resource.v1_0.EmailAddressResource;
 import com.liferay.headless.admin.user.client.serdes.v1_0.EmailAddressSerDes;
-import com.liferay.headless.admin.user.resource.v1_0.EmailAddressResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -788,7 +788,8 @@ public abstract class BaseEmailAddressResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private EmailAddressResource _emailAddressResource;
+	private com.liferay.headless.admin.user.resource.v1_0.EmailAddressResource
+		_emailAddressResource;
 
 	private URL _resourceURL;
 

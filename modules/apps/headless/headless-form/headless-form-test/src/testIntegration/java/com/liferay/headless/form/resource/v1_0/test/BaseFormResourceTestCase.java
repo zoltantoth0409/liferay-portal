@@ -25,8 +25,8 @@ import com.liferay.headless.form.client.dto.v1_0.FormContext;
 import com.liferay.headless.form.client.dto.v1_0.FormDocument;
 import com.liferay.headless.form.client.http.HttpInvoker;
 import com.liferay.headless.form.client.pagination.Page;
+import com.liferay.headless.form.client.resource.v1_0.FormResource;
 import com.liferay.headless.form.client.serdes.v1_0.FormSerDes;
-import com.liferay.headless.form.resource.v1_0.FormResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -1131,7 +1131,7 @@ public abstract class BaseFormResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private FormResource _formResource;
+	private com.liferay.headless.form.resource.v1_0.FormResource _formResource;
 
 	private URL _resourceURL;
 

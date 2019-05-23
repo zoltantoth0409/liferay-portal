@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.form.client.dto.v1_0.FormDocument;
 import com.liferay.headless.form.client.http.HttpInvoker;
 import com.liferay.headless.form.client.pagination.Page;
+import com.liferay.headless.form.client.resource.v1_0.FormDocumentResource;
 import com.liferay.headless.form.client.serdes.v1_0.FormDocumentSerDes;
-import com.liferay.headless.form.resource.v1_0.FormDocumentResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -154,18 +154,16 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.form.client.resource.v1_0.FormDocumentResource.
-				deleteFormDocumentHttpResponse(formDocument.getId()));
+			FormDocumentResource.deleteFormDocumentHttpResponse(
+				formDocument.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.form.client.resource.v1_0.FormDocumentResource.
-				getFormDocumentHttpResponse(formDocument.getId()));
+			FormDocumentResource.getFormDocumentHttpResponse(
+				formDocument.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.form.client.resource.v1_0.FormDocumentResource.
-				getFormDocumentHttpResponse(0L));
+			404, FormDocumentResource.getFormDocumentHttpResponse(0L));
 	}
 
 	protected FormDocument testDeleteFormDocument_addFormDocument()
@@ -764,7 +762,8 @@ public abstract class BaseFormDocumentResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private FormDocumentResource _formDocumentResource;
+	private com.liferay.headless.form.resource.v1_0.FormDocumentResource
+		_formDocumentResource;
 
 	private URL _resourceURL;
 
