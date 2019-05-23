@@ -17,6 +17,8 @@ package com.liferay.headless.admin.user.resource.v1_0.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.admin.user.client.dto.v1_0.Segment;
 import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.pagination.Pagination;
+import com.liferay.headless.admin.user.client.resource.v1_0.SegmentResource;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.ResourceConstants;
@@ -30,7 +32,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.segments.constants.SegmentsConstants;
 import com.liferay.segments.model.SegmentsEntry;
 import com.liferay.segments.test.util.SegmentsTestUtil;
@@ -73,7 +74,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		Segment segment2 = testGetSiteSegmentsPage_addSegment(
 			siteId, randomSegment());
 
-		Page<Segment> page = invokeGetSiteSegmentsPage(
+		Page<Segment> page = SegmentResource.getSiteSegmentsPage(
 			siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -113,7 +114,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 				ActionKeys.VIEW);
 		}
 
-		Page<Segment> page = invokeGetSiteSegmentsPage(
+		Page<Segment> page = SegmentResource.getSiteSegmentsPage(
 			siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(1, page.getTotalCount());
