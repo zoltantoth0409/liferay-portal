@@ -24,8 +24,8 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataRecordCollectionPermission;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
+import com.liferay.data.engine.rest.client.resource.v1_0.DataRecordCollectionResource;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataRecordCollectionSerDes;
-import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -445,23 +445,18 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataRecordCollectionResource.
-					deleteDataRecordCollectionHttpResponse(
-						dataRecordCollection.getId()));
+			DataRecordCollectionResource.deleteDataRecordCollectionHttpResponse(
+				dataRecordCollection.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataRecordCollectionResource.
-					getDataRecordCollectionHttpResponse(
-						dataRecordCollection.getId()));
+			DataRecordCollectionResource.getDataRecordCollectionHttpResponse(
+				dataRecordCollection.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataRecordCollectionResource.
-					getDataRecordCollectionHttpResponse(0L));
+			DataRecordCollectionResource.getDataRecordCollectionHttpResponse(
+				0L));
 	}
 
 	protected DataRecordCollection
@@ -1373,7 +1368,9 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private DataRecordCollectionResource _dataRecordCollectionResource;
+	private
+		com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource
+			_dataRecordCollectionResource;
 
 	private URL _resourceURL;
 

@@ -24,8 +24,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.Document;
 import com.liferay.headless.delivery.client.dto.v1_0.Rating;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.DocumentResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.DocumentSerDes;
-import com.liferay.headless.delivery.resource.v1_0.DocumentResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -600,19 +600,13 @@ public abstract class BaseDocumentResourceTestCase {
 		Document document = testDeleteDocument_addDocument();
 
 		assertHttpResponseStatusCode(
-			204,
-			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
-				deleteDocumentHttpResponse(document.getId()));
+			204, DocumentResource.deleteDocumentHttpResponse(document.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
-				getDocumentHttpResponse(document.getId()));
+			404, DocumentResource.getDocumentHttpResponse(document.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
-				getDocumentHttpResponse(0L));
+			404, DocumentResource.getDocumentHttpResponse(0L));
 	}
 
 	protected Document testDeleteDocument_addDocument() throws Exception {
@@ -870,18 +864,15 @@ public abstract class BaseDocumentResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
-				deleteDocumentMyRatingHttpResponse(document.getId()));
+			DocumentResource.deleteDocumentMyRatingHttpResponse(
+				document.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
-				getDocumentMyRatingHttpResponse(document.getId()));
+			DocumentResource.getDocumentMyRatingHttpResponse(document.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
-				getDocumentMyRatingHttpResponse(0L));
+			404, DocumentResource.getDocumentMyRatingHttpResponse(0L));
 	}
 
 	protected Document testDeleteDocumentMyRating_addDocument()
@@ -2288,7 +2279,8 @@ public abstract class BaseDocumentResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private DocumentResource _documentResource;
+	private com.liferay.headless.delivery.resource.v1_0.DocumentResource
+		_documentResource;
 
 	private URL _resourceURL;
 

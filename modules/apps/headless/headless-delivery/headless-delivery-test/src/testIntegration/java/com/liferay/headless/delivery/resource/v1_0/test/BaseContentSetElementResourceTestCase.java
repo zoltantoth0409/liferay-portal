@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.ContentSetElement;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.ContentSetElementResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.ContentSetElementSerDes;
-import com.liferay.headless.delivery.resource.v1_0.ContentSetElementResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -1098,7 +1098,9 @@ public abstract class BaseContentSetElementResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private ContentSetElementResource _contentSetElementResource;
+	private
+		com.liferay.headless.delivery.resource.v1_0.ContentSetElementResource
+			_contentSetElementResource;
 
 	private URL _resourceURL;
 

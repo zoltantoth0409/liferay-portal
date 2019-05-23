@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardAttachment;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.MessageBoardAttachmentResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.MessageBoardAttachmentSerDes;
-import com.liferay.headless.delivery.resource.v1_0.MessageBoardAttachmentResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -165,23 +165,20 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardAttachmentResource.
-					deleteMessageBoardAttachmentHttpResponse(
-						messageBoardAttachment.getId()));
+			MessageBoardAttachmentResource.
+				deleteMessageBoardAttachmentHttpResponse(
+					messageBoardAttachment.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardAttachmentResource.
-					getMessageBoardAttachmentHttpResponse(
-						messageBoardAttachment.getId()));
+			MessageBoardAttachmentResource.
+				getMessageBoardAttachmentHttpResponse(
+					messageBoardAttachment.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardAttachmentResource.
-					getMessageBoardAttachmentHttpResponse(0L));
+			MessageBoardAttachmentResource.
+				getMessageBoardAttachmentHttpResponse(0L));
 	}
 
 	protected MessageBoardAttachment
@@ -1177,7 +1174,9 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private MessageBoardAttachmentResource _messageBoardAttachmentResource;
+	private
+		com.liferay.headless.delivery.resource.v1_0.
+			MessageBoardAttachmentResource _messageBoardAttachmentResource;
 
 	private URL _resourceURL;
 

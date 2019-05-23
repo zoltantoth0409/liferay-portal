@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.DocumentFolder;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.DocumentFolderResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.DocumentFolderSerDes;
-import com.liferay.headless.delivery.resource.v1_0.DocumentFolderResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -165,26 +165,22 @@ public abstract class BaseDocumentFolderResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				DocumentFolderResource.deleteDocumentFolderHttpResponse(
-					documentFolder.getId()));
+			DocumentFolderResource.deleteDocumentFolderHttpResponse(
+				documentFolder.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				DocumentFolderResource.getDocumentFolderHttpResponse(
-					documentFolder.getId()));
+			DocumentFolderResource.getDocumentFolderHttpResponse(
+				documentFolder.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				DocumentFolderResource.getDocumentFolderHttpResponse(0L));
+			404, DocumentFolderResource.getDocumentFolderHttpResponse(0L));
 	}
 
 	protected DocumentFolder testDeleteDocumentFolder_addDocumentFolder()
 		throws Exception {
 
-		return invokePostSiteDocumentFolder(
+		return DocumentFolderResource.postSiteDocumentFolder(
 			testGroup.getGroupId(), randomDocumentFolder());
 	}
 
@@ -1919,7 +1915,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private DocumentFolderResource _documentFolderResource;
+	private com.liferay.headless.delivery.resource.v1_0.DocumentFolderResource
+		_documentFolderResource;
 
 	private URL _resourceURL;
 

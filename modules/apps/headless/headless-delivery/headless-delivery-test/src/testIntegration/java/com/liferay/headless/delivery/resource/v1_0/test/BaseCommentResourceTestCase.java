@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.Comment;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.CommentResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.CommentSerDes;
-import com.liferay.headless.delivery.resource.v1_0.CommentResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -574,19 +574,13 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment = testDeleteComment_addComment();
 
 		assertHttpResponseStatusCode(
-			204,
-			com.liferay.headless.delivery.client.resource.v1_0.CommentResource.
-				deleteCommentHttpResponse(comment.getId()));
+			204, CommentResource.deleteCommentHttpResponse(comment.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.delivery.client.resource.v1_0.CommentResource.
-				getCommentHttpResponse(comment.getId()));
+			404, CommentResource.getCommentHttpResponse(comment.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.delivery.client.resource.v1_0.CommentResource.
-				getCommentHttpResponse(0L));
+			404, CommentResource.getCommentHttpResponse(0L));
 	}
 
 	protected Comment testDeleteComment_addComment() throws Exception {
@@ -2423,7 +2417,8 @@ public abstract class BaseCommentResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private CommentResource _commentResource;
+	private com.liferay.headless.delivery.resource.v1_0.CommentResource
+		_commentResource;
 
 	private URL _resourceURL;
 

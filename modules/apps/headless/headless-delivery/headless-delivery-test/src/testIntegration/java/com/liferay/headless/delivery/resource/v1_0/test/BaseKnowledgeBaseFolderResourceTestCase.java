@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.KnowledgeBaseFolder;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.KnowledgeBaseFolderResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.KnowledgeBaseFolderSerDes;
-import com.liferay.headless.delivery.resource.v1_0.KnowledgeBaseFolderResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -164,29 +164,24 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				KnowledgeBaseFolderResource.
-					deleteKnowledgeBaseFolderHttpResponse(
-						knowledgeBaseFolder.getId()));
+			KnowledgeBaseFolderResource.deleteKnowledgeBaseFolderHttpResponse(
+				knowledgeBaseFolder.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				KnowledgeBaseFolderResource.getKnowledgeBaseFolderHttpResponse(
-					knowledgeBaseFolder.getId()));
+			KnowledgeBaseFolderResource.getKnowledgeBaseFolderHttpResponse(
+				knowledgeBaseFolder.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				KnowledgeBaseFolderResource.getKnowledgeBaseFolderHttpResponse(
-					0L));
+			KnowledgeBaseFolderResource.getKnowledgeBaseFolderHttpResponse(0L));
 	}
 
 	protected KnowledgeBaseFolder
 			testDeleteKnowledgeBaseFolder_addKnowledgeBaseFolder()
 		throws Exception {
 
-		return invokePostSiteKnowledgeBaseFolder(
+		return KnowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
 			testGroup.getGroupId(), randomKnowledgeBaseFolder());
 	}
 
@@ -1667,7 +1662,9 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private KnowledgeBaseFolderResource _knowledgeBaseFolderResource;
+	private
+		com.liferay.headless.delivery.resource.v1_0.KnowledgeBaseFolderResource
+			_knowledgeBaseFolderResource;
 
 	private URL _resourceURL;
 

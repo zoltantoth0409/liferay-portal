@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.bulk.rest.client.dto.v1_0.Status;
 import com.liferay.bulk.rest.client.http.HttpInvoker;
 import com.liferay.bulk.rest.client.pagination.Page;
+import com.liferay.bulk.rest.client.resource.v1_0.StatusResource;
 import com.liferay.bulk.rest.client.serdes.v1_0.StatusSerDes;
-import com.liferay.bulk.rest.resource.v1_0.StatusResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -469,7 +469,7 @@ public abstract class BaseStatusResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private StatusResource _statusResource;
+	private com.liferay.bulk.rest.resource.v1_0.StatusResource _statusResource;
 
 	private URL _resourceURL;
 

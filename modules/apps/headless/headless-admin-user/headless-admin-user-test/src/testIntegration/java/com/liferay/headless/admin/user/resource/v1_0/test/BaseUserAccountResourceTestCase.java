@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.user.client.dto.v1_0.UserAccount;
 import com.liferay.headless.admin.user.client.http.HttpInvoker;
 import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.resource.v1_0.UserAccountResource;
 import com.liferay.headless.admin.user.client.serdes.v1_0.UserAccountSerDes;
-import com.liferay.headless.admin.user.resource.v1_0.UserAccountResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -2128,7 +2128,8 @@ public abstract class BaseUserAccountResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private UserAccountResource _userAccountResource;
+	private com.liferay.headless.admin.user.resource.v1_0.UserAccountResource
+		_userAccountResource;
 
 	private URL _resourceURL;
 

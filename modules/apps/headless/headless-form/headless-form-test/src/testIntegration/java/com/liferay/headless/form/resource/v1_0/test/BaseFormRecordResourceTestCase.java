@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.form.client.dto.v1_0.FormRecord;
 import com.liferay.headless.form.client.http.HttpInvoker;
 import com.liferay.headless.form.client.pagination.Page;
+import com.liferay.headless.form.client.resource.v1_0.FormRecordResource;
 import com.liferay.headless.form.client.serdes.v1_0.FormRecordSerDes;
-import com.liferay.headless.form.resource.v1_0.FormRecordResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -1126,7 +1126,8 @@ public abstract class BaseFormRecordResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private FormRecordResource _formRecordResource;
+	private com.liferay.headless.form.resource.v1_0.FormRecordResource
+		_formRecordResource;
 
 	private URL _resourceURL;
 

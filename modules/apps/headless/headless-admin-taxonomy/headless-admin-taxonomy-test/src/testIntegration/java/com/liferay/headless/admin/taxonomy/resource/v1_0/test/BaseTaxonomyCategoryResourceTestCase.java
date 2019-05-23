@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.taxonomy.client.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.admin.taxonomy.client.http.HttpInvoker;
 import com.liferay.headless.admin.taxonomy.client.pagination.Page;
+import com.liferay.headless.admin.taxonomy.client.resource.v1_0.TaxonomyCategoryResource;
 import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.TaxonomyCategorySerDes;
-import com.liferay.headless.admin.taxonomy.resource.v1_0.TaxonomyCategoryResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -636,20 +636,16 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
-				TaxonomyCategoryResource.deleteTaxonomyCategoryHttpResponse(
-					taxonomyCategory.getId()));
+			TaxonomyCategoryResource.deleteTaxonomyCategoryHttpResponse(
+				taxonomyCategory.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
-				TaxonomyCategoryResource.getTaxonomyCategoryHttpResponse(
-					taxonomyCategory.getId()));
+			TaxonomyCategoryResource.getTaxonomyCategoryHttpResponse(
+				taxonomyCategory.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
-				TaxonomyCategoryResource.getTaxonomyCategoryHttpResponse(0L));
+			404, TaxonomyCategoryResource.getTaxonomyCategoryHttpResponse(0L));
 	}
 
 	protected TaxonomyCategory testDeleteTaxonomyCategory_addTaxonomyCategory()
@@ -2030,7 +2026,9 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private TaxonomyCategoryResource _taxonomyCategoryResource;
+	private
+		com.liferay.headless.admin.taxonomy.resource.v1_0.
+			TaxonomyCategoryResource _taxonomyCategoryResource;
 
 	private URL _resourceURL;
 

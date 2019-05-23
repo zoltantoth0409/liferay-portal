@@ -24,8 +24,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardThread;
 import com.liferay.headless.delivery.client.dto.v1_0.Rating;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.MessageBoardThreadResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.MessageBoardThreadSerDes;
-import com.liferay.headless.delivery.resource.v1_0.MessageBoardThreadResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -643,28 +643,24 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardThreadResource.deleteMessageBoardThreadHttpResponse(
-					messageBoardThread.getId()));
+			MessageBoardThreadResource.deleteMessageBoardThreadHttpResponse(
+				messageBoardThread.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardThreadResource.getMessageBoardThreadHttpResponse(
-					messageBoardThread.getId()));
+			MessageBoardThreadResource.getMessageBoardThreadHttpResponse(
+				messageBoardThread.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardThreadResource.getMessageBoardThreadHttpResponse(
-					0L));
+			MessageBoardThreadResource.getMessageBoardThreadHttpResponse(0L));
 	}
 
 	protected MessageBoardThread
 			testDeleteMessageBoardThread_addMessageBoardThread()
 		throws Exception {
 
-		return invokePostSiteMessageBoardThread(
+		return MessageBoardThreadResource.postSiteMessageBoardThread(
 			testGroup.getGroupId(), randomMessageBoardThread());
 	}
 
@@ -977,30 +973,27 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardThreadResource.
-					deleteMessageBoardThreadMyRatingHttpResponse(
-						messageBoardThread.getId()));
+			MessageBoardThreadResource.
+				deleteMessageBoardThreadMyRatingHttpResponse(
+					messageBoardThread.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardThreadResource.
-					getMessageBoardThreadMyRatingHttpResponse(
-						messageBoardThread.getId()));
+			MessageBoardThreadResource.
+				getMessageBoardThreadMyRatingHttpResponse(
+					messageBoardThread.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardThreadResource.
-					getMessageBoardThreadMyRatingHttpResponse(0L));
+			MessageBoardThreadResource.
+				getMessageBoardThreadMyRatingHttpResponse(0L));
 	}
 
 	protected MessageBoardThread
 			testDeleteMessageBoardThreadMyRating_addMessageBoardThread()
 		throws Exception {
 
-		return invokePostSiteMessageBoardThread(
+		return MessageBoardThreadResource.postSiteMessageBoardThread(
 			testGroup.getGroupId(), randomMessageBoardThread());
 	}
 
@@ -2433,7 +2426,9 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private MessageBoardThreadResource _messageBoardThreadResource;
+	private
+		com.liferay.headless.delivery.resource.v1_0.MessageBoardThreadResource
+			_messageBoardThreadResource;
 
 	private URL _resourceURL;
 

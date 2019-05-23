@@ -24,8 +24,8 @@ import com.liferay.bulk.rest.client.dto.v1_0.DocumentBulkSelection;
 import com.liferay.bulk.rest.client.dto.v1_0.Selection;
 import com.liferay.bulk.rest.client.http.HttpInvoker;
 import com.liferay.bulk.rest.client.pagination.Page;
+import com.liferay.bulk.rest.client.resource.v1_0.SelectionResource;
 import com.liferay.bulk.rest.client.serdes.v1_0.SelectionSerDes;
-import com.liferay.bulk.rest.resource.v1_0.SelectionResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -503,7 +503,8 @@ public abstract class BaseSelectionResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private SelectionResource _selectionResource;
+	private com.liferay.bulk.rest.resource.v1_0.SelectionResource
+		_selectionResource;
 
 	private URL _resourceURL;
 

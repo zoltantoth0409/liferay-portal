@@ -24,8 +24,8 @@ import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardMessage;
 import com.liferay.headless.delivery.client.dto.v1_0.Rating;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.MessageBoardMessageResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.MessageBoardMessageSerDes;
-import com.liferay.headless.delivery.resource.v1_0.MessageBoardMessageResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -167,22 +167,17 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardMessageResource.
-					deleteMessageBoardMessageHttpResponse(
-						messageBoardMessage.getId()));
+			MessageBoardMessageResource.deleteMessageBoardMessageHttpResponse(
+				messageBoardMessage.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardMessageResource.getMessageBoardMessageHttpResponse(
-					messageBoardMessage.getId()));
+			MessageBoardMessageResource.getMessageBoardMessageHttpResponse(
+				messageBoardMessage.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardMessageResource.getMessageBoardMessageHttpResponse(
-					0L));
+			MessageBoardMessageResource.getMessageBoardMessageHttpResponse(0L));
 	}
 
 	protected MessageBoardMessage
@@ -504,23 +499,20 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardMessageResource.
-					deleteMessageBoardMessageMyRatingHttpResponse(
-						messageBoardMessage.getId()));
+			MessageBoardMessageResource.
+				deleteMessageBoardMessageMyRatingHttpResponse(
+					messageBoardMessage.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardMessageResource.
-					getMessageBoardMessageMyRatingHttpResponse(
-						messageBoardMessage.getId()));
+			MessageBoardMessageResource.
+				getMessageBoardMessageMyRatingHttpResponse(
+					messageBoardMessage.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardMessageResource.
-					getMessageBoardMessageMyRatingHttpResponse(0L));
+			MessageBoardMessageResource.
+				getMessageBoardMessageMyRatingHttpResponse(0L));
 	}
 
 	protected MessageBoardMessage
@@ -2464,7 +2456,9 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private MessageBoardMessageResource _messageBoardMessageResource;
+	private
+		com.liferay.headless.delivery.resource.v1_0.MessageBoardMessageResource
+			_messageBoardMessageResource;
 
 	private URL _resourceURL;
 

@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardSection;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.MessageBoardSectionResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.MessageBoardSectionSerDes;
-import com.liferay.headless.delivery.resource.v1_0.MessageBoardSectionResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -166,29 +166,24 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardSectionResource.
-					deleteMessageBoardSectionHttpResponse(
-						messageBoardSection.getId()));
+			MessageBoardSectionResource.deleteMessageBoardSectionHttpResponse(
+				messageBoardSection.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardSectionResource.getMessageBoardSectionHttpResponse(
-					messageBoardSection.getId()));
+			MessageBoardSectionResource.getMessageBoardSectionHttpResponse(
+				messageBoardSection.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				MessageBoardSectionResource.getMessageBoardSectionHttpResponse(
-					0L));
+			MessageBoardSectionResource.getMessageBoardSectionHttpResponse(0L));
 	}
 
 	protected MessageBoardSection
 			testDeleteMessageBoardSection_addMessageBoardSection()
 		throws Exception {
 
-		return invokePostSiteMessageBoardSection(
+		return MessageBoardSectionResource.postSiteMessageBoardSection(
 			testGroup.getGroupId(), randomMessageBoardSection());
 	}
 
@@ -2016,7 +2011,9 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private MessageBoardSectionResource _messageBoardSectionResource;
+	private
+		com.liferay.headless.delivery.resource.v1_0.MessageBoardSectionResource
+			_messageBoardSectionResource;
 
 	private URL _resourceURL;
 

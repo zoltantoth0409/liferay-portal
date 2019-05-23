@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.resource.v1_0.BlogPostingImageResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.BlogPostingImageSerDes;
-import com.liferay.headless.delivery.resource.v1_0.BlogPostingImageResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -166,20 +166,16 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				BlogPostingImageResource.deleteBlogPostingImageHttpResponse(
-					blogPostingImage.getId()));
+			BlogPostingImageResource.deleteBlogPostingImageHttpResponse(
+				blogPostingImage.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				BlogPostingImageResource.getBlogPostingImageHttpResponse(
-					blogPostingImage.getId()));
+			BlogPostingImageResource.getBlogPostingImageHttpResponse(
+				blogPostingImage.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.headless.delivery.client.resource.v1_0.
-				BlogPostingImageResource.getBlogPostingImageHttpResponse(0L));
+			404, BlogPostingImageResource.getBlogPostingImageHttpResponse(0L));
 	}
 
 	protected BlogPostingImage testDeleteBlogPostingImage_addBlogPostingImage()
@@ -1196,7 +1192,8 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private BlogPostingImageResource _blogPostingImageResource;
+	private com.liferay.headless.delivery.resource.v1_0.BlogPostingImageResource
+		_blogPostingImageResource;
 
 	private URL _resourceURL;
 

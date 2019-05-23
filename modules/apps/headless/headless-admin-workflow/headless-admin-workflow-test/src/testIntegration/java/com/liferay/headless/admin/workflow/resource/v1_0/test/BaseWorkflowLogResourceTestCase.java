@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowLog;
 import com.liferay.headless.admin.workflow.client.http.HttpInvoker;
 import com.liferay.headless.admin.workflow.client.pagination.Page;
+import com.liferay.headless.admin.workflow.client.resource.v1_0.WorkflowLogResource;
 import com.liferay.headless.admin.workflow.client.serdes.v1_0.WorkflowLogSerDes;
-import com.liferay.headless.admin.workflow.resource.v1_0.WorkflowLogResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -911,7 +911,9 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private WorkflowLogResource _workflowLogResource;
+	private
+		com.liferay.headless.admin.workflow.resource.v1_0.WorkflowLogResource
+			_workflowLogResource;
 
 	private URL _resourceURL;
 

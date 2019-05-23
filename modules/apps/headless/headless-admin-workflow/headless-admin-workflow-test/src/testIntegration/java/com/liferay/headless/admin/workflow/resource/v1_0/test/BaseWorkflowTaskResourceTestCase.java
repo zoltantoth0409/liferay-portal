@@ -26,8 +26,8 @@ import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowTaskAssignToM
 import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowTaskAssignToUser;
 import com.liferay.headless.admin.workflow.client.http.HttpInvoker;
 import com.liferay.headless.admin.workflow.client.pagination.Page;
+import com.liferay.headless.admin.workflow.client.resource.v1_0.WorkflowTaskResource;
 import com.liferay.headless.admin.workflow.client.serdes.v1_0.WorkflowTaskSerDes;
-import com.liferay.headless.admin.workflow.resource.v1_0.WorkflowTaskResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -1409,7 +1409,9 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private WorkflowTaskResource _workflowTaskResource;
+	private
+		com.liferay.headless.admin.workflow.resource.v1_0.WorkflowTaskResource
+			_workflowTaskResource;
 
 	private URL _resourceURL;
 

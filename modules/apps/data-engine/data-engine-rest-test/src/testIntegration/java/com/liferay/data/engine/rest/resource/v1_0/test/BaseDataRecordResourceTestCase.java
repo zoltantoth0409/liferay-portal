@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataRecord;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
+import com.liferay.data.engine.rest.client.resource.v1_0.DataRecordResource;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataRecordSerDes;
-import com.liferay.data.engine.rest.resource.v1_0.DataRecordResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -461,20 +461,15 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataRecordResource.deleteDataRecordHttpResponse(
-					dataRecord.getId()));
+			DataRecordResource.deleteDataRecordHttpResponse(
+				dataRecord.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataRecordResource.getDataRecordHttpResponse(
-					dataRecord.getId()));
+			DataRecordResource.getDataRecordHttpResponse(dataRecord.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataRecordResource.getDataRecordHttpResponse(0L));
+			404, DataRecordResource.getDataRecordHttpResponse(0L));
 	}
 
 	protected DataRecord testDeleteDataRecord_addDataRecord() throws Exception {
@@ -990,7 +985,8 @@ public abstract class BaseDataRecordResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private DataRecordResource _dataRecordResource;
+	private com.liferay.data.engine.rest.resource.v1_0.DataRecordResource
+		_dataRecordResource;
 
 	private URL _resourceURL;
 

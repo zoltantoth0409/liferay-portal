@@ -24,8 +24,8 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinitionPermission;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
+import com.liferay.data.engine.rest.client.resource.v1_0.DataDefinitionResource;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataDefinitionSerDes;
-import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -162,26 +162,22 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataDefinitionResource.deleteDataDefinitionHttpResponse(
-					dataDefinition.getId()));
+			DataDefinitionResource.deleteDataDefinitionHttpResponse(
+				dataDefinition.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataDefinitionResource.getDataDefinitionHttpResponse(
-					dataDefinition.getId()));
+			DataDefinitionResource.getDataDefinitionHttpResponse(
+				dataDefinition.getId()));
 
 		assertHttpResponseStatusCode(
-			404,
-			com.liferay.data.engine.rest.client.resource.v1_0.
-				DataDefinitionResource.getDataDefinitionHttpResponse(0L));
+			404, DataDefinitionResource.getDataDefinitionHttpResponse(0L));
 	}
 
 	protected DataDefinition testDeleteDataDefinition_addDataDefinition()
 		throws Exception {
 
-		return invokePostSiteDataDefinition(
+		return DataDefinitionResource.postSiteDataDefinition(
 			testGroup.getGroupId(), randomDataDefinition());
 	}
 
@@ -1311,7 +1307,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private DataDefinitionResource _dataDefinitionResource;
+	private com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource
+		_dataDefinitionResource;
 
 	private URL _resourceURL;
 
