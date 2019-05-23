@@ -154,12 +154,12 @@ public class MessageBoardAttachmentResource {
 			postMessageBoardMessageMessageBoardAttachment(
 				Long messageBoardMessageId,
 				MessageBoardAttachment messageBoardAttachment,
-				Map<String, File> files)
+				Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker.HttpResponse httpResponse =
 			postMessageBoardMessageMessageBoardAttachmentHttpResponse(
-				messageBoardMessageId, messageBoardAttachment, files);
+				messageBoardMessageId, messageBoardAttachment, multipartFiles);
 
 		String content = httpResponse.getContent();
 
@@ -185,7 +185,7 @@ public class MessageBoardAttachmentResource {
 			postMessageBoardMessageMessageBoardAttachmentHttpResponse(
 				Long messageBoardMessageId,
 				MessageBoardAttachment messageBoardAttachment,
-				Map<String, File> files)
+				Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -196,7 +196,7 @@ public class MessageBoardAttachmentResource {
 			"messageBoardAttachment",
 			MessageBoardAttachmentSerDes.toJSON(messageBoardAttachment));
 
-		for (Map.Entry<String, File> entry : files.entrySet()) {
+		for (Map.Entry<String, File> entry : multipartFiles.entrySet()) {
 			httpInvoker.part(entry.getKey(), entry.getValue());
 		}
 
@@ -253,12 +253,12 @@ public class MessageBoardAttachmentResource {
 			postMessageBoardThreadMessageBoardAttachment(
 				Long messageBoardThreadId,
 				MessageBoardAttachment messageBoardAttachment,
-				Map<String, File> files)
+				Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker.HttpResponse httpResponse =
 			postMessageBoardThreadMessageBoardAttachmentHttpResponse(
-				messageBoardThreadId, messageBoardAttachment, files);
+				messageBoardThreadId, messageBoardAttachment, multipartFiles);
 
 		String content = httpResponse.getContent();
 
@@ -284,7 +284,7 @@ public class MessageBoardAttachmentResource {
 			postMessageBoardThreadMessageBoardAttachmentHttpResponse(
 				Long messageBoardThreadId,
 				MessageBoardAttachment messageBoardAttachment,
-				Map<String, File> files)
+				Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -295,7 +295,7 @@ public class MessageBoardAttachmentResource {
 			"messageBoardAttachment",
 			MessageBoardAttachmentSerDes.toJSON(messageBoardAttachment));
 
-		for (Map.Entry<String, File> entry : files.entrySet()) {
+		for (Map.Entry<String, File> entry : multipartFiles.entrySet()) {
 			httpInvoker.part(entry.getKey(), entry.getValue());
 		}
 

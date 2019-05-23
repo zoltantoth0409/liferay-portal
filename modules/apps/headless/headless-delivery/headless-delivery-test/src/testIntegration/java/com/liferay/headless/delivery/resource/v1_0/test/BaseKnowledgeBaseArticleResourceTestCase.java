@@ -1200,9 +1200,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				KnowledgeBaseArticle knowledgeBaseArticle)
 		throws Exception {
 
-		return invokePostKnowledgeBaseArticleKnowledgeBaseArticle(
-			testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_getParentKnowledgeBaseArticleId(),
-			knowledgeBaseArticle);
+		return KnowledgeBaseArticleResource.
+			postKnowledgeBaseArticleKnowledgeBaseArticle(
+				testGetKnowledgeBaseArticleKnowledgeBaseArticlesPage_getParentKnowledgeBaseArticleId(),
+				knowledgeBaseArticle);
 	}
 
 	protected KnowledgeBaseArticle
@@ -1711,9 +1712,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				KnowledgeBaseArticle knowledgeBaseArticle)
 		throws Exception {
 
-		return invokePostKnowledgeBaseFolderKnowledgeBaseArticle(
-			testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_getKnowledgeBaseFolderId(),
-			knowledgeBaseArticle);
+		return KnowledgeBaseArticleResource.
+			postKnowledgeBaseFolderKnowledgeBaseArticle(
+				testGetKnowledgeBaseFolderKnowledgeBaseArticlesPage_getKnowledgeBaseFolderId(),
+				knowledgeBaseArticle);
 	}
 
 	protected KnowledgeBaseArticle
@@ -2184,7 +2186,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				KnowledgeBaseArticle knowledgeBaseArticle)
 		throws Exception {
 
-		return invokePostSiteKnowledgeBaseArticle(
+		return KnowledgeBaseArticleResource.postSiteKnowledgeBaseArticle(
 			testGetSiteKnowledgeBaseArticlesPage_getSiteId(),
 			knowledgeBaseArticle);
 	}

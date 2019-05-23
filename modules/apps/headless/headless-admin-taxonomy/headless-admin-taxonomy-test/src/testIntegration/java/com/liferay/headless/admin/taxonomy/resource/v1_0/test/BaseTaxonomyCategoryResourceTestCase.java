@@ -573,7 +573,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				TaxonomyCategory taxonomyCategory)
 		throws Exception {
 
-		return invokePostTaxonomyCategoryTaxonomyCategory(
+		return TaxonomyCategoryResource.postTaxonomyCategoryTaxonomyCategory(
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_getParentTaxonomyCategoryId(),
 			taxonomyCategory);
 	}
@@ -1384,7 +1384,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				TaxonomyCategory taxonomyCategory)
 		throws Exception {
 
-		return invokePostTaxonomyVocabularyTaxonomyCategory(
+		return TaxonomyCategoryResource.postTaxonomyVocabularyTaxonomyCategory(
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_getTaxonomyVocabularyId(),
 			taxonomyCategory);
 	}

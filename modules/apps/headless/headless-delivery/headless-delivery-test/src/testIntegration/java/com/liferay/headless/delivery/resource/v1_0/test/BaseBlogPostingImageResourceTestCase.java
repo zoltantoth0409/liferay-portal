@@ -47,6 +47,8 @@ import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
+import java.io.File;
+
 import java.lang.reflect.InvocationTargetException;
 
 import java.net.URL;
@@ -181,8 +183,9 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 	protected BlogPostingImage testDeleteBlogPostingImage_addBlogPostingImage()
 		throws Exception {
 
-		return invokePostSiteBlogPostingImage(
-			testGroup.getGroupId(), toMultipartBody(randomBlogPostingImage()));
+		return BlogPostingImageResource.postSiteBlogPostingImage(
+			testGroup.getGroupId(), randomBlogPostingImage(),
+			getMultipartFiles());
 	}
 
 	protected void invokeDeleteBlogPostingImage(Long blogPostingImageId)
@@ -244,8 +247,9 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 	protected BlogPostingImage testGetBlogPostingImage_addBlogPostingImage()
 		throws Exception {
 
-		return invokePostSiteBlogPostingImage(
-			testGroup.getGroupId(), toMultipartBody(randomBlogPostingImage()));
+		return BlogPostingImageResource.postSiteBlogPostingImage(
+			testGroup.getGroupId(), randomBlogPostingImage(),
+			getMultipartFiles());
 	}
 
 	protected BlogPostingImage invokeGetBlogPostingImage(
@@ -568,8 +572,8 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 				Long siteId, BlogPostingImage blogPostingImage)
 		throws Exception {
 
-		return invokePostSiteBlogPostingImage(
-			siteId, toMultipartBody(blogPostingImage));
+		return BlogPostingImageResource.postSiteBlogPostingImage(
+			siteId, blogPostingImage, getMultipartFiles());
 	}
 
 	protected Long testGetSiteBlogPostingImagesPage_getSiteId()
@@ -673,9 +677,9 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			BlogPostingImage blogPostingImage)
 		throws Exception {
 
-		return invokePostSiteBlogPostingImage(
-			testGetSiteBlogPostingImagesPage_getSiteId(),
-			toMultipartBody(blogPostingImage));
+		return BlogPostingImageResource.postSiteBlogPostingImage(
+			testGetSiteBlogPostingImagesPage_getSiteId(), blogPostingImage,
+			getMultipartFiles());
 	}
 
 	protected BlogPostingImage invokePostSiteBlogPostingImage(
@@ -1082,6 +1086,11 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
+	protected Map<String, File> getMultipartFiles() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected BlogPostingImage randomBlogPostingImage() throws Exception {
 		return new BlogPostingImage() {
 			{
@@ -1106,11 +1115,6 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 	protected BlogPostingImage randomPatchBlogPostingImage() throws Exception {
 		return randomBlogPostingImage();
-	}
-
-	protected MultipartBody toMultipartBody(BlogPostingImage blogPostingImage) {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
 	}
 
 	protected Group irrelevantGroup;

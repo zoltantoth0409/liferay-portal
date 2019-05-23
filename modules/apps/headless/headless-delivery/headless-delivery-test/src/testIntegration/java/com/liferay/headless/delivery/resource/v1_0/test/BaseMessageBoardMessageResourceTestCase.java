@@ -1185,9 +1185,10 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 				MessageBoardMessage messageBoardMessage)
 		throws Exception {
 
-		return invokePostMessageBoardMessageMessageBoardMessage(
-			testGetMessageBoardMessageMessageBoardMessagesPage_getParentMessageBoardMessageId(),
-			messageBoardMessage);
+		return MessageBoardMessageResource.
+			postMessageBoardMessageMessageBoardMessage(
+				testGetMessageBoardMessageMessageBoardMessagesPage_getParentMessageBoardMessageId(),
+				messageBoardMessage);
 	}
 
 	protected MessageBoardMessage
@@ -1679,9 +1680,10 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 				MessageBoardMessage messageBoardMessage)
 		throws Exception {
 
-		return invokePostMessageBoardThreadMessageBoardMessage(
-			testGetMessageBoardThreadMessageBoardMessagesPage_getMessageBoardThreadId(),
-			messageBoardMessage);
+		return MessageBoardMessageResource.
+			postMessageBoardThreadMessageBoardMessage(
+				testGetMessageBoardThreadMessageBoardMessagesPage_getMessageBoardThreadId(),
+				messageBoardMessage);
 	}
 
 	protected MessageBoardMessage

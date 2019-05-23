@@ -127,11 +127,11 @@ public class FormResource {
 
 	public static com.liferay.headless.form.client.dto.v1_0.FormDocument
 			postFormFormDocument(
-				Long formId, Form form, Map<String, File> files)
+				Long formId, Form form, Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker.HttpResponse httpResponse =
-			postFormFormDocumentHttpResponse(formId, form, files);
+			postFormFormDocumentHttpResponse(formId, form, multipartFiles);
 
 		String content = httpResponse.getContent();
 
@@ -155,7 +155,7 @@ public class FormResource {
 	}
 
 	public static HttpInvoker.HttpResponse postFormFormDocumentHttpResponse(
-			Long formId, Form form, Map<String, File> files)
+			Long formId, Form form, Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -164,7 +164,7 @@ public class FormResource {
 
 		httpInvoker.part("form", FormSerDes.toJSON(form));
 
-		for (Map.Entry<String, File> entry : files.entrySet()) {
+		for (Map.Entry<String, File> entry : multipartFiles.entrySet()) {
 			httpInvoker.part(entry.getKey(), entry.getValue());
 		}
 

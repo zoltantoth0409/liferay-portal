@@ -341,7 +341,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			DataLayout dataLayout)
 		throws Exception {
 
-		return invokePostDataDefinitionDataLayout(
+		return DataLayoutResource.postDataDefinitionDataLayout(
 			testGetDataDefinitionDataLayoutsPage_getDataDefinitionId(),
 			dataLayout);
 	}

@@ -375,9 +375,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				DataRecordCollection dataRecordCollection)
 		throws Exception {
 
-		return invokePostDataDefinitionDataRecordCollection(
-			testGetDataDefinitionDataRecordCollectionsPage_getDataDefinitionId(),
-			dataRecordCollection);
+		return DataRecordCollectionResource.
+			postDataDefinitionDataRecordCollection(
+				testGetDataDefinitionDataRecordCollectionsPage_getDataDefinitionId(),
+				dataRecordCollection);
 	}
 
 	protected DataRecordCollection invokePostDataDefinitionDataRecordCollection(

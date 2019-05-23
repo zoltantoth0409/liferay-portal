@@ -698,7 +698,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			DataDefinition dataDefinition)
 		throws Exception {
 
-		return invokePostSiteDataDefinition(
+		return DataDefinitionResource.postSiteDataDefinition(
 			testGetSiteDataDefinitionsPage_getSiteId(), dataDefinition);
 	}
 

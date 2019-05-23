@@ -671,7 +671,7 @@ public abstract class BaseKeywordResourceTestCase {
 	protected Keyword testPostSiteKeyword_addKeyword(Keyword keyword)
 		throws Exception {
 
-		return invokePostSiteKeyword(
+		return KeywordResource.postSiteKeyword(
 			testGetSiteKeywordsPage_getSiteId(), keyword);
 	}
 

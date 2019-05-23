@@ -703,9 +703,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				KnowledgeBaseFolder knowledgeBaseFolder)
 		throws Exception {
 
-		return invokePostKnowledgeBaseFolderKnowledgeBaseFolder(
-			testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_getParentKnowledgeBaseFolderId(),
-			knowledgeBaseFolder);
+		return KnowledgeBaseFolderResource.
+			postKnowledgeBaseFolderKnowledgeBaseFolder(
+				testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_getParentKnowledgeBaseFolderId(),
+				knowledgeBaseFolder);
 	}
 
 	protected KnowledgeBaseFolder
@@ -963,7 +964,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				KnowledgeBaseFolder knowledgeBaseFolder)
 		throws Exception {
 
-		return invokePostSiteKnowledgeBaseFolder(
+		return KnowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
 			testGetSiteKnowledgeBaseFoldersPage_getSiteId(),
 			knowledgeBaseFolder);
 	}

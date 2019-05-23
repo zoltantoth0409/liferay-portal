@@ -344,7 +344,7 @@ public abstract class BaseDataRecordResourceTestCase {
 			DataRecord dataRecord)
 		throws Exception {
 
-		return invokePostDataRecordCollectionDataRecord(
+		return DataRecordResource.postDataRecordCollectionDataRecord(
 			testGetDataRecordCollectionDataRecordsPage_getDataRecordCollectionId(),
 			dataRecord);
 	}

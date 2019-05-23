@@ -508,7 +508,7 @@ public abstract class BaseCommentResourceTestCase {
 	protected Comment testPostBlogPostingComment_addComment(Comment comment)
 		throws Exception {
 
-		return invokePostBlogPostingComment(
+		return CommentResource.postBlogPostingComment(
 			testGetBlogPostingCommentsPage_getBlogPostingId(), comment);
 	}
 
@@ -1100,7 +1100,7 @@ public abstract class BaseCommentResourceTestCase {
 	protected Comment testPostCommentComment_addComment(Comment comment)
 		throws Exception {
 
-		return invokePostCommentComment(
+		return CommentResource.postCommentComment(
 			testGetCommentCommentsPage_getParentCommentId(), comment);
 	}
 
@@ -1497,7 +1497,7 @@ public abstract class BaseCommentResourceTestCase {
 	protected Comment testPostDocumentComment_addComment(Comment comment)
 		throws Exception {
 
-		return invokePostDocumentComment(
+		return CommentResource.postDocumentComment(
 			testGetDocumentCommentsPage_getDocumentId(), comment);
 	}
 
@@ -1927,7 +1927,7 @@ public abstract class BaseCommentResourceTestCase {
 			Comment comment)
 		throws Exception {
 
-		return invokePostStructuredContentComment(
+		return CommentResource.postStructuredContentComment(
 			testGetStructuredContentCommentsPage_getStructuredContentId(),
 			comment);
 	}

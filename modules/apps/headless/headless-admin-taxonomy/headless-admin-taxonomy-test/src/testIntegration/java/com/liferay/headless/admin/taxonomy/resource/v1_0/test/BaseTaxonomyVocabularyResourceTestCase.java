@@ -543,7 +543,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 				TaxonomyVocabulary taxonomyVocabulary)
 		throws Exception {
 
-		return invokePostSiteTaxonomyVocabulary(
+		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			testGetSiteTaxonomyVocabulariesPage_getSiteId(),
 			taxonomyVocabulary);
 	}
