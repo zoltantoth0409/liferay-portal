@@ -2,8 +2,8 @@ package ${configYAML.apiPackagePath}.resource.${escapedVersion}.test;
 
 <#list allSchemas?keys as schemaName>
 	import ${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName};
+	import ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource;
 	import ${configYAML.apiPackagePath}.client.serdes.${escapedVersion}.${schemaName}SerDes;
-	import ${configYAML.apiPackagePath}.resource.${escapedVersion}.${schemaName}Resource;
 </#list>
 
 import ${configYAML.apiPackagePath}.client.http.HttpInvoker;
@@ -173,11 +173,11 @@ public abstract class Base${schemaName}ResourceTestCase {
 				<#if properties?keys?seq_contains("id")>
 					${schemaName} ${schemaVarName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
 
-					assertHttpResponseStatusCode(204, ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource.${javaMethodSignature.methodName}HttpResponse(${schemaVarName}.getId()));
+					assertHttpResponseStatusCode(204, ${schemaName}Resource.${javaMethodSignature.methodName}HttpResponse(${schemaVarName}.getId()));
 
-					assertHttpResponseStatusCode(404, ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource.get${javaMethodSignature.methodName?remove_beginning("delete")}HttpResponse(${schemaVarName}.getId()));
+					assertHttpResponseStatusCode(404, ${schemaName}Resource.get${javaMethodSignature.methodName?remove_beginning("delete")}HttpResponse(${schemaVarName}.getId()));
 
-					assertHttpResponseStatusCode(404, ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource.get${javaMethodSignature.methodName?remove_beginning("delete")}HttpResponse(0L));
+					assertHttpResponseStatusCode(404, ${schemaName}Resource.get${javaMethodSignature.methodName?remove_beginning("delete")}HttpResponse(0L));
 				<#else>
 					Assert.assertTrue(true);
 				</#if>
@@ -193,7 +193,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							return invokePostSite${schemaName}(testGroup.getGroupId(), toMultipartBody(random${schemaName}()));
 						<#else>
-							return ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}());
+							return ${schemaName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}());
 						</#if>
 					<#else>
 						throw new UnsupportedOperationException("This method needs to be implemented");
@@ -1420,7 +1420,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 	private static DateFormat _dateFormat;
 
 	@Inject
-	private ${schemaName}Resource _${schemaVarName}Resource;
+	private ${configYAML.apiPackagePath}.resource.${escapedVersion}.${schemaName}Resource _${schemaVarName}Resource;
 
 	private URL _resourceURL;
 
