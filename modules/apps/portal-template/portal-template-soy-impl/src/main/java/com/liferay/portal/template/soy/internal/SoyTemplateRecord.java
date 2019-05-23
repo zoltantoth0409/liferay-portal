@@ -198,6 +198,12 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 		if (object == null) {
 			return NullData.INSTANCE;
 		}
+		else if (object instanceof BigDecimal) {
+			return StringData.forValue(object.toString());
+		}
+		else if (object instanceof BigInteger) {
+			return StringData.forValue(object.toString());
+		}
 		else if (object instanceof Boolean) {
 			return BooleanData.forValue((Boolean)object);
 		}
@@ -272,12 +278,6 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 		}
 		else if (object instanceof String) {
 			return StringData.forValue((String)object);
-		}
-		else if (object instanceof BigDecimal) {
-			return StringData.forValue(object.toString());
-		}
-		else if (object instanceof BigInteger) {
-			return StringData.forValue(object.toString());
 		}
 
 		SoyMapData soyMapData = new SoyMapData();
