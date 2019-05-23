@@ -88,8 +88,7 @@ public class StructuredContentFolderResource {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
 		httpInvoker.body(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			"application/json");
+			structuredContentFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -175,8 +174,7 @@ public class StructuredContentFolderResource {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
 		httpInvoker.body(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			"application/json");
+			structuredContentFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -273,8 +271,7 @@ public class StructuredContentFolderResource {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
 		httpInvoker.body(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			"application/json");
+			structuredContentFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
@@ -313,8 +310,7 @@ public class StructuredContentFolderResource {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
 		httpInvoker.body(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			"application/json");
+			structuredContentFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 

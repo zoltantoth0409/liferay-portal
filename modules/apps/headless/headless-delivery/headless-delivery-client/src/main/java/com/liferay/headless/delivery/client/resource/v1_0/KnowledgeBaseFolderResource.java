@@ -96,9 +96,7 @@ public class KnowledgeBaseFolderResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			"application/json");
+		httpInvoker.body(knowledgeBaseFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
@@ -135,9 +133,7 @@ public class KnowledgeBaseFolderResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			"application/json");
+		httpInvoker.body(knowledgeBaseFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -208,9 +204,7 @@ public class KnowledgeBaseFolderResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			"application/json");
+		httpInvoker.body(knowledgeBaseFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -279,9 +273,7 @@ public class KnowledgeBaseFolderResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			"application/json");
+		httpInvoker.body(knowledgeBaseFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

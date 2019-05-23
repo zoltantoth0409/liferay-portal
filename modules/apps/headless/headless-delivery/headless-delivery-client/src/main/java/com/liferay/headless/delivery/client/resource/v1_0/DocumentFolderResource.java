@@ -93,8 +93,7 @@ public class DocumentFolderResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DocumentFolderSerDes.toJSON(documentFolder), "application/json");
+		httpInvoker.body(documentFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
@@ -131,8 +130,7 @@ public class DocumentFolderResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DocumentFolderSerDes.toJSON(documentFolder), "application/json");
+		httpInvoker.body(documentFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -214,8 +212,7 @@ public class DocumentFolderResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DocumentFolderSerDes.toJSON(documentFolder), "application/json");
+		httpInvoker.body(documentFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -301,8 +298,7 @@ public class DocumentFolderResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DocumentFolderSerDes.toJSON(documentFolder), "application/json");
+		httpInvoker.body(documentFolder.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

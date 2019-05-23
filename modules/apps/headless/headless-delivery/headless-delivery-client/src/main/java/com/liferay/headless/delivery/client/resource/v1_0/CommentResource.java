@@ -82,7 +82,7 @@ public class CommentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(CommentSerDes.toJSON(comment), "application/json");
+		httpInvoker.body(comment.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -171,7 +171,7 @@ public class CommentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(CommentSerDes.toJSON(comment), "application/json");
+		httpInvoker.body(comment.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -252,7 +252,7 @@ public class CommentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(CommentSerDes.toJSON(comment), "application/json");
+		httpInvoker.body(comment.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -333,7 +333,7 @@ public class CommentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(CommentSerDes.toJSON(comment), "application/json");
+		httpInvoker.body(comment.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -415,7 +415,7 @@ public class CommentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(CommentSerDes.toJSON(comment), "application/json");
+		httpInvoker.body(comment.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

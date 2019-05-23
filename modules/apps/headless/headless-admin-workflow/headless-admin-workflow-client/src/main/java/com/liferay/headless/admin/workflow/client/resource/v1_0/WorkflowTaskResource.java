@@ -166,6 +166,8 @@ public class WorkflowTaskResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(workflowTaskAssignToMe.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
 		httpInvoker.path(
@@ -202,6 +204,9 @@ public class WorkflowTaskResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(
+			workflowTaskAssignToUser.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -240,6 +245,8 @@ public class WorkflowTaskResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(changeTransition.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
 		httpInvoker.path(
@@ -276,6 +283,8 @@ public class WorkflowTaskResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(workflowTaskAssignToMe.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

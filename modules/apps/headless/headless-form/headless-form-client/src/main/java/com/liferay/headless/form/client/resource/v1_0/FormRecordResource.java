@@ -69,8 +69,7 @@ public class FormRecordResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			FormRecordSerDes.toJSON(formRecord), "application/json");
+		httpInvoker.body(formRecord.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -138,8 +137,7 @@ public class FormRecordResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			FormRecordSerDes.toJSON(formRecord), "application/json");
+		httpInvoker.body(formRecord.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

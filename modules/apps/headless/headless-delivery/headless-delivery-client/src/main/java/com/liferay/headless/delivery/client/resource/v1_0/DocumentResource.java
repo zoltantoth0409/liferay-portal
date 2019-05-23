@@ -327,6 +327,8 @@ public class DocumentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(rating.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
 		httpInvoker.path(
@@ -364,6 +366,8 @@ public class DocumentResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(rating.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 

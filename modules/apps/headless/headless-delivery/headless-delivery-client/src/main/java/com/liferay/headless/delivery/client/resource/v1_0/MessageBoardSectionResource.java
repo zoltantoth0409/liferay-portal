@@ -96,9 +96,7 @@ public class MessageBoardSectionResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			"application/json");
+		httpInvoker.body(messageBoardSection.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
@@ -135,9 +133,7 @@ public class MessageBoardSectionResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			"application/json");
+		httpInvoker.body(messageBoardSection.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -221,9 +217,7 @@ public class MessageBoardSectionResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			"application/json");
+		httpInvoker.body(messageBoardSection.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -309,9 +303,7 @@ public class MessageBoardSectionResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			"application/json");
+		httpInvoker.body(messageBoardSection.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

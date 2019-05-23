@@ -97,9 +97,7 @@ public class KnowledgeBaseArticleResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle),
-			"application/json");
+		httpInvoker.body(knowledgeBaseArticle.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
@@ -137,9 +135,7 @@ public class KnowledgeBaseArticleResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle),
-			"application/json");
+		httpInvoker.body(knowledgeBaseArticle.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -237,6 +233,8 @@ public class KnowledgeBaseArticleResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(rating.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
 		httpInvoker.path(
@@ -274,6 +272,8 @@ public class KnowledgeBaseArticleResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(rating.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -358,9 +358,7 @@ public class KnowledgeBaseArticleResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle),
-			"application/json");
+		httpInvoker.body(knowledgeBaseArticle.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -448,9 +446,7 @@ public class KnowledgeBaseArticleResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle),
-			"application/json");
+		httpInvoker.body(knowledgeBaseArticle.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -536,9 +532,7 @@ public class KnowledgeBaseArticleResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			KnowledgeBaseArticleSerDes.toJSON(knowledgeBaseArticle),
-			"application/json");
+		httpInvoker.body(knowledgeBaseArticle.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

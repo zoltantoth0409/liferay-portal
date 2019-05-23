@@ -132,9 +132,7 @@ public class StructuredContentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			StructuredContentSerDes.toJSON(structuredContent),
-			"application/json");
+		httpInvoker.body(structuredContent.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -287,9 +285,7 @@ public class StructuredContentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			StructuredContentSerDes.toJSON(structuredContent),
-			"application/json");
+		httpInvoker.body(structuredContent.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -383,9 +379,7 @@ public class StructuredContentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			StructuredContentSerDes.toJSON(structuredContent),
-			"application/json");
+		httpInvoker.body(structuredContent.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
@@ -422,9 +416,7 @@ public class StructuredContentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			StructuredContentSerDes.toJSON(structuredContent),
-			"application/json");
+		httpInvoker.body(structuredContent.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -522,6 +514,8 @@ public class StructuredContentResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(rating.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
 		httpInvoker.path(
@@ -559,6 +553,8 @@ public class StructuredContentResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(rating.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
