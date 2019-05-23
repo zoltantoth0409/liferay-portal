@@ -31,10 +31,6 @@ definition {
 			Click(locator1 = "Notifications#USER_BAR_BADGE_COUNT");
 		}
 
-		if (IsElementPresent(locator1 = "Notifications#PROFILE_BADGE_COUNT")) {
-			Click(locator1 = "Notifications#PROFILE_BADGE_COUNT");
-		}
-
 		if (IsElementPresent(locator1 = "Notifications#MY_ACCOUNT_BADGE_COUNT")) {
 			Click(locator1 = "Notifications#MY_ACCOUNT_BADGE_COUNT");
 		}
@@ -75,13 +71,6 @@ definition {
 		if (IsElementPresent(locator1 = "Notifications#USER_BAR_BADGE_COUNT")) {
 			AssertTextEquals(
 				locator1 = "Notifications#USER_BAR_BADGE_COUNT",
-				value1 = "${notificationCount}"
-			);
-		}
-
-		if (IsElementPresent(locator1 = "Notifications#PROFILE_BADGE_COUNT")) {
-			AssertTextEquals(
-				locator1 = "Notifications#PROFILE_BADGE_COUNT",
 				value1 = "${notificationCount}"
 			);
 		}
@@ -159,7 +148,7 @@ definition {
 
 	macro viewNoNotifications {
 		if ("${activePanel}" == "Profile") {
-			AssertElementNotPresent(locator1 = "Notifications#PROFILE_BADGE_COUNT");
+			AssertElementNotPresent(locator1 = "Notifications#USER_NAVIGATION_BAR_BADGE_COUNT");
 		}
 
 		if ("${activePanel}" == "My Account") {
