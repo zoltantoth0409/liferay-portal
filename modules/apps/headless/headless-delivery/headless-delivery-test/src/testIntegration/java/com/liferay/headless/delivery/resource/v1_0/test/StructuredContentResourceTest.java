@@ -88,6 +88,7 @@ public class StructuredContentResourceTest
 		super.tearDown();
 	}
 
+	@Ignore
 	@Test
 	public void testGetSiteStructuredContentWithDifferentLocale()
 		throws Exception {
