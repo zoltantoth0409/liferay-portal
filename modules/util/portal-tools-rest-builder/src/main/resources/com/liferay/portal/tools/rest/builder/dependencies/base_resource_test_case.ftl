@@ -914,28 +914,28 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 				);
 
-				<#list javaMethodSignature.javaMethodParameters as parameter>
-					<#if stringUtil.equals(parameter.parameterName, "filter")>
+				<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+					<#if stringUtil.equals(javaMethodParameter.parameterName, "filter")>
 						if (filterString != null) {
 							location = HttpUtil.addParameter(location, "filter", filterString);
 						}
-					<#elseif stringUtil.equals(parameter.parameterName, "pagination")>
+					<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 						if (pagination != null) {
 							location = HttpUtil.addParameter(location, "page", pagination.getPage());
 							location = HttpUtil.addParameter(location, "pageSize", pagination.getPageSize());
 						}
-					<#elseif stringUtil.equals(parameter.parameterName, "sorts")>
+					<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
 						if (sortString != null) {
 							location = HttpUtil.addParameter(location, "sort", sortString);
 						}
-					<#elseif freeMarkerTool.isQueryParameter(parameter, javaMethodSignature.operation)>
-						if (${parameter.parameterName} != null) {
-							<#if stringUtil.startsWith(parameter.parameterType, "[")>
-								for (int i = 0; i < ${parameter.parameterName}.length; i++) {
-									location = HttpUtil.addParameter(location, "${parameter.parameterName}", ${parameter.parameterName}[i]);
+					<#elseif freeMarkerTool.isQueryParameter(javaMethodParameter, javaMethodSignature.operation)>
+						if (${javaMethodParameter.parameterName} != null) {
+							<#if stringUtil.startsWith(javaMethodParameter.parameterType, "[")>
+								for (int i = 0; i < ${javaMethodParameter.parameterName}.length; i++) {
+									location = HttpUtil.addParameter(location, "${javaMethodParameter.parameterName}", ${javaMethodParameter.parameterName}[i]);
 								}
 							<#else>
-								location = HttpUtil.addParameter(location, "${parameter.parameterName}", ${parameter.parameterName});
+								location = HttpUtil.addParameter(location, "${javaMethodParameter.parameterName}", ${javaMethodParameter.parameterName});
 							</#if>
 						}
 					</#if>
@@ -999,28 +999,28 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 				);
 
-				<#list javaMethodSignature.javaMethodParameters as parameter>
-					<#if stringUtil.equals(parameter.parameterName, "filter")>
+				<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+					<#if stringUtil.equals(javaMethodParameter.parameterName, "filter")>
 						if (filterString != null) {
 							location = HttpUtil.addParameter(location, "filter", filterString);
 						}
-					<#elseif stringUtil.equals(parameter.parameterName, "pagination")>
+					<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 						if (pagination != null) {
 							location = HttpUtil.addParameter(location, "page", pagination.getPage());
 							location = HttpUtil.addParameter(location, "pageSize", pagination.getPageSize());
 						}
-					<#elseif stringUtil.equals(parameter.parameterName, "sorts")>
+					<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
 						if (sortString != null) {
 							location = HttpUtil.addParameter(location, "sort", sortString);
 						}
-					<#elseif freeMarkerTool.isQueryParameter(parameter, javaMethodSignature.operation)>
-						if (${parameter.parameterName} != null) {
-							<#if stringUtil.startsWith(parameter.parameterType, "[")>
-								for (int i = 0; i < ${parameter.parameterName}.length; i++) {
-									location = HttpUtil.addParameter(location, "${parameter.parameterName}", ${parameter.parameterName}[i]);
+					<#elseif freeMarkerTool.isQueryParameter(javaMethodParameter, javaMethodSignature.operation)>
+						if (${javaMethodParameter.parameterName} != null) {
+							<#if stringUtil.startsWith(javaMethodParameter.parameterType, "[")>
+								for (int i = 0; i < ${javaMethodParameter.parameterName}.length; i++) {
+									location = HttpUtil.addParameter(location, "${javaMethodParameter.parameterName}", ${javaMethodParameter.parameterName}[i]);
 								}
 							<#else>
-								location = HttpUtil.addParameter(location, "${parameter.parameterName}", ${parameter.parameterName});
+								location = HttpUtil.addParameter(location, "${javaMethodParameter.parameterName}", ${javaMethodParameter.parameterName});
 							</#if>
 						}
 					</#if>

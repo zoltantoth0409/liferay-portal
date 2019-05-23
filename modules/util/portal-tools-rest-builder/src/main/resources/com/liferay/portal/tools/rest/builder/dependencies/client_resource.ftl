@@ -46,28 +46,28 @@ public class ${schemaName}Resource {
 
 			httpInvoker.httpMethod(HttpInvoker.HttpMethod.${freeMarkerTool.getHTTPMethod(javaMethodSignature.operation)?upper_case});
 
-			<#list javaMethodSignature.javaMethodParameters as parameter>
-				<#if stringUtil.equals(parameter.parameterName, "filter")>
+			<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+				<#if stringUtil.equals(javaMethodParameter.parameterName, "filter")>
 					if (filterString != null) {
 						httpInvoker.parameter("filter", filterString);
 					}
-				<#elseif stringUtil.equals(parameter.parameterName, "pagination")>
+				<#elseif stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 					if (pagination != null) {
 						httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
 						httpInvoker.parameter("pageSize", String.valueOf(pagination.getPageSize()));
 					}
-				<#elseif stringUtil.equals(parameter.parameterName, "sorts")>
+				<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
 					if (sortString != null) {
 						httpInvoker.parameter("sort", sortString);
 					}
-				<#elseif freeMarkerTool.isQueryParameter(parameter, javaMethodSignature.operation)>
-					if (${parameter.parameterName} != null) {
-						<#if stringUtil.startsWith(parameter.parameterType, "[")>
-							for (int i = 0; i < ${parameter.parameterName}.length; i++) {
-								httpInvoker.parameter("${parameter.parameterName}", String.valueOf(${parameter.parameterName}[i]));
+				<#elseif freeMarkerTool.isQueryParameter(javaMethodParameter, javaMethodSignature.operation)>
+					if (${javaMethodParameter.parameterName} != null) {
+						<#if stringUtil.startsWith(javaMethodParameter.parameterType, "[")>
+							for (int i = 0; i < ${javaMethodParameter.parameterName}.length; i++) {
+								httpInvoker.parameter("${javaMethodParameter.parameterName}", String.valueOf(${javaMethodParameter.parameterName}[i]));
 							}
 						<#else>
-							httpInvoker.parameter("${parameter.parameterName}", String.valueOf(${parameter.parameterName}));
+							httpInvoker.parameter("${javaMethodParameter.parameterName}", String.valueOf(${javaMethodParameter.parameterName}));
 						</#if>
 					}
 				</#if>
