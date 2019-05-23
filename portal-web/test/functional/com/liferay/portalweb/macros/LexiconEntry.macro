@@ -130,6 +130,13 @@ definition {
 		);
 	}
 
+	macro rate {
+		var key_rateResult = StringUtil.replace("${rateResult}", " ", "-");
+		var key_rateResult = StringUtil.lowerCase("${key_rateResult}");
+
+		Click(locator1 = "Ratings#RATE_THUMB");
+	}
+
 	macro selectEntry {
 		Check(
 			locator1 = "ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX",
