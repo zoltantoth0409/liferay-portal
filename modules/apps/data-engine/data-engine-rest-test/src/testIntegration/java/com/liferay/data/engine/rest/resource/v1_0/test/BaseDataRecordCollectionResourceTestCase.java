@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.data.engine.rest.client.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataRecordCollectionPermission;
+import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataRecordCollectionSerDes;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
@@ -442,17 +443,25 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		DataRecordCollection dataRecordCollection =
 			testDeleteDataRecordCollection_addDataRecordCollection();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteDataRecordCollectionResponse(
-				dataRecordCollection.getId()));
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataRecordCollectionResource.
+					deleteDataRecordCollectionHttpResponse(
+						dataRecordCollection.getId()));
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			404,
-			invokeGetDataRecordCollectionResponse(
-				dataRecordCollection.getId()));
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataRecordCollectionResource.
+					getDataRecordCollectionHttpResponse(
+						dataRecordCollection.getId()));
 
-		assertResponseCode(404, invokeGetDataRecordCollectionResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataRecordCollectionResource.
+					getDataRecordCollectionHttpResponse(0L));
 	}
 
 	protected DataRecordCollection
@@ -988,11 +997,12 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

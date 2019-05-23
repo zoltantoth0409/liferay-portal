@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardAttachment;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.MessageBoardAttachmentSerDes;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardAttachmentResource;
@@ -162,17 +163,25 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 		MessageBoardAttachment messageBoardAttachment =
 			testDeleteMessageBoardAttachment_addMessageBoardAttachment();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteMessageBoardAttachmentResponse(
-				messageBoardAttachment.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				MessageBoardAttachmentResource.
+					deleteMessageBoardAttachmentHttpResponse(
+						messageBoardAttachment.getId()));
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			404,
-			invokeGetMessageBoardAttachmentResponse(
-				messageBoardAttachment.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				MessageBoardAttachmentResource.
+					getMessageBoardAttachmentHttpResponse(
+						messageBoardAttachment.getId()));
 
-		assertResponseCode(404, invokeGetMessageBoardAttachmentResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				MessageBoardAttachmentResource.
+					getMessageBoardAttachmentHttpResponse(0L));
 	}
 
 	protected MessageBoardAttachment
@@ -718,11 +727,12 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

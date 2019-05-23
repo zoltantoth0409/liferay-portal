@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinitionPermission;
+import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataDefinitionSerDes;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
@@ -159,13 +160,22 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		DataDefinition dataDefinition =
 			testDeleteDataDefinition_addDataDefinition();
 
-		assertResponseCode(
-			204, invokeDeleteDataDefinitionResponse(dataDefinition.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataDefinitionResource.deleteDataDefinitionHttpResponse(
+					dataDefinition.getId()));
 
-		assertResponseCode(
-			404, invokeGetDataDefinitionResponse(dataDefinition.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataDefinitionResource.getDataDefinitionHttpResponse(
+					dataDefinition.getId()));
 
-		assertResponseCode(404, invokeGetDataDefinitionResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataDefinitionResource.getDataDefinitionHttpResponse(0L));
 	}
 
 	protected DataDefinition testDeleteDataDefinition_addDataDefinition()
@@ -744,11 +754,12 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

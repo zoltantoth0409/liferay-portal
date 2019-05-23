@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.Rating;
 import com.liferay.headless.delivery.client.dto.v1_0.StructuredContent;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.StructuredContentSerDes;
 import com.liferay.headless.delivery.resource.v1_0.StructuredContentResource;
@@ -1613,14 +1614,22 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent =
 			testDeleteStructuredContent_addStructuredContent();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteStructuredContentResponse(structuredContent.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				StructuredContentResource.deleteStructuredContentHttpResponse(
+					structuredContent.getId()));
 
-		assertResponseCode(
-			404, invokeGetStructuredContentResponse(structuredContent.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				StructuredContentResource.getStructuredContentHttpResponse(
+					structuredContent.getId()));
 
-		assertResponseCode(404, invokeGetStructuredContentResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				StructuredContentResource.getStructuredContentHttpResponse(0L));
 	}
 
 	protected StructuredContent
@@ -1934,17 +1943,25 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent =
 			testDeleteStructuredContentMyRating_addStructuredContent();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteStructuredContentMyRatingResponse(
-				structuredContent.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				StructuredContentResource.
+					deleteStructuredContentMyRatingHttpResponse(
+						structuredContent.getId()));
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			404,
-			invokeGetStructuredContentMyRatingResponse(
-				structuredContent.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				StructuredContentResource.
+					getStructuredContentMyRatingHttpResponse(
+						structuredContent.getId()));
 
-		assertResponseCode(404, invokeGetStructuredContentMyRatingResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				StructuredContentResource.
+					getStructuredContentMyRatingHttpResponse(0L));
 	}
 
 	protected StructuredContent
@@ -2240,11 +2257,12 @@ public abstract class BaseStructuredContentResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

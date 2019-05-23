@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.BlogPostingImage;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.BlogPostingImageSerDes;
 import com.liferay.headless.delivery.resource.v1_0.BlogPostingImageResource;
@@ -163,14 +164,22 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		BlogPostingImage blogPostingImage =
 			testDeleteBlogPostingImage_addBlogPostingImage();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteBlogPostingImageResponse(blogPostingImage.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				BlogPostingImageResource.deleteBlogPostingImageHttpResponse(
+					blogPostingImage.getId()));
 
-		assertResponseCode(
-			404, invokeGetBlogPostingImageResponse(blogPostingImage.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				BlogPostingImageResource.getBlogPostingImageHttpResponse(
+					blogPostingImage.getId()));
 
-		assertResponseCode(404, invokeGetBlogPostingImageResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				BlogPostingImageResource.getBlogPostingImageHttpResponse(0L));
 	}
 
 	protected BlogPostingImage testDeleteBlogPostingImage_addBlogPostingImage()
@@ -731,11 +740,12 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

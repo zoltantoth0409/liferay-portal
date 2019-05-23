@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.Comment;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.CommentSerDes;
 import com.liferay.headless.delivery.resource.v1_0.CommentResource;
@@ -572,11 +573,20 @@ public abstract class BaseCommentResourceTestCase {
 	public void testDeleteComment() throws Exception {
 		Comment comment = testDeleteComment_addComment();
 
-		assertResponseCode(204, invokeDeleteCommentResponse(comment.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.headless.delivery.client.resource.v1_0.CommentResource.
+				deleteCommentHttpResponse(comment.getId()));
 
-		assertResponseCode(404, invokeGetCommentResponse(comment.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.CommentResource.
+				getCommentHttpResponse(comment.getId()));
 
-		assertResponseCode(404, invokeGetCommentResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.CommentResource.
+				getCommentHttpResponse(0L));
 	}
 
 	protected Comment testDeleteComment_addComment() throws Exception {
@@ -1973,11 +1983,12 @@ public abstract class BaseCommentResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(Comment comment1, Comment comment2) {

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.KnowledgeBaseAttachment;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.KnowledgeBaseAttachmentSerDes;
 import com.liferay.headless.delivery.resource.v1_0.KnowledgeBaseAttachmentResource;
@@ -372,17 +373,25 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		KnowledgeBaseAttachment knowledgeBaseAttachment =
 			testDeleteKnowledgeBaseAttachment_addKnowledgeBaseAttachment();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteKnowledgeBaseAttachmentResponse(
-				knowledgeBaseAttachment.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				KnowledgeBaseAttachmentResource.
+					deleteKnowledgeBaseAttachmentHttpResponse(
+						knowledgeBaseAttachment.getId()));
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			404,
-			invokeGetKnowledgeBaseAttachmentResponse(
-				knowledgeBaseAttachment.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				KnowledgeBaseAttachmentResource.
+					getKnowledgeBaseAttachmentHttpResponse(
+						knowledgeBaseAttachment.getId()));
 
-		assertResponseCode(404, invokeGetKnowledgeBaseAttachmentResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				KnowledgeBaseAttachmentResource.
+					getKnowledgeBaseAttachmentHttpResponse(0L));
 	}
 
 	protected KnowledgeBaseAttachment
@@ -509,11 +518,12 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

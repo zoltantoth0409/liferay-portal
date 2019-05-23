@@ -29,7 +29,36 @@ import javax.annotation.Generated;
 @Generated("")
 public class SelectionResource {
 
-	public Selection postBulkSelection(
+	public static Selection postBulkSelection(
+			com.liferay.bulk.rest.client.dto.v1_0.DocumentBulkSelection
+				documentBulkSelection)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse = postBulkSelectionHttpResponse(
+			documentBulkSelection);
+
+		String content = httpResponse.getContent();
+
+		_logger.fine("HTTP response content: " + content);
+
+		_logger.fine("HTTP response message: " + httpResponse.getMessage());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
+
+		try {
+			return com.liferay.bulk.rest.client.serdes.v1_0.SelectionSerDes.
+				toDTO(content);
+		}
+		catch (Exception e) {
+			_logger.log(
+				Level.WARNING, "Unable to process HTTP response: " + content,
+				e);
+
+			throw e;
+		}
+	}
+
+	public static HttpInvoker.HttpResponse postBulkSelectionHttpResponse(
 			com.liferay.bulk.rest.client.dto.v1_0.DocumentBulkSelection
 				documentBulkSelection)
 		throws Exception {
@@ -45,26 +74,7 @@ public class SelectionResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
-
-		String content = httpResponse.getContent();
-
-		_logger.fine("HTTP response content: " + content);
-
-		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
-
-		try {
-			return com.liferay.bulk.rest.client.serdes.v1_0.SelectionSerDes.
-				toDTO(content);
-		}
-		catch (Exception e) {
-			_logger.log(
-				Level.WARNING, "Unable to process HTTP response: " + content,
-				e);
-
-			throw e;
-		}
+		return httpInvoker.invoke();
 	}
 
 	private static final Logger _logger = Logger.getLogger(

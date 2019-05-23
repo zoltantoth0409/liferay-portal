@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.form.client.dto.v1_0.FormDocument;
+import com.liferay.headless.form.client.http.HttpInvoker;
 import com.liferay.headless.form.client.pagination.Page;
 import com.liferay.headless.form.client.serdes.v1_0.FormDocumentSerDes;
 import com.liferay.headless.form.resource.v1_0.FormDocumentResource;
@@ -151,13 +152,20 @@ public abstract class BaseFormDocumentResourceTestCase {
 	public void testDeleteFormDocument() throws Exception {
 		FormDocument formDocument = testDeleteFormDocument_addFormDocument();
 
-		assertResponseCode(
-			204, invokeDeleteFormDocumentResponse(formDocument.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.headless.form.client.resource.v1_0.FormDocumentResource.
+				deleteFormDocumentHttpResponse(formDocument.getId()));
 
-		assertResponseCode(
-			404, invokeGetFormDocumentResponse(formDocument.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.form.client.resource.v1_0.FormDocumentResource.
+				getFormDocumentHttpResponse(formDocument.getId()));
 
-		assertResponseCode(404, invokeGetFormDocumentResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.form.client.resource.v1_0.FormDocumentResource.
+				getFormDocumentHttpResponse(0L));
 	}
 
 	protected FormDocument testDeleteFormDocument_addFormDocument()
@@ -269,11 +277,12 @@ public abstract class BaseFormDocumentResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(
