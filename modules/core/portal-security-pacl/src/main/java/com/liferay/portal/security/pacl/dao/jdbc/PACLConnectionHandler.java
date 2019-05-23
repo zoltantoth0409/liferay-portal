@@ -105,7 +105,7 @@ public class PACLConnectionHandler implements InvocationHandler {
 			interfaceClasses.add(PreparedStatement.class);
 		}
 
-		return interfaceClasses.toArray(new Class<?>[interfaceClasses.size()]);
+		return interfaceClasses.toArray(new Class<?>[0]);
 	}
 
 	private final Connection _connection;

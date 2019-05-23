@@ -337,7 +337,7 @@ public class PACLAggregateTest extends AutoBalanceTestCase {
 
 				return BridgeJUnitTestRunner.runBridgeTests(
 					new ProcessBridgeRunListener(PACLAggregateTest.class),
-					_classes.toArray(new Class<?>[_classes.size()]));
+					_classes.toArray(new Class<?>[0]));
 			}
 			catch (IOException ioe) {
 				ioException = ioe;
