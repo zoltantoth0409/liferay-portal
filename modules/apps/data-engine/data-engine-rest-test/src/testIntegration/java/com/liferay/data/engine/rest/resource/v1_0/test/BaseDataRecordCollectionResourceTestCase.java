@@ -24,6 +24,7 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataRecordCollectionPermission;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
+import com.liferay.data.engine.rest.client.pagination.Pagination;
 import com.liferay.data.engine.rest.client.resource.v1_0.DataRecordCollectionResource;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataRecordCollectionSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -44,7 +45,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -173,8 +173,9 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 					randomIrrelevantDataRecordCollection());
 
 			Page<DataRecordCollection> page =
-				invokeGetDataDefinitionDataRecordCollectionsPage(
-					irrelevantDataDefinitionId, null, Pagination.of(1, 2));
+				DataRecordCollectionResource.
+					getDataDefinitionDataRecordCollectionsPage(
+						irrelevantDataDefinitionId, null, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -193,8 +194,9 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				dataDefinitionId, randomDataRecordCollection());
 
 		Page<DataRecordCollection> page =
-			invokeGetDataDefinitionDataRecordCollectionsPage(
-				dataDefinitionId, null, Pagination.of(1, 2));
+			DataRecordCollectionResource.
+				getDataDefinitionDataRecordCollectionsPage(
+					dataDefinitionId, null, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -224,8 +226,9 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				dataDefinitionId, randomDataRecordCollection());
 
 		Page<DataRecordCollection> page1 =
-			invokeGetDataDefinitionDataRecordCollectionsPage(
-				dataDefinitionId, null, Pagination.of(1, 2));
+			DataRecordCollectionResource.
+				getDataDefinitionDataRecordCollectionsPage(
+					dataDefinitionId, null, Pagination.of(1, 2));
 
 		List<DataRecordCollection> dataRecordCollections1 =
 			(List<DataRecordCollection>)page1.getItems();
@@ -235,8 +238,9 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			dataRecordCollections1.size());
 
 		Page<DataRecordCollection> page2 =
-			invokeGetDataDefinitionDataRecordCollectionsPage(
-				dataDefinitionId, null, Pagination.of(2, 2));
+			DataRecordCollectionResource.
+				getDataDefinitionDataRecordCollectionsPage(
+					dataDefinitionId, null, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -286,7 +290,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 	protected Page<DataRecordCollection>
 			invokeGetDataDefinitionDataRecordCollectionsPage(
-				Long dataDefinitionId, String keywords, Pagination pagination)
+				Long dataDefinitionId, String keywords,
+				com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -321,7 +326,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 	protected Http.Response
 			invokeGetDataDefinitionDataRecordCollectionsPageResponse(
-				Long dataDefinitionId, String keywords, Pagination pagination)
+				Long dataDefinitionId, String keywords,
+				com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -516,7 +522,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			testGetDataRecordCollection_addDataRecordCollection();
 
 		DataRecordCollection getDataRecordCollection =
-			invokeGetDataRecordCollection(postDataRecordCollection.getId());
+			DataRecordCollectionResource.getDataRecordCollection(
+				postDataRecordCollection.getId());
 
 		assertEquals(postDataRecordCollection, getDataRecordCollection);
 		assertValid(getDataRecordCollection);
@@ -826,7 +833,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 					irrelevantSiteId, randomIrrelevantDataRecordCollection());
 
 			Page<DataRecordCollection> page =
-				invokeGetSiteDataRecordCollectionsPage(
+				DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
 					irrelevantSiteId, null, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -846,7 +853,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				siteId, randomDataRecordCollection());
 
 		Page<DataRecordCollection> page =
-			invokeGetSiteDataRecordCollectionsPage(
+			DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
 				siteId, null, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -876,7 +883,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				siteId, randomDataRecordCollection());
 
 		Page<DataRecordCollection> page1 =
-			invokeGetSiteDataRecordCollectionsPage(
+			DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
 				siteId, null, Pagination.of(1, 2));
 
 		List<DataRecordCollection> dataRecordCollections1 =
@@ -887,7 +894,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			dataRecordCollections1.size());
 
 		Page<DataRecordCollection> page2 =
-			invokeGetSiteDataRecordCollectionsPage(
+			DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
 				siteId, null, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -933,7 +940,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	}
 
 	protected Page<DataRecordCollection> invokeGetSiteDataRecordCollectionsPage(
-			Long siteId, String keywords, Pagination pagination)
+			Long siteId, String keywords,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -965,7 +973,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	}
 
 	protected Http.Response invokeGetSiteDataRecordCollectionsPageResponse(
-			Long siteId, String keywords, Pagination pagination)
+			Long siteId, String keywords,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

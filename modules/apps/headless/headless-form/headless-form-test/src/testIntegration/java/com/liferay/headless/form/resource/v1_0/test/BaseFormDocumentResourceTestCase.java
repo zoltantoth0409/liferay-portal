@@ -216,7 +216,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 	public void testGetFormDocument() throws Exception {
 		FormDocument postFormDocument = testGetFormDocument_addFormDocument();
 
-		FormDocument getFormDocument = invokeGetFormDocument(
+		FormDocument getFormDocument = FormDocumentResource.getFormDocument(
 			postFormDocument.getId());
 
 		assertEquals(postFormDocument, getFormDocument);

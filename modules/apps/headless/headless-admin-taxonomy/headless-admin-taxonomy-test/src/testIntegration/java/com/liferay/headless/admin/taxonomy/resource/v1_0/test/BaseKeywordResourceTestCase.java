@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.taxonomy.client.dto.v1_0.Keyword;
 import com.liferay.headless.admin.taxonomy.client.http.HttpInvoker;
 import com.liferay.headless.admin.taxonomy.client.pagination.Page;
+import com.liferay.headless.admin.taxonomy.client.pagination.Pagination;
 import com.liferay.headless.admin.taxonomy.client.resource.v1_0.KeywordResource;
 import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.KeywordSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -43,7 +44,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -215,7 +215,7 @@ public abstract class BaseKeywordResourceTestCase {
 	public void testGetKeyword() throws Exception {
 		Keyword postKeyword = testGetKeyword_addKeyword();
 
-		Keyword getKeyword = invokeGetKeyword(postKeyword.getId());
+		Keyword getKeyword = KeywordResource.getKeyword(postKeyword.getId());
 
 		assertEquals(postKeyword, getKeyword);
 		assertValid(getKeyword);
@@ -351,7 +351,7 @@ public abstract class BaseKeywordResourceTestCase {
 			Keyword irrelevantKeyword = testGetSiteKeywordsPage_addKeyword(
 				irrelevantSiteId, randomIrrelevantKeyword());
 
-			Page<Keyword> page = invokeGetSiteKeywordsPage(
+			Page<Keyword> page = KeywordResource.getSiteKeywordsPage(
 				irrelevantSiteId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -368,7 +368,7 @@ public abstract class BaseKeywordResourceTestCase {
 		Keyword keyword2 = testGetSiteKeywordsPage_addKeyword(
 			siteId, randomKeyword());
 
-		Page<Keyword> page = invokeGetSiteKeywordsPage(
+		Page<Keyword> page = KeywordResource.getSiteKeywordsPage(
 			siteId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -396,7 +396,7 @@ public abstract class BaseKeywordResourceTestCase {
 		keyword1 = testGetSiteKeywordsPage_addKeyword(siteId, keyword1);
 
 		for (EntityField entityField : entityFields) {
-			Page<Keyword> page = invokeGetSiteKeywordsPage(
+			Page<Keyword> page = KeywordResource.getSiteKeywordsPage(
 				siteId, null, getFilterString(entityField, "between", keyword1),
 				Pagination.of(1, 2), null);
 
@@ -427,7 +427,7 @@ public abstract class BaseKeywordResourceTestCase {
 			siteId, randomKeyword());
 
 		for (EntityField entityField : entityFields) {
-			Page<Keyword> page = invokeGetSiteKeywordsPage(
+			Page<Keyword> page = KeywordResource.getSiteKeywordsPage(
 				siteId, null, getFilterString(entityField, "eq", keyword1),
 				Pagination.of(1, 2), null);
 
@@ -450,14 +450,14 @@ public abstract class BaseKeywordResourceTestCase {
 		Keyword keyword3 = testGetSiteKeywordsPage_addKeyword(
 			siteId, randomKeyword());
 
-		Page<Keyword> page1 = invokeGetSiteKeywordsPage(
+		Page<Keyword> page1 = KeywordResource.getSiteKeywordsPage(
 			siteId, null, null, Pagination.of(1, 2), null);
 
 		List<Keyword> keywords1 = (List<Keyword>)page1.getItems();
 
 		Assert.assertEquals(keywords1.toString(), 2, keywords1.size());
 
-		Page<Keyword> page2 = invokeGetSiteKeywordsPage(
+		Page<Keyword> page2 = KeywordResource.getSiteKeywordsPage(
 			siteId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -501,7 +501,7 @@ public abstract class BaseKeywordResourceTestCase {
 		keyword2 = testGetSiteKeywordsPage_addKeyword(siteId, keyword2);
 
 		for (EntityField entityField : entityFields) {
-			Page<Keyword> ascPage = invokeGetSiteKeywordsPage(
+			Page<Keyword> ascPage = KeywordResource.getSiteKeywordsPage(
 				siteId, null, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
@@ -509,7 +509,7 @@ public abstract class BaseKeywordResourceTestCase {
 				Arrays.asList(keyword1, keyword2),
 				(List<Keyword>)ascPage.getItems());
 
-			Page<Keyword> descPage = invokeGetSiteKeywordsPage(
+			Page<Keyword> descPage = KeywordResource.getSiteKeywordsPage(
 				siteId, null, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
@@ -543,7 +543,7 @@ public abstract class BaseKeywordResourceTestCase {
 		keyword2 = testGetSiteKeywordsPage_addKeyword(siteId, keyword2);
 
 		for (EntityField entityField : entityFields) {
-			Page<Keyword> ascPage = invokeGetSiteKeywordsPage(
+			Page<Keyword> ascPage = KeywordResource.getSiteKeywordsPage(
 				siteId, null, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
@@ -551,7 +551,7 @@ public abstract class BaseKeywordResourceTestCase {
 				Arrays.asList(keyword1, keyword2),
 				(List<Keyword>)ascPage.getItems());
 
-			Page<Keyword> descPage = invokeGetSiteKeywordsPage(
+			Page<Keyword> descPage = KeywordResource.getSiteKeywordsPage(
 				siteId, null, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
@@ -580,7 +580,8 @@ public abstract class BaseKeywordResourceTestCase {
 
 	protected Page<Keyword> invokeGetSiteKeywordsPage(
 			Long siteId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -620,7 +621,8 @@ public abstract class BaseKeywordResourceTestCase {
 
 	protected Http.Response invokeGetSiteKeywordsPageResponse(
 			Long siteId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

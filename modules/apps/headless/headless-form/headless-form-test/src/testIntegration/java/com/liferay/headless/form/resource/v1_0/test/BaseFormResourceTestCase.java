@@ -25,6 +25,7 @@ import com.liferay.headless.form.client.dto.v1_0.FormContext;
 import com.liferay.headless.form.client.dto.v1_0.FormDocument;
 import com.liferay.headless.form.client.http.HttpInvoker;
 import com.liferay.headless.form.client.pagination.Page;
+import com.liferay.headless.form.client.pagination.Pagination;
 import com.liferay.headless.form.client.resource.v1_0.FormResource;
 import com.liferay.headless.form.client.serdes.v1_0.FormSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -48,7 +49,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -163,7 +163,7 @@ public abstract class BaseFormResourceTestCase {
 	public void testGetForm() throws Exception {
 		Form postForm = testGetForm_addForm();
 
-		Form getForm = invokeGetForm(postForm.getId());
+		Form getForm = FormResource.getForm(postForm.getId());
 
 		assertEquals(postForm, getForm);
 		assertValid(getForm);
@@ -358,7 +358,7 @@ public abstract class BaseFormResourceTestCase {
 			Form irrelevantForm = testGetSiteFormsPage_addForm(
 				irrelevantSiteId, randomIrrelevantForm());
 
-			Page<Form> page = invokeGetSiteFormsPage(
+			Page<Form> page = FormResource.getSiteFormsPage(
 				irrelevantSiteId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -372,7 +372,8 @@ public abstract class BaseFormResourceTestCase {
 
 		Form form2 = testGetSiteFormsPage_addForm(siteId, randomForm());
 
-		Page<Form> page = invokeGetSiteFormsPage(siteId, Pagination.of(1, 2));
+		Page<Form> page = FormResource.getSiteFormsPage(
+			siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -391,13 +392,15 @@ public abstract class BaseFormResourceTestCase {
 
 		Form form3 = testGetSiteFormsPage_addForm(siteId, randomForm());
 
-		Page<Form> page1 = invokeGetSiteFormsPage(siteId, Pagination.of(1, 2));
+		Page<Form> page1 = FormResource.getSiteFormsPage(
+			siteId, Pagination.of(1, 2));
 
 		List<Form> forms1 = (List<Form>)page1.getItems();
 
 		Assert.assertEquals(forms1.toString(), 2, forms1.size());
 
-		Page<Form> page2 = invokeGetSiteFormsPage(siteId, Pagination.of(2, 2));
+		Page<Form> page2 = FormResource.getSiteFormsPage(
+			siteId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -431,7 +434,8 @@ public abstract class BaseFormResourceTestCase {
 	}
 
 	protected Page<Form> invokeGetSiteFormsPage(
-			Long siteId, Pagination pagination)
+			Long siteId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -458,7 +462,8 @@ public abstract class BaseFormResourceTestCase {
 	}
 
 	protected Http.Response invokeGetSiteFormsPageResponse(
-			Long siteId, Pagination pagination)
+			Long siteId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

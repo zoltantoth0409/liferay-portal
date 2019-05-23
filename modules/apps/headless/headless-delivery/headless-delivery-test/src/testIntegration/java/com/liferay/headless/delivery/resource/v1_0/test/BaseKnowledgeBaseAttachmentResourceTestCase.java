@@ -174,8 +174,9 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 					randomIrrelevantKnowledgeBaseAttachment());
 
 			Page<KnowledgeBaseAttachment> page =
-				invokeGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
-					irrelevantKnowledgeBaseArticleId);
+				KnowledgeBaseAttachmentResource.
+					getKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
+						irrelevantKnowledgeBaseArticleId);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -194,8 +195,9 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 				knowledgeBaseArticleId, randomKnowledgeBaseAttachment());
 
 		Page<KnowledgeBaseAttachment> page =
-			invokeGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
-				knowledgeBaseArticleId);
+			KnowledgeBaseAttachmentResource.
+				getKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
+					knowledgeBaseArticleId);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -449,7 +451,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			testGetKnowledgeBaseAttachment_addKnowledgeBaseAttachment();
 
 		KnowledgeBaseAttachment getKnowledgeBaseAttachment =
-			invokeGetKnowledgeBaseAttachment(
+			KnowledgeBaseAttachmentResource.getKnowledgeBaseAttachment(
 				postKnowledgeBaseAttachment.getId());
 
 		assertEquals(postKnowledgeBaseAttachment, getKnowledgeBaseAttachment);

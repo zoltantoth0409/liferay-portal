@@ -24,6 +24,7 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinitionPermission;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
+import com.liferay.data.engine.rest.client.pagination.Pagination;
 import com.liferay.data.engine.rest.client.resource.v1_0.DataDefinitionResource;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataDefinitionSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -44,7 +45,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -227,8 +227,9 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		DataDefinition postDataDefinition =
 			testGetDataDefinition_addDataDefinition();
 
-		DataDefinition getDataDefinition = invokeGetDataDefinition(
-			postDataDefinition.getId());
+		DataDefinition getDataDefinition =
+			DataDefinitionResource.getDataDefinition(
+				postDataDefinition.getId());
 
 		assertEquals(postDataDefinition, getDataDefinition);
 		assertValid(getDataDefinition);
@@ -521,8 +522,9 @@ public abstract class BaseDataDefinitionResourceTestCase {
 				testGetSiteDataDefinitionsPage_addDataDefinition(
 					irrelevantSiteId, randomIrrelevantDataDefinition());
 
-			Page<DataDefinition> page = invokeGetSiteDataDefinitionsPage(
-				irrelevantSiteId, null, Pagination.of(1, 2));
+			Page<DataDefinition> page =
+				DataDefinitionResource.getSiteDataDefinitionsPage(
+					irrelevantSiteId, null, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -540,8 +542,9 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			testGetSiteDataDefinitionsPage_addDataDefinition(
 				siteId, randomDataDefinition());
 
-		Page<DataDefinition> page = invokeGetSiteDataDefinitionsPage(
-			siteId, null, Pagination.of(1, 2));
+		Page<DataDefinition> page =
+			DataDefinitionResource.getSiteDataDefinitionsPage(
+				siteId, null, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -569,8 +572,9 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			testGetSiteDataDefinitionsPage_addDataDefinition(
 				siteId, randomDataDefinition());
 
-		Page<DataDefinition> page1 = invokeGetSiteDataDefinitionsPage(
-			siteId, null, Pagination.of(1, 2));
+		Page<DataDefinition> page1 =
+			DataDefinitionResource.getSiteDataDefinitionsPage(
+				siteId, null, Pagination.of(1, 2));
 
 		List<DataDefinition> dataDefinitions1 =
 			(List<DataDefinition>)page1.getItems();
@@ -578,8 +582,9 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		Assert.assertEquals(
 			dataDefinitions1.toString(), 2, dataDefinitions1.size());
 
-		Page<DataDefinition> page2 = invokeGetSiteDataDefinitionsPage(
-			siteId, null, Pagination.of(2, 2));
+		Page<DataDefinition> page2 =
+			DataDefinitionResource.getSiteDataDefinitionsPage(
+				siteId, null, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -617,7 +622,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected Page<DataDefinition> invokeGetSiteDataDefinitionsPage(
-			Long siteId, String keywords, Pagination pagination)
+			Long siteId, String keywords,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -648,7 +654,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	protected Http.Response invokeGetSiteDataDefinitionsPageResponse(
-			Long siteId, String keywords, Pagination pagination)
+			Long siteId, String keywords,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

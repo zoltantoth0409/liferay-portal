@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.StructuredContentFolder;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.StructuredContentFolderResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.StructuredContentFolderSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -43,7 +44,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -176,9 +176,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 					randomIrrelevantStructuredContentFolder());
 
 			Page<StructuredContentFolder> page =
-				invokeGetSiteStructuredContentFoldersPage(
-					irrelevantSiteId, null, null, null, Pagination.of(1, 2),
-					null);
+				StructuredContentFolderResource.
+					getSiteStructuredContentFoldersPage(
+						irrelevantSiteId, null, null, null, Pagination.of(1, 2),
+						null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -197,7 +198,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				siteId, randomStructuredContentFolder());
 
 		Page<StructuredContentFolder> page =
-			invokeGetSiteStructuredContentFoldersPage(
+			StructuredContentFolderResource.getSiteStructuredContentFoldersPage(
 				siteId, null, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -230,11 +231,12 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> page =
-				invokeGetSiteStructuredContentFoldersPage(
-					siteId, null, null,
-					getFilterString(
-						entityField, "between", structuredContentFolder1),
-					Pagination.of(1, 2), null);
+				StructuredContentFolderResource.
+					getSiteStructuredContentFoldersPage(
+						siteId, null, null,
+						getFilterString(
+							entityField, "between", structuredContentFolder1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(structuredContentFolder1),
@@ -266,11 +268,12 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> page =
-				invokeGetSiteStructuredContentFoldersPage(
-					siteId, null, null,
-					getFilterString(
-						entityField, "eq", structuredContentFolder1),
-					Pagination.of(1, 2), null);
+				StructuredContentFolderResource.
+					getSiteStructuredContentFoldersPage(
+						siteId, null, null,
+						getFilterString(
+							entityField, "eq", structuredContentFolder1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(structuredContentFolder1),
@@ -297,7 +300,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				siteId, randomStructuredContentFolder());
 
 		Page<StructuredContentFolder> page1 =
-			invokeGetSiteStructuredContentFoldersPage(
+			StructuredContentFolderResource.getSiteStructuredContentFoldersPage(
 				siteId, null, null, null, Pagination.of(1, 2), null);
 
 		List<StructuredContentFolder> structuredContentFolders1 =
@@ -308,7 +311,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			structuredContentFolders1.size());
 
 		Page<StructuredContentFolder> page2 =
-			invokeGetSiteStructuredContentFoldersPage(
+			StructuredContentFolderResource.getSiteStructuredContentFoldersPage(
 				siteId, null, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -366,9 +369,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> ascPage =
-				invokeGetSiteStructuredContentFoldersPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
+				StructuredContentFolderResource.
+					getSiteStructuredContentFoldersPage(
+						siteId, null, null, null, Pagination.of(1, 2),
+						entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(
@@ -376,9 +380,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				(List<StructuredContentFolder>)ascPage.getItems());
 
 			Page<StructuredContentFolder> descPage =
-				invokeGetSiteStructuredContentFoldersPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
+				StructuredContentFolderResource.
+					getSiteStructuredContentFoldersPage(
+						siteId, null, null, null, Pagination.of(1, 2),
+						entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(
@@ -422,9 +427,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> ascPage =
-				invokeGetSiteStructuredContentFoldersPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
+				StructuredContentFolderResource.
+					getSiteStructuredContentFoldersPage(
+						siteId, null, null, null, Pagination.of(1, 2),
+						entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(
@@ -432,9 +438,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				(List<StructuredContentFolder>)ascPage.getItems());
 
 			Page<StructuredContentFolder> descPage =
-				invokeGetSiteStructuredContentFoldersPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
+				StructuredContentFolderResource.
+					getSiteStructuredContentFoldersPage(
+						siteId, null, null, null, Pagination.of(1, 2),
+						entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(
@@ -467,7 +474,9 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 	protected Page<StructuredContentFolder>
 			invokeGetSiteStructuredContentFoldersPage(
 				Long siteId, Boolean flatten, String search,
-				String filterString, Pagination pagination, String sortString)
+				String filterString,
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -512,7 +521,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 	protected Http.Response invokeGetSiteStructuredContentFoldersPageResponse(
 			Long siteId, Boolean flatten, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -650,9 +660,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 					randomIrrelevantStructuredContentFolder());
 
 			Page<StructuredContentFolder> page =
-				invokeGetStructuredContentFolderStructuredContentFoldersPage(
-					irrelevantParentStructuredContentFolderId, null, null,
-					Pagination.of(1, 2), null);
+				StructuredContentFolderResource.
+					getStructuredContentFolderStructuredContentFoldersPage(
+						irrelevantParentStructuredContentFolderId, null, null,
+						Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -673,9 +684,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				randomStructuredContentFolder());
 
 		Page<StructuredContentFolder> page =
-			invokeGetStructuredContentFolderStructuredContentFoldersPage(
-				parentStructuredContentFolderId, null, null,
-				Pagination.of(1, 2), null);
+			StructuredContentFolderResource.
+				getStructuredContentFolderStructuredContentFoldersPage(
+					parentStructuredContentFolderId, null, null,
+					Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -708,11 +720,12 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> page =
-				invokeGetStructuredContentFolderStructuredContentFoldersPage(
-					parentStructuredContentFolderId, null,
-					getFilterString(
-						entityField, "between", structuredContentFolder1),
-					Pagination.of(1, 2), null);
+				StructuredContentFolderResource.
+					getStructuredContentFolderStructuredContentFoldersPage(
+						parentStructuredContentFolderId, null,
+						getFilterString(
+							entityField, "between", structuredContentFolder1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(structuredContentFolder1),
@@ -747,11 +760,12 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> page =
-				invokeGetStructuredContentFolderStructuredContentFoldersPage(
-					parentStructuredContentFolderId, null,
-					getFilterString(
-						entityField, "eq", structuredContentFolder1),
-					Pagination.of(1, 2), null);
+				StructuredContentFolderResource.
+					getStructuredContentFolderStructuredContentFoldersPage(
+						parentStructuredContentFolderId, null,
+						getFilterString(
+							entityField, "eq", structuredContentFolder1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(structuredContentFolder1),
@@ -782,9 +796,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				randomStructuredContentFolder());
 
 		Page<StructuredContentFolder> page1 =
-			invokeGetStructuredContentFolderStructuredContentFoldersPage(
-				parentStructuredContentFolderId, null, null,
-				Pagination.of(1, 2), null);
+			StructuredContentFolderResource.
+				getStructuredContentFolderStructuredContentFoldersPage(
+					parentStructuredContentFolderId, null, null,
+					Pagination.of(1, 2), null);
 
 		List<StructuredContentFolder> structuredContentFolders1 =
 			(List<StructuredContentFolder>)page1.getItems();
@@ -794,9 +809,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			structuredContentFolders1.size());
 
 		Page<StructuredContentFolder> page2 =
-			invokeGetStructuredContentFolderStructuredContentFoldersPage(
-				parentStructuredContentFolderId, null, null,
-				Pagination.of(2, 2), null);
+			StructuredContentFolderResource.
+				getStructuredContentFolderStructuredContentFoldersPage(
+					parentStructuredContentFolderId, null, null,
+					Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -854,9 +870,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> ascPage =
-				invokeGetStructuredContentFolderStructuredContentFoldersPage(
-					parentStructuredContentFolderId, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":asc");
+				StructuredContentFolderResource.
+					getStructuredContentFolderStructuredContentFoldersPage(
+						parentStructuredContentFolderId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(
@@ -864,9 +881,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				(List<StructuredContentFolder>)ascPage.getItems());
 
 			Page<StructuredContentFolder> descPage =
-				invokeGetStructuredContentFolderStructuredContentFoldersPage(
-					parentStructuredContentFolderId, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":desc");
+				StructuredContentFolderResource.
+					getStructuredContentFolderStructuredContentFoldersPage(
+						parentStructuredContentFolderId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(
@@ -911,9 +929,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> ascPage =
-				invokeGetStructuredContentFolderStructuredContentFoldersPage(
-					parentStructuredContentFolderId, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":asc");
+				StructuredContentFolderResource.
+					getStructuredContentFolderStructuredContentFoldersPage(
+						parentStructuredContentFolderId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(
@@ -921,9 +940,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				(List<StructuredContentFolder>)ascPage.getItems());
 
 			Page<StructuredContentFolder> descPage =
-				invokeGetStructuredContentFolderStructuredContentFoldersPage(
-					parentStructuredContentFolderId, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":desc");
+				StructuredContentFolderResource.
+					getStructuredContentFolderStructuredContentFoldersPage(
+						parentStructuredContentFolderId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(
@@ -960,7 +980,9 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 	protected Page<StructuredContentFolder>
 			invokeGetStructuredContentFolderStructuredContentFoldersPage(
 				Long parentStructuredContentFolderId, String search,
-				String filterString, Pagination pagination, String sortString)
+				String filterString,
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -1004,7 +1026,9 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 	protected Http.Response
 			invokeGetStructuredContentFolderStructuredContentFoldersPageResponse(
 				Long parentStructuredContentFolderId, String search,
-				String filterString, Pagination pagination, String sortString)
+				String filterString,
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -1215,7 +1239,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testGetStructuredContentFolder_addStructuredContentFolder();
 
 		StructuredContentFolder getStructuredContentFolder =
-			invokeGetStructuredContentFolder(
+			StructuredContentFolderResource.getStructuredContentFolder(
 				postStructuredContentFolder.getId());
 
 		assertEquals(postStructuredContentFolder, getStructuredContentFolder);
@@ -1290,7 +1314,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			randomPatchStructuredContentFolder();
 
 		StructuredContentFolder patchStructuredContentFolder =
-			invokePatchStructuredContentFolder(
+			StructuredContentFolderResource.patchStructuredContentFolder(
 				postStructuredContentFolder.getId(),
 				randomPatchStructuredContentFolder);
 

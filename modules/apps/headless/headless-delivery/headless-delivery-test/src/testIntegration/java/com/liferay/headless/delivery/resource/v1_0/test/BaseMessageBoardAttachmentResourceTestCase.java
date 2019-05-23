@@ -239,7 +239,8 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			testGetMessageBoardAttachment_addMessageBoardAttachment();
 
 		MessageBoardAttachment getMessageBoardAttachment =
-			invokeGetMessageBoardAttachment(postMessageBoardAttachment.getId());
+			MessageBoardAttachmentResource.getMessageBoardAttachment(
+				postMessageBoardAttachment.getId());
 
 		assertEquals(postMessageBoardAttachment, getMessageBoardAttachment);
 		assertValid(getMessageBoardAttachment);
@@ -320,8 +321,9 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 					randomIrrelevantMessageBoardAttachment());
 
 			Page<MessageBoardAttachment> page =
-				invokeGetMessageBoardMessageMessageBoardAttachmentsPage(
-					irrelevantMessageBoardMessageId);
+				MessageBoardAttachmentResource.
+					getMessageBoardMessageMessageBoardAttachmentsPage(
+						irrelevantMessageBoardMessageId);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -340,8 +342,9 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				messageBoardMessageId, randomMessageBoardAttachment());
 
 		Page<MessageBoardAttachment> page =
-			invokeGetMessageBoardMessageMessageBoardAttachmentsPage(
-				messageBoardMessageId);
+			MessageBoardAttachmentResource.
+				getMessageBoardMessageMessageBoardAttachmentsPage(
+					messageBoardMessageId);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -530,8 +533,9 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 					randomIrrelevantMessageBoardAttachment());
 
 			Page<MessageBoardAttachment> page =
-				invokeGetMessageBoardThreadMessageBoardAttachmentsPage(
-					irrelevantMessageBoardThreadId);
+				MessageBoardAttachmentResource.
+					getMessageBoardThreadMessageBoardAttachmentsPage(
+						irrelevantMessageBoardThreadId);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -550,8 +554,9 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				messageBoardThreadId, randomMessageBoardAttachment());
 
 		Page<MessageBoardAttachment> page =
-			invokeGetMessageBoardThreadMessageBoardAttachmentsPage(
-				messageBoardThreadId);
+			MessageBoardAttachmentResource.
+				getMessageBoardThreadMessageBoardAttachmentsPage(
+					messageBoardThreadId);
 
 		Assert.assertEquals(2, page.getTotalCount());
 

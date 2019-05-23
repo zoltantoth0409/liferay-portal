@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.form.client.dto.v1_0.FormRecord;
 import com.liferay.headless.form.client.http.HttpInvoker;
 import com.liferay.headless.form.client.pagination.Page;
+import com.liferay.headless.form.client.pagination.Pagination;
 import com.liferay.headless.form.client.resource.v1_0.FormRecordResource;
 import com.liferay.headless.form.client.serdes.v1_0.FormRecordSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -43,7 +44,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -158,7 +158,8 @@ public abstract class BaseFormRecordResourceTestCase {
 	public void testGetFormRecord() throws Exception {
 		FormRecord postFormRecord = testGetFormRecord_addFormRecord();
 
-		FormRecord getFormRecord = invokeGetFormRecord(postFormRecord.getId());
+		FormRecord getFormRecord = FormRecordResource.getFormRecord(
+			postFormRecord.getId());
 
 		assertEquals(postFormRecord, getFormRecord);
 		assertValid(getFormRecord);
@@ -307,7 +308,7 @@ public abstract class BaseFormRecordResourceTestCase {
 				testGetFormFormRecordsPage_addFormRecord(
 					irrelevantFormId, randomIrrelevantFormRecord());
 
-			Page<FormRecord> page = invokeGetFormFormRecordsPage(
+			Page<FormRecord> page = FormRecordResource.getFormFormRecordsPage(
 				irrelevantFormId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -324,7 +325,7 @@ public abstract class BaseFormRecordResourceTestCase {
 		FormRecord formRecord2 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());
 
-		Page<FormRecord> page = invokeGetFormFormRecordsPage(
+		Page<FormRecord> page = FormRecordResource.getFormFormRecordsPage(
 			formId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -348,14 +349,14 @@ public abstract class BaseFormRecordResourceTestCase {
 		FormRecord formRecord3 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());
 
-		Page<FormRecord> page1 = invokeGetFormFormRecordsPage(
+		Page<FormRecord> page1 = FormRecordResource.getFormFormRecordsPage(
 			formId, Pagination.of(1, 2));
 
 		List<FormRecord> formRecords1 = (List<FormRecord>)page1.getItems();
 
 		Assert.assertEquals(formRecords1.toString(), 2, formRecords1.size());
 
-		Page<FormRecord> page2 = invokeGetFormFormRecordsPage(
+		Page<FormRecord> page2 = FormRecordResource.getFormFormRecordsPage(
 			formId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -393,7 +394,8 @@ public abstract class BaseFormRecordResourceTestCase {
 	}
 
 	protected Page<FormRecord> invokeGetFormFormRecordsPage(
-			Long formId, Pagination pagination)
+			Long formId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -420,7 +422,8 @@ public abstract class BaseFormRecordResourceTestCase {
 	}
 
 	protected Http.Response invokeGetFormFormRecordsPageResponse(
-			Long formId, Pagination pagination)
+			Long formId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -523,8 +526,9 @@ public abstract class BaseFormRecordResourceTestCase {
 		FormRecord postFormRecord =
 			testGetFormFormRecordByLatestDraft_addFormRecord();
 
-		FormRecord getFormRecord = invokeGetFormFormRecordByLatestDraft(
-			postFormRecord.getFormId());
+		FormRecord getFormRecord =
+			FormRecordResource.getFormFormRecordByLatestDraft(
+				postFormRecord.getFormId());
 
 		assertEquals(postFormRecord, getFormRecord);
 		assertValid(getFormRecord);

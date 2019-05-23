@@ -26,6 +26,7 @@ import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowTaskAssignToM
 import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowTaskAssignToUser;
 import com.liferay.headless.admin.workflow.client.http.HttpInvoker;
 import com.liferay.headless.admin.workflow.client.pagination.Page;
+import com.liferay.headless.admin.workflow.client.pagination.Pagination;
 import com.liferay.headless.admin.workflow.client.resource.v1_0.WorkflowTaskResource;
 import com.liferay.headless.admin.workflow.client.serdes.v1_0.WorkflowTaskSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -46,7 +47,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -169,8 +169,9 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 				testGetRoleWorkflowTasksPage_addWorkflowTask(
 					irrelevantRoleId, randomIrrelevantWorkflowTask());
 
-			Page<WorkflowTask> page = invokeGetRoleWorkflowTasksPage(
-				irrelevantRoleId, Pagination.of(1, 2));
+			Page<WorkflowTask> page =
+				WorkflowTaskResource.getRoleWorkflowTasksPage(
+					irrelevantRoleId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -188,7 +189,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
 
-		Page<WorkflowTask> page = invokeGetRoleWorkflowTasksPage(
+		Page<WorkflowTask> page = WorkflowTaskResource.getRoleWorkflowTasksPage(
 			roleId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -215,8 +216,9 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
 
-		Page<WorkflowTask> page1 = invokeGetRoleWorkflowTasksPage(
-			roleId, Pagination.of(1, 2));
+		Page<WorkflowTask> page1 =
+			WorkflowTaskResource.getRoleWorkflowTasksPage(
+				roleId, Pagination.of(1, 2));
 
 		List<WorkflowTask> workflowTasks1 =
 			(List<WorkflowTask>)page1.getItems();
@@ -224,8 +226,9 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		Assert.assertEquals(
 			workflowTasks1.toString(), 2, workflowTasks1.size());
 
-		Page<WorkflowTask> page2 = invokeGetRoleWorkflowTasksPage(
-			roleId, Pagination.of(2, 2));
+		Page<WorkflowTask> page2 =
+			WorkflowTaskResource.getRoleWorkflowTasksPage(
+				roleId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -265,7 +268,8 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	}
 
 	protected Page<WorkflowTask> invokeGetRoleWorkflowTasksPage(
-			Long roleId, Pagination pagination)
+			Long roleId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -292,7 +296,8 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	}
 
 	protected Http.Response invokeGetRoleWorkflowTasksPageResponse(
-			Long roleId, Pagination pagination)
+			Long roleId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -320,7 +325,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	}
 
 	protected Page<WorkflowTask> invokeGetWorkflowTasksAssignedToMePage(
-			Pagination pagination)
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -347,7 +352,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	}
 
 	protected Http.Response invokeGetWorkflowTasksAssignedToMePageResponse(
-			Pagination pagination)
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -375,7 +380,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	}
 
 	protected Page<WorkflowTask> invokeGetWorkflowTasksAssignedToMyRolesPage(
-			Pagination pagination)
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -402,7 +407,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	}
 
 	protected Http.Response invokeGetWorkflowTasksAssignedToMyRolesPageResponse(
-			Pagination pagination)
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -428,7 +433,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	public void testGetWorkflowTask() throws Exception {
 		WorkflowTask postWorkflowTask = testGetWorkflowTask_addWorkflowTask();
 
-		WorkflowTask getWorkflowTask = invokeGetWorkflowTask(
+		WorkflowTask getWorkflowTask = WorkflowTaskResource.getWorkflowTask(
 			postWorkflowTask.getId());
 
 		assertEquals(postWorkflowTask, getWorkflowTask);

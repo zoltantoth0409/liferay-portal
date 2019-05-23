@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.form.client.dto.v1_0.FormStructure;
 import com.liferay.headless.form.client.http.HttpInvoker;
 import com.liferay.headless.form.client.pagination.Page;
+import com.liferay.headless.form.client.pagination.Pagination;
 import com.liferay.headless.form.client.resource.v1_0.FormStructureResource;
 import com.liferay.headless.form.client.serdes.v1_0.FormStructureSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -41,7 +42,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -157,7 +157,7 @@ public abstract class BaseFormStructureResourceTestCase {
 		FormStructure postFormStructure =
 			testGetFormStructure_addFormStructure();
 
-		FormStructure getFormStructure = invokeGetFormStructure(
+		FormStructure getFormStructure = FormStructureResource.getFormStructure(
 			postFormStructure.getId());
 
 		assertEquals(postFormStructure, getFormStructure);
@@ -227,8 +227,9 @@ public abstract class BaseFormStructureResourceTestCase {
 				testGetSiteFormStructuresPage_addFormStructure(
 					irrelevantSiteId, randomIrrelevantFormStructure());
 
-			Page<FormStructure> page = invokeGetSiteFormStructuresPage(
-				irrelevantSiteId, Pagination.of(1, 2));
+			Page<FormStructure> page =
+				FormStructureResource.getSiteFormStructuresPage(
+					irrelevantSiteId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -246,8 +247,9 @@ public abstract class BaseFormStructureResourceTestCase {
 			testGetSiteFormStructuresPage_addFormStructure(
 				siteId, randomFormStructure());
 
-		Page<FormStructure> page = invokeGetSiteFormStructuresPage(
-			siteId, Pagination.of(1, 2));
+		Page<FormStructure> page =
+			FormStructureResource.getSiteFormStructuresPage(
+				siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -273,8 +275,9 @@ public abstract class BaseFormStructureResourceTestCase {
 			testGetSiteFormStructuresPage_addFormStructure(
 				siteId, randomFormStructure());
 
-		Page<FormStructure> page1 = invokeGetSiteFormStructuresPage(
-			siteId, Pagination.of(1, 2));
+		Page<FormStructure> page1 =
+			FormStructureResource.getSiteFormStructuresPage(
+				siteId, Pagination.of(1, 2));
 
 		List<FormStructure> formStructures1 =
 			(List<FormStructure>)page1.getItems();
@@ -282,8 +285,9 @@ public abstract class BaseFormStructureResourceTestCase {
 		Assert.assertEquals(
 			formStructures1.toString(), 2, formStructures1.size());
 
-		Page<FormStructure> page2 = invokeGetSiteFormStructuresPage(
-			siteId, Pagination.of(2, 2));
+		Page<FormStructure> page2 =
+			FormStructureResource.getSiteFormStructuresPage(
+				siteId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -322,7 +326,8 @@ public abstract class BaseFormStructureResourceTestCase {
 	}
 
 	protected Page<FormStructure> invokeGetSiteFormStructuresPage(
-			Long siteId, Pagination pagination)
+			Long siteId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -349,7 +354,8 @@ public abstract class BaseFormStructureResourceTestCase {
 	}
 
 	protected Http.Response invokeGetSiteFormStructuresPageResponse(
-			Long siteId, Pagination pagination)
+			Long siteId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

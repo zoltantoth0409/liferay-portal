@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.KnowledgeBaseFolder;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.KnowledgeBaseFolderResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.KnowledgeBaseFolderSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -43,7 +44,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -234,7 +234,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			testGetKnowledgeBaseFolder_addKnowledgeBaseFolder();
 
 		KnowledgeBaseFolder getKnowledgeBaseFolder =
-			invokeGetKnowledgeBaseFolder(postKnowledgeBaseFolder.getId());
+			KnowledgeBaseFolderResource.getKnowledgeBaseFolder(
+				postKnowledgeBaseFolder.getId());
 
 		assertEquals(postKnowledgeBaseFolder, getKnowledgeBaseFolder);
 		assertValid(getKnowledgeBaseFolder);
@@ -308,7 +309,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			randomPatchKnowledgeBaseFolder();
 
 		KnowledgeBaseFolder patchKnowledgeBaseFolder =
-			invokePatchKnowledgeBaseFolder(
+			KnowledgeBaseFolderResource.patchKnowledgeBaseFolder(
 				postKnowledgeBaseFolder.getId(),
 				randomPatchKnowledgeBaseFolder);
 
@@ -505,8 +506,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 					randomIrrelevantKnowledgeBaseFolder());
 
 			Page<KnowledgeBaseFolder> page =
-				invokeGetKnowledgeBaseFolderKnowledgeBaseFoldersPage(
-					irrelevantParentKnowledgeBaseFolderId, Pagination.of(1, 2));
+				KnowledgeBaseFolderResource.
+					getKnowledgeBaseFolderKnowledgeBaseFoldersPage(
+						irrelevantParentKnowledgeBaseFolderId,
+						Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -525,8 +528,9 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				parentKnowledgeBaseFolderId, randomKnowledgeBaseFolder());
 
 		Page<KnowledgeBaseFolder> page =
-			invokeGetKnowledgeBaseFolderKnowledgeBaseFoldersPage(
-				parentKnowledgeBaseFolderId, Pagination.of(1, 2));
+			KnowledgeBaseFolderResource.
+				getKnowledgeBaseFolderKnowledgeBaseFoldersPage(
+					parentKnowledgeBaseFolderId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -556,8 +560,9 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				parentKnowledgeBaseFolderId, randomKnowledgeBaseFolder());
 
 		Page<KnowledgeBaseFolder> page1 =
-			invokeGetKnowledgeBaseFolderKnowledgeBaseFoldersPage(
-				parentKnowledgeBaseFolderId, Pagination.of(1, 2));
+			KnowledgeBaseFolderResource.
+				getKnowledgeBaseFolderKnowledgeBaseFoldersPage(
+					parentKnowledgeBaseFolderId, Pagination.of(1, 2));
 
 		List<KnowledgeBaseFolder> knowledgeBaseFolders1 =
 			(List<KnowledgeBaseFolder>)page1.getItems();
@@ -566,8 +571,9 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			knowledgeBaseFolders1.toString(), 2, knowledgeBaseFolders1.size());
 
 		Page<KnowledgeBaseFolder> page2 =
-			invokeGetKnowledgeBaseFolderKnowledgeBaseFoldersPage(
-				parentKnowledgeBaseFolderId, Pagination.of(2, 2));
+			KnowledgeBaseFolderResource.
+				getKnowledgeBaseFolderKnowledgeBaseFoldersPage(
+					parentKnowledgeBaseFolderId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -616,7 +622,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 	protected Page<KnowledgeBaseFolder>
 			invokeGetKnowledgeBaseFolderKnowledgeBaseFoldersPage(
-				Long parentKnowledgeBaseFolderId, Pagination pagination)
+				Long parentKnowledgeBaseFolderId,
+				com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -647,7 +654,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 	protected Http.Response
 			invokeGetKnowledgeBaseFolderKnowledgeBaseFoldersPageResponse(
-				Long parentKnowledgeBaseFolderId, Pagination pagination)
+				Long parentKnowledgeBaseFolderId,
+				com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -776,7 +784,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 					irrelevantSiteId, randomIrrelevantKnowledgeBaseFolder());
 
 			Page<KnowledgeBaseFolder> page =
-				invokeGetSiteKnowledgeBaseFoldersPage(
+				KnowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
 					irrelevantSiteId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -795,8 +803,9 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			testGetSiteKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				siteId, randomKnowledgeBaseFolder());
 
-		Page<KnowledgeBaseFolder> page = invokeGetSiteKnowledgeBaseFoldersPage(
-			siteId, Pagination.of(1, 2));
+		Page<KnowledgeBaseFolder> page =
+			KnowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
+				siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -824,8 +833,9 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			testGetSiteKnowledgeBaseFoldersPage_addKnowledgeBaseFolder(
 				siteId, randomKnowledgeBaseFolder());
 
-		Page<KnowledgeBaseFolder> page1 = invokeGetSiteKnowledgeBaseFoldersPage(
-			siteId, Pagination.of(1, 2));
+		Page<KnowledgeBaseFolder> page1 =
+			KnowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
+				siteId, Pagination.of(1, 2));
 
 		List<KnowledgeBaseFolder> knowledgeBaseFolders1 =
 			(List<KnowledgeBaseFolder>)page1.getItems();
@@ -833,8 +843,9 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		Assert.assertEquals(
 			knowledgeBaseFolders1.toString(), 2, knowledgeBaseFolders1.size());
 
-		Page<KnowledgeBaseFolder> page2 = invokeGetSiteKnowledgeBaseFoldersPage(
-			siteId, Pagination.of(2, 2));
+		Page<KnowledgeBaseFolder> page2 =
+			KnowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
+				siteId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -877,7 +888,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 	}
 
 	protected Page<KnowledgeBaseFolder> invokeGetSiteKnowledgeBaseFoldersPage(
-			Long siteId, Pagination pagination)
+			Long siteId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -905,7 +917,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 	}
 
 	protected Http.Response invokeGetSiteKnowledgeBaseFoldersPageResponse(
-			Long siteId, Pagination pagination)
+			Long siteId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
