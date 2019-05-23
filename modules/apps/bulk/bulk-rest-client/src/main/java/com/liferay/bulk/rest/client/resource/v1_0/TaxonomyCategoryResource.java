@@ -34,6 +34,9 @@ public class TaxonomyCategoryResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(
+			taxonomyCategoryBulkSelection.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
 		httpInvoker.path(
@@ -57,6 +60,9 @@ public class TaxonomyCategoryResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(
+			taxonomyCategoryBulkSelection.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 

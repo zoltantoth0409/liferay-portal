@@ -83,9 +83,7 @@ public class TaxonomyVocabularyResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			TaxonomyVocabularySerDes.toJSON(taxonomyVocabulary),
-			"application/json");
+		httpInvoker.body(taxonomyVocabulary.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -179,9 +177,7 @@ public class TaxonomyVocabularyResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			TaxonomyVocabularySerDes.toJSON(taxonomyVocabulary),
-			"application/json");
+		httpInvoker.body(taxonomyVocabulary.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
@@ -218,9 +214,7 @@ public class TaxonomyVocabularyResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			TaxonomyVocabularySerDes.toJSON(taxonomyVocabulary),
-			"application/json");
+		httpInvoker.body(taxonomyVocabulary.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 

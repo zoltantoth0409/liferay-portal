@@ -93,8 +93,7 @@ public class DataDefinitionResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DataDefinitionSerDes.toJSON(dataDefinition), "application/json");
+		httpInvoker.body(dataDefinition.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -133,6 +132,9 @@ public class DataDefinitionResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(
+			dataDefinitionPermission.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
 		if (operation != null) {
@@ -162,6 +164,9 @@ public class DataDefinitionResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(
+			dataDefinitionPermission.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -227,8 +232,7 @@ public class DataDefinitionResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DataDefinitionSerDes.toJSON(dataDefinition), "application/json");
+		httpInvoker.body(dataDefinition.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

@@ -84,9 +84,7 @@ public class MessageBoardThreadResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			"application/json");
+		httpInvoker.body(messageBoardThread.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -180,9 +178,7 @@ public class MessageBoardThreadResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			"application/json");
+		httpInvoker.body(messageBoardThread.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
@@ -219,9 +215,7 @@ public class MessageBoardThreadResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			"application/json");
+		httpInvoker.body(messageBoardThread.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -319,6 +313,8 @@ public class MessageBoardThreadResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(rating.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
 		httpInvoker.path(
@@ -356,6 +352,8 @@ public class MessageBoardThreadResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(rating.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -442,9 +440,7 @@ public class MessageBoardThreadResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			"application/json");
+		httpInvoker.body(messageBoardThread.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

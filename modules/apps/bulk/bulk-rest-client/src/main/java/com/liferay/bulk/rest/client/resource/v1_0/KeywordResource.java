@@ -37,6 +37,8 @@ public class KeywordResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(keywordBulkSelection.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
 		httpInvoker.path(
@@ -61,6 +63,8 @@ public class KeywordResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(keywordBulkSelection.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
 		httpInvoker.path(
@@ -84,6 +88,8 @@ public class KeywordResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(documentBulkSelection.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

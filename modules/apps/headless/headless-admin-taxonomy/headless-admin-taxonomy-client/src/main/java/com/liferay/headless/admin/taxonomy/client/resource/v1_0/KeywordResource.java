@@ -90,7 +90,7 @@ public class KeywordResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(KeywordSerDes.toJSON(keyword), "application/json");
+		httpInvoker.body(keyword.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -171,7 +171,7 @@ public class KeywordResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(KeywordSerDes.toJSON(keyword), "application/json");
+		httpInvoker.body(keyword.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

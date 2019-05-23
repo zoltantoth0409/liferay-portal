@@ -83,9 +83,7 @@ public class TaxonomyCategoryResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			"application/json");
+		httpInvoker.body(taxonomyCategory.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -179,9 +177,7 @@ public class TaxonomyCategoryResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			"application/json");
+		httpInvoker.body(taxonomyCategory.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PATCH);
 
@@ -218,9 +214,7 @@ public class TaxonomyCategoryResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			"application/json");
+		httpInvoker.body(taxonomyCategory.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -302,9 +296,7 @@ public class TaxonomyCategoryResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			"application/json");
+		httpInvoker.body(taxonomyCategory.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

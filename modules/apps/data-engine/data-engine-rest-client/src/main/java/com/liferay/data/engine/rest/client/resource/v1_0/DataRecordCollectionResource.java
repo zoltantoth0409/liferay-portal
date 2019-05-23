@@ -75,9 +75,7 @@ public class DataRecordCollectionResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DataRecordCollectionSerDes.toJSON(dataRecordCollection),
-			"application/json");
+		httpInvoker.body(dataRecordCollection.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -173,9 +171,7 @@ public class DataRecordCollectionResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DataRecordCollectionSerDes.toJSON(dataRecordCollection),
-			"application/json");
+		httpInvoker.body(dataRecordCollection.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -214,6 +210,9 @@ public class DataRecordCollectionResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
+		httpInvoker.body(
+			dataRecordCollectionPermission.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
 		if (operation != null) {
@@ -243,6 +242,9 @@ public class DataRecordCollectionResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(
+			dataRecordCollectionPermission.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

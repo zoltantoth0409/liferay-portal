@@ -70,8 +70,7 @@ public class DataLayoutResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DataLayoutSerDes.toJSON(dataLayout), "application/json");
+		httpInvoker.body(dataLayout.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -109,6 +108,8 @@ public class DataLayoutResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(dataLayoutPermission.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -190,8 +191,7 @@ public class DataLayoutResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DataLayoutSerDes.toJSON(dataLayout), "application/json");
+		httpInvoker.body(dataLayout.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
@@ -261,6 +261,8 @@ public class DataLayoutResource {
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(dataLayoutPermission.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 

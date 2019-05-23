@@ -70,8 +70,7 @@ public class DataRecordResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DataRecordSerDes.toJSON(dataRecord), "application/json");
+		httpInvoker.body(dataRecord.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 
@@ -186,8 +185,7 @@ public class DataRecordResource {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.body(
-			DataRecordSerDes.toJSON(dataRecord), "application/json");
+		httpInvoker.body(dataRecord.toString(), "application/json");
 
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
 
