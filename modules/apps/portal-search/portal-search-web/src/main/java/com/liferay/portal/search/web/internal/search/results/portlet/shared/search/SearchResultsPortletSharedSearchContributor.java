@@ -60,6 +60,9 @@ public class SearchResultsPortletSharedSearchContributor
 		QueryConfig queryConfig = portletSharedSearchSettings.getQueryConfig();
 
 		queryConfig.setHighlightEnabled(highlightEnabled);
+
+		searchRequestBuilder.paginationStartParameterName(
+			searchResultsPortletPreferences.getPaginationStartParameterName());
 	}
 
 	protected void paginate(
