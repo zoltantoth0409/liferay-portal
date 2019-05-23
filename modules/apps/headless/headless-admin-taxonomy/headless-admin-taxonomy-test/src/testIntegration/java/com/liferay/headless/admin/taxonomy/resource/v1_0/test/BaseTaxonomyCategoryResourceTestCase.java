@@ -449,7 +449,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				TaxonomyCategory taxonomyCategory)
 		throws Exception {
 
-		return invokePostTaxonomyCategoryTaxonomyCategory(
+		return TaxonomyCategoryResource.postTaxonomyCategoryTaxonomyCategory(
 			parentTaxonomyCategoryId, taxonomyCategory);
 	}
 
@@ -799,8 +799,9 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		_beanUtilsBean.copyProperties(
 			expectedPatchTaxonomyCategory, randomPatchTaxonomyCategory);
 
-		TaxonomyCategory getTaxonomyCategory = invokeGetTaxonomyCategory(
-			patchTaxonomyCategory.getId());
+		TaxonomyCategory getTaxonomyCategory =
+			TaxonomyCategoryResource.getTaxonomyCategory(
+				patchTaxonomyCategory.getId());
 
 		assertEquals(expectedPatchTaxonomyCategory, getTaxonomyCategory);
 		assertValid(getTaxonomyCategory);
@@ -883,14 +884,16 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		TaxonomyCategory randomTaxonomyCategory = randomTaxonomyCategory();
 
-		TaxonomyCategory putTaxonomyCategory = invokePutTaxonomyCategory(
-			postTaxonomyCategory.getId(), randomTaxonomyCategory);
+		TaxonomyCategory putTaxonomyCategory =
+			TaxonomyCategoryResource.putTaxonomyCategory(
+				postTaxonomyCategory.getId(), randomTaxonomyCategory);
 
 		assertEquals(randomTaxonomyCategory, putTaxonomyCategory);
 		assertValid(putTaxonomyCategory);
 
-		TaxonomyCategory getTaxonomyCategory = invokeGetTaxonomyCategory(
-			putTaxonomyCategory.getId());
+		TaxonomyCategory getTaxonomyCategory =
+			TaxonomyCategoryResource.getTaxonomyCategory(
+				putTaxonomyCategory.getId());
 
 		assertEquals(randomTaxonomyCategory, getTaxonomyCategory);
 		assertValid(getTaxonomyCategory);
@@ -1259,7 +1262,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				Long taxonomyVocabularyId, TaxonomyCategory taxonomyCategory)
 		throws Exception {
 
-		return invokePostTaxonomyVocabularyTaxonomyCategory(
+		return TaxonomyCategoryResource.postTaxonomyVocabularyTaxonomyCategory(
 			taxonomyVocabularyId, taxonomyCategory);
 	}
 

@@ -222,7 +222,8 @@ public abstract class BaseKeywordResourceTestCase {
 	}
 
 	protected Keyword testGetKeyword_addKeyword() throws Exception {
-		return invokePostSiteKeyword(testGroup.getGroupId(), randomKeyword());
+		return KeywordResource.postSiteKeyword(
+			testGroup.getGroupId(), randomKeyword());
 	}
 
 	protected Keyword invokeGetKeyword(Long keywordId) throws Exception {
@@ -272,20 +273,21 @@ public abstract class BaseKeywordResourceTestCase {
 
 		Keyword randomKeyword = randomKeyword();
 
-		Keyword putKeyword = invokePutKeyword(
+		Keyword putKeyword = KeywordResource.putKeyword(
 			postKeyword.getId(), randomKeyword);
 
 		assertEquals(randomKeyword, putKeyword);
 		assertValid(putKeyword);
 
-		Keyword getKeyword = invokeGetKeyword(putKeyword.getId());
+		Keyword getKeyword = KeywordResource.getKeyword(putKeyword.getId());
 
 		assertEquals(randomKeyword, getKeyword);
 		assertValid(getKeyword);
 	}
 
 	protected Keyword testPutKeyword_addKeyword() throws Exception {
-		return invokePostSiteKeyword(testGroup.getGroupId(), randomKeyword());
+		return KeywordResource.postSiteKeyword(
+			testGroup.getGroupId(), randomKeyword());
 	}
 
 	protected Keyword invokePutKeyword(Long keywordId, Keyword keyword)
@@ -565,7 +567,7 @@ public abstract class BaseKeywordResourceTestCase {
 			Long siteId, Keyword keyword)
 		throws Exception {
 
-		return invokePostSiteKeyword(siteId, keyword);
+		return KeywordResource.postSiteKeyword(siteId, keyword);
 	}
 
 	protected Long testGetSiteKeywordsPage_getSiteId() throws Exception {

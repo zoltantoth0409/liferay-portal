@@ -396,7 +396,7 @@ public abstract class BaseCommentResourceTestCase {
 			Long blogPostingId, Comment comment)
 		throws Exception {
 
-		return invokePostBlogPostingComment(blogPostingId, comment);
+		return CommentResource.postBlogPostingComment(blogPostingId, comment);
 	}
 
 	protected Long testGetBlogPostingCommentsPage_getBlogPostingId()
@@ -686,13 +686,13 @@ public abstract class BaseCommentResourceTestCase {
 
 		Comment randomComment = randomComment();
 
-		Comment putComment = invokePutComment(
+		Comment putComment = CommentResource.putComment(
 			postComment.getId(), randomComment);
 
 		assertEquals(randomComment, putComment);
 		assertValid(putComment);
 
-		Comment getComment = invokeGetComment(putComment.getId());
+		Comment getComment = CommentResource.getComment(putComment.getId());
 
 		assertEquals(randomComment, getComment);
 		assertValid(getComment);
@@ -989,7 +989,7 @@ public abstract class BaseCommentResourceTestCase {
 			Long parentCommentId, Comment comment)
 		throws Exception {
 
-		return invokePostCommentComment(parentCommentId, comment);
+		return CommentResource.postCommentComment(parentCommentId, comment);
 	}
 
 	protected Long testGetCommentCommentsPage_getParentCommentId()
@@ -1388,7 +1388,7 @@ public abstract class BaseCommentResourceTestCase {
 			Long documentId, Comment comment)
 		throws Exception {
 
-		return invokePostDocumentComment(documentId, comment);
+		return CommentResource.postDocumentComment(documentId, comment);
 	}
 
 	protected Long testGetDocumentCommentsPage_getDocumentId()
@@ -1810,7 +1810,8 @@ public abstract class BaseCommentResourceTestCase {
 			Long structuredContentId, Comment comment)
 		throws Exception {
 
-		return invokePostStructuredContentComment(structuredContentId, comment);
+		return CommentResource.postStructuredContentComment(
+			structuredContentId, comment);
 	}
 
 	protected Long testGetStructuredContentCommentsPage_getStructuredContentId()

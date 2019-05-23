@@ -269,8 +269,9 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				DataRecordCollection dataRecordCollection)
 		throws Exception {
 
-		return invokePostDataDefinitionDataRecordCollection(
-			dataDefinitionId, dataRecordCollection);
+		return DataRecordCollectionResource.
+			postDataDefinitionDataRecordCollection(
+				dataDefinitionId, dataRecordCollection);
 	}
 
 	protected Long
@@ -597,14 +598,15 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			randomDataRecordCollection();
 
 		DataRecordCollection putDataRecordCollection =
-			invokePutDataRecordCollection(
+			DataRecordCollectionResource.putDataRecordCollection(
 				postDataRecordCollection.getId(), randomDataRecordCollection);
 
 		assertEquals(randomDataRecordCollection, putDataRecordCollection);
 		assertValid(putDataRecordCollection);
 
 		DataRecordCollection getDataRecordCollection =
-			invokeGetDataRecordCollection(putDataRecordCollection.getId());
+			DataRecordCollectionResource.getDataRecordCollection(
+				putDataRecordCollection.getId());
 
 		assertEquals(randomDataRecordCollection, getDataRecordCollection);
 		assertValid(getDataRecordCollection);

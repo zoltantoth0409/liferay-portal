@@ -238,7 +238,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	protected DataDefinition testGetDataDefinition_addDataDefinition()
 		throws Exception {
 
-		return invokePostSiteDataDefinition(
+		return DataDefinitionResource.postSiteDataDefinition(
 			testGroup.getGroupId(), randomDataDefinition());
 	}
 
@@ -297,14 +297,15 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		DataDefinition randomDataDefinition = randomDataDefinition();
 
-		DataDefinition putDataDefinition = invokePutDataDefinition(
-			postDataDefinition.getId(), randomDataDefinition);
+		DataDefinition putDataDefinition =
+			DataDefinitionResource.putDataDefinition(
+				postDataDefinition.getId(), randomDataDefinition);
 
 		assertEquals(randomDataDefinition, putDataDefinition);
 		assertValid(putDataDefinition);
 
-		DataDefinition getDataDefinition = invokeGetDataDefinition(
-			putDataDefinition.getId());
+		DataDefinition getDataDefinition =
+			DataDefinitionResource.getDataDefinition(putDataDefinition.getId());
 
 		assertEquals(randomDataDefinition, getDataDefinition);
 		assertValid(getDataDefinition);
@@ -313,7 +314,7 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	protected DataDefinition testPutDataDefinition_addDataDefinition()
 		throws Exception {
 
-		return invokePostSiteDataDefinition(
+		return DataDefinitionResource.postSiteDataDefinition(
 			testGroup.getGroupId(), randomDataDefinition());
 	}
 
@@ -608,7 +609,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 			Long siteId, DataDefinition dataDefinition)
 		throws Exception {
 
-		return invokePostSiteDataDefinition(siteId, dataDefinition);
+		return DataDefinitionResource.postSiteDataDefinition(
+			siteId, dataDefinition);
 	}
 
 	protected Long testGetSiteDataDefinitionsPage_getSiteId() throws Exception {

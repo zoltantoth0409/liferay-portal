@@ -822,7 +822,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 				Long siteId, StructuredContent structuredContent)
 		throws Exception {
 
-		return invokePostSiteStructuredContent(siteId, structuredContent);
+		return StructuredContentResource.postSiteStructuredContent(
+			siteId, structuredContent);
 	}
 
 	protected Long testGetSiteStructuredContentsPage_getSiteId()
@@ -1023,7 +1024,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			testGetSiteStructuredContentByKey_addStructuredContent()
 		throws Exception {
 
-		return invokePostSiteStructuredContent(
+		return StructuredContentResource.postSiteStructuredContent(
 			testGroup.getGroupId(), randomStructuredContent());
 	}
 
@@ -1096,7 +1097,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			testGetSiteStructuredContentByUuid_addStructuredContent()
 		throws Exception {
 
-		return invokePostSiteStructuredContent(
+		return StructuredContentResource.postSiteStructuredContent(
 			testGroup.getGroupId(), randomStructuredContent());
 	}
 
@@ -1445,8 +1446,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 				StructuredContent structuredContent)
 		throws Exception {
 
-		return invokePostStructuredContentFolderStructuredContent(
-			structuredContentFolderId, structuredContent);
+		return StructuredContentResource.
+			postStructuredContentFolderStructuredContent(
+				structuredContentFolderId, structuredContent);
 	}
 
 	protected Long
@@ -1730,7 +1732,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 	protected StructuredContent testGetStructuredContent_addStructuredContent()
 		throws Exception {
 
-		return invokePostSiteStructuredContent(
+		return StructuredContentResource.postSiteStructuredContent(
 			testGroup.getGroupId(), randomStructuredContent());
 	}
 
@@ -1803,8 +1805,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 		_beanUtilsBean.copyProperties(
 			expectedPatchStructuredContent, randomPatchStructuredContent);
 
-		StructuredContent getStructuredContent = invokeGetStructuredContent(
-			patchStructuredContent.getId());
+		StructuredContent getStructuredContent =
+			StructuredContentResource.getStructuredContent(
+				patchStructuredContent.getId());
 
 		assertEquals(expectedPatchStructuredContent, getStructuredContent);
 		assertValid(getStructuredContent);
@@ -1814,7 +1817,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			testPatchStructuredContent_addStructuredContent()
 		throws Exception {
 
-		return invokePostSiteStructuredContent(
+		return StructuredContentResource.postSiteStructuredContent(
 			testGroup.getGroupId(), randomStructuredContent());
 	}
 
@@ -1888,14 +1891,16 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		StructuredContent randomStructuredContent = randomStructuredContent();
 
-		StructuredContent putStructuredContent = invokePutStructuredContent(
-			postStructuredContent.getId(), randomStructuredContent);
+		StructuredContent putStructuredContent =
+			StructuredContentResource.putStructuredContent(
+				postStructuredContent.getId(), randomStructuredContent);
 
 		assertEquals(randomStructuredContent, putStructuredContent);
 		assertValid(putStructuredContent);
 
-		StructuredContent getStructuredContent = invokeGetStructuredContent(
-			putStructuredContent.getId());
+		StructuredContent getStructuredContent =
+			StructuredContentResource.getStructuredContent(
+				putStructuredContent.getId());
 
 		assertEquals(randomStructuredContent, getStructuredContent);
 		assertValid(getStructuredContent);
@@ -1904,7 +1909,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 	protected StructuredContent testPutStructuredContent_addStructuredContent()
 		throws Exception {
 
-		return invokePostSiteStructuredContent(
+		return StructuredContentResource.postSiteStructuredContent(
 			testGroup.getGroupId(), randomStructuredContent());
 	}
 

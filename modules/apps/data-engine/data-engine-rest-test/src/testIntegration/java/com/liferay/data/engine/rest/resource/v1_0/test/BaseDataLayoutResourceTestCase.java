@@ -250,7 +250,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 			Long dataDefinitionId, DataLayout dataLayout)
 		throws Exception {
 
-		return invokePostDataDefinitionDataLayout(dataDefinitionId, dataLayout);
+		return DataLayoutResource.postDataDefinitionDataLayout(
+			dataDefinitionId, dataLayout);
 	}
 
 	protected Long testGetDataDefinitionDataLayoutsPage_getDataDefinitionId()
@@ -600,13 +601,14 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		DataLayout randomDataLayout = randomDataLayout();
 
-		DataLayout putDataLayout = invokePutDataLayout(
+		DataLayout putDataLayout = DataLayoutResource.putDataLayout(
 			postDataLayout.getId(), randomDataLayout);
 
 		assertEquals(randomDataLayout, putDataLayout);
 		assertValid(putDataLayout);
 
-		DataLayout getDataLayout = invokeGetDataLayout(putDataLayout.getId());
+		DataLayout getDataLayout = DataLayoutResource.getDataLayout(
+			putDataLayout.getId());
 
 		assertEquals(randomDataLayout, getDataLayout);
 		assertValid(getDataLayout);
