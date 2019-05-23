@@ -891,18 +891,26 @@ public abstract class Base${schemaName}ResourceTestCase {
 		protected ${javaMethodSignature.returnType?replace(".dto.", ".client.dto.")?replace("com.liferay.portal.vulcan.pagination", "${configYAML.apiPackagePath}.client.pagination")} invoke${javaMethodSignature.methodName?cap_first}(${invokeParameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("${schemaVarName}")>
-				options.setBody(${schemaName}SerDes.toJSON(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("multipartBody")>
-				options.addPart("${schemaVarName}", _toJSON(multipartBody.getValues()));
-
-				BinaryFile binaryFile = multipartBody.getBinaryFile("file");
-
-				options.addFilePart("file", binaryFile.getFileName(), FileUtil.getBytes(binaryFile.getInputStream()), testContentType, "UTF-8");
-			</#if>
-
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
 				options.setDelete(true);
+			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put")>
+				<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+					options.addPart("${schemaVarName}", _toJSON(multipartBody.getValues()));
+
+					BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+					options.addFilePart("file", binaryFile.getFileName(), FileUtil.getBytes(binaryFile.getInputStream()), testContentType, "UTF-8");
+				<#else>
+					options.setBody(
+
+					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+						<#if javaMethodParameter?is_last>
+							${javaMethodParameter.parameterName}.toString()
+						</#if>
+					</#list>
+
+					, ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+				</#if>
 			</#if>
 
 			<#if (javaMethodSignature.javaMethodParameters?size > 0)>
@@ -982,18 +990,26 @@ public abstract class Base${schemaName}ResourceTestCase {
 		protected Http.Response invoke${javaMethodSignature.methodName?cap_first}Response(${invokeParameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("${schemaVarName}")>
-				options.setBody(${schemaName}SerDes.toJSON(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("multipartBody")>
-				options.addPart("${schemaVarName}", _toJSON(multipartBody.getValues()));
-
-				BinaryFile binaryFile = multipartBody.getBinaryFile("file");
-
-				options.addFilePart("file", binaryFile.getFileName(), FileUtil.getBytes(binaryFile.getInputStream()), testContentType, "UTF-8");
-			</#if>
-
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
 				options.setDelete(true);
+			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put")>
+				<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+					options.addPart("${schemaVarName}", _toJSON(multipartBody.getValues()));
+
+					BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+					options.addFilePart("file", binaryFile.getFileName(), FileUtil.getBytes(binaryFile.getInputStream()), testContentType, "UTF-8");
+				<#else>
+					options.setBody(
+
+					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+						<#if javaMethodParameter?is_last>
+							${javaMethodParameter.parameterName}.toString()
+						</#if>
+					</#list>
+
+					, ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+				</#if>
 			</#if>
 
 			<#if (javaMethodSignature.javaMethodParameters?size > 0)>
