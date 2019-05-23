@@ -8,6 +8,7 @@ package ${configYAML.apiPackagePath}.resource.${escapedVersion}.test;
 
 import ${configYAML.apiPackagePath}.client.http.HttpInvoker;
 import ${configYAML.apiPackagePath}.client.pagination.Page;
+import ${configYAML.apiPackagePath}.client.pagination.Pagination;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -42,7 +43,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -231,7 +231,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							randomIrrelevant${schemaName}());
 
-							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
+							Page<${schemaName}> page = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if !javaMethodParameter?is_first>
@@ -272,7 +272,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					random${schemaName}());
 
-					Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
+					Page<${schemaName}> page = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 						<#if !javaMethodParameter?is_first>
@@ -320,7 +320,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 						${schemaVarName}1);
 
 						for (EntityField entityField : entityFields) {
-							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
+							Page<${schemaName}> page = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if !javaMethodParameter?is_first>
@@ -374,7 +374,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 						random${schemaName}());
 
 						for (EntityField entityField : entityFields) {
-							Page<${schemaName}> page = invoke${javaMethodSignature.methodName?cap_first}(
+							Page<${schemaName}> page = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if !javaMethodParameter?is_first>
@@ -430,7 +430,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 						random${schemaName}());
 
-						Page<${schemaName}> page1 = invoke${javaMethodSignature.methodName?cap_first}(
+						Page<${schemaName}> page1 = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 							<#if !javaMethodParameter?is_first>
@@ -452,7 +452,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 						Assert.assertEquals(${schemaVarNames}1.toString(), 2, ${schemaVarNames}1.size());
 
-						Page<${schemaName}> page2 = invoke${javaMethodSignature.methodName?cap_first}(
+						Page<${schemaName}> page2 = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 						<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 							<#if !javaMethodParameter?is_first>
@@ -524,7 +524,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 						${schemaVarName}2);
 
 						for (EntityField entityField : entityFields) {
-							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(
+							Page<${schemaName}> ascPage = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if !javaMethodParameter?is_first>
@@ -546,7 +546,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							assertEquals(Arrays.asList(${schemaVarName}1, ${schemaVarName}2), (List<${schemaName}>)ascPage.getItems());
 
-							Page<${schemaName}> descPage = invoke${javaMethodSignature.methodName?cap_first}(
+							Page<${schemaName}> descPage = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if !javaMethodParameter?is_first>
@@ -607,7 +607,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 						${schemaVarName}2);
 
 						for (EntityField entityField : entityFields) {
-							Page<${schemaName}> ascPage = invoke${javaMethodSignature.methodName?cap_first}(
+							Page<${schemaName}> ascPage = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if !javaMethodParameter?is_first>
@@ -629,7 +629,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							assertEquals(Arrays.asList(${schemaVarName}1, ${schemaVarName}2), (List<${schemaName}>)ascPage.getItems());
 
-							Page<${schemaName}> descPage = invoke${javaMethodSignature.methodName?cap_first}(
+							Page<${schemaName}> descPage = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 								<#if !javaMethodParameter?is_first>
@@ -707,7 +707,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 				<#if properties?keys?seq_contains("id")>
 					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
 
-					${schemaName} get${schemaName} = invoke${javaMethodSignature.methodName?cap_first}(
+					${schemaName} get${schemaName} = ${schemaName}Resource.${javaMethodSignature.methodName}(
 
 					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 						<#if !javaMethodParameter?is_first>
@@ -767,7 +767,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					${schemaName} randomPatch${schemaName} = randomPatch${schemaName}();
 
-					${schemaName} patch${schemaName} = invoke${javaMethodSignature.methodName?cap_first}(post${schemaName}.getId(), randomPatch${schemaName});
+					${schemaName} patch${schemaName} = ${schemaName}Resource.${javaMethodSignature.methodName}(post${schemaName}.getId(), randomPatch${schemaName});
 
 					${schemaName} expectedPatch${schemaName} = (${schemaName})BeanUtils.cloneBean(post${schemaName});
 
