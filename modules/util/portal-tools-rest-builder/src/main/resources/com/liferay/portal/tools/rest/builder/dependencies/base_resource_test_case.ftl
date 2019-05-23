@@ -673,7 +673,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 								return invoke${postSchemaJavaMethodSignature.methodName?cap_first}(${firstPathJavaMethodParameter.parameterName}, toMultipartBody(${schemaVarName}));
 							<#else>
-								return invoke${postSchemaJavaMethodSignature.methodName?cap_first}(${firstPathJavaMethodParameter.parameterName}, ${schemaVarName});
+								return ${schemaName}Resource.${postSchemaJavaMethodSignature.methodName}(${firstPathJavaMethodParameter.parameterName}, ${schemaVarName});
 							</#if>
 						<#else>
 							throw new UnsupportedOperationException("This method needs to be implemented");
@@ -750,7 +750,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							return invokePostSite${schemaName}(testGroup.getGroupId(), toMultipartBody(random${schemaName}()));
 						<#else>
-							return invokePostSite${schemaName}(testGroup.getGroupId(), random${schemaName}());
+							return ${schemaName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}());
 						</#if>
 					<#else>
 						throw new UnsupportedOperationException("This method needs to be implemented");
@@ -773,7 +773,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					_beanUtilsBean.copyProperties(expectedPatch${schemaName}, randomPatch${schemaName});
 
-					${schemaName} get${schemaName} = invokeGet${schemaName}(patch${schemaName}.getId());
+					${schemaName} get${schemaName} = ${schemaName}Resource.get${schemaName}(patch${schemaName}.getId());
 
 					assertEquals(expectedPatch${schemaName}, get${schemaName});
 					assertValid(get${schemaName});
@@ -790,7 +790,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							return invokePostSite${schemaName}(testGroup.getGroupId(), toMultipartBody(random${schemaName}()));
 						<#else>
-							return invokePostSite${schemaName}(testGroup.getGroupId(), random${schemaName}());
+							return ${schemaName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}());
 						</#if>
 					<#else>
 						throw new UnsupportedOperationException("This method needs to be implemented");
@@ -848,12 +848,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					${schemaName} random${schemaName} = random${schemaName}();
 
-					${schemaName} put${schemaName} = invokePut${schemaName}(post${schemaName}.getId(), random${schemaName});
+					${schemaName} put${schemaName} = ${schemaName}Resource.put${schemaName}(post${schemaName}.getId(), random${schemaName});
 
 					assertEquals(random${schemaName}, put${schemaName});
 					assertValid(put${schemaName});
 
-					${schemaName} get${schemaName} = invokeGet${schemaName}(put${schemaName}.getId());
+					${schemaName} get${schemaName} = ${schemaName}Resource.get${schemaName}(put${schemaName}.getId());
 
 					assertEquals(random${schemaName}, get${schemaName});
 					assertValid(get${schemaName});
@@ -870,7 +870,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							return invokePostSite${schemaName}(testGroup.getGroupId(), toMultipartBody(random${schemaName}()));
 						<#else>
-							return invokePostSite${schemaName}(testGroup.getGroupId(), random${schemaName}());
+							return ${schemaName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}());
 						</#if>
 					<#else>
 						throw new UnsupportedOperationException("This method needs to be implemented");
