@@ -121,7 +121,9 @@ definition {
 		}
 
 		task ("Navigate to the content page's 'Edit Mode'") {
-			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-content-page-name?p_l_mode=edit");
+			Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-content-page-name");
+
+			ContentPages.gotoEdit();
 		}
 
 		task ("Edit the Rich Text fragment's editable text") {
