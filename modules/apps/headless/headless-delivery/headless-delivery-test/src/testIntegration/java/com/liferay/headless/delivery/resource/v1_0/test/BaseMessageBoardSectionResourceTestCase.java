@@ -338,8 +338,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardSection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -376,8 +376,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardSection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -431,8 +431,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardSection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -469,8 +469,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardSection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -909,8 +909,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardSection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -949,8 +949,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardSection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1367,8 +1367,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardSection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1403,8 +1403,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardSectionSerDes.toJSON(messageBoardSection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardSection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +

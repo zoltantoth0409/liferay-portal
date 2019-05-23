@@ -317,8 +317,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataDefinitionSerDes.toJSON(dataDefinition),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			dataDefinition.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -354,8 +354,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataDefinitionSerDes.toJSON(dataDefinition),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			dataDefinition.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -385,6 +385,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			dataDefinitionPermission.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -413,6 +417,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			dataDefinitionPermission.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -445,6 +453,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			dataDefinitionPermission.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath("/sites/{siteId}/data-definition-permissions", siteId);
@@ -470,6 +482,10 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			dataDefinitionPermission.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -678,8 +694,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataDefinitionSerDes.toJSON(dataDefinition),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			dataDefinition.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/sites/{siteId}/data-definitions", siteId);
@@ -713,8 +729,8 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataDefinitionSerDes.toJSON(dataDefinition),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			dataDefinition.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/sites/{siteId}/data-definitions", siteId);

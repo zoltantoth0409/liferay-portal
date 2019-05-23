@@ -345,7 +345,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataLayoutSerDes.toJSON(dataLayout), ContentTypes.APPLICATION_JSON,
+			dataLayout.toString(), ContentTypes.APPLICATION_JSON,
 			StringPool.UTF8);
 
 		String location =
@@ -383,7 +383,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataLayoutSerDes.toJSON(dataLayout), ContentTypes.APPLICATION_JSON,
+			dataLayout.toString(), ContentTypes.APPLICATION_JSON,
 			StringPool.UTF8);
 
 		String location =
@@ -413,6 +413,10 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			dataLayoutPermission.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -440,6 +444,10 @@ public abstract class BaseDataLayoutResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			dataLayoutPermission.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -604,7 +612,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataLayoutSerDes.toJSON(dataLayout), ContentTypes.APPLICATION_JSON,
+			dataLayout.toString(), ContentTypes.APPLICATION_JSON,
 			StringPool.UTF8);
 
 		String location =
@@ -640,7 +648,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataLayoutSerDes.toJSON(dataLayout), ContentTypes.APPLICATION_JSON,
+			dataLayout.toString(), ContentTypes.APPLICATION_JSON,
 			StringPool.UTF8);
 
 		String location =
@@ -813,6 +821,10 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			dataLayoutPermission.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath("/sites/{siteId}/data-layout-permissions", siteId);
@@ -838,6 +850,10 @@ public abstract class BaseDataLayoutResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			dataLayoutPermission.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +

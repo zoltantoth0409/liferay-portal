@@ -313,8 +313,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			BlogPostingSerDes.toJSON(blogPosting),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			blogPosting.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -349,8 +349,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			BlogPostingSerDes.toJSON(blogPosting),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			blogPosting.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -396,8 +396,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			BlogPostingSerDes.toJSON(blogPosting),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			blogPosting.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -432,8 +432,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			BlogPostingSerDes.toJSON(blogPosting),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			blogPosting.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -575,6 +575,9 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -609,6 +612,9 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -633,6 +639,9 @@ public abstract class BaseBlogPostingResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -667,6 +676,9 @@ public abstract class BaseBlogPostingResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1029,8 +1041,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			BlogPostingSerDes.toJSON(blogPosting),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			blogPosting.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/sites/{siteId}/blog-postings", siteId);
@@ -1064,8 +1076,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			BlogPostingSerDes.toJSON(blogPosting),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			blogPosting.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/sites/{siteId}/blog-postings", siteId);

@@ -28,6 +28,7 @@ import com.liferay.headless.admin.workflow.client.pagination.Page;
 import com.liferay.headless.admin.workflow.client.serdes.v1_0.WorkflowTaskSerDes;
 import com.liferay.headless.admin.workflow.resource.v1_0.WorkflowTaskResource;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -35,6 +36,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -509,6 +511,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			workflowTaskAssignToMe.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -542,6 +548,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			workflowTaskAssignToMe.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -585,6 +595,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			workflowTaskAssignToUser.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -619,6 +633,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			workflowTaskAssignToUser.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -661,6 +679,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			changeTransition.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -694,6 +716,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			changeTransition.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -736,6 +762,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			workflowTaskAssignToMe.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -769,6 +799,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			workflowTaskAssignToMe.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +

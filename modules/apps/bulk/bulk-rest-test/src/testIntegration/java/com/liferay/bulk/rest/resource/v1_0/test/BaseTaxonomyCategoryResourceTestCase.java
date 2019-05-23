@@ -26,6 +26,7 @@ import com.liferay.bulk.rest.client.pagination.Page;
 import com.liferay.bulk.rest.client.serdes.v1_0.TaxonomyCategorySerDes;
 import com.liferay.bulk.rest.resource.v1_0.TaxonomyCategoryResource;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -33,6 +34,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -159,6 +161,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			taxonomyCategoryBulkSelection.toString(),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location = _resourceURL + _toPath("/taxonomy-categories/batch");
 
 		options.setLocation(location);
@@ -177,6 +183,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			taxonomyCategoryBulkSelection.toString(),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location = _resourceURL + _toPath("/taxonomy-categories/batch");
 
@@ -200,6 +210,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			taxonomyCategoryBulkSelection.toString(),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location = _resourceURL + _toPath("/taxonomy-categories/batch");
 
 		options.setLocation(location);
@@ -218,6 +232,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			taxonomyCategoryBulkSelection.toString(),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location = _resourceURL + _toPath("/taxonomy-categories/batch");
 

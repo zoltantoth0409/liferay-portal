@@ -577,8 +577,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardThread.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -617,8 +617,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardThread.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -813,8 +813,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardThread.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -851,8 +851,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardThread.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -905,8 +905,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardThread.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -943,8 +943,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardThread.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1100,6 +1100,9 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -1135,6 +1138,9 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -1160,6 +1166,9 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1195,6 +1204,9 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1609,8 +1621,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardThread.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1645,8 +1657,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			MessageBoardThreadSerDes.toJSON(messageBoardThread),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			messageBoardThread.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +

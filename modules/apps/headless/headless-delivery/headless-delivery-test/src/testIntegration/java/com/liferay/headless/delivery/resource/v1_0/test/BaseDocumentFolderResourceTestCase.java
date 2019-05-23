@@ -323,8 +323,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DocumentFolderSerDes.toJSON(documentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			documentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -360,8 +360,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DocumentFolderSerDes.toJSON(documentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			documentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -411,8 +411,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DocumentFolderSerDes.toJSON(documentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			documentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -448,8 +448,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DocumentFolderSerDes.toJSON(documentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			documentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -868,8 +868,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DocumentFolderSerDes.toJSON(documentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			documentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -906,8 +906,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DocumentFolderSerDes.toJSON(documentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			documentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1299,8 +1299,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DocumentFolderSerDes.toJSON(documentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			documentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/sites/{siteId}/document-folders", siteId);
@@ -1334,8 +1334,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DocumentFolderSerDes.toJSON(documentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			documentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL + _toPath("/sites/{siteId}/document-folders", siteId);
