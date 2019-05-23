@@ -759,7 +759,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch") && javaMethodSignature.returnType?ends_with(schemaName)>
 			@Test
 			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
-				<#if !properties?keys?seq_contains("id") || arguments?ends_with(",multipartBody")>
+				<#if !properties?keys?seq_contains("id") || freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
 					Assert.assertTrue(true);
 				<#else>
 					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
@@ -799,7 +799,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post") && javaMethodSignature.returnType?ends_with(schemaName)>
 			@Test
 			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
-				<#if arguments?ends_with(",multipartBody")>
+				<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
 					Assert.assertTrue(true);
 				<#else>
 					${schemaName} random${schemaName} = random${schemaName}();
@@ -840,7 +840,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "put") && javaMethodSignature.returnType?ends_with(schemaName)>
 			@Test
 			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
-				<#if !properties?keys?seq_contains("id") || arguments?ends_with(",multipartBody")>
+				<#if !properties?keys?seq_contains("id") || freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
 					Assert.assertTrue(true);
 				<#else>
 					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
