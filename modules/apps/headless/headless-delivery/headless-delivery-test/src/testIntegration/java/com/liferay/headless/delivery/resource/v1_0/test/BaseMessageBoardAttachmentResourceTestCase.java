@@ -483,6 +483,16 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.addPart(
+			"messageBoardAttachment", _toJSON(multipartBody.getValues()));
+
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+		options.addFilePart(
+			"file", binaryFile.getFileName(),
+			FileUtil.getBytes(binaryFile.getInputStream()), testContentType,
+			"UTF-8");
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -682,6 +692,16 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.addPart(
+			"messageBoardAttachment", _toJSON(multipartBody.getValues()));
+
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+		options.addFilePart(
+			"file", binaryFile.getFileName(),
+			FileUtil.getBytes(binaryFile.getInputStream()), testContentType,
+			"UTF-8");
 
 		String location =
 			_resourceURL +

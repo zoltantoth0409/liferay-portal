@@ -709,6 +709,15 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.addPart("blogPostingImage", _toJSON(multipartBody.getValues()));
+
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+		options.addFilePart(
+			"file", binaryFile.getFileName(),
+			FileUtil.getBytes(binaryFile.getInputStream()), testContentType,
+			"UTF-8");
+
 		String location =
 			_resourceURL +
 				_toPath("/sites/{siteId}/blog-posting-images", siteId);
