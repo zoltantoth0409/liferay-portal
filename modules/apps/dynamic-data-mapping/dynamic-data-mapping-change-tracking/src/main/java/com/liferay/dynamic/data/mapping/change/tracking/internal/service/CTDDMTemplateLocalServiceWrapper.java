@@ -181,7 +181,7 @@ public class CTDDMTemplateLocalServiceWrapper
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to get class name from id " + classNameId, e);
+				_log.warn("Unable to get class name from " + classNameId, e);
 			}
 
 			return false;
