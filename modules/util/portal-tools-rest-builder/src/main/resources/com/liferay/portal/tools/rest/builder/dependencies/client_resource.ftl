@@ -29,16 +29,26 @@ public class ${schemaName}Resource {
 		public ${javaMethodSignature.returnType?replace(".dto.", ".client.dto.")?replace("com.liferay.portal.vulcan.pagination.", "")} ${javaMethodSignature.methodName}(${parameters}) throws Exception {
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && arguments?ends_with("${schemaVarName}")>
-				httpInvoker.body(${schemaName}SerDes.toJSON(${schemaVarName}), "application/json");
-			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && arguments?ends_with("multipartBody")>
-				httpInvoker.multipart();
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put")>
+				<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+					httpInvoker.multipart();
 
-				httpInvoker.part("${schemaVarName}", ${schemaName}SerDes.toJSON(${schemaVarName}));
+					httpInvoker.part("${schemaVarName}", ${schemaName}SerDes.toJSON(${schemaVarName}));
 
-				for (Map.Entry<String, File> entry : files.entrySet()) {
-					httpInvoker.part(entry.getKey(), entry.getValue());
-				}
+					for (Map.Entry<String, File> entry : files.entrySet()) {
+						httpInvoker.part(entry.getKey(), entry.getValue());
+					}
+				<#else>
+					httpInvoker.body(
+
+					<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
+						<#if javaMethodParameter?is_last>
+							${javaMethodParameter.parameterName}.toString()
+						</#if>
+					</#list>
+
+					, "application/json");
+				</#if>
 			</#if>
 
 			httpInvoker.httpMethod(HttpInvoker.HttpMethod.${freeMarkerTool.getHTTPMethod(javaMethodSignature.operation)?upper_case});
