@@ -982,8 +982,14 @@ public abstract class Base${schemaName}ResourceTestCase {
 		protected Http.Response invoke${javaMethodSignature.methodName?cap_first}Response(${invokeParameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with(",${schemaVarName}")>
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("${schemaVarName}")>
 				options.setBody(${schemaName}SerDes.toJSON(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && invokeArguments?ends_with("multipartBody")>
+				options.addPart("${schemaVarName}", _toJSON(multipartBody.getValues()));
+
+				BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+				options.addFilePart("file", binaryFile.getFileName(), FileUtil.getBytes(binaryFile.getInputStream()), testContentType, "UTF-8");
 			</#if>
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
