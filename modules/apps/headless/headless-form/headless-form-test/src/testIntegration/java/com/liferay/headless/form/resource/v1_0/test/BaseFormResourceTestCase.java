@@ -317,6 +317,15 @@ public abstract class BaseFormResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.addPart("form", _toJSON(multipartBody.getValues()));
+
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+		options.addFilePart(
+			"file", binaryFile.getFileName(),
+			FileUtil.getBytes(binaryFile.getInputStream()), testContentType,
+			"UTF-8");
+
 		String location =
 			_resourceURL + _toPath("/forms/{formId}/form-document", formId);
 

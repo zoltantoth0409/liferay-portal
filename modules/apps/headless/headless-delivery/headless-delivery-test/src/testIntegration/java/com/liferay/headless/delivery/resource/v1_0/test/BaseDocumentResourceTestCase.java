@@ -568,6 +568,15 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.addPart("document", _toJSON(multipartBody.getValues()));
+
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+		options.addFilePart(
+			"file", binaryFile.getFileName(),
+			FileUtil.getBytes(binaryFile.getInputStream()), testContentType,
+			"UTF-8");
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -745,6 +754,15 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.addPart("document", _toJSON(multipartBody.getValues()));
+
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+		options.addFilePart(
+			"file", binaryFile.getFileName(),
+			FileUtil.getBytes(binaryFile.getInputStream()), testContentType,
+			"UTF-8");
+
 		String location =
 			_resourceURL + _toPath("/documents/{documentId}", documentId);
 
@@ -812,6 +830,15 @@ public abstract class BaseDocumentResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.addPart("document", _toJSON(multipartBody.getValues()));
+
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+		options.addFilePart(
+			"file", binaryFile.getFileName(),
+			FileUtil.getBytes(binaryFile.getInputStream()), testContentType,
+			"UTF-8");
 
 		String location =
 			_resourceURL + _toPath("/documents/{documentId}", documentId);
@@ -1427,6 +1454,15 @@ public abstract class BaseDocumentResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.addPart("document", _toJSON(multipartBody.getValues()));
+
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
+		options.addFilePart(
+			"file", binaryFile.getFileName(),
+			FileUtil.getBytes(binaryFile.getInputStream()), testContentType,
+			"UTF-8");
 
 		String location =
 			_resourceURL + _toPath("/sites/{siteId}/documents", siteId);
