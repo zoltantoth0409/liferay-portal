@@ -23,13 +23,10 @@ public class ${schemaName}Resource {
 	<#list freeMarkerTool.getResourceTestCaseJavaMethodSignatures(configYAML, openAPIYAML, schemaName) as javaMethodSignature>
 		<#assign
 			arguments = freeMarkerTool.getResourceTestCaseArguments(javaMethodSignature.javaMethodParameters)
-			parameters = freeMarkerTool.getResourceTestCaseParameters(javaMethodSignature.javaMethodParameters, javaMethodSignature.operation, false)
+			parameters = freeMarkerTool.getResourceTestCaseParameters(javaMethodSignature.javaMethodParameters, javaMethodSignature.operation, false)?replace(".dto.", ".client.dto.")?replace("com.liferay.portal.kernel.search.filter.Filter filter", "String filterString")?replace("com.liferay.portal.vulcan.multipart.MultipartBody multipartBody", "${schemaName} ${schemaVarName}, Map<String, File> files")?replace("com.liferay.portal.vulcan.pagination", "${configYAML.apiPackagePath}.client.pagination")?replace("com.liferay.portal.kernel.search.Sort[] sorts", "String sortString")
 		/>
 
-		public ${javaMethodSignature.returnType?replace(".dto.", ".client.dto.")?replace("com.liferay.portal.vulcan.pagination.", "")} ${javaMethodSignature.methodName}(
-				${parameters?replace(".dto.", ".client.dto.")?replace("com.liferay.portal.kernel.search.filter.Filter filter", "String filterString")?replace("com.liferay.portal.vulcan.multipart.MultipartBody multipartBody", "${schemaName} ${schemaVarName}, Map<String, File> files")?replace("com.liferay.portal.vulcan.pagination", "${configYAML.apiPackagePath}.client.pagination")?replace("com.liferay.portal.kernel.search.Sort[] sorts", "String sortString")})
-			throws Exception {
-
+		public ${javaMethodSignature.returnType?replace(".dto.", ".client.dto.")?replace("com.liferay.portal.vulcan.pagination.", "")} ${javaMethodSignature.methodName}(${parameters}) throws Exception {
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch", "post", "put") && arguments?ends_with("${schemaVarName}")>
