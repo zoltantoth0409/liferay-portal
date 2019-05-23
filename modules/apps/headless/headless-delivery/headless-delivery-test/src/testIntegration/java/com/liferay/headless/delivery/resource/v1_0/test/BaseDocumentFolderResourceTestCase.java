@@ -241,7 +241,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 	protected DocumentFolder testGetDocumentFolder_addDocumentFolder()
 		throws Exception {
 
-		return invokePostSiteDocumentFolder(
+		return DocumentFolderResource.postSiteDocumentFolder(
 			testGroup.getGroupId(), randomDocumentFolder());
 	}
 
@@ -310,8 +310,9 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		_beanUtilsBean.copyProperties(
 			expectedPatchDocumentFolder, randomPatchDocumentFolder);
 
-		DocumentFolder getDocumentFolder = invokeGetDocumentFolder(
-			patchDocumentFolder.getId());
+		DocumentFolder getDocumentFolder =
+			DocumentFolderResource.getDocumentFolder(
+				patchDocumentFolder.getId());
 
 		assertEquals(expectedPatchDocumentFolder, getDocumentFolder);
 		assertValid(getDocumentFolder);
@@ -320,7 +321,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 	protected DocumentFolder testPatchDocumentFolder_addDocumentFolder()
 		throws Exception {
 
-		return invokePostSiteDocumentFolder(
+		return DocumentFolderResource.postSiteDocumentFolder(
 			testGroup.getGroupId(), randomDocumentFolder());
 	}
 
@@ -392,14 +393,15 @@ public abstract class BaseDocumentFolderResourceTestCase {
 
 		DocumentFolder randomDocumentFolder = randomDocumentFolder();
 
-		DocumentFolder putDocumentFolder = invokePutDocumentFolder(
-			postDocumentFolder.getId(), randomDocumentFolder);
+		DocumentFolder putDocumentFolder =
+			DocumentFolderResource.putDocumentFolder(
+				postDocumentFolder.getId(), randomDocumentFolder);
 
 		assertEquals(randomDocumentFolder, putDocumentFolder);
 		assertValid(putDocumentFolder);
 
-		DocumentFolder getDocumentFolder = invokeGetDocumentFolder(
-			putDocumentFolder.getId());
+		DocumentFolder getDocumentFolder =
+			DocumentFolderResource.getDocumentFolder(putDocumentFolder.getId());
 
 		assertEquals(randomDocumentFolder, getDocumentFolder);
 		assertValid(getDocumentFolder);
@@ -408,7 +410,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 	protected DocumentFolder testPutDocumentFolder_addDocumentFolder()
 		throws Exception {
 
-		return invokePostSiteDocumentFolder(
+		return DocumentFolderResource.postSiteDocumentFolder(
 			testGroup.getGroupId(), randomDocumentFolder());
 	}
 
@@ -749,7 +751,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 				Long parentDocumentFolderId, DocumentFolder documentFolder)
 		throws Exception {
 
-		return invokePostDocumentFolderDocumentFolder(
+		return DocumentFolderResource.postDocumentFolderDocumentFolder(
 			parentDocumentFolderId, documentFolder);
 	}
 
@@ -1200,7 +1202,8 @@ public abstract class BaseDocumentFolderResourceTestCase {
 			Long siteId, DocumentFolder documentFolder)
 		throws Exception {
 
-		return invokePostSiteDocumentFolder(siteId, documentFolder);
+		return DocumentFolderResource.postSiteDocumentFolder(
+			siteId, documentFolder);
 	}
 
 	protected Long testGetSiteDocumentFoldersPage_getSiteId() throws Exception {

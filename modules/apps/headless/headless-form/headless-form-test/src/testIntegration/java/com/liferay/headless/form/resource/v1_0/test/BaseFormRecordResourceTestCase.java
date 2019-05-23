@@ -221,13 +221,14 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		FormRecord randomFormRecord = randomFormRecord();
 
-		FormRecord putFormRecord = invokePutFormRecord(
+		FormRecord putFormRecord = FormRecordResource.putFormRecord(
 			postFormRecord.getId(), randomFormRecord);
 
 		assertEquals(randomFormRecord, putFormRecord);
 		assertValid(putFormRecord);
 
-		FormRecord getFormRecord = invokeGetFormRecord(putFormRecord.getId());
+		FormRecord getFormRecord = FormRecordResource.getFormRecord(
+			putFormRecord.getId());
 
 		assertEquals(randomFormRecord, getFormRecord);
 		assertValid(getFormRecord);
@@ -379,7 +380,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			Long formId, FormRecord formRecord)
 		throws Exception {
 
-		return invokePostFormFormRecord(formId, formRecord);
+		return FormRecordResource.postFormFormRecord(formId, formRecord);
 	}
 
 	protected Long testGetFormFormRecordsPage_getFormId() throws Exception {

@@ -234,7 +234,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 	}
 
 	protected BlogPosting testGetBlogPosting_addBlogPosting() throws Exception {
-		return invokePostSiteBlogPosting(
+		return BlogPostingResource.postSiteBlogPosting(
 			testGroup.getGroupId(), randomBlogPosting());
 	}
 
@@ -298,7 +298,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 		_beanUtilsBean.copyProperties(
 			expectedPatchBlogPosting, randomPatchBlogPosting);
 
-		BlogPosting getBlogPosting = invokeGetBlogPosting(
+		BlogPosting getBlogPosting = BlogPostingResource.getBlogPosting(
 			patchBlogPosting.getId());
 
 		assertEquals(expectedPatchBlogPosting, getBlogPosting);
@@ -308,7 +308,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 	protected BlogPosting testPatchBlogPosting_addBlogPosting()
 		throws Exception {
 
-		return invokePostSiteBlogPosting(
+		return BlogPostingResource.postSiteBlogPosting(
 			testGroup.getGroupId(), randomBlogPosting());
 	}
 
@@ -377,13 +377,13 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		BlogPosting randomBlogPosting = randomBlogPosting();
 
-		BlogPosting putBlogPosting = invokePutBlogPosting(
+		BlogPosting putBlogPosting = BlogPostingResource.putBlogPosting(
 			postBlogPosting.getId(), randomBlogPosting);
 
 		assertEquals(randomBlogPosting, putBlogPosting);
 		assertValid(putBlogPosting);
 
-		BlogPosting getBlogPosting = invokeGetBlogPosting(
+		BlogPosting getBlogPosting = BlogPostingResource.getBlogPosting(
 			putBlogPosting.getId());
 
 		assertEquals(randomBlogPosting, getBlogPosting);
@@ -391,7 +391,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 	}
 
 	protected BlogPosting testPutBlogPosting_addBlogPosting() throws Exception {
-		return invokePostSiteBlogPosting(
+		return BlogPostingResource.postSiteBlogPosting(
 			testGroup.getGroupId(), randomBlogPosting());
 	}
 
@@ -945,7 +945,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 			Long siteId, BlogPosting blogPosting)
 		throws Exception {
 
-		return invokePostSiteBlogPosting(siteId, blogPosting);
+		return BlogPostingResource.postSiteBlogPosting(siteId, blogPosting);
 	}
 
 	protected Long testGetSiteBlogPostingsPage_getSiteId() throws Exception {

@@ -455,7 +455,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				Long siteId, StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
-		return invokePostSiteStructuredContentFolder(
+		return StructuredContentFolderResource.postSiteStructuredContentFolder(
 			siteId, structuredContentFolder);
 	}
 
@@ -958,8 +958,9 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
-		return invokePostStructuredContentFolderStructuredContentFolder(
-			parentStructuredContentFolderId, structuredContentFolder);
+		return StructuredContentFolderResource.
+			postStructuredContentFolderStructuredContentFolder(
+				parentStructuredContentFolderId, structuredContentFolder);
 	}
 
 	protected Long
@@ -1250,7 +1251,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testGetStructuredContentFolder_addStructuredContentFolder()
 		throws Exception {
 
-		return invokePostSiteStructuredContentFolder(
+		return StructuredContentFolderResource.postSiteStructuredContentFolder(
 			testGroup.getGroupId(), randomStructuredContentFolder());
 	}
 
@@ -1327,7 +1328,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			randomPatchStructuredContentFolder);
 
 		StructuredContentFolder getStructuredContentFolder =
-			invokeGetStructuredContentFolder(
+			StructuredContentFolderResource.getStructuredContentFolder(
 				patchStructuredContentFolder.getId());
 
 		assertEquals(
@@ -1339,7 +1340,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testPatchStructuredContentFolder_addStructuredContentFolder()
 		throws Exception {
 
-		return invokePostSiteStructuredContentFolder(
+		return StructuredContentFolderResource.postSiteStructuredContentFolder(
 			testGroup.getGroupId(), randomStructuredContentFolder());
 	}
 
@@ -1417,7 +1418,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			randomStructuredContentFolder();
 
 		StructuredContentFolder putStructuredContentFolder =
-			invokePutStructuredContentFolder(
+			StructuredContentFolderResource.putStructuredContentFolder(
 				postStructuredContentFolder.getId(),
 				randomStructuredContentFolder);
 
@@ -1425,7 +1426,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		assertValid(putStructuredContentFolder);
 
 		StructuredContentFolder getStructuredContentFolder =
-			invokeGetStructuredContentFolder(
+			StructuredContentFolderResource.getStructuredContentFolder(
 				putStructuredContentFolder.getId());
 
 		assertEquals(randomStructuredContentFolder, getStructuredContentFolder);
@@ -1436,7 +1437,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testPutStructuredContentFolder_addStructuredContentFolder()
 		throws Exception {
 
-		return invokePostSiteStructuredContentFolder(
+		return StructuredContentFolderResource.postSiteStructuredContentFolder(
 			testGroup.getGroupId(), randomStructuredContentFolder());
 	}
 

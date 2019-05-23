@@ -323,7 +323,8 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 			expectedPatchMessageBoardMessage, randomPatchMessageBoardMessage);
 
 		MessageBoardMessage getMessageBoardMessage =
-			invokeGetMessageBoardMessage(patchMessageBoardMessage.getId());
+			MessageBoardMessageResource.getMessageBoardMessage(
+				patchMessageBoardMessage.getId());
 
 		assertEquals(expectedPatchMessageBoardMessage, getMessageBoardMessage);
 		assertValid(getMessageBoardMessage);
@@ -409,14 +410,15 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 			randomMessageBoardMessage();
 
 		MessageBoardMessage putMessageBoardMessage =
-			invokePutMessageBoardMessage(
+			MessageBoardMessageResource.putMessageBoardMessage(
 				postMessageBoardMessage.getId(), randomMessageBoardMessage);
 
 		assertEquals(randomMessageBoardMessage, putMessageBoardMessage);
 		assertValid(putMessageBoardMessage);
 
 		MessageBoardMessage getMessageBoardMessage =
-			invokeGetMessageBoardMessage(putMessageBoardMessage.getId());
+			MessageBoardMessageResource.getMessageBoardMessage(
+				putMessageBoardMessage.getId());
 
 		assertEquals(randomMessageBoardMessage, getMessageBoardMessage);
 		assertValid(getMessageBoardMessage);
@@ -1055,8 +1057,9 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 				MessageBoardMessage messageBoardMessage)
 		throws Exception {
 
-		return invokePostMessageBoardMessageMessageBoardMessage(
-			parentMessageBoardMessageId, messageBoardMessage);
+		return MessageBoardMessageResource.
+			postMessageBoardMessageMessageBoardMessage(
+				parentMessageBoardMessageId, messageBoardMessage);
 	}
 
 	protected Long
@@ -1550,8 +1553,9 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 				MessageBoardMessage messageBoardMessage)
 		throws Exception {
 
-		return invokePostMessageBoardThreadMessageBoardMessage(
-			messageBoardThreadId, messageBoardMessage);
+		return MessageBoardMessageResource.
+			postMessageBoardThreadMessageBoardMessage(
+				messageBoardThreadId, messageBoardMessage);
 	}
 
 	protected Long

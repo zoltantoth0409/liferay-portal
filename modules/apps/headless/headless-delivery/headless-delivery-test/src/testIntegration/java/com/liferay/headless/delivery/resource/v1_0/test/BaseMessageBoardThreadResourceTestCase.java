@@ -454,8 +454,9 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				MessageBoardThread messageBoardThread)
 		throws Exception {
 
-		return invokePostMessageBoardSectionMessageBoardThread(
-			messageBoardSectionId, messageBoardThread);
+		return MessageBoardThreadResource.
+			postMessageBoardSectionMessageBoardThread(
+				messageBoardSectionId, messageBoardThread);
 	}
 
 	protected Long
@@ -739,7 +740,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			testGetMessageBoardThread_addMessageBoardThread()
 		throws Exception {
 
-		return invokePostSiteMessageBoardThread(
+		return MessageBoardThreadResource.postSiteMessageBoardThread(
 			testGroup.getGroupId(), randomMessageBoardThread());
 	}
 
@@ -812,8 +813,9 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		_beanUtilsBean.copyProperties(
 			expectedPatchMessageBoardThread, randomPatchMessageBoardThread);
 
-		MessageBoardThread getMessageBoardThread = invokeGetMessageBoardThread(
-			patchMessageBoardThread.getId());
+		MessageBoardThread getMessageBoardThread =
+			MessageBoardThreadResource.getMessageBoardThread(
+				patchMessageBoardThread.getId());
 
 		assertEquals(expectedPatchMessageBoardThread, getMessageBoardThread);
 		assertValid(getMessageBoardThread);
@@ -823,7 +825,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			testPatchMessageBoardThread_addMessageBoardThread()
 		throws Exception {
 
-		return invokePostSiteMessageBoardThread(
+		return MessageBoardThreadResource.postSiteMessageBoardThread(
 			testGroup.getGroupId(), randomMessageBoardThread());
 	}
 
@@ -898,14 +900,16 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		MessageBoardThread randomMessageBoardThread =
 			randomMessageBoardThread();
 
-		MessageBoardThread putMessageBoardThread = invokePutMessageBoardThread(
-			postMessageBoardThread.getId(), randomMessageBoardThread);
+		MessageBoardThread putMessageBoardThread =
+			MessageBoardThreadResource.putMessageBoardThread(
+				postMessageBoardThread.getId(), randomMessageBoardThread);
 
 		assertEquals(randomMessageBoardThread, putMessageBoardThread);
 		assertValid(putMessageBoardThread);
 
-		MessageBoardThread getMessageBoardThread = invokeGetMessageBoardThread(
-			putMessageBoardThread.getId());
+		MessageBoardThread getMessageBoardThread =
+			MessageBoardThreadResource.getMessageBoardThread(
+				putMessageBoardThread.getId());
 
 		assertEquals(randomMessageBoardThread, getMessageBoardThread);
 		assertValid(getMessageBoardThread);
@@ -915,7 +919,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			testPutMessageBoardThread_addMessageBoardThread()
 		throws Exception {
 
-		return invokePostSiteMessageBoardThread(
+		return MessageBoardThreadResource.postSiteMessageBoardThread(
 			testGroup.getGroupId(), randomMessageBoardThread());
 	}
 
@@ -1519,7 +1523,8 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				Long siteId, MessageBoardThread messageBoardThread)
 		throws Exception {
 
-		return invokePostSiteMessageBoardThread(siteId, messageBoardThread);
+		return MessageBoardThreadResource.postSiteMessageBoardThread(
+			siteId, messageBoardThread);
 	}
 
 	protected Long testGetSiteMessageBoardThreadsPage_getSiteId()

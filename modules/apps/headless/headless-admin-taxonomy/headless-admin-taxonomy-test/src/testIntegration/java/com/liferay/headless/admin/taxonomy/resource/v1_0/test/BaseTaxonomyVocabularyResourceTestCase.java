@@ -429,7 +429,8 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 				Long siteId, TaxonomyVocabulary taxonomyVocabulary)
 		throws Exception {
 
-		return invokePostSiteTaxonomyVocabulary(siteId, taxonomyVocabulary);
+		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
+			siteId, taxonomyVocabulary);
 	}
 
 	protected Long testGetSiteTaxonomyVocabulariesPage_getSiteId()
@@ -694,7 +695,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			testGetTaxonomyVocabulary_addTaxonomyVocabulary()
 		throws Exception {
 
-		return invokePostSiteTaxonomyVocabulary(
+		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			testGroup.getGroupId(), randomTaxonomyVocabulary());
 	}
 
@@ -767,8 +768,9 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		_beanUtilsBean.copyProperties(
 			expectedPatchTaxonomyVocabulary, randomPatchTaxonomyVocabulary);
 
-		TaxonomyVocabulary getTaxonomyVocabulary = invokeGetTaxonomyVocabulary(
-			patchTaxonomyVocabulary.getId());
+		TaxonomyVocabulary getTaxonomyVocabulary =
+			TaxonomyVocabularyResource.getTaxonomyVocabulary(
+				patchTaxonomyVocabulary.getId());
 
 		assertEquals(expectedPatchTaxonomyVocabulary, getTaxonomyVocabulary);
 		assertValid(getTaxonomyVocabulary);
@@ -778,7 +780,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			testPatchTaxonomyVocabulary_addTaxonomyVocabulary()
 		throws Exception {
 
-		return invokePostSiteTaxonomyVocabulary(
+		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			testGroup.getGroupId(), randomTaxonomyVocabulary());
 	}
 
@@ -853,14 +855,16 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		TaxonomyVocabulary randomTaxonomyVocabulary =
 			randomTaxonomyVocabulary();
 
-		TaxonomyVocabulary putTaxonomyVocabulary = invokePutTaxonomyVocabulary(
-			postTaxonomyVocabulary.getId(), randomTaxonomyVocabulary);
+		TaxonomyVocabulary putTaxonomyVocabulary =
+			TaxonomyVocabularyResource.putTaxonomyVocabulary(
+				postTaxonomyVocabulary.getId(), randomTaxonomyVocabulary);
 
 		assertEquals(randomTaxonomyVocabulary, putTaxonomyVocabulary);
 		assertValid(putTaxonomyVocabulary);
 
-		TaxonomyVocabulary getTaxonomyVocabulary = invokeGetTaxonomyVocabulary(
-			putTaxonomyVocabulary.getId());
+		TaxonomyVocabulary getTaxonomyVocabulary =
+			TaxonomyVocabularyResource.getTaxonomyVocabulary(
+				putTaxonomyVocabulary.getId());
 
 		assertEquals(randomTaxonomyVocabulary, getTaxonomyVocabulary);
 		assertValid(getTaxonomyVocabulary);
@@ -870,7 +874,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			testPutTaxonomyVocabulary_addTaxonomyVocabulary()
 		throws Exception {
 
-		return invokePostSiteTaxonomyVocabulary(
+		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			testGroup.getGroupId(), randomTaxonomyVocabulary());
 	}
 
