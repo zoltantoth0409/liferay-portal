@@ -39,6 +39,7 @@ dependencies {
 	compileOnly group: "com.fasterxml.jackson.module", name: "jackson-module-jaxb-annotations", version: "2.9.6"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "1.10.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "2.2.0"
