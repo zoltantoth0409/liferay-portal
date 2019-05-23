@@ -26,6 +26,7 @@ import com.liferay.dynamic.data.mapping.storage.StorageType;
 import com.liferay.dynamic.data.mapping.test.util.DDMStructureTestHelper;
 import com.liferay.dynamic.data.mapping.test.util.DDMTemplateTestUtil;
 import com.liferay.headless.delivery.client.dto.v1_0.StructuredContent;
+import com.liferay.headless.delivery.client.resource.v1_0.StructuredContentResource;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.test.util.JournalTestUtil;
@@ -91,8 +92,9 @@ public class StructuredContentResourceTest
 	public void testGetSiteStructuredContentWithDifferentLocale()
 		throws Exception {
 
-		StructuredContent structuredContent = invokePostSiteStructuredContent(
-			testGroup.getGroupId(), randomStructuredContent());
+		StructuredContent structuredContent =
+			StructuredContentResource.postSiteStructuredContent(
+				testGroup.getGroupId(), randomStructuredContent());
 
 		String title = structuredContent.getTitle();
 
@@ -102,17 +104,17 @@ public class StructuredContentResourceTest
 
 		structuredContent.setTitle(frenchTitle);
 
-		invokePutStructuredContent(
+		StructuredContentResource.putStructuredContent(
 			structuredContent.getId(), structuredContent);
 
-		structuredContent = invokeGetStructuredContent(
+		structuredContent = StructuredContentResource.getStructuredContent(
 			structuredContent.getId());
 
 		Assert.assertEquals(frenchTitle, structuredContent.getTitle());
 
 		testLocale = LocaleUtil.getDefault();
 
-		structuredContent = invokeGetStructuredContent(
+		structuredContent = StructuredContentResource.getStructuredContent(
 			structuredContent.getId());
 
 		Assert.assertEquals(title, structuredContent.getTitle());
@@ -150,7 +152,7 @@ public class StructuredContentResourceTest
 				Long contentStructureId, StructuredContent structuredContent)
 		throws Exception {
 
-		return invokePostSiteStructuredContent(
+		return StructuredContentResource.postSiteStructuredContent(
 			testGroup.getGroupId(), structuredContent);
 	}
 
