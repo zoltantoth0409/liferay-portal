@@ -379,8 +379,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataRecordCollectionSerDes.toJSON(dataRecordCollection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			dataRecordCollection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -419,8 +419,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataRecordCollectionSerDes.toJSON(dataRecordCollection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			dataRecordCollection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -615,8 +615,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataRecordCollectionSerDes.toJSON(dataRecordCollection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			dataRecordCollection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -654,8 +654,8 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			DataRecordCollectionSerDes.toJSON(dataRecordCollection),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			dataRecordCollection.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -686,6 +686,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			dataRecordCollectionPermission.toString(),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -714,6 +718,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			dataRecordCollectionPermission.toString(),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -746,6 +754,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			dataRecordCollectionPermission.toString(),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -774,6 +786,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			dataRecordCollectionPermission.toString(),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +

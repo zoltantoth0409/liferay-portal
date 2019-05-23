@@ -572,8 +572,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyCategory.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -610,8 +610,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyCategory.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -801,8 +801,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyCategory.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -839,8 +839,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyCategory.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -891,8 +891,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyCategory.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -929,8 +929,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyCategory.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1358,8 +1358,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyCategory.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1397,8 +1397,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyCategorySerDes.toJSON(taxonomyCategory),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyCategory.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +

@@ -243,7 +243,7 @@ public abstract class BaseFormRecordResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			FormRecordSerDes.toJSON(formRecord), ContentTypes.APPLICATION_JSON,
+			formRecord.toString(), ContentTypes.APPLICATION_JSON,
 			StringPool.UTF8);
 
 		String location =
@@ -279,7 +279,7 @@ public abstract class BaseFormRecordResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			FormRecordSerDes.toJSON(formRecord), ContentTypes.APPLICATION_JSON,
+			formRecord.toString(), ContentTypes.APPLICATION_JSON,
 			StringPool.UTF8);
 
 		String location =
@@ -467,7 +467,7 @@ public abstract class BaseFormRecordResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			FormRecordSerDes.toJSON(formRecord), ContentTypes.APPLICATION_JSON,
+			formRecord.toString(), ContentTypes.APPLICATION_JSON,
 			StringPool.UTF8);
 
 		String location =
@@ -502,7 +502,7 @@ public abstract class BaseFormRecordResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			FormRecordSerDes.toJSON(formRecord), ContentTypes.APPLICATION_JSON,
+			formRecord.toString(), ContentTypes.APPLICATION_JSON,
 			StringPool.UTF8);
 
 		String location =

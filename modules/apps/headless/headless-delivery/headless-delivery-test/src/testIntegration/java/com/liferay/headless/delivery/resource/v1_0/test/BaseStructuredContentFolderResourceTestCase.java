@@ -581,8 +581,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -617,8 +617,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1075,8 +1075,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1115,8 +1115,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1321,8 +1321,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1360,8 +1360,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1418,8 +1418,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1457,8 +1457,8 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentFolderSerDes.toJSON(structuredContentFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +

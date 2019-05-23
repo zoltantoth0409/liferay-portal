@@ -336,8 +336,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			knowledgeBaseFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -374,8 +374,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			knowledgeBaseFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -429,8 +429,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			knowledgeBaseFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -467,8 +467,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			knowledgeBaseFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -702,8 +702,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			knowledgeBaseFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -742,8 +742,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			knowledgeBaseFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -954,8 +954,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			knowledgeBaseFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -990,8 +990,8 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			KnowledgeBaseFolderSerDes.toJSON(knowledgeBaseFolder),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			knowledgeBaseFolder.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +

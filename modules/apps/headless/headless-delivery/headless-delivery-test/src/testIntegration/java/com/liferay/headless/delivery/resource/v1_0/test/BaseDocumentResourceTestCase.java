@@ -26,6 +26,7 @@ import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.DocumentSerDes;
 import com.liferay.headless.delivery.resource.v1_0.DocumentResource;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -33,6 +34,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.Http;
@@ -972,6 +974,9 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath("/documents/{documentId}/my-rating", documentId);
@@ -1005,6 +1010,9 @@ public abstract class BaseDocumentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath("/documents/{documentId}/my-rating", documentId);
@@ -1027,6 +1035,9 @@ public abstract class BaseDocumentResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1060,6 +1071,9 @@ public abstract class BaseDocumentResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +

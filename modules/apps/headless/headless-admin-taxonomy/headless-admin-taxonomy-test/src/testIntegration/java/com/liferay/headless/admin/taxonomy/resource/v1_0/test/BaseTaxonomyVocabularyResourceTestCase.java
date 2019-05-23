@@ -548,8 +548,8 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyVocabularySerDes.toJSON(taxonomyVocabulary),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyVocabulary.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -584,8 +584,8 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyVocabularySerDes.toJSON(taxonomyVocabulary),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyVocabulary.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -778,8 +778,8 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyVocabularySerDes.toJSON(taxonomyVocabulary),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyVocabulary.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -816,8 +816,8 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyVocabularySerDes.toJSON(taxonomyVocabulary),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyVocabulary.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -870,8 +870,8 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyVocabularySerDes.toJSON(taxonomyVocabulary),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyVocabulary.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -908,8 +908,8 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			TaxonomyVocabularySerDes.toJSON(taxonomyVocabulary),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			taxonomyVocabulary.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +

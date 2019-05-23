@@ -933,8 +933,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentSerDes.toJSON(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContent.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -969,8 +969,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentSerDes.toJSON(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContent.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1550,8 +1550,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentSerDes.toJSON(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContent.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1590,8 +1590,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentSerDes.toJSON(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContent.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1783,8 +1783,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentSerDes.toJSON(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContent.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1821,8 +1821,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentSerDes.toJSON(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContent.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1873,8 +1873,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentSerDes.toJSON(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContent.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -1911,8 +1911,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 		Http.Options options = _createHttpOptions();
 
 		options.setBody(
-			StructuredContentSerDes.toJSON(structuredContent),
-			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			structuredContent.toString(), ContentTypes.APPLICATION_JSON,
+			StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -2067,6 +2067,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -2102,6 +2105,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 		Http.Options options = _createHttpOptions();
 
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
 		String location =
 			_resourceURL +
 				_toPath(
@@ -2127,6 +2133,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
@@ -2162,6 +2171,9 @@ public abstract class BaseStructuredContentResourceTestCase {
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			rating.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 
 		String location =
 			_resourceURL +
