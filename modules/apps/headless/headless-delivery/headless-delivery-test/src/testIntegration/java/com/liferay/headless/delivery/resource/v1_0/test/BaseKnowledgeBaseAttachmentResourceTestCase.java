@@ -46,6 +46,8 @@ import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
+import java.io.File;
+
 import java.lang.reflect.InvocationTargetException;
 
 import java.net.URL;
@@ -213,8 +215,10 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 				KnowledgeBaseAttachment knowledgeBaseAttachment)
 		throws Exception {
 
-		return invokePostKnowledgeBaseArticleKnowledgeBaseAttachment(
-			knowledgeBaseArticleId, toMultipartBody(knowledgeBaseAttachment));
+		return KnowledgeBaseAttachmentResource.
+			postKnowledgeBaseArticleKnowledgeBaseAttachment(
+				knowledgeBaseArticleId, knowledgeBaseAttachment,
+				getMultipartFiles());
 	}
 
 	protected Long
@@ -288,9 +292,10 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 				KnowledgeBaseAttachment knowledgeBaseAttachment)
 		throws Exception {
 
-		return invokePostKnowledgeBaseArticleKnowledgeBaseAttachment(
-			testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_getKnowledgeBaseArticleId(),
-			toMultipartBody(knowledgeBaseAttachment));
+		return KnowledgeBaseAttachmentResource.
+			postKnowledgeBaseArticleKnowledgeBaseAttachment(
+				testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_getKnowledgeBaseArticleId(),
+				knowledgeBaseAttachment, getMultipartFiles());
 	}
 
 	protected KnowledgeBaseAttachment
@@ -846,6 +851,11 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
+	protected Map<String, File> getMultipartFiles() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected KnowledgeBaseAttachment randomKnowledgeBaseAttachment()
 		throws Exception {
 
@@ -874,13 +884,6 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		throws Exception {
 
 		return randomKnowledgeBaseAttachment();
-	}
-
-	protected MultipartBody toMultipartBody(
-		KnowledgeBaseAttachment knowledgeBaseAttachment) {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
 	}
 
 	protected Group irrelevantGroup;

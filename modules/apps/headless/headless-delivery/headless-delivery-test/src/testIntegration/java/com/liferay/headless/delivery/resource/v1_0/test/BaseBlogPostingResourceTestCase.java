@@ -1051,7 +1051,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 			BlogPosting blogPosting)
 		throws Exception {
 
-		return invokePostSiteBlogPosting(
+		return BlogPostingResource.postSiteBlogPosting(
 			testGetSiteBlogPostingsPage_getSiteId(), blogPosting);
 	}
 

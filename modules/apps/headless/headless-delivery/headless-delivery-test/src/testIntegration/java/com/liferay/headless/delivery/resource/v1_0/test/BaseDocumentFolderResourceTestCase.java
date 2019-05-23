@@ -871,7 +871,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 				DocumentFolder documentFolder)
 		throws Exception {
 
-		return invokePostDocumentFolderDocumentFolder(
+		return DocumentFolderResource.postDocumentFolderDocumentFolder(
 			testGetDocumentFolderDocumentFoldersPage_getParentDocumentFolderId(),
 			documentFolder);
 	}
@@ -1317,7 +1317,7 @@ public abstract class BaseDocumentFolderResourceTestCase {
 			DocumentFolder documentFolder)
 		throws Exception {
 
-		return invokePostSiteDocumentFolder(
+		return DocumentFolderResource.postSiteDocumentFolder(
 			testGetSiteDocumentFoldersPage_getSiteId(), documentFolder);
 	}
 

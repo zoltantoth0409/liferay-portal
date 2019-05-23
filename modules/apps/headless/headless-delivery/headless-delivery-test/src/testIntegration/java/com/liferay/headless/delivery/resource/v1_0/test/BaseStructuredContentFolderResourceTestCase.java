@@ -580,7 +580,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
-		return invokePostSiteStructuredContentFolder(
+		return StructuredContentFolderResource.postSiteStructuredContentFolder(
 			testGetSiteStructuredContentFoldersPage_getSiteId(),
 			structuredContentFolder);
 	}
@@ -1087,9 +1087,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
-		return invokePostStructuredContentFolderStructuredContentFolder(
-			testGetStructuredContentFolderStructuredContentFoldersPage_getParentStructuredContentFolderId(),
-			structuredContentFolder);
+		return StructuredContentFolderResource.
+			postStructuredContentFolderStructuredContentFolder(
+				testGetStructuredContentFolderStructuredContentFoldersPage_getParentStructuredContentFolderId(),
+				structuredContentFolder);
 	}
 
 	protected StructuredContentFolder

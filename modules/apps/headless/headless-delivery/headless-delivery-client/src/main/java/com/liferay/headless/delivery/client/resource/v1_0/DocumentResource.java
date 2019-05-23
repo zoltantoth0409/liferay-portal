@@ -93,12 +93,13 @@ public class DocumentResource {
 	}
 
 	public static Document postDocumentFolderDocument(
-			Long documentFolderId, Document document, Map<String, File> files)
+			Long documentFolderId, Document document,
+			Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker.HttpResponse httpResponse =
 			postDocumentFolderDocumentHttpResponse(
-				documentFolderId, document, files);
+				documentFolderId, document, multipartFiles);
 
 		String content = httpResponse.getContent();
 
@@ -123,7 +124,7 @@ public class DocumentResource {
 	public static HttpInvoker.HttpResponse
 			postDocumentFolderDocumentHttpResponse(
 				Long documentFolderId, Document document,
-				Map<String, File> files)
+				Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -132,7 +133,7 @@ public class DocumentResource {
 
 		httpInvoker.part("document", DocumentSerDes.toJSON(document));
 
-		for (Map.Entry<String, File> entry : files.entrySet()) {
+		for (Map.Entry<String, File> entry : multipartFiles.entrySet()) {
 			httpInvoker.part(entry.getKey(), entry.getValue());
 		}
 
@@ -219,11 +220,12 @@ public class DocumentResource {
 	}
 
 	public static Document patchDocument(
-			Long documentId, Document document, Map<String, File> files)
+			Long documentId, Document document,
+			Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker.HttpResponse httpResponse = patchDocumentHttpResponse(
-			documentId, document, files);
+			documentId, document, multipartFiles);
 
 		String content = httpResponse.getContent();
 
@@ -246,7 +248,8 @@ public class DocumentResource {
 	}
 
 	public static HttpInvoker.HttpResponse patchDocumentHttpResponse(
-			Long documentId, Document document, Map<String, File> files)
+			Long documentId, Document document,
+			Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -255,7 +258,7 @@ public class DocumentResource {
 
 		httpInvoker.part("document", DocumentSerDes.toJSON(document));
 
-		for (Map.Entry<String, File> entry : files.entrySet()) {
+		for (Map.Entry<String, File> entry : multipartFiles.entrySet()) {
 			httpInvoker.part(entry.getKey(), entry.getValue());
 		}
 
@@ -271,11 +274,12 @@ public class DocumentResource {
 	}
 
 	public static Document putDocument(
-			Long documentId, Document document, Map<String, File> files)
+			Long documentId, Document document,
+			Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker.HttpResponse httpResponse = putDocumentHttpResponse(
-			documentId, document, files);
+			documentId, document, multipartFiles);
 
 		String content = httpResponse.getContent();
 
@@ -298,7 +302,8 @@ public class DocumentResource {
 	}
 
 	public static HttpInvoker.HttpResponse putDocumentHttpResponse(
-			Long documentId, Document document, Map<String, File> files)
+			Long documentId, Document document,
+			Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -307,7 +312,7 @@ public class DocumentResource {
 
 		httpInvoker.part("document", DocumentSerDes.toJSON(document));
 
-		for (Map.Entry<String, File> entry : files.entrySet()) {
+		for (Map.Entry<String, File> entry : multipartFiles.entrySet()) {
 			httpInvoker.part(entry.getKey(), entry.getValue());
 		}
 
@@ -560,11 +565,11 @@ public class DocumentResource {
 	}
 
 	public static Document postSiteDocument(
-			Long siteId, Document document, Map<String, File> files)
+			Long siteId, Document document, Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker.HttpResponse httpResponse = postSiteDocumentHttpResponse(
-			siteId, document, files);
+			siteId, document, multipartFiles);
 
 		String content = httpResponse.getContent();
 
@@ -587,7 +592,7 @@ public class DocumentResource {
 	}
 
 	public static HttpInvoker.HttpResponse postSiteDocumentHttpResponse(
-			Long siteId, Document document, Map<String, File> files)
+			Long siteId, Document document, Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -596,7 +601,7 @@ public class DocumentResource {
 
 		httpInvoker.part("document", DocumentSerDes.toJSON(document));
 
-		for (Map.Entry<String, File> entry : files.entrySet()) {
+		for (Map.Entry<String, File> entry : multipartFiles.entrySet()) {
 			httpInvoker.part(entry.getKey(), entry.getValue());
 		}
 

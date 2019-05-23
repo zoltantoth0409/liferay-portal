@@ -46,6 +46,8 @@ import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
+import java.io.File;
+
 import java.lang.reflect.InvocationTargetException;
 
 import java.net.URL;
@@ -360,8 +362,10 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				MessageBoardAttachment messageBoardAttachment)
 		throws Exception {
 
-		return invokePostMessageBoardMessageMessageBoardAttachment(
-			messageBoardMessageId, toMultipartBody(messageBoardAttachment));
+		return MessageBoardAttachmentResource.
+			postMessageBoardMessageMessageBoardAttachment(
+				messageBoardMessageId, messageBoardAttachment,
+				getMultipartFiles());
 	}
 
 	protected Long
@@ -435,9 +439,10 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				MessageBoardAttachment messageBoardAttachment)
 		throws Exception {
 
-		return invokePostMessageBoardMessageMessageBoardAttachment(
-			testGetMessageBoardMessageMessageBoardAttachmentsPage_getMessageBoardMessageId(),
-			toMultipartBody(messageBoardAttachment));
+		return MessageBoardAttachmentResource.
+			postMessageBoardMessageMessageBoardAttachment(
+				testGetMessageBoardMessageMessageBoardAttachmentsPage_getMessageBoardMessageId(),
+				messageBoardAttachment, getMultipartFiles());
 	}
 
 	protected MessageBoardAttachment
@@ -572,8 +577,10 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				MessageBoardAttachment messageBoardAttachment)
 		throws Exception {
 
-		return invokePostMessageBoardThreadMessageBoardAttachment(
-			messageBoardThreadId, toMultipartBody(messageBoardAttachment));
+		return MessageBoardAttachmentResource.
+			postMessageBoardThreadMessageBoardAttachment(
+				messageBoardThreadId, messageBoardAttachment,
+				getMultipartFiles());
 	}
 
 	protected Long
@@ -647,9 +654,10 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				MessageBoardAttachment messageBoardAttachment)
 		throws Exception {
 
-		return invokePostMessageBoardThreadMessageBoardAttachment(
-			testGetMessageBoardThreadMessageBoardAttachmentsPage_getMessageBoardThreadId(),
-			toMultipartBody(messageBoardAttachment));
+		return MessageBoardAttachmentResource.
+			postMessageBoardThreadMessageBoardAttachment(
+				testGetMessageBoardThreadMessageBoardAttachmentsPage_getMessageBoardThreadId(),
+				messageBoardAttachment, getMultipartFiles());
 	}
 
 	protected MessageBoardAttachment
@@ -1052,6 +1060,11 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
+	protected Map<String, File> getMultipartFiles() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected MessageBoardAttachment randomMessageBoardAttachment()
 		throws Exception {
 
@@ -1080,13 +1093,6 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 		throws Exception {
 
 		return randomMessageBoardAttachment();
-	}
-
-	protected MultipartBody toMultipartBody(
-		MessageBoardAttachment messageBoardAttachment) {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
 	}
 
 	protected Group irrelevantGroup;

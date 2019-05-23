@@ -918,9 +918,10 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				MessageBoardSection messageBoardSection)
 		throws Exception {
 
-		return invokePostMessageBoardSectionMessageBoardSection(
-			testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId(),
-			messageBoardSection);
+		return MessageBoardSectionResource.
+			postMessageBoardSectionMessageBoardSection(
+				testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId(),
+				messageBoardSection);
 	}
 
 	protected MessageBoardSection
@@ -1384,7 +1385,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				MessageBoardSection messageBoardSection)
 		throws Exception {
 
-		return invokePostSiteMessageBoardSection(
+		return MessageBoardSectionResource.postSiteMessageBoardSection(
 			testGetSiteMessageBoardSectionsPage_getSiteId(),
 			messageBoardSection);
 	}

@@ -461,7 +461,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			FormRecord formRecord)
 		throws Exception {
 
-		return invokePostFormFormRecord(
+		return FormRecordResource.postFormFormRecord(
 			testGetFormFormRecordsPage_getFormId(), formRecord);
 	}
 

@@ -169,12 +169,12 @@ public class BlogPostingImageResource {
 
 	public static BlogPostingImage postSiteBlogPostingImage(
 			Long siteId, BlogPostingImage blogPostingImage,
-			Map<String, File> files)
+			Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker.HttpResponse httpResponse =
 			postSiteBlogPostingImageHttpResponse(
-				siteId, blogPostingImage, files);
+				siteId, blogPostingImage, multipartFiles);
 
 		String content = httpResponse.getContent();
 
@@ -198,7 +198,7 @@ public class BlogPostingImageResource {
 
 	public static HttpInvoker.HttpResponse postSiteBlogPostingImageHttpResponse(
 			Long siteId, BlogPostingImage blogPostingImage,
-			Map<String, File> files)
+			Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -209,7 +209,7 @@ public class BlogPostingImageResource {
 			"blogPostingImage",
 			BlogPostingImageSerDes.toJSON(blogPostingImage));
 
-		for (Map.Entry<String, File> entry : files.entrySet()) {
+		for (Map.Entry<String, File> entry : multipartFiles.entrySet()) {
 			httpInvoker.part(entry.getKey(), entry.getValue());
 		}
 

@@ -580,9 +580,10 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				MessageBoardThread messageBoardThread)
 		throws Exception {
 
-		return invokePostMessageBoardSectionMessageBoardThread(
-			testGetMessageBoardSectionMessageBoardThreadsPage_getMessageBoardSectionId(),
-			messageBoardThread);
+		return MessageBoardThreadResource.
+			postMessageBoardSectionMessageBoardThread(
+				testGetMessageBoardSectionMessageBoardThreadsPage_getMessageBoardSectionId(),
+				messageBoardThread);
 	}
 
 	protected MessageBoardThread
@@ -1645,7 +1646,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				MessageBoardThread messageBoardThread)
 		throws Exception {
 
-		return invokePostSiteMessageBoardThread(
+		return MessageBoardThreadResource.postSiteMessageBoardThread(
 			testGetSiteMessageBoardThreadsPage_getSiteId(), messageBoardThread);
 	}
 

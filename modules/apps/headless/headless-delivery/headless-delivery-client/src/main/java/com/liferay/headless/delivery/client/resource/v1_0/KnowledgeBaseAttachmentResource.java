@@ -76,12 +76,13 @@ public class KnowledgeBaseAttachmentResource {
 			postKnowledgeBaseArticleKnowledgeBaseAttachment(
 				Long knowledgeBaseArticleId,
 				KnowledgeBaseAttachment knowledgeBaseAttachment,
-				Map<String, File> files)
+				Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker.HttpResponse httpResponse =
 			postKnowledgeBaseArticleKnowledgeBaseAttachmentHttpResponse(
-				knowledgeBaseArticleId, knowledgeBaseAttachment, files);
+				knowledgeBaseArticleId, knowledgeBaseAttachment,
+				multipartFiles);
 
 		String content = httpResponse.getContent();
 
@@ -107,7 +108,7 @@ public class KnowledgeBaseAttachmentResource {
 			postKnowledgeBaseArticleKnowledgeBaseAttachmentHttpResponse(
 				Long knowledgeBaseArticleId,
 				KnowledgeBaseAttachment knowledgeBaseAttachment,
-				Map<String, File> files)
+				Map<String, File> multipartFiles)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -118,7 +119,7 @@ public class KnowledgeBaseAttachmentResource {
 			"knowledgeBaseAttachment",
 			KnowledgeBaseAttachmentSerDes.toJSON(knowledgeBaseAttachment));
 
-		for (Map.Entry<String, File> entry : files.entrySet()) {
+		for (Map.Entry<String, File> entry : multipartFiles.entrySet()) {
 			httpInvoker.part(entry.getKey(), entry.getValue());
 		}
 

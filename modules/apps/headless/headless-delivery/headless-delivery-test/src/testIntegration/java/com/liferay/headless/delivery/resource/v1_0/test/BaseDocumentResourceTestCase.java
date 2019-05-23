@@ -50,6 +50,8 @@ import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
+import java.io.File;
+
 import java.lang.reflect.InvocationTargetException;
 
 import java.net.URL;
@@ -415,8 +417,8 @@ public abstract class BaseDocumentResourceTestCase {
 			Long documentFolderId, Document document)
 		throws Exception {
 
-		return invokePostDocumentFolderDocument(
-			documentFolderId, toMultipartBody(document));
+		return DocumentResource.postDocumentFolderDocument(
+			documentFolderId, document, getMultipartFiles());
 	}
 
 	protected Long testGetDocumentFolderDocumentsPage_getDocumentFolderId()
@@ -526,9 +528,9 @@ public abstract class BaseDocumentResourceTestCase {
 			Document document)
 		throws Exception {
 
-		return invokePostDocumentFolderDocument(
-			testGetDocumentFolderDocumentsPage_getDocumentFolderId(),
-			toMultipartBody(document));
+		return DocumentResource.postDocumentFolderDocument(
+			testGetDocumentFolderDocumentsPage_getDocumentFolderId(), document,
+			getMultipartFiles());
 	}
 
 	protected Document invokePostDocumentFolderDocument(
@@ -619,8 +621,8 @@ public abstract class BaseDocumentResourceTestCase {
 	}
 
 	protected Document testDeleteDocument_addDocument() throws Exception {
-		return invokePostSiteDocument(
-			testGroup.getGroupId(), toMultipartBody(randomDocument()));
+		return DocumentResource.postSiteDocument(
+			testGroup.getGroupId(), randomDocument(), getMultipartFiles());
 	}
 
 	protected void invokeDeleteDocument(Long documentId) throws Exception {
@@ -669,8 +671,8 @@ public abstract class BaseDocumentResourceTestCase {
 	}
 
 	protected Document testGetDocument_addDocument() throws Exception {
-		return invokePostSiteDocument(
-			testGroup.getGroupId(), toMultipartBody(randomDocument()));
+		return DocumentResource.postSiteDocument(
+			testGroup.getGroupId(), randomDocument(), getMultipartFiles());
 	}
 
 	protected Document invokeGetDocument(Long documentId) throws Exception {
@@ -720,8 +722,8 @@ public abstract class BaseDocumentResourceTestCase {
 	}
 
 	protected Document testPatchDocument_addDocument() throws Exception {
-		return invokePostSiteDocument(
-			testGroup.getGroupId(), toMultipartBody(randomDocument()));
+		return DocumentResource.postSiteDocument(
+			testGroup.getGroupId(), randomDocument(), getMultipartFiles());
 	}
 
 	protected Document invokePatchDocument(
@@ -797,8 +799,8 @@ public abstract class BaseDocumentResourceTestCase {
 	}
 
 	protected Document testPutDocument_addDocument() throws Exception {
-		return invokePostSiteDocument(
-			testGroup.getGroupId(), toMultipartBody(randomDocument()));
+		return DocumentResource.postSiteDocument(
+			testGroup.getGroupId(), randomDocument(), getMultipartFiles());
 	}
 
 	protected Document invokePutDocument(
@@ -888,8 +890,8 @@ public abstract class BaseDocumentResourceTestCase {
 	protected Document testDeleteDocumentMyRating_addDocument()
 		throws Exception {
 
-		return invokePostSiteDocument(
-			testGroup.getGroupId(), toMultipartBody(randomDocument()));
+		return DocumentResource.postSiteDocument(
+			testGroup.getGroupId(), randomDocument(), getMultipartFiles());
 	}
 
 	protected void invokeDeleteDocumentMyRating(Long documentId)
@@ -1332,7 +1334,8 @@ public abstract class BaseDocumentResourceTestCase {
 			Long siteId, Document document)
 		throws Exception {
 
-		return invokePostSiteDocument(siteId, toMultipartBody(document));
+		return DocumentResource.postSiteDocument(
+			siteId, document, getMultipartFiles());
 	}
 
 	protected Long testGetSiteDocumentsPage_getSiteId() throws Exception {
@@ -1439,8 +1442,9 @@ public abstract class BaseDocumentResourceTestCase {
 	protected Document testPostSiteDocument_addDocument(Document document)
 		throws Exception {
 
-		return invokePostSiteDocument(
-			testGetSiteDocumentsPage_getSiteId(), toMultipartBody(document));
+		return DocumentResource.postSiteDocument(
+			testGetSiteDocumentsPage_getSiteId(), document,
+			getMultipartFiles());
 	}
 
 	protected Document invokePostSiteDocument(
@@ -2169,6 +2173,11 @@ public abstract class BaseDocumentResourceTestCase {
 			"Invalid entity field " + entityFieldName);
 	}
 
+	protected Map<String, File> getMultipartFiles() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected Document randomDocument() throws Exception {
 		return new Document() {
 			{
@@ -2194,11 +2203,6 @@ public abstract class BaseDocumentResourceTestCase {
 
 	protected Document randomPatchDocument() throws Exception {
 		return randomDocument();
-	}
-
-	protected MultipartBody toMultipartBody(Document document) {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
 	}
 
 	protected Group irrelevantGroup;
