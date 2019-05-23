@@ -59,6 +59,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		_user = UserTestUtil.addGroupUser(testGroup, RoleConstants.POWER_USER);
 	}
 
+	@Ignore
 	@Test
 	public void testGetSiteSegmentsPageWithDefaultPermissions()
 		throws Exception {
@@ -84,6 +85,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		assertValid(page);
 	}
 
+	@Ignore
 	@Test
 	public void testGetSiteSegmentsPageWithoutViewPermissions()
 		throws Exception {
