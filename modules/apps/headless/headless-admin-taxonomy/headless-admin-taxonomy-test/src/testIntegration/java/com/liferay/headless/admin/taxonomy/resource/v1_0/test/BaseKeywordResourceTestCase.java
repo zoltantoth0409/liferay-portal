@@ -27,18 +27,12 @@ import com.liferay.headless.admin.taxonomy.client.pagination.Pagination;
 import com.liferay.headless.admin.taxonomy.client.resource.v1_0.KeywordResource;
 import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.KeywordSerDes;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.Base64;
-import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
-import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
@@ -48,8 +42,6 @@ import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
 
-import java.net.URL;
-
 import java.text.DateFormat;
 
 import java.util.ArrayList;
@@ -57,19 +49,16 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
 import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.Response;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
@@ -106,9 +95,6 @@ public abstract class BaseKeywordResourceTestCase {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 		testLocale = LocaleUtil.getDefault();
-
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-admin-taxonomy/v1.0");
 	}
 
 	@After
@@ -177,40 +163,6 @@ public abstract class BaseKeywordResourceTestCase {
 			testGroup.getGroupId(), randomKeyword());
 	}
 
-	protected void invokeDeleteKeyword(Long keywordId) throws Exception {
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		String location =
-			_resourceURL + _toPath("/keywords/{keywordId}", keywordId);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-	}
-
-	protected Http.Response invokeDeleteKeywordResponse(Long keywordId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		String location =
-			_resourceURL + _toPath("/keywords/{keywordId}", keywordId);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
 	@Test
 	public void testGetKeyword() throws Exception {
 		Keyword postKeyword = testGetKeyword_addKeyword();
@@ -224,47 +176,6 @@ public abstract class BaseKeywordResourceTestCase {
 	protected Keyword testGetKeyword_addKeyword() throws Exception {
 		return KeywordResource.postSiteKeyword(
 			testGroup.getGroupId(), randomKeyword());
-	}
-
-	protected Keyword invokeGetKeyword(Long keywordId) throws Exception {
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/keywords/{keywordId}", keywordId);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return KeywordSerDes.toDTO(string);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to process HTTP response: " + string, e);
-			}
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokeGetKeywordResponse(Long keywordId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/keywords/{keywordId}", keywordId);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
 	}
 
 	@Test
@@ -288,60 +199,6 @@ public abstract class BaseKeywordResourceTestCase {
 	protected Keyword testPutKeyword_addKeyword() throws Exception {
 		return KeywordResource.postSiteKeyword(
 			testGroup.getGroupId(), randomKeyword());
-	}
-
-	protected Keyword invokePutKeyword(Long keywordId, Keyword keyword)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			keyword.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		String location =
-			_resourceURL + _toPath("/keywords/{keywordId}", keywordId);
-
-		options.setLocation(location);
-
-		options.setPut(true);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return KeywordSerDes.toDTO(string);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to process HTTP response: " + string, e);
-			}
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokePutKeywordResponse(
-			Long keywordId, Keyword keyword)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			keyword.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		String location =
-			_resourceURL + _toPath("/keywords/{keywordId}", keywordId);
-
-		options.setLocation(location);
-
-		options.setPut(true);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
 	}
 
 	@Test
@@ -580,84 +437,6 @@ public abstract class BaseKeywordResourceTestCase {
 		return irrelevantGroup.getGroupId();
 	}
 
-	protected Page<Keyword> invokeGetSiteKeywordsPage(
-			Long siteId, String search, String filterString,
-			com.liferay.portal.vulcan.pagination.Pagination pagination,
-			String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/sites/{siteId}/keywords", siteId);
-
-		if (search != null) {
-			location = HttpUtil.addParameter(location, "search", search);
-		}
-
-		if (filterString != null) {
-			location = HttpUtil.addParameter(location, "filter", filterString);
-		}
-
-		if (pagination != null) {
-			location = HttpUtil.addParameter(
-				location, "page", pagination.getPage());
-			location = HttpUtil.addParameter(
-				location, "pageSize", pagination.getPageSize());
-		}
-
-		if (sortString != null) {
-			location = HttpUtil.addParameter(location, "sort", sortString);
-		}
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		return Page.of(string, KeywordSerDes::toDTO);
-	}
-
-	protected Http.Response invokeGetSiteKeywordsPageResponse(
-			Long siteId, String search, String filterString,
-			com.liferay.portal.vulcan.pagination.Pagination pagination,
-			String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL + _toPath("/sites/{siteId}/keywords", siteId);
-
-		if (search != null) {
-			location = HttpUtil.addParameter(location, "search", search);
-		}
-
-		if (filterString != null) {
-			location = HttpUtil.addParameter(location, "filter", filterString);
-		}
-
-		if (pagination != null) {
-			location = HttpUtil.addParameter(
-				location, "page", pagination.getPage());
-			location = HttpUtil.addParameter(
-				location, "pageSize", pagination.getPageSize());
-		}
-
-		if (sortString != null) {
-			location = HttpUtil.addParameter(location, "sort", sortString);
-		}
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
 	@Test
 	public void testPostSiteKeyword() throws Exception {
 		Keyword randomKeyword = randomKeyword();
@@ -673,60 +452,6 @@ public abstract class BaseKeywordResourceTestCase {
 
 		return KeywordResource.postSiteKeyword(
 			testGetSiteKeywordsPage_getSiteId(), keyword);
-	}
-
-	protected Keyword invokePostSiteKeyword(Long siteId, Keyword keyword)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			keyword.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		String location =
-			_resourceURL + _toPath("/sites/{siteId}/keywords", siteId);
-
-		options.setLocation(location);
-
-		options.setPost(true);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return KeywordSerDes.toDTO(string);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to process HTTP response: " + string, e);
-			}
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokePostSiteKeywordResponse(
-			Long siteId, Keyword keyword)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			keyword.toString(), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-		String location =
-			_resourceURL + _toPath("/sites/{siteId}/keywords", siteId);
-
-		options.setLocation(location);
-
-		options.setPost(true);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
 	}
 
 	protected void assertHttpResponseStatusCode(
@@ -1100,76 +825,9 @@ public abstract class BaseKeywordResourceTestCase {
 	}
 
 	protected Group irrelevantGroup;
-	protected String testContentType = "application/json";
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	private Http.Options _createHttpOptions() {
-		Http.Options options = new Http.Options();
-
-		options.addHeader("Accept", "application/json");
-		options.addHeader(
-			"Accept-Language", LocaleUtil.toW3cLanguageId(testLocale));
-
-		String encodedTestUserNameAndPassword = Base64.encode(
-			testUserNameAndPassword.getBytes());
-
-		options.addHeader(
-			"Authorization", "Basic " + encodedTestUserNameAndPassword);
-
-		options.addHeader("Content-Type", testContentType);
-
-		return options;
-	}
-
-	private String _toJSON(Map<String, String> map) {
-		if (map == null) {
-			return "null";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("{");
-
-		Set<Map.Entry<String, String>> set = map.entrySet();
-
-		Iterator<Map.Entry<String, String>> iterator = set.iterator();
-
-		while (iterator.hasNext()) {
-			Map.Entry<String, String> entry = iterator.next();
-
-			sb.append("\"" + entry.getKey() + "\": ");
-
-			if (entry.getValue() == null) {
-				sb.append("null");
-			}
-			else {
-				sb.append("\"" + entry.getValue() + "\"");
-			}
-
-			if (iterator.hasNext()) {
-				sb.append(", ");
-			}
-		}
-
-		sb.append("}");
-
-		return sb.toString();
-	}
-
-	private String _toPath(String template, Object... values) {
-		if (ArrayUtil.isEmpty(values)) {
-			return template;
-		}
-
-		for (int i = 0; i < values.length; i++) {
-			template = template.replaceFirst(
-				"\\{.*?\\}", String.valueOf(values[i]));
-		}
-
-		return template;
-	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseKeywordResourceTestCase.class);
@@ -1191,7 +849,5 @@ public abstract class BaseKeywordResourceTestCase {
 	@Inject
 	private com.liferay.headless.admin.taxonomy.resource.v1_0.KeywordResource
 		_keywordResource;
-
-	private URL _resourceURL;
 
 }

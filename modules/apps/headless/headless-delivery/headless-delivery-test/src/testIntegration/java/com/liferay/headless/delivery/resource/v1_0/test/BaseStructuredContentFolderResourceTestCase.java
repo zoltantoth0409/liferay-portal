@@ -27,18 +27,12 @@ import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.StructuredContentFolderResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.StructuredContentFolderSerDes;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.Base64;
-import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
-import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
@@ -48,8 +42,6 @@ import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
 
-import java.net.URL;
-
 import java.text.DateFormat;
 
 import java.util.ArrayList;
@@ -57,19 +49,16 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
 import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.Response;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
@@ -106,9 +95,6 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
 		testLocale = LocaleUtil.getDefault();
-
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-delivery/v1.0");
 	}
 
 	@After
@@ -471,96 +457,6 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		return irrelevantGroup.getGroupId();
 	}
 
-	protected Page<StructuredContentFolder>
-			invokeGetSiteStructuredContentFoldersPage(
-				Long siteId, Boolean flatten, String search,
-				String filterString,
-				com.liferay.portal.vulcan.pagination.Pagination pagination,
-				String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath("/sites/{siteId}/structured-content-folders", siteId);
-
-		if (flatten != null) {
-			location = HttpUtil.addParameter(location, "flatten", flatten);
-		}
-
-		if (search != null) {
-			location = HttpUtil.addParameter(location, "search", search);
-		}
-
-		if (filterString != null) {
-			location = HttpUtil.addParameter(location, "filter", filterString);
-		}
-
-		if (pagination != null) {
-			location = HttpUtil.addParameter(
-				location, "page", pagination.getPage());
-			location = HttpUtil.addParameter(
-				location, "pageSize", pagination.getPageSize());
-		}
-
-		if (sortString != null) {
-			location = HttpUtil.addParameter(location, "sort", sortString);
-		}
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		return Page.of(string, StructuredContentFolderSerDes::toDTO);
-	}
-
-	protected Http.Response invokeGetSiteStructuredContentFoldersPageResponse(
-			Long siteId, Boolean flatten, String search, String filterString,
-			com.liferay.portal.vulcan.pagination.Pagination pagination,
-			String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath("/sites/{siteId}/structured-content-folders", siteId);
-
-		if (flatten != null) {
-			location = HttpUtil.addParameter(location, "flatten", flatten);
-		}
-
-		if (search != null) {
-			location = HttpUtil.addParameter(location, "search", search);
-		}
-
-		if (filterString != null) {
-			location = HttpUtil.addParameter(location, "filter", filterString);
-		}
-
-		if (pagination != null) {
-			location = HttpUtil.addParameter(
-				location, "page", pagination.getPage());
-			location = HttpUtil.addParameter(
-				location, "pageSize", pagination.getPageSize());
-		}
-
-		if (sortString != null) {
-			location = HttpUtil.addParameter(location, "sort", sortString);
-		}
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
 	@Test
 	public void testPostSiteStructuredContentFolder() throws Exception {
 		StructuredContentFolder randomStructuredContentFolder =
@@ -583,65 +479,6 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		return StructuredContentFolderResource.postSiteStructuredContentFolder(
 			testGetSiteStructuredContentFoldersPage_getSiteId(),
 			structuredContentFolder);
-	}
-
-	protected StructuredContentFolder invokePostSiteStructuredContentFolder(
-			Long siteId, StructuredContentFolder structuredContentFolder)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
-			StringPool.UTF8);
-
-		String location =
-			_resourceURL +
-				_toPath("/sites/{siteId}/structured-content-folders", siteId);
-
-		options.setLocation(location);
-
-		options.setPost(true);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return StructuredContentFolderSerDes.toDTO(string);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to process HTTP response: " + string, e);
-			}
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokePostSiteStructuredContentFolderResponse(
-			Long siteId, StructuredContentFolder structuredContentFolder)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
-			StringPool.UTF8);
-
-		String location =
-			_resourceURL +
-				_toPath("/sites/{siteId}/structured-content-folders", siteId);
-
-		options.setLocation(location);
-
-		options.setPost(true);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
 	}
 
 	@Test
@@ -978,94 +815,6 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		return null;
 	}
 
-	protected Page<StructuredContentFolder>
-			invokeGetStructuredContentFolderStructuredContentFoldersPage(
-				Long parentStructuredContentFolderId, String search,
-				String filterString,
-				com.liferay.portal.vulcan.pagination.Pagination pagination,
-				String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{parentStructuredContentFolderId}/structured-content-folders",
-					parentStructuredContentFolderId);
-
-		if (search != null) {
-			location = HttpUtil.addParameter(location, "search", search);
-		}
-
-		if (filterString != null) {
-			location = HttpUtil.addParameter(location, "filter", filterString);
-		}
-
-		if (pagination != null) {
-			location = HttpUtil.addParameter(
-				location, "page", pagination.getPage());
-			location = HttpUtil.addParameter(
-				location, "pageSize", pagination.getPageSize());
-		}
-
-		if (sortString != null) {
-			location = HttpUtil.addParameter(location, "sort", sortString);
-		}
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		return Page.of(string, StructuredContentFolderSerDes::toDTO);
-	}
-
-	protected Http.Response
-			invokeGetStructuredContentFolderStructuredContentFoldersPageResponse(
-				Long parentStructuredContentFolderId, String search,
-				String filterString,
-				com.liferay.portal.vulcan.pagination.Pagination pagination,
-				String sortString)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{parentStructuredContentFolderId}/structured-content-folders",
-					parentStructuredContentFolderId);
-
-		if (search != null) {
-			location = HttpUtil.addParameter(location, "search", search);
-		}
-
-		if (filterString != null) {
-			location = HttpUtil.addParameter(location, "filter", filterString);
-		}
-
-		if (pagination != null) {
-			location = HttpUtil.addParameter(
-				location, "page", pagination.getPage());
-			location = HttpUtil.addParameter(
-				location, "pageSize", pagination.getPageSize());
-		}
-
-		if (sortString != null) {
-			location = HttpUtil.addParameter(location, "sort", sortString);
-		}
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
 	@Test
 	public void testPostStructuredContentFolderStructuredContentFolder()
 		throws Exception {
@@ -1091,73 +840,6 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			postStructuredContentFolderStructuredContentFolder(
 				testGetStructuredContentFolderStructuredContentFoldersPage_getParentStructuredContentFolderId(),
 				structuredContentFolder);
-	}
-
-	protected StructuredContentFolder
-			invokePostStructuredContentFolderStructuredContentFolder(
-				Long parentStructuredContentFolderId,
-				StructuredContentFolder structuredContentFolder)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
-			StringPool.UTF8);
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{parentStructuredContentFolderId}/structured-content-folders",
-					parentStructuredContentFolderId);
-
-		options.setLocation(location);
-
-		options.setPost(true);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return StructuredContentFolderSerDes.toDTO(string);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to process HTTP response: " + string, e);
-			}
-
-			throw e;
-		}
-	}
-
-	protected Http.Response
-			invokePostStructuredContentFolderStructuredContentFolderResponse(
-				Long parentStructuredContentFolderId,
-				StructuredContentFolder structuredContentFolder)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
-			StringPool.UTF8);
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{parentStructuredContentFolderId}/structured-content-folders",
-					parentStructuredContentFolderId);
-
-		options.setLocation(location);
-
-		options.setPost(true);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
 	}
 
 	@Test
@@ -1191,50 +873,6 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testGroup.getGroupId(), randomStructuredContentFolder());
 	}
 
-	protected void invokeDeleteStructuredContentFolder(
-			Long structuredContentFolderId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{structuredContentFolderId}",
-					structuredContentFolderId);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-	}
-
-	protected Http.Response invokeDeleteStructuredContentFolderResponse(
-			Long structuredContentFolderId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setDelete(true);
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{structuredContentFolderId}",
-					structuredContentFolderId);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
 	@Test
 	public void testGetStructuredContentFolder() throws Exception {
 		StructuredContentFolder postStructuredContentFolder =
@@ -1254,57 +892,6 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		return StructuredContentFolderResource.postSiteStructuredContentFolder(
 			testGroup.getGroupId(), randomStructuredContentFolder());
-	}
-
-	protected StructuredContentFolder invokeGetStructuredContentFolder(
-			Long structuredContentFolderId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{structuredContentFolderId}",
-					structuredContentFolderId);
-
-		options.setLocation(location);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return StructuredContentFolderSerDes.toDTO(string);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to process HTTP response: " + string, e);
-			}
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokeGetStructuredContentFolderResponse(
-			Long structuredContentFolderId)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{structuredContentFolderId}",
-					structuredContentFolderId);
-
-		options.setLocation(location);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
 	}
 
 	@Test
@@ -1345,71 +932,6 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testGroup.getGroupId(), randomStructuredContentFolder());
 	}
 
-	protected StructuredContentFolder invokePatchStructuredContentFolder(
-			Long structuredContentFolderId,
-			StructuredContentFolder structuredContentFolder)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
-			StringPool.UTF8);
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{structuredContentFolderId}",
-					structuredContentFolderId);
-
-		options.setLocation(location);
-
-		options.setPatch(true);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return StructuredContentFolderSerDes.toDTO(string);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to process HTTP response: " + string, e);
-			}
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokePatchStructuredContentFolderResponse(
-			Long structuredContentFolderId,
-			StructuredContentFolder structuredContentFolder)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
-			StringPool.UTF8);
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{structuredContentFolderId}",
-					structuredContentFolderId);
-
-		options.setLocation(location);
-
-		options.setPatch(true);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
-	}
-
 	@Test
 	public void testPutStructuredContentFolder() throws Exception {
 		StructuredContentFolder postStructuredContentFolder =
@@ -1440,71 +962,6 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		return StructuredContentFolderResource.postSiteStructuredContentFolder(
 			testGroup.getGroupId(), randomStructuredContentFolder());
-	}
-
-	protected StructuredContentFolder invokePutStructuredContentFolder(
-			Long structuredContentFolderId,
-			StructuredContentFolder structuredContentFolder)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
-			StringPool.UTF8);
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{structuredContentFolderId}",
-					structuredContentFolderId);
-
-		options.setLocation(location);
-
-		options.setPut(true);
-
-		String string = HttpUtil.URLtoString(options);
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("HTTP response: " + string);
-		}
-
-		try {
-			return StructuredContentFolderSerDes.toDTO(string);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to process HTTP response: " + string, e);
-			}
-
-			throw e;
-		}
-	}
-
-	protected Http.Response invokePutStructuredContentFolderResponse(
-			Long structuredContentFolderId,
-			StructuredContentFolder structuredContentFolder)
-		throws Exception {
-
-		Http.Options options = _createHttpOptions();
-
-		options.setBody(
-			structuredContentFolder.toString(), ContentTypes.APPLICATION_JSON,
-			StringPool.UTF8);
-
-		String location =
-			_resourceURL +
-				_toPath(
-					"/structured-content-folders/{structuredContentFolderId}",
-					structuredContentFolderId);
-
-		options.setLocation(location);
-
-		options.setPut(true);
-
-		HttpUtil.URLtoByteArray(options);
-
-		return options.getResponse();
 	}
 
 	protected void assertHttpResponseStatusCode(
@@ -2022,76 +1479,9 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 	}
 
 	protected Group irrelevantGroup;
-	protected String testContentType = "application/json";
 	protected Group testGroup;
 	protected Locale testLocale;
 	protected String testUserNameAndPassword = "test@liferay.com:test";
-
-	private Http.Options _createHttpOptions() {
-		Http.Options options = new Http.Options();
-
-		options.addHeader("Accept", "application/json");
-		options.addHeader(
-			"Accept-Language", LocaleUtil.toW3cLanguageId(testLocale));
-
-		String encodedTestUserNameAndPassword = Base64.encode(
-			testUserNameAndPassword.getBytes());
-
-		options.addHeader(
-			"Authorization", "Basic " + encodedTestUserNameAndPassword);
-
-		options.addHeader("Content-Type", testContentType);
-
-		return options;
-	}
-
-	private String _toJSON(Map<String, String> map) {
-		if (map == null) {
-			return "null";
-		}
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("{");
-
-		Set<Map.Entry<String, String>> set = map.entrySet();
-
-		Iterator<Map.Entry<String, String>> iterator = set.iterator();
-
-		while (iterator.hasNext()) {
-			Map.Entry<String, String> entry = iterator.next();
-
-			sb.append("\"" + entry.getKey() + "\": ");
-
-			if (entry.getValue() == null) {
-				sb.append("null");
-			}
-			else {
-				sb.append("\"" + entry.getValue() + "\"");
-			}
-
-			if (iterator.hasNext()) {
-				sb.append(", ");
-			}
-		}
-
-		sb.append("}");
-
-		return sb.toString();
-	}
-
-	private String _toPath(String template, Object... values) {
-		if (ArrayUtil.isEmpty(values)) {
-			return template;
-		}
-
-		for (int i = 0; i < values.length; i++) {
-			template = template.replaceFirst(
-				"\\{.*?\\}", String.valueOf(values[i]));
-		}
-
-		return template;
-	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseStructuredContentFolderResourceTestCase.class);
@@ -2114,7 +1504,5 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 	private
 		com.liferay.headless.delivery.resource.v1_0.
 			StructuredContentFolderResource _structuredContentFolderResource;
-
-	private URL _resourceURL;
 
 }
