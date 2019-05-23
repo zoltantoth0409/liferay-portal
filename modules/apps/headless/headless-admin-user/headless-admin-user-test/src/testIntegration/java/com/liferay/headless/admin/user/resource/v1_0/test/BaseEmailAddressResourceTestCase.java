@@ -154,7 +154,7 @@ public abstract class BaseEmailAddressResourceTestCase {
 	public void testGetEmailAddress() throws Exception {
 		EmailAddress postEmailAddress = testGetEmailAddress_addEmailAddress();
 
-		EmailAddress getEmailAddress = invokeGetEmailAddress(
+		EmailAddress getEmailAddress = EmailAddressResource.getEmailAddress(
 			postEmailAddress.getId());
 
 		assertEquals(postEmailAddress, getEmailAddress);
@@ -225,8 +225,9 @@ public abstract class BaseEmailAddressResourceTestCase {
 				testGetOrganizationEmailAddressesPage_addEmailAddress(
 					irrelevantOrganizationId, randomIrrelevantEmailAddress());
 
-			Page<EmailAddress> page = invokeGetOrganizationEmailAddressesPage(
-				irrelevantOrganizationId);
+			Page<EmailAddress> page =
+				EmailAddressResource.getOrganizationEmailAddressesPage(
+					irrelevantOrganizationId);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -244,8 +245,9 @@ public abstract class BaseEmailAddressResourceTestCase {
 			testGetOrganizationEmailAddressesPage_addEmailAddress(
 				organizationId, randomEmailAddress());
 
-		Page<EmailAddress> page = invokeGetOrganizationEmailAddressesPage(
-			organizationId);
+		Page<EmailAddress> page =
+			EmailAddressResource.getOrganizationEmailAddressesPage(
+				organizationId);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -332,8 +334,9 @@ public abstract class BaseEmailAddressResourceTestCase {
 				testGetUserAccountEmailAddressesPage_addEmailAddress(
 					irrelevantUserAccountId, randomIrrelevantEmailAddress());
 
-			Page<EmailAddress> page = invokeGetUserAccountEmailAddressesPage(
-				irrelevantUserAccountId);
+			Page<EmailAddress> page =
+				EmailAddressResource.getUserAccountEmailAddressesPage(
+					irrelevantUserAccountId);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -351,8 +354,9 @@ public abstract class BaseEmailAddressResourceTestCase {
 			testGetUserAccountEmailAddressesPage_addEmailAddress(
 				userAccountId, randomEmailAddress());
 
-		Page<EmailAddress> page = invokeGetUserAccountEmailAddressesPage(
-			userAccountId);
+		Page<EmailAddress> page =
+			EmailAddressResource.getUserAccountEmailAddressesPage(
+				userAccountId);
 
 		Assert.assertEquals(2, page.getTotalCount());
 

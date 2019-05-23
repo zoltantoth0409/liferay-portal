@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.user.client.dto.v1_0.Segment;
 import com.liferay.headless.admin.user.client.http.HttpInvoker;
 import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.pagination.Pagination;
 import com.liferay.headless.admin.user.client.resource.v1_0.SegmentResource;
 import com.liferay.headless.admin.user.client.serdes.v1_0.SegmentSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -41,7 +42,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -162,7 +162,7 @@ public abstract class BaseSegmentResourceTestCase {
 			Segment irrelevantSegment = testGetSiteSegmentsPage_addSegment(
 				irrelevantSiteId, randomIrrelevantSegment());
 
-			Page<Segment> page = invokeGetSiteSegmentsPage(
+			Page<Segment> page = SegmentResource.getSiteSegmentsPage(
 				irrelevantSiteId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -179,7 +179,7 @@ public abstract class BaseSegmentResourceTestCase {
 		Segment segment2 = testGetSiteSegmentsPage_addSegment(
 			siteId, randomSegment());
 
-		Page<Segment> page = invokeGetSiteSegmentsPage(
+		Page<Segment> page = SegmentResource.getSiteSegmentsPage(
 			siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -202,14 +202,14 @@ public abstract class BaseSegmentResourceTestCase {
 		Segment segment3 = testGetSiteSegmentsPage_addSegment(
 			siteId, randomSegment());
 
-		Page<Segment> page1 = invokeGetSiteSegmentsPage(
+		Page<Segment> page1 = SegmentResource.getSiteSegmentsPage(
 			siteId, Pagination.of(1, 2));
 
 		List<Segment> segments1 = (List<Segment>)page1.getItems();
 
 		Assert.assertEquals(segments1.toString(), 2, segments1.size());
 
-		Page<Segment> page2 = invokeGetSiteSegmentsPage(
+		Page<Segment> page2 = SegmentResource.getSiteSegmentsPage(
 			siteId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -247,7 +247,8 @@ public abstract class BaseSegmentResourceTestCase {
 	}
 
 	protected Page<Segment> invokeGetSiteSegmentsPage(
-			Long siteId, Pagination pagination)
+			Long siteId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -274,7 +275,8 @@ public abstract class BaseSegmentResourceTestCase {
 	}
 
 	protected Http.Response invokeGetSiteSegmentsPageResponse(
-			Long siteId, Pagination pagination)
+			Long siteId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -312,7 +314,7 @@ public abstract class BaseSegmentResourceTestCase {
 					irrelevantSiteId, irrelevantUserAccountId,
 					randomIrrelevantSegment());
 
-			Page<Segment> page = invokeGetSiteUserAccountSegmentsPage(
+			Page<Segment> page = SegmentResource.getSiteUserAccountSegmentsPage(
 				irrelevantSiteId, irrelevantUserAccountId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -329,7 +331,7 @@ public abstract class BaseSegmentResourceTestCase {
 		Segment segment2 = testGetSiteUserAccountSegmentsPage_addSegment(
 			siteId, userAccountId, randomSegment());
 
-		Page<Segment> page = invokeGetSiteUserAccountSegmentsPage(
+		Page<Segment> page = SegmentResource.getSiteUserAccountSegmentsPage(
 			siteId, userAccountId);
 
 		Assert.assertEquals(2, page.getTotalCount());

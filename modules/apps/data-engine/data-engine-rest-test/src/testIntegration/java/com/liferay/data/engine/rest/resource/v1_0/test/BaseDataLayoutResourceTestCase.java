@@ -24,6 +24,7 @@ import com.liferay.data.engine.rest.client.dto.v1_0.DataLayout;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataLayoutPermission;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
+import com.liferay.data.engine.rest.client.pagination.Pagination;
 import com.liferay.data.engine.rest.client.resource.v1_0.DataLayoutResource;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataLayoutSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -44,7 +45,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -167,8 +167,9 @@ public abstract class BaseDataLayoutResourceTestCase {
 				testGetDataDefinitionDataLayoutsPage_addDataLayout(
 					irrelevantDataDefinitionId, randomIrrelevantDataLayout());
 
-			Page<DataLayout> page = invokeGetDataDefinitionDataLayoutsPage(
-				irrelevantDataDefinitionId, Pagination.of(1, 2));
+			Page<DataLayout> page =
+				DataLayoutResource.getDataDefinitionDataLayoutsPage(
+					irrelevantDataDefinitionId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -186,8 +187,9 @@ public abstract class BaseDataLayoutResourceTestCase {
 			testGetDataDefinitionDataLayoutsPage_addDataLayout(
 				dataDefinitionId, randomDataLayout());
 
-		Page<DataLayout> page = invokeGetDataDefinitionDataLayoutsPage(
-			dataDefinitionId, Pagination.of(1, 2));
+		Page<DataLayout> page =
+			DataLayoutResource.getDataDefinitionDataLayoutsPage(
+				dataDefinitionId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -216,15 +218,17 @@ public abstract class BaseDataLayoutResourceTestCase {
 			testGetDataDefinitionDataLayoutsPage_addDataLayout(
 				dataDefinitionId, randomDataLayout());
 
-		Page<DataLayout> page1 = invokeGetDataDefinitionDataLayoutsPage(
-			dataDefinitionId, Pagination.of(1, 2));
+		Page<DataLayout> page1 =
+			DataLayoutResource.getDataDefinitionDataLayoutsPage(
+				dataDefinitionId, Pagination.of(1, 2));
 
 		List<DataLayout> dataLayouts1 = (List<DataLayout>)page1.getItems();
 
 		Assert.assertEquals(dataLayouts1.toString(), 2, dataLayouts1.size());
 
-		Page<DataLayout> page2 = invokeGetDataDefinitionDataLayoutsPage(
-			dataDefinitionId, Pagination.of(2, 2));
+		Page<DataLayout> page2 =
+			DataLayoutResource.getDataDefinitionDataLayoutsPage(
+				dataDefinitionId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -264,7 +268,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 	}
 
 	protected Page<DataLayout> invokeGetDataDefinitionDataLayoutsPage(
-			Long dataDefinitionId, Pagination pagination)
+			Long dataDefinitionId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -294,7 +299,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 	}
 
 	protected Http.Response invokeGetDataDefinitionDataLayoutsPageResponse(
-			Long dataDefinitionId, Pagination pagination)
+			Long dataDefinitionId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -531,7 +537,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 	public void testGetDataLayout() throws Exception {
 		DataLayout postDataLayout = testGetDataLayout_addDataLayout();
 
-		DataLayout getDataLayout = invokeGetDataLayout(postDataLayout.getId());
+		DataLayout getDataLayout = DataLayoutResource.getDataLayout(
+			postDataLayout.getId());
 
 		assertEquals(postDataLayout, getDataLayout);
 		assertValid(getDataLayout);
@@ -679,7 +686,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 				testGetSiteDataLayoutPage_addDataLayout(
 					irrelevantSiteId, randomIrrelevantDataLayout());
 
-			Page<DataLayout> page = invokeGetSiteDataLayoutPage(
+			Page<DataLayout> page = DataLayoutResource.getSiteDataLayoutPage(
 				irrelevantSiteId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -696,7 +703,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 		DataLayout dataLayout2 = testGetSiteDataLayoutPage_addDataLayout(
 			siteId, randomDataLayout());
 
-		Page<DataLayout> page = invokeGetSiteDataLayoutPage(
+		Page<DataLayout> page = DataLayoutResource.getSiteDataLayoutPage(
 			siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -720,14 +727,14 @@ public abstract class BaseDataLayoutResourceTestCase {
 		DataLayout dataLayout3 = testGetSiteDataLayoutPage_addDataLayout(
 			siteId, randomDataLayout());
 
-		Page<DataLayout> page1 = invokeGetSiteDataLayoutPage(
+		Page<DataLayout> page1 = DataLayoutResource.getSiteDataLayoutPage(
 			siteId, Pagination.of(1, 2));
 
 		List<DataLayout> dataLayouts1 = (List<DataLayout>)page1.getItems();
 
 		Assert.assertEquals(dataLayouts1.toString(), 2, dataLayouts1.size());
 
-		Page<DataLayout> page2 = invokeGetSiteDataLayoutPage(
+		Page<DataLayout> page2 = DataLayoutResource.getSiteDataLayoutPage(
 			siteId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -765,7 +772,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 	}
 
 	protected Page<DataLayout> invokeGetSiteDataLayoutPage(
-			Long siteId, Pagination pagination)
+			Long siteId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -792,7 +800,8 @@ public abstract class BaseDataLayoutResourceTestCase {
 	}
 
 	protected Http.Response invokeGetSiteDataLayoutPageResponse(
-			Long siteId, Pagination pagination)
+			Long siteId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.user.client.dto.v1_0.UserAccount;
 import com.liferay.headless.admin.user.client.http.HttpInvoker;
 import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.pagination.Pagination;
 import com.liferay.headless.admin.user.client.resource.v1_0.UserAccountResource;
 import com.liferay.headless.admin.user.client.serdes.v1_0.UserAccountSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -41,7 +42,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -160,7 +160,7 @@ public abstract class BaseUserAccountResourceTestCase {
 	public void testGetMyUserAccount() throws Exception {
 		UserAccount postUserAccount = testGetMyUserAccount_addUserAccount();
 
-		UserAccount getUserAccount = invokeGetMyUserAccount();
+		UserAccount getUserAccount = UserAccountResource.getMyUserAccount();
 
 		assertEquals(postUserAccount, getUserAccount);
 		assertValid(getUserAccount);
@@ -222,9 +222,10 @@ public abstract class BaseUserAccountResourceTestCase {
 				testGetOrganizationUserAccountsPage_addUserAccount(
 					irrelevantOrganizationId, randomIrrelevantUserAccount());
 
-			Page<UserAccount> page = invokeGetOrganizationUserAccountsPage(
-				irrelevantOrganizationId, null, null, Pagination.of(1, 2),
-				null);
+			Page<UserAccount> page =
+				UserAccountResource.getOrganizationUserAccountsPage(
+					irrelevantOrganizationId, null, null, Pagination.of(1, 2),
+					null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -242,8 +243,9 @@ public abstract class BaseUserAccountResourceTestCase {
 			testGetOrganizationUserAccountsPage_addUserAccount(
 				organizationId, randomUserAccount());
 
-		Page<UserAccount> page = invokeGetOrganizationUserAccountsPage(
-			organizationId, null, null, Pagination.of(1, 2), null);
+		Page<UserAccount> page =
+			UserAccountResource.getOrganizationUserAccountsPage(
+				organizationId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -273,10 +275,11 @@ public abstract class BaseUserAccountResourceTestCase {
 			organizationId, userAccount1);
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> page = invokeGetOrganizationUserAccountsPage(
-				organizationId, null,
-				getFilterString(entityField, "between", userAccount1),
-				Pagination.of(1, 2), null);
+			Page<UserAccount> page =
+				UserAccountResource.getOrganizationUserAccountsPage(
+					organizationId, null,
+					getFilterString(entityField, "between", userAccount1),
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(userAccount1),
@@ -308,10 +311,11 @@ public abstract class BaseUserAccountResourceTestCase {
 				organizationId, randomUserAccount());
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> page = invokeGetOrganizationUserAccountsPage(
-				organizationId, null,
-				getFilterString(entityField, "eq", userAccount1),
-				Pagination.of(1, 2), null);
+			Page<UserAccount> page =
+				UserAccountResource.getOrganizationUserAccountsPage(
+					organizationId, null,
+					getFilterString(entityField, "eq", userAccount1),
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(userAccount1),
@@ -338,15 +342,17 @@ public abstract class BaseUserAccountResourceTestCase {
 			testGetOrganizationUserAccountsPage_addUserAccount(
 				organizationId, randomUserAccount());
 
-		Page<UserAccount> page1 = invokeGetOrganizationUserAccountsPage(
-			organizationId, null, null, Pagination.of(1, 2), null);
+		Page<UserAccount> page1 =
+			UserAccountResource.getOrganizationUserAccountsPage(
+				organizationId, null, null, Pagination.of(1, 2), null);
 
 		List<UserAccount> userAccounts1 = (List<UserAccount>)page1.getItems();
 
 		Assert.assertEquals(userAccounts1.toString(), 2, userAccounts1.size());
 
-		Page<UserAccount> page2 = invokeGetOrganizationUserAccountsPage(
-			organizationId, null, null, Pagination.of(2, 2), null);
+		Page<UserAccount> page2 =
+			UserAccountResource.getOrganizationUserAccountsPage(
+				organizationId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -394,17 +400,19 @@ public abstract class BaseUserAccountResourceTestCase {
 			organizationId, userAccount2);
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage = invokeGetOrganizationUserAccountsPage(
-				organizationId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<UserAccount> ascPage =
+				UserAccountResource.getOrganizationUserAccountsPage(
+					organizationId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(userAccount1, userAccount2),
 				(List<UserAccount>)ascPage.getItems());
 
-			Page<UserAccount> descPage = invokeGetOrganizationUserAccountsPage(
-				organizationId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
+			Page<UserAccount> descPage =
+				UserAccountResource.getOrganizationUserAccountsPage(
+					organizationId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(userAccount2, userAccount1),
@@ -441,17 +449,19 @@ public abstract class BaseUserAccountResourceTestCase {
 			organizationId, userAccount2);
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage = invokeGetOrganizationUserAccountsPage(
-				organizationId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<UserAccount> ascPage =
+				UserAccountResource.getOrganizationUserAccountsPage(
+					organizationId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(userAccount1, userAccount2),
 				(List<UserAccount>)ascPage.getItems());
 
-			Page<UserAccount> descPage = invokeGetOrganizationUserAccountsPage(
-				organizationId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
+			Page<UserAccount> descPage =
+				UserAccountResource.getOrganizationUserAccountsPage(
+					organizationId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(userAccount2, userAccount1),
@@ -483,7 +493,8 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	protected Page<UserAccount> invokeGetOrganizationUserAccountsPage(
 			Long organizationId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -526,7 +537,8 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	protected Http.Response invokeGetOrganizationUserAccountsPageResponse(
 			Long organizationId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -571,7 +583,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount userAccount2 = testGetUserAccountsPage_addUserAccount(
 			randomUserAccount());
 
-		Page<UserAccount> page = invokeGetUserAccountsPage(
+		Page<UserAccount> page = UserAccountResource.getUserAccountsPage(
 			null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -598,7 +610,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		userAccount1 = testGetUserAccountsPage_addUserAccount(userAccount1);
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> page = invokeGetUserAccountsPage(
+			Page<UserAccount> page = UserAccountResource.getUserAccountsPage(
 				null, getFilterString(entityField, "between", userAccount1),
 				Pagination.of(1, 2), null);
 
@@ -627,7 +639,7 @@ public abstract class BaseUserAccountResourceTestCase {
 			randomUserAccount());
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> page = invokeGetUserAccountsPage(
+			Page<UserAccount> page = UserAccountResource.getUserAccountsPage(
 				null, getFilterString(entityField, "eq", userAccount1),
 				Pagination.of(1, 2), null);
 
@@ -648,14 +660,14 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount userAccount3 = testGetUserAccountsPage_addUserAccount(
 			randomUserAccount());
 
-		Page<UserAccount> page1 = invokeGetUserAccountsPage(
+		Page<UserAccount> page1 = UserAccountResource.getUserAccountsPage(
 			null, null, Pagination.of(1, 2), null);
 
 		List<UserAccount> userAccounts1 = (List<UserAccount>)page1.getItems();
 
 		Assert.assertEquals(userAccounts1.toString(), 2, userAccounts1.size());
 
-		Page<UserAccount> page2 = invokeGetUserAccountsPage(
+		Page<UserAccount> page2 = UserAccountResource.getUserAccountsPage(
 			null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -697,7 +709,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		userAccount2 = testGetUserAccountsPage_addUserAccount(userAccount2);
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage = invokeGetUserAccountsPage(
+			Page<UserAccount> ascPage = UserAccountResource.getUserAccountsPage(
 				null, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
@@ -705,9 +717,10 @@ public abstract class BaseUserAccountResourceTestCase {
 				Arrays.asList(userAccount1, userAccount2),
 				(List<UserAccount>)ascPage.getItems());
 
-			Page<UserAccount> descPage = invokeGetUserAccountsPage(
-				null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
+			Page<UserAccount> descPage =
+				UserAccountResource.getUserAccountsPage(
+					null, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(userAccount2, userAccount1),
@@ -737,7 +750,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		userAccount2 = testGetUserAccountsPage_addUserAccount(userAccount2);
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage = invokeGetUserAccountsPage(
+			Page<UserAccount> ascPage = UserAccountResource.getUserAccountsPage(
 				null, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
@@ -745,9 +758,10 @@ public abstract class BaseUserAccountResourceTestCase {
 				Arrays.asList(userAccount1, userAccount2),
 				(List<UserAccount>)ascPage.getItems());
 
-			Page<UserAccount> descPage = invokeGetUserAccountsPage(
-				null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
+			Page<UserAccount> descPage =
+				UserAccountResource.getUserAccountsPage(
+					null, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(userAccount2, userAccount1),
@@ -764,7 +778,8 @@ public abstract class BaseUserAccountResourceTestCase {
 	}
 
 	protected Page<UserAccount> invokeGetUserAccountsPage(
-			String search, String filterString, Pagination pagination,
+			String search, String filterString,
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
 			String sortString)
 		throws Exception {
 
@@ -803,7 +818,8 @@ public abstract class BaseUserAccountResourceTestCase {
 	}
 
 	protected Http.Response invokeGetUserAccountsPageResponse(
-			String search, String filterString, Pagination pagination,
+			String search, String filterString,
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
 			String sortString)
 		throws Exception {
 
@@ -841,7 +857,7 @@ public abstract class BaseUserAccountResourceTestCase {
 	public void testGetUserAccount() throws Exception {
 		UserAccount postUserAccount = testGetUserAccount_addUserAccount();
 
-		UserAccount getUserAccount = invokeGetUserAccount(
+		UserAccount getUserAccount = UserAccountResource.getUserAccount(
 			postUserAccount.getId());
 
 		assertEquals(postUserAccount, getUserAccount);
@@ -909,8 +925,9 @@ public abstract class BaseUserAccountResourceTestCase {
 				testGetWebSiteUserAccountsPage_addUserAccount(
 					irrelevantWebSiteId, randomIrrelevantUserAccount());
 
-			Page<UserAccount> page = invokeGetWebSiteUserAccountsPage(
-				irrelevantWebSiteId, null, null, Pagination.of(1, 2), null);
+			Page<UserAccount> page =
+				UserAccountResource.getWebSiteUserAccountsPage(
+					irrelevantWebSiteId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -928,7 +945,7 @@ public abstract class BaseUserAccountResourceTestCase {
 			testGetWebSiteUserAccountsPage_addUserAccount(
 				webSiteId, randomUserAccount());
 
-		Page<UserAccount> page = invokeGetWebSiteUserAccountsPage(
+		Page<UserAccount> page = UserAccountResource.getWebSiteUserAccountsPage(
 			webSiteId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -958,10 +975,11 @@ public abstract class BaseUserAccountResourceTestCase {
 			webSiteId, userAccount1);
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> page = invokeGetWebSiteUserAccountsPage(
-				webSiteId, null,
-				getFilterString(entityField, "between", userAccount1),
-				Pagination.of(1, 2), null);
+			Page<UserAccount> page =
+				UserAccountResource.getWebSiteUserAccountsPage(
+					webSiteId, null,
+					getFilterString(entityField, "between", userAccount1),
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(userAccount1),
@@ -992,10 +1010,11 @@ public abstract class BaseUserAccountResourceTestCase {
 				webSiteId, randomUserAccount());
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> page = invokeGetWebSiteUserAccountsPage(
-				webSiteId, null,
-				getFilterString(entityField, "eq", userAccount1),
-				Pagination.of(1, 2), null);
+			Page<UserAccount> page =
+				UserAccountResource.getWebSiteUserAccountsPage(
+					webSiteId, null,
+					getFilterString(entityField, "eq", userAccount1),
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(userAccount1),
@@ -1021,15 +1040,17 @@ public abstract class BaseUserAccountResourceTestCase {
 			testGetWebSiteUserAccountsPage_addUserAccount(
 				webSiteId, randomUserAccount());
 
-		Page<UserAccount> page1 = invokeGetWebSiteUserAccountsPage(
-			webSiteId, null, null, Pagination.of(1, 2), null);
+		Page<UserAccount> page1 =
+			UserAccountResource.getWebSiteUserAccountsPage(
+				webSiteId, null, null, Pagination.of(1, 2), null);
 
 		List<UserAccount> userAccounts1 = (List<UserAccount>)page1.getItems();
 
 		Assert.assertEquals(userAccounts1.toString(), 2, userAccounts1.size());
 
-		Page<UserAccount> page2 = invokeGetWebSiteUserAccountsPage(
-			webSiteId, null, null, Pagination.of(2, 2), null);
+		Page<UserAccount> page2 =
+			UserAccountResource.getWebSiteUserAccountsPage(
+				webSiteId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -1076,17 +1097,19 @@ public abstract class BaseUserAccountResourceTestCase {
 			webSiteId, userAccount2);
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage = invokeGetWebSiteUserAccountsPage(
-				webSiteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<UserAccount> ascPage =
+				UserAccountResource.getWebSiteUserAccountsPage(
+					webSiteId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(userAccount1, userAccount2),
 				(List<UserAccount>)ascPage.getItems());
 
-			Page<UserAccount> descPage = invokeGetWebSiteUserAccountsPage(
-				webSiteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
+			Page<UserAccount> descPage =
+				UserAccountResource.getWebSiteUserAccountsPage(
+					webSiteId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(userAccount2, userAccount1),
@@ -1122,17 +1145,19 @@ public abstract class BaseUserAccountResourceTestCase {
 			webSiteId, userAccount2);
 
 		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage = invokeGetWebSiteUserAccountsPage(
-				webSiteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<UserAccount> ascPage =
+				UserAccountResource.getWebSiteUserAccountsPage(
+					webSiteId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(userAccount1, userAccount2),
 				(List<UserAccount>)ascPage.getItems());
 
-			Page<UserAccount> descPage = invokeGetWebSiteUserAccountsPage(
-				webSiteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
+			Page<UserAccount> descPage =
+				UserAccountResource.getWebSiteUserAccountsPage(
+					webSiteId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(userAccount2, userAccount1),
@@ -1163,7 +1188,8 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	protected Page<UserAccount> invokeGetWebSiteUserAccountsPage(
 			Long webSiteId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -1204,7 +1230,8 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	protected Http.Response invokeGetWebSiteUserAccountsPageResponse(
 			Long webSiteId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

@@ -161,7 +161,7 @@ public abstract class BaseWebUrlResourceTestCase {
 			WebUrl irrelevantWebUrl = testGetOrganizationWebUrlsPage_addWebUrl(
 				irrelevantOrganizationId, randomIrrelevantWebUrl());
 
-			Page<WebUrl> page = invokeGetOrganizationWebUrlsPage(
+			Page<WebUrl> page = WebUrlResource.getOrganizationWebUrlsPage(
 				irrelevantOrganizationId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -177,7 +177,8 @@ public abstract class BaseWebUrlResourceTestCase {
 		WebUrl webUrl2 = testGetOrganizationWebUrlsPage_addWebUrl(
 			organizationId, randomWebUrl());
 
-		Page<WebUrl> page = invokeGetOrganizationWebUrlsPage(organizationId);
+		Page<WebUrl> page = WebUrlResource.getOrganizationWebUrlsPage(
+			organizationId);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -256,7 +257,7 @@ public abstract class BaseWebUrlResourceTestCase {
 			WebUrl irrelevantWebUrl = testGetUserAccountWebUrlsPage_addWebUrl(
 				irrelevantUserAccountId, randomIrrelevantWebUrl());
 
-			Page<WebUrl> page = invokeGetUserAccountWebUrlsPage(
+			Page<WebUrl> page = WebUrlResource.getUserAccountWebUrlsPage(
 				irrelevantUserAccountId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -272,7 +273,8 @@ public abstract class BaseWebUrlResourceTestCase {
 		WebUrl webUrl2 = testGetUserAccountWebUrlsPage_addWebUrl(
 			userAccountId, randomWebUrl());
 
-		Page<WebUrl> page = invokeGetUserAccountWebUrlsPage(userAccountId);
+		Page<WebUrl> page = WebUrlResource.getUserAccountWebUrlsPage(
+			userAccountId);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -345,7 +347,7 @@ public abstract class BaseWebUrlResourceTestCase {
 	public void testGetWebUrl() throws Exception {
 		WebUrl postWebUrl = testGetWebUrl_addWebUrl();
 
-		WebUrl getWebUrl = invokeGetWebUrl(postWebUrl.getId());
+		WebUrl getWebUrl = WebUrlResource.getWebUrl(postWebUrl.getId());
 
 		assertEquals(postWebUrl, getWebUrl);
 		assertValid(getWebUrl);

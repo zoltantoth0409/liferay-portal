@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.taxonomy.client.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.admin.taxonomy.client.http.HttpInvoker;
 import com.liferay.headless.admin.taxonomy.client.pagination.Page;
+import com.liferay.headless.admin.taxonomy.client.pagination.Pagination;
 import com.liferay.headless.admin.taxonomy.client.resource.v1_0.TaxonomyCategoryResource;
 import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.TaxonomyCategorySerDes;
 import com.liferay.petra.string.StringBundler;
@@ -43,7 +44,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -174,9 +174,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 					randomIrrelevantTaxonomyCategory());
 
 			Page<TaxonomyCategory> page =
-				invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
-					irrelevantParentTaxonomyCategoryId, null, null,
-					Pagination.of(1, 2), null);
+				TaxonomyCategoryResource.
+					getTaxonomyCategoryTaxonomyCategoriesPage(
+						irrelevantParentTaxonomyCategoryId, null, null,
+						Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -195,7 +196,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				parentTaxonomyCategoryId, randomTaxonomyCategory());
 
 		Page<TaxonomyCategory> page =
-			invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
+			TaxonomyCategoryResource.getTaxonomyCategoryTaxonomyCategoriesPage(
 				parentTaxonomyCategoryId, null, null, Pagination.of(1, 2),
 				null);
 
@@ -229,10 +230,12 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyCategory> page =
-				invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
-					parentTaxonomyCategoryId, null,
-					getFilterString(entityField, "between", taxonomyCategory1),
-					Pagination.of(1, 2), null);
+				TaxonomyCategoryResource.
+					getTaxonomyCategoryTaxonomyCategoriesPage(
+						parentTaxonomyCategoryId, null,
+						getFilterString(
+							entityField, "between", taxonomyCategory1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(taxonomyCategory1),
@@ -265,10 +268,11 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyCategory> page =
-				invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
-					parentTaxonomyCategoryId, null,
-					getFilterString(entityField, "eq", taxonomyCategory1),
-					Pagination.of(1, 2), null);
+				TaxonomyCategoryResource.
+					getTaxonomyCategoryTaxonomyCategoriesPage(
+						parentTaxonomyCategoryId, null,
+						getFilterString(entityField, "eq", taxonomyCategory1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(taxonomyCategory1),
@@ -296,7 +300,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				parentTaxonomyCategoryId, randomTaxonomyCategory());
 
 		Page<TaxonomyCategory> page1 =
-			invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
+			TaxonomyCategoryResource.getTaxonomyCategoryTaxonomyCategoriesPage(
 				parentTaxonomyCategoryId, null, null, Pagination.of(1, 2),
 				null);
 
@@ -307,7 +311,7 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			taxonomyCategories1.toString(), 2, taxonomyCategories1.size());
 
 		Page<TaxonomyCategory> page2 =
-			invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
+			TaxonomyCategoryResource.getTaxonomyCategoryTaxonomyCategoriesPage(
 				parentTaxonomyCategoryId, null, null, Pagination.of(2, 2),
 				null);
 
@@ -363,18 +367,20 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyCategory> ascPage =
-				invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
-					parentTaxonomyCategoryId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
+				TaxonomyCategoryResource.
+					getTaxonomyCategoryTaxonomyCategoriesPage(
+						parentTaxonomyCategoryId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(taxonomyCategory1, taxonomyCategory2),
 				(List<TaxonomyCategory>)ascPage.getItems());
 
 			Page<TaxonomyCategory> descPage =
-				invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
-					parentTaxonomyCategoryId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
+				TaxonomyCategoryResource.
+					getTaxonomyCategoryTaxonomyCategoriesPage(
+						parentTaxonomyCategoryId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(taxonomyCategory2, taxonomyCategory1),
@@ -416,18 +422,20 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyCategory> ascPage =
-				invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
-					parentTaxonomyCategoryId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
+				TaxonomyCategoryResource.
+					getTaxonomyCategoryTaxonomyCategoriesPage(
+						parentTaxonomyCategoryId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(taxonomyCategory1, taxonomyCategory2),
 				(List<TaxonomyCategory>)ascPage.getItems());
 
 			Page<TaxonomyCategory> descPage =
-				invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
-					parentTaxonomyCategoryId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
+				TaxonomyCategoryResource.
+					getTaxonomyCategoryTaxonomyCategoriesPage(
+						parentTaxonomyCategoryId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(taxonomyCategory2, taxonomyCategory1),
@@ -463,7 +471,9 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	protected Page<TaxonomyCategory>
 			invokeGetTaxonomyCategoryTaxonomyCategoriesPage(
 				Long parentTaxonomyCategoryId, String search,
-				String filterString, Pagination pagination, String sortString)
+				String filterString,
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -507,7 +517,9 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	protected Http.Response
 			invokeGetTaxonomyCategoryTaxonomyCategoriesPageResponse(
 				Long parentTaxonomyCategoryId, String search,
-				String filterString, Pagination pagination, String sortString)
+				String filterString,
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -703,8 +715,9 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		TaxonomyCategory postTaxonomyCategory =
 			testGetTaxonomyCategory_addTaxonomyCategory();
 
-		TaxonomyCategory getTaxonomyCategory = invokeGetTaxonomyCategory(
-			postTaxonomyCategory.getId());
+		TaxonomyCategory getTaxonomyCategory =
+			TaxonomyCategoryResource.getTaxonomyCategory(
+				postTaxonomyCategory.getId());
 
 		assertEquals(postTaxonomyCategory, getTaxonomyCategory);
 		assertValid(getTaxonomyCategory);
@@ -776,8 +789,9 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		TaxonomyCategory randomPatchTaxonomyCategory =
 			randomPatchTaxonomyCategory();
 
-		TaxonomyCategory patchTaxonomyCategory = invokePatchTaxonomyCategory(
-			postTaxonomyCategory.getId(), randomPatchTaxonomyCategory);
+		TaxonomyCategory patchTaxonomyCategory =
+			TaxonomyCategoryResource.patchTaxonomyCategory(
+				postTaxonomyCategory.getId(), randomPatchTaxonomyCategory);
 
 		TaxonomyCategory expectedPatchTaxonomyCategory =
 			(TaxonomyCategory)BeanUtils.cloneBean(postTaxonomyCategory);
@@ -968,9 +982,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 					randomIrrelevantTaxonomyCategory());
 
 			Page<TaxonomyCategory> page =
-				invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
-					irrelevantTaxonomyVocabularyId, null, null,
-					Pagination.of(1, 2), null);
+				TaxonomyCategoryResource.
+					getTaxonomyVocabularyTaxonomyCategoriesPage(
+						irrelevantTaxonomyVocabularyId, null, null,
+						Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -989,8 +1004,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				taxonomyVocabularyId, randomTaxonomyCategory());
 
 		Page<TaxonomyCategory> page =
-			invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
-				taxonomyVocabularyId, null, null, Pagination.of(1, 2), null);
+			TaxonomyCategoryResource.
+				getTaxonomyVocabularyTaxonomyCategoriesPage(
+					taxonomyVocabularyId, null, null, Pagination.of(1, 2),
+					null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -1022,10 +1039,12 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyCategory> page =
-				invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
-					taxonomyVocabularyId, null,
-					getFilterString(entityField, "between", taxonomyCategory1),
-					Pagination.of(1, 2), null);
+				TaxonomyCategoryResource.
+					getTaxonomyVocabularyTaxonomyCategoriesPage(
+						taxonomyVocabularyId, null,
+						getFilterString(
+							entityField, "between", taxonomyCategory1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(taxonomyCategory1),
@@ -1058,10 +1077,11 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyCategory> page =
-				invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
-					taxonomyVocabularyId, null,
-					getFilterString(entityField, "eq", taxonomyCategory1),
-					Pagination.of(1, 2), null);
+				TaxonomyCategoryResource.
+					getTaxonomyVocabularyTaxonomyCategoriesPage(
+						taxonomyVocabularyId, null,
+						getFilterString(entityField, "eq", taxonomyCategory1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(taxonomyCategory1),
@@ -1089,8 +1109,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 				taxonomyVocabularyId, randomTaxonomyCategory());
 
 		Page<TaxonomyCategory> page1 =
-			invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
-				taxonomyVocabularyId, null, null, Pagination.of(1, 2), null);
+			TaxonomyCategoryResource.
+				getTaxonomyVocabularyTaxonomyCategoriesPage(
+					taxonomyVocabularyId, null, null, Pagination.of(1, 2),
+					null);
 
 		List<TaxonomyCategory> taxonomyCategories1 =
 			(List<TaxonomyCategory>)page1.getItems();
@@ -1099,8 +1121,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 			taxonomyCategories1.toString(), 2, taxonomyCategories1.size());
 
 		Page<TaxonomyCategory> page2 =
-			invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
-				taxonomyVocabularyId, null, null, Pagination.of(2, 2), null);
+			TaxonomyCategoryResource.
+				getTaxonomyVocabularyTaxonomyCategoriesPage(
+					taxonomyVocabularyId, null, null, Pagination.of(2, 2),
+					null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -1154,18 +1178,20 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyCategory> ascPage =
-				invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
-					taxonomyVocabularyId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
+				TaxonomyCategoryResource.
+					getTaxonomyVocabularyTaxonomyCategoriesPage(
+						taxonomyVocabularyId, null, null, Pagination.of(1, 2),
+						entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(taxonomyCategory1, taxonomyCategory2),
 				(List<TaxonomyCategory>)ascPage.getItems());
 
 			Page<TaxonomyCategory> descPage =
-				invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
-					taxonomyVocabularyId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
+				TaxonomyCategoryResource.
+					getTaxonomyVocabularyTaxonomyCategoriesPage(
+						taxonomyVocabularyId, null, null, Pagination.of(1, 2),
+						entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(taxonomyCategory2, taxonomyCategory1),
@@ -1207,18 +1233,20 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyCategory> ascPage =
-				invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
-					taxonomyVocabularyId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
+				TaxonomyCategoryResource.
+					getTaxonomyVocabularyTaxonomyCategoriesPage(
+						taxonomyVocabularyId, null, null, Pagination.of(1, 2),
+						entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(taxonomyCategory1, taxonomyCategory2),
 				(List<TaxonomyCategory>)ascPage.getItems());
 
 			Page<TaxonomyCategory> descPage =
-				invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
-					taxonomyVocabularyId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
+				TaxonomyCategoryResource.
+					getTaxonomyVocabularyTaxonomyCategoriesPage(
+						taxonomyVocabularyId, null, null, Pagination.of(1, 2),
+						entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(taxonomyCategory2, taxonomyCategory1),
@@ -1253,7 +1281,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	protected Page<TaxonomyCategory>
 			invokeGetTaxonomyVocabularyTaxonomyCategoriesPage(
 				Long taxonomyVocabularyId, String search, String filterString,
-				Pagination pagination, String sortString)
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -1297,7 +1326,8 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	protected Http.Response
 			invokeGetTaxonomyVocabularyTaxonomyCategoriesPageResponse(
 				Long taxonomyVocabularyId, String search, String filterString,
-				Pagination pagination, String sortString)
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

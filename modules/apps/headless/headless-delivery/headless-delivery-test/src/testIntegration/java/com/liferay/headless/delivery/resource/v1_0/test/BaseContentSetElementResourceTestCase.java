@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.ContentSetElement;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.ContentSetElementResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.ContentSetElementSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -41,7 +42,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -167,7 +167,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 					randomIrrelevantContentSetElement());
 
 			Page<ContentSetElement> page =
-				invokeGetContentSetContentSetElementsPage(
+				ContentSetElementResource.getContentSetContentSetElementsPage(
 					irrelevantContentSetId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -187,7 +187,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 				contentSetId, randomContentSetElement());
 
 		Page<ContentSetElement> page =
-			invokeGetContentSetContentSetElementsPage(
+			ContentSetElementResource.getContentSetContentSetElementsPage(
 				contentSetId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -218,7 +218,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 				contentSetId, randomContentSetElement());
 
 		Page<ContentSetElement> page1 =
-			invokeGetContentSetContentSetElementsPage(
+			ContentSetElementResource.getContentSetContentSetElementsPage(
 				contentSetId, Pagination.of(1, 2));
 
 		List<ContentSetElement> contentSetElements1 =
@@ -228,7 +228,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 			contentSetElements1.toString(), 2, contentSetElements1.size());
 
 		Page<ContentSetElement> page2 =
-			invokeGetContentSetContentSetElementsPage(
+			ContentSetElementResource.getContentSetContentSetElementsPage(
 				contentSetId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -274,7 +274,8 @@ public abstract class BaseContentSetElementResourceTestCase {
 	}
 
 	protected Page<ContentSetElement> invokeGetContentSetContentSetElementsPage(
-			Long contentSetId, Pagination pagination)
+			Long contentSetId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -304,7 +305,8 @@ public abstract class BaseContentSetElementResourceTestCase {
 	}
 
 	protected Http.Response invokeGetContentSetContentSetElementsPageResponse(
-			Long contentSetId, Pagination pagination)
+			Long contentSetId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -348,8 +350,9 @@ public abstract class BaseContentSetElementResourceTestCase {
 					randomIrrelevantContentSetElement());
 
 			Page<ContentSetElement> page =
-				invokeGetSiteContentSetByKeyContentSetElementsPage(
-					irrelevantSiteId, irrelevantKey, Pagination.of(1, 2));
+				ContentSetElementResource.
+					getSiteContentSetByKeyContentSetElementsPage(
+						irrelevantSiteId, irrelevantKey, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -368,8 +371,9 @@ public abstract class BaseContentSetElementResourceTestCase {
 				siteId, key, randomContentSetElement());
 
 		Page<ContentSetElement> page =
-			invokeGetSiteContentSetByKeyContentSetElementsPage(
-				siteId, key, Pagination.of(1, 2));
+			ContentSetElementResource.
+				getSiteContentSetByKeyContentSetElementsPage(
+					siteId, key, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -400,8 +404,9 @@ public abstract class BaseContentSetElementResourceTestCase {
 				siteId, key, randomContentSetElement());
 
 		Page<ContentSetElement> page1 =
-			invokeGetSiteContentSetByKeyContentSetElementsPage(
-				siteId, key, Pagination.of(1, 2));
+			ContentSetElementResource.
+				getSiteContentSetByKeyContentSetElementsPage(
+					siteId, key, Pagination.of(1, 2));
 
 		List<ContentSetElement> contentSetElements1 =
 			(List<ContentSetElement>)page1.getItems();
@@ -410,8 +415,9 @@ public abstract class BaseContentSetElementResourceTestCase {
 			contentSetElements1.toString(), 2, contentSetElements1.size());
 
 		Page<ContentSetElement> page2 =
-			invokeGetSiteContentSetByKeyContentSetElementsPage(
-				siteId, key, Pagination.of(2, 2));
+			ContentSetElementResource.
+				getSiteContentSetByKeyContentSetElementsPage(
+					siteId, key, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -470,7 +476,8 @@ public abstract class BaseContentSetElementResourceTestCase {
 
 	protected Page<ContentSetElement>
 			invokeGetSiteContentSetByKeyContentSetElementsPage(
-				Long siteId, String key, Pagination pagination)
+				Long siteId, String key,
+				com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -501,7 +508,8 @@ public abstract class BaseContentSetElementResourceTestCase {
 
 	protected Http.Response
 			invokeGetSiteContentSetByKeyContentSetElementsPageResponse(
-				Long siteId, String key, Pagination pagination)
+				Long siteId, String key,
+				com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -546,8 +554,9 @@ public abstract class BaseContentSetElementResourceTestCase {
 					randomIrrelevantContentSetElement());
 
 			Page<ContentSetElement> page =
-				invokeGetSiteContentSetByUuidContentSetElementsPage(
-					irrelevantSiteId, irrelevantUuid, Pagination.of(1, 2));
+				ContentSetElementResource.
+					getSiteContentSetByUuidContentSetElementsPage(
+						irrelevantSiteId, irrelevantUuid, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -566,8 +575,9 @@ public abstract class BaseContentSetElementResourceTestCase {
 				siteId, uuid, randomContentSetElement());
 
 		Page<ContentSetElement> page =
-			invokeGetSiteContentSetByUuidContentSetElementsPage(
-				siteId, uuid, Pagination.of(1, 2));
+			ContentSetElementResource.
+				getSiteContentSetByUuidContentSetElementsPage(
+					siteId, uuid, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -599,8 +609,9 @@ public abstract class BaseContentSetElementResourceTestCase {
 				siteId, uuid, randomContentSetElement());
 
 		Page<ContentSetElement> page1 =
-			invokeGetSiteContentSetByUuidContentSetElementsPage(
-				siteId, uuid, Pagination.of(1, 2));
+			ContentSetElementResource.
+				getSiteContentSetByUuidContentSetElementsPage(
+					siteId, uuid, Pagination.of(1, 2));
 
 		List<ContentSetElement> contentSetElements1 =
 			(List<ContentSetElement>)page1.getItems();
@@ -609,8 +620,9 @@ public abstract class BaseContentSetElementResourceTestCase {
 			contentSetElements1.toString(), 2, contentSetElements1.size());
 
 		Page<ContentSetElement> page2 =
-			invokeGetSiteContentSetByUuidContentSetElementsPage(
-				siteId, uuid, Pagination.of(2, 2));
+			ContentSetElementResource.
+				getSiteContentSetByUuidContentSetElementsPage(
+					siteId, uuid, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -669,7 +681,8 @@ public abstract class BaseContentSetElementResourceTestCase {
 
 	protected Page<ContentSetElement>
 			invokeGetSiteContentSetByUuidContentSetElementsPage(
-				Long siteId, String uuid, Pagination pagination)
+				Long siteId, String uuid,
+				com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -700,7 +713,8 @@ public abstract class BaseContentSetElementResourceTestCase {
 
 	protected Http.Response
 			invokeGetSiteContentSetByUuidContentSetElementsPageResponse(
-				Long siteId, String uuid, Pagination pagination)
+				Long siteId, String uuid,
+				com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

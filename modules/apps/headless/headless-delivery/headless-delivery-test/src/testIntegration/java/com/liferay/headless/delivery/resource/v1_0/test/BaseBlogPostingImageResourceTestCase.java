@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.BlogPostingImageResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.BlogPostingImageSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -44,7 +45,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -233,8 +233,9 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		BlogPostingImage postBlogPostingImage =
 			testGetBlogPostingImage_addBlogPostingImage();
 
-		BlogPostingImage getBlogPostingImage = invokeGetBlogPostingImage(
-			postBlogPostingImage.getId());
+		BlogPostingImage getBlogPostingImage =
+			BlogPostingImageResource.getBlogPostingImage(
+				postBlogPostingImage.getId());
 
 		assertEquals(postBlogPostingImage, getBlogPostingImage);
 		assertValid(getBlogPostingImage);
@@ -309,8 +310,9 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 				testGetSiteBlogPostingImagesPage_addBlogPostingImage(
 					irrelevantSiteId, randomIrrelevantBlogPostingImage());
 
-			Page<BlogPostingImage> page = invokeGetSiteBlogPostingImagesPage(
-				irrelevantSiteId, null, null, Pagination.of(1, 2), null);
+			Page<BlogPostingImage> page =
+				BlogPostingImageResource.getSiteBlogPostingImagesPage(
+					irrelevantSiteId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -328,8 +330,9 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			testGetSiteBlogPostingImagesPage_addBlogPostingImage(
 				siteId, randomBlogPostingImage());
 
-		Page<BlogPostingImage> page = invokeGetSiteBlogPostingImagesPage(
-			siteId, null, null, Pagination.of(1, 2), null);
+		Page<BlogPostingImage> page =
+			BlogPostingImageResource.getSiteBlogPostingImagesPage(
+				siteId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -359,10 +362,11 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 				siteId, blogPostingImage1);
 
 		for (EntityField entityField : entityFields) {
-			Page<BlogPostingImage> page = invokeGetSiteBlogPostingImagesPage(
-				siteId, null,
-				getFilterString(entityField, "between", blogPostingImage1),
-				Pagination.of(1, 2), null);
+			Page<BlogPostingImage> page =
+				BlogPostingImageResource.getSiteBlogPostingImagesPage(
+					siteId, null,
+					getFilterString(entityField, "between", blogPostingImage1),
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(blogPostingImage1),
@@ -393,10 +397,11 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 				siteId, randomBlogPostingImage());
 
 		for (EntityField entityField : entityFields) {
-			Page<BlogPostingImage> page = invokeGetSiteBlogPostingImagesPage(
-				siteId, null,
-				getFilterString(entityField, "eq", blogPostingImage1),
-				Pagination.of(1, 2), null);
+			Page<BlogPostingImage> page =
+				BlogPostingImageResource.getSiteBlogPostingImagesPage(
+					siteId, null,
+					getFilterString(entityField, "eq", blogPostingImage1),
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(blogPostingImage1),
@@ -422,8 +427,9 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			testGetSiteBlogPostingImagesPage_addBlogPostingImage(
 				siteId, randomBlogPostingImage());
 
-		Page<BlogPostingImage> page1 = invokeGetSiteBlogPostingImagesPage(
-			siteId, null, null, Pagination.of(1, 2), null);
+		Page<BlogPostingImage> page1 =
+			BlogPostingImageResource.getSiteBlogPostingImagesPage(
+				siteId, null, null, Pagination.of(1, 2), null);
 
 		List<BlogPostingImage> blogPostingImages1 =
 			(List<BlogPostingImage>)page1.getItems();
@@ -431,8 +437,9 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		Assert.assertEquals(
 			blogPostingImages1.toString(), 2, blogPostingImages1.size());
 
-		Page<BlogPostingImage> page2 = invokeGetSiteBlogPostingImagesPage(
-			siteId, null, null, Pagination.of(2, 2), null);
+		Page<BlogPostingImage> page2 =
+			BlogPostingImageResource.getSiteBlogPostingImagesPage(
+				siteId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -484,16 +491,17 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 				siteId, blogPostingImage2);
 
 		for (EntityField entityField : entityFields) {
-			Page<BlogPostingImage> ascPage = invokeGetSiteBlogPostingImagesPage(
-				siteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<BlogPostingImage> ascPage =
+				BlogPostingImageResource.getSiteBlogPostingImagesPage(
+					siteId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(blogPostingImage1, blogPostingImage2),
 				(List<BlogPostingImage>)ascPage.getItems());
 
 			Page<BlogPostingImage> descPage =
-				invokeGetSiteBlogPostingImagesPage(
+				BlogPostingImageResource.getSiteBlogPostingImagesPage(
 					siteId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -535,16 +543,17 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 				siteId, blogPostingImage2);
 
 		for (EntityField entityField : entityFields) {
-			Page<BlogPostingImage> ascPage = invokeGetSiteBlogPostingImagesPage(
-				siteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<BlogPostingImage> ascPage =
+				BlogPostingImageResource.getSiteBlogPostingImagesPage(
+					siteId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(blogPostingImage1, blogPostingImage2),
 				(List<BlogPostingImage>)ascPage.getItems());
 
 			Page<BlogPostingImage> descPage =
-				invokeGetSiteBlogPostingImagesPage(
+				BlogPostingImageResource.getSiteBlogPostingImagesPage(
 					siteId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -577,7 +586,8 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 	protected Page<BlogPostingImage> invokeGetSiteBlogPostingImagesPage(
 			Long siteId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -618,7 +628,8 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 	protected Http.Response invokeGetSiteBlogPostingImagesPageResponse(
 			Long siteId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

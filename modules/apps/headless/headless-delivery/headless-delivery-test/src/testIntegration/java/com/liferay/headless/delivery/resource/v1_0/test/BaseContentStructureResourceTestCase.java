@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.delivery.client.dto.v1_0.ContentStructure;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.ContentStructureResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.ContentStructureSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -41,7 +42,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -161,8 +161,9 @@ public abstract class BaseContentStructureResourceTestCase {
 		ContentStructure postContentStructure =
 			testGetContentStructure_addContentStructure();
 
-		ContentStructure getContentStructure = invokeGetContentStructure(
-			postContentStructure.getId());
+		ContentStructure getContentStructure =
+			ContentStructureResource.getContentStructure(
+				postContentStructure.getId());
 
 		assertEquals(postContentStructure, getContentStructure);
 		assertValid(getContentStructure);
@@ -237,8 +238,9 @@ public abstract class BaseContentStructureResourceTestCase {
 				testGetSiteContentStructuresPage_addContentStructure(
 					irrelevantSiteId, randomIrrelevantContentStructure());
 
-			Page<ContentStructure> page = invokeGetSiteContentStructuresPage(
-				irrelevantSiteId, null, null, Pagination.of(1, 2), null);
+			Page<ContentStructure> page =
+				ContentStructureResource.getSiteContentStructuresPage(
+					irrelevantSiteId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -256,8 +258,9 @@ public abstract class BaseContentStructureResourceTestCase {
 			testGetSiteContentStructuresPage_addContentStructure(
 				siteId, randomContentStructure());
 
-		Page<ContentStructure> page = invokeGetSiteContentStructuresPage(
-			siteId, null, null, Pagination.of(1, 2), null);
+		Page<ContentStructure> page =
+			ContentStructureResource.getSiteContentStructuresPage(
+				siteId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -287,10 +290,11 @@ public abstract class BaseContentStructureResourceTestCase {
 				siteId, contentStructure1);
 
 		for (EntityField entityField : entityFields) {
-			Page<ContentStructure> page = invokeGetSiteContentStructuresPage(
-				siteId, null,
-				getFilterString(entityField, "between", contentStructure1),
-				Pagination.of(1, 2), null);
+			Page<ContentStructure> page =
+				ContentStructureResource.getSiteContentStructuresPage(
+					siteId, null,
+					getFilterString(entityField, "between", contentStructure1),
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(contentStructure1),
@@ -321,10 +325,11 @@ public abstract class BaseContentStructureResourceTestCase {
 				siteId, randomContentStructure());
 
 		for (EntityField entityField : entityFields) {
-			Page<ContentStructure> page = invokeGetSiteContentStructuresPage(
-				siteId, null,
-				getFilterString(entityField, "eq", contentStructure1),
-				Pagination.of(1, 2), null);
+			Page<ContentStructure> page =
+				ContentStructureResource.getSiteContentStructuresPage(
+					siteId, null,
+					getFilterString(entityField, "eq", contentStructure1),
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(contentStructure1),
@@ -350,8 +355,9 @@ public abstract class BaseContentStructureResourceTestCase {
 			testGetSiteContentStructuresPage_addContentStructure(
 				siteId, randomContentStructure());
 
-		Page<ContentStructure> page1 = invokeGetSiteContentStructuresPage(
-			siteId, null, null, Pagination.of(1, 2), null);
+		Page<ContentStructure> page1 =
+			ContentStructureResource.getSiteContentStructuresPage(
+				siteId, null, null, Pagination.of(1, 2), null);
 
 		List<ContentStructure> contentStructures1 =
 			(List<ContentStructure>)page1.getItems();
@@ -359,8 +365,9 @@ public abstract class BaseContentStructureResourceTestCase {
 		Assert.assertEquals(
 			contentStructures1.toString(), 2, contentStructures1.size());
 
-		Page<ContentStructure> page2 = invokeGetSiteContentStructuresPage(
-			siteId, null, null, Pagination.of(2, 2), null);
+		Page<ContentStructure> page2 =
+			ContentStructureResource.getSiteContentStructuresPage(
+				siteId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -412,16 +419,17 @@ public abstract class BaseContentStructureResourceTestCase {
 				siteId, contentStructure2);
 
 		for (EntityField entityField : entityFields) {
-			Page<ContentStructure> ascPage = invokeGetSiteContentStructuresPage(
-				siteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<ContentStructure> ascPage =
+				ContentStructureResource.getSiteContentStructuresPage(
+					siteId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(contentStructure1, contentStructure2),
 				(List<ContentStructure>)ascPage.getItems());
 
 			Page<ContentStructure> descPage =
-				invokeGetSiteContentStructuresPage(
+				ContentStructureResource.getSiteContentStructuresPage(
 					siteId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -463,16 +471,17 @@ public abstract class BaseContentStructureResourceTestCase {
 				siteId, contentStructure2);
 
 		for (EntityField entityField : entityFields) {
-			Page<ContentStructure> ascPage = invokeGetSiteContentStructuresPage(
-				siteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<ContentStructure> ascPage =
+				ContentStructureResource.getSiteContentStructuresPage(
+					siteId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(contentStructure1, contentStructure2),
 				(List<ContentStructure>)ascPage.getItems());
 
 			Page<ContentStructure> descPage =
-				invokeGetSiteContentStructuresPage(
+				ContentStructureResource.getSiteContentStructuresPage(
 					siteId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -505,7 +514,8 @@ public abstract class BaseContentStructureResourceTestCase {
 
 	protected Page<ContentStructure> invokeGetSiteContentStructuresPage(
 			Long siteId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -546,7 +556,8 @@ public abstract class BaseContentStructureResourceTestCase {
 
 	protected Http.Response invokeGetSiteContentStructuresPageResponse(
 			Long siteId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

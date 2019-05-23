@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataRecord;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
+import com.liferay.data.engine.rest.client.pagination.Pagination;
 import com.liferay.data.engine.rest.client.resource.v1_0.DataRecordResource;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataRecordSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -43,7 +44,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -167,7 +167,7 @@ public abstract class BaseDataRecordResourceTestCase {
 					randomIrrelevantDataRecord());
 
 			Page<DataRecord> page =
-				invokeGetDataRecordCollectionDataRecordsPage(
+				DataRecordResource.getDataRecordCollectionDataRecordsPage(
 					irrelevantDataRecordCollectionId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -186,8 +186,9 @@ public abstract class BaseDataRecordResourceTestCase {
 			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
 				dataRecordCollectionId, randomDataRecord());
 
-		Page<DataRecord> page = invokeGetDataRecordCollectionDataRecordsPage(
-			dataRecordCollectionId, Pagination.of(1, 2));
+		Page<DataRecord> page =
+			DataRecordResource.getDataRecordCollectionDataRecordsPage(
+				dataRecordCollectionId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -216,15 +217,17 @@ public abstract class BaseDataRecordResourceTestCase {
 			testGetDataRecordCollectionDataRecordsPage_addDataRecord(
 				dataRecordCollectionId, randomDataRecord());
 
-		Page<DataRecord> page1 = invokeGetDataRecordCollectionDataRecordsPage(
-			dataRecordCollectionId, Pagination.of(1, 2));
+		Page<DataRecord> page1 =
+			DataRecordResource.getDataRecordCollectionDataRecordsPage(
+				dataRecordCollectionId, Pagination.of(1, 2));
 
 		List<DataRecord> dataRecords1 = (List<DataRecord>)page1.getItems();
 
 		Assert.assertEquals(dataRecords1.toString(), 2, dataRecords1.size());
 
-		Page<DataRecord> page2 = invokeGetDataRecordCollectionDataRecordsPage(
-			dataRecordCollectionId, Pagination.of(2, 2));
+		Page<DataRecord> page2 =
+			DataRecordResource.getDataRecordCollectionDataRecordsPage(
+				dataRecordCollectionId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -267,7 +270,8 @@ public abstract class BaseDataRecordResourceTestCase {
 	}
 
 	protected Page<DataRecord> invokeGetDataRecordCollectionDataRecordsPage(
-			Long dataRecordCollectionId, Pagination pagination)
+			Long dataRecordCollectionId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -298,7 +302,8 @@ public abstract class BaseDataRecordResourceTestCase {
 
 	protected Http.Response
 			invokeGetDataRecordCollectionDataRecordsPageResponse(
-				Long dataRecordCollectionId, Pagination pagination)
+				Long dataRecordCollectionId,
+				com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -517,7 +522,8 @@ public abstract class BaseDataRecordResourceTestCase {
 	public void testGetDataRecord() throws Exception {
 		DataRecord postDataRecord = testGetDataRecord_addDataRecord();
 
-		DataRecord getDataRecord = invokeGetDataRecord(postDataRecord.getId());
+		DataRecord getDataRecord = DataRecordResource.getDataRecord(
+			postDataRecord.getId());
 
 		assertEquals(postDataRecord, getDataRecord);
 		assertValid(getDataRecord);

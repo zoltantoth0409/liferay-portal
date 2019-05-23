@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.workflow.client.dto.v1_0.WorkflowLog;
 import com.liferay.headless.admin.workflow.client.http.HttpInvoker;
 import com.liferay.headless.admin.workflow.client.pagination.Page;
+import com.liferay.headless.admin.workflow.client.pagination.Pagination;
 import com.liferay.headless.admin.workflow.client.resource.v1_0.WorkflowLogResource;
 import com.liferay.headless.admin.workflow.client.serdes.v1_0.WorkflowLogSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -41,7 +42,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -157,7 +157,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	public void testGetWorkflowLog() throws Exception {
 		WorkflowLog postWorkflowLog = testGetWorkflowLog_addWorkflowLog();
 
-		WorkflowLog getWorkflowLog = invokeGetWorkflowLog(
+		WorkflowLog getWorkflowLog = WorkflowLogResource.getWorkflowLog(
 			postWorkflowLog.getId());
 
 		assertEquals(postWorkflowLog, getWorkflowLog);
@@ -226,8 +226,9 @@ public abstract class BaseWorkflowLogResourceTestCase {
 				testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
 					irrelevantWorkflowTaskId, randomIrrelevantWorkflowLog());
 
-			Page<WorkflowLog> page = invokeGetWorkflowTaskWorkflowLogsPage(
-				irrelevantWorkflowTaskId, Pagination.of(1, 2));
+			Page<WorkflowLog> page =
+				WorkflowLogResource.getWorkflowTaskWorkflowLogsPage(
+					irrelevantWorkflowTaskId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -245,8 +246,9 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
 				workflowTaskId, randomWorkflowLog());
 
-		Page<WorkflowLog> page = invokeGetWorkflowTaskWorkflowLogsPage(
-			workflowTaskId, Pagination.of(1, 2));
+		Page<WorkflowLog> page =
+			WorkflowLogResource.getWorkflowTaskWorkflowLogsPage(
+				workflowTaskId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -275,15 +277,17 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			testGetWorkflowTaskWorkflowLogsPage_addWorkflowLog(
 				workflowTaskId, randomWorkflowLog());
 
-		Page<WorkflowLog> page1 = invokeGetWorkflowTaskWorkflowLogsPage(
-			workflowTaskId, Pagination.of(1, 2));
+		Page<WorkflowLog> page1 =
+			WorkflowLogResource.getWorkflowTaskWorkflowLogsPage(
+				workflowTaskId, Pagination.of(1, 2));
 
 		List<WorkflowLog> workflowLogs1 = (List<WorkflowLog>)page1.getItems();
 
 		Assert.assertEquals(workflowLogs1.toString(), 2, workflowLogs1.size());
 
-		Page<WorkflowLog> page2 = invokeGetWorkflowTaskWorkflowLogsPage(
-			workflowTaskId, Pagination.of(2, 2));
+		Page<WorkflowLog> page2 =
+			WorkflowLogResource.getWorkflowTaskWorkflowLogsPage(
+				workflowTaskId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -324,7 +328,8 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	}
 
 	protected Page<WorkflowLog> invokeGetWorkflowTaskWorkflowLogsPage(
-			Long workflowTaskId, Pagination pagination)
+			Long workflowTaskId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -354,7 +359,8 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	}
 
 	protected Http.Response invokeGetWorkflowTaskWorkflowLogsPageResponse(
-			Long workflowTaskId, Pagination pagination)
+			Long workflowTaskId,
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

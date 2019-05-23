@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.user.client.dto.v1_0.Organization;
 import com.liferay.headless.admin.user.client.http.HttpInvoker;
 import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.pagination.Pagination;
 import com.liferay.headless.admin.user.client.resource.v1_0.OrganizationResource;
 import com.liferay.headless.admin.user.client.serdes.v1_0.OrganizationSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -41,7 +42,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -164,7 +164,7 @@ public abstract class BaseOrganizationResourceTestCase {
 		Organization organization2 = testGetOrganizationsPage_addOrganization(
 			randomOrganization());
 
-		Page<Organization> page = invokeGetOrganizationsPage(
+		Page<Organization> page = OrganizationResource.getOrganizationsPage(
 			null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -191,7 +191,7 @@ public abstract class BaseOrganizationResourceTestCase {
 		organization1 = testGetOrganizationsPage_addOrganization(organization1);
 
 		for (EntityField entityField : entityFields) {
-			Page<Organization> page = invokeGetOrganizationsPage(
+			Page<Organization> page = OrganizationResource.getOrganizationsPage(
 				null, getFilterString(entityField, "between", organization1),
 				Pagination.of(1, 2), null);
 
@@ -220,7 +220,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			randomOrganization());
 
 		for (EntityField entityField : entityFields) {
-			Page<Organization> page = invokeGetOrganizationsPage(
+			Page<Organization> page = OrganizationResource.getOrganizationsPage(
 				null, getFilterString(entityField, "eq", organization1),
 				Pagination.of(1, 2), null);
 
@@ -241,7 +241,7 @@ public abstract class BaseOrganizationResourceTestCase {
 		Organization organization3 = testGetOrganizationsPage_addOrganization(
 			randomOrganization());
 
-		Page<Organization> page1 = invokeGetOrganizationsPage(
+		Page<Organization> page1 = OrganizationResource.getOrganizationsPage(
 			null, null, Pagination.of(1, 2), null);
 
 		List<Organization> organizations1 =
@@ -250,7 +250,7 @@ public abstract class BaseOrganizationResourceTestCase {
 		Assert.assertEquals(
 			organizations1.toString(), 2, organizations1.size());
 
-		Page<Organization> page2 = invokeGetOrganizationsPage(
+		Page<Organization> page2 = OrganizationResource.getOrganizationsPage(
 			null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -294,17 +294,19 @@ public abstract class BaseOrganizationResourceTestCase {
 		organization2 = testGetOrganizationsPage_addOrganization(organization2);
 
 		for (EntityField entityField : entityFields) {
-			Page<Organization> ascPage = invokeGetOrganizationsPage(
-				null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<Organization> ascPage =
+				OrganizationResource.getOrganizationsPage(
+					null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(organization1, organization2),
 				(List<Organization>)ascPage.getItems());
 
-			Page<Organization> descPage = invokeGetOrganizationsPage(
-				null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
+			Page<Organization> descPage =
+				OrganizationResource.getOrganizationsPage(
+					null, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(organization2, organization1),
@@ -334,17 +336,19 @@ public abstract class BaseOrganizationResourceTestCase {
 		organization2 = testGetOrganizationsPage_addOrganization(organization2);
 
 		for (EntityField entityField : entityFields) {
-			Page<Organization> ascPage = invokeGetOrganizationsPage(
-				null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<Organization> ascPage =
+				OrganizationResource.getOrganizationsPage(
+					null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(organization1, organization2),
 				(List<Organization>)ascPage.getItems());
 
-			Page<Organization> descPage = invokeGetOrganizationsPage(
-				null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
+			Page<Organization> descPage =
+				OrganizationResource.getOrganizationsPage(
+					null, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(organization2, organization1),
@@ -361,7 +365,8 @@ public abstract class BaseOrganizationResourceTestCase {
 	}
 
 	protected Page<Organization> invokeGetOrganizationsPage(
-			String search, String filterString, Pagination pagination,
+			String search, String filterString,
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
 			String sortString)
 		throws Exception {
 
@@ -400,7 +405,8 @@ public abstract class BaseOrganizationResourceTestCase {
 	}
 
 	protected Http.Response invokeGetOrganizationsPageResponse(
-			String search, String filterString, Pagination pagination,
+			String search, String filterString,
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
 			String sortString)
 		throws Exception {
 
@@ -438,7 +444,7 @@ public abstract class BaseOrganizationResourceTestCase {
 	public void testGetOrganization() throws Exception {
 		Organization postOrganization = testGetOrganization_addOrganization();
 
-		Organization getOrganization = invokeGetOrganization(
+		Organization getOrganization = OrganizationResource.getOrganization(
 			postOrganization.getId());
 
 		assertEquals(postOrganization, getOrganization);
@@ -510,9 +516,10 @@ public abstract class BaseOrganizationResourceTestCase {
 					irrelevantParentOrganizationId,
 					randomIrrelevantOrganization());
 
-			Page<Organization> page = invokeGetOrganizationOrganizationsPage(
-				irrelevantParentOrganizationId, null, null, Pagination.of(1, 2),
-				null);
+			Page<Organization> page =
+				OrganizationResource.getOrganizationOrganizationsPage(
+					irrelevantParentOrganizationId, null, null,
+					Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -530,8 +537,9 @@ public abstract class BaseOrganizationResourceTestCase {
 			testGetOrganizationOrganizationsPage_addOrganization(
 				parentOrganizationId, randomOrganization());
 
-		Page<Organization> page = invokeGetOrganizationOrganizationsPage(
-			parentOrganizationId, null, null, Pagination.of(1, 2), null);
+		Page<Organization> page =
+			OrganizationResource.getOrganizationOrganizationsPage(
+				parentOrganizationId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -561,10 +569,11 @@ public abstract class BaseOrganizationResourceTestCase {
 			parentOrganizationId, organization1);
 
 		for (EntityField entityField : entityFields) {
-			Page<Organization> page = invokeGetOrganizationOrganizationsPage(
-				parentOrganizationId, null,
-				getFilterString(entityField, "between", organization1),
-				Pagination.of(1, 2), null);
+			Page<Organization> page =
+				OrganizationResource.getOrganizationOrganizationsPage(
+					parentOrganizationId, null,
+					getFilterString(entityField, "between", organization1),
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(organization1),
@@ -596,10 +605,11 @@ public abstract class BaseOrganizationResourceTestCase {
 				parentOrganizationId, randomOrganization());
 
 		for (EntityField entityField : entityFields) {
-			Page<Organization> page = invokeGetOrganizationOrganizationsPage(
-				parentOrganizationId, null,
-				getFilterString(entityField, "eq", organization1),
-				Pagination.of(1, 2), null);
+			Page<Organization> page =
+				OrganizationResource.getOrganizationOrganizationsPage(
+					parentOrganizationId, null,
+					getFilterString(entityField, "eq", organization1),
+					Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(organization1),
@@ -626,8 +636,9 @@ public abstract class BaseOrganizationResourceTestCase {
 			testGetOrganizationOrganizationsPage_addOrganization(
 				parentOrganizationId, randomOrganization());
 
-		Page<Organization> page1 = invokeGetOrganizationOrganizationsPage(
-			parentOrganizationId, null, null, Pagination.of(1, 2), null);
+		Page<Organization> page1 =
+			OrganizationResource.getOrganizationOrganizationsPage(
+				parentOrganizationId, null, null, Pagination.of(1, 2), null);
 
 		List<Organization> organizations1 =
 			(List<Organization>)page1.getItems();
@@ -635,8 +646,9 @@ public abstract class BaseOrganizationResourceTestCase {
 		Assert.assertEquals(
 			organizations1.toString(), 2, organizations1.size());
 
-		Page<Organization> page2 = invokeGetOrganizationOrganizationsPage(
-			parentOrganizationId, null, null, Pagination.of(2, 2), null);
+		Page<Organization> page2 =
+			OrganizationResource.getOrganizationOrganizationsPage(
+				parentOrganizationId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -686,16 +698,17 @@ public abstract class BaseOrganizationResourceTestCase {
 			parentOrganizationId, organization2);
 
 		for (EntityField entityField : entityFields) {
-			Page<Organization> ascPage = invokeGetOrganizationOrganizationsPage(
-				parentOrganizationId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<Organization> ascPage =
+				OrganizationResource.getOrganizationOrganizationsPage(
+					parentOrganizationId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(organization1, organization2),
 				(List<Organization>)ascPage.getItems());
 
 			Page<Organization> descPage =
-				invokeGetOrganizationOrganizationsPage(
+				OrganizationResource.getOrganizationOrganizationsPage(
 					parentOrganizationId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -734,16 +747,17 @@ public abstract class BaseOrganizationResourceTestCase {
 			parentOrganizationId, organization2);
 
 		for (EntityField entityField : entityFields) {
-			Page<Organization> ascPage = invokeGetOrganizationOrganizationsPage(
-				parentOrganizationId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
+			Page<Organization> ascPage =
+				OrganizationResource.getOrganizationOrganizationsPage(
+					parentOrganizationId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(organization1, organization2),
 				(List<Organization>)ascPage.getItems());
 
 			Page<Organization> descPage =
-				invokeGetOrganizationOrganizationsPage(
+				OrganizationResource.getOrganizationOrganizationsPage(
 					parentOrganizationId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -778,7 +792,8 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	protected Page<Organization> invokeGetOrganizationOrganizationsPage(
 			Long parentOrganizationId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -821,7 +836,8 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	protected Http.Response invokeGetOrganizationOrganizationsPageResponse(
 			Long parentOrganizationId, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();

@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.admin.user.client.dto.v1_0.Role;
 import com.liferay.headless.admin.user.client.http.HttpInvoker;
 import com.liferay.headless.admin.user.client.pagination.Page;
+import com.liferay.headless.admin.user.client.pagination.Pagination;
 import com.liferay.headless.admin.user.client.resource.v1_0.RoleResource;
 import com.liferay.headless.admin.user.client.serdes.v1_0.RoleSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -41,7 +42,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -156,7 +156,8 @@ public abstract class BaseRoleResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected Page<Role> invokeGetRolesPage(Pagination pagination)
+	protected Page<Role> invokeGetRolesPage(
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -181,7 +182,8 @@ public abstract class BaseRoleResourceTestCase {
 		return Page.of(string, RoleSerDes::toDTO);
 	}
 
-	protected Http.Response invokeGetRolesPageResponse(Pagination pagination)
+	protected Http.Response invokeGetRolesPageResponse(
+			com.liferay.portal.vulcan.pagination.Pagination pagination)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -206,7 +208,7 @@ public abstract class BaseRoleResourceTestCase {
 	public void testGetRole() throws Exception {
 		Role postRole = testGetRole_addRole();
 
-		Role getRole = invokeGetRole(postRole.getId());
+		Role getRole = RoleResource.getRole(postRole.getId());
 
 		assertEquals(postRole, getRole);
 		assertValid(getRole);

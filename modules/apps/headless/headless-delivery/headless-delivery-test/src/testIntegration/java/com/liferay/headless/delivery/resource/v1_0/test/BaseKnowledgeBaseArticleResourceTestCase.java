@@ -24,6 +24,7 @@ import com.liferay.headless.delivery.client.dto.v1_0.KnowledgeBaseArticle;
 import com.liferay.headless.delivery.client.dto.v1_0.Rating;
 import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
+import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.KnowledgeBaseArticleResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.KnowledgeBaseArticleSerDes;
 import com.liferay.petra.string.StringBundler;
@@ -44,7 +45,6 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
@@ -240,7 +240,8 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			testGetKnowledgeBaseArticle_addKnowledgeBaseArticle();
 
 		KnowledgeBaseArticle getKnowledgeBaseArticle =
-			invokeGetKnowledgeBaseArticle(postKnowledgeBaseArticle.getId());
+			KnowledgeBaseArticleResource.getKnowledgeBaseArticle(
+				postKnowledgeBaseArticle.getId());
 
 		assertEquals(postKnowledgeBaseArticle, getKnowledgeBaseArticle);
 		assertValid(getKnowledgeBaseArticle);
@@ -314,7 +315,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			randomPatchKnowledgeBaseArticle();
 
 		KnowledgeBaseArticle patchKnowledgeBaseArticle =
-			invokePatchKnowledgeBaseArticle(
+			KnowledgeBaseArticleResource.patchKnowledgeBaseArticle(
 				postKnowledgeBaseArticle.getId(),
 				randomPatchKnowledgeBaseArticle);
 
@@ -782,9 +783,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					randomIrrelevantKnowledgeBaseArticle());
 
 			Page<KnowledgeBaseArticle> page =
-				invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
-					irrelevantParentKnowledgeBaseArticleId, null, null,
-					Pagination.of(1, 2), null);
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+						irrelevantParentKnowledgeBaseArticleId, null, null,
+						Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -803,9 +805,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				parentKnowledgeBaseArticleId, randomKnowledgeBaseArticle());
 
 		Page<KnowledgeBaseArticle> page =
-			invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
-				parentKnowledgeBaseArticleId, null, null, Pagination.of(1, 2),
-				null);
+			KnowledgeBaseArticleResource.
+				getKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+					parentKnowledgeBaseArticleId, null, null,
+					Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -838,11 +841,12 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> page =
-				invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
-					parentKnowledgeBaseArticleId, null,
-					getFilterString(
-						entityField, "between", knowledgeBaseArticle1),
-					Pagination.of(1, 2), null);
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+						parentKnowledgeBaseArticleId, null,
+						getFilterString(
+							entityField, "between", knowledgeBaseArticle1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(knowledgeBaseArticle1),
@@ -875,10 +879,12 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> page =
-				invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
-					parentKnowledgeBaseArticleId, null,
-					getFilterString(entityField, "eq", knowledgeBaseArticle1),
-					Pagination.of(1, 2), null);
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+						parentKnowledgeBaseArticleId, null,
+						getFilterString(
+							entityField, "eq", knowledgeBaseArticle1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(knowledgeBaseArticle1),
@@ -906,9 +912,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				parentKnowledgeBaseArticleId, randomKnowledgeBaseArticle());
 
 		Page<KnowledgeBaseArticle> page1 =
-			invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
-				parentKnowledgeBaseArticleId, null, null, Pagination.of(1, 2),
-				null);
+			KnowledgeBaseArticleResource.
+				getKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+					parentKnowledgeBaseArticleId, null, null,
+					Pagination.of(1, 2), null);
 
 		List<KnowledgeBaseArticle> knowledgeBaseArticles1 =
 			(List<KnowledgeBaseArticle>)page1.getItems();
@@ -918,9 +925,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			knowledgeBaseArticles1.size());
 
 		Page<KnowledgeBaseArticle> page2 =
-			invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
-				parentKnowledgeBaseArticleId, null, null, Pagination.of(2, 2),
-				null);
+			KnowledgeBaseArticleResource.
+				getKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+					parentKnowledgeBaseArticleId, null, null,
+					Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -978,18 +986,20 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> ascPage =
-				invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
-					parentKnowledgeBaseArticleId, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":asc");
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+						parentKnowledgeBaseArticleId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
 				(List<KnowledgeBaseArticle>)ascPage.getItems());
 
 			Page<KnowledgeBaseArticle> descPage =
-				invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
-					parentKnowledgeBaseArticleId, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":desc");
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+						parentKnowledgeBaseArticleId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(knowledgeBaseArticle2, knowledgeBaseArticle1),
@@ -1033,18 +1043,20 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> ascPage =
-				invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
-					parentKnowledgeBaseArticleId, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":asc");
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+						parentKnowledgeBaseArticleId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
 				(List<KnowledgeBaseArticle>)ascPage.getItems());
 
 			Page<KnowledgeBaseArticle> descPage =
-				invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
-					parentKnowledgeBaseArticleId, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":desc");
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleKnowledgeBaseArticlesPage(
+						parentKnowledgeBaseArticleId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(knowledgeBaseArticle2, knowledgeBaseArticle1),
@@ -1080,7 +1092,9 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 	protected Page<KnowledgeBaseArticle>
 			invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPage(
 				Long parentKnowledgeBaseArticleId, String search,
-				String filterString, Pagination pagination, String sortString)
+				String filterString,
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -1124,7 +1138,9 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 	protected Http.Response
 			invokeGetKnowledgeBaseArticleKnowledgeBaseArticlesPageResponse(
 				Long parentKnowledgeBaseArticleId, String search,
-				String filterString, Pagination pagination, String sortString)
+				String filterString,
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -1269,9 +1285,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					randomIrrelevantKnowledgeBaseArticle());
 
 			Page<KnowledgeBaseArticle> page =
-				invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-					irrelevantKnowledgeBaseFolderId, null, null, null,
-					Pagination.of(1, 2), null);
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+						irrelevantKnowledgeBaseFolderId, null, null, null,
+						Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -1290,9 +1307,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				knowledgeBaseFolderId, randomKnowledgeBaseArticle());
 
 		Page<KnowledgeBaseArticle> page =
-			invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-				knowledgeBaseFolderId, null, null, null, Pagination.of(1, 2),
-				null);
+			KnowledgeBaseArticleResource.
+				getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+					knowledgeBaseFolderId, null, null, null,
+					Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -1325,11 +1343,12 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> page =
-				invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-					knowledgeBaseFolderId, null, null,
-					getFilterString(
-						entityField, "between", knowledgeBaseArticle1),
-					Pagination.of(1, 2), null);
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+						knowledgeBaseFolderId, null, null,
+						getFilterString(
+							entityField, "between", knowledgeBaseArticle1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(knowledgeBaseArticle1),
@@ -1362,10 +1381,12 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> page =
-				invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-					knowledgeBaseFolderId, null, null,
-					getFilterString(entityField, "eq", knowledgeBaseArticle1),
-					Pagination.of(1, 2), null);
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+						knowledgeBaseFolderId, null, null,
+						getFilterString(
+							entityField, "eq", knowledgeBaseArticle1),
+						Pagination.of(1, 2), null);
 
 			assertEquals(
 				Collections.singletonList(knowledgeBaseArticle1),
@@ -1393,9 +1414,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				knowledgeBaseFolderId, randomKnowledgeBaseArticle());
 
 		Page<KnowledgeBaseArticle> page1 =
-			invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-				knowledgeBaseFolderId, null, null, null, Pagination.of(1, 2),
-				null);
+			KnowledgeBaseArticleResource.
+				getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+					knowledgeBaseFolderId, null, null, null,
+					Pagination.of(1, 2), null);
 
 		List<KnowledgeBaseArticle> knowledgeBaseArticles1 =
 			(List<KnowledgeBaseArticle>)page1.getItems();
@@ -1405,9 +1427,10 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			knowledgeBaseArticles1.size());
 
 		Page<KnowledgeBaseArticle> page2 =
-			invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-				knowledgeBaseFolderId, null, null, null, Pagination.of(2, 2),
-				null);
+			KnowledgeBaseArticleResource.
+				getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+					knowledgeBaseFolderId, null, null, null,
+					Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
 
@@ -1465,18 +1488,20 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> ascPage =
-				invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-					knowledgeBaseFolderId, null, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":asc");
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+						knowledgeBaseFolderId, null, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
 				(List<KnowledgeBaseArticle>)ascPage.getItems());
 
 			Page<KnowledgeBaseArticle> descPage =
-				invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-					knowledgeBaseFolderId, null, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":desc");
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+						knowledgeBaseFolderId, null, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(knowledgeBaseArticle2, knowledgeBaseArticle1),
@@ -1520,18 +1545,20 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> ascPage =
-				invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-					knowledgeBaseFolderId, null, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":asc");
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+						knowledgeBaseFolderId, null, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":asc");
 
 			assertEquals(
 				Arrays.asList(knowledgeBaseArticle1, knowledgeBaseArticle2),
 				(List<KnowledgeBaseArticle>)ascPage.getItems());
 
 			Page<KnowledgeBaseArticle> descPage =
-				invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
-					knowledgeBaseFolderId, null, null, null,
-					Pagination.of(1, 2), entityField.getName() + ":desc");
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseFolderKnowledgeBaseArticlesPage(
+						knowledgeBaseFolderId, null, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":desc");
 
 			assertEquals(
 				Arrays.asList(knowledgeBaseArticle2, knowledgeBaseArticle1),
@@ -1567,7 +1594,9 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 	protected Page<KnowledgeBaseArticle>
 			invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPage(
 				Long knowledgeBaseFolderId, Boolean flatten, String search,
-				String filterString, Pagination pagination, String sortString)
+				String filterString,
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -1615,7 +1644,9 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 	protected Http.Response
 			invokeGetKnowledgeBaseFolderKnowledgeBaseArticlesPageResponse(
 				Long knowledgeBaseFolderId, Boolean flatten, String search,
-				String filterString, Pagination pagination, String sortString)
+				String filterString,
+				com.liferay.portal.vulcan.pagination.Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -1760,7 +1791,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 					irrelevantSiteId, randomIrrelevantKnowledgeBaseArticle());
 
 			Page<KnowledgeBaseArticle> page =
-				invokeGetSiteKnowledgeBaseArticlesPage(
+				KnowledgeBaseArticleResource.getSiteKnowledgeBaseArticlesPage(
 					irrelevantSiteId, null, null, null, Pagination.of(1, 2),
 					null);
 
@@ -1781,7 +1812,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				siteId, randomKnowledgeBaseArticle());
 
 		Page<KnowledgeBaseArticle> page =
-			invokeGetSiteKnowledgeBaseArticlesPage(
+			KnowledgeBaseArticleResource.getSiteKnowledgeBaseArticlesPage(
 				siteId, null, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -1814,7 +1845,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> page =
-				invokeGetSiteKnowledgeBaseArticlesPage(
+				KnowledgeBaseArticleResource.getSiteKnowledgeBaseArticlesPage(
 					siteId, null, null,
 					getFilterString(
 						entityField, "between", knowledgeBaseArticle1),
@@ -1850,7 +1881,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> page =
-				invokeGetSiteKnowledgeBaseArticlesPage(
+				KnowledgeBaseArticleResource.getSiteKnowledgeBaseArticlesPage(
 					siteId, null, null,
 					getFilterString(entityField, "eq", knowledgeBaseArticle1),
 					Pagination.of(1, 2), null);
@@ -1880,7 +1911,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				siteId, randomKnowledgeBaseArticle());
 
 		Page<KnowledgeBaseArticle> page1 =
-			invokeGetSiteKnowledgeBaseArticlesPage(
+			KnowledgeBaseArticleResource.getSiteKnowledgeBaseArticlesPage(
 				siteId, null, null, null, Pagination.of(1, 2), null);
 
 		List<KnowledgeBaseArticle> knowledgeBaseArticles1 =
@@ -1891,7 +1922,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 			knowledgeBaseArticles1.size());
 
 		Page<KnowledgeBaseArticle> page2 =
-			invokeGetSiteKnowledgeBaseArticlesPage(
+			KnowledgeBaseArticleResource.getSiteKnowledgeBaseArticlesPage(
 				siteId, null, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -1949,7 +1980,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> ascPage =
-				invokeGetSiteKnowledgeBaseArticlesPage(
+				KnowledgeBaseArticleResource.getSiteKnowledgeBaseArticlesPage(
 					siteId, null, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
@@ -1958,7 +1989,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				(List<KnowledgeBaseArticle>)ascPage.getItems());
 
 			Page<KnowledgeBaseArticle> descPage =
-				invokeGetSiteKnowledgeBaseArticlesPage(
+				KnowledgeBaseArticleResource.getSiteKnowledgeBaseArticlesPage(
 					siteId, null, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -2003,7 +2034,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<KnowledgeBaseArticle> ascPage =
-				invokeGetSiteKnowledgeBaseArticlesPage(
+				KnowledgeBaseArticleResource.getSiteKnowledgeBaseArticlesPage(
 					siteId, null, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
@@ -2012,7 +2043,7 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 				(List<KnowledgeBaseArticle>)ascPage.getItems());
 
 			Page<KnowledgeBaseArticle> descPage =
-				invokeGetSiteKnowledgeBaseArticlesPage(
+				KnowledgeBaseArticleResource.getSiteKnowledgeBaseArticlesPage(
 					siteId, null, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -2044,7 +2075,8 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	protected Page<KnowledgeBaseArticle> invokeGetSiteKnowledgeBaseArticlesPage(
 			Long siteId, Boolean flatten, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
@@ -2089,7 +2121,8 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 
 	protected Http.Response invokeGetSiteKnowledgeBaseArticlesPageResponse(
 			Long siteId, Boolean flatten, String search, String filterString,
-			Pagination pagination, String sortString)
+			com.liferay.portal.vulcan.pagination.Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
