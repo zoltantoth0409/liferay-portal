@@ -6,6 +6,7 @@ package ${configYAML.apiPackagePath}.resource.${escapedVersion}.test;
 	import ${configYAML.apiPackagePath}.resource.${escapedVersion}.${schemaName}Resource;
 </#list>
 
+import ${configYAML.apiPackagePath}.client.http.HttpInvoker;
 import ${configYAML.apiPackagePath}.client.pagination.Page;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -172,11 +173,11 @@ public abstract class Base${schemaName}ResourceTestCase {
 				<#if properties?keys?seq_contains("id")>
 					${schemaName} ${schemaVarName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
 
-					assertResponseCode(204, invoke${javaMethodSignature.methodName?cap_first}Response(${schemaVarName}.getId()));
+					assertHttpResponseStatusCode(204, ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource.${javaMethodSignature.methodName}HttpResponse(${schemaVarName}.getId()));
 
-					assertResponseCode(404, invokeGet${javaMethodSignature.methodName?remove_beginning("delete")}Response(${schemaVarName}.getId()));
+					assertHttpResponseStatusCode(404, ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource.get${javaMethodSignature.methodName?remove_beginning("delete")}HttpResponse(${schemaVarName}.getId()));
 
-					assertResponseCode(404, invokeGet${javaMethodSignature.methodName?remove_beginning("delete")}Response(0L));
+					assertHttpResponseStatusCode(404, ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource.get${javaMethodSignature.methodName?remove_beginning("delete")}HttpResponse(0L));
 				<#else>
 					Assert.assertTrue(true);
 				</#if>
@@ -1068,8 +1069,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 		}
 	</#list>
 
-	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
-		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	protected void assertHttpResponseStatusCode(int expectedHttpResponseStatusCode, HttpInvoker.HttpResponse actualHttpResponse) {
+		Assert.assertEquals(expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(${schemaName} ${schemaVarName}1, ${schemaName} ${schemaVarName}2) {
