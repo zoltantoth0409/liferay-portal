@@ -193,7 +193,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 							return invokePostSite${schemaName}(testGroup.getGroupId(), toMultipartBody(random${schemaName}()));
 						<#else>
-							return invokePostSite${schemaName}(testGroup.getGroupId(), random${schemaName}());
+							return ${configYAML.apiPackagePath}.client.resource.${escapedVersion}.${schemaName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}());
 						</#if>
 					<#else>
 						throw new UnsupportedOperationException("This method needs to be implemented");
