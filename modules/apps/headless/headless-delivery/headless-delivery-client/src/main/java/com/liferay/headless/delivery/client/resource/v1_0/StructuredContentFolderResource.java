@@ -32,9 +32,31 @@ import javax.annotation.Generated;
 @Generated("")
 public class StructuredContentFolderResource {
 
-	public Page<StructuredContentFolder> getSiteStructuredContentFoldersPage(
-			Long siteId, Boolean flatten, String search, String filterString,
-			Pagination pagination, String sortString)
+	public static Page<StructuredContentFolder>
+			getSiteStructuredContentFoldersPage(
+				Long siteId, Boolean flatten, String search,
+				String filterString, Pagination pagination, String sortString)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			getSiteStructuredContentFoldersPageHttpResponse(
+				siteId, flatten, search, filterString, pagination, sortString);
+
+		String content = httpResponse.getContent();
+
+		_logger.fine("HTTP response content: " + content);
+
+		_logger.fine("HTTP response message: " + httpResponse.getMessage());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
+
+		return Page.of(content, StructuredContentFolderSerDes::toDTO);
+	}
+
+	public static HttpInvoker.HttpResponse
+			getSiteStructuredContentFoldersPageHttpResponse(
+				Long siteId, Boolean flatten, String search,
+				String filterString, Pagination pagination, String sortString)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -69,20 +91,40 @@ public class StructuredContentFolderResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+		return httpInvoker.invoke();
+	}
+
+	public static StructuredContentFolder postSiteStructuredContentFolder(
+			Long siteId, StructuredContentFolder structuredContentFolder)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			postSiteStructuredContentFolderHttpResponse(
+				siteId, structuredContentFolder);
 
 		String content = httpResponse.getContent();
 
 		_logger.fine("HTTP response content: " + content);
 
 		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
 
-		return Page.of(content, StructuredContentFolderSerDes::toDTO);
+		try {
+			return StructuredContentFolderSerDes.toDTO(content);
+		}
+		catch (Exception e) {
+			_logger.log(
+				Level.WARNING, "Unable to process HTTP response: " + content,
+				e);
+
+			throw e;
+		}
 	}
 
-	public StructuredContentFolder postSiteStructuredContentFolder(
-			Long siteId, StructuredContentFolder structuredContentFolder)
+	public static HttpInvoker.HttpResponse
+			postSiteStructuredContentFolderHttpResponse(
+				Long siteId, StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -98,29 +140,33 @@ public class StructuredContentFolderResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+		return httpInvoker.invoke();
+	}
+
+	public static Page<StructuredContentFolder>
+			getStructuredContentFolderStructuredContentFoldersPage(
+				Long parentStructuredContentFolderId, String search,
+				String filterString, Pagination pagination, String sortString)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			getStructuredContentFolderStructuredContentFoldersPageHttpResponse(
+				parentStructuredContentFolderId, search, filterString,
+				pagination, sortString);
 
 		String content = httpResponse.getContent();
 
 		_logger.fine("HTTP response content: " + content);
 
 		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
 
-		try {
-			return StructuredContentFolderSerDes.toDTO(content);
-		}
-		catch (Exception e) {
-			_logger.log(
-				Level.WARNING, "Unable to process HTTP response: " + content,
-				e);
-
-			throw e;
-		}
+		return Page.of(content, StructuredContentFolderSerDes::toDTO);
 	}
 
-	public Page<StructuredContentFolder>
-			getStructuredContentFolderStructuredContentFoldersPage(
+	public static HttpInvoker.HttpResponse
+			getStructuredContentFolderStructuredContentFoldersPageHttpResponse(
 				Long parentStructuredContentFolderId, String search,
 				String filterString, Pagination pagination, String sortString)
 		throws Exception {
@@ -153,20 +199,41 @@ public class StructuredContentFolderResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+		return httpInvoker.invoke();
+	}
+
+	public static StructuredContentFolder
+			postStructuredContentFolderStructuredContentFolder(
+				Long parentStructuredContentFolderId,
+				StructuredContentFolder structuredContentFolder)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			postStructuredContentFolderStructuredContentFolderHttpResponse(
+				parentStructuredContentFolderId, structuredContentFolder);
 
 		String content = httpResponse.getContent();
 
 		_logger.fine("HTTP response content: " + content);
 
 		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
 
-		return Page.of(content, StructuredContentFolderSerDes::toDTO);
+		try {
+			return StructuredContentFolderSerDes.toDTO(content);
+		}
+		catch (Exception e) {
+			_logger.log(
+				Level.WARNING, "Unable to process HTTP response: " + content,
+				e);
+
+			throw e;
+		}
 	}
 
-	public StructuredContentFolder
-			postStructuredContentFolderStructuredContentFolder(
+	public static HttpInvoker.HttpResponse
+			postStructuredContentFolderStructuredContentFolderHttpResponse(
 				Long parentStructuredContentFolderId,
 				StructuredContentFolder structuredContentFolder)
 		throws Exception {
@@ -184,28 +251,29 @@ public class StructuredContentFolderResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+		return httpInvoker.invoke();
+	}
+
+	public static void deleteStructuredContentFolder(
+			Long structuredContentFolderId)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			deleteStructuredContentFolderHttpResponse(
+				structuredContentFolderId);
 
 		String content = httpResponse.getContent();
 
 		_logger.fine("HTTP response content: " + content);
 
 		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
-
-		try {
-			return StructuredContentFolderSerDes.toDTO(content);
-		}
-		catch (Exception e) {
-			_logger.log(
-				Level.WARNING, "Unable to process HTTP response: " + content,
-				e);
-
-			throw e;
-		}
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
 	}
 
-	public void deleteStructuredContentFolder(Long structuredContentFolderId)
+	public static HttpInvoker.HttpResponse
+			deleteStructuredContentFolderHttpResponse(
+				Long structuredContentFolderId)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -218,38 +286,23 @@ public class StructuredContentFolderResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
-
-		String content = httpResponse.getContent();
-
-		_logger.fine("HTTP response content: " + content);
-
-		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
+		return httpInvoker.invoke();
 	}
 
-	public StructuredContentFolder getStructuredContentFolder(
+	public static StructuredContentFolder getStructuredContentFolder(
 			Long structuredContentFolderId)
 		throws Exception {
 
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
-
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
-
-		httpInvoker.path(
-			"http://localhost:8080/o/headless-delivery/v1.0/structured-content-folders/{structuredContentFolderId}",
-			structuredContentFolderId);
-
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
-
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+		HttpInvoker.HttpResponse httpResponse =
+			getStructuredContentFolderHttpResponse(structuredContentFolderId);
 
 		String content = httpResponse.getContent();
 
 		_logger.fine("HTTP response content: " + content);
 
 		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
 
 		try {
 			return StructuredContentFolderSerDes.toDTO(content);
@@ -263,9 +316,57 @@ public class StructuredContentFolderResource {
 		}
 	}
 
-	public StructuredContentFolder patchStructuredContentFolder(
+	public static HttpInvoker.HttpResponse
+			getStructuredContentFolderHttpResponse(
+				Long structuredContentFolderId)
+		throws Exception {
+
+		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
+
+		httpInvoker.path(
+			"http://localhost:8080/o/headless-delivery/v1.0/structured-content-folders/{structuredContentFolderId}",
+			structuredContentFolderId);
+
+		httpInvoker.userNameAndPassword("test@liferay.com:test");
+
+		return httpInvoker.invoke();
+	}
+
+	public static StructuredContentFolder patchStructuredContentFolder(
 			Long structuredContentFolderId,
 			StructuredContentFolder structuredContentFolder)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			patchStructuredContentFolderHttpResponse(
+				structuredContentFolderId, structuredContentFolder);
+
+		String content = httpResponse.getContent();
+
+		_logger.fine("HTTP response content: " + content);
+
+		_logger.fine("HTTP response message: " + httpResponse.getMessage());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
+
+		try {
+			return StructuredContentFolderSerDes.toDTO(content);
+		}
+		catch (Exception e) {
+			_logger.log(
+				Level.WARNING, "Unable to process HTTP response: " + content,
+				e);
+
+			throw e;
+		}
+	}
+
+	public static HttpInvoker.HttpResponse
+			patchStructuredContentFolderHttpResponse(
+				Long structuredContentFolderId,
+				StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -281,14 +382,25 @@ public class StructuredContentFolderResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+		return httpInvoker.invoke();
+	}
+
+	public static StructuredContentFolder putStructuredContentFolder(
+			Long structuredContentFolderId,
+			StructuredContentFolder structuredContentFolder)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			putStructuredContentFolderHttpResponse(
+				structuredContentFolderId, structuredContentFolder);
 
 		String content = httpResponse.getContent();
 
 		_logger.fine("HTTP response content: " + content);
 
 		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
 
 		try {
 			return StructuredContentFolderSerDes.toDTO(content);
@@ -302,9 +414,10 @@ public class StructuredContentFolderResource {
 		}
 	}
 
-	public StructuredContentFolder putStructuredContentFolder(
-			Long structuredContentFolderId,
-			StructuredContentFolder structuredContentFolder)
+	public static HttpInvoker.HttpResponse
+			putStructuredContentFolderHttpResponse(
+				Long structuredContentFolderId,
+				StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -320,25 +433,7 @@ public class StructuredContentFolderResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
-
-		String content = httpResponse.getContent();
-
-		_logger.fine("HTTP response content: " + content);
-
-		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
-
-		try {
-			return StructuredContentFolderSerDes.toDTO(content);
-		}
-		catch (Exception e) {
-			_logger.log(
-				Level.WARNING, "Unable to process HTTP response: " + content,
-				e);
-
-			throw e;
-		}
+		return httpInvoker.invoke();
 	}
 
 	private static final Logger _logger = Logger.getLogger(

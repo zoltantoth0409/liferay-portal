@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.KnowledgeBaseArticle;
 import com.liferay.headless.delivery.client.dto.v1_0.Rating;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.KnowledgeBaseArticleSerDes;
 import com.liferay.headless.delivery.resource.v1_0.KnowledgeBaseArticleResource;
@@ -166,17 +167,25 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		KnowledgeBaseArticle knowledgeBaseArticle =
 			testDeleteKnowledgeBaseArticle_addKnowledgeBaseArticle();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteKnowledgeBaseArticleResponse(
-				knowledgeBaseArticle.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				KnowledgeBaseArticleResource.
+					deleteKnowledgeBaseArticleHttpResponse(
+						knowledgeBaseArticle.getId()));
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			404,
-			invokeGetKnowledgeBaseArticleResponse(
-				knowledgeBaseArticle.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleHttpResponse(
+						knowledgeBaseArticle.getId()));
 
-		assertResponseCode(404, invokeGetKnowledgeBaseArticleResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleHttpResponse(0L));
 	}
 
 	protected KnowledgeBaseArticle
@@ -501,18 +510,25 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		KnowledgeBaseArticle knowledgeBaseArticle =
 			testDeleteKnowledgeBaseArticleMyRating_addKnowledgeBaseArticle();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteKnowledgeBaseArticleMyRatingResponse(
-				knowledgeBaseArticle.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				KnowledgeBaseArticleResource.
+					deleteKnowledgeBaseArticleMyRatingHttpResponse(
+						knowledgeBaseArticle.getId()));
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			404,
-			invokeGetKnowledgeBaseArticleMyRatingResponse(
-				knowledgeBaseArticle.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleMyRatingHttpResponse(
+						knowledgeBaseArticle.getId()));
 
-		assertResponseCode(
-			404, invokeGetKnowledgeBaseArticleMyRatingResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				KnowledgeBaseArticleResource.
+					getKnowledgeBaseArticleMyRatingHttpResponse(0L));
 	}
 
 	protected KnowledgeBaseArticle
@@ -2202,11 +2218,12 @@ public abstract class BaseKnowledgeBaseArticleResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

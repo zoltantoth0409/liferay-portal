@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.data.engine.rest.client.dto.v1_0.DataLayout;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataLayoutPermission;
+import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataLayoutSerDes;
 import com.liferay.data.engine.rest.resource.v1_0.DataLayoutResource;
@@ -472,13 +473,22 @@ public abstract class BaseDataLayoutResourceTestCase {
 	public void testDeleteDataLayout() throws Exception {
 		DataLayout dataLayout = testDeleteDataLayout_addDataLayout();
 
-		assertResponseCode(
-			204, invokeDeleteDataLayoutResponse(dataLayout.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataLayoutResource.deleteDataLayoutHttpResponse(
+					dataLayout.getId()));
 
-		assertResponseCode(
-			404, invokeGetDataLayoutResponse(dataLayout.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataLayoutResource.getDataLayoutHttpResponse(
+					dataLayout.getId()));
 
-		assertResponseCode(404, invokeGetDataLayoutResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataLayoutResource.getDataLayoutHttpResponse(0L));
 	}
 
 	protected DataLayout testDeleteDataLayout_addDataLayout() throws Exception {
@@ -872,11 +882,12 @@ public abstract class BaseDataLayoutResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

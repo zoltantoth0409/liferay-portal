@@ -34,8 +34,28 @@ import javax.annotation.Generated;
 @Generated("")
 public class KnowledgeBaseAttachmentResource {
 
-	public Page<KnowledgeBaseAttachment>
+	public static Page<KnowledgeBaseAttachment>
 			getKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
+				Long knowledgeBaseArticleId)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			getKnowledgeBaseArticleKnowledgeBaseAttachmentsPageHttpResponse(
+				knowledgeBaseArticleId);
+
+		String content = httpResponse.getContent();
+
+		_logger.fine("HTTP response content: " + content);
+
+		_logger.fine("HTTP response message: " + httpResponse.getMessage());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
+
+		return Page.of(content, KnowledgeBaseAttachmentSerDes::toDTO);
+	}
+
+	public static HttpInvoker.HttpResponse
+			getKnowledgeBaseArticleKnowledgeBaseAttachmentsPageHttpResponse(
 				Long knowledgeBaseArticleId)
 		throws Exception {
 
@@ -49,20 +69,42 @@ public class KnowledgeBaseAttachmentResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+		return httpInvoker.invoke();
+	}
+
+	public static KnowledgeBaseAttachment
+			postKnowledgeBaseArticleKnowledgeBaseAttachment(
+				Long knowledgeBaseArticleId,
+				KnowledgeBaseAttachment knowledgeBaseAttachment,
+				Map<String, File> files)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			postKnowledgeBaseArticleKnowledgeBaseAttachmentHttpResponse(
+				knowledgeBaseArticleId, knowledgeBaseAttachment, files);
 
 		String content = httpResponse.getContent();
 
 		_logger.fine("HTTP response content: " + content);
 
 		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
 
-		return Page.of(content, KnowledgeBaseAttachmentSerDes::toDTO);
+		try {
+			return KnowledgeBaseAttachmentSerDes.toDTO(content);
+		}
+		catch (Exception e) {
+			_logger.log(
+				Level.WARNING, "Unable to process HTTP response: " + content,
+				e);
+
+			throw e;
+		}
 	}
 
-	public KnowledgeBaseAttachment
-			postKnowledgeBaseArticleKnowledgeBaseAttachment(
+	public static HttpInvoker.HttpResponse
+			postKnowledgeBaseArticleKnowledgeBaseAttachmentHttpResponse(
 				Long knowledgeBaseArticleId,
 				KnowledgeBaseAttachment knowledgeBaseAttachment,
 				Map<String, File> files)
@@ -88,28 +130,29 @@ public class KnowledgeBaseAttachmentResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+		return httpInvoker.invoke();
+	}
+
+	public static void deleteKnowledgeBaseAttachment(
+			Long knowledgeBaseAttachmentId)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			deleteKnowledgeBaseAttachmentHttpResponse(
+				knowledgeBaseAttachmentId);
 
 		String content = httpResponse.getContent();
 
 		_logger.fine("HTTP response content: " + content);
 
 		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
-
-		try {
-			return KnowledgeBaseAttachmentSerDes.toDTO(content);
-		}
-		catch (Exception e) {
-			_logger.log(
-				Level.WARNING, "Unable to process HTTP response: " + content,
-				e);
-
-			throw e;
-		}
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
 	}
 
-	public void deleteKnowledgeBaseAttachment(Long knowledgeBaseAttachmentId)
+	public static HttpInvoker.HttpResponse
+			deleteKnowledgeBaseAttachmentHttpResponse(
+				Long knowledgeBaseAttachmentId)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -122,18 +165,39 @@ public class KnowledgeBaseAttachmentResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+		return httpInvoker.invoke();
+	}
+
+	public static KnowledgeBaseAttachment getKnowledgeBaseAttachment(
+			Long knowledgeBaseAttachmentId)
+		throws Exception {
+
+		HttpInvoker.HttpResponse httpResponse =
+			getKnowledgeBaseAttachmentHttpResponse(knowledgeBaseAttachmentId);
 
 		String content = httpResponse.getContent();
 
 		_logger.fine("HTTP response content: " + content);
 
 		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
+		_logger.fine(
+			"HTTP response status code: " + httpResponse.getStatusCode());
+
+		try {
+			return KnowledgeBaseAttachmentSerDes.toDTO(content);
+		}
+		catch (Exception e) {
+			_logger.log(
+				Level.WARNING, "Unable to process HTTP response: " + content,
+				e);
+
+			throw e;
+		}
 	}
 
-	public KnowledgeBaseAttachment getKnowledgeBaseAttachment(
-			Long knowledgeBaseAttachmentId)
+	public static HttpInvoker.HttpResponse
+			getKnowledgeBaseAttachmentHttpResponse(
+				Long knowledgeBaseAttachmentId)
 		throws Exception {
 
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -146,25 +210,7 @@ public class KnowledgeBaseAttachmentResource {
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
-
-		String content = httpResponse.getContent();
-
-		_logger.fine("HTTP response content: " + content);
-
-		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine("HTTP response status: " + httpResponse.getStatus());
-
-		try {
-			return KnowledgeBaseAttachmentSerDes.toDTO(content);
-		}
-		catch (Exception e) {
-			_logger.log(
-				Level.WARNING, "Unable to process HTTP response: " + content,
-				e);
-
-			throw e;
-		}
+		return httpInvoker.invoke();
 	}
 
 	private static final Logger _logger = Logger.getLogger(

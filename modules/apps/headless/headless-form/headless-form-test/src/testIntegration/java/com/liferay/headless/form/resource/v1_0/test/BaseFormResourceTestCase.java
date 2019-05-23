@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.form.client.dto.v1_0.Form;
 import com.liferay.headless.form.client.dto.v1_0.FormContext;
 import com.liferay.headless.form.client.dto.v1_0.FormDocument;
+import com.liferay.headless.form.client.http.HttpInvoker;
 import com.liferay.headless.form.client.pagination.Page;
 import com.liferay.headless.form.client.serdes.v1_0.FormSerDes;
 import com.liferay.headless.form.resource.v1_0.FormResource;
@@ -479,11 +480,12 @@ public abstract class BaseFormResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(Form form1, Form form2) {

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.admin.taxonomy.client.dto.v1_0.TaxonomyCategory;
+import com.liferay.headless.admin.taxonomy.client.http.HttpInvoker;
 import com.liferay.headless.admin.taxonomy.client.pagination.Page;
 import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.TaxonomyCategorySerDes;
 import com.liferay.headless.admin.taxonomy.resource.v1_0.TaxonomyCategoryResource;
@@ -633,14 +634,22 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		TaxonomyCategory taxonomyCategory =
 			testDeleteTaxonomyCategory_addTaxonomyCategory();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteTaxonomyCategoryResponse(taxonomyCategory.getId()));
+			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
+				TaxonomyCategoryResource.deleteTaxonomyCategoryHttpResponse(
+					taxonomyCategory.getId()));
 
-		assertResponseCode(
-			404, invokeGetTaxonomyCategoryResponse(taxonomyCategory.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
+				TaxonomyCategoryResource.getTaxonomyCategoryHttpResponse(
+					taxonomyCategory.getId()));
 
-		assertResponseCode(404, invokeGetTaxonomyCategoryResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
+				TaxonomyCategoryResource.getTaxonomyCategoryHttpResponse(0L));
 	}
 
 	protected TaxonomyCategory testDeleteTaxonomyCategory_addTaxonomyCategory()
@@ -1415,11 +1424,12 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

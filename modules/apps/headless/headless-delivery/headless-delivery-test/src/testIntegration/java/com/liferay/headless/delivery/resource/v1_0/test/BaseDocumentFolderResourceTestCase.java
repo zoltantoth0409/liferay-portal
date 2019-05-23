@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.DocumentFolder;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.DocumentFolderSerDes;
 import com.liferay.headless.delivery.resource.v1_0.DocumentFolderResource;
@@ -162,13 +163,22 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		DocumentFolder documentFolder =
 			testDeleteDocumentFolder_addDocumentFolder();
 
-		assertResponseCode(
-			204, invokeDeleteDocumentFolderResponse(documentFolder.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				DocumentFolderResource.deleteDocumentFolderHttpResponse(
+					documentFolder.getId()));
 
-		assertResponseCode(
-			404, invokeGetDocumentFolderResponse(documentFolder.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				DocumentFolderResource.getDocumentFolderHttpResponse(
+					documentFolder.getId()));
 
-		assertResponseCode(404, invokeGetDocumentFolderResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				DocumentFolderResource.getDocumentFolderHttpResponse(0L));
 	}
 
 	protected DocumentFolder testDeleteDocumentFolder_addDocumentFolder()
@@ -1349,11 +1359,12 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

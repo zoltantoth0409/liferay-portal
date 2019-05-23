@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardThread;
 import com.liferay.headless.delivery.client.dto.v1_0.Rating;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.MessageBoardThreadSerDes;
 import com.liferay.headless.delivery.resource.v1_0.MessageBoardThreadResource;
@@ -640,15 +641,23 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		MessageBoardThread messageBoardThread =
 			testDeleteMessageBoardThread_addMessageBoardThread();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteMessageBoardThreadResponse(messageBoardThread.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				MessageBoardThreadResource.deleteMessageBoardThreadHttpResponse(
+					messageBoardThread.getId()));
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			404,
-			invokeGetMessageBoardThreadResponse(messageBoardThread.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				MessageBoardThreadResource.getMessageBoardThreadHttpResponse(
+					messageBoardThread.getId()));
 
-		assertResponseCode(404, invokeGetMessageBoardThreadResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				MessageBoardThreadResource.getMessageBoardThreadHttpResponse(
+					0L));
 	}
 
 	protected MessageBoardThread
@@ -966,18 +975,25 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		MessageBoardThread messageBoardThread =
 			testDeleteMessageBoardThreadMyRating_addMessageBoardThread();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteMessageBoardThreadMyRatingResponse(
-				messageBoardThread.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				MessageBoardThreadResource.
+					deleteMessageBoardThreadMyRatingHttpResponse(
+						messageBoardThread.getId()));
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			404,
-			invokeGetMessageBoardThreadMyRatingResponse(
-				messageBoardThread.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				MessageBoardThreadResource.
+					getMessageBoardThreadMyRatingHttpResponse(
+						messageBoardThread.getId()));
 
-		assertResponseCode(
-			404, invokeGetMessageBoardThreadMyRatingResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				MessageBoardThreadResource.
+					getMessageBoardThreadMyRatingHttpResponse(0L));
 	}
 
 	protected MessageBoardThread
@@ -1673,11 +1689,12 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.data.engine.rest.client.dto.v1_0.DataRecord;
+import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.data.engine.rest.client.pagination.Page;
 import com.liferay.data.engine.rest.client.serdes.v1_0.DataRecordSerDes;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordResource;
@@ -458,13 +459,22 @@ public abstract class BaseDataRecordResourceTestCase {
 	public void testDeleteDataRecord() throws Exception {
 		DataRecord dataRecord = testDeleteDataRecord_addDataRecord();
 
-		assertResponseCode(
-			204, invokeDeleteDataRecordResponse(dataRecord.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataRecordResource.deleteDataRecordHttpResponse(
+					dataRecord.getId()));
 
-		assertResponseCode(
-			404, invokeGetDataRecordResponse(dataRecord.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataRecordResource.getDataRecordHttpResponse(
+					dataRecord.getId()));
 
-		assertResponseCode(404, invokeGetDataRecordResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.data.engine.rest.client.resource.v1_0.
+				DataRecordResource.getDataRecordHttpResponse(0L));
 	}
 
 	protected DataRecord testDeleteDataRecord_addDataRecord() throws Exception {
@@ -650,11 +660,12 @@ public abstract class BaseDataRecordResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

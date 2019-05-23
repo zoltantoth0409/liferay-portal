@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.StructuredContentFolder;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.StructuredContentFolderSerDes;
 import com.liferay.headless.delivery.resource.v1_0.StructuredContentFolderResource;
@@ -1138,17 +1139,25 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		StructuredContentFolder structuredContentFolder =
 			testDeleteStructuredContentFolder_addStructuredContentFolder();
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			204,
-			invokeDeleteStructuredContentFolderResponse(
-				structuredContentFolder.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				StructuredContentFolderResource.
+					deleteStructuredContentFolderHttpResponse(
+						structuredContentFolder.getId()));
 
-		assertResponseCode(
+		assertHttpResponseStatusCode(
 			404,
-			invokeGetStructuredContentFolderResponse(
-				structuredContentFolder.getId()));
+			com.liferay.headless.delivery.client.resource.v1_0.
+				StructuredContentFolderResource.
+					getStructuredContentFolderHttpResponse(
+						structuredContentFolder.getId()));
 
-		assertResponseCode(404, invokeGetStructuredContentFolderResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				StructuredContentFolderResource.
+					getStructuredContentFolderHttpResponse(0L));
 	}
 
 	protected StructuredContentFolder
@@ -1475,11 +1484,12 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

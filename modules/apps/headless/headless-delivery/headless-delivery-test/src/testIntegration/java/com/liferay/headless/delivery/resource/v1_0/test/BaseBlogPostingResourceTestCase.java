@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.BlogPosting;
 import com.liferay.headless.delivery.client.dto.v1_0.Rating;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.BlogPostingSerDes;
 import com.liferay.headless.delivery.resource.v1_0.BlogPostingResource;
@@ -162,13 +163,22 @@ public abstract class BaseBlogPostingResourceTestCase {
 	public void testDeleteBlogPosting() throws Exception {
 		BlogPosting blogPosting = testDeleteBlogPosting_addBlogPosting();
 
-		assertResponseCode(
-			204, invokeDeleteBlogPostingResponse(blogPosting.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				BlogPostingResource.deleteBlogPostingHttpResponse(
+					blogPosting.getId()));
 
-		assertResponseCode(
-			404, invokeGetBlogPostingResponse(blogPosting.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				BlogPostingResource.getBlogPostingHttpResponse(
+					blogPosting.getId()));
 
-		assertResponseCode(404, invokeGetBlogPostingResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				BlogPostingResource.getBlogPostingHttpResponse(0L));
 	}
 
 	protected BlogPosting testDeleteBlogPosting_addBlogPosting()
@@ -453,13 +463,22 @@ public abstract class BaseBlogPostingResourceTestCase {
 		BlogPosting blogPosting =
 			testDeleteBlogPostingMyRating_addBlogPosting();
 
-		assertResponseCode(
-			204, invokeDeleteBlogPostingMyRatingResponse(blogPosting.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				BlogPostingResource.deleteBlogPostingMyRatingHttpResponse(
+					blogPosting.getId()));
 
-		assertResponseCode(
-			404, invokeGetBlogPostingMyRatingResponse(blogPosting.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				BlogPostingResource.getBlogPostingMyRatingHttpResponse(
+					blogPosting.getId()));
 
-		assertResponseCode(404, invokeGetBlogPostingMyRatingResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.
+				BlogPostingResource.getBlogPostingMyRatingHttpResponse(0L));
 	}
 
 	protected BlogPosting testDeleteBlogPostingMyRating_addBlogPosting()
@@ -1091,11 +1110,12 @@ public abstract class BaseBlogPostingResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(

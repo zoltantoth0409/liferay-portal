@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.admin.taxonomy.client.dto.v1_0.Keyword;
+import com.liferay.headless.admin.taxonomy.client.http.HttpInvoker;
 import com.liferay.headless.admin.taxonomy.client.pagination.Page;
 import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.KeywordSerDes;
 import com.liferay.headless.admin.taxonomy.resource.v1_0.KeywordResource;
@@ -161,11 +162,20 @@ public abstract class BaseKeywordResourceTestCase {
 	public void testDeleteKeyword() throws Exception {
 		Keyword keyword = testDeleteKeyword_addKeyword();
 
-		assertResponseCode(204, invokeDeleteKeywordResponse(keyword.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
+				KeywordResource.deleteKeywordHttpResponse(keyword.getId()));
 
-		assertResponseCode(404, invokeGetKeywordResponse(keyword.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
+				KeywordResource.getKeywordHttpResponse(keyword.getId()));
 
-		assertResponseCode(404, invokeGetKeywordResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.admin.taxonomy.client.resource.v1_0.
+				KeywordResource.getKeywordHttpResponse(0L));
 	}
 
 	protected Keyword testDeleteKeyword_addKeyword() throws Exception {
@@ -720,11 +730,12 @@ public abstract class BaseKeywordResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(Keyword keyword1, Keyword keyword2) {

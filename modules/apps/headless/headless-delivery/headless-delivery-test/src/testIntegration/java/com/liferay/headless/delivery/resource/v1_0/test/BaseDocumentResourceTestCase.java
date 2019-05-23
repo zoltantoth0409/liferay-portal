@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.delivery.client.dto.v1_0.Document;
 import com.liferay.headless.delivery.client.dto.v1_0.Rating;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.serdes.v1_0.DocumentSerDes;
 import com.liferay.headless.delivery.resource.v1_0.DocumentResource;
@@ -598,11 +599,20 @@ public abstract class BaseDocumentResourceTestCase {
 	public void testDeleteDocument() throws Exception {
 		Document document = testDeleteDocument_addDocument();
 
-		assertResponseCode(204, invokeDeleteDocumentResponse(document.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
+				deleteDocumentHttpResponse(document.getId()));
 
-		assertResponseCode(404, invokeGetDocumentResponse(document.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
+				getDocumentHttpResponse(document.getId()));
 
-		assertResponseCode(404, invokeGetDocumentResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
+				getDocumentHttpResponse(0L));
 	}
 
 	protected Document testDeleteDocument_addDocument() throws Exception {
@@ -858,13 +868,20 @@ public abstract class BaseDocumentResourceTestCase {
 	public void testDeleteDocumentMyRating() throws Exception {
 		Document document = testDeleteDocumentMyRating_addDocument();
 
-		assertResponseCode(
-			204, invokeDeleteDocumentMyRatingResponse(document.getId()));
+		assertHttpResponseStatusCode(
+			204,
+			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
+				deleteDocumentMyRatingHttpResponse(document.getId()));
 
-		assertResponseCode(
-			404, invokeGetDocumentMyRatingResponse(document.getId()));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
+				getDocumentMyRatingHttpResponse(document.getId()));
 
-		assertResponseCode(404, invokeGetDocumentMyRatingResponse(0L));
+		assertHttpResponseStatusCode(
+			404,
+			com.liferay.headless.delivery.client.resource.v1_0.DocumentResource.
+				getDocumentMyRatingHttpResponse(0L));
 	}
 
 	protected Document testDeleteDocumentMyRating_addDocument()
@@ -1490,11 +1507,12 @@ public abstract class BaseDocumentResourceTestCase {
 		return options.getResponse();
 	}
 
-	protected void assertResponseCode(
-		int expectedResponseCode, Http.Response actualResponse) {
+	protected void assertHttpResponseStatusCode(
+		int expectedHttpResponseStatusCode,
+		HttpInvoker.HttpResponse actualHttpResponse) {
 
 		Assert.assertEquals(
-			expectedResponseCode, actualResponse.getResponseCode());
+			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
 	protected void assertEquals(Document document1, Document document2) {
