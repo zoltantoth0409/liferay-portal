@@ -81,7 +81,7 @@ public class DLFileEntryAttachmentSearchTest {
 		String keyword = RandomTestUtil.randomString();
 
 		_addFileEntry(keyword);
-		_addPageWithAttachment(keyword);
+		_addWikiPageWithAttachment(keyword);
 
 		Assert.assertEquals(1, _searchCount(keyword, false));
 		Assert.assertEquals(2, _searchCount(keyword, true));
@@ -99,27 +99,27 @@ public class DLFileEntryAttachmentSearchTest {
 			serviceContext);
 	}
 
-	private void _addPageWithAttachment(String name) throws Exception {
+	private void _addWikiPageWithAttachment(String name) throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
 		serviceContext.setCommand(Constants.ADD);
 
-		WikiNode node = WikiNodeLocalServiceUtil.addNode(
+		WikiNode wikiNode = WikiNodeLocalServiceUtil.addNode(
 			TestPropsValues.getUserId(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(50), serviceContext);
 
-		String pageTitle = RandomTestUtil.randomString();
+		String wikiPageTitle = RandomTestUtil.randomString();
 
 		WikiPageLocalServiceUtil.addPage(
-			serviceContext.getUserId(), node.getNodeId(), pageTitle,
+			serviceContext.getUserId(), wikiNode.getNodeId(), wikiPageTitle,
 			RandomTestUtil.randomString(), "Summary", false, serviceContext);
 
 		File file = FileUtil.createTempFile(_CONTENT.getBytes());
 
 		WikiPageLocalServiceUtil.addPageAttachment(
-			serviceContext.getUserId(), node.getNodeId(), pageTitle, name, file,
-			MimeTypesUtil.getExtensionContentType("docx"));
+			serviceContext.getUserId(), wikiNode.getNodeId(), wikiPageTitle,
+			name, file, MimeTypesUtil.getExtensionContentType("docx"));
 	}
 
 	private int _searchCount(String keywords, boolean includeAttachments)
