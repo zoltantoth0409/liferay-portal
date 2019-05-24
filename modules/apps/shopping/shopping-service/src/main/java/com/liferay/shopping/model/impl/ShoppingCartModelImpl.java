@@ -34,6 +34,9 @@ import com.liferay.shopping.model.ShoppingCartModel;
 
 import java.io.Serializable;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Collections;
@@ -220,6 +223,32 @@ public class ShoppingCartModelImpl
 		getAttributeSetterBiConsumers() {
 
 		return _attributeSetterBiConsumers;
+	}
+
+	private static Function<InvocationHandler, ShoppingCart>
+		_getProxyProviderFunction() {
+
+		Class<?> proxyClass = ProxyUtil.getProxyClass(
+			ShoppingCart.class.getClassLoader(), ShoppingCart.class,
+			ModelWrapper.class);
+
+		try {
+			Constructor<ShoppingCart> constructor =
+				(Constructor<ShoppingCart>)proxyClass.getConstructor(
+					InvocationHandler.class);
+
+			return invocationHandler -> {
+				try {
+					return constructor.newInstance(invocationHandler);
+				}
+				catch (ReflectiveOperationException roe) {
+					throw new InternalError(roe);
+				}
+			};
+		}
+		catch (NoSuchMethodException nsme) {
+			throw new InternalError(nsme);
+		}
 	}
 
 	private static final Map<String, Function<ShoppingCart, Object>>
@@ -666,8 +695,7 @@ public class ShoppingCartModelImpl
 	@Override
 	public ShoppingCart toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (ShoppingCart)ProxyUtil.newProxyInstance(
-				_classLoader, _escapedModelInterfaces,
+			_escapedModel = _escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -889,11 +917,8 @@ public class ShoppingCartModelImpl
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader =
-		ShoppingCart.class.getClassLoader();
-	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-		ShoppingCart.class, ModelWrapper.class
-	};
+	private static final Function<InvocationHandler, ShoppingCart>
+		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
 
 	private long _cartId;
 	private long _groupId;
