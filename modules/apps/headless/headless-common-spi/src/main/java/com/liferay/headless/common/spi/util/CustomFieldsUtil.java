@@ -84,10 +84,16 @@ public class CustomFieldsUtil {
 
 		Class<?> clazz = value.getClass();
 
-		if ((clazz.isArray() && (Array.getLength(value) == 0)) ||
-			((value instanceof Map) && ((Map)value).isEmpty())) {
-
+		if (clazz.isArray() && (Array.getLength(value) == 0)) {
 			return true;
+		}
+
+		if (value instanceof Map) {
+			Map<?, ?> map = (Map<?, ?>)value;
+
+			if (map.isEmpty()) {
+				return true;
+			}
 		}
 
 		return false;
