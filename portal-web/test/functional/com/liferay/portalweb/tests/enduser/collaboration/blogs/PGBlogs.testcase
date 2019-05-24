@@ -982,17 +982,29 @@ definition {
 			entryTitle = "Blogs Entry Title"
 		);
 
-		BlogsEntry.rateThumbsUp(entryTitle = "Blogs Entry Title");
+		LexiconEntry.rate(rateResult = "Thumb Up");
 
-		BlogsEntry.viewThumbsUp(entryTitle = "Blogs Entry Title", voteCount = "1");
+		LexiconEntry.viewRate(
+			rateResult = "Thumb Up",
+			voteCount = "1"
+		);
 
-		BlogsEntry.viewThumbsDown(entryTitle = "Blogs Entry Title", voteCount = "0");
+		LexiconEntry.viewRate(
+			rateResult = "Thumb Down",
+			voteCount = "0"
+		);
 
-		BlogsEntry.rateThumbsDown(entryTitle = "Blogs Entry Title");
+		LexiconEntry.rate(rateResult = "Thumb Down");
 
-		BlogsEntry.viewThumbsUp(entryTitle = "Blogs Entry Title", voteCount = "0");
+		LexiconEntry.viewRate(
+			rateResult = "Thumb Up",
+			voteCount = "0"
+		);
 
-		BlogsEntry.viewThumbsDown(entryTitle = "Blogs Entry Title", voteCount = "1");
+		LexiconEntry.viewRate(
+			rateResult = "Thumb Down",
+			voteCount = "1"
+		);
 	}
 
 	@description = "This is a usecase for LPS-83229. This is the only small image test for blogs."
