@@ -194,7 +194,7 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 	public void testUsingPublicLayoutSetWithVirtualHostToControlPanel()
 		throws Exception {
 
-		// Set virtual hostname for Public LayoutSet
+		// Set virtual hostname for public layout Set
 
 		LayoutSet publicLayoutSet = publicLayout.getLayoutSet();
 
@@ -202,8 +202,8 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 			company.getCompanyId(), publicLayoutSet.getLayoutSetId(),
 			PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME);
 
-		// Test generated LayoutURL for Control Panel navigating from the
-		// Public Layout
+		// Test generated layout URL for Control Panel navigating from the
+		// public layout
 
 		ThemeDisplay themeDisplay = initThemeDisplay(
 			company, group, publicLayout, VIRTUAL_HOSTNAME,
@@ -228,7 +228,7 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 	public void testUsingPublicLayoutSetWithVirtualHostToScopedControlPanel()
 		throws Exception {
 
-		// Set virtual hostname for Public LayoutSet
+		// Set virtual hostname for public layout set
 
 		LayoutSet publicLayoutSet = publicLayout.getLayoutSet();
 
@@ -236,13 +236,13 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 			company.getCompanyId(), publicLayoutSet.getLayoutSetId(),
 			PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME);
 
-		// Create group for Public Layout (will be used as scope group)
+		// Create group for public layout (will be used as scope group)
 
 		Group scopeGroup = GroupTestUtil.addGroup(
 			TestPropsValues.getUserId(), publicLayout);
 
-		// Test generated LayoutURL for scoped Control Panel navigating from the
-		// Public Layout
+		// Test generated layout URL for scoped Control Panel navigating from
+		// the public layout
 
 		Layout scopedControlPanelLayout = new VirtualLayout(
 			controlPanelLayout, scopeGroup);
