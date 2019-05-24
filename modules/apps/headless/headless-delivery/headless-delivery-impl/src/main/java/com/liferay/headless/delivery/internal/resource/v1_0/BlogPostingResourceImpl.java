@@ -177,12 +177,11 @@ public class BlogPostingResourceImpl
 			Long blogPostingId, BlogPosting blogPosting)
 		throws Exception {
 
-		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogPostingId);
-
 		LocalDateTime localDateTime = LocalDateTimeUtil.toLocalDateTime(
 			blogPosting.getDatePublished());
 		Optional<Image> imageOptional = Optional.ofNullable(
 			blogPosting.getImage());
+		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogPostingId);
 
 		return _toBlogPosting(
 			_blogsEntryService.updateEntry(
