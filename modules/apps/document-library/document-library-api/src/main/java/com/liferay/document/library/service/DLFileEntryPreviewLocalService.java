@@ -71,11 +71,6 @@ public interface DLFileEntryPreviewLocalService
 	public DLFileEntryPreview addDLFileEntryPreview(
 		DLFileEntryPreview dlFileEntryPreview);
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link DLFileEntryPreviewLocalServiceUtil} to access the dl file entry preview local service.
-	 */
 	public void addDLFileEntryPreview(
 			long fileEntryId, long fileVersionId, int previewType)
 		throws PortalException;
@@ -188,8 +183,7 @@ public interface DLFileEntryPreviewLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DLFileEntryPreview fetchDLFileEntryPreview(
-			long fileEntryId, long fileVersionId)
-		throws PortalException;
+		long fileEntryId, long fileVersionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DLFileEntryPreview fetchDLFileEntryPreview(

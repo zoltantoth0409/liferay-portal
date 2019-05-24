@@ -52,11 +52,6 @@ public class DLFileEntryPreviewLocalServiceWrapper
 			dlFileEntryPreview);
 	}
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link DLFileEntryPreviewLocalServiceUtil} to access the dl file entry preview local service.
-	 */
 	@Override
 	public void addDLFileEntryPreview(
 			long fileEntryId, long fileVersionId, int previewType)
@@ -225,8 +220,7 @@ public class DLFileEntryPreviewLocalServiceWrapper
 
 	@Override
 	public com.liferay.document.library.model.DLFileEntryPreview
-			fetchDLFileEntryPreview(long fileEntryId, long fileVersionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		fetchDLFileEntryPreview(long fileEntryId, long fileVersionId) {
 
 		return _dlFileEntryPreviewLocalService.fetchDLFileEntryPreview(
 			fileEntryId, fileVersionId);

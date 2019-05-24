@@ -28,7 +28,7 @@ import aQute.bnd.annotation.ProviderType;
 @ProviderType
 public class DLFileEntryPreviewImpl extends DLFileEntryPreviewBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. All methods that expect a dl file entry preview model instance should use the {@link com.liferay.document.library.model.DLFileEntryPreview} interface instead.
