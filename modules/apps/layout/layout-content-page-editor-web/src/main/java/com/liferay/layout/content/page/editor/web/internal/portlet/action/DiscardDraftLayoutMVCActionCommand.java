@@ -99,11 +99,11 @@ public class DiscardDraftLayoutMVCActionCommand extends BaseMVCActionCommand {
 
 		@Override
 		public Void call() throws Exception {
-			long plid = ParamUtil.getLong(_actionRequest, "classPK");
-
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)_actionRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
+
+			long plid = ParamUtil.getLong(_actionRequest, "classPK");
 
 			LayoutPermissionUtil.check(
 				themeDisplay.getPermissionChecker(), plid, ActionKeys.UPDATE);
@@ -145,6 +145,10 @@ public class DiscardDraftLayoutMVCActionCommand extends BaseMVCActionCommand {
 					fetchLayoutPageTemplateEntryByPlid(layout.getPlid());
 
 			if (layoutPageTemplateEntry != null) {
+				LayoutPermissionUtil.check(
+					themeDisplay.getPermissionChecker(), layout.getPlid(),
+					ActionKeys.UPDATE);
+
 				UnicodeProperties typeSettingsProperties =
 					layout.getTypeSettingsProperties();
 
@@ -152,10 +156,6 @@ public class DiscardDraftLayoutMVCActionCommand extends BaseMVCActionCommand {
 					typeSettingsProperties.getProperty("assetClassNameId"));
 				long classTypeId = GetterUtil.getLong(
 					typeSettingsProperties.getProperty("assetClassTypeId"));
-
-				LayoutPermissionUtil.check(
-					themeDisplay.getPermissionChecker(), layout.getPlid(),
-					ActionKeys.UPDATE);
 
 				_layoutPageTemplateEntryLocalService.
 					updateLayoutPageTemplateEntry(
