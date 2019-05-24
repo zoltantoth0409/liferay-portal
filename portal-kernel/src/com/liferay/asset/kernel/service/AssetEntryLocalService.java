@@ -506,6 +506,13 @@ public interface AssetEntryLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long searchCount(
 		long companyId, long[] groupIds, long userId, String className,
+		long classTypeId, String keywords, String assetCategoryIds,
+		String assetTagNames, boolean showInvisible, boolean showNonindexable,
+		int[] statuses, boolean andSearch);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long searchCount(
+		long companyId, long[] groupIds, long userId, String className,
 		long classTypeId, String userName, String title, String description,
 		String assetCategoryIds, String assetTagNames, boolean showInvisible,
 		boolean showNonindexable, int[] statuses, boolean andSearch);
