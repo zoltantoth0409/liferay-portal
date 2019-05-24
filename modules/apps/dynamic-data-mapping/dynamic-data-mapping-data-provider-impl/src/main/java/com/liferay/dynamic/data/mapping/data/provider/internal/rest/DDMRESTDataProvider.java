@@ -299,7 +299,7 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 			return ddmRESTDataProviderResult.getDDMDataProviderResponse();
 		}
 
-		HttpResponse httpResponse;
+		HttpResponse httpResponse = null;
 
 		Map<String, Object> proxySettings = getProxySettings();
 
@@ -312,18 +312,17 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 
 			String proxyAddress = GetterUtil.getString(
 				proxySettings.get("proxyAddress"));
-
 			int proxyPort = GetterUtil.getInteger(
 				proxySettings.get("proxyPort"));
 
 			socketHttpConnectionProvider.useProxy(
 				ProxyInfo.httpProxy(proxyAddress, proxyPort, null, null));
 
-			HttpRequest httpRequestWithProxy =
+			HttpRequest proxiedHttpRequest =
 				httpRequest.withConnectionProvider(
 					socketHttpConnectionProvider);
 
-			httpResponse = httpRequestWithProxy.send();
+			httpResponse = proxiedHttpRequest.send();
 		}
 
 		DocumentContext documentContext = JsonPath.parse(
