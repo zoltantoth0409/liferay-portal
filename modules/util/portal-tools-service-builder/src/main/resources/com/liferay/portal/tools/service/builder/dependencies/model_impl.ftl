@@ -506,8 +506,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		Class<?> proxyClass = ProxyUtil.getProxyClass(${entity.name}.class.getClassLoader(), ${entity.name}.class, ModelWrapper.class);
 
 		try {
-			Constructor<${entity.name}> constructor =
-				(Constructor<${entity.name}>)proxyClass.getConstructor(InvocationHandler.class);
+			Constructor<${entity.name}> constructor = (Constructor<${entity.name}>)proxyClass.getConstructor(InvocationHandler.class);
 
 			return invocationHandler -> {
 				try {
