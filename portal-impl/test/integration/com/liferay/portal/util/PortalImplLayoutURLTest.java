@@ -200,14 +200,14 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 
 		VirtualHostLocalServiceUtil.updateVirtualHost(
 			company.getCompanyId(), publicLayoutSet.getLayoutSetId(),
-			PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME);
+			_PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME);
 
 		// Test generated layout URL for Control Panel navigating from the
 		// public layout
 
 		ThemeDisplay themeDisplay = initThemeDisplay(
 			company, group, publicLayout, VIRTUAL_HOSTNAME,
-			PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME);
+			_PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME);
 
 		Group controlPanelGroup = controlPanelLayout.getGroup();
 
@@ -234,7 +234,7 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 
 		VirtualHostLocalServiceUtil.updateVirtualHost(
 			company.getCompanyId(), publicLayoutSet.getLayoutSetId(),
-			PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME);
+			_PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME);
 
 		// Create group for public layout (will be used as scope group)
 
@@ -249,7 +249,7 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 
 		ThemeDisplay themeDisplay = initThemeDisplay(
 			company, group, publicLayout, VIRTUAL_HOSTNAME,
-			PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME);
+			_PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME);
 
 		themeDisplay.setScopeGroupId(scopedControlPanelLayout.getGroupId());
 
@@ -269,7 +269,7 @@ public class PortalImplLayoutURLTest extends BasePortalImplURLTestCase {
 		GroupTestUtil.deleteGroup(scopeGroup);
 	}
 
-	protected static final String PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME =
+	private static final String _PUBLIC_LAYOUT_SET_VIRTUAL_HOSTNAME =
 		"test-public-layout.com";
 
 }
