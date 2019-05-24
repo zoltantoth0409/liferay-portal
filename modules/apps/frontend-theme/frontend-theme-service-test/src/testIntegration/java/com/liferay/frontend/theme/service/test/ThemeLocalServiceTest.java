@@ -48,7 +48,7 @@ public class ThemeLocalServiceTest {
 		LayoutSet layoutSet = _group.getPublicLayoutSet();
 
 		Assert.assertNotNull(
-			"Unable to find theme with id " + layoutSet.getThemeId(),
+			"Unable to get theme " + layoutSet.getThemeId(),
 			_themeLocalService.getTheme(
 				_group.getCompanyId(), layoutSet.getThemeId()));
 	}
