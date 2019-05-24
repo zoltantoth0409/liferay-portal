@@ -187,7 +187,7 @@ public class ServiceComponentLocalServiceTest {
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
-		final DB db = DBManagerUtil.getDB();
+		DB db = DBManagerUtil.getDB();
 
 		ServiceRegistration<UpgradeStep> upgradeStepServiceRegistration =
 			bundleContext.registerService(
