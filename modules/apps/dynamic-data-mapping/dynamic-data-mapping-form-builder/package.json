@@ -92,5 +92,5 @@
 		"format": "liferay-npm-scripts format",
 		"test": "liferay-npm-scripts test"
 	},
-	"version": "2.0.16"
+	"version": "2.0.17"
 }
