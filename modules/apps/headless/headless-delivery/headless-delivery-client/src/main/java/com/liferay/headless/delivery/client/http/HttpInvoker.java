@@ -92,7 +92,24 @@ public class HttpInvoker {
 	}
 
 	public HttpInvoker parameter(String name, String value) {
-		_parameters.put(name, value);
+		return parameter(name, new String[] {value});
+	}
+
+	public HttpInvoker parameter(String name, String[] values) {
+		String[] oldValues = _parameters.get(name);
+
+		if (oldValues != null) {
+			String[] newValues = new String[oldValues.length + values.length];
+
+			System.arraycopy(oldValues, 0, newValues, 0, oldValues.length);
+			System.arraycopy(
+				values, 0, newValues, oldValues.length, values.length);
+
+			_parameters.put(name, newValues);
+		}
+		else {
+			_parameters.put(name, values);
+		}
 
 		return this;
 	}
@@ -246,22 +263,30 @@ public class HttpInvoker {
 	private String _getQueryString() throws IOException {
 		StringBuilder sb = new StringBuilder();
 
-		Set<Map.Entry<String, String>> set = _parameters.entrySet();
+		Set<Map.Entry<String, String[]>> set = _parameters.entrySet();
 
-		Iterator<Map.Entry<String, String>> iterator = set.iterator();
+		Iterator<Map.Entry<String, String[]>> iterator = set.iterator();
 
 		while (iterator.hasNext()) {
-			Map.Entry<String, String> entry = iterator.next();
+			Map.Entry<String, String[]> entry = iterator.next();
 
-			String name = URLEncoder.encode(entry.getKey(), "UTF-8");
+			String[] values = entry.getValue();
 
-			sb.append(name);
+			for (int i = 0; i < values.length; i++) {
+				String name = URLEncoder.encode(entry.getKey(), "UTF-8");
 
-			sb.append("=");
+				sb.append(name);
 
-			String value = URLEncoder.encode(entry.getValue(), "UTF-8");
+				sb.append("=");
 
-			sb.append(value);
+				String value = URLEncoder.encode(values[i], "UTF-8");
+
+				sb.append(value);
+
+				if ((i + 1) < values.length) {
+					sb.append("&");
+				}
+			}
 
 			if (iterator.hasNext()) {
 				sb.append("&");
@@ -396,7 +421,7 @@ public class HttpInvoker {
 	private Map<String, File> _files = new LinkedHashMap<>();
 	private HttpMethod _httpMethod = HttpMethod.GET;
 	private String _multipartBoundary;
-	private Map<String, String> _parameters = new LinkedHashMap<>();
+	private Map<String, String[]> _parameters = new LinkedHashMap<>();
 	private Map<String, String> _parts = new LinkedHashMap<>();
 	private String _path;
 
