@@ -2,7 +2,7 @@ definition {
 	macro searchPG {
 		var key_networkDomain = "${networkDomain}";
 
-		Type.typeAceEditor(
+		Type(
 			locator1 = "NetworkUtilities#DNS_LOOKUP_FIELD",
 			value1 = "${dnsDomain}"
 		);
