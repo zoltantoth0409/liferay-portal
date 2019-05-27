@@ -103,7 +103,7 @@ if (article != null) {
 	defaultLanguageId = articleDefaultLanguageId;
 }
 
-if (!requestDDMFormValues.equals("")) {
+if (Validator.isNotNull(requestDDMFormValues)) {
 	defaultLanguageId = journalDisplayContext.getDefaultLanguageIdFromDDMFormValues(requestDDMFormValues);
 }
 
@@ -194,10 +194,10 @@ request.setAttribute("edit_article.jsp-changeStructure", changeStructure);
 
 	Set<Locale> availableLocalesSet = new HashSet<>();
 
-	if (!requestDDMFormValues.equals("")) {
+	if (Validator.isNotNull(requestDDMFormValues)) {
 		availableLocalesSet.addAll(journalDisplayContext.getAvailableLocalesFromDDMFormValues(requestDDMFormValues));
-	} else {
-
+	}
+	else {
 		availableLocalesSet.add(LocaleUtil.fromLanguageId(defaultLanguageId));
 		availableLocalesSet.addAll(journalDisplayContext.getAvailableArticleLocales());
 
