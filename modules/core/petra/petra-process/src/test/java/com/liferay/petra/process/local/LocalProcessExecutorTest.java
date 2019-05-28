@@ -32,7 +32,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
-import com.liferay.portal.kernel.util.InetAddressUtil;
 import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.SocketUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
@@ -55,6 +54,7 @@ import java.io.WriteAbortedException;
 
 import java.lang.reflect.Constructor;
 
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
@@ -1204,7 +1204,7 @@ public class LocalProcessExecutorTest {
 			ProcessCallable<T> processCallable) {
 
 			try (Socket socket = new Socket(
-					InetAddressUtil.getLoopbackInetAddress(), _serverPort)) {
+					InetAddress.getByName("127.0.0.1"), _serverPort)) {
 
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(
 					socket.getOutputStream());
@@ -1583,7 +1583,7 @@ public class LocalProcessExecutorTest {
 				try {
 					ServerSocketChannel serverSocketChannel =
 						SocketUtil.createServerSocketChannel(
-							InetAddressUtil.getLoopbackInetAddress(), 12342,
+							InetAddress.getByName("127.0.0.1"), 12342,
 							serverSocket -> serverSocket.setReuseAddress(true));
 
 					ServerSocket serverSocket = serverSocketChannel.socket();
