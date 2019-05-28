@@ -57,7 +57,7 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 
 	@Override
 	public Lock fetchLock(String className, String key) {
-		if (lockPersistence.countByC(className) == 0) {
+		if (lockPersistence.countByClassName(className) == 0) {
 			return null;
 		}
 
@@ -81,7 +81,7 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 
 	@Override
 	public Lock getLock(String className, String key) throws PortalException {
-		if (lockPersistence.countByC(className) == 0) {
+		if (lockPersistence.countByClassName(className) == 0) {
 			return null;
 		}
 
