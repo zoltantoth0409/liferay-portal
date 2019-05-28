@@ -215,7 +215,7 @@ else {
 
 		if (isSet(ratingResult)) {
 			AssertTextEquals(
-				locator1 = "Ratings#RATE_THUMB",
+				locator1 = "Ratings#THUMB",
 				value1 = "${voteCount}");
 		}
 		else {
