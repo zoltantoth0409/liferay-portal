@@ -337,6 +337,7 @@ definition {
 	test AddDDLRecordWithDoubleApproverDefinition {
 		property portal.acceptance = "true";
 		property testray.component.names = "Training";
+		property test.name.skip.portal.instance = "LocalFile.WorkflowadminUsecase#AddDDLRecordWithDoubleApproverDefinition";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -517,6 +518,8 @@ definition {
 
 	@priority = "3"
 	test AddDocumentsAndMediaWithScriptedAssignmentDefinition {
+		property test.name.skip.portal.instance = "LocalFile.WorkflowadminUsecase#AddDocumentsAndMediaWithScriptedAssignmentDefinition";
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
@@ -1218,6 +1221,8 @@ definition {
 
 	@priority = "3"
 	test DeactivateAndActivateUploadedDefinition {
+		property test.name.skip.portal.instance = "LocalFile.WorkflowadminUsecase#DeactivateAndActivateUploadedDefinition";
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
@@ -1250,6 +1255,8 @@ definition {
 
 	@priority = "5"
 	test DeactivateAndDeleteUploadedDefinition {
+		property test.name.skip.portal.instance = "LocalFile.WorkflowadminUsecase#DeactivateAndDeleteUploadedDefinition";
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
