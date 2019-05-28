@@ -1210,9 +1210,9 @@ public class LockPersistenceImpl
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 =
 		"lock_.companyId = ?";
 
-	private FinderPath _finderPathWithPaginationFindByC;
-	private FinderPath _finderPathWithoutPaginationFindByC;
-	private FinderPath _finderPathCountByC;
+	private FinderPath _finderPathWithPaginationFindByClassName;
+	private FinderPath _finderPathWithoutPaginationFindByClassName;
+	private FinderPath _finderPathCountByClassName;
 
 	/**
 	 * Returns all the locks where className = &#63;.
@@ -1221,8 +1221,9 @@ public class LockPersistenceImpl
 	 * @return the matching locks
 	 */
 	@Override
-	public List<Lock> findByC(String className) {
-		return findByC(className, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<Lock> findByClassName(String className) {
+		return findByClassName(
+			className, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1238,8 +1239,8 @@ public class LockPersistenceImpl
 	 * @return the range of matching locks
 	 */
 	@Override
-	public List<Lock> findByC(String className, int start, int end) {
-		return findByC(className, start, end, null);
+	public List<Lock> findByClassName(String className, int start, int end) {
+		return findByClassName(className, start, end, null);
 	}
 
 	/**
@@ -1256,11 +1257,11 @@ public class LockPersistenceImpl
 	 * @return the ordered range of matching locks
 	 */
 	@Override
-	public List<Lock> findByC(
+	public List<Lock> findByClassName(
 		String className, int start, int end,
 		OrderByComparator<Lock> orderByComparator) {
 
-		return findByC(className, start, end, orderByComparator, true);
+		return findByClassName(className, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1278,7 +1279,7 @@ public class LockPersistenceImpl
 	 * @return the ordered range of matching locks
 	 */
 	@Override
-	public List<Lock> findByC(
+	public List<Lock> findByClassName(
 		String className, int start, int end,
 		OrderByComparator<Lock> orderByComparator, boolean retrieveFromCache) {
 
@@ -1292,11 +1293,11 @@ public class LockPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC;
+			finderPath = _finderPathWithoutPaginationFindByClassName;
 			finderArgs = new Object[] {className};
 		}
 		else {
-			finderPath = _finderPathWithPaginationFindByC;
+			finderPath = _finderPathWithPaginationFindByClassName;
 			finderArgs = new Object[] {
 				className, start, end, orderByComparator
 			};
@@ -1335,12 +1336,12 @@ public class LockPersistenceImpl
 			boolean bindClassName = false;
 
 			if (className.isEmpty()) {
-				query.append(_FINDER_COLUMN_C_CLASSNAME_3);
+				query.append(_FINDER_COLUMN_CLASSNAME_CLASSNAME_3);
 			}
 			else {
 				bindClassName = true;
 
-				query.append(_FINDER_COLUMN_C_CLASSNAME_2);
+				query.append(_FINDER_COLUMN_CLASSNAME_CLASSNAME_2);
 			}
 
 			if (orderByComparator != null) {
@@ -1405,11 +1406,11 @@ public class LockPersistenceImpl
 	 * @throws NoSuchLockException if a matching lock could not be found
 	 */
 	@Override
-	public Lock findByC_First(
+	public Lock findByClassName_First(
 			String className, OrderByComparator<Lock> orderByComparator)
 		throws NoSuchLockException {
 
-		Lock lock = fetchByC_First(className, orderByComparator);
+		Lock lock = fetchByClassName_First(className, orderByComparator);
 
 		if (lock != null) {
 			return lock;
@@ -1435,10 +1436,10 @@ public class LockPersistenceImpl
 	 * @return the first matching lock, or <code>null</code> if a matching lock could not be found
 	 */
 	@Override
-	public Lock fetchByC_First(
+	public Lock fetchByClassName_First(
 		String className, OrderByComparator<Lock> orderByComparator) {
 
-		List<Lock> list = findByC(className, 0, 1, orderByComparator);
+		List<Lock> list = findByClassName(className, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1456,11 +1457,11 @@ public class LockPersistenceImpl
 	 * @throws NoSuchLockException if a matching lock could not be found
 	 */
 	@Override
-	public Lock findByC_Last(
+	public Lock findByClassName_Last(
 			String className, OrderByComparator<Lock> orderByComparator)
 		throws NoSuchLockException {
 
-		Lock lock = fetchByC_Last(className, orderByComparator);
+		Lock lock = fetchByClassName_Last(className, orderByComparator);
 
 		if (lock != null) {
 			return lock;
@@ -1486,16 +1487,16 @@ public class LockPersistenceImpl
 	 * @return the last matching lock, or <code>null</code> if a matching lock could not be found
 	 */
 	@Override
-	public Lock fetchByC_Last(
+	public Lock fetchByClassName_Last(
 		String className, OrderByComparator<Lock> orderByComparator) {
 
-		int count = countByC(className);
+		int count = countByClassName(className);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<Lock> list = findByC(
+		List<Lock> list = findByClassName(
 			className, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1515,7 +1516,7 @@ public class LockPersistenceImpl
 	 * @throws NoSuchLockException if a lock with the primary key could not be found
 	 */
 	@Override
-	public Lock[] findByC_PrevAndNext(
+	public Lock[] findByClassName_PrevAndNext(
 			long lockId, String className,
 			OrderByComparator<Lock> orderByComparator)
 		throws NoSuchLockException {
@@ -1531,12 +1532,12 @@ public class LockPersistenceImpl
 
 			Lock[] array = new LockImpl[3];
 
-			array[0] = getByC_PrevAndNext(
+			array[0] = getByClassName_PrevAndNext(
 				session, lock, className, orderByComparator, true);
 
 			array[1] = lock;
 
-			array[2] = getByC_PrevAndNext(
+			array[2] = getByClassName_PrevAndNext(
 				session, lock, className, orderByComparator, false);
 
 			return array;
@@ -1549,7 +1550,7 @@ public class LockPersistenceImpl
 		}
 	}
 
-	protected Lock getByC_PrevAndNext(
+	protected Lock getByClassName_PrevAndNext(
 		Session session, Lock lock, String className,
 		OrderByComparator<Lock> orderByComparator, boolean previous) {
 
@@ -1569,12 +1570,12 @@ public class LockPersistenceImpl
 		boolean bindClassName = false;
 
 		if (className.isEmpty()) {
-			query.append(_FINDER_COLUMN_C_CLASSNAME_3);
+			query.append(_FINDER_COLUMN_CLASSNAME_CLASSNAME_3);
 		}
 		else {
 			bindClassName = true;
 
-			query.append(_FINDER_COLUMN_C_CLASSNAME_2);
+			query.append(_FINDER_COLUMN_CLASSNAME_CLASSNAME_2);
 		}
 
 		if (orderByComparator != null) {
@@ -1674,9 +1675,9 @@ public class LockPersistenceImpl
 	 * @param className the class name
 	 */
 	@Override
-	public void removeByC(String className) {
+	public void removeByClassName(String className) {
 		for (Lock lock :
-				findByC(
+				findByClassName(
 					className, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 
 			remove(lock);
@@ -1690,10 +1691,10 @@ public class LockPersistenceImpl
 	 * @return the number of matching locks
 	 */
 	@Override
-	public int countByC(String className) {
+	public int countByClassName(String className) {
 		className = Objects.toString(className, "");
 
-		FinderPath finderPath = _finderPathCountByC;
+		FinderPath finderPath = _finderPathCountByClassName;
 
 		Object[] finderArgs = new Object[] {className};
 
@@ -1707,12 +1708,12 @@ public class LockPersistenceImpl
 			boolean bindClassName = false;
 
 			if (className.isEmpty()) {
-				query.append(_FINDER_COLUMN_C_CLASSNAME_3);
+				query.append(_FINDER_COLUMN_CLASSNAME_CLASSNAME_3);
 			}
 			else {
 				bindClassName = true;
 
-				query.append(_FINDER_COLUMN_C_CLASSNAME_2);
+				query.append(_FINDER_COLUMN_CLASSNAME_CLASSNAME_2);
 			}
 
 			String sql = query.toString();
@@ -1747,10 +1748,10 @@ public class LockPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_CLASSNAME_2 =
+	private static final String _FINDER_COLUMN_CLASSNAME_CLASSNAME_2 =
 		"lock_.className = ?";
 
-	private static final String _FINDER_COLUMN_C_CLASSNAME_3 =
+	private static final String _FINDER_COLUMN_CLASSNAME_CLASSNAME_3 =
 		"(lock_.className IS NULL OR lock_.className = '')";
 
 	private FinderPath _finderPathWithPaginationFindByLtExpirationDate;
@@ -2876,8 +2877,9 @@ public class LockPersistenceImpl
 
 			args = new Object[] {lockModelImpl.getClassName()};
 
-			finderCache.removeResult(_finderPathCountByC, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByC, args);
+			finderCache.removeResult(_finderPathCountByClassName, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByClassName, args);
 
 			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 			finderCache.removeResult(
@@ -2924,21 +2926,22 @@ public class LockPersistenceImpl
 			}
 
 			if ((lockModelImpl.getColumnBitmask() &
-				 _finderPathWithoutPaginationFindByC.getColumnBitmask()) != 0) {
+				 _finderPathWithoutPaginationFindByClassName.
+					 getColumnBitmask()) != 0) {
 
 				Object[] args = new Object[] {
 					lockModelImpl.getOriginalClassName()
 				};
 
-				finderCache.removeResult(_finderPathCountByC, args);
+				finderCache.removeResult(_finderPathCountByClassName, args);
 				finderCache.removeResult(
-					_finderPathWithoutPaginationFindByC, args);
+					_finderPathWithoutPaginationFindByClassName, args);
 
 				args = new Object[] {lockModelImpl.getClassName()};
 
-				finderCache.removeResult(_finderPathCountByC, args);
+				finderCache.removeResult(_finderPathCountByClassName, args);
 				finderCache.removeResult(
-					_finderPathWithoutPaginationFindByC, args);
+					_finderPathWithoutPaginationFindByClassName, args);
 			}
 		}
 
@@ -3288,26 +3291,26 @@ public class LockPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
 			new String[] {String.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationFindByC = new FinderPath(
+		_finderPathWithPaginationFindByClassName = new FinderPath(
 			LockModelImpl.ENTITY_CACHE_ENABLED,
 			LockModelImpl.FINDER_CACHE_ENABLED, LockImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByClassName",
 			new String[] {
 				String.class.getName(), Integer.class.getName(),
 				Integer.class.getName(), OrderByComparator.class.getName()
 			});
 
-		_finderPathWithoutPaginationFindByC = new FinderPath(
+		_finderPathWithoutPaginationFindByClassName = new FinderPath(
 			LockModelImpl.ENTITY_CACHE_ENABLED,
 			LockModelImpl.FINDER_CACHE_ENABLED, LockImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByClassName",
 			new String[] {String.class.getName()},
 			LockModelImpl.CLASSNAME_COLUMN_BITMASK);
 
-		_finderPathCountByC = new FinderPath(
+		_finderPathCountByClassName = new FinderPath(
 			LockModelImpl.ENTITY_CACHE_ENABLED,
 			LockModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByClassName",
 			new String[] {String.class.getName()});
 
 		_finderPathWithPaginationFindByLtExpirationDate = new FinderPath(
