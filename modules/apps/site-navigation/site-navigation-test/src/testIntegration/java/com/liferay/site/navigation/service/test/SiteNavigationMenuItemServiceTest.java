@@ -153,17 +153,17 @@ public class SiteNavigationMenuItemServiceTest {
 	public void testUpdateSiteNavigationMenuItemOrder() throws PortalException {
 		SiteNavigationMenuItem siteNavigationMenuItem =
 			SiteNavigationMenuItemTestUtil.addSiteNavigationMenuItem(
-				0, _siteNavigationMenu);
+				_siteNavigationMenu, 0);
 
 		SiteNavigationMenuItem childSiteNavigationMenuItem1 =
 			SiteNavigationMenuItemTestUtil.addSiteNavigationMenuItem(
-				siteNavigationMenuItem.getSiteNavigationMenuItemId(),
-				_siteNavigationMenu);
+				_siteNavigationMenu,
+				siteNavigationMenuItem.getSiteNavigationMenuItemId());
 
 		SiteNavigationMenuItem childSiteNavigationMenuItem2 =
 			SiteNavigationMenuItemTestUtil.addSiteNavigationMenuItem(
-				siteNavigationMenuItem.getSiteNavigationMenuItemId(),
-				_siteNavigationMenu);
+				_siteNavigationMenu,
+				siteNavigationMenuItem.getSiteNavigationMenuItemId());
 
 		_siteNavigationMenuItemService.updateSiteNavigationMenuItem(
 			childSiteNavigationMenuItem2.getSiteNavigationMenuItemId(),
@@ -186,8 +186,8 @@ public class SiteNavigationMenuItemServiceTest {
 
 		SiteNavigationMenuItem childSiteNavigationMenuItem11 =
 			SiteNavigationMenuItemTestUtil.addSiteNavigationMenuItem(
-				siteNavigationMenuItem1.getSiteNavigationMenuItemId(),
-				_siteNavigationMenu);
+				_siteNavigationMenu,
+				siteNavigationMenuItem1.getSiteNavigationMenuItemId());
 
 		SiteNavigationMenuItem siteNavigationMenuItem2 =
 			SiteNavigationMenuItemTestUtil.addSiteNavigationMenuItem(

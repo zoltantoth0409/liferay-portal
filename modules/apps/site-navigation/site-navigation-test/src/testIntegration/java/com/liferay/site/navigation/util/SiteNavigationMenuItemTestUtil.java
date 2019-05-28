@@ -30,7 +30,14 @@ import com.liferay.site.navigation.service.SiteNavigationMenuItemLocalServiceUti
 public class SiteNavigationMenuItemTestUtil {
 
 	public static SiteNavigationMenuItem addSiteNavigationMenuItem(
-			int position, SiteNavigationMenu siteNavigationMenu)
+			SiteNavigationMenu siteNavigationMenu)
+		throws PortalException {
+
+		return addSiteNavigationMenuItem(siteNavigationMenu, 0);
+	}
+
+	public static SiteNavigationMenuItem addSiteNavigationMenuItem(
+			SiteNavigationMenu siteNavigationMenu, int position)
 		throws PortalException {
 
 		ServiceContext serviceContext =
@@ -45,8 +52,8 @@ public class SiteNavigationMenuItemTestUtil {
 	}
 
 	public static SiteNavigationMenuItem addSiteNavigationMenuItem(
-			long parentSiteNavigationMenuItemId,
-			SiteNavigationMenu siteNavigationMenu)
+			SiteNavigationMenu siteNavigationMenu,
+			long parentSiteNavigationMenuItemId)
 		throws PortalException {
 
 		ServiceContext serviceContext =
@@ -59,13 +66,6 @@ public class SiteNavigationMenuItemTestUtil {
 			parentSiteNavigationMenuItemId,
 			SiteNavigationMenuItemTypeConstants.LAYOUT, StringPool.BLANK,
 			serviceContext);
-	}
-
-	public static SiteNavigationMenuItem addSiteNavigationMenuItem(
-			SiteNavigationMenu siteNavigationMenu)
-		throws PortalException {
-
-		return addSiteNavigationMenuItem(0, siteNavigationMenu);
 	}
 
 }
