@@ -318,9 +318,8 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 			socketHttpConnectionProvider.useProxy(
 				ProxyInfo.httpProxy(proxyAddress, proxyPort, null, null));
 
-			HttpRequest proxiedHttpRequest =
-				httpRequest.withConnectionProvider(
-					socketHttpConnectionProvider);
+			HttpRequest proxiedHttpRequest = httpRequest.withConnectionProvider(
+				socketHttpConnectionProvider);
 
 			httpResponse = proxiedHttpRequest.send();
 		}
