@@ -223,7 +223,7 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 				languageId, timeZoneId, greeting, comments, firstName,
 				middleName, lastName, prefixId, suffixId, male, birthdayMonth,
 				birthdayDay, birthdayYear, smsSn, facebookSn, jabberSn, skypeSn,
-				twitterSn, jobTitle, groupIds, organizationIds, roleIds,
+				twitterSn, jobTitle, null, organizationIds, roleIds,
 				userGroupRoles, userGroupIds, addresses, emailAddresses, phones,
 				websites, announcementsDeliveries, serviceContext);
 		}
