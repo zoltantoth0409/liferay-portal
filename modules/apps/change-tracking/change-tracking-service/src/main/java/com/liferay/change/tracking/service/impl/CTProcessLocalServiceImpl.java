@@ -117,8 +117,8 @@ public class CTProcessLocalServiceImpl extends CTProcessLocalServiceBaseImpl {
 		long companyId, long userId, String keywords,
 		QueryDefinition<?> queryDefinition) {
 
-		return ctProcessFinder.findByC_U_S_N_D(
-			companyId, userId, queryDefinition.getStatus(), keywords,
+		return ctProcessFinder.findByC_U_N_D_S(
+			companyId, userId, keywords, queryDefinition.getStatus(),
 			queryDefinition.getStart(), queryDefinition.getEnd(),
 			queryDefinition.getOrderByComparator());
 	}
