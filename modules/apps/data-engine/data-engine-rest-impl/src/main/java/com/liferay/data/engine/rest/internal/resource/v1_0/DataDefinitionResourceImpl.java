@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -48,8 +49,6 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang.BooleanUtils;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -152,15 +151,15 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 		List<String> actionIds = new ArrayList<>();
 
-		if (BooleanUtils.isTrue(dataDefinitionPermission.getDelete())) {
+		if (GetterUtil.getBoolean(dataDefinitionPermission.getDelete())) {
 			actionIds.add(ActionKeys.DELETE);
 		}
 
-		if (BooleanUtils.isTrue(dataDefinitionPermission.getUpdate())) {
+		if (GetterUtil.getBoolean(dataDefinitionPermission.getUpdate())) {
 			actionIds.add(ActionKeys.UPDATE);
 		}
 
-		if (BooleanUtils.isTrue(dataDefinitionPermission.getView())) {
+		if (GetterUtil.getBoolean(dataDefinitionPermission.getView())) {
 			actionIds.add(ActionKeys.VIEW);
 		}
 
@@ -216,13 +215,13 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 		List<String> actionIds = new ArrayList<>();
 
-		if (BooleanUtils.isTrue(
+		if (GetterUtil.getBoolean(
 				dataDefinitionPermission.getAddDataDefinition())) {
 
 			actionIds.add(DataActionKeys.ADD_DATA_DEFINITION);
 		}
 
-		if (BooleanUtils.isTrue(
+		if (GetterUtil.getBoolean(
 				dataDefinitionPermission.getDefinePermissions())) {
 
 			actionIds.add(DataActionKeys.DEFINE_PERMISSIONS);
