@@ -1047,6 +1047,16 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	}
 
 	@Override
+	public Layout fetchFirstLayout(
+		long groupId, boolean privateLayout, long parentLayoutId,
+		boolean hidden) {
+
+		return layoutPersistence.fetchByG_P_P_H_First(
+			groupId, privateLayout, parentLayoutId, hidden,
+			new LayoutPriorityComparator());
+	}
+
+	@Override
 	public Layout fetchLayout(
 		long groupId, boolean privateLayout, long layoutId) {
 
