@@ -108,15 +108,7 @@ public class PoshiRunnerContext {
 
 		if (numCommandsFound > 0) {
 			sb.append("\n\n");
-
-			for (String namespacedClassCommandName :
-					namespacedClassCommandNames) {
-
-				sb.append(namespacedClassCommandName);
-				sb.append(',');
-			}
-
-			sb.setLength(sb.length() - 1);
+			sb.append(String.join(",", namespacedClassCommandNames));
 		}
 
 		System.out.println(sb.toString());
