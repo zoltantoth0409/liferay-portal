@@ -44,8 +44,8 @@ import org.osgi.service.component.annotations.Reference;
 public class CTProcessFinderImpl
 	extends CTProcessFinderBaseImpl implements CTProcessFinder {
 
-	public static final String FIND_BY_C_U_S_N_D =
-		CTProcessFinder.class.getName() + ".findByC_U_S_N_D";
+	public static final String FIND_BY_C_U_N_D_S =
+		CTProcessFinder.class.getName() + ".findByC_U_N_D_S";
 
 	/**
 	 * @deprecated As of Mueller (7.2.x)
@@ -56,8 +56,8 @@ public class CTProcessFinderImpl
 		long companyId, int start, int end,
 		OrderByComparator<?> orderByComparator) {
 
-		return findByC_U_S_N_D(
-			companyId, 0, WorkflowConstants.STATUS_ANY, null, start, end,
+		return findByC_U_N_D_S(
+			companyId, 0, null, WorkflowConstants.STATUS_ANY, start, end,
 			orderByComparator);
 	}
 
@@ -70,14 +70,14 @@ public class CTProcessFinderImpl
 		long companyId, int status, int start, int end,
 		OrderByComparator<?> orderByComparator) {
 
-		return findByC_U_S_N_D(
-			companyId, 0, status, null, start, end, orderByComparator);
+		return findByC_U_N_D_S(
+			companyId, 0, null, status, start, end, orderByComparator);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<CTProcess> findByC_U_S_N_D(
-		long companyId, long userId, int status, String keywords, int start,
+	public List<CTProcess> findByC_U_N_D_S(
+		long companyId, long userId, String keywords, int status, int start,
 		int end, OrderByComparator<?> orderByComparator) {
 
 		Session session = null;
@@ -85,16 +85,11 @@ public class CTProcessFinderImpl
 		try {
 			session = openSession();
 
-			String sql = _customSQL.get(getClass(), FIND_BY_C_U_S_N_D);
+			String sql = _customSQL.get(getClass(), FIND_BY_C_U_N_D_S);
 
 			if (userId <= 0) {
 				sql = StringUtil.replace(
 					sql, "(CTProcess.userId = ?) AND", StringPool.BLANK);
-			}
-
-			if (status == WorkflowConstants.STATUS_ANY) {
-				sql = StringUtil.replace(
-					sql, "(BackgroundTask.status = ?) AND", StringPool.BLANK);
 			}
 
 			String[] names = _customSQL.keywords(
@@ -115,6 +110,11 @@ public class CTProcessFinderImpl
 					sql, "LOWER(CTCollection.description)", StringPool.LIKE,
 					true, descriptions);
 				sql = _customSQL.replaceAndOperator(sql, false);
+			}
+
+			if (status == WorkflowConstants.STATUS_ANY) {
+				sql = StringUtil.replace(
+					sql, "(BackgroundTask.status = ?) AND", StringPool.BLANK);
 			}
 
 			sql = _customSQL.replaceOrderBy(sql, orderByComparator);
