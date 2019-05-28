@@ -13,6 +13,7 @@ export default function getRegions(callback, selectKey) {
 	if (!isFunction(callback)) {
 		throw new TypeError('Parameter callback must be a function');
 	}
+
 	if (!isString(selectKey)) {
 		throw new TypeError('Parameter selectKey must be a string');
 	}
