@@ -28,6 +28,6 @@ import javax.ws.rs.core.Response;
 @Target(ElementType.METHOD)
 public @interface Status {
 
-	Response.Status value() default Response.Status.OK;
+	public Response.Status value() default Response.Status.OK;
 
 }
