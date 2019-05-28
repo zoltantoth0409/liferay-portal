@@ -18,6 +18,7 @@ import org.eclipse.equinox.log.ExtendedLogEntry;
 import org.eclipse.equinox.log.SynchronousLogListener;
 import org.eclipse.osgi.framework.log.FrameworkLogEntry;
 
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.service.log.LogEntry;
 import org.osgi.service.log.LogService;
@@ -70,10 +71,19 @@ public class PortalSynchronousLogListener implements SynchronousLogListener {
 			return;
 		}
 
+		String name = extendedLogEntry.getLoggerName();
+
+		if (name == null) {
+			Bundle bundle = extendedLogEntry.getBundle();
+
+			String symbolicName = bundle.getSymbolicName();
+
+			name = symbolicName.replace('.', '_');
+		}
+
 		_log(
-			extendedLogEntry.getLoggerName(), extendedLogEntry.getLevel(),
-			extendedLogEntry.getMessage(), context,
-			extendedLogEntry.getException());
+			name, extendedLogEntry.getLevel(), extendedLogEntry.getMessage(),
+			context, extendedLogEntry.getException());
 	}
 
 	private synchronized void _log(
