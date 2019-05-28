@@ -96,7 +96,7 @@ public class SiteNavigationMenuItemLocalServiceTest {
 
 		SiteNavigationMenuItem siteNavigationMenuItem =
 			SiteNavigationMenuItemTestUtil.addSiteNavigationMenuItem(
-				siteNavigationMenuItemPosition, _siteNavigationMenu);
+				_siteNavigationMenu, siteNavigationMenuItemPosition);
 
 		SiteNavigationMenuItem persistedSiteNavigationMenuItem =
 			_siteNavigationMenuItemPersistence.fetchByPrimaryKey(
@@ -278,8 +278,8 @@ public class SiteNavigationMenuItemLocalServiceTest {
 
 		SiteNavigationMenuItem childSiteNavigationMenuItem =
 			SiteNavigationMenuItemTestUtil.addSiteNavigationMenuItem(
-				parentSiteNavigationMenuItem.getSiteNavigationMenuItemId(),
-				_siteNavigationMenu);
+				_siteNavigationMenu,
+				parentSiteNavigationMenuItem.getSiteNavigationMenuItemId());
 
 		SiteNavigationMenuItemTestUtil.addSiteNavigationMenuItem(
 			_siteNavigationMenu);
