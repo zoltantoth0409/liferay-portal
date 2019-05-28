@@ -36,8 +36,8 @@ public interface CTProcessFinder {
 				orderByComparator);
 
 	public java.util.List<com.liferay.change.tracking.model.CTProcess>
-		findByC_U_S_N_D(
-			long companyId, long userId, int status, String keywords, int start,
+		findByC_U_N_D_S(
+			long companyId, long userId, String keywords, int status, int start,
 			int end,
 			com.liferay.portal.kernel.util.OrderByComparator<?>
 				orderByComparator);
