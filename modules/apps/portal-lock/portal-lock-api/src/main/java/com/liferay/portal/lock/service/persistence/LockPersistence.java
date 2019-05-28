@@ -344,7 +344,7 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 * @param className the class name
 	 * @return the matching locks
 	 */
-	public java.util.List<Lock> findByC(String className);
+	public java.util.List<Lock> findByClassName(String className);
 
 	/**
 	 * Returns a range of all the locks where className = &#63;.
@@ -358,7 +358,8 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 * @param end the upper bound of the range of locks (not inclusive)
 	 * @return the range of matching locks
 	 */
-	public java.util.List<Lock> findByC(String className, int start, int end);
+	public java.util.List<Lock> findByClassName(
+		String className, int start, int end);
 
 	/**
 	 * Returns an ordered range of all the locks where className = &#63;.
@@ -373,7 +374,7 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching locks
 	 */
-	public java.util.List<Lock> findByC(
+	public java.util.List<Lock> findByClassName(
 		String className, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Lock>
 			orderByComparator);
@@ -392,7 +393,7 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching locks
 	 */
-	public java.util.List<Lock> findByC(
+	public java.util.List<Lock> findByClassName(
 		String className, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Lock>
 			orderByComparator,
@@ -406,7 +407,7 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 * @return the first matching lock
 	 * @throws NoSuchLockException if a matching lock could not be found
 	 */
-	public Lock findByC_First(
+	public Lock findByClassName_First(
 			String className,
 			com.liferay.portal.kernel.util.OrderByComparator<Lock>
 				orderByComparator)
@@ -419,7 +420,7 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching lock, or <code>null</code> if a matching lock could not be found
 	 */
-	public Lock fetchByC_First(
+	public Lock fetchByClassName_First(
 		String className,
 		com.liferay.portal.kernel.util.OrderByComparator<Lock>
 			orderByComparator);
@@ -432,7 +433,7 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 * @return the last matching lock
 	 * @throws NoSuchLockException if a matching lock could not be found
 	 */
-	public Lock findByC_Last(
+	public Lock findByClassName_Last(
 			String className,
 			com.liferay.portal.kernel.util.OrderByComparator<Lock>
 				orderByComparator)
@@ -445,7 +446,7 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching lock, or <code>null</code> if a matching lock could not be found
 	 */
-	public Lock fetchByC_Last(
+	public Lock fetchByClassName_Last(
 		String className,
 		com.liferay.portal.kernel.util.OrderByComparator<Lock>
 			orderByComparator);
@@ -459,7 +460,7 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 * @return the previous, current, and next lock
 	 * @throws NoSuchLockException if a lock with the primary key could not be found
 	 */
-	public Lock[] findByC_PrevAndNext(
+	public Lock[] findByClassName_PrevAndNext(
 			long lockId, String className,
 			com.liferay.portal.kernel.util.OrderByComparator<Lock>
 				orderByComparator)
@@ -470,7 +471,7 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 *
 	 * @param className the class name
 	 */
-	public void removeByC(String className);
+	public void removeByClassName(String className);
 
 	/**
 	 * Returns the number of locks where className = &#63;.
@@ -478,7 +479,7 @@ public interface LockPersistence extends BasePersistence<Lock> {
 	 * @param className the class name
 	 * @return the number of matching locks
 	 */
-	public int countByC(String className);
+	public int countByClassName(String className);
 
 	/**
 	 * Returns all the locks where expirationDate &lt; &#63;.

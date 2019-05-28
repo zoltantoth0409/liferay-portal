@@ -471,8 +471,8 @@ public class LockUtil {
 	 * @param className the class name
 	 * @return the matching locks
 	 */
-	public static List<Lock> findByC(String className) {
-		return getPersistence().findByC(className);
+	public static List<Lock> findByClassName(String className) {
+		return getPersistence().findByClassName(className);
 	}
 
 	/**
@@ -487,8 +487,10 @@ public class LockUtil {
 	 * @param end the upper bound of the range of locks (not inclusive)
 	 * @return the range of matching locks
 	 */
-	public static List<Lock> findByC(String className, int start, int end) {
-		return getPersistence().findByC(className, start, end);
+	public static List<Lock> findByClassName(
+		String className, int start, int end) {
+
+		return getPersistence().findByClassName(className, start, end);
 	}
 
 	/**
@@ -504,11 +506,11 @@ public class LockUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching locks
 	 */
-	public static List<Lock> findByC(
+	public static List<Lock> findByClassName(
 		String className, int start, int end,
 		OrderByComparator<Lock> orderByComparator) {
 
-		return getPersistence().findByC(
+		return getPersistence().findByClassName(
 			className, start, end, orderByComparator);
 	}
 
@@ -526,11 +528,11 @@ public class LockUtil {
 	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the ordered range of matching locks
 	 */
-	public static List<Lock> findByC(
+	public static List<Lock> findByClassName(
 		String className, int start, int end,
 		OrderByComparator<Lock> orderByComparator, boolean retrieveFromCache) {
 
-		return getPersistence().findByC(
+		return getPersistence().findByClassName(
 			className, start, end, orderByComparator, retrieveFromCache);
 	}
 
@@ -542,11 +544,12 @@ public class LockUtil {
 	 * @return the first matching lock
 	 * @throws NoSuchLockException if a matching lock could not be found
 	 */
-	public static Lock findByC_First(
+	public static Lock findByClassName_First(
 			String className, OrderByComparator<Lock> orderByComparator)
 		throws com.liferay.portal.lock.exception.NoSuchLockException {
 
-		return getPersistence().findByC_First(className, orderByComparator);
+		return getPersistence().findByClassName_First(
+			className, orderByComparator);
 	}
 
 	/**
@@ -556,10 +559,11 @@ public class LockUtil {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching lock, or <code>null</code> if a matching lock could not be found
 	 */
-	public static Lock fetchByC_First(
+	public static Lock fetchByClassName_First(
 		String className, OrderByComparator<Lock> orderByComparator) {
 
-		return getPersistence().fetchByC_First(className, orderByComparator);
+		return getPersistence().fetchByClassName_First(
+			className, orderByComparator);
 	}
 
 	/**
@@ -570,11 +574,12 @@ public class LockUtil {
 	 * @return the last matching lock
 	 * @throws NoSuchLockException if a matching lock could not be found
 	 */
-	public static Lock findByC_Last(
+	public static Lock findByClassName_Last(
 			String className, OrderByComparator<Lock> orderByComparator)
 		throws com.liferay.portal.lock.exception.NoSuchLockException {
 
-		return getPersistence().findByC_Last(className, orderByComparator);
+		return getPersistence().findByClassName_Last(
+			className, orderByComparator);
 	}
 
 	/**
@@ -584,10 +589,11 @@ public class LockUtil {
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching lock, or <code>null</code> if a matching lock could not be found
 	 */
-	public static Lock fetchByC_Last(
+	public static Lock fetchByClassName_Last(
 		String className, OrderByComparator<Lock> orderByComparator) {
 
-		return getPersistence().fetchByC_Last(className, orderByComparator);
+		return getPersistence().fetchByClassName_Last(
+			className, orderByComparator);
 	}
 
 	/**
@@ -599,12 +605,12 @@ public class LockUtil {
 	 * @return the previous, current, and next lock
 	 * @throws NoSuchLockException if a lock with the primary key could not be found
 	 */
-	public static Lock[] findByC_PrevAndNext(
+	public static Lock[] findByClassName_PrevAndNext(
 			long lockId, String className,
 			OrderByComparator<Lock> orderByComparator)
 		throws com.liferay.portal.lock.exception.NoSuchLockException {
 
-		return getPersistence().findByC_PrevAndNext(
+		return getPersistence().findByClassName_PrevAndNext(
 			lockId, className, orderByComparator);
 	}
 
@@ -613,8 +619,8 @@ public class LockUtil {
 	 *
 	 * @param className the class name
 	 */
-	public static void removeByC(String className) {
-		getPersistence().removeByC(className);
+	public static void removeByClassName(String className) {
+		getPersistence().removeByClassName(className);
 	}
 
 	/**
@@ -623,8 +629,8 @@ public class LockUtil {
 	 * @param className the class name
 	 * @return the number of matching locks
 	 */
-	public static int countByC(String className) {
-		return getPersistence().countByC(className);
+	public static int countByClassName(String className) {
+		return getPersistence().countByClassName(className);
 	}
 
 	/**

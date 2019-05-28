@@ -192,12 +192,12 @@ public class LockPersistenceTest {
 	}
 
 	@Test
-	public void testCountByC() throws Exception {
-		_persistence.countByC("");
+	public void testCountByClassName() throws Exception {
+		_persistence.countByClassName("");
 
-		_persistence.countByC("null");
+		_persistence.countByClassName("null");
 
-		_persistence.countByC((String)null);
+		_persistence.countByClassName((String)null);
 	}
 
 	@Test
