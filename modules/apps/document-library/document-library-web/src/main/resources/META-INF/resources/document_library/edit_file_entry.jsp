@@ -152,8 +152,9 @@ if (portletTitleBasedNavigation) {
 	<c:if test="<%= checkedOut %>">
 
 		<%
-			boolean hasLock = fileEntry.hasLock();
-			com.liferay.portal.kernel.lock.Lock lock = fileEntry.getLock();
+		boolean hasLock = fileEntry.hasLock();
+
+		Lock lock = fileEntry.getLock();
 		%>
 
 		<c:choose>
