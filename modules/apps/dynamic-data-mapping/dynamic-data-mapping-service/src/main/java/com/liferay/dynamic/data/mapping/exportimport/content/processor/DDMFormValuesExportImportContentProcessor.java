@@ -320,7 +320,7 @@ public class DDMFormValuesExportImportContentProcessor
 				catch (PortalException pe) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to find file entry with fileEntryId " +
+							"Unable to find file entry with file entry ID " +
 								newClassPK,
 							pe);
 					}
@@ -540,7 +540,7 @@ public class DDMFormValuesExportImportContentProcessor
 				catch (NoSuchArticleException nsae) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to find journal article with primaryKey " +
+							"Unable to find journal article with primary key " +
 								newClassPK,
 							nsae);
 					}
