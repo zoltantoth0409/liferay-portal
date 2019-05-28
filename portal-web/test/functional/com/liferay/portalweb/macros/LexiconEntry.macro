@@ -131,8 +131,8 @@ definition {
 	}
 
 	macro rate {
-		var key_rateResult = StringUtil.replace("${rateResult}", " ", "-");
-		var key_rateResult = StringUtil.lowerCase("${key_rateResult}");
+		var key_ratingResult = StringUtil.replace("${ratingResult}", " ", "-");
+		var key_ratingResult = StringUtil.lowerCase("${key_ratingResult}");
 
 		Click(locator1 = "Ratings#RATE_THUMB");
 	}
@@ -209,11 +209,11 @@ else {
 		}
 	}
 
-	macro viewRate {
-		var key_rateResult = StringUtil.replace("${rateResult}", " ", "-");
-		var key_rateResult = StringUtil.lowerCase("${key_rateResult}");
+	macro viewRating {
+		var key_ratingResult = StringUtil.replace("${ratingResult}", " ", "-");
+		var key_ratingResult = StringUtil.lowerCase("${key_ratingResult}");
 
-		if (isSet(rateResult)) {
+		if (isSet(ratingResult)) {
 			AssertTextEquals(
 				locator1 = "Ratings#RATE_THUMB",
 				value1 = "${voteCount}");
