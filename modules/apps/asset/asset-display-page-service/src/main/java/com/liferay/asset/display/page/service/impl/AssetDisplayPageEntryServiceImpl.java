@@ -18,24 +18,14 @@ import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.asset.display.page.service.base.AssetDisplayPageEntryServiceBaseImpl;
 import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
-import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.util.List;
 
-import org.osgi.service.component.annotations.Component;
-
 /**
  * @author Eudaldo Alonso
  */
-@Component(
-	property = {
-		"json.web.service.context.name=asset",
-		"json.web.service.context.path=AssetDisplayPageEntry"
-	},
-	service = AopService.class
-)
 public class AssetDisplayPageEntryServiceImpl
 	extends AssetDisplayPageEntryServiceBaseImpl {
 
