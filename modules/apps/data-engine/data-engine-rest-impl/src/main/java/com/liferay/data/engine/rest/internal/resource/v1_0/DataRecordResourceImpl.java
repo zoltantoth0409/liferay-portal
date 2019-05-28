@@ -126,7 +126,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			throw new BadRequestException(
 				LanguageUtil.format(
 					contextAcceptLanguage.getPreferredLocale(),
-					"page-size-cannot-be-bigger-than-x", 250));
+					"page-size-is-greater-than-x", 250));
 		}
 
 		return _dataRecordExporter.export(
