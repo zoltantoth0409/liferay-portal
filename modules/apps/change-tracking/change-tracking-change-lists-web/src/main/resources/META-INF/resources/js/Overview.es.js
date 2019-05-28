@@ -285,7 +285,7 @@ class Overview extends PortletBase {
 						else if (response.status === 404) {
 							openToast(
 								{
-									message: this._sub(Liferay.Language.get('cannot-delete-x-no-such-change-list-found'), [this.headerTitleActiveChangeList]),
+									message: this._sub(Liferay.Language.get('unable-to-delete-change-list-x-because-it-could-not-be-found'), [this.headerTitleActiveChangeList]),
 									title: Liferay.Language.get('error'),
 									type: 'danger'
 								}
