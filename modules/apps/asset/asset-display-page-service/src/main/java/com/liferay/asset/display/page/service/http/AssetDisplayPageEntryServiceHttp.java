@@ -14,6 +14,8 @@
 
 package com.liferay.asset.display.page.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.asset.display.page.service.AssetDisplayPageEntryServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -21,8 +23,6 @@ import com.liferay.portal.kernel.security.auth.HttpPrincipal;
 import com.liferay.portal.kernel.service.http.TunnelUtil;
 import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.MethodKey;
-
-import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provides the HTTP utility for the

@@ -152,10 +152,6 @@ public class AssetDisplayPageEntryModelImpl
 
 	public static final long ASSETDISPLAYPAGEENTRYID_COLUMN_BITMASK = 64L;
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
-		com.liferay.asset.display.page.service.util.ServiceProps.get(
-			"lock.expiration.time.com.liferay.asset.display.page.model.AssetDisplayPageEntry"));
-
 	/**
 	 * Converts the soap model instance into a normal model instance.
 	 *
@@ -185,7 +181,6 @@ public class AssetDisplayPageEntryModelImpl
 		model.setLayoutPageTemplateEntryId(
 			soapModel.getLayoutPageTemplateEntryId());
 		model.setType(soapModel.getType());
-		model.setPlid(soapModel.getPlid());
 
 		return model;
 	}
@@ -212,6 +207,10 @@ public class AssetDisplayPageEntryModelImpl
 
 		return models;
 	}
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.asset.display.page.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.asset.display.page.model.AssetDisplayPageEntry"));
 
 	public AssetDisplayPageEntryModelImpl() {
 	}
@@ -904,7 +903,6 @@ public class AssetDisplayPageEntryModelImpl
 		_type = type;
 	}
 
-	@JSON
 	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(
