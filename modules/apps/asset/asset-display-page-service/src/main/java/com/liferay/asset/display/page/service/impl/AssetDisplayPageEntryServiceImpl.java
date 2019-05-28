@@ -18,6 +18,7 @@ import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.asset.display.page.service.base.AssetDisplayPageEntryServiceBaseImpl;
 import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -40,15 +41,15 @@ public class AssetDisplayPageEntryServiceImpl
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(classNameId);
 
-		if (assetRendererFactory.hasPermission(
+		if (!assetRendererFactory.hasPermission(
 				getPermissionChecker(), classPK, ActionKeys.UPDATE)) {
 
-			return assetDisplayPageEntryLocalService.addAssetDisplayPageEntry(
-				userId, groupId, classNameId, classPK,
-				layoutPageTemplateEntryId, type, serviceContext);
+			throw new PrincipalException();
 		}
 
-		return null;
+		return assetDisplayPageEntryLocalService.addAssetDisplayPageEntry(
+			userId, groupId, classNameId, classPK, layoutPageTemplateEntryId,
+			type, serviceContext);
 	}
 
 	@Override
@@ -61,15 +62,15 @@ public class AssetDisplayPageEntryServiceImpl
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(classNameId);
 
-		if (assetRendererFactory.hasPermission(
+		if (!assetRendererFactory.hasPermission(
 				getPermissionChecker(), classPK, ActionKeys.UPDATE)) {
 
-			return assetDisplayPageEntryLocalService.addAssetDisplayPageEntry(
-				userId, groupId, classNameId, classPK,
-				layoutPageTemplateEntryId, serviceContext);
+			throw new PrincipalException();
 		}
 
-		return null;
+		return assetDisplayPageEntryLocalService.addAssetDisplayPageEntry(
+			userId, groupId, classNameId, classPK, layoutPageTemplateEntryId,
+			serviceContext);
 	}
 
 	@Override
@@ -81,12 +82,14 @@ public class AssetDisplayPageEntryServiceImpl
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(classNameId);
 
-		if (assetRendererFactory.hasPermission(
+		if (!assetRendererFactory.hasPermission(
 				getPermissionChecker(), classPK, ActionKeys.DELETE)) {
 
-			assetDisplayPageEntryLocalService.deleteAssetDisplayPageEntry(
-				groupId, classNameId, classPK);
+			throw new PrincipalException();
 		}
+
+		assetDisplayPageEntryLocalService.deleteAssetDisplayPageEntry(
+			groupId, classNameId, classPK);
 	}
 
 	@Override
@@ -98,14 +101,14 @@ public class AssetDisplayPageEntryServiceImpl
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(classNameId);
 
-		if (assetRendererFactory.hasPermission(
+		if (!assetRendererFactory.hasPermission(
 				getPermissionChecker(), classPK, ActionKeys.VIEW)) {
 
-			return assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(
-				groupId, classNameId, classPK);
+			throw new PrincipalException();
 		}
 
-		return null;
+		return assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(
+			groupId, classNameId, classPK);
 	}
 
 	@Override
@@ -142,16 +145,15 @@ public class AssetDisplayPageEntryServiceImpl
 				getAssetRendererFactoryByClassNameId(
 					assetDisplayPageEntry.getClassNameId());
 
-		if (assetRendererFactory.hasPermission(
+		if (!assetRendererFactory.hasPermission(
 				getPermissionChecker(), assetDisplayPageEntry.getClassPK(),
 				ActionKeys.UPDATE)) {
 
-			return assetDisplayPageEntryLocalService.
-				updateAssetDisplayPageEntry(
-					assetDisplayPageEntryId, layoutPageTemplateEntryId, type);
+			throw new PrincipalException();
 		}
 
-		return null;
+		return assetDisplayPageEntryLocalService.updateAssetDisplayPageEntry(
+			assetDisplayPageEntryId, layoutPageTemplateEntryId, type);
 	}
 
 }
