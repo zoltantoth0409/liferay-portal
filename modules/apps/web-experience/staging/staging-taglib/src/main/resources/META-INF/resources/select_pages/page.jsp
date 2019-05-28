@@ -152,35 +152,37 @@
 		</li>
 	</ul>
 
-	<ul class="deletions flex-container layout-selector" id="<portlet:namespace />pagedeletions">
-		<li class="layout-selector-options">
-			<aui:fieldset label="page-deletions">
+	<c:if test="<%= action.equals(Constants.PUBLISH) %>">
+		<ul class="deletions flex-container layout-selector" id="<portlet:namespace />pagedeletions">
+			<li class="layout-selector-options">
+				<aui:fieldset label="page-deletions">
 
-				<%
-				DateRange dateRange = null;
+					<%
+					DateRange dateRange = null;
 
-				if (useRequestValues) {
-					dateRange = ExportImportDateUtil.getDateRange(renderRequest, groupId, privateLayout, 0, null, ExportImportDateUtil.RANGE_FROM_LAST_PUBLISH_DATE);
-				}
-				else {
-					dateRange = ExportImportDateUtil.getDateRange(exportImportConfiguration);
-				}
+					if (useRequestValues) {
+						dateRange = ExportImportDateUtil.getDateRange(renderRequest, groupId, privateLayout, 0, null, ExportImportDateUtil.RANGE_FROM_LAST_PUBLISH_DATE);
+					}
+					else {
+						dateRange = ExportImportDateUtil.getDateRange(exportImportConfiguration);
+					}
 
-				PortletDataContext portletDataContext = PortletDataContextFactoryUtil.createPreparePortletDataContext(company.getCompanyId(), groupId, dateRange.getStartDate(), dateRange.getEndDate());
+					PortletDataContext portletDataContext = PortletDataContextFactoryUtil.createPreparePortletDataContext(company.getCompanyId(), groupId, dateRange.getStartDate(), dateRange.getEndDate());
 
-				long layoutModelDeletionCount = ExportImportHelperUtil.getLayoutModelDeletionCount(portletDataContext, privateLayout);
-				%>
+					long layoutModelDeletionCount = ExportImportHelperUtil.getLayoutModelDeletionCount(portletDataContext, privateLayout);
+					%>
 
-				<liferay-util:buffer
-					var="badgeHTML"
-				>
-					<span class="badge badge-warning deletions"><%= (layoutModelDeletionCount > 0) ? (layoutModelDeletionCount + StringPool.SPACE + LanguageUtil.get(request, "deletions")) : StringPool.BLANK %></span>
-				</liferay-util:buffer>
+					<liferay-util:buffer
+						var="badgeHTML"
+					>
+						<span class="badge badge-warning deletions"><%= (layoutModelDeletionCount > 0) ? (layoutModelDeletionCount + StringPool.SPACE + LanguageUtil.get(request, "deletions")) : StringPool.BLANK %></span>
+					</liferay-util:buffer>
 
-				<span>
-					<aui:input disabled="<%= disableInputs %>" helpMessage="affected-by-the-content-sections-date-range-selector" label='<%= LanguageUtil.get(request, "publish-page-deletions")+ badgeHTML %>' name="<%= PortletDataHandlerKeys.DELETE_LAYOUTS %>" type="checkbox" value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.DELETE_LAYOUTS, false) %>" />
-				</span>
-			</aui:fieldset>
-		</li>
-	</ul>
+					<span>
+						<aui:input disabled="<%= disableInputs %>" helpMessage="affected-by-the-content-sections-date-range-selector" label='<%= LanguageUtil.get(request, "publish-page-deletions")+ badgeHTML %>' name="<%= PortletDataHandlerKeys.DELETE_LAYOUTS %>" type="checkbox" value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.DELETE_LAYOUTS, false) %>" />
+					</span>
+				</aui:fieldset>
+			</li>
+		</ul>
+	</c:if>
 </aui:fieldset>
