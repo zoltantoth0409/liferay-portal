@@ -31,6 +31,7 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureLayoutLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureVersionLocalService;
 import com.liferay.dynamic.data.mapping.util.comparator.StructureLayoutNameComparator;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
@@ -77,8 +78,11 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			Long dataDefinitionId, String keywords, Pagination pagination)
 		throws Exception {
 
-		if (pagination.getPageSize() > _PAGE_SIZE_LIMIT) {
-			throw new BadRequestException("Page size is out of limit");
+		if (pagination.getPageSize() > 250) {
+			throw new BadRequestException(
+				LanguageUtil.format(
+					contextAcceptLanguage.getPreferredLocale(),
+					"page-size-is-greater-than-x", 250));
 		}
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
@@ -116,7 +120,7 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			Long siteId, String keywords, Pagination pagination)
 		throws Exception {
 
-		if (pagination.getPageSize() > _PAGE_SIZE_LIMIT) {
+		if (pagination.getPageSize() > 250) {
 			throw new BadRequestException("Page size is out of limit");
 		}
 
@@ -316,8 +320,6 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 
 		return dataLayout;
 	}
-
-	private static final int _PAGE_SIZE_LIMIT = 250;
 
 	@Reference
 	private DDMStructureLayoutLocalService _ddmStructureLayoutLocalService;

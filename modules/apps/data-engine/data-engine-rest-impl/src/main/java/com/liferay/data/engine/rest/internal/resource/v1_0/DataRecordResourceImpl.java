@@ -118,16 +118,16 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			Long dataRecordCollectionId, Pagination pagination)
 		throws Exception {
 
-		_modelResourcePermission.check(
-			PermissionThreadLocal.getPermissionChecker(),
-			dataRecordCollectionId, DataActionKeys.EXPORT_DATA_RECORDS);
-
 		if (pagination.getPageSize() > 250) {
 			throw new BadRequestException(
 				LanguageUtil.format(
 					contextAcceptLanguage.getPreferredLocale(),
 					"page-size-is-greater-than-x", 250));
 		}
+
+		_modelResourcePermission.check(
+			PermissionThreadLocal.getPermissionChecker(),
+			dataRecordCollectionId, DataActionKeys.EXPORT_DATA_RECORDS);
 
 		return _dataRecordExporter.export(
 			transform(
@@ -142,16 +142,16 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			Long dataRecordCollectionId, Pagination pagination)
 		throws Exception {
 
-		_modelResourcePermission.check(
-			PermissionThreadLocal.getPermissionChecker(),
-			dataRecordCollectionId, DataActionKeys.VIEW_DATA_RECORD);
-
 		if (pagination.getPageSize() > 250) {
 			throw new BadRequestException(
 				LanguageUtil.format(
 					contextAcceptLanguage.getPreferredLocale(),
 					"page-size-cannot-be-bigger-than-x", 250));
 		}
+
+		_modelResourcePermission.check(
+			PermissionThreadLocal.getPermissionChecker(),
+			dataRecordCollectionId, DataActionKeys.VIEW_DATA_RECORD);
 
 		return Page.of(
 			transform(
