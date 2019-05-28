@@ -134,7 +134,7 @@ definition {
 		var key_ratingResult = StringUtil.replace("${ratingResult}", " ", "-");
 		var key_ratingResult = StringUtil.lowerCase("${key_ratingResult}");
 
-		Click(locator1 = "Ratings#RATE_THUMB");
+		Click(locator1 = "Ratings#THUMB");
 	}
 
 	macro selectEntry {
