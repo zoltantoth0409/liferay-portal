@@ -1338,7 +1338,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		accountLocalService.deleteAccount(company.getAccountId());
 
-		// ExpandoColumn
+		// Expando
 
 		DeleteExpandoColumnActionableDynamicQuery
 			deleteExpandoColumnActionableDynamicQuery =
@@ -1347,8 +1347,6 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		deleteExpandoColumnActionableDynamicQuery.performActions();
 
-		// ExpandoTable
-
 		DeleteExpandoTableActionableDynamicQuery
 			deleteExpandoTableActionableDynamicQuery =
 				new DeleteExpandoTableActionableDynamicQuery(
@@ -1356,7 +1354,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		deleteExpandoTableActionableDynamicQuery.performActions();
 
-		// Groups
+		// Group
 
 		DeleteGroupActionableDynamicQuery deleteGroupActionableDynamicQuery =
 			new DeleteGroupActionableDynamicQuery();
@@ -1403,7 +1401,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		layoutSetPrototypeActionableDynamicQuery.performActions();
 
-		// Organizations
+		// Organization
 
 		DeleteOrganizationActionableDynamicQuery
 			deleteOrganizationActionableDynamicQuery =
@@ -1413,7 +1411,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		deleteOrganizationActionableDynamicQuery.performActions();
 
-		// Roles
+		// Role
 
 		ActionableDynamicQuery roleActionableDynamicQuery =
 			roleLocalService.getActionableDynamicQuery();
@@ -1424,7 +1422,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		roleActionableDynamicQuery.performActions();
 
-		// User groups
+		// User group
 
 		DeleteUserGroupActionableDynamicQuery
 			deleteUserGroupActionableDynamicQuery =
@@ -1454,7 +1452,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		portalPreferencesLocalService.deletePortalPreferences(
 			portalPreferences);
 
-		// Portlets
+		// Portlet
 
 		List<Portlet> portlets = portletPersistence.findByCompanyId(companyId);
 
@@ -1464,7 +1462,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		portletLocalService.removeCompanyPortletsPool(companyId);
 
-		// Users
+		// User
 
 		ActionableDynamicQuery userActionableDynamicQuery =
 			userLocalService.getActionableDynamicQuery();
@@ -1490,7 +1488,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		virtualHostLocalService.deleteVirtualHost(companyVirtualHost);
 
-		// SystemEvent
+		// System event
 
 		DeleteSystemEventActionableDynamicQuery
 			deleteSystemEventActionableDynamicQuery =
