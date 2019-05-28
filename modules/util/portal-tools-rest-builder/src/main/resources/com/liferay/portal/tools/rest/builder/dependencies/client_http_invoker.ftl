@@ -81,16 +81,15 @@ public class HttpInvoker {
 	}
 
 	public HttpInvoker parameter(String name, String[] values) {
-		String[] oldArr = _parameters.get(name);
+		String[] oldValues = _parameters.get(name);
 
-		if (oldArr != null) {
-			String[] newArr = new String[oldArr.length + values.length];
+		if (oldValues != null) {
+			String[] newValues = new String[oldValues.length + values.length];
 
-			System.arraycopy(oldArr, 0, newArr, 0, oldArr.length);
+			System.arraycopy(oldValues, 0, newValues, 0, oldValues.length);
+			System.arraycopy(values, 0, newValues, oldValues.length, values.length);
 
-			System.arraycopy(values, 0, newArr, oldArr.length, values.length);
-
-			_parameters.put(name, newArr);
+			_parameters.put(name, newValues);
 		}
 		else {
 			_parameters.put(name, values);
@@ -262,7 +261,7 @@ public class HttpInvoker {
 
 				sb.append(value);
 
-				if (i + 1 < values.length) {
+				if ((i + 1) < values.length) {
 					sb.append("&");
 				}
 			}
