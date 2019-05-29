@@ -5019,6 +5019,9 @@ public class JournalArticleLocalServiceImpl
 						return;
 					}
 
+					indexableActionableDynamicQuery.setCompanyId(
+						article.getCompanyId());
+
 					com.liferay.portal.kernel.search.Document document =
 						indexer.getDocument(article);
 
