@@ -309,11 +309,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>LINK_TO_PAGE_SELECT_PAGE</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//button[contains(.,'Select')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>LOCALIZATION</td>
 	<td>//div[label[contains(.,'${key_fieldName}')]]//div[contains(@class,'localized')]//button[contains(@class,'localized')] | //div[contains(@class,'ddm-container')]//div[contains(@class,'localized')]//button[contains(@class,'localized')]</td>
 	<td></td>
@@ -506,6 +501,11 @@
 <tr>
 	<td>SELECT_CATEGORIES</td>
 	<td>//button[contains(.,'Select Categories')] | //button[@title='Select Categories']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECT_CONTENT</td>
+	<td>//div[@data-fieldname='${key_fieldName}']//button[contains(.,'Select')]</td>
 	<td></td>
 </tr>
 <tr>

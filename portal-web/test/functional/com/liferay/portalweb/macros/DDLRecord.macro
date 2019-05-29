@@ -171,7 +171,7 @@ definition {
 	macro gotoLinkToPageSelect {
 		var key_fieldName = "${fieldName}";
 
-		AssertClick(locator1 = "Button#LINK_TO_PAGE_SELECT_PAGE", value1 = "Select");
+		AssertClick(locator1 = "Button#SELECT_CONTENT", value1 = "Select");
 	}
 
 	macro gotoRecordPreview {
@@ -235,7 +235,7 @@ definition {
 			);
 		}
 		else {
-			AssertClick(locator1 = "Button#LINK_TO_PAGE_SELECT_PAGE", value1 = "Select");
+			AssertClick(locator1 = "Button#SELECT_CONTENT", value1 = "Select");
 		}
 
 		SelectFrame(locator1 = "DocumentsAndMediaSelectDocument#SELECT_DOCUMENT_IFRAME");
@@ -401,7 +401,7 @@ definition {
 		var key_fieldName = "${fieldName}";
 		var key_webContentTitle = "${webContentTitle}";
 
-		AssertClick(locator1 = "Button#LINK_TO_PAGE_SELECT_PAGE", value1 = "Select");
+		AssertClick(locator1 = "Button#SELECT_CONTENT", value1 = "Select");
 
 		SelectFrame(locator1 = "IFrame#DIALOG");
 

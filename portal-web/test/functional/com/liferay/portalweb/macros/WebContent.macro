@@ -612,7 +612,7 @@ definition {
 
 		if (isSet(webContentSelectWCFile)) {
 			AssertClick(
-				locator1 = "Button#LINK_TO_PAGE_SELECT_PAGE",
+				locator1 = "Button#SELECT_CONTENT",
 				value1 = "Select",
 				key_fieldName = "${fieldName}"
 			);
