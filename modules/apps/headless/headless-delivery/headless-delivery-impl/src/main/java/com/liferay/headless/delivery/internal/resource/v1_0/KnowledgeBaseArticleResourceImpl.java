@@ -291,8 +291,8 @@ public class KnowledgeBaseArticleResourceImpl
 				knowledgeBaseArticle.getDescription(), null, null, null,
 				ServiceContextUtil.createServiceContext(
 					knowledgeBaseArticle.getTaxonomyCategoryIds(),
-					knowledgeBaseArticle.getKeywords(),
-					KBArticle.class, contextCompany.getCompanyId(),
+					knowledgeBaseArticle.getKeywords(), KBArticle.class,
+					contextCompany.getCompanyId(),
 					knowledgeBaseArticle.getCustomFields(), siteId,
 					contextAcceptLanguage.getPreferredLocale(),
 					knowledgeBaseArticle.getViewableByAsString())));

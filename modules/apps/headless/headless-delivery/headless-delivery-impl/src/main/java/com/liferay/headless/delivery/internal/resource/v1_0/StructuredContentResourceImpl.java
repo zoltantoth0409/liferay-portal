@@ -366,8 +366,8 @@ public class StructuredContentResourceImpl
 				null,
 				ServiceContextUtil.createServiceContext(
 					structuredContent.getTaxonomyCategoryIds(),
-					structuredContent.getKeywords(),
-					JournalArticle.class, contextCompany.getCompanyId(),
+					structuredContent.getKeywords(), JournalArticle.class,
+					contextCompany.getCompanyId(),
 					structuredContent.getCustomFields(),
 					journalArticle.getGroupId(),
 					contextAcceptLanguage.getPreferredLocale(),
@@ -458,8 +458,8 @@ public class StructuredContentResourceImpl
 				null,
 				ServiceContextUtil.createServiceContext(
 					structuredContent.getTaxonomyCategoryIds(),
-					structuredContent.getKeywords(),
-					JournalArticle.class, contextCompany.getCompanyId(),
+					structuredContent.getKeywords(), JournalArticle.class,
+					contextCompany.getCompanyId(),
 					structuredContent.getCustomFields(),
 					journalArticle.getGroupId(),
 					contextAcceptLanguage.getPreferredLocale(),
@@ -536,8 +536,8 @@ public class StructuredContentResourceImpl
 				0, true, 0, 0, 0, 0, 0, true, true, null,
 				ServiceContextUtil.createServiceContext(
 					structuredContent.getTaxonomyCategoryIds(),
-					structuredContent.getKeywords(),
-					JournalArticle.class, contextCompany.getCompanyId(),
+					structuredContent.getKeywords(), JournalArticle.class,
+					contextCompany.getCompanyId(),
 					structuredContent.getCustomFields(), siteId,
 					contextAcceptLanguage.getPreferredLocale(),
 					structuredContent.getViewableByAsString())));
