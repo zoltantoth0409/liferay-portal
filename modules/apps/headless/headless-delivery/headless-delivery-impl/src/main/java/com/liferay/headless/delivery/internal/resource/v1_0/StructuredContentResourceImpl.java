@@ -38,6 +38,7 @@ import com.liferay.headless.delivery.dto.v1_0.Rating;
 import com.liferay.headless.delivery.dto.v1_0.StructuredContent;
 import com.liferay.headless.delivery.dto.v1_0.converter.DefaultDTOConverterContext;
 import com.liferay.headless.delivery.internal.dto.v1_0.converter.StructuredContentDTOConverter;
+import com.liferay.headless.delivery.internal.dto.v1_0.util.CustomFieldsUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.DDMFormValuesUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.DDMValueUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.EntityFieldsUtil;
@@ -90,6 +91,8 @@ import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
 
+import java.io.Serializable;
+
 import java.time.LocalDateTime;
 
 import java.util.AbstractMap;
@@ -98,6 +101,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -374,11 +378,9 @@ public class StructuredContentResourceImpl
 				null,
 				ServiceContextUtil.createServiceContext(
 					structuredContent.getTaxonomyCategoryIds(),
-					structuredContent.getKeywords(), JournalArticle.class,
-					contextCompany.getCompanyId(),
-					structuredContent.getCustomFields(),
+					structuredContent.getKeywords(),
+					_getExpandoBridgeAttributes(structuredContent),
 					journalArticle.getGroupId(),
-					contextAcceptLanguage.getPreferredLocale(),
 					structuredContent.getViewableByAsString())));
 	}
 
@@ -466,11 +468,9 @@ public class StructuredContentResourceImpl
 				null,
 				ServiceContextUtil.createServiceContext(
 					structuredContent.getTaxonomyCategoryIds(),
-					structuredContent.getKeywords(), JournalArticle.class,
-					contextCompany.getCompanyId(),
-					structuredContent.getCustomFields(),
+					structuredContent.getKeywords(),
+					_getExpandoBridgeAttributes(structuredContent),
 					journalArticle.getGroupId(),
-					contextAcceptLanguage.getPreferredLocale(),
 					structuredContent.getViewableByAsString())));
 	}
 
@@ -544,10 +544,8 @@ public class StructuredContentResourceImpl
 				0, true, 0, 0, 0, 0, 0, true, true, null,
 				ServiceContextUtil.createServiceContext(
 					structuredContent.getTaxonomyCategoryIds(),
-					structuredContent.getKeywords(), JournalArticle.class,
-					contextCompany.getCompanyId(),
-					structuredContent.getCustomFields(), siteId,
-					contextAcceptLanguage.getPreferredLocale(),
+					structuredContent.getKeywords(),
+					_getExpandoBridgeAttributes(structuredContent), siteId,
 					structuredContent.getViewableByAsString())));
 	}
 
@@ -631,6 +629,15 @@ public class StructuredContentResourceImpl
 		DDMTemplate ddmTemplate = ddmTemplates.get(0);
 
 		return ddmTemplate.getTemplateKey();
+	}
+
+	private Map<String, Serializable> _getExpandoBridgeAttributes(
+		StructuredContent structuredContent) {
+
+		return CustomFieldsUtil.toMap(
+			JournalArticle.class, contextCompany.getCompanyId(),
+			structuredContent.getCustomFields(),
+			contextAcceptLanguage.getPreferredLocale());
 	}
 
 	private List<DDMFormField> _getRootDDMFormFields(

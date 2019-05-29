@@ -22,6 +22,7 @@ import com.liferay.headless.delivery.dto.v1_0.MessageBoardMessage;
 import com.liferay.headless.delivery.dto.v1_0.Rating;
 import com.liferay.headless.delivery.dto.v1_0.converter.DefaultDTOConverterContext;
 import com.liferay.headless.delivery.internal.dto.v1_0.converter.MessageBoardMessageDTOConverter;
+import com.liferay.headless.delivery.internal.dto.v1_0.util.CustomFieldsUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.EntityFieldsUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.RatingUtil;
 import com.liferay.headless.delivery.internal.odata.entity.v1_0.MessageBoardMessageEntityModel;
@@ -48,7 +49,10 @@ import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
 
+import java.io.Serializable;
+
 import java.util.Collections;
+import java.util.Map;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Context;
@@ -201,9 +205,8 @@ public class MessageBoardMessageResourceImpl
 			messageBoardMessageId, headline,
 			messageBoardMessage.getArticleBody(),
 			ServiceContextUtil.createServiceContext(
-				MBMessage.class, contextCompany.getCompanyId(),
-				messageBoardMessage.getCustomFields(), mbMessage.getGroupId(),
-				contextAcceptLanguage.getPreferredLocale(),
+				_getExpandoBridgeAttributes(messageBoardMessage),
+				mbMessage.getGroupId(),
 				messageBoardMessage.getViewableByAsString()));
 
 		_updateAnswer(mbMessage, messageBoardMessage);
@@ -244,15 +247,22 @@ public class MessageBoardMessageResourceImpl
 			GetterUtil.getBoolean(messageBoardMessage.getAnonymous()), 0.0,
 			false,
 			ServiceContextUtil.createServiceContext(
-				MBMessage.class, contextCompany.getCompanyId(),
-				messageBoardMessage.getCustomFields(),
+				_getExpandoBridgeAttributes(messageBoardMessage),
 				parentMBMessage.getGroupId(),
-				contextAcceptLanguage.getPreferredLocale(),
 				messageBoardMessage.getViewableByAsString()));
 
 		_updateAnswer(mbMessage, messageBoardMessage);
 
 		return _toMessageBoardMessage(mbMessage);
+	}
+
+	private Map<String, Serializable> _getExpandoBridgeAttributes(
+		MessageBoardMessage messageBoardMessage) {
+
+		return CustomFieldsUtil.toMap(
+			MBMessage.class, contextCompany.getCompanyId(),
+			messageBoardMessage.getCustomFields(),
+			contextAcceptLanguage.getPreferredLocale());
 	}
 
 	private Page<MessageBoardMessage> _getMessageBoardMessagesPage(

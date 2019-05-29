@@ -20,9 +20,11 @@ import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.expando.kernel.service.ExpandoColumnLocalService;
 import com.liferay.expando.kernel.service.ExpandoTableLocalService;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
+import com.liferay.headless.delivery.dto.v1_0.CustomField;
 import com.liferay.headless.delivery.dto.v1_0.DocumentFolder;
 import com.liferay.headless.delivery.dto.v1_0.converter.DefaultDTOConverterContext;
 import com.liferay.headless.delivery.internal.dto.v1_0.converter.DocumentFolderDTOConverter;
+import com.liferay.headless.delivery.internal.dto.v1_0.util.CustomFieldsUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.EntityFieldsUtil;
 import com.liferay.headless.delivery.internal.odata.entity.v1_0.DocumentFolderEntityModel;
 import com.liferay.headless.delivery.resource.v1_0.DocumentFolderResource;
@@ -41,7 +43,6 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
 
-import java.util.Map;
 import java.util.Optional;
 
 import javax.ws.rs.core.MultivaluedMap;
@@ -175,10 +176,11 @@ public class DocumentFolderResourceImpl
 				siteId, parentDocumentFolderId, documentFolder.getName(),
 				documentFolder.getDescription(),
 				ServiceContextUtil.createServiceContext(
-					DLFolder.class, contextCompany.getCompanyId(),
-					documentFolder.getCustomFields(), siteId,
-					contextAcceptLanguage.getPreferredLocale(),
-					documentFolder.getViewableByAsString())));
+					CustomFieldsUtil.toMap(
+						DLFolder.class, contextCompany.getCompanyId(),
+						documentFolder.getCustomFields(),
+						contextAcceptLanguage.getPreferredLocale()),
+					siteId, documentFolder.getViewableByAsString())));
 	}
 
 	private Page<DocumentFolder> _getDocumentFoldersPage(
@@ -220,7 +222,7 @@ public class DocumentFolderResourceImpl
 	}
 
 	private DocumentFolder _updateDocumentFolder(
-			Long documentFolderId, Map<String, Object> customFields,
+			Long documentFolderId, CustomField[] customFields,
 			String description, String name)
 		throws Exception {
 
@@ -228,8 +230,11 @@ public class DocumentFolderResourceImpl
 			_dlAppService.updateFolder(
 				documentFolderId, name, description,
 				ServiceContextUtil.createServiceContext(
-					DLFolder.class, contextCompany.getCompanyId(), customFields,
-					0, contextAcceptLanguage.getPreferredLocale(), null)));
+					CustomFieldsUtil.toMap(
+						DLFolder.class, contextCompany.getCompanyId(),
+						customFields,
+						contextAcceptLanguage.getPreferredLocale()),
+					0, null)));
 	}
 
 	@Reference

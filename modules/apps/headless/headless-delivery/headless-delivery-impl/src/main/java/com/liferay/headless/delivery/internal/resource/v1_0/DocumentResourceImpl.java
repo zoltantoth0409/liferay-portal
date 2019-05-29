@@ -23,10 +23,12 @@ import com.liferay.expando.kernel.service.ExpandoColumnLocalService;
 import com.liferay.expando.kernel.service.ExpandoTableLocalService;
 import com.liferay.headless.common.spi.resource.SPIRatingResource;
 import com.liferay.headless.common.spi.service.context.ServiceContextUtil;
+import com.liferay.headless.delivery.dto.v1_0.CustomField;
 import com.liferay.headless.delivery.dto.v1_0.Document;
 import com.liferay.headless.delivery.dto.v1_0.Rating;
 import com.liferay.headless.delivery.dto.v1_0.converter.DefaultDTOConverterContext;
 import com.liferay.headless.delivery.internal.dto.v1_0.converter.DocumentDTOConverter;
+import com.liferay.headless.delivery.internal.dto.v1_0.util.CustomFieldsUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.EntityFieldsUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.RatingUtil;
 import com.liferay.headless.delivery.internal.odata.entity.v1_0.DocumentEntityModel;
@@ -54,6 +56,8 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
+
+import java.io.Serializable;
 
 import java.util.Map;
 import java.util.Optional;
@@ -213,11 +217,9 @@ public class DocumentResourceImpl
 				),
 				null, false, binaryFile.getInputStream(), binaryFile.getSize(),
 				ServiceContextUtil.createServiceContext(
-					categoryIds, keywords, DLFileEntry.class,
-					contextCompany.getCompanyId(),
-					_getExpandoBridgeAttributes(documentOptional),
+					categoryIds, keywords,
+					_getExpandoBridgeAttributes1(documentOptional),
 					existingFileEntry.getGroupId(),
-					contextAcceptLanguage.getPreferredLocale(),
 					documentOptional.map(
 						Document::getViewableBy
 					).map(
@@ -307,10 +309,8 @@ public class DocumentResourceImpl
 					).orElse(
 						new String[0]
 					),
-					DLFileEntry.class, contextCompany.getCompanyId(),
-					_getExpandoBridgeAttributes(documentOptional),
+					_getExpandoBridgeAttributes1(documentOptional),
 					existingFileEntry.getGroupId(),
-					contextAcceptLanguage.getPreferredLocale(),
 					documentOptional.map(
 						Document::getViewableByAsString
 					).orElse(
@@ -369,9 +369,7 @@ public class DocumentResourceImpl
 					).orElse(
 						null
 					),
-					DLFileEntry.class, contextCompany.getCompanyId(),
-					_getExpandoBridgeAttributes(documentOptional), groupId,
-					contextAcceptLanguage.getPreferredLocale(),
+					_getExpandoBridgeAttributes1(documentOptional), groupId,
 					documentOptional.map(
 						Document::getViewableByAsString
 					).orElse(
@@ -397,7 +395,7 @@ public class DocumentResourceImpl
 			sorts);
 	}
 
-	private Map<String, Object> _getExpandoBridgeAttributes(
+	private CustomField[] _getExpandoBridgeAttributes(
 		Optional<Document> documentOptional) {
 
 		return documentOptional.map(
@@ -405,6 +403,15 @@ public class DocumentResourceImpl
 		).orElse(
 			null
 		);
+	}
+
+	private Map<String, Serializable> _getExpandoBridgeAttributes1(
+		Optional<Document> documentOptional) {
+
+		return CustomFieldsUtil.toMap(
+			DLFileEntry.class, contextCompany.getCompanyId(),
+			_getExpandoBridgeAttributes(documentOptional),
+			contextAcceptLanguage.getPreferredLocale());
 	}
 
 	private SPIRatingResource<Rating> _getSPIRatingResource() {
