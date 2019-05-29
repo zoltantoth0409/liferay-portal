@@ -285,7 +285,6 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		searchSearchRequest.setGroupBy(searchContext.getGroupBy());
 		searchSearchRequest.setGroupByRequests(
 			searchRequest.getGroupByRequests());
-
 		searchSearchRequest.setHighlightEnabled(
 			queryConfig.isHighlightEnabled());
 		searchSearchRequest.setHighlightFieldNames(
