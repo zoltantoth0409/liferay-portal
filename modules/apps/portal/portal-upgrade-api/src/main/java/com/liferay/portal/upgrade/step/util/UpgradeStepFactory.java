@@ -98,13 +98,13 @@ public class UpgradeStepFactory {
 	}
 
 	private static UpgradeProcess.Alterable[] _getAlterables(
-		Function<String, UpgradeProcess.Alterable> alterableFunction,
+		Function<String, UpgradeProcess.Alterable> alterableBiFunction,
 		String... alterableStrings) {
 
 		return Arrays.stream(
 			alterableStrings
 		).map(
-			alterableFunction
+			alterableBiFunction
 		).toArray(
 			UpgradeProcess.Alterable[]::new
 		);
