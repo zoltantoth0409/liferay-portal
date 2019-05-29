@@ -268,6 +268,7 @@ public class RoleDisplayContext {
 		String name = role.getName();
 
 		if (!name.equals(RoleConstants.ADMINISTRATOR) &&
+			!name.equals(RoleConstants.ANALYTICS_ADMINISTRATOR) &&
 			!name.equals(RoleConstants.ORGANIZATION_ADMINISTRATOR) &&
 			!name.equals(RoleConstants.ORGANIZATION_OWNER) &&
 			!name.equals(RoleConstants.OWNER) &&
