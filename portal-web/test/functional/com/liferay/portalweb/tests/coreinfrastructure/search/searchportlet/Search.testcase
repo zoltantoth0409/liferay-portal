@@ -1829,7 +1829,7 @@ definition {
 	@description = "This is a use case for LPS-74299."
 	@priority = "3"
 	test ViewFacetPersistence {
-		property test.name.skip.portal.instance = "SearchUsecase#ViewFacetPersistence";
+		property test.name.skip.portal.instance = "Search#ViewFacetPersistence";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2350,7 +2350,7 @@ definition {
 	@priority = "5"
 	test ViewSearchResultDetails {
 		property portal.acceptance = "true";
-		property test.name.skip.portal.instance = "SearchUsecase#ViewSearchResultDetails";
+		property test.name.skip.portal.instance = "Search#ViewSearchResultDetails";
 
 		SearchPortlets.searchEmbedded(searchTerm = "Test Test");
 
