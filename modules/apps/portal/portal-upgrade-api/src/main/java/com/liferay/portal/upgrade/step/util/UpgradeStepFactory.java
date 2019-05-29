@@ -84,26 +84,27 @@ public class UpgradeStepFactory {
 	}
 
 	private static UpgradeProcess.Alterable[] _getAlterables(
-		BiFunction<String, String, UpgradeProcess.Alterable> alterableFunction,
+		BiFunction<String, String, UpgradeProcess.Alterable>
+			alterableBiFunction,
 		String newType, String... columnNames) {
 
 		return Arrays.stream(
 			columnNames
 		).map(
-			columnName -> alterableFunction.apply(columnName, newType)
+			columnName -> alterableBiFunction.apply(columnName, newType)
 		).toArray(
 			UpgradeProcess.Alterable[]::new
 		);
 	}
 
 	private static UpgradeProcess.Alterable[] _getAlterables(
-		Function<String, UpgradeProcess.Alterable> alterableFunction,
+		Function<String, UpgradeProcess.Alterable> alterableBiFunction,
 		String... alterableStrings) {
 
 		return Arrays.stream(
 			alterableStrings
 		).map(
-			alterableFunction
+			alterableBiFunction
 		).toArray(
 			UpgradeProcess.Alterable[]::new
 		);
