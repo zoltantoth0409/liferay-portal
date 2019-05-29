@@ -6421,8 +6421,8 @@ public class JournalArticleLocalServiceImpl
 		return searchContext;
 	}
 
-	protected void checkArticlesByCompanyAndExpirationDate(
-			Company company, Date expirationDate, Date nextExpirationDate)
+	protected void checkArticlesByCompanyIdAndExpirationDate(
+			long companyId, Date expirationDate, Date nextExpirationDate)
 		throws PortalException {
 
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
@@ -6450,14 +6450,14 @@ public class JournalArticleLocalServiceImpl
 				dynamicQuery.add(
 					statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
 			});
-		indexableActionableDynamicQuery.setCompanyId(company.getCompanyId());
+		indexableActionableDynamicQuery.setCompanyId(companyId);
 		indexableActionableDynamicQuery.setPerformActionMethod(
 			(JournalArticle article) -> {
 				if (_log.isDebugEnabled()) {
 					_log.debug("Expiring article " + article.getId());
 				}
 
-				if (isExpireAllArticleVersions(article.getCompanyId())) {
+				if (isExpireAllArticleVersions(companyId)) {
 					List<JournalArticle> currentArticles =
 						journalArticlePersistence.findByG_A(
 							article.getGroupId(), article.getArticleId(),
@@ -6582,8 +6582,8 @@ public class JournalArticleLocalServiceImpl
 		}
 
 		for (Company company : companyLocalService.getCompanies(false)) {
-			checkArticlesByCompanyAndExpirationDate(
-				company, expirationDate, nextExpirationDate);
+			checkArticlesByCompanyIdAndExpirationDate(
+				company.getCompanyId(), expirationDate, nextExpirationDate);
 		}
 
 		if (_previousCheckDate == null) {
