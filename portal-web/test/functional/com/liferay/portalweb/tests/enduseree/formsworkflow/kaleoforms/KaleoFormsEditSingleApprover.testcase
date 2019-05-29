@@ -109,6 +109,7 @@ definition {
 	test CompleteProcessAndViewEmailNotifications {
 		property test.assert.javascript.errors = "false";
 		property test.smtp.server.enabled = "true";
+		property test.name.skip.portal.instance = "KaleoFormsEditSingleApprover#CompleteProcessAndViewEmailNotifications";
 
 		ProductMenu.gotoPortlet(
 			category = "Users",

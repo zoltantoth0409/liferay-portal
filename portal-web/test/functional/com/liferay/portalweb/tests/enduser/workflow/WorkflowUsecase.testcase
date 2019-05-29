@@ -387,6 +387,7 @@ definition {
 	test AddDDLRecordWithDoubleApproverDefinition {
 		property portal.acceptance = "false";
 		property testray.component.names = "Training";
+		property test.name.skip.portal.instance = "WorkflowUsecase#AddDDLRecordWithDoubleApproverDefinition";
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

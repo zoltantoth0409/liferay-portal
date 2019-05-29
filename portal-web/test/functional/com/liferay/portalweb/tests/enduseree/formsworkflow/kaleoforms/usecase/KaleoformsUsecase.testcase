@@ -4128,6 +4128,8 @@ definition {
 
 	@priority = "4"
 	test EditProcessWorkflowBeforeFormSubmission {
+		property test.name.skip.portal.instance = "KaleoformsUsecase#EditProcessWorkflowBeforeFormSubmission";
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",

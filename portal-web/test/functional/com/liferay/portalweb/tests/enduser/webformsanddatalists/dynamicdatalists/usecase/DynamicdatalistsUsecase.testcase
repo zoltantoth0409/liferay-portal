@@ -89,6 +89,8 @@ definition {
 	@description = "This is a use case for LPS-50557."
 	@priority = "4"
 	test AddListWithXSSWorkflowDefinition {
+		property test.name.skip.portal.instance = "DynamicdatalistsUsecase#AddListWithXSSWorkflowDefinition";
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
