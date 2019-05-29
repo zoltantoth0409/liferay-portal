@@ -103,9 +103,18 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 
 		String ddmTemplateKey = null;
 
+		double version = 0;
+
 		if (i > 0) {
 			urlTitle = initialURL.substring(0, i);
-			ddmTemplateKey = initialURL.substring(i + 1);
+			String param = initialURL.substring(i + 1);
+
+			if (param.contains(StringPool.PERIOD)) {
+				version = Double.valueOf(param);
+			}
+			else {
+				ddmTemplateKey = param;
+			}
 
 			friendlyURL =
 				JournalArticleConstants.CANONICAL_URL_SEPARATOR + urlTitle;
@@ -116,18 +125,29 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 		String normalizedUrlTitle =
 			FriendlyURLNormalizerUtil.normalizeWithEncoding(decodedUrlTitle);
 
-		JournalArticle journalArticle =
-			_journalArticleLocalService.fetchLatestArticleByUrlTitle(
-				groupId, normalizedUrlTitle, WorkflowConstants.STATUS_APPROVED);
+		JournalArticle journalArticle = null;
+
+		if (version > 0) {
+			journalArticle = _journalArticleLocalService.fetchArticleByUrlTitle(
+				groupId, normalizedUrlTitle, version);
+		}
+		else {
+			journalArticle =
+				_journalArticleLocalService.fetchLatestArticleByUrlTitle(
+					groupId, normalizedUrlTitle,
+					WorkflowConstants.STATUS_APPROVED);
+		}
 
 		if (journalArticle == null) {
-			PermissionChecker permissionChecker =
-				PermissionThreadLocal.getPermissionChecker();
-
 			journalArticle =
 				_journalArticleLocalService.getLatestArticleByUrlTitle(
 					groupId, normalizedUrlTitle,
 					WorkflowConstants.STATUS_PENDING);
+		}
+
+		if (!journalArticle.isApproved()) {
+			PermissionChecker permissionChecker =
+				PermissionThreadLocal.getPermissionChecker();
 
 			if (!WorkflowPermissionUtil.hasPermission(
 					permissionChecker, groupId,
