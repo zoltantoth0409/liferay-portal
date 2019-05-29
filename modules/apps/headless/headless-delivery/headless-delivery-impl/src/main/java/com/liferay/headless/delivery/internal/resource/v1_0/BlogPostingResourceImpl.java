@@ -27,6 +27,7 @@ import com.liferay.headless.delivery.dto.v1_0.Rating;
 import com.liferay.headless.delivery.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.delivery.dto.v1_0.converter.DefaultDTOConverterContext;
 import com.liferay.headless.delivery.internal.dto.v1_0.converter.BlogPostingDTOConverter;
+import com.liferay.headless.delivery.internal.dto.v1_0.util.CustomFieldsUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.EntityFieldsUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.RatingUtil;
 import com.liferay.headless.delivery.internal.odata.entity.v1_0.BlogPostingEntityModel;
@@ -50,8 +51,11 @@ import com.liferay.portal.vulcan.util.LocalDateTimeUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
 
+import java.io.Serializable;
+
 import java.time.LocalDateTime;
 
+import java.util.Map;
 import java.util.Optional;
 
 import javax.ws.rs.BadRequestException;
@@ -174,10 +178,8 @@ public class BlogPostingResourceImpl
 				null,
 				ServiceContextUtil.createServiceContext(
 					blogPosting.getTaxonomyCategoryIds(),
-					blogPosting.getKeywords(), BlogsEntry.class,
-					contextCompany.getCompanyId(),
-					blogPosting.getCustomFields(), siteId,
-					contextAcceptLanguage.getPreferredLocale(),
+					blogPosting.getKeywords(),
+					_getExpandoBridgeAttributes(blogPosting), siteId,
 					blogPosting.getViewableByAsString())));
 	}
 
@@ -215,10 +217,9 @@ public class BlogPostingResourceImpl
 				null,
 				ServiceContextUtil.createServiceContext(
 					blogPosting.getTaxonomyCategoryIds(),
-					blogPosting.getKeywords(), BlogsEntry.class,
-					contextCompany.getCompanyId(),
-					blogPosting.getCustomFields(), blogsEntry.getGroupId(),
-					contextAcceptLanguage.getPreferredLocale(),
+					blogPosting.getKeywords(),
+					_getExpandoBridgeAttributes(blogPosting),
+					blogsEntry.getGroupId(),
 					blogPosting.getViewableByAsString())));
 	}
 
@@ -257,6 +258,15 @@ public class BlogPostingResourceImpl
 					taxonomyCategories, TaxonomyCategory::getTaxonomyCategoryId,
 					Long[].class));
 		}
+	}
+
+	private Map<String, Serializable> _getExpandoBridgeAttributes(
+		BlogPosting blogPosting) {
+
+		return CustomFieldsUtil.toMap(
+			BlogsEntry.class, contextCompany.getCompanyId(),
+			blogPosting.getCustomFields(),
+			contextAcceptLanguage.getPreferredLocale());
 	}
 
 	private ImageSelector _getImageSelector(Long imageId) {
