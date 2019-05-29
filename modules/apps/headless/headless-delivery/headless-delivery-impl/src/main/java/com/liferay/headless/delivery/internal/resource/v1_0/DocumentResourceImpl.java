@@ -202,8 +202,7 @@ public class DocumentResourceImpl
 				).orElse(
 					existingFileEntry.getDescription()
 				),
-				null, false,
-				binaryFile.getInputStream(), binaryFile.getSize(),
+				null, false, binaryFile.getInputStream(), binaryFile.getSize(),
 				ServiceContextUtil.createServiceContext(
 					keywords, categoryIds, DLFileEntry.class,
 					contextCompany.getCompanyId(),
@@ -287,8 +286,7 @@ public class DocumentResourceImpl
 				).orElse(
 					null
 				),
-				null, false,
-				binaryFile.getInputStream(), binaryFile.getSize(),
+				null, false, binaryFile.getInputStream(), binaryFile.getSize(),
 				ServiceContextUtil.createServiceContext(
 					documentOptional.map(
 						Document::getKeywords
