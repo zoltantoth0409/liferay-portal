@@ -75,7 +75,7 @@ public class MBMessageStagedModelDataHandlerTest
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testDeleteAttachment() throws Exception {
+	public void testDeleteAttachmentFileEntry() throws Exception {
 		Map<String, List<StagedModel>> dependentStagedModelsMap =
 			addDependentStagedModelsMap(stagingGroup);
 
@@ -93,11 +93,11 @@ public class MBMessageStagedModelDataHandlerTest
 		List<FileEntry> attachmentsFileEntries =
 			importedMBMessage.getAttachmentsFileEntries();
 
-		FileEntry attachment = attachmentsFileEntries.get(0);
+		FileEntry attachmentFileEntry = attachmentsFileEntries.get(0);
 
 		MBMessageLocalServiceUtil.moveMessageAttachmentToTrash(
 			mbMessage.getUserId(), mbMessage.getMessageId(),
-			attachment.getFileName());
+			attachmentFileEntry.getFileName());
 
 		exportImportStagedModel(mbMessage);
 
