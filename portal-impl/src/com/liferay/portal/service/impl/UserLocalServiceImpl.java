@@ -6486,6 +6486,15 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		PortletPreferences companyPortletPreferences =
 			PrefsPropsUtil.getPreferences(companyId, true);
 
+		Company company = null;
+
+		try {
+			company = companyLocalService.getCompany(user.getCompanyId());
+		}
+		catch (PortalException pe) {
+			throw new SystemException(pe);
+		}
+
 		String bodyProperty = null;
 		String prefix = null;
 		String subjectProperty = null;
@@ -6495,10 +6504,15 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			prefix = "adminEmailPasswordReset";
 			subjectProperty = PropsKeys.ADMIN_EMAIL_PASSWORD_RESET_SUBJECT;
 		}
-		else {
+		else if (company.isSendPassword()) {
 			bodyProperty = PropsKeys.ADMIN_EMAIL_PASSWORD_SENT_BODY;
 			prefix = "adminEmailPasswordSent";
 			subjectProperty = PropsKeys.ADMIN_EMAIL_PASSWORD_SENT_SUBJECT;
+		}
+		else {
+			bodyProperty = PropsKeys.ADMIN_EMAIL_PASSWORD_CHANGED_BODY;
+			prefix = "adminEmailPasswordChanged";
+			subjectProperty = PropsKeys.ADMIN_EMAIL_PASSWORD_CHANGED_SUBJECT;
 		}
 
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
