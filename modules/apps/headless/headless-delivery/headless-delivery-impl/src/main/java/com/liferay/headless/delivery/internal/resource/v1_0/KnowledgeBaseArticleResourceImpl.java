@@ -22,6 +22,7 @@ import com.liferay.headless.delivery.dto.v1_0.KnowledgeBaseArticle;
 import com.liferay.headless.delivery.dto.v1_0.Rating;
 import com.liferay.headless.delivery.dto.v1_0.converter.DefaultDTOConverterContext;
 import com.liferay.headless.delivery.internal.dto.v1_0.converter.KnowledgeBaseArticleDTOConverter;
+import com.liferay.headless.delivery.internal.dto.v1_0.util.CustomFieldsUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.EntityFieldsUtil;
 import com.liferay.headless.delivery.internal.dto.v1_0.util.RatingUtil;
 import com.liferay.headless.delivery.internal.odata.entity.v1_0.KnowledgeBaseArticleEntityModel;
@@ -51,6 +52,9 @@ import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
 
+import java.io.Serializable;
+
+import java.util.Map;
 import java.util.Optional;
 
 import javax.ws.rs.core.Context;
@@ -267,10 +271,8 @@ public class KnowledgeBaseArticleResourceImpl
 					).orElse(
 						new String[0]
 					),
-					KBArticle.class, contextCompany.getCompanyId(),
-					knowledgeBaseArticle.getCustomFields(),
+					_getExpandoBridgeAttributes(knowledgeBaseArticle),
 					knowledgeBaseArticle.getSiteId(),
-					contextAcceptLanguage.getPreferredLocale(),
 					knowledgeBaseArticle.getViewableByAsString())));
 	}
 
@@ -283,6 +285,15 @@ public class KnowledgeBaseArticleResourceImpl
 
 		return spiRatingResource.addOrUpdateRating(
 			rating.getRatingValue(), knowledgeBaseArticleId);
+	}
+
+	private Map<String, Serializable> _getExpandoBridgeAttributes(
+		KnowledgeBaseArticle knowledgeBaseArticle) {
+
+		return CustomFieldsUtil.toMap(
+			KBArticle.class, contextCompany.getCompanyId(),
+			knowledgeBaseArticle.getCustomFields(),
+			contextAcceptLanguage.getPreferredLocale());
 	}
 
 	private KnowledgeBaseArticle _getKnowledgeBaseArticle(
@@ -300,10 +311,8 @@ public class KnowledgeBaseArticleResourceImpl
 				knowledgeBaseArticle.getDescription(), null, null, null,
 				ServiceContextUtil.createServiceContext(
 					knowledgeBaseArticle.getTaxonomyCategoryIds(),
-					knowledgeBaseArticle.getKeywords(), KBArticle.class,
-					contextCompany.getCompanyId(),
-					knowledgeBaseArticle.getCustomFields(), siteId,
-					contextAcceptLanguage.getPreferredLocale(),
+					knowledgeBaseArticle.getKeywords(),
+					_getExpandoBridgeAttributes(knowledgeBaseArticle), siteId,
 					knowledgeBaseArticle.getViewableByAsString())));
 	}
 
