@@ -216,7 +216,7 @@ JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalE
 </liferay-portlet:renderURL>
 
 <aui:script use="liferay-portlet-journal">
-	new Liferay.Portlet.Journal(
+	var journal = new Liferay.Portlet.Journal(
 		{
 			article: {
 				editUrl: '<%= journalEditArticleDisplayContext.getEditArticleURL() %>',
@@ -233,4 +233,14 @@ JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalE
 			'strings.saveAsDraftBeforePreview': '<liferay-ui:message key="in-order-to-preview-your-changes,-the-web-content-is-saved-as-a-draft" />'
 		}
 	);
+
+	var onDestroyPortlet = function(event) {
+		if (event.portletId === '<%= portletDisplay.getRootPortletId() %>') {
+			journal.destroy();
+
+			Liferay.detach('destroyPortlet', onDestroyPortlet);
+		}
+	};
+
+	Liferay.on('destroyPortlet', onDestroyPortlet);
 </aui:script>
