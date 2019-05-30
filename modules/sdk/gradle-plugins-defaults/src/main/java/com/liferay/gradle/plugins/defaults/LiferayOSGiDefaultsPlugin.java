@@ -2220,8 +2220,11 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		final Project project, final LiferayExtension liferayExtension) {
 
 		final Logger logger = project.getLogger();
+
 		final boolean compilingJSP = GradleUtil.hasStartParameterTask(
 			project, JspCPlugin.COMPILE_JSP_TASK_NAME);
+		final boolean jspPrecompileFromSource = GradleUtil.getProperty(
+			project, "jsp.precompile.from.source", true);
 
 		GradleInternal gradleInternal = (GradleInternal)project.getGradle();
 
@@ -2275,7 +2278,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 								configuration, externalModuleDependency,
 								taglibProject);
 						}
-						else {
+						else if (jspPrecompileFromSource) {
 							Map<String, String> args = new HashMap<>();
 
 							args.put("group", group);
