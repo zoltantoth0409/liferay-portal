@@ -70,8 +70,8 @@ public class JournalDefaultTemplateProviderImpl
 		for (TemplateVariableDefinition templateVariableDefinition :
 				templateVariableDefinitions) {
 
-			String code = templateVariableDefinition.generateCode(
-				getLanguage())[0];
+			String code =
+				templateVariableDefinition.generateCode(getLanguage())[0];
 
 			sb.append("<dt>");
 			sb.append(templateVariableDefinition.getLabel());
