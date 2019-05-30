@@ -213,15 +213,15 @@ public class AssetPublisherPortletToolbarContributor
 			curGroupId = group.getLiveGroupId();
 		}
 
-		boolean addDisplayPageParameter =
-			_assetPublisherWebUtil.isDefaultAssetPublisher(
-				themeDisplay.getLayout(), portletDisplay.getId(),
-				assetPublisherDisplayContext.getPortletResource());
-
 		PortletURL portletURL = assetPublisherAddItemHolder.getPortletURL();
 
 		portletURL.setParameter(
 			"portletResource", AssetPublisherPortletKeys.ASSET_PUBLISHER);
+
+		boolean addDisplayPageParameter =
+			_assetPublisherWebUtil.isDefaultAssetPublisher(
+				themeDisplay.getLayout(), portletDisplay.getId(),
+				assetPublisherDisplayContext.getPortletResource());
 
 		String url = _assetHelper.getAddURLPopUp(
 			curGroupId, themeDisplay.getPlid(), portletURL,
