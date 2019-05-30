@@ -73,6 +73,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.portlet.WindowState;
 
@@ -442,7 +443,18 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 
 		Locale locale = _portal.getLocale(request);
 
-		actualParams.put(namespace + "urlTitle", new String[] {urlTitle});
+		AssetEntry assetEntry = Optional.ofNullable(
+			_assetEntryLocalService.fetchEntry(
+				JournalArticle.class.getName(), journalArticle.getPrimaryKey())
+		).orElse(
+			assetRendererFactory.getAssetEntry(
+				JournalArticle.class.getName(),
+				journalArticle.getResourcePrimKey())
+		);
+
+		actualParams.put(
+			namespace + "assetEntryId",
+			new String[] {String.valueOf(assetEntry.getEntryId())});
 
 		if (Validator.isNotNull(ddmTemplateKey)) {
 			actualParams.put(
