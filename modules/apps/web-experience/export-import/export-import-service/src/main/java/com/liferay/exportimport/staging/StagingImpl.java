@@ -1344,8 +1344,10 @@ public class StagingImpl implements Staging {
 					return true;
 				}
 			}
-			catch (PortalException e) {
-				_log.warn("Couldn't find Global group.");
+			catch (PortalException pe) {
+				if (_log.isWarnEnabled()) {
+					_log.warn("Global group not found", pe);
+				}
 			}
 
 			return false;
