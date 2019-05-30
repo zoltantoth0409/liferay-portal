@@ -121,6 +121,8 @@ public class EditLayoutMVCActionCommand extends BaseMVCActionCommand {
 		Layout layout = _layoutLocalService.getLayout(
 			groupId, privateLayout, layoutId);
 
+		String oldFriendlyURL = layout.getFriendlyURL();
+
 		Collection<String> values = friendlyURLMap.values();
 
 		values.removeIf(value -> Validator.isNull(value));
@@ -130,7 +132,6 @@ public class EditLayoutMVCActionCommand extends BaseMVCActionCommand {
 		}
 
 		String currentType = layout.getType();
-		String oldFriendlyURL = layout.getFriendlyURL();
 
 		if (StringUtil.equals(
 				currentType, LayoutConstants.TYPE_ASSET_DISPLAY)) {
