@@ -31,6 +31,9 @@ import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.Serializable;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationHandler;
+
 import java.sql.Types;
 
 import java.util.Collections;
@@ -210,6 +213,32 @@ public class FileVersionPreviewModelImpl
 		getAttributeSetterBiConsumers() {
 
 		return _attributeSetterBiConsumers;
+	}
+
+	private static Function<InvocationHandler, FileVersionPreview>
+		_getProxyProviderFunction() {
+
+		Class<?> proxyClass = ProxyUtil.getProxyClass(
+			FileVersionPreview.class.getClassLoader(), FileVersionPreview.class,
+			ModelWrapper.class);
+
+		try {
+			Constructor<FileVersionPreview> constructor =
+				(Constructor<FileVersionPreview>)proxyClass.getConstructor(
+					InvocationHandler.class);
+
+			return invocationHandler -> {
+				try {
+					return constructor.newInstance(invocationHandler);
+				}
+				catch (ReflectiveOperationException roe) {
+					throw new InternalError(roe);
+				}
+			};
+		}
+		catch (NoSuchMethodException nsme) {
+			throw new InternalError(nsme);
+		}
 	}
 
 	private static final Map<String, Function<FileVersionPreview, Object>>
@@ -455,8 +484,7 @@ public class FileVersionPreviewModelImpl
 	@Override
 	public FileVersionPreview toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (FileVersionPreview)ProxyUtil.newProxyInstance(
-				_classLoader, _escapedModelInterfaces,
+			_escapedModel = _escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -648,11 +676,8 @@ public class FileVersionPreviewModelImpl
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader =
-		FileVersionPreview.class.getClassLoader();
-	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-		FileVersionPreview.class, ModelWrapper.class
-	};
+	private static final Function<InvocationHandler, FileVersionPreview>
+		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
 
 	private long _fileVersionPreviewId;
 	private long _groupId;

@@ -75,6 +75,10 @@ public class FileVersionPreviewLocalServiceUtil {
 		return getService().createFileVersionPreview(fileVersionPreviewId);
 	}
 
+	public static void deleteFileEntryFileVersionPreviews(long fileEntryId) {
+		getService().deleteFileEntryFileVersionPreviews(fileEntryId);
+	}
+
 	/**
 	 * Deletes the file version preview from the database. Also notifies the appropriate model listeners.
 	 *
@@ -101,10 +105,6 @@ public class FileVersionPreviewLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().deleteFileVersionPreview(fileVersionPreviewId);
-	}
-
-	public static void deleteFileVersionPreviews(long fileEntryId) {
-		getService().deleteFileVersionPreviews(fileEntryId);
 	}
 
 	/**
@@ -229,6 +229,13 @@ public class FileVersionPreviewLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static java.util.List
+		<com.liferay.document.library.model.FileVersionPreview>
+			getFileEntryFileVersionPreviews(long fileEntryId) {
+
+		return getService().getFileEntryFileVersionPreviews(fileEntryId);
+	}
+
 	/**
 	 * Returns the file version preview with the primary key.
 	 *
@@ -275,13 +282,6 @@ public class FileVersionPreviewLocalServiceUtil {
 			getFileVersionPreviews(int start, int end) {
 
 		return getService().getFileVersionPreviews(start, end);
-	}
-
-	public static java.util.List
-		<com.liferay.document.library.model.FileVersionPreview>
-			getFileVersionPreviews(long fileEntryId) {
-
-		return getService().getFileVersionPreviews(fileEntryId);
 	}
 
 	/**
