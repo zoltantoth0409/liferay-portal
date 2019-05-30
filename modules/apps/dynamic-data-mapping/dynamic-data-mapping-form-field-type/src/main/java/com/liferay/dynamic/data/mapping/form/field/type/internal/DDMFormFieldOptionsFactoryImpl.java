@@ -61,7 +61,9 @@ public class DDMFormFieldOptionsFactoryImpl
 		Object options = ddmFormFieldRenderingContext.getProperty("options");
 
 		if (Objects.equals(dataSourceType, "from-autofill")) {
-			if (((List)options).size() > 1) {
+			List<?> list = (List<?>)options;
+
+			if (list.size() > 1) {
 				return createDDMFormFieldOptions(
 					ddmFormField, ddmFormFieldRenderingContext, options);
 			}
