@@ -92,26 +92,26 @@ import javax.servlet.http.HttpServletRequest;
 public class UIItemsBuilder {
 
 	public UIItemsBuilder(
+		HttpServletRequest httpServletRequest, FileEntry fileEntry,
+		FileVersion fileVersion, ResourceBundle resourceBundle,
+		DLTrashUtil dlTrashUtil, VersioningStrategy versioningStrategy,
+		DLURLHelper dlURLHelper) {
+
+		this(
+			httpServletRequest, fileEntry, null, fileVersion, resourceBundle,
+			dlTrashUtil, versioningStrategy, dlURLHelper);
+	}
+
+	public UIItemsBuilder(
 			HttpServletRequest httpServletRequest, FileShortcut fileShortcut,
 			ResourceBundle resourceBundle, DLTrashUtil dlTrashUtil,
 			VersioningStrategy versioningStrategy, DLURLHelper dlURLHelper)
 		throws PortalException {
 
 		this(
-			httpServletRequest, fileShortcut.getFileVersion(), null,
-			fileShortcut, resourceBundle, dlTrashUtil, versioningStrategy,
-			dlURLHelper);
-	}
-
-	public UIItemsBuilder(
-		HttpServletRequest httpServletRequest, FileVersion fileVersion,
-		FileEntry fileEntry, ResourceBundle resourceBundle,
-		DLTrashUtil dlTrashUtil, VersioningStrategy versioningStrategy,
-		DLURLHelper dlURLHelper) {
-
-		this(
-			httpServletRequest, fileVersion, fileEntry, null, resourceBundle,
-			dlTrashUtil, versioningStrategy, dlURLHelper);
+			httpServletRequest, null, fileShortcut,
+			fileShortcut.getFileVersion(), resourceBundle, dlTrashUtil,
+			versioningStrategy, dlURLHelper);
 	}
 
 	public UIItemsBuilder(
@@ -120,7 +120,7 @@ public class UIItemsBuilder {
 		VersioningStrategy versioningStrategy, DLURLHelper dlURLHelper) {
 
 		this(
-			httpServletRequest, fileVersion, null, null, resourceBundle,
+			httpServletRequest, null, null, fileVersion, resourceBundle,
 			dlTrashUtil, versioningStrategy, dlURLHelper);
 	}
 
@@ -1031,25 +1031,26 @@ public class UIItemsBuilder {
 	}
 
 	private UIItemsBuilder(
-		HttpServletRequest httpServletRequest, FileVersion fileVersion,
-		FileEntry fileEntry, FileShortcut fileShortcut,
+		HttpServletRequest httpServletRequest, FileEntry fileEntry,
+		FileShortcut fileShortcut, FileVersion fileVersion,
 		ResourceBundle resourceBundle, DLTrashUtil dlTrashUtil,
 		VersioningStrategy versioningStrategy, DLURLHelper dlURLHelper) {
 
 		try {
 			_httpServletRequest = httpServletRequest;
-			_fileVersion = fileVersion;
-			_fileShortcut = fileShortcut;
-			_resourceBundle = resourceBundle;
-			_dlTrashUtil = dlTrashUtil;
-			_versioningStrategy = versioningStrategy;
-			_dlURLHelper = dlURLHelper;
 
 			if ((fileEntry == null) && (fileVersion != null)) {
 				fileEntry = fileVersion.getFileEntry();
 			}
 
 			_fileEntry = fileEntry;
+
+			_fileShortcut = fileShortcut;
+			_fileVersion = fileVersion;
+			_resourceBundle = resourceBundle;
+			_dlTrashUtil = dlTrashUtil;
+			_versioningStrategy = versioningStrategy;
+			_dlURLHelper = dlURLHelper;
 
 			_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);

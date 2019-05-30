@@ -351,7 +351,7 @@ public class DefaultDLViewFileVersionDisplayContext
 
 			if (fileShortcut == null) {
 				_uiItemsBuilder = new UIItemsBuilder(
-					httpServletRequest, fileVersion, fileEntry, _resourceBundle,
+					httpServletRequest, fileEntry, fileVersion, _resourceBundle,
 					dlTrashUtil, versioningStrategy, dlURLHelper);
 			}
 			else {
