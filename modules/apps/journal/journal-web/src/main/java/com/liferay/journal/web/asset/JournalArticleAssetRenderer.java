@@ -34,6 +34,8 @@ import com.liferay.journal.util.JournalConverter;
 import com.liferay.journal.web.internal.security.permission.resource.JournalArticlePermission;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryServiceUtil;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -436,13 +438,16 @@ public class JournalArticleAssetRenderer
 					group.getGroupId(), layout.isPrivateLayout()),
 				themeDisplay);
 
+			StringBundler sb = new StringBundler(5);
+
+			sb.append(groupFriendlyURL);
+			sb.append(JournalArticleConstants.CANONICAL_URL_SEPARATOR);
+			sb.append(_article.getUrlTitle(themeDisplay.getLocale()));
+			sb.append(StringPool.SLASH);
+			sb.append(_article.getVersion());
+
 			return PortalUtil.addPreservedParameters(
-				themeDisplay,
-				groupFriendlyURL.concat(
-					JournalArticleConstants.CANONICAL_URL_SEPARATOR
-				).concat(
-					_article.getUrlTitle(themeDisplay.getLocale())
-				));
+				themeDisplay, sb.toString());
 		}
 
 		String hitLayoutURL = getHitLayoutURL(
