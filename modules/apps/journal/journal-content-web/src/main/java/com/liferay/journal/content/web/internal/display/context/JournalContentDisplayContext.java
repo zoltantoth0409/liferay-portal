@@ -687,9 +687,7 @@ public class JournalContentDisplayContext {
 				"groupId", String.valueOf(ddmTemplate.getGroupId()));
 			portletURL.setParameter(
 				"refererPortletName",
-				PortletProviderUtil.getPortletId(
-					JournalArticle.class.getName(),
-					PortletProvider.Action.EDIT));
+				JournalContentPortletKeys.JOURNAL_CONTENT);
 			portletURL.setParameter(
 				"templateId", String.valueOf(ddmTemplate.getTemplateId()));
 			portletURL.setParameter("showHeader", Boolean.FALSE.toString());
