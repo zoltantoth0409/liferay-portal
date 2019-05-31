@@ -30,6 +30,7 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.StringEntityField;
 import com.liferay.portal.odata.normalizer.Normalizer;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -45,8 +46,12 @@ public class EntityFieldsUtil {
 			ExpandoTableLocalService expandoTableLocalService)
 		throws PortalException {
 
-		ExpandoTable expandoTable = expandoTableLocalService.getDefaultTable(
+		ExpandoTable expandoTable = expandoTableLocalService.fetchDefaultTable(
 			companyId, classNameId);
+
+		if (expandoTable == null) {
+			return Collections.emptyList();
+		}
 
 		List<ExpandoColumn> expandoColumns =
 			expandoColumnLocalService.getColumns(expandoTable.getTableId());
