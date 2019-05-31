@@ -88,9 +88,7 @@ public class MessageBoardMessageResourceImpl
 	}
 
 	@Override
-	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
-		throws Exception {
-
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
 		return new MessageBoardMessageEntityModel(
 			EntityFieldsUtil.getEntityFields(
 				_portal.getClassNameId(MBMessage.class.getName()),
