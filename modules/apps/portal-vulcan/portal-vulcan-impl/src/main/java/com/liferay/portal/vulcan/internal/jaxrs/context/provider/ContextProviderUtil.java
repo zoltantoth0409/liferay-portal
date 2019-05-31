@@ -69,6 +69,9 @@ public class ContextProviderUtil {
 		OperationResourceInfo operationResourceInfo = exchange.get(
 			OperationResourceInfo.class);
 
+		ResourceContext resourceContext = new ResourceContextImpl(
+			message, operationResourceInfo);
+
 		ClassResourceInfo classResourceInfo =
 			operationResourceInfo.getClassResourceInfo();
 
@@ -76,9 +79,6 @@ public class ContextProviderUtil {
 			classResourceInfo.getResourceProvider();
 
 		Object instance = resourceProvider.getInstance(message);
-
-		ResourceContext resourceContext = new ResourceContextImpl(
-			message, operationResourceInfo);
 
 		resourceContext.initResource(instance);
 
