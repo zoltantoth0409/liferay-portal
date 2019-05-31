@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.search.filter.TermFilter;
-import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -88,13 +87,11 @@ public class MessageBoardMessageResourceImpl
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
 		throws Exception {
 
-		long classNameId = _classNameLocalService.getClassNameId(
-			MBMessage.class.getName());
-
 		return new MessageBoardMessageEntityModel(
 			EntityFieldsUtil.getEntityFields(
-				classNameId, contextCompany.getCompanyId(),
-				_expandoColumnLocalService, _expandoTableLocalService));
+				_portal.getClassNameId(MBMessage.class.getName()),
+				contextCompany.getCompanyId(), _expandoColumnLocalService,
+				_expandoTableLocalService));
 	}
 
 	@Override
@@ -318,9 +315,6 @@ public class MessageBoardMessageResourceImpl
 			mbMessage.setAnswer(showAsAnswer);
 		}
 	}
-
-	@Reference
-	private ClassNameLocalService _classNameLocalService;
 
 	@Reference
 	private ExpandoColumnLocalService _expandoColumnLocalService;

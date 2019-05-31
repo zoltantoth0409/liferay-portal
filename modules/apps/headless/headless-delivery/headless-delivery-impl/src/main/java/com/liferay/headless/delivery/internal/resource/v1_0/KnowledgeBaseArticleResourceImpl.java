@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.search.filter.TermFilter;
-import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -92,13 +91,11 @@ public class KnowledgeBaseArticleResourceImpl
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
 		throws Exception {
 
-		long classNameId = _classNameLocalService.getClassNameId(
-			KBArticle.class.getName());
-
 		return new KnowledgeBaseArticleEntityModel(
 			EntityFieldsUtil.getEntityFields(
-				classNameId, contextCompany.getCompanyId(),
-				_expandoColumnLocalService, _expandoTableLocalService));
+				_portal.getClassNameId(KBArticle.class.getName()),
+				contextCompany.getCompanyId(), _expandoColumnLocalService,
+				_expandoTableLocalService));
 	}
 
 	@Override
@@ -303,8 +300,8 @@ public class KnowledgeBaseArticleResourceImpl
 				knowledgeBaseArticle.getDescription(), null, null, null,
 				ServiceContextUtil.createServiceContext(
 					knowledgeBaseArticle.getTaxonomyCategoryIds(),
-					knowledgeBaseArticle.getKeywords(),
-					KBArticle.class, contextCompany.getCompanyId(),
+					knowledgeBaseArticle.getKeywords(), KBArticle.class,
+					contextCompany.getCompanyId(),
 					knowledgeBaseArticle.getCustomFields(), siteId,
 					contextAcceptLanguage.getPreferredLocale(),
 					knowledgeBaseArticle.getViewableByAsString())));
@@ -363,9 +360,6 @@ public class KnowledgeBaseArticleResourceImpl
 				contextAcceptLanguage.getPreferredLocale(),
 				knowledgeBaseArticleResourcePrimKey));
 	}
-
-	@Reference
-	private ClassNameLocalService _classNameLocalService;
 
 	@Reference
 	private ExpandoColumnLocalService _expandoColumnLocalService;
