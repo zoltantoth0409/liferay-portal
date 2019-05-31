@@ -40,7 +40,7 @@ public class ServiceContextUtil {
 		Locale locale, String viewableBy) {
 
 		return createServiceContext(
-			new String[0], new Long[0], clazz, companyId,
+			new Long[0], new String[0], clazz, companyId,
 			expandoBridgeAttributes, groupId, locale, viewableBy);
 	}
 
@@ -48,11 +48,11 @@ public class ServiceContextUtil {
 		long groupId, String viewableBy) {
 
 		return createServiceContext(
-			new String[0], new Long[0], groupId, viewableBy);
+			new Long[0], new String[0], groupId, viewableBy);
 	}
 
 	public static ServiceContext createServiceContext(
-		String[] assetTagNames, Long[] assetCategoryIds, Class<?> clazz,
+		Long[] assetCategoryIds, String[] assetTagNames, Class<?> clazz,
 		long companyId, Map<String, Object> expandoBridgeAttributes,
 		Long groupId, Locale locale, String viewableBy) {
 
@@ -94,11 +94,11 @@ public class ServiceContextUtil {
 	}
 
 	public static ServiceContext createServiceContext(
-		String[] assetTagNames, Long[] assetCategoryIds, Long groupId,
+		Long[] assetCategoryIds, String[] assetTagNames, Long groupId,
 		String viewableBy) {
 
 		return createServiceContext(
-			assetTagNames, assetCategoryIds, null, 0, null, groupId, null,
+			assetCategoryIds, assetTagNames, null, 0, null, groupId, null,
 			viewableBy);
 	}
 

@@ -249,14 +249,14 @@ public class KnowledgeBaseArticleResourceImpl
 				knowledgeBaseArticle.getDescription(), null, null, null, null,
 				ServiceContextUtil.createServiceContext(
 					Optional.ofNullable(
-						knowledgeBaseArticle.getKeywords()
-					).orElse(
-						new String[0]
-					),
-					Optional.ofNullable(
 						knowledgeBaseArticle.getTaxonomyCategoryIds()
 					).orElse(
 						new Long[0]
+					),
+					Optional.ofNullable(
+						knowledgeBaseArticle.getKeywords()
+					).orElse(
+						new String[0]
 					),
 					KBArticle.class, contextCompany.getCompanyId(),
 					knowledgeBaseArticle.getCustomFields(),
@@ -290,8 +290,8 @@ public class KnowledgeBaseArticleResourceImpl
 				knowledgeBaseArticle.getArticleBody(),
 				knowledgeBaseArticle.getDescription(), null, null, null,
 				ServiceContextUtil.createServiceContext(
-					knowledgeBaseArticle.getKeywords(),
 					knowledgeBaseArticle.getTaxonomyCategoryIds(),
+					knowledgeBaseArticle.getKeywords(),
 					KBArticle.class, contextCompany.getCompanyId(),
 					knowledgeBaseArticle.getCustomFields(), siteId,
 					contextAcceptLanguage.getPreferredLocale(),

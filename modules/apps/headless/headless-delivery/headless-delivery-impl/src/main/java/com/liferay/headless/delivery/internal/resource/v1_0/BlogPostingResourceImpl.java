@@ -164,8 +164,8 @@ public class BlogPostingResourceImpl
 					)),
 				null,
 				ServiceContextUtil.createServiceContext(
-					blogPosting.getKeywords(),
-					blogPosting.getTaxonomyCategoryIds(), BlogsEntry.class,
+					blogPosting.getTaxonomyCategoryIds(),
+					blogPosting.getKeywords(), BlogsEntry.class,
 					contextCompany.getCompanyId(),
 					blogPosting.getCustomFields(), siteId,
 					contextAcceptLanguage.getPreferredLocale(),
@@ -205,8 +205,8 @@ public class BlogPostingResourceImpl
 					)),
 				null,
 				ServiceContextUtil.createServiceContext(
-					blogPosting.getKeywords(),
-					blogPosting.getTaxonomyCategoryIds(), BlogsEntry.class,
+					blogPosting.getTaxonomyCategoryIds(),
+					blogPosting.getKeywords(), BlogsEntry.class,
 					contextCompany.getCompanyId(),
 					blogPosting.getCustomFields(), blogsEntry.getGroupId(),
 					contextAcceptLanguage.getPreferredLocale(),
