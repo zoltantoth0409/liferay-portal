@@ -663,7 +663,8 @@ public class UserAccountSerDes {
 			else if (Objects.equals(jsonParserFieldName, "customFields")) {
 				if (jsonParserFieldValue != null) {
 					userAccount.setCustomFields(
-						UserAccountSerDes.toMap((String)jsonParserFieldValue));
+						(Map)UserAccountSerDes.toMap(
+							(String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dashboardURL")) {

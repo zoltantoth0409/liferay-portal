@@ -156,6 +156,23 @@ public abstract class BaseDataDefinitionResourceTestCase {
 	}
 
 	@Test
+	public void testEscapeRegexInStringFields() throws Exception {
+		String regex = "^[0-9]+(\\.[0-9]{1,2})\"?";
+
+		DataDefinition dataDefinition = randomDataDefinition();
+
+		dataDefinition.setStorageType(regex);
+
+		String json = DataDefinitionSerDes.toJSON(dataDefinition);
+
+		Assert.assertFalse(json.contains(regex));
+
+		dataDefinition = DataDefinitionSerDes.toDTO(json);
+
+		Assert.assertEquals(regex, dataDefinition.getStorageType());
+	}
+
+	@Test
 	public void testDeleteDataDefinition() throws Exception {
 		DataDefinition dataDefinition =
 			testDeleteDataDefinition_addDataDefinition();

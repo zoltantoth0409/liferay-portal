@@ -428,7 +428,8 @@ public class OrganizationSerDes {
 			else if (Objects.equals(jsonParserFieldName, "customFields")) {
 				if (jsonParserFieldValue != null) {
 					organization.setCustomFields(
-						OrganizationSerDes.toMap((String)jsonParserFieldValue));
+						(Map)OrganizationSerDes.toMap(
+							(String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "dateCreated")) {

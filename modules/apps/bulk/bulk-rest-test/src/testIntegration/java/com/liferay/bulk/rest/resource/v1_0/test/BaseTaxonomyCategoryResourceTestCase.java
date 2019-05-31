@@ -152,6 +152,23 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	}
 
 	@Test
+	public void testEscapeRegexInStringFields() throws Exception {
+		String regex = "^[0-9]+(\\.[0-9]{1,2})\"?";
+
+		TaxonomyCategory taxonomyCategory = randomTaxonomyCategory();
+
+		taxonomyCategory.setTaxonomyCategoryName(regex);
+
+		String json = TaxonomyCategorySerDes.toJSON(taxonomyCategory);
+
+		Assert.assertFalse(json.contains(regex));
+
+		taxonomyCategory = TaxonomyCategorySerDes.toDTO(json);
+
+		Assert.assertEquals(regex, taxonomyCategory.getTaxonomyCategoryName());
+	}
+
+	@Test
 	public void testPatchTaxonomyCategoryBatch() throws Exception {
 		Assert.assertTrue(true);
 	}
