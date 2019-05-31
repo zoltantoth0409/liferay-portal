@@ -33,8 +33,8 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.search.filter.TermFilter;
-import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -90,13 +90,11 @@ public class DocumentFolderResourceImpl
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
 		throws Exception {
 
-		long classNameId = _classNameLocalService.getClassNameId(
-			DLFolder.class.getName());
-
 		return new DocumentFolderEntityModel(
 			EntityFieldsUtil.getEntityFields(
-				classNameId, contextCompany.getCompanyId(),
-				_expandoColumnLocalService, _expandoTableLocalService));
+				_portal.getClassNameId(DLFolder.class.getName()),
+				contextCompany.getCompanyId(), _expandoColumnLocalService,
+				_expandoTableLocalService));
 	}
 
 	@Override
@@ -235,9 +233,6 @@ public class DocumentFolderResourceImpl
 	}
 
 	@Reference
-	private ClassNameLocalService _classNameLocalService;
-
-	@Reference
 	private DLAppService _dlAppService;
 
 	@Reference
@@ -248,5 +243,8 @@ public class DocumentFolderResourceImpl
 
 	@Reference
 	private ExpandoTableLocalService _expandoTableLocalService;
+
+	@Reference
+	private Portal _portal;
 
 }

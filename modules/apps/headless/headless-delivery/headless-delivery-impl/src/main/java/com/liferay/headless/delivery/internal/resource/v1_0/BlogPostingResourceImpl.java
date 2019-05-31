@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
-import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -103,13 +102,11 @@ public class BlogPostingResourceImpl
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
 		throws Exception {
 
-		long classNameId = _classNameLocalService.getClassNameId(
-			BlogsEntry.class.getName());
-
 		return new BlogPostingEntityModel(
 			EntityFieldsUtil.getEntityFields(
-				classNameId, contextCompany.getCompanyId(),
-				_expandoColumnLocalService, _expandoTableLocalService));
+				_portal.getClassNameId(BlogsEntry.class.getName()),
+				contextCompany.getCompanyId(), _expandoColumnLocalService,
+				_expandoTableLocalService));
 	}
 
 	@Override
@@ -301,9 +298,6 @@ public class BlogPostingResourceImpl
 
 	@Reference
 	private BlogsEntryService _blogsEntryService;
-
-	@Reference
-	private ClassNameLocalService _classNameLocalService;
 
 	@Reference
 	private DLAppService _dlAppService;

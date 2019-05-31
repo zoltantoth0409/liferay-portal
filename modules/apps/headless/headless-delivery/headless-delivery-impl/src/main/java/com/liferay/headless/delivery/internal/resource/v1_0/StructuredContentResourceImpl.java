@@ -68,7 +68,6 @@ import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
-import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
@@ -185,14 +184,12 @@ public class StructuredContentResourceImpl
 			entityFields = Collections.emptyList();
 		}
 
-		long classNameId = _classNameLocalService.getClassNameId(
-			JournalArticle.class.getName());
-
 		return new StructuredContentEntityModel(
 			entityFields,
 			EntityFieldsUtil.getEntityFields(
-				classNameId, contextCompany.getCompanyId(),
-				_expandoColumnLocalService, _expandoTableLocalService));
+				_portal.getClassNameId(JournalArticle.class.getName()),
+				contextCompany.getCompanyId(), _expandoColumnLocalService,
+				_expandoTableLocalService));
 	}
 
 	@Override
@@ -837,9 +834,6 @@ public class StructuredContentResourceImpl
 				"Validation error: " + ddmfvve.getMessage(), ddmfvve);
 		}
 	}
-
-	@Reference
-	private ClassNameLocalService _classNameLocalService;
 
 	@Reference
 	private DDM _ddm;

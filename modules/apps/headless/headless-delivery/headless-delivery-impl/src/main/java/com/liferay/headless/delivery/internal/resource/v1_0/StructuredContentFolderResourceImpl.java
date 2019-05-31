@@ -32,8 +32,8 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.search.filter.TermFilter;
-import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -69,13 +69,11 @@ public class StructuredContentFolderResourceImpl
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
 		throws Exception {
 
-		long classNameId = _classNameLocalService.getClassNameId(
-			JournalFolder.class.getName());
-
 		return new StructuredContentFolderEntityModel(
 			EntityFieldsUtil.getEntityFields(
-				classNameId, contextCompany.getCompanyId(),
-				_expandoColumnLocalService, _expandoTableLocalService));
+				_portal.getClassNameId(JournalFolder.class.getName()),
+				contextCompany.getCompanyId(), _expandoColumnLocalService,
+				_expandoTableLocalService));
 	}
 
 	@Override
@@ -226,9 +224,6 @@ public class StructuredContentFolderResourceImpl
 	}
 
 	@Reference
-	private ClassNameLocalService _classNameLocalService;
-
-	@Reference
 	private ExpandoColumnLocalService _expandoColumnLocalService;
 
 	@Reference
@@ -236,6 +231,9 @@ public class StructuredContentFolderResourceImpl
 
 	@Reference
 	private JournalFolderService _journalFolderService;
+
+	@Reference
+	private Portal _portal;
 
 	@Reference
 	private StructuredContentFolderDTOConverter
