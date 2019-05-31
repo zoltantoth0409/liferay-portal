@@ -101,22 +101,7 @@ public class CustomFieldsUtil {
 
 					Object data = customValue.getData();
 
-					if (ExpandoColumnConstants.GEOLOCATION == attributeType) {
-						Geo geo = customValue.getGeo();
-
-						return JSONUtil.put(
-							"latitude", geo.getLatitude()
-						).put(
-							"longitude", geo.getLongitude()
-						).toString();
-					}
-					else if (ExpandoColumnConstants.STRING_LOCALIZED ==
-								attributeType) {
-
-						return (Serializable)Collections.singletonMap(
-							locale, data);
-					}
-					else if (ExpandoColumnConstants.DATE == attributeType) {
+					if (ExpandoColumnConstants.DATE == attributeType) {
 						return _parseDate(String.valueOf(data));
 					}
 					else if (ExpandoColumnConstants.DOUBLE_ARRAY ==
@@ -129,10 +114,16 @@ public class CustomFieldsUtil {
 
 						return _toFloatArray((List)data);
 					}
-					else if (ExpandoColumnConstants.STRING_ARRAY ==
+					else if (ExpandoColumnConstants.GEOLOCATION ==
 								attributeType) {
 
-						return ((List)data).toArray(new String[0]);
+						Geo geo = customValue.getGeo();
+
+						return JSONUtil.put(
+							"latitude", geo.getLatitude()
+						).put(
+							"longitude", geo.getLongitude()
+						).toString();
 					}
 					else if (ExpandoColumnConstants.INTEGER_ARRAY ==
 								attributeType) {
@@ -143,6 +134,17 @@ public class CustomFieldsUtil {
 								attributeType) {
 
 						return _toLongArray((List)data);
+					}
+					else if (ExpandoColumnConstants.STRING_ARRAY ==
+								attributeType) {
+
+						return ((List)data).toArray(new String[0]);
+					}
+					else if (ExpandoColumnConstants.STRING_LOCALIZED ==
+								attributeType) {
+
+						return (Serializable)Collections.singletonMap(
+							locale, data);
 					}
 
 					return (Serializable)data;
