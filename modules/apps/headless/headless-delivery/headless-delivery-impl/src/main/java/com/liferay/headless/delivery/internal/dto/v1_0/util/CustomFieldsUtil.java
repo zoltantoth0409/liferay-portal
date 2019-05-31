@@ -216,7 +216,9 @@ public class CustomFieldsUtil {
 		Object data, IntFunction<E[]> intFunction,
 		Function<Number, E> function) {
 
-		return ((List<Number>)data).stream(
+		List<Number> list = (List<Number>)data;
+
+		return list.stream(
 		).map(
 			function
 		).toArray(
