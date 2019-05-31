@@ -280,7 +280,8 @@ public class FreeMarkerTool {
 		).map(
 			JavaMethodSignature::getMethodName
 		).anyMatch(
-			name -> name.equals(methodName)
+			javaMethodSignatureMethodName ->
+				javaMethodSignatureMethodName.equals(methodName)
 		);
 	}
 
