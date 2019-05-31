@@ -153,12 +153,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			objectMapper.readTree(json1), objectMapper.readTree(json2));
 	}
 
-	<#assign
-		enumSchemas = freeMarkerTool.getDTOEnumSchemas(openAPIYAML, schema)
-		generateGetMultipartFilesMethod = false
-		javaMethodSignatures = freeMarkerTool.getResourceTestCaseJavaMethodSignatures(configYAML, openAPIYAML, schemaName)
-		properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema)
-	/>
+	<#assign properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema) />
 
 	@Test
 	public void testEscapeRegexInStringFields() throws Exception {
@@ -184,6 +179,13 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 		</#list>
 	}
+
+	<#assign
+		enumSchemas = freeMarkerTool.getDTOEnumSchemas(openAPIYAML, schema)
+		generateGetMultipartFilesMethod = false
+		javaMethodSignatures = freeMarkerTool.getResourceTestCaseJavaMethodSignatures(configYAML, openAPIYAML, schemaName)
+		properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema)
+	/>
 
 	<#list javaMethodSignatures as javaMethodSignature>
 		<#assign
