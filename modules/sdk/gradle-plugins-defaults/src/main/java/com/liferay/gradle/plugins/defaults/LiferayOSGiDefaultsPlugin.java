@@ -952,7 +952,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 	private Copy _addTaskDownloadCompiledJSP(
 		final JavaCompile compileJSPTask, final Jar jarJSPsTask,
-		Properties artifactProperties) {
+		Properties artifactProperties, LiferayExtension liferayExtension) {
 
 		final String artifactJspcURL = artifactProperties.getProperty(
 			"artifact.jspc.url");
@@ -1033,6 +1033,23 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				@Override
 				public File call() throws Exception {
 					return compileJSPTask.getDestinationDir();
+				}
+
+			});
+
+		copy.into(
+			new Callable<File>() {
+
+				@Override
+				public File call() throws Exception {
+					File liferayHomeDir = liferayExtension.getLiferayHome();
+
+					int index = artifactJspcURL.lastIndexOf('/');
+
+					String dirName = artifactJspcURL.substring(
+						index + 1, artifactJspcURL.length() - 9);
+
+					return new File(liferayHomeDir, "work/" + dirName);
 				}
 
 			});
@@ -3200,7 +3217,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 		if (!jspPrecompileFromSource && (artifactProperties != null)) {
 			Copy copy = _addTaskDownloadCompiledJSP(
-				javaCompile, jarJSPsTask, artifactProperties);
+				javaCompile, jarJSPsTask, artifactProperties, liferayExtension);
 
 			if (copy != null) {
 				javaCompile.setActions(Collections.emptyList());
