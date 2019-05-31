@@ -174,19 +174,19 @@ public class DocumentResourceImpl
 			multipartBody.getValueAsInstanceOptional(
 				"document", Document.class);
 
-		String[] keywords = documentOptional.map(
-			Document::getKeywords
-		).orElseGet(
-			() -> _assetTagLocalService.getTagNames(
-				DLFileEntry.class.getName(), documentId)
-		);
-
 		Long[] categoryIds = documentOptional.map(
 			Document::getTaxonomyCategoryIds
 		).orElseGet(
 			() -> ArrayUtil.toArray(
 				_assetCategoryLocalService.getCategoryIds(
 					DLFileEntry.class.getName(), documentId))
+		);
+
+		String[] keywords = documentOptional.map(
+			Document::getKeywords
+		).orElseGet(
+			() -> _assetTagLocalService.getTagNames(
+				DLFileEntry.class.getName(), documentId)
 		);
 
 		return _toDocument(
@@ -206,7 +206,7 @@ public class DocumentResourceImpl
 				null, DLVersionNumberIncrease.AUTOMATIC,
 				binaryFile.getInputStream(), binaryFile.getSize(),
 				ServiceContextUtil.createServiceContext(
-					keywords, categoryIds, DLFileEntry.class,
+					categoryIds, keywords, DLFileEntry.class,
 					contextCompany.getCompanyId(),
 					_getExpandoBridgeAttributes(documentOptional),
 					existingFileEntry.getGroupId(),
@@ -292,14 +292,14 @@ public class DocumentResourceImpl
 				binaryFile.getInputStream(), binaryFile.getSize(),
 				ServiceContextUtil.createServiceContext(
 					documentOptional.map(
-						Document::getKeywords
-					).orElse(
-						new String[0]
-					),
-					documentOptional.map(
 						Document::getTaxonomyCategoryIds
 					).orElse(
 						new Long[0]
+					),
+					documentOptional.map(
+						Document::getKeywords
+					).orElse(
+						new String[0]
 					),
 					DLFileEntry.class, contextCompany.getCompanyId(),
 					_getExpandoBridgeAttributes(documentOptional),
@@ -354,12 +354,12 @@ public class DocumentResourceImpl
 				null, binaryFile.getInputStream(), binaryFile.getSize(),
 				ServiceContextUtil.createServiceContext(
 					documentOptional.map(
-						Document::getKeywords
+						Document::getTaxonomyCategoryIds
 					).orElse(
 						null
 					),
 					documentOptional.map(
-						Document::getTaxonomyCategoryIds
+						Document::getKeywords
 					).orElse(
 						null
 					),

@@ -238,12 +238,13 @@ public class MessageBoardThreadResourceImpl
 					mbThread.getGroupId(), messageBoardThread.getThreadType()),
 				false,
 				ServiceContextUtil.createServiceContext(
+					null,
 					Optional.ofNullable(
 						messageBoardThread.getKeywords()
 					).orElse(
 						new String[0]
 					),
-					null, MBMessage.class, contextCompany.getCompanyId(),
+					MBMessage.class, contextCompany.getCompanyId(),
 					messageBoardThread.getCustomFields(), mbThread.getGroupId(),
 					contextAcceptLanguage.getPreferredLocale(),
 					messageBoardThread.getViewableByAsString())));
@@ -274,7 +275,7 @@ public class MessageBoardThreadResourceImpl
 			MBMessageConstants.DEFAULT_FORMAT, Collections.emptyList(), false,
 			_toPriority(siteId, messageBoardThread.getThreadType()), false,
 			ServiceContextUtil.createServiceContext(
-				messageBoardThread.getKeywords(), null, MBMessage.class,
+				null, messageBoardThread.getKeywords(), MBMessage.class,
 				contextCompany.getCompanyId(),
 				messageBoardThread.getCustomFields(), siteId,
 				contextAcceptLanguage.getPreferredLocale(),
