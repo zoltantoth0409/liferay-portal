@@ -152,6 +152,19 @@ public abstract class BaseSelectionResourceTestCase {
 	}
 
 	@Test
+	public void testEscapeRegexInStringFields() throws Exception {
+		String regex = "^[0-9]+(\\.[0-9]{1,2})\"?";
+
+		Selection selection = randomSelection();
+
+		String json = SelectionSerDes.toJSON(selection);
+
+		Assert.assertFalse(json.contains(regex));
+
+		selection = SelectionSerDes.toDTO(json);
+	}
+
+	@Test
 	public void testPostBulkSelection() throws Exception {
 		Selection randomSelection = randomSelection();
 

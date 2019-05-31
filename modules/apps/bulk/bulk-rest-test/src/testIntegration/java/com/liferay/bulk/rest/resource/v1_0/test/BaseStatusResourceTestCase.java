@@ -152,6 +152,19 @@ public abstract class BaseStatusResourceTestCase {
 	}
 
 	@Test
+	public void testEscapeRegexInStringFields() throws Exception {
+		String regex = "^[0-9]+(\\.[0-9]{1,2})\"?";
+
+		Status status = randomStatus();
+
+		String json = StatusSerDes.toJSON(status);
+
+		Assert.assertFalse(json.contains(regex));
+
+		status = StatusSerDes.toDTO(json);
+	}
+
+	@Test
 	public void testGetStatus() throws Exception {
 		Assert.assertTrue(true);
 	}

@@ -152,6 +152,23 @@ public abstract class BaseKeywordResourceTestCase {
 	}
 
 	@Test
+	public void testEscapeRegexInStringFields() throws Exception {
+		String regex = "^[0-9]+(\\.[0-9]{1,2})\"?";
+
+		Keyword keyword = randomKeyword();
+
+		keyword.setName(regex);
+
+		String json = KeywordSerDes.toJSON(keyword);
+
+		Assert.assertFalse(json.contains(regex));
+
+		keyword = KeywordSerDes.toDTO(json);
+
+		Assert.assertEquals(regex, keyword.getName());
+	}
+
+	@Test
 	public void testPatchKeywordBatch() throws Exception {
 		Assert.assertTrue(true);
 	}

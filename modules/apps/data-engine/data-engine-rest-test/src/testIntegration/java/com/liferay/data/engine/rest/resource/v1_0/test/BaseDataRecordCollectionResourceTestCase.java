@@ -158,6 +158,20 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	}
 
 	@Test
+	public void testEscapeRegexInStringFields() throws Exception {
+		String regex = "^[0-9]+(\\.[0-9]{1,2})\"?";
+
+		DataRecordCollection dataRecordCollection =
+			randomDataRecordCollection();
+
+		String json = DataRecordCollectionSerDes.toJSON(dataRecordCollection);
+
+		Assert.assertFalse(json.contains(regex));
+
+		dataRecordCollection = DataRecordCollectionSerDes.toDTO(json);
+	}
+
+	@Test
 	public void testGetDataDefinitionDataRecordCollectionsPage()
 		throws Exception {
 

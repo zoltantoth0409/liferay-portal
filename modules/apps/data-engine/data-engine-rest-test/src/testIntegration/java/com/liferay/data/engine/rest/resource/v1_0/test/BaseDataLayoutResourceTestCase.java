@@ -156,6 +156,25 @@ public abstract class BaseDataLayoutResourceTestCase {
 	}
 
 	@Test
+	public void testEscapeRegexInStringFields() throws Exception {
+		String regex = "^[0-9]+(\\.[0-9]{1,2})\"?";
+
+		DataLayout dataLayout = randomDataLayout();
+
+		dataLayout.setDefaultLanguageId(regex);
+		dataLayout.setPaginationMode(regex);
+
+		String json = DataLayoutSerDes.toJSON(dataLayout);
+
+		Assert.assertFalse(json.contains(regex));
+
+		dataLayout = DataLayoutSerDes.toDTO(json);
+
+		Assert.assertEquals(regex, dataLayout.getDefaultLanguageId());
+		Assert.assertEquals(regex, dataLayout.getPaginationMode());
+	}
+
+	@Test
 	public void testGetDataDefinitionDataLayoutsPage() throws Exception {
 		Long dataDefinitionId =
 			testGetDataDefinitionDataLayoutsPage_getDataDefinitionId();
