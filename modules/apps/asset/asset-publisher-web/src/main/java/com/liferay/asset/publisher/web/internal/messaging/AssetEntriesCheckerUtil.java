@@ -292,9 +292,6 @@ public class AssetEntriesCheckerUtil {
 				portletPreferencesModel.getPortletId(),
 				portletPreferencesModel.getPreferences());
 
-		_assetPublisherWebUtil.
-			refreshAssetPublisherPortletInstanceConfiguration();
-
 		if (!_assetPublisherWebUtil.getEmailAssetEntryAddedEnabled(
 				portletPreferences)) {
 
