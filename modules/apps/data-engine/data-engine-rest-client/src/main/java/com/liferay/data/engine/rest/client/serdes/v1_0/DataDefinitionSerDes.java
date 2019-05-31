@@ -400,7 +400,7 @@ public class DataDefinitionSerDes {
 			else if (Objects.equals(jsonParserFieldName, "description")) {
 				if (jsonParserFieldValue != null) {
 					dataDefinition.setDescription(
-						DataDefinitionSerDes.toMap(
+						(Map)DataDefinitionSerDes.toMap(
 							(String)jsonParserFieldValue));
 				}
 			}
@@ -413,7 +413,7 @@ public class DataDefinitionSerDes {
 			else if (Objects.equals(jsonParserFieldName, "name")) {
 				if (jsonParserFieldValue != null) {
 					dataDefinition.setName(
-						DataDefinitionSerDes.toMap(
+						(Map)DataDefinitionSerDes.toMap(
 							(String)jsonParserFieldValue));
 				}
 			}
