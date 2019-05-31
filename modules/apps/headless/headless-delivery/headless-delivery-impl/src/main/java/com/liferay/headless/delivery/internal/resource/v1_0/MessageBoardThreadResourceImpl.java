@@ -301,7 +301,7 @@ public class MessageBoardThreadResourceImpl
 		MessageBoardThread messageBoardThread) {
 
 		return CustomFieldsUtil.toMap(
-			MBMessage.class, contextCompany.getCompanyId(),
+			MBMessage.class.getName(), contextCompany.getCompanyId(),
 			messageBoardThread.getCustomFields(),
 			contextAcceptLanguage.getPreferredLocale());
 	}
@@ -356,7 +356,7 @@ public class MessageBoardThreadResourceImpl
 				creator = CreatorUtil.toCreator(
 					_portal, _userService.getUserById(mbThread.getUserId()));
 				customFields = CustomFieldsUtil.toCustomFields(
-					mbMessage.getMessageId(), MBMessage.class,
+					MBMessage.class.getName(), mbMessage.getMessageId(),
 					mbThread.getCompanyId(),
 					contextAcceptLanguage.getPreferredLocale());
 				dateCreated = mbMessage.getCreateDate();

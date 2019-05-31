@@ -66,7 +66,7 @@ public class MessageBoardMessageDTOConverter implements DTOConverter {
 				anonymous = mbMessage.isAnonymous();
 				articleBody = mbMessage.getBody();
 				customFields = CustomFieldsUtil.toCustomFields(
-					mbMessage.getMessageId(), MBMessage.class,
+					MBMessage.class.getName(), mbMessage.getMessageId(),
 					mbMessage.getCompanyId(), dtoConverterContext.getLocale());
 				dateCreated = mbMessage.getCreateDate();
 				dateModified = mbMessage.getModifiedDate();

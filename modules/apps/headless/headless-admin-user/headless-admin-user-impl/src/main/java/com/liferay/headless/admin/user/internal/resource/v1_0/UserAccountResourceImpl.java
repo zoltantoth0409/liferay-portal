@@ -260,7 +260,7 @@ public class UserAccountResourceImpl
 					}
 				};
 				customFields = CustomFieldsUtil.toCustomFields(
-					user.getUserId(), User.class, user.getCompanyId(),
+					User.class.getName(), user.getUserId(), user.getCompanyId(),
 					contextAcceptLanguage.getPreferredLocale());
 				dateCreated = user.getCreateDate();
 				dateModified = user.getModifiedDate();

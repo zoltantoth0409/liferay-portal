@@ -160,7 +160,7 @@ public class KnowledgeBaseFolderResourceImpl
 		KnowledgeBaseFolder knowledgeBaseFolder) {
 
 		return CustomFieldsUtil.toMap(
-			KBFolder.class, contextCompany.getCompanyId(),
+			KBFolder.class.getName(), contextCompany.getCompanyId(),
 			knowledgeBaseFolder.getCustomFields(),
 			contextAcceptLanguage.getPreferredLocale());
 	}
@@ -177,7 +177,7 @@ public class KnowledgeBaseFolderResourceImpl
 				creator = CreatorUtil.toCreator(
 					_portal, _userLocalService.getUser(kbFolder.getUserId()));
 				customFields = CustomFieldsUtil.toCustomFields(
-					kbFolder.getKbFolderId(), KBFolder.class,
+					KBFolder.class.getName(), kbFolder.getKbFolderId(),
 					kbFolder.getCompanyId(),
 					contextAcceptLanguage.getPreferredLocale());
 				dateCreated = kbFolder.getCreateDate();

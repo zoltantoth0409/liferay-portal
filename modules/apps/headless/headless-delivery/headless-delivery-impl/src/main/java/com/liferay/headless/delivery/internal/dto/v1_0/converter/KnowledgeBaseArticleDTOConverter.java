@@ -81,7 +81,7 @@ public class KnowledgeBaseArticleDTOConverter implements DTOConverter {
 				creator = CreatorUtil.toCreator(
 					_portal, _userLocalService.getUser(kbArticle.getUserId()));
 				customFields = CustomFieldsUtil.toCustomFields(
-					kbArticle.getKbArticleId(), KBArticle.class,
+					KBArticle.class.getName(), kbArticle.getKbArticleId(),
 					kbArticle.getCompanyId(), dtoConverterContext.getLocale());
 				dateCreated = kbArticle.getCreateDate();
 				dateModified = kbArticle.getModifiedDate();

@@ -204,8 +204,9 @@ public class OrganizationResourceImpl
 					}
 				};
 				customFields = CustomFieldsUtil.toCustomFields(
+					com.liferay.portal.kernel.model.Organization.class.
+						getName(),
 					organization.getOrganizationId(),
-					com.liferay.portal.kernel.model.Organization.class,
 					organization.getCompanyId(),
 					contextAcceptLanguage.getPreferredLocale());
 				dateCreated = organization.getCreateDate();

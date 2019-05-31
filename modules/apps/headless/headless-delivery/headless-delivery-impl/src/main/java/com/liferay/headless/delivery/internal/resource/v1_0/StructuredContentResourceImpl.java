@@ -638,7 +638,7 @@ public class StructuredContentResourceImpl
 		StructuredContent structuredContent) {
 
 		return CustomFieldsUtil.toMap(
-			JournalArticle.class, contextCompany.getCompanyId(),
+			JournalArticle.class.getName(), contextCompany.getCompanyId(),
 			structuredContent.getCustomFields(),
 			contextAcceptLanguage.getPreferredLocale());
 	}

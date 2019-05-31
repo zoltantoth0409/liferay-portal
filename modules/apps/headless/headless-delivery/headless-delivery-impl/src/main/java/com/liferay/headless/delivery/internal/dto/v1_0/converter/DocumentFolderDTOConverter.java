@@ -54,8 +54,8 @@ public class DocumentFolderDTOConverter implements DTOConverter {
 				creator = CreatorUtil.toCreator(
 					_portal, _userLocalService.getUser(folder.getUserId()));
 				customFields = CustomFieldsUtil.toCustomFields(
-					folder.getFolderId(), DLFolder.class, folder.getCompanyId(),
-					dtoConverterContext.getLocale());
+					DLFolder.class.getName(), folder.getFolderId(),
+					folder.getCompanyId(), dtoConverterContext.getLocale());
 				dateCreated = folder.getCreateDate();
 				dateModified = folder.getModifiedDate();
 				description = folder.getDescription();
