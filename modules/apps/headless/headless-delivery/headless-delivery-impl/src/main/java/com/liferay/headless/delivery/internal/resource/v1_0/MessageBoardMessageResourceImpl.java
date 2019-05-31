@@ -260,7 +260,7 @@ public class MessageBoardMessageResourceImpl
 		MessageBoardMessage messageBoardMessage) {
 
 		return CustomFieldsUtil.toMap(
-			MBMessage.class, contextCompany.getCompanyId(),
+			MBMessage.class.getName(), contextCompany.getCompanyId(),
 			messageBoardMessage.getCustomFields(),
 			contextAcceptLanguage.getPreferredLocale());
 	}

@@ -187,7 +187,7 @@ public class StructuredContentFolderResourceImpl
 		StructuredContentFolder structuredContentFolder) {
 
 		return CustomFieldsUtil.toMap(
-			JournalFolder.class, contextCompany.getCompanyId(),
+			JournalFolder.class.getName(), contextCompany.getCompanyId(),
 			structuredContentFolder.getCustomFields(),
 			contextAcceptLanguage.getPreferredLocale());
 	}

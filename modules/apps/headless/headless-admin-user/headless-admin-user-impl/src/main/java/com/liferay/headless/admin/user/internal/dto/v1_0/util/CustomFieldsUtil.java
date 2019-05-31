@@ -42,10 +42,10 @@ import java.util.TimeZone;
 public class CustomFieldsUtil {
 
 	public static CustomField[] toCustomFields(
-		long classPK, Class<?> clazz, long companyId, Locale locale) {
+		String className, long classPK, long companyId, Locale locale) {
 
 		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
-			companyId, clazz.getName(), classPK);
+			companyId, className, classPK);
 
 		Map<String, Serializable> attributes = expandoBridge.getAttributes();
 

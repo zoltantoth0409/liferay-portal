@@ -264,7 +264,7 @@ public class BlogPostingResourceImpl
 		BlogPosting blogPosting) {
 
 		return CustomFieldsUtil.toMap(
-			BlogsEntry.class, contextCompany.getCompanyId(),
+			BlogsEntry.class.getName(), contextCompany.getCompanyId(),
 			blogPosting.getCustomFields(),
 			contextAcceptLanguage.getPreferredLocale());
 	}

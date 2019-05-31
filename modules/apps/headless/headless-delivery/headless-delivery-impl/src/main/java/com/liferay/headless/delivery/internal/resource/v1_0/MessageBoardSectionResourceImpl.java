@@ -198,7 +198,7 @@ public class MessageBoardSectionResourceImpl
 		MessageBoardSection messageBoardSection) {
 
 		return CustomFieldsUtil.toMap(
-			MBCategory.class, contextCompany.getCompanyId(),
+			MBCategory.class.getName(), contextCompany.getCompanyId(),
 			messageBoardSection.getCustomFields(),
 			contextAcceptLanguage.getPreferredLocale());
 	}
@@ -233,7 +233,7 @@ public class MessageBoardSectionResourceImpl
 					_portal,
 					_userLocalService.getUserById(mbCategory.getUserId()));
 				customFields = CustomFieldsUtil.toCustomFields(
-					mbCategory.getCategoryId(), MBCategory.class,
+					MBCategory.class.getName(), mbCategory.getCategoryId(),
 					mbCategory.getCompanyId(),
 					contextAcceptLanguage.getPreferredLocale());
 				dateCreated = mbCategory.getCreateDate();

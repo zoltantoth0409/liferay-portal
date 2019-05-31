@@ -291,7 +291,7 @@ public class KnowledgeBaseArticleResourceImpl
 		KnowledgeBaseArticle knowledgeBaseArticle) {
 
 		return CustomFieldsUtil.toMap(
-			KBArticle.class, contextCompany.getCompanyId(),
+			KBArticle.class.getName(), contextCompany.getCompanyId(),
 			knowledgeBaseArticle.getCustomFields(),
 			contextAcceptLanguage.getPreferredLocale());
 	}
