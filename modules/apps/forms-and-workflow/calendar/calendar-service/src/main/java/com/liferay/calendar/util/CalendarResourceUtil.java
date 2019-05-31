@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 
@@ -121,7 +122,11 @@ public class CalendarResourceUtil {
 
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
 			userId, groupId, PortalUtil.getClassNameId(Group.class), groupId,
-			null, null, nameMap, descriptionMap, true, serviceContext);
+			null, null,
+			LocalizationUtil.populateLocalizationMap(
+				nameMap, LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
+				groupId),
+			descriptionMap, true, serviceContext);
 	}
 
 	public static CalendarResource getGroupCalendarResource(
@@ -217,7 +222,10 @@ public class CalendarResourceUtil {
 
 		return CalendarResourceLocalServiceUtil.addCalendarResource(
 			userId, userGroup.getGroupId(),
-			PortalUtil.getClassNameId(User.class), userId, null, null, nameMap,
+			PortalUtil.getClassNameId(User.class), userId, null, null,
+			LocalizationUtil.populateLocalizationMap(
+				nameMap, LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
+				userGroup.getGroupId()),
 			descriptionMap, true, serviceContext);
 	}
 
