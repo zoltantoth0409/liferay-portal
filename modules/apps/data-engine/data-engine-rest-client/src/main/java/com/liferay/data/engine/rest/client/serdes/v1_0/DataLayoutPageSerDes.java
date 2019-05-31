@@ -216,14 +216,14 @@ public class DataLayoutPageSerDes {
 			else if (Objects.equals(jsonParserFieldName, "description")) {
 				if (jsonParserFieldValue != null) {
 					dataLayoutPage.setDescription(
-						DataLayoutPageSerDes.toMap(
+						(Map)DataLayoutPageSerDes.toMap(
 							(String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "title")) {
 				if (jsonParserFieldValue != null) {
 					dataLayoutPage.setTitle(
-						DataLayoutPageSerDes.toMap(
+						(Map)DataLayoutPageSerDes.toMap(
 							(String)jsonParserFieldValue));
 				}
 			}

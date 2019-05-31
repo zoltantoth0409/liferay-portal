@@ -253,7 +253,7 @@ public class DataDefinitionRuleSerDes {
 
 				if (jsonParserFieldValue != null) {
 					dataDefinitionRule.setDataDefinitionRuleParameters(
-						DataDefinitionRuleSerDes.toMap(
+						(Map)DataDefinitionRuleSerDes.toMap(
 							(String)jsonParserFieldValue));
 				}
 			}

@@ -193,7 +193,8 @@ public class DataRecordSerDes {
 			else if (Objects.equals(jsonParserFieldName, "dataRecordValues")) {
 				if (jsonParserFieldValue != null) {
 					dataRecord.setDataRecordValues(
-						DataRecordSerDes.toMap((String)jsonParserFieldValue));
+						(Map)DataRecordSerDes.toMap(
+							(String)jsonParserFieldValue));
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "id")) {

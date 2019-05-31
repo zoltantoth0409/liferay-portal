@@ -215,7 +215,7 @@ public class DataRecordCollectionSerDes {
 			else if (Objects.equals(jsonParserFieldName, "description")) {
 				if (jsonParserFieldValue != null) {
 					dataRecordCollection.setDescription(
-						DataRecordCollectionSerDes.toMap(
+						(Map)DataRecordCollectionSerDes.toMap(
 							(String)jsonParserFieldValue));
 				}
 			}
@@ -228,7 +228,7 @@ public class DataRecordCollectionSerDes {
 			else if (Objects.equals(jsonParserFieldName, "name")) {
 				if (jsonParserFieldValue != null) {
 					dataRecordCollection.setName(
-						DataRecordCollectionSerDes.toMap(
+						(Map)DataRecordCollectionSerDes.toMap(
 							(String)jsonParserFieldValue));
 				}
 			}
