@@ -75,7 +75,7 @@ public class EntityFieldsUtil {
 			expandoColumn.getName());
 
 		String fieldName = ExpandoBridgeIndexerUtil.encodeFieldName(
-			expandoColumn.getName(), indexType);
+			columnName, indexType);
 
 		if (type == ExpandoColumnConstants.BOOLEAN) {
 			return new BooleanEntityField(columnName, locale -> fieldName);
