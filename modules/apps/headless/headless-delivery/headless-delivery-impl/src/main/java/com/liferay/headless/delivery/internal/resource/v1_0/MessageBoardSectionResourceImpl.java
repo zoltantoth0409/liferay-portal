@@ -73,9 +73,7 @@ public class MessageBoardSectionResourceImpl
 	}
 
 	@Override
-	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
-		throws Exception {
-
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
 		return new MessageBoardSectionEntityModel(
 			new ArrayList<>(
 				EntityFieldsUtil.getEntityFields(
