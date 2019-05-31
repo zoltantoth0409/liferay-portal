@@ -548,10 +548,10 @@ public abstract class BaseJSONParser<T> {
 		_captureStartStack.push(_index - 1);
 	}
 
-	private String _unescape(String substring) {
-		String replace = substring.replace("\\\\", "\\");
+	private String _unescape(String string) {
+		string = string.replace("\\\\", "\\");
 
-		return replace.replace("\\\"", "\"");
+		return string.replace("\\\"", "\"");
 	}
 
 	private Stack<Integer> _captureStartStack;
