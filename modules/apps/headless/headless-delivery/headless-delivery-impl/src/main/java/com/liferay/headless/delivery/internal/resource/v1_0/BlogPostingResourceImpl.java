@@ -103,9 +103,7 @@ public class BlogPostingResourceImpl
 	}
 
 	@Override
-	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
-		throws Exception {
-
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
 		return new BlogPostingEntityModel(
 			EntityFieldsUtil.getEntityFields(
 				_portal.getClassNameId(BlogsEntry.class.getName()),

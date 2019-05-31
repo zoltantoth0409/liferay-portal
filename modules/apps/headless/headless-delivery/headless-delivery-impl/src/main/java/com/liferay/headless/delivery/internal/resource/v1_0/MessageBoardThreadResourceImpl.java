@@ -115,9 +115,7 @@ public class MessageBoardThreadResourceImpl
 	}
 
 	@Override
-	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
-		throws Exception {
-
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
 		return new MessageBoardMessageEntityModel(
 			new ArrayList<>(
 				EntityFieldsUtil.getEntityFields(
