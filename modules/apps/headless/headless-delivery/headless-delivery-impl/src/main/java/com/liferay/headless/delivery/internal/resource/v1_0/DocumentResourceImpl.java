@@ -409,7 +409,7 @@ public class DocumentResourceImpl
 		Optional<Document> documentOptional) {
 
 		return CustomFieldsUtil.toMap(
-			DLFileEntry.class, contextCompany.getCompanyId(),
+			DLFileEntry.class.getName(), contextCompany.getCompanyId(),
 			_getExpandoBridgeAttributes(documentOptional),
 			contextAcceptLanguage.getPreferredLocale());
 	}

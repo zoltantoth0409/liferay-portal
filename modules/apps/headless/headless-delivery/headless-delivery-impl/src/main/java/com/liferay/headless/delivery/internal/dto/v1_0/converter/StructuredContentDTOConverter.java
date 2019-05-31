@@ -117,7 +117,7 @@ public class StructuredContentDTOConverter implements DTOConverter {
 					_portal,
 					_userLocalService.getUserById(journalArticle.getUserId()));
 				customFields = CustomFieldsUtil.toCustomFields(
-					journalArticle.getId(), JournalArticle.class,
+					JournalArticle.class.getName(), journalArticle.getId(),
 					journalArticle.getCompanyId(),
 					dtoConverterContext.getLocale());
 				dateCreated = journalArticle.getCreateDate();

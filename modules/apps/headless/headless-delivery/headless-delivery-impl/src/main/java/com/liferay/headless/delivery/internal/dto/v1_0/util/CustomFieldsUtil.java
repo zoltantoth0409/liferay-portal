@@ -51,10 +51,10 @@ import java.util.stream.Stream;
 public class CustomFieldsUtil {
 
 	public static CustomField[] toCustomFields(
-		long classPK, Class<?> clazz, long companyId, Locale locale) {
+		String className, long classPK, long companyId, Locale locale) {
 
 		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
-			companyId, clazz.getName(), classPK);
+			companyId, className, classPK);
 
 		Map<String, Serializable> attributes = expandoBridge.getAttributes();
 
@@ -78,7 +78,7 @@ public class CustomFieldsUtil {
 	}
 
 	public static Map<String, Serializable> toMap(
-		Class clazz, long companyId, CustomField[] customFields,
+		String className, long companyId, CustomField[] customFields,
 		Locale locale) {
 
 		if (customFields == null) {
@@ -86,7 +86,7 @@ public class CustomFieldsUtil {
 		}
 
 		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
-			companyId, clazz.getName());
+			companyId, className);
 
 		return Stream.of(
 			customFields

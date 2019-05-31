@@ -92,7 +92,7 @@ public class DocumentDTOConverter implements DTOConverter {
 					fileEntry, fileVersion, null, "");
 				creator = CreatorUtil.toCreator(_portal, user);
 				customFields = CustomFieldsUtil.toCustomFields(
-					fileVersion.getFileVersionId(), DLFileEntry.class,
+					DLFileEntry.class.getName(), fileVersion.getFileVersionId(),
 					fileEntry.getCompanyId(), dtoConverterContext.getLocale());
 				dateCreated = fileEntry.getCreateDate();
 				dateModified = fileEntry.getModifiedDate();

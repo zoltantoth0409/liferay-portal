@@ -177,7 +177,7 @@ public class DocumentFolderResourceImpl
 				documentFolder.getDescription(),
 				ServiceContextUtil.createServiceContext(
 					CustomFieldsUtil.toMap(
-						DLFolder.class, contextCompany.getCompanyId(),
+						DLFolder.class.getName(), contextCompany.getCompanyId(),
 						documentFolder.getCustomFields(),
 						contextAcceptLanguage.getPreferredLocale()),
 					siteId, documentFolder.getViewableByAsString())));
@@ -231,7 +231,7 @@ public class DocumentFolderResourceImpl
 				documentFolderId, name, description,
 				ServiceContextUtil.createServiceContext(
 					CustomFieldsUtil.toMap(
-						DLFolder.class, contextCompany.getCompanyId(),
+						DLFolder.class.getName(), contextCompany.getCompanyId(),
 						customFields,
 						contextAcceptLanguage.getPreferredLocale()),
 					0, null)));
