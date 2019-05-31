@@ -35,15 +35,6 @@ public class ServiceContextUtil {
 	}
 
 	public static ServiceContext createServiceContext(
-		Map<String, Serializable> expandoBridgeAttributes, long groupId,
-		String viewableBy) {
-
-		return createServiceContext(
-			new Long[0], new String[0], expandoBridgeAttributes, groupId,
-			viewableBy);
-	}
-
-	public static ServiceContext createServiceContext(
 		Long[] assetCategoryIds, String[] assetTagNames, Long groupId,
 		String viewableBy) {
 
@@ -88,6 +79,15 @@ public class ServiceContextUtil {
 				}
 			}
 		};
+	}
+
+	public static ServiceContext createServiceContext(
+		Map<String, Serializable> expandoBridgeAttributes, long groupId,
+		String viewableBy) {
+
+		return createServiceContext(
+			new Long[0], new String[0], expandoBridgeAttributes, groupId,
+			viewableBy);
 	}
 
 }
