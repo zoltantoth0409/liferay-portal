@@ -20,6 +20,7 @@ import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.headless.delivery.dto.v1_0.CustomField;
 import com.liferay.headless.delivery.dto.v1_0.CustomValue;
 import com.liferay.headless.delivery.dto.v1_0.Geo;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -155,6 +156,33 @@ public class CustomFieldsUtil {
 		);
 	}
 
+	private static final String _getDataType(int type) {
+		if ((type == ExpandoColumnConstants.DOUBLE) ||
+			(type == ExpandoColumnConstants.DOUBLE_ARRAY) ||
+			(type == ExpandoColumnConstants.FLOAT) ||
+			(type == ExpandoColumnConstants.FLOAT_ARRAY)) {
+
+			return "Decimal";
+		}
+		else if ((type == ExpandoColumnConstants.INTEGER) ||
+				 (type == ExpandoColumnConstants.INTEGER_ARRAY) ||
+				 (type == ExpandoColumnConstants.LONG) ||
+				 (type == ExpandoColumnConstants.LONG_ARRAY) ||
+				 (type == ExpandoColumnConstants.SHORT) ||
+				 (type == ExpandoColumnConstants.SHORT_ARRAY)) {
+
+			return "Integer";
+		}
+		else if ((type == ExpandoColumnConstants.STRING) ||
+				 (type == ExpandoColumnConstants.STRING_ARRAY) ||
+				 (type == ExpandoColumnConstants.STRING_LOCALIZED)) {
+
+			return "Text";
+		}
+
+		return StringPool.BLANK;
+	}
+
 	private static Object _getValue(
 		int attributeType, Locale locale, Object value) {
 
@@ -255,7 +283,7 @@ public class CustomFieldsUtil {
 						data = _getValue(attributeType, locale, value);
 					}
 				};
-				dataType = ExpandoColumnConstants.getDataType(attributeType);
+				dataType = _getDataType(attributeType);
 				name = entry.getKey();
 			}
 		};
