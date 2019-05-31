@@ -3216,6 +3216,11 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		javaCompile.doLast(taskAction);
 
 		if (!jspPrecompileFromSource && (artifactProperties != null)) {
+			Task generateJSPJavaTask = GradleUtil.getTask(
+				project, JspCPlugin.GENERATE_JSP_JAVA_TASK_NAME);
+
+			generateJSPJavaTask.setEnabled(false);
+
 			Copy copy = _addTaskDownloadCompiledJSP(
 				javaCompile, jarJSPsTask, artifactProperties, liferayExtension);
 
