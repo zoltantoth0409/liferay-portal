@@ -138,7 +138,9 @@ public class CustomFieldsUtil {
 					else if (ExpandoColumnConstants.STRING_ARRAY ==
 								attributeType) {
 
-						return ((List)data).toArray(new String[0]);
+						List<?> list = (List<?>)data;
+
+						return list.toArray(new String[0]);
 					}
 					else if (ExpandoColumnConstants.STRING_LOCALIZED ==
 								attributeType) {
