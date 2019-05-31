@@ -115,7 +115,7 @@ public class CalendarResourceUtil {
 
 		Map<Locale, String> nameMap = new HashMap<>();
 
-		nameMap.put(LocaleUtil.getDefault(), group.getDescriptiveName());
+		nameMap.put(LocaleUtil.getSiteDefault(), group.getDescriptiveName());
 
 		Map<Locale, String> descriptionMap = new HashMap<>();
 
@@ -211,7 +211,7 @@ public class CalendarResourceUtil {
 
 		Map<Locale, String> nameMap = new HashMap<>();
 
-		nameMap.put(LocaleUtil.getDefault(), userName);
+		nameMap.put(LocaleUtil.getSiteDefault(), userName);
 
 		Map<Locale, String> descriptionMap = new HashMap<>();
 
