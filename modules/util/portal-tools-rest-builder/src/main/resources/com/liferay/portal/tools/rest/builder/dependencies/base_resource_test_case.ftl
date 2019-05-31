@@ -99,8 +99,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testCompany = CompanyLocalServiceUtil.getCompany(testGroup.getCompanyId());
 		testLocale = LocaleUtil.getDefault();
+
+		testCompany = CompanyLocalServiceUtil.getCompany(testGroup.getCompanyId());
 
 		_${schemaVarName}Resource.setContextCompany(testCompany);
 	}
