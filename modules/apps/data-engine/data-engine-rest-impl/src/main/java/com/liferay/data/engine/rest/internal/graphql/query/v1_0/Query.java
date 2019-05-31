@@ -200,7 +200,7 @@ public class Query {
 			this::_populateResourceContext,
 			dataRecordResource ->
 				dataRecordResource.getDataRecordCollectionDataRecordExport(
-					dataRecordCollectionId, pageSize, page));
+					dataRecordCollectionId, Pagination.of(pageSize, page)));
 	}
 
 	@GraphQLField
