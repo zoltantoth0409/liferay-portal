@@ -96,7 +96,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import java.util.AbstractMap;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -183,9 +182,6 @@ public class StructuredContentResourceImpl
 				contentStructureId);
 
 			entityFields = _entityFieldsProvider.provide(ddmStructure);
-		}
-		else {
-			entityFields = Collections.emptyList();
 		}
 
 		return new StructuredContentEntityModel(
