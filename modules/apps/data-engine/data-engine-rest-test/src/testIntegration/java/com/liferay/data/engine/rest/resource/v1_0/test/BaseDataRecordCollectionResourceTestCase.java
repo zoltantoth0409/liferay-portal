@@ -48,7 +48,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.text.DateFormat;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -272,16 +271,16 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			dataRecordCollections2.toString(), 1,
 			dataRecordCollections2.size());
 
+		Page<DataRecordCollection> page3 =
+			DataRecordCollectionResource.
+				getDataDefinitionDataRecordCollectionsPage(
+					dataDefinitionId, null, Pagination.of(1, 3));
+
 		assertEqualsIgnoringOrder(
 			Arrays.asList(
 				dataRecordCollection1, dataRecordCollection2,
 				dataRecordCollection3),
-			new ArrayList<DataRecordCollection>() {
-				{
-					addAll(dataRecordCollections1);
-					addAll(dataRecordCollections2);
-				}
-			});
+			(List<DataRecordCollection>)page3.getItems());
 	}
 
 	protected DataRecordCollection
@@ -512,16 +511,15 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			dataRecordCollections2.toString(), 1,
 			dataRecordCollections2.size());
 
+		Page<DataRecordCollection> page3 =
+			DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
+				siteId, null, Pagination.of(1, 3));
+
 		assertEqualsIgnoringOrder(
 			Arrays.asList(
 				dataRecordCollection1, dataRecordCollection2,
 				dataRecordCollection3),
-			new ArrayList<DataRecordCollection>() {
-				{
-					addAll(dataRecordCollections1);
-					addAll(dataRecordCollections2);
-				}
-			});
+			(List<DataRecordCollection>)page3.getItems());
 	}
 
 	protected DataRecordCollection

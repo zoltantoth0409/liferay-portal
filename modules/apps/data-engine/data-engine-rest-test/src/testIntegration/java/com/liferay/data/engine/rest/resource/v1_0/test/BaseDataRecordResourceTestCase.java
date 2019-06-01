@@ -48,7 +48,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.text.DateFormat;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -256,14 +255,13 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		Assert.assertEquals(dataRecords2.toString(), 1, dataRecords2.size());
 
+		Page<DataRecord> page3 =
+			DataRecordResource.getDataRecordCollectionDataRecordsPage(
+				dataRecordCollectionId, Pagination.of(1, 3));
+
 		assertEqualsIgnoringOrder(
 			Arrays.asList(dataRecord1, dataRecord2, dataRecord3),
-			new ArrayList<DataRecord>() {
-				{
-					addAll(dataRecords1);
-					addAll(dataRecords2);
-				}
-			});
+			(List<DataRecord>)page3.getItems());
 	}
 
 	protected DataRecord

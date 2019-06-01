@@ -48,7 +48,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.text.DateFormat;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -262,14 +261,13 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		Assert.assertEquals(dataLayouts2.toString(), 1, dataLayouts2.size());
 
+		Page<DataLayout> page3 =
+			DataLayoutResource.getDataDefinitionDataLayoutsPage(
+				dataDefinitionId, null, Pagination.of(1, 3));
+
 		assertEqualsIgnoringOrder(
 			Arrays.asList(dataLayout1, dataLayout2, dataLayout3),
-			new ArrayList<DataLayout>() {
-				{
-					addAll(dataLayouts1);
-					addAll(dataLayouts2);
-				}
-			});
+			(List<DataLayout>)page3.getItems());
 	}
 
 	protected DataLayout testGetDataDefinitionDataLayoutsPage_addDataLayout(
@@ -448,14 +446,12 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		Assert.assertEquals(dataLayouts2.toString(), 1, dataLayouts2.size());
 
+		Page<DataLayout> page3 = DataLayoutResource.getSiteDataLayoutPage(
+			siteId, null, Pagination.of(1, 3));
+
 		assertEqualsIgnoringOrder(
 			Arrays.asList(dataLayout1, dataLayout2, dataLayout3),
-			new ArrayList<DataLayout>() {
-				{
-					addAll(dataLayouts1);
-					addAll(dataLayouts2);
-				}
-			});
+			(List<DataLayout>)page3.getItems());
 	}
 
 	protected DataLayout testGetSiteDataLayoutPage_addDataLayout(
