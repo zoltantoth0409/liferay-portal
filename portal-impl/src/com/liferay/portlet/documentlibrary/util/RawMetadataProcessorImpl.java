@@ -113,7 +113,7 @@ public class RawMetadataProcessorImpl
 
 	@Override
 	public boolean isSupported(String mimeType) {
-		return !_dlFileEntryRawMetadataProcesorExcludedMimeType.contains(
+		return !_dlFileEntryRawMetadataProcesorExcludedMimeTypes.contains(
 			mimeType);
 	}
 
@@ -207,7 +207,7 @@ public class RawMetadataProcessorImpl
 		RawMetadataProcessorImpl.class);
 
 	private static final Set<String>
-		_dlFileEntryRawMetadataProcesorExcludedMimeType = new HashSet<>(
+		_dlFileEntryRawMetadataProcesorExcludedMimeTypes = new HashSet<>(
 			Arrays.asList(
 				PropsValues.
 					DL_FILE_ENTRY_RAW_METADATA_PROCESSOR_EXCLUDED_MIME_TYPES));
