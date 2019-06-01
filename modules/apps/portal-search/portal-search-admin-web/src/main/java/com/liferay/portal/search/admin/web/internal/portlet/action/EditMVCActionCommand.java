@@ -103,16 +103,15 @@ public class EditMVCActionCommand extends BaseMVCActionCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Map<String, Serializable> taskContextMap = new HashMap<>();
-
-		String className = ParamUtil.getString(actionRequest, "className");
-
 		long[] companyIds = _portalInstancesLocalService.getCompanyIds();
 
 		if (!ArrayUtil.contains(companyIds, CompanyConstants.SYSTEM)) {
 			companyIds = ArrayUtil.append(
 				new long[] {CompanyConstants.SYSTEM}, companyIds);
 		}
+
+		String className = ParamUtil.getString(actionRequest, "className");
+		Map<String, Serializable> taskContextMap = new HashMap<>();
 
 		if (!ParamUtil.getBoolean(actionRequest, "blocking")) {
 			_indexWriterHelper.reindex(
