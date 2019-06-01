@@ -48,7 +48,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.text.DateFormat;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -348,14 +347,13 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		Assert.assertEquals(
 			dataDefinitions2.toString(), 1, dataDefinitions2.size());
 
+		Page<DataDefinition> page3 =
+			DataDefinitionResource.getSiteDataDefinitionsPage(
+				siteId, null, Pagination.of(1, 3));
+
 		assertEqualsIgnoringOrder(
 			Arrays.asList(dataDefinition1, dataDefinition2, dataDefinition3),
-			new ArrayList<DataDefinition>() {
-				{
-					addAll(dataDefinitions1);
-					addAll(dataDefinitions2);
-				}
-			});
+			(List<DataDefinition>)page3.getItems());
 	}
 
 	protected DataDefinition testGetSiteDataDefinitionsPage_addDataDefinition(
