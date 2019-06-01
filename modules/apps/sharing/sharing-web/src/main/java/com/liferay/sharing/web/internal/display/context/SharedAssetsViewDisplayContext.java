@@ -487,18 +487,15 @@ public class SharedAssetsViewDisplayContext {
 		SharingEntryEditRenderer sharingEntryEditRenderer =
 			sharingEntryInterpreter.getSharingEntryEditRenderer();
 
-		PortletURL urlEdit = sharingEntryEditRenderer.getURLEdit(
+		PortletURL portletURL = sharingEntryEditRenderer.getURLEdit(
 			sharingEntry, liferayPortletRequest, liferayPortletResponse);
 
-		if (urlEdit == null) {
+		if (portletURL == null) {
 			return null;
 		}
 
-		urlEdit.setWindowState(LiferayWindowState.POP_UP);
-
-		urlEdit.setParameter(
+		portletURL.setParameter(
 			"hideDefaultSuccessMessage", Boolean.TRUE.toString());
-		urlEdit.setParameter("showHeader", Boolean.FALSE.toString());
 
 		PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
 
@@ -511,9 +508,13 @@ public class SharedAssetsViewDisplayContext {
 			"mvcRenderCommandName",
 			"/shared_assets/close_sharing_entry_edit_dialog");
 
-		urlEdit.setParameter("redirect", redirectURL.toString());
+		portletURL.setParameter("redirect", redirectURL.toString());
 
-		return urlEdit;
+		portletURL.setParameter("showHeader", Boolean.FALSE.toString());
+
+		portletURL.setWindowState(LiferayWindowState.POP_UP);
+
+		return portletURL;
 	}
 
 	private boolean _hasEditPermission(long classNameId, long classPK) {
