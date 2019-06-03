@@ -346,14 +346,6 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			Arrays.asList(knowledgeBaseFolder1, knowledgeBaseFolder2),
 			(List<KnowledgeBaseFolder>)page.getItems());
 		assertValid(page);
-
-		page =
-			KnowledgeBaseFolderResource.
-				getKnowledgeBaseFolderKnowledgeBaseFoldersPage(
-					testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_getParentKnowledgeBaseFolderId(),
-					Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -504,12 +496,6 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			Arrays.asList(knowledgeBaseFolder1, knowledgeBaseFolder2),
 			(List<KnowledgeBaseFolder>)page.getItems());
 		assertValid(page);
-
-		page = KnowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
-			testGetSiteKnowledgeBaseFoldersPage_getSiteId(),
-			Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test

@@ -214,11 +214,6 @@ public abstract class BaseWebUrlResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(webUrl1, webUrl2), (List<WebUrl>)page.getItems());
 		assertValid(page);
-
-		page = WebUrlResource.getOrganizationWebUrlsPage(
-			testGetOrganizationWebUrlsPage_getOrganizationId());
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected WebUrl testGetOrganizationWebUrlsPage_addWebUrl(
@@ -276,11 +271,6 @@ public abstract class BaseWebUrlResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(webUrl1, webUrl2), (List<WebUrl>)page.getItems());
 		assertValid(page);
-
-		page = WebUrlResource.getUserAccountWebUrlsPage(
-			testGetUserAccountWebUrlsPage_getUserAccountId());
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected WebUrl testGetUserAccountWebUrlsPage_addWebUrl(

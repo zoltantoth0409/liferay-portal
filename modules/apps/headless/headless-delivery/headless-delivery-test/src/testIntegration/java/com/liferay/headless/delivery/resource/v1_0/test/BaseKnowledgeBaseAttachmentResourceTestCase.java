@@ -239,13 +239,6 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			Arrays.asList(knowledgeBaseAttachment1, knowledgeBaseAttachment2),
 			(List<KnowledgeBaseAttachment>)page.getItems());
 		assertValid(page);
-
-		page =
-			KnowledgeBaseAttachmentResource.
-				getKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
-					testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_getKnowledgeBaseArticleId());
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected KnowledgeBaseAttachment

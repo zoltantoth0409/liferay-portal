@@ -217,11 +217,6 @@ public abstract class BaseSegmentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(segment1, segment2), (List<Segment>)page.getItems());
 		assertValid(page);
-
-		page = SegmentResource.getSiteSegmentsPage(
-			testGetSiteSegmentsPage_getSiteId(), Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -320,12 +315,6 @@ public abstract class BaseSegmentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(segment1, segment2), (List<Segment>)page.getItems());
 		assertValid(page);
-
-		page = SegmentResource.getSiteUserAccountSegmentsPage(
-			testGetSiteUserAccountSegmentsPage_getSiteId(),
-			testGetSiteUserAccountSegmentsPage_getUserAccountId());
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected Segment testGetSiteUserAccountSegmentsPage_addSegment(

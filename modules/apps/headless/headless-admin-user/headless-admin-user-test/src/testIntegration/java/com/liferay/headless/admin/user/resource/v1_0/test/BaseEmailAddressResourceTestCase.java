@@ -239,11 +239,6 @@ public abstract class BaseEmailAddressResourceTestCase {
 			Arrays.asList(emailAddress1, emailAddress2),
 			(List<EmailAddress>)page.getItems());
 		assertValid(page);
-
-		page = EmailAddressResource.getOrganizationEmailAddressesPage(
-			testGetOrganizationEmailAddressesPage_getOrganizationId());
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected EmailAddress
@@ -311,11 +306,6 @@ public abstract class BaseEmailAddressResourceTestCase {
 			Arrays.asList(emailAddress1, emailAddress2),
 			(List<EmailAddress>)page.getItems());
 		assertValid(page);
-
-		page = EmailAddressResource.getUserAccountEmailAddressesPage(
-			testGetUserAccountEmailAddressesPage_getUserAccountId());
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected EmailAddress testGetUserAccountEmailAddressesPage_addEmailAddress(
