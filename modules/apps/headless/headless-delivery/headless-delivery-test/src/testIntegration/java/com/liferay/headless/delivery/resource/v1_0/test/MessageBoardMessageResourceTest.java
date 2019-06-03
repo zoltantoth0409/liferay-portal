@@ -23,11 +23,6 @@ import com.liferay.message.boards.test.util.MBTestUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.odata.entity.EntityField;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -62,19 +57,8 @@ public class MessageBoardMessageResourceTest
 	}
 
 	@Override
-	protected List<EntityField> getEntityFields(EntityField.Type type)
-		throws Exception {
-
-		List<EntityField> entityFields = super.getEntityFields(type);
-
-		return entityFields.stream(
-		).filter(
-			entityField ->
-				!Objects.equals(entityField.getName(), "creatorId") &&
-				!Objects.equals(entityField.getName(), "messageBoardSectionId")
-		).collect(
-			Collectors.toList()
-		);
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[] {"creatorId", "messageBoardSectionId"};
 	}
 
 	@Override

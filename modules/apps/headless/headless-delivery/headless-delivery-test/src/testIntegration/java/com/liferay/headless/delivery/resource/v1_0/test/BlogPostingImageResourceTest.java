@@ -21,16 +21,11 @@ import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.odata.entity.EntityField;
 
 import java.io.File;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -72,19 +67,8 @@ public class BlogPostingImageResourceTest
 	}
 
 	@Override
-	protected List<EntityField> getEntityFields(EntityField.Type type)
-		throws Exception {
-
-		List<EntityField> entityFields = super.getEntityFields(type);
-
-		Stream<EntityField> stream = entityFields.stream();
-
-		return stream.filter(
-			entityField -> !StringUtil.equals(
-				"fileExtension", entityField.getName())
-		).collect(
-			Collectors.toList()
-		);
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[] {"fileExtension"};
 	}
 
 	@Override
