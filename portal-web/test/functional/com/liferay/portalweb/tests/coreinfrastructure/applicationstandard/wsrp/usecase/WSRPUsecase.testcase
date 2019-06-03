@@ -9,6 +9,10 @@ definition {
 	setUp {
 		TestCase.setUpPortalInstance();
 
+		Portlet.shutdownServer();
+
+		Portlet.startServer(deleteLiferayHome = "false");
+
 		User.firstLoginPG();
 	}
 
