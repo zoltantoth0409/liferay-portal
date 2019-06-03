@@ -649,7 +649,7 @@ public class DLFileEntryLocalServiceImpl
 
 		// DLFileEntryPreviews
 
-		_fileVersionPreviewEventListener.deleteDLFileEntryPreviews(
+		_fileVersionPreviewEventListener.deleteDLFileVersionPreviews(
 			dlFileEntry.getFileEntryId());
 
 		// Expando
