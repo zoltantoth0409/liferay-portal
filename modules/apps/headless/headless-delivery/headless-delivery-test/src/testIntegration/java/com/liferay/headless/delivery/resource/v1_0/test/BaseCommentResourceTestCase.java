@@ -343,11 +343,50 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment1 = randomComment();
 		Comment comment2 = randomComment();
 
+		setEntityFieldValueSortDateTime(comment1, comment2);
+
+		comment1 = testGetBlogPostingCommentsPage_addComment(
+			blogPostingId, comment1);
+
+		comment2 = testGetBlogPostingCommentsPage_addComment(
+			blogPostingId, comment2);
+
 		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				comment1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
+			Page<Comment> ascPage = CommentResource.getBlogPostingCommentsPage(
+				blogPostingId, null, null, Pagination.of(1, 2),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(comment1, comment2),
+				(List<Comment>)ascPage.getItems());
+
+			Page<Comment> descPage = CommentResource.getBlogPostingCommentsPage(
+				blogPostingId, null, null, Pagination.of(1, 2),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(comment2, comment1),
+				(List<Comment>)descPage.getItems());
 		}
+	}
+
+	@Test
+	public void testGetBlogPostingCommentsPageWithSortInteger()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.INTEGER);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long blogPostingId = testGetBlogPostingCommentsPage_getBlogPostingId();
+
+		Comment comment1 = randomComment();
+		Comment comment2 = randomComment();
+
+		setEntityFieldValueSortInteger(comment1, comment2);
 
 		comment1 = testGetBlogPostingCommentsPage_addComment(
 			blogPostingId, comment1);
@@ -390,10 +429,7 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment1 = randomComment();
 		Comment comment2 = randomComment();
 
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(comment1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(comment2, entityField.getName(), "Bbb");
-		}
+		setEntityFieldValueSortString(comment1, comment2);
 
 		comment1 = testGetBlogPostingCommentsPage_addComment(
 			blogPostingId, comment1);
@@ -672,11 +708,48 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment1 = randomComment();
 		Comment comment2 = randomComment();
 
+		setEntityFieldValueSortDateTime(comment1, comment2);
+
+		comment1 = testGetCommentCommentsPage_addComment(
+			parentCommentId, comment1);
+
+		comment2 = testGetCommentCommentsPage_addComment(
+			parentCommentId, comment2);
+
 		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				comment1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
+			Page<Comment> ascPage = CommentResource.getCommentCommentsPage(
+				parentCommentId, null, null, Pagination.of(1, 2),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(comment1, comment2),
+				(List<Comment>)ascPage.getItems());
+
+			Page<Comment> descPage = CommentResource.getCommentCommentsPage(
+				parentCommentId, null, null, Pagination.of(1, 2),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(comment2, comment1),
+				(List<Comment>)descPage.getItems());
 		}
+	}
+
+	@Test
+	public void testGetCommentCommentsPageWithSortInteger() throws Exception {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.INTEGER);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long parentCommentId = testGetCommentCommentsPage_getParentCommentId();
+
+		Comment comment1 = randomComment();
+		Comment comment2 = randomComment();
+
+		setEntityFieldValueSortInteger(comment1, comment2);
 
 		comment1 = testGetCommentCommentsPage_addComment(
 			parentCommentId, comment1);
@@ -717,10 +790,7 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment1 = randomComment();
 		Comment comment2 = randomComment();
 
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(comment1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(comment2, entityField.getName(), "Bbb");
-		}
+		setEntityFieldValueSortString(comment1, comment2);
 
 		comment1 = testGetCommentCommentsPage_addComment(
 			parentCommentId, comment1);
@@ -938,11 +1008,46 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment1 = randomComment();
 		Comment comment2 = randomComment();
 
+		setEntityFieldValueSortDateTime(comment1, comment2);
+
+		comment1 = testGetDocumentCommentsPage_addComment(documentId, comment1);
+
+		comment2 = testGetDocumentCommentsPage_addComment(documentId, comment2);
+
 		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				comment1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
+			Page<Comment> ascPage = CommentResource.getDocumentCommentsPage(
+				documentId, null, null, Pagination.of(1, 2),
+				entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(comment1, comment2),
+				(List<Comment>)ascPage.getItems());
+
+			Page<Comment> descPage = CommentResource.getDocumentCommentsPage(
+				documentId, null, null, Pagination.of(1, 2),
+				entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(comment2, comment1),
+				(List<Comment>)descPage.getItems());
 		}
+	}
+
+	@Test
+	public void testGetDocumentCommentsPageWithSortInteger() throws Exception {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.INTEGER);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long documentId = testGetDocumentCommentsPage_getDocumentId();
+
+		Comment comment1 = randomComment();
+		Comment comment2 = randomComment();
+
+		setEntityFieldValueSortInteger(comment1, comment2);
 
 		comment1 = testGetDocumentCommentsPage_addComment(documentId, comment1);
 
@@ -981,10 +1086,7 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment1 = randomComment();
 		Comment comment2 = randomComment();
 
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(comment1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(comment2, entityField.getName(), "Bbb");
-		}
+		setEntityFieldValueSortString(comment1, comment2);
 
 		comment1 = testGetDocumentCommentsPage_addComment(documentId, comment1);
 
@@ -1216,11 +1318,53 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment1 = randomComment();
 		Comment comment2 = randomComment();
 
+		setEntityFieldValueSortDateTime(comment1, comment2);
+
+		comment1 = testGetStructuredContentCommentsPage_addComment(
+			structuredContentId, comment1);
+
+		comment2 = testGetStructuredContentCommentsPage_addComment(
+			structuredContentId, comment2);
+
 		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				comment1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
+			Page<Comment> ascPage =
+				CommentResource.getStructuredContentCommentsPage(
+					structuredContentId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(comment1, comment2),
+				(List<Comment>)ascPage.getItems());
+
+			Page<Comment> descPage =
+				CommentResource.getStructuredContentCommentsPage(
+					structuredContentId, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(comment2, comment1),
+				(List<Comment>)descPage.getItems());
 		}
+	}
+
+	@Test
+	public void testGetStructuredContentCommentsPageWithSortInteger()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.INTEGER);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long structuredContentId =
+			testGetStructuredContentCommentsPage_getStructuredContentId();
+
+		Comment comment1 = randomComment();
+		Comment comment2 = randomComment();
+
+		setEntityFieldValueSortInteger(comment1, comment2);
 
 		comment1 = testGetStructuredContentCommentsPage_addComment(
 			structuredContentId, comment1);
@@ -1266,10 +1410,7 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment1 = randomComment();
 		Comment comment2 = randomComment();
 
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(comment1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(comment2, entityField.getName(), "Bbb");
-		}
+		setEntityFieldValueSortString(comment1, comment2);
 
 		comment1 = testGetStructuredContentCommentsPage_addComment(
 			structuredContentId, comment1);
@@ -1695,6 +1836,46 @@ public abstract class BaseCommentResourceTestCase {
 
 	protected Comment randomPatchComment() throws Exception {
 		return randomComment();
+	}
+
+	protected void setEntityFieldValueSortDateTime(
+			Comment comment1, Comment comment2)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				comment1, entityField.getName(),
+				DateUtils.addMinutes(new Date(), -2));
+		}
+	}
+
+	protected void setEntityFieldValueSortInteger(
+			Comment comment1, Comment comment2)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.INTEGER);
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(comment1, entityField.getName(), 0);
+			BeanUtils.setProperty(comment2, entityField.getName(), 1);
+		}
+	}
+
+	protected void setEntityFieldValueSortString(
+			Comment comment1, Comment comment2)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(comment1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(comment2, entityField.getName(), "Bbb");
+		}
 	}
 
 	protected Group irrelevantGroup;

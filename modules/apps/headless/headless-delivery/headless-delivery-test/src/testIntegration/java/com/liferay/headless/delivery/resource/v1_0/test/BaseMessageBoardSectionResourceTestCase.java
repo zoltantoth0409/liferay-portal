@@ -508,11 +508,59 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
 		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
 
+		setEntityFieldValueSortDateTime(
+			messageBoardSection1, messageBoardSection2);
+
+		messageBoardSection1 =
+			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
+				parentMessageBoardSectionId, messageBoardSection1);
+
+		messageBoardSection2 =
+			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
+				parentMessageBoardSectionId, messageBoardSection2);
+
 		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				messageBoardSection1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
+			Page<MessageBoardSection> ascPage =
+				MessageBoardSectionResource.
+					getMessageBoardSectionMessageBoardSectionsPage(
+						parentMessageBoardSectionId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(messageBoardSection1, messageBoardSection2),
+				(List<MessageBoardSection>)ascPage.getItems());
+
+			Page<MessageBoardSection> descPage =
+				MessageBoardSectionResource.
+					getMessageBoardSectionMessageBoardSectionsPage(
+						parentMessageBoardSectionId, null, null,
+						Pagination.of(1, 2), entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(messageBoardSection2, messageBoardSection1),
+				(List<MessageBoardSection>)descPage.getItems());
 		}
+	}
+
+	@Test
+	public void testGetMessageBoardSectionMessageBoardSectionsPageWithSortInteger()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.INTEGER);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long parentMessageBoardSectionId =
+			testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId();
+
+		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
+		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
+
+		setEntityFieldValueSortInteger(
+			messageBoardSection1, messageBoardSection2);
 
 		messageBoardSection1 =
 			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
@@ -562,12 +610,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
 		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
 
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				messageBoardSection1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(
-				messageBoardSection2, entityField.getName(), "Bbb");
-		}
+		setEntityFieldValueSortString(
+			messageBoardSection1, messageBoardSection2);
 
 		messageBoardSection1 =
 			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
@@ -837,11 +881,56 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
 		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
 
+		setEntityFieldValueSortDateTime(
+			messageBoardSection1, messageBoardSection2);
+
+		messageBoardSection1 =
+			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
+				siteId, messageBoardSection1);
+
+		messageBoardSection2 =
+			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
+				siteId, messageBoardSection2);
+
 		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				messageBoardSection1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
+			Page<MessageBoardSection> ascPage =
+				MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+					siteId, null, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":asc");
+
+			assertEquals(
+				Arrays.asList(messageBoardSection1, messageBoardSection2),
+				(List<MessageBoardSection>)ascPage.getItems());
+
+			Page<MessageBoardSection> descPage =
+				MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+					siteId, null, null, null, Pagination.of(1, 2),
+					entityField.getName() + ":desc");
+
+			assertEquals(
+				Arrays.asList(messageBoardSection2, messageBoardSection1),
+				(List<MessageBoardSection>)descPage.getItems());
 		}
+	}
+
+	@Test
+	public void testGetSiteMessageBoardSectionsPageWithSortInteger()
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.INTEGER);
+
+		if (entityFields.isEmpty()) {
+			return;
+		}
+
+		Long siteId = testGetSiteMessageBoardSectionsPage_getSiteId();
+
+		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
+		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
+
+		setEntityFieldValueSortInteger(
+			messageBoardSection1, messageBoardSection2);
 
 		messageBoardSection1 =
 			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
@@ -888,12 +977,8 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
 		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
 
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				messageBoardSection1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(
-				messageBoardSection2, entityField.getName(), "Bbb");
-		}
+		setEntityFieldValueSortString(
+			messageBoardSection1, messageBoardSection2);
 
 		messageBoardSection1 =
 			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
@@ -1495,6 +1580,53 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		throws Exception {
 
 		return randomMessageBoardSection();
+	}
+
+	protected void setEntityFieldValueSortDateTime(
+			MessageBoardSection messageBoardSection1,
+			MessageBoardSection messageBoardSection2)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				messageBoardSection1, entityField.getName(),
+				DateUtils.addMinutes(new Date(), -2));
+		}
+	}
+
+	protected void setEntityFieldValueSortInteger(
+			MessageBoardSection messageBoardSection1,
+			MessageBoardSection messageBoardSection2)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.INTEGER);
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				messageBoardSection1, entityField.getName(), 0);
+			BeanUtils.setProperty(
+				messageBoardSection2, entityField.getName(), 1);
+		}
+	}
+
+	protected void setEntityFieldValueSortString(
+			MessageBoardSection messageBoardSection1,
+			MessageBoardSection messageBoardSection2)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
+
+		for (EntityField entityField : entityFields) {
+			BeanUtils.setProperty(
+				messageBoardSection1, entityField.getName(), "Aaa");
+			BeanUtils.setProperty(
+				messageBoardSection2, entityField.getName(), "Bbb");
+		}
 	}
 
 	protected Group irrelevantGroup;
