@@ -887,11 +887,11 @@ public class StagedLayoutSetStagedModelDataHandler
 	}
 
 	private boolean _isLayoutRevisionInReview(Layout stagedLayout) {
-		List<LayoutRevision> revisions =
+		List<LayoutRevision> layoutRevisions =
 			_layoutRevisionLocalService.getLayoutRevisions(
 				stagedLayout.getPlid());
 
-		Stream<LayoutRevision> layoutRevisionStream = revisions.stream();
+		Stream<LayoutRevision> layoutRevisionStream = layoutRevisions.stream();
 
 		if (layoutRevisionStream.anyMatch(
 				revision ->
