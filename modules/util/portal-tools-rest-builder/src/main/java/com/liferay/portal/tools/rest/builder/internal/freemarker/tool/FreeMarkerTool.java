@@ -314,6 +314,20 @@ public class FreeMarkerTool {
 		return false;
 	}
 
+	public boolean hasQueryParameter(JavaMethodSignature javaMethodSignature) {
+		List<JavaMethodParameter> javaMethodParameters =
+			javaMethodSignature.getJavaMethodParameters();
+		Operation operation = javaMethodSignature.getOperation();
+
+		for (JavaMethodParameter javaMethodParameter : javaMethodParameters) {
+			if (isQueryParameter(javaMethodParameter, operation)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public boolean hasRequestBodyMediaType(
 		JavaMethodSignature javaMethodSignature, String mediaType) {
 
