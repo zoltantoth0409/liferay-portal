@@ -116,11 +116,12 @@ public class ValidatorTest {
 	@Test
 	public void testIsInvalidEmailAddress() throws Exception {
 		String[] invalidEmailAddresses = {
-			"test", "liferay.com", "@liferay.com", "test(@liferay.com",
-			"test)@liferay.com", "test,@liferay.com", ".test@liferay.com",
-			"test.@liferay.com", "te..st@liferay.com", "test user@liferay.com",
-			"test@-liferay.com", "test@.liferay.com", "test@liferay.com-",
-			"test@liferay.com.", "test@liferay", "test@liferay.c", "test@liferay.com.c"
+			".test@liferay.com", "@liferay.com", "liferay.com",
+			"te..st@liferay.com", "test user@liferay.com", "test",
+			"test(@liferay.com", "test)@liferay.com", "test,@liferay.com",
+			"test.@liferay.com", "test@-liferay.com", "test@.liferay.com",
+			"test@liferay", "test@liferay.c", "test@liferay.com-",
+			"test@liferay.com.", "test@liferay.com.c"
 		};
 
 		testValidEmailAddreses(invalidEmailAddresses, false);
