@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -186,7 +187,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 		generateGetMultipartFilesMethod = false
 		javaMethodSignatures = freeMarkerTool.getResourceTestCaseJavaMethodSignatures(configYAML, openAPIYAML, schemaName)
 		properties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, schema)
-		sort = false
 	/>
 
 	<#list javaMethodSignatures as javaMethodSignature>
@@ -583,171 +583,37 @@ public abstract class Base${schemaName}ResourceTestCase {
 				</#if>
 
 				<#if parameters?contains("Sort[] sorts")>
-					<#assign sort = true />
-
 					@Test
 					public void test${javaMethodSignature.methodName?cap_first}WithSortDateTime() throws Exception {
-						List<EntityField> entityFields = getEntityFields(EntityField.Type.DATE_TIME);
-
-						if (entityFields.isEmpty()) {
-							return;
-						}
-
-						<#list javaMethodSignature.pathJavaMethodParameters as javaMethodParameter>
-							${javaMethodParameter.parameterType} ${javaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}();
-						</#list>
-
-						${schemaName} ${schemaVarName}1 = random${schemaName}();
-						${schemaName} ${schemaVarName}2 = random${schemaName}();
-
-						setEntityFieldValueSortDateTime(${schemaVarName}1, ${schemaVarName}2);
-
-						${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
-
-						<#list javaMethodSignature.pathJavaMethodParameters as javaMethodParameter>
-							${javaMethodParameter.parameterName},
-						</#list>
-
-						${schemaVarName}1);
-
-						${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
-
-						<#list javaMethodSignature.pathJavaMethodParameters as javaMethodParameter>
-							${javaMethodParameter.parameterName},
-						</#list>
-
-						${schemaVarName}2);
-
-						for (EntityField entityField : entityFields) {
-							Page<${schemaName}> ascPage = ${schemaName}Resource.${javaMethodSignature.methodName}(
-
-							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-								<#if !javaMethodParameter?is_first>
-									,
-								</#if>
-
-								<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-									Pagination.of(1, 2)
-								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
-									entityField.getName() + ":asc"
-								<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-									${javaMethodParameter.parameterName}
-								<#else>
-									null
-								</#if>
-							</#list>
-
-							);
-
-							assertEquals(Arrays.asList(${schemaVarName}1, ${schemaVarName}2), (List<${schemaName}>)ascPage.getItems());
-
-							Page<${schemaName}> descPage = ${schemaName}Resource.${javaMethodSignature.methodName}(
-
-							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-								<#if !javaMethodParameter?is_first>
-									,
-								</#if>
-
-								<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-									Pagination.of(1, 2)
-								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
-									entityField.getName() + ":desc"
-								<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-									${javaMethodParameter.parameterName}
-								<#else>
-									null
-								</#if>
-							</#list>
-
-							);
-
-							assertEquals(Arrays.asList(${schemaVarName}2, ${schemaVarName}1), (List<${schemaName}>)descPage.getItems());
-						}
+						test${javaMethodSignature.methodName?cap_first}WithSort(
+							EntityField.Type.DATE_TIME,
+							(entityField, ${schemaVarName}1, ${schemaVarName}2) -> {
+								BeanUtils.setProperty(${schemaVarName}1, entityField.getName(), DateUtils.addMinutes(new Date(), -2));
+							});
 					}
 
 					@Test
 					public void test${javaMethodSignature.methodName?cap_first}WithSortInteger() throws Exception {
-						List<EntityField> entityFields = getEntityFields(EntityField.Type.INTEGER);
-
-						if (entityFields.isEmpty()) {
-							return;
-						}
-
-						<#list javaMethodSignature.pathJavaMethodParameters as javaMethodParameter>
-							${javaMethodParameter.parameterType} ${javaMethodParameter.parameterName} = test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}();
-						</#list>
-
-						${schemaName} ${schemaVarName}1 = random${schemaName}();
-						${schemaName} ${schemaVarName}2 = random${schemaName}();
-
-						setEntityFieldValueSortInteger(${schemaVarName}1, ${schemaVarName}2);
-
-						${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
-
-						<#list javaMethodSignature.pathJavaMethodParameters as javaMethodParameter>
-							${javaMethodParameter.parameterName},
-						</#list>
-
-						${schemaVarName}1);
-
-						${schemaVarName}2 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
-
-						<#list javaMethodSignature.pathJavaMethodParameters as javaMethodParameter>
-							${javaMethodParameter.parameterName},
-						</#list>
-
-						${schemaVarName}2);
-
-						for (EntityField entityField : entityFields) {
-							Page<${schemaName}> ascPage = ${schemaName}Resource.${javaMethodSignature.methodName}(
-
-							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-								<#if !javaMethodParameter?is_first>
-									,
-								</#if>
-
-								<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-									Pagination.of(1, 2)
-								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
-									entityField.getName() + ":asc"
-								<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-									${javaMethodParameter.parameterName}
-								<#else>
-									null
-								</#if>
-							</#list>
-
-							);
-
-							assertEquals(Arrays.asList(${schemaVarName}1, ${schemaVarName}2), (List<${schemaName}>)ascPage.getItems());
-
-							Page<${schemaName}> descPage = ${schemaName}Resource.${javaMethodSignature.methodName}(
-
-							<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
-								<#if !javaMethodParameter?is_first>
-									,
-								</#if>
-
-								<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
-									Pagination.of(1, 2)
-								<#elseif stringUtil.equals(javaMethodParameter.parameterName, "sorts")>
-									entityField.getName() + ":desc"
-								<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation)>
-									${javaMethodParameter.parameterName}
-								<#else>
-									null
-								</#if>
-							</#list>
-
-							);
-
-							assertEquals(Arrays.asList(${schemaVarName}2, ${schemaVarName}1), (List<${schemaName}>)descPage.getItems());
-						}
+						test${javaMethodSignature.methodName?cap_first}WithSort(
+							EntityField.Type.INTEGER,
+							(entityField, ${schemaVarName}1, ${schemaVarName}2) -> {
+								BeanUtils.setProperty(${schemaVarName}1, entityField.getName(), 0);
+								BeanUtils.setProperty(${schemaVarName}2, entityField.getName(), 1);
+							});
 					}
 
 					@Test
 					public void test${javaMethodSignature.methodName?cap_first}WithSortString() throws Exception {
-						List<EntityField> entityFields = getEntityFields(EntityField.Type.STRING);
+						test${javaMethodSignature.methodName?cap_first}WithSort(
+							EntityField.Type.STRING,
+							(entityField, ${schemaVarName}1, ${schemaVarName}2) -> {
+								BeanUtils.setProperty(${schemaVarName}1, entityField.getName(), "Aaa");
+								BeanUtils.setProperty(${schemaVarName}2, entityField.getName(), "Bbb");
+							});
+					}
+
+					protected void test${javaMethodSignature.methodName?cap_first}WithSort(EntityField.Type type, UnsafeTriConsumer<EntityField, ${schemaName}, ${schemaName}, Exception> unsafeTriConsumer) throws Exception {
+						List<EntityField> entityFields = getEntityFields(type);
 
 						if (entityFields.isEmpty()) {
 							return;
@@ -760,7 +626,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 						${schemaName} ${schemaVarName}1 = random${schemaName}();
 						${schemaName} ${schemaVarName}2 = random${schemaName}();
 
-						setEntityFieldValueSortString(${schemaVarName}1, ${schemaVarName}2);
+						for (EntityField entityField : entityFields) {
+							unsafeTriConsumer.accept(entityField, ${schemaVarName}1, ${schemaVarName}2);
+						}
 
 						${schemaVarName}1 = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(
 
@@ -1334,34 +1202,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 	protected ${schemaName} randomPatch${schemaName}() throws Exception {
 		return random${schemaName}();
 	}
-
-	<#if sort>
-		protected void setEntityFieldValueSortDateTime(${schemaName} ${schemaVarName}1, ${schemaName} ${schemaVarName}2) throws Exception {
-			List<EntityField> entityFields = getEntityFields(EntityField.Type.DATE_TIME);
-
-			for (EntityField entityField : entityFields) {
-				BeanUtils.setProperty(${schemaVarName}1, entityField.getName(), DateUtils.addMinutes(new Date(), -2));
-			}
-		}
-
-		protected void setEntityFieldValueSortInteger(${schemaName} ${schemaVarName}1, ${schemaName} ${schemaVarName}2) throws Exception {
-			List<EntityField> entityFields = getEntityFields(EntityField.Type.INTEGER);
-
-			for (EntityField entityField : entityFields) {
-				BeanUtils.setProperty(${schemaVarName}1, entityField.getName(), 0);
-				BeanUtils.setProperty(${schemaVarName}2, entityField.getName(), 1);
-			}
-		}
-
-		protected void setEntityFieldValueSortString(${schemaName} ${schemaVarName}1, ${schemaName} ${schemaVarName}2) throws Exception {
-			List<EntityField> entityFields = getEntityFields(EntityField.Type.STRING);
-
-			for (EntityField entityField : entityFields) {
-				BeanUtils.setProperty(${schemaVarName}1, entityField.getName(), "Aaa");
-				BeanUtils.setProperty(${schemaVarName}2, entityField.getName(), "Bbb");
-			}
-		}
-	</#if>
 
 	protected Group irrelevantGroup;
 	protected Company testCompany;
