@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -232,6 +233,11 @@ public abstract class BasePostalAddressResourceTestCase {
 			Arrays.asList(postalAddress1, postalAddress2),
 			(List<PostalAddress>)page.getItems());
 		assertValid(page);
+
+		page = PostalAddressResource.getOrganizationPostalAddressesPage(
+			testGetOrganizationPostalAddressesPage_getOrganizationId());
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected PostalAddress
@@ -318,6 +324,11 @@ public abstract class BasePostalAddressResourceTestCase {
 			Arrays.asList(postalAddress1, postalAddress2),
 			(List<PostalAddress>)page.getItems());
 		assertValid(page);
+
+		page = PostalAddressResource.getUserAccountPostalAddressesPage(
+			testGetUserAccountPostalAddressesPage_getUserAccountId());
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected PostalAddress
@@ -513,6 +524,10 @@ public abstract class BasePostalAddressResourceTestCase {
 		return new String[0];
 	}
 
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[0];
+	}
+
 	protected boolean equals(
 		PostalAddress postalAddress1, PostalAddress postalAddress2) {
 
@@ -672,7 +687,10 @@ public abstract class BasePostalAddressResourceTestCase {
 		Stream<EntityField> stream = entityFields.stream();
 
 		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
+			entityField ->
+				Objects.equals(entityField.getType(), type) &&
+				!ArrayUtil.contains(
+					getIgnoredEntityFieldNames(), entityField.getName())
 		).collect(
 			Collectors.toList()
 		);

@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -231,6 +232,12 @@ public abstract class BaseDocumentResourceTestCase {
 			Arrays.asList(document1, document2),
 			(List<Document>)page.getItems());
 		assertValid(page);
+
+		page = DocumentResource.getDocumentFolderDocumentsPage(
+			testGetDocumentFolderDocumentsPage_getDocumentFolderId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -603,6 +610,12 @@ public abstract class BaseDocumentResourceTestCase {
 			Arrays.asList(document1, document2),
 			(List<Document>)page.getItems());
 		assertValid(page);
+
+		page = DocumentResource.getSiteDocumentsPage(
+			testGetSiteDocumentsPage_getSiteId(), null,
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -1054,6 +1067,10 @@ public abstract class BaseDocumentResourceTestCase {
 		return new String[0];
 	}
 
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[0];
+	}
+
 	protected boolean equals(Document document1, Document document2) {
 		if (document1 == document2) {
 			return true;
@@ -1312,7 +1329,10 @@ public abstract class BaseDocumentResourceTestCase {
 		Stream<EntityField> stream = entityFields.stream();
 
 		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
+			entityField ->
+				Objects.equals(entityField.getType(), type) &&
+				!ArrayUtil.contains(
+					getIgnoredEntityFieldNames(), entityField.getName())
 		).collect(
 			Collectors.toList()
 		);

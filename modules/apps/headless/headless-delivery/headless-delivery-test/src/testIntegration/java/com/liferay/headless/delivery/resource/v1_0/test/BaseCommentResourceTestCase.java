@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -217,6 +218,12 @@ public abstract class BaseCommentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(comment1, comment2), (List<Comment>)page.getItems());
 		assertValid(page);
+
+		page = CommentResource.getBlogPostingCommentsPage(
+			testGetBlogPostingCommentsPage_getBlogPostingId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -544,6 +551,12 @@ public abstract class BaseCommentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(comment1, comment2), (List<Comment>)page.getItems());
 		assertValid(page);
+
+		page = CommentResource.getCommentCommentsPage(
+			testGetCommentCommentsPage_getParentCommentId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -806,6 +819,12 @@ public abstract class BaseCommentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(comment1, comment2), (List<Comment>)page.getItems());
 		assertValid(page);
+
+		page = CommentResource.getDocumentCommentsPage(
+			testGetDocumentCommentsPage_getDocumentId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -1066,6 +1085,12 @@ public abstract class BaseCommentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(comment1, comment2), (List<Comment>)page.getItems());
 		assertValid(page);
+
+		page = CommentResource.getStructuredContentCommentsPage(
+			testGetStructuredContentCommentsPage_getStructuredContentId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -1434,6 +1459,10 @@ public abstract class BaseCommentResourceTestCase {
 		return new String[0];
 	}
 
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[0];
+	}
+
 	protected boolean equals(Comment comment1, Comment comment2) {
 		if (comment1 == comment2) {
 			return true;
@@ -1536,7 +1565,10 @@ public abstract class BaseCommentResourceTestCase {
 		Stream<EntityField> stream = entityFields.stream();
 
 		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
+			entityField ->
+				Objects.equals(entityField.getType(), type) &&
+				!ArrayUtil.contains(
+					getIgnoredEntityFieldNames(), entityField.getName())
 		).collect(
 			Collectors.toList()
 		);

@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -216,6 +217,11 @@ public abstract class BaseSegmentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(segment1, segment2), (List<Segment>)page.getItems());
 		assertValid(page);
+
+		page = SegmentResource.getSiteSegmentsPage(
+			testGetSiteSegmentsPage_getSiteId(), Pagination.of(1, 2));
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -314,6 +320,12 @@ public abstract class BaseSegmentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(segment1, segment2), (List<Segment>)page.getItems());
 		assertValid(page);
+
+		page = SegmentResource.getSiteUserAccountSegmentsPage(
+			testGetSiteUserAccountSegmentsPage_getSiteId(),
+			testGetSiteUserAccountSegmentsPage_getUserAccountId());
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected Segment testGetSiteUserAccountSegmentsPage_addSegment(
@@ -481,6 +493,10 @@ public abstract class BaseSegmentResourceTestCase {
 		return new String[0];
 	}
 
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[0];
+	}
+
 	protected boolean equals(Segment segment1, Segment segment2) {
 		if (segment1 == segment2) {
 			return true;
@@ -596,7 +612,10 @@ public abstract class BaseSegmentResourceTestCase {
 		Stream<EntityField> stream = entityFields.stream();
 
 		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
+			entityField ->
+				Objects.equals(entityField.getType(), type) &&
+				!ArrayUtil.contains(
+					getIgnoredEntityFieldNames(), entityField.getName())
 		).collect(
 			Collectors.toList()
 		);
