@@ -241,11 +241,6 @@ public abstract class BaseFormStructureResourceTestCase {
 			Arrays.asList(formStructure1, formStructure2),
 			(List<FormStructure>)page.getItems());
 		assertValid(page);
-
-		page = FormStructureResource.getSiteFormStructuresPage(
-			testGetSiteFormStructuresPage_getSiteId(), Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test

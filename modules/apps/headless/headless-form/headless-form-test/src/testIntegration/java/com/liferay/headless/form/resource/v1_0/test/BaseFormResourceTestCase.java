@@ -239,11 +239,6 @@ public abstract class BaseFormResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(form1, form2), (List<Form>)page.getItems());
 		assertValid(page);
-
-		page = FormResource.getSiteFormsPage(
-			testGetSiteFormsPage_getSiteId(), Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test

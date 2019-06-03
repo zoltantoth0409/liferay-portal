@@ -217,12 +217,6 @@ public abstract class BaseDataRecordResourceTestCase {
 			Arrays.asList(dataRecord1, dataRecord2),
 			(List<DataRecord>)page.getItems());
 		assertValid(page);
-
-		page = DataRecordResource.getDataRecordCollectionDataRecordsPage(
-			testGetDataRecordCollectionDataRecordsPage_getDataRecordCollectionId(),
-			Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test

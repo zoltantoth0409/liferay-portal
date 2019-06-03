@@ -233,11 +233,6 @@ public abstract class BasePostalAddressResourceTestCase {
 			Arrays.asList(postalAddress1, postalAddress2),
 			(List<PostalAddress>)page.getItems());
 		assertValid(page);
-
-		page = PostalAddressResource.getOrganizationPostalAddressesPage(
-			testGetOrganizationPostalAddressesPage_getOrganizationId());
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected PostalAddress
@@ -324,11 +319,6 @@ public abstract class BasePostalAddressResourceTestCase {
 			Arrays.asList(postalAddress1, postalAddress2),
 			(List<PostalAddress>)page.getItems());
 		assertValid(page);
-
-		page = PostalAddressResource.getUserAccountPostalAddressesPage(
-			testGetUserAccountPostalAddressesPage_getUserAccountId());
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected PostalAddress

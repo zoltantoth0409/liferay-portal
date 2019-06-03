@@ -224,12 +224,6 @@ public abstract class BaseContentSetElementResourceTestCase {
 			Arrays.asList(contentSetElement1, contentSetElement2),
 			(List<ContentSetElement>)page.getItems());
 		assertValid(page);
-
-		page = ContentSetElementResource.getContentSetContentSetElementsPage(
-			testGetContentSetContentSetElementsPage_getContentSetId(),
-			Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -356,15 +350,6 @@ public abstract class BaseContentSetElementResourceTestCase {
 			Arrays.asList(contentSetElement1, contentSetElement2),
 			(List<ContentSetElement>)page.getItems());
 		assertValid(page);
-
-		page =
-			ContentSetElementResource.
-				getSiteContentSetByKeyContentSetElementsPage(
-					testGetSiteContentSetByKeyContentSetElementsPage_getSiteId(),
-					testGetSiteContentSetByKeyContentSetElementsPage_getKey(),
-					Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -509,15 +494,6 @@ public abstract class BaseContentSetElementResourceTestCase {
 			Arrays.asList(contentSetElement1, contentSetElement2),
 			(List<ContentSetElement>)page.getItems());
 		assertValid(page);
-
-		page =
-			ContentSetElementResource.
-				getSiteContentSetByUuidContentSetElementsPage(
-					testGetSiteContentSetByUuidContentSetElementsPage_getSiteId(),
-					testGetSiteContentSetByUuidContentSetElementsPage_getUuid(),
-					Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
