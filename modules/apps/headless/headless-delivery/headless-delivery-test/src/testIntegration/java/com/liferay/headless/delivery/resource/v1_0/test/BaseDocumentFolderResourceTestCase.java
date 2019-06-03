@@ -28,6 +28,7 @@ import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.DocumentFolderResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.DocumentFolderSerDes;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -465,104 +466,51 @@ public abstract class BaseDocumentFolderResourceTestCase {
 	public void testGetDocumentFolderDocumentFoldersPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long parentDocumentFolderId =
-			testGetDocumentFolderDocumentFoldersPage_getParentDocumentFolderId();
-
-		DocumentFolder documentFolder1 = randomDocumentFolder();
-		DocumentFolder documentFolder2 = randomDocumentFolder();
-
-		setEntityFieldValueSortDateTime(documentFolder1, documentFolder2);
-
-		documentFolder1 =
-			testGetDocumentFolderDocumentFoldersPage_addDocumentFolder(
-				parentDocumentFolderId, documentFolder1);
-
-		documentFolder2 =
-			testGetDocumentFolderDocumentFoldersPage_addDocumentFolder(
-				parentDocumentFolderId, documentFolder2);
-
-		for (EntityField entityField : entityFields) {
-			Page<DocumentFolder> ascPage =
-				DocumentFolderResource.getDocumentFolderDocumentFoldersPage(
-					parentDocumentFolderId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(documentFolder1, documentFolder2),
-				(List<DocumentFolder>)ascPage.getItems());
-
-			Page<DocumentFolder> descPage =
-				DocumentFolderResource.getDocumentFolderDocumentFoldersPage(
-					parentDocumentFolderId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(documentFolder2, documentFolder1),
-				(List<DocumentFolder>)descPage.getItems());
-		}
+		testGetDocumentFolderDocumentFoldersPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, documentFolder1, documentFolder2) -> {
+				BeanUtils.setProperty(
+					documentFolder1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetDocumentFolderDocumentFoldersPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long parentDocumentFolderId =
-			testGetDocumentFolderDocumentFoldersPage_getParentDocumentFolderId();
-
-		DocumentFolder documentFolder1 = randomDocumentFolder();
-		DocumentFolder documentFolder2 = randomDocumentFolder();
-
-		setEntityFieldValueSortInteger(documentFolder1, documentFolder2);
-
-		documentFolder1 =
-			testGetDocumentFolderDocumentFoldersPage_addDocumentFolder(
-				parentDocumentFolderId, documentFolder1);
-
-		documentFolder2 =
-			testGetDocumentFolderDocumentFoldersPage_addDocumentFolder(
-				parentDocumentFolderId, documentFolder2);
-
-		for (EntityField entityField : entityFields) {
-			Page<DocumentFolder> ascPage =
-				DocumentFolderResource.getDocumentFolderDocumentFoldersPage(
-					parentDocumentFolderId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(documentFolder1, documentFolder2),
-				(List<DocumentFolder>)ascPage.getItems());
-
-			Page<DocumentFolder> descPage =
-				DocumentFolderResource.getDocumentFolderDocumentFoldersPage(
-					parentDocumentFolderId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(documentFolder2, documentFolder1),
-				(List<DocumentFolder>)descPage.getItems());
-		}
+		testGetDocumentFolderDocumentFoldersPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, documentFolder1, documentFolder2) -> {
+				BeanUtils.setProperty(
+					documentFolder1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					documentFolder2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetDocumentFolderDocumentFoldersPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetDocumentFolderDocumentFoldersPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, documentFolder1, documentFolder2) -> {
+				BeanUtils.setProperty(
+					documentFolder1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					documentFolder2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetDocumentFolderDocumentFoldersPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, DocumentFolder, DocumentFolder, Exception>
+					unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -574,7 +522,10 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		DocumentFolder documentFolder1 = randomDocumentFolder();
 		DocumentFolder documentFolder2 = randomDocumentFolder();
 
-		setEntityFieldValueSortString(documentFolder1, documentFolder2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, documentFolder1, documentFolder2);
+		}
 
 		documentFolder1 =
 			testGetDocumentFolderDocumentFoldersPage_addDocumentFolder(
@@ -820,98 +771,51 @@ public abstract class BaseDocumentFolderResourceTestCase {
 	public void testGetSiteDocumentFoldersPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteDocumentFoldersPage_getSiteId();
-
-		DocumentFolder documentFolder1 = randomDocumentFolder();
-		DocumentFolder documentFolder2 = randomDocumentFolder();
-
-		setEntityFieldValueSortDateTime(documentFolder1, documentFolder2);
-
-		documentFolder1 = testGetSiteDocumentFoldersPage_addDocumentFolder(
-			siteId, documentFolder1);
-
-		documentFolder2 = testGetSiteDocumentFoldersPage_addDocumentFolder(
-			siteId, documentFolder2);
-
-		for (EntityField entityField : entityFields) {
-			Page<DocumentFolder> ascPage =
-				DocumentFolderResource.getSiteDocumentFoldersPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(documentFolder1, documentFolder2),
-				(List<DocumentFolder>)ascPage.getItems());
-
-			Page<DocumentFolder> descPage =
-				DocumentFolderResource.getSiteDocumentFoldersPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(documentFolder2, documentFolder1),
-				(List<DocumentFolder>)descPage.getItems());
-		}
+		testGetSiteDocumentFoldersPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, documentFolder1, documentFolder2) -> {
+				BeanUtils.setProperty(
+					documentFolder1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetSiteDocumentFoldersPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteDocumentFoldersPage_getSiteId();
-
-		DocumentFolder documentFolder1 = randomDocumentFolder();
-		DocumentFolder documentFolder2 = randomDocumentFolder();
-
-		setEntityFieldValueSortInteger(documentFolder1, documentFolder2);
-
-		documentFolder1 = testGetSiteDocumentFoldersPage_addDocumentFolder(
-			siteId, documentFolder1);
-
-		documentFolder2 = testGetSiteDocumentFoldersPage_addDocumentFolder(
-			siteId, documentFolder2);
-
-		for (EntityField entityField : entityFields) {
-			Page<DocumentFolder> ascPage =
-				DocumentFolderResource.getSiteDocumentFoldersPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(documentFolder1, documentFolder2),
-				(List<DocumentFolder>)ascPage.getItems());
-
-			Page<DocumentFolder> descPage =
-				DocumentFolderResource.getSiteDocumentFoldersPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(documentFolder2, documentFolder1),
-				(List<DocumentFolder>)descPage.getItems());
-		}
+		testGetSiteDocumentFoldersPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, documentFolder1, documentFolder2) -> {
+				BeanUtils.setProperty(
+					documentFolder1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					documentFolder2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetSiteDocumentFoldersPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetSiteDocumentFoldersPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, documentFolder1, documentFolder2) -> {
+				BeanUtils.setProperty(
+					documentFolder1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					documentFolder2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetSiteDocumentFoldersPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, DocumentFolder, DocumentFolder, Exception>
+					unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -922,7 +826,10 @@ public abstract class BaseDocumentFolderResourceTestCase {
 		DocumentFolder documentFolder1 = randomDocumentFolder();
 		DocumentFolder documentFolder2 = randomDocumentFolder();
 
-		setEntityFieldValueSortString(documentFolder1, documentFolder2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, documentFolder1, documentFolder2);
+		}
 
 		documentFolder1 = testGetSiteDocumentFoldersPage_addDocumentFolder(
 			siteId, documentFolder1);
@@ -1487,48 +1394,6 @@ public abstract class BaseDocumentFolderResourceTestCase {
 
 	protected DocumentFolder randomPatchDocumentFolder() throws Exception {
 		return randomDocumentFolder();
-	}
-
-	protected void setEntityFieldValueSortDateTime(
-			DocumentFolder documentFolder1, DocumentFolder documentFolder2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				documentFolder1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
-		}
-	}
-
-	protected void setEntityFieldValueSortInteger(
-			DocumentFolder documentFolder1, DocumentFolder documentFolder2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(documentFolder1, entityField.getName(), 0);
-			BeanUtils.setProperty(documentFolder2, entityField.getName(), 1);
-		}
-	}
-
-	protected void setEntityFieldValueSortString(
-			DocumentFolder documentFolder1, DocumentFolder documentFolder2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				documentFolder1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(
-				documentFolder2, entityField.getName(), "Bbb");
-		}
 	}
 
 	protected Group irrelevantGroup;

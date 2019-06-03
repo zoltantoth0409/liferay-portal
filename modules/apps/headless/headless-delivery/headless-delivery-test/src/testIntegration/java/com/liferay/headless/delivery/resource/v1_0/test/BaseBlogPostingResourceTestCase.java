@@ -28,6 +28,7 @@ import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.BlogPostingResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.BlogPostingSerDes;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -476,94 +477,44 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	@Test
 	public void testGetSiteBlogPostingsPageWithSortDateTime() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteBlogPostingsPage_getSiteId();
-
-		BlogPosting blogPosting1 = randomBlogPosting();
-		BlogPosting blogPosting2 = randomBlogPosting();
-
-		setEntityFieldValueSortDateTime(blogPosting1, blogPosting2);
-
-		blogPosting1 = testGetSiteBlogPostingsPage_addBlogPosting(
-			siteId, blogPosting1);
-
-		blogPosting2 = testGetSiteBlogPostingsPage_addBlogPosting(
-			siteId, blogPosting2);
-
-		for (EntityField entityField : entityFields) {
-			Page<BlogPosting> ascPage =
-				BlogPostingResource.getSiteBlogPostingsPage(
-					siteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(blogPosting1, blogPosting2),
-				(List<BlogPosting>)ascPage.getItems());
-
-			Page<BlogPosting> descPage =
-				BlogPostingResource.getSiteBlogPostingsPage(
-					siteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(blogPosting2, blogPosting1),
-				(List<BlogPosting>)descPage.getItems());
-		}
+		testGetSiteBlogPostingsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, blogPosting1, blogPosting2) -> {
+				BeanUtils.setProperty(
+					blogPosting1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetSiteBlogPostingsPageWithSortInteger() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteBlogPostingsPage_getSiteId();
-
-		BlogPosting blogPosting1 = randomBlogPosting();
-		BlogPosting blogPosting2 = randomBlogPosting();
-
-		setEntityFieldValueSortInteger(blogPosting1, blogPosting2);
-
-		blogPosting1 = testGetSiteBlogPostingsPage_addBlogPosting(
-			siteId, blogPosting1);
-
-		blogPosting2 = testGetSiteBlogPostingsPage_addBlogPosting(
-			siteId, blogPosting2);
-
-		for (EntityField entityField : entityFields) {
-			Page<BlogPosting> ascPage =
-				BlogPostingResource.getSiteBlogPostingsPage(
-					siteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(blogPosting1, blogPosting2),
-				(List<BlogPosting>)ascPage.getItems());
-
-			Page<BlogPosting> descPage =
-				BlogPostingResource.getSiteBlogPostingsPage(
-					siteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(blogPosting2, blogPosting1),
-				(List<BlogPosting>)descPage.getItems());
-		}
+		testGetSiteBlogPostingsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, blogPosting1, blogPosting2) -> {
+				BeanUtils.setProperty(blogPosting1, entityField.getName(), 0);
+				BeanUtils.setProperty(blogPosting2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetSiteBlogPostingsPageWithSortString() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetSiteBlogPostingsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, blogPosting1, blogPosting2) -> {
+				BeanUtils.setProperty(
+					blogPosting1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					blogPosting2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetSiteBlogPostingsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer<EntityField, BlogPosting, BlogPosting, Exception>
+				unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -574,7 +525,9 @@ public abstract class BaseBlogPostingResourceTestCase {
 		BlogPosting blogPosting1 = randomBlogPosting();
 		BlogPosting blogPosting2 = randomBlogPosting();
 
-		setEntityFieldValueSortString(blogPosting1, blogPosting2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(entityField, blogPosting1, blogPosting2);
+		}
 
 		blogPosting1 = testGetSiteBlogPostingsPage_addBlogPosting(
 			siteId, blogPosting1);
@@ -1419,46 +1372,6 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	protected BlogPosting randomPatchBlogPosting() throws Exception {
 		return randomBlogPosting();
-	}
-
-	protected void setEntityFieldValueSortDateTime(
-			BlogPosting blogPosting1, BlogPosting blogPosting2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				blogPosting1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
-		}
-	}
-
-	protected void setEntityFieldValueSortInteger(
-			BlogPosting blogPosting1, BlogPosting blogPosting2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(blogPosting1, entityField.getName(), 0);
-			BeanUtils.setProperty(blogPosting2, entityField.getName(), 1);
-		}
-	}
-
-	protected void setEntityFieldValueSortString(
-			BlogPosting blogPosting1, BlogPosting blogPosting2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(blogPosting1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(blogPosting2, entityField.getName(), "Bbb");
-		}
 	}
 
 	protected Group irrelevantGroup;

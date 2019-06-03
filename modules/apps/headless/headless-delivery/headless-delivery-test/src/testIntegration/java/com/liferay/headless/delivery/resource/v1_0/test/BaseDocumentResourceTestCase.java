@@ -28,6 +28,7 @@ import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.DocumentResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.DocumentSerDes;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -350,100 +351,46 @@ public abstract class BaseDocumentResourceTestCase {
 	public void testGetDocumentFolderDocumentsPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long documentFolderId =
-			testGetDocumentFolderDocumentsPage_getDocumentFolderId();
-
-		Document document1 = randomDocument();
-		Document document2 = randomDocument();
-
-		setEntityFieldValueSortDateTime(document1, document2);
-
-		document1 = testGetDocumentFolderDocumentsPage_addDocument(
-			documentFolderId, document1);
-
-		document2 = testGetDocumentFolderDocumentsPage_addDocument(
-			documentFolderId, document2);
-
-		for (EntityField entityField : entityFields) {
-			Page<Document> ascPage =
-				DocumentResource.getDocumentFolderDocumentsPage(
-					documentFolderId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(document1, document2),
-				(List<Document>)ascPage.getItems());
-
-			Page<Document> descPage =
-				DocumentResource.getDocumentFolderDocumentsPage(
-					documentFolderId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(document2, document1),
-				(List<Document>)descPage.getItems());
-		}
+		testGetDocumentFolderDocumentsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, document1, document2) -> {
+				BeanUtils.setProperty(
+					document1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetDocumentFolderDocumentsPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long documentFolderId =
-			testGetDocumentFolderDocumentsPage_getDocumentFolderId();
-
-		Document document1 = randomDocument();
-		Document document2 = randomDocument();
-
-		setEntityFieldValueSortInteger(document1, document2);
-
-		document1 = testGetDocumentFolderDocumentsPage_addDocument(
-			documentFolderId, document1);
-
-		document2 = testGetDocumentFolderDocumentsPage_addDocument(
-			documentFolderId, document2);
-
-		for (EntityField entityField : entityFields) {
-			Page<Document> ascPage =
-				DocumentResource.getDocumentFolderDocumentsPage(
-					documentFolderId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(document1, document2),
-				(List<Document>)ascPage.getItems());
-
-			Page<Document> descPage =
-				DocumentResource.getDocumentFolderDocumentsPage(
-					documentFolderId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(document2, document1),
-				(List<Document>)descPage.getItems());
-		}
+		testGetDocumentFolderDocumentsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, document1, document2) -> {
+				BeanUtils.setProperty(document1, entityField.getName(), 0);
+				BeanUtils.setProperty(document2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetDocumentFolderDocumentsPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetDocumentFolderDocumentsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, document1, document2) -> {
+				BeanUtils.setProperty(document1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(document2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetDocumentFolderDocumentsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer<EntityField, Document, Document, Exception>
+				unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -455,7 +402,9 @@ public abstract class BaseDocumentResourceTestCase {
 		Document document1 = randomDocument();
 		Document document2 = randomDocument();
 
-		setEntityFieldValueSortString(document1, document2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(entityField, document1, document2);
+		}
 
 		document1 = testGetDocumentFolderDocumentsPage_addDocument(
 			documentFolderId, document1);
@@ -757,86 +706,42 @@ public abstract class BaseDocumentResourceTestCase {
 
 	@Test
 	public void testGetSiteDocumentsPageWithSortDateTime() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteDocumentsPage_getSiteId();
-
-		Document document1 = randomDocument();
-		Document document2 = randomDocument();
-
-		setEntityFieldValueSortDateTime(document1, document2);
-
-		document1 = testGetSiteDocumentsPage_addDocument(siteId, document1);
-
-		document2 = testGetSiteDocumentsPage_addDocument(siteId, document2);
-
-		for (EntityField entityField : entityFields) {
-			Page<Document> ascPage = DocumentResource.getSiteDocumentsPage(
-				siteId, null, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(document1, document2),
-				(List<Document>)ascPage.getItems());
-
-			Page<Document> descPage = DocumentResource.getSiteDocumentsPage(
-				siteId, null, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(document2, document1),
-				(List<Document>)descPage.getItems());
-		}
+		testGetSiteDocumentsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, document1, document2) -> {
+				BeanUtils.setProperty(
+					document1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetSiteDocumentsPageWithSortInteger() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteDocumentsPage_getSiteId();
-
-		Document document1 = randomDocument();
-		Document document2 = randomDocument();
-
-		setEntityFieldValueSortInteger(document1, document2);
-
-		document1 = testGetSiteDocumentsPage_addDocument(siteId, document1);
-
-		document2 = testGetSiteDocumentsPage_addDocument(siteId, document2);
-
-		for (EntityField entityField : entityFields) {
-			Page<Document> ascPage = DocumentResource.getSiteDocumentsPage(
-				siteId, null, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(document1, document2),
-				(List<Document>)ascPage.getItems());
-
-			Page<Document> descPage = DocumentResource.getSiteDocumentsPage(
-				siteId, null, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(document2, document1),
-				(List<Document>)descPage.getItems());
-		}
+		testGetSiteDocumentsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, document1, document2) -> {
+				BeanUtils.setProperty(document1, entityField.getName(), 0);
+				BeanUtils.setProperty(document2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetSiteDocumentsPageWithSortString() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetSiteDocumentsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, document1, document2) -> {
+				BeanUtils.setProperty(document1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(document2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetSiteDocumentsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer<EntityField, Document, Document, Exception>
+				unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -847,7 +752,9 @@ public abstract class BaseDocumentResourceTestCase {
 		Document document1 = randomDocument();
 		Document document2 = randomDocument();
 
-		setEntityFieldValueSortString(document1, document2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(entityField, document1, document2);
+		}
 
 		document1 = testGetSiteDocumentsPage_addDocument(siteId, document1);
 
@@ -1623,46 +1530,6 @@ public abstract class BaseDocumentResourceTestCase {
 
 	protected Document randomPatchDocument() throws Exception {
 		return randomDocument();
-	}
-
-	protected void setEntityFieldValueSortDateTime(
-			Document document1, Document document2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				document1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
-		}
-	}
-
-	protected void setEntityFieldValueSortInteger(
-			Document document1, Document document2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(document1, entityField.getName(), 0);
-			BeanUtils.setProperty(document2, entityField.getName(), 1);
-		}
-	}
-
-	protected void setEntityFieldValueSortString(
-			Document document1, Document document2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(document1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(document2, entityField.getName(), "Bbb");
-		}
 	}
 
 	protected Group irrelevantGroup;
