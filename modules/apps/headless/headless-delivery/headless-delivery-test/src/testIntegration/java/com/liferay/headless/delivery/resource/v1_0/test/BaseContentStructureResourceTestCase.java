@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -244,6 +245,12 @@ public abstract class BaseContentStructureResourceTestCase {
 			Arrays.asList(contentStructure1, contentStructure2),
 			(List<ContentStructure>)page.getItems());
 		assertValid(page);
+
+		page = ContentStructureResource.getSiteContentStructuresPage(
+			testGetSiteContentStructuresPage_getSiteId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -640,6 +647,10 @@ public abstract class BaseContentStructureResourceTestCase {
 		return new String[0];
 	}
 
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[0];
+	}
+
 	protected boolean equals(
 		ContentStructure contentStructure1,
 		ContentStructure contentStructure2) {
@@ -782,7 +793,10 @@ public abstract class BaseContentStructureResourceTestCase {
 		Stream<EntityField> stream = entityFields.stream();
 
 		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
+			entityField ->
+				Objects.equals(entityField.getType(), type) &&
+				!ArrayUtil.contains(
+					getIgnoredEntityFieldNames(), entityField.getName())
 		).collect(
 			Collectors.toList()
 		);

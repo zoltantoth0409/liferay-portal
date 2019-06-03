@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -348,6 +349,15 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			Arrays.asList(messageBoardSection1, messageBoardSection2),
 			(List<MessageBoardSection>)page.getItems());
 		assertValid(page);
+
+		page =
+			MessageBoardSectionResource.
+				getMessageBoardSectionMessageBoardSectionsPage(
+					testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId(),
+					RandomTestUtil.randomString(), null, Pagination.of(1, 2),
+					null);
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -684,6 +694,12 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			Arrays.asList(messageBoardSection1, messageBoardSection2),
 			(List<MessageBoardSection>)page.getItems());
 		assertValid(page);
+
+		page = MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+			testGetSiteMessageBoardSectionsPage_getSiteId(), null,
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -1131,6 +1147,10 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		return new String[0];
 	}
 
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[0];
+	}
+
 	protected boolean equals(
 		MessageBoardSection messageBoardSection1,
 		MessageBoardSection messageBoardSection2) {
@@ -1300,7 +1320,10 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Stream<EntityField> stream = entityFields.stream();
 
 		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
+			entityField ->
+				Objects.equals(entityField.getType(), type) &&
+				!ArrayUtil.contains(
+					getIgnoredEntityFieldNames(), entityField.getName())
 		).collect(
 			Collectors.toList()
 		);

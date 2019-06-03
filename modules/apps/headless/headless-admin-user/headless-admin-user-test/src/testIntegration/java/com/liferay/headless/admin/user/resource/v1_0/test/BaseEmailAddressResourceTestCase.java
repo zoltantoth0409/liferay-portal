@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -238,6 +239,11 @@ public abstract class BaseEmailAddressResourceTestCase {
 			Arrays.asList(emailAddress1, emailAddress2),
 			(List<EmailAddress>)page.getItems());
 		assertValid(page);
+
+		page = EmailAddressResource.getOrganizationEmailAddressesPage(
+			testGetOrganizationEmailAddressesPage_getOrganizationId());
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected EmailAddress
@@ -305,6 +311,11 @@ public abstract class BaseEmailAddressResourceTestCase {
 			Arrays.asList(emailAddress1, emailAddress2),
 			(List<EmailAddress>)page.getItems());
 		assertValid(page);
+
+		page = EmailAddressResource.getUserAccountEmailAddressesPage(
+			testGetUserAccountEmailAddressesPage_getUserAccountId());
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected EmailAddress testGetUserAccountEmailAddressesPage_addEmailAddress(
@@ -445,6 +456,10 @@ public abstract class BaseEmailAddressResourceTestCase {
 		return new String[0];
 	}
 
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[0];
+	}
+
 	protected boolean equals(
 		EmailAddress emailAddress1, EmailAddress emailAddress2) {
 
@@ -531,7 +546,10 @@ public abstract class BaseEmailAddressResourceTestCase {
 		Stream<EntityField> stream = entityFields.stream();
 
 		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
+			entityField ->
+				Objects.equals(entityField.getType(), type) &&
+				!ArrayUtil.contains(
+					getIgnoredEntityFieldNames(), entityField.getName())
 		).collect(
 			Collectors.toList()
 		);

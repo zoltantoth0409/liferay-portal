@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -238,6 +239,13 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			Arrays.asList(knowledgeBaseAttachment1, knowledgeBaseAttachment2),
 			(List<KnowledgeBaseAttachment>)page.getItems());
 		assertValid(page);
+
+		page =
+			KnowledgeBaseAttachmentResource.
+				getKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
+					testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_getKnowledgeBaseArticleId());
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected KnowledgeBaseAttachment
@@ -485,6 +493,10 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		return new String[0];
 	}
 
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[0];
+	}
+
 	protected boolean equals(
 		KnowledgeBaseAttachment knowledgeBaseAttachment1,
 		KnowledgeBaseAttachment knowledgeBaseAttachment2) {
@@ -598,7 +610,10 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		Stream<EntityField> stream = entityFields.stream();
 
 		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
+			entityField ->
+				Objects.equals(entityField.getType(), type) &&
+				!ArrayUtil.contains(
+					getIgnoredEntityFieldNames(), entityField.getName())
 		).collect(
 			Collectors.toList()
 		);
