@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -224,6 +225,14 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			Arrays.asList(dataRecordCollection1, dataRecordCollection2),
 			(List<DataRecordCollection>)page.getItems());
 		assertValid(page);
+
+		page =
+			DataRecordCollectionResource.
+				getDataDefinitionDataRecordCollectionsPage(
+					testGetDataDefinitionDataRecordCollectionsPage_getDataDefinitionId(),
+					RandomTestUtil.randomString(), Pagination.of(1, 2));
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -467,6 +476,12 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			Arrays.asList(dataRecordCollection1, dataRecordCollection2),
 			(List<DataRecordCollection>)page.getItems());
 		assertValid(page);
+
+		page = DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
+			testGetSiteDataRecordCollectionsPage_getSiteId(),
+			RandomTestUtil.randomString(), Pagination.of(1, 2));
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -670,6 +685,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		return new String[0];
 	}
 
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[0];
+	}
+
 	protected boolean equals(
 		DataRecordCollection dataRecordCollection1,
 		DataRecordCollection dataRecordCollection2) {
@@ -759,7 +778,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		Stream<EntityField> stream = entityFields.stream();
 
 		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
+			entityField ->
+				Objects.equals(entityField.getType(), type) &&
+				!ArrayUtil.contains(
+					getIgnoredEntityFieldNames(), entityField.getName())
 		).collect(
 			Collectors.toList()
 		);

@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -214,6 +215,11 @@ public abstract class BasePhoneResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(phone1, phone2), (List<Phone>)page.getItems());
 		assertValid(page);
+
+		page = PhoneResource.getOrganizationPhonesPage(
+			testGetOrganizationPhonesPage_getOrganizationId());
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected Phone testGetOrganizationPhonesPage_addPhone(
@@ -286,6 +292,11 @@ public abstract class BasePhoneResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(phone1, phone2), (List<Phone>)page.getItems());
 		assertValid(page);
+
+		page = PhoneResource.getUserAccountPhonesPage(
+			testGetUserAccountPhonesPage_getUserAccountId());
+
+		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected Phone testGetUserAccountPhonesPage_addPhone(
@@ -425,6 +436,10 @@ public abstract class BasePhoneResourceTestCase {
 		return new String[0];
 	}
 
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[0];
+	}
+
 	protected boolean equals(Phone phone1, Phone phone2) {
 		if (phone1 == phone2) {
 			return true;
@@ -515,7 +530,10 @@ public abstract class BasePhoneResourceTestCase {
 		Stream<EntityField> stream = entityFields.stream();
 
 		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
+			entityField ->
+				Objects.equals(entityField.getType(), type) &&
+				!ArrayUtil.contains(
+					getIgnoredEntityFieldNames(), entityField.getName())
 		).collect(
 			Collectors.toList()
 		);
