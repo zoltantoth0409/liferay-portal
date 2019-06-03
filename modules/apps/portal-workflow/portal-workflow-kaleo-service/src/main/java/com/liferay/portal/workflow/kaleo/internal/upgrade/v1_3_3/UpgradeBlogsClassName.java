@@ -28,7 +28,7 @@ import java.util.Objects;
 /**
  * @author Leonardo Barros
  */
-public class UpgradeBlogsEntryClassName extends BaseUpgradeClassNames {
+public class UpgradeBlogsClassName extends BaseUpgradeClassNames {
 
 	@Override
 	protected void updateClassName(String tableName, String columnName) {
