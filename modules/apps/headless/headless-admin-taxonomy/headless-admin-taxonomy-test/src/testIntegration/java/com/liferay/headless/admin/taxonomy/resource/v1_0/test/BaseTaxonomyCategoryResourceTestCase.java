@@ -28,6 +28,7 @@ import com.liferay.headless.admin.taxonomy.client.pagination.Page;
 import com.liferay.headless.admin.taxonomy.client.pagination.Pagination;
 import com.liferay.headless.admin.taxonomy.client.resource.v1_0.TaxonomyCategoryResource;
 import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.TaxonomyCategorySerDes;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -371,108 +372,51 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	public void testGetTaxonomyCategoryTaxonomyCategoriesPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long parentTaxonomyCategoryId =
-			testGetTaxonomyCategoryTaxonomyCategoriesPage_getParentTaxonomyCategoryId();
-
-		TaxonomyCategory taxonomyCategory1 = randomTaxonomyCategory();
-		TaxonomyCategory taxonomyCategory2 = randomTaxonomyCategory();
-
-		setEntityFieldValueSortDateTime(taxonomyCategory1, taxonomyCategory2);
-
-		taxonomyCategory1 =
-			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
-				parentTaxonomyCategoryId, taxonomyCategory1);
-
-		taxonomyCategory2 =
-			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
-				parentTaxonomyCategoryId, taxonomyCategory2);
-
-		for (EntityField entityField : entityFields) {
-			Page<TaxonomyCategory> ascPage =
-				TaxonomyCategoryResource.
-					getTaxonomyCategoryTaxonomyCategoriesPage(
-						parentTaxonomyCategoryId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(taxonomyCategory1, taxonomyCategory2),
-				(List<TaxonomyCategory>)ascPage.getItems());
-
-			Page<TaxonomyCategory> descPage =
-				TaxonomyCategoryResource.
-					getTaxonomyCategoryTaxonomyCategoriesPage(
-						parentTaxonomyCategoryId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(taxonomyCategory2, taxonomyCategory1),
-				(List<TaxonomyCategory>)descPage.getItems());
-		}
+		testGetTaxonomyCategoryTaxonomyCategoriesPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, taxonomyCategory1, taxonomyCategory2) -> {
+				BeanUtils.setProperty(
+					taxonomyCategory1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetTaxonomyCategoryTaxonomyCategoriesPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long parentTaxonomyCategoryId =
-			testGetTaxonomyCategoryTaxonomyCategoriesPage_getParentTaxonomyCategoryId();
-
-		TaxonomyCategory taxonomyCategory1 = randomTaxonomyCategory();
-		TaxonomyCategory taxonomyCategory2 = randomTaxonomyCategory();
-
-		setEntityFieldValueSortInteger(taxonomyCategory1, taxonomyCategory2);
-
-		taxonomyCategory1 =
-			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
-				parentTaxonomyCategoryId, taxonomyCategory1);
-
-		taxonomyCategory2 =
-			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
-				parentTaxonomyCategoryId, taxonomyCategory2);
-
-		for (EntityField entityField : entityFields) {
-			Page<TaxonomyCategory> ascPage =
-				TaxonomyCategoryResource.
-					getTaxonomyCategoryTaxonomyCategoriesPage(
-						parentTaxonomyCategoryId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(taxonomyCategory1, taxonomyCategory2),
-				(List<TaxonomyCategory>)ascPage.getItems());
-
-			Page<TaxonomyCategory> descPage =
-				TaxonomyCategoryResource.
-					getTaxonomyCategoryTaxonomyCategoriesPage(
-						parentTaxonomyCategoryId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(taxonomyCategory2, taxonomyCategory1),
-				(List<TaxonomyCategory>)descPage.getItems());
-		}
+		testGetTaxonomyCategoryTaxonomyCategoriesPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, taxonomyCategory1, taxonomyCategory2) -> {
+				BeanUtils.setProperty(
+					taxonomyCategory1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					taxonomyCategory2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetTaxonomyCategoryTaxonomyCategoriesPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetTaxonomyCategoryTaxonomyCategoriesPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, taxonomyCategory1, taxonomyCategory2) -> {
+				BeanUtils.setProperty(
+					taxonomyCategory1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					taxonomyCategory2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetTaxonomyCategoryTaxonomyCategoriesPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, TaxonomyCategory, TaxonomyCategory, Exception>
+					unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -484,7 +428,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		TaxonomyCategory taxonomyCategory1 = randomTaxonomyCategory();
 		TaxonomyCategory taxonomyCategory2 = randomTaxonomyCategory();
 
-		setEntityFieldValueSortString(taxonomyCategory1, taxonomyCategory2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, taxonomyCategory1, taxonomyCategory2);
+		}
 
 		taxonomyCategory1 =
 			testGetTaxonomyCategoryTaxonomyCategoriesPage_addTaxonomyCategory(
@@ -865,108 +812,51 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 	public void testGetTaxonomyVocabularyTaxonomyCategoriesPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long taxonomyVocabularyId =
-			testGetTaxonomyVocabularyTaxonomyCategoriesPage_getTaxonomyVocabularyId();
-
-		TaxonomyCategory taxonomyCategory1 = randomTaxonomyCategory();
-		TaxonomyCategory taxonomyCategory2 = randomTaxonomyCategory();
-
-		setEntityFieldValueSortDateTime(taxonomyCategory1, taxonomyCategory2);
-
-		taxonomyCategory1 =
-			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
-				taxonomyVocabularyId, taxonomyCategory1);
-
-		taxonomyCategory2 =
-			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
-				taxonomyVocabularyId, taxonomyCategory2);
-
-		for (EntityField entityField : entityFields) {
-			Page<TaxonomyCategory> ascPage =
-				TaxonomyCategoryResource.
-					getTaxonomyVocabularyTaxonomyCategoriesPage(
-						taxonomyVocabularyId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(taxonomyCategory1, taxonomyCategory2),
-				(List<TaxonomyCategory>)ascPage.getItems());
-
-			Page<TaxonomyCategory> descPage =
-				TaxonomyCategoryResource.
-					getTaxonomyVocabularyTaxonomyCategoriesPage(
-						taxonomyVocabularyId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(taxonomyCategory2, taxonomyCategory1),
-				(List<TaxonomyCategory>)descPage.getItems());
-		}
+		testGetTaxonomyVocabularyTaxonomyCategoriesPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, taxonomyCategory1, taxonomyCategory2) -> {
+				BeanUtils.setProperty(
+					taxonomyCategory1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetTaxonomyVocabularyTaxonomyCategoriesPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long taxonomyVocabularyId =
-			testGetTaxonomyVocabularyTaxonomyCategoriesPage_getTaxonomyVocabularyId();
-
-		TaxonomyCategory taxonomyCategory1 = randomTaxonomyCategory();
-		TaxonomyCategory taxonomyCategory2 = randomTaxonomyCategory();
-
-		setEntityFieldValueSortInteger(taxonomyCategory1, taxonomyCategory2);
-
-		taxonomyCategory1 =
-			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
-				taxonomyVocabularyId, taxonomyCategory1);
-
-		taxonomyCategory2 =
-			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
-				taxonomyVocabularyId, taxonomyCategory2);
-
-		for (EntityField entityField : entityFields) {
-			Page<TaxonomyCategory> ascPage =
-				TaxonomyCategoryResource.
-					getTaxonomyVocabularyTaxonomyCategoriesPage(
-						taxonomyVocabularyId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(taxonomyCategory1, taxonomyCategory2),
-				(List<TaxonomyCategory>)ascPage.getItems());
-
-			Page<TaxonomyCategory> descPage =
-				TaxonomyCategoryResource.
-					getTaxonomyVocabularyTaxonomyCategoriesPage(
-						taxonomyVocabularyId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(taxonomyCategory2, taxonomyCategory1),
-				(List<TaxonomyCategory>)descPage.getItems());
-		}
+		testGetTaxonomyVocabularyTaxonomyCategoriesPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, taxonomyCategory1, taxonomyCategory2) -> {
+				BeanUtils.setProperty(
+					taxonomyCategory1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					taxonomyCategory2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetTaxonomyVocabularyTaxonomyCategoriesPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetTaxonomyVocabularyTaxonomyCategoriesPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, taxonomyCategory1, taxonomyCategory2) -> {
+				BeanUtils.setProperty(
+					taxonomyCategory1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					taxonomyCategory2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetTaxonomyVocabularyTaxonomyCategoriesPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, TaxonomyCategory, TaxonomyCategory, Exception>
+					unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -978,7 +868,10 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 		TaxonomyCategory taxonomyCategory1 = randomTaxonomyCategory();
 		TaxonomyCategory taxonomyCategory2 = randomTaxonomyCategory();
 
-		setEntityFieldValueSortString(taxonomyCategory1, taxonomyCategory2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, taxonomyCategory1, taxonomyCategory2);
+		}
 
 		taxonomyCategory1 =
 			testGetTaxonomyVocabularyTaxonomyCategoriesPage_addTaxonomyCategory(
@@ -1578,51 +1471,6 @@ public abstract class BaseTaxonomyCategoryResourceTestCase {
 
 	protected TaxonomyCategory randomPatchTaxonomyCategory() throws Exception {
 		return randomTaxonomyCategory();
-	}
-
-	protected void setEntityFieldValueSortDateTime(
-			TaxonomyCategory taxonomyCategory1,
-			TaxonomyCategory taxonomyCategory2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				taxonomyCategory1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
-		}
-	}
-
-	protected void setEntityFieldValueSortInteger(
-			TaxonomyCategory taxonomyCategory1,
-			TaxonomyCategory taxonomyCategory2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(taxonomyCategory1, entityField.getName(), 0);
-			BeanUtils.setProperty(taxonomyCategory2, entityField.getName(), 1);
-		}
-	}
-
-	protected void setEntityFieldValueSortString(
-			TaxonomyCategory taxonomyCategory1,
-			TaxonomyCategory taxonomyCategory2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				taxonomyCategory1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(
-				taxonomyCategory2, entityField.getName(), "Bbb");
-		}
 	}
 
 	protected Group irrelevantGroup;

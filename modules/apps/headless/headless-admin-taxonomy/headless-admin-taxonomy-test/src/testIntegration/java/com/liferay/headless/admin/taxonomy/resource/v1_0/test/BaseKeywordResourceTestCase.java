@@ -28,6 +28,7 @@ import com.liferay.headless.admin.taxonomy.client.pagination.Page;
 import com.liferay.headless.admin.taxonomy.client.pagination.Pagination;
 import com.liferay.headless.admin.taxonomy.client.resource.v1_0.KeywordResource;
 import com.liferay.headless.admin.taxonomy.client.serdes.v1_0.KeywordSerDes;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -379,86 +380,42 @@ public abstract class BaseKeywordResourceTestCase {
 
 	@Test
 	public void testGetSiteKeywordsPageWithSortDateTime() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteKeywordsPage_getSiteId();
-
-		Keyword keyword1 = randomKeyword();
-		Keyword keyword2 = randomKeyword();
-
-		setEntityFieldValueSortDateTime(keyword1, keyword2);
-
-		keyword1 = testGetSiteKeywordsPage_addKeyword(siteId, keyword1);
-
-		keyword2 = testGetSiteKeywordsPage_addKeyword(siteId, keyword2);
-
-		for (EntityField entityField : entityFields) {
-			Page<Keyword> ascPage = KeywordResource.getSiteKeywordsPage(
-				siteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(keyword1, keyword2),
-				(List<Keyword>)ascPage.getItems());
-
-			Page<Keyword> descPage = KeywordResource.getSiteKeywordsPage(
-				siteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(keyword2, keyword1),
-				(List<Keyword>)descPage.getItems());
-		}
+		testGetSiteKeywordsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, keyword1, keyword2) -> {
+				BeanUtils.setProperty(
+					keyword1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetSiteKeywordsPageWithSortInteger() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteKeywordsPage_getSiteId();
-
-		Keyword keyword1 = randomKeyword();
-		Keyword keyword2 = randomKeyword();
-
-		setEntityFieldValueSortInteger(keyword1, keyword2);
-
-		keyword1 = testGetSiteKeywordsPage_addKeyword(siteId, keyword1);
-
-		keyword2 = testGetSiteKeywordsPage_addKeyword(siteId, keyword2);
-
-		for (EntityField entityField : entityFields) {
-			Page<Keyword> ascPage = KeywordResource.getSiteKeywordsPage(
-				siteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(keyword1, keyword2),
-				(List<Keyword>)ascPage.getItems());
-
-			Page<Keyword> descPage = KeywordResource.getSiteKeywordsPage(
-				siteId, null, null, Pagination.of(1, 2),
-				entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(keyword2, keyword1),
-				(List<Keyword>)descPage.getItems());
-		}
+		testGetSiteKeywordsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, keyword1, keyword2) -> {
+				BeanUtils.setProperty(keyword1, entityField.getName(), 0);
+				BeanUtils.setProperty(keyword2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetSiteKeywordsPageWithSortString() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetSiteKeywordsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, keyword1, keyword2) -> {
+				BeanUtils.setProperty(keyword1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(keyword2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetSiteKeywordsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer<EntityField, Keyword, Keyword, Exception>
+				unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -469,7 +426,9 @@ public abstract class BaseKeywordResourceTestCase {
 		Keyword keyword1 = randomKeyword();
 		Keyword keyword2 = randomKeyword();
 
-		setEntityFieldValueSortString(keyword1, keyword2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(entityField, keyword1, keyword2);
+		}
 
 		keyword1 = testGetSiteKeywordsPage_addKeyword(siteId, keyword1);
 
@@ -903,46 +862,6 @@ public abstract class BaseKeywordResourceTestCase {
 
 	protected Keyword randomPatchKeyword() throws Exception {
 		return randomKeyword();
-	}
-
-	protected void setEntityFieldValueSortDateTime(
-			Keyword keyword1, Keyword keyword2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				keyword1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
-		}
-	}
-
-	protected void setEntityFieldValueSortInteger(
-			Keyword keyword1, Keyword keyword2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(keyword1, entityField.getName(), 0);
-			BeanUtils.setProperty(keyword2, entityField.getName(), 1);
-		}
-	}
-
-	protected void setEntityFieldValueSortString(
-			Keyword keyword1, Keyword keyword2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(keyword1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(keyword2, entityField.getName(), "Bbb");
-		}
 	}
 
 	protected Group irrelevantGroup;

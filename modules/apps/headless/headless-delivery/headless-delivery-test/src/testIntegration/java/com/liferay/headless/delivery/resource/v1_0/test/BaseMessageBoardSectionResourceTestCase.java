@@ -28,6 +28,7 @@ import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.MessageBoardSectionResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.MessageBoardSectionSerDes;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -495,110 +496,51 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 	public void testGetMessageBoardSectionMessageBoardSectionsPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long parentMessageBoardSectionId =
-			testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId();
-
-		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
-		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
-
-		setEntityFieldValueSortDateTime(
-			messageBoardSection1, messageBoardSection2);
-
-		messageBoardSection1 =
-			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
-				parentMessageBoardSectionId, messageBoardSection1);
-
-		messageBoardSection2 =
-			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
-				parentMessageBoardSectionId, messageBoardSection2);
-
-		for (EntityField entityField : entityFields) {
-			Page<MessageBoardSection> ascPage =
-				MessageBoardSectionResource.
-					getMessageBoardSectionMessageBoardSectionsPage(
-						parentMessageBoardSectionId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(messageBoardSection1, messageBoardSection2),
-				(List<MessageBoardSection>)ascPage.getItems());
-
-			Page<MessageBoardSection> descPage =
-				MessageBoardSectionResource.
-					getMessageBoardSectionMessageBoardSectionsPage(
-						parentMessageBoardSectionId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(messageBoardSection2, messageBoardSection1),
-				(List<MessageBoardSection>)descPage.getItems());
-		}
+		testGetMessageBoardSectionMessageBoardSectionsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, messageBoardSection1, messageBoardSection2) -> {
+				BeanUtils.setProperty(
+					messageBoardSection1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetMessageBoardSectionMessageBoardSectionsPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long parentMessageBoardSectionId =
-			testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId();
-
-		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
-		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
-
-		setEntityFieldValueSortInteger(
-			messageBoardSection1, messageBoardSection2);
-
-		messageBoardSection1 =
-			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
-				parentMessageBoardSectionId, messageBoardSection1);
-
-		messageBoardSection2 =
-			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
-				parentMessageBoardSectionId, messageBoardSection2);
-
-		for (EntityField entityField : entityFields) {
-			Page<MessageBoardSection> ascPage =
-				MessageBoardSectionResource.
-					getMessageBoardSectionMessageBoardSectionsPage(
-						parentMessageBoardSectionId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(messageBoardSection1, messageBoardSection2),
-				(List<MessageBoardSection>)ascPage.getItems());
-
-			Page<MessageBoardSection> descPage =
-				MessageBoardSectionResource.
-					getMessageBoardSectionMessageBoardSectionsPage(
-						parentMessageBoardSectionId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(messageBoardSection2, messageBoardSection1),
-				(List<MessageBoardSection>)descPage.getItems());
-		}
+		testGetMessageBoardSectionMessageBoardSectionsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, messageBoardSection1, messageBoardSection2) -> {
+				BeanUtils.setProperty(
+					messageBoardSection1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					messageBoardSection2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetMessageBoardSectionMessageBoardSectionsPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetMessageBoardSectionMessageBoardSectionsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, messageBoardSection1, messageBoardSection2) -> {
+				BeanUtils.setProperty(
+					messageBoardSection1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					messageBoardSection2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetMessageBoardSectionMessageBoardSectionsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, MessageBoardSection, MessageBoardSection,
+				 Exception> unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -610,8 +552,10 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
 		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
 
-		setEntityFieldValueSortString(
-			messageBoardSection1, messageBoardSection2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, messageBoardSection1, messageBoardSection2);
+		}
 
 		messageBoardSection1 =
 			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
@@ -869,104 +813,51 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 	public void testGetSiteMessageBoardSectionsPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteMessageBoardSectionsPage_getSiteId();
-
-		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
-		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
-
-		setEntityFieldValueSortDateTime(
-			messageBoardSection1, messageBoardSection2);
-
-		messageBoardSection1 =
-			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
-				siteId, messageBoardSection1);
-
-		messageBoardSection2 =
-			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
-				siteId, messageBoardSection2);
-
-		for (EntityField entityField : entityFields) {
-			Page<MessageBoardSection> ascPage =
-				MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(messageBoardSection1, messageBoardSection2),
-				(List<MessageBoardSection>)ascPage.getItems());
-
-			Page<MessageBoardSection> descPage =
-				MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(messageBoardSection2, messageBoardSection1),
-				(List<MessageBoardSection>)descPage.getItems());
-		}
+		testGetSiteMessageBoardSectionsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, messageBoardSection1, messageBoardSection2) -> {
+				BeanUtils.setProperty(
+					messageBoardSection1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetSiteMessageBoardSectionsPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteMessageBoardSectionsPage_getSiteId();
-
-		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
-		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
-
-		setEntityFieldValueSortInteger(
-			messageBoardSection1, messageBoardSection2);
-
-		messageBoardSection1 =
-			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
-				siteId, messageBoardSection1);
-
-		messageBoardSection2 =
-			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
-				siteId, messageBoardSection2);
-
-		for (EntityField entityField : entityFields) {
-			Page<MessageBoardSection> ascPage =
-				MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(messageBoardSection1, messageBoardSection2),
-				(List<MessageBoardSection>)ascPage.getItems());
-
-			Page<MessageBoardSection> descPage =
-				MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(messageBoardSection2, messageBoardSection1),
-				(List<MessageBoardSection>)descPage.getItems());
-		}
+		testGetSiteMessageBoardSectionsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, messageBoardSection1, messageBoardSection2) -> {
+				BeanUtils.setProperty(
+					messageBoardSection1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					messageBoardSection2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetSiteMessageBoardSectionsPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetSiteMessageBoardSectionsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, messageBoardSection1, messageBoardSection2) -> {
+				BeanUtils.setProperty(
+					messageBoardSection1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					messageBoardSection2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetSiteMessageBoardSectionsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, MessageBoardSection, MessageBoardSection,
+				 Exception> unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -977,8 +868,10 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		MessageBoardSection messageBoardSection1 = randomMessageBoardSection();
 		MessageBoardSection messageBoardSection2 = randomMessageBoardSection();
 
-		setEntityFieldValueSortString(
-			messageBoardSection1, messageBoardSection2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, messageBoardSection1, messageBoardSection2);
+		}
 
 		messageBoardSection1 =
 			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
@@ -1580,53 +1473,6 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		throws Exception {
 
 		return randomMessageBoardSection();
-	}
-
-	protected void setEntityFieldValueSortDateTime(
-			MessageBoardSection messageBoardSection1,
-			MessageBoardSection messageBoardSection2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				messageBoardSection1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
-		}
-	}
-
-	protected void setEntityFieldValueSortInteger(
-			MessageBoardSection messageBoardSection1,
-			MessageBoardSection messageBoardSection2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				messageBoardSection1, entityField.getName(), 0);
-			BeanUtils.setProperty(
-				messageBoardSection2, entityField.getName(), 1);
-		}
-	}
-
-	protected void setEntityFieldValueSortString(
-			MessageBoardSection messageBoardSection1,
-			MessageBoardSection messageBoardSection2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				messageBoardSection1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(
-				messageBoardSection2, entityField.getName(), "Bbb");
-		}
 	}
 
 	protected Group irrelevantGroup;

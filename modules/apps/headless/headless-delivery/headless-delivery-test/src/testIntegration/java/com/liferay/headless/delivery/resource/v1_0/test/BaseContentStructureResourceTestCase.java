@@ -28,6 +28,7 @@ import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.ContentStructureResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.ContentStructureSerDes;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -374,102 +375,51 @@ public abstract class BaseContentStructureResourceTestCase {
 	public void testGetSiteContentStructuresPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteContentStructuresPage_getSiteId();
-
-		ContentStructure contentStructure1 = randomContentStructure();
-		ContentStructure contentStructure2 = randomContentStructure();
-
-		setEntityFieldValueSortDateTime(contentStructure1, contentStructure2);
-
-		contentStructure1 =
-			testGetSiteContentStructuresPage_addContentStructure(
-				siteId, contentStructure1);
-
-		contentStructure2 =
-			testGetSiteContentStructuresPage_addContentStructure(
-				siteId, contentStructure2);
-
-		for (EntityField entityField : entityFields) {
-			Page<ContentStructure> ascPage =
-				ContentStructureResource.getSiteContentStructuresPage(
-					siteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(contentStructure1, contentStructure2),
-				(List<ContentStructure>)ascPage.getItems());
-
-			Page<ContentStructure> descPage =
-				ContentStructureResource.getSiteContentStructuresPage(
-					siteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(contentStructure2, contentStructure1),
-				(List<ContentStructure>)descPage.getItems());
-		}
+		testGetSiteContentStructuresPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, contentStructure1, contentStructure2) -> {
+				BeanUtils.setProperty(
+					contentStructure1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetSiteContentStructuresPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteContentStructuresPage_getSiteId();
-
-		ContentStructure contentStructure1 = randomContentStructure();
-		ContentStructure contentStructure2 = randomContentStructure();
-
-		setEntityFieldValueSortInteger(contentStructure1, contentStructure2);
-
-		contentStructure1 =
-			testGetSiteContentStructuresPage_addContentStructure(
-				siteId, contentStructure1);
-
-		contentStructure2 =
-			testGetSiteContentStructuresPage_addContentStructure(
-				siteId, contentStructure2);
-
-		for (EntityField entityField : entityFields) {
-			Page<ContentStructure> ascPage =
-				ContentStructureResource.getSiteContentStructuresPage(
-					siteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(contentStructure1, contentStructure2),
-				(List<ContentStructure>)ascPage.getItems());
-
-			Page<ContentStructure> descPage =
-				ContentStructureResource.getSiteContentStructuresPage(
-					siteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(contentStructure2, contentStructure1),
-				(List<ContentStructure>)descPage.getItems());
-		}
+		testGetSiteContentStructuresPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, contentStructure1, contentStructure2) -> {
+				BeanUtils.setProperty(
+					contentStructure1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					contentStructure2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetSiteContentStructuresPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetSiteContentStructuresPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, contentStructure1, contentStructure2) -> {
+				BeanUtils.setProperty(
+					contentStructure1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					contentStructure2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetSiteContentStructuresPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, ContentStructure, ContentStructure, Exception>
+					unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -480,7 +430,10 @@ public abstract class BaseContentStructureResourceTestCase {
 		ContentStructure contentStructure1 = randomContentStructure();
 		ContentStructure contentStructure2 = randomContentStructure();
 
-		setEntityFieldValueSortString(contentStructure1, contentStructure2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, contentStructure1, contentStructure2);
+		}
 
 		contentStructure1 =
 			testGetSiteContentStructuresPage_addContentStructure(
@@ -994,51 +947,6 @@ public abstract class BaseContentStructureResourceTestCase {
 
 	protected ContentStructure randomPatchContentStructure() throws Exception {
 		return randomContentStructure();
-	}
-
-	protected void setEntityFieldValueSortDateTime(
-			ContentStructure contentStructure1,
-			ContentStructure contentStructure2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				contentStructure1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
-		}
-	}
-
-	protected void setEntityFieldValueSortInteger(
-			ContentStructure contentStructure1,
-			ContentStructure contentStructure2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(contentStructure1, entityField.getName(), 0);
-			BeanUtils.setProperty(contentStructure2, entityField.getName(), 1);
-		}
-	}
-
-	protected void setEntityFieldValueSortString(
-			ContentStructure contentStructure1,
-			ContentStructure contentStructure2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				contentStructure1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(
-				contentStructure2, entityField.getName(), "Bbb");
-		}
 	}
 
 	protected Group irrelevantGroup;
