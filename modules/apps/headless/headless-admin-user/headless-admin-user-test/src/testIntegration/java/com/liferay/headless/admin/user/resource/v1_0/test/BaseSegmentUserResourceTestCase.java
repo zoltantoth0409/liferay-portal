@@ -220,11 +220,6 @@ public abstract class BaseSegmentUserResourceTestCase {
 			Arrays.asList(segmentUser1, segmentUser2),
 			(List<SegmentUser>)page.getItems());
 		assertValid(page);
-
-		page = SegmentUserResource.getSegmentUserAccountsPage(
-			testGetSegmentUserAccountsPage_getSegmentId(), Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test

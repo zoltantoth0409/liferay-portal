@@ -223,11 +223,6 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			Arrays.asList(workflowTask1, workflowTask2),
 			(List<WorkflowTask>)page.getItems());
 		assertValid(page);
-
-		page = WorkflowTaskResource.getRoleWorkflowTasksPage(
-			testGetRoleWorkflowTasksPage_getRoleId(), Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test

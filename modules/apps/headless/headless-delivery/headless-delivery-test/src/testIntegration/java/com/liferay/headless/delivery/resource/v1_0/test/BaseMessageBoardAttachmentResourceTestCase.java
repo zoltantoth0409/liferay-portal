@@ -291,13 +291,6 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			Arrays.asList(messageBoardAttachment1, messageBoardAttachment2),
 			(List<MessageBoardAttachment>)page.getItems());
 		assertValid(page);
-
-		page =
-			MessageBoardAttachmentResource.
-				getMessageBoardMessageMessageBoardAttachmentsPage(
-					testGetMessageBoardMessageMessageBoardAttachmentsPage_getMessageBoardMessageId());
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected MessageBoardAttachment
@@ -392,13 +385,6 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			Arrays.asList(messageBoardAttachment1, messageBoardAttachment2),
 			(List<MessageBoardAttachment>)page.getItems());
 		assertValid(page);
-
-		page =
-			MessageBoardAttachmentResource.
-				getMessageBoardThreadMessageBoardAttachmentsPage(
-					testGetMessageBoardThreadMessageBoardAttachmentsPage_getMessageBoardThreadId());
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	protected MessageBoardAttachment

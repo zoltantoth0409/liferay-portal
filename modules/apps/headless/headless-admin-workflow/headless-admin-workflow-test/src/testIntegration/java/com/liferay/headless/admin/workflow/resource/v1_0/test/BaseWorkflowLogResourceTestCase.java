@@ -243,12 +243,6 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			Arrays.asList(workflowLog1, workflowLog2),
 			(List<WorkflowLog>)page.getItems());
 		assertValid(page);
-
-		page = WorkflowLogResource.getWorkflowTaskWorkflowLogsPage(
-			testGetWorkflowTaskWorkflowLogsPage_getWorkflowTaskId(),
-			Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test

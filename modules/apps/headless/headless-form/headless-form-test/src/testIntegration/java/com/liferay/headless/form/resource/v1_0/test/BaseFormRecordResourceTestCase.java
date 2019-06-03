@@ -252,11 +252,6 @@ public abstract class BaseFormRecordResourceTestCase {
 			Arrays.asList(formRecord1, formRecord2),
 			(List<FormRecord>)page.getItems());
 		assertValid(page);
-
-		page = FormRecordResource.getFormFormRecordsPage(
-			testGetFormFormRecordsPage_getFormId(), Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
