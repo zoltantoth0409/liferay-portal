@@ -28,6 +28,7 @@ import com.liferay.headless.admin.user.client.pagination.Page;
 import com.liferay.headless.admin.user.client.pagination.Pagination;
 import com.liferay.headless.admin.user.client.resource.v1_0.UserAccountResource;
 import com.liferay.headless.admin.user.client.serdes.v1_0.UserAccountSerDes;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -390,100 +391,48 @@ public abstract class BaseUserAccountResourceTestCase {
 	public void testGetOrganizationUserAccountsPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long organizationId =
-			testGetOrganizationUserAccountsPage_getOrganizationId();
-
-		UserAccount userAccount1 = randomUserAccount();
-		UserAccount userAccount2 = randomUserAccount();
-
-		setEntityFieldValueSortDateTime(userAccount1, userAccount2);
-
-		userAccount1 = testGetOrganizationUserAccountsPage_addUserAccount(
-			organizationId, userAccount1);
-
-		userAccount2 = testGetOrganizationUserAccountsPage_addUserAccount(
-			organizationId, userAccount2);
-
-		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage =
-				UserAccountResource.getOrganizationUserAccountsPage(
-					organizationId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(userAccount1, userAccount2),
-				(List<UserAccount>)ascPage.getItems());
-
-			Page<UserAccount> descPage =
-				UserAccountResource.getOrganizationUserAccountsPage(
-					organizationId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(userAccount2, userAccount1),
-				(List<UserAccount>)descPage.getItems());
-		}
+		testGetOrganizationUserAccountsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, userAccount1, userAccount2) -> {
+				BeanUtils.setProperty(
+					userAccount1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetOrganizationUserAccountsPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long organizationId =
-			testGetOrganizationUserAccountsPage_getOrganizationId();
-
-		UserAccount userAccount1 = randomUserAccount();
-		UserAccount userAccount2 = randomUserAccount();
-
-		setEntityFieldValueSortInteger(userAccount1, userAccount2);
-
-		userAccount1 = testGetOrganizationUserAccountsPage_addUserAccount(
-			organizationId, userAccount1);
-
-		userAccount2 = testGetOrganizationUserAccountsPage_addUserAccount(
-			organizationId, userAccount2);
-
-		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage =
-				UserAccountResource.getOrganizationUserAccountsPage(
-					organizationId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(userAccount1, userAccount2),
-				(List<UserAccount>)ascPage.getItems());
-
-			Page<UserAccount> descPage =
-				UserAccountResource.getOrganizationUserAccountsPage(
-					organizationId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(userAccount2, userAccount1),
-				(List<UserAccount>)descPage.getItems());
-		}
+		testGetOrganizationUserAccountsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, userAccount1, userAccount2) -> {
+				BeanUtils.setProperty(userAccount1, entityField.getName(), 0);
+				BeanUtils.setProperty(userAccount2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetOrganizationUserAccountsPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetOrganizationUserAccountsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, userAccount1, userAccount2) -> {
+				BeanUtils.setProperty(
+					userAccount1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					userAccount2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetOrganizationUserAccountsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer<EntityField, UserAccount, UserAccount, Exception>
+				unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -495,7 +444,9 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount userAccount1 = randomUserAccount();
 		UserAccount userAccount2 = randomUserAccount();
 
-		setEntityFieldValueSortString(userAccount1, userAccount2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(entityField, userAccount1, userAccount2);
+		}
 
 		userAccount1 = testGetOrganizationUserAccountsPage_addUserAccount(
 			organizationId, userAccount1);
@@ -662,84 +613,44 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	@Test
 	public void testGetUserAccountsPageWithSortDateTime() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		UserAccount userAccount1 = randomUserAccount();
-		UserAccount userAccount2 = randomUserAccount();
-
-		setEntityFieldValueSortDateTime(userAccount1, userAccount2);
-
-		userAccount1 = testGetUserAccountsPage_addUserAccount(userAccount1);
-
-		userAccount2 = testGetUserAccountsPage_addUserAccount(userAccount2);
-
-		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage = UserAccountResource.getUserAccountsPage(
-				null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(userAccount1, userAccount2),
-				(List<UserAccount>)ascPage.getItems());
-
-			Page<UserAccount> descPage =
-				UserAccountResource.getUserAccountsPage(
-					null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(userAccount2, userAccount1),
-				(List<UserAccount>)descPage.getItems());
-		}
+		testGetUserAccountsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, userAccount1, userAccount2) -> {
+				BeanUtils.setProperty(
+					userAccount1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetUserAccountsPageWithSortInteger() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		UserAccount userAccount1 = randomUserAccount();
-		UserAccount userAccount2 = randomUserAccount();
-
-		setEntityFieldValueSortInteger(userAccount1, userAccount2);
-
-		userAccount1 = testGetUserAccountsPage_addUserAccount(userAccount1);
-
-		userAccount2 = testGetUserAccountsPage_addUserAccount(userAccount2);
-
-		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage = UserAccountResource.getUserAccountsPage(
-				null, null, Pagination.of(1, 2),
-				entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(userAccount1, userAccount2),
-				(List<UserAccount>)ascPage.getItems());
-
-			Page<UserAccount> descPage =
-				UserAccountResource.getUserAccountsPage(
-					null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(userAccount2, userAccount1),
-				(List<UserAccount>)descPage.getItems());
-		}
+		testGetUserAccountsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, userAccount1, userAccount2) -> {
+				BeanUtils.setProperty(userAccount1, entityField.getName(), 0);
+				BeanUtils.setProperty(userAccount2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetUserAccountsPageWithSortString() throws Exception {
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetUserAccountsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, userAccount1, userAccount2) -> {
+				BeanUtils.setProperty(
+					userAccount1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					userAccount2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetUserAccountsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer<EntityField, UserAccount, UserAccount, Exception>
+				unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -748,7 +659,9 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount userAccount1 = randomUserAccount();
 		UserAccount userAccount2 = randomUserAccount();
 
-		setEntityFieldValueSortString(userAccount1, userAccount2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(entityField, userAccount1, userAccount2);
+		}
 
 		userAccount1 = testGetUserAccountsPage_addUserAccount(userAccount1);
 
@@ -961,98 +874,48 @@ public abstract class BaseUserAccountResourceTestCase {
 	public void testGetWebSiteUserAccountsPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long webSiteId = testGetWebSiteUserAccountsPage_getWebSiteId();
-
-		UserAccount userAccount1 = randomUserAccount();
-		UserAccount userAccount2 = randomUserAccount();
-
-		setEntityFieldValueSortDateTime(userAccount1, userAccount2);
-
-		userAccount1 = testGetWebSiteUserAccountsPage_addUserAccount(
-			webSiteId, userAccount1);
-
-		userAccount2 = testGetWebSiteUserAccountsPage_addUserAccount(
-			webSiteId, userAccount2);
-
-		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage =
-				UserAccountResource.getWebSiteUserAccountsPage(
-					webSiteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(userAccount1, userAccount2),
-				(List<UserAccount>)ascPage.getItems());
-
-			Page<UserAccount> descPage =
-				UserAccountResource.getWebSiteUserAccountsPage(
-					webSiteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(userAccount2, userAccount1),
-				(List<UserAccount>)descPage.getItems());
-		}
+		testGetWebSiteUserAccountsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, userAccount1, userAccount2) -> {
+				BeanUtils.setProperty(
+					userAccount1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetWebSiteUserAccountsPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long webSiteId = testGetWebSiteUserAccountsPage_getWebSiteId();
-
-		UserAccount userAccount1 = randomUserAccount();
-		UserAccount userAccount2 = randomUserAccount();
-
-		setEntityFieldValueSortInteger(userAccount1, userAccount2);
-
-		userAccount1 = testGetWebSiteUserAccountsPage_addUserAccount(
-			webSiteId, userAccount1);
-
-		userAccount2 = testGetWebSiteUserAccountsPage_addUserAccount(
-			webSiteId, userAccount2);
-
-		for (EntityField entityField : entityFields) {
-			Page<UserAccount> ascPage =
-				UserAccountResource.getWebSiteUserAccountsPage(
-					webSiteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(userAccount1, userAccount2),
-				(List<UserAccount>)ascPage.getItems());
-
-			Page<UserAccount> descPage =
-				UserAccountResource.getWebSiteUserAccountsPage(
-					webSiteId, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(userAccount2, userAccount1),
-				(List<UserAccount>)descPage.getItems());
-		}
+		testGetWebSiteUserAccountsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, userAccount1, userAccount2) -> {
+				BeanUtils.setProperty(userAccount1, entityField.getName(), 0);
+				BeanUtils.setProperty(userAccount2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetWebSiteUserAccountsPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetWebSiteUserAccountsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, userAccount1, userAccount2) -> {
+				BeanUtils.setProperty(
+					userAccount1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					userAccount2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetWebSiteUserAccountsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer<EntityField, UserAccount, UserAccount, Exception>
+				unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -1063,7 +926,9 @@ public abstract class BaseUserAccountResourceTestCase {
 		UserAccount userAccount1 = randomUserAccount();
 		UserAccount userAccount2 = randomUserAccount();
 
-		setEntityFieldValueSortString(userAccount1, userAccount2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(entityField, userAccount1, userAccount2);
+		}
 
 		userAccount1 = testGetWebSiteUserAccountsPage_addUserAccount(
 			webSiteId, userAccount1);
@@ -1941,46 +1806,6 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	protected UserAccount randomPatchUserAccount() throws Exception {
 		return randomUserAccount();
-	}
-
-	protected void setEntityFieldValueSortDateTime(
-			UserAccount userAccount1, UserAccount userAccount2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				userAccount1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
-		}
-	}
-
-	protected void setEntityFieldValueSortInteger(
-			UserAccount userAccount1, UserAccount userAccount2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(userAccount1, entityField.getName(), 0);
-			BeanUtils.setProperty(userAccount2, entityField.getName(), 1);
-		}
-	}
-
-	protected void setEntityFieldValueSortString(
-			UserAccount userAccount1, UserAccount userAccount2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(userAccount1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(userAccount2, entityField.getName(), "Bbb");
-		}
 	}
 
 	protected Group irrelevantGroup;

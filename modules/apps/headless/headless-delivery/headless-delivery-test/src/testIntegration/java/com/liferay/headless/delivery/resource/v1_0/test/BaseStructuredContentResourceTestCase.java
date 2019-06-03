@@ -28,6 +28,7 @@ import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.StructuredContentResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.StructuredContentSerDes;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -374,108 +375,51 @@ public abstract class BaseStructuredContentResourceTestCase {
 	public void testGetContentStructureStructuredContentsPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long contentStructureId =
-			testGetContentStructureStructuredContentsPage_getContentStructureId();
-
-		StructuredContent structuredContent1 = randomStructuredContent();
-		StructuredContent structuredContent2 = randomStructuredContent();
-
-		setEntityFieldValueSortDateTime(structuredContent1, structuredContent2);
-
-		structuredContent1 =
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				contentStructureId, structuredContent1);
-
-		structuredContent2 =
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				contentStructureId, structuredContent2);
-
-		for (EntityField entityField : entityFields) {
-			Page<StructuredContent> ascPage =
-				StructuredContentResource.
-					getContentStructureStructuredContentsPage(
-						contentStructureId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(structuredContent1, structuredContent2),
-				(List<StructuredContent>)ascPage.getItems());
-
-			Page<StructuredContent> descPage =
-				StructuredContentResource.
-					getContentStructureStructuredContentsPage(
-						contentStructureId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(structuredContent2, structuredContent1),
-				(List<StructuredContent>)descPage.getItems());
-		}
+		testGetContentStructureStructuredContentsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, structuredContent1, structuredContent2) -> {
+				BeanUtils.setProperty(
+					structuredContent1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetContentStructureStructuredContentsPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long contentStructureId =
-			testGetContentStructureStructuredContentsPage_getContentStructureId();
-
-		StructuredContent structuredContent1 = randomStructuredContent();
-		StructuredContent structuredContent2 = randomStructuredContent();
-
-		setEntityFieldValueSortInteger(structuredContent1, structuredContent2);
-
-		structuredContent1 =
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				contentStructureId, structuredContent1);
-
-		structuredContent2 =
-			testGetContentStructureStructuredContentsPage_addStructuredContent(
-				contentStructureId, structuredContent2);
-
-		for (EntityField entityField : entityFields) {
-			Page<StructuredContent> ascPage =
-				StructuredContentResource.
-					getContentStructureStructuredContentsPage(
-						contentStructureId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(structuredContent1, structuredContent2),
-				(List<StructuredContent>)ascPage.getItems());
-
-			Page<StructuredContent> descPage =
-				StructuredContentResource.
-					getContentStructureStructuredContentsPage(
-						contentStructureId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(structuredContent2, structuredContent1),
-				(List<StructuredContent>)descPage.getItems());
-		}
+		testGetContentStructureStructuredContentsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, structuredContent1, structuredContent2) -> {
+				BeanUtils.setProperty(
+					structuredContent1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					structuredContent2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetContentStructureStructuredContentsPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetContentStructureStructuredContentsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, structuredContent1, structuredContent2) -> {
+				BeanUtils.setProperty(
+					structuredContent1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					structuredContent2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetContentStructureStructuredContentsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, StructuredContent, StructuredContent, Exception>
+					unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -487,7 +431,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 = randomStructuredContent();
 		StructuredContent structuredContent2 = randomStructuredContent();
 
-		setEntityFieldValueSortString(structuredContent1, structuredContent2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, structuredContent1, structuredContent2);
+		}
 
 		structuredContent1 =
 			testGetContentStructureStructuredContentsPage_addStructuredContent(
@@ -715,102 +662,51 @@ public abstract class BaseStructuredContentResourceTestCase {
 	public void testGetSiteStructuredContentsPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteStructuredContentsPage_getSiteId();
-
-		StructuredContent structuredContent1 = randomStructuredContent();
-		StructuredContent structuredContent2 = randomStructuredContent();
-
-		setEntityFieldValueSortDateTime(structuredContent1, structuredContent2);
-
-		structuredContent1 =
-			testGetSiteStructuredContentsPage_addStructuredContent(
-				siteId, structuredContent1);
-
-		structuredContent2 =
-			testGetSiteStructuredContentsPage_addStructuredContent(
-				siteId, structuredContent2);
-
-		for (EntityField entityField : entityFields) {
-			Page<StructuredContent> ascPage =
-				StructuredContentResource.getSiteStructuredContentsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(structuredContent1, structuredContent2),
-				(List<StructuredContent>)ascPage.getItems());
-
-			Page<StructuredContent> descPage =
-				StructuredContentResource.getSiteStructuredContentsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(structuredContent2, structuredContent1),
-				(List<StructuredContent>)descPage.getItems());
-		}
+		testGetSiteStructuredContentsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, structuredContent1, structuredContent2) -> {
+				BeanUtils.setProperty(
+					structuredContent1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetSiteStructuredContentsPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteStructuredContentsPage_getSiteId();
-
-		StructuredContent structuredContent1 = randomStructuredContent();
-		StructuredContent structuredContent2 = randomStructuredContent();
-
-		setEntityFieldValueSortInteger(structuredContent1, structuredContent2);
-
-		structuredContent1 =
-			testGetSiteStructuredContentsPage_addStructuredContent(
-				siteId, structuredContent1);
-
-		structuredContent2 =
-			testGetSiteStructuredContentsPage_addStructuredContent(
-				siteId, structuredContent2);
-
-		for (EntityField entityField : entityFields) {
-			Page<StructuredContent> ascPage =
-				StructuredContentResource.getSiteStructuredContentsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(structuredContent1, structuredContent2),
-				(List<StructuredContent>)ascPage.getItems());
-
-			Page<StructuredContent> descPage =
-				StructuredContentResource.getSiteStructuredContentsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(structuredContent2, structuredContent1),
-				(List<StructuredContent>)descPage.getItems());
-		}
+		testGetSiteStructuredContentsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, structuredContent1, structuredContent2) -> {
+				BeanUtils.setProperty(
+					structuredContent1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					structuredContent2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetSiteStructuredContentsPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetSiteStructuredContentsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, structuredContent1, structuredContent2) -> {
+				BeanUtils.setProperty(
+					structuredContent1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					structuredContent2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetSiteStructuredContentsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, StructuredContent, StructuredContent, Exception>
+					unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -821,7 +717,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 = randomStructuredContent();
 		StructuredContent structuredContent2 = randomStructuredContent();
 
-		setEntityFieldValueSortString(structuredContent1, structuredContent2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, structuredContent1, structuredContent2);
+		}
 
 		structuredContent1 =
 			testGetSiteStructuredContentsPage_addStructuredContent(
@@ -1131,108 +1030,51 @@ public abstract class BaseStructuredContentResourceTestCase {
 	public void testGetStructuredContentFolderStructuredContentsPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long structuredContentFolderId =
-			testGetStructuredContentFolderStructuredContentsPage_getStructuredContentFolderId();
-
-		StructuredContent structuredContent1 = randomStructuredContent();
-		StructuredContent structuredContent2 = randomStructuredContent();
-
-		setEntityFieldValueSortDateTime(structuredContent1, structuredContent2);
-
-		structuredContent1 =
-			testGetStructuredContentFolderStructuredContentsPage_addStructuredContent(
-				structuredContentFolderId, structuredContent1);
-
-		structuredContent2 =
-			testGetStructuredContentFolderStructuredContentsPage_addStructuredContent(
-				structuredContentFolderId, structuredContent2);
-
-		for (EntityField entityField : entityFields) {
-			Page<StructuredContent> ascPage =
-				StructuredContentResource.
-					getStructuredContentFolderStructuredContentsPage(
-						structuredContentFolderId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(structuredContent1, structuredContent2),
-				(List<StructuredContent>)ascPage.getItems());
-
-			Page<StructuredContent> descPage =
-				StructuredContentResource.
-					getStructuredContentFolderStructuredContentsPage(
-						structuredContentFolderId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(structuredContent2, structuredContent1),
-				(List<StructuredContent>)descPage.getItems());
-		}
+		testGetStructuredContentFolderStructuredContentsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, structuredContent1, structuredContent2) -> {
+				BeanUtils.setProperty(
+					structuredContent1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetStructuredContentFolderStructuredContentsPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long structuredContentFolderId =
-			testGetStructuredContentFolderStructuredContentsPage_getStructuredContentFolderId();
-
-		StructuredContent structuredContent1 = randomStructuredContent();
-		StructuredContent structuredContent2 = randomStructuredContent();
-
-		setEntityFieldValueSortInteger(structuredContent1, structuredContent2);
-
-		structuredContent1 =
-			testGetStructuredContentFolderStructuredContentsPage_addStructuredContent(
-				structuredContentFolderId, structuredContent1);
-
-		structuredContent2 =
-			testGetStructuredContentFolderStructuredContentsPage_addStructuredContent(
-				structuredContentFolderId, structuredContent2);
-
-		for (EntityField entityField : entityFields) {
-			Page<StructuredContent> ascPage =
-				StructuredContentResource.
-					getStructuredContentFolderStructuredContentsPage(
-						structuredContentFolderId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(structuredContent1, structuredContent2),
-				(List<StructuredContent>)ascPage.getItems());
-
-			Page<StructuredContent> descPage =
-				StructuredContentResource.
-					getStructuredContentFolderStructuredContentsPage(
-						structuredContentFolderId, null, null,
-						Pagination.of(1, 2), entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(structuredContent2, structuredContent1),
-				(List<StructuredContent>)descPage.getItems());
-		}
+		testGetStructuredContentFolderStructuredContentsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, structuredContent1, structuredContent2) -> {
+				BeanUtils.setProperty(
+					structuredContent1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					structuredContent2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetStructuredContentFolderStructuredContentsPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetStructuredContentFolderStructuredContentsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, structuredContent1, structuredContent2) -> {
+				BeanUtils.setProperty(
+					structuredContent1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					structuredContent2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetStructuredContentFolderStructuredContentsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, StructuredContent, StructuredContent, Exception>
+					unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -1244,7 +1086,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 		StructuredContent structuredContent1 = randomStructuredContent();
 		StructuredContent structuredContent2 = randomStructuredContent();
 
-		setEntityFieldValueSortString(structuredContent1, structuredContent2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, structuredContent1, structuredContent2);
+		}
 
 		structuredContent1 =
 			testGetStructuredContentFolderStructuredContentsPage_addStructuredContent(
@@ -2344,51 +2189,6 @@ public abstract class BaseStructuredContentResourceTestCase {
 		throws Exception {
 
 		return randomStructuredContent();
-	}
-
-	protected void setEntityFieldValueSortDateTime(
-			StructuredContent structuredContent1,
-			StructuredContent structuredContent2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				structuredContent1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
-		}
-	}
-
-	protected void setEntityFieldValueSortInteger(
-			StructuredContent structuredContent1,
-			StructuredContent structuredContent2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(structuredContent1, entityField.getName(), 0);
-			BeanUtils.setProperty(structuredContent2, entityField.getName(), 1);
-		}
-	}
-
-	protected void setEntityFieldValueSortString(
-			StructuredContent structuredContent1,
-			StructuredContent structuredContent2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				structuredContent1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(
-				structuredContent2, entityField.getName(), "Bbb");
-		}
 	}
 
 	protected Group irrelevantGroup;

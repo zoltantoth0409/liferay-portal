@@ -28,6 +28,7 @@ import com.liferay.headless.delivery.client.pagination.Page;
 import com.liferay.headless.delivery.client.pagination.Pagination;
 import com.liferay.headless.delivery.client.resource.v1_0.MessageBoardThreadResource;
 import com.liferay.headless.delivery.client.serdes.v1_0.MessageBoardThreadSerDes;
+import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -382,110 +383,51 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 	public void testGetMessageBoardSectionMessageBoardThreadsPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long messageBoardSectionId =
-			testGetMessageBoardSectionMessageBoardThreadsPage_getMessageBoardSectionId();
-
-		MessageBoardThread messageBoardThread1 = randomMessageBoardThread();
-		MessageBoardThread messageBoardThread2 = randomMessageBoardThread();
-
-		setEntityFieldValueSortDateTime(
-			messageBoardThread1, messageBoardThread2);
-
-		messageBoardThread1 =
-			testGetMessageBoardSectionMessageBoardThreadsPage_addMessageBoardThread(
-				messageBoardSectionId, messageBoardThread1);
-
-		messageBoardThread2 =
-			testGetMessageBoardSectionMessageBoardThreadsPage_addMessageBoardThread(
-				messageBoardSectionId, messageBoardThread2);
-
-		for (EntityField entityField : entityFields) {
-			Page<MessageBoardThread> ascPage =
-				MessageBoardThreadResource.
-					getMessageBoardSectionMessageBoardThreadsPage(
-						messageBoardSectionId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(messageBoardThread1, messageBoardThread2),
-				(List<MessageBoardThread>)ascPage.getItems());
-
-			Page<MessageBoardThread> descPage =
-				MessageBoardThreadResource.
-					getMessageBoardSectionMessageBoardThreadsPage(
-						messageBoardSectionId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(messageBoardThread2, messageBoardThread1),
-				(List<MessageBoardThread>)descPage.getItems());
-		}
+		testGetMessageBoardSectionMessageBoardThreadsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, messageBoardThread1, messageBoardThread2) -> {
+				BeanUtils.setProperty(
+					messageBoardThread1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetMessageBoardSectionMessageBoardThreadsPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long messageBoardSectionId =
-			testGetMessageBoardSectionMessageBoardThreadsPage_getMessageBoardSectionId();
-
-		MessageBoardThread messageBoardThread1 = randomMessageBoardThread();
-		MessageBoardThread messageBoardThread2 = randomMessageBoardThread();
-
-		setEntityFieldValueSortInteger(
-			messageBoardThread1, messageBoardThread2);
-
-		messageBoardThread1 =
-			testGetMessageBoardSectionMessageBoardThreadsPage_addMessageBoardThread(
-				messageBoardSectionId, messageBoardThread1);
-
-		messageBoardThread2 =
-			testGetMessageBoardSectionMessageBoardThreadsPage_addMessageBoardThread(
-				messageBoardSectionId, messageBoardThread2);
-
-		for (EntityField entityField : entityFields) {
-			Page<MessageBoardThread> ascPage =
-				MessageBoardThreadResource.
-					getMessageBoardSectionMessageBoardThreadsPage(
-						messageBoardSectionId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(messageBoardThread1, messageBoardThread2),
-				(List<MessageBoardThread>)ascPage.getItems());
-
-			Page<MessageBoardThread> descPage =
-				MessageBoardThreadResource.
-					getMessageBoardSectionMessageBoardThreadsPage(
-						messageBoardSectionId, null, null, Pagination.of(1, 2),
-						entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(messageBoardThread2, messageBoardThread1),
-				(List<MessageBoardThread>)descPage.getItems());
-		}
+		testGetMessageBoardSectionMessageBoardThreadsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, messageBoardThread1, messageBoardThread2) -> {
+				BeanUtils.setProperty(
+					messageBoardThread1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					messageBoardThread2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetMessageBoardSectionMessageBoardThreadsPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetMessageBoardSectionMessageBoardThreadsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, messageBoardThread1, messageBoardThread2) -> {
+				BeanUtils.setProperty(
+					messageBoardThread1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					messageBoardThread2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetMessageBoardSectionMessageBoardThreadsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, MessageBoardThread, MessageBoardThread, Exception>
+					unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -497,7 +439,10 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		MessageBoardThread messageBoardThread1 = randomMessageBoardThread();
 		MessageBoardThread messageBoardThread2 = randomMessageBoardThread();
 
-		setEntityFieldValueSortString(messageBoardThread1, messageBoardThread2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, messageBoardThread1, messageBoardThread2);
+		}
 
 		messageBoardThread1 =
 			testGetMessageBoardSectionMessageBoardThreadsPage_addMessageBoardThread(
@@ -914,104 +859,51 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 	public void testGetSiteMessageBoardThreadsPageWithSortDateTime()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteMessageBoardThreadsPage_getSiteId();
-
-		MessageBoardThread messageBoardThread1 = randomMessageBoardThread();
-		MessageBoardThread messageBoardThread2 = randomMessageBoardThread();
-
-		setEntityFieldValueSortDateTime(
-			messageBoardThread1, messageBoardThread2);
-
-		messageBoardThread1 =
-			testGetSiteMessageBoardThreadsPage_addMessageBoardThread(
-				siteId, messageBoardThread1);
-
-		messageBoardThread2 =
-			testGetSiteMessageBoardThreadsPage_addMessageBoardThread(
-				siteId, messageBoardThread2);
-
-		for (EntityField entityField : entityFields) {
-			Page<MessageBoardThread> ascPage =
-				MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(messageBoardThread1, messageBoardThread2),
-				(List<MessageBoardThread>)ascPage.getItems());
-
-			Page<MessageBoardThread> descPage =
-				MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(messageBoardThread2, messageBoardThread1),
-				(List<MessageBoardThread>)descPage.getItems());
-		}
+		testGetSiteMessageBoardThreadsPageWithSort(
+			EntityField.Type.DATE_TIME,
+			(entityField, messageBoardThread1, messageBoardThread2) -> {
+				BeanUtils.setProperty(
+					messageBoardThread1, entityField.getName(),
+					DateUtils.addMinutes(new Date(), -2));
+			});
 	}
 
 	@Test
 	public void testGetSiteMessageBoardThreadsPageWithSortInteger()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		if (entityFields.isEmpty()) {
-			return;
-		}
-
-		Long siteId = testGetSiteMessageBoardThreadsPage_getSiteId();
-
-		MessageBoardThread messageBoardThread1 = randomMessageBoardThread();
-		MessageBoardThread messageBoardThread2 = randomMessageBoardThread();
-
-		setEntityFieldValueSortInteger(
-			messageBoardThread1, messageBoardThread2);
-
-		messageBoardThread1 =
-			testGetSiteMessageBoardThreadsPage_addMessageBoardThread(
-				siteId, messageBoardThread1);
-
-		messageBoardThread2 =
-			testGetSiteMessageBoardThreadsPage_addMessageBoardThread(
-				siteId, messageBoardThread2);
-
-		for (EntityField entityField : entityFields) {
-			Page<MessageBoardThread> ascPage =
-				MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":asc");
-
-			assertEquals(
-				Arrays.asList(messageBoardThread1, messageBoardThread2),
-				(List<MessageBoardThread>)ascPage.getItems());
-
-			Page<MessageBoardThread> descPage =
-				MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
-					siteId, null, null, null, Pagination.of(1, 2),
-					entityField.getName() + ":desc");
-
-			assertEquals(
-				Arrays.asList(messageBoardThread2, messageBoardThread1),
-				(List<MessageBoardThread>)descPage.getItems());
-		}
+		testGetSiteMessageBoardThreadsPageWithSort(
+			EntityField.Type.INTEGER,
+			(entityField, messageBoardThread1, messageBoardThread2) -> {
+				BeanUtils.setProperty(
+					messageBoardThread1, entityField.getName(), 0);
+				BeanUtils.setProperty(
+					messageBoardThread2, entityField.getName(), 1);
+			});
 	}
 
 	@Test
 	public void testGetSiteMessageBoardThreadsPageWithSortString()
 		throws Exception {
 
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
+		testGetSiteMessageBoardThreadsPageWithSort(
+			EntityField.Type.STRING,
+			(entityField, messageBoardThread1, messageBoardThread2) -> {
+				BeanUtils.setProperty(
+					messageBoardThread1, entityField.getName(), "Aaa");
+				BeanUtils.setProperty(
+					messageBoardThread2, entityField.getName(), "Bbb");
+			});
+	}
+
+	protected void testGetSiteMessageBoardThreadsPageWithSort(
+			EntityField.Type type,
+			UnsafeTriConsumer
+				<EntityField, MessageBoardThread, MessageBoardThread, Exception>
+					unsafeTriConsumer)
+		throws Exception {
+
+		List<EntityField> entityFields = getEntityFields(type);
 
 		if (entityFields.isEmpty()) {
 			return;
@@ -1022,7 +914,10 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		MessageBoardThread messageBoardThread1 = randomMessageBoardThread();
 		MessageBoardThread messageBoardThread2 = randomMessageBoardThread();
 
-		setEntityFieldValueSortString(messageBoardThread1, messageBoardThread2);
+		for (EntityField entityField : entityFields) {
+			unsafeTriConsumer.accept(
+				entityField, messageBoardThread1, messageBoardThread2);
+		}
 
 		messageBoardThread1 =
 			testGetSiteMessageBoardThreadsPage_addMessageBoardThread(
@@ -1779,53 +1674,6 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		throws Exception {
 
 		return randomMessageBoardThread();
-	}
-
-	protected void setEntityFieldValueSortDateTime(
-			MessageBoardThread messageBoardThread1,
-			MessageBoardThread messageBoardThread2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.DATE_TIME);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				messageBoardThread1, entityField.getName(),
-				DateUtils.addMinutes(new Date(), -2));
-		}
-	}
-
-	protected void setEntityFieldValueSortInteger(
-			MessageBoardThread messageBoardThread1,
-			MessageBoardThread messageBoardThread2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.INTEGER);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				messageBoardThread1, entityField.getName(), 0);
-			BeanUtils.setProperty(
-				messageBoardThread2, entityField.getName(), 1);
-		}
-	}
-
-	protected void setEntityFieldValueSortString(
-			MessageBoardThread messageBoardThread1,
-			MessageBoardThread messageBoardThread2)
-		throws Exception {
-
-		List<EntityField> entityFields = getEntityFields(
-			EntityField.Type.STRING);
-
-		for (EntityField entityField : entityFields) {
-			BeanUtils.setProperty(
-				messageBoardThread1, entityField.getName(), "Aaa");
-			BeanUtils.setProperty(
-				messageBoardThread2, entityField.getName(), "Bbb");
-		}
 	}
 
 	protected Group irrelevantGroup;
