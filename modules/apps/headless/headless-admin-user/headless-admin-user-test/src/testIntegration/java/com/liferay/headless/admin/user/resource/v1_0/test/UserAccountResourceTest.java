@@ -35,15 +35,10 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.odata.entity.EntityField;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -165,19 +160,8 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 	}
 
 	@Override
-	protected List<EntityField> getEntityFields(EntityField.Type type)
-		throws Exception {
-
-		Collection<EntityField> entityFields = super.getEntityFields(type);
-
-		Stream<EntityField> stream = entityFields.stream();
-
-		return stream.filter(
-			entityField -> !Objects.equals(
-				entityField.getName(), "emailAddress")
-		).collect(
-			Collectors.toList()
-		);
+	protected String[] getIgnoredEntityFieldNames() {
+		return new String[] {"emailAddress"};
 	}
 
 	@Override
