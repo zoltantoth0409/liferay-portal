@@ -9,5 +9,5 @@
 	"scripts": {
 		"build": "liferay-npm-bundler"
 	},
-	"version": "1.0.16"
+	"version": "1.0.17"
 }
