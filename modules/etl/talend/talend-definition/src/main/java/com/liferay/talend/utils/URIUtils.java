@@ -51,16 +51,6 @@ public class URIUtils {
 			resourceURL, Collections.singletonMap("filter", queryCondition));
 	}
 
-	/**
-	 * Gets Liferay OpenAPI JSON specification location relative URL.
-	 *
-	 * Method strips protocol, hostname and port from URL that matches Liferay
-	 * REST service open API specification location pattern {@link
-	 * #_openAPISpecURLPattern}.
-	 *
-	 * @param  openAPISpecURL Liferay OpenAPI specification URL
-	 * @return endpoint location
-	 */
 	public static String extractEndpointPathSegment(URL openAPISpecURL) {
 		String openAPISpecRef = openAPISpecURL.toExternalForm();
 
