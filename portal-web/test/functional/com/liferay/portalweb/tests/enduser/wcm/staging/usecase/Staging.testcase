@@ -40,6 +40,8 @@ definition {
 	@description = "This is a use case for LPS-72088."
 	@priority = "5"
 	test ActivateStagingAfterChangingInstanceLanguageToSpanish {
+		property test.name.skip.portal.instance = "Staging#ActivateStagingAfterChangingInstanceLanguageToSpanish";
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
