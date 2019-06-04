@@ -43,8 +43,8 @@ public class OAuth2ApplicationClientCredentialUserIdException
 				clientCredentialUserId, " via client credentials grant"));
 
 		this.userId = userId;
-		this.clientCredentialUserId = clientCredentialUserId;
 		this.userScreenName = userScreenName;
+		this.clientCredentialUserId = clientCredentialUserId;
 		this.clientCredentialUserScreenName = clientCredentialUserScreenName;
 	}
 
