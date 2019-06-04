@@ -42,10 +42,10 @@ public class OAuth2ApplicationClientCredentialUserIdException
 				"User ", userId, " is not allowed to impersonate user ",
 				clientCredentialUserId, " via client credentials grant"));
 
-		this.userId = userId;
-		this.userScreenName = userScreenName;
-		this.clientCredentialUserId = clientCredentialUserId;
-		this.clientCredentialUserScreenName = clientCredentialUserScreenName;
+		_userId = userId;
+		_userScreenName = userScreenName;
+		_clientCredentialUserId = clientCredentialUserId;
+		_clientCredentialUserScreenName = clientCredentialUserScreenName;
 	}
 
 	/**
@@ -74,9 +74,25 @@ public class OAuth2ApplicationClientCredentialUserIdException
 		super(cause);
 	}
 
-	public long clientCredentialUserId;
-	public String clientCredentialUserScreenName;
-	public long userId;
-	public String userScreenName;
+	public long getClientCredentialUserId() {
+		return _clientCredentialUserId;
+	}
+
+	public String getClientCredentialUserScreenName() {
+		return _clientCredentialUserScreenName;
+	}
+
+	public long getUserId() {
+		return _userId;
+	}
+
+	public String getUserScreenName() {
+		return _userScreenName;
+	}
+
+	private long _clientCredentialUserId;
+	private String _clientCredentialUserScreenName;
+	private long _userId;
+	private String _userScreenName;
 
 }
