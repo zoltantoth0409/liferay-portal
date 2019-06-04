@@ -11,15 +11,9 @@ definition {
 
 		JSONGroup.addGroup(groupName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Build",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(pageName = "Staging Test Page");
+		JSONLayout.addPublicLayout(
+			groupName = "Site Name",
+			layoutName = "Staging Test Page");
 	}
 
 	tearDown {
@@ -121,15 +115,9 @@ definition {
 	test ActivateStagingPageVersioningWithCustomDefaultLanguage {
 		property test.name.skip.portal.instance = "Staging#ActivateStagingPageVersioningWithCustomDefaultLanguage";
 
-		Navigator.openSiteURL(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Build",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPrivatePage(pageName = "Private Staging Page");
+		JSONLayout.addPrivateLayout(
+			groupName = "Site Name",
+			layoutName = "Private Staging Page");
 
 		Navigator.openSiteURL(siteName = "Site Name");
 
@@ -568,7 +556,11 @@ definition {
 
 	@priority = "4"
 	test PublishTemplateWithPages {
-		SitePages.addPrivatePage(pageName = "Private Staging Page");
+		JSONLayout.addPrivateLayout(
+			groupName = "Site Name",
+			layoutName = "Private Staging Page");
+
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
@@ -1231,13 +1223,9 @@ definition {
 			uncheckPropagation = "true"
 		);
 
-		ProductMenu.gotoPortlet(
-			category = "Build",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(pageName = "Test Page Name 1");
+		JSONLayout.addPublicLayout(
+			groupName = "Community Site Name",
+			layoutName = "Test Page Name 1");
 
 		Navigator.gotoSitePage(
 			pageName = "Test Page Name 1",
@@ -1248,13 +1236,9 @@ definition {
 
 		ProductMenu.gotoSite(site = "Community Site Name");
 
-		ProductMenu.gotoPortlet(
-			category = "Build",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(pageName = "Test Page Name 2");
+		JSONLayout.addPublicLayout(
+			groupName = "Community Site Name",
+			layoutName = "Test Page Name 2");
 
 		Navigator.gotoSitePage(
 			pageName = "Test Page Name 2",
@@ -1265,13 +1249,9 @@ definition {
 
 		ProductMenu.gotoSite(site = "Community Site Name");
 
-		ProductMenu.gotoPortlet(
-			category = "Build",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(pageName = "Test Page Name 3");
+		JSONLayout.addPublicLayout(
+			groupName = "Community Site Name",
+			layoutName = "Test Page Name 3");
 
 		Navigator.gotoSitePage(
 			pageName = "Test Page Name 3",
@@ -1500,15 +1480,11 @@ definition {
 		property portal.acceptance = "true";
 		property testray.component.names = "Training";
 
+		JSONLayout.addPublicLayout(
+			groupName = "Site Name",
+			layoutName = "Staging Test Page 2");
+
 		ProductMenu.gotoSite(site = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Build",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(pageName = "Staging Test Page 2");
 
 		Navigator.gotoSitePage(pageName = "Staging Test Page", siteName = "Site Name");
 
@@ -2437,19 +2413,19 @@ definition {
 
 	@priority = "4"
 	test StagingWithPublishTemplate {
+		JSONLayout.addPublicLayout(
+			groupName = "Site Name",
+			layoutName = "Test Page 1");
+
+		JSONLayout.addPublicLayout(
+			groupName = "Site Name",
+			layoutName = "Test Page 2");
+
+		JSONLayout.addPublicLayout(
+			groupName = "Site Name",
+			layoutName = "Test Page 3");
+
 		Navigator.openSiteURL(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Build",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(pageName = "Test Page 1");
-
-		SitePages.addPublicPage(pageName = "Test Page 2");
-
-		SitePages.addPublicPage(pageName = "Test Page 3");
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
@@ -2862,17 +2838,15 @@ definition {
 
 	@priority = "4"
 	test ViewPageOrderWithStaging {
+		JSONLayout.addPublicLayout(
+			groupName = "Site Name",
+			layoutName = "Test Page 1");
+
+		JSONLayout.addPublicLayout(
+			groupName = "Site Name",
+			layoutName = "Test Page 2");
+
 		Navigator.openSiteURL(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Build",
-			panel = "Site Administration",
-			portlet = "Pages"
-		);
-
-		SitePages.addPublicPage(pageName = "Test Page 1");
-
-		SitePages.addPublicPage(pageName = "Test Page 2");
 
 		Page.viewPagesOrder(
 			pageName1 = "Staging Test Page",
