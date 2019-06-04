@@ -471,7 +471,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		}
 
 		booleanQuery.addFilterQueryClauses(
-			_queries.term("affectedBy", ctEntryId));
+			_queries.term("affectedByCTEntryIds", ctEntryId));
 		booleanQuery.addFilterQueryClauses(
 			_queries.term("ctCollectionId", ctCollectionId));
 

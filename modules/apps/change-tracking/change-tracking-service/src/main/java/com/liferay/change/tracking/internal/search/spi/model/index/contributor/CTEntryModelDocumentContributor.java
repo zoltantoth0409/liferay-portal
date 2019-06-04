@@ -50,7 +50,8 @@ public class CTEntryModelDocumentContributor
 		document.addDate(Field.MODIFIED_DATE, ctEntry.getModifiedDate());
 		document.addKeyword(Field.STATUS, ctEntry.getStatus());
 		document.addText(Field.TITLE, _getTitle(ctEntry));
-		document.addKeyword("affectedBy", _getAffectedBy(ctEntry));
+		document.addKeyword(
+			"affectedByCTEntryIds", _getAffectedByCTEntryIds(ctEntry));
 		document.addKeyword("changeType", ctEntry.getChangeType());
 		document.addKeyword("collision", ctEntry.isCollision());
 		document.addKeyword("ctCollectionId", _getCTCollectionIds(ctEntry));
@@ -63,7 +64,7 @@ public class CTEntryModelDocumentContributor
 			"modelResourcePrimKey", ctEntry.getModelResourcePrimKey());
 	}
 
-	private long[] _getAffectedBy(CTEntry ctEntry) {
+	private long[] _getAffectedByCTEntryIds(CTEntry ctEntry) {
 		List<CTEntryAggregate> ctEntryAggregates =
 			ctEntry.getCTEntryAggregates();
 
