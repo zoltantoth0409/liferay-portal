@@ -128,12 +128,12 @@ public class CTAffectedEntryResource {
 			queryDefinition.setStart(pagination.getStartPosition());
 		}
 
-		queryDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
-
 		OrderByComparator<CTEntry> orderByComparator =
 			OrderByComparatorFactoryUtil.create("CTEntry", Field.TITLE, "asc");
 
 		queryDefinition.setOrderByComparator(orderByComparator);
+
+		queryDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
 
 		return queryDefinition;
 	}
