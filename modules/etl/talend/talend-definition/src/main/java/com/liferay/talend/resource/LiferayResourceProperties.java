@@ -265,12 +265,12 @@ public class LiferayResourceProperties
 			if (_log.isDebugEnabled()) {
 				_log.debug("Using a reference connection properties");
 				_log.debug(
-					"User ID: " +
-						referencedLiferayConnectionProperties.userId.
+					"API spec URL: " +
+						referencedLiferayConnectionProperties.apiSpecURL.
 							getValue());
 				_log.debug(
-					"API Spec URL: " +
-						referencedLiferayConnectionProperties.apiSpecURL.
+					"User ID: " +
+						referencedLiferayConnectionProperties.userId.
 							getValue());
 			}
 
@@ -279,10 +279,10 @@ public class LiferayResourceProperties
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"User ID: " + liferayConnectionProperties.userId.getValue());
-			_log.debug(
-				"API Spec URL: " +
+				"API spec URL: " +
 					liferayConnectionProperties.apiSpecURL.getValue());
+			_log.debug(
+				"User ID: " + liferayConnectionProperties.userId.getValue());
 		}
 
 		return liferayConnectionProperties;

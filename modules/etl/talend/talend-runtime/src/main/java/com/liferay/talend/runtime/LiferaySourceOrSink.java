@@ -483,7 +483,7 @@ public class LiferaySourceOrSink
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Validate API Spec URL: {}",
+				"Validate API spec URL: {}",
 				liferayConnectionProperties.apiSpecURL.getValue());
 			_log.debug(
 				"Validate user ID: {}",
