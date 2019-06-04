@@ -81,7 +81,7 @@ public class LiferayConnectionProperties
 		catch (TalendRuntimeException tre) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to determine the Site name for the ID: " +
+					"Unable to determine the site name with site ID: " +
 						siteId.getValue());
 			}
 		}
@@ -121,7 +121,7 @@ public class LiferayConnectionProperties
 			siteId.setPossibleNamedThingValues(webSites);
 		}
 		catch (Exception e) {
-			_log.error("Unable to fetch Sites", e);
+			_log.error("Unable to get sites", e);
 
 			return ExceptionUtils.exceptionToValidationResult(e);
 		}
@@ -174,9 +174,7 @@ public class LiferayConnectionProperties
 	}
 
 	public URL getServerURL() {
-		String apiSpecHref = apiSpecURL.getValue();
-
-		URL apiSpecURL = URIUtils.toURL(apiSpecHref);
+		URL apiSpecURL = URIUtils.toURL(apiSpecURL.getValue());
 
 		return URIUtils.extractServerURL(apiSpecURL);
 	}
