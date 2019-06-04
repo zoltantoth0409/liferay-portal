@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.liferay.talend.avro.constants.AvroConstants;
 import com.liferay.talend.openapi.OpenAPIFormat;
 import com.liferay.talend.openapi.OpenAPIType;
-import com.liferay.talend.openapi.constants.OpenApiConstants;
+import com.liferay.talend.openapi.constants.OpenAPIConstants;
 import com.liferay.talend.tliferayoutput.Action;
 import com.liferay.talend.utils.StringUtils;
 
@@ -76,23 +76,23 @@ public class EndpointSchemaInferrer {
 
 		if (Objects.equals(operation, HttpMethod.GET.toLowerCase(Locale.US))) {
 			JsonNode schemaRefJsonNode = apiSpecJsonNode.path(
-				OpenApiConstants.PATHS
+				OpenAPIConstants.PATHS
 			).path(
 				endpoint
 			).path(
 				operation
 			).path(
-				OpenApiConstants.RESPONSES
+				OpenAPIConstants.RESPONSES
 			).path(
-				OpenApiConstants.DEFAULT
+				OpenAPIConstants.DEFAULT
 			).path(
-				OpenApiConstants.CONTENT
+				OpenAPIConstants.CONTENT
 			).path(
-				OpenApiConstants.APPLICATION_JSON
+				OpenAPIConstants.APPLICATION_JSON
 			).path(
-				OpenApiConstants.SCHEMA
+				OpenAPIConstants.SCHEMA
 			).path(
-				OpenApiConstants.REF
+				OpenAPIConstants.REF
 			);
 
 			schemaName = _stripSchemaName(schemaRefJsonNode);
@@ -101,13 +101,13 @@ public class EndpointSchemaInferrer {
 				schemaName, apiSpecJsonNode);
 
 			JsonNode referenceSchemaJsonNode = schemaJsonNode.path(
-				OpenApiConstants.PROPERTIES
+				OpenAPIConstants.PROPERTIES
 			).path(
-				OpenApiConstants.ITEMS
+				OpenAPIConstants.ITEMS
 			).path(
-				OpenApiConstants.ITEMS
+				OpenAPIConstants.ITEMS
 			).path(
-				OpenApiConstants.REF
+				OpenAPIConstants.REF
 			);
 
 			if (!referenceSchemaJsonNode.isMissingNode()) {
@@ -120,21 +120,21 @@ public class EndpointSchemaInferrer {
 					 operation, HttpMethod.POST.toLowerCase(Locale.US))) {
 
 			JsonNode schemaRefJsonNode = apiSpecJsonNode.path(
-				OpenApiConstants.PATHS
+				OpenAPIConstants.PATHS
 			).path(
 				endpoint
 			).path(
 				operation
 			).path(
-				OpenApiConstants.REQUEST_BODY
+				OpenAPIConstants.REQUEST_BODY
 			).path(
-				OpenApiConstants.CONTENT
+				OpenAPIConstants.CONTENT
 			).path(
-				OpenApiConstants.APPLICATION_JSON
+				OpenAPIConstants.APPLICATION_JSON
 			).path(
-				OpenApiConstants.SCHEMA
+				OpenAPIConstants.SCHEMA
 			).path(
-				OpenApiConstants.REF
+				OpenAPIConstants.REF
 			);
 
 			schemaName = _stripSchemaName(schemaRefJsonNode);
@@ -147,9 +147,9 @@ public class EndpointSchemaInferrer {
 		String schemaName, JsonNode apiSpecJsonNode) {
 
 		return apiSpecJsonNode.path(
-			OpenApiConstants.COMPONENTS
+			OpenAPIConstants.COMPONENTS
 		).path(
-			OpenApiConstants.SCHEMAS
+			OpenAPIConstants.SCHEMAS
 		).path(
 			schemaName
 		);
@@ -182,11 +182,11 @@ public class EndpointSchemaInferrer {
 		JsonNode propertyJsonNode = propertyEntry.getValue();
 
 		JsonNode openAPIFormatDefinitionJsonNode = propertyJsonNode.path(
-			OpenApiConstants.FORMAT);
+			OpenAPIConstants.FORMAT);
 
 		OpenAPIType openAPIType = OpenAPIType.fromDefinition(
 			propertyJsonNode.path(
-				OpenApiConstants.TYPE
+				OpenAPIConstants.TYPE
 			).asText());
 
 		if (openAPIType == OpenAPIType.ARRAY) {
@@ -194,9 +194,9 @@ public class EndpointSchemaInferrer {
 		}
 		else if (openAPIType == OpenAPIType.OBJECT) {
 			openAPIFormatDefinitionJsonNode = propertyJsonNode.path(
-				OpenApiConstants.ADDITIONAL_PROPERTIES
+				OpenAPIConstants.ADDITIONAL_PROPERTIES
 			).path(
-				OpenApiConstants.TYPE
+				OpenAPIConstants.TYPE
 			);
 		}
 
@@ -271,7 +271,7 @@ public class EndpointSchemaInferrer {
 		JsonNode schemaJsonNode) {
 
 		JsonNode requiredJsonNode = schemaJsonNode.path(
-			OpenApiConstants.REQUIRED);
+			OpenAPIConstants.REQUIRED);
 
 		Set<String> requiredProperties = new HashSet<>();
 
@@ -356,7 +356,7 @@ public class EndpointSchemaInferrer {
 			schemaJsonNode);
 
 		JsonNode schemaPropertiesJsonNode = schemaJsonNode.path(
-			OpenApiConstants.PROPERTIES);
+			OpenAPIConstants.PROPERTIES);
 
 		for (Iterator<Map.Entry<String, JsonNode>> it =
 				schemaPropertiesJsonNode.fields(); it.hasNext();
@@ -367,7 +367,7 @@ public class EndpointSchemaInferrer {
 			JsonNode propertyJsonNode = propertyEntry.getValue();
 
 			JsonNode schemaRefJsonNode = propertyJsonNode.path(
-				OpenApiConstants.REF);
+				OpenAPIConstants.REF);
 
 			if (!schemaRefJsonNode.isMissingNode() &&
 				(parentPropertyName == null)) {
@@ -406,7 +406,7 @@ public class EndpointSchemaInferrer {
 	private static String _stripSchemaName(JsonNode schemaRefJsonNode) {
 		String reference = schemaRefJsonNode.asText();
 
-		return reference.replaceAll(OpenApiConstants.PATH_SCHEMA_REFERENCE, "");
+		return reference.replaceAll(OpenAPIConstants.PATH_SCHEMA_REFERENCE, "");
 	}
 
 	private static final Logger _log = LoggerFactory.getLogger(

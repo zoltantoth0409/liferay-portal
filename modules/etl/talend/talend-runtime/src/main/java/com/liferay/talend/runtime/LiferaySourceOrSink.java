@@ -23,7 +23,7 @@ import com.liferay.talend.connection.LiferayConnectionProperties;
 import com.liferay.talend.connection.LiferayConnectionPropertiesProvider;
 import com.liferay.talend.exception.ExceptionUtils;
 import com.liferay.talend.exception.MalformedURLException;
-import com.liferay.talend.openapi.constants.OpenApiConstants;
+import com.liferay.talend.openapi.constants.OpenAPIConstants;
 import com.liferay.talend.runtime.client.RESTClient;
 import com.liferay.talend.utils.URIUtils;
 
@@ -267,7 +267,7 @@ public class LiferaySourceOrSink
 		JsonNode apiSpecJsonNode = doGetRequest(
 			liferayConnectionProperties.apiSpecURL.getValue());
 
-		JsonNode pathsJsonNode = apiSpecJsonNode.path(OpenApiConstants.PATHS);
+		JsonNode pathsJsonNode = apiSpecJsonNode.path(OpenAPIConstants.PATHS);
 
 		Iterator<Map.Entry<String, JsonNode>> fields = pathsJsonNode.fields();
 
@@ -282,17 +282,17 @@ public class LiferaySourceOrSink
 				boolean hasSchemaReference = endpointJsonNode.path(
 					operation.toLowerCase(Locale.US)
 				).path(
-					OpenApiConstants.RESPONSES
+					OpenAPIConstants.RESPONSES
 				).path(
-					OpenApiConstants.DEFAULT
+					OpenAPIConstants.DEFAULT
 				).path(
-					OpenApiConstants.CONTENT
+					OpenAPIConstants.CONTENT
 				).path(
-					OpenApiConstants.APPLICATION_JSON
+					OpenAPIConstants.APPLICATION_JSON
 				).path(
-					OpenApiConstants.SCHEMA
+					OpenAPIConstants.SCHEMA
 				).has(
-					OpenApiConstants.REF
+					OpenAPIConstants.REF
 				);
 
 				if (checkForSchemaReference) {
@@ -418,7 +418,7 @@ public class LiferaySourceOrSink
 			liferayConnectionProperties.apiSpecURL.getValue());
 
 		JsonNode endpointJsonNode = apiSpecJsonNode.path(
-			OpenApiConstants.PATHS
+			OpenAPIConstants.PATHS
 		).path(
 			endpoint
 		);

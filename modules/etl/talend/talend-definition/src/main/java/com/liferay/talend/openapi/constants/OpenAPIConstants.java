@@ -17,7 +17,7 @@ package com.liferay.talend.openapi.constants;
 /**
  * @author Zoltán Takács
  */
-public class OpenApiConstants {
+public class OpenAPIConstants {
 
 	public static final String ADDITIONAL_PROPERTIES = "additionalProperties";
 
@@ -53,7 +53,7 @@ public class OpenApiConstants {
 
 	public static final String TYPE = "type";
 
-	private OpenApiConstants() {
+	private OpenAPIConstants() {
 	}
 
 }
