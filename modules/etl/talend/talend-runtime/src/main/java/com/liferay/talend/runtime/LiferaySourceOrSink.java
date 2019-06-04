@@ -377,15 +377,6 @@ public class LiferaySourceOrSink
 		return new RESTClient(resourceURL, liferayConnectionProperties);
 	}
 
-	/**
-	 * This method is not used in Liferay Component family
-	 * @deprecated As of Mueller (7.2.x), beginning, see {@link #getEndpointList(String)} for
-	 * implementation details
-	 *
-	 * @param runtimeContainer
-	 * @return
-	 * @throws IOException
-	 */
 	@Deprecated
 	@Override
 	public List<NamedThing> getSchemaNames(RuntimeContainer runtimeContainer)
