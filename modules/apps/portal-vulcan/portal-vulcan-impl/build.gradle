@@ -64,9 +64,6 @@ dependencies {
 deployDependencies {
 	from configurations.compileOnly
 
-	include "jackson-annotations-*.jar"
-	include "jackson-core-*.jar"
-	include "jackson-databind-*.jar"
 	include "jackson-dataformat-xml-*.jar"
 	include "jackson-jaxrs-base-*.jar"
 	include "jackson-jaxrs-json-provider-*.jar"
