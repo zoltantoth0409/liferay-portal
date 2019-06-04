@@ -102,6 +102,14 @@ definition {
 			}
 		}
 
+		if (isSet(customFieldText)) {
+			Panel.expandPanel(panel = "Custom Fields");
+
+			Type(
+				locator1 = "TextInput#CUSTOM_FIELD",
+				value1 = "${customFieldText}");
+		}
+
 		if (isSet(tagNameList)) {
 			Panel.expandPanel(panel = "Categorization");
 
@@ -1314,6 +1322,16 @@ definition {
 				locator1 = "DocumentsAndMediaDocument#DOCUMENT_DETAILS_SIZE",
 				value1 = "${dmDocumentSize}"
 			);
+		}
+
+		if (isSet(customFieldName)) {
+			AssertTextEquals(
+				locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_NAME",
+				value1 = "${customFieldName}");
+
+			AssertTextEquals(
+				locator1 = "DocumentsAndMediaDocument#CUSTOM_FIELD_VALUE",
+				value1 = "${customFieldValue}");
 		}
 	}
 
