@@ -329,24 +329,6 @@ public class EndpointSchemaInferrer {
 		return designField;
 	}
 
-	/**
-	 * Creates the list of {@link Schema.Field} {@param schemaFields} which is
-	 * used to create the Schema record for the endpoint
-	 *
-	 * @param parentPropertyName If the property has reference to another schema
-	 *                           this parameter is used to pass the parent
-	 *                           property's name
-	 * @param schemaJsonNode It contains the actual OAS Schema object where the
-	 *                       processing happens on its properties
-	 * @param index It is used for generating Column / Field names in case there
-	 *              are too many forbidden characters in the generated field
-	 *              name
-	 * @param previousFieldNames Contains all the unique field names which is
-	 *                              being processed
-	 * @param schemaFields The list of schema fields from which the Schema
-	 *                     record is created at the end
-	 * @param apiSpecJsonNode Holds the entire API Specification object
-	 */
 	private static void _processSchemaJsonNode(
 		String parentPropertyName, JsonNode schemaJsonNode, AtomicInteger index,
 		Set<String> previousFieldNames, List<Schema.Field> schemaFields,
