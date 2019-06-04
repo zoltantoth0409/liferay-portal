@@ -27,7 +27,7 @@ public class OAuth2ApplicationClientCredentialUserIdException
 	extends PortalException {
 
 	/**
-	 * @deprecated As of Mueller (7.2.x), since 7.2, unused
+	 * @deprecated As of Mueller (7.2.x)
 	 */
 	@Deprecated
 	public OAuth2ApplicationClientCredentialUserIdException() {
@@ -49,7 +49,7 @@ public class OAuth2ApplicationClientCredentialUserIdException
 	}
 
 	/**
-	 * @deprecated As of Mueller (7.2.x), since 7.2, unused
+	 * @deprecated As of Mueller (7.2.x)
 	 */
 	@Deprecated
 	public OAuth2ApplicationClientCredentialUserIdException(String msg) {
@@ -57,7 +57,7 @@ public class OAuth2ApplicationClientCredentialUserIdException
 	}
 
 	/**
-	 * @deprecated As of Mueller (7.2.x), since 7.2, unused
+	 * @deprecated As of Mueller (7.2.x)
 	 */
 	@Deprecated
 	public OAuth2ApplicationClientCredentialUserIdException(
@@ -67,7 +67,7 @@ public class OAuth2ApplicationClientCredentialUserIdException
 	}
 
 	/**
-	 * @deprecated As of Mueller (7.2.x), since 7.2, unused
+	 * @deprecated As of Mueller (7.2.x)
 	 */
 	@Deprecated
 	public OAuth2ApplicationClientCredentialUserIdException(Throwable cause) {
