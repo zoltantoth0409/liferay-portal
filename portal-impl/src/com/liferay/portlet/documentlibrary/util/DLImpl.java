@@ -23,6 +23,7 @@ import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.document.library.kernel.service.DLFolderLocalServiceUtil;
+import com.liferay.document.library.kernel.service.FileVersionPreviewEventListener;
 import com.liferay.document.library.kernel.util.DL;
 import com.liferay.document.library.kernel.util.ImageProcessorUtil;
 import com.liferay.document.library.kernel.util.PDFProcessorUtil;
@@ -70,6 +71,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.ServiceProxyFactory;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -521,6 +523,15 @@ public class DLImpl implements DL {
 		FileEntry fileEntry, FileVersion fileVersion, ThemeDisplay themeDisplay,
 		String queryString, boolean appendVersion, boolean absoluteURL) {
 
+		long fileVersionPreviewId =
+			_fileVersionPreviewEventListener.getDLFileVersionPreviewId(
+			fileVersion.getFileEntryId(), fileVersion.getFileVersionId(),
+				FileVersionPreviewEventListener.DLFileEntryPreviewType.FAIL.toInteger());
+
+		if(fileVersionPreviewId > 0) {
+			return StringPool.BLANK;
+		}
+
 		String previewQueryString = queryString;
 
 		if (Validator.isNull(previewQueryString)) {
@@ -750,6 +761,15 @@ public class DLImpl implements DL {
 			FileEntry fileEntry, FileVersion fileVersion,
 			ThemeDisplay themeDisplay)
 		throws Exception {
+
+		long fileVersionPreviewId =
+			_fileVersionPreviewEventListener.getDLFileVersionPreviewId(
+				fileVersion.getFileEntryId(), fileVersion.getFileVersionId(),
+				FileVersionPreviewEventListener.DLFileEntryPreviewType.FAIL.toInteger());
+
+		if(fileVersionPreviewId > 0) {
+			return StringPool.BLANK;
+		}
 
 		String thumbnailQueryString = null;
 
@@ -1317,6 +1337,12 @@ public class DLImpl implements DL {
 			_populateGenericNamesMap(genericName);
 		}
 	}
+
+	private static volatile FileVersionPreviewEventListener
+		_fileVersionPreviewEventListener =
+		ServiceProxyFactory.newServiceTrackedInstance(
+			FileVersionPreviewEventListener.class, DLImpl.class,
+			"_fileVersionPreviewEventListener", false, false);
 
 	private final ServiceTrackerList<PortletLayoutFinder> _serviceTrackerList =
 		ServiceTrackerCollections.openList(
