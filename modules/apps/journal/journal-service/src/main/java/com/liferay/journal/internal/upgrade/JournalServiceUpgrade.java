@@ -187,6 +187,10 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 			new UpgradeDiscussionSubscriptionClassName(
 				_subscriptionLocalService, JournalArticle.class.getName(),
 				UpgradeDiscussionSubscriptionClassName.DeletionMode.ADD_NEW));
+
+		registry.register(
+			"1.1.7", "1.1.8",
+			new com.liferay.journal.internal.upgrade.v1_1_7.UpgradeUrlTitle());
 	}
 
 	protected void deleteTempImages() throws Exception {
