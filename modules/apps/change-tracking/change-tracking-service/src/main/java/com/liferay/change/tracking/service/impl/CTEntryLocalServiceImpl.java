@@ -393,8 +393,6 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		BooleanQuery booleanQuery = _queries.booleanQuery();
 
 		booleanQuery.addFilterQueryClauses(
-			_queries.term("ctCollectionId", ctCollection.getCtCollectionId()));
-		booleanQuery.addFilterQueryClauses(
 			_queries.term(Field.COMPANY_ID, ctCollection.getCompanyId()));
 
 		if (!ArrayUtil.isEmpty(groupIds)) {
@@ -410,11 +408,15 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 					Field.USER_ID, _getTermValues(ArrayUtil.toArray(userIds))));
 		}
 
-		if (!ArrayUtil.isEmpty(classNameIds)) {
-			booleanQuery.addMustQueryClauses(
-				_getTermsQuery(
-					"modelClassNameId",
-					_getTermValues(ArrayUtil.toArray(classNameIds))));
+		if (WorkflowConstants.STATUS_ANY != status) {
+			if (excludeStatus) {
+				booleanQuery.addMustNotQueryClauses(
+					_queries.term(Field.STATUS, status));
+			}
+			else {
+				booleanQuery.addMustQueryClauses(
+					_queries.term(Field.STATUS, status));
+			}
 		}
 
 		if (!ArrayUtil.isEmpty(changeTypes)) {
@@ -429,15 +431,14 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 				_queries.term("collision", collision));
 		}
 
-		if (WorkflowConstants.STATUS_ANY != status) {
-			if (excludeStatus) {
-				booleanQuery.addMustNotQueryClauses(
-					_queries.term(Field.STATUS, status));
-			}
-			else {
-				booleanQuery.addMustQueryClauses(
-					_queries.term(Field.STATUS, status));
-			}
+		booleanQuery.addFilterQueryClauses(
+			_queries.term("ctCollectionId", ctCollection.getCtCollectionId()));
+
+		if (!ArrayUtil.isEmpty(classNameIds)) {
+			booleanQuery.addMustQueryClauses(
+				_getTermsQuery(
+					"modelClassNameId",
+					_getTermValues(ArrayUtil.toArray(classNameIds))));
 		}
 
 		return booleanQuery;
@@ -450,11 +451,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		BooleanQuery booleanQuery = _queries.booleanQuery();
 
 		booleanQuery.addFilterQueryClauses(
-			_queries.term("ctCollectionId", ctCollectionId));
-		booleanQuery.addFilterQueryClauses(
 			_queries.term(Field.COMPANY_ID, companyId));
-		booleanQuery.addFilterQueryClauses(
-			_queries.term("affectedBy", ctEntryId));
 
 		if (WorkflowConstants.STATUS_ANY != status) {
 			if (excludeStatus) {
@@ -472,6 +469,11 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 				_fieldQueryFactory.createQuery(
 					Field.TITLE, keywords, true, false));
 		}
+
+		booleanQuery.addFilterQueryClauses(
+			_queries.term("affectedBy", ctEntryId));
+		booleanQuery.addFilterQueryClauses(
+			_queries.term("ctCollectionId", ctCollectionId));
 
 		return booleanQuery;
 	}
