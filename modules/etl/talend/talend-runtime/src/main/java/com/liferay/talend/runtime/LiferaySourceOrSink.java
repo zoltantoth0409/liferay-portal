@@ -209,12 +209,6 @@ public class LiferaySourceOrSink
 		return liferayConnectionProperties;
 	}
 
-	/**
-	 * If referenceComponentId is not <code>null</code>, it should return the
-	 * reference connection properties
-	 *
-	 * @review
-	 */
 	public LiferayConnectionProperties getEffectiveConnection(
 		RuntimeContainer runtimeContainer) {
 
