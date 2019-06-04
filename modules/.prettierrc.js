@@ -1,5 +1,5 @@
 /**
- * This fallback config exists so that users who haven't installed the
+ * This fallback config exists so that users who have not installed the
  * NPM modules yet (eg. in a pre-build, clean checkout) will still have
  * standard Prettier config in their development environments.
  */
