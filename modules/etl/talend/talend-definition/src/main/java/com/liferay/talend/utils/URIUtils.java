@@ -69,7 +69,7 @@ public class URIUtils {
 
 		if (!serverURLMatcher.matches()) {
 			throw new MalformedURLException(
-				"Unable to extract Open API endpoint from URL " +
+				"Unable to extract OpenAPI endpoint from URL " +
 					openAPISpecRef);
 		}
 
@@ -94,7 +94,7 @@ public class URIUtils {
 
 		if (!serverURLMatcher.matches()) {
 			throw new MalformedURLException(
-				"Unable to extract Open API endpoint from URL " +
+				"Unable to extract OpenAPI endpoint from URL " +
 					openAPISpecRef);
 		}
 
@@ -222,7 +222,7 @@ public class URIUtils {
 	public static void validateOpenAPISpecURL(String openAPISpecURL) {
 		if (!isValidOpenAPISpecURL(openAPISpecURL)) {
 			throw new MalformedURLException(
-				"Provided Open API Specification URL does not match pattern: " +
+				"Provided OpenAPI specification URL does not match pattern: " +
 					_openAPISpecURLPattern.pattern());
 		}
 	}
