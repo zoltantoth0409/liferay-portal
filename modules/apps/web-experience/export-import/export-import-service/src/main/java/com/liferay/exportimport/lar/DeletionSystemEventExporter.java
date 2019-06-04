@@ -121,9 +121,6 @@ public class DeletionSystemEventExporter {
 			Property classNameIdProperty = PropertyFactoryUtil.forName(
 				"classNameId");
 
-			Property extraDataProperty = PropertyFactoryUtil.forName(
-				"extraData");
-
 			Property referrerClassNameIdProperty = PropertyFactoryUtil.forName(
 				"referrerClassNameId");
 
@@ -147,6 +144,9 @@ public class DeletionSystemEventExporter {
 				String className = stagedModelType.getClassName();
 
 				if (className.equals(Layout.class.getName())) {
+					Property extraDataProperty = PropertyFactoryUtil.forName(
+						"extraData");
+
 					boolean privateLayout = MapUtil.getBoolean(
 						portletDataContext.getParameterMap(), "privateLayout");
 
