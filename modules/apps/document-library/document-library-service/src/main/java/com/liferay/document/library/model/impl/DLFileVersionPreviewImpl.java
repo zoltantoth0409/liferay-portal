@@ -28,7 +28,7 @@ import aQute.bnd.annotation.ProviderType;
 @ProviderType
 public class DLFileVersionPreviewImpl extends DLFileVersionPreviewBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. All methods that expect a dl file version preview model instance should use the {@link com.liferay.document.library.model.DLFileVersionPreview} interface instead.

@@ -525,10 +525,11 @@ public class DLImpl implements DL {
 
 		long fileVersionPreviewId =
 			_fileVersionPreviewEventListener.getDLFileVersionPreviewId(
-			fileVersion.getFileEntryId(), fileVersion.getFileVersionId(),
-				FileVersionPreviewEventListener.DLFileEntryPreviewType.FAIL.toInteger());
+				fileVersion.getFileEntryId(), fileVersion.getFileVersionId(),
+				FileVersionPreviewEventListener.DLFileEntryPreviewType.FAIL.
+					toInteger());
 
-		if(fileVersionPreviewId > 0) {
+		if (fileVersionPreviewId > 0) {
 			return StringPool.BLANK;
 		}
 
@@ -758,15 +759,16 @@ public class DLImpl implements DL {
 
 	@Override
 	public String getThumbnailSrc(
-			FileEntry fileEntry, FileVersion fileVersion,
-			ThemeDisplay themeDisplay) {
+		FileEntry fileEntry, FileVersion fileVersion,
+		ThemeDisplay themeDisplay) {
 
 		long fileVersionPreviewId =
 			_fileVersionPreviewEventListener.getDLFileVersionPreviewId(
 				fileVersion.getFileEntryId(), fileVersion.getFileVersionId(),
-				FileVersionPreviewEventListener.DLFileEntryPreviewType.FAIL.toInteger());
+				FileVersionPreviewEventListener.DLFileEntryPreviewType.FAIL.
+					toInteger());
 
-		if(fileVersionPreviewId > 0) {
+		if (fileVersionPreviewId > 0) {
 			return StringPool.BLANK;
 		}
 
@@ -1326,6 +1328,11 @@ public class DLImpl implements DL {
 		}
 	};
 
+	private static volatile FileVersionPreviewEventListener
+		_fileVersionPreviewEventListener =
+			ServiceProxyFactory.newServiceTrackedInstance(
+				FileVersionPreviewEventListener.class, DLImpl.class,
+				"_fileVersionPreviewEventListener", false, false);
 	private static final Map<String, String> _genericNames = new HashMap<>();
 
 	static {
@@ -1336,12 +1343,6 @@ public class DLImpl implements DL {
 			_populateGenericNamesMap(genericName);
 		}
 	}
-
-	private static volatile FileVersionPreviewEventListener
-		_fileVersionPreviewEventListener =
-		ServiceProxyFactory.newServiceTrackedInstance(
-			FileVersionPreviewEventListener.class, DLImpl.class,
-			"_fileVersionPreviewEventListener", false, false);
 
 	private final ServiceTrackerList<PortletLayoutFinder> _serviceTrackerList =
 		ServiceTrackerCollections.openList(
