@@ -78,7 +78,6 @@ public class CTAffectedEntryResource {
 					_ctEntryLocalService.getRelatedOwnerCTEntries(
 						ownerCTEntry.getCompanyId(), ctCollectionId, ctEntryId,
 						keywords, queryDefinition);
-
 				totalCount =
 					(int)_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
 						ownerCTEntry.getCompanyId(), ctCollectionId, ctEntryId,
@@ -94,7 +93,6 @@ public class CTAffectedEntryResource {
 				affectedCTEntries =
 					_ctEntryLocalService.getRelatedOwnerCTEntries(
 						ctEntryId, queryDefinition);
-
 				totalCount = _ctEntryLocalService.getRelatedOwnerCTEntriesCount(
 					ctEntryId, queryDefinition);
 			}
