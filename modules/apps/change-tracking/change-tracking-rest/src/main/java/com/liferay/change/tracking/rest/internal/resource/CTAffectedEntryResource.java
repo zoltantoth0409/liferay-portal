@@ -125,13 +125,16 @@ public class CTAffectedEntryResource {
 
 		if (pagination != null) {
 			queryDefinition.setEnd(pagination.getEndPosition());
-			queryDefinition.setStart(pagination.getStartPosition());
 		}
 
 		OrderByComparator<CTEntry> orderByComparator =
 			OrderByComparatorFactoryUtil.create("CTEntry", Field.TITLE, "asc");
 
 		queryDefinition.setOrderByComparator(orderByComparator);
+
+		if (pagination != null) {
+			queryDefinition.setStart(pagination.getStartPosition());
+		}
 
 		queryDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
 
