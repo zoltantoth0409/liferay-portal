@@ -79,10 +79,10 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 
 						<c:choose>
 							<c:when test="<%= Validator.isNotNull(oAuth2ApplicationClientCredentialUserIdException.getClientCredentialUserScreenName()) %>">
-								<liferay-ui:message arguments="<%= new Object[] {oAuth2ApplicationClientCredentialUserIdException.getUserScreenName(), oAuth2ApplicationClientCredentialUserIdException.getClientCredentialUserScreenName()} %>" key="this-operation-cannot-be-performed-because-you-x-can-not-impersonate-y-which-is-the-user-selected-for-the-client-credentials-authorization-type" />
+								<liferay-ui:message arguments="<%= new Object[] {oAuth2ApplicationClientCredentialUserIdException.getUserScreenName(), oAuth2ApplicationClientCredentialUserIdException.getClientCredentialUserScreenName()} %>" key="this-operation-cannot-be-performed-because-you-x-can-not-impersonate-x-which-is-the-user-selected-for-the-client-credentials-authorization-type" />
 							</c:when>
 							<c:otherwise>
-								<liferay-ui:message arguments="<%= new Object[] {oAuth2ApplicationClientCredentialUserIdException.getUserScreenName(), oAuth2ApplicationClientCredentialUserIdException.getClientCredentialUserId()} %>" key="this-operation-cannot-be-performed-because-you-x-can-not-impersonate-user-y-which-is-the-user-selected-for-the-client-credentials-authorization-type-and-no-longer-exists" />
+								<liferay-ui:message arguments="<%= new Object[] {oAuth2ApplicationClientCredentialUserIdException.getUserScreenName(), oAuth2ApplicationClientCredentialUserIdException.getClientCredentialUserId()} %>" key="this-operation-cannot-be-performed-because-you-x-can-not-impersonate-user-x-which-is-the-user-selected-for-the-client-credentials-authorization-type-and-no-longer-exists" />
 							</c:otherwise>
 						</c:choose>
 					</liferay-ui:error>
