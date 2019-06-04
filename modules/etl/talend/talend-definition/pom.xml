@@ -24,7 +24,7 @@
 		<groupId>org.talend.components</groupId>
 		<artifactId>components-parent</artifactId>
 		<version>0.25.3</version>
-		<relativePath/>
+		<relativePath />
 	</parent>
 	<groupId>com.liferay</groupId>
 	<artifactId>com.liferay.talend.definition</artifactId>
