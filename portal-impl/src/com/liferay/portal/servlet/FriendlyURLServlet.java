@@ -320,7 +320,7 @@ public class FriendlyURLServlet extends HttpServlet {
 
 			request.setAttribute(WebKeys.LAYOUT, layout);
 
-			Locale locale = PortalUtil.getLocale(request);
+			Locale locale = PortalUtil.getLocale(request, null, false);
 
 			String layoutFriendlyURLSeparatorCompositeFriendlyURL =
 				layoutFriendlyURLSeparatorComposite.getFriendlyURL();
