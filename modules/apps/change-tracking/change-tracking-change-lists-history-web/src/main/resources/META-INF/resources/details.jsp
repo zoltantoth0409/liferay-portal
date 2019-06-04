@@ -28,13 +28,13 @@ long ctCollectionId = 0;
 String title = StringPool.BLANK;
 
 if (ctCollection != null) {
+	ctCollectionId = ctCollection.getCtCollectionId();
+
 	title = HtmlUtil.escape(ctCollection.getName());
 
 	portletDisplay.setTitle(title);
 
 	renderResponse.setTitle(title);
-
-	ctCollectionId = ctCollection.getCtCollectionId();
 }
 
 String backURL = ParamUtil.getString(request, "backURL");
