@@ -267,6 +267,7 @@ class ChangeListsHistory extends PortletBase {
 
 		this.loaded = true;
 	}
+
 	_startProgress(urlProcesses, init) {
 		this._clearInterval();
 
