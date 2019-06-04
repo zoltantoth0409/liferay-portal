@@ -303,16 +303,6 @@ public class LiferaySourceOrSink
 		return endpoints;
 	}
 
-	/**
-	 * This method is not used in Liferay Component family
-	 * @deprecated As of Mueller (7.2.x), beginning, see {@link #getEndpointSchema(String, String)} for
-	 * implementation details
-	 *
-	 * @param runtimeContainer
-	 * @param endpoint
-	 * @return
-	 * @throws IOException
-	 */
 	@Deprecated
 	@Override
 	public Schema getEndpointSchema(
