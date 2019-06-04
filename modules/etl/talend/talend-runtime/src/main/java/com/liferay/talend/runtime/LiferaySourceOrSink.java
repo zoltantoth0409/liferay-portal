@@ -264,10 +264,8 @@ public class LiferaySourceOrSink
 		LiferayConnectionProperties liferayConnectionProperties =
 			getEffectiveConnection(null);
 
-		String apiSpecURLHref =
-			liferayConnectionProperties.apiSpecURL.getValue();
-
-		JsonNode apiSpecJsonNode = doGetRequest(apiSpecURLHref);
+		JsonNode apiSpecJsonNode = doGetRequest(
+			liferayConnectionProperties.apiSpecURL.getValue());
 
 		JsonNode pathsJsonNode = apiSpecJsonNode.path(OpenApiConstants.PATHS);
 
@@ -337,10 +335,8 @@ public class LiferaySourceOrSink
 		LiferayConnectionProperties liferayConnectionProperties =
 			getEffectiveConnection(null);
 
-		String apiSpecURLHref =
-			liferayConnectionProperties.apiSpecURL.getValue();
-
-		JsonNode apiSpecJsonNode = doGetRequest(apiSpecURLHref);
+		JsonNode apiSpecJsonNode = doGetRequest(
+			liferayConnectionProperties.apiSpecURL.getValue());
 
 		return EndpointSchemaInferrer.inferSchema(
 			endpoint, operation, apiSpecJsonNode);
@@ -418,10 +414,8 @@ public class LiferaySourceOrSink
 		LiferayConnectionProperties liferayConnectionProperties =
 			getEffectiveConnection(null);
 
-		String apiSpecURLHref =
-			liferayConnectionProperties.apiSpecURL.getValue();
-
-		JsonNode apiSpecJsonNode = doGetRequest(apiSpecURLHref);
+		JsonNode apiSpecJsonNode = doGetRequest(
+			liferayConnectionProperties.apiSpecURL.getValue());
 
 		JsonNode endpointJsonNode = apiSpecJsonNode.path(
 			OpenApiConstants.PATHS
@@ -466,13 +460,12 @@ public class LiferaySourceOrSink
 		LiferayConnectionProperties liferayConnectionProperties =
 			getEffectiveConnection(runtimeContainer);
 
-		String apiSpecHref = liferayConnectionProperties.apiSpecURL.getValue();
-
 		ValidationResultMutable validationResultMutable =
 			new ValidationResultMutable();
 
 		try {
-			URIUtils.validateOpenAPISpecURL(apiSpecHref);
+			URIUtils.validateOpenAPISpecURL(
+				liferayConnectionProperties.apiSpecURL.getValue());
 		}
 		catch (MalformedURLException murle) {
 			validationResultMutable.setMessage(murle.getMessage());
