@@ -29,7 +29,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collector;
 
 /**
  * @author Brian Wing Shun Chan
@@ -66,23 +65,6 @@ public class JSONUtil {
 				collection.add((String)value);
 			}
 		}
-	}
-
-	public static JSONArray concat(JSONArray... jsonArrays) {
-		JSONArray newJSONArray = _createJSONArray();
-
-		for (JSONArray jsonArray : jsonArrays) {
-			for (int i = 0; i < jsonArray.length(); i++) {
-				newJSONArray.put(jsonArray.get(i));
-			}
-		}
-
-		return newJSONArray;
-	}
-
-	public static Collector<Object, JSONArray, JSONArray> createCollector() {
-		return Collector.of(
-			JSONUtil::_createJSONArray, JSONArray::put, JSONUtil::concat);
 	}
 
 	public static Object getValue(Object object, String... paths) {
