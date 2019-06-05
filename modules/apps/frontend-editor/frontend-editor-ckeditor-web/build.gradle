@@ -12,7 +12,7 @@ task buildCKEditorScayt(type: Copy)
 task buildCKEditorWsc(type: Copy)
 
 String ckEditorVersion = "4.6.0"
-String ckEditorVersionLfr = "4.6.0.6"
+String ckEditorVersionLfr = "4.6.0.7"
 
 String ckEditorScaytUrl = "https://ckeditor.com/cke4/sites/default/files/scayt/releases/scayt_${ckEditorVersion}.zip"
 String ckEditorWscUrl = "https://ckeditor.com/cke4/sites/default/files/wsc/releases/wsc_${ckEditorVersion}.zip"
