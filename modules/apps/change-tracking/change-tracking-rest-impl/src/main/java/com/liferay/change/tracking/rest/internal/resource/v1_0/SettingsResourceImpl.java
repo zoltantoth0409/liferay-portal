@@ -60,7 +60,7 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 	public Page<Settings> getSettingsPage(Long companyId, Long userId)
 		throws Exception {
 
-		_checkCompany(companyId);
+		_companyLocalService.getCompany(companyId);
 
 		try {
 			User user = _userLocalService.getUser(userId);
@@ -81,7 +81,7 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 			Long companyId, Long userId, SettingsUpdate settingsUpdate)
 		throws Exception {
 
-		_checkCompany(companyId);
+		_companyLocalService.getCompany(companyId);
 
 		try {
 			User user = _userLocalService.getUser(userId);
@@ -103,10 +103,6 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 	)
 	private void _addCTConfiguration(CTConfiguration<?, ?> ctConfiguration) {
 		_ctConfigurations.add(ctConfiguration);
-	}
-
-	private void _checkCompany(long companyId) throws Exception {
-		_companyLocalService.getCompany(companyId);
 	}
 
 	private Settings _getSettings(Long companyId, Locale locale) {
