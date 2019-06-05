@@ -130,16 +130,6 @@ definition {
 		BlogsEntry.viewEntryAuthorCP(
 			entryAuthorFullName = "Test Test",
 			entryTitle = "Blogs Entry Title");
-
-		var key_entryTitle = "Blogs Entry Title";
-
-		AssertClick(
-			locator1 = "Blogs#ENTRY_TABLE_TITLE",
-			value1 = "Blogs Entry Title");
-
-		BlogsEntry.viewEntry(
-			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title");
 	}
 
 	@priority = "4"
