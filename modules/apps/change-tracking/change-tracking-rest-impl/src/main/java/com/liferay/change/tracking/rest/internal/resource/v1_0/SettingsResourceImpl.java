@@ -19,7 +19,6 @@ import com.liferay.change.tracking.constants.CTSettingsKeys;
 import com.liferay.change.tracking.engine.CTEngineManager;
 import com.liferay.change.tracking.rest.dto.v1_0.Settings;
 import com.liferay.change.tracking.rest.dto.v1_0.SettingsUpdate;
-import com.liferay.change.tracking.rest.internal.util.ChangeTrackingRestUtil;
 import com.liferay.change.tracking.rest.resource.v1_0.SettingsResource;
 import com.liferay.change.tracking.settings.CTSettingsManager;
 import com.liferay.portal.kernel.exception.NoSuchUserException;
@@ -61,7 +60,7 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 	public Page<Settings> getSettingsPage(Long companyId, Long userId)
 		throws Exception {
 
-		ChangeTrackingRestUtil.checkCompany(companyId);
+		_checkCompany(companyId);
 
 		try {
 			User user = _userLocalService.getUser(userId);
@@ -85,7 +84,7 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 			@NotNull Long companyId, Long userId, SettingsUpdate settingsUpdate)
 		throws Exception {
 
-		ChangeTrackingRestUtil.checkCompany(companyId);
+		_checkCompany(companyId);
 
 		try {
 			User user = _userLocalService.getUser(userId);
@@ -110,6 +109,10 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 	)
 	private void _addCTConfiguration(CTConfiguration<?, ?> ctConfiguration) {
 		_ctConfigurations.add(ctConfiguration);
+	}
+
+	private void _checkCompany(long companyId) throws Exception {
+		_companyLocalService.getCompany(companyId);
 	}
 
 	private Settings _getSettings(Long companyId, Locale locale) {
