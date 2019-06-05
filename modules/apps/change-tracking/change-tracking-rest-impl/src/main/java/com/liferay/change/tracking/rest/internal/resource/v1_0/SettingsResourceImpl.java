@@ -70,9 +70,6 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 					_getUserSettings(companyId, user.getUserId())));
 		}
 		catch (NoSuchUserException | NullPointerException e) {
-
-			// No user found need to return company settings
-
 			return Page.of(
 				Collections.singleton(
 					_getSettings(companyId, _user.getLocale())));
@@ -94,9 +91,6 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 			return _getUserSettings(companyId, user.getUserId());
 		}
 		catch (NoSuchUserException | NullPointerException e) {
-
-			// No user, update company settings
-
 			_updateSettings(companyId, settingsUpdate);
 
 			return _getSettings(companyId, _user.getLocale());
