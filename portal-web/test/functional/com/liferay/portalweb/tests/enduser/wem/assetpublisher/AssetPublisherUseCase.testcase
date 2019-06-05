@@ -1034,6 +1034,8 @@ definition {
 			assetTitle = "Web Content5 Title"
 		);
 
+		Navigator.gotoPage(pageName = "Asset Publisher Page");
+
 		AssetPublisherPortlet.configureAssetTypePG(
 			selectContent = "WC Structure1 Name",
 			selectedAsset = "Web Content Article",
