@@ -70,6 +70,8 @@ if (Validator.isNotNull(languageId)) {
 										<%
 										PortletURL sourceURL = PortletURLUtil.clone(portletURL, renderResponse);
 
+										sourceURL.setParameter("languageId", languageId);
+
 										sourceURL.setParameter("targetVersion", String.valueOf(targetVersion));
 
 										for (DiffVersion diffVersion : diffVersions) {
