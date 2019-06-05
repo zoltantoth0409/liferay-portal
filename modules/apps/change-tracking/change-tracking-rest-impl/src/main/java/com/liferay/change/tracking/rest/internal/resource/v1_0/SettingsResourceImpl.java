@@ -86,12 +86,25 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 		try {
 			User user = _userLocalService.getUser(userId);
 
-			_updateUserSettings(user.getUserId(), settingsUpdate);
+			_ctSettingsManager.setUserCTSetting(
+				user.getUserId(), CTSettingsKeys.CHECKOUT_CT_COLLECTION_CONFIRMATION_ENABLED,
+				Boolean.toString(
+					settingsUpdate.getCheckoutCTCollectionConfirmationEnabled()));
 
 			return _getUserSettings(companyId, user.getUserId());
 		}
 		catch (NoSuchUserException | NullPointerException e) {
-			_updateSettings(companyId, settingsUpdate);
+			if (_ctEngineManager.isChangeTrackingEnabled(companyId)) {
+				if (!settingsUpdate.getChangeTrackingEnabled()) {
+					_ctEngineManager.disableChangeTracking(companyId);
+				}
+			}
+			else {
+				if (settingsUpdate.getChangeTrackingEnabled()) {
+					_ctEngineManager.enableChangeTracking(
+						companyId, _user.getUserId());
+				}
+			}
 
 			return _getSettings(companyId, _user.getLocale());
 		}
@@ -158,31 +171,6 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 
 	private void _removeCTConfiguration(CTConfiguration<?, ?> ctConfiguration) {
 		_ctConfigurations.remove(ctConfiguration);
-	}
-
-	private void _updateSettings(
-		long companyId, SettingsUpdate settingsUpdate) {
-
-		if (_ctEngineManager.isChangeTrackingEnabled(companyId)) {
-			if (!settingsUpdate.getChangeTrackingEnabled()) {
-				_ctEngineManager.disableChangeTracking(companyId);
-			}
-		}
-		else {
-			if (settingsUpdate.getChangeTrackingEnabled()) {
-				_ctEngineManager.enableChangeTracking(
-					companyId, _user.getUserId());
-			}
-		}
-	}
-
-	private void _updateUserSettings(
-		long userId, SettingsUpdate settingsUpdate) {
-
-		_ctSettingsManager.setUserCTSetting(
-			userId, CTSettingsKeys.CHECKOUT_CT_COLLECTION_CONFIRMATION_ENABLED,
-			Boolean.toString(
-				settingsUpdate.getCheckoutCTCollectionConfirmationEnabled()));
 	}
 
 	@Reference
