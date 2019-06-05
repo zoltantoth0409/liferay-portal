@@ -2132,7 +2132,7 @@ public class StagingImpl implements Staging {
 			}
 			catch (PortalException pe) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Global group not found", pe);
+					_log.warn("Company group does not exist", pe);
 				}
 			}
 
