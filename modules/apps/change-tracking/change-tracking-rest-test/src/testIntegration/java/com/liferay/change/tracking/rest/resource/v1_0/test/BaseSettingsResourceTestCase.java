@@ -175,9 +175,7 @@ public abstract class BaseSettingsResourceTestCase {
 
 	@Test
 	public void testGetSettingsPage() throws Exception {
-		Page<Settings> page;
-
-		page = SettingsResource.getSettingsPage(null, null);
+		Page<Settings> page = SettingsResource.getSettingsPage(null, null);
 
 		Assert.assertEquals(0, page.getTotalCount());
 
