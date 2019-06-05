@@ -98,7 +98,7 @@
 										<liferay-ui:message arguments="<%= HtmlUtil.escape(userEmailAddress) %>" key="your-password-was-sent-to-x" translateArguments="<%= false %>" />
 									</c:when>
 									<c:otherwise>
-										<liferay-ui:message arguments="<%= HtmlUtil.escape(userEmailAddress) %>" key="you-can-setup-your-password-following-instructions-sent-to-x" translateArguments="<%= false %>" />
+										<liferay-ui:message arguments="<%= HtmlUtil.escape(userEmailAddress) %>" key="you-can-set-your-password-following-instructions-sent-to-x" translateArguments="<%= false %>" />
 									</c:otherwise>
 								</c:choose>
 							</c:if>
