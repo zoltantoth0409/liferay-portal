@@ -303,6 +303,9 @@ public class LiferaySourceOrSink
 		return endpoints;
 	}
 
+	/**
+	 * @deprecated As of Mueller (7.2.x)
+	 */
 	@Deprecated
 	@Override
 	public Schema getEndpointSchema(
@@ -377,6 +380,9 @@ public class LiferaySourceOrSink
 		return new RESTClient(resourceURL, liferayConnectionProperties);
 	}
 
+	/**
+	 * @deprecated As of Mueller (7.2.x)
+	 */
 	@Deprecated
 	@Override
 	public List<NamedThing> getSchemaNames(RuntimeContainer runtimeContainer)
