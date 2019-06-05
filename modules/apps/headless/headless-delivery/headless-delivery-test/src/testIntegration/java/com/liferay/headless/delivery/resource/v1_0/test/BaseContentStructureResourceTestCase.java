@@ -207,6 +207,13 @@ public abstract class BaseContentStructureResourceTestCase {
 
 	@Test
 	public void testGetSiteContentStructuresPage() throws Exception {
+		Page<ContentStructure> page =
+			ContentStructureResource.getSiteContentStructuresPage(
+				testGetSiteContentStructuresPage_getSiteId(),
+				RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
+
 		Long siteId = testGetSiteContentStructuresPage_getSiteId();
 		Long irrelevantSiteId =
 			testGetSiteContentStructuresPage_getIrrelevantSiteId();
@@ -216,9 +223,8 @@ public abstract class BaseContentStructureResourceTestCase {
 				testGetSiteContentStructuresPage_addContentStructure(
 					irrelevantSiteId, randomIrrelevantContentStructure());
 
-			Page<ContentStructure> page =
-				ContentStructureResource.getSiteContentStructuresPage(
-					irrelevantSiteId, null, null, Pagination.of(1, 2), null);
+			page = ContentStructureResource.getSiteContentStructuresPage(
+				irrelevantSiteId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -236,9 +242,8 @@ public abstract class BaseContentStructureResourceTestCase {
 			testGetSiteContentStructuresPage_addContentStructure(
 				siteId, randomContentStructure());
 
-		Page<ContentStructure> page =
-			ContentStructureResource.getSiteContentStructuresPage(
-				siteId, null, null, Pagination.of(1, 2), null);
+		page = ContentStructureResource.getSiteContentStructuresPage(
+			siteId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -246,12 +251,6 @@ public abstract class BaseContentStructureResourceTestCase {
 			Arrays.asList(contentStructure1, contentStructure2),
 			(List<ContentStructure>)page.getItems());
 		assertValid(page);
-
-		page = ContentStructureResource.getSiteContentStructuresPage(
-			testGetSiteContentStructuresPage_getSiteId(),
-			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test

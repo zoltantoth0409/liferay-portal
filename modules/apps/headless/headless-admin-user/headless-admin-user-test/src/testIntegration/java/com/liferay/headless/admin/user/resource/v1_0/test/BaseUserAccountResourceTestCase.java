@@ -224,6 +224,13 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	@Test
 	public void testGetOrganizationUserAccountsPage() throws Exception {
+		Page<UserAccount> page =
+			UserAccountResource.getOrganizationUserAccountsPage(
+				testGetOrganizationUserAccountsPage_getOrganizationId(),
+				RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
+
 		Long organizationId =
 			testGetOrganizationUserAccountsPage_getOrganizationId();
 		Long irrelevantOrganizationId =
@@ -234,10 +241,9 @@ public abstract class BaseUserAccountResourceTestCase {
 				testGetOrganizationUserAccountsPage_addUserAccount(
 					irrelevantOrganizationId, randomIrrelevantUserAccount());
 
-			Page<UserAccount> page =
-				UserAccountResource.getOrganizationUserAccountsPage(
-					irrelevantOrganizationId, null, null, Pagination.of(1, 2),
-					null);
+			page = UserAccountResource.getOrganizationUserAccountsPage(
+				irrelevantOrganizationId, null, null, Pagination.of(1, 2),
+				null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -255,9 +261,8 @@ public abstract class BaseUserAccountResourceTestCase {
 			testGetOrganizationUserAccountsPage_addUserAccount(
 				organizationId, randomUserAccount());
 
-		Page<UserAccount> page =
-			UserAccountResource.getOrganizationUserAccountsPage(
-				organizationId, null, null, Pagination.of(1, 2), null);
+		page = UserAccountResource.getOrganizationUserAccountsPage(
+			organizationId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -265,12 +270,6 @@ public abstract class BaseUserAccountResourceTestCase {
 			Arrays.asList(userAccount1, userAccount2),
 			(List<UserAccount>)page.getItems());
 		assertValid(page);
-
-		page = UserAccountResource.getOrganizationUserAccountsPage(
-			testGetOrganizationUserAccountsPage_getOrganizationId(),
-			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -499,13 +498,18 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	@Test
 	public void testGetUserAccountsPage() throws Exception {
+		Page<UserAccount> page = UserAccountResource.getUserAccountsPage(
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
+
 		UserAccount userAccount1 = testGetUserAccountsPage_addUserAccount(
 			randomUserAccount());
 
 		UserAccount userAccount2 = testGetUserAccountsPage_addUserAccount(
 			randomUserAccount());
 
-		Page<UserAccount> page = UserAccountResource.getUserAccountsPage(
+		page = UserAccountResource.getUserAccountsPage(
 			null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -514,11 +518,6 @@ public abstract class BaseUserAccountResourceTestCase {
 			Arrays.asList(userAccount1, userAccount2),
 			(List<UserAccount>)page.getItems());
 		assertValid(page);
-
-		page = UserAccountResource.getUserAccountsPage(
-			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -713,6 +712,12 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	@Test
 	public void testGetWebSiteUserAccountsPage() throws Exception {
+		Page<UserAccount> page = UserAccountResource.getWebSiteUserAccountsPage(
+			testGetWebSiteUserAccountsPage_getWebSiteId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
+
 		Long webSiteId = testGetWebSiteUserAccountsPage_getWebSiteId();
 		Long irrelevantWebSiteId =
 			testGetWebSiteUserAccountsPage_getIrrelevantWebSiteId();
@@ -722,9 +727,8 @@ public abstract class BaseUserAccountResourceTestCase {
 				testGetWebSiteUserAccountsPage_addUserAccount(
 					irrelevantWebSiteId, randomIrrelevantUserAccount());
 
-			Page<UserAccount> page =
-				UserAccountResource.getWebSiteUserAccountsPage(
-					irrelevantWebSiteId, null, null, Pagination.of(1, 2), null);
+			page = UserAccountResource.getWebSiteUserAccountsPage(
+				irrelevantWebSiteId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -742,7 +746,7 @@ public abstract class BaseUserAccountResourceTestCase {
 			testGetWebSiteUserAccountsPage_addUserAccount(
 				webSiteId, randomUserAccount());
 
-		Page<UserAccount> page = UserAccountResource.getWebSiteUserAccountsPage(
+		page = UserAccountResource.getWebSiteUserAccountsPage(
 			webSiteId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -751,12 +755,6 @@ public abstract class BaseUserAccountResourceTestCase {
 			Arrays.asList(userAccount1, userAccount2),
 			(List<UserAccount>)page.getItems());
 		assertValid(page);
-
-		page = UserAccountResource.getWebSiteUserAccountsPage(
-			testGetWebSiteUserAccountsPage_getWebSiteId(),
-			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test

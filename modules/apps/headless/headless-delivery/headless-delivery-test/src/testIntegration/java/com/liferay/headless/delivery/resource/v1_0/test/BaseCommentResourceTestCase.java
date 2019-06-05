@@ -185,6 +185,12 @@ public abstract class BaseCommentResourceTestCase {
 
 	@Test
 	public void testGetBlogPostingCommentsPage() throws Exception {
+		Page<Comment> page = CommentResource.getBlogPostingCommentsPage(
+			testGetBlogPostingCommentsPage_getBlogPostingId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
+
 		Long blogPostingId = testGetBlogPostingCommentsPage_getBlogPostingId();
 		Long irrelevantBlogPostingId =
 			testGetBlogPostingCommentsPage_getIrrelevantBlogPostingId();
@@ -194,7 +200,7 @@ public abstract class BaseCommentResourceTestCase {
 				testGetBlogPostingCommentsPage_addComment(
 					irrelevantBlogPostingId, randomIrrelevantComment());
 
-			Page<Comment> page = CommentResource.getBlogPostingCommentsPage(
+			page = CommentResource.getBlogPostingCommentsPage(
 				irrelevantBlogPostingId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -211,7 +217,7 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment2 = testGetBlogPostingCommentsPage_addComment(
 			blogPostingId, randomComment());
 
-		Page<Comment> page = CommentResource.getBlogPostingCommentsPage(
+		page = CommentResource.getBlogPostingCommentsPage(
 			blogPostingId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -219,12 +225,6 @@ public abstract class BaseCommentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(comment1, comment2), (List<Comment>)page.getItems());
 		assertValid(page);
-
-		page = CommentResource.getBlogPostingCommentsPage(
-			testGetBlogPostingCommentsPage_getBlogPostingId(),
-			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -508,6 +508,12 @@ public abstract class BaseCommentResourceTestCase {
 
 	@Test
 	public void testGetCommentCommentsPage() throws Exception {
+		Page<Comment> page = CommentResource.getCommentCommentsPage(
+			testGetCommentCommentsPage_getParentCommentId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
+
 		Long parentCommentId = testGetCommentCommentsPage_getParentCommentId();
 		Long irrelevantParentCommentId =
 			testGetCommentCommentsPage_getIrrelevantParentCommentId();
@@ -516,7 +522,7 @@ public abstract class BaseCommentResourceTestCase {
 			Comment irrelevantComment = testGetCommentCommentsPage_addComment(
 				irrelevantParentCommentId, randomIrrelevantComment());
 
-			Page<Comment> page = CommentResource.getCommentCommentsPage(
+			page = CommentResource.getCommentCommentsPage(
 				irrelevantParentCommentId, null, null, Pagination.of(1, 2),
 				null);
 
@@ -534,7 +540,7 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment2 = testGetCommentCommentsPage_addComment(
 			parentCommentId, randomComment());
 
-		Page<Comment> page = CommentResource.getCommentCommentsPage(
+		page = CommentResource.getCommentCommentsPage(
 			parentCommentId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -542,12 +548,6 @@ public abstract class BaseCommentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(comment1, comment2), (List<Comment>)page.getItems());
 		assertValid(page);
-
-		page = CommentResource.getCommentCommentsPage(
-			testGetCommentCommentsPage_getParentCommentId(),
-			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -765,6 +765,12 @@ public abstract class BaseCommentResourceTestCase {
 
 	@Test
 	public void testGetDocumentCommentsPage() throws Exception {
+		Page<Comment> page = CommentResource.getDocumentCommentsPage(
+			testGetDocumentCommentsPage_getDocumentId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
+
 		Long documentId = testGetDocumentCommentsPage_getDocumentId();
 		Long irrelevantDocumentId =
 			testGetDocumentCommentsPage_getIrrelevantDocumentId();
@@ -773,7 +779,7 @@ public abstract class BaseCommentResourceTestCase {
 			Comment irrelevantComment = testGetDocumentCommentsPage_addComment(
 				irrelevantDocumentId, randomIrrelevantComment());
 
-			Page<Comment> page = CommentResource.getDocumentCommentsPage(
+			page = CommentResource.getDocumentCommentsPage(
 				irrelevantDocumentId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -790,7 +796,7 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment2 = testGetDocumentCommentsPage_addComment(
 			documentId, randomComment());
 
-		Page<Comment> page = CommentResource.getDocumentCommentsPage(
+		page = CommentResource.getDocumentCommentsPage(
 			documentId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -798,12 +804,6 @@ public abstract class BaseCommentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(comment1, comment2), (List<Comment>)page.getItems());
 		assertValid(page);
-
-		page = CommentResource.getDocumentCommentsPage(
-			testGetDocumentCommentsPage_getDocumentId(),
-			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
@@ -1017,6 +1017,12 @@ public abstract class BaseCommentResourceTestCase {
 
 	@Test
 	public void testGetStructuredContentCommentsPage() throws Exception {
+		Page<Comment> page = CommentResource.getStructuredContentCommentsPage(
+			testGetStructuredContentCommentsPage_getStructuredContentId(),
+			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
+
+		Assert.assertEquals(0, page.getTotalCount());
+
 		Long structuredContentId =
 			testGetStructuredContentCommentsPage_getStructuredContentId();
 		Long irrelevantStructuredContentId =
@@ -1027,10 +1033,9 @@ public abstract class BaseCommentResourceTestCase {
 				testGetStructuredContentCommentsPage_addComment(
 					irrelevantStructuredContentId, randomIrrelevantComment());
 
-			Page<Comment> page =
-				CommentResource.getStructuredContentCommentsPage(
-					irrelevantStructuredContentId, null, null,
-					Pagination.of(1, 2), null);
+			page = CommentResource.getStructuredContentCommentsPage(
+				irrelevantStructuredContentId, null, null, Pagination.of(1, 2),
+				null);
 
 			Assert.assertEquals(1, page.getTotalCount());
 
@@ -1046,7 +1051,7 @@ public abstract class BaseCommentResourceTestCase {
 		Comment comment2 = testGetStructuredContentCommentsPage_addComment(
 			structuredContentId, randomComment());
 
-		Page<Comment> page = CommentResource.getStructuredContentCommentsPage(
+		page = CommentResource.getStructuredContentCommentsPage(
 			structuredContentId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -1054,12 +1059,6 @@ public abstract class BaseCommentResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(comment1, comment2), (List<Comment>)page.getItems());
 		assertValid(page);
-
-		page = CommentResource.getStructuredContentCommentsPage(
-			testGetStructuredContentCommentsPage_getStructuredContentId(),
-			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
-
-		Assert.assertEquals(0, page.getTotalCount());
 	}
 
 	@Test
