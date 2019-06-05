@@ -1371,11 +1371,7 @@ definition {
 			value1 = "Successful"
 		);
 
-		Portlet.changeDisplayStyle(displayStyle = "list");
-
 		var larFileName = LAR.getLarFileName();
-
-		Portlet.changeDisplayStyle(displayStyle = "descriptive");
 
 		Click(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD");
 
@@ -1543,11 +1539,7 @@ definition {
 			value1 = "Successful"
 		);
 
-		Portlet.changeDisplayStyle(displayStyle = "list");
-
 		var larFileName = LAR.getLarFileName();
-
-		Portlet.changeDisplayStyle(displayStyle = "descriptive");
 
 		Click(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD");
 
@@ -1603,11 +1595,7 @@ definition {
 			value1 = "Successful"
 		);
 
-		Portlet.changeDisplayStyle(displayStyle = "list");
-
 		var larFileName = LAR.getLarFileName();
-
-		Portlet.changeDisplayStyle(displayStyle = "descriptive");
 
 		Click(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD");
 
@@ -1673,11 +1661,7 @@ definition {
 			value1 = "Successful"
 		);
 
-		Portlet.changeDisplayStyle(displayStyle = "list");
-
 		var larFileName = LAR.getLarFileName();
-
-		Portlet.changeDisplayStyle(displayStyle = "descriptive");
 
 		Click(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD");
 
@@ -1839,11 +1823,7 @@ definition {
 			value1 = "Successful"
 		);
 
-		Portlet.changeDisplayStyle(displayStyle = "list");
-
 		var larFileName = LAR.getLarFileName();
-
-		Portlet.changeDisplayStyle(displayStyle = "descriptive");
 
 		Click(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD");
 
