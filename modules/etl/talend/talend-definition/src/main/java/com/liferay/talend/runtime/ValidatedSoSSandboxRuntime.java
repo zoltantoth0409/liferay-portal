@@ -26,8 +26,7 @@ public class ValidatedSoSSandboxRuntime {
 		ValidationResultMutable validationResultMutable) {
 
 		if (validationResultMutable == null) {
-			throw new NullPointerException(
-				"Validation result mutable is null");
+			throw new NullPointerException("Validation result mutable is null");
 		}
 
 		_liferaySourceOrSinkRuntime = liferaySourceOrSinkRuntime;
