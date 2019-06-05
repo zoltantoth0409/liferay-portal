@@ -49,9 +49,7 @@ import org.osgi.service.component.annotations.Reference;
 	service = OpenAPIResourceImpl.class
 )
 @Generated("")
-@OpenAPIDefinition(
-	info = @Info(description = "", title = "Change Tracking Headless", version = "v1.0")
-)
+@OpenAPIDefinition(info = @Info(description = "", title = "", version = "v1.0"))
 @Path("/v1.0")
 public class OpenAPIResourceImpl {
 

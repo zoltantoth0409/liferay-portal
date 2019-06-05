@@ -26,12 +26,12 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	property = {
-		"osgi.jaxrs.application.base=/change-tracking-rest",
+		"osgi.jaxrs.application.base=/change-tracking",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan)",
 		"osgi.jaxrs.name=Liferay.Change.Tracking.REST"
 	},
 	service = Application.class
 )
 @Generated("")
-public class ChangeTrackingRestApplication extends Application {
+public class ChangeTrackingRESTApplication extends Application {
 }

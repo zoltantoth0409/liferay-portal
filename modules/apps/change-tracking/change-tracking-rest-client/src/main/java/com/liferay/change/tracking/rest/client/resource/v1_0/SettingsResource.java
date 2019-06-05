@@ -65,7 +65,7 @@ public class SettingsResource {
 		}
 
 		httpInvoker.path(
-			"http://localhost:8080/o/change-tracking-rest/v1.0/settings");
+			"http://localhost:8080/o/change-tracking/v1.0/settings");
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
@@ -122,7 +122,7 @@ public class SettingsResource {
 		}
 
 		httpInvoker.path(
-			"http://localhost:8080/o/change-tracking-rest/v1.0/settings");
+			"http://localhost:8080/o/change-tracking/v1.0/settings");
 
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
