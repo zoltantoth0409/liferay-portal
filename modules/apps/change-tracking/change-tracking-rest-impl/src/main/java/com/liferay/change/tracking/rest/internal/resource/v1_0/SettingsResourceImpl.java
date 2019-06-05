@@ -78,7 +78,7 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 
 	@Override
 	public Settings putSettings(
-			@NotNull Long companyId, Long userId, SettingsUpdate settingsUpdate)
+			Long companyId, Long userId, SettingsUpdate settingsUpdate)
 		throws Exception {
 
 		_checkCompany(companyId);
