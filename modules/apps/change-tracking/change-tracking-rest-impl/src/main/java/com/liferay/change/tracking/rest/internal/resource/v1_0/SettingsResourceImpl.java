@@ -37,8 +37,6 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import javax.validation.constraints.NotNull;
-
 import javax.ws.rs.core.Context;
 
 import org.osgi.service.component.annotations.Component;
@@ -87,9 +85,11 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 			User user = _userLocalService.getUser(userId);
 
 			_ctSettingsManager.setUserCTSetting(
-				user.getUserId(), CTSettingsKeys.CHECKOUT_CT_COLLECTION_CONFIRMATION_ENABLED,
+				user.getUserId(),
+				CTSettingsKeys.CHECKOUT_CT_COLLECTION_CONFIRMATION_ENABLED,
 				Boolean.toString(
-					settingsUpdate.getCheckoutCTCollectionConfirmationEnabled()));
+					settingsUpdate.
+						getCheckoutCTCollectionConfirmationEnabled()));
 
 			return _getUserSettings(companyId, user.getUserId());
 		}
