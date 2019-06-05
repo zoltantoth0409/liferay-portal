@@ -1,8 +1,8 @@
 apiDir: "../change-tracking-rest-api/src/main/java"
 apiPackagePath: "com.liferay.change.tracking.rest"
 application:
-    baseURI: "/change-tracking-rest"
-    className: "ChangeTrackingRestApplication"
+    baseURI: "/change-tracking"
+    className: "ChangeTrackingRESTApplication"
     name: "Liferay.Change.Tracking.REST"
 author: "Mate Thurzo"
 clientDir: "../change-tracking-rest-client/src/main/java"
