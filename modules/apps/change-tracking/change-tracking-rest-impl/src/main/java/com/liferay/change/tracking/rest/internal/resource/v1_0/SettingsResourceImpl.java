@@ -150,8 +150,8 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 					userId,
 					CTSettingsKeys.CHECKOUT_CT_COLLECTION_CONFIRMATION_ENABLED,
 					"true")));
-		settings.setUserId(userId.intValue());
 		settings.setCompanyId(companyId.intValue());
+		settings.setUserId(userId.intValue());
 
 		return settings;
 	}
