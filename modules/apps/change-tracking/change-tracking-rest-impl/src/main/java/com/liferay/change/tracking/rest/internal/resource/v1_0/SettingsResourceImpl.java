@@ -165,13 +165,11 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 
 		boolean changeTrackingEnabled =
 			_ctEngineManager.isChangeTrackingEnabled(companyId);
-		boolean setChangeTrackingEnabled =
-			settingsUpdate.getChangeTrackingEnabled();
 
-		if (changeTrackingEnabled && !setChangeTrackingEnabled) {
+		if (changeTrackingEnabled && !settingsUpdate.getChangeTrackingEnabled()) {
 			_ctEngineManager.disableChangeTracking(companyId);
 		}
-		else if (!changeTrackingEnabled && setChangeTrackingEnabled) {
+		else if (!changeTrackingEnabled && settingsUpdate.getChangeTrackingEnabled()) {
 			_ctEngineManager.enableChangeTracking(companyId, _user.getUserId());
 		}
 	}
