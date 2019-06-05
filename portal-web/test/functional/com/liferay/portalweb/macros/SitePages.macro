@@ -248,6 +248,11 @@ definition {
 	}
 
 	macro togglePrivacy {
+		AssertTextEquals(
+			locator1 = "Portlet#HEADER",
+			value1 = "Pages"
+		);
+
 		Click(
 			locator1 = "SitePages#LIST_GROUP_ITEM",
 			key_itemName = "${privacy}"
