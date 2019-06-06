@@ -340,14 +340,13 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 		if (httpSes == null) {
 			return null;
 		}
-		else {
-			if (create) {
-				_session = new PortletSessionImpl(
-					_req.getSession(), _portletContext, _portletName, _plid);
-			}
 
-			return _ses;
-		}*/
+		if (create) {
+			_session = new PortletSessionImpl(
+				_req.getSession(), _portletContext, _portletName, _plid);
+		}
+
+		return _ses;*/
 
 		/*if ((_session == null) && create) {
 			_req.getSession(create);

@@ -187,7 +187,7 @@ public class PortalSecurityManagerImpl
 				_log.info(
 					"Unable to override the original Java security policy " +
 						"because sufficient privileges are not granted to " +
-							"Liferay. BeanReferenceRefreshUtil.PACL is not enabled.");
+							"Liferay. PACL is not enabled.");
 			}
 
 			if (_log.isWarnEnabled()) {
