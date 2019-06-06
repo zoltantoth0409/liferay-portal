@@ -128,8 +128,8 @@ public class TokenExtractor {
 				}
 			}
 		}
-		catch (Expression.ExpressionException ee) {
-			throw new DDMExpressionException(ee);
+		catch (Expression.ExpressionException eee) {
+			throw new DDMExpressionException(eee);
 		}
 	}
 

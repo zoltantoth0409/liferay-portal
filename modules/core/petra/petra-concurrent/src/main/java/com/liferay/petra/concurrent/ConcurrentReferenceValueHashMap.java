@@ -39,13 +39,9 @@ public class ConcurrentReferenceValueHashMap<K, V>
 	}
 
 	public ConcurrentReferenceValueHashMap(
-		int initialCapacity, float loadFactor, int concurrencyLevel,
 		FinalizeManager.ReferenceFactory referenceFactory) {
 
-		this(
-			new ConcurrentHashMap<K, Reference<V>>(
-				initialCapacity, loadFactor, concurrencyLevel),
-			referenceFactory);
+		this(new ConcurrentHashMap<K, Reference<V>>(), referenceFactory);
 	}
 
 	public ConcurrentReferenceValueHashMap(
@@ -58,18 +54,22 @@ public class ConcurrentReferenceValueHashMap<K, V>
 	}
 
 	public ConcurrentReferenceValueHashMap(
+		int initialCapacity, float loadFactor, int concurrencyLevel,
+		FinalizeManager.ReferenceFactory referenceFactory) {
+
+		this(
+			new ConcurrentHashMap<K, Reference<V>>(
+				initialCapacity, loadFactor, concurrencyLevel),
+			referenceFactory);
+	}
+
+	public ConcurrentReferenceValueHashMap(
 		Map<? extends K, ? extends V> map,
 		FinalizeManager.ReferenceFactory referenceFactory) {
 
 		this(new ConcurrentHashMap<K, Reference<V>>(), referenceFactory);
 
 		putAll(map);
-	}
-
-	public ConcurrentReferenceValueHashMap(
-		FinalizeManager.ReferenceFactory referenceFactory) {
-
-		this(new ConcurrentHashMap<K, Reference<V>>(), referenceFactory);
 	}
 
 	@Override
