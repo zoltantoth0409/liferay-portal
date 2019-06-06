@@ -549,7 +549,7 @@ definition {
 
 			SelectFrame(locator1 = "IFrame#DIALOG");
 
-			AssertClick(
+			AssertClick.assertPartialTextClickAt(
 				key_dmDocumentTitle = "${webContentDocumentsAndMedia}",
 				locator1 = "WC#ICON_DOCUMENT_TITLE",
 				value1 = "${webContentDocumentsAndMedia}");
