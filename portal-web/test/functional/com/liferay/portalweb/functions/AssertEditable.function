@@ -1,6 +1,5 @@
 @default = "assertEditable"
 definition {
-
 	function assertEditable {
 		WaitForSPARefresh();
 
@@ -14,5 +13,4 @@ definition {
 
 		selenium.assertLiferayErrors();
 	}
-
 }
