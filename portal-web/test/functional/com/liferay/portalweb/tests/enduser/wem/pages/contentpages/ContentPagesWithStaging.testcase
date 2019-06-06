@@ -1,5 +1,6 @@
 @component-name = "portal-wcm"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Content Pages";
@@ -237,4 +238,5 @@ definition {
 			key_position = "3"
 		);
 	}
+
 }

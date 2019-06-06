@@ -1,4 +1,5 @@
 definition {
+
 	var formName = "Created Form Name";
 
 	macro configureScopePG {
@@ -30,4 +31,5 @@ definition {
 			value1 = "Displaying Form: ${formName} (Modified)"
 		);
 	}
+
 }

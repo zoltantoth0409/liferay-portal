@@ -1,5 +1,6 @@
 @component-name = "portal-breadcrumb"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.component.names = "Breadcrumb,Navigation";
@@ -197,4 +198,5 @@ definition {
 			value1 = "${siteName}"
 		);
 	}
+
 }

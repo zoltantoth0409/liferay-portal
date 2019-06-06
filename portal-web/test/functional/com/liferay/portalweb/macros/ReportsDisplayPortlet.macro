@@ -1,4 +1,5 @@
 definition {
+
 	macro downloadReportEntryFile {
 		var key_reportsFileName = "${reportsFileName}";
 
@@ -84,4 +85,5 @@ definition {
 			value1 = "${reportsFileName}"
 		);
 	}
+
 }

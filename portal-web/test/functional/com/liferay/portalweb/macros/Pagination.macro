@@ -1,4 +1,5 @@
 definition {
+
 	macro changePagination {
 		Click(locator1 = "Pagination#ITEMS_PER_PAGE_SELECT");
 
@@ -15,4 +16,5 @@ definition {
 	macro viewResults {
 		AssertTextEquals(locator1 = "Pagination#RESULTS", value1 = "${results}");
 	}
+
 }

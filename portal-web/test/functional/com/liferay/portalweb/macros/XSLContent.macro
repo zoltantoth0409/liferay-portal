@@ -1,4 +1,5 @@
 definition {
+
 	macro configureConfigurationAdminXSL {
 		Type(locator1 = "TextArea#URL", value1 = "@portlet_context_url@,@portal_url@");
 
@@ -102,4 +103,5 @@ definition {
 			value1 = "${tableYearEntry}"
 		);
 	}
+
 }

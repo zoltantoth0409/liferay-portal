@@ -1,4 +1,5 @@
 definition {
+
 	var assetType = "Message Boards Category";
 
 	macro addCP {
@@ -490,4 +491,5 @@ definition {
 			value1 = "${subCategoryName}"
 		);
 	}
+
 }

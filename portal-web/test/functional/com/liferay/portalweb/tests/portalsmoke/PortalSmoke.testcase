@@ -1,5 +1,6 @@
 @component-name = "portal-smoke"
 definition {
+
 	property portal.release = "true";
 	property portal.smoke = "true";
 	property portal.upstream = "true";
@@ -97,4 +98,5 @@ definition {
 
 		Smoke.runSmoke();
 	}
+
 }

@@ -1,4 +1,5 @@
 definition {
+
 	macro addMentionViaBlogsEntry {
 		var key_entryContent = "${entryContent}";
 		var key_mentionsUserScreenName = "${mentionsUserScreenName}";
@@ -141,4 +142,5 @@ definition {
 			value1 = "${mentionsUserFullName}"
 		);
 	}
+
 }

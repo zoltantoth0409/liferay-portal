@@ -1,4 +1,5 @@
 definition {
+
 	macro addCP {
 		Navigator.gotoNavItem(navItem = "Templates");
 
@@ -74,4 +75,5 @@ definition {
 			key_editor = "content"
 		);
 	}
+
 }

@@ -1,4 +1,5 @@
 definition {
+
 	macro addOrganization {
 		LexiconEntry.gotoAdd();
 
@@ -96,4 +97,5 @@ definition {
 
 		UserNavigator.gotoPassword();
 	}
+
 }

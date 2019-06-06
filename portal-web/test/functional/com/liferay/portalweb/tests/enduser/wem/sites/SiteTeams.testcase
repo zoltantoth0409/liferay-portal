@@ -1,5 +1,6 @@
 @component-name = "portal-wcm"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Site Administration";
@@ -656,4 +657,5 @@ definition {
 			teamName = "Site Team Name Edit"
 		);
 	}
+
 }

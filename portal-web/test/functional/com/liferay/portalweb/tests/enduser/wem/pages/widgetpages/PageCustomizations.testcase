@@ -1,5 +1,6 @@
 @component-name = "portal-wcm"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.component.names = "Personalization and Customization,Site Pages Administration";
@@ -481,4 +482,5 @@ definition {
 
 		User.firstLoginPG(password = "test", userEmailAddress = "test@liferay.com");
 	}
+
 }

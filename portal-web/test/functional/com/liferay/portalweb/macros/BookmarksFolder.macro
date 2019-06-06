@@ -1,4 +1,5 @@
 definition {
+
 	var assetType = "Bookmarks Folder";
 
 	macro addCP {
@@ -360,4 +361,5 @@ definition {
 			key_assetDescription = "${folderDescription}"
 		);
 	}
+
 }

@@ -1,4 +1,5 @@
 definition {
+
 	var dmDocumentTypeName = "Basic Document";
 
 	macro gotoAddDocumentType {
@@ -157,4 +158,5 @@ definition {
 
 		Click(locator1 = "DocumentsAndMediaDocument#DETAILS_URL");
 	}
+
 }

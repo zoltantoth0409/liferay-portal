@@ -1,5 +1,6 @@
 @component-name = "portal-wcm"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.component.names = "Asset Publisher,Most Viewed Assets";
@@ -120,4 +121,5 @@ definition {
 			viewCount = "3 View"
 		);
 	}
+
 }

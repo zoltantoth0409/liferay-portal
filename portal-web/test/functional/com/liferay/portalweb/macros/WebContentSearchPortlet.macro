@@ -1,4 +1,5 @@
 definition {
+
 	macro search {
 		Type(locator1 = "TextInput#SEARCH_2", value1 = "${webContentSearchTerm}");
 
@@ -25,4 +26,5 @@ definition {
 			value1 = "${webContentContent}"
 		);
 	}
+
 }

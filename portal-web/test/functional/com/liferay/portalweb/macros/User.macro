@@ -1,4 +1,5 @@
 definition {
+
 	var password = "test";
 	var userEmailAddress = "test@liferay.com";
 
@@ -2149,4 +2150,5 @@ definition {
 			value1 = "${siteName}"
 		);
 	}
+
 }

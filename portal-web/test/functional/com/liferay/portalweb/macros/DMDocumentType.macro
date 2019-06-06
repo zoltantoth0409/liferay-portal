@@ -1,4 +1,5 @@
 definition {
+
 	macro add {
 		LexiconEntry.gotoAdd();
 
@@ -201,4 +202,5 @@ definition {
 			locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS_1"
 		);
 	}
+
 }

@@ -1,4 +1,5 @@
 definition {
+
 	macro _clickAddPortlet {
 		var browserType = PropsUtil.get("browser.type");
 
@@ -506,4 +507,5 @@ definition {
 			value1 = "This portlet has been undeployed."
 		);
 	}
+
 }

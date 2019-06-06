@@ -1,4 +1,5 @@
 definition {
+
 	macro assertAssetTypeUnselectable {
 		PageEditor.gotoTab(tabName = "Mapping");
 
@@ -56,4 +57,5 @@ definition {
 
 		Button.clickSave();
 	}
+
 }

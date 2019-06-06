@@ -1,5 +1,6 @@
 @component-name = "portal-web-forms-and-data-lists"
 definition {
+
 	property custom.properties = "minifier.enabled=true";
 	property portal.release = "true";
 	property portal.upstream = "true";
@@ -265,4 +266,5 @@ definition {
 			value1 = "3 Renamed Page"
 		);
 	}
+
 }

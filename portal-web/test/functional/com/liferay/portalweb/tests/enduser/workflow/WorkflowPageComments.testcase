@@ -1,5 +1,6 @@
 @component-name = "portal-workflow"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.component.names = "Comment,Workflow";
@@ -295,4 +296,5 @@ definition {
 			commentStatus = "Pending (Update)"
 		);
 	}
+
 }

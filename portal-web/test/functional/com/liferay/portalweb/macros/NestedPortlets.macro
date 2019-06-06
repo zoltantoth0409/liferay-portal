@@ -1,4 +1,5 @@
 definition {
+
 	macro dragAndDropPortletToPortletColumnPG {
 		var key_portletTitleName = "${portletName}";
 
@@ -44,4 +45,5 @@ definition {
 			value1 = "${portletName}"
 		);
 	}
+
 }

@@ -1,4 +1,5 @@
 definition {
+
 	macro add {
 		LexiconEntry.gotoAdd();
 
@@ -646,4 +647,5 @@ definition {
 			AssertNotChecked(locator1 = "Permissions#${permissionDefinitionKey}");
 		}
 	}
+
 }

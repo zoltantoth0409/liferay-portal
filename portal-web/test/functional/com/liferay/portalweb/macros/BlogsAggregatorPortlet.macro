@@ -1,4 +1,5 @@
 definition {
+
 	macro configureSelectionMethod {
 		Portlet.gotoPortletOptions(
 			portletName = "Blogs Aggregator",
@@ -58,4 +59,5 @@ definition {
 
 		SelectFrame(value1 = "relative=top");
 	}
+
 }

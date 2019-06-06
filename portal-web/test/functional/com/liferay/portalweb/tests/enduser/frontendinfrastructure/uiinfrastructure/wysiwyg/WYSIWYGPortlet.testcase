@@ -1,5 +1,6 @@
 @component-name = "portal-frontend-infrastructure"
 definition {
+
 	property portal.release = "false";
 	property portal.upstream = "true";
 	property testray.main.component.name = "User Interface";
@@ -51,4 +52,5 @@ definition {
 			value1 = "WYSIWYG Test Content"
 		);
 	}
+
 }

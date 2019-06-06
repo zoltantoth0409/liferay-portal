@@ -1,5 +1,6 @@
 @component-name = "portal-upgrades"
 definition {
+
 	property app.server.types = "tomcat";
 	property database.types = "mysql";
 	property portal.release = "true";
@@ -92,4 +93,5 @@ definition {
 			GogoShell.viewOutput(outputContent = "${outputContent}");
 		}
 	}
+
 }

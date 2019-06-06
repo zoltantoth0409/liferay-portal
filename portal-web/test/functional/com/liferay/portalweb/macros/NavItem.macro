@@ -1,4 +1,5 @@
 definition {
+
 	macro click {
 		var key_navItem = "${navItem}";
 
@@ -55,4 +56,5 @@ definition {
 			key_navItem = "${navItem}"
 		);
 	}
+
 }
