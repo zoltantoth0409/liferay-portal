@@ -327,9 +327,8 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 		if (_urlEncoder != null) {
 			return _urlEncoder.encodeURL(response, path);
 		}
-		else {
-			return path;
-		}
+
+		return path;
 	}
 
 	public long getCompanyId() {

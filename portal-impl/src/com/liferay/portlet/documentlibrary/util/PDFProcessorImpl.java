@@ -966,9 +966,8 @@ public class PDFProcessorImpl
 
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	private boolean _isGenerateThumbnail(FileVersion fileVersion)
@@ -979,9 +978,8 @@ public class PDFProcessorImpl
 
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	private void _queueGeneration(

@@ -230,9 +230,8 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 				return importUser(
 					ldapServerId, companyId, ldapContext, attributes, null);
 			}
-			else {
-				return null;
-			}
+
+			return null;
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {

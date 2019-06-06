@@ -330,9 +330,8 @@ public class DDLFormDisplayContext {
 			return LanguageUtil.get(
 				themeDisplay.getRequest(), "submit-for-publication");
 		}
-		else {
-			return LanguageUtil.get(themeDisplay.getRequest(), "submit");
-		}
+
+		return LanguageUtil.get(themeDisplay.getRequest(), "submit");
 	}
 
 	protected ThemeDisplay getThemeDisplay() {

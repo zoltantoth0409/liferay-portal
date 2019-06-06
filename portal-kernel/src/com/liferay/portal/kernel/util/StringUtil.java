@@ -467,9 +467,8 @@ public class StringUtil {
 		if (equalsIgnoreCase(temp, end)) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -693,9 +692,8 @@ public class StringUtil {
 		if (index < 0) {
 			return null;
 		}
-		else {
-			return s.substring(0, index);
-		}
+
+		return s.substring(0, index);
 	}
 
 	/**
@@ -719,9 +717,8 @@ public class StringUtil {
 		if (index < 0) {
 			return null;
 		}
-		else {
-			return s.substring(0, index);
-		}
+
+		return s.substring(0, index);
 	}
 
 	/**
@@ -745,9 +742,8 @@ public class StringUtil {
 		if (index < 0) {
 			return null;
 		}
-		else {
-			return s.substring(index + 1);
-		}
+
+		return s.substring(index + 1);
 	}
 
 	/**
@@ -771,9 +767,8 @@ public class StringUtil {
 		if (index < 0) {
 			return null;
 		}
-		else {
-			return s.substring(index + delimiter.length());
-		}
+
+		return s.substring(index + delimiter.length());
 	}
 
 	/**
@@ -2370,9 +2365,8 @@ public class StringUtil {
 
 			return sb.toString();
 		}
-		else {
-			return s;
-		}
+
+		return s;
 	}
 
 	public static String removeChars(String s, char... oldSubs) {
@@ -2541,9 +2535,8 @@ public class StringUtil {
 
 			return sb.toString();
 		}
-		else {
-			return s;
-		}
+
+		return s;
 	}
 
 	public static String removeSubstrings(String s, String... oldSubs) {
@@ -2784,9 +2777,8 @@ public class StringUtil {
 
 			return sb.toString();
 		}
-		else {
-			return s;
-		}
+
+		return s;
 	}
 
 	/**
@@ -3020,9 +3012,8 @@ public class StringUtil {
 				s.substring(y + oldSub.length())
 			);
 		}
-		else {
-			return s;
-		}
+
+		return s;
 	}
 
 	/**
@@ -3131,9 +3122,8 @@ public class StringUtil {
 				s.substring(y + oldSub.length())
 			);
 		}
-		else {
-			return s;
-		}
+
+		return s;
 	}
 
 	/**
@@ -3231,21 +3221,20 @@ public class StringUtil {
 
 				break;
 			}
-			else {
-				sb.append(s.substring(pos, x));
 
-				String oldValue = s.substring(x + begin.length(), y);
+			sb.append(s.substring(pos, x));
 
-				String newValue = values.get(oldValue);
+			String oldValue = s.substring(x + begin.length(), y);
 
-				if (newValue == null) {
-					newValue = oldValue;
-				}
+			String newValue = values.get(oldValue);
 
-				sb.append(newValue);
-
-				pos = y + end.length();
+			if (newValue == null) {
+				newValue = oldValue;
 			}
+
+			sb.append(newValue);
+
+			pos = y + end.length();
 		}
 
 		return sb;
@@ -3298,22 +3287,21 @@ public class StringUtil {
 
 				break;
 			}
-			else {
-				sb.append(s.substring(pos, x));
 
-				String oldValue = s.substring(x + begin.length(), y);
+			sb.append(s.substring(pos, x));
 
-				StringBundler newValueSB = values.get(oldValue);
+			String oldValue = s.substring(x + begin.length(), y);
 
-				if (newValueSB == null) {
-					sb.append(oldValue);
-				}
-				else {
-					sb.append(newValueSB);
-				}
+			StringBundler newValueSB = values.get(oldValue);
 
-				pos = y + end.length();
+			if (newValueSB == null) {
+				sb.append(oldValue);
 			}
+			else {
+				sb.append(newValueSB);
+			}
+
+			pos = y + end.length();
 		}
 
 		return sb;
@@ -4156,11 +4144,10 @@ public class StringUtil {
 
 				break;
 			}
-			else {
-				sb.append(s.substring(pos, x));
 
-				pos = y + end.length();
-			}
+			sb.append(s.substring(pos, x));
+
+			pos = y + end.length();
 		}
 
 		return sb.toString();
@@ -4627,9 +4614,8 @@ public class StringUtil {
 		if ((x == 0) && (y == len)) {
 			return s;
 		}
-		else {
-			return s.substring(x, y);
-		}
+
+		return s.substring(x, y);
 	}
 
 	/**
@@ -5070,9 +5056,8 @@ public class StringUtil {
 		if (wildcardIndex == wildcard.length()) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	/**

@@ -217,9 +217,8 @@ public class MethodParameter {
 
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	private final Class<?>[] _genericTypes;

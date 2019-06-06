@@ -236,9 +236,8 @@ public class PortletURLImpl
 		if (ArrayUtil.isNotEmpty(values)) {
 			return values[0];
 		}
-		else {
-			return null;
-		}
+
+		return null;
 	}
 
 	@Override
@@ -358,9 +357,8 @@ public class PortletURLImpl
 		if (_parametersIncludedInPath.contains(name)) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	@Override
@@ -558,30 +556,29 @@ public class PortletURLImpl
 		if (params == null) {
 			throw new IllegalArgumentException();
 		}
-		else {
-			Map<String, String[]> newParams = new LinkedHashMap<>();
 
-			for (Map.Entry<String, String[]> entry : params.entrySet()) {
-				try {
-					String key = entry.getKey();
-					String[] value = entry.getValue();
+		Map<String, String[]> newParams = new LinkedHashMap<>();
 
-					if (key == null) {
-						throw new IllegalArgumentException();
-					}
-					else if (value == null) {
-						throw new IllegalArgumentException();
-					}
+		for (Map.Entry<String, String[]> entry : params.entrySet()) {
+			try {
+				String key = entry.getKey();
+				String[] value = entry.getValue();
 
-					newParams.put(key, value);
+				if (key == null) {
+					throw new IllegalArgumentException();
 				}
-				catch (ClassCastException cce) {
-					throw new IllegalArgumentException(cce);
+				else if (value == null) {
+					throw new IllegalArgumentException();
 				}
+
+				newParams.put(key, value);
 			}
-
-			_params = newParams;
+			catch (ClassCastException cce) {
+				throw new IllegalArgumentException(cce);
+			}
 		}
+
+		_params = newParams;
 
 		clearCache();
 	}
@@ -1231,9 +1228,8 @@ public class PortletURLImpl
 
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	/**

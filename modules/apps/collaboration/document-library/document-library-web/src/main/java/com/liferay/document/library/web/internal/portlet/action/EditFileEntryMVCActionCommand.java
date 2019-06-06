@@ -684,27 +684,25 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			return PrefsPropsUtil.getStringArray(
 				PropsKeys.DL_FILE_EXTENSIONS, StringPool.COMMA);
 		}
-		else {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)portletRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
 
-			PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-			DLPortletInstanceSettings dlPortletInstanceSettings =
-				DLPortletInstanceSettings.getInstance(
-					themeDisplay.getLayout(), portletDisplay.getId());
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-			Set<String> extensions = new HashSet<>();
+		DLPortletInstanceSettings dlPortletInstanceSettings =
+			DLPortletInstanceSettings.getInstance(
+				themeDisplay.getLayout(), portletDisplay.getId());
 
-			String[] mimeTypes = dlPortletInstanceSettings.getMimeTypes();
+		Set<String> extensions = new HashSet<>();
 
-			for (String mimeType : mimeTypes) {
-				extensions.addAll(MimeTypesUtil.getExtensions(mimeType));
-			}
+		String[] mimeTypes = dlPortletInstanceSettings.getMimeTypes();
 
-			return extensions.toArray(new String[0]);
+		for (String mimeType : mimeTypes) {
+			extensions.addAll(MimeTypesUtil.getExtensions(mimeType));
 		}
+
+		return extensions.toArray(new String[0]);
 	}
 
 	protected String getSaveAndContinueRedirect(

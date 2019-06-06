@@ -1938,9 +1938,8 @@ public class JournalArticleLocalServiceImpl
 		if (articleDisplay == null) {
 			return StringPool.BLANK;
 		}
-		else {
-			return articleDisplay.getContent();
-		}
+
+		return articleDisplay.getContent();
 	}
 
 	/**
@@ -1999,9 +1998,8 @@ public class JournalArticleLocalServiceImpl
 		if (articleDisplay == null) {
 			return StringPool.BLANK;
 		}
-		else {
-			return articleDisplay.getContent();
-		}
+
+		return articleDisplay.getContent();
 	}
 
 	/**
@@ -2712,11 +2710,10 @@ public class JournalArticleLocalServiceImpl
 			return journalArticlePersistence.findByC_V(
 				companyId, version, start, end, new ArticleIDComparator(true));
 		}
-		else {
-			return journalArticlePersistence.findByC_V_ST(
-				companyId, version, status, start, end,
-				new ArticleIDComparator(true));
-		}
+
+		return journalArticlePersistence.findByC_V_ST(
+			companyId, version, status, start, end,
+			new ArticleIDComparator(true));
 	}
 
 	/**
@@ -2750,10 +2747,9 @@ public class JournalArticleLocalServiceImpl
 			return journalArticlePersistence.findByCompanyId(
 				companyId, start, end, new ArticleIDComparator(true));
 		}
-		else {
-			return journalArticlePersistence.findByC_ST(
-				companyId, status, start, end, new ArticleIDComparator(true));
-		}
+
+		return journalArticlePersistence.findByC_ST(
+			companyId, status, start, end, new ArticleIDComparator(true));
 	}
 
 	/**
@@ -2787,10 +2783,9 @@ public class JournalArticleLocalServiceImpl
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return journalArticlePersistence.countByC_V(companyId, version);
 		}
-		else {
-			return journalArticlePersistence.countByC_V_ST(
-				companyId, version, status);
-		}
+
+		return journalArticlePersistence.countByC_V_ST(
+			companyId, version, status);
 	}
 
 	/**
@@ -2808,9 +2803,8 @@ public class JournalArticleLocalServiceImpl
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return journalArticlePersistence.countByCompanyId(companyId);
 		}
-		else {
-			return journalArticlePersistence.countByC_ST(companyId, status);
-		}
+
+		return journalArticlePersistence.countByC_ST(companyId, status);
 	}
 
 	/**
@@ -3481,9 +3475,8 @@ public class JournalArticleLocalServiceImpl
 		if (getLatestVersion(groupId, articleId) == version) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -3507,9 +3500,8 @@ public class JournalArticleLocalServiceImpl
 		if (getLatestVersion(groupId, articleId, status) == version) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	@Override
@@ -7530,10 +7522,9 @@ public class JournalArticleLocalServiceImpl
 				groupId, articleId, WorkflowConstants.STATUS_IN_TRASH,
 				orderByComparator);
 		}
-		else {
-			return journalArticlePersistence.findByG_A_ST_First(
-				groupId, articleId, status, orderByComparator);
-		}
+
+		return journalArticlePersistence.findByG_A_ST_First(
+			groupId, articleId, status, orderByComparator);
 	}
 
 	protected JournalGroupServiceConfiguration

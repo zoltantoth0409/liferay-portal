@@ -569,9 +569,8 @@ public class ConsumerPortlet extends MVCPortlet {
 		if (user.isMale()) {
 			return "M";
 		}
-		else {
-			return "F";
-		}
+
+		return "F";
 	}
 
 	protected MarkupResponse getMarkupResponse(
@@ -1376,9 +1375,8 @@ public class ConsumerPortlet extends MVCPortlet {
 		if (name.startsWith("wsrp-")) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	protected void processBlockingInteractionResponse(

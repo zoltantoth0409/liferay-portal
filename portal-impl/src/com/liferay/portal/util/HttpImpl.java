@@ -1911,9 +1911,8 @@ public class HttpImpl implements Http {
 							cookies, auth, body, fileParts, parts, response,
 							followRedirects, timeout);
 					}
-					else {
-						response.setRedirect(locationHeaderValue);
-					}
+
+					response.setRedirect(locationHeaderValue);
 				}
 			}
 

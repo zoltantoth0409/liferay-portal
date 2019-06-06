@@ -182,20 +182,18 @@ public class DDMExpressionImpl<T> implements DDMExpression<T> {
 		if (doubleValue.isNaN() || doubleValue.isInfinite()) {
 			throw new DDMExpressionException.NumberExceedsSupportedRange();
 		}
-		else {
-			variableValue = variableValue.trim();
 
-			setVariableValue(variableName, new BigDecimal(variableValue));
-		}
+		variableValue = variableValue.trim();
+
+		setVariableValue(variableName, new BigDecimal(variableValue));
 	}
 
 	protected Boolean decodeBoolean(BigDecimal bigDecimal) {
 		if (bigDecimal.equals(BigDecimal.ONE)) {
 			return Boolean.TRUE;
 		}
-		else {
-			return Boolean.FALSE;
-		}
+
+		return Boolean.FALSE;
 	}
 
 	protected String decodeString(BigDecimal bigDecimal) {

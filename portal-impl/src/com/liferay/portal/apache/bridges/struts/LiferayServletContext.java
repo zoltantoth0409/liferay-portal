@@ -146,9 +146,8 @@ public class LiferayServletContext implements ServletContext {
 		if (servletContext == _servletContext) {
 			return this;
 		}
-		else {
-			return servletContext;
-		}
+
+		return servletContext;
 	}
 
 	@Override

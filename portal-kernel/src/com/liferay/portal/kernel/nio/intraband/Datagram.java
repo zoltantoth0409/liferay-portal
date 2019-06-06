@@ -210,9 +210,8 @@ public class Datagram {
 		if ((statusFlag & _FLAG_ACK_REQUEST) != 0) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	protected boolean isAckResponse() {
@@ -221,9 +220,8 @@ public class Datagram {
 		if ((statusFlag & _FLAG_ACK_RESPONSE) != 0) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	protected boolean isRequest() {
@@ -232,9 +230,8 @@ public class Datagram {
 		if ((statusFlag & _FLAG_REQUEST) != 0) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	protected boolean isResponse() {
@@ -243,9 +240,8 @@ public class Datagram {
 		if ((statusFlag & _FLAG_RESPONSE) != 0) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	protected boolean readFrom(ScatteringByteChannel scatteringByteChannel)

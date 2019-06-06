@@ -331,9 +331,8 @@ public class PingbackMethodImpl implements Method {
 		if (ArrayUtil.isNotEmpty(paramArray)) {
 			return paramArray[0];
 		}
-		else {
-			return null;
-		}
+
+		return null;
 	}
 
 	@Reference(unbind = "-")

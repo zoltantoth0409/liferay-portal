@@ -1102,9 +1102,8 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 			if (isCompanyAdmin()) {
 				return true;
 			}
-			else {
-				return false;
-			}
+
+			return false;
 		}
 		else if (group.isLayoutPrototype()) {
 			if (LayoutPrototypePermissionUtil.contains(
@@ -1112,9 +1111,8 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 
 				return true;
 			}
-			else {
-				return false;
-			}
+
+			return false;
 		}
 		else if (group.isLayoutSetPrototype()) {
 			if (LayoutSetPrototypePermissionUtil.contains(
@@ -1122,9 +1120,8 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 
 				return true;
 			}
-			else {
-				return false;
-			}
+
+			return false;
 		}
 		else if (group.isOrganization()) {
 			long organizationId = group.getOrganizationId();
@@ -1236,9 +1233,8 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 
 				return true;
 			}
-			else {
-				return false;
-			}
+
+			return false;
 		}
 		else if (group.isLayoutSetPrototype()) {
 			if (LayoutSetPrototypePermissionUtil.contains(
@@ -1246,9 +1242,8 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 
 				return true;
 			}
-			else {
-				return false;
-			}
+
+			return false;
 		}
 		else if (group.isOrganization()) {
 			long organizationId = group.getOrganizationId();

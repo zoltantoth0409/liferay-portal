@@ -631,10 +631,9 @@ public class MBUtil {
 		if (subject.startsWith(MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE)) {
 			return subject;
 		}
-		else {
-			return MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE +
-				message.getSubject();
-		}
+
+		return MBMessageConstants.MESSAGE_SUBJECT_PREFIX_RE +
+			message.getSubject();
 	}
 
 	public static String getSubjectWithoutMessageId(Message message)

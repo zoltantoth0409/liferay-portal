@@ -612,9 +612,8 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 		if (pos > 0) {
 			return StringUtil.toLowerCase(fileName.substring(pos + 1));
 		}
-		else {
-			return StringPool.BLANK;
-		}
+
+		return StringPool.BLANK;
 	}
 
 	@Override
@@ -709,9 +708,8 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			if ((bufferIndex != length) || (bufferLength != -1)) {
 				return false;
 			}
-			else {
-				return true;
-			}
+
+			return true;
 		}
 		catch (Exception e) {
 			return false;
@@ -841,10 +839,9 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 		if (raw) {
 			return s;
 		}
-		else {
-			return StringUtil.replace(
-				s, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
-		}
+
+		return StringUtil.replace(
+			s, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
 	}
 
 	@Override
@@ -894,9 +891,8 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 		if (ext.length() > 0) {
 			return fileName.substring(0, fileName.length() - ext.length() - 1);
 		}
-		else {
-			return fileName;
-		}
+
+		return fileName;
 	}
 
 	@Override

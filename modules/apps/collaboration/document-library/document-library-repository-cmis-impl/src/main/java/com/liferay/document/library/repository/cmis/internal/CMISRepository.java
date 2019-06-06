@@ -146,9 +146,8 @@ public class CMISRepository extends BaseCmisRepository {
 			if (size == 0) {
 				throw new FileNameException("Title is null");
 			}
-			else {
-				title = sourceFileName;
-			}
+
+			title = sourceFileName;
 		}
 
 		try {
@@ -2110,9 +2109,8 @@ public class CMISRepository extends BaseCmisRepository {
 		if (allowableActionsSet.contains(action)) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	protected boolean isAllVersionsSearchableSupported(Session session) {

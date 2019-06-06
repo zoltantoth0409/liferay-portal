@@ -2064,9 +2064,8 @@ public class BaseTextExportImportContentProcessor
 
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	private String _replaceTemplateLinkToLayout(

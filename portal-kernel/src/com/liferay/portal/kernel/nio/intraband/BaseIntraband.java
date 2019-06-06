@@ -478,9 +478,8 @@ public abstract class BaseIntraband implements Intraband {
 
 				return true;
 			}
-			else {
-				return false;
-			}
+
+			return false;
 		}
 		catch (IOException ioe) {
 			RegistrationReference registrationReference =

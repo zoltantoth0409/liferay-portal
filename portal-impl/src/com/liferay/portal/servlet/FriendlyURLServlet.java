@@ -189,11 +189,10 @@ public class FriendlyURLServlet extends HttpServlet {
 		if (lifecycle.equals("1")) {
 			return new LastPath(_friendlyURLPathPrefix, pathInfo);
 		}
-		else {
-			return new LastPath(
-				_friendlyURLPathPrefix, pathInfo,
-				HttpUtil.parameterMapToString(request.getParameterMap()));
-		}
+
+		return new LastPath(
+			_friendlyURLPathPrefix, pathInfo,
+			HttpUtil.parameterMapToString(request.getParameterMap()));
 	}
 
 	protected String getPathInfo(HttpServletRequest request) {
@@ -479,9 +478,8 @@ public class FriendlyURLServlet extends HttpServlet {
 
 				return true;
 			}
-			else {
-				return false;
-			}
+
+			return false;
 		}
 
 		public String getPath() {

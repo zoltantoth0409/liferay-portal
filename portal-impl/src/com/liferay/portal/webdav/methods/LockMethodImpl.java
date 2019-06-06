@@ -143,9 +143,8 @@ public class LockMethodImpl implements Method {
 				if (wdave.getCause() instanceof NoSuchLockException) {
 					return HttpServletResponse.SC_PRECONDITION_FAILED;
 				}
-				else {
-					throw wdave;
-				}
+
+				throw wdave;
 			}
 		}
 

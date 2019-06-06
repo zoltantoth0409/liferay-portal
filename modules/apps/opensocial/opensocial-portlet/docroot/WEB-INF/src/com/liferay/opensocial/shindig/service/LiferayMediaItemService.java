@@ -492,9 +492,8 @@ public class LiferayMediaItemService implements MediaItemService {
 		if (fileNameMatcher.find()) {
 			return fileNameMatcher.group(1);
 		}
-		else {
-			return mediaItem.getTitle();
-		}
+
+		return mediaItem.getTitle();
 	}
 
 	protected MediaItem toMediaItem(
