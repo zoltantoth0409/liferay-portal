@@ -26,8 +26,7 @@ definition {
 		Page.viewCurrentTheme(
 			navTab = "Look and Feel",
 			page = "Classic Theme Page",
-			themeName = "Classic Theme"
-		);
+			themeName = "Classic Theme");
 
 		Theme.configureLookAndFeelSpecificLook();
 

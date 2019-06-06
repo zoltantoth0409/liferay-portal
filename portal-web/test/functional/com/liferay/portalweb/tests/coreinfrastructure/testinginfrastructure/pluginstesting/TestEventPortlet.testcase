@@ -28,8 +28,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "TestEventConsumer#EVENT_CONSUMER_PORTLET_BODY",
-			value1 = "PASSED"
-		);
+			value1 = "PASSED");
 	}
 
 }

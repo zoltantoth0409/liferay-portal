@@ -13,7 +13,9 @@ definition {
 	}
 
 	macro viewErrorMessage {
-		AssertTextEquals(locator1 = "Message#ERROR", value1 = "${errorMessage}");
+		AssertTextEquals(
+			locator1 = "Message#ERROR",
+			value1 = "${errorMessage}");
 
 		Alert._closeMessage(messageType = "ERROR");
 	}
@@ -21,22 +23,19 @@ definition {
 	macro viewFailedSiteTemplateDeletionMessage {
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#ERROR_2",
-			value1 = "You cannot delete site templates that are used by a site."
-		);
+			value1 = "You cannot delete site templates that are used by a site.");
 	}
 
 	macro viewRequestFailedToComplete {
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#ERROR_REQUEST_FAILED_TO_COMPLETE",
-			value1 = "Your request failed to complete."
-		);
+			value1 = "Your request failed to complete.");
 	}
 
 	macro viewRequiredField {
 		AssertTextEquals.assertPartialText(
 			locator1 = "TextInput#REQUIRED_ALERT",
-			value1 = "This field is required."
-		);
+			value1 = "This field is required.");
 	}
 
 	macro viewSuccessMessage {
@@ -52,7 +51,9 @@ definition {
 
 		AssertElementPresent(locator1 = "Message#SUCCESS");
 
-		AssertTextEquals(locator1 = "Message#SUCCESS", value1 = "${successMessage}");
+		AssertTextEquals(
+			locator1 = "Message#SUCCESS",
+			value1 = "${successMessage}");
 	}
 
 	macro waitForSuccessMessageHide {

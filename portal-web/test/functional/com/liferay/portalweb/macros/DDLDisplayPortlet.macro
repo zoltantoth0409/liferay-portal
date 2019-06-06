@@ -1,13 +1,9 @@
 definition {
 
 	macro assertCannotEditSpreadsheet {
-		AssertElementNotPresent(
-			locator1 = "DDLSpreadsheet#SPREADSHEET_EDIT_CONTROLS_ADD_ROWS_BUTTON"
-		);
+		AssertElementNotPresent(locator1 = "DDLSpreadsheet#SPREADSHEET_EDIT_CONTROLS_ADD_ROWS_BUTTON");
 
-		AssertElementNotPresent(
-			locator1 = "DDLSpreadsheet#SPREADSHEET_EDIT_CONTROLS_ADD_ROWS_SELECT_MENULIST"
-		);
+		AssertElementNotPresent(locator1 = "DDLSpreadsheet#SPREADSHEET_EDIT_CONTROLS_ADD_ROWS_SELECT_MENULIST");
 	}
 
 	macro configureListViewPG {
@@ -30,8 +26,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "DDL#TOOLBAR_ADD",
-			value1 = "Add ${ddlDataDefinitionName}"
-		);
+			value1 = "Add ${ddlDataDefinitionName}");
 	}
 
 	macro viewDDLTemplateRecordFieldData {
@@ -39,8 +34,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "DDL#RECORD_TABLE_DISPLAY_FIELD",
-			value1 = "${ddlRecordFieldData}"
-		);
+			value1 = "${ddlRecordFieldData}");
 	}
 
 	macro viewFieldSelectViaSpreadsheetView {
@@ -49,8 +43,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "DDLSpreadsheet#RECORD_TABLE_FIELD_ENTRY",
-			value1 = "${ddlRecordFieldData}"
-		);
+			value1 = "${ddlRecordFieldData}");
 	}
 
 	macro viewSpreadsheetContainer {

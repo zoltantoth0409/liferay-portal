@@ -20,8 +20,7 @@ definition {
 			databaseType = "Hypersonic",
 			databaseUserName = PropsUtil.get("database.hypersonic.username"),
 			jdbcDriverClassName = PropsUtil.get("database.hypersonic.driver"),
-			jdbcURL = PropsUtil.get("database.hypersonic.url")
-		);
+			jdbcURL = PropsUtil.get("database.hypersonic.url"));
 
 		Smoke.viewWelcomePage();
 
@@ -41,8 +40,7 @@ definition {
 			databaseType = "MySQL",
 			databaseUserName = PropsUtil.get("database.mysql.username"),
 			jdbcDriverClassName = PropsUtil.get("database.mysql.driver"),
-			jdbcURL = PropsUtil.get("database.mysql.url")
-		);
+			jdbcURL = PropsUtil.get("database.mysql.url"));
 
 		Smoke.viewWelcomePage();
 
@@ -63,8 +61,7 @@ definition {
 			databaseUserName = PropsUtil.get("database.mysql.username"),
 			jdbcDriverClassName = PropsUtil.get("database.mysql.driver"),
 			jdbcURL = PropsUtil.get("database.mysql.url"),
-			portalName = '''<script>alert("xss")</script>'''
-		);
+			portalName = '''<script>alert("xss")</script>''');
 
 		AssertAlertNotPresent();
 

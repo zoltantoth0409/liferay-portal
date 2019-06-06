@@ -28,8 +28,7 @@ definition {
 
 		AssertTextNotPresent(
 			locator1 = "Home#PAGE_COLUMN_1_LAYOUT_2_COLUMNS_30_SPLIT",
-			value1 = "There was an unexpected error. Please refresh the current page."
-		);
+			value1 = "There was an unexpected error. Please refresh the current page.");
 	}
 
 	@description = "This is a use case for LPS-75561."
@@ -44,8 +43,7 @@ definition {
 
 		AssertTextNotPresent(
 			locator1 = "Home#PAGE_COLUMN_1_LAYOUT_2_COLUMNS_30_SPLIT",
-			value1 = "There was an unexpected error. Please refresh the current page."
-		);
+			value1 = "There was an unexpected error. Please refresh the current page.");
 	}
 
 	@description = "This is a use case for LPS-75561."
@@ -60,8 +58,7 @@ definition {
 
 		AssertTextNotPresent(
 			locator1 = "Home#PAGE_COLUMN_1_LAYOUT_2_COLUMNS_30_SPLIT",
-			value1 = "There was an unexpected error. Please refresh the current page."
-		);
+			value1 = "There was an unexpected error. Please refresh the current page.");
 	}
 
 	@description = "This is a use case for LPS-71487."
@@ -75,8 +72,7 @@ definition {
 
 		Portlet.viewDuplicatePG(
 			portletName = "Web Content Display",
-			totalPortletCount = "3"
-		);
+			totalPortletCount = "3");
 	}
 
 	@description = "This is a use case for LPS-71487."
@@ -90,8 +86,7 @@ definition {
 
 		Portlet.viewDuplicatePG(
 			portletName = "Web Content Display",
-			totalPortletCount = "3"
-		);
+			totalPortletCount = "3");
 	}
 
 	@description = "This is a use case for LPS-71487."
@@ -105,8 +100,7 @@ definition {
 
 		Portlet.viewDuplicatePG(
 			portletName = "Web Content Display",
-			totalPortletCount = "3"
-		);
+			totalPortletCount = "3");
 	}
 
 	@priority = "5"

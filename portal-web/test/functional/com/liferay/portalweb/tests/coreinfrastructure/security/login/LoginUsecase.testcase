@@ -36,8 +36,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
-			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page."
-		);
+			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 
 		Refresh();
 
@@ -53,7 +52,9 @@ definition {
 
 		Refresh();
 
-		Smoke.viewWelcomePage(userFirstName = "Test", userLastName = "Test");
+		Smoke.viewWelcomePage(
+			userFirstName = "Test",
+			userLastName = "Test");
 
 		User.logoutPG();
 
@@ -69,8 +70,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
-			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page."
-		);
+			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 
 		Refresh();
 
@@ -98,8 +98,7 @@ definition {
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
-			value1 = "WarningDue to inactivity, your session will expire"
-		);
+			value1 = "WarningDue to inactivity, your session will expire");
 
 		Pause(locator1 = "60000");
 
@@ -107,8 +106,7 @@ definition {
 
 		AssertTextEquals.assertText(
 			locator1 = "HelloWorld#PORTLET_TITLE",
-			value1 = "Hello World"
-		);
+			value1 = "Hello World");
 	}
 
 }

@@ -3,8 +3,7 @@ definition {
 	macro configureDisplayFilter {
 		Portlet.gotoPortletOptions(
 			portletName = "${portletName}",
-			portletOption = "Configuration"
-		);
+			portletOption = "Configuration");
 
 		IFrame.selectConfigurationFrame();
 
@@ -13,15 +12,13 @@ definition {
 		if (isSet(assetTypeFilter)) {
 			Select(
 				locator1 = "UserSegmentContentList#SELECT_ASSET_TYPE",
-				value1 = "${assetTypeFilter}"
-			);
+				value1 = "${assetTypeFilter}");
 		}
 
 		if (isSet(selectMultipleAssetTypes)) {
 			Select(
 				locator1 = "UserSegmentContentList#SELECT_ASSET_TYPE",
-				value1 = "Select More Than One..."
-			);
+				value1 = "Select More Than One...");
 
 			while (IsElementPresent(locator1 = "UserSegmentContentList#SELECTED_ASSETS")) {
 				Click(locator1 = "UserSegmentContentList#SELECTED_ASSETS");
@@ -38,24 +35,21 @@ definition {
 
 				AssertTextEquals(
 					locator1 = "UserSegmentContentList#SELECTED_ASSETS",
-					value1 = "${assetType}"
-				);
+					value1 = "${assetType}");
 			}
 
 			PortletEntry.save();
 
 			Select(
 				locator1 = "UserSegmentContentList#SELECT_ASSET_TYPE",
-				value1 = "Select More Than One..."
-			);
+				value1 = "Select More Than One...");
 
 			for (var assetType : list "${selectMultipleAssetTypes}") {
 				var key_assetType = "${assetType}";
 
 				AssertTextEquals(
 					locator1 = "UserSegmentContentList#SELECTED_ASSETS",
-					value1 = "${assetType}"
-				);
+					value1 = "${assetType}");
 			}
 		}
 
@@ -68,8 +62,7 @@ definition {
 
 			AssertTextEquals(
 				locator1 = "UserSegmentContentList#VIEW_ENTRY_CONTENT",
-				value1 = "${entryContent}"
-			);
+				value1 = "${entryContent}");
 		}
 	}
 

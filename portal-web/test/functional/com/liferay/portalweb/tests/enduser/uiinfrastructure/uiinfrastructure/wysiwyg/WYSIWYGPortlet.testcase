@@ -23,15 +23,13 @@ definition {
 
 		Portlet.gotoPortletOptions(
 			portletName = "WYSIWYG",
-			portletOption = "Configuration"
-		);
+			portletOption = "Configuration");
 
 		IFrame.selectDialogFrame();
 
 		Type.typeEditor(
 			locator1 = "CKEditor#BODY_FIELD",
-			value1 = "WYSIWYG Test Content"
-		);
+			value1 = "WYSIWYG Test Content");
 
 		Click(locator1 = "Button#SAVE");
 
@@ -43,8 +41,7 @@ definition {
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Portlet#PORTLET_CONTENT",
-			value1 = "WYSIWYG Test Content"
-		);
+			value1 = "WYSIWYG Test Content");
 	}
 
 }

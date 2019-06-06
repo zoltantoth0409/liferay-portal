@@ -31,27 +31,23 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Sites",
 				panel = "Control Panel",
-				portlet = "Sites"
-			);
+				portlet = "Sites");
 
 			Site.addSiteTemplateCP(
 				siteName = "1975 London Theme Site",
-				siteTemplateName = "1975 London Theme"
-			);
+				siteTemplateName = "1975 London Theme");
 
 			ProductMenu.gotoSite(site = "1975 London Theme Site");
 
 			AssertClick(
+				key_pageName = "home",
 				locator1 = "Home#PAGE",
-				value1 = "HOME",
-				key_pageName = "home"
-			);
+				value1 = "HOME");
 
 			AssertTextEquals(
+				key_title = "We love Music",
 				locator1 = "Header#H3_TITLE",
-				value1 = "We love Music",
-				key_title = "We love Music"
-			);
+				value1 = "We love Music");
 		}
 		else {
 			var appName = "1975-london-theme";
@@ -59,17 +55,17 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Apps",
 				panel = "Control Panel",
-				portlet = "App Manager"
-			);
+				portlet = "App Manager");
 
-			Type(locator1 = "TextInput#SEARCH", value1 = "${appName}");
+			Type(
+				locator1 = "TextInput#SEARCH",
+				value1 = "${appName}");
 
 			Click(locator1 = "Icon#BASIC_SEARCH");
 
 			AssertVisible(
-				locator1 = "ListGroupItem#ITEM_NAME_LINK",
-				key_itemName = "1975-london-theme"
-			);
+				key_itemName = "1975-london-theme",
+				locator1 = "ListGroupItem#ITEM_NAME_LINK");
 		}
 	}
 

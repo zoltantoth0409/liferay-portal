@@ -22,13 +22,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Workflow Configuration"
-		);
+			portlet = "Workflow Configuration");
 
 		Workflow.configureWorkflow(
 			workflowDefinition = "Single Approver (Version 1)",
-			workflowResourceValue = "Calendar Event"
-		);
+			workflowResourceValue = "Calendar Event");
 	}
 
 	tearDown {
@@ -67,8 +65,7 @@ definition {
 			optionSetValue = "inviteResource",
 			pageName = "Calendar Page",
 			specificOptionSetValue = "Test Test",
-			workflow = "true"
-		);
+			workflow = "true");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -78,8 +75,7 @@ definition {
 
 		CalendarEvent.viewSiteRSVPWithUnapprovedWorkflow(
 			eventTitle = "Calendar Event Title",
-			siteCalendarName = "${siteName}"
-		);
+			siteCalendarName = "${siteName}");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -87,24 +83,21 @@ definition {
 
 		CalendarEvent.viewNoUserInviteWithUnapprovedWorkflow(
 			eventTitle = "Calendar Event Title",
-			siteCalendarName = "${siteName}"
-		);
+			siteCalendarName = "${siteName}");
 
 		Page.gotoMyAccount(portletName = "My Workflow Tasks");
 
 		Workflow.assignToMeTaskByActions(
 			workflowAssetTitle = "Calendar Event Title",
 			workflowAssetType = "Calendar Event",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Page.gotoMyAccount(portletName = "My Workflow Tasks");
 
 		Workflow.approveTaskByActions(
 			workflowAssetTitle = "Calendar Event Title",
 			workflowAssetType = "Calendar Event",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -113,14 +106,12 @@ definition {
 		CalendarEvent.viewSiteRSVPWithApprovedWorkflow(
 			eventTitle = "Calendar Event Title",
 			rsvp = "Yes",
-			userCalendarName = "Test Test"
-		);
+			userCalendarName = "Test Test");
 
 		CalendarEvent.viewInvitedUserRSVPWithApprovedWorkflow(
 			eventTitle = "Calendar Event Title",
 			siteCalendarName = "${siteName}",
-			userCalendarName = "Test Test"
-		);
+			userCalendarName = "Test Test");
 	}
 
 	@description = "This is a use case for LPS-59572."
@@ -139,8 +130,7 @@ definition {
 			optionSetValue = "inviteResource",
 			pageName = "Calendar Page",
 			specificOptionSetValue = "Test Test",
-			workflow = "true"
-		);
+			workflow = "true");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -148,16 +138,14 @@ definition {
 
 		CalendarEvent.viewSiteRSVPWithUnapprovedWorkflow(
 			eventTitle = "Calendar Event Title",
-			siteCalendarName = "${siteName}"
-		);
+			siteCalendarName = "${siteName}");
 
 		Page.gotoMyAccount(portletName = "My Workflow Tasks");
 
 		Workflow.viewTaskAssignedToMyRoles(
 			workflowAssetTitle = "Calendar Event Title",
 			workflowAssetType = "Calendar Event",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -171,8 +159,7 @@ definition {
 
 		CalendarScheduler.viewDefault(
 			eventTitle = "Calendar Event Title",
-			pageName = "Calendar Page"
-		);
+			pageName = "Calendar Page");
 
 		Page.gotoMyAccount(portletName = "My Workflow Tasks");
 
@@ -183,8 +170,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Recycle Bin"
-		);
+			portlet = "Recycle Bin");
 
 		RecycleBin.restoreCP(assetName = "Calendar Event Title");
 
@@ -194,22 +180,19 @@ definition {
 
 		CalendarEvent.viewSiteRSVPWithUnapprovedWorkflow(
 			eventTitle = "Calendar Event Title",
-			siteCalendarName = "${siteName}"
-		);
+			siteCalendarName = "${siteName}");
 
 		Page.gotoMyAccount(portletName = "My Workflow Tasks");
 
 		Workflow.assignToMeTaskByActions(
 			workflowAssetTitle = "Calendar Event Title",
 			workflowAssetType = "Calendar Event",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.viewTaskAssignedToMe(
 			workflowAssetTitle = "Calendar Event Title",
 			workflowAssetType = "Calendar Event",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -223,8 +206,7 @@ definition {
 
 		CalendarScheduler.viewDefault(
 			eventTitle = "Calendar Event Title",
-			pageName = "Calendar Page"
-		);
+			pageName = "Calendar Page");
 
 		Page.gotoMyAccount(portletName = "My Workflow Tasks");
 
@@ -235,8 +217,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Recycle Bin"
-		);
+			portlet = "Recycle Bin");
 
 		RecycleBin.restoreCP(assetName = "Calendar Event Title");
 
@@ -244,22 +225,19 @@ definition {
 
 		CalendarEvent.viewSiteRSVPWithUnapprovedWorkflow(
 			eventTitle = "Calendar Event Title",
-			siteCalendarName = "${siteName}"
-		);
+			siteCalendarName = "${siteName}");
 
 		Page.gotoMyAccount(portletName = "My Workflow Tasks");
 
 		Workflow.assignToMeTaskByActions(
 			workflowAssetTitle = "Calendar Event Title",
 			workflowAssetType = "Calendar Event",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.approveTaskByActions(
 			workflowAssetTitle = "Calendar Event Title",
 			workflowAssetType = "Calendar Event",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -268,14 +246,12 @@ definition {
 		CalendarEvent.viewSiteRSVPWithApprovedWorkflow(
 			eventTitle = "Calendar Event Title",
 			rsvp = "Yes",
-			userCalendarName = "Test Test"
-		);
+			userCalendarName = "Test Test");
 
 		CalendarEvent.viewInvitedUserRSVPWithApprovedWorkflow(
 			eventTitle = "Calendar Event Title",
 			siteCalendarName = "${siteName}",
-			userCalendarName = "Test Test"
-		);
+			userCalendarName = "Test Test");
 	}
 
 	@priority = "4"
@@ -293,8 +269,7 @@ definition {
 			optionSetValue = "inviteResource",
 			pageName = "Calendar Page",
 			specificOptionSetValue = "Test Test",
-			workflow = "true"
-		);
+			workflow = "true");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -302,8 +277,7 @@ definition {
 
 		CalendarEvent.viewSiteRSVPWithUnapprovedWorkflow(
 			eventTitle = "Calendar Event Title",
-			siteCalendarName = "${siteName}"
-		);
+			siteCalendarName = "${siteName}");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -311,24 +285,21 @@ definition {
 
 		CalendarEvent.viewNoUserInviteWithUnapprovedWorkflow(
 			eventTitle = "Calendar Event Title",
-			siteCalendarName = "${siteName}"
-		);
+			siteCalendarName = "${siteName}");
 
 		Page.gotoMyAccount(portletName = "My Workflow Tasks");
 
 		Workflow.assignToMeTaskByActions(
 			workflowAssetTitle = "Calendar Event Title",
 			workflowAssetType = "Calendar Event",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Page.gotoMyAccount(portletName = "My Workflow Tasks");
 
 		Workflow.rejectTaskByActions(
 			workflowAssetTitle = "Calendar Event Title",
 			workflowAssetType = "Calendar Event",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -336,14 +307,12 @@ definition {
 
 		CalendarEvent.viewSiteRSVPWithUnapprovedWorkflow(
 			eventTitle = "Calendar Event Title",
-			siteCalendarName = "${siteName}"
-		);
+			siteCalendarName = "${siteName}");
 
 		CalendarEvent.viewNoUserInviteWithUnapprovedWorkflow(
 			eventTitle = "Calendar Event Title",
 			siteCalendarName = "${siteName}",
-			userCalendarName = "Test Test"
-		);
+			userCalendarName = "Test Test");
 	}
 
 }

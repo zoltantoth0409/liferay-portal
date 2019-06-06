@@ -30,8 +30,7 @@ definition {
 
 		WebContent.addPGViaWCD(
 			webContentContent = "Web Content Content",
-			webContentTitle = "Web Content Title"
-		);
+			webContentTitle = "Web Content Title");
 
 		SignOut.signOut();
 

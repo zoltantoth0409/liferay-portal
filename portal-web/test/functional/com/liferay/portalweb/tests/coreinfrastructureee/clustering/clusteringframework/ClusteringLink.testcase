@@ -35,8 +35,7 @@ definition {
 
 		AntCommand(
 			locator1 = "build-test.xml",
-			value1 = "portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.enabled=false&quot; -Dupdate.properties=&quot;cluster.link.enabled=true&quot;"
-		);
+			value1 = "portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.enabled=false&quot; -Dupdate.properties=&quot;cluster.link.enabled=true&quot;");
 
 		Portlet.startServer(deleteLiferayHome = "false");
 
@@ -50,13 +49,11 @@ definition {
 
 		AntCommand(
 			locator1 = "build-test.xml",
-			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.name.control=test-control-channel&quot;"
-		);
+			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.name.control=test-control-channel&quot;");
 
 		AntCommand(
 			locator1 = "build-test.xml",
-			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.name.transport.0=test-transport-channel&quot;"
-		);
+			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.name.transport.0=test-transport-channel&quot;");
 
 		Portlet.startServer(deleteLiferayHome = "false");
 
@@ -70,8 +67,7 @@ definition {
 
 		AntCommand(
 			locator1 = "build-test.xml",
-			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.properties.control=tcp.xml&quot;"
-		);
+			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.properties.control=tcp.xml&quot;");
 
 		Portlet.startServer(deleteLiferayHome = "false");
 
@@ -85,8 +81,7 @@ definition {
 
 		AntCommand(
 			locator1 = "build-test.xml",
-			value1 = "portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.channel.properties.control=tcp.xml&quot; -Dupdate.properties=&quot;cluster.link.channel.properties.transport.0=tcp.xml&quot;"
-		);
+			value1 = "portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.channel.properties.control=tcp.xml&quot; -Dupdate.properties=&quot;cluster.link.channel.properties.transport.0=tcp.xml&quot;");
 
 		Portlet.startServer(deleteLiferayHome = "false");
 
@@ -96,16 +91,13 @@ definition {
 
 		AssertConsoleTextPresent(value1 = "properties: TCP");
 
-		AssertConsoleTextPresent(
-			value1 = "Autodetecting JGroups outgoing IP address and interface for www.google.com:80"
-		);
+		AssertConsoleTextPresent(value1 = "Autodetecting JGroups outgoing IP address and interface for www.google.com:80");
 
 		Portlet.shutdownServer();
 
 		AntCommand(
 			locator1 = "build-test.xml",
-			value1 = "portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.channel.properties.transport.0=tcp.xml&quot; -Dupdate.properties=&quot;cluster.link.autodetect.address=&quot;"
-		);
+			value1 = "portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.channel.properties.transport.0=tcp.xml&quot; -Dupdate.properties=&quot;cluster.link.autodetect.address=&quot;");
 
 		Portlet.startServer(deleteLiferayHome = "true");
 
@@ -113,9 +105,7 @@ definition {
 
 		AssertConsoleTextPresent(value1 = "bind_addr=127.0.0.1");
 
-		AssertConsoleTextNotPresent(
-			value1 = "Autodetecting JGroups outgoing IP address and interface for www.google.com:80"
-		);
+		AssertConsoleTextNotPresent(value1 = "Autodetecting JGroups outgoing IP address and interface for www.google.com:80");
 
 		Portlet.shutdownServer();
 
@@ -123,13 +113,11 @@ definition {
 
 		AntCommand(
 			locator1 = "build-test.xml",
-			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.bind.addr[&quot;cluster-link-control&quot;]=${ipAddress}&quot;"
-		);
+			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.bind.addr[&quot;cluster-link-control&quot;]=${ipAddress}&quot;");
 
 		AntCommand(
 			locator1 = "build-test.xml",
-			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.bind.addr[&quot;cluster-link-udp&quot;]=${ipAddress}&quot;"
-		);
+			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.bind.addr[&quot;cluster-link-udp&quot;]=${ipAddress}&quot;");
 
 		Portlet.startServer(deleteLiferayHome = "false");
 

@@ -32,8 +32,7 @@ definition {
 
 		Portlet.viewPG(
 			portletBody = "Please contact the administrator to configure an Amazon license.",
-			portletName = "Amazon Rankings"
-		);
+			portletName = "Amazon Rankings");
 	}
 
 }

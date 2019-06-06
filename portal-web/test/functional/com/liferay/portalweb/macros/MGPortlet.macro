@@ -3,8 +3,7 @@ definition {
 	macro configureShowAllPG {
 		Portlet.gotoPortletOptions(
 			portletName = "Media Gallery",
-			portletOption = "Configuration"
-		);
+			portletOption = "Configuration");
 
 		IFrame.selectConfigurationFrame();
 

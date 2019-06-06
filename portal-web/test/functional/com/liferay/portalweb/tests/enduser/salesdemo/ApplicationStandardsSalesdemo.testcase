@@ -28,8 +28,7 @@ definition {
 		Page.add(
 			columnName = "1 Column",
 			pageName = "Web Proxy Page",
-			sitePageType = "Empty Page"
-		);
+			sitePageType = "Empty Page");
 
 		Portlet.addPG(portletName = "Web Proxy");
 
@@ -39,7 +38,9 @@ definition {
 
 		Navigator.gotoPage(pageName = "Web Proxy Page");
 
-		AssertTextPresent(locator1 = "Portlet#H2_HEADER", value1 = "Google Images");
+		AssertTextPresent(
+			locator1 = "Portlet#H2_HEADER",
+			value1 = "Google Images");
 
 		takeScreenshot();
 

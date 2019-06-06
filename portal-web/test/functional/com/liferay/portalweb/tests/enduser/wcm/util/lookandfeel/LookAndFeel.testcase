@@ -27,8 +27,7 @@ definition {
 
 		Portlet.gotoPortletOptions(
 			portletName = "Sign In",
-			portletOption = "Look and Feel Configuration"
-		);
+			portletOption = "Look and Feel Configuration");
 
 		Portlet.configureCustomStylesViaLookandfeelPG();
 
@@ -42,8 +41,7 @@ definition {
 
 		Portlet.gotoPortletOptions(
 			portletName = "Web Content Display",
-			portletOption = "Look and Feel Configuration"
-		);
+			portletOption = "Look and Feel Configuration");
 
 		Portlet.selectApplicationDecorator(decorator = "Borderless");
 
@@ -53,8 +51,7 @@ definition {
 
 		Portlet.gotoPortletOptions(
 			portletName = "Web Content Display",
-			portletOption = "Look and Feel Configuration"
-		);
+			portletOption = "Look and Feel Configuration");
 
 		Portlet.selectApplicationDecorator(decorator = "Barebone");
 

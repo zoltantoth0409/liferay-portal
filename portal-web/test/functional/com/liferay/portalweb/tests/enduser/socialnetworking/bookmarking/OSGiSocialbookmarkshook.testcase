@@ -16,7 +16,9 @@ definition {
 		var appName = "Social Bookmarks";
 		var portletName = "social-bookmarks-hook";
 
-		OSGiSmoke.Smoke(appName = "${portletName}", portletName = "${portletName}");
+		OSGiSmoke.Smoke(
+			appName = "${portletName}",
+			portletName = "${portletName}");
 	}
 
 }

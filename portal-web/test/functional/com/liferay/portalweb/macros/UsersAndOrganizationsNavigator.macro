@@ -4,7 +4,9 @@ definition {
 		Pause(locator1 = "1000");
 
 		if (IsElementPresent(locator1 = "NavBar#ORGANIZATIONS")) {
-			AssertClick(locator1 = "NavBar#ORGANIZATIONS", value1 = "Organizations");
+			AssertClick(
+				locator1 = "NavBar#ORGANIZATIONS",
+				value1 = "Organizations");
 		}
 	}
 

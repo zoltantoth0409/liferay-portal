@@ -31,8 +31,7 @@ definition {
 
 		Portlet.viewPG(
 			portletBody = "Please configure this portlet to make it visible to all users.",
-			portletName = "IFrame"
-		);
+			portletName = "IFrame");
 	}
 
 }

@@ -16,7 +16,9 @@ definition {
 		var appName = "Email to Message Boards Filter";
 		var portletName = "email-to-mb-filter-hook";
 
-		OSGiSmoke.Smoke(appName = "${portletName}", portletName = "${portletName}");
+		OSGiSmoke.Smoke(
+			appName = "${portletName}",
+			portletName = "${portletName}");
 	}
 
 }

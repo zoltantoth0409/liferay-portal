@@ -31,8 +31,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addCP(tagName = "tag name");
 
@@ -46,8 +45,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''&tag''');
 
@@ -56,8 +54,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = "&apos;tag&apos;");
 
@@ -66,8 +63,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''*tag''');
 
@@ -76,8 +72,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''@tag''');
 
@@ -86,8 +81,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''\test''');
 
@@ -96,8 +90,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''[tag]''');
 
@@ -106,8 +99,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''>tag<''');
 
@@ -116,8 +108,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''{tag}''');
 
@@ -126,8 +117,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = ''':tag''');
 
@@ -136,8 +126,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = ''',tag''');
 
@@ -146,8 +135,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addCP(tagName = "tag name");
 
@@ -158,8 +146,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''=tag''');
 
@@ -168,8 +155,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''/test''');
 
@@ -178,8 +164,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addWithNullTitleCP(tagName = " ");
 
@@ -188,8 +173,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''%tag''');
 
@@ -198,8 +182,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''+tag''');
 
@@ -208,8 +191,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''#tag''');
 
@@ -218,8 +200,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''?tag''');
 
@@ -228,8 +209,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''"tag"''');
 
@@ -238,8 +218,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = ''';tag''');
 
@@ -248,8 +227,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addInvalidCP(tagName = '''~tag''');
 	}
@@ -262,8 +240,7 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content",
 				panel = "Site Administration",
-				portlet = "Tags"
-			);
+				portlet = "Tags");
 
 			Tag.addCP(tagName = "tag name ${n}");
 		}
@@ -273,14 +250,12 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.viewTagsCP(
 			tagName1 = "tag name 1",
 			tagName2 = "tag name 2",
-			tagName3 = "tag name 3"
-		);
+			tagName3 = "tag name 3");
 	}
 
 	@priority = "4"
@@ -288,8 +263,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addCP(tagName = "標籤名稱");
 
@@ -303,8 +277,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addCP(tagName = "tag name");
 
@@ -313,10 +286,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
-		Tag.deleteCP(deleteMethod = "From List", tagName = "tag name");
+		Tag.deleteCP(
+			deleteMethod = "From List",
+			tagName = "tag name");
 	}
 
 	@priority = "4"
@@ -326,8 +300,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addCP(tagName = "tag name");
 
@@ -336,10 +309,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
-		Tag.deleteCP(deleteMethod = "From Toolbar", tagName = "tag name");
+		Tag.deleteCP(
+			deleteMethod = "From Toolbar",
+			tagName = "tag name");
 	}
 
 	@priority = "5"
@@ -351,20 +325,20 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addCP(tagName = "tag name");
 
-		Tag.editCP(tagName = "tag name", tagNameEdit = "tag name edit");
+		Tag.editCP(
+			tagName = "tag name",
+			tagNameEdit = "tag name edit");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.viewCP(tagName = "tag name edit");
 	}
@@ -376,8 +350,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addCP(tagName = "tag name");
 
@@ -391,8 +364,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		for (var n : list "1,2,3") {
 			Tag.addCP(tagName = "tag name ${n}");
@@ -400,14 +372,12 @@ definition {
 
 		Tag.mergeTags(
 			mergeConfirmation = '''Are you sure you want to merge "tag name 1,tag name 2,tag name 3" into "tag name 2"? This will change all items tagged with "tag name 1,tag name 2,tag name 3" to instead be tagged with "tag name 2".''',
-			selectTagToMergeTo = "tag name 2"
-		);
+			selectTagToMergeTo = "tag name 2");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.viewCP(tagName = "tag name 2");
 
@@ -423,8 +393,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.addCP(tagName = "tag name");
 
@@ -440,8 +409,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		for (var n : list "1,2,3") {
 			Tag.addCP(tagName = "tag name ${n}");
@@ -452,14 +420,12 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Tags"
-		);
+			portlet = "Tags");
 
 		Tag.searchTagCP(
 			tagName1 = "tag name 1",
 			tagName2 = "tag name 2",
-			tagName3 = "tag name 3"
-		);
+			tagName3 = "tag name 3");
 	}
 
 }

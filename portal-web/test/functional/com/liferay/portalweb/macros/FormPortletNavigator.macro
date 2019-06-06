@@ -7,8 +7,7 @@ definition {
 	macro gotoSelectForm {
 		AssertClick.pauseMakeVisibleAssertTextEqualsClickAt(
 			locator1 = "FormPortlet#SELECT_FORM",
-			value1 = "Select Form"
-		);
+			value1 = "Select Form");
 
 		IFrame.selectDialogFrame();
 	}

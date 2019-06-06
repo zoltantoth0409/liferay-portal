@@ -5,8 +5,7 @@ definition {
 
 		AssertClick(
 			locator1 = "EventsListPortlet#TODAYS_EVENTS_EVENT",
-			value1 = "${eventTitle}"
-		);
+			value1 = "${eventTitle}");
 	}
 
 	macro gotoEventUpcoming {
@@ -14,15 +13,13 @@ definition {
 
 		AssertClick(
 			locator1 = "EventsListPortlet#UPCOMING_EVENTS_EVENT",
-			value1 = "${eventTitle}"
-		);
+			value1 = "${eventTitle}");
 	}
 
 	macro viewDefaultMessage {
 		AssertTextEquals(
 			locator1 = "EventsListPortlet#PORTLET_NO_EVENTS",
-			value1 = "There are no more events today."
-		);
+			value1 = "There are no more events today.");
 	}
 
 	macro viewEventTime {
@@ -34,8 +31,7 @@ definition {
 	macro viewHeader {
 		AssertTextEquals(
 			locator1 = "EventsListPortlet#PORTLET_TITLE",
-			value1 = "Events List"
-		);
+			value1 = "Events List");
 	}
 
 }

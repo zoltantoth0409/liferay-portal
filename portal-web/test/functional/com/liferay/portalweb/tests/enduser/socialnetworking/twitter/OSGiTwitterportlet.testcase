@@ -29,8 +29,7 @@ definition {
 
 		AntCommand.antCommand(
 			locator1 = "build-test.xml",
-			value1 = "remove-plugin -Dplugin.name=twitter-portlet"
-		);
+			value1 = "remove-plugin -Dplugin.name=twitter-portlet");
 	}
 
 	@priority = "5"
@@ -54,14 +53,15 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
-			portlet = "System Settings"
-		);
+			portlet = "System Settings");
 
 		SystemSettings.gotoCategory(category = "Other");
 
 		SystemSettings.editConfiguration(configurationName = "Twitter Service");
 
-		Type(locator1 = "TextInput#TWITTER", value1 = "1");
+		Type(
+			locator1 = "TextInput#TWITTER",
+			value1 = "1");
 
 		SystemSettings.saveConfiguration();
 

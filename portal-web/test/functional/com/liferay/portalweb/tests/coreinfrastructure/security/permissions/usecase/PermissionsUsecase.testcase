@@ -39,8 +39,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Message#ERROR_2",
-			value1 = "You do not have the required permissions."
-		);
+			value1 = "You do not have the required permissions.");
 
 		// Ignore following step until LPS-73530 is fixed
 
@@ -50,8 +49,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Message#ERROR",
-			value1 = "You do not have the roles required to access this portlet."
-		);
+			value1 = "You do not have the roles required to access this portlet.");
 	}
 
 }

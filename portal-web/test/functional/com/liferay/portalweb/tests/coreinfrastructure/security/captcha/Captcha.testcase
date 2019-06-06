@@ -42,15 +42,13 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
-			portlet = "Server Administration"
-		);
+			portlet = "Server Administration");
 
 		Navigator.gotoNavItem(navItem = "CAPTCHA");
 
 		ServerAdministration.enableRecaptcha(
 			privateKey = "${recaptchaPrivateKey}",
-			publicKey = "${recaptchaPublicKey}"
-		);
+			publicKey = "${recaptchaPublicKey}");
 
 		User.logoutPG();
 

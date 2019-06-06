@@ -39,8 +39,7 @@ definition {
 			currencyDataTo = "EUR",
 			currencyFrom = "USD",
 			currencyTo = "EUR",
-			currencyValue = "4"
-		);
+			currencyValue = "4");
 	}
 
 }

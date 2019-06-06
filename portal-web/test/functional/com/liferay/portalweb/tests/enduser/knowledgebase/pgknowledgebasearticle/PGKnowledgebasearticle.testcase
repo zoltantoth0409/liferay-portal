@@ -46,40 +46,34 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Knowledge Base"
-		);
+			portlet = "Knowledge Base");
 
 		KBArticle.addCP(
 			kbArticleContent = "Knowledge Base Article Content",
-			kbArticleTitle = "Knowledge Base Article Title"
-		);
+			kbArticleTitle = "Knowledge Base Article Title");
 
 		Navigator.gotoPage(pageName = "Knowledge Base Article Page");
 
 		KBArticle.selectPGViaKBArticle(
 			kbArticleTitle = "Knowledge Base Article Title",
-			pageName = "Knowledge Base Article Page"
-		);
+			pageName = "Knowledge Base Article Page");
 
 		Navigator.gotoPage(pageName = "Knowledge Base Article Page");
 
 		KBArticle.viewPG(
 			kbArticleContent = "Knowledge Base Article Content",
-			kbArticleTitle = "Knowledge Base Article Title"
-		);
+			kbArticleTitle = "Knowledge Base Article Title");
 
 		KBArticle.deletePG(
 			deleteViaKBArticle = "true",
-			kbArticleTitle = "Knowledge Base Article Title"
-		);
+			kbArticleTitle = "Knowledge Base Article Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Knowledge Base"
-		);
+			portlet = "Knowledge Base");
 
 		KBArticle.viewDefaultCP();
 	}

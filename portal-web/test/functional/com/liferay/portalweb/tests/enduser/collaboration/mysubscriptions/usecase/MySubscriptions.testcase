@@ -46,8 +46,7 @@ definition {
 		Subscriptions.viewSubscription(
 			assetName = "Bookmarks Folder",
 			assetTitle = "Home",
-			assetType = "Bookmarks Folder"
-		);
+			assetType = "Bookmarks Folder");
 
 		Subscriptions.unsubscribeViaMySubscriptions();
 

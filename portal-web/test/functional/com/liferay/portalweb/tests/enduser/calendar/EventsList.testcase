@@ -17,11 +17,15 @@ definition {
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
-		Portlet.addPG(pageName = "Calendar Page", portletName = "Calendar");
+		Portlet.addPG(
+			pageName = "Calendar Page",
+			portletName = "Calendar");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
-		Portlet.addPG(pageName = "Calendar Page", portletName = "Events List");
+		Portlet.addPG(
+			pageName = "Calendar Page",
+			portletName = "Events List");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 	}
@@ -75,8 +79,7 @@ definition {
 
 		CalendarEvent.viewDetailsInPortlet(
 			calendarName = "${siteName}",
-			eventTitle = "Repeating Event Title"
-		);
+			eventTitle = "Repeating Event Title");
 
 		var startDate = CalendarEvent.getEventStartDateViaDetails(startDate = "${startDate}");
 
@@ -86,13 +89,11 @@ definition {
 
 		CalendarEvent.viewDetailsInPortlet(
 			calendarName = "${siteName}",
-			eventTitle = "Repeating Event Title"
-		);
+			eventTitle = "Repeating Event Title");
 
 		AssertTextNotEquals(
 			locator1 = "CalendarViewEventDetails#START_DATE_FIELD",
-			value1 = "${startDate}"
-		);
+			value1 = "${startDate}");
 	}
 
 }

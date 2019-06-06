@@ -36,8 +36,7 @@ definition {
 			loanInterestRate = "10.00",
 			loanMonthlyPayment = "3,860",
 			loanTotalPaid = "926,421",
-			loanYears = "20"
-		);
+			loanYears = "20");
 	}
 
 }

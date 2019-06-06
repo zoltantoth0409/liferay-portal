@@ -23,10 +23,11 @@ definition {
 			databaseType = "Hypersonic",
 			databaseUserName = PropsUtil.get("database.hypersonic.username"),
 			jdbcDriverClassName = PropsUtil.get("database.hypersonic.driver"),
-			jdbcURL = PropsUtil.get("database.hypersonic.url")
-		);
+			jdbcURL = PropsUtil.get("database.hypersonic.url"));
 
-		Smoke.viewWelcomePage(userFirstName = "Joe", userLastName = "Bloggs");
+		Smoke.viewWelcomePage(
+			userFirstName = "Joe",
+			userLastName = "Bloggs");
 
 		Smoke.runSmoke();
 	}
@@ -47,8 +48,7 @@ definition {
 			databaseType = "Hypersonic",
 			databaseUserName = PropsUtil.get("database.hypersonic.username"),
 			jdbcDriverClassName = PropsUtil.get("database.hypersonic.driver"),
-			jdbcURL = PropsUtil.get("database.hypersonic.url")
-		);
+			jdbcURL = PropsUtil.get("database.hypersonic.url"));
 
 		Smoke.viewWelcomePage();
 
@@ -69,10 +69,11 @@ definition {
 			databaseType = "MariaDB",
 			databaseUserName = PropsUtil.get("database.mariadb.username"),
 			jdbcDriverClassName = PropsUtil.get("database.mariadb.driver"),
-			jdbcURL = PropsUtil.get("database.mariadb.url")
-		);
+			jdbcURL = PropsUtil.get("database.mariadb.url"));
 
-		Smoke.viewWelcomePage(userFirstName = "Joe", userLastName = "Bloggs");
+		Smoke.viewWelcomePage(
+			userFirstName = "Joe",
+			userLastName = "Bloggs");
 
 		Smoke.runSmoke();
 	}
@@ -92,8 +93,7 @@ definition {
 			databaseType = "MariaDB",
 			databaseUserName = PropsUtil.get("database.mariadb.username"),
 			jdbcDriverClassName = PropsUtil.get("database.mariadb.driver"),
-			jdbcURL = PropsUtil.get("database.mariadb.url")
-		);
+			jdbcURL = PropsUtil.get("database.mariadb.url"));
 
 		Smoke.viewWelcomePage();
 
@@ -115,8 +115,7 @@ definition {
 			databaseType = "MySQL",
 			databaseUserName = PropsUtil.get("database.mysql.username"),
 			jdbcDriverClassName = PropsUtil.get("database.mysql.driver"),
-			jdbcURL = PropsUtil.get("database.mysql.url")
-		);
+			jdbcURL = PropsUtil.get("database.mysql.url"));
 
 		Smoke.viewWelcomePage();
 
@@ -136,10 +135,11 @@ definition {
 			databaseType = "PostgreSQL",
 			databaseUserName = PropsUtil.get("database.postgresql.username"),
 			jdbcDriverClassName = PropsUtil.get("database.postgresql.driver"),
-			jdbcURL = PropsUtil.get("database.postgresql.url")
-		);
+			jdbcURL = PropsUtil.get("database.postgresql.url"));
 
-		Smoke.viewWelcomePage(userFirstName = "Joe", userLastName = "Bloggs");
+		Smoke.viewWelcomePage(
+			userFirstName = "Joe",
+			userLastName = "Bloggs");
 
 		Smoke.runSmoke();
 	}
@@ -159,8 +159,7 @@ definition {
 			databaseType = "PostgreSQL",
 			databaseUserName = PropsUtil.get("database.postgresql.username"),
 			jdbcDriverClassName = PropsUtil.get("database.postgresql.driver"),
-			jdbcURL = PropsUtil.get("database.postgresql.url")
-		);
+			jdbcURL = PropsUtil.get("database.postgresql.url"));
 
 		Smoke.viewWelcomePage();
 

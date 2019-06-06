@@ -16,7 +16,9 @@ definition {
 		var appName = "2-1-2 Columns Layout";
 		var portletName = "2-1-2-columns-layouttpl";
 
-		OSGiSmoke.Smoke(appName = "${portletName}", portletName = "${portletName}");
+		OSGiSmoke.Smoke(
+			appName = "${portletName}",
+			portletName = "${portletName}");
 	}
 
 }
