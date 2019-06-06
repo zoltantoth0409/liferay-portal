@@ -34,13 +34,11 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content",
 				panel = "Site Administration",
-				portlet = "Blogs"
-			);
+				portlet = "Blogs");
 
 			Blogs.addEntry(
 				entryContent = "Blogs Entry1 Content",
-				entryTitle = "Blogs Entry1 Title"
-			);
+				entryTitle = "Blogs Entry1 Title");
 		}
 
 		task ("Add a blogs entry called 'Blogs Entry2 Title' with content 'Blogs Entry2 Content'") {
@@ -49,13 +47,11 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content",
 				panel = "Site Administration",
-				portlet = "Blogs"
-			);
+				portlet = "Blogs");
 
 			Blogs.addEntry(
 				entryContent = "Blogs Entry2 Content",
-				entryTitle = "Blogs Entry2 Title"
-			);
+				entryTitle = "Blogs Entry2 Title");
 		}
 
 		task ("Add a blogs entry called 'Blogs Entry3 Title' with content 'Blogs Entry3 Content'") {
@@ -64,13 +60,11 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content",
 				panel = "Site Administration",
-				portlet = "Blogs"
-			);
+				portlet = "Blogs");
 
 			Blogs.addEntry(
 				entryContent = "Blogs Entry3 Content",
-				entryTitle = "Blogs Entry3 Title"
-			);
+				entryTitle = "Blogs Entry3 Title");
 		}
 
 		task ("Ensure blogs entry 'Blogs Entry1 Title' with content 'Blogs Entry1 Content' can be found") {
@@ -79,15 +73,13 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content",
 				panel = "Site Administration",
-				portlet = "Blogs"
-			);
+				portlet = "Blogs");
 
 			BlogsNavigator.gotoEntryCP(entryTitle = "Blogs Entry1 Title");
 
 			BlogsEntry.viewEntry(
 				entryContent = "Blogs Entry1 Content",
-				entryTitle = "Blogs Entry1 Title"
-			);
+				entryTitle = "Blogs Entry1 Title");
 		}
 
 		task ("Ensure blogs entry 'Blogs Entry2 Title' with content 'Blogs Entry2 Content' can be found") {
@@ -96,15 +88,13 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content",
 				panel = "Site Administration",
-				portlet = "Blogs"
-			);
+				portlet = "Blogs");
 
 			BlogsNavigator.gotoEntryCP(entryTitle = "Blogs Entry2 Title");
 
 			BlogsEntry.viewEntry(
 				entryContent = "Blogs Entry2 Content",
-				entryTitle = "Blogs Entry2 Title"
-			);
+				entryTitle = "Blogs Entry2 Title");
 		}
 
 		task ("Ensure blogs entry 'Blogs Entry3 Title' with content 'Blogs Entry3 Content' can be found") {
@@ -113,15 +103,13 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content",
 				panel = "Site Administration",
-				portlet = "Blogs"
-			);
+				portlet = "Blogs");
 
 			BlogsNavigator.gotoEntryCP(entryTitle = "Blogs Entry3 Title");
 
 			BlogsEntry.viewEntry(
 				entryContent = "Blogs Entry3 Content",
-				entryTitle = "Blogs Entry3 Title"
-			);
+				entryTitle = "Blogs Entry3 Title");
 		}
 	}
 
@@ -136,28 +124,24 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoEntryCP(entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 	}
 
 	@priority = "4"
@@ -167,21 +151,18 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addWithInvalidContent(
 			entryInvalidContent = "",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsEntry.viewDefaultCP(entryTitle = "Blogs Entry Title");
 	}
@@ -193,28 +174,24 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = '''& < > " Escape Characters Entry'''
-		);
+			entryTitle = '''& < > " Escape Characters Entry''');
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoEntryCP(entryTitle = '''& < > " Escape Characters Entry''');
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = '''& < > " Escape Characters Entry'''
-		);
+			entryTitle = '''& < > " Escape Characters Entry''');
 	}
 
 	@priority = "4"
@@ -224,21 +201,18 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addWithInvalidTitle(
 			entryContent = "Blogs Entry Content",
-			entryInvalidTitle = ""
-		);
+			entryInvalidTitle = "");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsEntry.viewDefaultCP(entryTitle = "");
 	}
@@ -251,13 +225,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
+			portlet = "Documents and Media");
 
 		DMDocument.addCP(
 			dmDocumentFile = "Document_1.jpg",
-			dmDocumentTitle = "Document_1.jpg"
-		);
+			dmDocumentTitle = "Document_1.jpg");
 
 		var dmDocument1URL = DMDocument.getDMLatestVersionURL(dmDocumentTitle = "Document_1.jpg");
 
@@ -266,13 +238,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
+			portlet = "Documents and Media");
 
 		DMDocument.addCP(
 			dmDocumentFile = "Document_2.jpg",
-			dmDocumentTitle = "Document_2.jpg"
-		);
+			dmDocumentTitle = "Document_2.jpg");
 
 		var dmDocument2URL = DMDocument.getDMLatestVersionURL(dmDocumentTitle = "Document_2.jpg");
 
@@ -281,38 +251,32 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoAddEntry();
 
 		BlogsEntry.addEntryContent(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.addEntryExternalLinkViaBrowseButton(
 			imageFileName = "Document_1.jpg",
-			navTab = "Documents and Media"
-		);
+			navTab = "Documents and Media");
 
 		BlogsEntry.viewEntryExternalURL(
 			entryContent = "Blogs Entry Content",
 			entryExternalURL = "${dmDocument1URL}",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.addEntryExternalLinkViaBrowseButton(
 			entryContent = "Blogs Entry Content",
 			imageFileName = "Document_2.jpg",
-			navTab = "Documents and Media"
-		);
+			navTab = "Documents and Media");
 
 		BlogsEntry.viewEntryExternalURL(
 			entryContent = "Blogs Entry Content",
 			entryExternalURL = "${dmDocument2URL}",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 	}
 
 	@priority = "4"
@@ -322,8 +286,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoAddEntry();
 
@@ -335,8 +298,7 @@ definition {
 
 		ItemSelector.addFromURL(
 			imageSourceURL = "https://dummyimage.com/600x400/000/fff.jpg",
-			navTab = "URL"
-		);
+			navTab = "URL");
 
 		Pause(locator1 = "1000");
 
@@ -347,19 +309,15 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoEntryCP(entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
-		BlogsEntry.viewInlineImage(
-			uploadFileName = "https://dummyimage.com/600x400/000/fff.jpg"
-		);
+		BlogsEntry.viewInlineImage(uploadFileName = "https://dummyimage.com/600x400/000/fff.jpg");
 	}
 
 	@priority = "4"
@@ -369,30 +327,26 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntry(
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoEntryCP(entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 	}
 
 	@priority = "5"
@@ -402,8 +356,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		LexiconEntry.gotoAdd();
 
@@ -411,14 +364,12 @@ definition {
 
 		ItemSelector.uploadFile(
 			navTab = "Upload Image",
-			uploadFileName = "Document_1.jpg"
-		);
+			uploadFileName = "Document_1.jpg");
 
 		BlogsEntry.addEntryContent(
 			entryContent = '''A World-Renowned Professor<br />It's no secret that Agricultural Science Department professor Dr. Wolfgang von Richter has built his entire career on solving the problem of sustainable living on other planets. For Dr. von Richter, the humble lima bean, which comes from the aptly-named phaseolus lunatus plant of the legume family, is the solution. For years, Dr. von Richter has cultivated variety after variety of lima bean. He's turned lima beans cobalt blue by adding the hardiness of a violet gene; he's grown lima beans the size of fists with his nutrient-rich, hyper-growth soil. But how realistic is his dream of getting lima beans to grow in the harsh, unpredictable, and, frankly, otherworldly conditions of different planets?''',
 			entrySubtitle = "A conversation with Dr. Von Richter",
-			entryTitle = "Is the Lima Bean Really the Answer to Our Life on Other Planets?"
-		);
+			entryTitle = "Is the Lima Bean Really the Answer to Our Life on Other Planets?");
 
 		BlogsEntry.selectFormattingStyle(styleFormat = "Heading 2");
 
@@ -434,8 +385,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoAddEntry();
 
@@ -452,8 +402,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoEntryCP(entryTitle = "CKEditor Entry Title");
 
@@ -472,13 +421,11 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content",
 				panel = "Site Administration",
-				portlet = "Blogs"
-			);
+				portlet = "Blogs");
 
 			Blogs.addEntry(
 				entryContent = "Blogs Entry${entryCount} Content",
-				entryTitle = "Blogs Entry${entryCount} Title"
-			);
+				entryTitle = "Blogs Entry${entryCount} Title");
 		}
 
 		for (var entryCount : list "1,2,3") {
@@ -487,18 +434,15 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content",
 				panel = "Site Administration",
-				portlet = "Blogs"
-			);
+				portlet = "Blogs");
 
 			BlogsNavigator.gotoEntryCP(
 				entryContent = "Blogs Entry${entryCount} Content",
-				entryTitle = "Blogs Entry${entryCount} Title"
-			);
+				entryTitle = "Blogs Entry${entryCount} Title");
 
 			BlogsEntry.viewEntry(
 				entryContent = "Blogs Entry${entryCount} Content",
-				entryTitle = "Blogs Entry${entryCount} Title"
-			);
+				entryTitle = "Blogs Entry${entryCount} Title");
 		}
 
 		for (var entryCount : list "1,2,3") {
@@ -507,13 +451,11 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content",
 				panel = "Site Administration",
-				portlet = "Blogs"
-			);
+				portlet = "Blogs");
 
 			BlogsNavigator.moveToRecycleBinCP(
 				assetType = "Blogs Entry",
-				entryTitle = "Blogs Entry${entryCount} Title"
-			);
+				entryTitle = "Blogs Entry${entryCount} Title");
 		}
 
 		Navigator.openURL();
@@ -521,8 +463,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		for (var entryCount : list "1,2,3") {
 			BlogsEntry.viewNoCP(entryTitle = "Blogs Entry${entryCount} Title");
@@ -536,44 +477,38 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addDraft(
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.publishDraftCP(
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoEntryCP(entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 	}
 
 	@priority = "4"
@@ -583,33 +518,28 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addDraft(
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoEntryCP(
 			entryStatus = "Draft",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 	}
 
 	@priority = "4"
@@ -619,33 +549,28 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addDraftViaAutoSave(
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoEntryCP(
 			entryStatus = "Draft",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 	}
 
 	@priority = "4"
@@ -655,53 +580,45 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
 		BlogsEntry.searchCP(
 			entryContent = "Blogs Entry Content",
 			entrySearchTerm = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.searchCP(
 			entryContent = "Blogs Entry Content",
 			entrySearchTerm = "Blogs",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.searchCP(
 			entryContent = "Blogs Entry Content",
 			entrySearchTerm = "Entry",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.searchCP(
 			entryContent = "Blogs Entry Content",
 			entrySearchTerm = "Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.searchNoCP(
 			entryContent = "Blogs Entry Content",
 			entrySearchTerm = "Blogs1 Entry1 Content1",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 	}
 
 	@priority = "4"
@@ -711,53 +628,45 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
 		BlogsEntry.searchCP(
 			entryContent = "Blogs Entry Content",
 			entrySearchTerm = "Blogs Entry Title",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.searchCP(
 			entryContent = "Blogs Entry Content",
 			entrySearchTerm = "Blogs",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.searchCP(
 			entryContent = "Blogs Entry Content",
 			entrySearchTerm = "Entry",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.searchCP(
 			entryContent = "Blogs Entry Content",
 			entrySearchTerm = "Title",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.searchNoCP(
 			entryContent = "Blogs Entry Content",
 			entrySearchTerm = "Blogs1 Entry1 Title1",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 	}
 
 	@priority = "3"
@@ -767,8 +676,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntryWithUploadedCoverImage(
 			coverImageName = "Document_1",
@@ -776,8 +684,7 @@ definition {
 			entrySubtitle = "Blogs Entry Subtitle",
 			entryTitle = "Blogs Entry Title",
 			navTab = "Upload Image",
-			uploadFileName = "Document_1.jpg"
-		);
+			uploadFileName = "Document_1.jpg");
 
 		Button.clickPublish();
 
@@ -789,8 +696,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
 			entryTitle = "Blogs Entry Title",
-			uploadFileName = "Document_1"
-		);
+			uploadFileName = "Document_1");
 
 		BlogsNavigator.gotoBrowseImage();
 
@@ -804,8 +710,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntryWithUploadedCoverImage(
 			coverImageName = "Document_1",
@@ -813,8 +718,7 @@ definition {
 			entrySubtitle = "Blogs Entry Subtitle",
 			entryTitle = "Blogs Entry Title",
 			navTab = "Documents and Media",
-			uploadFileName = "Document_1.jpg"
-		);
+			uploadFileName = "Document_1.jpg");
 
 		Button.clickPublish();
 
@@ -826,8 +730,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
 			entryTitle = "Blogs Entry Title",
-			uploadFileName = "Document_1"
-		);
+			uploadFileName = "Document_1");
 
 		BlogsNavigator.gotoBrowseImage();
 
@@ -841,8 +744,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntryWithUploadedCoverImage(
 			coverImageName = "Document_1",
@@ -850,8 +752,7 @@ definition {
 			entrySubtitle = "Blogs Entry Subtitle",
 			entryTitle = "Blogs Entry Title",
 			navTab = "Upload Image",
-			uploadFileName = "Document_1.jpg"
-		);
+			uploadFileName = "Document_1.jpg");
 
 		Pause(locator1 = "1000");
 
@@ -865,13 +766,11 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE",
-			value1 = "Blogs Entry Title"
-		);
+			value1 = "Blogs Entry Title");
 
 		AssertTextEquals(
 			locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_STATUS",
-			value1 = "Draft"
-		);
+			value1 = "Draft");
 
 		BlogsNavigator.gotoEntryCP(entryTitle = "Blogs Entry Title");
 
@@ -879,8 +778,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
 			entryTitle = "Blogs Entry Title",
-			uploadFileName = "Document_1"
-		);
+			uploadFileName = "Document_1");
 	}
 
 	@priority = "3"
@@ -890,8 +788,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntryWithUploadedCoverImage(
 			coverImageName = "Document_1",
@@ -899,8 +796,7 @@ definition {
 			entrySubtitle = "Blogs Entry Subtitle",
 			entryTitle = "Blogs Entry Title",
 			navTab = "Upload Image",
-			uploadFileName = "Document_1.jpg"
-		);
+			uploadFileName = "Document_1.jpg");
 
 		Button.clickPublish();
 
@@ -912,8 +808,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entrySubtitle = "Blogs Entry Subtitle",
 			entryTitle = "Blogs Entry Title",
-			uploadFileName = "Document_1"
-		);
+			uploadFileName = "Document_1");
 
 		BlogsNavigator.gotoBrowseImage();
 
@@ -924,8 +819,7 @@ definition {
 			imageStatus = "approved",
 			lastModifiedBy = "Test Test",
 			uploadFileName = "Document_1.jpg",
-			versionNumber = "1.0"
-		);
+			versionNumber = "1.0");
 	}
 
 	@priority = "4"
@@ -935,8 +829,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoAddEntry();
 
@@ -944,16 +837,19 @@ definition {
 
 		Click(locator1 = "Radio#CUSTOM_ABSTRACT");
 
-		AssertClick.assertTextClickAt(locator1 = "Button#PUBLISH", value1 = "Publish");
+		AssertClick.assertTextClickAt(
+			locator1 = "Button#PUBLISH",
+			value1 = "Publish");
 
 		AssertTextEquals(
 			locator1 = "BlogsEntry#TITLE_FIELD_HELPER",
-			value1 = "This field is required to publish the entry."
-		);
+			value1 = "This field is required to publish the entry.");
 
 		BlogsEntry.addTitle(entryTitle = "Blogs Title");
 
-		AssertClick.assertTextClickAt(locator1 = "Button#PUBLISH", value1 = "Publish");
+		AssertClick.assertTextClickAt(
+			locator1 = "Button#PUBLISH",
+			value1 = "Publish");
 
 		Alert.viewRequiredField();
 	}

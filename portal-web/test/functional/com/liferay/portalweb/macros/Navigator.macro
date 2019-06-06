@@ -7,8 +7,7 @@ definition {
 		while ((!("${count}" == "3")) && (IsElementNotPresent(locator1 = "Home#PAGE_ACTIVE"))) {
 			AssertClick.assertPartialTextClickAt(
 				locator1 = "Home#PAGE",
-				value1 = "${pageName}"
-			);
+				value1 = "${pageName}");
 
 			var count = MathUtil.sum("${count}", "1");
 		}
@@ -47,9 +46,7 @@ definition {
 
 			var portalURL = PropsUtil.get("portal.url");
 
-			Navigator.openSpecificURL(
-				url = StringUtil.replace("${currentURL}", "${portalURL}", "${portalURL}/${locale}")
-			);
+			Navigator.openSpecificURL(url = StringUtil.replace("${currentURL}", "${portalURL}", "${portalURL}/${locale}"));
 		}
 	}
 
@@ -66,17 +63,23 @@ definition {
 	macro gotoEditPageViaControlMenu {
 		Click(locator1 = "ControlMenu#EDIT_COG");
 
-		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "${pageName}");
+		AssertTextEquals(
+			locator1 = "Portlet#HEADER",
+			value1 = "${pageName}");
 	}
 
 	macro gotoLoginPage {
-		AssertClick(locator1 = "UserBar#USER_SIGN_IN", value1 = "Sign In");
+		AssertClick(
+			locator1 = "UserBar#USER_SIGN_IN",
+			value1 = "Sign In");
 	}
 
 	macro gotoNavItem {
 		var key_navItem = "${navItem}";
 
-		AssertClick(locator1 = "NavBar#NAV_ITEM_LINK", value1 = "${navItem}");
+		AssertClick(
+			locator1 = "NavBar#NAV_ITEM_LINK",
+			value1 = "${navItem}");
 
 		AssertElementPresent(locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
 	}
@@ -86,8 +89,7 @@ definition {
 
 		AssertClick.assertPartialTextClickAt(
 			locator1 = "NavNested#NAV_NESTED_LINK",
-			value1 = "${navNested}"
-		);
+			value1 = "${navNested}");
 
 		AssertElementPresent(locator1 = "NavNested#ACTIVE_NAV_NESTED_LINK");
 	}
@@ -97,8 +99,7 @@ definition {
 
 		AssertClick.assertPartialTextClickAt(
 			locator1 = "NavTab#TAB_LINK",
-			value1 = "${navTab}"
-		);
+			value1 = "${navTab}");
 
 		AssertElementPresent(locator1 = "NavTab#ACTIVE_TAB_LINK");
 	}
@@ -108,8 +109,7 @@ definition {
 
 		AssertClick(
 			locator1 = "NavUnderline#NAV_UNDERLINE_LINK",
-			value1 = "${navUnderline}"
-		);
+			value1 = "${navUnderline}");
 
 		AssertElementPresent(locator1 = "NavUnderline#ACTIVE_NAV_UNDERLINE_LINK");
 	}
@@ -124,7 +124,9 @@ definition {
 	}
 
 	macro gotoPrivateSitePage {
-		Navigator.openPrivateSiteURL(baseURL = "${baseURL}", siteName = "${siteName}");
+		Navigator.openPrivateSiteURL(
+			baseURL = "${baseURL}",
+			siteName = "${siteName}");
 
 		Navigator._gotoPage(pageName = "${pageName}");
 	}
@@ -133,8 +135,7 @@ definition {
 	macro gotoPrivateStagedSitePage {
 		Navigator.openPrivateStagedSiteURL(
 			baseURL = "${baseURL}",
-			siteNameURL = "${siteName}"
-		);
+			siteNameURL = "${siteName}");
 
 		Navigator._gotoPage(pageName = "${pageName}");
 	}
@@ -146,7 +147,9 @@ definition {
 	}
 
 	macro gotoSitePage {
-		Navigator.openSiteURL(baseURL = "${baseURL}", siteName = "${siteName}");
+		Navigator.openSiteURL(
+			baseURL = "${baseURL}",
+			siteName = "${siteName}");
 
 		Navigator._gotoPage(pageName = "${pageName}");
 	}
@@ -159,7 +162,9 @@ definition {
 
 	@summary = "Navigate to the page named '${pageName}'"
 	macro gotoStagedSitePage {
-		Navigator.openStagingSiteURL(baseURL = "${baseURL}", siteName = "${siteName}");
+		Navigator.openStagingSiteURL(
+			baseURL = "${baseURL}",
+			siteName = "${siteName}");
 
 		Navigator._gotoPage(pageName = "${pageName}");
 	}

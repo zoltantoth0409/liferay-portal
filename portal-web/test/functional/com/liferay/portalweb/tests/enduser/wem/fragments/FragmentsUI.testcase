@@ -24,22 +24,19 @@ definition {
 
 		Type.typeAceEditorNoError(
 			locator1 = "FragmentEditor#HTML_EDITOR",
-			value1 = "${htmlSnippet}"
-		);
+			value1 = "${htmlSnippet}");
 
 		var cssSnippet = TestCase.getFileContent(fileName = "fragment_button.css");
 
 		Type.typeAceEditorNoError(
 			locator1 = "FragmentEditor#CSS_EDITOR",
-			value1 = "${cssSnippet}"
-		);
+			value1 = "${cssSnippet}");
 
 		var javascriptSnippet = TestCase.getFileContent(fileName = "fragment_button.js");
 
 		Type.typeAceEditorNoError(
 			locator1 = "FragmentEditor#JAVASCRIPT_EDITOR",
-			value1 = "${javascriptSnippet}"
-		);
+			value1 = "${javascriptSnippet}");
 	}
 
 	tearDown {
@@ -69,32 +66,29 @@ definition {
 
 		PageEditor.addFragment(
 			collectionName = "Collection Name",
-			fragmentName = "Fragment Name"
-		);
+			fragmentName = "Fragment Name");
 
-		Navigator.openWithAppendToBaseURL(
-			urlAppend = "web/test-site-name/test-content-page-name"
-		);
+		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/test-content-page-name");
 
 		AssertVisible(
-			locator1 = "Fragment#FRAGMENT",
 			key_content = "Submit",
 			key_fragmentClass = "footer",
-			key_position = "1"
-		);
+			key_position = "1",
+			locator1 = "Fragment#FRAGMENT");
 
 		AssertVisible(
-			locator1 = "Fragment#FRAGMENT",
 			key_content = "Cancel",
 			key_fragmentClass = "footer",
-			key_position = "1"
-		);
+			key_position = "1",
+			locator1 = "Fragment#FRAGMENT");
 
 		AssertElementPresent(locator1 = "Button#SUBMIT");
 
 		AssertElementPresent(locator1 = "Button#CANCEL");
 
-		AssertClickNoError(locator1 = "Button#SUBMIT", value1 = "Submit");
+		AssertClickNoError(
+			locator1 = "Button#SUBMIT",
+			value1 = "Submit");
 
 		AssertConfirm(value1 = "Form submitted");
 	}
@@ -113,27 +107,23 @@ definition {
 
 		Type.typeAceEditorNoError(
 			locator1 = "FragmentEditor#HTML_EDITOR",
-			value1 = "${htmlSnippet}"
-		);
+			value1 = "${htmlSnippet}");
 
 		var cssSnippet = TestCase.getFileContent(fileName = "fragment_title.css");
 
 		Type.typeAceEditorNoError(
 			locator1 = "FragmentEditor#CSS_EDITOR",
-			value1 = "${cssSnippet}"
-		);
+			value1 = "${cssSnippet}");
 
 		Type.typeAceEditorNoError(
 			locator1 = "FragmentEditor#JAVASCRIPT_EDITOR",
-			value1 = ""
-		);
+			value1 = "");
 
 		SelectFrame(locator1 = "FragmentEditor#PREVIEW_IFRAME");
 
 		AssertTextEquals(
 			locator1 = "//div[@class='fragment-header']/h1[@class='title']",
-			value1 = "LOREM IPSUM DOLOR SIT AMET"
-		);
+			value1 = "LOREM IPSUM DOLOR SIT AMET");
 
 		SelectFrameTop();
 
@@ -145,8 +135,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "//div[@class='fragment-header']/h1[@class='title']",
-			value1 = "LOREM IPSUM DOLOR SIT AMET"
-		);
+			value1 = "LOREM IPSUM DOLOR SIT AMET");
 
 		SelectFrameTop();
 	}
@@ -162,7 +151,9 @@ definition {
 
 		AssertElementPresent(locator1 = "Button#CANCEL");
 
-		AssertClickNoError(locator1 = "Button#SUBMIT", value1 = "Submit");
+		AssertClickNoError(
+			locator1 = "Button#SUBMIT",
+			value1 = "Submit");
 
 		AssertConfirm(value1 = "Form submitted");
 

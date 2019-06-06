@@ -15,8 +15,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLDataDefinition.addCP();
 
@@ -35,8 +34,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLList.addCP();
 
@@ -49,8 +47,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 	}
 
 	tearDown {
@@ -77,26 +74,22 @@ definition {
 
 		DDLRecord.populateFieldText(
 			ddlRecordFieldData = "pt-BR Categoria",
-			fieldName = "Categoria"
-		);
+			fieldName = "Categoria");
 
 		DDLRecord.populateFieldText(
 			ddlRecordFieldData = "pt-BR Pergunta",
-			fieldName = "Pergunta"
-		);
+			fieldName = "Pergunta");
 
 		for (var language : list "es-ES,en-US") {
 			PortletEntry.changeLocale(locale = "${language}");
 
 			DDLRecord.populateFieldText(
 				ddlRecordFieldData = "${language} Categoria",
-				fieldName = "Categoria"
-			);
+				fieldName = "Categoria");
 
 			DDLRecord.populateFieldText(
 				ddlRecordFieldData = "${language} Pergunta",
-				fieldName = "Pergunta"
-			);
+				fieldName = "Pergunta");
 		}
 
 		for (var language : list "pt-BR,en-US,es-ES,") {
@@ -104,13 +97,11 @@ definition {
 
 			FormFields.viewTextValue(
 				fieldName = "Categoria",
-				fieldValue = "${language} Categoria"
-			);
+				fieldValue = "${language} Categoria");
 
 			FormFields.viewTextValue(
 				fieldName = "Pergunta",
-				fieldValue = "${language} Pergunta"
-			);
+				fieldValue = "${language} Pergunta");
 		}
 	}
 

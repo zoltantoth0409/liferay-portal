@@ -19,9 +19,8 @@ definition {
 		}
 
 		AssertElementPresent(
-			locator1 = "ManagementBar#ORDER_ICON_SPECIFIC",
-			key_order = "${order}"
-		);
+			key_order = "${order}",
+			locator1 = "ManagementBar#ORDER_ICON_SPECIFIC");
 	}
 
 }

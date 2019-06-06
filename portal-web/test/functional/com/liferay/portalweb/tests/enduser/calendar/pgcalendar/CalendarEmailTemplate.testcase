@@ -16,24 +16,23 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(
 			pageName = "Calendar Page",
-			sitePageType = "Widget Page"
-		);
+			sitePageType = "Widget Page");
 
 		SitePages.configurePage(
 			columnName = "1 Column",
 			pageName = "Calendar Page",
 			privacy = "Public Pages",
-			sitePageType = "Widget Page"
-		);
+			sitePageType = "Widget Page");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
-		Portlet.addPG(pageName = "Calendar Page", portletName = "Calendar");
+		Portlet.addPG(
+			pageName = "Calendar Page",
+			portletName = "Calendar");
 	}
 
 	tearDown {
@@ -65,8 +64,7 @@ definition {
 
 		Calendar.add(
 			calendarName = "Calendar Resource Name",
-			calendarType = "Other Calendars"
-		);
+			calendarType = "Other Calendars");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -75,15 +73,13 @@ definition {
 			calendarType = "Other Calendars",
 			fromAddressEdit = "testedit@liferay.com",
 			fromNameEdit = "Calendar Resource Name Edit",
-			inviteEmail = "true"
-		);
+			inviteEmail = "true");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
 		Calendar.view(
 			calendarName = "Calendar Resource Name",
-			calendarType = "Other Calendars"
-		);
+			calendarType = "Other Calendars");
 	}
 
 	@priority = "4"
@@ -95,8 +91,7 @@ definition {
 		Calendar.add(
 			calendarName = "Site Calendar Name",
 			calendarType = "Current Site Calendars",
-			site = "${siteName}"
-		);
+			site = "${siteName}");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -106,16 +101,14 @@ definition {
 			fromAddressEdit = "testedit@liferay.com",
 			fromNameEdit = "Site Calendar Name Edit",
 			inviteEmail = "true",
-			site = "${siteName}"
-		);
+			site = "${siteName}");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
 		Calendar.view(
 			calendarName = "Site Calendar Name",
 			calendarType = "Current Site Calendars",
-			site = "${siteName}"
-		);
+			site = "${siteName}");
 	}
 
 	@priority = "3"
@@ -123,8 +116,7 @@ definition {
 		Calendar.add(
 			calendarName = "My Calendar Name",
 			calendarType = "My Calendars",
-			user = "Test Test"
-		);
+			user = "Test Test");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -134,16 +126,14 @@ definition {
 			fromAddressEdit = "testedit@liferay.com",
 			fromNameEdit = "My Calendar Name Edit",
 			inviteEmail = "true",
-			user = "Test Test"
-		);
+			user = "Test Test");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
 		Calendar.view(
 			calendarName = "My Calendar Name",
 			calendarType = "My Calendars",
-			user = "Test Test"
-		);
+			user = "Test Test");
 	}
 
 	@priority = "3"
@@ -151,19 +141,19 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
 		User.addCP(
 			userEmailAddress = "userea@liferay.com",
 			userFirstName = "userfn",
 			userLastName = "userln",
-			userScreenName = "usersn"
-		);
+			userScreenName = "usersn");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
-		Calendar.add(calendarName = "userfn userln", calendarType = "Other Calendars");
+		Calendar.add(
+			calendarName = "userfn userln",
+			calendarType = "Other Calendars");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -172,12 +162,13 @@ definition {
 			calendarType = "Other Calendars",
 			fromAddressEdit = "testedit@liferay.com",
 			fromNameEdit = "Calendar Resource Name Edit",
-			inviteEmail = "true"
-		);
+			inviteEmail = "true");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
-		Calendar.view(calendarName = "userfn userln", calendarType = "Other Calendars");
+		Calendar.view(
+			calendarName = "userfn userln",
+			calendarType = "Other Calendars");
 	}
 
 	@priority = "3"
@@ -188,8 +179,7 @@ definition {
 
 		Calendar.add(
 			calendarName = "Calendar Resource Name",
-			calendarType = "Other Calendars"
-		);
+			calendarType = "Other Calendars");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -198,15 +188,13 @@ definition {
 			calendarType = "Other Calendars",
 			fromAddressEdit = "testedit@liferay.com",
 			fromNameEdit = "Calendar Resource Name Edit",
-			reminderEmail = "true"
-		);
+			reminderEmail = "true");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
 		Calendar.view(
 			calendarName = "Calendar Resource Name",
-			calendarType = "Other Calendars"
-		);
+			calendarType = "Other Calendars");
 	}
 
 	@priority = "4"
@@ -218,8 +206,7 @@ definition {
 		Calendar.add(
 			calendarName = "Site Calendar Name",
 			calendarType = "Current Site Calendars",
-			site = "${siteName}"
-		);
+			site = "${siteName}");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -229,16 +216,14 @@ definition {
 			fromAddressEdit = "testedit@liferay.com",
 			fromNameEdit = "Site Calendar Name Edit",
 			reminderEmail = "true",
-			site = "${siteName}"
-		);
+			site = "${siteName}");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
 		Calendar.view(
 			calendarName = "Site Calendar Name",
 			calendarType = "Current Site Calendars",
-			site = "${siteName}"
-		);
+			site = "${siteName}");
 	}
 
 	@priority = "3"
@@ -246,8 +231,7 @@ definition {
 		Calendar.add(
 			calendarName = "My Calendar Name",
 			calendarType = "My Calendars",
-			user = "Test Test"
-		);
+			user = "Test Test");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -257,16 +241,14 @@ definition {
 			fromAddressEdit = "testedit@liferay.com",
 			fromNameEdit = "My Calendar Name Edit",
 			reminderEmail = "true",
-			user = "Test Test"
-		);
+			user = "Test Test");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
 		Calendar.view(
 			calendarName = "My Calendar Name",
 			calendarType = "My Calendars",
-			user = "Test Test"
-		);
+			user = "Test Test");
 	}
 
 	@priority = "3"
@@ -274,19 +256,19 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
+			portlet = "Users and Organizations");
 
 		User.addCP(
 			userEmailAddress = "userea@liferay.com",
 			userFirstName = "userfn",
 			userLastName = "userln",
-			userScreenName = "usersn"
-		);
+			userScreenName = "usersn");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
-		Calendar.add(calendarName = "userfn userln", calendarType = "Other Calendars");
+		Calendar.add(
+			calendarName = "userfn userln",
+			calendarType = "Other Calendars");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
@@ -295,12 +277,13 @@ definition {
 			calendarType = "Other Calendars",
 			fromAddressEdit = "testedit@liferay.com",
 			fromNameEdit = "Calendar Resource Name Edit",
-			reminderEmail = "true"
-		);
+			reminderEmail = "true");
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
-		Calendar.view(calendarName = "userfn userln", calendarType = "Other Calendars");
+		Calendar.view(
+			calendarName = "userfn userln",
+			calendarType = "Other Calendars");
 	}
 
 }

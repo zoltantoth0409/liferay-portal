@@ -36,16 +36,14 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Page for Linux");
 
@@ -56,57 +54,49 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Mobile Device Families"
-		);
+			portlet = "Mobile Device Families");
 
 		MobileDevice.addDeviceFamilyCP(deviceFamilyName = "Linux Family Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Mobile Device Families"
-		);
+			portlet = "Mobile Device Families");
 
 		MobileDevice.addClassificationRuleCP(
 			classificationName = "Classification Name",
 			deviceType = "Any",
 			mobileDeviceFamilyName = "Linux Family Name",
-			ruleOSScope = "Linux"
-		);
+			ruleOSScope = "Linux");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Mobile Device Families"
-		);
+			portlet = "Mobile Device Families");
 
 		MobileDevice.addDeviceFamilyCP(deviceFamilyName = "Windows Device Family Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
-			portlet = "Mobile Device Families"
-		);
+			portlet = "Mobile Device Families");
 
 		MobileDevice.addClassificationRuleCP(
 			classificationName = "Classification Name",
 			deviceType = "Any",
 			mobileDeviceFamilyName = "Windows Device Family Name",
-			ruleOSScope = "Windows"
-		);
+			ruleOSScope = "Windows");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Mobile Device Family Test Page");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
-			pageName = "Mobile Device Family Test Page"
-		);
+			pageName = "Mobile Device Family Test Page");
 
 		Navigator.gotoNavTab(navTab = "Advanced");
 
@@ -118,16 +108,14 @@ definition {
 
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Permissions",
-			rowEntry = "Linux Family Name"
-		);
+			rowEntry = "Linux Family Name");
 
 		IFrame.selectPermissionsFrame();
 
 		Role.viewPermissionPG(
 			permissionDefinitionKey = "CONTENT_PERMISSIONS_VIEW_CHECKBOX",
 			permissionFlagged = "true",
-			roleTitle = "Owner"
-		);
+			roleTitle = "Owner");
 
 		IFrame.closeFrame();
 
@@ -136,8 +124,7 @@ definition {
 			actionType = "Redirect to Site",
 			deviceFamilyName = "Linux Family Name",
 			pageName = "Page for Linux",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 
 		Refresh();
 
@@ -148,8 +135,7 @@ definition {
 			actionType = "Redirect to Site",
 			deviceFamilyName = "Windows Device Family Name",
 			pageName = "Page for Windows",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 
 		PortletEntry.save();
 
@@ -157,8 +143,7 @@ definition {
 
 		MobileDevice.assertRedirectActionPG(
 			pageName = "Mobile Device Family Test Page",
-			redirectPageName = "Page for Linux"
-		);
+			redirectPageName = "Page for Linux");
 	}
 
 }

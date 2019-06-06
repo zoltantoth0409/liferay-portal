@@ -21,18 +21,15 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
 			panel = "Site Administration",
-			portlet = "Staging"
-		);
+			portlet = "Staging");
 
 		Staging.activateStagingCP(
 			pageVersioningEnabled = "true",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Staging Test Page",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 	}
 
 	tearDown {
@@ -50,8 +47,7 @@ definition {
 	test AddEventRepeatDaily {
 		Staging.addEventRepeatDaily(
 			scheduleTitleName = "Event Daily Name",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 	}
 
 	@priority = "5"
@@ -64,8 +60,7 @@ definition {
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Staging Test Page",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 
 		Staging.viewPageVariationPG(pageVariationName = "Page Variation Name");
 
@@ -74,18 +69,15 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
-			pageName = "Staging Test Page"
-		);
+			pageName = "Staging Test Page");
 
 		Page.addFriendlyURLLocalizedPG(
 			friendlyUrlLocalized = "de-DE",
-			localizedFriendlyURL = "/german"
-		);
+			localizedFriendlyURL = "/german");
 
 		PortletEntry.inputName(name = "German Staging Test Page");
 
@@ -94,15 +86,15 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Configure",
-			pageName = "Staging Test Page"
-		);
+			pageName = "Staging Test Page");
 
-		Page.viewPageFriendlyURLPG(friendlyUrlLocalized = "de_DE", pageName = "german");
+		Page.viewPageFriendlyURLPG(
+			friendlyUrlLocalized = "de_DE",
+			pageName = "german");
 	}
 
 	@priority = "5"
@@ -114,15 +106,13 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Staging Page Versioning");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Staging Page Versioning",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 
 		Portlet.addPG(portletName = "Hello World");
 
@@ -138,26 +128,20 @@ definition {
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Staging Page Versioning",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 
 		Portlet.viewSpecificPG(portletName = "Hello World");
 	}
 
 	@priority = "5"
 	test AddSitePagesVariation {
-		Staging.addSitePagesVariationPG(
-			sitePagesVariationName = "Site Pages Variation Name"
-		);
+		Staging.addSitePagesVariationPG(sitePagesVariationName = "Site Pages Variation Name");
 
 		Navigator.gotoStagedSitePage(
 			pageName = "Staging Test Page",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 
-		Staging.viewSitePagesVariationPG(
-			sitePagesVariationName = "Site Pages Variation Name"
-		);
+		Staging.viewSitePagesVariationPG(sitePagesVariationName = "Site Pages Variation Name");
 	}
 
 }

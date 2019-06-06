@@ -6,8 +6,7 @@ definition {
 		if ((IsElementPresent(locator1 = "Panel#PANEL_COLLAPSED")) && (IsVisible(locator1 = "Panel#PANEL_COLLAPSED"))) {
 			AssertClick(
 				locator1 = "Panel#PANEL_COLLAPSED",
-				value1 = "${panel}"
-			);
+				value1 = "${panel}");
 		}
 
 		AssertElementPresent(locator1 = "Panel#PANEL_EXPANDED");
@@ -17,12 +16,9 @@ definition {
 		if ((IsElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_APPLICATIONS_PANEL_COLLAPSED")) && (IsVisible(locator1 = "ControlMenuAddPanel#SIDEBAR_APPLICATIONS_PANEL_COLLAPSED"))) {
 			AssertClick(
 				locator1 = "ControlMenuAddPanel#SIDEBAR_APPLICATIONS_PANEL_COLLAPSED",
-				value1 = "Widgets"
-			);
+				value1 = "Widgets");
 
-			AssertElementPresent(
-				locator1 = "ControlMenuAddPanel#SIDEBAR_APPLICATIONS_PANEL_EXPANDED"
-			);
+			AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_APPLICATIONS_PANEL_EXPANDED");
 		}
 	}
 
@@ -30,12 +26,9 @@ definition {
 		if ((IsElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_CONTENT_PANEL_COLLAPSED")) && (IsVisible(locator1 = "ControlMenuAddPanel#SIDEBAR_CONTENT_PANEL_COLLAPSED"))) {
 			AssertClick(
 				locator1 = "ControlMenuAddPanel#SIDEBAR_CONTENT_PANEL_COLLAPSED",
-				value1 = "Content"
-			);
+				value1 = "Content");
 
-			AssertElementPresent(
-				locator1 = "ControlMenuAddPanel#SIDEBAR_CONTENT_PANEL_EXPANDED"
-			);
+			AssertElementPresent(locator1 = "ControlMenuAddPanel#SIDEBAR_CONTENT_PANEL_EXPANDED");
 		}
 	}
 

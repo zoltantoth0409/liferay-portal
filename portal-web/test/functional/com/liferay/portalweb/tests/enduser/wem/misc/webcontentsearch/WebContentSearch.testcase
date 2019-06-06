@@ -18,8 +18,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Web Content Search Page");
 
@@ -52,8 +51,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Web Content Display Page");
 
@@ -63,8 +61,7 @@ definition {
 
 		WebContent.addPGViaWCD(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
@@ -74,43 +71,37 @@ definition {
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "WC WebContent Content");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "WC");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "WebContent");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "Title");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "Content");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "WC1");
 
@@ -138,21 +129,18 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Categorization",
 			panel = "Site Administration",
-			portlet = "Categories"
-		);
+			portlet = "Categories");
 
 		Vocabulary.addCP(vocabularyName = "Vocabulary Name");
 
 		Category.addCP(
 			categoryName = "Category Name",
-			vocabularyName = "Vocabulary Name"
-		);
+			vocabularyName = "Vocabulary Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Web Content Display Page");
 
@@ -162,8 +150,7 @@ definition {
 
 		WebContent.addPGViaWCD(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
@@ -171,13 +158,11 @@ definition {
 
 		WebContentNavigator.gotoEditPGViaWCD(
 			menuItem = "Edit Web Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContent.selectCategory(
 			categoryName = "Category Name",
-			vocabularyName = "Vocabulary Name"
-		);
+			vocabularyName = "Vocabulary Name");
 
 		Button.clickPublish();
 
@@ -187,22 +172,19 @@ definition {
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "Category");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "Name");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "Category1");
 
@@ -222,21 +204,18 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Categorization",
 			panel = "Site Administration",
-			portlet = "Categories"
-		);
+			portlet = "Categories");
 
 		Vocabulary.addCP(vocabularyName = "Vocabulary Name");
 
 		Category.addCP(
 			categoryName = "Category Name",
-			vocabularyName = "Vocabulary Name"
-		);
+			vocabularyName = "Vocabulary Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Web Content Display Page");
 
@@ -246,8 +225,7 @@ definition {
 
 		WebContent.addPGViaWCD(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
@@ -255,52 +233,41 @@ definition {
 
 		WebContentNavigator.gotoEditPGViaWCD(
 			menuItem = "Edit Web Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContent.selectCategory(
 			categoryName = "Category Name",
-			vocabularyName = "Vocabulary Name"
-		);
+			vocabularyName = "Vocabulary Name");
 
 		Button.clickPublish();
 
 		Navigator.gotoPage(pageName = "Web Content Search Page");
 
-		WebContentSearchPortlet.search(
-			webContentSearchTerm = "&quot;Category Name&quot;"
-		);
+		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;Category Name&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;Category&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;Name&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;Category1&quot;");
 
-		WebContentSearchPortlet.viewNoResults(
-			webContentSearchTerm = "&quot;Category1&quot;"
-		);
+		WebContentSearchPortlet.viewNoResults(webContentSearchTerm = "&quot;Category1&quot;");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;Name1&quot;");
 
-		WebContentSearchPortlet.viewNoResults(
-			webContentSearchTerm = "&quot;Name1&quot;"
-		);
+		WebContentSearchPortlet.viewNoResults(webContentSearchTerm = "&quot;Name1&quot;");
 	}
 
 	@priority = "3"
@@ -310,8 +277,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Web Content Display Page");
 
@@ -321,85 +287,65 @@ definition {
 
 		WebContent.addPGViaWCD(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
 		Navigator.gotoPage(pageName = "Web Content Search Page");
 
-		WebContentSearchPortlet.search(
-			webContentSearchTerm = "&quot;WC WebContent Title&quot;"
-		);
+		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;WC WebContent Title&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
-		WebContentSearchPortlet.search(
-			webContentSearchTerm = "&quot;WC WebContent Content&quot;"
-		);
+		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;WC WebContent Content&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;WC&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;WebContent&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;Title&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;Content&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
-		WebContentSearchPortlet.search(
-			webContentSearchTerm = "&quot;WC WebContent&quot;"
-		);
+		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;WC WebContent&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
-		WebContentSearchPortlet.search(
-			webContentSearchTerm = "&quot;WebContent Title&quot;"
-		);
+		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;WebContent Title&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
-		WebContentSearchPortlet.search(
-			webContentSearchTerm = "&quot;WebContent Content&quot;"
-		);
+		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;WebContent Content&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;WC1&quot;");
 
@@ -407,21 +353,15 @@ definition {
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;WebContent1&quot;");
 
-		WebContentSearchPortlet.viewNoResults(
-			webContentSearchTerm = "&quot;WebContent1&quot;"
-		);
+		WebContentSearchPortlet.viewNoResults(webContentSearchTerm = "&quot;WebContent1&quot;");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;Title1&quot;");
 
-		WebContentSearchPortlet.viewNoResults(
-			webContentSearchTerm = "&quot;Title1&quot;"
-		);
+		WebContentSearchPortlet.viewNoResults(webContentSearchTerm = "&quot;Title1&quot;");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;Content1&quot;");
 
-		WebContentSearchPortlet.viewNoResults(
-			webContentSearchTerm = "&quot;Content1&quot;"
-		);
+		WebContentSearchPortlet.viewNoResults(webContentSearchTerm = "&quot;Content1&quot;");
 	}
 
 	@priority = "5"
@@ -431,8 +371,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Web Content Display Page");
 
@@ -442,8 +381,7 @@ definition {
 
 		WebContent.addPGViaWCD(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
@@ -451,8 +389,7 @@ definition {
 
 		WebContentNavigator.gotoEditPGViaWCD(
 			menuItem = "Edit Web Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContent.addTagPGViaWCD(tagName = "tag name");
 
@@ -462,22 +399,19 @@ definition {
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "tag");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "name");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "tag1");
 
@@ -495,8 +429,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Web Content Display Page");
 
@@ -506,8 +439,7 @@ definition {
 
 		WebContent.addPGViaWCD(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
@@ -515,8 +447,7 @@ definition {
 
 		WebContentNavigator.gotoEditPGViaWCD(
 			menuItem = "Edit Web Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContent.addTagPGViaWCD(tagName = "tag name");
 
@@ -526,22 +457,19 @@ definition {
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;tag&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;name&quot;");
 
 		WebContentSearchPortlet.viewResultsEntry(
 			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title"
-		);
+			webContentTitle = "WC WebContent Title");
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;tag1&quot;");
 
@@ -549,9 +477,7 @@ definition {
 
 		WebContentSearchPortlet.search(webContentSearchTerm = "&quot;name1&quot;");
 
-		WebContentSearchPortlet.viewNoResults(
-			webContentSearchTerm = "&quot;name1&quot;"
-		);
+		WebContentSearchPortlet.viewNoResults(webContentSearchTerm = "&quot;name1&quot;");
 	}
 
 }

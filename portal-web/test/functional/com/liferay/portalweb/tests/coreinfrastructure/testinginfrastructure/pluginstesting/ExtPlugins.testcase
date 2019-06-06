@@ -43,8 +43,7 @@ definition {
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#INFO",
-			value1 = "ext_portal_impl_installed_"
-		);
+			value1 = "ext_portal_impl_installed_");
 
 		AssertElementNotPresent(locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION");
 
@@ -54,8 +53,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
-			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page."
-		);
+			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 
 		Refresh();
 
@@ -74,8 +72,7 @@ definition {
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Message#INFO",
-			value1 = "ext_portal_impl_installed_"
-		);
+			value1 = "ext_portal_impl_installed_");
 
 		AssertElementNotPresent(locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION");
 
@@ -85,8 +82,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_EXPIRED_SESSION",
-			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page."
-		);
+			value1 = "DangerDue to inactivity, your session has expired. Please save any data you may have entered before refreshing the page.");
 
 		Refresh();
 

@@ -20,8 +20,7 @@ definition {
 		else {
 			User.logoutAndLoginPG(
 				userLoginEmailAddress = "test@liferay.com",
-				userLoginFullName = "Test Test"
-			);
+				userLoginFullName = "Test Test");
 
 			Page.tearDownCP();
 
@@ -36,28 +35,24 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
 		WebContentNavigator.gotoAddCP();
 
 		WebContent.addCP(
 			webContentContent = "Web Content Content",
-			webContentTitle = "Web Content Title"
-		);
+			webContentTitle = "Web Content Title");
 
 		PortletEntry.publish();
 
@@ -68,29 +63,24 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
 			panel = "Site Administration",
-			portlet = "Export"
-		);
+			portlet = "Export");
 
 		LAR.addExportTemplateCP(
 			exportTemplateDescription = "Export Template Description",
-			exportTemplateName = "Export Template Name"
-		);
+			exportTemplateName = "Export Template Name");
 
 		LAR.configureExportOptions(
 			checkContentNameList = "Web Content",
-			uncheckContentNameList = "Blogs"
-		);
+			uncheckContentNameList = "Blogs");
 
 		LAR.saveExportTemplateCP(
 			exportTemplateDescription = "Export Template Description",
-			exportTemplateName = "Export Template Name"
-		);
+			exportTemplateName = "Export Template Name");
 
 		LAR.exportExportTemplateCP(
 			exportTemplateDescription = "Export Template Description",
 			exportTemplateName = "Export Template Name",
-			larFileName = "Export.Template"
-		);
+			larFileName = "Export.Template");
 
 		Pause(locator1 = "3000");
 
@@ -101,84 +91,78 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		LAR.importSiteCP(larFileName = "${larFileName}", siteName = "Site Name");
+		LAR.importSiteCP(
+			larFileName = "${larFileName}",
+			siteName = "Site Name");
 
 		ProductMenu.gotoSite(site = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "Web Content Title");
 
 		WebContent.viewCP(
 			webContentContent = "Web Content Content",
-			webContentTitle = "Web Content Title"
-		);
+			webContentTitle = "Web Content Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
 			panel = "Site Administration",
-			portlet = "Export"
-		);
+			portlet = "Export");
 
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "Export Templates");
 
 		LAR.editExportTemplateCP(
 			exportTemplateDescriptionEdit = "Export Template Description Edit",
 			exportTemplateName = "Export Template Name",
-			exportTemplateNameEdit = "Export Template Name Edit"
-		);
+			exportTemplateNameEdit = "Export Template Name Edit");
 
 		LAR.configureExportOptions(checkContentNameList = "Blogs");
 
 		LAR.saveExportTemplateCP(
 			exportTemplateDescription = "Export Template Description Edit",
-			exportTemplateName = "Export Template Name Edit"
-		);
+			exportTemplateName = "Export Template Name Edit");
 
 		LAR.exportExportTemplateCP(
 			exportTemplateDescription = "Export Template Description Edit",
 			exportTemplateName = "Export Template Name Edit",
-			larFileName = "Edited Export Template Name"
-		);
+			larFileName = "Edited Export Template Name");
 
 		var larFileName = LAR.getLarFileName();
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS",
-			value1 = "Successful"
-		);
+			value1 = "Successful");
 
 		LAR.downloadLar();
 
 		Pause(locator1 = "5000");
 
-		LAR.importSiteCP(larFileName = "${larFileName}", siteName = "Site Name");
+		LAR.importSiteCP(
+			larFileName = "${larFileName}",
+			siteName = "Site Name");
 
 		ProductMenu.gotoSite(site = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoEntryCP(entryTitle = "Blogs Entry Title");
 
 		BlogsEntry.viewEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 	}
 
 	@description = "This is a use case for LPS-86501."
@@ -189,87 +173,71 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Site Templates"
-		);
+			portlet = "Site Templates");
 
 		SiteTemplates.addCP(
 			siteTemplateActive = "Yes",
-			siteTemplateName = "Site Template Name"
-		);
+			siteTemplateName = "Site Template Name");
 
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Manage",
-			rowEntry = "Site Template Name"
-		);
+			rowEntry = "Site Template Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Page Fragments"
-		);
+			portlet = "Page Fragments");
 
-		FragmentsAdmin.importCollectionFromDependenciesFolder(
-			collectionZipFile = "fragment-collection.zip"
-		);
+		FragmentsAdmin.importCollectionFromDependenciesFolder(collectionZipFile = "fragment-collection.zip");
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Site Templates"
-		);
+			portlet = "Site Templates");
 
 		SiteTemplates.addSitePageViaSiteTemplateCP(
 			pageName = "Test Template Content Page",
 			sitePageType = "Content Page",
-			siteTemplateName = "Site Template Name"
-		);
+			siteTemplateName = "Site Template Name");
 
 		PageEditor.addFragment(
 			collectionName = "Collection Name",
-			fragmentName = "Content"
-		);
+			fragmentName = "Content");
 
 		PageEditor.editFragmentText(
 			fragmentName = "Content",
 			id = "content",
-			text = "Editing Finished"
-		);
+			text = "Editing Finished");
 
 		PageEditor.viewFragmentEditableText(
 			editableText = "Editing Finished",
 			fragmentName = "Content",
-			id = "content"
-		);
+			id = "content");
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Site Templates"
-		);
+			portlet = "Site Templates");
 
 		LAR.exportPortlet(
 			larFileName = "site-template-content-page.lar",
-			portletName = "Site Templates"
-		);
+			portletName = "Site Templates");
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Site Templates"
-		);
+			portlet = "Site Templates");
 
 		SiteTemplates.deleteCP(siteTemplateName = "Site Template Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Site Templates"
-		);
+			portlet = "Site Templates");
 
 		LAR.importPortlet(
 			larFileName = "site-template-content-page.lar",
-			portletName = "Site Templates"
-		);
+			portletName = "Site Templates");
 
 		SiteTemplates.viewCP(siteTemplateName = "Site Template Name");
 
@@ -277,19 +245,16 @@ definition {
 
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Manage",
-			rowEntry = "Site Template Name"
-		);
+			rowEntry = "Site Template Name");
 
 		SitePages.gotoPageMenuItem(
 			menuItem = "Edit",
-			pageName = "Test Template Content Page"
-		);
+			pageName = "Test Template Content Page");
 
 		PageEditor.viewFragmentEditableText(
 			editableText = "Editing Finished",
 			fragmentName = "Content",
-			id = "content"
-		);
+			id = "content");
 
 		AssertConsoleTextNotPresent(value1 = "javax.portlet.PortletException:");
 
@@ -305,16 +270,14 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Test Page");
 
@@ -323,19 +286,16 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLDataDefinition.addCP(
 			ddlDataDefinitionDescription = "DDL Definition Description",
-			ddlDataDefinitionName = "DDL Definition"
-		);
+			ddlDataDefinitionName = "DDL Definition");
 
 		DynamicDataMapping.addField(
 			field = "Text",
 			fieldFieldLabel = "Text Label",
-			fieldName = "TextName"
-		);
+			fieldName = "TextName");
 
 		DDLDataDefinition.save();
 
@@ -344,13 +304,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLList.addCP(
 			ddlListDescription = "DDL List Description",
-			ddlListName = "DDL List"
-		);
+			ddlListName = "DDL List");
 
 		DDLDataDefinition.selectCP(ddlDataDefinitionName = "DDL Definition");
 
@@ -358,15 +316,13 @@ definition {
 
 		DDLRecord.addCP(
 			ddlDataDefinitionName = "DDL Definition",
-			ddlListName = "DDL List"
-		);
+			ddlListName = "DDL List");
 
 		DDLRecord.populateFieldText(
 			ddlRecordFieldData = "DDL Definition Record",
 			field = "Text",
 			fieldFieldLabel = "Text Label",
-			fieldName = "TextName"
-		);
+			fieldName = "TextName");
 
 		PortletEntry.publish();
 
@@ -375,20 +331,22 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
-		LAR.exportPortlet(larFileName = "DDL.portlet.lar", siteScopeName = "Global");
+		LAR.exportPortlet(
+			larFileName = "DDL.portlet.lar",
+			siteScopeName = "Global");
 
 		ProductMenu.gotoSite(site = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
-		LAR.importPortlet(larFileName = "DDL.portlet.lar", siteName = "Site Name");
+		LAR.importPortlet(
+			larFileName = "DDL.portlet.lar",
+			siteName = "Site Name");
 
 		Navigator.openURL();
 
@@ -397,16 +355,14 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLNavigator.gotoListRecords(ddlListName = "DDL List");
 
 		DDLRecord.viewFirstFieldCP(
 			ddlRecordFieldData = "DDL Definition Record",
 			field = "Text",
-			fieldFieldLabel = "Text Label"
-		);
+			fieldFieldLabel = "Text Label");
 	}
 
 	@priority = "4"
@@ -416,15 +372,13 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
 		WebContentNavigator.gotoAddCP();
 
 		WebContent.addCP(
 			webContentContent = "Web Content Content",
-			webContentTitle = "Web Content Title"
-		);
+			webContentTitle = "Web Content Title");
 
 		PortletEntry.publish();
 
@@ -433,8 +387,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
 		LAR.exportPortlet(larFileName = "ExportWebContent.lar");
 
@@ -443,21 +396,20 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
-		WebContent.deleteCP(siteURLKey = "guest", webContentTitle = "Web Content Title");
+		WebContent.deleteCP(
+			siteURLKey = "guest",
+			webContentTitle = "Web Content Title");
 
 		LAR.exportPortlet(
 			exportIndividualDeletions = "true",
-			larFileName = "ExportWebContentDeletion.lar"
-		);
+			larFileName = "ExportWebContentDeletion.lar");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
 		LAR.importPortlet(larFileName = "ExportWebContent.lar");
 
@@ -466,8 +418,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
 		WebContent.viewTitle(webContentTitle = "Web Content Title");
 
@@ -476,21 +427,18 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
 		LAR.importPortlet(
 			importDeletions = "true",
-			larFileName = "ExportWebContentDeletion.lar"
-		);
+			larFileName = "ExportWebContentDeletion.lar");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
 		WebContent.viewNotPresentCP(webContentTitle = "Web Content Title");
 	}
@@ -614,19 +562,16 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Application Display Templates"
-		);
+			portlet = "Application Display Templates");
 
 		ApplicationDisplayTemplates.addCP(
 			adtFile = "adt_blogs_basic.ftl",
-			adtType = "Blogs"
-		);
+			adtType = "Blogs");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Test Page Name");
 
@@ -636,8 +581,7 @@ definition {
 
 		Blogs.addEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.gotoPage(pageName = "Test Page Name");
 
@@ -662,16 +606,19 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Refresh();
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		LAR.importSiteCP(larFileName = "${larFileName}", siteName = "Site Name");
+		LAR.importSiteCP(
+			larFileName = "${larFileName}",
+			siteName = "Site Name");
 
-		Navigator.gotoSitePage(pageName = "Test Page Name", siteName = "Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Test Page Name",
+			siteName = "Site Name");
 
 		var key_entryTitle = "Blogs Entry Title";
 
@@ -688,25 +635,24 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPrivatePage(pageName = "Private Page");
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
 			panel = "Site Administration",
-			portlet = "Export"
-		);
+			portlet = "Export");
 
-		LAR.exportSiteCP(larFileName = "ExportPrivatePage", privateLayout = "true");
+		LAR.exportSiteCP(
+			larFileName = "ExportPrivatePage",
+			privateLayout = "true");
 
 		var key_larFileName = "${larFileName}";
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS",
-			value1 = "Successful"
-		);
+			value1 = "Successful");
 
 		var larFileName = LAR.getLarFileName();
 
@@ -715,8 +661,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Refresh();
 
@@ -725,10 +670,11 @@ definition {
 		LAR.importSiteCP(
 			larFileName = "${larFileName}",
 			privateLayout = "true",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 
-		Navigator.gotoPrivateSitePage(pageName = "Private Page", siteName = "Site Name");
+		Navigator.gotoPrivateSitePage(
+			pageName = "Private Page",
+			siteName = "Site Name");
 	}
 
 	@priority = "5"
@@ -740,8 +686,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Test Page Name");
 
@@ -762,26 +707,28 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Test Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Test Site Page");
 
-		Navigator.gotoSitePage(pageName = "Test Site Page", siteName = "Test Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Test Site Page",
+			siteName = "Test Site Name");
 
 		Portlet.addPG(portletName = "Sample LAR");
 
 		LAR.importPortlet(larFileName = "SampleLARPortlet.lar");
 
-		Navigator.gotoSitePage(pageName = "Test Site Page", siteName = "Test Site Name");
+		Navigator.gotoSitePage(
+			pageName = "Test Site Page",
+			siteName = "Test Site Name");
 
 		SampleLARPortlet.viewSampleBookingNumber(bookingNumber = "${bookingNumber}");
 	}
@@ -820,8 +767,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Test Page");
 
@@ -880,8 +826,7 @@ definition {
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS",
-			value1 = "Successful"
-		);
+			value1 = "Successful");
 
 		var larFileName = LAR.getLarFileName();
 
@@ -891,7 +836,9 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		LAR.importSiteCP(larFileName = "${larFileName}", siteName = "Site Name");
+		LAR.importSiteCP(
+			larFileName = "${larFileName}",
+			siteName = "Site Name");
 	}
 
 	@priority = "4"
@@ -901,33 +848,33 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Test Page");
 
-		Page.changeCurrentTheme(pageName = "Test Page", themeName = "Fjord");
+		Page.changeCurrentTheme(
+			pageName = "Test Page",
+			themeName = "Fjord");
 
 		LAR.configureExportSiteCP(
 			uncheckLogo = "true",
 			uncheckSitePagesSettings = "true",
-			uncheckSiteTemplateSettings = "true"
-		);
+			uncheckSiteTemplateSettings = "true");
 
-		AssertClick(locator1 = "SitePagesExport#EXPORT_BUTTON", value1 = "Export");
+		AssertClick(
+			locator1 = "SitePagesExport#EXPORT_BUTTON",
+			value1 = "Export");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS",
-			value1 = "Successful"
-		);
+			value1 = "Successful");
 
 		var larFileName = LAR.getLarFileName();
 
@@ -936,22 +883,24 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Refresh();
 
 		Site.addBlankCP(siteName = "Site Name 2");
 
-		LAR.importSiteCP(larFileName = "${larFileName}", siteName = "Site Name 2");
+		LAR.importSiteCP(
+			larFileName = "${larFileName}",
+			siteName = "Site Name 2");
 
-		Navigator.gotoSitePage(pageName = "Test Page", siteName = "Site Name 2");
+		Navigator.gotoSitePage(
+			pageName = "Test Page",
+			siteName = "Site Name 2");
 
 		Page.viewCurrentTheme(
 			page = "Public Pages",
 			pageName = "Test Page",
-			themeName = "Fjord"
-		);
+			themeName = "Fjord");
 	}
 
 	@priority = "5"
@@ -965,39 +914,36 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
+			portlet = "Documents and Media");
 
 		DMDocument.addCP(
 			dmDocumentDescription = "DM Document Description",
 			dmDocumentFile = "Document_1.jpg",
-			dmDocumentTitle = "DM Document Title"
-		);
+			dmDocumentTitle = "DM Document Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		Blogs.addEntry(
 			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title"
-		);
+			entryTitle = "Blogs Entry Title");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Blogs"
-		);
+			portlet = "Blogs");
 
 		BlogsNavigator.gotoEditCP(entryTitle = "Blogs Entry Title");
 
-		Click.pauseClickAt(locator1 = "AlloyEditor#EDITOR", key_editor = "content");
+		Click.pauseClickAt(
+			key_editor = "content",
+			locator1 = "AlloyEditor#EDITOR");
 
 		Click(locator1 = "AlloyEditor#CONTENT_ADD_BUTTON");
 
@@ -1005,8 +951,7 @@ definition {
 
 		ItemSelector.selectDMImage(
 			imageFileName = "DM Document Title",
-			navTab = "Documents and Media"
-		);
+			navTab = "Documents and Media");
 
 		PortletEntry.publish();
 
@@ -1014,8 +959,7 @@ definition {
 			checkContentNameList = "Blogs",
 			mainContent = "Blogs",
 			uncheckContentNameList = "Documents and Media",
-			uncheckSubContent = "Referenced Content"
-		);
+			uncheckSubContent = "Referenced Content");
 
 		LAR.exportSuccess();
 
@@ -1026,8 +970,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Documents and Media"
-		);
+			portlet = "Documents and Media");
 
 		DMDocument.deleteCP(dmDocumentTitle = "DM Document Title");
 
@@ -1036,16 +979,14 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
 		LAR.importSiteCP(
 			importValidationMissingItem = "DM Document Title",
 			larFileName = "${larFileName}",
-			siteName = "Site Name"
-		);
+			siteName = "Site Name");
 	}
 
 	@description = "This is a use case for LPS-86608."
@@ -1054,37 +995,32 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Exported Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
 		NavItem.gotoStructures();
 
 		WebContentStructures.addCP(
 			structureDescription = "Exported Structure Description",
-			structureName = "Exported Structure"
-		);
+			structureName = "Exported Structure");
 
 		DynamicDataMapping.addField(
 			field = "Separator",
 			fieldFieldLabel = "SeparatorField",
-			fieldName = "Separator"
-		);
+			fieldName = "Separator");
 
 		DynamicDataMapping.editFieldRepeatable(fieldFieldLabel = "SeparatorField");
 
 		DynamicDataMapping.addFieldNested(
 			field = "Text",
 			fieldFieldLabel = "Text",
-			fieldName = "Text"
-		);
+			fieldName = "Text");
 
 		WebContentStructures.saveCP(structureName = "Exported Structure");
 
@@ -1096,8 +1032,7 @@ definition {
 			structureName = "Exported Structure",
 			templateDescription = "Exported Template Description",
 			templateFieldNames = "Text",
-			templateName = "Exported Template"
-		);
+			templateName = "Exported Template");
 
 		WebContent.openWebContentAdmin(siteURLKey = "exported-site");
 
@@ -1106,15 +1041,13 @@ definition {
 		WebContent.addWithStructureCP(
 			structureName = "Exported Structure",
 			webContentText = "Exported Template",
-			webContentTitle = "Exported Article"
-		);
+			webContentTitle = "Exported Article");
 
 		DDLRecord.addRepeatableField(fieldName = "Separator");
 
 		DDLRecord.populateFieldText(
 			ddlRecordFieldData = "Liferay",
-			fieldName = "Separator"
-		);
+			fieldName = "Separator");
 
 		PortletEntry.publish();
 
@@ -1127,16 +1060,14 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Imported Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Web Content"
-		);
+			portlet = "Web Content");
 
 		LAR.importPortlet(larFileName = "WebContent_portlet.lar");
 
@@ -1146,8 +1077,7 @@ definition {
 
 		WebContent.viewFieldRepeated(
 			ddlRecordFieldData = "Liferay",
-			fieldName = "Separator"
-		);
+			fieldName = "Separator");
 
 		WebContent.openWebContentAdmin(siteURLKey = "imported-site");
 
@@ -1155,22 +1085,19 @@ definition {
 
 		WebContentStructures.viewCP(
 			structureDescription = "Exported Structure Description",
-			structureName = "Exported Structure"
-		);
+			structureName = "Exported Structure");
 
 		LexiconEntry.gotoEntry(rowEntry = "Exported Structure");
 
 		DynamicDataMapping.viewField(
 			field = "Separator",
 			fieldFieldLabel = "SeparatorField",
-			fieldName = "Separator"
-		);
+			fieldName = "Separator");
 
 		DynamicDataMapping.viewField(
 			field = "Text",
 			fieldFieldLabel = "Text",
-			fieldName = "Text"
-		);
+			fieldName = "Text");
 
 		WebContent.openWebContentAdmin(siteURLKey = "imported-site");
 
@@ -1179,8 +1106,7 @@ definition {
 		WebContentTemplates.viewCP(
 			structureName = "Exported Structure",
 			templateDescription = "Exported Template Description",
-			templateName = "Exported Template"
-		);
+			templateName = "Exported Template");
 	}
 
 	@priority = "4"
@@ -1192,28 +1118,23 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
 			panel = "Site Administration",
-			portlet = "Export"
-		);
+			portlet = "Export");
 
 		LAR.addExportTemplateCP(
 			exportTemplateDescription = "Export Template Description",
-			exportTemplateName = "Export Template Name"
-		);
+			exportTemplateName = "Export Template Name");
 
 		LAR.saveExportTemplateCP(
 			exportTemplateDescription = "Export Template Description",
-			exportTemplateName = "Export Template Name"
-		);
+			exportTemplateName = "Export Template Name");
 
 		LAR.viewExportTemplateCP(
 			exportTemplateDescription = "Export Template Description",
-			exportTemplateName = "Export Template Name"
-		);
+			exportTemplateName = "Export Template Name");
 
 		LAR.exportExportTemplateCP(
 			exportTemplateDescription = "Export Template Description",
-			exportTemplateName = "Export Template Name"
-		);
+			exportTemplateName = "Export Template Name");
 
 		var larFileName = LAR.getLarFileName();
 
@@ -1222,12 +1143,13 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
-			portlet = "Sites"
-		);
+			portlet = "Sites");
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		LAR.importSiteCP(larFileName = "${larFileName}", siteName = "Site Name");
+		LAR.importSiteCP(
+			larFileName = "${larFileName}",
+			siteName = "Site Name");
 	}
 
 	@description = "This is a use case for LPS-88498."
@@ -1260,16 +1182,16 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
-			portlet = "Bookmarks"
-		);
+			portlet = "Bookmarks");
 
-		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "Bookmarks");
+		AssertTextEquals(
+			locator1 = "Portlet#HEADER",
+			value1 = "Bookmarks");
 
 		LAR.importPortlet(
 			cannotImport = "true",
 			larFileName = "bookmarks-corrupted.portlet.lar",
-			uploadFrom = "dependencies"
-		);
+			uploadFrom = "dependencies");
 	}
 
 	@description = "This is a test for LPS-91233."

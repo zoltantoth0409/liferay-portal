@@ -16,20 +16,17 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(
 			pageName = "Bookmarks Page",
-			sitePageType = "Widget Page"
-		);
+			sitePageType = "Widget Page");
 
 		SitePages.configurePage(
 			columnName = "1 Column",
 			pageName = "Bookmarks Page",
 			privacy = "Public Pages",
-			sitePageType = "Widget Page"
-		);
+			sitePageType = "Widget Page");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -58,15 +55,13 @@ definition {
 		Bookmark.addPG(
 			bookmarkDescription = "Test Bookmark Description",
 			bookmarkName = "Test Bookmark Name",
-			bookmarkURL = "https://www.liferay.com"
-		);
+			bookmarkURL = "https://www.liferay.com");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
 		Bookmark.viewBookmark(
 			bookmarkName = "Test Bookmark Name",
-			bookmarkURL = "https://www.liferay.com"
-		);
+			bookmarkURL = "https://www.liferay.com");
 	}
 
 	@priority = "4"
@@ -75,8 +70,7 @@ definition {
 
 		BookmarksFolder.addPG(
 			folderDescription = "Test Folder Description",
-			folderName = "Test Folder Name"
-		);
+			folderName = "Test Folder Name");
 	}
 
 	@priority = "4"
@@ -85,8 +79,7 @@ definition {
 
 		BookmarksFolder.addPG(
 			folderDescription = "Test Folder Description",
-			folderName = "Test Folder Name"
-		);
+			folderName = "Test Folder Name");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -95,8 +88,7 @@ definition {
 		Bookmark.addPG(
 			bookmarkDescription = "Test Bookmark Description",
 			bookmarkName = "Test Bookmark Name",
-			bookmarkURL = "https://www.liferay.com"
-		);
+			bookmarkURL = "https://www.liferay.com");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -108,8 +100,7 @@ definition {
 
 		Bookmark.viewBookmark(
 			bookmarkName = "Test Bookmark Name",
-			bookmarkURL = "https://www.liferay.com"
-		);
+			bookmarkURL = "https://www.liferay.com");
 	}
 
 	@priority = "5"
@@ -118,8 +109,7 @@ definition {
 
 		BookmarksFolder.addPG(
 			folderDescription = "Test Folder Description",
-			folderName = "Test Folder Name"
-		);
+			folderName = "Test Folder Name");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -129,8 +119,7 @@ definition {
 			bookmarkDescription = "Test Bookmark Description",
 			bookmarkName = "Test Bookmark Name",
 			bookmarkURLInvalid = "www.liferay.com",
-			folderName = "Test Folder Name"
-		);
+			folderName = "Test Folder Name");
 	}
 
 	@priority = "5"
@@ -141,15 +130,13 @@ definition {
 
 		BookmarksFolder.addPG(
 			folderDescription = "Test Folder Description",
-			folderName = "Test Folder Name"
-		);
+			folderName = "Test Folder Name");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
 		BookmarksFolder.deletePG(
 			folderDescription = "Test Folder Description",
-			folderName = "Test Folder Name"
-		);
+			folderName = "Test Folder Name");
 	}
 
 	@priority = "5"
@@ -158,8 +145,7 @@ definition {
 
 		BookmarksFolder.addPG(
 			folderDescription = "Test Folder Description",
-			folderName = "Test Folder Name"
-		);
+			folderName = "Test Folder Name");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -168,8 +154,7 @@ definition {
 		Bookmark.addPG(
 			bookmarkDescription = "Test Bookmark Description",
 			bookmarkName = "Test Bookmark Name",
-			bookmarkURL = "https://www.liferay.com"
-		);
+			bookmarkURL = "https://www.liferay.com");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -186,8 +171,7 @@ definition {
 
 		BookmarksFolder.addPG(
 			folderDescription = "Test Folder Description",
-			folderName = "Test Folder Name"
-		);
+			folderName = "Test Folder Name");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -195,8 +179,7 @@ definition {
 			folderDescription = "Test Folder Description",
 			folderDescriptionEdit = "Test Folder Description Edit",
 			folderName = "Test Folder Name",
-			folderNameEdit = "Test Folder Name Edit"
-		);
+			folderNameEdit = "Test Folder Name Edit");
 	}
 
 	@priority = "5"
@@ -205,8 +188,7 @@ definition {
 
 		BookmarksFolder.addPG(
 			folderDescription = "Test Folder Description",
-			folderName = "Test Folder Name"
-		);
+			folderName = "Test Folder Name");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -215,8 +197,7 @@ definition {
 		Bookmark.addPG(
 			bookmarkDescription = "Test Bookmark Description",
 			bookmarkName = "Test Bookmark Name",
-			bookmarkURL = "https://www.liferay.com"
-		);
+			bookmarkURL = "https://www.liferay.com");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -226,8 +207,7 @@ definition {
 			bookmarkName = "Test Bookmark Name",
 			bookmarkNameEdit = "Test Bookmark Name Edit",
 			bookmarkURL = "https://www.liferay.com",
-			bookmarkURLEdit = "https://dev.liferay.com"
-		);
+			bookmarkURLEdit = "https://dev.liferay.com");
 	}
 
 	@priority = "4"
@@ -236,23 +216,20 @@ definition {
 
 		BookmarksFolder.addPG(
 			folderDescription = "Test Folder Description 1",
-			folderName = "Test Folder Name 1"
-		);
+			folderName = "Test Folder Name 1");
 
 		BookmarksFolder.gotoPG(folderName = "Test Folder Name 1");
 
 		Bookmark.addPG(
 			bookmarkDescription = "Test Bookmark Description",
 			bookmarkName = "Test Bookmark Name",
-			bookmarkURL = "https://www.liferay.com"
-		);
+			bookmarkURL = "https://www.liferay.com");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
 		BookmarksFolder.addPG(
 			folderDescription = "Test Folder Description 2",
-			folderName = "Test Folder Name 2"
-		);
+			folderName = "Test Folder Name 2");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -260,8 +237,7 @@ definition {
 			bookmarkName = "Test Bookmark Name",
 			folderName = "Test Folder Name 1",
 			folderName2 = "Test Folder Name 2",
-			pageName = "Bookmarks Page"
-		);
+			pageName = "Bookmarks Page");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -269,15 +245,13 @@ definition {
 
 		AssertClick.assertPartialTextClickAt(
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
-			value1 = "Test Folder Name 2"
-		);
+			value1 = "Test Folder Name 2");
 
 		var key_assetName = "Test Bookmark Name";
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "Bookmarks#DESCRIPTIVE_ENTRY_TITLE",
-			value1 = "Test Bookmark Name"
-		);
+			value1 = "Test Bookmark Name");
 	}
 
 	@priority = "5"
@@ -293,8 +267,7 @@ definition {
 
 		BookmarksFolder.addPG(
 			folderDescription = "Test Folder Description",
-			folderName = "Test Folder Name"
-		);
+			folderName = "Test Folder Name");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -303,8 +276,7 @@ definition {
 		Bookmark.addPG(
 			bookmarkDescription = "Test Bookmark Description",
 			bookmarkName = "Test Bookmark Name",
-			bookmarkURL = "https://www.liferay.com"
-		);
+			bookmarkURL = "https://www.liferay.com");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -315,8 +287,7 @@ definition {
 		SearchResultPortlet.viewSearchResults(
 			searchAssetTitle = "Test Bookmark Name",
 			searchAssetType = "Bookmarks Entry",
-			searchTerm = "Test Bookmark Name"
-		);
+			searchTerm = "Test Bookmark Name");
 
 		Navigator.gotoPage(pageName = "Bookmarks Page");
 
@@ -335,8 +306,7 @@ definition {
 		SearchResultPortlet.viewSearchResults(
 			searchAssetTitle = "Test Bookmark Name",
 			searchAssetType = "Bookmarks Entry",
-			searchTerm = '''"Test Bookmark Name"'''
-		);
+			searchTerm = '''"Test Bookmark Name"''');
 	}
 
 }
