@@ -3,5 +3,6 @@
 <suppressions>
 	<source-check>
 		<suppress checks="LanguageKeysCheck" files="portal-search-api/.*" />
+		<suppress checks="YMLEmptyLinesCheck" files="modules/apps/foundation/portal-search/portal-search-elasticsearch/src/main/resources/META-INF/elasticsearch-optional-defaults\.yml" />
 	</source-check>
 </suppressions>
