@@ -1,4 +1,5 @@
 definition {
+
 	var siteMember = "User";
 	var siteType = "Open";
 
@@ -1494,4 +1495,5 @@ definition {
 
 		AssertLocation(value1 = "${sitePageURL}");
 	}
+
 }

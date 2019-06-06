@@ -1,4 +1,5 @@
 definition {
+
 	var orgName = "Organization Name";
 
 	macro addAdditionalEmailAddressesCP {
@@ -944,4 +945,5 @@ definition {
 			locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_ACTIONS"
 		);
 	}
+
 }

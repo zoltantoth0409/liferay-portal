@@ -1,4 +1,5 @@
 definition {
+
 	macro subscribePG {
 		AssertClick(
 			locator1 = "Comments#SUBSCRIBE_TO_COMMENTS_LINK",
@@ -7,4 +8,5 @@ definition {
 
 		Alert.viewSuccessMessage();
 	}
+
 }

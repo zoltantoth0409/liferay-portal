@@ -1,4 +1,5 @@
 definition {
+
 	macro add {
 		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "Document Types");
 
@@ -213,4 +214,5 @@ definition {
 			locator1 = "DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS_1"
 		);
 	}
+
 }

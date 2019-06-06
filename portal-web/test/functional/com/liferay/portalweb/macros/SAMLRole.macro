@@ -1,4 +1,5 @@
 definition {
+
 	macro configure {
 		Select(locator1 = "CPSAMLAdmin#SAML_ROLE_SELECT", value1 = "${samlRoleType}");
 
@@ -92,4 +93,5 @@ definition {
 			value1 = "Your request completed successfully."
 		);
 	}
+
 }

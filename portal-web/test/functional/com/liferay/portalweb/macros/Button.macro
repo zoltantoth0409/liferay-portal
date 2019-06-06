@@ -1,4 +1,5 @@
 definition {
+
 	macro click {
 		Click.mouseDownMouseUp(locator1 = "Button#ANY", key_text = "${button}");
 	}
@@ -52,4 +53,5 @@ definition {
 	macro viewNotPresent {
 		AssertElementNotPresent(locator1 = "Button#ANY", key_text = "${button}");
 	}
+
 }

@@ -1,5 +1,6 @@
 @component-name = "portal-knowledge-base"
 definition {
+
 	property osgi.app.includes = "knowledge-base";
 	property plugins.deployment.type = "osgi";
 	property portal.release = "true";
@@ -1343,4 +1344,5 @@ definition {
 			kbWorkflowStatus = "Pending"
 		);
 	}
+
 }

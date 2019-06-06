@@ -1,4 +1,5 @@
 definition {
+
 	macro addCP {
 		var key_categoryName = "${categoryName}";
 		var key_vocabularyName = "${vocabularyName}";
@@ -293,4 +294,5 @@ definition {
 			);
 		}
 	}
+
 }

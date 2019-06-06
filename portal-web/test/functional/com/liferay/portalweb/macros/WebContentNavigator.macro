@@ -1,4 +1,5 @@
 definition {
+
 	macro _openDescriptiveMenulistCP {
 		if (isSet(webContentTitleEscapeCharacter)) {
 			var key_webContentTitle = "${webContentTitleEscapeCharacter}";
@@ -183,4 +184,5 @@ definition {
 			value1 = "${templateName}"
 		);
 	}
+
 }

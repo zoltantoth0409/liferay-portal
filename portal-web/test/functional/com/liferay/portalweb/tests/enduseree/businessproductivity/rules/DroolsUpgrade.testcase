@@ -1,6 +1,7 @@
 @component-name = "portal-upgrades"
 @ignore = "true"
 definition {
+
 	property database.types = "db2,mariadb,mysql,oracle,postgresql,sqlserver,sybase";
 	property ignore.errors = "Plugin security management is not enabled. Enable a security manager, then restart.";
 	property portal.release = "false";
@@ -46,4 +47,5 @@ definition {
 
 		Upgrade.ViewDroolsAppManager();
 	}
+
 }

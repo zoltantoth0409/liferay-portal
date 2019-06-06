@@ -1,5 +1,6 @@
 @component-name = "portal-search"
 definition {
+
 	property portal.release = "true";
 	property portal.suite.search.engine = "elasticsearch2,elasticsearch6,solr";
 	property portal.upstream = "true";
@@ -1166,4 +1167,5 @@ definition {
 			searchTerm = "Content1"
 		);
 	}
+
 }

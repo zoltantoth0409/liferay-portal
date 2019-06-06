@@ -1,4 +1,5 @@
 definition {
+
 	macro gotoDrive {
 		AssertClick(locator1 = "Button#SELECT_FILE", value1 = "Select File");
 
@@ -52,4 +53,5 @@ definition {
 			value1 = "${googleDocName}"
 		);
 	}
+
 }

@@ -1,5 +1,6 @@
 @component-name = "portal-util-misc"
 definition {
+
 	property osgi.app.includes = "dictionary";
 	property portal.release = "true";
 	property portal.upstream = "true";
@@ -45,4 +46,5 @@ definition {
 
 		SelectWindow(locator1 = "title=Dictionary Page - ${siteName}");
 	}
+
 }

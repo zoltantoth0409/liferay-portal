@@ -1,5 +1,6 @@
 @component-name = "portal-plugins-osgi"
 definition {
+
 	property portal.release = "false";
 	property portal.upstream = "true";
 	property plugins.deployment.type = "osgi";
@@ -18,4 +19,5 @@ definition {
 
 		OSGiSmoke.Smoke(appName = "${portletName}", portletName = "${portletName}");
 	}
+
 }

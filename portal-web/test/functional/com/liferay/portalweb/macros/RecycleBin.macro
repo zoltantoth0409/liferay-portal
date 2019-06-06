@@ -1,4 +1,5 @@
 definition {
+
 	macro deleteCP {
 		var key_assetName = "${assetName}";
 
@@ -280,4 +281,5 @@ definition {
 
 		MenuItem.viewPresent(menuItem = "Delete");
 	}
+
 }

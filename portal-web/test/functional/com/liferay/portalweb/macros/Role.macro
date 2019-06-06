@@ -1,4 +1,5 @@
 definition {
+
 	macro addCP {
 		if ("${roleType}" == "Organization") {
 			Navigator.gotoNavItem(navItem = "Organization Roles");
@@ -700,4 +701,5 @@ definition {
 			AssertNotChecked(locator1 = "Permissions#${permissionDefinitionKey}");
 		}
 	}
+
 }

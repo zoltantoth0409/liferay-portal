@@ -1,4 +1,5 @@
 definition {
+
 	macro gotoFeed {
 		AssertClick(locator1 = "Link#RSS", value1 = "RSS");
 
@@ -45,4 +46,5 @@ definition {
 
 		AssertTextEquals(locator1 = "RSS#FEED_SUBTITLE", value1 = "${feedSubtitle}");
 	}
+
 }

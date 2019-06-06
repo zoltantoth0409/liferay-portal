@@ -1,5 +1,6 @@
 @component-name = "portal-user-interface"
 definition {
+
 	property osgi.app.includes = "frontend-theme-westeros-bank";
 	property plugins.deployment.type = "osgi";
 	property portal.release = "true";
@@ -79,4 +80,5 @@ definition {
 			);
 		}
 	}
+
 }

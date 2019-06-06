@@ -1,4 +1,5 @@
 definition {
+
 	macro editConfiguration {
 		var key_rowEntry = "${configurationName}";
 
@@ -105,4 +106,5 @@ definition {
 			}
 		}
 	}
+
 }

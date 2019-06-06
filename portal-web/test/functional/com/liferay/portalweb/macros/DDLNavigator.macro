@@ -1,4 +1,5 @@
 definition {
+
 	var ddlDataDefinitionName = "Data Definition Name";
 	var ddlListName = "List Name";
 
@@ -106,4 +107,5 @@ definition {
 
 		MenuItem.click(menuItem = "View");
 	}
+
 }

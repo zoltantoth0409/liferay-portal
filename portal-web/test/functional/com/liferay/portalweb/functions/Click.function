@@ -1,6 +1,7 @@
 @default = "click"
 @summary = "Click on '${locator1}'"
 definition {
+
 	function click {
 		WaitForSPARefresh();
 
@@ -182,4 +183,5 @@ definition {
 
 		selenium.assertLiferayErrors();
 	}
+
 }

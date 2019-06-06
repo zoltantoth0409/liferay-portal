@@ -1,4 +1,5 @@
 definition {
+
 	macro addCP {
 		LexiconEntry.gotoHeaderMenuItem(menuItem = "Templates");
 
@@ -70,4 +71,5 @@ definition {
 			value1 = "${kbTemplateContent}"
 		);
 	}
+
 }

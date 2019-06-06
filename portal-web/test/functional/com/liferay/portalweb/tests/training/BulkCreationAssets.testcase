@@ -1,5 +1,6 @@
 @component-name = "portal-training"
 definition {
+
 	property liferay.training.dependency.jars = "tools/dummy-factory/liferay.dummy.factory-0.17.0.jar";
 	property portal.release = "false";
 	property portal.upstream = "false";
@@ -413,4 +414,5 @@ definition {
 			key_wikiNodeName = "Wiki Node"
 		);
 	}
+
 }

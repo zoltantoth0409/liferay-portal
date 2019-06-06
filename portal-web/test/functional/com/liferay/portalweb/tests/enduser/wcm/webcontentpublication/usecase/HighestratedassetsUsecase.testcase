@@ -1,5 +1,6 @@
 @component-name = "portal-wcm"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Highest Rated Assets";
@@ -111,4 +112,5 @@ definition {
 
 		AssetPublisherPortlet.viewAssetRatingPG(rating = "5");
 	}
+
 }

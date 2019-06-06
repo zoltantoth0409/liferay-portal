@@ -1,5 +1,6 @@
 @component-name = "portal-deployment-hypersonic-ee"
 definition {
+
 	property portal.acceptance = "true";
 	property portal.release = "true";
 	property portal.upstream = "true";
@@ -140,4 +141,5 @@ definition {
 
 		Smoke.runSmoke();
 	}
+
 }

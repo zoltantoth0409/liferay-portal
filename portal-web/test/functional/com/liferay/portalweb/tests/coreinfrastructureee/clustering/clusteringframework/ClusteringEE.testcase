@@ -1,5 +1,6 @@
 @component-name = "portal-performance-and-fault-tolerance-ee"
 definition {
+
 	property app.server.bundles.size = "1";
 	property cluster.enabled = "true";
 	property portal.release = "true";
@@ -352,4 +353,5 @@ definition {
 
 		User.loginPG(password = "test", userEmailAddress = "test@liferay.com");
 	}
+
 }

@@ -1,4 +1,5 @@
 definition {
+
 	macro _gotoPendingFilter {
 		Pause(locator1 = "5000");
 
@@ -1446,4 +1447,5 @@ definition {
 
 		AssertTextNotPresent(value1 = "Withdraw Submission");
 	}
+
 }

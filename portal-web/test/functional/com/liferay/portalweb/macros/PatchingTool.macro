@@ -1,4 +1,5 @@
 definition {
+
 	@summary = "Install the following patch onto Liferay Portal. ${patchFileZipURL}"
 	macro installPatch {
 		AntCommand(
@@ -33,4 +34,5 @@ definition {
 			value1 = "uninstall-patches -Duninstall.patch.cluster.node.index=${bundleIndex}"
 		);
 	}
+
 }

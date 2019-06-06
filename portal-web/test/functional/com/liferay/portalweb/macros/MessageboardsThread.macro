@@ -1,4 +1,5 @@
 definition {
+
 	var assetType = "Message Boards Thread";
 	var userName = "Test Test";
 
@@ -1599,4 +1600,5 @@ definition {
 			key_assetTitle = "${threadSubject}"
 		);
 	}
+
 }

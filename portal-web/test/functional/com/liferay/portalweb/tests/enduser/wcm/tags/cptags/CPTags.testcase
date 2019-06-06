@@ -1,5 +1,6 @@
 @component-name = "portal-tags"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Tags";
@@ -460,4 +461,5 @@ definition {
 			tagName3 = "tag name 3"
 		);
 	}
+
 }

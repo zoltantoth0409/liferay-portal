@@ -1,4 +1,5 @@
 definition {
+
 	macro selectCategoryPG {
 		Portlet.expandTree();
 
@@ -85,4 +86,5 @@ definition {
 			value1 = "${categoryName}"
 		);
 	}
+
 }

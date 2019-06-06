@@ -1,5 +1,6 @@
 @component-name = "portal-categories"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Categories";
@@ -1919,4 +1920,5 @@ definition {
 			vocabularyName = "Vocabulary Name"
 		);
 	}
+
 }

@@ -1,5 +1,6 @@
 @component-name = "portal-social-networking"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property custom.properties = "default.layout.template.id=1_column";
@@ -396,4 +397,5 @@ definition {
 			siteStatistics = "Users&apos; Blog Entries"
 		);
 	}
+
 }

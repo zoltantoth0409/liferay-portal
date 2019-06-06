@@ -1,4 +1,5 @@
 definition {
+
 	var assetType = "Bookmarks Entry";
 
 	macro addBookmarkViaAP {
@@ -525,4 +526,5 @@ definition {
 
 		AssertTextNotPresent(value1 = "${bookmarkURL}");
 	}
+
 }

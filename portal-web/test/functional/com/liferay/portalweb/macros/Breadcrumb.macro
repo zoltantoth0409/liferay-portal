@@ -1,4 +1,5 @@
 definition {
+
 	macro configureBreadcrumb {
 		IFrame.selectConfigurationFrame();
 
@@ -167,4 +168,5 @@ definition {
 			}
 		}
 	}
+
 }

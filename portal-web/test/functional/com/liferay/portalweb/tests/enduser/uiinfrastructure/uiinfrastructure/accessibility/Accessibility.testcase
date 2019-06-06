@@ -1,5 +1,6 @@
 @component-name = "portal-user-interface"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.component.names = "Accessibility";
@@ -164,4 +165,5 @@ definition {
 
 		AssertAccessible();
 	}
+
 }

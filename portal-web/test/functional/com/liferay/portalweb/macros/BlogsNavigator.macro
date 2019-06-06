@@ -1,4 +1,5 @@
 definition {
+
 	macro gotoAddEntry {
 		if (IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY")) {
 			AssertClick(locator1 = "Blogs#ADD_BLOGS_ENTRY", value1 = "Add Blog Entry");
@@ -153,4 +154,5 @@ definition {
 
 		AssertElementPresent(locator1 = "Message#SUCCESS");
 	}
+
 }

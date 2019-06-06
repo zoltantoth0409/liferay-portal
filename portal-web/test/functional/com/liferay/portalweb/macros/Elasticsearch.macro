@@ -1,4 +1,5 @@
 definition {
+
 	macro viewClusterStatus {
 		AssertTextPresent(locator1 = "//pre", value1 = "${clusterStatus}");
 	}
@@ -32,4 +33,5 @@ definition {
 	macro viewReplicaRemovedInConsole {
 		AssertConsoleTextPresent(value1 = "removed.*reason: zen-disco-node_left");
 	}
+
 }

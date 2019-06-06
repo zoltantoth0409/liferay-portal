@@ -1,5 +1,6 @@
 @component-name = "portal-web-forms-and-data-lists"
 definition {
+
 	property osgi.app.includes = "web-form";
 	property portal.release = "true";
 	property portal.upstream = "true";
@@ -768,4 +769,5 @@ definition {
 
 		SelectFrameTop(value1 = "relative=top");
 	}
+
 }

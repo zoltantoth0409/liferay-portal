@@ -1,5 +1,6 @@
 @component-name = "portal-calendar"
 definition {
+
 	property custom.properties = "default.layout.template.id=1_column${line.separator}company.default.time.zone=America/Los_Angeles";
 	property osgi.app.includes = "events-display";
 	property plugins.deployment.type = "osgi";
@@ -93,4 +94,5 @@ definition {
 			value1 = "${startDate}"
 		);
 	}
+
 }

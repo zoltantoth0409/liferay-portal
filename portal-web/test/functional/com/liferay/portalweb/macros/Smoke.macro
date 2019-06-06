@@ -1,4 +1,5 @@
 definition {
+
 	var userFirstName = "Test";
 	var userLastName = "Test";
 
@@ -93,4 +94,5 @@ definition {
 			value1 = "Welcome to Liferay"
 		);
 	}
+
 }

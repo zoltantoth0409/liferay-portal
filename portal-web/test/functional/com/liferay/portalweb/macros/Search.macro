@@ -1,4 +1,5 @@
 definition {
+
 	macro addTagFacet {
 		AssertClick.assertPartialTextClickAt(
 			locator1 = "SearchResults#USER_FACET_TAGS",
@@ -242,4 +243,5 @@ definition {
 
 		AssertTextEquals(locator1 = "Home#PAGE_1", value1 = "${pageName}");
 	}
+
 }

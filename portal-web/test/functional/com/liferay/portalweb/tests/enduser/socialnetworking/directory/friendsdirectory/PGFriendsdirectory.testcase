@@ -1,5 +1,6 @@
 @component-name = "portal-social-networking"
 definition {
+
 	property osgi.app.includes = "social-networking";
 	property portal.release = "true";
 	property portal.upstream = "true";
@@ -238,4 +239,5 @@ definition {
 			userScreenName = "usersn"
 		);
 	}
+
 }

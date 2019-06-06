@@ -1,4 +1,5 @@
 definition {
+
 	macro deleteSpecificMail {
 		for (var gmailMessageTitle : list "${gmailMessageTitleList}") {
 			var key_gmailMessageTitle = "${gmailMessageTitle}";
@@ -226,4 +227,5 @@ definition {
 			);
 		}
 	}
+
 }

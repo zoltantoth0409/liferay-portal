@@ -1,4 +1,5 @@
 definition {
+
 	macro addMediaWikiDescription {
 		Type(locator1 = "TextArea#WEB_EDITOR", value1 = "${wikiPageContent}");
 	}
@@ -63,4 +64,5 @@ definition {
 			value1 = "${pageFormat}"
 		);
 	}
+
 }

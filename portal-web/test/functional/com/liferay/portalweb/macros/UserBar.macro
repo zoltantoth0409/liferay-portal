@@ -1,4 +1,5 @@
 definition {
+
 	var key_panel = "user";
 
 	@description = "Navigate to My Dashboard."
@@ -66,4 +67,5 @@ definition {
 			Click(locator1 = "UserBar#USER_SIGN_OUT");
 		}
 	}
+
 }

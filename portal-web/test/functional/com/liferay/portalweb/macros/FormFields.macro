@@ -1,4 +1,5 @@
 definition {
+
 	var rowNumber = "1";
 
 	macro addRepeatableField {
@@ -527,4 +528,5 @@ definition {
 			key_fieldName = "${fieldName}"
 		);
 	}
+
 }

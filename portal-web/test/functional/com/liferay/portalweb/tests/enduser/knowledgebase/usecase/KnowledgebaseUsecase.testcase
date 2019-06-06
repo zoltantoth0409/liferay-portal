@@ -1,5 +1,6 @@
 @component-name = "portal-knowledge-base"
 definition {
+
 	property custom.properties = "default.layout.template.id=1_column";
 	property osgi.app.includes = "knowledge-base";
 	property plugins.deployment.type = "osgi";
@@ -2638,4 +2639,5 @@ definition {
 			kbArticleTitle = "Knowledge Base Article Title Edited"
 		);
 	}
+
 }

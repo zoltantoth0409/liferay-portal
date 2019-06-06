@@ -1,4 +1,5 @@
 definition {
+
 	macro addServiceProviderConnection {
 		AssertClick(
 			locator1 = "CPSAMLAdminServiceProviderConnections#ADD_SERVICE_PROVIDER_BUTTON",
@@ -96,4 +97,5 @@ definition {
 
 		PortletEntry.save();
 	}
+
 }

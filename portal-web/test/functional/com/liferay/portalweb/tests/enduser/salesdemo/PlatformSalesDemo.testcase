@@ -1,6 +1,7 @@
 @component-name = "portal-portal-services"
 @ignore = "true"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property portlet.plugins.includes = "sample-drools-portlet";
@@ -224,4 +225,5 @@ definition {
 			welcomeMessage = "Welcome userfn userln!"
 		);
 	}
+
 }

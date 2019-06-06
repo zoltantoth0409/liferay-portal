@@ -1,4 +1,5 @@
 definition {
+
 	var validationErrorMessage = "This field is required.";
 
 	macro clickSubmit {
@@ -49,4 +50,5 @@ definition {
 			value1 = "${validationErrorMessage}"
 		);
 	}
+
 }

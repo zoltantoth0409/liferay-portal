@@ -1,6 +1,7 @@
 @component-name = "portal-document-management-ee"
 @ignore = "true"
 definition {
+
 	property dummy.socket.proxy.disabled = "true";
 	property osgi.app.includes = "sharepoint-rest";
 	property portal.ssl.enabled = "true";
@@ -162,4 +163,5 @@ definition {
 
 		DMRepository.viewBreadcrumb(dmRepositoryName = "${configurationName}");
 	}
+
 }

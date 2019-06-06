@@ -1,4 +1,5 @@
 definition {
+
 	macro addApplication {
 		AssertClick(locator1 = "TestOAuth#OAUTH_ADMIN_ADD", value1 = "Add");
 
@@ -83,4 +84,5 @@ definition {
 			value1 = "&quot;webId&quot;:&quot;${domainName}&quot;"
 		);
 	}
+
 }

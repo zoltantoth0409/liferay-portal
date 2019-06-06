@@ -1,4 +1,5 @@
 definition {
+
 	macro addAsset {
 		Click.clickNoWaitForVisible(
 			locator1 = "Portlet#ICON_PLUS_SIGN",
@@ -1568,4 +1569,5 @@ definition {
 			);
 		}
 	}
+
 }

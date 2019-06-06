@@ -1,4 +1,5 @@
 definition {
+
 	macro smoke {
 		Page.add(pageName = "Blogs Test Page");
 
@@ -120,4 +121,5 @@ definition {
 
 		Navigator.gotoPage(pageName = "Bookmarks Test Page");
 	}
+
 }

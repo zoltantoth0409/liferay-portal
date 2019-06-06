@@ -1,5 +1,6 @@
 @component-name = "portal-wcm"
 definition {
+
 	property portal.release = "false";
 	property portal.upstream = "true";
 	property testray.main.component.name = "YouTube";
@@ -63,4 +64,5 @@ definition {
 			portletName = "YouTube"
 		);
 	}
+
 }

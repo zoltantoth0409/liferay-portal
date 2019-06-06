@@ -1,5 +1,6 @@
 @component-name = "portal-xsl"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "XSL";
@@ -508,4 +509,5 @@ definition {
 
 		XSLContent.viewConfigurationXSLContent();
 	}
+
 }

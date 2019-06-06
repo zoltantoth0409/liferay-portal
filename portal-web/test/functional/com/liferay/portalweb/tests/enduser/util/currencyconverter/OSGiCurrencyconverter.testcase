@@ -1,6 +1,7 @@
 @component-name = "portal-util-misc"
 @ignore = "true"
 definition {
+
 	property dummy.socket.proxy.disabled = "true";
 	property osgi.app.includes = "currency-converter";
 	property portal.release = "true";
@@ -41,4 +42,5 @@ definition {
 			currencyValue = "4"
 		);
 	}
+
 }

@@ -1,4 +1,5 @@
 definition {
+
 	macro checkSocialBookmarks {
 		Check.checkToggleSwitch(locator1 = "Checkbox#ENABLE_SOCIAL_BOOKMARKS");
 	}
@@ -249,4 +250,5 @@ definition {
 	macro viewSubscribePG {
 		AssertTextEquals(locator1 = "Link#SUBSCRIBE", value1 = "Subscribe");
 	}
+
 }

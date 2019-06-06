@@ -1,4 +1,5 @@
 definition {
+
 	var assetType = "Documents Folder";
 
 	macro addCP {
@@ -671,4 +672,5 @@ definition {
 			value1 = "${mgFolderName}"
 		);
 	}
+
 }

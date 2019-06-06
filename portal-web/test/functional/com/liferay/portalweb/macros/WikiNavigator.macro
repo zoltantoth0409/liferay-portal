@@ -1,4 +1,5 @@
 definition {
+
 	macro gotoAddPageViaPG {
 		Portlet.clickPortletPlusIconPG(portletName = "Wiki");
 
@@ -196,4 +197,5 @@ definition {
 			value1 = "${wikiPageTitle}"
 		);
 	}
+
 }

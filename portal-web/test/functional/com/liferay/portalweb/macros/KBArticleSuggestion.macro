@@ -1,4 +1,5 @@
 definition {
+
 	macro addPG {
 		Click(locator1 = "KnowledgeBaseSuggestions#CONTENT_INPUT");
 
@@ -144,4 +145,5 @@ definition {
 			value1 = "${status}"
 		);
 	}
+
 }

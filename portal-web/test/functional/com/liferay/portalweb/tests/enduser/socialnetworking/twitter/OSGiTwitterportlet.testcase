@@ -1,5 +1,6 @@
 @component-name = "portal-plugins-osgi"
 definition {
+
 	property dummy.socket.proxy.disabled = "true";
 	property osgi.app.includes = "twitter";
 	property portal.release = "true";
@@ -72,4 +73,5 @@ definition {
 
 		Twitter.viewFeedEntry(entryContent = "This is a tweet sent on Twitter.");
 	}
+
 }

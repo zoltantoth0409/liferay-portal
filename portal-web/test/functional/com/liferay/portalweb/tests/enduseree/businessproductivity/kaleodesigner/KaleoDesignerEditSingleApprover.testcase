@@ -1,5 +1,6 @@
 @component-name = "portal-business-productivity-ee"
 definition {
+
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property test.run.environment = "EE";
@@ -120,4 +121,5 @@ definition {
 			nodeNotificationsType = "User Notification"
 		);
 	}
+
 }

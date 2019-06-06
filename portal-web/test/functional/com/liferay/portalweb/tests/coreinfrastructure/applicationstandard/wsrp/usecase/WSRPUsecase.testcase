@@ -1,5 +1,6 @@
 @component-name = "portal-legacy"
 definition {
+
 	property dummy.socket.proxy.disabled = "true";
 	property portal.release = "true";
 	property portal.upstream = "true";
@@ -97,4 +98,5 @@ definition {
 			unitType = "Length"
 		);
 	}
+
 }
