@@ -1804,15 +1804,6 @@ definition {
 		}
 	}
 
-	macro viewNoEditWCViaAP {
-		AssertElementPresent(locator1 = "APAsset#ASSET_TITLE", key_assetTitle = "${assetTitle}");
-
-		AssertElementNotPresent(
-			locator1 = "AP#ASSET_ELLIPSIS_ICON",
-			key_assetTitle = "${assetTitle}"
-		);
-	}
-
 	macro viewNoEditWCCP {
 		var key_webContentTitle = "${webContentTitle}";
 
@@ -1823,6 +1814,15 @@ definition {
 		AssertElementNotPresent(
 			locator1 = "MenuItem#ANY_MENU_ITEM",
 			key_menuItem = "Edit"
+		);
+	}
+
+	macro viewNoEditWCViaAP {
+		AssertElementPresent(locator1 = "APAsset#ASSET_TITLE", key_assetTitle = "${assetTitle}");
+
+		AssertElementNotPresent(
+			locator1 = "AP#ASSET_ELLIPSIS_ICON",
+			key_assetTitle = "${assetTitle}"
 		);
 	}
 
