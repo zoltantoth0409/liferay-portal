@@ -16,22 +16,6 @@ definition {
 	}
 
 	@priority = "5"
-	test ViewDroolsInAppManagerAfterUpgrade621015 {
-		property data.archive.type = "data-archive-portal";
-		property portal.version = "6.2.10.15";
-
-		Upgrade.ViewDroolsAppManager();
-	}
-
-	@priority = "5"
-	test ViewDroolsInAppManagerAfterUpgrade621021 {
-		property data.archive.type = "data-archive-portal";
-		property portal.version = "6.2.10.21";
-
-		Upgrade.ViewDroolsAppManager();
-	}
-
-	@priority = "5"
 	test ViewDroolsInAppManagerAfterUpgrade625 {
 		property data.archive.type = "data-archive-portal";
 		property portal.version = "6.2.5";
@@ -43,6 +27,22 @@ definition {
 	test ViewDroolsInAppManagerAfterUpgrade7010 {
 		property data.archive.type = "data-archive-portal";
 		property portal.version = "7.0.10";
+
+		Upgrade.ViewDroolsAppManager();
+	}
+
+	@priority = "5"
+	test ViewDroolsInAppManagerAfterUpgrade621015 {
+		property data.archive.type = "data-archive-portal";
+		property portal.version = "6.2.10.15";
+
+		Upgrade.ViewDroolsAppManager();
+	}
+
+	@priority = "5"
+	test ViewDroolsInAppManagerAfterUpgrade621021 {
+		property data.archive.type = "data-archive-portal";
+		property portal.version = "6.2.10.21";
 
 		Upgrade.ViewDroolsAppManager();
 	}
