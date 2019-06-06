@@ -9,6 +9,8 @@ definition {
 	property test.ignore.tomcat.ext.environment = "true";
 	property test.run.environment = "EE";
 	property testray.main.component.name = "Rolling Restart";
+	var testBuildFixPackZipURL = PropsUtil.get("test.build.fix.pack.zip.url");
+	var testBuildFixPackZipURLPrevious = PropsUtil.get("test.build.fix.pack.zip.url.previous");
 
 	setUp {
 		User.firstLoginPG();
@@ -65,8 +67,6 @@ definition {
 		Navigator.openSpecificURL(url = "http://localhost:9080");
 
 		Page.assertNodePortPG(nodePort = "9080");
-
-		var testBuildFixPackZipURL = PropsUtil.get("test.build.fix.pack.zip.url");
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "8080",
@@ -204,8 +204,6 @@ definition {
 		// Take down cluster2 and install the latest FP
 
 		Portlet.shutdownSpecificServer(nodePort = "9080");
-
-		var testBuildFixPackZipURL = PropsUtil.get("test.build.fix.pack.zip.url");
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "9080",
@@ -432,8 +430,6 @@ definition {
 		for (var nodePort : list "8080,9080,10080") {
 			Portlet.shutdownSpecificServer(nodePort = "${nodePort}");
 
-			var testBuildFixPackZipURL = PropsUtil.get("test.build.fix.pack.zip.url");
-
 			PatchingTool.installPatchOnSpecificServer(
 				nodePort = "${nodePort}",
 				patchFileZipURL = "${testBuildFixPackZipURL}");
@@ -464,7 +460,8 @@ definition {
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "9080",
-			patchFileZipURL = "https://files.liferay.com/private/ee/fix-packs/7.0.10/de/liferay-fix-pack-de-60-7010.zip");
+			patchFileZipURL = "${testBuildFixPackZipURLPrevious}"
+		);
 
 		Portlet.startSpecificServer(
 			deleteLiferayHome = "true",
@@ -537,7 +534,8 @@ definition {
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "8080",
-			patchFileZipURL = "https://files.liferay.com/private/ee/fix-packs/7.0.10/de/liferay-fix-pack-de-60-7010.zip");
+			patchFileZipURL = "${testBuildFixPackZipURLPrevious}"
+		);
 
 		Portlet.startSpecificServer(
 			deleteLiferayHome = "true",
@@ -600,7 +598,8 @@ definition {
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "10080",
-			patchFileZipURL = "https://files.liferay.com/private/ee/fix-packs/7.0.10/de/liferay-fix-pack-de-60-7010.zip");
+			patchFileZipURL = "${testBuildFixPackZipURLPrevious}"
+		);
 
 		Portlet.startSpecificServer(
 			deleteLiferayHome = "true",
