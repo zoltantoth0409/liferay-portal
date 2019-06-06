@@ -15,7 +15,6 @@
 package com.liferay.portal.kernel.nio.intraband;
 
 import com.liferay.portal.kernel.io.BigEndianCodec;
-import com.liferay.portal.kernel.nio.intraband.CompletionHandler.CompletionType;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
@@ -325,7 +324,7 @@ public class Datagram {
 
 	protected Object attachment;
 	protected CompletionHandler<Object> completionHandler;
-	protected EnumSet<CompletionType> completionTypes;
+	protected EnumSet<CompletionHandler.CompletionType> completionTypes;
 	protected long expireTime;
 	protected long timeout;
 

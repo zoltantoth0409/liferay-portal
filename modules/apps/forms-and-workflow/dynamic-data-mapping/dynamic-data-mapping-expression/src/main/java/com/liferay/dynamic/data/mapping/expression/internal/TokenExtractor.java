@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import com.udojava.evalex.Expression;
-import com.udojava.evalex.Expression.ExpressionException;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -129,7 +128,7 @@ public class TokenExtractor {
 				}
 			}
 		}
-		catch (ExpressionException ee) {
+		catch (Expression.ExpressionException ee) {
 			throw new DDMExpressionException(ee);
 		}
 	}

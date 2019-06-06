@@ -16,7 +16,6 @@ package com.liferay.petra.concurrent;
 
 import com.liferay.petra.memory.FinalizeAction;
 import com.liferay.petra.memory.FinalizeManager;
-import com.liferay.petra.memory.FinalizeManager.ReferenceFactory;
 
 import java.lang.ref.Reference;
 
@@ -32,7 +31,7 @@ public class ConcurrentReferenceKeyHashMap<K, V>
 
 	public ConcurrentReferenceKeyHashMap(
 		ConcurrentMap<Reference<K>, V> innerConcurrentMap,
-		ReferenceFactory referenceFactory) {
+		FinalizeManager.ReferenceFactory referenceFactory) {
 
 		super(innerConcurrentMap);
 
@@ -41,7 +40,7 @@ public class ConcurrentReferenceKeyHashMap<K, V>
 
 	public ConcurrentReferenceKeyHashMap(
 		int initialCapacity, float loadFactor, int concurrencyLevel,
-		ReferenceFactory referenceFactory) {
+		FinalizeManager.ReferenceFactory referenceFactory) {
 
 		this(
 			new ConcurrentHashMap<Reference<K>, V>(
@@ -50,7 +49,8 @@ public class ConcurrentReferenceKeyHashMap<K, V>
 	}
 
 	public ConcurrentReferenceKeyHashMap(
-		int initialCapacity, ReferenceFactory referenceFactory) {
+		int initialCapacity,
+		FinalizeManager.ReferenceFactory referenceFactory) {
 
 		this(
 			new ConcurrentHashMap<Reference<K>, V>(initialCapacity),
@@ -58,14 +58,17 @@ public class ConcurrentReferenceKeyHashMap<K, V>
 	}
 
 	public ConcurrentReferenceKeyHashMap(
-		Map<? extends K, ? extends V> map, ReferenceFactory referenceFactory) {
+		Map<? extends K, ? extends V> map,
+		FinalizeManager.ReferenceFactory referenceFactory) {
 
 		this(new ConcurrentHashMap<Reference<K>, V>(), referenceFactory);
 
 		putAll(map);
 	}
 
-	public ConcurrentReferenceKeyHashMap(ReferenceFactory referenceFactory) {
+	public ConcurrentReferenceKeyHashMap(
+		FinalizeManager.ReferenceFactory referenceFactory) {
+
 		this(new ConcurrentHashMap<Reference<K>, V>(), referenceFactory);
 	}
 
@@ -123,6 +126,6 @@ public class ConcurrentReferenceKeyHashMap<K, V>
 
 	};
 
-	private final ReferenceFactory _referenceFactory;
+	private final FinalizeManager.ReferenceFactory _referenceFactory;
 
 }
