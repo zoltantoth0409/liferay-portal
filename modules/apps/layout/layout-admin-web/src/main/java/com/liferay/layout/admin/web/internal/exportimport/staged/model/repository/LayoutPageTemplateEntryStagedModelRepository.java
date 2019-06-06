@@ -50,17 +50,17 @@ public class LayoutPageTemplateEntryStagedModelRepository
 		long userId = portletDataContext.getUserId(
 			layoutPageTemplateEntry.getUserUuid());
 
+		long plid = layoutPageTemplateEntry.getPlid();
+
+		if (layoutPageTemplateEntry.getLayoutPrototypeId() > 0) {
+			plid = 0;
+		}
+
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			layoutPageTemplateEntry);
 
 		if (portletDataContext.isDataStrategyMirror()) {
 			serviceContext.setUuid(layoutPageTemplateEntry.getUuid());
-		}
-
-		long plid = layoutPageTemplateEntry.getPlid();
-
-		if (layoutPageTemplateEntry.getLayoutPrototypeId() > 0) {
-			plid = 0;
 		}
 
 		return _layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
