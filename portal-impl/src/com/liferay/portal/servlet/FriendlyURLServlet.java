@@ -123,7 +123,7 @@ public class FriendlyURLServlet extends HttpServlet {
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(e);
+				_log.warn(e, e);
 			}
 
 			if (e instanceof NoSuchGroupException ||

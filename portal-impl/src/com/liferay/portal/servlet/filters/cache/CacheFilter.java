@@ -241,7 +241,7 @@ public class CacheFilter extends BasePortalFilter {
 					groupId, privateLayout);
 			}
 			catch (Exception e) {
-				_log.warn(e);
+				_log.warn(e, e);
 
 				return 0;
 			}

@@ -178,7 +178,7 @@ public class LockMethodImpl implements Method {
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(e);
+				_log.warn(e, e);
 			}
 		}
 
