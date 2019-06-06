@@ -22,11 +22,11 @@ definition {
 
 	macro acceptEndUserLicenseAgreement {
 		if (IsElementPresent(
-					locator1 = "Button#I_AGREE",
-					value1 = "I Agree")) {
+				locator1 = "Button#I_AGREE",
+				value1 = "I Agree")) {
 			AssertClick(
-					locator1 = "Button#I_AGREE",
-					value1 = "I Agree");
+				locator1 = "Button#I_AGREE",
+				value1 = "I Agree");
 
 			AssertElementNotPresent(locator1 = "Button#I_AGREE");
 		}
@@ -1642,11 +1642,11 @@ definition {
 			SelectWindow.selectWindowNoSPARefresh(locator1 = "title=Terms of Use - ${siteName}");
 
 			if (IsElementPresent.pauseIsElementPresent(
-				locator1 = "Button#I_AGREE",
-				value1 = "I Agree")) {
+					locator1 = "Button#I_AGREE",
+					value1 = "I Agree")) {
 				AssertClick(
-				locator1 = "Button#I_AGREE",
-				value1 = "I Agree");
+					locator1 = "Button#I_AGREE",
+					value1 = "I Agree");
 			}
 
 			if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#PASSWORD")) {
