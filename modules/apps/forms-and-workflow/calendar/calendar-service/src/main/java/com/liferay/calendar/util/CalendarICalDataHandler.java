@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.net.URI;
@@ -50,6 +51,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TimeZone;
 
 import net.fortuna.ical4j.data.CalendarBuilder;
@@ -449,17 +451,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	protected boolean isICalDateOnly(DateProperty dateProperty) {
 		Parameter valueParameter = dateProperty.getParameter(Parameter.VALUE);
 
-		if (valueParameter == null) {
-			return false;
-		}
-
-		String value = valueParameter.getValue();
-
-		if (value.equals("DATE")) {
-			return true;
-		}
-
-		return false;
+		return Objects.equals(valueParameter.getValue(), "DATE");
 	}
 
 	protected VAlarm toICalAlarm(
@@ -689,20 +681,22 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		if (calendarBooking.isRecurring()) {
 			String recurrence = calendarBooking.getRecurrence();
 
-			int index = recurrence.indexOf(StringPool.NEW_LINE);
+			if (Validator.isNotNull(recurrence)) {
+				int index = recurrence.indexOf(StringPool.NEW_LINE);
 
-			if (index > 0) {
-				recurrence = recurrence.substring(0, index);
+				if (index > 0) {
+					recurrence = recurrence.substring(0, index);
+				}
+
+				recurrence = StringUtil.replace(
+					recurrence, _RRULE, StringPool.BLANK);
+
+				RRule rRule = new RRule(recurrence);
+
+				_addHourMinuteToUntilDate(rRule.getRecur());
+
+				propertyList.add(rRule);
 			}
-
-			String value = StringUtil.replace(
-				recurrence, _RRULE, StringPool.BLANK);
-
-			RRule rRule = new RRule(value);
-
-			_addHourMinuteToUntilDate(rRule.getRecur());
-
-			propertyList.add(rRule);
 
 			ExDate exDate = toICalExDate(
 				calendarBooking.getRecurrenceObj(),
@@ -777,7 +771,12 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		DateList dateList = new DateList();
 
-		dateList.setUtc(true);
+		if (timeZone == null) {
+			dateList.setUtc(true);
+		}
+		else {
+			dateList.setTimeZone(_toICalTimeZone(timeZone));
+		}
 
 		for (java.util.Calendar exceptionJCalendar : exceptionJCalendars) {
 			DateTime dateTime = toICalDateTime(
