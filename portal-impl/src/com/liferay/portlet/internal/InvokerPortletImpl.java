@@ -156,7 +156,7 @@ public class InvokerPortletImpl
 				currentThread.setContextClassLoader(_portletClassLoader);
 			}
 
-			cleanup();
+			cleanUp();
 
 			_portlet.destroy();
 		}
@@ -248,7 +248,7 @@ public class InvokerPortletImpl
 			_portlet.init(portletConfig);
 		}
 		catch (Throwable t) {
-			cleanup();
+			cleanUp();
 
 			throw t;
 		}
@@ -529,14 +529,14 @@ public class InvokerPortletImpl
 	public void setPortletFilters() {
 	}
 
-	protected void cleanup() {
+	protected void cleanUp() {
 		try {
 			Closeable closeable = (Closeable)_invokerFilterContainer;
 
 			closeable.close();
 		}
 		catch (IOException ioe) {
-			_log.error("Unable to close InvokerFilterContainer", ioe);
+			_log.error("Unable to close invoker filter container", ioe);
 		}
 	}
 
