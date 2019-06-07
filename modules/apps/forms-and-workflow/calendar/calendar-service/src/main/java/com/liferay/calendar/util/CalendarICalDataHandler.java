@@ -813,14 +813,14 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			return;
 		}
 
-		java.util.Calendar calendar = java.util.Calendar.getInstance();
+		java.util.Calendar jCalendar = java.util.Calendar.getInstance();
 
-		calendar.setTime(recur.getUntil());
+		jCalendar.setTime(recur.getUntil());
 
-		calendar.add(java.util.Calendar.HOUR_OF_DAY, 23);
-		calendar.add(java.util.Calendar.MINUTE, 59);
+		jCalendar.add(java.util.Calendar.HOUR_OF_DAY, 23);
+		jCalendar.add(java.util.Calendar.MINUTE, 59);
 
-		recur.setUntil(new DateTime(calendar.getTimeInMillis()));
+		recur.setUntil(new DateTime(jCalendar.getTimeInMillis()));
 	}
 
 	private TimeZoneRegistry _getTimeZoneRegistry() {
