@@ -105,7 +105,7 @@ public class AsahSegmentsEntryProvider implements SegmentsEntryProvider {
 		if (cachedSegmentsEntryIds == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Asah segments cache not found for userId " + userId);
+					"Asah segments cache not found for user ID " + userId);
 			}
 
 			_sendMessage(userId);

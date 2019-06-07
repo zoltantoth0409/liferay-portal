@@ -102,7 +102,7 @@ public class IndividualSegmentsCheckerUtil {
 
 		if (individual == null) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to find individual " + individualPK);
+				_log.debug("Unable to get individual " + individualPK);
 			}
 
 			return;

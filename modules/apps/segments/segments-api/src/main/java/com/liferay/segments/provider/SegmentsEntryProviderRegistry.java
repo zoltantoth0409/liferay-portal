@@ -20,9 +20,6 @@ import com.liferay.segments.context.Context;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * Provides methods for retrieving segments entry providers defined by
- * {@link SegmentsEntryProvider} implementations.
- *
  * @author Eduardo García
  */
 @ProviderType
