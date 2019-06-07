@@ -209,8 +209,9 @@ public class DLFileEntryIndexer
 				searchContext.getFolderIds(),
 				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID)) {
 
-			contextBooleanFilter.addRequiredTerm(
-				Field.HIDDEN, searchContext.isIncludeAttachments());
+			if (!searchContext.isIncludeAttachments()) {
+				contextBooleanFilter.addRequiredTerm(Field.HIDDEN, false);
+			}
 		}
 
 		addSearchClassTypeIds(contextBooleanFilter, searchContext);
