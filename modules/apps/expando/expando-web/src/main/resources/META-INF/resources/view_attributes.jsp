@@ -22,6 +22,12 @@ String redirect = ParamUtil.getString(request, "redirect");
 String modelResource = ParamUtil.getString(request, "modelResource");
 String modelResourceName = ResourceActionsUtil.getModelResource(request, modelResource);
 
+ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(company.getCompanyId(), modelResource);
+
+List<String> attributeNames = Collections.list(expandoBridge.getAttributeNames());
+
+ExpandoDisplayContext expandoDisplayContext = new ExpandoDisplayContext(request);
+
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("mvcPath", "/view_attributes.jsp");
@@ -32,12 +38,6 @@ portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
 renderResponse.setTitle(modelResourceName);
-
-ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(company.getCompanyId(), modelResource);
-
-List<String> attributeNames = Collections.list(expandoBridge.getAttributeNames());
-
-ExpandoDisplayContext expandoDisplayContext = new ExpandoDisplayContext(request);
 
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "custom-field"), String.valueOf(renderResponse.createRenderURL()));
 
