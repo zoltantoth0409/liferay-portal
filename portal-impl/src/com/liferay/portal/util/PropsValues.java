@@ -324,6 +324,12 @@ public class PropsValues {
 					PropsKeys.
 						BLOGS_ENTRY_PREVIOUS_AND_NEXT_NAVIGATION_ENABLED));
 
+	/**
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
+	 */
+	public static final long BLOGS_IMAGE_MAX_SIZE = GetterUtil.getLong(
+		PropsUtil.get(PropsKeys.BLOGS_IMAGE_MAX_SIZE));
+
 	public static final int BLOGS_LINKBACK_EXCERPT_LENGTH =
 		GetterUtil.getInteger(
 			PropsUtil.get(PropsKeys.BLOGS_LINKBACK_EXCERPT_LENGTH));
