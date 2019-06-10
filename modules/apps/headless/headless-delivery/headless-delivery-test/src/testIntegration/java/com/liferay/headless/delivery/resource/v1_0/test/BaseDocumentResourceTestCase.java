@@ -459,16 +459,24 @@ public abstract class BaseDocumentResourceTestCase {
 
 	@Test
 	public void testPostDocumentFolderDocument() throws Exception {
-		Assert.assertTrue(true);
+		Document randomDocument = randomDocument();
+
+		Map<String, File> multipartFiles = getMultipartFiles();
+
+		Document postDocument = testPostDocumentFolderDocument_addDocument(
+			randomDocument, multipartFiles);
+
+		assertEquals(randomDocument, postDocument);
+		assertValid(postDocument);
 	}
 
 	protected Document testPostDocumentFolderDocument_addDocument(
-			Document document)
+			Document document, Map<String, File> multipartFiles)
 		throws Exception {
 
 		return documentResource.postDocumentFolderDocument(
 			testGetDocumentFolderDocumentsPage_getDocumentFolderId(), document,
-			getMultipartFiles());
+			multipartFiles);
 	}
 
 	@Test
@@ -508,7 +516,26 @@ public abstract class BaseDocumentResourceTestCase {
 
 	@Test
 	public void testPatchDocument() throws Exception {
-		Assert.assertTrue(true);
+		Document postDocument = testPatchDocument_addDocument();
+
+		Document randomPatchDocument = randomPatchDocument();
+
+		Map<String, File> multipartFiles = getMultipartFiles();
+
+		Document patchDocument = documentResource.patchDocument(
+			postDocument.getId(), randomPatchDocument, multipartFiles);
+
+		Document expectedPatchDocument = (Document)BeanUtils.cloneBean(
+			postDocument);
+
+		_beanUtilsBean.copyProperties(
+			expectedPatchDocument, randomPatchDocument);
+
+		Document getDocument = documentResource.getDocument(
+			patchDocument.getId());
+
+		assertEquals(expectedPatchDocument, getDocument);
+		assertValid(getDocument);
 	}
 
 	protected Document testPatchDocument_addDocument() throws Exception {
@@ -518,7 +545,23 @@ public abstract class BaseDocumentResourceTestCase {
 
 	@Test
 	public void testPutDocument() throws Exception {
-		Assert.assertTrue(true);
+		Document postDocument = testPutDocument_addDocument();
+
+		Document randomDocument = randomDocument();
+
+		Map<String, File> multipartFiles = getMultipartFiles();
+
+		Document putDocument = documentResource.putDocument(
+			postDocument.getId(), randomDocument, multipartFiles);
+
+		assertEquals(randomDocument, putDocument);
+		assertValid(putDocument);
+
+		Document getDocument = documentResource.getDocument(
+			putDocument.getId());
+
+		assertEquals(randomDocument, getDocument);
+		assertValid(getDocument);
 	}
 
 	protected Document testPutDocument_addDocument() throws Exception {
@@ -801,15 +844,23 @@ public abstract class BaseDocumentResourceTestCase {
 
 	@Test
 	public void testPostSiteDocument() throws Exception {
-		Assert.assertTrue(true);
+		Document randomDocument = randomDocument();
+
+		Map<String, File> multipartFiles = getMultipartFiles();
+
+		Document postDocument = testPostSiteDocument_addDocument(
+			randomDocument, multipartFiles);
+
+		assertEquals(randomDocument, postDocument);
+		assertValid(postDocument);
 	}
 
-	protected Document testPostSiteDocument_addDocument(Document document)
+	protected Document testPostSiteDocument_addDocument(
+			Document document, Map<String, File> multipartFiles)
 		throws Exception {
 
 		return documentResource.postSiteDocument(
-			testGetSiteDocumentsPage_getSiteId(), document,
-			getMultipartFiles());
+			testGetSiteDocumentsPage_getSiteId(), document, multipartFiles);
 	}
 
 	protected void assertHttpResponseStatusCode(
