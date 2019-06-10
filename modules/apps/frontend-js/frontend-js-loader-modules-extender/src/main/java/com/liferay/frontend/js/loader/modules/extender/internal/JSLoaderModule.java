@@ -62,10 +62,10 @@ public class JSLoaderModule {
 
 		String jsVersion = version.toString();
 
-		int pos = jsVersion.indexOf(".hotfix");
+		int index = jsVersion.indexOf(".hotfix");
 
-		if (pos > -1) {
-			jsVersion = jsVersion.substring(0, pos);
+		if (index > -1) {
+			jsVersion = jsVersion.substring(0, index);
 		}
 
 		_version = jsVersion;
