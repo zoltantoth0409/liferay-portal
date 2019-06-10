@@ -50,9 +50,7 @@ public class DataRecordResourceTest extends BaseDataRecordResourceTestCase {
 	}
 
 	@Test
-	public void testPostDataRecordCollectionDataRecord()
-		throws Exception {
-
+	public void testPostDataRecordCollectionDataRecord() throws Exception {
 		super.testPostDataRecordCollectionDataRecord();
 
 		assertHttpResponseStatusCode(
@@ -60,7 +58,8 @@ public class DataRecordResourceTest extends BaseDataRecordResourceTestCase {
 			DataRecordResource.postDataRecordCollectionDataRecordHttpResponse(
 				RandomTestUtil.randomLong(), randomDataRecord()));
 
-		DataRecord dataRecord = _createDataRecord(DataRecordResource.randomString());
+		DataRecord dataRecord = _createDataRecord(
+			DataRecordResource.randomString());
 
 		assertHttpResponseStatusCode(
 			400,
