@@ -844,6 +844,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					assertEquals(expectedPatch${schemaName}, get${schemaName});
 					assertValid(get${schemaName});
+
+					<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+						assertValid(get${schemaName}, multipartFiles);
+					</#if>
 				</#if>
 			}
 
@@ -885,6 +889,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 				assertEquals(random${schemaName}, post${schemaName});
 				assertValid(post${schemaName});
+
+				<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+					assertValid(post${schemaName}, multipartFiles);
+				</#if>
 			}
 
 			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${schemaName} ${schemaVarName}
@@ -946,6 +954,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 					assertEquals(random${schemaName}, get${schemaName});
 					assertValid(get${schemaName});
+
+					<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+						assertValid(get${schemaName}, multipartFiles);
+					</#if>
 				</#if>
 			}
 
@@ -1068,6 +1080,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 		Assert.assertTrue(valid);
 	}
+
+	<#if generateGetMultipartFilesMethod>
+		protected void assertValid(${configYAML.apiPackagePath}.client.dto.${escapedVersion}.${schemaName} ${schemaVarName}, Map<String, File> multipartFiles) throws Exception {
+			throw new UnsupportedOperationException("This method needs to be implemented");
+		}
+	</#if>
 
 	protected void assertValid(Page<${schemaName}> page) {
 		boolean valid = false;
