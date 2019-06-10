@@ -51,7 +51,8 @@ public class BlogPostingImageResourceTest
 		blogPostingImage.setTitle("*,?");
 
 		try {
-			testPostSiteBlogPostingImage_addBlogPostingImage(blogPostingImage);
+			testPostSiteBlogPostingImage_addBlogPostingImage(
+				blogPostingImage, getMultipartFiles());
 
 			Assert.fail();
 		}
