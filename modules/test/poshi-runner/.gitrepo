@@ -7,5 +7,5 @@
 	commit = fb07148f509e4ffd8ad0e8ab6543d1c6a0b56ef0
 	mergebuttonmergecommits = false
 	mode = pull
-	parent = 1a3b71df8af9d0930d3ec413d9e239da2be9fc28
+	parent = 0000000000000000000000000000000000000000
 	remote = git@github.com:liferay/com-liferay-poshi-runner.git
