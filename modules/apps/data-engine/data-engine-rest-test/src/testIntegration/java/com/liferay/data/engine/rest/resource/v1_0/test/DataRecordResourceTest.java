@@ -60,7 +60,7 @@ public class DataRecordResourceTest extends BaseDataRecordResourceTestCase {
 			DataRecordResource.postDataRecordCollectionDataRecordHttpResponse(
 				RandomTestUtil.randomLong(), randomDataRecord()));
 
-		DataRecord dataRecord = _createDataRecord("Wrong Field");
+		DataRecord dataRecord = _createDataRecord(DataRecordResource.randomString());
 
 		assertHttpResponseStatusCode(
 			400,
