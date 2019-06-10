@@ -8222,12 +8222,6 @@ public class JournalArticleLocalServiceImpl
 			"[$ARTICLE_DIFFS$]", DiffHtmlUtil.replaceStyles(articleDiffs),
 			false);
 
-		String portletId = PortletProviderUtil.getPortletId(
-			JournalArticle.class.getName(), PortletProvider.Action.EDIT);
-
-		String articleURL = getURLViewInContext(
-			article, portletId, serviceContext);
-
 		JournalFolder folder = article.getFolder();
 
 		String folderName = folder.getName();
@@ -8238,6 +8232,12 @@ public class JournalArticleLocalServiceImpl
 
 			folderName = LanguageUtil.get(LocaleUtil.getSiteDefault(), "home");
 		}
+
+		String portletId = PortletProviderUtil.getPortletId(
+			JournalArticle.class.getName(), PortletProvider.Action.EDIT);
+
+		String articleURL = getURLViewInContext(
+			article, portletId, serviceContext);
 
 		String articleStatus = LanguageUtil.get(
 			LocaleUtil.getSiteDefault(),
