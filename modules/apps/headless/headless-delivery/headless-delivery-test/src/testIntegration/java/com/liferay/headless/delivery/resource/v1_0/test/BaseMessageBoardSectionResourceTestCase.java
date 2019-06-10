@@ -54,7 +54,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -98,12 +97,18 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_messageBoardSectionResource.setContextCompany(testCompany);
+
+		MessageBoardSectionResource.Builder builder =
+			MessageBoardSectionResource.builder();
+
+		messageBoardSectionResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -192,24 +197,24 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			MessageBoardSectionResource.deleteMessageBoardSectionHttpResponse(
+			messageBoardSectionResource.deleteMessageBoardSectionHttpResponse(
 				messageBoardSection.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			MessageBoardSectionResource.getMessageBoardSectionHttpResponse(
+			messageBoardSectionResource.getMessageBoardSectionHttpResponse(
 				messageBoardSection.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			MessageBoardSectionResource.getMessageBoardSectionHttpResponse(0L));
+			messageBoardSectionResource.getMessageBoardSectionHttpResponse(0L));
 	}
 
 	protected MessageBoardSection
 			testDeleteMessageBoardSection_addMessageBoardSection()
 		throws Exception {
 
-		return MessageBoardSectionResource.postSiteMessageBoardSection(
+		return messageBoardSectionResource.postSiteMessageBoardSection(
 			testGroup.getGroupId(), randomMessageBoardSection());
 	}
 
@@ -219,7 +224,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			testGetMessageBoardSection_addMessageBoardSection();
 
 		MessageBoardSection getMessageBoardSection =
-			MessageBoardSectionResource.getMessageBoardSection(
+			messageBoardSectionResource.getMessageBoardSection(
 				postMessageBoardSection.getId());
 
 		assertEquals(postMessageBoardSection, getMessageBoardSection);
@@ -230,7 +235,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			testGetMessageBoardSection_addMessageBoardSection()
 		throws Exception {
 
-		return MessageBoardSectionResource.postSiteMessageBoardSection(
+		return messageBoardSectionResource.postSiteMessageBoardSection(
 			testGroup.getGroupId(), randomMessageBoardSection());
 	}
 
@@ -243,7 +248,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			randomPatchMessageBoardSection();
 
 		MessageBoardSection patchMessageBoardSection =
-			MessageBoardSectionResource.patchMessageBoardSection(
+			messageBoardSectionResource.patchMessageBoardSection(
 				postMessageBoardSection.getId(),
 				randomPatchMessageBoardSection);
 
@@ -254,7 +259,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			expectedPatchMessageBoardSection, randomPatchMessageBoardSection);
 
 		MessageBoardSection getMessageBoardSection =
-			MessageBoardSectionResource.getMessageBoardSection(
+			messageBoardSectionResource.getMessageBoardSection(
 				patchMessageBoardSection.getId());
 
 		assertEquals(expectedPatchMessageBoardSection, getMessageBoardSection);
@@ -265,7 +270,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			testPatchMessageBoardSection_addMessageBoardSection()
 		throws Exception {
 
-		return MessageBoardSectionResource.postSiteMessageBoardSection(
+		return messageBoardSectionResource.postSiteMessageBoardSection(
 			testGroup.getGroupId(), randomMessageBoardSection());
 	}
 
@@ -278,14 +283,14 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			randomMessageBoardSection();
 
 		MessageBoardSection putMessageBoardSection =
-			MessageBoardSectionResource.putMessageBoardSection(
+			messageBoardSectionResource.putMessageBoardSection(
 				postMessageBoardSection.getId(), randomMessageBoardSection);
 
 		assertEquals(randomMessageBoardSection, putMessageBoardSection);
 		assertValid(putMessageBoardSection);
 
 		MessageBoardSection getMessageBoardSection =
-			MessageBoardSectionResource.getMessageBoardSection(
+			messageBoardSectionResource.getMessageBoardSection(
 				putMessageBoardSection.getId());
 
 		assertEquals(randomMessageBoardSection, getMessageBoardSection);
@@ -296,7 +301,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			testPutMessageBoardSection_addMessageBoardSection()
 		throws Exception {
 
-		return MessageBoardSectionResource.postSiteMessageBoardSection(
+		return messageBoardSectionResource.postSiteMessageBoardSection(
 			testGroup.getGroupId(), randomMessageBoardSection());
 	}
 
@@ -305,7 +310,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		throws Exception {
 
 		Page<MessageBoardSection> page =
-			MessageBoardSectionResource.
+			messageBoardSectionResource.
 				getMessageBoardSectionMessageBoardSectionsPage(
 					testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId(),
 					RandomTestUtil.randomString(), null, Pagination.of(1, 2),
@@ -325,7 +330,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 					randomIrrelevantMessageBoardSection());
 
 			page =
-				MessageBoardSectionResource.
+				messageBoardSectionResource.
 					getMessageBoardSectionMessageBoardSectionsPage(
 						irrelevantParentMessageBoardSectionId, null, null,
 						Pagination.of(1, 2), null);
@@ -347,7 +352,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				parentMessageBoardSectionId, randomMessageBoardSection());
 
 		page =
-			MessageBoardSectionResource.
+			messageBoardSectionResource.
 				getMessageBoardSectionMessageBoardSectionsPage(
 					parentMessageBoardSectionId, null, null,
 					Pagination.of(1, 2), null);
@@ -382,7 +387,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardSection> page =
-				MessageBoardSectionResource.
+				messageBoardSectionResource.
 					getMessageBoardSectionMessageBoardSectionsPage(
 						parentMessageBoardSectionId, null,
 						getFilterString(
@@ -420,7 +425,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardSection> page =
-				MessageBoardSectionResource.
+				messageBoardSectionResource.
 					getMessageBoardSectionMessageBoardSectionsPage(
 						parentMessageBoardSectionId, null,
 						getFilterString(
@@ -453,7 +458,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				parentMessageBoardSectionId, randomMessageBoardSection());
 
 		Page<MessageBoardSection> page1 =
-			MessageBoardSectionResource.
+			messageBoardSectionResource.
 				getMessageBoardSectionMessageBoardSectionsPage(
 					parentMessageBoardSectionId, null, null,
 					Pagination.of(1, 2), null);
@@ -465,7 +470,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			messageBoardSections1.toString(), 2, messageBoardSections1.size());
 
 		Page<MessageBoardSection> page2 =
-			MessageBoardSectionResource.
+			messageBoardSectionResource.
 				getMessageBoardSectionMessageBoardSectionsPage(
 					parentMessageBoardSectionId, null, null,
 					Pagination.of(2, 2), null);
@@ -479,7 +484,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			messageBoardSections2.toString(), 1, messageBoardSections2.size());
 
 		Page<MessageBoardSection> page3 =
-			MessageBoardSectionResource.
+			messageBoardSectionResource.
 				getMessageBoardSectionMessageBoardSectionsPage(
 					parentMessageBoardSectionId, null, null,
 					Pagination.of(1, 3), null);
@@ -566,7 +571,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardSection> ascPage =
-				MessageBoardSectionResource.
+				messageBoardSectionResource.
 					getMessageBoardSectionMessageBoardSectionsPage(
 						parentMessageBoardSectionId, null, null,
 						Pagination.of(1, 2), entityField.getName() + ":asc");
@@ -576,7 +581,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				(List<MessageBoardSection>)ascPage.getItems());
 
 			Page<MessageBoardSection> descPage =
-				MessageBoardSectionResource.
+				messageBoardSectionResource.
 					getMessageBoardSectionMessageBoardSectionsPage(
 						parentMessageBoardSectionId, null, null,
 						Pagination.of(1, 2), entityField.getName() + ":desc");
@@ -593,7 +598,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				MessageBoardSection messageBoardSection)
 		throws Exception {
 
-		return MessageBoardSectionResource.
+		return messageBoardSectionResource.
 			postMessageBoardSectionMessageBoardSection(
 				parentMessageBoardSectionId, messageBoardSection);
 	}
@@ -633,7 +638,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				MessageBoardSection messageBoardSection)
 		throws Exception {
 
-		return MessageBoardSectionResource.
+		return messageBoardSectionResource.
 			postMessageBoardSectionMessageBoardSection(
 				testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId(),
 				messageBoardSection);
@@ -642,7 +647,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 	@Test
 	public void testGetSiteMessageBoardSectionsPage() throws Exception {
 		Page<MessageBoardSection> page =
-			MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+			messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 				testGetSiteMessageBoardSectionsPage_getSiteId(), null,
 				RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
 
@@ -657,7 +662,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
 					irrelevantSiteId, randomIrrelevantMessageBoardSection());
 
-			page = MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+			page = messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 				irrelevantSiteId, null, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -676,7 +681,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(
 				siteId, randomMessageBoardSection());
 
-		page = MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+		page = messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 			siteId, null, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -708,7 +713,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardSection> page =
-				MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+				messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 					siteId, null, null,
 					getFilterString(
 						entityField, "between", messageBoardSection1),
@@ -744,7 +749,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardSection> page =
-				MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+				messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 					siteId, null, null,
 					getFilterString(entityField, "eq", messageBoardSection1),
 					Pagination.of(1, 2), null);
@@ -774,7 +779,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				siteId, randomMessageBoardSection());
 
 		Page<MessageBoardSection> page1 =
-			MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+			messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 				siteId, null, null, null, Pagination.of(1, 2), null);
 
 		List<MessageBoardSection> messageBoardSections1 =
@@ -784,7 +789,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			messageBoardSections1.toString(), 2, messageBoardSections1.size());
 
 		Page<MessageBoardSection> page2 =
-			MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+			messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 				siteId, null, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -796,7 +801,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 			messageBoardSections2.toString(), 1, messageBoardSections2.size());
 
 		Page<MessageBoardSection> page3 =
-			MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+			messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 				siteId, null, null, null, Pagination.of(1, 3), null);
 
 		assertEqualsIgnoringOrder(
@@ -880,7 +885,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardSection> ascPage =
-				MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+				messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 					siteId, null, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
@@ -889,7 +894,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				(List<MessageBoardSection>)ascPage.getItems());
 
 			Page<MessageBoardSection> descPage =
-				MessageBoardSectionResource.getSiteMessageBoardSectionsPage(
+				messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 					siteId, null, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -904,7 +909,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				Long siteId, MessageBoardSection messageBoardSection)
 		throws Exception {
 
-		return MessageBoardSectionResource.postSiteMessageBoardSection(
+		return messageBoardSectionResource.postSiteMessageBoardSection(
 			siteId, messageBoardSection);
 	}
 
@@ -938,7 +943,7 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 				MessageBoardSection messageBoardSection)
 		throws Exception {
 
-		return MessageBoardSectionResource.postSiteMessageBoardSection(
+		return messageBoardSectionResource.postSiteMessageBoardSection(
 			testGetSiteMessageBoardSectionsPage_getSiteId(),
 			messageBoardSection);
 	}
@@ -1475,11 +1480,10 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		return randomMessageBoardSection();
 	}
 
+	protected MessageBoardSectionResource messageBoardSectionResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseMessageBoardSectionResourceTestCase.class);

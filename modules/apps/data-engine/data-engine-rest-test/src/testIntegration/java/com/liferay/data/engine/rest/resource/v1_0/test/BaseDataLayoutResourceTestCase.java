@@ -51,7 +51,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -94,12 +93,17 @@ public abstract class BaseDataLayoutResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_dataLayoutResource.setContextCompany(testCompany);
+
+		DataLayoutResource.Builder builder = DataLayoutResource.builder();
+
+		dataLayoutResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -183,7 +187,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 	@Test
 	public void testGetDataDefinitionDataLayoutsPage() throws Exception {
 		Page<DataLayout> page =
-			DataLayoutResource.getDataDefinitionDataLayoutsPage(
+			dataLayoutResource.getDataDefinitionDataLayoutsPage(
 				testGetDataDefinitionDataLayoutsPage_getDataDefinitionId(),
 				RandomTestUtil.randomString(), Pagination.of(1, 2));
 
@@ -199,7 +203,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 				testGetDataDefinitionDataLayoutsPage_addDataLayout(
 					irrelevantDataDefinitionId, randomIrrelevantDataLayout());
 
-			page = DataLayoutResource.getDataDefinitionDataLayoutsPage(
+			page = dataLayoutResource.getDataDefinitionDataLayoutsPage(
 				irrelevantDataDefinitionId, null, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -218,7 +222,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			testGetDataDefinitionDataLayoutsPage_addDataLayout(
 				dataDefinitionId, randomDataLayout());
 
-		page = DataLayoutResource.getDataDefinitionDataLayoutsPage(
+		page = dataLayoutResource.getDataDefinitionDataLayoutsPage(
 			dataDefinitionId, null, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -249,7 +253,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 				dataDefinitionId, randomDataLayout());
 
 		Page<DataLayout> page1 =
-			DataLayoutResource.getDataDefinitionDataLayoutsPage(
+			dataLayoutResource.getDataDefinitionDataLayoutsPage(
 				dataDefinitionId, null, Pagination.of(1, 2));
 
 		List<DataLayout> dataLayouts1 = (List<DataLayout>)page1.getItems();
@@ -257,7 +261,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 		Assert.assertEquals(dataLayouts1.toString(), 2, dataLayouts1.size());
 
 		Page<DataLayout> page2 =
-			DataLayoutResource.getDataDefinitionDataLayoutsPage(
+			dataLayoutResource.getDataDefinitionDataLayoutsPage(
 				dataDefinitionId, null, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -267,7 +271,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 		Assert.assertEquals(dataLayouts2.toString(), 1, dataLayouts2.size());
 
 		Page<DataLayout> page3 =
-			DataLayoutResource.getDataDefinitionDataLayoutsPage(
+			dataLayoutResource.getDataDefinitionDataLayoutsPage(
 				dataDefinitionId, null, Pagination.of(1, 3));
 
 		assertEqualsIgnoringOrder(
@@ -279,7 +283,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			Long dataDefinitionId, DataLayout dataLayout)
 		throws Exception {
 
-		return DataLayoutResource.postDataDefinitionDataLayout(
+		return dataLayoutResource.postDataDefinitionDataLayout(
 			dataDefinitionId, dataLayout);
 	}
 
@@ -312,7 +316,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 			DataLayout dataLayout)
 		throws Exception {
 
-		return DataLayoutResource.postDataDefinitionDataLayout(
+		return dataLayoutResource.postDataDefinitionDataLayout(
 			testGetDataDefinitionDataLayoutsPage_getDataDefinitionId(),
 			dataLayout);
 	}
@@ -328,15 +332,15 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			DataLayoutResource.deleteDataLayoutHttpResponse(
+			dataLayoutResource.deleteDataLayoutHttpResponse(
 				dataLayout.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			DataLayoutResource.getDataLayoutHttpResponse(dataLayout.getId()));
+			dataLayoutResource.getDataLayoutHttpResponse(dataLayout.getId()));
 
 		assertHttpResponseStatusCode(
-			404, DataLayoutResource.getDataLayoutHttpResponse(0L));
+			404, dataLayoutResource.getDataLayoutHttpResponse(0L));
 	}
 
 	protected DataLayout testDeleteDataLayout_addDataLayout() throws Exception {
@@ -348,7 +352,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 	public void testGetDataLayout() throws Exception {
 		DataLayout postDataLayout = testGetDataLayout_addDataLayout();
 
-		DataLayout getDataLayout = DataLayoutResource.getDataLayout(
+		DataLayout getDataLayout = dataLayoutResource.getDataLayout(
 			postDataLayout.getId());
 
 		assertEquals(postDataLayout, getDataLayout);
@@ -366,13 +370,13 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		DataLayout randomDataLayout = randomDataLayout();
 
-		DataLayout putDataLayout = DataLayoutResource.putDataLayout(
+		DataLayout putDataLayout = dataLayoutResource.putDataLayout(
 			postDataLayout.getId(), randomDataLayout);
 
 		assertEquals(randomDataLayout, putDataLayout);
 		assertValid(putDataLayout);
 
-		DataLayout getDataLayout = DataLayoutResource.getDataLayout(
+		DataLayout getDataLayout = dataLayoutResource.getDataLayout(
 			putDataLayout.getId());
 
 		assertEquals(randomDataLayout, getDataLayout);
@@ -386,7 +390,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 	@Test
 	public void testGetSiteDataLayoutPage() throws Exception {
-		Page<DataLayout> page = DataLayoutResource.getSiteDataLayoutPage(
+		Page<DataLayout> page = dataLayoutResource.getSiteDataLayoutPage(
 			testGetSiteDataLayoutPage_getSiteId(),
 			RandomTestUtil.randomString(), Pagination.of(1, 2));
 
@@ -400,7 +404,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 				testGetSiteDataLayoutPage_addDataLayout(
 					irrelevantSiteId, randomIrrelevantDataLayout());
 
-			page = DataLayoutResource.getSiteDataLayoutPage(
+			page = dataLayoutResource.getSiteDataLayoutPage(
 				irrelevantSiteId, null, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -417,7 +421,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 		DataLayout dataLayout2 = testGetSiteDataLayoutPage_addDataLayout(
 			siteId, randomDataLayout());
 
-		page = DataLayoutResource.getSiteDataLayoutPage(
+		page = dataLayoutResource.getSiteDataLayoutPage(
 			siteId, null, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -441,14 +445,14 @@ public abstract class BaseDataLayoutResourceTestCase {
 		DataLayout dataLayout3 = testGetSiteDataLayoutPage_addDataLayout(
 			siteId, randomDataLayout());
 
-		Page<DataLayout> page1 = DataLayoutResource.getSiteDataLayoutPage(
+		Page<DataLayout> page1 = dataLayoutResource.getSiteDataLayoutPage(
 			siteId, null, Pagination.of(1, 2));
 
 		List<DataLayout> dataLayouts1 = (List<DataLayout>)page1.getItems();
 
 		Assert.assertEquals(dataLayouts1.toString(), 2, dataLayouts1.size());
 
-		Page<DataLayout> page2 = DataLayoutResource.getSiteDataLayoutPage(
+		Page<DataLayout> page2 = dataLayoutResource.getSiteDataLayoutPage(
 			siteId, null, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -457,7 +461,7 @@ public abstract class BaseDataLayoutResourceTestCase {
 
 		Assert.assertEquals(dataLayouts2.toString(), 1, dataLayouts2.size());
 
-		Page<DataLayout> page3 = DataLayoutResource.getSiteDataLayoutPage(
+		Page<DataLayout> page3 = dataLayoutResource.getSiteDataLayoutPage(
 			siteId, null, Pagination.of(1, 3));
 
 		assertEqualsIgnoringOrder(
@@ -959,11 +963,10 @@ public abstract class BaseDataLayoutResourceTestCase {
 		return randomDataLayout();
 	}
 
+	protected DataLayoutResource dataLayoutResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseDataLayoutResourceTestCase.class);

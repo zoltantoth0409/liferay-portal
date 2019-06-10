@@ -50,7 +50,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -92,12 +91,17 @@ public abstract class BasePhoneResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_phoneResource.setContextCompany(testCompany);
+
+		PhoneResource.Builder builder = PhoneResource.builder();
+
+		phoneResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -190,7 +194,7 @@ public abstract class BasePhoneResourceTestCase {
 			Phone irrelevantPhone = testGetOrganizationPhonesPage_addPhone(
 				irrelevantOrganizationId, randomIrrelevantPhone());
 
-			Page<Phone> page = PhoneResource.getOrganizationPhonesPage(
+			Page<Phone> page = phoneResource.getOrganizationPhonesPage(
 				irrelevantOrganizationId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -206,7 +210,7 @@ public abstract class BasePhoneResourceTestCase {
 		Phone phone2 = testGetOrganizationPhonesPage_addPhone(
 			organizationId, randomPhone());
 
-		Page<Phone> page = PhoneResource.getOrganizationPhonesPage(
+		Page<Phone> page = phoneResource.getOrganizationPhonesPage(
 			organizationId);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -241,7 +245,7 @@ public abstract class BasePhoneResourceTestCase {
 	public void testGetPhone() throws Exception {
 		Phone postPhone = testGetPhone_addPhone();
 
-		Phone getPhone = PhoneResource.getPhone(postPhone.getId());
+		Phone getPhone = phoneResource.getPhone(postPhone.getId());
 
 		assertEquals(postPhone, getPhone);
 		assertValid(getPhone);
@@ -262,7 +266,7 @@ public abstract class BasePhoneResourceTestCase {
 			Phone irrelevantPhone = testGetUserAccountPhonesPage_addPhone(
 				irrelevantUserAccountId, randomIrrelevantPhone());
 
-			Page<Phone> page = PhoneResource.getUserAccountPhonesPage(
+			Page<Phone> page = phoneResource.getUserAccountPhonesPage(
 				irrelevantUserAccountId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -278,7 +282,7 @@ public abstract class BasePhoneResourceTestCase {
 		Phone phone2 = testGetUserAccountPhonesPage_addPhone(
 			userAccountId, randomPhone());
 
-		Page<Phone> page = PhoneResource.getUserAccountPhonesPage(
+		Page<Phone> page = phoneResource.getUserAccountPhonesPage(
 			userAccountId);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -603,11 +607,10 @@ public abstract class BasePhoneResourceTestCase {
 		return randomPhone();
 	}
 
+	protected PhoneResource phoneResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BasePhoneResourceTestCase.class);

@@ -51,7 +51,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -93,12 +92,18 @@ public abstract class BaseContentSetElementResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_contentSetElementResource.setContextCompany(testCompany);
+
+		ContentSetElementResource.Builder builder =
+			ContentSetElementResource.builder();
+
+		contentSetElementResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -194,7 +199,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 					randomIrrelevantContentSetElement());
 
 			Page<ContentSetElement> page =
-				ContentSetElementResource.getContentSetContentSetElementsPage(
+				contentSetElementResource.getContentSetContentSetElementsPage(
 					irrelevantContentSetId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -214,7 +219,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 				contentSetId, randomContentSetElement());
 
 		Page<ContentSetElement> page =
-			ContentSetElementResource.getContentSetContentSetElementsPage(
+			contentSetElementResource.getContentSetContentSetElementsPage(
 				contentSetId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -245,7 +250,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 				contentSetId, randomContentSetElement());
 
 		Page<ContentSetElement> page1 =
-			ContentSetElementResource.getContentSetContentSetElementsPage(
+			contentSetElementResource.getContentSetContentSetElementsPage(
 				contentSetId, Pagination.of(1, 2));
 
 		List<ContentSetElement> contentSetElements1 =
@@ -255,7 +260,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 			contentSetElements1.toString(), 2, contentSetElements1.size());
 
 		Page<ContentSetElement> page2 =
-			ContentSetElementResource.getContentSetContentSetElementsPage(
+			contentSetElementResource.getContentSetContentSetElementsPage(
 				contentSetId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -267,7 +272,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 			contentSetElements2.toString(), 1, contentSetElements2.size());
 
 		Page<ContentSetElement> page3 =
-			ContentSetElementResource.getContentSetContentSetElementsPage(
+			contentSetElementResource.getContentSetContentSetElementsPage(
 				contentSetId, Pagination.of(1, 3));
 
 		assertEqualsIgnoringOrder(
@@ -318,7 +323,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 					randomIrrelevantContentSetElement());
 
 			Page<ContentSetElement> page =
-				ContentSetElementResource.
+				contentSetElementResource.
 					getSiteContentSetByKeyContentSetElementsPage(
 						irrelevantSiteId, irrelevantKey, Pagination.of(1, 2));
 
@@ -339,7 +344,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 				siteId, key, randomContentSetElement());
 
 		Page<ContentSetElement> page =
-			ContentSetElementResource.
+			contentSetElementResource.
 				getSiteContentSetByKeyContentSetElementsPage(
 					siteId, key, Pagination.of(1, 2));
 
@@ -372,7 +377,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 				siteId, key, randomContentSetElement());
 
 		Page<ContentSetElement> page1 =
-			ContentSetElementResource.
+			contentSetElementResource.
 				getSiteContentSetByKeyContentSetElementsPage(
 					siteId, key, Pagination.of(1, 2));
 
@@ -383,7 +388,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 			contentSetElements1.toString(), 2, contentSetElements1.size());
 
 		Page<ContentSetElement> page2 =
-			ContentSetElementResource.
+			contentSetElementResource.
 				getSiteContentSetByKeyContentSetElementsPage(
 					siteId, key, Pagination.of(2, 2));
 
@@ -396,7 +401,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 			contentSetElements2.toString(), 1, contentSetElements2.size());
 
 		Page<ContentSetElement> page3 =
-			ContentSetElementResource.
+			contentSetElementResource.
 				getSiteContentSetByKeyContentSetElementsPage(
 					siteId, key, Pagination.of(1, 3));
 
@@ -462,7 +467,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 					randomIrrelevantContentSetElement());
 
 			Page<ContentSetElement> page =
-				ContentSetElementResource.
+				contentSetElementResource.
 					getSiteContentSetByUuidContentSetElementsPage(
 						irrelevantSiteId, irrelevantUuid, Pagination.of(1, 2));
 
@@ -483,7 +488,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 				siteId, uuid, randomContentSetElement());
 
 		Page<ContentSetElement> page =
-			ContentSetElementResource.
+			contentSetElementResource.
 				getSiteContentSetByUuidContentSetElementsPage(
 					siteId, uuid, Pagination.of(1, 2));
 
@@ -517,7 +522,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 				siteId, uuid, randomContentSetElement());
 
 		Page<ContentSetElement> page1 =
-			ContentSetElementResource.
+			contentSetElementResource.
 				getSiteContentSetByUuidContentSetElementsPage(
 					siteId, uuid, Pagination.of(1, 2));
 
@@ -528,7 +533,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 			contentSetElements1.toString(), 2, contentSetElements1.size());
 
 		Page<ContentSetElement> page2 =
-			ContentSetElementResource.
+			contentSetElementResource.
 				getSiteContentSetByUuidContentSetElementsPage(
 					siteId, uuid, Pagination.of(2, 2));
 
@@ -541,7 +546,7 @@ public abstract class BaseContentSetElementResourceTestCase {
 			contentSetElements2.toString(), 1, contentSetElements2.size());
 
 		Page<ContentSetElement> page3 =
-			ContentSetElementResource.
+			contentSetElementResource.
 				getSiteContentSetByUuidContentSetElementsPage(
 					siteId, uuid, Pagination.of(1, 3));
 
@@ -880,11 +885,10 @@ public abstract class BaseContentSetElementResourceTestCase {
 		return randomContentSetElement();
 	}
 
+	protected ContentSetElementResource contentSetElementResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseContentSetElementResourceTestCase.class);

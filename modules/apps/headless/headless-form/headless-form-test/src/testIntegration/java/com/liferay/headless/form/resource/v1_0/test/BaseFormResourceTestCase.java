@@ -51,7 +51,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -94,12 +93,17 @@ public abstract class BaseFormResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_formResource.setContextCompany(testCompany);
+
+		FormResource.Builder builder = FormResource.builder();
+
+		formResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -186,7 +190,7 @@ public abstract class BaseFormResourceTestCase {
 	public void testGetForm() throws Exception {
 		Form postForm = testGetForm_addForm();
 
-		Form getForm = FormResource.getForm(postForm.getId());
+		Form getForm = formResource.getForm(postForm.getId());
 
 		assertEquals(postForm, getForm);
 		assertValid(getForm);
@@ -216,7 +220,7 @@ public abstract class BaseFormResourceTestCase {
 			Form irrelevantForm = testGetSiteFormsPage_addForm(
 				irrelevantSiteId, randomIrrelevantForm());
 
-			Page<Form> page = FormResource.getSiteFormsPage(
+			Page<Form> page = formResource.getSiteFormsPage(
 				irrelevantSiteId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -230,7 +234,7 @@ public abstract class BaseFormResourceTestCase {
 
 		Form form2 = testGetSiteFormsPage_addForm(siteId, randomForm());
 
-		Page<Form> page = FormResource.getSiteFormsPage(
+		Page<Form> page = formResource.getSiteFormsPage(
 			siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -250,14 +254,14 @@ public abstract class BaseFormResourceTestCase {
 
 		Form form3 = testGetSiteFormsPage_addForm(siteId, randomForm());
 
-		Page<Form> page1 = FormResource.getSiteFormsPage(
+		Page<Form> page1 = formResource.getSiteFormsPage(
 			siteId, Pagination.of(1, 2));
 
 		List<Form> forms1 = (List<Form>)page1.getItems();
 
 		Assert.assertEquals(forms1.toString(), 2, forms1.size());
 
-		Page<Form> page2 = FormResource.getSiteFormsPage(
+		Page<Form> page2 = formResource.getSiteFormsPage(
 			siteId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -266,7 +270,7 @@ public abstract class BaseFormResourceTestCase {
 
 		Assert.assertEquals(forms2.toString(), 1, forms2.size());
 
-		Page<Form> page3 = FormResource.getSiteFormsPage(
+		Page<Form> page3 = formResource.getSiteFormsPage(
 			siteId, Pagination.of(1, 3));
 
 		assertEqualsIgnoringOrder(
@@ -858,11 +862,10 @@ public abstract class BaseFormResourceTestCase {
 		return randomForm();
 	}
 
+	protected FormResource formResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseFormResourceTestCase.class);

@@ -49,7 +49,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -91,12 +90,17 @@ public abstract class BaseFormDocumentResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_formDocumentResource.setContextCompany(testCompany);
+
+		FormDocumentResource.Builder builder = FormDocumentResource.builder();
+
+		formDocumentResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -189,16 +193,16 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			FormDocumentResource.deleteFormDocumentHttpResponse(
+			formDocumentResource.deleteFormDocumentHttpResponse(
 				formDocument.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			FormDocumentResource.getFormDocumentHttpResponse(
+			formDocumentResource.getFormDocumentHttpResponse(
 				formDocument.getId()));
 
 		assertHttpResponseStatusCode(
-			404, FormDocumentResource.getFormDocumentHttpResponse(0L));
+			404, formDocumentResource.getFormDocumentHttpResponse(0L));
 	}
 
 	protected FormDocument testDeleteFormDocument_addFormDocument()
@@ -212,7 +216,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 	public void testGetFormDocument() throws Exception {
 		FormDocument postFormDocument = testGetFormDocument_addFormDocument();
 
-		FormDocument getFormDocument = FormDocumentResource.getFormDocument(
+		FormDocument getFormDocument = formDocumentResource.getFormDocument(
 			postFormDocument.getId());
 
 		assertEquals(postFormDocument, getFormDocument);
@@ -632,11 +636,10 @@ public abstract class BaseFormDocumentResourceTestCase {
 		return randomFormDocument();
 	}
 
+	protected FormDocumentResource formDocumentResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseFormDocumentResourceTestCase.class);

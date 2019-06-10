@@ -54,7 +54,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -98,12 +97,17 @@ public abstract class BaseKeywordResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_keywordResource.setContextCompany(testCompany);
+
+		KeywordResource.Builder builder = KeywordResource.builder();
+
+		keywordResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -187,17 +191,17 @@ public abstract class BaseKeywordResourceTestCase {
 		Keyword keyword = testDeleteKeyword_addKeyword();
 
 		assertHttpResponseStatusCode(
-			204, KeywordResource.deleteKeywordHttpResponse(keyword.getId()));
+			204, keywordResource.deleteKeywordHttpResponse(keyword.getId()));
 
 		assertHttpResponseStatusCode(
-			404, KeywordResource.getKeywordHttpResponse(keyword.getId()));
+			404, keywordResource.getKeywordHttpResponse(keyword.getId()));
 
 		assertHttpResponseStatusCode(
-			404, KeywordResource.getKeywordHttpResponse(0L));
+			404, keywordResource.getKeywordHttpResponse(0L));
 	}
 
 	protected Keyword testDeleteKeyword_addKeyword() throws Exception {
-		return KeywordResource.postSiteKeyword(
+		return keywordResource.postSiteKeyword(
 			testGroup.getGroupId(), randomKeyword());
 	}
 
@@ -205,14 +209,14 @@ public abstract class BaseKeywordResourceTestCase {
 	public void testGetKeyword() throws Exception {
 		Keyword postKeyword = testGetKeyword_addKeyword();
 
-		Keyword getKeyword = KeywordResource.getKeyword(postKeyword.getId());
+		Keyword getKeyword = keywordResource.getKeyword(postKeyword.getId());
 
 		assertEquals(postKeyword, getKeyword);
 		assertValid(getKeyword);
 	}
 
 	protected Keyword testGetKeyword_addKeyword() throws Exception {
-		return KeywordResource.postSiteKeyword(
+		return keywordResource.postSiteKeyword(
 			testGroup.getGroupId(), randomKeyword());
 	}
 
@@ -222,26 +226,26 @@ public abstract class BaseKeywordResourceTestCase {
 
 		Keyword randomKeyword = randomKeyword();
 
-		Keyword putKeyword = KeywordResource.putKeyword(
+		Keyword putKeyword = keywordResource.putKeyword(
 			postKeyword.getId(), randomKeyword);
 
 		assertEquals(randomKeyword, putKeyword);
 		assertValid(putKeyword);
 
-		Keyword getKeyword = KeywordResource.getKeyword(putKeyword.getId());
+		Keyword getKeyword = keywordResource.getKeyword(putKeyword.getId());
 
 		assertEquals(randomKeyword, getKeyword);
 		assertValid(getKeyword);
 	}
 
 	protected Keyword testPutKeyword_addKeyword() throws Exception {
-		return KeywordResource.postSiteKeyword(
+		return keywordResource.postSiteKeyword(
 			testGroup.getGroupId(), randomKeyword());
 	}
 
 	@Test
 	public void testGetSiteKeywordsPage() throws Exception {
-		Page<Keyword> page = KeywordResource.getSiteKeywordsPage(
+		Page<Keyword> page = keywordResource.getSiteKeywordsPage(
 			testGetSiteKeywordsPage_getSiteId(), RandomTestUtil.randomString(),
 			null, Pagination.of(1, 2), null);
 
@@ -254,7 +258,7 @@ public abstract class BaseKeywordResourceTestCase {
 			Keyword irrelevantKeyword = testGetSiteKeywordsPage_addKeyword(
 				irrelevantSiteId, randomIrrelevantKeyword());
 
-			page = KeywordResource.getSiteKeywordsPage(
+			page = keywordResource.getSiteKeywordsPage(
 				irrelevantSiteId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -271,7 +275,7 @@ public abstract class BaseKeywordResourceTestCase {
 		Keyword keyword2 = testGetSiteKeywordsPage_addKeyword(
 			siteId, randomKeyword());
 
-		page = KeywordResource.getSiteKeywordsPage(
+		page = keywordResource.getSiteKeywordsPage(
 			siteId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -299,7 +303,7 @@ public abstract class BaseKeywordResourceTestCase {
 		keyword1 = testGetSiteKeywordsPage_addKeyword(siteId, keyword1);
 
 		for (EntityField entityField : entityFields) {
-			Page<Keyword> page = KeywordResource.getSiteKeywordsPage(
+			Page<Keyword> page = keywordResource.getSiteKeywordsPage(
 				siteId, null, getFilterString(entityField, "between", keyword1),
 				Pagination.of(1, 2), null);
 
@@ -330,7 +334,7 @@ public abstract class BaseKeywordResourceTestCase {
 			siteId, randomKeyword());
 
 		for (EntityField entityField : entityFields) {
-			Page<Keyword> page = KeywordResource.getSiteKeywordsPage(
+			Page<Keyword> page = keywordResource.getSiteKeywordsPage(
 				siteId, null, getFilterString(entityField, "eq", keyword1),
 				Pagination.of(1, 2), null);
 
@@ -353,14 +357,14 @@ public abstract class BaseKeywordResourceTestCase {
 		Keyword keyword3 = testGetSiteKeywordsPage_addKeyword(
 			siteId, randomKeyword());
 
-		Page<Keyword> page1 = KeywordResource.getSiteKeywordsPage(
+		Page<Keyword> page1 = keywordResource.getSiteKeywordsPage(
 			siteId, null, null, Pagination.of(1, 2), null);
 
 		List<Keyword> keywords1 = (List<Keyword>)page1.getItems();
 
 		Assert.assertEquals(keywords1.toString(), 2, keywords1.size());
 
-		Page<Keyword> page2 = KeywordResource.getSiteKeywordsPage(
+		Page<Keyword> page2 = keywordResource.getSiteKeywordsPage(
 			siteId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -369,7 +373,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 		Assert.assertEquals(keywords2.toString(), 1, keywords2.size());
 
-		Page<Keyword> page3 = KeywordResource.getSiteKeywordsPage(
+		Page<Keyword> page3 = keywordResource.getSiteKeywordsPage(
 			siteId, null, null, Pagination.of(1, 3), null);
 
 		assertEqualsIgnoringOrder(
@@ -434,7 +438,7 @@ public abstract class BaseKeywordResourceTestCase {
 		keyword2 = testGetSiteKeywordsPage_addKeyword(siteId, keyword2);
 
 		for (EntityField entityField : entityFields) {
-			Page<Keyword> ascPage = KeywordResource.getSiteKeywordsPage(
+			Page<Keyword> ascPage = keywordResource.getSiteKeywordsPage(
 				siteId, null, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
@@ -442,7 +446,7 @@ public abstract class BaseKeywordResourceTestCase {
 				Arrays.asList(keyword1, keyword2),
 				(List<Keyword>)ascPage.getItems());
 
-			Page<Keyword> descPage = KeywordResource.getSiteKeywordsPage(
+			Page<Keyword> descPage = keywordResource.getSiteKeywordsPage(
 				siteId, null, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
@@ -456,7 +460,7 @@ public abstract class BaseKeywordResourceTestCase {
 			Long siteId, Keyword keyword)
 		throws Exception {
 
-		return KeywordResource.postSiteKeyword(siteId, keyword);
+		return keywordResource.postSiteKeyword(siteId, keyword);
 	}
 
 	protected Long testGetSiteKeywordsPage_getSiteId() throws Exception {
@@ -482,7 +486,7 @@ public abstract class BaseKeywordResourceTestCase {
 	protected Keyword testPostSiteKeyword_addKeyword(Keyword keyword)
 		throws Exception {
 
-		return KeywordResource.postSiteKeyword(
+		return keywordResource.postSiteKeyword(
 			testGetSiteKeywordsPage_getSiteId(), keyword);
 	}
 
@@ -865,11 +869,10 @@ public abstract class BaseKeywordResourceTestCase {
 		return randomKeyword();
 	}
 
+	protected KeywordResource keywordResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseKeywordResourceTestCase.class);

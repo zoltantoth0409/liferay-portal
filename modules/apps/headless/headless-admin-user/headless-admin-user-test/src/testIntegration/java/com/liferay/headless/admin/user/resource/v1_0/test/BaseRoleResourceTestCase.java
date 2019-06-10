@@ -49,7 +49,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -92,12 +91,17 @@ public abstract class BaseRoleResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_roleResource.setContextCompany(testCompany);
+
+		RoleResource.Builder builder = RoleResource.builder();
+
+		roleResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -189,7 +193,7 @@ public abstract class BaseRoleResourceTestCase {
 	public void testGetRole() throws Exception {
 		Role postRole = testGetRole_addRole();
 
-		Role getRole = RoleResource.getRole(postRole.getId());
+		Role getRole = roleResource.getRole(postRole.getId());
 
 		assertEquals(postRole, getRole);
 		assertValid(getRole);
@@ -610,11 +614,10 @@ public abstract class BaseRoleResourceTestCase {
 		return randomRole();
 	}
 
+	protected RoleResource roleResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseRoleResourceTestCase.class);

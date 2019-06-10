@@ -51,7 +51,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -95,12 +94,18 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_knowledgeBaseFolderResource.setContextCompany(testCompany);
+
+		KnowledgeBaseFolderResource.Builder builder =
+			KnowledgeBaseFolderResource.builder();
+
+		knowledgeBaseFolderResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -189,24 +194,24 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			KnowledgeBaseFolderResource.deleteKnowledgeBaseFolderHttpResponse(
+			knowledgeBaseFolderResource.deleteKnowledgeBaseFolderHttpResponse(
 				knowledgeBaseFolder.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			KnowledgeBaseFolderResource.getKnowledgeBaseFolderHttpResponse(
+			knowledgeBaseFolderResource.getKnowledgeBaseFolderHttpResponse(
 				knowledgeBaseFolder.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			KnowledgeBaseFolderResource.getKnowledgeBaseFolderHttpResponse(0L));
+			knowledgeBaseFolderResource.getKnowledgeBaseFolderHttpResponse(0L));
 	}
 
 	protected KnowledgeBaseFolder
 			testDeleteKnowledgeBaseFolder_addKnowledgeBaseFolder()
 		throws Exception {
 
-		return KnowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
+		return knowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
 			testGroup.getGroupId(), randomKnowledgeBaseFolder());
 	}
 
@@ -216,7 +221,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			testGetKnowledgeBaseFolder_addKnowledgeBaseFolder();
 
 		KnowledgeBaseFolder getKnowledgeBaseFolder =
-			KnowledgeBaseFolderResource.getKnowledgeBaseFolder(
+			knowledgeBaseFolderResource.getKnowledgeBaseFolder(
 				postKnowledgeBaseFolder.getId());
 
 		assertEquals(postKnowledgeBaseFolder, getKnowledgeBaseFolder);
@@ -227,7 +232,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			testGetKnowledgeBaseFolder_addKnowledgeBaseFolder()
 		throws Exception {
 
-		return KnowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
+		return knowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
 			testGroup.getGroupId(), randomKnowledgeBaseFolder());
 	}
 
@@ -240,7 +245,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			randomPatchKnowledgeBaseFolder();
 
 		KnowledgeBaseFolder patchKnowledgeBaseFolder =
-			KnowledgeBaseFolderResource.patchKnowledgeBaseFolder(
+			knowledgeBaseFolderResource.patchKnowledgeBaseFolder(
 				postKnowledgeBaseFolder.getId(),
 				randomPatchKnowledgeBaseFolder);
 
@@ -251,7 +256,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			expectedPatchKnowledgeBaseFolder, randomPatchKnowledgeBaseFolder);
 
 		KnowledgeBaseFolder getKnowledgeBaseFolder =
-			KnowledgeBaseFolderResource.getKnowledgeBaseFolder(
+			knowledgeBaseFolderResource.getKnowledgeBaseFolder(
 				patchKnowledgeBaseFolder.getId());
 
 		assertEquals(expectedPatchKnowledgeBaseFolder, getKnowledgeBaseFolder);
@@ -262,7 +267,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			testPatchKnowledgeBaseFolder_addKnowledgeBaseFolder()
 		throws Exception {
 
-		return KnowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
+		return knowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
 			testGroup.getGroupId(), randomKnowledgeBaseFolder());
 	}
 
@@ -275,14 +280,14 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			randomKnowledgeBaseFolder();
 
 		KnowledgeBaseFolder putKnowledgeBaseFolder =
-			KnowledgeBaseFolderResource.putKnowledgeBaseFolder(
+			knowledgeBaseFolderResource.putKnowledgeBaseFolder(
 				postKnowledgeBaseFolder.getId(), randomKnowledgeBaseFolder);
 
 		assertEquals(randomKnowledgeBaseFolder, putKnowledgeBaseFolder);
 		assertValid(putKnowledgeBaseFolder);
 
 		KnowledgeBaseFolder getKnowledgeBaseFolder =
-			KnowledgeBaseFolderResource.getKnowledgeBaseFolder(
+			knowledgeBaseFolderResource.getKnowledgeBaseFolder(
 				putKnowledgeBaseFolder.getId());
 
 		assertEquals(randomKnowledgeBaseFolder, getKnowledgeBaseFolder);
@@ -293,7 +298,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			testPutKnowledgeBaseFolder_addKnowledgeBaseFolder()
 		throws Exception {
 
-		return KnowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
+		return knowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
 			testGroup.getGroupId(), randomKnowledgeBaseFolder());
 	}
 
@@ -313,7 +318,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 					randomIrrelevantKnowledgeBaseFolder());
 
 			Page<KnowledgeBaseFolder> page =
-				KnowledgeBaseFolderResource.
+				knowledgeBaseFolderResource.
 					getKnowledgeBaseFolderKnowledgeBaseFoldersPage(
 						irrelevantParentKnowledgeBaseFolderId,
 						Pagination.of(1, 2));
@@ -335,7 +340,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				parentKnowledgeBaseFolderId, randomKnowledgeBaseFolder());
 
 		Page<KnowledgeBaseFolder> page =
-			KnowledgeBaseFolderResource.
+			knowledgeBaseFolderResource.
 				getKnowledgeBaseFolderKnowledgeBaseFoldersPage(
 					parentKnowledgeBaseFolderId, Pagination.of(1, 2));
 
@@ -367,7 +372,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				parentKnowledgeBaseFolderId, randomKnowledgeBaseFolder());
 
 		Page<KnowledgeBaseFolder> page1 =
-			KnowledgeBaseFolderResource.
+			knowledgeBaseFolderResource.
 				getKnowledgeBaseFolderKnowledgeBaseFoldersPage(
 					parentKnowledgeBaseFolderId, Pagination.of(1, 2));
 
@@ -378,7 +383,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			knowledgeBaseFolders1.toString(), 2, knowledgeBaseFolders1.size());
 
 		Page<KnowledgeBaseFolder> page2 =
-			KnowledgeBaseFolderResource.
+			knowledgeBaseFolderResource.
 				getKnowledgeBaseFolderKnowledgeBaseFoldersPage(
 					parentKnowledgeBaseFolderId, Pagination.of(2, 2));
 
@@ -391,7 +396,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			knowledgeBaseFolders2.toString(), 1, knowledgeBaseFolders2.size());
 
 		Page<KnowledgeBaseFolder> page3 =
-			KnowledgeBaseFolderResource.
+			knowledgeBaseFolderResource.
 				getKnowledgeBaseFolderKnowledgeBaseFoldersPage(
 					parentKnowledgeBaseFolderId, Pagination.of(1, 3));
 
@@ -408,7 +413,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				KnowledgeBaseFolder knowledgeBaseFolder)
 		throws Exception {
 
-		return KnowledgeBaseFolderResource.
+		return knowledgeBaseFolderResource.
 			postKnowledgeBaseFolderKnowledgeBaseFolder(
 				parentKnowledgeBaseFolderId, knowledgeBaseFolder);
 	}
@@ -448,7 +453,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				KnowledgeBaseFolder knowledgeBaseFolder)
 		throws Exception {
 
-		return KnowledgeBaseFolderResource.
+		return knowledgeBaseFolderResource.
 			postKnowledgeBaseFolderKnowledgeBaseFolder(
 				testGetKnowledgeBaseFolderKnowledgeBaseFoldersPage_getParentKnowledgeBaseFolderId(),
 				knowledgeBaseFolder);
@@ -466,7 +471,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 					irrelevantSiteId, randomIrrelevantKnowledgeBaseFolder());
 
 			Page<KnowledgeBaseFolder> page =
-				KnowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
+				knowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
 					irrelevantSiteId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -486,7 +491,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				siteId, randomKnowledgeBaseFolder());
 
 		Page<KnowledgeBaseFolder> page =
-			KnowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
+			knowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
 				siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -516,7 +521,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				siteId, randomKnowledgeBaseFolder());
 
 		Page<KnowledgeBaseFolder> page1 =
-			KnowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
+			knowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
 				siteId, Pagination.of(1, 2));
 
 		List<KnowledgeBaseFolder> knowledgeBaseFolders1 =
@@ -526,7 +531,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			knowledgeBaseFolders1.toString(), 2, knowledgeBaseFolders1.size());
 
 		Page<KnowledgeBaseFolder> page2 =
-			KnowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
+			knowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
 				siteId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -538,7 +543,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 			knowledgeBaseFolders2.toString(), 1, knowledgeBaseFolders2.size());
 
 		Page<KnowledgeBaseFolder> page3 =
-			KnowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
+			knowledgeBaseFolderResource.getSiteKnowledgeBaseFoldersPage(
 				siteId, Pagination.of(1, 3));
 
 		assertEqualsIgnoringOrder(
@@ -553,7 +558,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				Long siteId, KnowledgeBaseFolder knowledgeBaseFolder)
 		throws Exception {
 
-		return KnowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
+		return knowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
 			siteId, knowledgeBaseFolder);
 	}
 
@@ -587,7 +592,7 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 				KnowledgeBaseFolder knowledgeBaseFolder)
 		throws Exception {
 
-		return KnowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
+		return knowledgeBaseFolderResource.postSiteKnowledgeBaseFolder(
 			testGetSiteKnowledgeBaseFoldersPage_getSiteId(),
 			knowledgeBaseFolder);
 	}
@@ -1188,11 +1193,10 @@ public abstract class BaseKnowledgeBaseFolderResourceTestCase {
 		return randomKnowledgeBaseFolder();
 	}
 
+	protected KnowledgeBaseFolderResource knowledgeBaseFolderResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseKnowledgeBaseFolderResourceTestCase.class);

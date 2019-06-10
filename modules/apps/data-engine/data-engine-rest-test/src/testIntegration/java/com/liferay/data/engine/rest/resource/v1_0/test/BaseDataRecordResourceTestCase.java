@@ -51,7 +51,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -93,12 +92,17 @@ public abstract class BaseDataRecordResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_dataRecordResource.setContextCompany(testCompany);
+
+		DataRecordResource.Builder builder = DataRecordResource.builder();
+
+		dataRecordResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -187,7 +191,7 @@ public abstract class BaseDataRecordResourceTestCase {
 					randomIrrelevantDataRecord());
 
 			Page<DataRecord> page =
-				DataRecordResource.getDataRecordCollectionDataRecordsPage(
+				dataRecordResource.getDataRecordCollectionDataRecordsPage(
 					irrelevantDataRecordCollectionId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -207,7 +211,7 @@ public abstract class BaseDataRecordResourceTestCase {
 				dataRecordCollectionId, randomDataRecord());
 
 		Page<DataRecord> page =
-			DataRecordResource.getDataRecordCollectionDataRecordsPage(
+			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -238,7 +242,7 @@ public abstract class BaseDataRecordResourceTestCase {
 				dataRecordCollectionId, randomDataRecord());
 
 		Page<DataRecord> page1 =
-			DataRecordResource.getDataRecordCollectionDataRecordsPage(
+			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, Pagination.of(1, 2));
 
 		List<DataRecord> dataRecords1 = (List<DataRecord>)page1.getItems();
@@ -246,7 +250,7 @@ public abstract class BaseDataRecordResourceTestCase {
 		Assert.assertEquals(dataRecords1.toString(), 2, dataRecords1.size());
 
 		Page<DataRecord> page2 =
-			DataRecordResource.getDataRecordCollectionDataRecordsPage(
+			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -256,7 +260,7 @@ public abstract class BaseDataRecordResourceTestCase {
 		Assert.assertEquals(dataRecords2.toString(), 1, dataRecords2.size());
 
 		Page<DataRecord> page3 =
-			DataRecordResource.getDataRecordCollectionDataRecordsPage(
+			dataRecordResource.getDataRecordCollectionDataRecordsPage(
 				dataRecordCollectionId, Pagination.of(1, 3));
 
 		assertEqualsIgnoringOrder(
@@ -269,7 +273,7 @@ public abstract class BaseDataRecordResourceTestCase {
 				Long dataRecordCollectionId, DataRecord dataRecord)
 		throws Exception {
 
-		return DataRecordResource.postDataRecordCollectionDataRecord(
+		return dataRecordResource.postDataRecordCollectionDataRecord(
 			dataRecordCollectionId, dataRecord);
 	}
 
@@ -304,7 +308,7 @@ public abstract class BaseDataRecordResourceTestCase {
 			DataRecord dataRecord)
 		throws Exception {
 
-		return DataRecordResource.postDataRecordCollectionDataRecord(
+		return dataRecordResource.postDataRecordCollectionDataRecord(
 			testGetDataRecordCollectionDataRecordsPage_getDataRecordCollectionId(),
 			dataRecord);
 	}
@@ -320,15 +324,15 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			DataRecordResource.deleteDataRecordHttpResponse(
+			dataRecordResource.deleteDataRecordHttpResponse(
 				dataRecord.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			DataRecordResource.getDataRecordHttpResponse(dataRecord.getId()));
+			dataRecordResource.getDataRecordHttpResponse(dataRecord.getId()));
 
 		assertHttpResponseStatusCode(
-			404, DataRecordResource.getDataRecordHttpResponse(0L));
+			404, dataRecordResource.getDataRecordHttpResponse(0L));
 	}
 
 	protected DataRecord testDeleteDataRecord_addDataRecord() throws Exception {
@@ -340,7 +344,7 @@ public abstract class BaseDataRecordResourceTestCase {
 	public void testGetDataRecord() throws Exception {
 		DataRecord postDataRecord = testGetDataRecord_addDataRecord();
 
-		DataRecord getDataRecord = DataRecordResource.getDataRecord(
+		DataRecord getDataRecord = dataRecordResource.getDataRecord(
 			postDataRecord.getId());
 
 		assertEquals(postDataRecord, getDataRecord);
@@ -358,13 +362,13 @@ public abstract class BaseDataRecordResourceTestCase {
 
 		DataRecord randomDataRecord = randomDataRecord();
 
-		DataRecord putDataRecord = DataRecordResource.putDataRecord(
+		DataRecord putDataRecord = dataRecordResource.putDataRecord(
 			postDataRecord.getId(), randomDataRecord);
 
 		assertEquals(randomDataRecord, putDataRecord);
 		assertValid(putDataRecord);
 
-		DataRecord getDataRecord = DataRecordResource.getDataRecord(
+		DataRecord getDataRecord = dataRecordResource.getDataRecord(
 			putDataRecord.getId());
 
 		assertEquals(randomDataRecord, getDataRecord);
@@ -625,11 +629,10 @@ public abstract class BaseDataRecordResourceTestCase {
 		return randomDataRecord();
 	}
 
+	protected DataRecordResource dataRecordResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseDataRecordResourceTestCase.class);

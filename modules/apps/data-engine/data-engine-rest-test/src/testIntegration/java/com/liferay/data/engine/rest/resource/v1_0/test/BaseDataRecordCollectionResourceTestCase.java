@@ -51,7 +51,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -93,12 +92,18 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_dataRecordCollectionResource.setContextCompany(testCompany);
+
+		DataRecordCollectionResource.Builder builder =
+			DataRecordCollectionResource.builder();
+
+		dataRecordCollectionResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -182,7 +187,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		throws Exception {
 
 		Page<DataRecordCollection> page =
-			DataRecordCollectionResource.
+			dataRecordCollectionResource.
 				getDataDefinitionDataRecordCollectionsPage(
 					testGetDataDefinitionDataRecordCollectionsPage_getDataDefinitionId(),
 					RandomTestUtil.randomString(), Pagination.of(1, 2));
@@ -201,7 +206,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 					randomIrrelevantDataRecordCollection());
 
 			page =
-				DataRecordCollectionResource.
+				dataRecordCollectionResource.
 					getDataDefinitionDataRecordCollectionsPage(
 						irrelevantDataDefinitionId, null, Pagination.of(1, 2));
 
@@ -222,7 +227,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				dataDefinitionId, randomDataRecordCollection());
 
 		page =
-			DataRecordCollectionResource.
+			dataRecordCollectionResource.
 				getDataDefinitionDataRecordCollectionsPage(
 					dataDefinitionId, null, Pagination.of(1, 2));
 
@@ -254,7 +259,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				dataDefinitionId, randomDataRecordCollection());
 
 		Page<DataRecordCollection> page1 =
-			DataRecordCollectionResource.
+			dataRecordCollectionResource.
 				getDataDefinitionDataRecordCollectionsPage(
 					dataDefinitionId, null, Pagination.of(1, 2));
 
@@ -266,7 +271,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			dataRecordCollections1.size());
 
 		Page<DataRecordCollection> page2 =
-			DataRecordCollectionResource.
+			dataRecordCollectionResource.
 				getDataDefinitionDataRecordCollectionsPage(
 					dataDefinitionId, null, Pagination.of(2, 2));
 
@@ -280,7 +285,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			dataRecordCollections2.size());
 
 		Page<DataRecordCollection> page3 =
-			DataRecordCollectionResource.
+			dataRecordCollectionResource.
 				getDataDefinitionDataRecordCollectionsPage(
 					dataDefinitionId, null, Pagination.of(1, 3));
 
@@ -297,7 +302,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				DataRecordCollection dataRecordCollection)
 		throws Exception {
 
-		return DataRecordCollectionResource.
+		return dataRecordCollectionResource.
 			postDataDefinitionDataRecordCollection(
 				dataDefinitionId, dataRecordCollection);
 	}
@@ -335,7 +340,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				DataRecordCollection dataRecordCollection)
 		throws Exception {
 
-		return DataRecordCollectionResource.
+		return dataRecordCollectionResource.
 			postDataDefinitionDataRecordCollection(
 				testGetDataDefinitionDataRecordCollectionsPage_getDataDefinitionId(),
 				dataRecordCollection);
@@ -348,17 +353,17 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			DataRecordCollectionResource.deleteDataRecordCollectionHttpResponse(
+			dataRecordCollectionResource.deleteDataRecordCollectionHttpResponse(
 				dataRecordCollection.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			DataRecordCollectionResource.getDataRecordCollectionHttpResponse(
+			dataRecordCollectionResource.getDataRecordCollectionHttpResponse(
 				dataRecordCollection.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			DataRecordCollectionResource.getDataRecordCollectionHttpResponse(
+			dataRecordCollectionResource.getDataRecordCollectionHttpResponse(
 				0L));
 	}
 
@@ -376,7 +381,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			testGetDataRecordCollection_addDataRecordCollection();
 
 		DataRecordCollection getDataRecordCollection =
-			DataRecordCollectionResource.getDataRecordCollection(
+			dataRecordCollectionResource.getDataRecordCollection(
 				postDataRecordCollection.getId());
 
 		assertEquals(postDataRecordCollection, getDataRecordCollection);
@@ -400,14 +405,14 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			randomDataRecordCollection();
 
 		DataRecordCollection putDataRecordCollection =
-			DataRecordCollectionResource.putDataRecordCollection(
+			dataRecordCollectionResource.putDataRecordCollection(
 				postDataRecordCollection.getId(), randomDataRecordCollection);
 
 		assertEquals(randomDataRecordCollection, putDataRecordCollection);
 		assertValid(putDataRecordCollection);
 
 		DataRecordCollection getDataRecordCollection =
-			DataRecordCollectionResource.getDataRecordCollection(
+			dataRecordCollectionResource.getDataRecordCollection(
 				putDataRecordCollection.getId());
 
 		assertEquals(randomDataRecordCollection, getDataRecordCollection);
@@ -437,7 +442,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 	@Test
 	public void testGetSiteDataRecordCollectionsPage() throws Exception {
 		Page<DataRecordCollection> page =
-			DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
+			dataRecordCollectionResource.getSiteDataRecordCollectionsPage(
 				testGetSiteDataRecordCollectionsPage_getSiteId(),
 				RandomTestUtil.randomString(), Pagination.of(1, 2));
 
@@ -453,7 +458,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 					irrelevantSiteId, randomIrrelevantDataRecordCollection());
 
 			page =
-				DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
+				dataRecordCollectionResource.getSiteDataRecordCollectionsPage(
 					irrelevantSiteId, null, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -472,7 +477,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			testGetSiteDataRecordCollectionsPage_addDataRecordCollection(
 				siteId, randomDataRecordCollection());
 
-		page = DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
+		page = dataRecordCollectionResource.getSiteDataRecordCollectionsPage(
 			siteId, null, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -502,7 +507,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 				siteId, randomDataRecordCollection());
 
 		Page<DataRecordCollection> page1 =
-			DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
+			dataRecordCollectionResource.getSiteDataRecordCollectionsPage(
 				siteId, null, Pagination.of(1, 2));
 
 		List<DataRecordCollection> dataRecordCollections1 =
@@ -513,7 +518,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			dataRecordCollections1.size());
 
 		Page<DataRecordCollection> page2 =
-			DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
+			dataRecordCollectionResource.getSiteDataRecordCollectionsPage(
 				siteId, null, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -526,7 +531,7 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 			dataRecordCollections2.size());
 
 		Page<DataRecordCollection> page3 =
-			DataRecordCollectionResource.getSiteDataRecordCollectionsPage(
+			dataRecordCollectionResource.getSiteDataRecordCollectionsPage(
 				siteId, null, Pagination.of(1, 3));
 
 		assertEqualsIgnoringOrder(
@@ -852,11 +857,10 @@ public abstract class BaseDataRecordCollectionResourceTestCase {
 		return randomDataRecordCollection();
 	}
 
+	protected DataRecordCollectionResource dataRecordCollectionResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseDataRecordCollectionResourceTestCase.class);

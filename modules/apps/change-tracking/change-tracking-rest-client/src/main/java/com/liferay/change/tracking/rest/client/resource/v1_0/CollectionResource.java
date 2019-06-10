@@ -20,6 +20,7 @@ import com.liferay.change.tracking.rest.client.pagination.Page;
 import com.liferay.change.tracking.rest.client.pagination.Pagination;
 import com.liferay.change.tracking.rest.client.serdes.v1_0.CollectionSerDes;
 
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,278 +31,427 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class CollectionResource {
+public interface CollectionResource {
 
-	public static Page<Collection> getCollectionsPage(
-			Long companyId, String type, Long userId, Pagination pagination,
-			String sortString)
-		throws Exception {
-
-		HttpInvoker.HttpResponse httpResponse = getCollectionsPageHttpResponse(
-			companyId, type, userId, pagination, sortString);
-
-		String content = httpResponse.getContent();
-
-		_logger.fine("HTTP response content: " + content);
-
-		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine(
-			"HTTP response status code: " + httpResponse.getStatusCode());
-
-		return Page.of(content, CollectionSerDes::toDTO);
+	public static Builder builder() {
+		return new Builder();
 	}
 
-	public static HttpInvoker.HttpResponse getCollectionsPageHttpResponse(
+	public Page<Collection> getCollectionsPage(
 			Long companyId, String type, Long userId, Pagination pagination,
 			String sortString)
-		throws Exception {
+		throws Exception;
 
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+	public HttpInvoker.HttpResponse getCollectionsPageHttpResponse(
+			Long companyId, String type, Long userId, Pagination pagination,
+			String sortString)
+		throws Exception;
 
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
-
-		if (companyId != null) {
-			httpInvoker.parameter("companyId", String.valueOf(companyId));
-		}
-
-		if (type != null) {
-			httpInvoker.parameter("type", String.valueOf(type));
-		}
-
-		if (userId != null) {
-			httpInvoker.parameter("userId", String.valueOf(userId));
-		}
-
-		if (pagination != null) {
-			httpInvoker.parameter("page", String.valueOf(pagination.getPage()));
-			httpInvoker.parameter(
-				"pageSize", String.valueOf(pagination.getPageSize()));
-		}
-
-		if (sortString != null) {
-			httpInvoker.parameter("sort", sortString);
-		}
-
-		httpInvoker.path(
-			"http://localhost:8080/o/change-tracking/v1.0/collections");
-
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
-
-		return httpInvoker.invoke();
-	}
-
-	public static Collection postCollection(
+	public Collection postCollection(
 			Long companyId, Long userId,
 			com.liferay.change.tracking.rest.client.dto.v1_0.CollectionUpdate
 				collectionUpdate)
-		throws Exception {
+		throws Exception;
 
-		HttpInvoker.HttpResponse httpResponse = postCollectionHttpResponse(
-			companyId, userId, collectionUpdate);
-
-		String content = httpResponse.getContent();
-
-		_logger.fine("HTTP response content: " + content);
-
-		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine(
-			"HTTP response status code: " + httpResponse.getStatusCode());
-
-		try {
-			return CollectionSerDes.toDTO(content);
-		}
-		catch (Exception e) {
-			_logger.log(
-				Level.WARNING, "Unable to process HTTP response: " + content,
-				e);
-
-			throw e;
-		}
-	}
-
-	public static HttpInvoker.HttpResponse postCollectionHttpResponse(
+	public HttpInvoker.HttpResponse postCollectionHttpResponse(
 			Long companyId, Long userId,
 			com.liferay.change.tracking.rest.client.dto.v1_0.CollectionUpdate
 				collectionUpdate)
-		throws Exception {
+		throws Exception;
 
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+	public void deleteCollection(Long collectionId) throws Exception;
 
-		httpInvoker.body(collectionUpdate.toString(), "application/json");
-
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
-
-		if (companyId != null) {
-			httpInvoker.parameter("companyId", String.valueOf(companyId));
-		}
-
-		if (userId != null) {
-			httpInvoker.parameter("userId", String.valueOf(userId));
-		}
-
-		httpInvoker.path(
-			"http://localhost:8080/o/change-tracking/v1.0/collections");
-
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
-
-		return httpInvoker.invoke();
-	}
-
-	public static void deleteCollection(Long collectionId) throws Exception {
-		HttpInvoker.HttpResponse httpResponse = deleteCollectionHttpResponse(
-			collectionId);
-
-		String content = httpResponse.getContent();
-
-		_logger.fine("HTTP response content: " + content);
-
-		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine(
-			"HTTP response status code: " + httpResponse.getStatusCode());
-	}
-
-	public static HttpInvoker.HttpResponse deleteCollectionHttpResponse(
+	public HttpInvoker.HttpResponse deleteCollectionHttpResponse(
 			Long collectionId)
-		throws Exception {
+		throws Exception;
 
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+	public Collection getCollection(Long collectionId) throws Exception;
 
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.DELETE);
+	public HttpInvoker.HttpResponse getCollectionHttpResponse(Long collectionId)
+		throws Exception;
 
-		httpInvoker.path(
-			"http://localhost:8080/o/change-tracking/v1.0/collections/{collectionId}",
-			collectionId);
+	public void postCollectionCheckout(Long collectionId, Long userId)
+		throws Exception;
 
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
-
-		return httpInvoker.invoke();
-	}
-
-	public static Collection getCollection(Long collectionId) throws Exception {
-		HttpInvoker.HttpResponse httpResponse = getCollectionHttpResponse(
-			collectionId);
-
-		String content = httpResponse.getContent();
-
-		_logger.fine("HTTP response content: " + content);
-
-		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine(
-			"HTTP response status code: " + httpResponse.getStatusCode());
-
-		try {
-			return CollectionSerDes.toDTO(content);
-		}
-		catch (Exception e) {
-			_logger.log(
-				Level.WARNING, "Unable to process HTTP response: " + content,
-				e);
-
-			throw e;
-		}
-	}
-
-	public static HttpInvoker.HttpResponse getCollectionHttpResponse(
-			Long collectionId)
-		throws Exception {
-
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
-
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
-
-		httpInvoker.path(
-			"http://localhost:8080/o/change-tracking/v1.0/collections/{collectionId}",
-			collectionId);
-
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
-
-		return httpInvoker.invoke();
-	}
-
-	public static void postCollectionCheckout(Long collectionId, Long userId)
-		throws Exception {
-
-		HttpInvoker.HttpResponse httpResponse =
-			postCollectionCheckoutHttpResponse(collectionId, userId);
-
-		String content = httpResponse.getContent();
-
-		_logger.fine("HTTP response content: " + content);
-
-		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine(
-			"HTTP response status code: " + httpResponse.getStatusCode());
-	}
-
-	public static HttpInvoker.HttpResponse postCollectionCheckoutHttpResponse(
+	public HttpInvoker.HttpResponse postCollectionCheckoutHttpResponse(
 			Long collectionId, Long userId)
-		throws Exception {
+		throws Exception;
 
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
-
-		httpInvoker.body(userId.toString(), "application/json");
-
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
-
-		if (userId != null) {
-			httpInvoker.parameter("userId", String.valueOf(userId));
-		}
-
-		httpInvoker.path(
-			"http://localhost:8080/o/change-tracking/v1.0/collections/{collectionId}/checkout",
-			collectionId);
-
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
-
-		return httpInvoker.invoke();
-	}
-
-	public static void postCollectionPublish(
+	public void postCollectionPublish(
 			Long collectionId, Boolean ignoreCollision, Long userId)
-		throws Exception {
+		throws Exception;
 
-		HttpInvoker.HttpResponse httpResponse =
-			postCollectionPublishHttpResponse(
-				collectionId, ignoreCollision, userId);
-
-		String content = httpResponse.getContent();
-
-		_logger.fine("HTTP response content: " + content);
-
-		_logger.fine("HTTP response message: " + httpResponse.getMessage());
-		_logger.fine(
-			"HTTP response status code: " + httpResponse.getStatusCode());
-	}
-
-	public static HttpInvoker.HttpResponse postCollectionPublishHttpResponse(
+	public HttpInvoker.HttpResponse postCollectionPublishHttpResponse(
 			Long collectionId, Boolean ignoreCollision, Long userId)
-		throws Exception {
+		throws Exception;
 
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+	public static class Builder {
 
-		httpInvoker.body(userId.toString(), "application/json");
+		public Builder authentication(String login, String password) {
+			_login = login;
+			_password = password;
 
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
-
-		if (ignoreCollision != null) {
-			httpInvoker.parameter(
-				"ignoreCollision", String.valueOf(ignoreCollision));
+			return this;
 		}
 
-		if (userId != null) {
-			httpInvoker.parameter("userId", String.valueOf(userId));
+		public CollectionResource build() {
+			return new CollectionResourceImpl(this);
 		}
 
-		httpInvoker.path(
-			"http://localhost:8080/o/change-tracking/v1.0/collections/{collectionId}/publish",
-			collectionId);
+		public Builder endpoint(String host, int port, String scheme) {
+			_host = host;
+			_port = port;
+			_scheme = scheme;
 
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
+			return this;
+		}
 
-		return httpInvoker.invoke();
+		public Builder locale(Locale locale) {
+			_locale = locale;
+
+			return this;
+		}
+
+		private Builder() {
+		}
+
+		private String _host = "localhost";
+		private Locale _locale;
+		private String _login = "test@liferay.com";
+		private String _password = "test";
+		private int _port = 8080;
+		private String _scheme = "http";
+
 	}
 
-	private static final Logger _logger = Logger.getLogger(
-		CollectionResource.class.getName());
+	public static class CollectionResourceImpl implements CollectionResource {
+
+		public Page<Collection> getCollectionsPage(
+				Long companyId, String type, Long userId, Pagination pagination,
+				String sortString)
+			throws Exception {
+
+			HttpInvoker.HttpResponse httpResponse =
+				getCollectionsPageHttpResponse(
+					companyId, type, userId, pagination, sortString);
+
+			String content = httpResponse.getContent();
+
+			_logger.fine("HTTP response content: " + content);
+
+			_logger.fine("HTTP response message: " + httpResponse.getMessage());
+			_logger.fine(
+				"HTTP response status code: " + httpResponse.getStatusCode());
+
+			return Page.of(content, CollectionSerDes::toDTO);
+		}
+
+		public HttpInvoker.HttpResponse getCollectionsPageHttpResponse(
+				Long companyId, String type, Long userId, Pagination pagination,
+				String sortString)
+			throws Exception {
+
+			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+			if (_builder._locale != null) {
+				httpInvoker.header(
+					"Accept-Language", _builder._locale.toLanguageTag());
+			}
+
+			httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
+
+			if (companyId != null) {
+				httpInvoker.parameter("companyId", String.valueOf(companyId));
+			}
+
+			if (type != null) {
+				httpInvoker.parameter("type", String.valueOf(type));
+			}
+
+			if (userId != null) {
+				httpInvoker.parameter("userId", String.valueOf(userId));
+			}
+
+			if (pagination != null) {
+				httpInvoker.parameter(
+					"page", String.valueOf(pagination.getPage()));
+				httpInvoker.parameter(
+					"pageSize", String.valueOf(pagination.getPageSize()));
+			}
+
+			if (sortString != null) {
+				httpInvoker.parameter("sort", sortString);
+			}
+
+			httpInvoker.path(
+				_builder._scheme + "://" + _builder._host + ":" +
+					_builder._port + "/o/change-tracking/v1.0/collections");
+
+			httpInvoker.userNameAndPassword(
+				_builder._login + ":" + _builder._password);
+
+			return httpInvoker.invoke();
+		}
+
+		public Collection postCollection(
+				Long companyId, Long userId,
+				com.liferay.change.tracking.rest.client.dto.v1_0.
+					CollectionUpdate collectionUpdate)
+			throws Exception {
+
+			HttpInvoker.HttpResponse httpResponse = postCollectionHttpResponse(
+				companyId, userId, collectionUpdate);
+
+			String content = httpResponse.getContent();
+
+			_logger.fine("HTTP response content: " + content);
+
+			_logger.fine("HTTP response message: " + httpResponse.getMessage());
+			_logger.fine(
+				"HTTP response status code: " + httpResponse.getStatusCode());
+
+			try {
+				return CollectionSerDes.toDTO(content);
+			}
+			catch (Exception e) {
+				_logger.log(
+					Level.WARNING,
+					"Unable to process HTTP response: " + content, e);
+
+				throw e;
+			}
+		}
+
+		public HttpInvoker.HttpResponse postCollectionHttpResponse(
+				Long companyId, Long userId,
+				com.liferay.change.tracking.rest.client.dto.v1_0.
+					CollectionUpdate collectionUpdate)
+			throws Exception {
+
+			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+			httpInvoker.body(collectionUpdate.toString(), "application/json");
+
+			if (_builder._locale != null) {
+				httpInvoker.header(
+					"Accept-Language", _builder._locale.toLanguageTag());
+			}
+
+			httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
+
+			if (companyId != null) {
+				httpInvoker.parameter("companyId", String.valueOf(companyId));
+			}
+
+			if (userId != null) {
+				httpInvoker.parameter("userId", String.valueOf(userId));
+			}
+
+			httpInvoker.path(
+				_builder._scheme + "://" + _builder._host + ":" +
+					_builder._port + "/o/change-tracking/v1.0/collections");
+
+			httpInvoker.userNameAndPassword(
+				_builder._login + ":" + _builder._password);
+
+			return httpInvoker.invoke();
+		}
+
+		public void deleteCollection(Long collectionId) throws Exception {
+			HttpInvoker.HttpResponse httpResponse =
+				deleteCollectionHttpResponse(collectionId);
+
+			String content = httpResponse.getContent();
+
+			_logger.fine("HTTP response content: " + content);
+
+			_logger.fine("HTTP response message: " + httpResponse.getMessage());
+			_logger.fine(
+				"HTTP response status code: " + httpResponse.getStatusCode());
+		}
+
+		public HttpInvoker.HttpResponse deleteCollectionHttpResponse(
+				Long collectionId)
+			throws Exception {
+
+			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+			if (_builder._locale != null) {
+				httpInvoker.header(
+					"Accept-Language", _builder._locale.toLanguageTag());
+			}
+
+			httpInvoker.httpMethod(HttpInvoker.HttpMethod.DELETE);
+
+			httpInvoker.path(
+				_builder._scheme + "://" + _builder._host + ":" +
+					_builder._port +
+						"/o/change-tracking/v1.0/collections/{collectionId}",
+				collectionId);
+
+			httpInvoker.userNameAndPassword(
+				_builder._login + ":" + _builder._password);
+
+			return httpInvoker.invoke();
+		}
+
+		public Collection getCollection(Long collectionId) throws Exception {
+			HttpInvoker.HttpResponse httpResponse = getCollectionHttpResponse(
+				collectionId);
+
+			String content = httpResponse.getContent();
+
+			_logger.fine("HTTP response content: " + content);
+
+			_logger.fine("HTTP response message: " + httpResponse.getMessage());
+			_logger.fine(
+				"HTTP response status code: " + httpResponse.getStatusCode());
+
+			try {
+				return CollectionSerDes.toDTO(content);
+			}
+			catch (Exception e) {
+				_logger.log(
+					Level.WARNING,
+					"Unable to process HTTP response: " + content, e);
+
+				throw e;
+			}
+		}
+
+		public HttpInvoker.HttpResponse getCollectionHttpResponse(
+				Long collectionId)
+			throws Exception {
+
+			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+			if (_builder._locale != null) {
+				httpInvoker.header(
+					"Accept-Language", _builder._locale.toLanguageTag());
+			}
+
+			httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
+
+			httpInvoker.path(
+				_builder._scheme + "://" + _builder._host + ":" +
+					_builder._port +
+						"/o/change-tracking/v1.0/collections/{collectionId}",
+				collectionId);
+
+			httpInvoker.userNameAndPassword(
+				_builder._login + ":" + _builder._password);
+
+			return httpInvoker.invoke();
+		}
+
+		public void postCollectionCheckout(Long collectionId, Long userId)
+			throws Exception {
+
+			HttpInvoker.HttpResponse httpResponse =
+				postCollectionCheckoutHttpResponse(collectionId, userId);
+
+			String content = httpResponse.getContent();
+
+			_logger.fine("HTTP response content: " + content);
+
+			_logger.fine("HTTP response message: " + httpResponse.getMessage());
+			_logger.fine(
+				"HTTP response status code: " + httpResponse.getStatusCode());
+		}
+
+		public HttpInvoker.HttpResponse postCollectionCheckoutHttpResponse(
+				Long collectionId, Long userId)
+			throws Exception {
+
+			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+			httpInvoker.body(userId.toString(), "application/json");
+
+			if (_builder._locale != null) {
+				httpInvoker.header(
+					"Accept-Language", _builder._locale.toLanguageTag());
+			}
+
+			httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
+
+			if (userId != null) {
+				httpInvoker.parameter("userId", String.valueOf(userId));
+			}
+
+			httpInvoker.path(
+				_builder._scheme + "://" + _builder._host + ":" +
+					_builder._port +
+						"/o/change-tracking/v1.0/collections/{collectionId}/checkout",
+				collectionId);
+
+			httpInvoker.userNameAndPassword(
+				_builder._login + ":" + _builder._password);
+
+			return httpInvoker.invoke();
+		}
+
+		public void postCollectionPublish(
+				Long collectionId, Boolean ignoreCollision, Long userId)
+			throws Exception {
+
+			HttpInvoker.HttpResponse httpResponse =
+				postCollectionPublishHttpResponse(
+					collectionId, ignoreCollision, userId);
+
+			String content = httpResponse.getContent();
+
+			_logger.fine("HTTP response content: " + content);
+
+			_logger.fine("HTTP response message: " + httpResponse.getMessage());
+			_logger.fine(
+				"HTTP response status code: " + httpResponse.getStatusCode());
+		}
+
+		public HttpInvoker.HttpResponse postCollectionPublishHttpResponse(
+				Long collectionId, Boolean ignoreCollision, Long userId)
+			throws Exception {
+
+			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+			httpInvoker.body(userId.toString(), "application/json");
+
+			if (_builder._locale != null) {
+				httpInvoker.header(
+					"Accept-Language", _builder._locale.toLanguageTag());
+			}
+
+			httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
+
+			if (ignoreCollision != null) {
+				httpInvoker.parameter(
+					"ignoreCollision", String.valueOf(ignoreCollision));
+			}
+
+			if (userId != null) {
+				httpInvoker.parameter("userId", String.valueOf(userId));
+			}
+
+			httpInvoker.path(
+				_builder._scheme + "://" + _builder._host + ":" +
+					_builder._port +
+						"/o/change-tracking/v1.0/collections/{collectionId}/publish",
+				collectionId);
+
+			httpInvoker.userNameAndPassword(
+				_builder._login + ":" + _builder._password);
+
+			return httpInvoker.invoke();
+		}
+
+		private CollectionResourceImpl(Builder builder) {
+			_builder = builder;
+		}
+
+		private static final Logger _logger = Logger.getLogger(
+			CollectionResource.class.getName());
+
+		private Builder _builder;
+
+	}
 
 }
