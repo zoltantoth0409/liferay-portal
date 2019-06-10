@@ -468,6 +468,8 @@ public abstract class BaseDocumentResourceTestCase {
 
 		assertEquals(randomDocument, postDocument);
 		assertValid(postDocument);
+
+		assertValid(postDocument, multipartFiles);
 	}
 
 	protected Document testPostDocumentFolderDocument_addDocument(
@@ -536,6 +538,8 @@ public abstract class BaseDocumentResourceTestCase {
 
 		assertEquals(expectedPatchDocument, getDocument);
 		assertValid(getDocument);
+
+		assertValid(getDocument, multipartFiles);
 	}
 
 	protected Document testPatchDocument_addDocument() throws Exception {
@@ -562,6 +566,8 @@ public abstract class BaseDocumentResourceTestCase {
 
 		assertEquals(randomDocument, getDocument);
 		assertValid(getDocument);
+
+		assertValid(getDocument, multipartFiles);
 	}
 
 	protected Document testPutDocument_addDocument() throws Exception {
@@ -853,6 +859,8 @@ public abstract class BaseDocumentResourceTestCase {
 
 		assertEquals(randomDocument, postDocument);
 		assertValid(postDocument);
+
+		assertValid(postDocument, multipartFiles);
 	}
 
 	protected Document testPostSiteDocument_addDocument(
@@ -1075,6 +1083,14 @@ public abstract class BaseDocumentResourceTestCase {
 		}
 
 		Assert.assertTrue(valid);
+	}
+
+	protected void assertValid(
+			Document document, Map<String, File> multipartFiles)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected void assertValid(Page<Document> page) {

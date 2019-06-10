@@ -339,6 +339,8 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 
 		assertEquals(randomMessageBoardAttachment, postMessageBoardAttachment);
 		assertValid(postMessageBoardAttachment);
+
+		assertValid(postMessageBoardAttachment, multipartFiles);
 	}
 
 	protected MessageBoardAttachment
@@ -444,6 +446,8 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 
 		assertEquals(randomMessageBoardAttachment, postMessageBoardAttachment);
 		assertValid(postMessageBoardAttachment);
+
+		assertValid(postMessageBoardAttachment, multipartFiles);
 	}
 
 	protected MessageBoardAttachment
@@ -578,6 +582,15 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 		}
 
 		Assert.assertTrue(valid);
+	}
+
+	protected void assertValid(
+			MessageBoardAttachment messageBoardAttachment,
+			Map<String, File> multipartFiles)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected void assertValid(Page<MessageBoardAttachment> page) {
