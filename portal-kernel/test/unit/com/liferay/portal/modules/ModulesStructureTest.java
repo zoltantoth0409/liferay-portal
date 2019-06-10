@@ -1377,12 +1377,6 @@ public class ModulesStructureTest {
 			return;
 		}
 
-		String dirName = String.valueOf(dirPath.getFileName());
-
-		if (_excludedRelengAppPropertiesDirNames.contains(dirName)) {
-			return;
-		}
-
 		Path relengIgnorePath = dirPath.resolve(".lfrbuild-releng-ignore");
 
 		if (Files.exists(relengIgnorePath)) {
@@ -1416,7 +1410,7 @@ public class ModulesStructureTest {
 			}
 
 			sb.append("apps/");
-			sb.append(dirName);
+			sb.append(String.valueOf(dirPath.getFileName()));
 			sb.append("/app.properties");
 
 			Path appPropertiesPath = _modulesDirPath.resolve(sb.toString());
@@ -1513,8 +1507,6 @@ public class ModulesStructureTest {
 	private static final Set<String> _excludedDirNames = SetUtil.fromList(
 		Arrays.asList(
 			"bin", "build", "classes", "node_modules", "test-classes", "tmp"));
-	private static final Set<String> _excludedRelengAppPropertiesDirNames =
-		SetUtil.fromList(Arrays.asList("bean-portlet", "portal-odata"));
 	private static final Pattern _gitRepoGradleProjectGroupPattern =
 		Pattern.compile("com\\.liferay(?:\\.[a-z]+)+");
 	private static final Set<String> _gitRepoGradlePropertiesKeys =
