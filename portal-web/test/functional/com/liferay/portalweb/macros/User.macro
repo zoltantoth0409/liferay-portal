@@ -1043,6 +1043,12 @@ definition {
 			locator1 = "UsersAndOrganizationsEditUser#PASSWORD_ENTER_AGAIN_FIELD",
 			value1 = "${newPassword}");
 
+		if ("${requirePasswordReset}" == "true") {
+			Check(
+				checkboxName = "Require Password Reset",
+				locator1 = "Checkbox#ANY_CHECKBOX");
+		}
+
 		PortletEntry.save();
 
 		User.logoutPG();
@@ -1752,6 +1758,14 @@ definition {
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/control_panel/manage?p_p_id=com_liferay_users_admin_web_portlet_UsersAdminPortlet");
 	}
 
+	macro removeContactInformation {
+		Click(
+			key_rowEntry = "${rowEntry}",
+			locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_REMOVE_ICON");
+
+		PortletEntry.save();
+	}
+
 	macro resetPassword {
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#PASSWORD")) {
 			if ((isSet(syntaxCheckingEnabled)) && ("${syntaxCheckingEnabled}" == "true")) {
@@ -1995,6 +2009,34 @@ definition {
 		Alert.viewSuccessMessage();
 	}
 
+	macro viewAddress {
+		AssertTextEquals(
+			locator1 = "TextInput#CITY",
+			value1 = "${city}");
+
+		AssertSelectedLabel(
+			locator1 = "Select#COUNTRY",
+			value1 = "${country}");
+
+		AssertTextEquals(
+			locator1 = "TextInput#POSTAL_CODE",
+			value1 = "${postalCode}");
+
+		AssertSelectedLabel(
+			locator1 = "Select#REGION",
+			value1 = "${region}");
+
+		AssertTextEquals(
+			locator1 = "TextInput#STREET_1",
+			value1 = "${street1}");
+
+		if (isSet(addressType)) {
+			AssertSelectedLabel(
+				locator1 = "Select#TYPE",
+				value1 = "${addressType}");
+		}
+	}
+
 	macro viewCaptchaPG {
 		if ("${captchaType}" == "captcha") {
 			AssertElementPresent.assertElementPresent(locator1 = "SignInCreateAccount#CAPTCHA_IMAGE");
@@ -2003,6 +2045,66 @@ definition {
 			SelectFrame(locator1 = "IFrame#RECAPTCHA");
 
 			AssertElementPresent.assertElementPresent(locator1 = "SignInCreateAccount#RECAPTCHA_LABEL");
+		}
+	}
+
+	macro viewContactInformation {
+		// Phone Numbers
+
+		if (isSet(number)) {
+			AssertTextEquals.assertValue(
+				locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_PHONE_NUMBER",
+				value1 = "${number}");
+		}
+
+		if (isSet(numberType)) {
+			AssertSelectedLabel(
+				locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_PHONE_NUMBER_TYPE",
+				value1 = "${numberType}");
+		}
+
+		// Additional Email Addresses
+
+		if (isSet(address)) {
+			AssertTextEquals.assertValue(
+				locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_EMAIL_ADDRESS",
+				value1 = "${address}");
+		}
+
+		if (isSet(addressCount)) {
+			var i = "0";
+
+			while (!("${i}" == "${addressCount}")) {
+				var i = MathUtil.sum("${i}", "1");
+
+				var key_emailAddress = "${addressPrefix}${i}@liferay.com";
+
+				AssertTextEquals.assertValue(
+					locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_EMAIL_ADDRESS",
+					value1 = "${addressPrefix}${i}@liferay.com");
+			}
+		}
+
+		// Websites
+
+		if (isSet(url)) {
+			AssertTextEquals.assertValue(
+				locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_WEBSITE_URL",
+				value1 = "${url}");
+		}
+
+		if (isSet(websiteType)) {
+			AssertSelectedLabel(
+				locator1 = "UsersAndOrganizations#USER_CONTACT_INFORMATION_WEBSITE_TYPE",
+				value1 = "${websiteType}");
+		}
+
+		// Instant Messenger
+
+		if (isSet(skype)) {
+			AssertTextEquals.assertValue(
+				locator1 = "TextInput#SKYPE",
+				value1 = "${skype}");
 		}
 	}
 
@@ -2066,6 +2168,18 @@ definition {
 			AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 				value1 = "${userLastName}");
+
+			if (isSet(userBirthday)) {
+				AssertTextEquals(
+					locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD",
+					value1 = "${userBirthday}");
+			}
+
+			if (isSet(userJobTitle)) {
+				AssertTextEquals(
+					locator1 = "UsersAndOrganizationsEditUser#DETAILS_JOB_TITLE_FIELD",
+					value1 = "${userJobTitle}");
+			}
 		}
 	}
 
