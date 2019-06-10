@@ -24,7 +24,7 @@ import org.elasticsearch.common.cli.Terminal;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.plugins.PluginInfo;
-import org.elasticsearch.plugins.PluginManager;
+import org.elasticsearch.plugins.PluginManager.OutputMode;
 
 /**
  * @author Artur Aquino
@@ -33,10 +33,10 @@ import org.elasticsearch.plugins.PluginManager;
 public class PluginManagerImpl implements PluginManager {
 
 	public PluginManagerImpl(
-		Environment environment, URL url, PluginManager.OutputMode outputMode,
+		Environment environment, URL url, OutputMode outputMode,
 		TimeValue timeout) {
 
-		_pluginManager = new PluginManager(
+		_pluginManager = new org.elasticsearch.plugins.PluginManager(
 			environment, url, outputMode, timeout);
 	}
 
@@ -78,6 +78,6 @@ public class PluginManagerImpl implements PluginManager {
 		_pluginManager.removePlugin(name, terminal);
 	}
 
-	private final PluginManager _pluginManager;
+	private final org.elasticsearch.plugins.PluginManager _pluginManager;
 
 }
