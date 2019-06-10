@@ -16,7 +16,6 @@ package com.liferay.headless.delivery.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardMessage;
-import com.liferay.headless.delivery.client.resource.v1_0.MessageBoardMessageResource;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.test.util.MBTestUtil;
@@ -66,7 +65,7 @@ public class MessageBoardMessageResourceTest
 			testDeleteMessageBoardMessage_addMessageBoardMessage()
 		throws Exception {
 
-		return MessageBoardMessageResource.
+		return messageBoardMessageResource.
 			postMessageBoardThreadMessageBoardMessage(
 				_mbThread.getThreadId(), randomMessageBoardMessage());
 	}
@@ -76,7 +75,7 @@ public class MessageBoardMessageResourceTest
 			testDeleteMessageBoardMessageMyRating_addMessageBoardMessage()
 		throws Exception {
 
-		return MessageBoardMessageResource.
+		return messageBoardMessageResource.
 			postMessageBoardThreadMessageBoardMessage(
 				_mbThread.getThreadId(), randomMessageBoardMessage());
 	}
@@ -86,7 +85,7 @@ public class MessageBoardMessageResourceTest
 			testGetMessageBoardMessage_addMessageBoardMessage()
 		throws Exception {
 
-		return MessageBoardMessageResource.
+		return messageBoardMessageResource.
 			postMessageBoardThreadMessageBoardMessage(
 				_mbThread.getThreadId(), randomMessageBoardMessage());
 	}
@@ -110,7 +109,7 @@ public class MessageBoardMessageResourceTest
 			testPatchMessageBoardMessage_addMessageBoardMessage()
 		throws Exception {
 
-		return MessageBoardMessageResource.
+		return messageBoardMessageResource.
 			postMessageBoardThreadMessageBoardMessage(
 				testGetMessageBoardThreadMessageBoardMessagesPage_getMessageBoardThreadId(),
 				randomMessageBoardMessage());
@@ -121,7 +120,7 @@ public class MessageBoardMessageResourceTest
 			testPutMessageBoardMessage_addMessageBoardMessage()
 		throws Exception {
 
-		return MessageBoardMessageResource.
+		return messageBoardMessageResource.
 			postMessageBoardThreadMessageBoardMessage(
 				testGetMessageBoardThreadMessageBoardMessagesPage_getMessageBoardThreadId(),
 				randomMessageBoardMessage());
