@@ -49,6 +49,7 @@ public class DataRecordResourceTest extends BaseDataRecordResourceTestCase {
 			_ddmStructure, irrelevantGroup, _resourceLocalService);
 	}
 
+	@Override
 	@Test
 	public void testPostDataRecordCollectionDataRecord() throws Exception {
 		super.testPostDataRecordCollectionDataRecord();
