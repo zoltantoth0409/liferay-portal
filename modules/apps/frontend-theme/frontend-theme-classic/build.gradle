@@ -1,3 +1,11 @@
 publishNodeModule {
 	enabled = false
 }
+
+gulpBuild {
+	enabled = false
+}
+
+npmInstall {
+    enabled = false
+}
