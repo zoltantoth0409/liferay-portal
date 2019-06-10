@@ -60,7 +60,7 @@ public class DataRecordResourceTest extends BaseDataRecordResourceTestCase {
 				RandomTestUtil.randomLong(), randomDataRecord()));
 
 		DataRecord dataRecord = _createDataRecord(
-			DataRecordResource.randomString());
+			RandomTestUtil.randomString());
 
 		assertHttpResponseStatusCode(
 			400,
