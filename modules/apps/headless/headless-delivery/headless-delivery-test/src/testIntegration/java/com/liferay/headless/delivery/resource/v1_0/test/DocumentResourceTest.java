@@ -16,6 +16,8 @@ package com.liferay.headless.delivery.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
+import com.liferay.headless.delivery.client.dto.v1_0.Document;
+import com.liferay.headless.delivery.client.http.HttpInvoker;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
@@ -27,6 +29,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 
 /**
@@ -34,6 +37,20 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class DocumentResourceTest extends BaseDocumentResourceTestCase {
+
+	@Override
+	protected void assertValid(
+			Document document, Map<String, File> multipartFiles)
+		throws Exception {
+
+		// TODO
+
+		if (false) {
+			Assert.assertEquals(
+				new String(FileUtil.getBytes(multipartFiles.get("file"))),
+				_read("http://localhost:8080" + document.getContentUrl()));
+		}
+	}
 
 	@Override
 	protected String[] getAdditionalAssertFieldNames() {
@@ -66,6 +83,18 @@ public class DocumentResourceTest extends BaseDocumentResourceTestCase {
 			RandomTestUtil.randomString(), new ServiceContext());
 
 		return folder.getFolderId();
+	}
+
+	private String _read(String url) throws Exception {
+		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
+		httpInvoker.path(url);
+		httpInvoker.userNameAndPassword("test@liferay.com:test");
+
+		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+
+		return httpResponse.getContent();
 	}
 
 }

@@ -57,6 +57,16 @@ public class MessageBoardAttachmentResourceTest
 	}
 
 	@Override
+	protected void assertValid(
+			MessageBoardAttachment messageBoardAttachment,
+			Map<String, File> multipartFiles)
+		throws Exception {
+
+		// TODO
+
+	}
+
+	@Override
 	protected String[] getAdditionalAssertFieldNames() {
 		return new String[] {"contentUrl", "encodingFormat", "title"};
 	}

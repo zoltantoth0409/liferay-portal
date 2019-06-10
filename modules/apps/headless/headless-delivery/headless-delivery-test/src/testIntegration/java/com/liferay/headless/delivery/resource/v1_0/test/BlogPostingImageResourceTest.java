@@ -68,6 +68,15 @@ public class BlogPostingImageResourceTest
 	}
 
 	@Override
+	protected void assertValid(
+			BlogPostingImage blogPostingImage, Map<String, File> multipartFiles)
+		throws Exception {
+
+		// TODO
+
+	}
+
+	@Override
 	protected String[] getIgnoredEntityFieldNames() {
 		return new String[] {"fileExtension"};
 	}

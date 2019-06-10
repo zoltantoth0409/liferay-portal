@@ -58,6 +58,16 @@ public class KnowledgeBaseAttachmentResourceTest
 	}
 
 	@Override
+	protected void assertValid(
+			KnowledgeBaseAttachment knowledgeBaseAttachment,
+			Map<String, File> multipartFiles)
+		throws Exception {
+
+		// TODO
+
+	}
+
+	@Override
 	protected String[] getAdditionalAssertFieldNames() {
 		return new String[] {"contentUrl", "encodingFormat", "title"};
 	}
