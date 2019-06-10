@@ -209,7 +209,6 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			ddlRecordSet.getRecordSetId(), DataActionKeys.UPDATE_DATA_RECORD);
 
 		dataRecord.setDataRecordCollectionId(ddlRecordSet.getRecordSetId());
-
 		dataRecord.setId(dataRecordId);
 
 		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
