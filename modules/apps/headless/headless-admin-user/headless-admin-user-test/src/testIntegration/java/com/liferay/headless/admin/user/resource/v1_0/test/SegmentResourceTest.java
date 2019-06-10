@@ -65,8 +65,8 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 	public void testGetSiteSegmentsPageWithDefaultPermissions()
 		throws Exception {
 
-		testUserNameAndPassword =
-			_user.getEmailAddress() + ":" + _user.getPasswordUnencrypted();
+		//testUserNameAndPassword =
+		//	_user.getEmailAddress() + ":" + _user.getPasswordUnencrypted();
 
 		Long siteId = testGetSiteSegmentsPage_getSiteId();
 
@@ -76,7 +76,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 		Segment segment2 = testGetSiteSegmentsPage_addSegment(
 			siteId, randomSegment());
 
-		Page<Segment> page = SegmentResource.getSiteSegmentsPage(
+		Page<Segment> page = segmentResource.getSiteSegmentsPage(
 			siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -91,8 +91,8 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 	public void testGetSiteSegmentsPageWithoutViewPermissions()
 		throws Exception {
 
-		testUserNameAndPassword =
-			_user.getEmailAddress() + ":" + _user.getPasswordUnencrypted();
+		//testUserNameAndPassword =
+		//	_user.getEmailAddress() + ":" + _user.getPasswordUnencrypted();
 
 		Long siteId = testGetSiteSegmentsPage_getSiteId();
 
@@ -117,7 +117,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 				ActionKeys.VIEW);
 		}
 
-		Page<Segment> page = SegmentResource.getSiteSegmentsPage(
+		Page<Segment> page = segmentResource.getSiteSegmentsPage(
 			siteId, Pagination.of(1, 2));
 
 		Assert.assertEquals(1, page.getTotalCount());

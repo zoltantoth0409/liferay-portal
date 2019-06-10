@@ -16,7 +16,6 @@ package com.liferay.headless.delivery.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.delivery.client.dto.v1_0.MessageBoardAttachment;
-import com.liferay.headless.delivery.client.resource.v1_0.MessageBoardAttachmentResource;
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.test.util.MBTestUtil;
@@ -78,7 +77,7 @@ public class MessageBoardAttachmentResourceTest
 			testDeleteMessageBoardAttachment_addMessageBoardAttachment()
 		throws Exception {
 
-		return MessageBoardAttachmentResource.
+		return messageBoardAttachmentResource.
 			postMessageBoardThreadMessageBoardAttachment(
 				_mbThread.getThreadId(), randomMessageBoardAttachment(),
 				getMultipartFiles());
@@ -89,7 +88,7 @@ public class MessageBoardAttachmentResourceTest
 			testGetMessageBoardAttachment_addMessageBoardAttachment()
 		throws Exception {
 
-		return MessageBoardAttachmentResource.
+		return messageBoardAttachmentResource.
 			postMessageBoardThreadMessageBoardAttachment(
 				_mbThread.getThreadId(), randomMessageBoardAttachment(),
 				getMultipartFiles());
