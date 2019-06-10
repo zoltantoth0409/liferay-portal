@@ -50,7 +50,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -92,12 +91,17 @@ public abstract class BasePostalAddressResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_postalAddressResource.setContextCompany(testCompany);
+
+		PostalAddressResource.Builder builder = PostalAddressResource.builder();
+
+		postalAddressResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -203,7 +207,7 @@ public abstract class BasePostalAddressResourceTestCase {
 					irrelevantOrganizationId, randomIrrelevantPostalAddress());
 
 			Page<PostalAddress> page =
-				PostalAddressResource.getOrganizationPostalAddressesPage(
+				postalAddressResource.getOrganizationPostalAddressesPage(
 					irrelevantOrganizationId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -223,7 +227,7 @@ public abstract class BasePostalAddressResourceTestCase {
 				organizationId, randomPostalAddress());
 
 		Page<PostalAddress> page =
-			PostalAddressResource.getOrganizationPostalAddressesPage(
+			postalAddressResource.getOrganizationPostalAddressesPage(
 				organizationId);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -262,7 +266,7 @@ public abstract class BasePostalAddressResourceTestCase {
 		PostalAddress postPostalAddress =
 			testGetPostalAddress_addPostalAddress();
 
-		PostalAddress getPostalAddress = PostalAddressResource.getPostalAddress(
+		PostalAddress getPostalAddress = postalAddressResource.getPostalAddress(
 			postPostalAddress.getId());
 
 		assertEquals(postPostalAddress, getPostalAddress);
@@ -289,7 +293,7 @@ public abstract class BasePostalAddressResourceTestCase {
 					irrelevantUserAccountId, randomIrrelevantPostalAddress());
 
 			Page<PostalAddress> page =
-				PostalAddressResource.getUserAccountPostalAddressesPage(
+				postalAddressResource.getUserAccountPostalAddressesPage(
 					irrelevantUserAccountId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -309,7 +313,7 @@ public abstract class BasePostalAddressResourceTestCase {
 				userAccountId, randomPostalAddress());
 
 		Page<PostalAddress> page =
-			PostalAddressResource.getUserAccountPostalAddressesPage(
+			postalAddressResource.getUserAccountPostalAddressesPage(
 				userAccountId);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -805,11 +809,10 @@ public abstract class BasePostalAddressResourceTestCase {
 		return randomPostalAddress();
 	}
 
+	protected PostalAddressResource postalAddressResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BasePostalAddressResourceTestCase.class);

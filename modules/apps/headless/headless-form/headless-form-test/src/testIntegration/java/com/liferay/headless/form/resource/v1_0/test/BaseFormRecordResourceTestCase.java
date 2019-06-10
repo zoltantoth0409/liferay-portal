@@ -51,7 +51,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -94,12 +93,17 @@ public abstract class BaseFormRecordResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_formRecordResource.setContextCompany(testCompany);
+
+		FormRecordResource.Builder builder = FormRecordResource.builder();
+
+		formRecordResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -178,7 +182,7 @@ public abstract class BaseFormRecordResourceTestCase {
 	public void testGetFormRecord() throws Exception {
 		FormRecord postFormRecord = testGetFormRecord_addFormRecord();
 
-		FormRecord getFormRecord = FormRecordResource.getFormRecord(
+		FormRecord getFormRecord = formRecordResource.getFormRecord(
 			postFormRecord.getId());
 
 		assertEquals(postFormRecord, getFormRecord);
@@ -196,13 +200,13 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		FormRecord randomFormRecord = randomFormRecord();
 
-		FormRecord putFormRecord = FormRecordResource.putFormRecord(
+		FormRecord putFormRecord = formRecordResource.putFormRecord(
 			postFormRecord.getId(), randomFormRecord);
 
 		assertEquals(randomFormRecord, putFormRecord);
 		assertValid(putFormRecord);
 
-		FormRecord getFormRecord = FormRecordResource.getFormRecord(
+		FormRecord getFormRecord = formRecordResource.getFormRecord(
 			putFormRecord.getId());
 
 		assertEquals(randomFormRecord, getFormRecord);
@@ -225,7 +229,7 @@ public abstract class BaseFormRecordResourceTestCase {
 				testGetFormFormRecordsPage_addFormRecord(
 					irrelevantFormId, randomIrrelevantFormRecord());
 
-			Page<FormRecord> page = FormRecordResource.getFormFormRecordsPage(
+			Page<FormRecord> page = formRecordResource.getFormFormRecordsPage(
 				irrelevantFormId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -242,7 +246,7 @@ public abstract class BaseFormRecordResourceTestCase {
 		FormRecord formRecord2 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());
 
-		Page<FormRecord> page = FormRecordResource.getFormFormRecordsPage(
+		Page<FormRecord> page = formRecordResource.getFormFormRecordsPage(
 			formId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -266,14 +270,14 @@ public abstract class BaseFormRecordResourceTestCase {
 		FormRecord formRecord3 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());
 
-		Page<FormRecord> page1 = FormRecordResource.getFormFormRecordsPage(
+		Page<FormRecord> page1 = formRecordResource.getFormFormRecordsPage(
 			formId, Pagination.of(1, 2));
 
 		List<FormRecord> formRecords1 = (List<FormRecord>)page1.getItems();
 
 		Assert.assertEquals(formRecords1.toString(), 2, formRecords1.size());
 
-		Page<FormRecord> page2 = FormRecordResource.getFormFormRecordsPage(
+		Page<FormRecord> page2 = formRecordResource.getFormFormRecordsPage(
 			formId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -282,7 +286,7 @@ public abstract class BaseFormRecordResourceTestCase {
 
 		Assert.assertEquals(formRecords2.toString(), 1, formRecords2.size());
 
-		Page<FormRecord> page3 = FormRecordResource.getFormFormRecordsPage(
+		Page<FormRecord> page3 = formRecordResource.getFormFormRecordsPage(
 			formId, Pagination.of(1, 3));
 
 		assertEqualsIgnoringOrder(
@@ -294,7 +298,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			Long formId, FormRecord formRecord)
 		throws Exception {
 
-		return FormRecordResource.postFormFormRecord(formId, formRecord);
+		return formRecordResource.postFormFormRecord(formId, formRecord);
 	}
 
 	protected Long testGetFormFormRecordsPage_getFormId() throws Exception {
@@ -323,7 +327,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			FormRecord formRecord)
 		throws Exception {
 
-		return FormRecordResource.postFormFormRecord(
+		return formRecordResource.postFormFormRecord(
 			testGetFormFormRecordsPage_getFormId(), formRecord);
 	}
 
@@ -333,7 +337,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			testGetFormFormRecordByLatestDraft_addFormRecord();
 
 		FormRecord getFormRecord =
-			FormRecordResource.getFormFormRecordByLatestDraft(
+			formRecordResource.getFormFormRecordByLatestDraft(
 				postFormRecord.getFormId());
 
 		assertEquals(postFormRecord, getFormRecord);
@@ -809,11 +813,10 @@ public abstract class BaseFormRecordResourceTestCase {
 		return randomFormRecord();
 	}
 
+	protected FormRecordResource formRecordResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseFormRecordResourceTestCase.class);

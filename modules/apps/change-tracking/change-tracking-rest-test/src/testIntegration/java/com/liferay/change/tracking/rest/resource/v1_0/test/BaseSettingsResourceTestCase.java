@@ -51,7 +51,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -93,12 +92,17 @@ public abstract class BaseSettingsResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_settingsResource.setContextCompany(testCompany);
+
+		SettingsResource.Builder builder = SettingsResource.builder();
+
+		settingsResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -175,7 +179,7 @@ public abstract class BaseSettingsResourceTestCase {
 
 	@Test
 	public void testGetSettingsPage() throws Exception {
-		Page<Settings> page = SettingsResource.getSettingsPage(null, null);
+		Page<Settings> page = settingsResource.getSettingsPage(null, null);
 
 		Assert.assertEquals(0, page.getTotalCount());
 
@@ -183,7 +187,7 @@ public abstract class BaseSettingsResourceTestCase {
 
 		Settings settings2 = testGetSettingsPage_addSettings(randomSettings());
 
-		page = SettingsResource.getSettingsPage(null, null);
+		page = settingsResource.getSettingsPage(null, null);
 
 		Assert.assertEquals(2, page.getTotalCount());
 
@@ -578,11 +582,10 @@ public abstract class BaseSettingsResourceTestCase {
 		return randomSettings();
 	}
 
+	protected SettingsResource settingsResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseSettingsResourceTestCase.class);

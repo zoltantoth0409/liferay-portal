@@ -54,7 +54,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -98,12 +97,18 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_structuredContentFolderResource.setContextCompany(testCompany);
+
+		StructuredContentFolderResource.Builder builder =
+			StructuredContentFolderResource.builder();
+
+		structuredContentFolderResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -194,7 +199,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 	@Test
 	public void testGetSiteStructuredContentFoldersPage() throws Exception {
 		Page<StructuredContentFolder> page =
-			StructuredContentFolderResource.getSiteStructuredContentFoldersPage(
+			structuredContentFolderResource.getSiteStructuredContentFoldersPage(
 				testGetSiteStructuredContentFoldersPage_getSiteId(), null,
 				RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
 
@@ -211,7 +216,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 					randomIrrelevantStructuredContentFolder());
 
 			page =
-				StructuredContentFolderResource.
+				structuredContentFolderResource.
 					getSiteStructuredContentFoldersPage(
 						irrelevantSiteId, null, null, null, Pagination.of(1, 2),
 						null);
@@ -233,7 +238,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				siteId, randomStructuredContentFolder());
 
 		page =
-			StructuredContentFolderResource.getSiteStructuredContentFoldersPage(
+			structuredContentFolderResource.getSiteStructuredContentFoldersPage(
 				siteId, null, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -266,7 +271,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> page =
-				StructuredContentFolderResource.
+				structuredContentFolderResource.
 					getSiteStructuredContentFoldersPage(
 						siteId, null, null,
 						getFilterString(
@@ -303,7 +308,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> page =
-				StructuredContentFolderResource.
+				structuredContentFolderResource.
 					getSiteStructuredContentFoldersPage(
 						siteId, null, null,
 						getFilterString(
@@ -335,7 +340,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				siteId, randomStructuredContentFolder());
 
 		Page<StructuredContentFolder> page1 =
-			StructuredContentFolderResource.getSiteStructuredContentFoldersPage(
+			structuredContentFolderResource.getSiteStructuredContentFoldersPage(
 				siteId, null, null, null, Pagination.of(1, 2), null);
 
 		List<StructuredContentFolder> structuredContentFolders1 =
@@ -346,7 +351,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			structuredContentFolders1.size());
 
 		Page<StructuredContentFolder> page2 =
-			StructuredContentFolderResource.getSiteStructuredContentFoldersPage(
+			structuredContentFolderResource.getSiteStructuredContentFoldersPage(
 				siteId, null, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -359,7 +364,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			structuredContentFolders2.size());
 
 		Page<StructuredContentFolder> page3 =
-			StructuredContentFolderResource.getSiteStructuredContentFoldersPage(
+			structuredContentFolderResource.getSiteStructuredContentFoldersPage(
 				siteId, null, null, null, Pagination.of(1, 3), null);
 
 		assertEqualsIgnoringOrder(
@@ -446,7 +451,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> ascPage =
-				StructuredContentFolderResource.
+				structuredContentFolderResource.
 					getSiteStructuredContentFoldersPage(
 						siteId, null, null, null, Pagination.of(1, 2),
 						entityField.getName() + ":asc");
@@ -457,7 +462,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				(List<StructuredContentFolder>)ascPage.getItems());
 
 			Page<StructuredContentFolder> descPage =
-				StructuredContentFolderResource.
+				structuredContentFolderResource.
 					getSiteStructuredContentFoldersPage(
 						siteId, null, null, null, Pagination.of(1, 2),
 						entityField.getName() + ":desc");
@@ -474,7 +479,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				Long siteId, StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
-		return StructuredContentFolderResource.postSiteStructuredContentFolder(
+		return structuredContentFolderResource.postSiteStructuredContentFolder(
 			siteId, structuredContentFolder);
 	}
 
@@ -509,7 +514,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
-		return StructuredContentFolderResource.postSiteStructuredContentFolder(
+		return structuredContentFolderResource.postSiteStructuredContentFolder(
 			testGetSiteStructuredContentFoldersPage_getSiteId(),
 			structuredContentFolder);
 	}
@@ -519,7 +524,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		throws Exception {
 
 		Page<StructuredContentFolder> page =
-			StructuredContentFolderResource.
+			structuredContentFolderResource.
 				getStructuredContentFolderStructuredContentFoldersPage(
 					testGetStructuredContentFolderStructuredContentFoldersPage_getParentStructuredContentFolderId(),
 					RandomTestUtil.randomString(), null, Pagination.of(1, 2),
@@ -539,7 +544,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 					randomIrrelevantStructuredContentFolder());
 
 			page =
-				StructuredContentFolderResource.
+				structuredContentFolderResource.
 					getStructuredContentFolderStructuredContentFoldersPage(
 						irrelevantParentStructuredContentFolderId, null, null,
 						Pagination.of(1, 2), null);
@@ -563,7 +568,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				randomStructuredContentFolder());
 
 		page =
-			StructuredContentFolderResource.
+			structuredContentFolderResource.
 				getStructuredContentFolderStructuredContentFoldersPage(
 					parentStructuredContentFolderId, null, null,
 					Pagination.of(1, 2), null);
@@ -599,7 +604,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> page =
-				StructuredContentFolderResource.
+				structuredContentFolderResource.
 					getStructuredContentFolderStructuredContentFoldersPage(
 						parentStructuredContentFolderId, null,
 						getFilterString(
@@ -639,7 +644,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> page =
-				StructuredContentFolderResource.
+				structuredContentFolderResource.
 					getStructuredContentFolderStructuredContentFoldersPage(
 						parentStructuredContentFolderId, null,
 						getFilterString(
@@ -675,7 +680,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				randomStructuredContentFolder());
 
 		Page<StructuredContentFolder> page1 =
-			StructuredContentFolderResource.
+			structuredContentFolderResource.
 				getStructuredContentFolderStructuredContentFoldersPage(
 					parentStructuredContentFolderId, null, null,
 					Pagination.of(1, 2), null);
@@ -688,7 +693,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			structuredContentFolders1.size());
 
 		Page<StructuredContentFolder> page2 =
-			StructuredContentFolderResource.
+			structuredContentFolderResource.
 				getStructuredContentFolderStructuredContentFoldersPage(
 					parentStructuredContentFolderId, null, null,
 					Pagination.of(2, 2), null);
@@ -703,7 +708,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			structuredContentFolders2.size());
 
 		Page<StructuredContentFolder> page3 =
-			StructuredContentFolderResource.
+			structuredContentFolderResource.
 				getStructuredContentFolderStructuredContentFoldersPage(
 					parentStructuredContentFolderId, null, null,
 					Pagination.of(1, 3), null);
@@ -794,7 +799,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<StructuredContentFolder> ascPage =
-				StructuredContentFolderResource.
+				structuredContentFolderResource.
 					getStructuredContentFolderStructuredContentFoldersPage(
 						parentStructuredContentFolderId, null, null,
 						Pagination.of(1, 2), entityField.getName() + ":asc");
@@ -805,7 +810,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				(List<StructuredContentFolder>)ascPage.getItems());
 
 			Page<StructuredContentFolder> descPage =
-				StructuredContentFolderResource.
+				structuredContentFolderResource.
 					getStructuredContentFolderStructuredContentFoldersPage(
 						parentStructuredContentFolderId, null, null,
 						Pagination.of(1, 2), entityField.getName() + ":desc");
@@ -823,7 +828,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
-		return StructuredContentFolderResource.
+		return structuredContentFolderResource.
 			postStructuredContentFolderStructuredContentFolder(
 				parentStructuredContentFolderId, structuredContentFolder);
 	}
@@ -864,7 +869,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 				StructuredContentFolder structuredContentFolder)
 		throws Exception {
 
-		return StructuredContentFolderResource.
+		return structuredContentFolderResource.
 			postStructuredContentFolderStructuredContentFolder(
 				testGetStructuredContentFolderStructuredContentFoldersPage_getParentStructuredContentFolderId(),
 				structuredContentFolder);
@@ -877,19 +882,19 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			StructuredContentFolderResource.
+			structuredContentFolderResource.
 				deleteStructuredContentFolderHttpResponse(
 					structuredContentFolder.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			StructuredContentFolderResource.
+			structuredContentFolderResource.
 				getStructuredContentFolderHttpResponse(
 					structuredContentFolder.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			StructuredContentFolderResource.
+			structuredContentFolderResource.
 				getStructuredContentFolderHttpResponse(0L));
 	}
 
@@ -897,7 +902,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testDeleteStructuredContentFolder_addStructuredContentFolder()
 		throws Exception {
 
-		return StructuredContentFolderResource.postSiteStructuredContentFolder(
+		return structuredContentFolderResource.postSiteStructuredContentFolder(
 			testGroup.getGroupId(), randomStructuredContentFolder());
 	}
 
@@ -907,7 +912,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testGetStructuredContentFolder_addStructuredContentFolder();
 
 		StructuredContentFolder getStructuredContentFolder =
-			StructuredContentFolderResource.getStructuredContentFolder(
+			structuredContentFolderResource.getStructuredContentFolder(
 				postStructuredContentFolder.getId());
 
 		assertEquals(postStructuredContentFolder, getStructuredContentFolder);
@@ -918,7 +923,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testGetStructuredContentFolder_addStructuredContentFolder()
 		throws Exception {
 
-		return StructuredContentFolderResource.postSiteStructuredContentFolder(
+		return structuredContentFolderResource.postSiteStructuredContentFolder(
 			testGroup.getGroupId(), randomStructuredContentFolder());
 	}
 
@@ -931,7 +936,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			randomPatchStructuredContentFolder();
 
 		StructuredContentFolder patchStructuredContentFolder =
-			StructuredContentFolderResource.patchStructuredContentFolder(
+			structuredContentFolderResource.patchStructuredContentFolder(
 				postStructuredContentFolder.getId(),
 				randomPatchStructuredContentFolder);
 
@@ -944,7 +949,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			randomPatchStructuredContentFolder);
 
 		StructuredContentFolder getStructuredContentFolder =
-			StructuredContentFolderResource.getStructuredContentFolder(
+			structuredContentFolderResource.getStructuredContentFolder(
 				patchStructuredContentFolder.getId());
 
 		assertEquals(
@@ -956,7 +961,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testPatchStructuredContentFolder_addStructuredContentFolder()
 		throws Exception {
 
-		return StructuredContentFolderResource.postSiteStructuredContentFolder(
+		return structuredContentFolderResource.postSiteStructuredContentFolder(
 			testGroup.getGroupId(), randomStructuredContentFolder());
 	}
 
@@ -969,7 +974,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			randomStructuredContentFolder();
 
 		StructuredContentFolder putStructuredContentFolder =
-			StructuredContentFolderResource.putStructuredContentFolder(
+			structuredContentFolderResource.putStructuredContentFolder(
 				postStructuredContentFolder.getId(),
 				randomStructuredContentFolder);
 
@@ -977,7 +982,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		assertValid(putStructuredContentFolder);
 
 		StructuredContentFolder getStructuredContentFolder =
-			StructuredContentFolderResource.getStructuredContentFolder(
+			structuredContentFolderResource.getStructuredContentFolder(
 				putStructuredContentFolder.getId());
 
 		assertEquals(randomStructuredContentFolder, getStructuredContentFolder);
@@ -988,7 +993,7 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 			testPutStructuredContentFolder_addStructuredContentFolder()
 		throws Exception {
 
-		return StructuredContentFolderResource.postSiteStructuredContentFolder(
+		return structuredContentFolderResource.postSiteStructuredContentFolder(
 			testGroup.getGroupId(), randomStructuredContentFolder());
 	}
 
@@ -1539,11 +1544,10 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		return randomStructuredContentFolder();
 	}
 
+	protected StructuredContentFolderResource structuredContentFolderResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseStructuredContentFolderResourceTestCase.class);

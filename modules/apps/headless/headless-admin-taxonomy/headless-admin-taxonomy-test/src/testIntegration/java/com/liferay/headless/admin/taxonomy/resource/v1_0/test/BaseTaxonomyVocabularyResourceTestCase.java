@@ -54,7 +54,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -98,12 +97,18 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_taxonomyVocabularyResource.setContextCompany(testCompany);
+
+		TaxonomyVocabularyResource.Builder builder =
+			TaxonomyVocabularyResource.builder();
+
+		taxonomyVocabularyResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -188,7 +193,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	@Test
 	public void testGetSiteTaxonomyVocabulariesPage() throws Exception {
 		Page<TaxonomyVocabulary> page =
-			TaxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+			taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 				testGetSiteTaxonomyVocabulariesPage_getSiteId(),
 				RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
 
@@ -203,7 +208,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 				testGetSiteTaxonomyVocabulariesPage_addTaxonomyVocabulary(
 					irrelevantSiteId, randomIrrelevantTaxonomyVocabulary());
 
-			page = TaxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+			page = taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 				irrelevantSiteId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -222,7 +227,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			testGetSiteTaxonomyVocabulariesPage_addTaxonomyVocabulary(
 				siteId, randomTaxonomyVocabulary());
 
-		page = TaxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+		page = taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 			siteId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -254,7 +259,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyVocabulary> page =
-				TaxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+				taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 					siteId, null,
 					getFilterString(
 						entityField, "between", taxonomyVocabulary1),
@@ -290,7 +295,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyVocabulary> page =
-				TaxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+				taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 					siteId, null,
 					getFilterString(entityField, "eq", taxonomyVocabulary1),
 					Pagination.of(1, 2), null);
@@ -320,7 +325,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 				siteId, randomTaxonomyVocabulary());
 
 		Page<TaxonomyVocabulary> page1 =
-			TaxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+			taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 				siteId, null, null, Pagination.of(1, 2), null);
 
 		List<TaxonomyVocabulary> taxonomyVocabularies1 =
@@ -330,7 +335,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			taxonomyVocabularies1.toString(), 2, taxonomyVocabularies1.size());
 
 		Page<TaxonomyVocabulary> page2 =
-			TaxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+			taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 				siteId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -342,7 +347,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			taxonomyVocabularies2.toString(), 1, taxonomyVocabularies2.size());
 
 		Page<TaxonomyVocabulary> page3 =
-			TaxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+			taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 				siteId, null, null, Pagination.of(1, 3), null);
 
 		assertEqualsIgnoringOrder(
@@ -425,7 +430,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<TaxonomyVocabulary> ascPage =
-				TaxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+				taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 					siteId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
@@ -434,7 +439,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 				(List<TaxonomyVocabulary>)ascPage.getItems());
 
 			Page<TaxonomyVocabulary> descPage =
-				TaxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+				taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 					siteId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -449,7 +454,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 				Long siteId, TaxonomyVocabulary taxonomyVocabulary)
 		throws Exception {
 
-		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
+		return taxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			siteId, taxonomyVocabulary);
 	}
 
@@ -483,7 +488,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 				TaxonomyVocabulary taxonomyVocabulary)
 		throws Exception {
 
-		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
+		return taxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			testGetSiteTaxonomyVocabulariesPage_getSiteId(),
 			taxonomyVocabulary);
 	}
@@ -495,24 +500,24 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			TaxonomyVocabularyResource.deleteTaxonomyVocabularyHttpResponse(
+			taxonomyVocabularyResource.deleteTaxonomyVocabularyHttpResponse(
 				taxonomyVocabulary.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			TaxonomyVocabularyResource.getTaxonomyVocabularyHttpResponse(
+			taxonomyVocabularyResource.getTaxonomyVocabularyHttpResponse(
 				taxonomyVocabulary.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			TaxonomyVocabularyResource.getTaxonomyVocabularyHttpResponse(0L));
+			taxonomyVocabularyResource.getTaxonomyVocabularyHttpResponse(0L));
 	}
 
 	protected TaxonomyVocabulary
 			testDeleteTaxonomyVocabulary_addTaxonomyVocabulary()
 		throws Exception {
 
-		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
+		return taxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			testGroup.getGroupId(), randomTaxonomyVocabulary());
 	}
 
@@ -522,7 +527,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			testGetTaxonomyVocabulary_addTaxonomyVocabulary();
 
 		TaxonomyVocabulary getTaxonomyVocabulary =
-			TaxonomyVocabularyResource.getTaxonomyVocabulary(
+			taxonomyVocabularyResource.getTaxonomyVocabulary(
 				postTaxonomyVocabulary.getId());
 
 		assertEquals(postTaxonomyVocabulary, getTaxonomyVocabulary);
@@ -533,7 +538,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			testGetTaxonomyVocabulary_addTaxonomyVocabulary()
 		throws Exception {
 
-		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
+		return taxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			testGroup.getGroupId(), randomTaxonomyVocabulary());
 	}
 
@@ -546,7 +551,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			randomPatchTaxonomyVocabulary();
 
 		TaxonomyVocabulary patchTaxonomyVocabulary =
-			TaxonomyVocabularyResource.patchTaxonomyVocabulary(
+			taxonomyVocabularyResource.patchTaxonomyVocabulary(
 				postTaxonomyVocabulary.getId(), randomPatchTaxonomyVocabulary);
 
 		TaxonomyVocabulary expectedPatchTaxonomyVocabulary =
@@ -556,7 +561,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			expectedPatchTaxonomyVocabulary, randomPatchTaxonomyVocabulary);
 
 		TaxonomyVocabulary getTaxonomyVocabulary =
-			TaxonomyVocabularyResource.getTaxonomyVocabulary(
+			taxonomyVocabularyResource.getTaxonomyVocabulary(
 				patchTaxonomyVocabulary.getId());
 
 		assertEquals(expectedPatchTaxonomyVocabulary, getTaxonomyVocabulary);
@@ -567,7 +572,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			testPatchTaxonomyVocabulary_addTaxonomyVocabulary()
 		throws Exception {
 
-		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
+		return taxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			testGroup.getGroupId(), randomTaxonomyVocabulary());
 	}
 
@@ -580,14 +585,14 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			randomTaxonomyVocabulary();
 
 		TaxonomyVocabulary putTaxonomyVocabulary =
-			TaxonomyVocabularyResource.putTaxonomyVocabulary(
+			taxonomyVocabularyResource.putTaxonomyVocabulary(
 				postTaxonomyVocabulary.getId(), randomTaxonomyVocabulary);
 
 		assertEquals(randomTaxonomyVocabulary, putTaxonomyVocabulary);
 		assertValid(putTaxonomyVocabulary);
 
 		TaxonomyVocabulary getTaxonomyVocabulary =
-			TaxonomyVocabularyResource.getTaxonomyVocabulary(
+			taxonomyVocabularyResource.getTaxonomyVocabulary(
 				putTaxonomyVocabulary.getId());
 
 		assertEquals(randomTaxonomyVocabulary, getTaxonomyVocabulary);
@@ -598,7 +603,7 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 			testPutTaxonomyVocabulary_addTaxonomyVocabulary()
 		throws Exception {
 
-		return TaxonomyVocabularyResource.postSiteTaxonomyVocabulary(
+		return taxonomyVocabularyResource.postSiteTaxonomyVocabulary(
 			testGroup.getGroupId(), randomTaxonomyVocabulary());
 	}
 
@@ -1128,11 +1133,10 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		return randomTaxonomyVocabulary();
 	}
 
+	protected TaxonomyVocabularyResource taxonomyVocabularyResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseTaxonomyVocabularyResourceTestCase.class);

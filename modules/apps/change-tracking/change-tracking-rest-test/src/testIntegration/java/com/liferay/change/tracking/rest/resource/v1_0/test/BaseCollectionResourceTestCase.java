@@ -53,7 +53,6 @@ import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -97,12 +96,17 @@ public abstract class BaseCollectionResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_collectionResource.setContextCompany(testCompany);
+
+		CollectionResource.Builder builder = CollectionResource.builder();
+
+		collectionResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -187,7 +191,7 @@ public abstract class BaseCollectionResourceTestCase {
 
 	@Test
 	public void testGetCollectionsPage() throws Exception {
-		Page<Collection> page = CollectionResource.getCollectionsPage(
+		Page<Collection> page = collectionResource.getCollectionsPage(
 			null, RandomTestUtil.randomString(), null, Pagination.of(1, 2),
 			null);
 
@@ -199,7 +203,7 @@ public abstract class BaseCollectionResourceTestCase {
 		Collection collection2 = testGetCollectionsPage_addCollection(
 			randomCollection());
 
-		page = CollectionResource.getCollectionsPage(
+		page = collectionResource.getCollectionsPage(
 			null, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -221,14 +225,14 @@ public abstract class BaseCollectionResourceTestCase {
 		Collection collection3 = testGetCollectionsPage_addCollection(
 			randomCollection());
 
-		Page<Collection> page1 = CollectionResource.getCollectionsPage(
+		Page<Collection> page1 = collectionResource.getCollectionsPage(
 			null, null, null, Pagination.of(1, 2), null);
 
 		List<Collection> collections1 = (List<Collection>)page1.getItems();
 
 		Assert.assertEquals(collections1.toString(), 2, collections1.size());
 
-		Page<Collection> page2 = CollectionResource.getCollectionsPage(
+		Page<Collection> page2 = collectionResource.getCollectionsPage(
 			null, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -237,7 +241,7 @@ public abstract class BaseCollectionResourceTestCase {
 
 		Assert.assertEquals(collections2.toString(), 1, collections2.size());
 
-		Page<Collection> page3 = CollectionResource.getCollectionsPage(
+		Page<Collection> page3 = collectionResource.getCollectionsPage(
 			null, null, null, Pagination.of(1, 3), null);
 
 		assertEqualsIgnoringOrder(
@@ -302,7 +306,7 @@ public abstract class BaseCollectionResourceTestCase {
 		collection2 = testGetCollectionsPage_addCollection(collection2);
 
 		for (EntityField entityField : entityFields) {
-			Page<Collection> ascPage = CollectionResource.getCollectionsPage(
+			Page<Collection> ascPage = collectionResource.getCollectionsPage(
 				null, null, null, Pagination.of(1, 2),
 				entityField.getName() + ":asc");
 
@@ -310,7 +314,7 @@ public abstract class BaseCollectionResourceTestCase {
 				Arrays.asList(collection1, collection2),
 				(List<Collection>)ascPage.getItems());
 
-			Page<Collection> descPage = CollectionResource.getCollectionsPage(
+			Page<Collection> descPage = collectionResource.getCollectionsPage(
 				null, null, null, Pagination.of(1, 2),
 				entityField.getName() + ":desc");
 
@@ -801,11 +805,10 @@ public abstract class BaseCollectionResourceTestCase {
 		return randomCollection();
 	}
 
+	protected CollectionResource collectionResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseCollectionResourceTestCase.class);

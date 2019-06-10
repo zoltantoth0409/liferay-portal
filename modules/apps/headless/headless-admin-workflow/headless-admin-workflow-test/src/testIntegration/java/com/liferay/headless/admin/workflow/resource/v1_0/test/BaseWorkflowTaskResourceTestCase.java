@@ -51,7 +51,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -94,12 +93,17 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_workflowTaskResource.setContextCompany(testCompany);
+
+		WorkflowTaskResource.Builder builder = WorkflowTaskResource.builder();
+
+		workflowTaskResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -194,7 +198,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 					irrelevantRoleId, randomIrrelevantWorkflowTask());
 
 			Page<WorkflowTask> page =
-				WorkflowTaskResource.getRoleWorkflowTasksPage(
+				workflowTaskResource.getRoleWorkflowTasksPage(
 					irrelevantRoleId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -213,7 +217,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			testGetRoleWorkflowTasksPage_addWorkflowTask(
 				roleId, randomWorkflowTask());
 
-		Page<WorkflowTask> page = WorkflowTaskResource.getRoleWorkflowTasksPage(
+		Page<WorkflowTask> page = workflowTaskResource.getRoleWorkflowTasksPage(
 			roleId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -241,7 +245,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 				roleId, randomWorkflowTask());
 
 		Page<WorkflowTask> page1 =
-			WorkflowTaskResource.getRoleWorkflowTasksPage(
+			workflowTaskResource.getRoleWorkflowTasksPage(
 				roleId, Pagination.of(1, 2));
 
 		List<WorkflowTask> workflowTasks1 =
@@ -251,7 +255,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			workflowTasks1.toString(), 2, workflowTasks1.size());
 
 		Page<WorkflowTask> page2 =
-			WorkflowTaskResource.getRoleWorkflowTasksPage(
+			workflowTaskResource.getRoleWorkflowTasksPage(
 				roleId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -263,7 +267,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			workflowTasks2.toString(), 1, workflowTasks2.size());
 
 		Page<WorkflowTask> page3 =
-			WorkflowTaskResource.getRoleWorkflowTasksPage(
+			workflowTaskResource.getRoleWorkflowTasksPage(
 				roleId, Pagination.of(1, 3));
 
 		assertEqualsIgnoringOrder(
@@ -304,7 +308,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	public void testGetWorkflowTask() throws Exception {
 		WorkflowTask postWorkflowTask = testGetWorkflowTask_addWorkflowTask();
 
-		WorkflowTask getWorkflowTask = WorkflowTaskResource.getWorkflowTask(
+		WorkflowTask getWorkflowTask = workflowTaskResource.getWorkflowTask(
 			postWorkflowTask.getId());
 
 		assertEquals(postWorkflowTask, getWorkflowTask);
@@ -905,11 +909,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		return randomWorkflowTask();
 	}
 
+	protected WorkflowTaskResource workflowTaskResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseWorkflowTaskResourceTestCase.class);
