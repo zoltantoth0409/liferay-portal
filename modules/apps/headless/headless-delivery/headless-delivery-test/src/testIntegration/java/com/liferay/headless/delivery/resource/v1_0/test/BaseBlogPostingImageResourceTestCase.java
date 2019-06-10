@@ -534,6 +534,8 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		assertEquals(randomBlogPostingImage, postBlogPostingImage);
 		assertValid(postBlogPostingImage);
+
+		assertValid(postBlogPostingImage, multipartFiles);
 	}
 
 	protected BlogPostingImage testPostSiteBlogPostingImage_addBlogPostingImage(
@@ -665,6 +667,14 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		}
 
 		Assert.assertTrue(valid);
+	}
+
+	protected void assertValid(
+			BlogPostingImage blogPostingImage, Map<String, File> multipartFiles)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected void assertValid(Page<BlogPostingImage> page) {
