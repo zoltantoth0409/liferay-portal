@@ -327,6 +327,7 @@ public class PropsValues {
 	/**
 	 * @deprecated As of Mueller (7.2.x), with no direct replacement
 	 */
+	@Deprecated
 	public static final long BLOGS_IMAGE_MAX_SIZE = GetterUtil.getLong(
 		PropsUtil.get(PropsKeys.BLOGS_IMAGE_MAX_SIZE));
 
