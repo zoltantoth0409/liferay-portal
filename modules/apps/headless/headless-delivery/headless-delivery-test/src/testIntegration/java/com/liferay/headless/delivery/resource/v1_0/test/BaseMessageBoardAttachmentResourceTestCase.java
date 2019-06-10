@@ -328,18 +328,29 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 	public void testPostMessageBoardMessageMessageBoardAttachment()
 		throws Exception {
 
-		Assert.assertTrue(true);
+		MessageBoardAttachment randomMessageBoardAttachment =
+			randomMessageBoardAttachment();
+
+		Map<String, File> multipartFiles = getMultipartFiles();
+
+		MessageBoardAttachment postMessageBoardAttachment =
+			testPostMessageBoardMessageMessageBoardAttachment_addMessageBoardAttachment(
+				randomMessageBoardAttachment, multipartFiles);
+
+		assertEquals(randomMessageBoardAttachment, postMessageBoardAttachment);
+		assertValid(postMessageBoardAttachment);
 	}
 
 	protected MessageBoardAttachment
 			testPostMessageBoardMessageMessageBoardAttachment_addMessageBoardAttachment(
-				MessageBoardAttachment messageBoardAttachment)
+				MessageBoardAttachment messageBoardAttachment,
+				Map<String, File> multipartFiles)
 		throws Exception {
 
 		return messageBoardAttachmentResource.
 			postMessageBoardMessageMessageBoardAttachment(
 				testGetMessageBoardMessageMessageBoardAttachmentsPage_getMessageBoardMessageId(),
-				messageBoardAttachment, getMultipartFiles());
+				messageBoardAttachment, multipartFiles);
 	}
 
 	@Test
@@ -422,18 +433,29 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 	public void testPostMessageBoardThreadMessageBoardAttachment()
 		throws Exception {
 
-		Assert.assertTrue(true);
+		MessageBoardAttachment randomMessageBoardAttachment =
+			randomMessageBoardAttachment();
+
+		Map<String, File> multipartFiles = getMultipartFiles();
+
+		MessageBoardAttachment postMessageBoardAttachment =
+			testPostMessageBoardThreadMessageBoardAttachment_addMessageBoardAttachment(
+				randomMessageBoardAttachment, multipartFiles);
+
+		assertEquals(randomMessageBoardAttachment, postMessageBoardAttachment);
+		assertValid(postMessageBoardAttachment);
 	}
 
 	protected MessageBoardAttachment
 			testPostMessageBoardThreadMessageBoardAttachment_addMessageBoardAttachment(
-				MessageBoardAttachment messageBoardAttachment)
+				MessageBoardAttachment messageBoardAttachment,
+				Map<String, File> multipartFiles)
 		throws Exception {
 
 		return messageBoardAttachmentResource.
 			postMessageBoardThreadMessageBoardAttachment(
 				testGetMessageBoardThreadMessageBoardAttachmentsPage_getMessageBoardThreadId(),
-				messageBoardAttachment, getMultipartFiles());
+				messageBoardAttachment, multipartFiles);
 	}
 
 	protected void assertHttpResponseStatusCode(

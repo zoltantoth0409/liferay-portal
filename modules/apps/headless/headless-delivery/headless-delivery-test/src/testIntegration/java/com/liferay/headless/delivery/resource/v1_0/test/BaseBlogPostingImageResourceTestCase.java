@@ -524,16 +524,25 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 	@Test
 	public void testPostSiteBlogPostingImage() throws Exception {
-		Assert.assertTrue(true);
+		BlogPostingImage randomBlogPostingImage = randomBlogPostingImage();
+
+		Map<String, File> multipartFiles = getMultipartFiles();
+
+		BlogPostingImage postBlogPostingImage =
+			testPostSiteBlogPostingImage_addBlogPostingImage(
+				randomBlogPostingImage, multipartFiles);
+
+		assertEquals(randomBlogPostingImage, postBlogPostingImage);
+		assertValid(postBlogPostingImage);
 	}
 
 	protected BlogPostingImage testPostSiteBlogPostingImage_addBlogPostingImage(
-			BlogPostingImage blogPostingImage)
+			BlogPostingImage blogPostingImage, Map<String, File> multipartFiles)
 		throws Exception {
 
 		return blogPostingImageResource.postSiteBlogPostingImage(
 			testGetSiteBlogPostingImagesPage_getSiteId(), blogPostingImage,
-			getMultipartFiles());
+			multipartFiles);
 	}
 
 	protected void assertHttpResponseStatusCode(
