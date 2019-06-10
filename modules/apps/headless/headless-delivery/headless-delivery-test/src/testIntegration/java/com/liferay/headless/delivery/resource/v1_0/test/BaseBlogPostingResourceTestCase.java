@@ -54,7 +54,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -98,12 +97,17 @@ public abstract class BaseBlogPostingResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_blogPostingResource.setContextCompany(testCompany);
+
+		BlogPostingResource.Builder builder = BlogPostingResource.builder();
+
+		blogPostingResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -198,22 +202,22 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			BlogPostingResource.deleteBlogPostingHttpResponse(
+			blogPostingResource.deleteBlogPostingHttpResponse(
 				blogPosting.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			BlogPostingResource.getBlogPostingHttpResponse(
+			blogPostingResource.getBlogPostingHttpResponse(
 				blogPosting.getId()));
 
 		assertHttpResponseStatusCode(
-			404, BlogPostingResource.getBlogPostingHttpResponse(0L));
+			404, blogPostingResource.getBlogPostingHttpResponse(0L));
 	}
 
 	protected BlogPosting testDeleteBlogPosting_addBlogPosting()
 		throws Exception {
 
-		return BlogPostingResource.postSiteBlogPosting(
+		return blogPostingResource.postSiteBlogPosting(
 			testGroup.getGroupId(), randomBlogPosting());
 	}
 
@@ -221,7 +225,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 	public void testGetBlogPosting() throws Exception {
 		BlogPosting postBlogPosting = testGetBlogPosting_addBlogPosting();
 
-		BlogPosting getBlogPosting = BlogPostingResource.getBlogPosting(
+		BlogPosting getBlogPosting = blogPostingResource.getBlogPosting(
 			postBlogPosting.getId());
 
 		assertEquals(postBlogPosting, getBlogPosting);
@@ -229,7 +233,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 	}
 
 	protected BlogPosting testGetBlogPosting_addBlogPosting() throws Exception {
-		return BlogPostingResource.postSiteBlogPosting(
+		return blogPostingResource.postSiteBlogPosting(
 			testGroup.getGroupId(), randomBlogPosting());
 	}
 
@@ -239,7 +243,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		BlogPosting randomPatchBlogPosting = randomPatchBlogPosting();
 
-		BlogPosting patchBlogPosting = BlogPostingResource.patchBlogPosting(
+		BlogPosting patchBlogPosting = blogPostingResource.patchBlogPosting(
 			postBlogPosting.getId(), randomPatchBlogPosting);
 
 		BlogPosting expectedPatchBlogPosting = (BlogPosting)BeanUtils.cloneBean(
@@ -248,7 +252,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 		_beanUtilsBean.copyProperties(
 			expectedPatchBlogPosting, randomPatchBlogPosting);
 
-		BlogPosting getBlogPosting = BlogPostingResource.getBlogPosting(
+		BlogPosting getBlogPosting = blogPostingResource.getBlogPosting(
 			patchBlogPosting.getId());
 
 		assertEquals(expectedPatchBlogPosting, getBlogPosting);
@@ -258,7 +262,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 	protected BlogPosting testPatchBlogPosting_addBlogPosting()
 		throws Exception {
 
-		return BlogPostingResource.postSiteBlogPosting(
+		return blogPostingResource.postSiteBlogPosting(
 			testGroup.getGroupId(), randomBlogPosting());
 	}
 
@@ -268,13 +272,13 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		BlogPosting randomBlogPosting = randomBlogPosting();
 
-		BlogPosting putBlogPosting = BlogPostingResource.putBlogPosting(
+		BlogPosting putBlogPosting = blogPostingResource.putBlogPosting(
 			postBlogPosting.getId(), randomBlogPosting);
 
 		assertEquals(randomBlogPosting, putBlogPosting);
 		assertValid(putBlogPosting);
 
-		BlogPosting getBlogPosting = BlogPostingResource.getBlogPosting(
+		BlogPosting getBlogPosting = blogPostingResource.getBlogPosting(
 			putBlogPosting.getId());
 
 		assertEquals(randomBlogPosting, getBlogPosting);
@@ -282,7 +286,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 	}
 
 	protected BlogPosting testPutBlogPosting_addBlogPosting() throws Exception {
-		return BlogPostingResource.postSiteBlogPosting(
+		return blogPostingResource.postSiteBlogPosting(
 			testGroup.getGroupId(), randomBlogPosting());
 	}
 
@@ -293,22 +297,22 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			BlogPostingResource.deleteBlogPostingMyRatingHttpResponse(
+			blogPostingResource.deleteBlogPostingMyRatingHttpResponse(
 				blogPosting.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			BlogPostingResource.getBlogPostingMyRatingHttpResponse(
+			blogPostingResource.getBlogPostingMyRatingHttpResponse(
 				blogPosting.getId()));
 
 		assertHttpResponseStatusCode(
-			404, BlogPostingResource.getBlogPostingMyRatingHttpResponse(0L));
+			404, blogPostingResource.getBlogPostingMyRatingHttpResponse(0L));
 	}
 
 	protected BlogPosting testDeleteBlogPostingMyRating_addBlogPosting()
 		throws Exception {
 
-		return BlogPostingResource.postSiteBlogPosting(
+		return blogPostingResource.postSiteBlogPosting(
 			testGroup.getGroupId(), randomBlogPosting());
 	}
 
@@ -329,7 +333,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	@Test
 	public void testGetSiteBlogPostingsPage() throws Exception {
-		Page<BlogPosting> page = BlogPostingResource.getSiteBlogPostingsPage(
+		Page<BlogPosting> page = blogPostingResource.getSiteBlogPostingsPage(
 			testGetSiteBlogPostingsPage_getSiteId(),
 			RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
 
@@ -344,7 +348,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 				testGetSiteBlogPostingsPage_addBlogPosting(
 					irrelevantSiteId, randomIrrelevantBlogPosting());
 
-			page = BlogPostingResource.getSiteBlogPostingsPage(
+			page = blogPostingResource.getSiteBlogPostingsPage(
 				irrelevantSiteId, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -361,7 +365,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 		BlogPosting blogPosting2 = testGetSiteBlogPostingsPage_addBlogPosting(
 			siteId, randomBlogPosting());
 
-		page = BlogPostingResource.getSiteBlogPostingsPage(
+		page = blogPostingResource.getSiteBlogPostingsPage(
 			siteId, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -392,7 +396,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<BlogPosting> page =
-				BlogPostingResource.getSiteBlogPostingsPage(
+				blogPostingResource.getSiteBlogPostingsPage(
 					siteId, null,
 					getFilterString(entityField, "between", blogPosting1),
 					Pagination.of(1, 2), null);
@@ -425,7 +429,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<BlogPosting> page =
-				BlogPostingResource.getSiteBlogPostingsPage(
+				blogPostingResource.getSiteBlogPostingsPage(
 					siteId, null,
 					getFilterString(entityField, "eq", blogPosting1),
 					Pagination.of(1, 2), null);
@@ -449,14 +453,14 @@ public abstract class BaseBlogPostingResourceTestCase {
 		BlogPosting blogPosting3 = testGetSiteBlogPostingsPage_addBlogPosting(
 			siteId, randomBlogPosting());
 
-		Page<BlogPosting> page1 = BlogPostingResource.getSiteBlogPostingsPage(
+		Page<BlogPosting> page1 = blogPostingResource.getSiteBlogPostingsPage(
 			siteId, null, null, Pagination.of(1, 2), null);
 
 		List<BlogPosting> blogPostings1 = (List<BlogPosting>)page1.getItems();
 
 		Assert.assertEquals(blogPostings1.toString(), 2, blogPostings1.size());
 
-		Page<BlogPosting> page2 = BlogPostingResource.getSiteBlogPostingsPage(
+		Page<BlogPosting> page2 = blogPostingResource.getSiteBlogPostingsPage(
 			siteId, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -465,7 +469,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		Assert.assertEquals(blogPostings2.toString(), 1, blogPostings2.size());
 
-		Page<BlogPosting> page3 = BlogPostingResource.getSiteBlogPostingsPage(
+		Page<BlogPosting> page3 = blogPostingResource.getSiteBlogPostingsPage(
 			siteId, null, null, Pagination.of(1, 3), null);
 
 		assertEqualsIgnoringOrder(
@@ -535,7 +539,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<BlogPosting> ascPage =
-				BlogPostingResource.getSiteBlogPostingsPage(
+				blogPostingResource.getSiteBlogPostingsPage(
 					siteId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
@@ -544,7 +548,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 				(List<BlogPosting>)ascPage.getItems());
 
 			Page<BlogPosting> descPage =
-				BlogPostingResource.getSiteBlogPostingsPage(
+				blogPostingResource.getSiteBlogPostingsPage(
 					siteId, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -558,7 +562,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 			Long siteId, BlogPosting blogPosting)
 		throws Exception {
 
-		return BlogPostingResource.postSiteBlogPosting(siteId, blogPosting);
+		return blogPostingResource.postSiteBlogPosting(siteId, blogPosting);
 	}
 
 	protected Long testGetSiteBlogPostingsPage_getSiteId() throws Exception {
@@ -586,7 +590,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 			BlogPosting blogPosting)
 		throws Exception {
 
-		return BlogPostingResource.postSiteBlogPosting(
+		return blogPostingResource.postSiteBlogPosting(
 			testGetSiteBlogPostingsPage_getSiteId(), blogPosting);
 	}
 
@@ -1374,11 +1378,10 @@ public abstract class BaseBlogPostingResourceTestCase {
 		return randomBlogPosting();
 	}
 
+	protected BlogPostingResource blogPostingResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseBlogPostingResourceTestCase.class);

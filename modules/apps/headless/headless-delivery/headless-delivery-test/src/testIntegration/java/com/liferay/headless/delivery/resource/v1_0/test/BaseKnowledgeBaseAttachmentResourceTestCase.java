@@ -52,7 +52,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -94,12 +93,18 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_knowledgeBaseAttachmentResource.setContextCompany(testCompany);
+
+		KnowledgeBaseAttachmentResource.Builder builder =
+			KnowledgeBaseAttachmentResource.builder();
+
+		knowledgeBaseAttachmentResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -207,7 +212,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 					randomIrrelevantKnowledgeBaseAttachment());
 
 			Page<KnowledgeBaseAttachment> page =
-				KnowledgeBaseAttachmentResource.
+				knowledgeBaseAttachmentResource.
 					getKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
 						irrelevantKnowledgeBaseArticleId);
 
@@ -228,7 +233,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 				knowledgeBaseArticleId, randomKnowledgeBaseAttachment());
 
 		Page<KnowledgeBaseAttachment> page =
-			KnowledgeBaseAttachmentResource.
+			knowledgeBaseAttachmentResource.
 				getKnowledgeBaseArticleKnowledgeBaseAttachmentsPage(
 					knowledgeBaseArticleId);
 
@@ -246,7 +251,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 				KnowledgeBaseAttachment knowledgeBaseAttachment)
 		throws Exception {
 
-		return KnowledgeBaseAttachmentResource.
+		return knowledgeBaseAttachmentResource.
 			postKnowledgeBaseArticleKnowledgeBaseAttachment(
 				knowledgeBaseArticleId, knowledgeBaseAttachment,
 				getMultipartFiles());
@@ -279,7 +284,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 				KnowledgeBaseAttachment knowledgeBaseAttachment)
 		throws Exception {
 
-		return KnowledgeBaseAttachmentResource.
+		return knowledgeBaseAttachmentResource.
 			postKnowledgeBaseArticleKnowledgeBaseAttachment(
 				testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_getKnowledgeBaseArticleId(),
 				knowledgeBaseAttachment, getMultipartFiles());
@@ -292,19 +297,19 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			KnowledgeBaseAttachmentResource.
+			knowledgeBaseAttachmentResource.
 				deleteKnowledgeBaseAttachmentHttpResponse(
 					knowledgeBaseAttachment.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			KnowledgeBaseAttachmentResource.
+			knowledgeBaseAttachmentResource.
 				getKnowledgeBaseAttachmentHttpResponse(
 					knowledgeBaseAttachment.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			KnowledgeBaseAttachmentResource.
+			knowledgeBaseAttachmentResource.
 				getKnowledgeBaseAttachmentHttpResponse(0L));
 	}
 
@@ -322,7 +327,7 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 			testGetKnowledgeBaseAttachment_addKnowledgeBaseAttachment();
 
 		KnowledgeBaseAttachment getKnowledgeBaseAttachment =
-			KnowledgeBaseAttachmentResource.getKnowledgeBaseAttachment(
+			knowledgeBaseAttachmentResource.getKnowledgeBaseAttachment(
 				postKnowledgeBaseAttachment.getId());
 
 		assertEquals(postKnowledgeBaseAttachment, getKnowledgeBaseAttachment);
@@ -710,11 +715,10 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		return randomKnowledgeBaseAttachment();
 	}
 
+	protected KnowledgeBaseAttachmentResource knowledgeBaseAttachmentResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseKnowledgeBaseAttachmentResourceTestCase.class);

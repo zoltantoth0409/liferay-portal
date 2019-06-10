@@ -50,7 +50,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -92,12 +91,17 @@ public abstract class BaseWebUrlResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_webUrlResource.setContextCompany(testCompany);
+
+		WebUrlResource.Builder builder = WebUrlResource.builder();
+
+		webUrlResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -189,7 +193,7 @@ public abstract class BaseWebUrlResourceTestCase {
 			WebUrl irrelevantWebUrl = testGetOrganizationWebUrlsPage_addWebUrl(
 				irrelevantOrganizationId, randomIrrelevantWebUrl());
 
-			Page<WebUrl> page = WebUrlResource.getOrganizationWebUrlsPage(
+			Page<WebUrl> page = webUrlResource.getOrganizationWebUrlsPage(
 				irrelevantOrganizationId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -205,7 +209,7 @@ public abstract class BaseWebUrlResourceTestCase {
 		WebUrl webUrl2 = testGetOrganizationWebUrlsPage_addWebUrl(
 			organizationId, randomWebUrl());
 
-		Page<WebUrl> page = WebUrlResource.getOrganizationWebUrlsPage(
+		Page<WebUrl> page = webUrlResource.getOrganizationWebUrlsPage(
 			organizationId);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -246,7 +250,7 @@ public abstract class BaseWebUrlResourceTestCase {
 			WebUrl irrelevantWebUrl = testGetUserAccountWebUrlsPage_addWebUrl(
 				irrelevantUserAccountId, randomIrrelevantWebUrl());
 
-			Page<WebUrl> page = WebUrlResource.getUserAccountWebUrlsPage(
+			Page<WebUrl> page = webUrlResource.getUserAccountWebUrlsPage(
 				irrelevantUserAccountId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -262,7 +266,7 @@ public abstract class BaseWebUrlResourceTestCase {
 		WebUrl webUrl2 = testGetUserAccountWebUrlsPage_addWebUrl(
 			userAccountId, randomWebUrl());
 
-		Page<WebUrl> page = WebUrlResource.getUserAccountWebUrlsPage(
+		Page<WebUrl> page = webUrlResource.getUserAccountWebUrlsPage(
 			userAccountId);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -297,7 +301,7 @@ public abstract class BaseWebUrlResourceTestCase {
 	public void testGetWebUrl() throws Exception {
 		WebUrl postWebUrl = testGetWebUrl_addWebUrl();
 
-		WebUrl getWebUrl = WebUrlResource.getWebUrl(postWebUrl.getId());
+		WebUrl getWebUrl = webUrlResource.getWebUrl(postWebUrl.getId());
 
 		assertEquals(postWebUrl, getWebUrl);
 		assertValid(getWebUrl);
@@ -549,11 +553,10 @@ public abstract class BaseWebUrlResourceTestCase {
 		return randomWebUrl();
 	}
 
+	protected WebUrlResource webUrlResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseWebUrlResourceTestCase.class);

@@ -51,7 +51,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -93,12 +92,17 @@ public abstract class BaseSegmentUserResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_segmentUserResource.setContextCompany(testCompany);
+
+		SegmentUserResource.Builder builder = SegmentUserResource.builder();
+
+		segmentUserResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -191,7 +195,7 @@ public abstract class BaseSegmentUserResourceTestCase {
 					irrelevantSegmentId, randomIrrelevantSegmentUser());
 
 			Page<SegmentUser> page =
-				SegmentUserResource.getSegmentUserAccountsPage(
+				segmentUserResource.getSegmentUserAccountsPage(
 					irrelevantSegmentId, Pagination.of(1, 2));
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -210,7 +214,7 @@ public abstract class BaseSegmentUserResourceTestCase {
 			testGetSegmentUserAccountsPage_addSegmentUser(
 				segmentId, randomSegmentUser());
 
-		Page<SegmentUser> page = SegmentUserResource.getSegmentUserAccountsPage(
+		Page<SegmentUser> page = segmentUserResource.getSegmentUserAccountsPage(
 			segmentId, Pagination.of(1, 2));
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -240,7 +244,7 @@ public abstract class BaseSegmentUserResourceTestCase {
 				segmentId, randomSegmentUser());
 
 		Page<SegmentUser> page1 =
-			SegmentUserResource.getSegmentUserAccountsPage(
+			segmentUserResource.getSegmentUserAccountsPage(
 				segmentId, Pagination.of(1, 2));
 
 		List<SegmentUser> segmentUsers1 = (List<SegmentUser>)page1.getItems();
@@ -248,7 +252,7 @@ public abstract class BaseSegmentUserResourceTestCase {
 		Assert.assertEquals(segmentUsers1.toString(), 2, segmentUsers1.size());
 
 		Page<SegmentUser> page2 =
-			SegmentUserResource.getSegmentUserAccountsPage(
+			segmentUserResource.getSegmentUserAccountsPage(
 				segmentId, Pagination.of(2, 2));
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -258,7 +262,7 @@ public abstract class BaseSegmentUserResourceTestCase {
 		Assert.assertEquals(segmentUsers2.toString(), 1, segmentUsers2.size());
 
 		Page<SegmentUser> page3 =
-			SegmentUserResource.getSegmentUserAccountsPage(
+			segmentUserResource.getSegmentUserAccountsPage(
 				segmentId, Pagination.of(1, 3));
 
 		assertEqualsIgnoringOrder(
@@ -540,11 +544,10 @@ public abstract class BaseSegmentUserResourceTestCase {
 		return randomSegmentUser();
 	}
 
+	protected SegmentUserResource segmentUserResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseSegmentUserResourceTestCase.class);

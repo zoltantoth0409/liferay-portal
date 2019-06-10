@@ -54,7 +54,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -98,12 +97,18 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_messageBoardThreadResource.setContextCompany(testCompany);
+
+		MessageBoardThreadResource.Builder builder =
+			MessageBoardThreadResource.builder();
+
+		messageBoardThreadResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -194,7 +199,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		throws Exception {
 
 		Page<MessageBoardThread> page =
-			MessageBoardThreadResource.
+			messageBoardThreadResource.
 				getMessageBoardSectionMessageBoardThreadsPage(
 					testGetMessageBoardSectionMessageBoardThreadsPage_getMessageBoardSectionId(),
 					RandomTestUtil.randomString(), null, Pagination.of(1, 2),
@@ -214,7 +219,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 					randomIrrelevantMessageBoardThread());
 
 			page =
-				MessageBoardThreadResource.
+				messageBoardThreadResource.
 					getMessageBoardSectionMessageBoardThreadsPage(
 						irrelevantMessageBoardSectionId, null, null,
 						Pagination.of(1, 2), null);
@@ -236,7 +241,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				messageBoardSectionId, randomMessageBoardThread());
 
 		page =
-			MessageBoardThreadResource.
+			messageBoardThreadResource.
 				getMessageBoardSectionMessageBoardThreadsPage(
 					messageBoardSectionId, null, null, Pagination.of(1, 2),
 					null);
@@ -271,7 +276,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardThread> page =
-				MessageBoardThreadResource.
+				messageBoardThreadResource.
 					getMessageBoardSectionMessageBoardThreadsPage(
 						messageBoardSectionId, null,
 						getFilterString(
@@ -309,7 +314,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardThread> page =
-				MessageBoardThreadResource.
+				messageBoardThreadResource.
 					getMessageBoardSectionMessageBoardThreadsPage(
 						messageBoardSectionId, null,
 						getFilterString(entityField, "eq", messageBoardThread1),
@@ -341,7 +346,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				messageBoardSectionId, randomMessageBoardThread());
 
 		Page<MessageBoardThread> page1 =
-			MessageBoardThreadResource.
+			messageBoardThreadResource.
 				getMessageBoardSectionMessageBoardThreadsPage(
 					messageBoardSectionId, null, null, Pagination.of(1, 2),
 					null);
@@ -353,7 +358,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			messageBoardThreads1.toString(), 2, messageBoardThreads1.size());
 
 		Page<MessageBoardThread> page2 =
-			MessageBoardThreadResource.
+			messageBoardThreadResource.
 				getMessageBoardSectionMessageBoardThreadsPage(
 					messageBoardSectionId, null, null, Pagination.of(2, 2),
 					null);
@@ -367,7 +372,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			messageBoardThreads2.toString(), 1, messageBoardThreads2.size());
 
 		Page<MessageBoardThread> page3 =
-			MessageBoardThreadResource.
+			messageBoardThreadResource.
 				getMessageBoardSectionMessageBoardThreadsPage(
 					messageBoardSectionId, null, null, Pagination.of(1, 3),
 					null);
@@ -453,7 +458,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardThread> ascPage =
-				MessageBoardThreadResource.
+				messageBoardThreadResource.
 					getMessageBoardSectionMessageBoardThreadsPage(
 						messageBoardSectionId, null, null, Pagination.of(1, 2),
 						entityField.getName() + ":asc");
@@ -463,7 +468,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				(List<MessageBoardThread>)ascPage.getItems());
 
 			Page<MessageBoardThread> descPage =
-				MessageBoardThreadResource.
+				messageBoardThreadResource.
 					getMessageBoardSectionMessageBoardThreadsPage(
 						messageBoardSectionId, null, null, Pagination.of(1, 2),
 						entityField.getName() + ":desc");
@@ -480,7 +485,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				MessageBoardThread messageBoardThread)
 		throws Exception {
 
-		return MessageBoardThreadResource.
+		return messageBoardThreadResource.
 			postMessageBoardSectionMessageBoardThread(
 				messageBoardSectionId, messageBoardThread);
 	}
@@ -520,7 +525,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				MessageBoardThread messageBoardThread)
 		throws Exception {
 
-		return MessageBoardThreadResource.
+		return messageBoardThreadResource.
 			postMessageBoardSectionMessageBoardThread(
 				testGetMessageBoardSectionMessageBoardThreadsPage_getMessageBoardSectionId(),
 				messageBoardThread);
@@ -533,24 +538,24 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			MessageBoardThreadResource.deleteMessageBoardThreadHttpResponse(
+			messageBoardThreadResource.deleteMessageBoardThreadHttpResponse(
 				messageBoardThread.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			MessageBoardThreadResource.getMessageBoardThreadHttpResponse(
+			messageBoardThreadResource.getMessageBoardThreadHttpResponse(
 				messageBoardThread.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			MessageBoardThreadResource.getMessageBoardThreadHttpResponse(0L));
+			messageBoardThreadResource.getMessageBoardThreadHttpResponse(0L));
 	}
 
 	protected MessageBoardThread
 			testDeleteMessageBoardThread_addMessageBoardThread()
 		throws Exception {
 
-		return MessageBoardThreadResource.postSiteMessageBoardThread(
+		return messageBoardThreadResource.postSiteMessageBoardThread(
 			testGroup.getGroupId(), randomMessageBoardThread());
 	}
 
@@ -560,7 +565,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			testGetMessageBoardThread_addMessageBoardThread();
 
 		MessageBoardThread getMessageBoardThread =
-			MessageBoardThreadResource.getMessageBoardThread(
+			messageBoardThreadResource.getMessageBoardThread(
 				postMessageBoardThread.getId());
 
 		assertEquals(postMessageBoardThread, getMessageBoardThread);
@@ -571,7 +576,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			testGetMessageBoardThread_addMessageBoardThread()
 		throws Exception {
 
-		return MessageBoardThreadResource.postSiteMessageBoardThread(
+		return messageBoardThreadResource.postSiteMessageBoardThread(
 			testGroup.getGroupId(), randomMessageBoardThread());
 	}
 
@@ -584,7 +589,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			randomPatchMessageBoardThread();
 
 		MessageBoardThread patchMessageBoardThread =
-			MessageBoardThreadResource.patchMessageBoardThread(
+			messageBoardThreadResource.patchMessageBoardThread(
 				postMessageBoardThread.getId(), randomPatchMessageBoardThread);
 
 		MessageBoardThread expectedPatchMessageBoardThread =
@@ -594,7 +599,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			expectedPatchMessageBoardThread, randomPatchMessageBoardThread);
 
 		MessageBoardThread getMessageBoardThread =
-			MessageBoardThreadResource.getMessageBoardThread(
+			messageBoardThreadResource.getMessageBoardThread(
 				patchMessageBoardThread.getId());
 
 		assertEquals(expectedPatchMessageBoardThread, getMessageBoardThread);
@@ -605,7 +610,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			testPatchMessageBoardThread_addMessageBoardThread()
 		throws Exception {
 
-		return MessageBoardThreadResource.postSiteMessageBoardThread(
+		return messageBoardThreadResource.postSiteMessageBoardThread(
 			testGroup.getGroupId(), randomMessageBoardThread());
 	}
 
@@ -618,14 +623,14 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			randomMessageBoardThread();
 
 		MessageBoardThread putMessageBoardThread =
-			MessageBoardThreadResource.putMessageBoardThread(
+			messageBoardThreadResource.putMessageBoardThread(
 				postMessageBoardThread.getId(), randomMessageBoardThread);
 
 		assertEquals(randomMessageBoardThread, putMessageBoardThread);
 		assertValid(putMessageBoardThread);
 
 		MessageBoardThread getMessageBoardThread =
-			MessageBoardThreadResource.getMessageBoardThread(
+			messageBoardThreadResource.getMessageBoardThread(
 				putMessageBoardThread.getId());
 
 		assertEquals(randomMessageBoardThread, getMessageBoardThread);
@@ -636,7 +641,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			testPutMessageBoardThread_addMessageBoardThread()
 		throws Exception {
 
-		return MessageBoardThreadResource.postSiteMessageBoardThread(
+		return messageBoardThreadResource.postSiteMessageBoardThread(
 			testGroup.getGroupId(), randomMessageBoardThread());
 	}
 
@@ -647,19 +652,19 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			MessageBoardThreadResource.
+			messageBoardThreadResource.
 				deleteMessageBoardThreadMyRatingHttpResponse(
 					messageBoardThread.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			MessageBoardThreadResource.
+			messageBoardThreadResource.
 				getMessageBoardThreadMyRatingHttpResponse(
 					messageBoardThread.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			MessageBoardThreadResource.
+			messageBoardThreadResource.
 				getMessageBoardThreadMyRatingHttpResponse(0L));
 	}
 
@@ -667,7 +672,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			testDeleteMessageBoardThreadMyRating_addMessageBoardThread()
 		throws Exception {
 
-		return MessageBoardThreadResource.postSiteMessageBoardThread(
+		return messageBoardThreadResource.postSiteMessageBoardThread(
 			testGroup.getGroupId(), randomMessageBoardThread());
 	}
 
@@ -689,7 +694,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 	@Test
 	public void testGetSiteMessageBoardThreadsPage() throws Exception {
 		Page<MessageBoardThread> page =
-			MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
+			messageBoardThreadResource.getSiteMessageBoardThreadsPage(
 				testGetSiteMessageBoardThreadsPage_getSiteId(), null,
 				RandomTestUtil.randomString(), null, Pagination.of(1, 2), null);
 
@@ -704,7 +709,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				testGetSiteMessageBoardThreadsPage_addMessageBoardThread(
 					irrelevantSiteId, randomIrrelevantMessageBoardThread());
 
-			page = MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
+			page = messageBoardThreadResource.getSiteMessageBoardThreadsPage(
 				irrelevantSiteId, null, null, null, Pagination.of(1, 2), null);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -723,7 +728,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			testGetSiteMessageBoardThreadsPage_addMessageBoardThread(
 				siteId, randomMessageBoardThread());
 
-		page = MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
+		page = messageBoardThreadResource.getSiteMessageBoardThreadsPage(
 			siteId, null, null, null, Pagination.of(1, 2), null);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -755,7 +760,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardThread> page =
-				MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
+				messageBoardThreadResource.getSiteMessageBoardThreadsPage(
 					siteId, null, null,
 					getFilterString(
 						entityField, "between", messageBoardThread1),
@@ -791,7 +796,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardThread> page =
-				MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
+				messageBoardThreadResource.getSiteMessageBoardThreadsPage(
 					siteId, null, null,
 					getFilterString(entityField, "eq", messageBoardThread1),
 					Pagination.of(1, 2), null);
@@ -821,7 +826,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				siteId, randomMessageBoardThread());
 
 		Page<MessageBoardThread> page1 =
-			MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
+			messageBoardThreadResource.getSiteMessageBoardThreadsPage(
 				siteId, null, null, null, Pagination.of(1, 2), null);
 
 		List<MessageBoardThread> messageBoardThreads1 =
@@ -831,7 +836,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			messageBoardThreads1.toString(), 2, messageBoardThreads1.size());
 
 		Page<MessageBoardThread> page2 =
-			MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
+			messageBoardThreadResource.getSiteMessageBoardThreadsPage(
 				siteId, null, null, null, Pagination.of(2, 2), null);
 
 		Assert.assertEquals(3, page2.getTotalCount());
@@ -843,7 +848,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 			messageBoardThreads2.toString(), 1, messageBoardThreads2.size());
 
 		Page<MessageBoardThread> page3 =
-			MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
+			messageBoardThreadResource.getSiteMessageBoardThreadsPage(
 				siteId, null, null, null, Pagination.of(1, 3), null);
 
 		assertEqualsIgnoringOrder(
@@ -926,7 +931,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 
 		for (EntityField entityField : entityFields) {
 			Page<MessageBoardThread> ascPage =
-				MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
+				messageBoardThreadResource.getSiteMessageBoardThreadsPage(
 					siteId, null, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":asc");
 
@@ -935,7 +940,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				(List<MessageBoardThread>)ascPage.getItems());
 
 			Page<MessageBoardThread> descPage =
-				MessageBoardThreadResource.getSiteMessageBoardThreadsPage(
+				messageBoardThreadResource.getSiteMessageBoardThreadsPage(
 					siteId, null, null, null, Pagination.of(1, 2),
 					entityField.getName() + ":desc");
 
@@ -950,7 +955,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				Long siteId, MessageBoardThread messageBoardThread)
 		throws Exception {
 
-		return MessageBoardThreadResource.postSiteMessageBoardThread(
+		return messageBoardThreadResource.postSiteMessageBoardThread(
 			siteId, messageBoardThread);
 	}
 
@@ -984,7 +989,7 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 				MessageBoardThread messageBoardThread)
 		throws Exception {
 
-		return MessageBoardThreadResource.postSiteMessageBoardThread(
+		return messageBoardThreadResource.postSiteMessageBoardThread(
 			testGetSiteMessageBoardThreadsPage_getSiteId(), messageBoardThread);
 	}
 
@@ -1676,11 +1681,10 @@ public abstract class BaseMessageBoardThreadResourceTestCase {
 		return randomMessageBoardThread();
 	}
 
+	protected MessageBoardThreadResource messageBoardThreadResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseMessageBoardThreadResourceTestCase.class);

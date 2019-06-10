@@ -50,7 +50,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -92,12 +91,17 @@ public abstract class BaseEmailAddressResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_emailAddressResource.setContextCompany(testCompany);
+
+		EmailAddressResource.Builder builder = EmailAddressResource.builder();
+
+		emailAddressResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -182,7 +186,7 @@ public abstract class BaseEmailAddressResourceTestCase {
 	public void testGetEmailAddress() throws Exception {
 		EmailAddress postEmailAddress = testGetEmailAddress_addEmailAddress();
 
-		EmailAddress getEmailAddress = EmailAddressResource.getEmailAddress(
+		EmailAddress getEmailAddress = emailAddressResource.getEmailAddress(
 			postEmailAddress.getId());
 
 		assertEquals(postEmailAddress, getEmailAddress);
@@ -209,7 +213,7 @@ public abstract class BaseEmailAddressResourceTestCase {
 					irrelevantOrganizationId, randomIrrelevantEmailAddress());
 
 			Page<EmailAddress> page =
-				EmailAddressResource.getOrganizationEmailAddressesPage(
+				emailAddressResource.getOrganizationEmailAddressesPage(
 					irrelevantOrganizationId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -229,7 +233,7 @@ public abstract class BaseEmailAddressResourceTestCase {
 				organizationId, randomEmailAddress());
 
 		Page<EmailAddress> page =
-			EmailAddressResource.getOrganizationEmailAddressesPage(
+			emailAddressResource.getOrganizationEmailAddressesPage(
 				organizationId);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -276,7 +280,7 @@ public abstract class BaseEmailAddressResourceTestCase {
 					irrelevantUserAccountId, randomIrrelevantEmailAddress());
 
 			Page<EmailAddress> page =
-				EmailAddressResource.getUserAccountEmailAddressesPage(
+				emailAddressResource.getUserAccountEmailAddressesPage(
 					irrelevantUserAccountId);
 
 			Assert.assertEquals(1, page.getTotalCount());
@@ -296,7 +300,7 @@ public abstract class BaseEmailAddressResourceTestCase {
 				userAccountId, randomEmailAddress());
 
 		Page<EmailAddress> page =
-			EmailAddressResource.getUserAccountEmailAddressesPage(
+			emailAddressResource.getUserAccountEmailAddressesPage(
 				userAccountId);
 
 		Assert.assertEquals(2, page.getTotalCount());
@@ -610,11 +614,10 @@ public abstract class BaseEmailAddressResourceTestCase {
 		return randomEmailAddress();
 	}
 
+	protected EmailAddressResource emailAddressResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseEmailAddressResourceTestCase.class);

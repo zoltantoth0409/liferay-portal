@@ -52,7 +52,6 @@ import java.text.DateFormat;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -94,12 +93,18 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 	public void setUp() throws Exception {
 		irrelevantGroup = GroupTestUtil.addGroup();
 		testGroup = GroupTestUtil.addGroup();
-		testLocale = LocaleUtil.getDefault();
 
 		testCompany = CompanyLocalServiceUtil.getCompany(
 			testGroup.getCompanyId());
 
 		_messageBoardAttachmentResource.setContextCompany(testCompany);
+
+		MessageBoardAttachmentResource.Builder builder =
+			MessageBoardAttachmentResource.builder();
+
+		messageBoardAttachmentResource = builder.locale(
+			LocaleUtil.getDefault()
+		).build();
 	}
 
 	@After
@@ -198,19 +203,19 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 
 		assertHttpResponseStatusCode(
 			204,
-			MessageBoardAttachmentResource.
+			messageBoardAttachmentResource.
 				deleteMessageBoardAttachmentHttpResponse(
 					messageBoardAttachment.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			MessageBoardAttachmentResource.
+			messageBoardAttachmentResource.
 				getMessageBoardAttachmentHttpResponse(
 					messageBoardAttachment.getId()));
 
 		assertHttpResponseStatusCode(
 			404,
-			MessageBoardAttachmentResource.
+			messageBoardAttachmentResource.
 				getMessageBoardAttachmentHttpResponse(0L));
 	}
 
@@ -228,7 +233,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 			testGetMessageBoardAttachment_addMessageBoardAttachment();
 
 		MessageBoardAttachment getMessageBoardAttachment =
-			MessageBoardAttachmentResource.getMessageBoardAttachment(
+			messageBoardAttachmentResource.getMessageBoardAttachment(
 				postMessageBoardAttachment.getId());
 
 		assertEquals(postMessageBoardAttachment, getMessageBoardAttachment);
@@ -259,7 +264,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 					randomIrrelevantMessageBoardAttachment());
 
 			Page<MessageBoardAttachment> page =
-				MessageBoardAttachmentResource.
+				messageBoardAttachmentResource.
 					getMessageBoardMessageMessageBoardAttachmentsPage(
 						irrelevantMessageBoardMessageId);
 
@@ -280,7 +285,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				messageBoardMessageId, randomMessageBoardAttachment());
 
 		Page<MessageBoardAttachment> page =
-			MessageBoardAttachmentResource.
+			messageBoardAttachmentResource.
 				getMessageBoardMessageMessageBoardAttachmentsPage(
 					messageBoardMessageId);
 
@@ -298,7 +303,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				MessageBoardAttachment messageBoardAttachment)
 		throws Exception {
 
-		return MessageBoardAttachmentResource.
+		return messageBoardAttachmentResource.
 			postMessageBoardMessageMessageBoardAttachment(
 				messageBoardMessageId, messageBoardAttachment,
 				getMultipartFiles());
@@ -331,7 +336,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				MessageBoardAttachment messageBoardAttachment)
 		throws Exception {
 
-		return MessageBoardAttachmentResource.
+		return messageBoardAttachmentResource.
 			postMessageBoardMessageMessageBoardAttachment(
 				testGetMessageBoardMessageMessageBoardAttachmentsPage_getMessageBoardMessageId(),
 				messageBoardAttachment, getMultipartFiles());
@@ -353,7 +358,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 					randomIrrelevantMessageBoardAttachment());
 
 			Page<MessageBoardAttachment> page =
-				MessageBoardAttachmentResource.
+				messageBoardAttachmentResource.
 					getMessageBoardThreadMessageBoardAttachmentsPage(
 						irrelevantMessageBoardThreadId);
 
@@ -374,7 +379,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				messageBoardThreadId, randomMessageBoardAttachment());
 
 		Page<MessageBoardAttachment> page =
-			MessageBoardAttachmentResource.
+			messageBoardAttachmentResource.
 				getMessageBoardThreadMessageBoardAttachmentsPage(
 					messageBoardThreadId);
 
@@ -392,7 +397,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				MessageBoardAttachment messageBoardAttachment)
 		throws Exception {
 
-		return MessageBoardAttachmentResource.
+		return messageBoardAttachmentResource.
 			postMessageBoardThreadMessageBoardAttachment(
 				messageBoardThreadId, messageBoardAttachment,
 				getMultipartFiles());
@@ -425,7 +430,7 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 				MessageBoardAttachment messageBoardAttachment)
 		throws Exception {
 
-		return MessageBoardAttachmentResource.
+		return messageBoardAttachmentResource.
 			postMessageBoardThreadMessageBoardAttachment(
 				testGetMessageBoardThreadMessageBoardAttachmentsPage_getMessageBoardThreadId(),
 				messageBoardAttachment, getMultipartFiles());
@@ -798,11 +803,10 @@ public abstract class BaseMessageBoardAttachmentResourceTestCase {
 		return randomMessageBoardAttachment();
 	}
 
+	protected MessageBoardAttachmentResource messageBoardAttachmentResource;
 	protected Group irrelevantGroup;
 	protected Company testCompany;
 	protected Group testGroup;
-	protected Locale testLocale;
-	protected String testUserNameAndPassword = "test@liferay.com:test";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseMessageBoardAttachmentResourceTestCase.class);
