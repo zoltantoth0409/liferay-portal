@@ -815,14 +815,26 @@ public abstract class Base${schemaName}ResourceTestCase {
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch") && javaMethodSignature.returnType?ends_with(schemaName)>
 			@Test
 			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
-				<#if !properties?keys?seq_contains("id") || freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+				<#if !properties?keys?seq_contains("id")>
 					Assert.assertTrue(true);
 				<#else>
 					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
 
 					${schemaName} randomPatch${schemaName} = randomPatch${schemaName}();
 
-					${schemaName} patch${schemaName} = ${schemaVarName}Resource.${javaMethodSignature.methodName}(post${schemaName}.getId(), randomPatch${schemaName});
+					<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+						<#assign generateGetMultipartFilesMethod = true />
+
+						Map<String, File> multipartFiles = getMultipartFiles();
+					</#if>
+
+					${schemaName} patch${schemaName} = ${schemaVarName}Resource.${javaMethodSignature.methodName}(post${schemaName}.getId(), randomPatch${schemaName}
+
+					<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+						, multipartFiles
+					</#if>
+
+					);
 
 					${schemaName} expectedPatch${schemaName} = (${schemaName})BeanUtils.cloneBean(post${schemaName});
 
@@ -843,8 +855,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 						return ${schemaVarName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}()
 
 						<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-							<#assign generateGetMultipartFilesMethod = true />
-
 							, getMultipartFiles()
 						</#if>
 
@@ -857,19 +867,33 @@ public abstract class Base${schemaName}ResourceTestCase {
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post") && javaMethodSignature.returnType?ends_with(schemaName)>
 			@Test
 			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
+				${schemaName} random${schemaName} = random${schemaName}();
+
 				<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
-					Assert.assertTrue(true);
-				<#else>
-					${schemaName} random${schemaName} = random${schemaName}();
+					<#assign generateGetMultipartFilesMethod = true />
 
-					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(random${schemaName});
-
-					assertEquals(random${schemaName}, post${schemaName});
-					assertValid(post${schemaName});
+					Map<String, File> multipartFiles = getMultipartFiles();
 				</#if>
+
+				${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}(random${schemaName}
+
+				<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+					, multipartFiles
+				</#if>
+
+				);
+
+				assertEquals(random${schemaName}, post${schemaName});
+				assertValid(post${schemaName});
 			}
 
-			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${schemaName} ${schemaVarName}) throws Exception {
+			protected ${schemaName} test${javaMethodSignature.methodName?cap_first}_add${schemaName}(${schemaName} ${schemaVarName}
+
+			<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+				, Map<String, File> multipartFiles
+			</#if>
+
+			) throws Exception {
 				<#if (javaMethodSignature.pathJavaMethodParameters?size == 1)>
 					<#assign
 						firstPathJavaMethodParameter = javaMethodSignature.pathJavaMethodParameters[0]
@@ -880,9 +904,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 						return ${schemaVarName}Resource.post${modifiedPathJavaMethodParameterName}${schemaName}(testGet${modifiedPathJavaMethodParameterName}${schemaNames}Page_get<#if stringUtil.startsWith(firstPathJavaMethodParameter.parameterName, "parent")>Parent</#if>${modifiedPathJavaMethodParameterName}Id(), ${schemaVarName}
 
 						<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
-							<#assign generateGetMultipartFilesMethod = true />
-
-							, getMultipartFiles()
+							, multipartFiles
 						</#if>
 
 						);
@@ -896,14 +918,26 @@ public abstract class Base${schemaName}ResourceTestCase {
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "put") && javaMethodSignature.returnType?ends_with(schemaName)>
 			@Test
 			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
-				<#if !properties?keys?seq_contains("id") || freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+				<#if !properties?keys?seq_contains("id")>
 					Assert.assertTrue(true);
 				<#else>
 					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
 
 					${schemaName} random${schemaName} = random${schemaName}();
 
-					${schemaName} put${schemaName} = ${schemaVarName}Resource.put${schemaName}(post${schemaName}.getId(), random${schemaName});
+					<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+						<#assign generateGetMultipartFilesMethod = true />
+
+						Map<String, File> multipartFiles = getMultipartFiles();
+					</#if>
+
+					${schemaName} put${schemaName} = ${schemaVarName}Resource.put${schemaName}(post${schemaName}.getId(), random${schemaName}
+
+					<#if freeMarkerTool.hasRequestBodyMediaType(javaMethodSignature, "multipart/form-data")>
+						, multipartFiles
+					</#if>
+
+					);
 
 					assertEquals(random${schemaName}, put${schemaName});
 					assertValid(put${schemaName});
@@ -923,8 +957,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 						return ${schemaVarName}Resource.postSite${schemaName}(testGroup.getGroupId(), random${schemaName}()
 
 						<#if freeMarkerTool.hasRequestBodyMediaType(postSchemaJavaMethodSignature, "multipart/form-data")>
-							<#assign generateGetMultipartFilesMethod = true />
-
 							, getMultipartFiles()
 						</#if>
 
