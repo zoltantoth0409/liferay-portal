@@ -65,8 +65,11 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 	public void testGetSiteSegmentsPageWithDefaultPermissions()
 		throws Exception {
 
-		//testUserNameAndPassword =
-		//	_user.getEmailAddress() + ":" + _user.getPasswordUnencrypted();
+		SegmentResource.Builder builder = SegmentResource.builder();
+
+		segmentResource = builder.authentication(
+			_user.getEmailAddress(), _user.getPasswordUnencrypted()
+		).build();
 
 		Long siteId = testGetSiteSegmentsPage_getSiteId();
 
@@ -91,8 +94,11 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 	public void testGetSiteSegmentsPageWithoutViewPermissions()
 		throws Exception {
 
-		//testUserNameAndPassword =
-		//	_user.getEmailAddress() + ":" + _user.getPasswordUnencrypted();
+		SegmentResource.Builder builder = SegmentResource.builder();
+
+		segmentResource = builder.authentication(
+			_user.getEmailAddress(), _user.getPasswordUnencrypted()
+		).build();
 
 		Long siteId = testGetSiteSegmentsPage_getSiteId();
 
