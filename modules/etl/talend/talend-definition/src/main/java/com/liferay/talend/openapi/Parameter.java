@@ -47,15 +47,13 @@ public class Parameter {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("Parameter{");
-		sb.append("_in=");
-		sb.append(_type);
-		sb.append(", _name='");
+		sb.append("(name=");
 		sb.append(_name);
-		sb.append('\'');
-		sb.append(", _required=");
+		sb.append(", required=");
 		sb.append(_required);
-		sb.append('}');
+		sb.append(", type=");
+		sb.append(_type);
+		sb.append("}");
 
 		return sb.toString();
 	}
