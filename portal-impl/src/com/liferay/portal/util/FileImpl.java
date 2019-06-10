@@ -399,8 +399,10 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 
 			boolean forkProcess = false;
 
+			TikaInputStream tikaInputStream = TikaInputStream.get(is);
+
 			if (PropsValues.TEXT_EXTRACTION_FORK_PROCESS_ENABLED) {
-				String mimeType = tika.detect(is);
+				String mimeType = tika.detect(tikaInputStream);
 
 				if (ArrayUtil.contains(
 						PropsValues.TEXT_EXTRACTION_FORK_PROCESS_MIME_TYPES,
@@ -419,7 +421,8 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 						try {
 							return processExecutor.execute(
 								PortalClassPathUtil.getPortalProcessConfig(),
-								new ExtractTextProcessCallable(getBytes(is)));
+								new ExtractTextProcessCallable(
+									getBytes(tikaInputStream)));
 						}
 						catch (Exception e) {
 							return ReflectionUtil.throwException(e);
@@ -432,8 +435,6 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 				text = future.get();
 			}
 			else {
-				TikaInputStream tikaInputStream = TikaInputStream.get(is);
-
 				if (!_isEmptyTikaInputStream(tikaInputStream)) {
 					UniversalEncodingDetector universalEncodingDetector =
 						new UniversalEncodingDetector();
