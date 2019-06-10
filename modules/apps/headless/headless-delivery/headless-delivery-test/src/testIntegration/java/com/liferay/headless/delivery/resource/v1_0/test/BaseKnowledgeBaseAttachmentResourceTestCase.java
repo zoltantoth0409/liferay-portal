@@ -276,18 +276,30 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 	public void testPostKnowledgeBaseArticleKnowledgeBaseAttachment()
 		throws Exception {
 
-		Assert.assertTrue(true);
+		KnowledgeBaseAttachment randomKnowledgeBaseAttachment =
+			randomKnowledgeBaseAttachment();
+
+		Map<String, File> multipartFiles = getMultipartFiles();
+
+		KnowledgeBaseAttachment postKnowledgeBaseAttachment =
+			testPostKnowledgeBaseArticleKnowledgeBaseAttachment_addKnowledgeBaseAttachment(
+				randomKnowledgeBaseAttachment, multipartFiles);
+
+		assertEquals(
+			randomKnowledgeBaseAttachment, postKnowledgeBaseAttachment);
+		assertValid(postKnowledgeBaseAttachment);
 	}
 
 	protected KnowledgeBaseAttachment
 			testPostKnowledgeBaseArticleKnowledgeBaseAttachment_addKnowledgeBaseAttachment(
-				KnowledgeBaseAttachment knowledgeBaseAttachment)
+				KnowledgeBaseAttachment knowledgeBaseAttachment,
+				Map<String, File> multipartFiles)
 		throws Exception {
 
 		return knowledgeBaseAttachmentResource.
 			postKnowledgeBaseArticleKnowledgeBaseAttachment(
 				testGetKnowledgeBaseArticleKnowledgeBaseAttachmentsPage_getKnowledgeBaseArticleId(),
-				knowledgeBaseAttachment, getMultipartFiles());
+				knowledgeBaseAttachment, multipartFiles);
 	}
 
 	@Test
