@@ -92,28 +92,28 @@ public class StructuredContentResourceTest
 		throws Exception {
 
 		StructuredContent structuredContent =
-			StructuredContentResource.postSiteStructuredContent(
+			structuredContentResource.postSiteStructuredContent(
 				testGroup.getGroupId(), randomStructuredContent());
 
 		String title = structuredContent.getTitle();
 
-		testLocale = LocaleUtil.FRANCE;
+		//testLocale = LocaleUtil.FRANCE;
 
 		String frenchTitle = RandomTestUtil.randomString();
 
 		structuredContent.setTitle(frenchTitle);
 
-		StructuredContentResource.putStructuredContent(
+		structuredContentResource.putStructuredContent(
 			structuredContent.getId(), structuredContent);
 
-		structuredContent = StructuredContentResource.getStructuredContent(
+		structuredContent = structuredContentResource.getStructuredContent(
 			structuredContent.getId());
 
 		Assert.assertEquals(frenchTitle, structuredContent.getTitle());
 
-		testLocale = LocaleUtil.getDefault();
+		//testLocale = LocaleUtil.getDefault();
 
-		structuredContent = StructuredContentResource.getStructuredContent(
+		structuredContent = structuredContentResource.getStructuredContent(
 			structuredContent.getId());
 
 		Assert.assertEquals(title, structuredContent.getTitle());
@@ -156,7 +156,7 @@ public class StructuredContentResourceTest
 				Long contentStructureId, StructuredContent structuredContent)
 		throws Exception {
 
-		return StructuredContentResource.postSiteStructuredContent(
+		return structuredContentResource.postSiteStructuredContent(
 			testGroup.getGroupId(), structuredContent);
 	}
 

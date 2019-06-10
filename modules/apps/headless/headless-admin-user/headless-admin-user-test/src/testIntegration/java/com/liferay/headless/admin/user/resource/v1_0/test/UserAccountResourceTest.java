@@ -18,7 +18,6 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.admin.user.client.dto.v1_0.UserAccount;
 import com.liferay.headless.admin.user.client.pagination.Page;
 import com.liferay.headless.admin.user.client.pagination.Pagination;
-import com.liferay.headless.admin.user.client.resource.v1_0.UserAccountResource;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.model.Company;
@@ -115,7 +114,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 			}
 		};
 
-		UserAccount getUserAccount = UserAccountResource.getMyUserAccount();
+		UserAccount getUserAccount = userAccountResource.getMyUserAccount();
 
 		assertEquals(userAccount, getUserAccount);
 		assertValid(getUserAccount);
@@ -128,10 +127,10 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 			randomUserAccount());
 		UserAccount userAccount2 = testGetUserAccountsPage_addUserAccount(
 			randomUserAccount());
-		UserAccount userAccount3 = UserAccountResource.getUserAccount(
+		UserAccount userAccount3 = userAccountResource.getUserAccount(
 			_testUser.getUserId());
 
-		Page<UserAccount> page = UserAccountResource.getUserAccountsPage(
+		Page<UserAccount> page = userAccountResource.getUserAccountsPage(
 			null, null, Pagination.of(1, 3), null);
 
 		Assert.assertEquals(3, page.getTotalCount());

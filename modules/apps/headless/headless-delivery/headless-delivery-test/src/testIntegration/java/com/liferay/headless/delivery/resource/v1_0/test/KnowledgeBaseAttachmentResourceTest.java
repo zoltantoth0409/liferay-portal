@@ -16,7 +16,6 @@ package com.liferay.headless.delivery.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.delivery.client.dto.v1_0.KnowledgeBaseAttachment;
-import com.liferay.headless.delivery.client.resource.v1_0.KnowledgeBaseAttachmentResource;
 import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.model.KBFolder;
 import com.liferay.knowledge.base.service.KBArticleLocalServiceUtil;
@@ -79,7 +78,7 @@ public class KnowledgeBaseAttachmentResourceTest
 			testDeleteKnowledgeBaseAttachment_addKnowledgeBaseAttachment()
 		throws Exception {
 
-		return KnowledgeBaseAttachmentResource.
+		return knowledgeBaseAttachmentResource.
 			postKnowledgeBaseArticleKnowledgeBaseAttachment(
 				_kbArticle.getResourcePrimKey(),
 				randomKnowledgeBaseAttachment(), getMultipartFiles());
@@ -97,7 +96,7 @@ public class KnowledgeBaseAttachmentResourceTest
 			testGetKnowledgeBaseAttachment_addKnowledgeBaseAttachment()
 		throws Exception {
 
-		return KnowledgeBaseAttachmentResource.
+		return knowledgeBaseAttachmentResource.
 			postKnowledgeBaseArticleKnowledgeBaseAttachment(
 				_kbArticle.getResourcePrimKey(),
 				randomKnowledgeBaseAttachment(), getMultipartFiles());
