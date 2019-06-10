@@ -288,6 +288,8 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		assertEquals(
 			randomKnowledgeBaseAttachment, postKnowledgeBaseAttachment);
 		assertValid(postKnowledgeBaseAttachment);
+
+		assertValid(postKnowledgeBaseAttachment, multipartFiles);
 	}
 
 	protected KnowledgeBaseAttachment
@@ -478,6 +480,15 @@ public abstract class BaseKnowledgeBaseAttachmentResourceTestCase {
 		}
 
 		Assert.assertTrue(valid);
+	}
+
+	protected void assertValid(
+			KnowledgeBaseAttachment knowledgeBaseAttachment,
+			Map<String, File> multipartFiles)
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	protected void assertValid(Page<KnowledgeBaseAttachment> page) {
