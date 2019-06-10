@@ -83,16 +83,15 @@ public class RenderFragmentEntryStrutsAction implements StrutsAction {
 		LayoutSet layoutSet = _layoutSetLocalService.getLayoutSet(
 			groupId, false);
 
-		String portalBody = ThemeUtil.include(
-			httpServletRequest.getServletContext(), httpServletRequest,
-			httpServletResponse, "portal_normal.ftl", layoutSet.getTheme(),
-			false);
+		Document document = Jsoup.parse(
+			ThemeUtil.include(
+				httpServletRequest.getServletContext(), httpServletRequest,
+				httpServletResponse, "portal_normal.ftl", layoutSet.getTheme(),
+				false));
 
-		Document document = Jsoup.parse(portalBody);
+		Element bodyElement = document.body();
 
-		Element body = document.body();
-
-		body.html(unsyncStringWriter.toString());
+		bodyElement.html(unsyncStringWriter.toString());
 
 		ServletResponseUtil.write(httpServletResponse, document.html());
 
