@@ -1494,9 +1494,6 @@ public class WebServerServlet extends HttpServlet {
 				throw new NoSuchFileEntryException();
 			}
 
-			PermissionChecker permissionChecker =
-				PermissionThreadLocal.getPermissionChecker();
-
 			String portletId = null;
 
 			Group group = GroupLocalServiceUtil.getGroup(
@@ -1521,6 +1518,9 @@ public class WebServerServlet extends HttpServlet {
 			}
 
 			if (portletId != null) {
+				PermissionChecker permissionChecker =
+					PermissionThreadLocal.getPermissionChecker();
+
 				if (!PortletPermissionUtil.hasControlPanelAccessPermission(
 						permissionChecker, fileEntry.getGroupId(), portletId)) {
 
