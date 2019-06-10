@@ -64,8 +64,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author David Arques
  */
-@Component(immediate = true, service = IndividualSegmentsCheckerUtil.class)
-public class IndividualSegmentsCheckerUtil {
+@Component(immediate = true, service = IndividualSegmentsChecker.class)
+public class IndividualSegmentsChecker {
 
 	public void checkIndividualSegments() {
 		Optional<AsahFaroBackendClient> asahFaroBackendClientOptional =
@@ -391,7 +391,7 @@ public class IndividualSegmentsCheckerUtil {
 	private static final int _DELTA = 100;
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		IndividualSegmentsCheckerUtil.class);
+		IndividualSegmentsChecker.class);
 
 	private AsahFaroBackendClient _asahFaroBackendClient;
 

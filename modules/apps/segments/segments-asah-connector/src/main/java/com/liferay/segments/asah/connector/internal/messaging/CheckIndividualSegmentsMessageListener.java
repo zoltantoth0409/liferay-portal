@@ -73,14 +73,14 @@ public class CheckIndividualSegmentsMessageListener
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
-		_individualSegmentsCheckerUtil.checkIndividualSegments();
+		_individualSegmentsChecker.checkIndividualSegments();
 	}
 
 	@Reference(unbind = "-")
-	protected void setIndividualSegmentsCheckerUtil(
-		IndividualSegmentsCheckerUtil individualSegmentsCheckerUtil) {
+	protected void setIndividualSegmentsChecker(
+		IndividualSegmentsChecker individualSegmentsChecker) {
 
-		_individualSegmentsCheckerUtil = individualSegmentsCheckerUtil;
+		_individualSegmentsChecker = individualSegmentsChecker;
 	}
 
 	@Reference(unbind = "-")
@@ -90,7 +90,7 @@ public class CheckIndividualSegmentsMessageListener
 		_schedulerEngineHelper = schedulerEngineHelper;
 	}
 
-	private IndividualSegmentsCheckerUtil _individualSegmentsCheckerUtil;
+	private IndividualSegmentsChecker _individualSegmentsChecker;
 	private SchedulerEngineHelper _schedulerEngineHelper;
 
 	@Reference

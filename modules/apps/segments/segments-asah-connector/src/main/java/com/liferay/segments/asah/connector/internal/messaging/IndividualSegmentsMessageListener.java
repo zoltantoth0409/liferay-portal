@@ -41,10 +41,10 @@ public class IndividualSegmentsMessageListener extends BaseMessageListener {
 			return;
 		}
 
-		_individualSegmentsCheckerUtil.checkIndividualSegments(userId);
+		_individualSegmentsChecker.checkIndividualSegments(userId);
 	}
 
 	@Reference
-	private IndividualSegmentsCheckerUtil _individualSegmentsCheckerUtil;
+	private IndividualSegmentsChecker _individualSegmentsChecker;
 
 }
