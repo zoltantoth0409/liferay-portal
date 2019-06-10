@@ -50,18 +50,15 @@ public class DataRecordResourceTest extends BaseDataRecordResourceTestCase {
 	}
 
 	@Test
-	public void testPostDataRecordWithInvalidDataRecordCollection()
+	public void testPostDataRecordCollectionDataRecord()
 		throws Exception {
+
+		super.testPostDataRecordCollectionDataRecord();
 
 		assertHttpResponseStatusCode(
 			404,
 			DataRecordResource.postDataRecordCollectionDataRecordHttpResponse(
 				RandomTestUtil.randomLong(), randomDataRecord()));
-	}
-
-	@Test
-	public void testPostDataRecordWithoutMatchingDataDefinitionFields()
-		throws Exception {
 
 		DataRecord dataRecord = _createDataRecord("Wrong Field");
 
