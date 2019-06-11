@@ -17,9 +17,9 @@ package com.liferay.change.tracking.rest.internal.jaxrs.exception;
 /**
  * @author Máté Thurzó
  */
-public class ChangeTrackingNotEnabledException extends Exception {
+public class ChangeTrackingDisabledException extends Exception {
 
-	public ChangeTrackingNotEnabledException(String message) {
+	public ChangeTrackingDisabledException(String message) {
 		super(message);
 	}
 
