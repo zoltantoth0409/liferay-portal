@@ -98,8 +98,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 
 		if (!_ctEngineManager.isChangeTrackingEnabled(companyId)) {
 			throw new ChangeTrackingDisabledException(
-				"Unable to create collection because change tracking is " +
-					"disabled for company " + companyId);
+				"Change tracking is disabled for company " + companyId);
 		}
 
 		try {
