@@ -34,9 +34,9 @@ public class DateParamConverterProvider implements ParamConverterProvider {
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> ParamConverter<T> getConverter(
-		Class<T> rawType, Type genericType, Annotation[] annotations) {
+		Class<T> clazz, Type genericType, Annotation[] annotations) {
 
-		if (Date.class.equals(rawType)) {
+		if (Date.class.equals(clazz)) {
 			return (ParamConverter<T>)new DateParamConverter();
 		}
 

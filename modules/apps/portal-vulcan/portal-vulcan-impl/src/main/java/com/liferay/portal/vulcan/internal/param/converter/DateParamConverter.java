@@ -30,7 +30,7 @@ public class DateParamConverter implements ParamConverter<Date> {
 	@Override
 	public Date fromString(String string) {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-			_getDateFormat(string));
+			_getPattern(string));
 
 		try {
 			return simpleDateFormat.parse(string);
@@ -43,23 +43,23 @@ public class DateParamConverter implements ParamConverter<Date> {
 	@Override
 	public String toString(Date date) {
 		return new SimpleDateFormat(
-			_DATE_TIME_FORMAT
+			_DATE_TIME_PATTERN
 		).format(
 			date
 		);
 	}
 
-	private String _getDateFormat(String string) {
+	private String _getPattern(String string) {
 		if (string.contains("T")) {
-			return _DATE_TIME_FORMAT;
+			return _DATE_TIME_PATTERN;
 		}
 
-		return _DATE_FORMAT;
+		return _DATE_PATTERN;
 	}
 
-	private static final String _DATE_FORMAT = "yyyy-MM-dd";
+	private static final String _DATE_PATTERN = "yyyy-MM-dd";
 
-	private static final String _DATE_TIME_FORMAT =
+	private static final String _DATE_TIME_PATTERN =
 		"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
 }
