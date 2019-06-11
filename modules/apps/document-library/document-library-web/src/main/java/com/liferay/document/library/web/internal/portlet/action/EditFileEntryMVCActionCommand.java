@@ -232,8 +232,6 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 			validFileNameKVPs.add(
 				new KeyValuePair(uniqueFileName, selectedFileName));
-
-			return;
 		}
 		catch (Exception e) {
 			String errorMessage = getAddMultipleFileEntriesErrorMessage(
