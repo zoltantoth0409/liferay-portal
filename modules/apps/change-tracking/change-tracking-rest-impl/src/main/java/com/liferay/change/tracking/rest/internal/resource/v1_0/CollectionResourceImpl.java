@@ -27,16 +27,13 @@ import com.liferay.change.tracking.rest.internal.jaxrs.exception.ChangeTrackingD
 import com.liferay.change.tracking.rest.resource.v1_0.CollectionResource;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 import javax.ws.rs.core.Response;
 
@@ -99,9 +96,6 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 
 		User user = _userLocalService.getUser(userId);
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", user.getLocale(), getClass());
-
 		if (!_ctEngineManager.isChangeTrackingEnabled(companyId)) {
 			throw new ChangeTrackingDisabledException(
 				"Unable to create collection because change tracking is " +
@@ -118,33 +112,26 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 				this::_toCollection
 			).orElseThrow(
 				() -> new CannotCreateCollectionException(
-					LanguageUtil.get(
-						resourceBundle, "unable-to-create-change-list"))
+					"Unable to create collection")
 			);
 		}
 		catch (PortalException pe) {
 			if (pe instanceof CTCollectionDescriptionCTEngineException) {
 				throw new CannotCreateCollectionException(
-					LanguageUtil.get(
-						resourceBundle,
-						"the-change-list-description-is-too-long"));
+					"The collection description is too long");
 			}
 			else if (pe instanceof CTCollectionNameCTEngineException) {
 				if (Validator.isNull(pe.getMessage())) {
 					throw new CannotCreateCollectionException(
-						LanguageUtil.get(
-							resourceBundle,
-							"the-change-list-name-is-too-short"));
+						"The collection name is too short");
 				}
 
 				throw new CannotCreateCollectionException(
-					LanguageUtil.get(
-						resourceBundle, "the-change-list-name-is-too-long"));
+					"The collection name is too long");
 			}
 			else {
 				throw new CannotCreateCollectionException(
-					LanguageUtil.get(
-						resourceBundle, "unable-to-create-change-list"));
+					"Unable to create collection");
 			}
 		}
 	}
