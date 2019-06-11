@@ -4,6 +4,7 @@ import PortletBase from './liferay/PortletBase.es';
 import fetch from './liferay/util/fetch.es';
 import navigate from './liferay/util/navigate.es';
 
+export {AOP} from './liferay/aop/AOP.es';
 export {CompatibilityEventProxy};
 export {DefaultEventHandler};
 export {Modal} from './liferay/compat/modal/Modal.es';
