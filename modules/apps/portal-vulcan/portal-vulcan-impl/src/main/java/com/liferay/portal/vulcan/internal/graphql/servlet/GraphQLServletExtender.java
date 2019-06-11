@@ -44,12 +44,10 @@ import graphql.annotations.processor.retrievers.fieldBuilders.method.MethodTypeB
 import graphql.annotations.processor.searchAlgorithms.BreadthFirstSearch;
 import graphql.annotations.processor.searchAlgorithms.ParentalSearch;
 import graphql.annotations.processor.typeFunctions.DefaultTypeFunction;
-import graphql.annotations.processor.typeFunctions.TypeFunction;
 import graphql.annotations.processor.util.NamingKit;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
-import graphql.schema.GraphQLArgument;
 import graphql.schema.GraphQLFieldDefinition;
 import graphql.schema.GraphQLOutputType;
 import graphql.schema.GraphQLSchema;
@@ -65,7 +63,6 @@ import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Dictionary;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -177,40 +174,41 @@ public class GraphQLServletExtender {
 
 		@Override
 		public GraphQLFieldDefinition getField(
-			Method method, ProcessingElementsContainer container) {
+			Method method,
+			ProcessingElementsContainer processingElementsContainer) {
 
 			GraphQLFieldDefinition.Builder builder =
 				GraphQLFieldDefinition.newFieldDefinition();
 
-			TypeFunction typeFunction = container.getDefaultTypeFunction();
+			MethodTypeBuilder methodTypeBuilder = new MethodTypeBuilder(
+				method, processingElementsContainer.getDefaultTypeFunction(),
+				processingElementsContainer, false);
+
+			GraphQLOutputType graphQLOutputType =
+				(GraphQLOutputType)methodTypeBuilder.build();
+
+			ArgumentBuilder argumentBuilder = new ArgumentBuilder(
+				method, processingElementsContainer.getDefaultTypeFunction(),
+				builder, processingElementsContainer, graphQLOutputType);
+
+			builder.argument(argumentBuilder.build());
+
+			builder.dataFetcher(new LiferayMethodDataFetcher(method));
+
+			DeprecateBuilder deprecateBuilder = new DeprecateBuilder(method);
+
+			builder.deprecate(deprecateBuilder.build());
+
+			DescriptionBuilder descriptionBuilder = new DescriptionBuilder(
+				method);
+
+			builder.description(descriptionBuilder.build());
 
 			MethodNameBuilder methodNameBuilder = new MethodNameBuilder(method);
 
 			builder.name(methodNameBuilder.build());
 
-			MethodTypeBuilder methodTypeBuilder = new MethodTypeBuilder(
-				method, typeFunction, container, false);
-
-			GraphQLOutputType graphQLOutputType =
-				(GraphQLOutputType)methodTypeBuilder.build();
-
 			builder.type(graphQLOutputType);
-
-			ArgumentBuilder argumentBuilder = new ArgumentBuilder(
-				method, typeFunction, builder, container, graphQLOutputType);
-
-			List<GraphQLArgument> arguments = argumentBuilder.build();
-
-			builder.argument(arguments);
-
-			DescriptionBuilder descriptionBuilder = new DescriptionBuilder(
-				method);
-
-			DeprecateBuilder deprecateBuilder = new DeprecateBuilder(method);
-
-			builder.description(descriptionBuilder.build());
-			builder.deprecate(deprecateBuilder.build());
-			builder.dataFetcher(new LiferayMethodDataFetcher(method));
 
 			return new GraphQLFieldDefinitionWrapper(builder.build());
 		}
