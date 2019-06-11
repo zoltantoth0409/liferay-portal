@@ -75,7 +75,9 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 					collectionId);
 		}
 
-		return _noContent();
+		Response.ResponseBuilder responseBuilder = Response.noContent();
+
+		return responseBuilder.build();
 	}
 
 	@Override
@@ -171,12 +173,6 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 				statusDate = ctCollection.getStatusDate();
 			}
 		};
-	}
-
-	private Response _noContent() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
 	}
 
 	@Reference
