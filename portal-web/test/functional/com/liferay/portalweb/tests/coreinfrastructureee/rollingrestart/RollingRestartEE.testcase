@@ -673,8 +673,7 @@ definition {
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "9080",
-			patchFileZipURL = "${testBuildFixPackZipURLPrevious}"
-		);
+			patchFileZipURL = "${testBuildFixPackZipURLPrevious}");
 
 		Clustering.startSpecificServer(
 			deleteLiferayHome = "true",
@@ -747,8 +746,7 @@ definition {
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "8080",
-			patchFileZipURL = "${testBuildFixPackZipURLPrevious}"
-		);
+			patchFileZipURL = "${testBuildFixPackZipURLPrevious}");
 
 		Clustering.startSpecificServer(
 			deleteLiferayHome = "true",
@@ -824,8 +822,7 @@ definition {
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "10080",
-			patchFileZipURL = "${testBuildFixPackZipURLPrevious}"
-		);
+			patchFileZipURL = "${testBuildFixPackZipURLPrevious}");
 
 		Clustering.startSpecificServer(
 			deleteLiferayHome = "true",
