@@ -71,8 +71,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 
 		if (ctCollectionOptional.isPresent()) {
 			throw new CannotDeleteCollectionException(
-				"Unable to delete change tracking collection with id " +
-					collectionId);
+				"Unable to delete collection " + collectionId);
 		}
 
 		Response.ResponseBuilder responseBuilder = Response.noContent();
@@ -87,8 +86,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 
 		CTCollection ctCollection = ctCollectionOptional.orElseThrow(
 			() -> new NoSuchModelException(
-				"Unable to find change tracking collection with id " +
-					collectionId));
+				"Unable to get collection " + collectionId));
 
 		return _toCollection(ctCollection);
 	}
@@ -107,8 +105,8 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 
 		if (!_ctEngineManager.isChangeTrackingEnabled(companyId)) {
 			throw new ChangeTrackingDisabledException(
-				"Unable to create change tracking collection, change " +
-					"tracking is disabled in the company with id " + companyId);
+				"Unable to create collection because change tracking is " +
+					"disabled for company " + companyId);
 		}
 
 		try {
