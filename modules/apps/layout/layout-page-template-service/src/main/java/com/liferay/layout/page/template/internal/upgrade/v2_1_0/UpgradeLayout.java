@@ -157,16 +157,16 @@ public class UpgradeLayout extends UpgradeProcess {
 			return layout.getPlid();
 		}
 
-		Map<Locale, String> titleMap = Collections.singletonMap(
-			LocaleUtil.getSiteDefault(), name);
-
-		String layoutType = LayoutConstants.TYPE_ASSET_DISPLAY;
 		boolean privateLayout = false;
+		String layoutType = LayoutConstants.TYPE_ASSET_DISPLAY;
 
 		if (type == LayoutPageTemplateEntryTypeConstants.TYPE_BASIC) {
 			layoutType = LayoutConstants.TYPE_CONTENT;
 			privateLayout = true;
 		}
+
+		Map<Locale, String> titleMap = Collections.singletonMap(
+			LocaleUtil.getSiteDefault(), name);
 
 		serviceContext.setAttribute(
 			"layout.instanceable.allowed", Boolean.TRUE);

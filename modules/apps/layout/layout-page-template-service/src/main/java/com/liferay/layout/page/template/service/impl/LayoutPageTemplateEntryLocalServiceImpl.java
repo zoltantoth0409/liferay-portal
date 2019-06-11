@@ -781,16 +781,16 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		Map<Locale, String> titleMap = Collections.singletonMap(
-			LocaleUtil.getSiteDefault(), name);
-
-		String layoutType = LayoutConstants.TYPE_ASSET_DISPLAY;
 		boolean privateLayout = false;
+		String layoutType = LayoutConstants.TYPE_ASSET_DISPLAY;
 
 		if (type == LayoutPageTemplateEntryTypeConstants.TYPE_BASIC) {
-			layoutType = LayoutConstants.TYPE_CONTENT;
 			privateLayout = true;
+			layoutType = LayoutConstants.TYPE_CONTENT;
 		}
+
+		Map<Locale, String> titleMap = Collections.singletonMap(
+			LocaleUtil.getSiteDefault(), name);
 
 		serviceContext.setAttribute(
 			"layout.instanceable.allowed", Boolean.TRUE);
