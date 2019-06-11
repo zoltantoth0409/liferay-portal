@@ -619,8 +619,6 @@ public class DLReferencesExportImportContentProcessor
 									"src=", 0, 4)) {
 
 								absolutePortalURL = true;
-
-								continue;
 							}
 						}
 					}

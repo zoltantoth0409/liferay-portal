@@ -4393,8 +4393,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 			if ((types != null) && !types.contains(type)) {
 				iterator.remove();
-
-				continue;
 			}
 		}
 
