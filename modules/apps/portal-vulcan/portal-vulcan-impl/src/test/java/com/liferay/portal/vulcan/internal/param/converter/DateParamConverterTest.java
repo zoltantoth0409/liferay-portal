@@ -35,9 +35,9 @@ public class DateParamConverterTest {
 
 		calendar.setTime(date);
 
-		Assert.assertEquals(2019, calendar.get(Calendar.YEAR));
-		Assert.assertEquals(1, calendar.get(Calendar.MONTH));
 		Assert.assertEquals(18, calendar.get(Calendar.DATE));
+		Assert.assertEquals(1, calendar.get(Calendar.MONTH));
+		Assert.assertEquals(2019, calendar.get(Calendar.YEAR));
 
 		String dateTimeString = "2019-01-27T08:56:45.236Z";
 
@@ -47,25 +47,25 @@ public class DateParamConverterTest {
 
 		calendar.setTime(date);
 
-		Assert.assertEquals(2019, calendar.get(Calendar.YEAR));
-		Assert.assertEquals(0, calendar.get(Calendar.MONTH));
 		Assert.assertEquals(27, calendar.get(Calendar.DATE));
 		Assert.assertEquals(8, calendar.get(Calendar.HOUR));
 		Assert.assertEquals(56, calendar.get(Calendar.MINUTE));
+		Assert.assertEquals(0, calendar.get(Calendar.MONTH));
 		Assert.assertEquals(45, calendar.get(Calendar.SECOND));
+		Assert.assertEquals(2019, calendar.get(Calendar.YEAR));
 	}
 
 	@Test
 	public void testToString() {
 		Calendar calendar = Calendar.getInstance();
 
-		calendar.set(Calendar.YEAR, 2019);
-		calendar.set(Calendar.MONTH, 7);
 		calendar.set(Calendar.DATE, 12);
 		calendar.set(Calendar.HOUR_OF_DAY, 15);
-		calendar.set(Calendar.MINUTE, 1);
-		calendar.set(Calendar.SECOND, 58);
 		calendar.set(Calendar.MILLISECOND, 871);
+		calendar.set(Calendar.MINUTE, 1);
+		calendar.set(Calendar.MONTH, 7);
+		calendar.set(Calendar.SECOND, 58);
+		calendar.set(Calendar.YEAR, 2019);
 
 		String dateString = _dateParamConverter.toString(calendar.getTime());
 
