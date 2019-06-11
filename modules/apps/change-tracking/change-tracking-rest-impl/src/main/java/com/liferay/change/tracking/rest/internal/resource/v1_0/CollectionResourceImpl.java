@@ -27,7 +27,6 @@ import com.liferay.change.tracking.rest.internal.jaxrs.exception.ChangeTrackingD
 import com.liferay.change.tracking.rest.resource.v1_0.CollectionResource;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.Validator;
