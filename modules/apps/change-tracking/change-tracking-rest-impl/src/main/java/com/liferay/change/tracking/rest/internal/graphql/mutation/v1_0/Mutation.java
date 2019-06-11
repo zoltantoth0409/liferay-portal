@@ -22,8 +22,8 @@ import com.liferay.change.tracking.rest.resource.v1_0.CollectionResource;
 import com.liferay.change.tracking.rest.resource.v1_0.SettingsResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
-import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
@@ -169,22 +169,23 @@ public class Mutation {
 	private void _populateResourceContext(CollectionResource collectionResource)
 		throws Exception {
 
-		collectionResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
+		collectionResource.setContextAcceptLanguage(_acceptLanguage);
+		collectionResource.setContextCompany(_company);
 	}
 
 	private void _populateResourceContext(SettingsResource settingsResource)
 		throws Exception {
 
-		settingsResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
+		settingsResource.setContextAcceptLanguage(_acceptLanguage);
+		settingsResource.setContextCompany(_company);
 	}
 
 	private static ComponentServiceObjects<CollectionResource>
 		_collectionResourceComponentServiceObjects;
 	private static ComponentServiceObjects<SettingsResource>
 		_settingsResourceComponentServiceObjects;
+
+	private AcceptLanguage _acceptLanguage;
+	private Company _company;
 
 }

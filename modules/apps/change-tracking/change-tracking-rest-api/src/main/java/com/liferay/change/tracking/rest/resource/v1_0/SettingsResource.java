@@ -17,6 +17,7 @@ package com.liferay.change.tracking.rest.resource.v1_0;
 import com.liferay.change.tracking.rest.dto.v1_0.Settings;
 import com.liferay.change.tracking.rest.dto.v1_0.SettingsUpdate;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
 
 import javax.annotation.Generated;
@@ -38,6 +39,10 @@ public interface SettingsResource {
 	public Settings putSettings(
 			Long companyId, Long userId, SettingsUpdate settingsUpdate)
 		throws Exception;
+
+	public default void setContextAcceptLanguage(
+		AcceptLanguage contextAcceptLanguage) {
+	}
 
 	public void setContextCompany(Company contextCompany);
 
