@@ -460,8 +460,7 @@ definition {
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "9080",
-			patchFileZipURL = "${testBuildFixPackZipURLPrevious}"
-		);
+			patchFileZipURL = "${testBuildFixPackZipURLPrevious}");
 
 		Portlet.startSpecificServer(
 			deleteLiferayHome = "true",
@@ -534,8 +533,7 @@ definition {
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "8080",
-			patchFileZipURL = "${testBuildFixPackZipURLPrevious}"
-		);
+			patchFileZipURL = "${testBuildFixPackZipURLPrevious}");
 
 		Portlet.startSpecificServer(
 			deleteLiferayHome = "true",
@@ -598,8 +596,7 @@ definition {
 
 		PatchingTool.installPatchOnSpecificServer(
 			nodePort = "10080",
-			patchFileZipURL = "${testBuildFixPackZipURLPrevious}"
-		);
+			patchFileZipURL = "${testBuildFixPackZipURLPrevious}");
 
 		Portlet.startSpecificServer(
 			deleteLiferayHome = "true",
