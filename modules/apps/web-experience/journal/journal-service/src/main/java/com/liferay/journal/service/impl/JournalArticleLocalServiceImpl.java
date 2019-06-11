@@ -8613,16 +8613,6 @@ public class JournalArticleLocalServiceImpl
 	@ServiceReference(type = JournalConverter.class)
 	protected JournalConverter journalConverter;
 
-	private long _getArticleCheckInterval() throws PortalException {
-		long companyId = CompanyThreadLocal.getCompanyId();
-
-		JournalServiceConfiguration journalServiceConfiguration =
-			configurationProvider.getCompanyConfiguration(
-				JournalServiceConfiguration.class, companyId);
-
-		return journalServiceConfiguration.checkInterval();
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalArticleLocalServiceImpl.class);
 
