@@ -1587,12 +1587,13 @@ public class WebServerServlet extends HttpServlet {
 	}
 
 	private String _getPortletId(
-			FileEntry fileEntry, HttpServletRequest request)
+			FileEntry fileEntry, HttpServletRequest httpServletRequest)
 		throws PortalException {
 
 		if (fileEntry.isInTrash()) {
 			int status = ParamUtil.getInteger(
-				request, "status", WorkflowConstants.STATUS_APPROVED);
+				httpServletRequest, "status",
+				WorkflowConstants.STATUS_APPROVED);
 
 			if (status != WorkflowConstants.STATUS_IN_TRASH) {
 				throw new NoSuchFileEntryException();
