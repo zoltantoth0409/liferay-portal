@@ -18,6 +18,7 @@ import com.liferay.change.tracking.rest.dto.v1_0.Collection;
 import com.liferay.change.tracking.rest.dto.v1_0.CollectionUpdate;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -55,6 +56,10 @@ public interface CollectionResource {
 	public void postCollectionPublish(
 			Long collectionId, Boolean ignoreCollision, Long userId)
 		throws Exception;
+
+	public default void setContextAcceptLanguage(
+		AcceptLanguage contextAcceptLanguage) {
+	}
 
 	public void setContextCompany(Company contextCompany);
 
