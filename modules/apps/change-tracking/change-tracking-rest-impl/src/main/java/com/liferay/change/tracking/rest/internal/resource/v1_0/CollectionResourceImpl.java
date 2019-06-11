@@ -88,7 +88,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 				"Unable to find change tracking collection with id " +
 					collectionId));
 
-		return _getCollection(ctCollection);
+		return _toCollection(ctCollection);
 	}
 
 	@Override
@@ -116,7 +116,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 					collectionUpdate.getDescription());
 
 			return ctCollectionOptional.map(
-				this::_getCollection
+				this::_toCollection
 			).orElseThrow(
 				() -> new CannotCreateCollectionException(
 					LanguageUtil.get(
@@ -150,30 +150,27 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 		}
 	}
 
-	private Collection _getCollection(CTCollection ctCollection) {
+	private Collection _toCollection(CTCollection ctCollection) {
 		Map<Integer, Long> ctEntriesChangeTypes =
 			_ctEngineManager.getCTCollectionChangeTypeCounts(
 				ctCollection.getCtCollectionId());
 
-		Collection collection = new Collection();
-
-		collection.setAdditionCount(
-			ctEntriesChangeTypes.getOrDefault(
-				CTConstants.CT_CHANGE_TYPE_ADDITION, 0L));
-		collection.setCollectionId(ctCollection.getCtCollectionId());
-		collection.setCompanyId(ctCollection.getCompanyId());
-		collection.setDeletionCount(
-			ctEntriesChangeTypes.getOrDefault(
-				CTConstants.CT_CHANGE_TYPE_DELETION, 0L));
-		collection.setDescription(ctCollection.getDescription());
-		collection.setModificationCount(
-			ctEntriesChangeTypes.getOrDefault(
-				CTConstants.CT_CHANGE_TYPE_MODIFICATION, 0L));
-		collection.setName(ctCollection.getName());
-		collection.setStatusByUserName(ctCollection.getStatusByUserName());
-		collection.setStatusDate(ctCollection.getStatusDate());
-
-		return collection;
+		return new Collection() {
+			{
+				additionCount = ctEntriesChangeTypes.getOrDefault(
+					CTConstants.CT_CHANGE_TYPE_ADDITION, 0L);
+				collectionId = ctCollection.getCtCollectionId();
+				companyId = ctCollection.getCompanyId();
+				deletionCount = ctEntriesChangeTypes.getOrDefault(
+					CTConstants.CT_CHANGE_TYPE_DELETION, 0L);
+				description = ctCollection.getDescription();
+				modificationCount = ctEntriesChangeTypes.getOrDefault(
+					CTConstants.CT_CHANGE_TYPE_MODIFICATION, 0L);
+				name = ctCollection.getName();
+				statusByUserName = ctCollection.getStatusByUserName();
+				statusDate = ctCollection.getStatusDate();
+			}
+		};
 	}
 
 	private Response _noContent() {
