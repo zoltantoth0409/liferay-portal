@@ -84,11 +84,10 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 		Optional<CTCollection> ctCollectionOptional =
 			_ctEngineManager.getCTCollectionOptional(collectionId);
 
-		CTCollection ctCollection = ctCollectionOptional.orElseThrow(
-			() -> new NoSuchModelException(
-				"Unable to get collection " + collectionId));
-
-		return _toCollection(ctCollection);
+		return _toCollection(
+			ctCollectionOptional.orElseThrow(
+				() -> new NoSuchModelException(
+					"Unable to get collection " + collectionId)));
 	}
 
 	@Override
