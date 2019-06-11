@@ -93,8 +93,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 		throws Exception {
 
 		_companyLocalService.getCompany(companyId);
-
-		User user = _userLocalService.getUser(userId);
+		_userLocalService.getUser(userId);
 
 		if (!_ctEngineManager.isChangeTrackingEnabled(companyId)) {
 			throw new ChangeTrackingDisabledException(
@@ -104,7 +103,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 		try {
 			Optional<CTCollection> ctCollectionOptional =
 				_ctEngineManager.createCTCollection(
-					user.getUserId(), collectionUpdate.getName(),
+					userId, collectionUpdate.getName(),
 					collectionUpdate.getDescription());
 
 			return ctCollectionOptional.map(
