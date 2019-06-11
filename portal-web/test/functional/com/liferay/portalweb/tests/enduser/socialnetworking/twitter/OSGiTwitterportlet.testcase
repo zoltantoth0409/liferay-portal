@@ -27,6 +27,8 @@ definition {
 
 		Portlet.addPG(portletName = "Twitter");
 
+		AssertConsoleTextNotPresent(value1 = "FrameworkEvent ERROR");
+
 		AntCommand.antCommand(
 			locator1 = "build-test.xml",
 			value1 = "remove-plugin -Dplugin.name=twitter-portlet");
