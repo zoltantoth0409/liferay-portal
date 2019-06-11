@@ -41,7 +41,6 @@ public class InterestTermsJSONObjectMapperTest {
 			_read("get-interests-term.json"));
 
 		Assert.assertNotNull(topic);
-
 		Assert.assertEquals(7, topic.getId());
 		Assert.assertEquals(0.08653350323695352, topic.getId(), _DELTA);
 
