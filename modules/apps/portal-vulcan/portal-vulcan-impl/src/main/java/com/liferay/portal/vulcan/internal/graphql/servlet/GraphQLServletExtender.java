@@ -14,7 +14,6 @@
 
 package com.liferay.portal.vulcan.internal.graphql.servlet;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
@@ -156,6 +155,74 @@ public class GraphQLServletExtender {
 		_serviceTracker.close();
 	}
 
+	private Object _get(
+			DataFetchingEnvironment dataFetchingEnvironment, Method method)
+		throws Exception {
+
+		Class<?> clazz = method.getDeclaringClass();
+
+		Object instance = clazz.newInstance();
+
+		GraphQLContext graphQLContext = dataFetchingEnvironment.getContext();
+
+		Optional<HttpServletRequest> httpServletRequestOptional =
+			graphQLContext.getHttpServletRequest();
+
+		for (Field field : clazz.getDeclaredFields()) {
+			if (Modifier.isStatic(field.getModifiers()) ||
+				Modifier.isFinal(field.getModifiers())) {
+
+				continue;
+			}
+
+			Class<?> fieldType = field.getType();
+
+			if (fieldType.isAssignableFrom(AcceptLanguage.class)) {
+				field.setAccessible(true);
+
+				field.set(
+					instance,
+					new AcceptLanguageImpl(
+						httpServletRequestOptional.orElse(null), _language,
+						_portal));
+			}
+			else if (fieldType.isAssignableFrom(Company.class)) {
+				field.setAccessible(true);
+
+				field.set(
+					instance,
+					_companyLocalService.getCompany(
+						CompanyThreadLocal.getCompanyId()));
+			}
+		}
+
+		Parameter[] parameters = method.getParameters();
+
+		Map<String, Object> arguments = dataFetchingEnvironment.getArguments();
+
+		Object[] args = new Object[arguments.size()];
+
+		for (int i = 0; i < args.length; i++) {
+			Parameter parameter = parameters[i];
+
+			String parameterName = null;
+
+			GraphQLName graphQLName = parameter.getAnnotation(
+				GraphQLName.class);
+
+			if (graphQLName == null) {
+				parameterName = NamingKit.toGraphqlName(parameter.getName());
+			}
+			else {
+				parameterName = NamingKit.toGraphqlName(graphQLName.value());
+			}
+
+			args[i] = arguments.get(parameterName);
+		}
+
+		return method.invoke(instance, args);
+	}
+
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -220,74 +287,9 @@ public class GraphQLServletExtender {
 		@Override
 		public Object get(DataFetchingEnvironment dataFetchingEnvironment) {
 			try {
-				Class<?> clazz = _method.getDeclaringClass();
-
-				Object instance = clazz.newInstance();
-
-				GraphQLContext graphQLContext =
-					dataFetchingEnvironment.getContext();
-
-				Optional<HttpServletRequest> httpServletRequestOptional =
-					graphQLContext.getHttpServletRequest();
-
-				for (Field field : clazz.getDeclaredFields()) {
-					if (Modifier.isStatic(field.getModifiers()) ||
-						Modifier.isFinal(field.getModifiers())) {
-
-						continue;
-					}
-
-					Class<?> fieldType = field.getType();
-
-					if (fieldType.isAssignableFrom(AcceptLanguage.class)) {
-						field.setAccessible(true);
-
-						field.set(
-							instance,
-							new AcceptLanguageImpl(
-								httpServletRequestOptional.orElse(null),
-								_language, _portal));
-					}
-					else if (fieldType.isAssignableFrom(Company.class)) {
-						field.setAccessible(true);
-
-						field.set(
-							instance,
-							_companyLocalService.getCompany(
-								CompanyThreadLocal.getCompanyId()));
-					}
-				}
-
-				Parameter[] parameters = _method.getParameters();
-
-				Map<String, Object> arguments =
-					dataFetchingEnvironment.getArguments();
-
-				Object[] args = new Object[arguments.size()];
-
-				for (int i = 0; i < args.length; i++) {
-					Parameter parameter = parameters[i];
-
-					String parameterName = null;
-
-					GraphQLName graphQLName = parameter.getAnnotation(
-						GraphQLName.class);
-
-					if (graphQLName == null) {
-						parameterName = NamingKit.toGraphqlName(
-							parameter.getName());
-					}
-					else {
-						parameterName = NamingKit.toGraphqlName(
-							graphQLName.value());
-					}
-
-					args[i] = arguments.get(parameterName);
-				}
-
-				return _method.invoke(instance, args);
+				return _get(dataFetchingEnvironment, _method);
 			}
-			catch (PortalException | ReflectiveOperationException e) {
+			catch (Exception e) {
 				throw new RuntimeException(e);
 			}
 		}
