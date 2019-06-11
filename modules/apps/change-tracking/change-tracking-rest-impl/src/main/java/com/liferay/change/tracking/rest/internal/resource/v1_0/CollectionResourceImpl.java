@@ -23,7 +23,7 @@ import com.liferay.change.tracking.rest.dto.v1_0.Collection;
 import com.liferay.change.tracking.rest.dto.v1_0.CollectionUpdate;
 import com.liferay.change.tracking.rest.internal.jaxrs.exception.CannotCreateCollectionException;
 import com.liferay.change.tracking.rest.internal.jaxrs.exception.CannotDeleteCollectionException;
-import com.liferay.change.tracking.rest.internal.jaxrs.exception.ChangeTrackingNotEnabledException;
+import com.liferay.change.tracking.rest.internal.jaxrs.exception.ChangeTrackingDisabledException;
 import com.liferay.change.tracking.rest.resource.v1_0.CollectionResource;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -104,7 +104,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 			"content.Language", user.getLocale(), getClass());
 
 		if (!_ctEngineManager.isChangeTrackingEnabled(companyId)) {
-			throw new ChangeTrackingNotEnabledException(
+			throw new ChangeTrackingDisabledException(
 				"Unable to create change tracking collection, change " +
 					"tracking is disabled in the company with id " + companyId);
 		}

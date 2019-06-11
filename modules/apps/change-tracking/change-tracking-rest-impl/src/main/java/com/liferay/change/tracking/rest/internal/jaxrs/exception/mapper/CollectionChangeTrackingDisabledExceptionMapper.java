@@ -14,7 +14,7 @@
 
 package com.liferay.change.tracking.rest.internal.jaxrs.exception.mapper;
 
-import com.liferay.change.tracking.rest.internal.jaxrs.exception.ChangeTrackingNotEnabledException;
+import com.liferay.change.tracking.rest.internal.jaxrs.exception.ChangeTrackingDisabledException;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -29,15 +29,15 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.application.select=(osgi.jaxrs.name=Liferay.Change.Tracking.REST)",
 		"osgi.jaxrs.extension=true",
-		"osgi.jaxrs.name=Liferay.Change.Tracking.REST.CollectionChangeTrackingNotEnabledExceptionMapper"
+		"osgi.jaxrs.name=Liferay.Change.Tracking.REST.CollectionChangeTrackingDisabledExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )
-public class CollectionChangeTrackingNotEnabledExceptionMapper
-	implements ExceptionMapper<ChangeTrackingNotEnabledException> {
+public class CollectionChangeTrackingDisabledExceptionMapper
+	implements ExceptionMapper<ChangeTrackingDisabledException> {
 
 	@Override
-	public Response toResponse(ChangeTrackingNotEnabledException ctnee) {
+	public Response toResponse(ChangeTrackingDisabledException ctnee) {
 		return Response.status(
 			Response.Status.CONFLICT
 		).type(
