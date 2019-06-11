@@ -55,10 +55,10 @@ public class Topic {
 	public String toString() {
 		StringBundler sb = new StringBundler(7);
 
-		sb.append("{terms=");
-		sb.append(_terms);
-		sb.append(", id=");
+		sb.append("{id=");
 		sb.append(_id);
+		sb.append(", terms=");
+		sb.append(_terms);
 		sb.append(", weight=");
 		sb.append(_weight);
 		sb.append("}");
