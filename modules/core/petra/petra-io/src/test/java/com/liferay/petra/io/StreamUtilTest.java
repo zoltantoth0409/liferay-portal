@@ -89,7 +89,7 @@ public class StreamUtilTest {
 	@Test
 	public void testToByteArray() throws IOException {
 
-		// Null InputStream
+		// Null input stream
 
 		Assert.assertNull(StreamUtil.toByteArray(null));
 
@@ -125,7 +125,7 @@ public class StreamUtilTest {
 	@Test
 	public void testToString() throws IOException {
 
-		// Null InputStream
+		// Null input stream
 
 		Assert.assertNull(StreamUtil.toString(null));
 
