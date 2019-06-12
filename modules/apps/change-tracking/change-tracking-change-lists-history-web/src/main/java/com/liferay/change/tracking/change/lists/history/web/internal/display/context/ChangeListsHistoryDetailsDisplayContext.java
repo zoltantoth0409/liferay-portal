@@ -99,7 +99,7 @@ public class ChangeListsHistoryDetailsDisplayContext {
 	}
 
 	public String getClearResultsActionURL() {
-		return _getIteratorURL().toString();
+		return String.valueOf(_getIteratorURL());
 	}
 
 	public SearchContainer<CTEntry> getCTCollectionSearchContainer(
@@ -163,7 +163,7 @@ public class ChangeListsHistoryDetailsDisplayContext {
 	}
 
 	public String getSearchActionURL() {
-		return _getKeywordsURL().toString();
+		return String.valueOf(_getKeywordsURL());
 	}
 
 	public String getSortingURL() {
