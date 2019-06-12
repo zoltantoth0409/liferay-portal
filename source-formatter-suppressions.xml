@@ -68,6 +68,7 @@
 		<suppress checks="VariableNameCheck" files="modules/private/.*" />
 	</checkstyle>
 	<source-check>
+		<suppress checks="CDNCheck" files="test\.properties" />
 		<suppress checks="JavaCleanUpMethodVariablesCheck" files="util-taglib/src/com/liferay/taglib/util/IncludeTag\.java" />
 		<suppress checks="JavaCombineLinesCheck" files="portal-impl/src/com/liferay/portal/action/EditLayoutAction\.java" />
 		<suppress checks="JavaCombineLinesCheck" files="portal-impl/src/com/liferay/portal/model/impl/LayoutImpl\.java" />
@@ -110,6 +111,10 @@
 		<suppress checks="LocaleUtilCheck" files="portal-kernel/src/com/liferay/portal/kernel/util/LocaleUtil\.java" />
 		<suppress checks="LocaleUtilCheck" files="portal-kernel/test/unit/com/liferay/portal/kernel/util/LocaleUtilTest\.java" />
 		<suppress checks="MethodCallsOrderCheck" files="portal-impl/src/com/liferay/portal/util/PortalImpl\.java" />
+		<suppress checks="PropertiesEmptyLinesCheck" files="build\.properties" />
+		<suppress checks="PropertiesLongLinesCheck" files="portal-impl/src/system\.properties" />
+		<suppress checks="PropertiesSourceFormatterFileCheck" files="source-formatter\.properties" />
+		<suppress checks="PropertiesWhitespaceCheck" files="build\.properties" />
 		<suppress checks="ResourceBundleCheck" files="portal-kernel/src/com/liferay/portal/kernel/util/ClassResourceBundleLoader\.java" />
 		<suppress checks="ResourceBundleCheck" files="portal-kernel/src/com/liferay/portal/kernel/util/ResourceBundleUtil\.java" />
 		<suppress checks="XMLIndentationCheck" files="tools/jalopy\.xml" />
