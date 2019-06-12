@@ -21,12 +21,10 @@ SearchContainer<CTCollection> ctCollectionSearchContainer = changeListsDisplayCo
 
 DisplayTerms displayTerms = ctCollectionSearchContainer.getDisplayTerms();
 
-String title = LanguageUtil.get(request, "select-change-list");
-
-portletDisplay.setTitle(title);
-renderResponse.setTitle(title);
-
 PortletURL portletURL = PortletURLFactoryUtil.create(request, CTPortletKeys.CHANGE_LISTS, PortletRequest.RENDER_PHASE);
+
+portletDisplay.setTitle(LanguageUtil.get(request, "select-change-list"));
+renderResponse.setTitle(LanguageUtil.get(request, "select-change-list"));
 %>
 
 <liferay-ui:success key='<%= portletDisplay.getPortletName() + "checkoutProductionSuccess" %>' message="production-checked-out-success-message" />
