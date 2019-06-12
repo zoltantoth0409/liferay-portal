@@ -220,6 +220,7 @@ definition {
 		PageTemplate.viewDefaultCP(pageTemplateNameList = "Blog,Content Display Page,Wiki");
 	}
 
+	@description = "This is a use case for LPS-54099."
 	@priority = "5"
 	test EditPageTemplate {
 		property portal.acceptance = "true";
@@ -232,6 +233,27 @@ definition {
 		PageTemplate.addCP(
 			pageTemplateActive = "Yes",
 			pageTemplateName = "Page Template Name");
+
+		PageTemplate.gotoPageTemplateViaEdit(pageTemplateName = "Page Template Name");
+
+		var siteName = TestCase.getSiteName(siteName = "${siteName}");
+
+		SelectWindow(locator1 = "title=Page Template Name - ${siteName}");
+
+		Portlet.addPG(portletName = "Calendar");
+
+		CalendarNavigator.gotoConfiguration();
+
+		CalendarConfiguration.selectWeekStartsOn(weekStartDay = "Saturday");
+
+		PortletEntry.save();
+
+		Close.closeWindow(locator1 = "title=Page Template Name - ${siteName}");
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Page Templates");
 
 		PageTemplate.editCP(
 			pageTemplateActive = "No",
