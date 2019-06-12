@@ -2596,7 +2596,7 @@ public class PortletImpl extends PortletBaseImpl {
 		Readiness readiness = _readinessMap.get(getRootPortletId());
 
 		if (readiness == null) {
-			return true;
+			return false;
 		}
 
 		return readiness._ready;
