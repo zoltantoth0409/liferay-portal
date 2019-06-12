@@ -96,7 +96,7 @@ public class AssetDisplayPageFormProcessorTest {
 	}
 
 	@Test
-	public void testProcessUpdateDisplayPageFromSpecificToDefaultExisting()
+	public void testProcessUpdateAssetDisplayPageFromSpecificToDefaultExisting()
 		throws Exception {
 
 		long classNameId = _portal.getClassNameId(
@@ -146,7 +146,7 @@ public class AssetDisplayPageFormProcessorTest {
 	}
 
 	@Test
-	public void testProcessUpdateDisplayPageFromSpecificToDefaultNonexisting()
+	public void testProcessUpdateAssetDisplayPageFromSpecificToDefaultNonexisting()
 		throws Exception {
 
 		_withAndWithoutAssetEntry(
@@ -182,7 +182,7 @@ public class AssetDisplayPageFormProcessorTest {
 	}
 
 	@Test
-	public void testProcessUpdateDisplayPageFromSpecificToNone()
+	public void testProcessUpdateAssetDisplayPageFromSpecificToNone()
 		throws Exception {
 
 		_withAndWithoutAssetEntry(
@@ -212,7 +212,7 @@ public class AssetDisplayPageFormProcessorTest {
 	}
 
 	@Test
-	public void testProcessWithDefaultDisplayPage() throws Exception {
+	public void testProcessWithDefaultAssetDisplayPage() throws Exception {
 		long classNameId = _portal.getClassNameId(
 			DLFileEntryConstants.getClassName());
 
@@ -251,7 +251,7 @@ public class AssetDisplayPageFormProcessorTest {
 	}
 
 	@Test
-	public void testProcessWithDefaultNonexistingDisplayPage()
+	public void testProcessWithDefaultNonexistingAssetDisplayPage()
 		throws Exception {
 
 		long classNameId = _portal.getClassNameId(
@@ -318,7 +318,7 @@ public class AssetDisplayPageFormProcessorTest {
 	}
 
 	@Test
-	public void testProcessWithNoDisplayPage() throws Exception {
+	public void testProcessWithNoAssetDisplayPage() throws Exception {
 		_withAndWithoutAssetEntry(
 			fileEntry -> {
 				_assetDisplayPageEntryFormProcessor.process(
@@ -339,7 +339,7 @@ public class AssetDisplayPageFormProcessorTest {
 	}
 
 	@Test
-	public void testProcessWithSpecificDisplayPage() throws Exception {
+	public void testProcessWithSpecificAssetDisplayPage() throws Exception {
 		_withAndWithoutAssetEntry(
 			fileEntry -> {
 				_assetDisplayPageEntryFormProcessor.process(
