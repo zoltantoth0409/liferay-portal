@@ -773,7 +773,12 @@ public class KBTemplateModelImpl
 	@Override
 	public KBTemplate toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, KBTemplate>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1010,8 +1015,12 @@ public class KBTemplateModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, KBTemplate>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, KBTemplate>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private String _uuid;
 	private String _originalUuid;

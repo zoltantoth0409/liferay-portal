@@ -789,7 +789,12 @@ public class AssetTagModelImpl
 	@Override
 	public AssetTag toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, AssetTag>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1019,8 +1024,12 @@ public class AssetTagModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, AssetTag>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, AssetTag>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private String _uuid;
 	private String _originalUuid;

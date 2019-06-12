@@ -587,7 +587,12 @@ public class SyncDLFileVersionDiffModelImpl
 	@Override
 	public SyncDLFileVersionDiff toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, SyncDLFileVersionDiff>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -791,8 +796,12 @@ public class SyncDLFileVersionDiffModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, SyncDLFileVersionDiff>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, SyncDLFileVersionDiff>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _syncDLFileVersionDiffId;
 	private long _fileEntryId;

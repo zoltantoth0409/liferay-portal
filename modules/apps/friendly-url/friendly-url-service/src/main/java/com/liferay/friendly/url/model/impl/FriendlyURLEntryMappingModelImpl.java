@@ -509,7 +509,12 @@ public class FriendlyURLEntryMappingModelImpl
 	@Override
 	public FriendlyURLEntryMapping toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, FriendlyURLEntryMapping>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -690,8 +695,14 @@ public class FriendlyURLEntryMappingModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, FriendlyURLEntryMapping>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, FriendlyURLEntryMapping>
+				_escapedModelProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private long _mvccVersion;
 	private long _friendlyURLEntryMappingId;

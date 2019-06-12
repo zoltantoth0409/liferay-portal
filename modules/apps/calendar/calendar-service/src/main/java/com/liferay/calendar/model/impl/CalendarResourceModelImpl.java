@@ -1338,7 +1338,12 @@ public class CalendarResourceModelImpl
 	@Override
 	public CalendarResource toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, CalendarResource>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1622,8 +1627,12 @@ public class CalendarResourceModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, CalendarResource>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, CalendarResource>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private String _uuid;
 	private String _originalUuid;

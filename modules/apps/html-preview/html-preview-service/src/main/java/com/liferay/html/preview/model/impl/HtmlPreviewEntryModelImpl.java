@@ -698,7 +698,12 @@ public class HtmlPreviewEntryModelImpl
 	@Override
 	public HtmlPreviewEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, HtmlPreviewEntry>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -912,8 +917,12 @@ public class HtmlPreviewEntryModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, HtmlPreviewEntry>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, HtmlPreviewEntry>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _htmlPreviewEntryId;
 	private long _groupId;

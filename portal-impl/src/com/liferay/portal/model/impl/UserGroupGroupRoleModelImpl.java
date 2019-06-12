@@ -518,7 +518,12 @@ public class UserGroupGroupRoleModelImpl
 	@Override
 	public UserGroupGroupRole toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, UserGroupGroupRole>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -690,8 +695,12 @@ public class UserGroupGroupRoleModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, UserGroupGroupRole>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, UserGroupGroupRole>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _mvccVersion;
 	private long _userGroupId;

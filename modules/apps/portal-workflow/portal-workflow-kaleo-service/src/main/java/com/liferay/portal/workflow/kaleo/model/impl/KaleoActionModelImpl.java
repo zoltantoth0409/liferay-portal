@@ -993,7 +993,12 @@ public class KaleoActionModelImpl
 	@Override
 	public KaleoAction toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, KaleoAction>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1297,8 +1302,12 @@ public class KaleoActionModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, KaleoAction>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, KaleoAction>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _kaleoActionId;
 	private long _groupId;

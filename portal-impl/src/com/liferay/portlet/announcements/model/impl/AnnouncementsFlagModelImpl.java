@@ -590,7 +590,12 @@ public class AnnouncementsFlagModelImpl
 	@Override
 	public AnnouncementsFlag toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, AnnouncementsFlag>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -791,8 +796,12 @@ public class AnnouncementsFlagModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, AnnouncementsFlag>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, AnnouncementsFlag>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _flagId;
 	private long _companyId;

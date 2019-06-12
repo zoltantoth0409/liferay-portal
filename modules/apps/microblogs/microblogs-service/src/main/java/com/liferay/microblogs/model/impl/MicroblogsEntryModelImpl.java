@@ -890,7 +890,12 @@ public class MicroblogsEntryModelImpl
 	@Override
 	public MicroblogsEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, MicroblogsEntry>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1141,8 +1146,12 @@ public class MicroblogsEntryModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, MicroblogsEntry>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, MicroblogsEntry>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _microblogsEntryId;
 	private long _companyId;

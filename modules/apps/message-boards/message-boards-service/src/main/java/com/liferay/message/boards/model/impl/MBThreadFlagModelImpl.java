@@ -701,7 +701,12 @@ public class MBThreadFlagModelImpl
 	@Override
 	public MBThreadFlag toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, MBThreadFlag>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -933,8 +938,12 @@ public class MBThreadFlagModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, MBThreadFlag>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, MBThreadFlag>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private String _uuid;
 	private String _originalUuid;

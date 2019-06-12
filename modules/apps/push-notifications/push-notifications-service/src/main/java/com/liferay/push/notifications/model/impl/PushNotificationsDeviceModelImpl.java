@@ -623,7 +623,12 @@ public class PushNotificationsDeviceModelImpl
 	@Override
 	public PushNotificationsDevice toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, PushNotificationsDevice>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -825,8 +830,14 @@ public class PushNotificationsDeviceModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, PushNotificationsDevice>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, PushNotificationsDevice>
+				_escapedModelProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private long _pushNotificationsDeviceId;
 	private long _companyId;

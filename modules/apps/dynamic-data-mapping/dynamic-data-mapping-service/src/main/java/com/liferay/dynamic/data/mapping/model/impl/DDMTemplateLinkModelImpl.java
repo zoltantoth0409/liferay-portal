@@ -497,7 +497,12 @@ public class DDMTemplateLinkModelImpl
 	@Override
 	public DDMTemplateLink toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, DDMTemplateLink>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -674,8 +679,12 @@ public class DDMTemplateLinkModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, DDMTemplateLink>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, DDMTemplateLink>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _templateLinkId;
 	private long _companyId;

@@ -451,7 +451,12 @@ public class ExpandoTableModelImpl
 	@Override
 	public ExpandoTable toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, ExpandoTable>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -628,8 +633,12 @@ public class ExpandoTableModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, ExpandoTable>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, ExpandoTable>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _tableId;
 	private long _companyId;

@@ -755,7 +755,12 @@ public class SubscriptionModelImpl
 	@Override
 	public Subscription toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, Subscription>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -985,8 +990,12 @@ public class SubscriptionModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, Subscription>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, Subscription>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _mvccVersion;
 	private long _subscriptionId;

@@ -590,7 +590,12 @@ public class ResourceTypePermissionModelImpl
 	@Override
 	public ResourceTypePermission toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, ResourceTypePermission>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -788,8 +793,12 @@ public class ResourceTypePermissionModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, ResourceTypePermission>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, ResourceTypePermission>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _mvccVersion;
 	private long _resourceTypePermissionId;

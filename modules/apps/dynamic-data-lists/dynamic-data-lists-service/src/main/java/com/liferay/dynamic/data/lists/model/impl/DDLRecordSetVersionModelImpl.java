@@ -1357,7 +1357,12 @@ public class DDLRecordSetVersionModelImpl
 	@Override
 	public DDLRecordSetVersion toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, DDLRecordSetVersion>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1620,8 +1625,12 @@ public class DDLRecordSetVersionModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, DDLRecordSetVersion>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, DDLRecordSetVersion>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _recordSetVersionId;
 	private long _groupId;

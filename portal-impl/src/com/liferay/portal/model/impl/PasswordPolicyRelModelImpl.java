@@ -536,7 +536,12 @@ public class PasswordPolicyRelModelImpl
 	@Override
 	public PasswordPolicyRel toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, PasswordPolicyRel>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -718,8 +723,12 @@ public class PasswordPolicyRelModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, PasswordPolicyRel>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, PasswordPolicyRel>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _mvccVersion;
 	private long _passwordPolicyRelId;

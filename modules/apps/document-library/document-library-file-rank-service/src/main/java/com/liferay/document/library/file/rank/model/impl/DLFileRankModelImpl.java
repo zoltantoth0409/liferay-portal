@@ -582,7 +582,12 @@ public class DLFileRankModelImpl
 	@Override
 	public DLFileRank toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, DLFileRank>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -777,8 +782,12 @@ public class DLFileRankModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, DLFileRank>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, DLFileRank>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _fileRankId;
 	private long _groupId;

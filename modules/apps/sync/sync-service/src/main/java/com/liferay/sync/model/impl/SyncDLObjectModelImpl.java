@@ -1495,7 +1495,12 @@ public class SyncDLObjectModelImpl
 	@Override
 	public SyncDLObject toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, SyncDLObject>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1881,8 +1886,12 @@ public class SyncDLObjectModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, SyncDLObject>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, SyncDLObject>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _syncDLObjectId;
 	private long _companyId;
