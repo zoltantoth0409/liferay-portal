@@ -225,12 +225,12 @@ public class ChangeListsHistoryDetailsDisplayContext {
 		}
 
 		iteratorURL.setParameter(
-			"ctCollectionId", String.valueOf(ctCollectionId));
-		iteratorURL.setParameter("backURL", backURL);
-		iteratorURL.setParameter("displayStyle", "list");
-		iteratorURL.setParameter(
 			"mvcRenderCommandName", "/change_lists_history/view_details");
 		iteratorURL.setParameter("redirect", currentURL.toString());
+		iteratorURL.setParameter("backURL", backURL);
+		iteratorURL.setParameter(
+			"ctCollectionId", String.valueOf(ctCollectionId));
+		iteratorURL.setParameter("displayStyle", "list");
 
 		return iteratorURL;
 	}
@@ -240,9 +240,9 @@ public class ChangeListsHistoryDetailsDisplayContext {
 
 		PortletURL portletURL = _getIteratorURL();
 
-		portletURL.setParameter("keywords", keywords);
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/change_lists_history/view_details");
+		portletURL.setParameter("keywords", keywords);
 
 		return portletURL;
 	}
