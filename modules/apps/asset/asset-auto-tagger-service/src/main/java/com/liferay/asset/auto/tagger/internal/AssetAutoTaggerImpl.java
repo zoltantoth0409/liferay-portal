@@ -62,7 +62,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class AssetAutoTaggerImpl implements AssetAutoTagger {
 
-	public Set<String> getClassNameSet() {
+	public Set<String> getClassNames() {
 		ServiceTrackerMap<String, List<AssetAutoTagProvider<?>>>
 			serviceTrackerMap = _getServiceTrackerMap();
 

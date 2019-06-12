@@ -94,7 +94,7 @@ public class AssetAutoTaggerOSGiCommands {
 
 		if (ArrayUtil.isEmpty(classNames)) {
 			Set<String> classNamesSet = new HashSet<>(
-				_assetAutoTaggerImpl.getClassNameSet());
+				_assetAutoTaggerImpl.getClassNames());
 
 			classNamesSet.remove("*");
 
