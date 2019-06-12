@@ -115,7 +115,7 @@ public class PageAttachmentWikiUploadFileEntryHandler
 			return mimeTypes;
 		}
 
-		ArrayList<String> validMimeTypes = new ArrayList<>();
+		List<String> validMimeTypes = new ArrayList<>();
 
 		for (String mimeType : mimeTypes) {
 			if (wikiAttachmentMimeTypes.contains(mimeType)) {
