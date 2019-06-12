@@ -133,7 +133,22 @@ public class StartupAction extends SimpleAction {
 
 		// Check required schema version
 
-		StartupHelperUtil.verifyRequiredSchemaVersion();
+		if (_log.isDebugEnabled()) {
+			_log.debug("Check required portal core schema version");
+		}
+
+		if (!PortalUpgradeProcess.isInRequiredSchemaVersion(
+				DataAccess.getConnection())) {
+
+			String msg =
+				"You must first upgrade the portal core to the required " +
+					"schema version " +
+						PortalUpgradeProcess.getRequiredSchemaVersion();
+
+			System.out.println(msg);
+
+			throw new RuntimeException(msg);
+		}
 
 		Registry registry = RegistryUtil.getRegistry();
 
