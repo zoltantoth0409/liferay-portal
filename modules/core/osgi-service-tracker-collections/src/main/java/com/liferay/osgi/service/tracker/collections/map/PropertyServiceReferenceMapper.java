@@ -36,13 +36,13 @@ public class PropertyServiceReferenceMapper<T, S>
 			return;
 		}
 
-		if (propertyValue instanceof Object[]) {
-			for (T t : (T[])propertyValue) {
+		if (propertyValue instanceof Collection) {
+			for (T t : (Collection<T>)propertyValue) {
 				emitter.emit(t);
 			}
 		}
-		else if (propertyValue instanceof Collection) {
-			for (T t : (Collection<T>)propertyValue) {
+		else if (propertyValue instanceof Object[]) {
+			for (T t : (T[])propertyValue) {
 				emitter.emit(t);
 			}
 		}
