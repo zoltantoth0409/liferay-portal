@@ -59,10 +59,6 @@
 		<suppress checks="SubnameCheck" files="portal-kernel/test/unit/com/liferay/portal/kernel/util/ListUtilTest\.java" />
 		<suppress checks="TransactionalTestRuleCheck" files=".*" />
 		<suppress checks="ValidatorIsNullCheck" files="portal-impl/src/com/liferay/portal/service/persistence/impl/UserFinderImpl\.java" />
-
-		<!-- Temporary suppressions for private repos and subrepos -->
-
-		<suppress checks="VariableNameCheck" files="modules/private/.*" />
 	</checkstyle>
 	<source-check>
 		<suppress checks="CDNCheck" files="test\.properties" />
@@ -125,30 +121,5 @@
 		<suppress checks="XMLServiceEntityNameCheck" files="portal-impl/src/com/liferay/mail/service\.xml" />
 		<suppress checks="XMLServiceEntityNameCheck" files="portal-impl/src/com/liferay/portal/service\.xml" />
 		<suppress checks="XMLServiceEntityNameCheck" files="portal-impl/src/com/liferay/portlet/exportimport/service\.xml" />
-
-		<!-- Temporary suppressions for private repos and subrepos -->
-
-		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-asah/.*" />
-		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-lcs/.*" />
-		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-loop/.*" />
-		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-testray/.*" />
-		<suppress checks="JavaModuleComponentCheck" files="modules/private/apps/osb-lcs/.*" />
-		<suppress checks="JavaModuleComponentCheck" files="modules/private/apps/osb-testray/.*" />
-		<suppress checks="JavaServiceObjectCheck" files="modules/private/.*" />
-		<suppress checks="JSPTagAttributesCheck" files="modules/private/.*" />
-		<suppress checks="PropertiesLiferayPluginPackageLiferayVersionsCheck" files="modules/private/apps/osb-asah/.*" />
-		<suppress checks="PropertiesLiferayPluginPackageLiferayVersionsCheck" files="modules/private/apps/osb-cerebro/.*" />
-		<suppress checks="PropertiesLiferayPluginPackageLiferayVersionsCheck" files="modules/private/apps/osb-customer/.*" />
-		<suppress checks="PropertiesLiferayPluginPackageLiferayVersionsCheck" files="modules/private/apps/osb-faro/.*" />
-		<suppress checks="PropertiesLiferayPluginPackageLiferayVersionsCheck" files="modules/private/apps/osb-lcs/.*" />
-		<suppress checks="PropertiesLiferayPluginPackageLiferayVersionsCheck" files="modules/private/apps/osb-loop/.*" />
-		<suppress checks="PropertiesLiferayPluginPackageLiferayVersionsCheck" files="modules/private/apps/osb-testray/.*" />
-		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/apps/osb-asah/.*" />
-		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/apps/osb-cerebro/.*" />
-		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/apps/osb-customer/.*" />
-		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/apps/osb-faro/.*" />
-		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/apps/osb-lcs/.*" />
-		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/apps/osb-loop/.*" />
-		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/apps/osb-testray/.*" />
 	</source-check>
 </suppressions>
