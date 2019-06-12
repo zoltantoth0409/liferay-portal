@@ -70,6 +70,15 @@ public class DocumentResourceTest extends BaseDocumentResourceTestCase {
 	}
 
 	@Override
+	protected Document randomDocument() throws Exception {
+		Document document = super.randomDocument();
+
+		document.setViewableBy(Document.ViewableBy.ANYONE);
+
+		return document;
+	}
+
+	@Override
 	protected Long testGetDocumentFolderDocumentsPage_getDocumentFolderId()
 		throws Exception {
 
