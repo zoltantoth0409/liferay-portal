@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author	  Daniel Kocsis
+ * @author	  Brian Wing Shun Chan
  * @generated
  */
 public class CTCollectionTable {
@@ -37,37 +37,36 @@ public class CTCollectionTable {
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
-		new HashMap<String, Integer>();
+new HashMap<String, Integer>();
 
-	static {
-		TABLE_COLUMNS_MAP.put("ctCollectionId", Types.BIGINT);
+static {
+TABLE_COLUMNS_MAP.put("ctCollectionId", Types.BIGINT);
 
-		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 
-		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
 
-		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 
-		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 
-		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
 
-		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
+TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 
-		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
+TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 
-		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
+TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 
-		TABLE_COLUMNS_MAP.put("statusByUserId", Types.BIGINT);
+TABLE_COLUMNS_MAP.put("statusByUserId", Types.BIGINT);
 
-		TABLE_COLUMNS_MAP.put("statusByUserName", Types.VARCHAR);
+TABLE_COLUMNS_MAP.put("statusByUserName", Types.VARCHAR);
 
-		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
+TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 
-	}
-
+}
 	public static final String TABLE_SQL_CREATE =
-		"create table CTCollection (ctCollectionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(200) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+"create table CTCollection (ctCollectionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(200) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 
 	public static final String TABLE_SQL_DROP = "drop table CTCollection";
 
