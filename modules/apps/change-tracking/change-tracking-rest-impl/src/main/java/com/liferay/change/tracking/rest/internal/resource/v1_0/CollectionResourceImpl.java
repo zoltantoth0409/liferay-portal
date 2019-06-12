@@ -141,7 +141,9 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 
 		_ctEngineManager.checkoutCTCollection(userId, collectionId);
 
-		return _accepted();
+		Response.ResponseBuilder responseBuilder = Response.accepted();
+
+		return responseBuilder.build();
 	}
 
 	@Override
@@ -154,10 +156,6 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 		_ctEngineManager.publishCTCollection(
 			userId, collectionId, ignoreCollision);
 
-		return _accepted();
-	}
-
-	private Response _accepted() {
 		Response.ResponseBuilder responseBuilder = Response.accepted();
 
 		return responseBuilder.build();
