@@ -195,7 +195,7 @@ public abstract class BaseWikiAttachmentImageEditorConfigContributor
 			return dlFileEntryPreviewImageMimeTypes;
 		}
 
-		ArrayList<String> mimeTypes = new ArrayList<>();
+		List<String> mimeTypes = new ArrayList<>();
 
 		for (String mimeType : dlFileEntryPreviewImageMimeTypes) {
 			if (wikiAttachmentMimeTypes.contains(mimeType)) {
