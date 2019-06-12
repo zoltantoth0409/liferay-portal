@@ -131,11 +131,13 @@ public class StartupAction extends SimpleAction {
 			System.exit(1);
 		}
 
-		// Check required schema version
+		// Check required build number
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Check required portal core schema version");
+			_log.debug("Check required build number");
 		}
+
+		DBUpgrader.checkRequiredBuildNumber(ReleaseInfo.getParentBuildNumber());
 
 		if (!PortalUpgradeProcess.isInRequiredSchemaVersion(
 				DataAccess.getConnection())) {
