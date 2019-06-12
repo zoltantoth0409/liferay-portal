@@ -696,7 +696,6 @@ public class FragmentEntryLocalServiceImpl
 
 				dynamicQuery.add(fragmentEntryIdProperty.eq(fragmentEntryId));
 			});
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(FragmentEntryLink fragmentEntryLink) ->
 				_fragmentEntryLinkLocalService.updateLatestChanges(
