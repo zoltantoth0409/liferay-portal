@@ -91,10 +91,6 @@ public class StartupHelperUtil {
 		getStartupHelper().verifyProcess(newBuildNumber, verified);
 	}
 
-	public static void verifyRequiredSchemaVersion() throws Exception {
-		_startupHelper.verifyRequiredSchemaVersion();
-	}
-
 	public void setStartupHelper(StartupHelper startupHelper) {
 		_startupHelper = startupHelper;
 	}
