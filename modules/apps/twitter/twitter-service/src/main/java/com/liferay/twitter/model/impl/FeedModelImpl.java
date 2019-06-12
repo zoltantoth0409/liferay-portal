@@ -618,7 +618,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	@Override
 	public Feed toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, Feed>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -824,8 +829,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, Feed>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, Feed>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _feedId;
 	private long _companyId;

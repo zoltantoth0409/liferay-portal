@@ -1040,7 +1040,12 @@ public class ShoppingCouponModelImpl
 	@Override
 	public ShoppingCoupon toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, ShoppingCoupon>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1319,8 +1324,12 @@ public class ShoppingCouponModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, ShoppingCoupon>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, ShoppingCoupon>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _couponId;
 	private long _groupId;

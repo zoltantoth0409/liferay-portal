@@ -695,7 +695,12 @@ public class ShoppingCartModelImpl
 	@Override
 	public ShoppingCart toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, ShoppingCart>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -917,8 +922,12 @@ public class ShoppingCartModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, ShoppingCart>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, ShoppingCart>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _cartId;
 	private long _groupId;

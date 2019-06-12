@@ -1445,7 +1445,12 @@ public class DDMTemplateVersionModelImpl
 	@Override
 	public DDMTemplateVersion toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, DDMTemplateVersion>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1716,8 +1721,12 @@ public class DDMTemplateVersionModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, DDMTemplateVersion>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, DDMTemplateVersion>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _templateVersionId;
 	private long _groupId;

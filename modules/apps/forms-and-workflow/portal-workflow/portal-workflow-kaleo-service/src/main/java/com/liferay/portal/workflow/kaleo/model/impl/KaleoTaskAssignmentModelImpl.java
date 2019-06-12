@@ -995,7 +995,12 @@ public class KaleoTaskAssignmentModelImpl
 	@Override
 	public KaleoTaskAssignment toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, KaleoTaskAssignment>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1299,8 +1304,12 @@ public class KaleoTaskAssignmentModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, KaleoTaskAssignment>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, KaleoTaskAssignment>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _kaleoTaskAssignmentId;
 	private long _groupId;

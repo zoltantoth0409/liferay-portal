@@ -1059,7 +1059,12 @@ public class MDRRuleGroupModelImpl
 	@Override
 	public MDRRuleGroup toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, MDRRuleGroup>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1296,8 +1301,12 @@ public class MDRRuleGroupModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, MDRRuleGroup>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, MDRRuleGroup>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private String _uuid;
 	private String _originalUuid;

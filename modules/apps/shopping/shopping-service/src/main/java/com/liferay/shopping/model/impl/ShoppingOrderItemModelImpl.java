@@ -682,7 +682,12 @@ public class ShoppingOrderItemModelImpl
 	@Override
 	public ShoppingOrderItem toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, ShoppingOrderItem>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -909,8 +914,12 @@ public class ShoppingOrderItemModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, ShoppingOrderItem>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, ShoppingOrderItem>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _orderItemId;
 	private long _companyId;

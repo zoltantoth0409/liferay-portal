@@ -795,7 +795,12 @@ public class MeetupsEntryModelImpl
 	@Override
 	public MeetupsEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, MeetupsEntry>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1041,8 +1046,12 @@ public class MeetupsEntryModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, MeetupsEntry>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, MeetupsEntry>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _meetupsEntryId;
 	private long _companyId;

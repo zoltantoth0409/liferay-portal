@@ -651,7 +651,12 @@ public class WeDeployAuthTokenModelImpl
 	@Override
 	public WeDeployAuthToken toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, WeDeployAuthToken>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -872,8 +877,12 @@ public class WeDeployAuthTokenModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, WeDeployAuthToken>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, WeDeployAuthToken>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _weDeployAuthTokenId;
 	private long _companyId;

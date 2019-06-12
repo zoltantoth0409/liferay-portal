@@ -1020,7 +1020,12 @@ public class BackgroundTaskModelImpl
 	@Override
 	public BackgroundTask toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, BackgroundTask>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1299,8 +1304,12 @@ public class BackgroundTaskModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, BackgroundTask>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, BackgroundTask>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _mvccVersion;
 	private long _backgroundTaskId;

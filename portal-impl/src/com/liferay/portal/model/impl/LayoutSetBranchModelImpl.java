@@ -1129,7 +1129,12 @@ public class LayoutSetBranchModelImpl
 	@Override
 	public LayoutSetBranch toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, LayoutSetBranch>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -1419,8 +1424,12 @@ public class LayoutSetBranchModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, LayoutSetBranch>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, LayoutSetBranch>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _mvccVersion;
 	private long _layoutSetBranchId;

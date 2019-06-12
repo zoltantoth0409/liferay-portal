@@ -595,7 +595,12 @@ public class JournalContentSearchModelImpl
 	@Override
 	public JournalContentSearch toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = _escapedModelProxyProviderFunction.apply(
+			Function<InvocationHandler, JournalContentSearch>
+				escapedModelProxyProviderFunction =
+					EscapedModelProxyProviderFunctionHolder.
+						_escapedModelProxyProviderFunction;
+
+			_escapedModel = escapedModelProxyProviderFunction.apply(
 				new AutoEscapeBeanHandler(this));
 		}
 
@@ -799,8 +804,12 @@ public class JournalContentSearchModelImpl
 		return sb.toString();
 	}
 
-	private static final Function<InvocationHandler, JournalContentSearch>
-		_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+	private static class EscapedModelProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, JournalContentSearch>
+			_escapedModelProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private long _contentSearchId;
 	private long _groupId;
