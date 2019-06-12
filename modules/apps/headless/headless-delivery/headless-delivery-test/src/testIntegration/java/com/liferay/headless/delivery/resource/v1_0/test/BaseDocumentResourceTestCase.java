@@ -1589,7 +1589,6 @@ public abstract class BaseDocumentResourceTestCase {
 				id = RandomTestUtil.randomLong();
 				sizeInBytes = RandomTestUtil.randomLong();
 				title = RandomTestUtil.randomString();
-				viewableBy = ViewableBy.ANYONE;
 			}
 		};
 	}
