@@ -29,11 +29,11 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.application.select=(osgi.jaxrs.name=Liferay.Change.Tracking.REST)",
 		"osgi.jaxrs.extension=true",
-		"osgi.jaxrs.name=Liferay.Change.Tracking.REST.ChangeTrackingNoSuchUserExceptionMapper"
+		"osgi.jaxrs.name=Liferay.Change.Tracking.REST.NoSuchUserExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )
-public class ChangeTrackingNoSuchUserExceptionMapper
+public class NoSuchUserExceptionMapper
 	implements ExceptionMapper<NoSuchUserException> {
 
 	@Override

@@ -29,11 +29,11 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.application.select=(osgi.jaxrs.name=Liferay.Change.Tracking.REST)",
 		"osgi.jaxrs.extension=true",
-		"osgi.jaxrs.name=Liferay.Change.Tracking.REST.CollectionCannotDeleteCollectionExceptionMapper"
+		"osgi.jaxrs.name=Liferay.Change.Tracking.REST.DeleteCollectionExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )
-public class CollectionCannotDeleteCollectionExceptionMapper
+public class DeleteCollectionExceptionMapper
 	implements ExceptionMapper<CannotDeleteCollectionException> {
 
 	@Override

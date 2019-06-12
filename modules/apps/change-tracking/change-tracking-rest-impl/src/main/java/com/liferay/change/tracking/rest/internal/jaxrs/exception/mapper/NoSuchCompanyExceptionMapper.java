@@ -14,7 +14,7 @@
 
 package com.liferay.change.tracking.rest.internal.jaxrs.exception.mapper;
 
-import com.liferay.change.tracking.rest.internal.jaxrs.exception.ChangeTrackingDisabledException;
+import com.liferay.portal.kernel.exception.NoSuchCompanyException;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -29,21 +29,21 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.application.select=(osgi.jaxrs.name=Liferay.Change.Tracking.REST)",
 		"osgi.jaxrs.extension=true",
-		"osgi.jaxrs.name=Liferay.Change.Tracking.REST.CollectionChangeTrackingDisabledExceptionMapper"
+		"osgi.jaxrs.name=Liferay.Change.Tracking.REST.NoSuchCompanyExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )
-public class CollectionChangeTrackingDisabledExceptionMapper
-	implements ExceptionMapper<ChangeTrackingDisabledException> {
+public class NoSuchCompanyExceptionMapper
+	implements ExceptionMapper<NoSuchCompanyException> {
 
 	@Override
-	public Response toResponse(ChangeTrackingDisabledException ctnee) {
+	public Response toResponse(NoSuchCompanyException nsce) {
 		return Response.status(
-			Response.Status.CONFLICT
+			Response.Status.BAD_REQUEST
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			ctnee.getMessage()
+			nsce.getMessage()
 		).build();
 	}
 
