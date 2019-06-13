@@ -41,15 +41,15 @@ public class ZipReaderImplTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		FileUtil fileUtil = new FileUtil();
-
-		fileUtil.setFile(new FileImpl());
-
 		FastDateFormatFactoryUtil fastDateFormatFactoryUtil =
 			new FastDateFormatFactoryUtil();
 
 		fastDateFormatFactoryUtil.setFastDateFormatFactory(
 			new FastDateFormatFactoryImpl());
+
+		FileUtil fileUtil = new FileUtil();
+
+		fileUtil.setFile(new FileImpl());
 
 		_expectedContent0 = StringUtil.read(
 			DependenciesTestUtil.getDependencyAsInputStream(
@@ -107,15 +107,12 @@ public class ZipReaderImplTest {
 		Assert.assertArrayEquals(
 			_expectedContent0.getBytes(_UTF_8),
 			zipReader.getEntryAsByteArray(_FILE_PATH_0));
-
 		Assert.assertArrayEquals(
 			_expectedContent1.getBytes(_UTF_8),
 			zipReader.getEntryAsByteArray(_FILE_PATH_1));
-
 		Assert.assertArrayEquals(
 			_expectedContent2.getBytes(_UTF_8),
 			zipReader.getEntryAsByteArray(_FILE_PATH_2));
-
 		Assert.assertArrayEquals(
 			_expectedContent3.getBytes(_UTF_8),
 			zipReader.getEntryAsByteArray(_FILE_PATH_3));
