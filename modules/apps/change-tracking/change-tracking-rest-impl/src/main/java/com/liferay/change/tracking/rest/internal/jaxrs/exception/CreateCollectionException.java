@@ -17,9 +17,9 @@ package com.liferay.change.tracking.rest.internal.jaxrs.exception;
 /**
  * @author Máté Thurzó
  */
-public class CannotDeleteCollectionException extends Exception {
+public class CreateCollectionException extends Exception {
 
-	public CannotDeleteCollectionException(String message) {
+	public CreateCollectionException(String message) {
 		super(message);
 	}
 

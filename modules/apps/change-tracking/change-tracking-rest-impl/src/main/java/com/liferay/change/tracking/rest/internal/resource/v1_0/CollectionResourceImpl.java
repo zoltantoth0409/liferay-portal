@@ -21,12 +21,12 @@ import com.liferay.change.tracking.engine.exception.CTCollectionNameCTEngineExce
 import com.liferay.change.tracking.model.CTCollection;
 import com.liferay.change.tracking.rest.dto.v1_0.Collection;
 import com.liferay.change.tracking.rest.dto.v1_0.CollectionUpdate;
-import com.liferay.change.tracking.rest.internal.jaxrs.exception.CannotCreateCollectionException;
-import com.liferay.change.tracking.rest.internal.jaxrs.exception.CannotDeleteCollectionException;
 import com.liferay.change.tracking.rest.internal.jaxrs.exception.ChangeTrackingDisabledException;
 import com.liferay.change.tracking.rest.internal.jaxrs.exception.CollectionDescriptionTooLongException;
 import com.liferay.change.tracking.rest.internal.jaxrs.exception.CollectionNameTooLongException;
 import com.liferay.change.tracking.rest.internal.jaxrs.exception.CollectionNameTooShortException;
+import com.liferay.change.tracking.rest.internal.jaxrs.exception.CreateCollectionException;
+import com.liferay.change.tracking.rest.internal.jaxrs.exception.DeleteCollectionException;
 import com.liferay.change.tracking.rest.resource.v1_0.CollectionResource;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -69,7 +69,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 			collectionId);
 
 		if (ctCollectionOptional.isPresent()) {
-			throw new CannotDeleteCollectionException(
+			throw new DeleteCollectionException(
 				"Unable to delete collection " + collectionId);
 		}
 
@@ -111,7 +111,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 			return ctCollectionOptional.map(
 				this::_toCollection
 			).orElseThrow(
-				() -> new CannotCreateCollectionException(
+				() -> new CreateCollectionException(
 					"Unable to create collection")
 			);
 		}
@@ -130,7 +130,7 @@ public class CollectionResourceImpl extends BaseCollectionResourceImpl {
 					"The collection name is too long");
 			}
 			else {
-				throw new CannotCreateCollectionException(
+				throw new CreateCollectionException(
 					"Unable to create collection");
 			}
 		}
