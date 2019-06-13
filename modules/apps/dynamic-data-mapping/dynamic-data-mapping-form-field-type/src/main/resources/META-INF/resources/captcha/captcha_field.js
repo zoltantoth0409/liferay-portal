@@ -75,9 +75,11 @@ AUI.add(
 
 						var captchaNode = container.one('.captcha');
 
-						var baseURL = captchaNode.attr('src');
+						if (captchaNode) {
+							var baseURL = captchaNode.attr('src');
 
-						captchaNode.attr('src', Lang.String.unescapeEntities(baseURL));
+							captchaNode.attr('src', Lang.String.unescapeEntities(baseURL));
+						}
 					},
 
 					_getContext: function(context) {
