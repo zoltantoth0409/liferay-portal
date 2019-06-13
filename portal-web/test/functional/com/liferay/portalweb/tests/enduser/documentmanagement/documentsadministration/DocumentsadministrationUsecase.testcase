@@ -204,10 +204,7 @@ definition {
 
 		LAR.exportPortlet(larFileName = "DM.portlet.lar");
 
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Control Panel",
-			portlet = "System Settings");
+		SystemSettings.openSystemSettingsAdmin();
 
 		SystemSettings.gotoConfiguration(
 			configurationCategory = "Documents and Media",
@@ -531,10 +528,7 @@ definition {
 	test CheckValidationForFileEntries {
 		property test.name.skip.portal.instance = "DocumentsadministrationUsecase#CheckValidationForFileEntries";
 
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Control Panel",
-			portlet = "System Settings");
+		SystemSettings.openSystemSettingsAdmin();
 
 		SystemSettings.gotoConfiguration(
 			configurationCategory = "Documents and Media",
