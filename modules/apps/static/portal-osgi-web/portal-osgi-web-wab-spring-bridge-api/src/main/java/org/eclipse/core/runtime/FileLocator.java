@@ -35,14 +35,14 @@ import org.osgi.framework.FrameworkUtil;
 public class FileLocator {
 
 	public static URL resolve(URL url) throws IOException {
-		URLConverter converter = _serviceTrackerMap.getService(
+		URLConverter urlConverter = _serviceTrackerMap.getService(
 			url.getProtocol());
 
-		if (converter == null) {
+		if (urlConverter == null) {
 			return url;
 		}
 
-		return converter.resolve(url);
+		return urlConverter.resolve(url);
 	}
 
 	private static final ServiceTrackerMap<String, URLConverter>
