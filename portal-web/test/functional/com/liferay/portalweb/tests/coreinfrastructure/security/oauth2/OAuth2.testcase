@@ -266,7 +266,8 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
-			portlet = "Search");
+			portlet = "Search"
+		);
 
 		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
 
