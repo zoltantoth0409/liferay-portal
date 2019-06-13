@@ -120,10 +120,10 @@ String navigation = ParamUtil.getString(request, "navigation");
 						<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 						<aui:input name="repositoryId" type="hidden" value="<%= repositoryId %>" />
 						<aui:input name="newFolderId" type="hidden" />
-						<aui:input name="selectAll" type="hidden" value="<%= false %>" />
 						<aui:input name="folderId" type="hidden" value="<%= folderId %>" />
 						<aui:input name="changeLog" type="hidden" />
 						<aui:input name="versionIncrease" type="hidden" />
+						<aui:input name="selectAll" type="hidden" value="<%= false %>" />
 
 						<liferay-ui:error exception="<%= AuthenticationRepositoryException.class %>" message="you-cannot-access-the-repository-because-you-are-not-allowed-to-or-it-is-unavailable" />
 						<liferay-ui:error exception="<%= DuplicateFileEntryException.class %>" message="the-folder-you-selected-already-has-an-entry-with-this-name.-please-select-a-different-folder" />
