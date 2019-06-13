@@ -45,8 +45,8 @@ BlogEntriesManagementToolbarDisplayContext blogEntriesManagementToolbarDisplayCo
 	<aui:form action="<%= portletURL.toString() %>" method="get" name="fm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" />
 		<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
-		<aui:input name="selectAll" type="hidden" value="<%= false %>" />
 		<aui:input name="deleteEntryIds" type="hidden" />
+		<aui:input name="selectAll" type="hidden" value="<%= false %>" />
 
 		<liferay-asset:categorization-filter
 			assetType="entries"
