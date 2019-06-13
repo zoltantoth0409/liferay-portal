@@ -45,6 +45,13 @@ public class FileLocator {
 		return converter.resolve(url);
 	}
 
+	/**
+	 * @deprecated As of Mueller (7.2.x), with no replacement
+	 */
+	@Deprecated
+	protected void deactivate() {
+	}
+
 	private static final ServiceTrackerMap<String, URLConverter>
 		_serviceTrackerMap;
 
