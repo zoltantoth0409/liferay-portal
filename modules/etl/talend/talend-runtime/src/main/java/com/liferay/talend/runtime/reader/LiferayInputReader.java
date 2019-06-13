@@ -154,7 +154,7 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 			}
 		}
 		else {
-			ArrayNode arrayNode = _OBJECT_MAPPER.createArrayNode();
+			ArrayNode arrayNode = _objectMapper.createArrayNode();
 
 			_inputRecordsJsonNode = arrayNode.add(_endpointJsonNode);
 		}
@@ -220,10 +220,10 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 		return liferaySource.doGetRequest(decoratedResourceURI.toString());
 	}
 
-	private static final ObjectMapper _OBJECT_MAPPER = new ObjectMapper();
-
 	private static final Logger _log = LoggerFactory.getLogger(
 		LiferayInputReader.class);
+
+	private static final ObjectMapper _objectMapper = new ObjectMapper();
 
 	private transient JsonNode _endpointJsonNode;
 
