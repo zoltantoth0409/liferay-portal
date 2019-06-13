@@ -57,12 +57,12 @@ public class GroupBlogsEntryBulkSelection
 
 		blogsEntryIntervalActionProcessor.setPerformIntervalActionMethod(
 			(start, end) -> {
-				List<BlogsEntry> groupEntries =
+				List<BlogsEntry> blogsEntries =
 					_blogsEntryService.getGroupEntries(
 						_groupId, WorkflowConstants.STATUS_APPROVED, start,
 						end);
 
-				for (BlogsEntry blogsEntry : groupEntries) {
+				for (BlogsEntry blogsEntry : blogsEntries) {
 					unsafeConsumer.accept(blogsEntry);
 				}
 
