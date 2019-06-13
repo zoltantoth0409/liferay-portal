@@ -14,7 +14,7 @@
 
 package com.liferay.change.tracking.rest.internal.jaxrs.exception.mapper;
 
-import com.liferay.change.tracking.rest.internal.jaxrs.exception.CannotDeleteCollectionException;
+import com.liferay.change.tracking.rest.internal.jaxrs.exception.CreateCollectionException;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -29,21 +29,21 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.application.select=(osgi.jaxrs.name=Liferay.Change.Tracking.REST)",
 		"osgi.jaxrs.extension=true",
-		"osgi.jaxrs.name=Liferay.Change.Tracking.REST.CannotDeleteCollectionExceptionMapper"
+		"osgi.jaxrs.name=Liferay.Change.Tracking.REST.CreateCollectionExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )
-public class CannotDeleteCollectionExceptionMapper
-	implements ExceptionMapper<CannotDeleteCollectionException> {
+public class CreateCollectionExceptionMapper
+	implements ExceptionMapper<CreateCollectionException> {
 
 	@Override
-	public Response toResponse(CannotDeleteCollectionException cdce) {
+	public Response toResponse(CreateCollectionException cce) {
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			cdce.getMessage()
+			cce.getMessage()
 		).build();
 	}
 
