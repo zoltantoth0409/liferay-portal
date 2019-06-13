@@ -1046,6 +1046,7 @@ definition {
 
 	@priority = "5"
 	test MoveGoogleDocToFolder {
+		property portal.release = "false";
 		property test.name.skip.portal.instance = "PGDocumentsandmedia#MoveGoogleDocToFolder";
 
 		ProductMenu.gotoPortlet(
