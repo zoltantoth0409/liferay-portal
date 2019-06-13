@@ -173,8 +173,8 @@ AUI.add(
 
 						var triggerNode = instance.getTriggerNode();
 
-						if (triggerNode._node.id === 'inputDateForm') {
-							if (triggerNode._node.value.length == 0) {
+						if (triggerNode.get('id') === 'inputDateForm') {
+							if (triggerNode.get('value').length === 0) {
 							   var nullDate = instance.getISODate(null);
 
 							   instance.setValue(nullDate);
