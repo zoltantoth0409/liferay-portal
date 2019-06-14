@@ -2048,10 +2048,16 @@ definition {
 	@description = "This is a use case for LPS-95441."
 	@priority = "3"
 	test ExportWebContentWithEditedStructure {
+		JSONGroup.addGroup(groupName = "Test Site Name");
+
+		JSONLayout.addPublicLayout(
+			groupName = "Test Site Name",
+			layoutName = "Test Page");
+
 		ProductMenu.gotoSite(site = "Test Site Name");
 
 		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
+			category = "Content",
 			panel = "Site Administration",
 			portlet = "Web Content");
 
