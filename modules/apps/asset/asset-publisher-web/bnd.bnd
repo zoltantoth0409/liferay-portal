@@ -2,7 +2,7 @@ Bundle-Name: Liferay Asset Publisher Web
 Bundle-SymbolicName: com.liferay.asset.publisher.web
 Bundle-Version: 2.0.60
 Import-Package:\
-	com.liferay.portal.kernel.portlet;version="[7.3.0,8.2)",\
+	com.liferay.portal.kernel.portlet;version="[7.3.0,8.3)",\
 	\
 	*
 Provide-Capability:\
