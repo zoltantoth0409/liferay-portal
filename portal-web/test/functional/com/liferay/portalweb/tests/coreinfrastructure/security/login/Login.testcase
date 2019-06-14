@@ -110,9 +110,8 @@ definition {
 	test GoogleSSOSmoke {
 		property dummy.socket.proxy.disabled = "true";
 		property test.name.skip.portal.instance = "Login#GoogleSSOSmoke";
-		var googlePropertiesSet = MathUtil.randomNumber("3");
-		var googleClientID = PropsUtil.get("google.client.id.${googlePropertiesSet}");
-		var googleClientSecret = PropsUtil.get("google.client.secret.${googlePropertiesSet}");
+		var googleClientID = PropsUtil.get("google.client.id.2");
+		var googleClientSecret = PropsUtil.get("google.client.secret.2");
 		var userEmailAddress = PropsUtil.get("email.address.1");
 		var userPassword = PropsUtil.get("email.password.1");
 
