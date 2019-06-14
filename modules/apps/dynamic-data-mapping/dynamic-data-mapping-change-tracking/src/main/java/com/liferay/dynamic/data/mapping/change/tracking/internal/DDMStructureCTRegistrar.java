@@ -48,7 +48,7 @@ public class DDMStructureCTRegistrar {
 	@Activate
 	public void activate() {
 		_ctDefinitionRegistrar.register(
-			_builder.setContentType(
+			_ctDefinitionBuilder.setContentType(
 				"Dynamic Data Mapping Structure"
 			).setContentTypeLanguageKey(
 				"dynamic-data-mapping-structure"
@@ -117,7 +117,8 @@ public class DDMStructureCTRegistrar {
 		DDMStructureCTRegistrar.class);
 
 	@Reference(scope = ReferenceScope.PROTOTYPE_REQUIRED)
-	private CTDefinitionBuilder<DDMStructure, DDMStructureVersion> _builder;
+	private CTDefinitionBuilder<DDMStructure, DDMStructureVersion>
+		_ctDefinitionBuilder;
 
 	@Reference
 	private CTDefinitionRegistrar _ctDefinitionRegistrar;

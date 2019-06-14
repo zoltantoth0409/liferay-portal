@@ -50,7 +50,7 @@ public class DDMTemplateCTRegistrar {
 	@Activate
 	public void activate() {
 		_ctDefinitionRegistrar.register(
-			_builder.setContentType(
+			_ctDefinitionBuilder.setContentType(
 				"Dynamic Data Mapping Template"
 			).setContentTypeLanguageKey(
 				"dynamic-data-mapping-template"
@@ -114,7 +114,8 @@ public class DDMTemplateCTRegistrar {
 		DDMTemplateCTRegistrar.class);
 
 	@Reference(scope = ReferenceScope.PROTOTYPE_REQUIRED)
-	private CTDefinitionBuilder<DDMTemplate, DDMTemplateVersion> _builder;
+	private CTDefinitionBuilder<DDMTemplate, DDMTemplateVersion>
+		_ctDefinitionBuilder;
 
 	@Reference
 	private CTDefinitionRegistrar _ctDefinitionRegistrar;

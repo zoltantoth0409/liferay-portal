@@ -46,7 +46,7 @@ public class JournalCTRegistrar {
 	@Activate
 	public void activate() {
 		_ctDefinitionRegistrar.register(
-			_builder.setContentType(
+			_ctDefinitionBuilder.setContentType(
 				"Web Content"
 			).setContentTypeLanguageKey(
 				"journal-article"
@@ -110,7 +110,7 @@ public class JournalCTRegistrar {
 
 	@Reference(scope = ReferenceScope.PROTOTYPE_REQUIRED)
 	private CTDefinitionBuilder<JournalArticleResource, JournalArticle>
-		_builder;
+		_ctDefinitionBuilder;
 
 	@Reference
 	private CTDefinitionRegistrar _ctDefinitionRegistrar;
