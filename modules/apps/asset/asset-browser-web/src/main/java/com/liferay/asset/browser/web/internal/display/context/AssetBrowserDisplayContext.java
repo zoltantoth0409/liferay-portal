@@ -621,13 +621,19 @@ public class AssetBrowserDisplayContext {
 				_getKeywords(), _getKeywords(), _getListable(), false, false);
 		}
 
+		AssetBrowserSearch assetBrowserSearch = new AssetBrowserSearch(
+			_renderRequest, getPortletURL());
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		return (int)AssetEntryLocalServiceUtil.searchCount(
+		Hits hits = AssetEntryLocalServiceUtil.search(
 			themeDisplay.getCompanyId(), groupIds, themeDisplay.getUserId(),
 			assetRendererFactory.getClassName(), getSubtypeSelectionId(),
-			_getKeywords(), _isShowNonindexable(), _getStatuses());
+			_getKeywords(), _isShowNonindexable(), _getStatuses(),
+			assetBrowserSearch.getStart(), assetBrowserSearch.getEnd());
+
+		return hits.getLength();
 	}
 
 	private boolean _isShowNonindexable() {
