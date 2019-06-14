@@ -2078,6 +2078,21 @@ definition {
 			structureDescription = "Structure Description",
 			structureName = "Structure Name");
 
+		ProductMenu.gotoSite(site = "Test Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		NavItem.gotoTemplates();
+
+		WebContentTemplates.addCP(
+			structureName = "Structure Name",
+			templateDescription = "Template Description",
+			templateFieldNames = "Text",
+			templateName = "Template Name");
+
 		WebContent.openWebContentAdmin(siteURLKey = "test-site-name");
 
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "Structure Name");
