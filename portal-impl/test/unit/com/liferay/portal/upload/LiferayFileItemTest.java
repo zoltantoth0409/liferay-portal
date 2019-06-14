@@ -40,15 +40,15 @@ public class LiferayFileItemTest {
 
 	@BeforeClass
 	public static void setUpClass() throws IOException {
-		FileUtil fileUtil = new FileUtil();
-
-		fileUtil.setFile(new FileImpl());
-
 		FastDateFormatFactoryUtil fastDateFormatFactoryUtil =
 			new FastDateFormatFactoryUtil();
 
 		fastDateFormatFactoryUtil.setFastDateFormatFactory(
 			new FastDateFormatFactoryImpl());
+
+		FileUtil fileUtil = new FileUtil();
+
+		fileUtil.setFile(new FileImpl());
 
 		MimeTypesUtil mimeTypesUtil = new MimeTypesUtil();
 
