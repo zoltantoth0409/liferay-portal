@@ -38,7 +38,7 @@ public class LayoutCTRegistrar {
 	@Activate
 	public void activate() {
 		_ctDefinitionRegistrar.register(
-			_builder.setContentType(
+			_ctDefinitionBuilder.setContentType(
 				"Page"
 			).setContentTypeLanguageKey(
 				"layout"
@@ -73,7 +73,7 @@ public class LayoutCTRegistrar {
 	}
 
 	@Reference(scope = ReferenceScope.PROTOTYPE_REQUIRED)
-	private CTDefinitionBuilder<Layout, LayoutVersion> _builder;
+	private CTDefinitionBuilder<Layout, LayoutVersion> _ctDefinitionBuilder;
 
 	@Reference
 	private CTDefinitionRegistrar _ctDefinitionRegistrar;
