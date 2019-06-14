@@ -14,6 +14,9 @@
 
 package com.liferay.portal.kernel.portlet.toolbar.contributor;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.servlet.taglib.ui.Menu;
@@ -46,9 +49,18 @@ public abstract class BasePortletToolbarContributor
 
 		Layout layout = themeDisplay.getLayout();
 
-		Group group = layout.getGroup();
+		Group group = null;
 
-		if (group.isLayoutPrototype()) {
+		try {
+			group = layout.getGroup();
+		}
+		catch (PortalException pe) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Layout's group does not exists", pe);
+			}
+		}
+
+		if ((group == null) || group.isLayoutPrototype()) {
 			return Collections.emptyList();
 		}
 
@@ -85,5 +97,8 @@ public abstract class BasePortletToolbarContributor
 
 	protected abstract List<MenuItem> getPortletTitleMenuItems(
 		PortletRequest portletRequest, PortletResponse portletResponse);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BasePortletToolbarContributor.class);
 
 }
