@@ -229,15 +229,20 @@ public class FriendlyURLServletTest {
 		long groupId = _group.getGroupId();
 
 		Map<Locale, String> nameMap = new HashMap<>();
-		Map<Locale, String> friendlyURLMap = new HashMap<>();
 
 		Locale locale = LocaleUtil.getSiteDefault();
 
 		nameMap.put(locale, "careers");
+
+		Map<Locale, String> friendlyURLMap = new HashMap<>();
+
 		friendlyURLMap.put(locale, "/careers");
 
 		Layout careerLayout = LayoutTestUtil.addLayout(
 			groupId, false, nameMap, friendlyURLMap);
+
+		nameMap.put(locale, "friendly");
+		friendlyURLMap.put(locale, "/friendly");
 
 		UnicodeProperties typeSettingsProperties =
 			_group.getTypeSettingsProperties();
@@ -245,9 +250,6 @@ public class FriendlyURLServletTest {
 		typeSettingsProperties.put("url", careerLayout.getFriendlyURL());
 
 		String typeSettings = typeSettingsProperties.toString();
-
-		nameMap.put(locale, "friendly");
-		friendlyURLMap.put(locale, "/friendly");
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(groupId);
