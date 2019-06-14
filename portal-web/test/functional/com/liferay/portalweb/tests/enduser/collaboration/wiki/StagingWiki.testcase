@@ -159,8 +159,7 @@ definition {
 
 		AssetPublisherPortlet.viewAverageRatingPG(averageRating = "4");
 
-		BlogsEntryComment.viewPG(
-			commentCount = "1",
+		Comments.viewPG(
 			entryComment = "Wiki FrontPage Comment",
 			userFullName = "Test Test (You)");
 
