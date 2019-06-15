@@ -41,28 +41,23 @@ public class DataLayoutResourceTest extends BaseDataLayoutResourceTestCase {
 			irrelevantGroup);
 	}
 
+	@Override
 	@Test
-	public void testCreateMultipleDataLayoutsForSameDefinition()
-		throws Exception {
+	public void testPostDataDefinitionDataLayout() throws Exception {
+		super.testPostDataDefinitionDataLayout();
+
+		// Multiple data layouts with the same data definition
 
 		DataLayout randomDataLayout = randomDataLayout();
 
-		DataLayout postDataLayout1 =
-			testPostDataDefinitionDataLayout_addDataLayout(randomDataLayout);
+		for (int i = 0; i < 3; i++) {
+			DataLayout postDataLayout =
+				testPostDataDefinitionDataLayout_addDataLayout(
+					randomDataLayout);
 
-		DataLayout postDataLayout2 =
-			testPostDataDefinitionDataLayout_addDataLayout(randomDataLayout);
-
-		DataLayout postDataLayout3 =
-			testPostDataDefinitionDataLayout_addDataLayout(randomDataLayout);
-
-		assertEquals(randomDataLayout, postDataLayout1);
-		assertEquals(randomDataLayout, postDataLayout2);
-		assertEquals(randomDataLayout, postDataLayout3);
-
-		assertValid(postDataLayout1);
-		assertValid(postDataLayout2);
-		assertValid(postDataLayout3);
+			assertEquals(randomDataLayout, postDataLayout);
+			assertValid(postDataLayout);
+		}
 	}
 
 	@Override
