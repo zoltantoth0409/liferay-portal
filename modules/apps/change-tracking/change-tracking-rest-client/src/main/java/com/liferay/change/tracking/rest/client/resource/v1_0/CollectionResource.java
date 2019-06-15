@@ -14,6 +14,7 @@
 
 package com.liferay.change.tracking.rest.client.resource.v1_0;
 
+import com.liferay.change.tracking.rest.client.constant.v1_0.CollectionType;
 import com.liferay.change.tracking.rest.client.dto.v1_0.Collection;
 import com.liferay.change.tracking.rest.client.http.HttpInvoker;
 import com.liferay.change.tracking.rest.client.pagination.Page;
@@ -38,13 +39,13 @@ public interface CollectionResource {
 	}
 
 	public Page<Collection> getCollectionsPage(
-			Long companyId, String type, Long userId, Pagination pagination,
-			String sortString)
+			Long companyId, CollectionType type, Long userId,
+			Pagination pagination, String sortString)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse getCollectionsPageHttpResponse(
-			Long companyId, String type, Long userId, Pagination pagination,
-			String sortString)
+			Long companyId, CollectionType type, Long userId,
+			Pagination pagination, String sortString)
 		throws Exception;
 
 	public Collection postCollection(
@@ -127,8 +128,8 @@ public interface CollectionResource {
 	public static class CollectionResourceImpl implements CollectionResource {
 
 		public Page<Collection> getCollectionsPage(
-				Long companyId, String type, Long userId, Pagination pagination,
-				String sortString)
+				Long companyId, CollectionType type, Long userId,
+				Pagination pagination, String sortString)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
@@ -147,8 +148,8 @@ public interface CollectionResource {
 		}
 
 		public HttpInvoker.HttpResponse getCollectionsPageHttpResponse(
-				Long companyId, String type, Long userId, Pagination pagination,
-				String sortString)
+				Long companyId, CollectionType type, Long userId,
+				Pagination pagination, String sortString)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();

@@ -17,6 +17,7 @@ package com.liferay.bulk.rest.resource.v1_0;
 import com.liferay.bulk.rest.dto.v1_0.DocumentBulkSelection;
 import com.liferay.bulk.rest.dto.v1_0.TaxonomyVocabulary;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
 
 import javax.annotation.Generated;
@@ -35,6 +36,10 @@ public interface TaxonomyVocabularyResource {
 	public Page<TaxonomyVocabulary> postSiteTaxonomyVocabulariesCommonPage(
 			Long siteId, DocumentBulkSelection documentBulkSelection)
 		throws Exception;
+
+	public default void setContextAcceptLanguage(
+		AcceptLanguage contextAcceptLanguage) {
+	}
 
 	public void setContextCompany(Company contextCompany);
 
