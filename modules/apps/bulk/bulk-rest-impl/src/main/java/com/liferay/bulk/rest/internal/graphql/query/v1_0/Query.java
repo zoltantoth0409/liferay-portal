@@ -18,8 +18,8 @@ import com.liferay.bulk.rest.dto.v1_0.Status;
 import com.liferay.bulk.rest.resource.v1_0.StatusResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
-import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
-import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
@@ -74,12 +74,14 @@ public class Query {
 	private void _populateResourceContext(StatusResource statusResource)
 		throws Exception {
 
-		statusResource.setContextCompany(
-			CompanyLocalServiceUtil.getCompany(
-				CompanyThreadLocal.getCompanyId()));
+		statusResource.setContextAcceptLanguage(_acceptLanguage);
+		statusResource.setContextCompany(_company);
 	}
 
 	private static ComponentServiceObjects<StatusResource>
 		_statusResourceComponentServiceObjects;
+
+	private AcceptLanguage _acceptLanguage;
+	private Company _company;
 
 }

@@ -12,31 +12,44 @@
  * details.
  */
 
-package com.liferay.bulk.rest.resource.v1_0;
+package com.liferay.change.tracking.rest.client.constant.v1_0;
 
-import com.liferay.bulk.rest.dto.v1_0.Status;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
+import java.util.Objects;
 
 import javax.annotation.Generated;
 
 /**
- * To access this resource, run:
- *
- *     curl -u your@email.com:yourpassword -D - http://localhost:8080/o/bulk/v1.0
- *
- * @author Alejandro Tardín
+ * @author Mate Thurzo
  * @generated
  */
 @Generated("")
-public interface StatusResource {
+public enum CollectionType {
 
-	public Status getStatus() throws Exception;
+	ACTIVE("active"), ALL("all"), PRODUCTION("production"), RECENT("recent");
 
-	public default void setContextAcceptLanguage(
-		AcceptLanguage contextAcceptLanguage) {
+	public static CollectionType create(String value) {
+		for (CollectionType collectionType : values()) {
+			if (Objects.equals(collectionType.getValue(), value)) {
+				return collectionType;
+			}
+		}
+
+		return null;
 	}
 
-	public void setContextCompany(Company contextCompany);
+	public String getValue() {
+		return _value;
+	}
+
+	@Override
+	public String toString() {
+		return _value;
+	}
+
+	private CollectionType(String value) {
+		_value = value;
+	}
+
+	private final String _value;
 
 }

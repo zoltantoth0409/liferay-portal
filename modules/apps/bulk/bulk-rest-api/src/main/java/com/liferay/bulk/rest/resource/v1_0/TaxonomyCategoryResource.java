@@ -16,6 +16,7 @@ package com.liferay.bulk.rest.resource.v1_0;
 
 import com.liferay.bulk.rest.dto.v1_0.TaxonomyCategoryBulkSelection;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 
 import javax.annotation.Generated;
 
@@ -37,6 +38,10 @@ public interface TaxonomyCategoryResource {
 	public void putTaxonomyCategoryBatch(
 			TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception;
+
+	public default void setContextAcceptLanguage(
+		AcceptLanguage contextAcceptLanguage) {
+	}
 
 	public void setContextCompany(Company contextCompany);
 
