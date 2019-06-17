@@ -114,8 +114,8 @@ public class Schema {
 		_anyOfSchemas = anyOfSchemas;
 	}
 
-	public void setDefault(String aDefault) {
-		_default = aDefault;
+	public void setDefault(String d) {
+		_default = d;
 	}
 
 	public void setDescription(String description) {
