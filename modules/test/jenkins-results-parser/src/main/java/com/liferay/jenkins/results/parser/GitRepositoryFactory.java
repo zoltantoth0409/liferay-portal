@@ -99,11 +99,11 @@ public class GitRepositoryFactory {
 
 		Pattern pattern = matcher.pattern();
 
-		String patternText = pattern.toString();
+		String patternString = pattern.toString();
 
 		String username = "liferay";
 
-		if (patternText.contains("(?<username>")) {
+		if (patternString.contains("(?<username>")) {
 			username = matcher.group("username");
 		}
 
