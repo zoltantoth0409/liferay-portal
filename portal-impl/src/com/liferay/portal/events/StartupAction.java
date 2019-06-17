@@ -130,8 +130,6 @@ public class StartupAction extends SimpleAction {
 			System.exit(1);
 		}
 
-		ReleaseLocalServiceUtil.getBuildNumberOrCreate();
-
 		// Check required schema version
 
 		StartupHelperUtil.verifyRequiredSchemaVersion();

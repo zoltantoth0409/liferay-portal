@@ -146,8 +146,6 @@ public class SlimRuntimeServlet extends HttpServlet {
 					"longer supports older versions of MySQL.");
 		}
 
-		ReleaseLocalServiceUtil.getBuildNumberOrCreate();
-
 		// Check required schema version
 
 		StartupHelperUtil.verifyRequiredSchemaVersion();
