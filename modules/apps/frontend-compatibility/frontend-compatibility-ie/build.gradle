@@ -8,6 +8,7 @@ configurations {
 	arrayIncludes
 	arrayOf
 	fetch
+	formData
 	objectAssign
 	objectEntries
 	objectValues
@@ -22,6 +23,7 @@ task buildArrayFrom(type: Copy)
 task buildArrayIncludes(type: Copy)
 task buildArrayOf(type: Copy)
 task buildFetch(type: Copy)
+task buildFormData(type: Copy)
 task buildObjectAssign(type: Copy)
 task buildObjectEntries(type: Copy)
 task buildObjectValues(type: Copy)
@@ -136,6 +138,22 @@ buildFetch {
 	into "classes/META-INF/resources"
 }
 
+buildFormData {
+	eachFile new StripPathSegmentsAction(5)
+
+	from {
+		zipTree(configurations.formData.singleFile)
+	}
+
+	include "META-INF/resources/webjars/formdata-polyfill/3.0.9/formdata.min.js"
+	includeEmptyDirs = false
+	into "classes/META-INF/resources"
+
+	rename {
+		it.replace "formdata.min", "formdata"
+	}
+}
+
 buildObjectAssign {
 	eachFile new StripPathSegmentsAction(6)
 
@@ -224,6 +242,7 @@ classes {
 	dependsOn buildArrayIncludes
 	dependsOn buildArrayOf
 	dependsOn buildFetch
+	dependsOn buildFormData
 	dependsOn buildObjectAssign
 	dependsOn buildObjectEntries
 	dependsOn buildObjectValues
@@ -252,6 +271,8 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 
 	fetch group: "org.webjars.npm", name: "whatwg-fetch", transitive: false, version: "2.0.4"
+
+	formData group: "org.webjars.npm", name: "formdata-polyfill", transitive: false, version: "3.0.9"
 
 	objectAssign group: "org.webjars.npm", name: "es6-object-assign", transitive: false, version: "1.1.0"
 
