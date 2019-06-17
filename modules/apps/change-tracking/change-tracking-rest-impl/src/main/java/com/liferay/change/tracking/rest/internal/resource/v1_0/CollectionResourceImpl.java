@@ -122,6 +122,14 @@ public class CollectionResourceImpl
 
 			activeCTCollectionOptional.ifPresent(ctCollections::add);
 		}
+		else if (CollectionType.ALL == collectionType) {
+			_companyLocalService.getCompany(companyId);
+
+			ctCollections = _ctManager.getCTCollections(
+				companyId, userId, false, true,
+				SearchUtil.getQueryDefinition(
+					CTCollection.class, pagination, sorts));
+		}
 		else if (CollectionType.PRODUCTION == collectionType) {
 			_companyLocalService.getCompany(companyId);
 
@@ -134,14 +142,6 @@ public class CollectionResourceImpl
 						"Unable to get production change tracking collection"));
 
 			ctCollections.add(ctCollection);
-		}
-		else if (CollectionType.ALL == collectionType) {
-			_companyLocalService.getCompany(companyId);
-
-			ctCollections = _ctManager.getCTCollections(
-				companyId, userId, false, true,
-				SearchUtil.getQueryDefinition(
-					CTCollection.class, pagination, sorts));
 		}
 		else if (CollectionType.RECENT == collectionType) {
 			_companyLocalService.getCompany(companyId);
