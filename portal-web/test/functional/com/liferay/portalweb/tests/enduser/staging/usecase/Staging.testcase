@@ -2661,8 +2661,6 @@ definition {
 			groupName = "Site Name",
 			title = "Web Content Title");
 
-		PortletEntry.publish();
-
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
 			panel = "Site Administration",
