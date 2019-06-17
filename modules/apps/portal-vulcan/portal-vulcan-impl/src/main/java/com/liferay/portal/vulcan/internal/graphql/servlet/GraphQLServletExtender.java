@@ -476,40 +476,6 @@ public class GraphQLServletExtender {
 				public Object parseLiteral(Object value)
 					throws CoercingParseLiteralException {
 
-					if (value instanceof NullValue) {
-						return null;
-					}
-
-					if (value instanceof FloatValue) {
-						FloatValue floatValue = (FloatValue)value;
-
-						return floatValue.getValue();
-					}
-
-					if (value instanceof StringValue) {
-						StringValue stringValue = (StringValue)value;
-
-						return stringValue.getValue();
-					}
-
-					if (value instanceof IntValue) {
-						IntValue intValue = (IntValue)value;
-
-						return intValue.getValue();
-					}
-
-					if (value instanceof BooleanValue) {
-						BooleanValue booleanValue = (BooleanValue)value;
-
-						return booleanValue.isValue();
-					}
-
-					if (value instanceof EnumValue) {
-						EnumValue enumValue = (EnumValue)value;
-
-						return enumValue.getName();
-					}
-
 					if (value instanceof ArrayValue) {
 						ArrayValue arrayValue = (ArrayValue)value;
 
@@ -522,8 +488,30 @@ public class GraphQLServletExtender {
 							Collectors.toList()
 						);
 					}
+					else if (value instanceof BooleanValue) {
+						BooleanValue booleanValue = (BooleanValue)value;
 
-					if (value instanceof ObjectValue) {
+						return booleanValue.isValue();
+					}
+					else if (value instanceof EnumValue) {
+						EnumValue enumValue = (EnumValue)value;
+
+						return enumValue.getName();
+					}
+					else if (value instanceof FloatValue) {
+						FloatValue floatValue = (FloatValue)value;
+
+						return floatValue.getValue();
+					}
+					else if (value instanceof IntValue) {
+						IntValue intValue = (IntValue)value;
+
+						return intValue.getValue();
+					}
+					else if (value instanceof NullValue) {
+						return null;
+					}
+					else if (value instanceof ObjectValue) {
 						ObjectValue objectValue = (ObjectValue)value;
 
 						List<ObjectField> values =
@@ -535,6 +523,11 @@ public class GraphQLServletExtender {
 								ObjectField::getName,
 								field -> parseLiteral(field.getValue()))
 						);
+					}
+					else if (value instanceof StringValue) {
+						StringValue stringValue = (StringValue)value;
+
+						return stringValue.getValue();
 					}
 
 					throw new CoercingSerializeException(
@@ -680,8 +673,8 @@ public class GraphQLServletExtender {
 		public boolean canBuildType(
 			Class<?> clazz, AnnotatedType annotatedType) {
 
-			if ((clazz == Object.class) || (clazz == Filter.class) ||
-				(clazz == Sort[].class) || (clazz == MultipartBody.class)) {
+			if ((clazz == Filter.class) || (clazz == MultipartBody.class) ||
+				(clazz == Object.class) || (clazz == Sort[].class)) {
 
 				return true;
 			}
