@@ -34,7 +34,10 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Julien Castelain
  */
-@Component(immediate = true, service = DynamicInclude.class)
+@Component(
+	immediate = true, property = "service.ranking:Integer=" + Integer.MAX_VALUE,
+	service = DynamicInclude.class
+)
 public class IETopHeadDynamicInclude extends BaseDynamicInclude {
 
 	@Override
