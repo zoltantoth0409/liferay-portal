@@ -48,11 +48,18 @@ import graphql.annotations.processor.typeFunctions.DefaultTypeFunction;
 import graphql.annotations.processor.typeFunctions.TypeFunction;
 import graphql.annotations.processor.util.NamingKit;
 
+import graphql.language.StringValue;
+
+import graphql.schema.Coercing;
+import graphql.schema.CoercingParseLiteralException;
+import graphql.schema.CoercingParseValueException;
+import graphql.schema.CoercingSerializeException;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import graphql.schema.GraphQLFieldDefinition;
 import graphql.schema.GraphQLObjectType;
 import graphql.schema.GraphQLOutputType;
+import graphql.schema.GraphQLScalarType;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.GraphQLType;
 
@@ -66,6 +73,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -388,8 +398,58 @@ public class GraphQLServletExtender {
 		}
 	}
 
-	private static final DateGraphQLScalarType _DATE_GRAPHQL_SCALAR_TYPE =
-		new DateGraphQLScalarType();
+	private static final GraphQLScalarType _dateGraphQLScalarType =
+		new GraphQLScalarType(
+			"Date", "An RFC-3339 compliant DateTime Scalar",
+			new Coercing<Date, String>() {
+
+				@Override
+				public Date parseLiteral(Object value)
+					throws CoercingParseLiteralException {
+
+					return _toDate(value);
+				}
+
+				@Override
+				public Date parseValue(Object value)
+					throws CoercingParseValueException {
+
+					return _toDate(value);
+				}
+
+				@Override
+				public String serialize(Object value)
+					throws CoercingSerializeException {
+
+					SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+						"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+					return simpleDateFormat.format((Date)value);
+				}
+
+				private Date _toDate(Object value) {
+					if (value instanceof Date) {
+						return (Date)value;
+					}
+
+					SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+						"yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+					try {
+						if (value instanceof StringValue) {
+							return simpleDateFormat.parse(
+								((StringValue)value).getValue());
+						}
+
+						return simpleDateFormat.parse(value.toString());
+					}
+					catch (ParseException pe) {
+						throw new CoercingSerializeException(
+							"Unable to parse to java.util.Date", pe);
+					}
+				}
+
+			});
 
 	private BundleContext _bundleContext;
 
@@ -419,7 +479,7 @@ public class GraphQLServletExtender {
 			boolean input, Class<?> aClass, AnnotatedType annotatedType,
 			ProcessingElementsContainer processingElementsContainer) {
 
-			return _DATE_GRAPHQL_SCALAR_TYPE;
+			return _dateGraphQLScalarType;
 		}
 
 		@Override
