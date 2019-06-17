@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.resiliency.spi.agent.annotation.Direction;
 import com.liferay.portal.kernel.resiliency.spi.agent.annotation.DistributedRegistry;
 import com.liferay.portal.kernel.resiliency.spi.agent.annotation.MatchType;
 import com.liferay.portal.kernel.service.ClassNameLocalServiceUtil;
-import com.liferay.portal.kernel.service.ReleaseLocalServiceUtil;
 import com.liferay.portal.kernel.service.ResourceActionLocalServiceUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.GetterUtil;
