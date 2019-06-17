@@ -162,10 +162,9 @@ public class CollectionResourceImpl
 				"Invalid collection type: " + collectionType);
 		}
 
-		List<Collection> collections = TransformUtil.transform(
-			ctCollections, this::_toCollection);
-
-		return Page.of(collections, pagination, collections.size());
+		return Page.of(
+			TransformUtil.transform(ctCollections, this::_toCollection),
+			pagination, collections.size());
 	}
 
 	@Override
