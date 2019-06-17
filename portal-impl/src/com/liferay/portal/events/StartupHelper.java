@@ -173,6 +173,8 @@ public class StartupHelper {
 	}
 
 	public void verifyRequiredSchemaVersion() throws Exception {
+		ReleaseLocalServiceUtil.getBuildNumberOrCreate();
+
 		if (_log.isDebugEnabled()) {
 			_log.debug("Check the portal's required schema version");
 		}
