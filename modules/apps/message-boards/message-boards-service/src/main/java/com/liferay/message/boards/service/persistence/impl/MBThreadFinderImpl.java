@@ -349,10 +349,8 @@ public class MBThreadFinderImpl
 			if (userId <= 0) {
 				sql = StringUtil.replace(
 					sql, "DISTINCT MBThread.threadId", StringPool.STAR);
-
 				sql = StringUtil.replace(
 					sql, _INNER_JOIN_SQL, StringPool.BLANK);
-
 				sql = StringUtil.replace(sql, _USER_ID_SQL, StringPool.BLANK);
 			}
 
@@ -821,10 +819,8 @@ public class MBThreadFinderImpl
 
 			if (userId <= 0) {
 				sql = StringUtil.replace(sql, "DISTINCT ", StringPool.BLANK);
-
 				sql = StringUtil.replace(
 					sql, _INNER_JOIN_SQL, StringPool.BLANK);
-
 				sql = StringUtil.replace(sql, _USER_ID_SQL, StringPool.BLANK);
 			}
 
