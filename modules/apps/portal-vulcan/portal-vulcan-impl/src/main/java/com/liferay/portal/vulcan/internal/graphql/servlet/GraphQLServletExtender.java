@@ -414,7 +414,7 @@ public class GraphQLServletExtender {
 
 	private static final GraphQLScalarType _dateGraphQLScalarType =
 		new GraphQLScalarType(
-			"Date", "An RFC-3339 compliant DateTime Scalar",
+			"Date", "An RFC-3339 compliant date time scalar",
 			new Coercing<Date, String>() {
 
 				@Override
@@ -469,7 +469,7 @@ public class GraphQLServletExtender {
 
 	private static final GraphQLScalarType _objectGraphQLScalarType =
 		new GraphQLScalarType(
-			"Object", "Any kind of Object supported by basic scalar types",
+			"Object", "Any kind of object supported by basic scalar types",
 			new Coercing<Object, Object>() {
 
 				@Override
@@ -582,7 +582,7 @@ public class GraphQLServletExtender {
 
 		@Override
 		public GraphQLType buildType(
-			boolean input, Class<?> aClass, AnnotatedType annotatedType,
+			boolean input, Class<?> clazz, AnnotatedType annotatedType,
 			ProcessingElementsContainer processingElementsContainer) {
 
 			return _dateGraphQLScalarType;
@@ -670,7 +670,7 @@ public class GraphQLServletExtender {
 
 		@Override
 		public GraphQLType buildType(
-			boolean input, Class<?> aClass, AnnotatedType annotatedType,
+			boolean input, Class<?> clazz, AnnotatedType annotatedType,
 			ProcessingElementsContainer processingElementsContainer) {
 
 			return _objectGraphQLScalarType;
