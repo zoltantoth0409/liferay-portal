@@ -59,12 +59,12 @@ public class SearchUtil {
 
 		queryDefinition.setEnd(pagination.getEndPosition());
 
-		Object[] sortColumns = _getSortColumns(sorts);
+		Object[] orderByComparatorColumns = _getOrderByComparatorColumns(sorts);
 
-		if (sortColumns != null) {
+		if (orderByComparatorColumns != null) {
 			OrderByComparator<T> orderByComparator =
 				OrderByComparatorFactoryUtil.create(
-					clazz.getSimpleName(), sortColumns);
+					clazz.getSimpleName(), orderByComparatorColumns);
 
 			queryDefinition.setOrderByComparator(orderByComparator);
 		}
@@ -176,7 +176,7 @@ public class SearchUtil {
 			booleanQuery, BooleanClauseOccur.MUST.getName());
 	}
 
-	private static Object[] _getSortColumns(Sort[] sorts) {
+	private static Object[] _getOrderByComparatorColumns(Sort[] sorts) {
 		if (ArrayUtil.isEmpty(sorts)) {
 			return null;
 		}
