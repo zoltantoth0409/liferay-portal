@@ -145,7 +145,6 @@ public class CollectionResourceImpl
 		}
 		else if (CollectionType.RECENT == collectionType) {
 			_companyLocalService.getCompany(companyId);
-
 			_userLocalService.getUser(userId);
 
 			QueryDefinition<CTCollection> queryDefinition =
