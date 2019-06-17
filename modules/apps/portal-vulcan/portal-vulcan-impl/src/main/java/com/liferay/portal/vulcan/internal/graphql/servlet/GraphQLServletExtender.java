@@ -514,14 +514,15 @@ public class GraphQLServletExtender {
 					else if (value instanceof ObjectValue) {
 						ObjectValue objectValue = (ObjectValue)value;
 
-						List<ObjectField> values =
+						List<ObjectField> objectFields =
 							objectValue.getObjectFields();
 
-						return values.stream(
+						return objectFields.stream(
 						).collect(
 							Collectors.toMap(
 								ObjectField::getName,
-								field -> parseLiteral(field.getValue()))
+								objectField -> parseLiteral(
+									objectField.getValue()))
 						);
 					}
 					else if (value instanceof StringValue) {
