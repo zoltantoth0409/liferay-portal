@@ -159,10 +159,7 @@ public class CollectionResourceImpl
 		}
 		else {
 			throw new IllegalArgumentException(
-				String.format(
-					"Invalid type parameter value: %s. The valid options " +
-						"are: all, active, recent and production.",
-					collectionType));
+				"Invalid collection type: " + collectionType);
 		}
 
 		List<Collection> collections = TransformUtil.transform(
