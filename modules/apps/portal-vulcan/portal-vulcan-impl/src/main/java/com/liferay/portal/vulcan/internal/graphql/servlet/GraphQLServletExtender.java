@@ -96,29 +96,6 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 @Component(immediate = true, service = {})
 public class GraphQLServletExtender {
 
-	public class DateTypeFunction implements TypeFunction {
-
-		@Override
-		public GraphQLType buildType(
-			boolean input, Class<?> aClass, AnnotatedType annotatedType,
-			ProcessingElementsContainer processingElementsContainer) {
-
-			return _DATE_GRAPHQL_SCALAR_TYPE;
-		}
-
-		@Override
-		public boolean canBuildType(
-			Class<?> aClass, AnnotatedType annotatedType) {
-
-			if (aClass == Date.class) {
-				return true;
-			}
-
-			return false;
-		}
-
-	}
-
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_bundleContext = bundleContext;
@@ -434,6 +411,29 @@ public class GraphQLServletExtender {
 	private final List<ServletData> _servletDataList = new ArrayList<>();
 	private ServiceTracker<ServletData, ServletData> _servletDataServiceTracker;
 	private ServiceRegistration<Servlet> _servletServiceRegistration;
+
+	private class DateTypeFunction implements TypeFunction {
+
+		@Override
+		public GraphQLType buildType(
+			boolean input, Class<?> aClass, AnnotatedType annotatedType,
+			ProcessingElementsContainer processingElementsContainer) {
+
+			return _DATE_GRAPHQL_SCALAR_TYPE;
+		}
+
+		@Override
+		public boolean canBuildType(
+			Class<?> aClass, AnnotatedType annotatedType) {
+
+			if (aClass == Date.class) {
+				return true;
+			}
+
+			return false;
+		}
+
+	}
 
 	private class LiferayGraphQLFieldRetriever extends GraphQLFieldRetriever {
 
