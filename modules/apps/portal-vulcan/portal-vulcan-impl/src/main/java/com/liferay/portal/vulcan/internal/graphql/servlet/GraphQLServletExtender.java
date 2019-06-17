@@ -461,7 +461,7 @@ public class GraphQLServletExtender {
 					}
 					catch (ParseException pe) {
 						throw new CoercingSerializeException(
-							"Unable to parse to java.util.Date", pe);
+							"Unable to parse " + value, pe);
 					}
 				}
 
@@ -531,7 +531,7 @@ public class GraphQLServletExtender {
 					}
 
 					throw new CoercingSerializeException(
-						"Expected something we can convert");
+						"Unable to parse " + value);
 				}
 
 				@Override
