@@ -58,7 +58,6 @@ public class SearchUtil {
 		QueryDefinition<T> queryDefinition = new QueryDefinition<>();
 
 		queryDefinition.setEnd(pagination.getEndPosition());
-		queryDefinition.setStart(pagination.getStartPosition());
 
 		Object[] sortColumns = _getSortColumns(sorts);
 
@@ -69,6 +68,8 @@ public class SearchUtil {
 
 			queryDefinition.setOrderByComparator(orderByComparator);
 		}
+
+		queryDefinition.setStart(pagination.getStartPosition());
 
 		return queryDefinition;
 	}
