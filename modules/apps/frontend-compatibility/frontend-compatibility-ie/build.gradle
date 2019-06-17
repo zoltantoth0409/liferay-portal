@@ -5,6 +5,7 @@ configurations {
 	arrayFind
 	arrayFindIndex
 	arrayFrom
+	arrayIncludes
 	fetch
 	objectAssign
 	objectEntries
@@ -17,6 +18,7 @@ task buildArrayFill(type: Copy)
 task buildArrayFind(type: Copy)
 task buildArrayFindIndex(type: Copy)
 task buildArrayFrom(type: Copy)
+task buildArrayIncludes(type: Copy)
 task buildFetch(type: Copy)
 task buildObjectAssign(type: Copy)
 task buildObjectEntries(type: Copy)
@@ -85,6 +87,22 @@ buildArrayFrom {
 
 	rename {
 		it.replace "Array.from", "array.from"
+	}
+}
+
+buildArrayIncludes {
+	eachFile new StripPathSegmentsAction(5)
+
+	from {
+		zipTree(configurations.arrayIncludes.singleFile)
+	}
+
+	include "META-INF/resources/webjars/mdn-polyfills/5.8.0/Array.prototype.includes.js"
+	includeEmptyDirs = false
+	into "classes/META-INF/resources"
+
+	rename {
+		it.replace "Array.prototype.includes", "array.includes"
 	}
 }
 
@@ -185,6 +203,7 @@ classes {
 	dependsOn buildArrayFind
 	dependsOn buildArrayFindIndex
 	dependsOn buildArrayFrom
+	dependsOn buildArrayIncludes
 	dependsOn buildFetch
 	dependsOn buildObjectAssign
 	dependsOn buildObjectEntries
@@ -201,6 +220,8 @@ dependencies {
 	arrayFindIndex group: "org.webjars.bower", name: "Array.prototype.findIndex", transitive: false, version: "1.0.0"
 
 	arrayFrom group: "org.webjars.npm", name: "mdn-polyfills", transitive: false, version: "5.8.0"
+
+	arrayIncludes group: "org.webjars.npm", name: "mdn-polyfills", transitive: false, version: "5.8.0"
 
 	compileOnly group: "com.liferay", name: "com.liferay.portal.url.builder.api", version: "1.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
