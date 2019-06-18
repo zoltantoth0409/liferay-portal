@@ -343,7 +343,15 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 				continue;
 			}
 
-			if (annotations[0] instanceof PathParam) {
+			if (annotations[0] instanceof Context) {
+				Message message = _getNestedAwareMessage(
+					fieldName, nestedFieldsContext.getMessage());
+
+				args[i] = _getContext(parameter.getType(), message);
+
+				_resetNestedAwareMessage(message);
+			}
+			else if (annotations[0] instanceof PathParam) {
 				PathParam pathParam = (PathParam)annotations[0];
 
 				args[i] = _convert(
@@ -357,14 +365,6 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 					queryParameters.getFirst(
 						fieldName + "." + queryParam.value()),
 					parameter.getType());
-			}
-			else if (annotations[0] instanceof Context) {
-				Message message = _getNestedAwareMessage(
-					fieldName, nestedFieldsContext.getMessage());
-
-				args[i] = _getContext(parameter.getType(), message);
-
-				_resetNestedAwareMessage(message);
 			}
 			else {
 				args[i] = null;
