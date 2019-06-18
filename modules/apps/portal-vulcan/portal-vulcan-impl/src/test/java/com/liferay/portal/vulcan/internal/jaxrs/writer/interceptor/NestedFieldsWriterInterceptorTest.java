@@ -84,8 +84,6 @@ public class NestedFieldsWriterInterceptorTest {
 			_nestedFieldsWriterInterceptor
 		).getResources();
 
-		PropsUtil.setProps(Mockito.mock(Props.class));
-
 		_writerInterceptorContext = Mockito.mock(
 			WriterInterceptorContext.class);
 
