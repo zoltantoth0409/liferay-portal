@@ -12,20 +12,28 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.fields.nested;
+package com.liferay.portal.vulcan.internal.fields;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.liferay.petra.lang.CentralizedThreadLocal;
 
 /**
  * @author Ivica Cardic
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface NestedField {
+public class NestedFieldsContextThreadLocal {
 
-	public String value();
+	public static NestedFieldsContext getNestedFieldsContext() {
+		return _nestedContextThreadLocal.get();
+	}
+
+	public static void setNestedFieldsContext(
+		NestedFieldsContext nestedFieldsContext) {
+
+		_nestedContextThreadLocal.set(nestedFieldsContext);
+	}
+
+	private static final ThreadLocal<NestedFieldsContext>
+		_nestedContextThreadLocal = new CentralizedThreadLocal<>(
+			NestedFieldsContextThreadLocal.class +
+				"._nestedFieldsContextThreadLocal");
 
 }

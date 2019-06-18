@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.fields.nested.servlet;
+package com.liferay.portal.vulcan.internal.fields.servlet;
 
 import com.liferay.portal.vulcan.internal.util.request.MockHttpServletRequest;
 
@@ -22,7 +22,7 @@ import org.junit.Test;
 /**
  * @author Ivica Cardic
  */
-public class NestedHttpServletRequestWrapperTest {
+public class NestedFieldsHttpServletRequestWrapperTest {
 
 	@Test
 	public void testGetParameter() {
