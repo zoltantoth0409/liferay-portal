@@ -111,7 +111,7 @@ public class NestedFieldsWriterInterceptorTest {
 
 		NestedFieldsContextThreadLocal.setNestedFieldsContext(
 			new NestedFieldsContext(
-				Arrays.asList("skus", "productOptions"), new MessageImpl(),
+				Arrays.asList("productOptions", "skus"), new MessageImpl(),
 				_getPathParameters(), new MultivaluedHashMap<>()));
 
 		_nestedFieldsWriterInterceptor.aroundWriteTo(_writerInterceptorContext);
@@ -217,7 +217,7 @@ public class NestedFieldsWriterInterceptorTest {
 	}
 
 	@Test
-	public void testInjectContextResourceFields() throws Exception {
+	public void testInjectResourceContextFields() throws Exception {
 		Mockito.doReturn(
 			new NestedFieldsHttpServletRequestWrapperTest.
 				MockHttpServletRequest("skus")
