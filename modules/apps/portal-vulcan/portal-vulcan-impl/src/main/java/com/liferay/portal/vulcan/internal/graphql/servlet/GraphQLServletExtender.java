@@ -29,7 +29,6 @@ import com.liferay.portal.vulcan.graphql.servlet.ServletData;
 import com.liferay.portal.vulcan.internal.accept.language.AcceptLanguageImpl;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 
-import graphql.annotations.GraphQLFieldDefinitionWrapper;
 import graphql.annotations.annotationTypes.GraphQLField;
 import graphql.annotations.annotationTypes.GraphQLName;
 import graphql.annotations.processor.ProcessingElementsContainer;
@@ -311,7 +310,8 @@ public class GraphQLServletExtender {
 
 				builder.field(
 					_graphQLFieldRetriever.getField(
-						method, processingElementsContainer));
+						clazz.getSimpleName(), method,
+						processingElementsContainer));
 			}
 		}
 	}
@@ -632,7 +632,7 @@ public class GraphQLServletExtender {
 
 		@Override
 		public GraphQLFieldDefinition getField(
-			Method method,
+			String parentName, Method method,
 			ProcessingElementsContainer processingElementsContainer) {
 
 			GraphQLFieldDefinition.Builder builder =
@@ -649,7 +649,7 @@ public class GraphQLServletExtender {
 				method, processingElementsContainer.getDefaultTypeFunction(),
 				builder, processingElementsContainer, graphQLOutputType);
 
-			builder.argument(argumentBuilder.build());
+			builder.arguments(argumentBuilder.build());
 
 			builder.dataFetcher(new LiferayMethodDataFetcher(method));
 
@@ -668,7 +668,7 @@ public class GraphQLServletExtender {
 
 			builder.type(graphQLOutputType);
 
-			return new GraphQLFieldDefinitionWrapper(builder.build());
+			return builder.build();
 		}
 
 	}
