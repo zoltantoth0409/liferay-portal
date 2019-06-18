@@ -105,6 +105,7 @@ definition {
 	test CompleteProcessAndViewEmailNotifications {
 		property test.assert.javascript.errors = "false";
 		property test.smtp.server.enabled = "true";
+		property test.name.skip.portal.instance = "KaleoFormsEditSingleApprover#CompleteProcessAndViewEmailNotifications";
 
 		ProductMenu.gotoPortlet(
 			category = "Users",
@@ -411,6 +412,8 @@ definition {
 
 	@priority = "3"
 	test ViewApprovedProcessNotificationWithComments {
+		property test.name.skip.portal.instance = "KaleoFormsEditSingleApprover#ViewApprovedProcessNotificationWithComments";
+
 		WaitForSPARefresh();
 
 		Navigator.openURL();
