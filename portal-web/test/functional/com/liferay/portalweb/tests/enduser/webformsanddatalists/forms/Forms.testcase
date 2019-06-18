@@ -3964,11 +3964,6 @@ definition {
 			fieldLabel = "Upload Field",
 			fieldName = "UploadField");
 
-		Type(
-			key_fieldName = "UploadField",
-			locator1 = "FormFields#UPLOAD_FIELD",
-			value1 = "Cannot Input, Upload Field");
-
 		AssertTextEquals(
 			key_fieldName = "UploadField",
 			locator1 = "FormFields#UPLOAD_FIELD",
