@@ -284,9 +284,9 @@ public class GraphQLServletExtender {
 	}
 
 	private void _collectObjectFields(
-		ProcessingElementsContainer processingElementsContainer,
 		GraphQLObjectType.Builder builder,
-		Function<ServletData, Object> function) {
+		Function<ServletData, Object> function,
+		ProcessingElementsContainer processingElementsContainer) {
 
 		Map<String, Optional<Method>> methods = _servletDataList.stream(
 		).map(
@@ -412,12 +412,12 @@ public class GraphQLServletExtender {
 			queryBuilder.name("query");
 
 			_collectObjectFields(
-				processingElementsContainer, mutationBuilder,
-				ServletData::getMutation);
+				mutationBuilder, ServletData::getMutation,
+				processingElementsContainer);
 
 			_collectObjectFields(
-				processingElementsContainer, queryBuilder,
-				ServletData::getQuery);
+				queryBuilder, ServletData::getQuery,
+				processingElementsContainer);
 
 			schemaBuilder.mutation(mutationBuilder.build());
 			schemaBuilder.query(queryBuilder.build());
