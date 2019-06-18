@@ -14,7 +14,8 @@
 
 package com.liferay.portal.vulcan.internal.fields.servlet;
 
-import com.liferay.portal.vulcan.internal.util.servlet.NestedFieldsMockHttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,7 +31,7 @@ public class NestedFieldsHttpServletRequestWrapperTest {
 			nestedFieldsHttpServletRequestWrapper =
 				new NestedFieldsHttpServletRequestWrapper(
 					"skus",
-					new NestedFieldsMockHttpServletRequest(
+					new MockHttpServletRequest(
 						"skus", "externalReferenceCode", "12345", "width",
 						"11"));
 
@@ -40,6 +41,28 @@ public class NestedFieldsHttpServletRequestWrapperTest {
 				"externalReferenceCode"));
 		Assert.assertEquals(
 			"11", nestedFieldsHttpServletRequestWrapper.getParameter("width"));
+	}
+
+	public static class MockHttpServletRequest
+		extends org.springframework.mock.web.MockHttpServletRequest {
+
+		public MockHttpServletRequest() {
+		}
+
+		public MockHttpServletRequest(String fieldName, String... parameters) {
+			for (int i = 0; i < (parameters.length - 1); i++) {
+				_parameters.put(
+					fieldName + "." + parameters[i], parameters[i + 1]);
+			}
+		}
+
+		@Override
+		public String getParameter(String name) {
+			return _parameters.get(name);
+		}
+
+		private Map<String, String> _parameters = new HashMap<>();
+
 	}
 
 }
