@@ -141,7 +141,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		return resources;
 	}
 
-	private Object _checkReturnType(Class<?> fieldType, Object result) {
+	private Object _getReturnObject(Class<?> fieldType, Object result) {
 		if (result instanceof Page) {
 			Page page = (Page)result;
 
@@ -434,7 +434,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 
 			field.set(
 				entity,
-				_checkReturnType(
+				_getReturnObject(
 					field.getType(),
 					_getFieldValue(fieldName, nestedFieldsContext)));
 		}
