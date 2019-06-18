@@ -264,7 +264,7 @@ public class FreeMarkerTool {
 		Operation operation, boolean annotation) {
 
 		return ResourceTestCaseOpenAPIParser.getParameters(
-			openAPIYAML, javaMethodParameters, operation, annotation);
+			javaMethodParameters, openAPIYAML, operation, annotation);
 	}
 
 	public String getSchemaVarName(String schemaName) {
