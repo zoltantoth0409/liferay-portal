@@ -33,11 +33,7 @@ public class NestedFieldsHttpServletRequestWrapper
 
 	@Override
 	public String getParameter(String name) {
-		return super.getParameter(getNestedFieldsParameterName(name));
-	}
-
-	protected String getNestedFieldsParameterName(String name) {
-		return _fieldName + "." + name;
+		return super.getParameter(_fieldName + "." + name);
 	}
 
 	private final String _fieldName;
