@@ -107,7 +107,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 	}
 
 	@Override
-	public long getDateHeader(String s) {
+	public long getDateHeader(String name) {
 		return 0;
 	}
 
@@ -302,7 +302,7 @@ public class MockHttpServletRequest implements HttpServletRequest {
 	}
 
 	@Override
-	public HttpSession getSession(boolean b) {
+	public HttpSession getSession(boolean create) {
 		return null;
 	}
 
@@ -365,11 +365,11 @@ public class MockHttpServletRequest implements HttpServletRequest {
 	}
 
 	@Override
-	public void setAttribute(String name, Object o) {
+	public void setAttribute(String name, Object value) {
 	}
 
 	@Override
-	public void setCharacterEncoding(String env)
+	public void setCharacterEncoding(String characterEncoding)
 		throws UnsupportedEncodingException {
 	}
 
