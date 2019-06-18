@@ -114,6 +114,8 @@ public class DataLayoutTaglibUtil {
 			DDMFormRenderingContext ddmFormRenderingContext =
 				new DDMFormRenderingContext();
 
+			ddmFormRenderingContext.setContainerId("settings");
+
 			DDMFormValues ddmFormValues = _ddmFormValuesFactory.create(
 				httpServletRequest, ddmFormFieldTypeSettingsDDMForm);
 
@@ -122,7 +124,6 @@ public class DataLayoutTaglibUtil {
 			ddmFormRenderingContext.setDDMFormValues(ddmFormValues);
 
 			ddmFormRenderingContext.setHttpServletRequest(httpServletRequest);
-			ddmFormRenderingContext.setContainerId("settings");
 			ddmFormRenderingContext.setLocale(locale);
 			ddmFormRenderingContext.setPortletNamespace(
 				ParamUtil.getString(httpServletRequest, "portletNamespace"));
