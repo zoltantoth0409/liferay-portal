@@ -63,21 +63,6 @@ public class NestedFieldsWriterInterceptorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		PropsUtil.setProps(Mockito.mock(Props.class));
-
-		_writerInterceptorContext = Mockito.mock(
-			WriterInterceptorContext.class);
-
-		_product = new Product();
-
-		_product.setId(1L);
-
-		Mockito.when(
-			_writerInterceptorContext.getEntity()
-		).thenReturn(
-			_product
-		);
-
 		BundleContext bundleContext = Mockito.mock(BundleContext.class);
 
 		_nestedFieldsWriterInterceptor = Mockito.spy(
@@ -98,6 +83,21 @@ public class NestedFieldsWriterInterceptorTest {
 		).when(
 			_nestedFieldsWriterInterceptor
 		).getResources();
+
+		PropsUtil.setProps(Mockito.mock(Props.class));
+
+		_writerInterceptorContext = Mockito.mock(
+			WriterInterceptorContext.class);
+
+		_product = new Product();
+
+		_product.setId(1L);
+
+		Mockito.when(
+			_writerInterceptorContext.getEntity()
+		).thenReturn(
+			_product
+		);
 	}
 
 	@Test
