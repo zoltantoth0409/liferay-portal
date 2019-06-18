@@ -20,15 +20,15 @@
 
 <aui:script require='<%= fieldTypesModules + ", " + dataLayoutBuilderModule + " as DataLayoutBuilder" %>'>
 	new DataLayoutBuilder.default(
-	{
-		context: <%= dataLayout %>,
-		dataDefinitionInputId: '<%= namespace + dataDefinitionInputId %>',
-		dataLayoutInputId: '<%= namespace + dataLayoutInputId %>',
-		editingLanguageId: '<%= themeDisplay.getLanguageId() %>',
-		fieldTypes: <%= fieldTypes %>,
-		portletNamespace: '<%= namespace %>',
-		spritemap: '<%= themeDisplay.getPathThemeImages() %>/lexicon/icons.svg'
-	},
-	'#<%= namespace %>container'
+		{
+			context: <%= dataLayout %>,
+			dataDefinitionInputId: '<%= namespace + dataDefinitionInputId %>',
+			dataLayoutInputId: '<%= namespace + dataLayoutInputId %>',
+			editingLanguageId: '<%= themeDisplay.getLanguageId() %>',
+			fieldTypes: <%= fieldTypes %>,
+			portletNamespace: '<%= namespace %>',
+			spritemap: '<%= themeDisplay.getPathThemeImages() %>/lexicon/icons.svg'
+		},
+		'#<%= namespace %>container'
 	);
 </aui:script>
