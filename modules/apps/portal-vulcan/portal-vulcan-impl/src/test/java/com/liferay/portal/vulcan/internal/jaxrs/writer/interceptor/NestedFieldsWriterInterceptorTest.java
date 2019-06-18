@@ -65,12 +65,12 @@ public class NestedFieldsWriterInterceptorTest {
 	public void setUp() throws Exception {
 		PropsUtil.setProps(Mockito.mock(Props.class));
 
-		_context = Mockito.mock(WriterInterceptorContext.class);
+		_writerInterceptorContext = Mockito.mock(WriterInterceptorContext.class);
 
 		_product = _getProductDTO();
 
 		Mockito.when(
-			_context.getEntity()
+			_writerInterceptorContext.getEntity()
 		).thenReturn(
 			_product
 		);
@@ -83,7 +83,7 @@ public class NestedFieldsWriterInterceptorTest {
 		Mockito.doReturn(
 			Arrays.asList(
 				new PaginationContextProvider(),
-				new MockThemeDisplayContextProvider())
+				new ThemeDisplayContextProvider())
 		).when(
 			_nestedFieldsWriterInterceptor
 		).getContextProviders();
@@ -113,7 +113,7 @@ public class NestedFieldsWriterInterceptorTest {
 				Arrays.asList("skus", "productOptions"), new MessageImpl(),
 				_getPathParameters(), new MultivaluedHashMap<>()));
 
-		_nestedFieldsWriterInterceptor.aroundWriteTo(_context);
+		_nestedFieldsWriterInterceptor.aroundWriteTo(_writerInterceptorContext);
 
 		Collection<Sku> skus = _product.getSkus();
 
@@ -133,7 +133,7 @@ public class NestedFieldsWriterInterceptorTest {
 				Collections.emptyList(), new MessageImpl(),
 				_getPathParameters(), new MultivaluedHashMap<>()));
 
-		_nestedFieldsWriterInterceptor.aroundWriteTo(_context);
+		_nestedFieldsWriterInterceptor.aroundWriteTo(_writerInterceptorContext);
 
 		Collection<Sku> skus = _product.getSkus();
 
@@ -144,7 +144,7 @@ public class NestedFieldsWriterInterceptorTest {
 				Collections.singletonList("nonexistent"), new MessageImpl(),
 				_getPathParameters(), new MultivaluedHashMap<>()));
 
-		_nestedFieldsWriterInterceptor.aroundWriteTo(_context);
+		_nestedFieldsWriterInterceptor.aroundWriteTo(_writerInterceptorContext);
 
 		skus = _product.getSkus();
 
@@ -169,7 +169,7 @@ public class NestedFieldsWriterInterceptorTest {
 				Collections.singletonList("skus"), new MessageImpl(),
 				_getPathParameters(), new MultivaluedHashMap<>()));
 
-		_nestedFieldsWriterInterceptor.aroundWriteTo(_context);
+		_nestedFieldsWriterInterceptor.aroundWriteTo(_writerInterceptorContext);
 
 		Collection<Sku> skus = _product.getSkus();
 
@@ -202,7 +202,7 @@ public class NestedFieldsWriterInterceptorTest {
 				Collections.singletonList("productOptions"), new MessageImpl(),
 				_getPathParameters(), queryParameters));
 
-		_nestedFieldsWriterInterceptor.aroundWriteTo(_context);
+		_nestedFieldsWriterInterceptor.aroundWriteTo(_writerInterceptorContext);
 
 		List<ProductOption> productOptions =
 			(List<ProductOption>)_product.getProductOptions();
@@ -233,7 +233,7 @@ public class NestedFieldsWriterInterceptorTest {
 
 		Assert.assertNull(_productResourceImpl.themeDisplay);
 
-		_nestedFieldsWriterInterceptor.aroundWriteTo(_context);
+		_nestedFieldsWriterInterceptor.aroundWriteTo(_writerInterceptorContext);
 
 		Assert.assertNotNull(_productResourceImpl.themeDisplay);
 	}
@@ -254,7 +254,7 @@ public class NestedFieldsWriterInterceptorTest {
 		return product;
 	}
 
-	private WriterInterceptorContext _context;
+	private WriterInterceptorContext _writerInterceptorContext;
 	private NestedFieldsWriterInterceptor _nestedFieldsWriterInterceptor;
 	private Product _product;
 	private ProductResourceImpl _productResourceImpl;
@@ -281,7 +281,7 @@ public class NestedFieldsWriterInterceptorTest {
 
 	}
 
-	private class MockThemeDisplayContextProvider
+	private class ThemeDisplayContextProvider
 		implements ContextProvider<ThemeDisplay> {
 
 		@Override
