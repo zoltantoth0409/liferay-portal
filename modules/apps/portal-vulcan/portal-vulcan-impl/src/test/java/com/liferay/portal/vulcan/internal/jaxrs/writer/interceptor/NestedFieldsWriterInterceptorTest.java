@@ -68,7 +68,9 @@ public class NestedFieldsWriterInterceptorTest {
 		_writerInterceptorContext = Mockito.mock(
 			WriterInterceptorContext.class);
 
-		_product = _getProductDTO();
+		_product = new Product();
+
+		_product.setId(1L);
 
 		Mockito.when(
 			_writerInterceptorContext.getEntity()
@@ -245,14 +247,6 @@ public class NestedFieldsWriterInterceptorTest {
 				putSingle("id", "1");
 			}
 		};
-	}
-
-	private Product _getProductDTO() {
-		Product product = new Product();
-
-		product.setId(1L);
-
-		return product;
 	}
 
 	private NestedFieldsWriterInterceptor _nestedFieldsWriterInterceptor;
