@@ -16,10 +16,10 @@ package com.liferay.portal.vulcan.internal.jaxrs.writer.interceptor;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.vulcan.fields.nested.NestedField;
-import com.liferay.portal.vulcan.internal.fields.nested.NestedFieldsContext;
-import com.liferay.portal.vulcan.internal.fields.nested.NestedFieldsContextThreadLocal;
-import com.liferay.portal.vulcan.internal.fields.nested.servlet.NestedFieldsHttpServletRequestWrapper;
+import com.liferay.portal.vulcan.fields.NestedField;
+import com.liferay.portal.vulcan.internal.fields.NestedFieldsContext;
+import com.liferay.portal.vulcan.internal.fields.NestedFieldsContextThreadLocal;
+import com.liferay.portal.vulcan.internal.fields.servlet.NestedFieldsHttpServletRequestWrapper;
 import com.liferay.portal.vulcan.internal.param.converter.DateParamConverter;
 import com.liferay.portal.vulcan.pagination.Page;
 
