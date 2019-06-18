@@ -3,7 +3,10 @@
 	},
 	"private": true,
 	"workspaces": {
-		"nohoist": ["**/clay-*", "**/liferay-theme-deps*"],
+		"nohoist": [
+			"**/clay-*",
+			"**/liferay-theme-deps*"
+		],
 		"packages": [
 			"apps/**/*-taglib",
 			"apps/**/*-web",

@@ -1,11 +1,11 @@
-publishNodeModule {
-	enabled = false
-}
-
 gulpBuild {
 	enabled = false
 }
 
 npmInstall {
-    enabled = false
+	enabled = false
+}
+
+publishNodeModule {
+	enabled = false
 }
