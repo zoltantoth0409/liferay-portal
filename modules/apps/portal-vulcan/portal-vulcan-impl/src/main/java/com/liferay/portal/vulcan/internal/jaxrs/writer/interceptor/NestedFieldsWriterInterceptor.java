@@ -171,10 +171,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 			return null;
 		}
 
-		if (type == String.class) {
-			return value;
-		}
-		else if (type == BigDecimal.class) {
+		if (type == BigDecimal.class) {
 			return new BigDecimal(value);
 		}
 		else if (type == Boolean.class) {
@@ -209,6 +206,9 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		}
 		else if (type == Short.class) {
 			return Short.valueOf(value);
+		}
+		else if (type == String.class) {
+			return value;
 		}
 		else {
 			throw new IllegalArgumentException(
