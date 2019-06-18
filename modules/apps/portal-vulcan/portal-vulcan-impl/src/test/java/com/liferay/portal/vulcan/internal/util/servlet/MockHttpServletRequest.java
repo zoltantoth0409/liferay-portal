@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.util.request;
+package com.liferay.portal.vulcan.internal.util.servlet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
