@@ -1872,9 +1872,8 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 			_actionableDynamicQuery.setCompanyId(companyId);
 			_actionableDynamicQuery.setPerformActionMethod(
-				(UserGroup userGroup) -> {
-					userGroupLocalService.deleteUserGroup(userGroup);
-				});
+				(UserGroup userGroup) -> userGroupLocalService.deleteUserGroup(
+					userGroup));
 		}
 
 		protected void performActions() throws PortalException {
