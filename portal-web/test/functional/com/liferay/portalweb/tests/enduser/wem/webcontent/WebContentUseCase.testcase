@@ -2126,6 +2126,7 @@ definition {
 
 	@priority = "5"
 	test ImportAndUseGlobalStructureAndTemplate {
+		property test.name.skip.portal.instance = "WebContentUseCase#ImportAndUseGlobalStructureAndTemplate";
 		property testray.component.names = "Training";
 
 		JSONGroup.addGroup(groupName = "Site Name");
