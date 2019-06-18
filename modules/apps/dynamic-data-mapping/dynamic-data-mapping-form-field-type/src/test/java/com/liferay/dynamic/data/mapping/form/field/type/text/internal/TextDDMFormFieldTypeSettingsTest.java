@@ -62,8 +62,8 @@ public class TextDDMFormFieldTypeSettingsTest
 		setUpResourceBundleUtil();
 	}
 
-	@Test
 	@Ignore
+	@Test
 	public void testCreateTextDDMFormFieldTypeSettingsDDMForm() {
 		DDMForm ddmForm = DDMFormFactory.create(
 			TextDDMFormFieldTypeSettings.class);
