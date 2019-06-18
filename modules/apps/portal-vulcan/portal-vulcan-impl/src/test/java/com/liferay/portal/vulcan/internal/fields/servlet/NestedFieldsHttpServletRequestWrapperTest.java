@@ -14,7 +14,7 @@
 
 package com.liferay.portal.vulcan.internal.fields.servlet;
 
-import com.liferay.portal.vulcan.internal.util.servlet.MockHttpServletRequest;
+import com.liferay.portal.vulcan.internal.util.servlet.NestedFieldsMockHttpServletRequest;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class NestedFieldsHttpServletRequestWrapperTest {
 			nestedFieldsHttpServletRequestWrapper =
 				new NestedFieldsHttpServletRequestWrapper(
 					"skus",
-					new MockHttpServletRequest(
+					new NestedFieldsMockHttpServletRequest(
 						"skus", "externalReferenceCode", "12345", "width",
 						"11"));
 

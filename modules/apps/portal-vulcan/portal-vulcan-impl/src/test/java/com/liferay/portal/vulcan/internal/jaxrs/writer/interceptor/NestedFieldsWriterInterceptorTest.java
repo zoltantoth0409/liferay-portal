@@ -24,7 +24,7 @@ import com.liferay.portal.vulcan.internal.util.dto.Product;
 import com.liferay.portal.vulcan.internal.util.dto.ProductOption;
 import com.liferay.portal.vulcan.internal.util.dto.Sku;
 import com.liferay.portal.vulcan.internal.util.resource.ProductResourceImpl;
-import com.liferay.portal.vulcan.internal.util.servlet.MockHttpServletRequest;
+import com.liferay.portal.vulcan.internal.util.servlet.NestedFieldsMockHttpServletRequest;
 
 import java.io.IOException;
 
@@ -92,7 +92,7 @@ public class NestedFieldsWriterInterceptorTest {
 	@Test
 	public void testGetNestedFields() throws Exception {
 		Mockito.doReturn(
-			new MockHttpServletRequest()
+			new NestedFieldsMockHttpServletRequest()
 		).when(
 			_nestedFieldsWriterInterceptor
 		).getHttpServletRequest(
@@ -145,7 +145,7 @@ public class NestedFieldsWriterInterceptorTest {
 	@Test
 	public void testGetNestedFieldsWithPagination() throws Exception {
 		Mockito.doReturn(
-			new MockHttpServletRequest(
+			new NestedFieldsMockHttpServletRequest(
 				"skus", "page", String.valueOf(1), "pageSize",
 				String.valueOf(2))
 		).when(
@@ -169,7 +169,7 @@ public class NestedFieldsWriterInterceptorTest {
 	@Test
 	public void testGetNestedFieldsWithQueryParameter() throws IOException {
 		Mockito.doReturn(
-			new MockHttpServletRequest("productOptions")
+			new NestedFieldsMockHttpServletRequest("productOptions")
 		).when(
 			_nestedFieldsWriterInterceptor
 		).getHttpServletRequest(
@@ -207,7 +207,7 @@ public class NestedFieldsWriterInterceptorTest {
 	@Test
 	public void testInjectContextResourceFields() throws Exception {
 		Mockito.doReturn(
-			new MockHttpServletRequest("skus")
+			new NestedFieldsMockHttpServletRequest("skus")
 		).when(
 			_nestedFieldsWriterInterceptor
 		).getHttpServletRequest(
