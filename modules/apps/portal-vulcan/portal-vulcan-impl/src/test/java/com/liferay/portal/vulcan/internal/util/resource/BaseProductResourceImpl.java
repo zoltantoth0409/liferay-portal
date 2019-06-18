@@ -20,7 +20,6 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -39,9 +38,7 @@ public class BaseProductResourceImpl implements ProductResource {
 	@Path("/{id}/productOption")
 	@Produces("application/*")
 	public List<ProductOption> getProductOptions(
-		@PathParam("id") Long id, @QueryParam("name") String name,
-		@QueryParam("createDate") Date createDate,
-		@Context Pagination pagination) {
+		@PathParam("id") Long id, @QueryParam("name") String name) {
 
 		return Collections.emptyList();
 	}

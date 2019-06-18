@@ -23,7 +23,6 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -38,17 +37,14 @@ public class ProductResourceImpl extends BaseProductResourceImpl {
 
 	@NestedField("productOptions")
 	@Override
-	public List<ProductOption> getProductOptions(
-		Long id, String name, Date createDate, Pagination pagination) {
-
+	public List<ProductOption> getProductOptions(Long id, String name) {
 		if (id != 1) {
 			return Collections.emptyList();
 		}
 
 		List<ProductOption> productOptions = Arrays.asList(
-			_getProductOptionDTO(1L, "test1"),
-			_getProductOptionDTO(2L, "test2"),
-			_getProductOptionDTO(3L, "test3"));
+			_toProductOption(1L, "test1"), _toProductOption(2L, "test2"),
+			_toProductOption(3L, "test3"));
 
 		if (name != null) {
 			Stream<ProductOption> productOptionDTOStream =
@@ -73,7 +69,7 @@ public class ProductResourceImpl extends BaseProductResourceImpl {
 		}
 
 		List<Sku> skus = Arrays.asList(
-			_getSkuDTO(1L), _getSkuDTO(2L), _getSkuDTO(3L), _getSkuDTO(4L));
+			_toSku(1L), _toSku(2L), _toSku(3L), _toSku(4L));
 
 		skus = skus.subList(
 			pagination.getStartPosition(),
@@ -85,7 +81,7 @@ public class ProductResourceImpl extends BaseProductResourceImpl {
 	@Context
 	public ThemeDisplay themeDisplay;
 
-	private ProductOption _getProductOptionDTO(long id, String name) {
+	private ProductOption _toProductOption(long id, String name) {
 		ProductOption productOption = new ProductOption();
 
 		productOption.setId(id);
@@ -94,7 +90,7 @@ public class ProductResourceImpl extends BaseProductResourceImpl {
 		return productOption;
 	}
 
-	private Sku _getSkuDTO(long id) {
+	private Sku _toSku(long id) {
 		Sku sku = new Sku();
 
 		sku.setId(id);

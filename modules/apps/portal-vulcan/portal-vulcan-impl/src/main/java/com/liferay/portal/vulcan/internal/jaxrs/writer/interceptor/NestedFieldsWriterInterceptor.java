@@ -90,7 +90,8 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		}
 
 		try {
-			_setFieldValue(writerInterceptorContext.getEntity(), nestedFieldsContext);
+			_setFieldValue(
+				writerInterceptorContext.getEntity(), nestedFieldsContext);
 		}
 		catch (Exception e) {
 			_log.error(e.getMessage(), e);
