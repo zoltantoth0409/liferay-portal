@@ -1,7 +1,3 @@
-gulpBuild {
-	enabled = false
-}
-
 publishNodeModule {
 	enabled = false
 }

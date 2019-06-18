@@ -27,11 +27,6 @@
 			"apps/map/map-common",
 			"apps/map/map-google-maps",
 			"apps/map/map-openstreetmap",
-			"apps/frontend-theme/frontend-theme-admin",
-			"apps/frontend-theme/frontend-theme-classic",
-			"apps/frontend-theme-fjord/frontend-theme-fjord",
-			"apps/frontend-theme-porygon/frontend-theme-porygon",
-			"apps/frontend-theme-westeros-bank/frontend-theme-westeros-bank",
 			"apps/portal-portlet-bridge/portal-portlet-bridge-soy-impl"
 		]
 	}
