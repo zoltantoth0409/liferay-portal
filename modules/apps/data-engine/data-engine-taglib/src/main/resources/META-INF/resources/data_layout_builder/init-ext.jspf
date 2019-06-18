@@ -32,9 +32,9 @@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 <liferay-theme:defineObjects />
 
 <%
-	Locale[] availableLocales = (Locale[])request.getAttribute("liferay-data-engine:data-layout-builder:availableLocales");
-	JSONObject dataLayout = (JSONObject)request.getAttribute("liferay-data-engine:data-layout-builder:dataLayout");
-	String dataLayoutBuilderModule = (String)request.getAttribute("liferay-data-engine:data-layout-builder:dataLayoutBuilderModule");
-	JSONArray fieldTypes = (JSONArray)request.getAttribute("liferay-data-engine:data-layout-builder:fieldTypes");
-	String fieldTypesModules = (String)request.getAttribute("liferay-data-engine:data-layout-builder:fieldTypesModules");
+Locale[] availableLocales = (Locale[])request.getAttribute("liferay-data-engine:data-layout-builder:availableLocales");
+JSONObject dataLayout = (JSONObject)request.getAttribute("liferay-data-engine:data-layout-builder:dataLayout");
+String dataLayoutBuilderModule = (String)request.getAttribute("liferay-data-engine:data-layout-builder:dataLayoutBuilderModule");
+JSONArray fieldTypes = (JSONArray)request.getAttribute("liferay-data-engine:data-layout-builder:fieldTypes");
+String fieldTypesModules = (String)request.getAttribute("liferay-data-engine:data-layout-builder:fieldTypesModules");
 %>
