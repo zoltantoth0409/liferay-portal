@@ -314,7 +314,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 				resource.getClass(), method);
 
 			Object[] args = _getMethodArgs(
-				fieldName, parameters, nestedFieldsContext);
+				fieldName, nestedFieldsContext, parameters);
 
 			return method.invoke(resource, args);
 		}
@@ -323,8 +323,8 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 	}
 
 	private Object[] _getMethodArgs(
-			String fieldName, Parameter[] parameters,
-			NestedFieldsContext nestedFieldsContext)
+			String fieldName, NestedFieldsContext nestedFieldsContext,
+			Parameter[] parameters)
 		throws Exception {
 
 		Object[] args = new Object[parameters.length];
