@@ -678,7 +678,7 @@ definition {
 		SAMLNavigation.gotoServiceProvider();
 
 		SAMLPortlet.configureServiceProvider(
-			enbleLDAPImport = "true"
+			LDAPImport = "enable"
 		);
 
 		User.logoutPG(specificURL = "http://www.able.com:9080");
