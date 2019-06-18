@@ -306,8 +306,8 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 
 			if (!Modifier.isPublic(method.getModifiers())) {
 				throw new IllegalAccessException(
-					"Method annotated with NestedField annotation has to be " +
-						"defined in Base Resource class");
+					"Method with the NestedField annotation must be defined " + 
+						"in an abstract class");
 			}
 
 			Parameter[] parameters = _getBaseResourceClassMethodParameters(
