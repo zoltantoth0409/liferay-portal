@@ -435,13 +435,13 @@ public class GraphQLServletExtender {
 	private Integer _getVersion(Method method) {
 		Class<?> clazz = method.getDeclaringClass();
 
-		Package classPackage = clazz.getPackage();
+		Package pkg = clazz.getPackage();
 
-		String stringPackage = classPackage.toString();
+		String packageString = pkg.toString();
 
-		String[] packages = stringPackage.split("\\.");
+		String[] packageNames = packageString.split("\\.");
 
-		String version = packages[packages.length - 1];
+		String version = packageNames[packageNames.length - 1];
 
 		return Integer.valueOf(version.replaceAll("\\D", ""));
 	}
