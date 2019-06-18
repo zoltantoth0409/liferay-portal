@@ -229,7 +229,7 @@ public class NestedFieldsWriterInterceptorTest {
 
 		NestedFieldsContextThreadLocal.setNestedFieldsContext(
 			new NestedFieldsContext(
-				Arrays.asList("skus", "productOptions"), new MessageImpl(),
+				Arrays.asList("productOptions", "skus"), new MessageImpl(),
 				_getPathParameters(), new MultivaluedHashMap<>()));
 
 		Assert.assertNull(_productResourceImpl.themeDisplay);
