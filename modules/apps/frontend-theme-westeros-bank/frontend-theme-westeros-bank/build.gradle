@@ -2,10 +2,6 @@ gulpBuild {
 	enabled = false
 }
 
-npmInstall {
-	enabled = false
-}
-
 publishNodeModule {
 	enabled = false
 }
