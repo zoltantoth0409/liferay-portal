@@ -35,21 +35,17 @@ public class DataLayoutBuilderTag extends BaseDataLayoutBuilderTag {
 		setNamespacedAttribute(
 			httpServletRequest, "availableLocales",
 			LanguageUtil.getAvailableLocales(GroupThreadLocal.getGroupId()));
-
 		setNamespacedAttribute(
 			httpServletRequest, "dataLayout",
 			JSONFactoryUtil.createJSONObject());
-
 		setNamespacedAttribute(
 			httpServletRequest, "dataLayoutBuilderModule",
 			DataLayoutTaglibUtil.resolveModule(
 				"data-engine-taglib/data_layout_builder/js" +
 					"/DataLayoutBuilder.es"));
-
 		setNamespacedAttribute(
 			httpServletRequest, "fieldTypes",
 			DataLayoutTaglibUtil.getFieldTypesJSONArray(httpServletRequest));
-
 		setNamespacedAttribute(
 			httpServletRequest, "fieldTypesModules",
 			DataLayoutTaglibUtil.resolveFieldTypesModules());
