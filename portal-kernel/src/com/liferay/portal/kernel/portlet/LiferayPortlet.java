@@ -654,6 +654,12 @@ public class LiferayPortlet extends GenericPortlet {
 	protected boolean addProcessActionSuccessMessage;
 	protected boolean alwaysSendRedirect;
 
+	/**
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
+	 */
+	@Deprecated
+	protected Set<String> validPaths;
+
 	private String _toXSSSafeJSON(String json) {
 		return StringUtil.replace(json, CharPool.LESS_THAN, "\\u003c");
 	}
