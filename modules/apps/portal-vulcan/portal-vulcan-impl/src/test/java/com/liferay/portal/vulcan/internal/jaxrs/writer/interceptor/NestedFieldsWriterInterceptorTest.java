@@ -20,8 +20,8 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.vulcan.fields.NestedField;
 import com.liferay.portal.vulcan.internal.fields.NestedFieldsContext;
 import com.liferay.portal.vulcan.internal.fields.NestedFieldsContextThreadLocal;
+import com.liferay.portal.vulcan.internal.fields.servlet.NestedFieldsHttpServletRequestWrapperTest;
 import com.liferay.portal.vulcan.internal.jaxrs.context.provider.PaginationContextProvider;
-import com.liferay.portal.vulcan.internal.util.servlet.NestedFieldsMockHttpServletRequest;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -100,7 +100,8 @@ public class NestedFieldsWriterInterceptorTest {
 	@Test
 	public void testGetNestedFields() throws Exception {
 		Mockito.doReturn(
-			new NestedFieldsMockHttpServletRequest()
+			new NestedFieldsHttpServletRequestWrapperTest.
+				MockHttpServletRequest()
 		).when(
 			_nestedFieldsWriterInterceptor
 		).getHttpServletRequest(
@@ -153,9 +154,10 @@ public class NestedFieldsWriterInterceptorTest {
 	@Test
 	public void testGetNestedFieldsWithPagination() throws Exception {
 		Mockito.doReturn(
-			new NestedFieldsMockHttpServletRequest(
-				"skus", "page", String.valueOf(1), "pageSize",
-				String.valueOf(2))
+			new NestedFieldsHttpServletRequestWrapperTest.
+				MockHttpServletRequest(
+					"skus", "page", String.valueOf(1), "pageSize",
+					String.valueOf(2))
 		).when(
 			_nestedFieldsWriterInterceptor
 		).getHttpServletRequest(
@@ -177,7 +179,8 @@ public class NestedFieldsWriterInterceptorTest {
 	@Test
 	public void testGetNestedFieldsWithQueryParameter() throws IOException {
 		Mockito.doReturn(
-			new NestedFieldsMockHttpServletRequest("productOptions")
+			new NestedFieldsHttpServletRequestWrapperTest.
+				MockHttpServletRequest("productOptions")
 		).when(
 			_nestedFieldsWriterInterceptor
 		).getHttpServletRequest(
@@ -215,7 +218,8 @@ public class NestedFieldsWriterInterceptorTest {
 	@Test
 	public void testInjectContextResourceFields() throws Exception {
 		Mockito.doReturn(
-			new NestedFieldsMockHttpServletRequest("skus")
+			new NestedFieldsHttpServletRequestWrapperTest.
+				MockHttpServletRequest("skus")
 		).when(
 			_nestedFieldsWriterInterceptor
 		).getHttpServletRequest(
