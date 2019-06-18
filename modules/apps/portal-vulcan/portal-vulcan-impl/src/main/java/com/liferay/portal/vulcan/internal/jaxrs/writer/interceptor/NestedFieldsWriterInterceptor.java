@@ -217,7 +217,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		}
 	}
 
-	private Method _getAnnotatedMethod(String fieldName, Class<?> clazz) {
+	private Method _getAnnotatedMethod(Class<?> clazz, String fieldName) {
 		Method[] methods = clazz.getDeclaredMethods();
 
 		for (Method method : methods) {
@@ -296,7 +296,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		throws Exception {
 
 		for (Object resource : getResources()) {
-			Method method = _getAnnotatedMethod(fieldName, resource.getClass());
+			Method method = _getAnnotatedMethod(resource.getClass(), fieldName);
 
 			if (method == null) {
 				continue;
