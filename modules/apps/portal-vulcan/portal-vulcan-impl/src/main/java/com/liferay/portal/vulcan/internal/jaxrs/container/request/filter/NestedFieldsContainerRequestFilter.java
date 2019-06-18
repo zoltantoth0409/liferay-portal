@@ -15,8 +15,8 @@
 package com.liferay.portal.vulcan.internal.jaxrs.container.request.filter;
 
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.vulcan.internal.fields.nested.NestedFieldsContext;
-import com.liferay.portal.vulcan.internal.fields.nested.NestedFieldsContextThreadLocal;
+import com.liferay.portal.vulcan.internal.fields.NestedFieldsContext;
+import com.liferay.portal.vulcan.internal.fields.NestedFieldsContextThreadLocal;
 
 import java.io.IOException;
 

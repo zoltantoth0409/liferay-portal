@@ -15,7 +15,7 @@
 package com.liferay.portal.vulcan.internal.util.resource;
 
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.vulcan.fields.nested.NestedField;
+import com.liferay.portal.vulcan.fields.NestedField;
 import com.liferay.portal.vulcan.internal.util.dto.ProductOption;
 import com.liferay.portal.vulcan.internal.util.dto.Sku;
 import com.liferay.portal.vulcan.pagination.Page;
