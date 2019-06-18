@@ -262,7 +262,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		throws InvalidSyntaxException {
 
 		for (ContextProvider contextProvider : getContextProviders()) {
-			if (_isActualContextProvider(contextProvider, contextClass)) {
+			if (_isRelevantContextProvider(contextClass, contextProvider)) {
 				return contextProvider;
 			}
 		}
@@ -383,8 +383,8 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		return message;
 	}
 
-	private <T> boolean _isActualContextProvider(
-		ContextProvider contextProvider, Class<T> contextClass) {
+	private <T> boolean _isRelevantContextProvider(
+		Class<T> contextClass, ContextProvider contextProvider) {
 
 		Class<? extends ContextProvider> contextProviderClass =
 			contextProvider.getClass();
