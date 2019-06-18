@@ -14,10 +14,6 @@
 
 package com.liferay.portal.vulcan.internal.graphql.servlet;
 
-import static java.util.Comparator.comparingInt;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.maxBy;
-
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.model.Company;
@@ -95,6 +91,7 @@ import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.List;
@@ -303,7 +300,9 @@ public class GraphQLServletExtender {
 		).filter(
 			method -> method.isAnnotationPresent(GraphQLField.class)
 		).collect(
-			groupingBy(Method::getName, maxBy(comparingInt(this::_getVersion)))
+			Collectors.groupingBy(
+				Method::getName,
+				Collectors.maxBy(Comparator.comparingInt(this::_getVersion)))
 		);
 
 		for (Optional<Method> methodOptional : methods.values()) {
