@@ -601,7 +601,7 @@ public class ResourceOpenAPIParser {
 			}
 
 			if (parameter.isRequired()) {
-				sb.append("@NotNull ");
+				sb.append("@NotNull");
 			}
 
 			sb.append("@Parameter(hidden=true)");
