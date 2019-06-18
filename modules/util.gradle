@@ -93,6 +93,11 @@ formatSourceLocalChanges {
 	formatLocalChanges = true
 }
 
+node {
+	nodeVersion = "8.10.0"
+	npmVersion = "5.7.1"
+}
+
 printDependencyPath {
 	doLast {
 		assert project.properties["dependencyNotation"] : "Please provide a value for the '-PdependencyNotation' property"
