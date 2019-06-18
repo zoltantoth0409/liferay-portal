@@ -141,31 +141,6 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		return resources;
 	}
 
-	private Object _getReturnObject(Class<?> fieldType, Object result) {
-		if (result instanceof Page) {
-			Page page = (Page)result;
-
-			result = page.getItems();
-		}
-
-		if (fieldType.isArray() && (result instanceof Collection)) {
-			Collection collection = (Collection)result;
-
-			result = Array.newInstance(
-				fieldType.getComponentType(), collection.size());
-
-			Iterator iterator = collection.iterator();
-
-			int i = 0;
-
-			while (iterator.hasNext()) {
-				Array.set(result, i++, iterator.next());
-			}
-		}
-
-		return result;
-	}
-
 	private Object _convert(String value, Class<?> type) {
 		if (value == null) {
 			return null;
@@ -306,7 +281,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 
 			if (!Modifier.isPublic(method.getModifiers())) {
 				throw new IllegalAccessException(
-					"Method with the NestedField annotation must be defined " + 
+					"Method with the NestedField annotation must be defined " +
 						"in an abstract class");
 			}
 
@@ -381,6 +356,31 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 				fieldName, getHttpServletRequest(message)));
 
 		return message;
+	}
+
+	private Object _getReturnObject(Class<?> fieldType, Object result) {
+		if (result instanceof Page) {
+			Page page = (Page)result;
+
+			result = page.getItems();
+		}
+
+		if (fieldType.isArray() && (result instanceof Collection)) {
+			Collection collection = (Collection)result;
+
+			result = Array.newInstance(
+				fieldType.getComponentType(), collection.size());
+
+			Iterator iterator = collection.iterator();
+
+			int i = 0;
+
+			while (iterator.hasNext()) {
+				Array.set(result, i++, iterator.next());
+			}
+		}
+
+		return result;
 	}
 
 	private <T> boolean _isRelevantContextProvider(
