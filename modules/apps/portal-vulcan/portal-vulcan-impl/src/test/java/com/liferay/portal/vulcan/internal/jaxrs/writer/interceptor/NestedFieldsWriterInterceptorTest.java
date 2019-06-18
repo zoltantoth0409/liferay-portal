@@ -65,7 +65,8 @@ public class NestedFieldsWriterInterceptorTest {
 	public void setUp() throws Exception {
 		PropsUtil.setProps(Mockito.mock(Props.class));
 
-		_writerInterceptorContext = Mockito.mock(WriterInterceptorContext.class);
+		_writerInterceptorContext = Mockito.mock(
+			WriterInterceptorContext.class);
 
 		_product = _getProductDTO();
 
@@ -254,10 +255,10 @@ public class NestedFieldsWriterInterceptorTest {
 		return product;
 	}
 
-	private WriterInterceptorContext _writerInterceptorContext;
 	private NestedFieldsWriterInterceptor _nestedFieldsWriterInterceptor;
 	private Product _product;
 	private ProductResourceImpl _productResourceImpl;
+	private WriterInterceptorContext _writerInterceptorContext;
 
 	private class BaseProductResourceImpl implements ProductResource {
 
@@ -277,16 +278,6 @@ public class NestedFieldsWriterInterceptorTest {
 			@PathParam("id") String id, @Context Pagination pagination) {
 
 			return Page.of(Collections.emptyList());
-		}
-
-	}
-
-	private class ThemeDisplayContextProvider
-		implements ContextProvider<ThemeDisplay> {
-
-		@Override
-		public ThemeDisplay createContext(Message message) {
-			return new ThemeDisplay();
 		}
 
 	}
@@ -435,6 +426,16 @@ public class NestedFieldsWriterInterceptorTest {
 		}
 
 		private Long _id;
+
+	}
+
+	private class ThemeDisplayContextProvider
+		implements ContextProvider<ThemeDisplay> {
+
+		@Override
+		public ThemeDisplay createContext(Message message) {
+			return new ThemeDisplay();
+		}
 
 	}
 
