@@ -214,7 +214,7 @@ public class NestedFieldsWriterInterceptorTest {
 	}
 
 	@Test
-	public void testInjectResourceContextFields() throws Exception {
+	public void testInjectResourceContexts() throws Exception {
 		Mockito.doReturn(
 			new NestedFieldsHttpServletRequestWrapperTest.
 				MockHttpServletRequest("skus")
