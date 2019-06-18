@@ -77,20 +77,20 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 	}
 
 	@Override
-	public void aroundWriteTo(WriterInterceptorContext context)
+	public void aroundWriteTo(WriterInterceptorContext writerInterceptorContext)
 		throws IOException, WebApplicationException {
 
 		NestedFieldsContext nestedFieldsContext =
 			NestedFieldsContextThreadLocal.getNestedFieldsContext();
 
 		if (nestedFieldsContext == null) {
-			context.proceed();
+			writerInterceptorContext.proceed();
 
 			return;
 		}
 
 		try {
-			_setFieldValue(context.getEntity(), nestedFieldsContext);
+			_setFieldValue(writerInterceptorContext.getEntity(), nestedFieldsContext);
 		}
 		catch (Exception e) {
 			_log.error(e.getMessage(), e);
@@ -98,7 +98,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 			throw new WebApplicationException(e);
 		}
 
-		context.proceed();
+		writerInterceptorContext.proceed();
 	}
 
 	protected List<ContextProvider> getContextProviders()
