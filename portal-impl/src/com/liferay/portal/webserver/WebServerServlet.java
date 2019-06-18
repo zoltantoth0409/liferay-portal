@@ -1584,7 +1584,7 @@ public class WebServerServlet extends HttpServlet {
 
 	private PermissionChecker _getPermissionChecker(
 			HttpServletRequest httpServletRequest)
-		throws PortalException {
+		throws Exception {
 
 		User user = PortalUtil.getUser(httpServletRequest);
 
