@@ -15,8 +15,6 @@
 package com.liferay.portal.vulcan.internal.jaxrs.writer.interceptor;
 
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.Props;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.vulcan.fields.NestedField;
 import com.liferay.portal.vulcan.internal.fields.NestedFieldsContext;
 import com.liferay.portal.vulcan.internal.fields.NestedFieldsContextThreadLocal;
@@ -63,10 +61,9 @@ public class NestedFieldsWriterInterceptorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		BundleContext bundleContext = Mockito.mock(BundleContext.class);
-
 		_nestedFieldsWriterInterceptor = Mockito.spy(
-			new NestedFieldsWriterInterceptor(bundleContext));
+			new NestedFieldsWriterInterceptor(
+				Mockito.mock(BundleContext.class)));
 
 		Mockito.doReturn(
 			Arrays.asList(
