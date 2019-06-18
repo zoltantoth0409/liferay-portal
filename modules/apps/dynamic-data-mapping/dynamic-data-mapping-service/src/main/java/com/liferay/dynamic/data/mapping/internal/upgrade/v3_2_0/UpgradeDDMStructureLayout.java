@@ -26,9 +26,9 @@ public class UpgradeDDMStructureLayout extends UpgradeProcess {
 		if (!hasColumn("DDMStructureLayout", "classNameId") &&
 			!hasColumn("DDMStructureLayout", "structureLayoutKey")) {
 
-			runSQL("alter TABLE DDMStructureLayout add classNameId LONG");
+			runSQL("alter table DDMStructureLayout add classNameId LONG");
 			runSQL(
-				"alter TABLE DDMStructureLayout add structureLayoutKey " +
+				"alter table DDMStructureLayout add structureLayoutKey " +
 					"VARCHAR(75) null");
 		}
 	}
