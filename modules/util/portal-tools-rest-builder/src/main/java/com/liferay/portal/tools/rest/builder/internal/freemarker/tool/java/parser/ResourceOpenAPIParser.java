@@ -591,10 +591,6 @@ public class ResourceOpenAPIParser {
 
 			StringBuilder sb = new StringBuilder();
 
-			if (parameter.isRequired()) {
-				sb.append("@NotNull ");
-			}
-
 			String defaultValue = _getDefaultValue(
 				openAPIYAML, parameter.getSchema());
 
@@ -602,6 +598,10 @@ public class ResourceOpenAPIParser {
 				sb.append("@DefaultValue(\"");
 				sb.append(defaultValue);
 				sb.append("\")");
+			}
+
+			if (parameter.isRequired()) {
+				sb.append("@NotNull ");
 			}
 
 			sb.append("@Parameter(hidden=true)");
