@@ -130,7 +130,7 @@ public class NestedFieldsWriterInterceptorTest {
 	}
 
 	@Test
-	public void testGetNestedFieldsEmpty() throws IOException {
+	public void testGetNestedFieldsWithNonexistendFieldName() throws Exception {
 		NestedFieldsContextThreadLocal.setNestedFieldsContext(
 			new NestedFieldsContext(
 				Collections.emptyList(), new MessageImpl(),
