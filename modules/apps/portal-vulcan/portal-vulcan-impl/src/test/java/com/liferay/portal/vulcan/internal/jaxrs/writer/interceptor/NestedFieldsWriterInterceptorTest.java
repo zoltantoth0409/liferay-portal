@@ -17,14 +17,13 @@ package com.liferay.portal.vulcan.internal.jaxrs.writer.interceptor;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.vulcan.fields.NestedField;
 import com.liferay.portal.vulcan.internal.fields.NestedFieldsContext;
 import com.liferay.portal.vulcan.internal.fields.NestedFieldsContextThreadLocal;
 import com.liferay.portal.vulcan.internal.jaxrs.context.provider.PaginationContextProvider;
-import com.liferay.portal.vulcan.internal.util.dto.Product;
-import com.liferay.portal.vulcan.internal.util.dto.ProductOption;
-import com.liferay.portal.vulcan.internal.util.dto.Sku;
-import com.liferay.portal.vulcan.internal.util.resource.ProductResourceImpl;
 import com.liferay.portal.vulcan.internal.util.servlet.NestedFieldsMockHttpServletRequest;
+import com.liferay.portal.vulcan.pagination.Page;
+import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.io.IOException;
 
@@ -32,7 +31,16 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.ext.WriterInterceptorContext;
 
@@ -247,6 +255,28 @@ public class NestedFieldsWriterInterceptorTest {
 	private Product _product;
 	private ProductResourceImpl _productResourceImpl;
 
+	private class BaseProductResourceImpl implements ProductResource {
+
+		@GET
+		@Path("/{id}/productOption")
+		@Produces("application/*")
+		public List<ProductOption> getProductOptions(
+			@PathParam("id") Long id, @QueryParam("name") String name) {
+
+			return Collections.emptyList();
+		}
+
+		@GET
+		@Path("/{id}/sku")
+		@Produces("application/*")
+		public Page<Sku> getSkus(
+			@PathParam("id") String id, @Context Pagination pagination) {
+
+			return Page.of(Collections.emptyList());
+		}
+
+	}
+
 	private class MockThemeDisplayContextProvider
 		implements ContextProvider<ThemeDisplay> {
 
@@ -254,6 +284,153 @@ public class NestedFieldsWriterInterceptorTest {
 		public ThemeDisplay createContext(Message message) {
 			return new ThemeDisplay();
 		}
+
+	}
+
+	private class Product {
+
+		public Long getId() {
+			return _id;
+		}
+
+		public Collection<ProductOption> getProductOptions() {
+			return _productOptions;
+		}
+
+		public Collection<Sku> getSkus() {
+			return _skus;
+		}
+
+		public void setId(Long id) {
+			_id = id;
+		}
+
+		public void setProductOptions(
+			Collection<ProductOption> productOptions) {
+
+			_productOptions = productOptions;
+		}
+
+		public void setSkus(Collection<Sku> skus) {
+			_skus = skus;
+		}
+
+		private Long _id;
+		private Collection<ProductOption> _productOptions =
+			Collections.emptyList();
+		private Collection<Sku> _skus = Collections.emptyList();
+
+	}
+
+	private class ProductOption {
+
+		public Long getId() {
+			return _id;
+		}
+
+		public String getName() {
+			return _name;
+		}
+
+		public void setId(Long id) {
+			_id = id;
+		}
+
+		public void setName(String name) {
+			_name = name;
+		}
+
+		private Long _id;
+		private String _name;
+
+	}
+
+	private interface ProductResource {
+
+		public List<ProductOption> getProductOptions(Long id, String name);
+
+		public Page<Sku> getSkus(String id, Pagination pagination);
+
+	}
+
+	private class ProductResourceImpl extends BaseProductResourceImpl {
+
+		@NestedField("productOptions")
+		@Override
+		public List<ProductOption> getProductOptions(Long id, String name) {
+			if (id != 1) {
+				return Collections.emptyList();
+			}
+
+			List<ProductOption> productOptions = Arrays.asList(
+				_toProductOption(1L, "test1"), _toProductOption(2L, "test2"),
+				_toProductOption(3L, "test3"));
+
+			if (name != null) {
+				Stream<ProductOption> productOptionDTOStream =
+					productOptions.stream();
+
+				productOptions = productOptionDTOStream.filter(
+					productOptionDTO -> Objects.equals(
+						productOptionDTO.getName(), name)
+				).collect(
+					Collectors.toList()
+				);
+			}
+
+			return productOptions;
+		}
+
+		@NestedField("skus")
+		@Override
+		public Page<Sku> getSkus(String id, Pagination pagination) {
+			if (!Objects.equals(id, "1")) {
+				return Page.of(Collections.emptyList());
+			}
+
+			List<Sku> skus = Arrays.asList(
+				_toSku(1L), _toSku(2L), _toSku(3L), _toSku(4L));
+
+			skus = skus.subList(
+				pagination.getStartPosition(),
+				Math.min(pagination.getEndPosition(), skus.size()));
+
+			return Page.of(skus);
+		}
+
+		@Context
+		public ThemeDisplay themeDisplay;
+
+		private ProductOption _toProductOption(long id, String name) {
+			ProductOption productOption = new ProductOption();
+
+			productOption.setId(id);
+			productOption.setName(name);
+
+			return productOption;
+		}
+
+		private Sku _toSku(long id) {
+			Sku sku = new Sku();
+
+			sku.setId(id);
+
+			return sku;
+		}
+
+	}
+
+	private class Sku {
+
+		public Long getId() {
+			return _id;
+		}
+
+		public void setId(Long id) {
+			_id = id;
+		}
+
+		private Long _id;
 
 	}
 
