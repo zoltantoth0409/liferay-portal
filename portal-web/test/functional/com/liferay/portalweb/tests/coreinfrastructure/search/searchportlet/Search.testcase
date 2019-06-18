@@ -317,6 +317,7 @@ definition {
 	@priority = "4"
 	test NavigateToSearchResultsViaURL {
 		property portal.acceptance = "true";
+		property portal.suite.search.engine = "disable";
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
@@ -1448,6 +1449,7 @@ definition {
 	}
 
 	test SearchWithNonLiferayIndex {
+		property portal.suite.search.engine = "disable";
 		property test.name.skip.portal.instance = "Search#SearchWithNonLiferayIndex";
 
 		AntCommand(
@@ -1701,6 +1703,7 @@ definition {
 	@description = "This is a use case for LPS-74299."
 	@priority = "3"
 	test ViewFacetPersistence {
+		property portal.suite.search.engine = "disable";
 		property test.name.skip.portal.instance = "Search#ViewFacetPersistence";
 
 		// Workaround for LPS-89026
