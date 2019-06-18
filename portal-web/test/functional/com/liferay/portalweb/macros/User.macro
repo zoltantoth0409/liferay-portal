@@ -64,7 +64,7 @@ definition {
 	}
 
 	macro addAddressViaMyAccount {
-		Click(locator1 = "NavListItem#ADDRESSES");
+		Click(locator1 = "NavTab#IDENTIFICATION");
 
 		Type(
 			locator1 = "TextInput#STREET_1",
@@ -1071,6 +1071,12 @@ definition {
 			locator1 = "UsersAndOrganizationsEditUser#PASSWORD_ENTER_AGAIN_FIELD",
 			value1 = "${newPassword}");
 
+		if ("${requirePasswordReset}" == "true") {
+			Check(
+				checkboxName = "Require Password Reset",
+				locator1 = "Checkbox#ANY_CHECKBOX");
+		}
+
 		PortletEntry.save();
 
 		User.logoutPG();
@@ -1863,6 +1869,14 @@ definition {
 		UserBar.signOut();
 	}
 
+	macro removeIdentificationInformation {
+		Click(
+			key_rowEntry = "${rowEntry}",
+			locator1 = "UsersAndOrganizationsEditUser#USER_IDENTIFICATION_REMOVE_ICON");
+
+		PortletEntry.save();
+	}
+
 	macro resetPassword {
 		if (IsElementPresent.pauseIsElementPresent(locator1 = "TextInput#PASSWORD")) {
 			if ((isSet(syntaxCheckingEnabled)) && ("${syntaxCheckingEnabled}" == "true")) {
@@ -2164,6 +2178,128 @@ definition {
 			AssertTextEquals(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 				value1 = "${userLastName}");
+
+			if (isSet(userBirthday)) {
+				AssertTextEquals(
+					locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD",
+					value1 = "${userBirthday}");
+			}
+
+			if (isSet(userJobTitle)) {
+				AssertTextEquals(
+					locator1 = "UsersAndOrganizationsEditUser#DETAILS_JOB_TITLE_FIELD",
+					value1 = "${userJobTitle}");
+			}
+		}
+	}
+
+	macro viewIdentificationInformation {
+		Organization.gotoIdentificationCP();
+
+		// Address
+
+		if (isSet(city)) {
+			AssertTextEquals(
+				locator1 = "TextInput#CITY",
+				value1 = "${city}");
+		}
+
+		if (isSet(country)) {
+			AssertSelectedLabel(
+				locator1 = "Select#COUNTRY",
+				value1 = "${country}");
+		}
+
+		if (isSet(postalCode)) {
+			AssertTextEquals(
+				locator1 = "TextInput#POSTAL_CODE",
+				value1 = "${postalCode}");
+		}
+
+		if (isSet(region)) {
+			AssertSelectedLabel(
+				locator1 = "Select#REGION",
+				value1 = "${region}");
+		}
+
+		if (isSet(street1)) {
+			AssertTextEquals(
+				locator1 = "TextInput#STREET_1",
+				value1 = "${street1}");
+		}
+
+		if (isSet(addressType)) {
+			AssertSelectedLabel(
+				locator1 = "Select#TYPE",
+				value1 = "${addressType}");
+		}
+
+		// Phone Numbers
+
+		if (isSet(number)) {
+			Panel.expandPanel(panelHeading = "Phone Numbers");
+
+			AssertTextEquals.assertValue(
+				locator1 = "UsersAndOrganizationsEditUser#USER_IDENTIFICATION_PHONE_NUMBERS",
+				value1 = "${number}");
+
+			if (isSet(numberType)) {
+				AssertSelectedLabel(
+					locator1 = "UsersAndOrganizationsEditUser#USER_IDENTIFICATION_PHONE_NUMBERS_TYPE",
+					value1 = "${numberType}");
+			}
+		}
+
+		// Additional Email Addresses
+
+		if (isSet(emailAddress)) {
+			Panel.expandPanel(panelHeading = "Additional Email Addresses");
+
+			AssertTextEquals.assertValue(
+				locator1 = "UsersAndOrganizationsEditUser#USER_IDENTIFICATION_ADDITIONAL_EMAIL_ADDRESSES",
+				value1 = "${emailAddress}");
+		}
+
+		if (isSet(emailAddressCount)) {
+			Panel.expandPanel(panelHeading = "Additional Email Addresses");
+
+			var i = "0";
+
+			while (!("${i}" == "${emailAddressCount}")) {
+				var i = MathUtil.sum("${i}", "1");
+
+				var key_emailAddress = "${emailAddressPrefix}${i}@liferay.com";
+
+				AssertTextEquals.assertValue(
+					locator1 = "UsersAndOrganizationsEditUser#USER_IDENTIFICATION_ADDITIONAL_EMAIL_ADDRESSES",
+					value1 = "${emailAddressPrefix}${i}@liferay.com");
+			}
+		}
+
+		// Websites
+
+		if (isSet(url)) {
+			Panel.expandPanel(panelHeading = "Websites");
+
+			AssertTextEquals.assertValue(
+				locator1 = "UsersAndOrganizationsEditUser#USER_IDENTIFICATION_WEBSITES_URL",
+				value1 = "${url}");
+
+			if (isSet(websiteType)) {
+				AssertSelectedLabel(
+					locator1 = "UsersAndOrganizationsEditUser#USER_IDENTIFICATION_WEBSITES_TYPE",
+					value1 = "${websiteType}");
+			}
+		}
+
+		// Instant Messenger
+
+		if (isSet(skype)) {
+			Panel.expandPanel(panelHeading = "Instant Messenger");
+
+			AssertTextEquals.assertValue(
+				locator1 = "TextInput#SKYPE",
+				value1 = "${skype}");
 		}
 	}
 
