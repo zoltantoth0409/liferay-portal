@@ -235,7 +235,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 	}
 
 	private Parameter[] _getBaseResourceClassMethodParameters(
-			Method implMethod, Class<?> clazz)
+			Class<?> clazz, Method implMethod)
 		throws NoSuchMethodException {
 
 		Class<?> baseResourceClass = clazz.getSuperclass();
@@ -311,7 +311,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 			}
 
 			Parameter[] parameters = _getBaseResourceClassMethodParameters(
-				method, resource.getClass());
+				resource.getClass(), method);
 
 			Object[] args = _getMethodArgs(
 				fieldName, parameters, nestedFieldsContext);
