@@ -14,7 +14,7 @@
 
 package com.liferay.portal.vulcan.internal.fields.servlet;
 
-import com.liferay.portal.vulcan.internal.util.request.MockHttpServletRequest;
+import com.liferay.portal.vulcan.internal.util.servlet.MockHttpServletRequest;
 
 import org.junit.Assert;
 import org.junit.Test;

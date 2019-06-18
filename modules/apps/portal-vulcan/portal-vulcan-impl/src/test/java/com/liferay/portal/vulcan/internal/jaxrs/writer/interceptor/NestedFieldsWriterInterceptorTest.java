@@ -23,8 +23,8 @@ import com.liferay.portal.vulcan.internal.jaxrs.context.provider.PaginationConte
 import com.liferay.portal.vulcan.internal.util.dto.Product;
 import com.liferay.portal.vulcan.internal.util.dto.ProductOption;
 import com.liferay.portal.vulcan.internal.util.dto.Sku;
-import com.liferay.portal.vulcan.internal.util.request.MockHttpServletRequest;
 import com.liferay.portal.vulcan.internal.util.resource.ProductResourceImpl;
+import com.liferay.portal.vulcan.internal.util.servlet.MockHttpServletRequest;
 
 import java.io.IOException;
 
