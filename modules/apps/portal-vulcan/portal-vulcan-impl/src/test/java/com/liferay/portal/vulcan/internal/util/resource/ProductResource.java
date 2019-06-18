@@ -19,7 +19,6 @@ import com.liferay.portal.vulcan.internal.util.dto.Sku;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,8 +26,7 @@ import java.util.List;
  */
 public interface ProductResource {
 
-	public List<ProductOption> getProductOptions(
-		Long id, String name, Date createDate, Pagination pagination);
+	public List<ProductOption> getProductOptions(Long id, String name);
 
 	public Page<Sku> getSkus(String id, Pagination pagination);
 
