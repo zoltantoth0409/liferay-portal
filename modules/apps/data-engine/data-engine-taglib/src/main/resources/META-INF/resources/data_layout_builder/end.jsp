@@ -21,11 +21,11 @@
 <aui:script require='<%= fieldTypesModules + ", " + dataLayoutBuilderModule + " as DataLayoutBuilder" %>'>
 	new DataLayoutBuilder.default(
 		{
-			context: <%= dataLayout %>,
+			context: <%= dataLayoutJSONObject %>,
 			dataDefinitionInputId: '<%= namespace + dataDefinitionInputId %>',
 			dataLayoutInputId: '<%= namespace + dataLayoutInputId %>',
 			editingLanguageId: '<%= themeDisplay.getLanguageId() %>',
-			fieldTypes: <%= fieldTypes %>,
+			fieldTypes: <%= fieldTypesJSONArray %>,
 			portletNamespace: '<%= namespace %>',
 			spritemap: '<%= themeDisplay.getPathThemeImages() %>/lexicon/icons.svg'
 		},
