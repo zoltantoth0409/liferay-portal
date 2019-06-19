@@ -67,6 +67,8 @@ public class HelloWorldPortlet extends MVCPortlet {
 
 		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
+		PrintWriter printWriter = renderResponse.getWriter();
+
 		String releaseInfo = StringPool.BLANK;
 
 		if (_HTTP_HEADER_VERSION_VERBOSITY_DEFAULT) {
@@ -77,8 +79,6 @@ public class HelloWorldPortlet extends MVCPortlet {
 		else {
 			releaseInfo = ReleaseInfo.getReleaseInfo();
 		}
-
-		PrintWriter printWriter = renderResponse.getWriter();
 
 		printWriter.print(
 			"Welcome to ".concat(
