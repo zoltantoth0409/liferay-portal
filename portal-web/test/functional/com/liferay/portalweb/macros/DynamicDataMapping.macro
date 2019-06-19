@@ -390,11 +390,11 @@ definition {
 
 		if (isSet(fieldOptionsValues)) {
 			for (var fieldOptionsValue : list "${fieldOptionsValues}") {
-			var j = MathUtil.sum("${j}", "1");
+				var j = MathUtil.sum("${j}", "1");
 
-			Type(
-				locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_OPTIONS_VALUE_${j}",
-				value1 = "${fieldOptionsValue}");
+				Type(
+					locator1 = "DDMEditStructure#SETTINGS_CELL_EDITOR_OPTIONS_VALUE_${j}",
+					value1 = "${fieldOptionsValue}");
 			}
 		}
 
