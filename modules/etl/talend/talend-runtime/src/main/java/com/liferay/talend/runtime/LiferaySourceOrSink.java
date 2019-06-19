@@ -289,12 +289,12 @@ public class LiferaySourceOrSink
 			OASConstants.PATH_ENDPOINT_OPERATION_PARAMETERS_PATTERN,
 			"ENDPOINT_TPL", endpoint, "OPERATION_TPL", operation);
 
-		JsonArray parametersArrayNode = _jsonFinder.getDescendantJsonArray(
+		JsonArray parametersJsonArray = _jsonFinder.getDescendantJsonArray(
 			jsonFinderPath, oasJsonObject);
 
-		for (int i = 0; i < parametersArrayNode.size(); i++) {
+		for (int i = 0; i < parametersJsonArray.size(); i++) {
 			oasParameters.add(
-				_toParameter(parametersArrayNode.getJsonObject(i)));
+				_toParameter(parametersJsonArray.getJsonObject(i)));
 		}
 
 		return oasParameters;
