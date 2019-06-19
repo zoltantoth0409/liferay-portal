@@ -67,9 +67,9 @@ class FragmentEntryLinkContent extends Component {
 	/**
 	 * @inheritDoc
 	 */
-	rendered() {
+	rendered(firstRender) {
 		if (this.content) {
-			this._renderContent(this.content);
+			this._renderContent(this.content, firstRender);
 		}
 	}
 
@@ -256,11 +256,13 @@ class FragmentEntryLinkContent extends Component {
 	 * @param {string} content
 	 * @private
 	 */
-	_renderContent(content) {
+	_renderContent(content, firstRender) {
 		if (content && this.refs.content) {
 			this.refs.content.innerHTML = content;
 
-			globalEval.runScriptsInElement(this.refs.content);
+			if (firstRender) {
+				globalEval.runScriptsInElement(this.refs.content);
+			}
 
 			if (this.editableValues) {
 				this._createEditables();
