@@ -13,5 +13,5 @@ dependencies {
 	compileOnly group: "javax.servlet.jsp", name: "javax.servlet.jsp-api", version: "2.3.1"
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly project(":apps:comment:comment-api")
-	compileOnly project(":apps:subscription:subscription-api")
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.1.0"
 }
