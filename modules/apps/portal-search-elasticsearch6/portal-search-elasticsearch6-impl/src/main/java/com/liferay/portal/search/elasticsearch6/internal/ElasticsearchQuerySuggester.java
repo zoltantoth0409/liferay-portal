@@ -76,7 +76,16 @@ public class ElasticsearchQuerySuggester implements QuerySuggester {
 			return StringPool.BLANK;
 		}
 
-		List<String> words = getWords(suggest);
+		Suggest.Suggestion
+			<? extends Suggest.Suggestion.Entry
+				<? extends Suggest.Suggestion.Entry.Option>> suggestion =
+					suggest.getSuggestion(suggester.getName());
+
+		if (suggestion == null) {
+			return StringPool.BLANK;
+		}
+
+		List<String> words = getHighestRankedSuggestResults(suggestion);
 
 		return StringUtil.merge(words, StringPool.SPACE);
 	}
@@ -167,19 +176,8 @@ public class ElasticsearchQuerySuggester implements QuerySuggester {
 			return StringPool.EMPTY_ARRAY;
 		}
 
-		List<String> keywordQueries = new ArrayList<>();
-
-		for (Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>
-				suggestionEntry : suggestion) {
-
-			for (Suggest.Suggestion.Entry.Option suggestionEntryOption :
-					suggestionEntry.getOptions()) {
-
-				Text optionText = suggestionEntryOption.getText();
-
-				keywordQueries.add(optionText.string());
-			}
-		}
+		List<String> keywordQueries = getHighestRankedSuggestResults(
+			suggestion);
 
 		return keywordQueries.toArray(new String[0]);
 	}
@@ -270,6 +268,28 @@ public class ElasticsearchQuerySuggester implements QuerySuggester {
 		return suggest;
 	}
 
+	protected List<String> getHighestRankedSuggestResults(
+		Suggest.Suggestion
+			<? extends Suggest.Suggestion.Entry
+				<? extends Suggest.Suggestion.Entry.Option>> suggestion) {
+
+		List<String> texts = new ArrayList<>();
+
+		for (Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>
+				suggestionEntry : suggestion) {
+
+			for (Suggest.Suggestion.Entry.Option suggestionEntryOption :
+					suggestionEntry.getOptions()) {
+
+				Text optionText = suggestionEntryOption.getText();
+
+				texts.add(optionText.string());
+			}
+		}
+
+		return texts;
+	}
+
 	protected Localization getLocalization() {
 
 		// See LPS-72507 and LPS-76500
@@ -302,35 +322,6 @@ public class ElasticsearchQuerySuggester implements QuerySuggester {
 
 			throw spee;
 		}
-	}
-
-	protected List<String> getWords(Suggest suggest) {
-		List<String> words = new ArrayList<>();
-
-		for (Suggest.Suggestion
-				<? extends Suggest.Suggestion.Entry
-					<? extends Suggest.Suggestion.Entry.Option>> suggestion :
-						suggest) {
-
-			for (Suggest.Suggestion.Entry
-					<? extends Suggest.Suggestion.Entry.Option>
-						suggestionEntry : suggestion) {
-
-				List<? extends Suggest.Suggestion.Entry.Option>
-					suggestionEntryOptions = suggestionEntry.getOptions();
-
-				if (!suggestionEntryOptions.isEmpty()) {
-					Suggest.Suggestion.Entry.Option suggestionEntryOption =
-						suggestionEntryOptions.get(0);
-
-					Text text = suggestionEntryOption.getText();
-
-					words.add(text.string());
-				}
-			}
-		}
-
-		return words;
 	}
 
 	protected SuggesterResult translate(
