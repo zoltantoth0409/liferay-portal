@@ -447,7 +447,7 @@ paths:
                                 $ref: "#/components/schemas/Entry"
                     description: ""
             tags: ["Entry"]
-    "/entries/{entryId}/affecteds":
+    "/affected-entries/{entryId}":
         get:
             operationId: getEntryAffectedsPage
             parameters:
