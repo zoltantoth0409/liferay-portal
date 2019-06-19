@@ -1,6 +1,0 @@
-dependencies {
-	testIntegrationCompile group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge", version: "1.0.17"
-	testIntegrationCompile project(":apps:asset:asset-auto-tagger-api")
-	testIntegrationCompile project(":apps:blogs:blogs-api")
-	testIntegrationCompile project(":apps:portal-configuration:portal-configuration-test-util")
-}
