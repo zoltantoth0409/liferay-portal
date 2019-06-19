@@ -90,7 +90,7 @@ import org.osgi.service.component.annotations.Reference;
 		PrefixHandlerFactory.class, ScopeFinder.class, ScopeMapper.class
 	}
 )
-public class OAuth2ProviderShortcutPortalInstanceLifecycleListener
+public class AnalyticsCloudPortalInstanceLifecycleListener
 	extends BasePortalInstanceLifecycleListener
 	implements ApplicationDescriptor, PrefixHandlerFactory, ScopeFinder,
 			   ScopeMapper {
@@ -107,9 +107,7 @@ public class OAuth2ProviderShortcutPortalInstanceLifecycleListener
 		return GetterUtil.getString(
 			ResourceBundleUtil.getString(
 				ResourceBundleUtil.getBundle(
-					"content.Language", locale,
-					OAuth2ProviderShortcutPortalInstanceLifecycleListener.
-						class),
+					"content.Language", locale, getClass()),
 				"liferay-json-web-services-analytics-name"),
 			"liferay-json-web-services-analytics-name");
 	}
@@ -202,8 +200,7 @@ public class OAuth2ProviderShortcutPortalInstanceLifecycleListener
 	private void _addSAPEntries(long companyId, long userId)
 		throws PortalException {
 
-		Class<?> clazz =
-			OAuth2ProviderShortcutPortalInstanceLifecycleListener.class;
+		Class<?> clazz = getClass();
 
 		ResourceBundleLoader resourceBundleLoader =
 			new AggregateResourceBundleLoader(
