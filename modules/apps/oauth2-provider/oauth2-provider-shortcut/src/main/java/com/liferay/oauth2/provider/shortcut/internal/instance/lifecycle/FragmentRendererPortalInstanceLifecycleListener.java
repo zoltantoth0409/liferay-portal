@@ -48,9 +48,8 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = PortalInstanceLifecycleListener.class
 )
-public class
-	FragmentRendererOAuth2ProviderShortcutPortalInstanceLifecycleListener
-		extends BasePortalInstanceLifecycleListener {
+public class FragmentRendererPortalInstanceLifecycleListener
+	extends BasePortalInstanceLifecycleListener {
 
 	@Override
 	public void portalInstanceRegistered(Company company) throws Exception {
@@ -105,9 +104,9 @@ public class
 
 	@Activate
 	protected void activate(Map<String, Object> properties) {
-		_clientId = GetterUtil.getString(properties.get("clientId"));
 		_applicationName = GetterUtil.getString(
 			properties.get("applicationName"));
+		_clientId = GetterUtil.getString(properties.get("clientId"));
 	}
 
 	private String _applicationName = "Fragment Renderer";

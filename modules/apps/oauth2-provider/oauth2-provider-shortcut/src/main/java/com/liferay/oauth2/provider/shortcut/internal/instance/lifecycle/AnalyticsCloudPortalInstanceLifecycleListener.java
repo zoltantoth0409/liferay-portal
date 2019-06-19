@@ -86,7 +86,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = PortalInstanceLifecycleListener.class
 )
-public class OAuth2ProviderShortcutPortalInstanceLifecycleListener
+public class AnalyticsCloudPortalInstanceLifecycleListener
 	extends BasePortalInstanceLifecycleListener {
 
 	@Override
@@ -161,8 +161,7 @@ public class OAuth2ProviderShortcutPortalInstanceLifecycleListener
 	private void _addSAPEntries(long companyId, long userId)
 		throws PortalException {
 
-		Class<?> clazz =
-			OAuth2ProviderShortcutPortalInstanceLifecycleListener.class;
+		Class<?> clazz = getClass();
 
 		ResourceBundleLoader resourceBundleLoader =
 			new AggregateResourceBundleLoader(
