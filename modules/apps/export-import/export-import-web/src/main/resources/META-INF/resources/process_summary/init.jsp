@@ -34,7 +34,7 @@ BackgroundTask backgroundTask = BackgroundTaskManagerUtil.fetchBackgroundTask(ba
 
 Map<String, ?> taskContextMap = backgroundTask.getTaskContextMap();
 
-long exportImportConfigurationId = Long.parseLong(taskContextMap.get("exportImportConfigurationId").toString());
+long exportImportConfigurationId = GetterUtil.getLong(String.valueOf(taskContextMap.get("exportImportConfigurationId")));
 
 ExportImportConfiguration exportImportConfiguration = ExportImportConfigurationLocalServiceUtil.getExportImportConfiguration(exportImportConfigurationId);
 
