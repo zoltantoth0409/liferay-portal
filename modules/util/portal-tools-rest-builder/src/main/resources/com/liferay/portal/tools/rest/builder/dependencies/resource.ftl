@@ -22,6 +22,8 @@ import javax.annotation.Generated;
 
 import javax.ws.rs.core.Response;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * To access this resource, run:
  *
@@ -31,6 +33,7 @@ import javax.ws.rs.core.Response;
  * @generated
  */
 @Generated("")
+@ProviderType
 public interface ${schemaName}Resource {
 
 	<#list freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName) as javaMethodSignature>
