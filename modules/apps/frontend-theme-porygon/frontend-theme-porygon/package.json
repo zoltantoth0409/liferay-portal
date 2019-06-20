@@ -8,12 +8,6 @@
 		"metal-dom": "^2.4.0",
 		"metal-state": "^2.3.0"
 	},
-	"devDependencies": {
-		"gulp": "^3.8.10",
-		"liferay-theme-deps-7.1": "8.0.0-beta.1",
-		"liferay-theme-es2015-hook": "8.0.0-beta.1",
-		"liferay-theme-tasks": "8.0.0-beta.1"
-	},
 	"keywords": [
 		"liferay-theme"
 	],
@@ -30,5 +24,10 @@
 	"main": "package.json",
 	"name": "liferay-porygon-theme",
 	"repository": "liferay/liferay-portal",
+	"scripts": {
+		"build": "liferay-npm-scripts theme build",
+		"checkFormat": "liferay-npm-scripts check",
+		"format": "liferay-npm-scripts fix"
+	},
 	"version": "2.0.12"
 }

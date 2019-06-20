@@ -3,10 +3,11 @@
 		"metal": "^2.4.7",
 		"metal-events": "^2.5.0"
 	},
-	"devDependencies": {
-		"liferay-module-config-generator": "^1.2.1",
-		"metal-cli": "^4.2.0"
-	},
 	"name": "wiki-web",
+	"scripts": {
+		"build": "liferay-npm-scripts build",
+		"checkFormat": "liferay-npm-scripts check",
+		"format": "liferay-npm-scripts fix"
+	},
 	"version": "4.0.47"
 }

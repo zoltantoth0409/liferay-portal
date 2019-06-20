@@ -13,18 +13,12 @@
 		}
 	},
 	"dependencies": {
-		"alloyeditor": "2.0.8",
-		"liferay-module-config-generator": "^1.3.3"
-	},
-	"devDependencies": {
-		"check-source-formatting": "^2.0.4",
-		"liferay-jest-junit-reporter": "1.0.0"
+		"alloyeditor": "2.0.8"
 	},
 	"name": "frontend-editor-alloyeditor-web",
 	"scripts": {
-		"checkFormat": "npm run csf",
-		"csf": "csf src/**/*.js test/**/*.js",
-		"format": "npm run csf -- -i"
+		"checkFormat": "liferay-npm-scripts check",
+		"format": "liferay-npm-scripts fix"
 	},
 	"version": "2.0.35"
 }

@@ -1,3 +1,7 @@
 {
-	"presets": ["es2015", "liferay-project"]
+    "ignore": [
+		"**/config.js",
+        "**/*_field*.js",
+        "**/select_search_support.js"
+    ]
 }

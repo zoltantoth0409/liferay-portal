@@ -9,10 +9,11 @@
 		"metal-soy": "^2.7.0",
 		"metal-tooltip": "^2.0.3"
 	},
-	"devDependencies": {
-		"liferay-module-config-generator": "^1.2.0",
-		"metal-cli": "^4.2.0"
-	},
 	"name": "adaptive-media-web",
+	"scripts": {
+		"build": "liferay-npm-scripts build",
+		"checkFormat": "liferay-npm-scripts check",
+		"format": "liferay-npm-scripts fix"
+	},
 	"version": "2.0.24"
 }

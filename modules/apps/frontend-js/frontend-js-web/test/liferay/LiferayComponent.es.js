@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 
-describe(
+describe.skip(
 	'LiferayComponent',
 	() => {
 		afterEach(

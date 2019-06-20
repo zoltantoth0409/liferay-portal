@@ -1,10 +1,7 @@
-const merge = require('webpack-merge');
-const webpack = require('webpack');
-
-const common = require('./webpack.common.js');
+const config = require('./webpack.config');
 
 module.exports = merge(
-	common.config,
+	...config,
 	{
 		devServer: {
 			port: 3000,

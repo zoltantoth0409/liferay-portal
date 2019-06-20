@@ -1,4 +1,7 @@
 {
-    "output": "classes/META-INF/resources",
-    "preset": "liferay-npm-bundler-preset-standard"
+    "ignore": [
+        "**/config.js",
+        "**/*_field*.js",
+        "**/select_search_support.js"
+    ]
 }

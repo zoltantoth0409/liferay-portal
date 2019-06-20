@@ -39,19 +39,7 @@
 		"uuid": "^3.3.2"
 	},
 	"devDependencies": {
-		"babel-cli": "6.26.0",
-		"babel-loader": "^7.1.4",
-		"babel-preset-env": "^1.6.1",
-		"check-source-formatting": "^2.0.4",
-		"jest": "23.2.0",
-		"liferay-jest-junit-reporter": "0.0.4",
-		"liferay-npm-bridge-generator": "^2.0.0",
-		"liferay-npm-bundler": "^2.1.0",
-		"metal-tools-soy": "^4.2.1",
-		"webpack": "4.17.2",
-		"webpack-cli": "^2.0.15",
-		"webpack-dev-server": "^3.1.3",
-		"webpack-merge": "^4.1.2"
+		"babel-loader": "^8.0.5"
 	},
 	"jest": {
 		"globals": {
@@ -60,15 +48,12 @@
 		"setupFiles": [
 			"<rootDir>/test/liferay/portlet/mock/setup.es.js"
 		],
-		"testMatch": [
-			"**/test/**/*.js"
-		],
 		"testPathIgnorePatterns": [
 			"<rootDir>/node_modules/",
 			"<rootDir>/test/liferay/portlet/mock/portlet_data.es.js",
 			"<rootDir>/test/liferay/portlet/mock/setup.es.js"
 		],
-		"testResultsProcessor": "./node_modules/liferay-jest-junit-reporter",
+		"testResultsProcessor": "liferay-jest-junit-reporter",
 		"testURL": "http://localhost",
 		"transformIgnorePatterns": [
 			"<rootDir>.*(node_modules)(?!.*metal.*).*$"
@@ -76,15 +61,11 @@
 	},
 	"name": "frontend-js-web",
 	"scripts": {
-		"build": "metalsoy && babel -d classes/META-INF/resources src/main/resources/META-INF/resources && liferay-npm-bundler && liferay-npm-bridge-generator && npm run cleanSoy",
-		"checkFormat": "npm run csf",
-		"cleanSoy": "rimraf src/**/*.soy.js",
-		"csf": "csf src/**/liferay/**/*.js test/**/*.js test/**/**/*.js",
-		"format": "npm run csf -- -i",
-		"start": "webpack-dev-server --config webpack.dev.js",
-		"test": "jest",
-		"webpack": "webpack --config webpack.prod.js",
-		"webpack:dev": "webpack --config webpack.dev.js"
+		"build": "liferay-npm-scripts build",
+		"checkFormat": "liferay-npm-scripts check",
+		"format": "liferay-npm-scripts fix",
+		"test": "liferay-npm-scripts test",
+		"watch": "liferay-npm-scripts webpack --watch"
 	},
 	"version": "2.0.46"
 }

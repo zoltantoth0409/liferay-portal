@@ -7,10 +7,11 @@
 		"metal-state": "^2.6.0",
 		"metal-structs": "^1.0.1"
 	},
-	"devDependencies": {
-		"liferay-module-config-generator": "1.3.3",
-		"metal-cli": "4.4.0"
-	},
 	"name": "frontend-taglib",
+	"scripts": {
+		"build": "liferay-npm-scripts build",
+		"checkFormat": "liferay-npm-scripts check",
+		"format": "liferay-npm-scripts fix"
+	},
 	"version": "3.2.9"
 }

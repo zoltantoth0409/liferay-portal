@@ -1,16 +1,9 @@
 {
-	"dependencies": {
-		"liferay-module-config-generator": "^1.3.3"
-	},
-	"devDependencies": {
-		"alloy-ui": "^3.1.0-deprecated.40",
-		"karma": "^1.7.1",
-		"liferay-karma-alloy-config": "0.0.14",
-		"liferay-karma-config": "0.0.3"
-	},
 	"name": "portal-search-web",
 	"scripts": {
-		"test": "karma start"
+		"checkFormat": "liferay-npm-scripts check",
+		"format": "liferay-npm-scripts fix",
+		"test_DISABLED": "karma start"
 	},
 	"version": "3.0.60"
 }
