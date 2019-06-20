@@ -46,7 +46,6 @@ public class JsonFinderTest {
 
 		Assert.assertNotNull(
 			"Expect non null json array object", descendantJsonArray);
-
 		Assert.assertEquals(
 			"Expect empty json array", JsonValue.EMPTY_JSON_ARRAY,
 			descendantJsonArray);
@@ -84,18 +83,14 @@ public class JsonFinderTest {
 		Assert.assertFalse(
 			"Expect path \"invalid>path\" is invalid",
 			jsonFinder.hasPath("invalid>path", jsonObject));
-
 		Assert.assertFalse(
 			"Expect empty path is invalid", jsonFinder.hasPath("", jsonObject));
-
 		Assert.assertFalse(
 			"Expect path \"invalid\" is invalid",
 			jsonFinder.hasPath("invalid", jsonObject));
-
 		Assert.assertTrue(
 			"Expect path \"info\" is valid",
 			jsonFinder.hasPath("info", jsonObject));
-
 		Assert.assertTrue(
 			"Expect path \"info>description\" is valid",
 			jsonFinder.hasPath("info>description", jsonObject));
