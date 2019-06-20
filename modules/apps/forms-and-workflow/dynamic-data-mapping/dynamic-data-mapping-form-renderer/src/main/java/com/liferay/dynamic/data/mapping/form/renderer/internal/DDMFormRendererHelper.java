@@ -215,8 +215,7 @@ public class DDMFormRendererHelper {
 		sb.append(ddmFormFieldParameterName);
 		sb.append(
 			DDMFormRendererConstants.DDM_FORM_FIELD_LANGUAGE_ID_SEPARATOR);
-		sb.append(
-			LocaleUtil.toLanguageId(_ddmFormRenderingContext.getLocale()));
+		sb.append(LocaleUtil.toLanguageId(_ddmForm.getDefaultLocale()));
 
 		return sb.toString();
 	}
