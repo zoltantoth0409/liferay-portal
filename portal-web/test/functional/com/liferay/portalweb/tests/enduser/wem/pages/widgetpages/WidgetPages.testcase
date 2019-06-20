@@ -87,7 +87,7 @@ definition {
 		property portal.upstream = "false";
 		property testray.component.names = "Site Pages Administration";
 
-		for (var portlet : list "Blogs,Documents and Media,Wiki,Media Gallery,Message Boards,Form,RSS Publisher,OAuth2 Authorize Portlet") {
+		for (var portlet : list "Blogs,Documents and Media,Wiki,Media Gallery,Message Boards,Form,RSS Publisher,Application Authorization Request") {
 			SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
 			SitePages.addPublicPage(
