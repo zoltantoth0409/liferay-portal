@@ -86,13 +86,14 @@ public class DataLayoutResourceTest extends BaseDataLayoutResourceTestCase {
 	}
 
 	@Override
-	protected DataLayout randomIrrelevantDataLayout() {
-		DataLayout dataLayout = randomDataLayout();
+	protected DataLayout randomIrrelevantDataLayout() throws Exception {
+		DataLayout randomIrrelevantDataLayout =
+			super.randomIrrelevantDataLayout();
 
-		dataLayout.setDataDefinitionId(
+		randomIrrelevantDataLayout.setDataDefinitionId(
 			_irrelevantDDMStructure.getStructureId());
 
-		return dataLayout;
+		return randomIrrelevantDataLayout;
 	}
 
 	@Override
@@ -129,13 +130,6 @@ public class DataLayoutResourceTest extends BaseDataLayoutResourceTestCase {
 
 		return dataLayoutResource.postDataDefinitionDataLayout(
 			dataLayout.getDataDefinitionId(), dataLayout);
-	}
-
-	@Override
-	protected Long testGetSiteDataLayoutPage_getIrrelevantSiteId()
-		throws Exception {
-
-		return null;
 	}
 
 	@Override
