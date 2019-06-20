@@ -421,7 +421,7 @@ public class PropsUtil {
 
 		// Liferay home directory
 
-		_configuration = ConfigurationFactoryImpl.PORTAL_CONFIGURATION;
+		_configuration = ConfigurationFactoryImpl.CONFIGURATION_PORTAL;
 
 		String liferayHome = _configuration.get(PropsKeys.LIFERAY_HOME);
 

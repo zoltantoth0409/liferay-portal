@@ -2703,7 +2703,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 	private Configuration _getConfiguration(PortletApp portletApp) {
 		if (!portletApp.isWARFile()) {
-			return ConfigurationFactoryImpl.PORTAL_CONFIGURATION;
+			return ConfigurationFactoryImpl.CONFIGURATION_PORTAL;
 		}
 
 		String propertyFileName = "portlet";

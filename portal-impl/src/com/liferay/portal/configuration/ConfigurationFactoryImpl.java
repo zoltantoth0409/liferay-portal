@@ -24,7 +24,7 @@ import com.liferay.portal.util.PropsFiles;
  */
 public class ConfigurationFactoryImpl implements ConfigurationFactory {
 
-	public static final Configuration PORTAL_CONFIGURATION =
+	public static final Configuration CONFIGURATION_PORTAL =
 		new ConfigurationImpl(
 			ConfigurationFactoryImpl.class.getClassLoader(), PropsFiles.PORTAL,
 			CompanyConstants.SYSTEM, null);
