@@ -17,7 +17,7 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
-String selectedNavigationItem = "banned-users";
+String navigation = "banned-users";
 
 PortletURL portletURL = renderResponse.createRenderURL();
 

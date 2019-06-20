@@ -17,7 +17,7 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
-String selectedNavigationItem = "threads";
+String navigation = "threads";
 
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
 
