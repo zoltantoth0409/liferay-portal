@@ -51,16 +51,14 @@ Layout selLayout = layoutsAdminDisplayContext.getSelLayout();
 		</c:if>
 	</p>
 
-	<aui:select label="copy-from-page" name="copyLayoutId">
+	<aui:select label="copy-from-page" name="copyPlid">
 
 		<%
 		for (LayoutDescription layoutDescription : layoutsAdminDisplayContext.getLayoutDescriptions()) {
-			Layout layoutDescriptionLayout = LayoutLocalServiceUtil.fetchLayout(layoutDescription.getPlid());
-
-			if (layoutDescriptionLayout != null) {
+			if (layoutDescription.getPlid() > 0) {
 		%>
 
-				<aui:option disabled="<%= (selLayout != null) && (selLayout.getPlid() == layoutDescriptionLayout.getPlid()) %>" label="<%= layoutDescription.getDisplayName() %>" value="<%= layoutDescriptionLayout.getLayoutId() %>" />
+				<aui:option disabled="<%= (selLayout != null) && (selLayout.getPlid() == layoutDescription.getPlid()) %>" label="<%= layoutDescription.getDisplayName() %>" value="<%= layoutDescription.getPlid() %>" />
 
 		<%
 			}
