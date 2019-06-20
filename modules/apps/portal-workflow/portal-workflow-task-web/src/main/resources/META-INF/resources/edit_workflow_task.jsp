@@ -29,11 +29,11 @@ if (Validator.isNull(backURL)) {
 	backURL = renderURL.toString();
 }
 
+String languageId = ParamUtil.getString(request, "languageId");
+
 WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 
 long classPK = workflowTaskDisplayContext.getWorkflowContextEntryClassPK(workflowTask);
-
-String languageId = ParamUtil.getString(request, "languageId");
 
 WorkflowHandler<?> workflowHandler = workflowTaskDisplayContext.getWorkflowHandler(workflowTask);
 
