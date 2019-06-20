@@ -61,6 +61,19 @@ public class DataRecordCollectionResourceTest
 	}
 
 	@Override
+	protected DataRecordCollection randomIrrelevantDataRecordCollection()
+		throws Exception {
+
+		DataRecordCollection randomIrrelevantDataRecordCollection =
+			super.randomIrrelevantDataRecordCollection();
+
+		randomIrrelevantDataRecordCollection.setDataDefinitionId(
+			_irrelevantDDMStructure.getStructureId());
+
+		return randomIrrelevantDataRecordCollection;
+	}
+
+	@Override
 	protected DataRecordCollection
 			testDeleteDataRecordCollection_addDataRecordCollection()
 		throws Exception {
@@ -94,15 +107,10 @@ public class DataRecordCollectionResourceTest
 				Long siteId, DataRecordCollection dataRecordCollection)
 		throws Exception {
 
-		long dataDefinitionId = _ddmStructure.getStructureId();
-
-		if (siteId == _irrelevantDDMStructure.getGroupId()) {
-			dataDefinitionId = _irrelevantDDMStructure.getStructureId();
-		}
-
 		return dataRecordCollectionResource.
 			postDataDefinitionDataRecordCollection(
-				dataDefinitionId, randomDataRecordCollection());
+				dataRecordCollection.getDataDefinitionId(),
+				dataRecordCollection);
 	}
 
 	@Override
@@ -113,7 +121,8 @@ public class DataRecordCollectionResourceTest
 
 		return dataRecordCollectionResource.
 			postDataDefinitionDataRecordCollection(
-				_ddmStructure.getStructureId(), dataRecordCollection);
+				dataRecordCollection.getDataDefinitionId(),
+				dataRecordCollection);
 	}
 
 	@Override
