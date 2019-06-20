@@ -29,11 +29,11 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.application.select=(osgi.jaxrs.name=Liferay.Data.Engine.REST)",
 		"osgi.jaxrs.extension=true",
-		"osgi.jaxrs.name=Liferay.Data.Engine.REST.NoSuchStructureExceptionMapper"
+		"osgi.jaxrs.name=Liferay.Data.Engine.REST.NoSuchDataDefinitionExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )
-public class NoSuchStructureExceptionMapper
+public class NoSuchDataDefinitionExceptionMapper
 	implements ExceptionMapper<NoSuchStructureException> {
 
 	@Override
