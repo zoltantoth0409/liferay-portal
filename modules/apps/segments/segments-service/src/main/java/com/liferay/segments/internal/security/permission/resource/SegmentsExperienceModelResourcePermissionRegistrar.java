@@ -58,7 +58,8 @@ public class SegmentsExperienceModelResourcePermissionRegistrar {
 				_segmentsExperienceLocalService::getSegmentsExperience,
 				_portletResourcePermission,
 				(modelResourcePermission, consumer) -> consumer.accept(
-					new StagedModelPermissionLogic(_stagingPermission))),
+					new StagedModelResourcePermissionLogic(
+						_stagingPermission))),
 			properties);
 	}
 
@@ -80,7 +81,7 @@ public class SegmentsExperienceModelResourcePermissionRegistrar {
 	@Reference
 	private StagingPermission _stagingPermission;
 
-	private static class StagedModelPermissionLogic
+	private static class StagedModelResourcePermissionLogic
 		implements ModelResourcePermissionLogic<SegmentsExperience> {
 
 		@Override
@@ -103,7 +104,7 @@ public class SegmentsExperienceModelResourcePermissionRegistrar {
 				SegmentsPortletKeys.SEGMENTS, actionId);
 		}
 
-		private StagedModelPermissionLogic(
+		private StagedModelResourcePermissionLogic(
 			StagingPermission stagingPermission) {
 
 			_stagingPermission = stagingPermission;
