@@ -96,7 +96,13 @@ if (layout != null) {
 					rowURL.setParameter("groupId", String.valueOf(template.getGroupId()));
 					rowURL.setParameter("templateId", String.valueOf(template.getTemplateId()));
 					rowURL.setParameter("classNameId", String.valueOf(classNameId));
-					rowURL.setParameter("classPK", String.valueOf(template.getClassPK()));
+
+					if (structure != null) {
+						rowURL.setParameter("classPK", String.valueOf(template.getClassPK()));
+					}
+					else {
+						rowURL.setParameter("classPK", "0");
+					}
 					rowURL.setParameter("type", template.getType());
 					rowURL.setParameter("structureAvailableFields", renderResponse.getNamespace() + "getAvailableFields");
 
