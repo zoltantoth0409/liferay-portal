@@ -405,7 +405,7 @@ public class FriendlyURLServlet extends HttpServlet {
 		if ((userId > 0) && _isImpersonated(request, userId)) {
 			try {
 				Company company = PortalUtil.getCompany(request);
-				
+
 				String encDoAsUserId = Encryptor.encrypt(
 					company.getKeyObj(), String.valueOf(userId));
 
@@ -532,8 +532,10 @@ public class FriendlyURLServlet extends HttpServlet {
 		public boolean isValidForward() {
 			String path = getPath();
 
-			if (!path.startsWith(Portal.PATH_MAIN)) {
-				return false;
+			if (!path.equals(Portal.PATH_MAIN)) {
+				if (!path.startsWith("/c/")) {
+					return false;
+				}
 			}
 
 			if (isForce()) {
