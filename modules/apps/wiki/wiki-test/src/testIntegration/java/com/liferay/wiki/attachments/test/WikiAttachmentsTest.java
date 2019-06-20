@@ -294,7 +294,7 @@ public class WikiAttachmentsTest {
 
 	@Test
 	public void testSearchIncludeAttachment() throws Exception {
-		String title = "title";
+		String title = "Title";
 
 		_addFileEntry(title);
 		_addWikiPageWithAttachmentFileName(title);
