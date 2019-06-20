@@ -23,6 +23,8 @@ import com.liferay.portal.vulcan.pagination.Page;
 
 import javax.annotation.Generated;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * To access this resource, run:
  *
@@ -32,6 +34,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
+@ProviderType
 public interface KeywordResource {
 
 	public void patchKeywordBatch(KeywordBulkSelection keywordBulkSelection)

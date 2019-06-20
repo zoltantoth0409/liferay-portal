@@ -27,6 +27,8 @@ import javax.annotation.Generated;
 
 import javax.ws.rs.core.Response;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * To access this resource, run:
  *
@@ -36,6 +38,7 @@ import javax.ws.rs.core.Response;
  * @generated
  */
 @Generated("")
+@ProviderType
 public interface CollectionResource {
 
 	public Page<Collection> getCollectionsPage(
