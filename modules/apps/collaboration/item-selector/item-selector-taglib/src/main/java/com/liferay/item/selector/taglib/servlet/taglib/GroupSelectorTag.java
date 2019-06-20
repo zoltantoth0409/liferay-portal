@@ -70,7 +70,7 @@ public class GroupSelectorTag extends IncludeTag {
 
 	protected List<Group> getGroups(HttpServletRequest request) {
 		if (_groups == null) {
-			_search(httpServletRequest);
+			_search(request);
 		}
 
 		return _groups;
@@ -78,7 +78,7 @@ public class GroupSelectorTag extends IncludeTag {
 
 	protected int getGroupsCount(HttpServletRequest request) {
 		if (_groupsCount < 0) {
-			_search(httpServletRequest);
+			_search(request);
 		}
 
 		return _groupsCount;
@@ -101,14 +101,12 @@ public class GroupSelectorTag extends IncludeTag {
 			ItemSelectorUtil.getItemSelector());
 	}
 
-	private void _search(HttpServletRequest httpServletRequest) {
+	private void _search(HttpServletRequest request) {
 		try {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)httpServletRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
+			ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+				WebKeys.THEME_DISPLAY);
 
-			String keywords = ParamUtil.getString(
-				httpServletRequest, "keywords");
+			String keywords = ParamUtil.getString(request, "keywords");
 
 			LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
 
@@ -119,10 +117,10 @@ public class GroupSelectorTag extends IncludeTag {
 				groupParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 			int cur = ParamUtil.getInteger(
-				httpServletRequest, SearchContainer.DEFAULT_CUR_PARAM,
+				request, SearchContainer.DEFAULT_CUR_PARAM,
 				SearchContainer.DEFAULT_CUR);
 			int delta = ParamUtil.getInteger(
-				httpServletRequest, SearchContainer.DEFAULT_DELTA_PARAM,
+				request, SearchContainer.DEFAULT_DELTA_PARAM,
 				SearchContainer.DEFAULT_DELTA);
 
 			int[] startAndEnd = SearchPaginationUtil.calculateStartAndEnd(
