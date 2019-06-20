@@ -234,9 +234,9 @@ public class Query {
 	public java.util.Collection<ProcessUser> getProcessUsersPage(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("keywords") String keywords,
-			@GraphQLName("type")
-				com.liferay.change.tracking.rest.constant.v1_0.CollectionType
-					type,
+			@GraphQLName("processType")
+				com.liferay.change.tracking.rest.constant.v1_0.ProcessType
+					processType,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
 		throws Exception {
@@ -246,7 +246,8 @@ public class Query {
 			this::_populateResourceContext,
 			processUserResource -> {
 				Page paginationPage = processUserResource.getProcessUsersPage(
-					companyId, keywords, type, Pagination.of(pageSize, page));
+					companyId, keywords, processType,
+					Pagination.of(pageSize, page));
 
 				return paginationPage.getItems();
 			});
