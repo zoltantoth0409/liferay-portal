@@ -112,26 +112,26 @@ definition {
 	macro addCP {
 		LexiconEntry.gotoAdd();
 
-		Type(
+		Type.clickAtType(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD",
 			value1 = "${userScreenName}");
 
-		Type(
+		Type.clickAtType(
 			locator1 = "TextInput#EMAIL_ADDRESS",
 			value1 = "${userEmailAddress}");
 
-		Type(
+		Type.clickAtType(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD",
 			value1 = "${userFirstName}");
 
 		if (isSet(userBirthday)) {
-			Type(
+			Type.clickAtType(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD",
 				value1 = "${userBirthday}");
 		}
 
 		if (isSet(userMiddleName)) {
-			Type(
+			Type.clickAtType(
 				locator1 = "UsersAndOrganizationsEditUser#DETAILS_MIDDLE_NAME_FIELD",
 				value1 = "${userMiddleName}");
 		}
@@ -142,7 +142,7 @@ definition {
 				value1 = "${userGender}");
 		}
 
-		Type(
+		Type.clickAtType(
 			locator1 = "UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD",
 			value1 = "${userLastName}");
 
