@@ -151,10 +151,6 @@ definition {
 			value1 = "Save");
 
 		if ("${userEmailAddressVariation}" == "Invalid") {
-			Type(
-				locator1 = "TextInput#EMAIL_ADDRESS",
-				value1 = " ");
-
 			AssertTextEquals.assertPartialText(
 				locator1 = "Message#ERROR_ALERT",
 				value1 = "Please enter a valid email address.");
@@ -172,10 +168,6 @@ definition {
 				value1 = "Please enter a valid email address.");
 		}
 		else if ("${userScreenNameVariation}" == "Invalid") {
-			Type(
-				locator1 = "UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD",
-				value1 = " ");
-
 			AssertTextEquals.assertPartialText(
 				locator1 = "Message#ERROR_ALERT",
 				value1 = "The screen name cannot be an email address or a reserved word, such as postfix. It must contain only alphanumeric or the following special characters: -._.");
