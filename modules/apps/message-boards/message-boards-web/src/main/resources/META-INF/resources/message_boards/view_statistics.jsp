@@ -17,6 +17,8 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
+String mvcRenderCommandName = ParamUtil.getString(request, "mvcRenderCommandName", "/message_boards/view");
+
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
 
 long categoryId = MBUtil.getCategoryId(request, category);
@@ -27,8 +29,6 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
 portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
-
-String mvcRenderCommandName = ParamUtil.getString(request, "mvcRenderCommandName", "/message_boards/view");
 %>
 
 <%@ include file="/message_boards/nav.jspf" %>
