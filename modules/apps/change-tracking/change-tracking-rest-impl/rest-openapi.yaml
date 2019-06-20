@@ -150,7 +150,7 @@ openapi: 3.0.1
 paths:
     "/affected-entries/{entryId}":
         get:
-            operationId: getEntryAffectedsPage
+            operationId: getAffectedEntry
             parameters:
                 - in: path
                   name: entryId
