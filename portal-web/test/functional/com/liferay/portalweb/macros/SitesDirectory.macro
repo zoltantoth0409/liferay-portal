@@ -31,13 +31,37 @@ definition {
 
 		IFrame.selectConfigurationFrame();
 
-		AssertTextEquals(
+		AssertTextEquals.assertPartialText(
 			locator1 = "Select#SITES",
-			value1 = "Top Level Parent Level Siblings Children");
+			value1 = "Top Level");
 
-		AssertTextEquals(
+		AssertTextEquals.assertPartialText(
+			locator1 = "Select#SITES",
+			value1 = "Parent Level");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Select#SITES",
+			value1 = "Siblings");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Select#SITES",
+			value1 = "Children");
+
+		AssertTextEquals.assertPartialText(
 			locator1 = "Select#DISPLAY_STYLE",
-			value1 = "Icon Descriptive List List Hierarchy");
+			value1 = "Icon");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Select#DISPLAY_STYLE",
+			value1 = "Descriptive");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Select#DISPLAY_STYLE",
+			value1 = "List");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Select#DISPLAY_STYLE",
+			value1 = "List Hierarchy");
 
 		SelectFrameTop();
 	}
