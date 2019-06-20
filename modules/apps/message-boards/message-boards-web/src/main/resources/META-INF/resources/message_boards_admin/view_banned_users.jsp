@@ -17,11 +17,11 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
+String selectedNavigationItem = "banned-users";
+
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_banned_users");
-
-String navItemSelected = "banned-users";
 %>
 
 <%@ include file="/message_boards_admin/nav.jspf" %>
