@@ -17,6 +17,8 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
+String selectedNavigationItem = "threads";
+
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
 
 long categoryId = MBUtil.getCategoryId(request, category);
@@ -26,8 +28,6 @@ MBEntriesManagementToolbarDisplayContext mbEntriesManagementToolbarDisplayContex
 request.setAttribute("view.jsp-categorySubscriptionClassPKs", MBSubscriptionUtil.getCategorySubscriptionClassPKs(user.getUserId()));
 request.setAttribute("view.jsp-threadSubscriptionClassPKs", MBSubscriptionUtil.getThreadSubscriptionClassPKs(user.getUserId()));
 request.setAttribute("view.jsp-viewCategory", Boolean.TRUE.toString());
-
-String navItemSelected = "threads";
 %>
 
 <portlet:actionURL name="/message_boards/edit_category" var="restoreTrashEntriesURL">

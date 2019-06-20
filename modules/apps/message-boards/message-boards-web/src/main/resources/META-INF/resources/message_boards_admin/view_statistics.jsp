@@ -17,11 +17,11 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
+String selectedNavigationItem = "statistics";
+
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_statistics");
-
-String navItemSelected = "statistics";
 %>
 
 <%@ include file="/message_boards_admin/nav.jspf" %>
