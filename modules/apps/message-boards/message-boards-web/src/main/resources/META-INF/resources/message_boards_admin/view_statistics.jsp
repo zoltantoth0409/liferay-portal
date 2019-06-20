@@ -17,7 +17,7 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
-String selectedNavigationItem = "statistics";
+String navigation = "statistics";
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
