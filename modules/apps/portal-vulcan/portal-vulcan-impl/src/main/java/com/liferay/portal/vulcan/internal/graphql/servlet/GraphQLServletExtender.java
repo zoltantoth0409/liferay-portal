@@ -691,9 +691,9 @@ public class GraphQLServletExtender {
 				Parameter parameter, GraphQLInputType graphQLInputType)
 			throws GraphQLAnnotationsException {
 
-			GraphQLArgument.Builder builder = GraphQLArgument.newArgument();
+			DirectiveWirer directiveWirer = new DirectiveWirer();
 
-			builder.type(graphQLInputType);
+			GraphQLArgument.Builder builder = GraphQLArgument.newArgument();
 
 			GraphQLName graphQLName = parameter.getAnnotation(
 				GraphQLName.class);
@@ -705,14 +705,19 @@ public class GraphQLServletExtender {
 				builder.name(NamingKit.toGraphqlName(parameter.getName()));
 			}
 
-			builder.withDirectives(
-				new DirectivesBuilder(
-					parameter, _processingElementsContainer
-				).build());
+			builder.type(graphQLInputType);
 
-			return (GraphQLArgument)new DirectiveWirer().wire(
+			DirectivesBuilder directivesBuilder = new DirectivesBuilder(
+				parameter, _processingElementsContainer);
+
+			builder.withDirectives(directivesBuilder.build());
+
+			DirectiveWiringMapRetriever directiveWiringMapRetriever =
+				new DirectiveWiringMapRetriever();
+
+			return (GraphQLArgument)directiveWirer.wire(
 				builder.build(),
-				new DirectiveWiringMapRetriever().getDirectiveWiringMap(
+				directiveWiringMapRetriever.getDirectiveWiringMap(
 					parameter, _processingElementsContainer),
 				_processingElementsContainer.getCodeRegistryBuilder(),
 				graphQLInputType.getName());
