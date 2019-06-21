@@ -50,13 +50,13 @@ public class ProcessUserResourceImpl extends BaseProcessUserResourceImpl {
 
 	@Override
 	public Page<ProcessUser> getProcessUsersPage(
-			Long companyId, String keywords, ProcessType type,
+			Long companyId, String keywords, ProcessType processType,
 			Pagination pagination)
 		throws Exception {
 
 		List<CTProcess> ctProcesses = null;
 
-		if (ProcessType.PUBLISHED_LATEST == type) {
+		if (ProcessType.PUBLISHED_LATEST == processType) {
 			Optional<CTProcess> latestCTProcessOptional =
 				_ctEngineManager.getLatestCTProcessOptional(companyId);
 
@@ -69,7 +69,7 @@ public class ProcessUserResourceImpl extends BaseProcessUserResourceImpl {
 		else {
 			ctProcesses = _ctEngineManager.getCTProcesses(
 				companyId, CTConstants.USER_FILTER_ALL, keywords,
-				_getQueryDefinition(pagination, type));
+				_getQueryDefinition(pagination, processType));
 		}
 
 		Stream<CTProcess> stream = ctProcesses.stream();
