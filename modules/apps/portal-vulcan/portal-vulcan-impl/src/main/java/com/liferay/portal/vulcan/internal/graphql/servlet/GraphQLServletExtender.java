@@ -946,7 +946,7 @@ public class GraphQLServletExtender {
 				}
 				catch (NoSuchMethodException nsme) {
 
-					// Continue searching by class instead
+					// Continue searching by class
 
 				}
 
