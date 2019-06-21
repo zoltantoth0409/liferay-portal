@@ -119,12 +119,12 @@ public class ProcessUserResourceImpl extends BaseProcessUserResourceImpl {
 	}
 
 	private ProcessUser _toProcessUser(User user) {
-		ProcessUser processUser = new ProcessUser();
-
-		processUser.setUserId(user.getUserId());
-		processUser.setUserName(user.getFullName());
-
-		return processUser;
+		return new ProcessUser() {
+			{
+				userId = user.getUserId();
+				userName = user.getFullName();
+			}
+		};
 	}
 
 	@Reference
