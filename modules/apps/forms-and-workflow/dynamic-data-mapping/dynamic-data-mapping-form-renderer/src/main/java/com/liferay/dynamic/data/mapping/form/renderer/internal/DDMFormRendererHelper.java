@@ -208,6 +208,12 @@ public class DDMFormRendererHelper {
 	protected String getAffixedDDMFormFieldParameterName(
 		String ddmFormFieldParameterName) {
 
+		Locale locale = _ddmForm.getDefaultLocale();
+
+		if (locale == null) {
+			locale = _ddmFormRenderingContext.getLocale();
+		}
+
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(_ddmFormRenderingContext.getPortletNamespace());
@@ -215,7 +221,7 @@ public class DDMFormRendererHelper {
 		sb.append(ddmFormFieldParameterName);
 		sb.append(
 			DDMFormRendererConstants.DDM_FORM_FIELD_LANGUAGE_ID_SEPARATOR);
-		sb.append(LocaleUtil.toLanguageId(_ddmForm.getDefaultLocale()));
+		sb.append(LocaleUtil.toLanguageId(locale));
 
 		return sb.toString();
 	}
