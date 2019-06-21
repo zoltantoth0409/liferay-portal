@@ -14,7 +14,11 @@
 
 package com.liferay.layout.admin.web.internal.display.context;
 
+import com.liferay.layout.admin.web.internal.constants.LayoutAdminPortletKeys;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
@@ -24,6 +28,8 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
+import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserGroupLocalServiceUtil;
@@ -38,6 +44,7 @@ import com.liferay.portlet.layoutsadmin.display.context.GroupDisplayContextHelpe
 
 import java.util.List;
 
+import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
 /**
@@ -51,6 +58,8 @@ public class LayoutsAdminDisplayContext extends BaseLayoutDisplayContext {
 		throws PortalException {
 
 		super(liferayPortletRequest, liferayPortletResponse);
+
+		_liferayPortletRequest = liferayPortletRequest;
 
 		_groupDisplayContextHelper = new GroupDisplayContextHelper(
 			PortalUtil.getHttpServletRequest(liferayPortletRequest));
@@ -66,6 +75,26 @@ public class LayoutsAdminDisplayContext extends BaseLayoutDisplayContext {
 				PortalUtil.getHttpServletRequest(liferayPortletRequest)));
 
 		return addLayoutURL;
+	}
+
+	public String getCopyLayoutURL() {
+		try {
+			PortletURL portletURL = PortletURLFactoryUtil.create(
+				_liferayPortletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
+				PortletRequest.RENDER_PHASE);
+
+			portletURL.setParameter("mvcPath", "/select_copy_layout.jsp");
+			portletURL.setParameter("selPlid", String.valueOf(getSelPlid()));
+			portletURL.setParameter("showHeader", Boolean.TRUE.toString());
+			portletURL.setWindowState(LiferayWindowState.POP_UP);
+
+			return portletURL.toString();
+		}
+		catch (Exception e) {
+			_log.error("Unable to get select copy page URL", e);
+
+			return StringPool.BLANK;
+		}
 	}
 
 	public PortletURL getEditLayoutURL() {
@@ -284,9 +313,13 @@ public class LayoutsAdminDisplayContext extends BaseLayoutDisplayContext {
 		return false;
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutsAdminDisplayContext.class);
+
 	private final GroupDisplayContextHelper _groupDisplayContextHelper;
 	private List<LayoutDescription> _layoutDescriptions;
 	private Long _layoutId;
+	private final LiferayPortletRequest _liferayPortletRequest;
 	private Organization _organization;
 	private String _pagesName;
 	private String _redirect;

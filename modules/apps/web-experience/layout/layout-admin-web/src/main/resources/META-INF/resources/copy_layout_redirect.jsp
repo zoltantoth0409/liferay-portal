@@ -17,16 +17,16 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Map<String, Object> data = new HashMap<String, Object>();
+String referringPortletResource = ParamUtil.getString(request, "referringPortletResource");
 
-data.put("destroyOnHide", true);
-data.put("id", HtmlUtil.escape(portletDisplay.getNamespace()) + "copyPage");
+Portlet selPortlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), referringPortletResource);
 %>
 
-<liferay-ui:icon
-	data="<%= data %>"
-	id="copyApplications"
-	message="copy-applications"
-	url="<%= layoutsAdminDisplayContext.getCopyLayoutURL() %>"
-	useDialog="<%= true %>"
-/>
+<aui:script>
+	Liferay.fire(
+		'closeWindow',
+		{
+			id: '_<%= HtmlUtil.escapeJS(selPortlet.getPortletId()) %>_copyPage'
+		}
+	);
+</aui:script>
