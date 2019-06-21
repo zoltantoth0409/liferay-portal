@@ -49,5 +49,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.blogs.api", version: "5.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.bulk.selection.api", version: "1.1.0"
-	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "2.2.0"
 }
