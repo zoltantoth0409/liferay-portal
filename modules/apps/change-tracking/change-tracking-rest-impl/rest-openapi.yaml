@@ -569,7 +569,7 @@ paths:
                   schema:
                       type: integer
                 - in: query
-                  name: type
+                  name: processType
                   required: false
                   schema:
                       $ref: "#/components/schemas/ProcessType"
