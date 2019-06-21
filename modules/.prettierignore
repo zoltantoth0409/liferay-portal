@@ -1,6 +1,7 @@
 **/classes/**/*.js
 **/classes/**/*.scss
 **/css/clay/**/*.scss
-modules/tests/poshi-runner/**/*.js
-modules/tests/poshi-runner/**/*.scss
-yarn-*.js
+/copyright.js
+/modules/tests/poshi-runner/**/*.js
+/modules/tests/poshi-runner/**/*.scss
+/yarn-*.js
