@@ -735,44 +735,44 @@ public class GraphQLServletExtender {
 		public boolean isFound(Member member) throws CannotCastMemberException {
 			Method method = _toMethod(member);
 
-			List<Class<?>> queue = new LinkedList<>();
+			List<Class<?>> classes = new LinkedList<>();
 
 			Class<?>[] parameterTypes = method.getParameterTypes();
 
-			queue.add(method.getDeclaringClass());
+			classes.add(method.getDeclaringClass());
 
 			do {
-				Class<?> clazz = queue.remove(0);
+				Class<?> clazz = classes.remove(0);
 
 				try {
 					method = clazz.getDeclaredMethod(
 						method.getName(), parameterTypes);
 
-					Boolean field = _isGraphQLField(method);
+					Boolean graphQLField = _isGraphQLField(method);
 
-					if (field != null) {
-						return field;
+					if (graphQLField != null) {
+						return graphQLField;
 					}
 				}
 				catch (NoSuchMethodException nsme) {
 					throw new RuntimeException(nsme);
 				}
 
-				Boolean field = _isGraphQLField(clazz);
+				Boolean graphQLField = _isGraphQLField(clazz);
 
-				if (field != null) {
-					return field;
+				if (graphQLField != null) {
+					return graphQLField;
 				}
 
-				Collections.addAll(queue, clazz.getInterfaces());
+				Collections.addAll(classes, clazz.getInterfaces());
 
 				Class<?> nextClass = clazz.getSuperclass();
 
 				if (nextClass != null) {
-					queue.add(nextClass);
+					classes.add(nextClass);
 				}
 			}
-			while (!queue.isEmpty());
+			while (!classes.isEmpty());
 
 			return false;
 		}
@@ -872,19 +872,19 @@ public class GraphQLServletExtender {
 		public boolean isFound(Member member) throws CannotCastMemberException {
 			Field field = _toField(member);
 
-			Boolean isField = _isGraphQLField(field);
+			Boolean graphQLField = _isGraphQLField(field);
 
-			if (isField != null) {
-				return isField;
+			if (graphQLField != null) {
+				return graphQLField;
 			}
 
 			Class<?> clazz = field.getDeclaringClass();
 
 			do {
-				isField = _isGraphQLField(clazz);
+				graphQLField = _isGraphQLField(clazz);
 
-				if (isField != null) {
-					return isField;
+				if (graphQLField != null) {
+					return graphQLField;
 				}
 
 				clazz = clazz.getSuperclass();
