@@ -69,7 +69,7 @@ class FragmentEntryLinkContent extends Component {
 	 */
 	rendered(firstRender) {
 		if (this.content) {
-			this._renderContent(this.content, firstRender);
+			this._renderContent(this.content, {evaluateJs: firstRender});
 		}
 	}
 
@@ -254,13 +254,16 @@ class FragmentEntryLinkContent extends Component {
 	/**
 	 * Parses and renders the fragment entry link content with AUI.
 	 * @param {string} content
+	 * @param {object} [options={}]
+	 * @param {boolean} [options.evaluateJs]
 	 * @private
+	 * @review
 	 */
-	_renderContent(content, firstRender) {
+	_renderContent(content, options = {}) {
 		if (content && this.refs.content) {
 			this.refs.content.innerHTML = content;
 
-			if (firstRender) {
+			if (options.evaluateJs) {
 				globalEval.runScriptsInElement(this.refs.content);
 			}
 
