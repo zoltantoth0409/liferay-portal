@@ -31,12 +31,10 @@ import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
+import com.liferay.portal.vulcan.graphql.annotations.GraphQLField;
+import com.liferay.portal.vulcan.graphql.annotations.GraphQLName;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
-import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
 
@@ -98,7 +96,6 @@ public class Query {
 	}
 
 	@GraphQLField
-	@GraphQLInvokeDetached
 	public java.util.Collection<AffectedEntry> getEntryAffectedEntriesPage(
 			@GraphQLName("entryId") Long entryId,
 			@GraphQLName("keywords") String keywords,
@@ -119,7 +116,6 @@ public class Query {
 	}
 
 	@GraphQLField
-	@GraphQLInvokeDetached
 	public java.util.Collection<Collection> getCollectionsPage(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("type")
@@ -143,7 +139,6 @@ public class Query {
 	}
 
 	@GraphQLField
-	@GraphQLInvokeDetached
 	public Collection getCollection(
 			@GraphQLName("collectionId") Long collectionId)
 		throws Exception {
@@ -156,7 +151,6 @@ public class Query {
 	}
 
 	@GraphQLField
-	@GraphQLInvokeDetached
 	public java.util.Collection<Entry> getCollectionEntriesPage(
 			@GraphQLName("collectionId") Long collectionId,
 			@GraphQLName("changeTypesFilter") String changeTypesFilter,
@@ -183,7 +177,6 @@ public class Query {
 	}
 
 	@GraphQLField
-	@GraphQLInvokeDetached
 	public Entry getEntry(@GraphQLName("entryId") Long entryId)
 		throws Exception {
 
@@ -194,7 +187,6 @@ public class Query {
 	}
 
 	@GraphQLField
-	@GraphQLInvokeDetached
 	public java.util.Collection<Process> getProcessesPage(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("keywords") String keywords,
@@ -219,7 +211,6 @@ public class Query {
 	}
 
 	@GraphQLField
-	@GraphQLInvokeDetached
 	public Process getProcess(@GraphQLName("processId") Long processId)
 		throws Exception {
 
@@ -230,7 +221,6 @@ public class Query {
 	}
 
 	@GraphQLField
-	@GraphQLInvokeDetached
 	public java.util.Collection<ProcessUser> getProcessUsersPage(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("keywords") String keywords,
@@ -254,7 +244,6 @@ public class Query {
 	}
 
 	@GraphQLField
-	@GraphQLInvokeDetached
 	public java.util.Collection<Settings> getSettingsPage(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("userId") Long userId)
