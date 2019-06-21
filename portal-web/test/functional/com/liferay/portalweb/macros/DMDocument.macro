@@ -101,6 +101,14 @@ definition {
 			}
 		}
 
+		if (isSet(customFieldText)) {
+			Panel.expandPanel(panelHeading = "Custom Fields");
+
+			Type(
+				locator1 = "TextInput#CUSTOM_FIELD",
+				value1 = "${customFieldText}");
+		}
+
 		if (isSet(tagNameList)) {
 			Panel.expandPanel(panelHeading = "Categorization");
 
