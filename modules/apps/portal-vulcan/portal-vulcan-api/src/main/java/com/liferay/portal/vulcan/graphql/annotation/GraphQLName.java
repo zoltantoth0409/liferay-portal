@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.graphql.annotations;
+package com.liferay.portal.vulcan.graphql.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -23,9 +23,14 @@ import java.lang.annotation.Target;
  * @author Javier Gamarra
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD, ElementType.TYPE})
-public @interface GraphQLField {
+@Target(
+	{
+		ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER,
+		ElementType.TYPE
+	}
+)
+public @interface GraphQLName {
 
-	public boolean value() default true;
+	public String value();
 
 }
