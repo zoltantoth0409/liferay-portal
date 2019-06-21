@@ -3,6 +3,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.captcha.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.data.engine.spi", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.lists.api", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.3.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.js.loader.modules.extender.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.oauth2.provider.scope.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
@@ -10,6 +11,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.renderer.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.3.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "4.0.0"
@@ -24,6 +26,4 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly project(":apps:data-engine:data-engine-rest-api")
-	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.3.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.3.0"
 }
