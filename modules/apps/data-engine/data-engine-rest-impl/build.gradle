@@ -25,5 +25,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly project(":apps:data-engine:data-engine-rest-api")
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.3.0"
-	compileOnly project(":apps:portal-vulcan:portal-vulcan-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.3.0"
 }
