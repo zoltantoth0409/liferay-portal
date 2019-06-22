@@ -84,6 +84,7 @@ import graphql.schema.GraphQLType;
 import graphql.servlet.GraphQLContext;
 import graphql.servlet.SimpleGraphQLHttpServlet;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.AnnotatedType;
 import java.lang.reflect.Field;
@@ -146,14 +147,13 @@ public class GraphQLServletExtender {
 
 				@Override
 				public String getTypeName(Class<?> objectClass) {
-					GraphQLName graphQLName = objectClass.getAnnotation(
-						GraphQLName.class);
+					String graphQLName = _getGraphQLNameValue(objectClass);
 
 					if (graphQLName == null) {
 						return NamingKit.toGraphqlName(objectClass.getName());
 					}
 
-					return NamingKit.toGraphqlName(graphQLName.value());
+					return NamingKit.toGraphqlName(graphQLName);
 				}
 
 			};
@@ -308,7 +308,7 @@ public class GraphQLServletExtender {
 		).flatMap(
 			Arrays::stream
 		).filter(
-			method -> method.isAnnotationPresent(GraphQLField.class)
+			method -> Boolean.TRUE.equals(_getGraphQLFieldValue(method))
 		).collect(
 			Collectors.groupingBy(
 				Method::getName,
@@ -381,20 +381,82 @@ public class GraphQLServletExtender {
 
 			String parameterName = null;
 
-			GraphQLName graphQLName = parameter.getAnnotation(
-				GraphQLName.class);
+			String graphQLName = _getGraphQLNameValue(parameter);
 
 			if (graphQLName == null) {
 				parameterName = NamingKit.toGraphqlName(parameter.getName());
 			}
 			else {
-				parameterName = NamingKit.toGraphqlName(graphQLName.value());
+				parameterName = NamingKit.toGraphqlName(graphQLName);
 			}
 
 			args[i] = arguments.get(parameterName);
 		}
 
 		return method.invoke(instance, args);
+	}
+
+	private Object _getAnnotationValue(
+		AnnotatedElement annotatedElement, Class clazz) {
+
+		for (Annotation annotation :
+				annotatedElement.getDeclaredAnnotations()) {
+
+			Class<? extends Annotation> typeClass = annotation.annotationType();
+
+			String name = typeClass.getName();
+
+			if (name.equals(clazz.getName())) {
+				try {
+					Method method = typeClass.getMethod("value");
+
+					return method.invoke(annotation);
+				}
+				catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			}
+		}
+
+		return null;
+	}
+
+	private Boolean _getGraphQLFieldValue(AnnotatedElement annotatedElement) {
+		GraphQLField graphQLField = annotatedElement.getAnnotation(
+			GraphQLField.class);
+
+		if (graphQLField != null) {
+			return graphQLField.value();
+		}
+
+		Object value = _getAnnotationValue(
+			annotatedElement,
+			graphql.annotations.annotationTypes.GraphQLField.class);
+
+		if (value == null) {
+			return null;
+		}
+
+		return (Boolean)value;
+	}
+
+	private String _getGraphQLNameValue(AnnotatedElement annotatedElement) {
+		GraphQLName graphQLName = annotatedElement.getAnnotation(
+			GraphQLName.class);
+
+		if (graphQLName != null) {
+			return graphQLName.value();
+		}
+
+		Object value = _getAnnotationValue(
+			annotatedElement,
+			graphql.annotations.annotationTypes.GraphQLName.class);
+
+		if (value == null) {
+			return null;
+		}
+
+		return (String)value;
 	}
 
 	private Servlet _getServlet() {
@@ -456,17 +518,6 @@ public class GraphQLServletExtender {
 		String version = packageNames[packageNames.length - 1];
 
 		return Integer.valueOf(version.replaceAll("\\D", ""));
-	}
-
-	private Boolean _isGraphQLField(AnnotatedElement annotatedElement) {
-		GraphQLField graphQLField = annotatedElement.getAnnotation(
-			GraphQLField.class);
-
-		if (graphQLField == null) {
-			return null;
-		}
-
-		return graphQLField.value();
 	}
 
 	private static final GraphQLScalarType _dateGraphQLScalarType =
@@ -695,11 +746,10 @@ public class GraphQLServletExtender {
 
 			GraphQLArgument.Builder builder = GraphQLArgument.newArgument();
 
-			GraphQLName graphQLName = parameter.getAnnotation(
-				GraphQLName.class);
+			String graphQLName = _getGraphQLNameValue(parameter);
 
 			if (graphQLName != null) {
-				builder.name(NamingKit.toGraphqlName(graphQLName.value()));
+				builder.name(NamingKit.toGraphqlName(graphQLName));
 			}
 			else {
 				builder.name(NamingKit.toGraphqlName(parameter.getName()));
@@ -748,7 +798,7 @@ public class GraphQLServletExtender {
 					method = clazz.getDeclaredMethod(
 						method.getName(), parameterTypes);
 
-					Boolean graphQLField = _isGraphQLField(method);
+					Boolean graphQLField = _getGraphQLFieldValue(method);
 
 					if (graphQLField != null) {
 						return graphQLField;
@@ -760,7 +810,7 @@ public class GraphQLServletExtender {
 
 				}
 
-				Boolean graphQLField = _isGraphQLField(clazz);
+				Boolean graphQLField = _getGraphQLFieldValue(clazz);
 
 				if (graphQLField != null) {
 					return graphQLField;
@@ -874,7 +924,7 @@ public class GraphQLServletExtender {
 		public boolean isFound(Member member) throws CannotCastMemberException {
 			Field field = _toField(member);
 
-			Boolean graphQLField = _isGraphQLField(field);
+			Boolean graphQLField = _getGraphQLFieldValue(field);
 
 			if (graphQLField != null) {
 				return graphQLField;
@@ -883,7 +933,7 @@ public class GraphQLServletExtender {
 			Class<?> clazz = field.getDeclaringClass();
 
 			do {
-				graphQLField = _isGraphQLField(clazz);
+				graphQLField = _getGraphQLFieldValue(clazz);
 
 				if (graphQLField != null) {
 					return graphQLField;
