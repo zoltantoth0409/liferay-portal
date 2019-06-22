@@ -49,11 +49,11 @@ public class AsahSegmentsEntryProviderTest {
 	@Before
 	public void setUp() throws PortalException {
 		ReflectionTestUtil.setFieldValue(
-			_asahSegmentsEntryProvider, "_messageBus", _messageBus);
-
-		ReflectionTestUtil.setFieldValue(
 			_asahSegmentsEntryProvider, "_asahSegmentsEntryCache",
 			_asahSegmentsEntryCache);
+
+		ReflectionTestUtil.setFieldValue(
+			_asahSegmentsEntryProvider, "_messageBus", _messageBus);
 
 		ReflectionTestUtil.setFieldValue(
 			_asahSegmentsEntryProvider, "_segmentsEntryRelLocalService",
