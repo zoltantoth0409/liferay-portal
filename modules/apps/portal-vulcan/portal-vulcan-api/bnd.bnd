@@ -13,4 +13,15 @@ Export-Package:\
 	com.liferay.portal.vulcan.util,\
 	com.liferay.portal.vulcan.yaml,\
 	com.liferay.portal.vulcan.yaml.config,\
-	com.liferay.portal.vulcan.yaml.openapi
+	com.liferay.portal.vulcan.yaml.openapi,\
+	\
+	graphql.annotations.annotationTypes;version="5.4"
+Import-Package:\
+	!graphql.annotations.directives.*,\
+	!graphql.annotations.processor.typeFunctions.*,\
+	!graphql.annotations.typeResolvers.*,\
+	\
+	!graphql.schema.*,\
+	\
+	*
+-includeresource: @graphql-java-annotations-[0-9]*.jar!/graphql/annotations/annotationTypes/*
