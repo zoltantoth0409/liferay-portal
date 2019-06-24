@@ -168,35 +168,6 @@ definition {
 	@priority = "3"
 	test StagingBlogsCP {
 		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		Site.addCP(
-			siteName = "Site Name",
-			siteType = "Blank");
-
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		Page.add(
-			pageName = "Site Page Name",
-			siteName = "Site Name");
-
-		Navigator.openSiteURL(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Publishing",
-			panel = "Site Administration",
-			portlet = "Staging");
-
-		Staging.activateStagingCP(
-			pageVersioningEnabled = "true",
-			siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
 			category = "Content",
 			panel = "Site Administration",
 			portlet = "Blogs");
@@ -216,35 +187,8 @@ definition {
 
 	@priority = "3"
 	test StagingBlogsPG {
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		Site.addCP(
-			siteName = "Site Name",
-			siteType = "Blank");
-
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		Page.add(
-			pageName = "Site Page Name",
-			siteName = "Site Name");
-
-		Navigator.openSiteURL(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Publishing",
-			panel = "Site Administration",
-			portlet = "Staging");
-
-		Staging.activateStagingCP(siteName = "Site Name");
-
 		Navigator.gotoStagedSitePage(
-			pageName = "Site Page Name",
+			pageName = "Staging Blogs Page",
 			siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
@@ -306,7 +250,7 @@ definition {
 			entryTitle = "Blogs Entry Title 1");
 
 		Navigator.gotoStagedSitePage(
-			pageName = "Site Page Name",
+			pageName = "Staging Blogs Page",
 			siteName = "Site Name");
 
 		Staging.gotoPublishToLive();
@@ -398,41 +342,14 @@ definition {
 
 	@priority = "3"
 	test StagingBlogsWithScheduledPublishing {
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		Site.addCP(
-			siteName = "Site Name",
-			siteType = "Blank");
-
-		ProductMenu.gotoPortlet(
-			category = "Sites",
-			panel = "Control Panel",
-			portlet = "Sites");
-
-		Page.add(
-			pageName = "Blogs Page",
-			siteName = "Site Name");
-
-		Navigator.openSiteURL(siteName = "Site Name");
-
-		ProductMenu.gotoPortlet(
-			category = "Publishing",
-			panel = "Site Administration",
-			portlet = "Staging");
-
-		Staging.activateStagingCP(siteName = "Site Name");
-
 		Navigator.gotoStagedSitePage(
-			pageName = "Blogs Page",
+			pageName = "Staging Blogs Page",
 			siteName = "Site Name");
 
 		Portlet.addPG(portletName = "Blogs");
 
 		Navigator.gotoStagedSitePage(
-			pageName = "Blogs Page",
+			pageName = "Staging Blogs Page",
 			siteName = "Site Name");
 
 		BlogsNavigator.gotoAddEntry();
@@ -448,19 +365,19 @@ definition {
 		PortletEntry.publish();
 
 		Navigator.gotoStagedSitePage(
-			pageName = "Blogs Page",
+			pageName = "Staging Blogs Page",
 			siteName = "Site Name");
 
 		Navigator.gotoNavItem(navItem = "Not Published (1)");
 
 		Staging.gotoPublishToLive();
 
-		Staging.configurePublishToLive(checkPageName = "Blogs Page");
+		Staging.configurePublishToLive(checkPageName = "Staging Blogs Page");
 
 		Staging.publishToLive();
 
 		Navigator.gotoSitePage(
-			pageName = "Blogs Page",
+			pageName = "Staging Blogs Page",
 			siteName = "Site Name");
 
 		Blogs.viewNoEntryCP();
