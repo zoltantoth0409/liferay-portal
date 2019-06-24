@@ -1125,6 +1125,8 @@ definition {
 	@description = "This is a use case for LPS-88498."
 	@priority = "5"
 	test ExportViaGuest {
+		property portal.release = "false";
+
 		LAR.exportSiteCP();
 
 		AssertTextEquals.assertPartialText(
