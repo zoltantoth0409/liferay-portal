@@ -1950,18 +1950,11 @@ definition {
 
 		WebContentNavigator.gotoEditCP(webContentTitle = "WC WebContent Title");
 
-		PortletEntry.publish(
-			webContentContent = "WC WebContent Content",
-			webContentTitle = "WC WebContent Title");
+		Button.clickPublish();
 
-		Navigator.openURL();
+		Alert.viewRequestFailedToComplete();
 
-		ProductMenu.gotoPortlet(
-			category = "Content",
-			panel = "Site Administration",
-			portlet = "Web Content");
-
-		WebContent.viewApprovedStatus(webContentTitle = "WC WebContent Title");
+		Alert.viewExpireContentFailedMessage();
 	}
 
 	@priority = "5"
