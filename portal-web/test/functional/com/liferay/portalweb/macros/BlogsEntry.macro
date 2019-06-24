@@ -48,7 +48,7 @@ definition {
 				locator1 = "AlloyEditor#CONTENT_FIELD");
 		}
 
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
+		Click.mouseMoveLeftClick(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
 
 		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_BROWSE_BUTTON");
 
@@ -565,7 +565,7 @@ definition {
 	macro selectFormattingStyle {
 		SelectFieldText(locator1 = "AlloyEditor#CONTENT_FIELD");
 
-		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE");
+		Click.mouseMoveLeftClick(locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE");
 
 		Click(
 			key_styleFormat = "${styleFormat}",
