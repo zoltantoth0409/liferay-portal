@@ -138,6 +138,17 @@ public class ModulesStructureTest {
 						return FileVisitResult.SKIP_SUBTREE;
 					}
 
+					Path appBndLocalizationDirPath = dirPath.resolve(
+						"app.bnd-localization");
+
+					if (Files.exists(appBndLocalizationDirPath)) {
+						Path parentPath = appBndLocalizationDirPath.getParent();
+
+						Assert.assertTrue(
+							"Forbidden " + appBndLocalizationDirPath,
+							Files.exists(parentPath.resolve("app.bnd")));
+					}
+
 					Path buildGradlePath = dirPath.resolve("build.gradle");
 					Path buildXMLPath = dirPath.resolve("build.xml");
 					Path ivyXmlPath = dirPath.resolve("ivy.xml");
