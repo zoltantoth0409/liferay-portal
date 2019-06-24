@@ -15,10 +15,12 @@
 package com.liferay.asset.auto.tagger.opennlp.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.asset.auto.tagger.opennlp.util.MockAssetRendererFactory;
 import com.liferay.asset.auto.tagger.text.extractor.TextExtractor;
 import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
+import com.liferay.asset.kernel.model.BaseAssetRenderer;
+import com.liferay.asset.kernel.model.BaseAssetRendererFactory;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.petra.function.UnsafeRunnable;
 import com.liferay.portal.configuration.test.util.ConfigurationTemporarySwapper;
@@ -36,6 +38,12 @@ import com.liferay.registry.ServiceRegistration;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
+
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletResponse;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -76,7 +84,7 @@ public class OpenNLPDocumentAssetAutoTaggerTest {
 		String className = RandomTestUtil.randomString();
 
 		_registerAssetRendererFactory(
-			new MockAssetRendererFactory(
+			new TestAssetRendererFactory(
 				TestPropsValues.getGroupId(), className,
 				new String(
 					FileUtil.getBytes(
@@ -143,7 +151,7 @@ public class OpenNLPDocumentAssetAutoTaggerTest {
 		String className = RandomTestUtil.randomString();
 
 		_registerAssetRendererFactory(
-			new MockAssetRendererFactory(
+			new TestAssetRendererFactory(
 				TestPropsValues.getGroupId(), className, null));
 
 		_testWithOpenNLPDocumentAssetAutoTagProviderEnabled(
@@ -208,5 +216,94 @@ public class OpenNLPDocumentAssetAutoTaggerTest {
 		_assetRendererFactoryServiceRegistration;
 	private ServiceRegistration<TextExtractor>
 		_textExtractorServiceRegistration;
+
+	private class TestAssetRendererFactory extends BaseAssetRendererFactory {
+
+		public TestAssetRendererFactory(
+			long groupId, String className, Object assetObject) {
+
+			_groupId = groupId;
+			_className = className;
+			_assetObject = assetObject;
+		}
+
+		@Override
+		public AssetRenderer getAssetRenderer(long classPK, int type) {
+			return new BaseAssetRenderer() {
+
+				@Override
+				public Object getAssetObject() {
+					return _assetObject;
+				}
+
+				@Override
+				public String getClassName() {
+					return _className;
+				}
+
+				@Override
+				public long getClassPK() {
+					return RandomTestUtil.randomLong();
+				}
+
+				@Override
+				public long getGroupId() {
+					return _groupId;
+				}
+
+				@Override
+				public String getSummary(
+					PortletRequest portletRequest,
+					PortletResponse portletResponse) {
+
+					return null;
+				}
+
+				@Override
+				public String getTitle(Locale locale) {
+					return null;
+				}
+
+				@Override
+				public long getUserId() {
+					return RandomTestUtil.randomLong();
+				}
+
+				@Override
+				public String getUserName() {
+					return null;
+				}
+
+				@Override
+				public String getUuid() {
+					return null;
+				}
+
+				@Override
+				public boolean include(
+					HttpServletRequest httpServletRequest,
+					HttpServletResponse httpServletResponse, String template) {
+
+					return false;
+				}
+
+			};
+		}
+
+		@Override
+		public String getClassName() {
+			return _className;
+		}
+
+		@Override
+		public String getType() {
+			return "test";
+		}
+
+		private final Object _assetObject;
+		private final String _className;
+		private final long _groupId;
+
+	}
 
 }
