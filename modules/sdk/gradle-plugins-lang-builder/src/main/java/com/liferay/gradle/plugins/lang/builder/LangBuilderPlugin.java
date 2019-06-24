@@ -16,6 +16,8 @@ package com.liferay.gradle.plugins.lang.builder;
 
 import com.liferay.gradle.plugins.lang.builder.internal.util.GradleUtil;
 
+import groovy.lang.Closure;
+
 import java.io.File;
 
 import java.util.Iterator;
@@ -27,11 +29,13 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.DependencySet;
+import org.gradle.api.file.CopySpec;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.file.SourceDirectorySet;
 import org.gradle.api.plugins.BasePlugin;
 import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.plugins.PluginContainer;
+import org.gradle.api.tasks.Copy;
 import org.gradle.api.tasks.SourceSet;
 import org.gradle.api.tasks.TaskContainer;
 
@@ -54,6 +58,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 		BuildLangTask buildLangTask = _addTaskBuildLang(project);
 
 		_configureTaskBuildLang(buildLangTask);
+		_configureTaskProcessResources(project);
 
 		_configureTasksBuildLang(project, langBuilderConfiguration);
 	}
@@ -181,6 +186,39 @@ public class LangBuilderPlugin implements Plugin<Project> {
 					return new File(
 						_getResourcesDir(buildLangTask.getProject()),
 						"content");
+				}
+
+			});
+	}
+
+	@SuppressWarnings("serial")
+	private void _configureTaskProcessResources(Project project) {
+		File appDir = GradleUtil.getRootDir(project, "app.bnd");
+
+		final File appBndLocalizationDir = new File(
+			appDir, "app.bnd-localization");
+
+		if (!appBndLocalizationDir.exists()) {
+			return;
+		}
+
+		Copy copy = (Copy)GradleUtil.getTask(
+			project, JavaPlugin.PROCESS_RESOURCES_TASK_NAME);
+
+		copy.from(
+			new Callable<File>() {
+
+				@Override
+				public File call() throws Exception {
+					return appBndLocalizationDir;
+				}
+
+			},
+			new Closure<Void>(project) {
+
+				@SuppressWarnings("unused")
+				public void doCall(CopySpec copySpec) {
+					copySpec.into("OSGI-INF/l10n");
 				}
 
 			});
