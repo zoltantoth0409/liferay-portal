@@ -57,7 +57,8 @@ public class InterestTermsChecker {
 
 		if (interestTermsResults == null) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to get interest terms of userId " + userId);
+				_log.debug(
+					"Unable to get interest terms for user ID " + userId);
 			}
 
 			_asahInterestTermCache.putInterestTerms(userId, new String[0]);
