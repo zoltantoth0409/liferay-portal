@@ -316,8 +316,7 @@ definition {
 
 	@priority = "4"
 	test NavigateToSearchResultsViaURL {
-		property portal.acceptance = "false";
-		property portal.suite.search.engine = "disable";
+		property portal.acceptance = "true";
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
@@ -1449,7 +1448,6 @@ definition {
 	}
 
 	test SearchWithNonLiferayIndex {
-		property portal.suite.search.engine = "disable";
 		property test.name.skip.portal.instance = "Search#SearchWithNonLiferayIndex";
 
 		AntCommand(
@@ -1703,7 +1701,6 @@ definition {
 	@description = "This is a use case for LPS-74299."
 	@priority = "3"
 	test ViewFacetPersistence {
-		property portal.suite.search.engine = "disable";
 		property test.name.skip.portal.instance = "Search#ViewFacetPersistence";
 
 		// Workaround for LPS-89026
@@ -1753,8 +1750,6 @@ definition {
 
 	@priority = "5"
 	test ViewMultipleFacetURLs {
-		property portal.suite.search.engine = "disable";
-
 		var searchPage = "Search Page";
 
 		JSONCategory.addVocabulary(
