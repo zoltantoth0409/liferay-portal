@@ -62,7 +62,7 @@ public class SharingModelResourcePermissionConfiguratorImpl
 
 		if (_sharingSystemConfiguration.enabled()) {
 			consumer.accept(
-				new SharingModelResourcePermissionLogicImpl<>(
+				new SharingModelResourcePermissionLogic<>(
 					_classNameLocalService.getClassNameId(
 						modelResourcePermission.getModelName())));
 		}
@@ -98,9 +98,8 @@ public class SharingModelResourcePermissionConfiguratorImpl
 
 	private SharingSystemConfiguration _sharingSystemConfiguration;
 
-	private class SharingModelResourcePermissionLogicImpl
-		<T extends GroupedModel>
-			implements ModelResourcePermissionLogic<T> {
+	private class SharingModelResourcePermissionLogic<T extends GroupedModel>
+		implements ModelResourcePermissionLogic<T> {
 
 		@Override
 		public Boolean contains(
@@ -144,7 +143,7 @@ public class SharingModelResourcePermissionConfiguratorImpl
 			return null;
 		}
 
-		private SharingModelResourcePermissionLogicImpl(long classNameId) {
+		private SharingModelResourcePermissionLogic(long classNameId) {
 			_classNameId = classNameId;
 		}
 
