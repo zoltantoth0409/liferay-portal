@@ -102,7 +102,7 @@ public class ExpandoInfoDisplayContributorField
 			}
 		}
 		else if (attributeType ==
-				ExpandoColumnConstants.STRING_ARRAY_LOCALIZED) {
+					ExpandoColumnConstants.STRING_ARRAY_LOCALIZED) {
 
 			Map<Locale, String[]> values =
 				(Map<Locale, String[]>)attributeValue;
