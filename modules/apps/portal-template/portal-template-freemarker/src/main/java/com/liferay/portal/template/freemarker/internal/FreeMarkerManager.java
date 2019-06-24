@@ -50,6 +50,7 @@ import freemarker.ext.servlet.HttpRequestHashModel;
 import freemarker.ext.servlet.ServletContextHashModel;
 
 import freemarker.template.Configuration;
+import freemarker.template.ObjectWrapper;
 import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
@@ -276,12 +277,6 @@ public class FreeMarkerManager extends BaseSingleTemplateManager {
 			_freeMarkerEngineConfiguration.localizedLookup());
 		_configuration.setNewBuiltinClassResolver(_templateClassResolver);
 
-		_configuration.setObjectWrapper(
-			new LiferayObjectWrapper(
-				_freeMarkerEngineConfiguration.allowedClasses(),
-				_freeMarkerEngineConfiguration.restrictedClasses(),
-				_freeMarkerEngineConfiguration.restrictedMethods()));
-
 		try {
 			_configuration.setSetting(
 				"auto_import",
@@ -294,6 +289,12 @@ public class FreeMarkerManager extends BaseSingleTemplateManager {
 		catch (Exception e) {
 			throw new TemplateException("Unable to init FreeMarker manager", e);
 		}
+
+		_defaultObjectWrapper = new LiferayObjectWrapper();
+		_restrictedObjectWrapper = new RestrictedLiferayObjectWrapper(
+			_freeMarkerEngineConfiguration.allowedClasses(),
+			_freeMarkerEngineConfiguration.restrictedClasses(),
+			_freeMarkerEngineConfiguration.restrictedMethods());
 
 		if (isEnableDebuggerService()) {
 			DebuggerService.getBreakpoints("*");
@@ -355,11 +356,17 @@ public class FreeMarkerManager extends BaseSingleTemplateManager {
 		TemplateResource errorTemplateResource, boolean restricted,
 		Map<String, Object> helperUtilities) {
 
+		ObjectWrapper objectWrapper = _defaultObjectWrapper;
+
+		if (restricted) {
+			objectWrapper = _restrictedObjectWrapper;
+		}
+
 		return new FreeMarkerTemplate(
 			templateResource, errorTemplateResource, helperUtilities,
 			_configuration, templateContextHelper,
 			_freeMarkerEngineConfiguration.resourceModificationCheck(),
-			restricted);
+			restricted, objectWrapper);
 	}
 
 	protected FreeMarkerBundleClassloader getFreeMarkerBundleClassloader() {
@@ -445,9 +452,11 @@ public class FreeMarkerManager extends BaseSingleTemplateManager {
 
 	private volatile int _bundleTrackingCount = -2;
 	private Configuration _configuration;
+	private ObjectWrapper _defaultObjectWrapper;
 	private volatile FreeMarkerBundleClassloader _freeMarkerBundleClassloader;
 	private volatile FreeMarkerEngineConfiguration
 		_freeMarkerEngineConfiguration;
+	private ObjectWrapper _restrictedObjectWrapper;
 	private SingleVMPool _singleVMPool;
 	private final Map<String, String> _taglibMappings =
 		new ConcurrentHashMap<>();
