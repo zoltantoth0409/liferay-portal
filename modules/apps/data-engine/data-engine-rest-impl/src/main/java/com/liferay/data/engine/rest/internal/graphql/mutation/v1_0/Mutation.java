@@ -75,7 +75,8 @@ public class Mutation {
 			dataRecordCollectionResourceComponentServiceObjects;
 	}
 
-	public void deleteDataDefinition(
+	@GraphQLField
+	public boolean deleteDataDefinition(
 			@GraphQLName("dataDefinitionId") Long dataDefinitionId)
 		throws Exception {
 
@@ -84,8 +85,11 @@ public class Mutation {
 			this::_populateResourceContext,
 			dataDefinitionResource ->
 				dataDefinitionResource.deleteDataDefinition(dataDefinitionId));
+
+		return true;
 	}
 
+	@GraphQLField
 	public DataDefinition putDataDefinition(
 			@GraphQLName("dataDefinitionId") Long dataDefinitionId,
 			@GraphQLName("dataDefinition") DataDefinition dataDefinition)
@@ -99,7 +103,7 @@ public class Mutation {
 	}
 
 	@GraphQLField
-	public void postDataDefinitionDataDefinitionPermission(
+	public boolean postDataDefinitionDataDefinitionPermission(
 			@GraphQLName("dataDefinitionId") Long dataDefinitionId,
 			@GraphQLName("operation") String operation,
 			@GraphQLName("dataDefinitionPermission") DataDefinitionPermission
@@ -113,10 +117,12 @@ public class Mutation {
 				dataDefinitionResource.
 					postDataDefinitionDataDefinitionPermission(
 						dataDefinitionId, operation, dataDefinitionPermission));
+
+		return true;
 	}
 
 	@GraphQLField
-	public void postSiteDataDefinitionPermission(
+	public boolean postSiteDataDefinitionPermission(
 			@GraphQLName("siteId") Long siteId,
 			@GraphQLName("operation") String operation,
 			@GraphQLName("dataDefinitionPermission") DataDefinitionPermission
@@ -129,6 +135,8 @@ public class Mutation {
 			dataDefinitionResource ->
 				dataDefinitionResource.postSiteDataDefinitionPermission(
 					siteId, operation, dataDefinitionPermission));
+
+		return true;
 	}
 
 	@GraphQLField
@@ -160,7 +168,7 @@ public class Mutation {
 	}
 
 	@GraphQLField
-	public void postDataLayoutDataLayoutPermission(
+	public boolean postDataLayoutDataLayoutPermission(
 			@GraphQLName("dataLayoutId") Long dataLayoutId,
 			@GraphQLName("operation") String operation,
 			@GraphQLName("dataLayoutPermission") DataLayoutPermission
@@ -173,9 +181,13 @@ public class Mutation {
 			dataLayoutResource ->
 				dataLayoutResource.postDataLayoutDataLayoutPermission(
 					dataLayoutId, operation, dataLayoutPermission));
+
+		return true;
 	}
 
-	public void deleteDataLayout(@GraphQLName("dataLayoutId") Long dataLayoutId)
+	@GraphQLField
+	public boolean deleteDataLayout(
+			@GraphQLName("dataLayoutId") Long dataLayoutId)
 		throws Exception {
 
 		_applyVoidComponentServiceObjects(
@@ -183,8 +195,11 @@ public class Mutation {
 			this::_populateResourceContext,
 			dataLayoutResource -> dataLayoutResource.deleteDataLayout(
 				dataLayoutId));
+
+		return true;
 	}
 
+	@GraphQLField
 	public DataLayout putDataLayout(
 			@GraphQLName("dataLayoutId") Long dataLayoutId,
 			@GraphQLName("dataLayout") DataLayout dataLayout)
@@ -198,7 +213,7 @@ public class Mutation {
 	}
 
 	@GraphQLField
-	public void postSiteDataLayoutPermission(
+	public boolean postSiteDataLayoutPermission(
 			@GraphQLName("siteId") Long siteId,
 			@GraphQLName("operation") String operation,
 			@GraphQLName("dataLayoutPermission") DataLayoutPermission
@@ -211,6 +226,8 @@ public class Mutation {
 			dataLayoutResource ->
 				dataLayoutResource.postSiteDataLayoutPermission(
 					siteId, operation, dataLayoutPermission));
+
+		return true;
 	}
 
 	@GraphQLField
@@ -227,7 +244,9 @@ public class Mutation {
 					dataRecordCollectionId, dataRecord));
 	}
 
-	public void deleteDataRecord(@GraphQLName("dataRecordId") Long dataRecordId)
+	@GraphQLField
+	public boolean deleteDataRecord(
+			@GraphQLName("dataRecordId") Long dataRecordId)
 		throws Exception {
 
 		_applyVoidComponentServiceObjects(
@@ -235,8 +254,11 @@ public class Mutation {
 			this::_populateResourceContext,
 			dataRecordResource -> dataRecordResource.deleteDataRecord(
 				dataRecordId));
+
+		return true;
 	}
 
+	@GraphQLField
 	public DataRecord putDataRecord(
 			@GraphQLName("dataRecordId") Long dataRecordId,
 			@GraphQLName("dataRecord") DataRecord dataRecord)
@@ -265,7 +287,8 @@ public class Mutation {
 						dataDefinitionId, dataRecordCollection));
 	}
 
-	public void deleteDataRecordCollection(
+	@GraphQLField
+	public boolean deleteDataRecordCollection(
 			@GraphQLName("dataRecordCollectionId") Long dataRecordCollectionId)
 		throws Exception {
 
@@ -275,8 +298,11 @@ public class Mutation {
 			dataRecordCollectionResource ->
 				dataRecordCollectionResource.deleteDataRecordCollection(
 					dataRecordCollectionId));
+
+		return true;
 	}
 
+	@GraphQLField
 	public DataRecordCollection putDataRecordCollection(
 			@GraphQLName("dataRecordCollectionId") Long dataRecordCollectionId,
 			@GraphQLName("dataRecordCollection") DataRecordCollection
@@ -292,7 +318,7 @@ public class Mutation {
 	}
 
 	@GraphQLField
-	public void postDataRecordCollectionDataRecordCollectionPermission(
+	public boolean postDataRecordCollectionDataRecordCollectionPermission(
 			@GraphQLName("dataRecordCollectionId") Long dataRecordCollectionId,
 			@GraphQLName("operation") String operation,
 			@GraphQLName("dataRecordCollectionPermission")
@@ -307,10 +333,12 @@ public class Mutation {
 					postDataRecordCollectionDataRecordCollectionPermission(
 						dataRecordCollectionId, operation,
 						dataRecordCollectionPermission));
+
+		return true;
 	}
 
 	@GraphQLField
-	public void postSiteDataRecordCollectionPermission(
+	public boolean postSiteDataRecordCollectionPermission(
 			@GraphQLName("siteId") Long siteId,
 			@GraphQLName("operation") String operation,
 			@GraphQLName("dataRecordCollectionPermission")
@@ -324,6 +352,8 @@ public class Mutation {
 				dataRecordCollectionResource.
 					postSiteDataRecordCollectionPermission(
 						siteId, operation, dataRecordCollectionPermission));
+
+		return true;
 	}
 
 	private <T, R, E1 extends Throwable, E2 extends Throwable> R

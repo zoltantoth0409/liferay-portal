@@ -70,6 +70,7 @@ public class Mutation {
 				companyId, userId, collectionUpdate));
 	}
 
+	@GraphQLField
 	public Response deleteCollection(
 			@GraphQLName("collectionId") Long collectionId)
 		throws Exception {
@@ -108,6 +109,7 @@ public class Mutation {
 				collectionId, ignoreCollision, userId));
 	}
 
+	@GraphQLField
 	public Settings putSettings(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("userId") Long userId,
