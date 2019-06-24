@@ -57,11 +57,13 @@ public class FreeMarkerTemplate extends AbstractSingleResourceTemplate {
 		TemplateResource templateResource,
 		TemplateResource errorTemplateResource, Map<String, Object> context,
 		Configuration configuration,
-		TemplateContextHelper templateContextHelper, long interval) {
+		TemplateContextHelper templateContextHelper, long interval,
+		boolean restricted) {
 
 		super(
 			templateResource, errorTemplateResource, context,
-			templateContextHelper, TemplateConstants.LANG_TYPE_FTL, interval);
+			templateContextHelper, TemplateConstants.LANG_TYPE_FTL, interval,
+			restricted);
 
 		_configuration = configuration;
 	}
