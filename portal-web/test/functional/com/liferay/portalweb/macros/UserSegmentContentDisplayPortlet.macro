@@ -51,8 +51,6 @@ definition {
 			locator1 = "Button#OK",
 			value1 = "OK");
 
-		Click(locator1 = "Icon#CLOSE");
-
 		IFrame.selectConfigurationFrame();
 
 		Click(locator1 = "UserSegmentContentDisplay#RULE_PANEL_DISPLAY_CONTENT_SELECT");
