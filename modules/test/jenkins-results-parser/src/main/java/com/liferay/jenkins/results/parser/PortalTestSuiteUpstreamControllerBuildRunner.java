@@ -84,8 +84,7 @@ public class PortalTestSuiteUpstreamControllerBuildRunner
 		List<String> testSuiteNames = _getSelectedTestSuiteNames();
 
 		if (testSuiteNames.isEmpty()) {
-			System.out.println(
-				"There are no test suites to be run at this time.");
+			System.out.println("There are no test suites to run at this time.");
 
 			return;
 		}
@@ -151,8 +150,7 @@ public class PortalTestSuiteUpstreamControllerBuildRunner
 				JenkinsResultsParserUtil.toString(sb.toString());
 
 				System.out.println(
-					"Job for '" + testSuiteName + "' has been invoked at " +
-						jobURL);
+					"Job for '" + testSuiteName + "' was invoked at " + jobURL);
 
 				_invokedTestSuiteNames.add(testSuiteName);
 			}
