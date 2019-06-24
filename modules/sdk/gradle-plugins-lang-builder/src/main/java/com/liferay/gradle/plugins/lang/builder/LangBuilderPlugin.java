@@ -15,12 +15,15 @@
 package com.liferay.gradle.plugins.lang.builder;
 
 import com.liferay.gradle.plugins.lang.builder.internal.util.GradleUtil;
+import com.liferay.gradle.util.Validator;
 
 import groovy.lang.Closure;
 
 import java.io.File;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
@@ -31,6 +34,7 @@ import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.DependencySet;
 import org.gradle.api.file.CopySpec;
 import org.gradle.api.file.FileCollection;
+import org.gradle.api.file.FileCopyDetails;
 import org.gradle.api.file.SourceDirectorySet;
 import org.gradle.api.plugins.BasePlugin;
 import org.gradle.api.plugins.JavaPlugin;
@@ -58,6 +62,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 		BuildLangTask buildLangTask = _addTaskBuildLang(project);
 
 		_configureTaskBuildLang(buildLangTask);
+
 		_configureTaskProcessResources(project);
 
 		_configureTasksBuildLang(project, langBuilderConfiguration);
@@ -192,7 +197,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 	}
 
 	@SuppressWarnings("serial")
-	private void _configureTaskProcessResources(Project project) {
+	private void _configureTaskProcessResources(final Project project) {
 		File appDir = GradleUtil.getRootDir(project, "app.bnd");
 
 		final File appBndLocalizationDir = new File(
@@ -204,6 +209,50 @@ public class LangBuilderPlugin implements Plugin<Project> {
 
 		Copy copy = (Copy)GradleUtil.getTask(
 			project, JavaPlugin.PROCESS_RESOURCES_TASK_NAME);
+
+		final Map<String, String> relengProperties = new HashMap<>();
+
+		Map<String, ?> projectProperties = project.getProperties();
+
+		for (Map.Entry<String, ?> entry : projectProperties.entrySet()) {
+			Object value = entry.getValue();
+
+			if (value instanceof String) {
+				String key = entry.getKey();
+
+				if (key.startsWith("liferay.releng")) {
+					relengProperties.put("${" + key + "}", (String)value);
+				}
+			}
+		}
+
+		final Action<FileCopyDetails> action = new Action<FileCopyDetails>() {
+
+			@Override
+			public void execute(final FileCopyDetails fileCopyDetails) {
+				fileCopyDetails.filter(
+					new Closure<Void>(copy) {
+
+						@SuppressWarnings("unused")
+						public String doCall(String line) {
+							if (Validator.isNull(line)) {
+								return line;
+							}
+
+							for (Map.Entry<String, String> entry :
+									relengProperties.entrySet()) {
+
+								line = line.replace(
+									entry.getKey(), entry.getValue());
+							}
+
+							return line;
+						}
+
+					});
+			}
+
+		};
 
 		copy.from(
 			new Callable<File>() {
@@ -218,6 +267,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 
 				@SuppressWarnings("unused")
 				public void doCall(CopySpec copySpec) {
+					copySpec.eachFile(action);
 					copySpec.into("OSGI-INF/l10n");
 				}
 
