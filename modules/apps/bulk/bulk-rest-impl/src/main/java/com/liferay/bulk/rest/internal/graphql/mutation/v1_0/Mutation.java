@@ -75,7 +75,8 @@ public class Mutation {
 			taxonomyVocabularyResourceComponentServiceObjects;
 	}
 
-	public void patchKeywordBatch(
+	@GraphQLField
+	public boolean patchKeywordBatch(
 			@GraphQLName("keywordBulkSelection") KeywordBulkSelection
 				keywordBulkSelection)
 		throws Exception {
@@ -85,9 +86,12 @@ public class Mutation {
 			this::_populateResourceContext,
 			keywordResource -> keywordResource.patchKeywordBatch(
 				keywordBulkSelection));
+
+		return true;
 	}
 
-	public void putKeywordBatch(
+	@GraphQLField
+	public boolean putKeywordBatch(
 			@GraphQLName("keywordBulkSelection") KeywordBulkSelection
 				keywordBulkSelection)
 		throws Exception {
@@ -97,6 +101,8 @@ public class Mutation {
 			this::_populateResourceContext,
 			keywordResource -> keywordResource.putKeywordBatch(
 				keywordBulkSelection));
+
+		return true;
 	}
 
 	@GraphQLField
@@ -129,7 +135,8 @@ public class Mutation {
 				documentBulkSelection));
 	}
 
-	public void patchTaxonomyCategoryBatch(
+	@GraphQLField
+	public boolean patchTaxonomyCategoryBatch(
 			@GraphQLName("taxonomyCategoryBulkSelection")
 				TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception {
@@ -140,9 +147,12 @@ public class Mutation {
 			taxonomyCategoryResource ->
 				taxonomyCategoryResource.patchTaxonomyCategoryBatch(
 					taxonomyCategoryBulkSelection));
+
+		return true;
 	}
 
-	public void putTaxonomyCategoryBatch(
+	@GraphQLField
+	public boolean putTaxonomyCategoryBatch(
 			@GraphQLName("taxonomyCategoryBulkSelection")
 				TaxonomyCategoryBulkSelection taxonomyCategoryBulkSelection)
 		throws Exception {
@@ -153,6 +163,8 @@ public class Mutation {
 			taxonomyCategoryResource ->
 				taxonomyCategoryResource.putTaxonomyCategoryBatch(
 					taxonomyCategoryBulkSelection));
+
+		return true;
 	}
 
 	@GraphQLField
