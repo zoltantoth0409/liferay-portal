@@ -37,7 +37,9 @@ public class NoSuchDataDefinitionExceptionMapper
 	implements ExceptionMapper<NoSuchStructureException> {
 
 	@Override
-	public Response toResponse(NoSuchStructureException exception) {
+	public Response toResponse(
+		NoSuchStructureException noSuchStructureException) {
+
 		return Response.status(
 			Response.Status.NOT_FOUND
 		).entity(
