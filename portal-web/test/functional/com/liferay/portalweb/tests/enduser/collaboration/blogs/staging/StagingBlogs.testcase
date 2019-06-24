@@ -381,12 +381,6 @@ definition {
 			siteName = "Site Name");
 
 		Blogs.viewNoEntryCP();
-
-		Pause(locator1 = "180000");
-
-		BlogsEntry.viewEntry(
-			entryContent = "Blogs Entry Content",
-			entryTitle = "Blogs Entry Title");
 	}
 
 }
