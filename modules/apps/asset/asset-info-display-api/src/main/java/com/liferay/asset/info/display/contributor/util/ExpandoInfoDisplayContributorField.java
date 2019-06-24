@@ -84,7 +84,26 @@ public class ExpandoInfoDisplayContributorField
 
 		int attributeType = _expandoBridge.getAttributeType(_attributeName);
 
-		if (attributeType == ExpandoColumnConstants.STRING_ARRAY_LOCALIZED) {
+		if (attributeType == ExpandoColumnConstants.GEOLOCATION) {
+			try {
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+					attributeValue.toString());
+
+				StringBundler sb = new StringBundler(3);
+
+				sb.append(jsonObject.get("latitude"));
+				sb.append(StringPool.COMMA_AND_SPACE);
+				sb.append(jsonObject.get("longitude"));
+
+				attributeValue = sb.toString();
+			}
+			catch (JSONException jsone) {
+				_log.error("Unable to parse geolocation JSON", jsone);
+			}
+		}
+		else if (attributeType ==
+				ExpandoColumnConstants.STRING_ARRAY_LOCALIZED) {
+
 			Map<Locale, String[]> values =
 				(Map<Locale, String[]>)attributeValue;
 
@@ -104,23 +123,6 @@ public class ExpandoInfoDisplayContributorField
 
 			attributeValue = values.getOrDefault(
 				locale, defaultValues.get(locale));
-		}
-		else if (attributeType == ExpandoColumnConstants.GEOLOCATION) {
-			try {
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-					attributeValue.toString());
-
-				StringBundler sb = new StringBundler(3);
-
-				sb.append(jsonObject.get("latitude"));
-				sb.append(StringPool.COMMA_AND_SPACE);
-				sb.append(jsonObject.get("longitude"));
-
-				attributeValue = sb.toString();
-			}
-			catch (JSONException jsone) {
-				_log.error("Unable to parse geolocation JSON", jsone);
-			}
 		}
 
 		return ExpandoConverterUtil.getStringFromAttribute(
