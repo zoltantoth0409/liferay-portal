@@ -39,10 +39,6 @@ definition {
 			Click(locator1 = "UserSegmentContentDisplay#RULE_PANEL_USER_SEGMENT_SELECT_USER_SEGMENT_CHECKBOX");
 		}
 
-		AssertClick(
-			locator1 = "Button#OK",
-			value1 = "OK");
-
 		if (isSet(siteScope)) {
 			var key_siteScope = "${siteScope}";
 
@@ -50,6 +46,10 @@ definition {
 				locator1 = "UserSegmentContentDisplay#RULE_PANEL_USER_SEGMENT_SELECT_USER_SEGMENT_SCOPE",
 				value1 = "User Segment (${siteScope})");
 		}
+
+		AssertClick(
+			locator1 = "Button#OK",
+			value1 = "OK");
 
 		Click(locator1 = "Icon#CLOSE");
 
