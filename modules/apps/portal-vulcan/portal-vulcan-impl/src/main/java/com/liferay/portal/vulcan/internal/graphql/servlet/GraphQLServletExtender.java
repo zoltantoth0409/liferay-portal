@@ -406,8 +406,7 @@ public class GraphQLServletExtender {
 			if ((argument == null) &&
 				parameter.isAnnotationPresent(NotNull.class)) {
 
-				throw new ValidationException(
-					parameterName + "can not be null");
+				throw new ValidationException(parameterName + " is null");
 			}
 
 			args[i] = argument;
