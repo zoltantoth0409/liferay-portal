@@ -61,6 +61,18 @@ PortletPreferences companyPortletPreferences = PrefsPropsUtil.getPreferences(com
 				/>
 			</aui:field-wrapper>
 
+			<liferay-ui:error key="adminEmailUserAddedResetPasswordBody" message="please-enter-a-valid-body" />
+
+			<liferay-frontend:email-notification-settings
+				bodyLabel='<%= LanguageUtil.get(resourceBundle, "body-with-password-link") %>'
+				emailBody='<%= LocalizationUtil.getLocalizationXmlFromPreferences(companyPortletPreferences, renderRequest, "adminEmailUserAddedResetPasswordBody", "settings", ContentUtil.get(PortalClassLoaderUtil.getClassLoader(), PropsValues.ADMIN_EMAIL_USER_ADDED_RESET_PASSWORD_BODY)) %>'
+				emailParam="adminEmailUserAddedResetPasswordBody"
+				fieldPrefix="settings"
+				helpMessage='<%= LanguageUtil.get(resourceBundle, "account-created-notification-body-with-password-reset-help") %>'
+				showEmailEnabled="<%= false %>"
+				showSubject="<%= false %>"
+			/>
+
 			<liferay-ui:error key="emailUserAddedBody" message="please-enter-a-valid-body" />
 
 			<liferay-frontend:email-notification-settings
