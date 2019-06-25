@@ -145,7 +145,7 @@ public class OpenNLPDocumentAssetAutoTaggerTest {
 	}
 
 	@Test
-	public void testAutoTagsAnAssetWithATextExtractorInNoEnglishLanguage()
+	public void testAutoTagsAnAssetWithATextExtractorInNotEnglishLanguage()
 		throws Exception {
 
 		String className = RandomTestUtil.randomString();
@@ -155,7 +155,8 @@ public class OpenNLPDocumentAssetAutoTaggerTest {
 				TestPropsValues.getGroupId(), className,
 				new String(
 					FileUtil.getBytes(
-						getClass(), "dependencies/" + _FILE_NAME_NO_ENGLISH))));
+						getClass(),
+						"dependencies/" + _FILE_NAME_NOT_ENGLISH))));
 
 		_registerTextExtractor(
 			new TextExtractor<String>() {
@@ -248,7 +249,7 @@ public class OpenNLPDocumentAssetAutoTaggerTest {
 	private static final String _FILE_NAME =
 		"Alice's Adventures in Wonderland, by Lewis Carroll.txt";
 
-	private static final String _FILE_NAME_NO_ENGLISH = "25328-0.txt";
+	private static final String _FILE_NAME_NOT_ENGLISH = "25328-0.txt";
 
 	private static final String _OPEN_NLP_AUTO_TAG_CONFIGURATION_PID =
 		"com.liferay.asset.auto.tagger.opennlp.internal.configuration." +
