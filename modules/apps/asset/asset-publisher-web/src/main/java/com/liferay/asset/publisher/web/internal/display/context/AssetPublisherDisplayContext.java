@@ -267,7 +267,8 @@ public class AssetPublisherDisplayContext {
 				isEnablePermissions());
 		}
 		else if (isSelectionStyleAssetList() && (assetListEntry != null)) {
-			return assetListEntry.getAssetEntries(_getSegmentsEntryIds());
+			return _assetListHelper.getAssetEntries(
+				assetListEntry, _getSegmentsEntryIds());
 		}
 		else if (isSelectionStyleAssetListProvider()) {
 			String infoListProviderClassName = GetterUtil.getString(
