@@ -1899,6 +1899,7 @@ rerun your task.
 					<propertyref name="timeout.app.server.wait" />
 					<propertyref name="upgrade.table.dir" />
 					<propertyref prefix="gradle.publish." />
+					<propertyref prefix="gradle.releng.pom." />
 					<propertyref prefix="ivy.pom." />
 					<propertyref prefix="microsoft.translator." />
 					<propertyref prefix="nodejs.npm." />
