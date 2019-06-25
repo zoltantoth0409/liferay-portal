@@ -346,7 +346,7 @@ public class CTEngineManagerTest {
 				TestPropsValues.getCompanyId());
 
 		Assert.assertFalse(
-			"Change tracking collections must not have any entry",
+			"Change tracking collections must not have any entries",
 			productionCTCollectionOptional.isPresent());
 
 		_ctEngineManager.enableChangeTracking(
