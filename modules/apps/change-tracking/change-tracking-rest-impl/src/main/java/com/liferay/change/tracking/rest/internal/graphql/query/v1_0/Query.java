@@ -109,7 +109,7 @@ public class Query {
 			affectedEntryResource -> {
 				Page paginationPage =
 					affectedEntryResource.getEntryAffectedEntriesPage(
-						entryId, keywords, Pagination.of(pageSize, page));
+						entryId, keywords, Pagination.of(page, pageSize));
 
 				return paginationPage.getItems();
 			});
@@ -131,7 +131,7 @@ public class Query {
 			this::_populateResourceContext,
 			collectionResource -> {
 				Page paginationPage = collectionResource.getCollectionsPage(
-					companyId, type, userId, Pagination.of(pageSize, page),
+					companyId, type, userId, Pagination.of(page, pageSize),
 					sorts);
 
 				return paginationPage.getItems();
@@ -170,7 +170,7 @@ public class Query {
 				Page paginationPage = entryResource.getCollectionEntriesPage(
 					collectionId, changeTypesFilter, classNameIdsFilter,
 					collision, groupIdsFilter, status, userIdsFilter,
-					Pagination.of(pageSize, page), sorts);
+					Pagination.of(page, pageSize), sorts);
 
 				return paginationPage.getItems();
 			});
@@ -204,7 +204,7 @@ public class Query {
 			processResource -> {
 				Page paginationPage = processResource.getProcessesPage(
 					companyId, keywords, type, userId,
-					Pagination.of(pageSize, page), sorts);
+					Pagination.of(page, pageSize), sorts);
 
 				return paginationPage.getItems();
 			});
@@ -237,7 +237,7 @@ public class Query {
 			processUserResource -> {
 				Page paginationPage = processUserResource.getProcessUsersPage(
 					companyId, keywords, processType,
-					Pagination.of(pageSize, page));
+					Pagination.of(page, pageSize));
 
 				return paginationPage.getItems();
 			});
