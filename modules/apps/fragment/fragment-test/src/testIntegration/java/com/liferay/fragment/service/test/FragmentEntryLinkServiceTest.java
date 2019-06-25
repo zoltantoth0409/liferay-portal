@@ -124,13 +124,10 @@ public class FragmentEntryLinkServiceTest {
 			_fragmentEntryLinkPersistence.findByPrimaryKey(
 				fragmentEntryLink.getFragmentEntryLinkId());
 
-		Assert.assertEquals(css, persistedFragmentEntryLink.getCss());
-
-		Assert.assertEquals(html, persistedFragmentEntryLink.getHtml());
-
-		Assert.assertEquals(js, persistedFragmentEntryLink.getJs());
-
 		Assert.assertEquals(fragmentEntryLink, persistedFragmentEntryLink);
+		Assert.assertEquals(css, persistedFragmentEntryLink.getCss());
+		Assert.assertEquals(html, persistedFragmentEntryLink.getHtml());
+		Assert.assertEquals(js, persistedFragmentEntryLink.getJs());
 	}
 
 	@Test(expected = PrincipalException.MustHavePermission.class)
@@ -208,7 +205,6 @@ public class FragmentEntryLinkServiceTest {
 				fragmentEntryLink.getFragmentEntryLinkId());
 
 		Assert.assertEquals(fragmentEntryLink, persistedFragmentEntryLink);
-
 		Assert.assertEquals(
 			editableValues, persistedFragmentEntryLink.getEditableValues());
 	}
