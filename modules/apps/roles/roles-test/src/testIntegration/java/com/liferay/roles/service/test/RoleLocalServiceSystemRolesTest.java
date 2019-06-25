@@ -58,8 +58,8 @@ public class RoleLocalServiceSystemRolesTest {
 
 	@Test
 	public void testAnalyticsAdminRolePermissions() throws Exception {
-		_user = UserTestUtil.addUser();
 		_organization = OrganizationTestUtil.addOrganization();
+		_user = UserTestUtil.addUser();
 		_userGroup = UserGroupTestUtil.addUserGroup();
 
 		Role role = _roleLocalService.fetchRole(
