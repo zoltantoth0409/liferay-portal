@@ -100,7 +100,7 @@ public class Query {
 			dataDefinitionResource -> {
 				Page paginationPage =
 					dataDefinitionResource.getSiteDataDefinitionsPage(
-						siteId, keywords, Pagination.of(pageSize, page));
+						siteId, keywords, Pagination.of(page, pageSize));
 
 				return paginationPage.getItems();
 			});
@@ -135,7 +135,7 @@ public class Query {
 				Page paginationPage =
 					dataLayoutResource.getDataDefinitionDataLayoutsPage(
 						dataDefinitionId, keywords,
-						Pagination.of(pageSize, page));
+						Pagination.of(page, pageSize));
 
 				return paginationPage.getItems();
 			});
@@ -166,7 +166,7 @@ public class Query {
 			this::_populateResourceContext,
 			dataLayoutResource -> {
 				Page paginationPage = dataLayoutResource.getSiteDataLayoutPage(
-					siteId, keywords, Pagination.of(pageSize, page));
+					siteId, keywords, Pagination.of(page, pageSize));
 
 				return paginationPage.getItems();
 			});
@@ -200,7 +200,7 @@ public class Query {
 			dataRecordResource -> {
 				Page paginationPage =
 					dataRecordResource.getDataRecordCollectionDataRecordsPage(
-						dataRecordCollectionId, Pagination.of(pageSize, page));
+						dataRecordCollectionId, Pagination.of(page, pageSize));
 
 				return paginationPage.getItems();
 			});
@@ -218,7 +218,7 @@ public class Query {
 			this::_populateResourceContext,
 			dataRecordResource ->
 				dataRecordResource.getDataRecordCollectionDataRecordExport(
-					dataRecordCollectionId, Pagination.of(pageSize, page)));
+					dataRecordCollectionId, Pagination.of(page, pageSize)));
 	}
 
 	@GraphQLField
@@ -250,7 +250,7 @@ public class Query {
 					dataRecordCollectionResource.
 						getDataDefinitionDataRecordCollectionsPage(
 							dataDefinitionId, keywords,
-							Pagination.of(pageSize, page));
+							Pagination.of(page, pageSize));
 
 				return paginationPage.getItems();
 			});
@@ -285,7 +285,7 @@ public class Query {
 				Page paginationPage =
 					dataRecordCollectionResource.
 						getSiteDataRecordCollectionsPage(
-							siteId, keywords, Pagination.of(pageSize, page));
+							siteId, keywords, Pagination.of(page, pageSize));
 
 				return paginationPage.getItems();
 			});
