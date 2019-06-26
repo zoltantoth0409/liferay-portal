@@ -72,9 +72,7 @@ public class ResourceConfigurationFactory {
 		V1PodSpec v1PodSpec = newConfigurationPodSpec(v1Container);
 
 		v1PodSpec.setHostname(hostname);
-
 		v1PodSpec.setSubdomain(serviceName);
-
 		v1PodSpec.setVolumes(
 			new ArrayList<>(
 				Arrays.asList(
