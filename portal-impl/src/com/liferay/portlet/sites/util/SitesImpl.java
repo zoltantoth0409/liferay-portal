@@ -1921,6 +1921,9 @@ public class SitesImpl implements Sites {
 					importLayoutSettingsMap, WorkflowConstants.STATUS_DRAFT,
 					new ServiceContext());
 
+		ExportImportLocalServiceUtil.importLayoutsDataDeletions(
+			exportImportConfiguration, file);
+
 		ExportImportLocalServiceUtil.importLayouts(
 			exportImportConfiguration, file);
 
