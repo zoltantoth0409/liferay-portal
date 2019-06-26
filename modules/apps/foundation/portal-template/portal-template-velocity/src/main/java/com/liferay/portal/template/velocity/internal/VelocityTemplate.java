@@ -45,12 +45,13 @@ public class VelocityTemplate extends AbstractSingleResourceTemplate {
 		TemplateResource errorTemplateResource, Map<String, Object> context,
 		VelocityEngine velocityEngine,
 		TemplateContextHelper templateContextHelper,
-		int resourceModificationCheckInterval, boolean privileged) {
+		int resourceModificationCheckInterval, boolean privileged,
+		boolean restricted) {
 
 		super(
 			templateResource, errorTemplateResource, context,
 			templateContextHelper, TemplateConstants.LANG_TYPE_VM,
-			resourceModificationCheckInterval);
+			resourceModificationCheckInterval, restricted);
 
 		_velocityContext = new VelocityContext(super.context);
 		_velocityEngine = velocityEngine;

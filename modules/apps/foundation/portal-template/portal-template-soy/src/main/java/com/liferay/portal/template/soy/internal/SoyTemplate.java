@@ -68,11 +68,12 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 		List<TemplateResource> templateResources,
 		TemplateResource errorTemplateResource, Map<String, Object> context,
 		SoyTemplateContextHelper templateContextHelper, boolean privileged,
-		SoyTofuCacheHandler soyTofuCacheHandler) {
+		SoyTofuCacheHandler soyTofuCacheHandler, boolean restricted) {
 
 		super(
 			templateResources, errorTemplateResource, context,
-			templateContextHelper, TemplateConstants.LANG_TYPE_SOY, 0);
+			templateContextHelper, TemplateConstants.LANG_TYPE_SOY, 0,
+			restricted);
 
 		_templateContextHelper = templateContextHelper;
 		_privileged = privileged;
