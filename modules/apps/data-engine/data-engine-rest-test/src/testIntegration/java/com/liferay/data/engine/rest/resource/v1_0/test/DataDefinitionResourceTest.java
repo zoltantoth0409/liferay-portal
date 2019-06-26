@@ -43,6 +43,39 @@ public class DataDefinitionResourceTest
 	extends BaseDataDefinitionResourceTestCase {
 
 	@Override
+	@Test
+	public void testGetSiteDataDefinitionsPage() throws Exception {
+		super.testGetSiteDataDefinitionsPage();
+
+		Page<DataDefinition> page =
+			dataDefinitionResource.getSiteDataDefinitionsPage(
+				testGetSiteDataDefinitionsPage_getSiteId(), "definition",
+				Pagination.of(1, 2));
+
+		Assert.assertEquals(0, page.getTotalCount());
+
+		_testGetSiteDataDefinitionsPage("!@#name", "description", "!@#n");
+		_testGetSiteDataDefinitionsPage(
+			"DeFiNiTiON NaMe", "description", "DEFINITION");
+		_testGetSiteDataDefinitionsPage(
+			"definition name", "description", "definition name");
+		_testGetSiteDataDefinitionsPage(
+			"definition name", "description", "nam");
+		_testGetSiteDataDefinitionsPage(
+			"definition", "abcdefghijklmnopqrstuvwxyz0123456789",
+			"abcdefghijklmnopqrstuvwxyz0123456789");
+		_testGetSiteDataDefinitionsPage(
+			"definition", "description name", "description name");
+		_testGetSiteDataDefinitionsPage("name", "!@#description", "!@#d");
+		_testGetSiteDataDefinitionsPage(
+			"name", "DeFiNiTiON dEsCrIpTiOn", "DEFINITION");
+		_testGetSiteDataDefinitionsPage(
+			"name", "definition description", "descr");
+		_testGetSiteDataDefinitionsPage("name", "π€† description", "π€†");
+		_testGetSiteDataDefinitionsPage("π€† name", "description", "π€†");
+	}
+
+	@Override
 	public void testPostDataDefinitionDataDefinitionPermission()
 		throws Exception {
 
@@ -75,91 +108,6 @@ public class DataDefinitionResourceTest
 					roleNames = new String[] {role.getName()};
 				}
 			});
-	}
-
-	@Test
-	public void testSearchNonexistingSiteDataDefinition() throws Exception {
-		Page<DataDefinition> page =
-			dataDefinitionResource.getSiteDataDefinitionsPage(
-				testGetSiteDataDefinitionsPage_getSiteId(), "definition",
-				Pagination.of(1, 2));
-
-		Assert.assertEquals(0, page.getTotalCount());
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByCaseSensitiveDescription()
-		throws Exception {
-
-		search("name", "DeFiNiTiON dEsCrIpTiOn", "DEFINITION");
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByCaseSensitiveName()
-		throws Exception {
-
-		search("DeFiNiTiON NaMe", "description", "DEFINITION");
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByDescriptionWithNonasciiChar()
-		throws Exception {
-
-		search("name", "π€† description", "π€†");
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByDescriptionWithSpecialASCIIChar()
-		throws Exception {
-
-		search("name", "!@#description", "!@#d");
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByFullDescription()
-		throws Exception {
-
-		search("definition", "description name", "description name");
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByFullName() throws Exception {
-		search("definition name", "description", "definition name");
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByLongDescription()
-		throws Exception {
-
-		search(
-			"definition", "abcdefghijklmnopqrstuvwxyz0123456789",
-			"abcdefghijklmnopqrstuvwxyz0123456789");
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByNameWithNonasciiChar()
-		throws Exception {
-
-		search("π€† name", "description", "π€†");
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByNameWithSpecialASCIIChar()
-		throws Exception {
-
-		search("!@#name", "description", "!@#n");
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByPartialDescription()
-		throws Exception {
-
-		search("name", "definition description", "descr");
-	}
-
-	@Test
-	public void testSearchSiteDataDefinitionByPartialName() throws Exception {
-		search("definition name", "description", "nam");
 	}
 
 	@Override
@@ -197,31 +145,6 @@ public class DataDefinitionResourceTest
 	protected DataDefinition randomDataDefinition() throws Exception {
 		return _createDataDefinition(
 			RandomTestUtil.randomString(), RandomTestUtil.randomString());
-	}
-
-	protected void search(
-			String dataDefinitionName, String dataDefinitionDescription,
-			String keywords)
-		throws Exception {
-
-		Long siteId = testGetSiteDataDefinitionsPage_getSiteId();
-
-		DataDefinition dataDefinition1 =
-			testGetSiteDataDefinitionsPage_addDataDefinition(
-				siteId,
-				_createDataDefinition(
-					dataDefinitionName, dataDefinitionDescription));
-
-		Page<DataDefinition> page =
-			dataDefinitionResource.getSiteDataDefinitionsPage(
-				siteId, keywords, Pagination.of(1, 2));
-
-		Assert.assertEquals(1, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(dataDefinition1),
-			(List<DataDefinition>)page.getItems());
-		assertValid(page);
 	}
 
 	private DataDefinition _createDataDefinition(
@@ -268,6 +191,33 @@ public class DataDefinitionResourceTest
 				userId = TestPropsValues.getUserId();
 			}
 		};
+	}
+
+	private void _testGetSiteDataDefinitionsPage(
+			String dataDefinitionName, String dataDefinitionDescription,
+			String keywords)
+		throws Exception {
+
+		Long siteId = testGetSiteDataDefinitionsPage_getSiteId();
+
+		DataDefinition dataDefinition1 =
+			testGetSiteDataDefinitionsPage_addDataDefinition(
+				siteId,
+				_createDataDefinition(
+					dataDefinitionName, dataDefinitionDescription));
+
+		Page<DataDefinition> page =
+			dataDefinitionResource.getSiteDataDefinitionsPage(
+				siteId, keywords, Pagination.of(1, 2));
+
+		Assert.assertEquals(1, page.getTotalCount());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(dataDefinition1),
+			(List<DataDefinition>)page.getItems());
+		assertValid(page);
+
+		dataDefinitionResource.deleteDataDefinition(dataDefinition1.getId());
 	}
 
 	private static final String _OPERATION_SAVE_PERMISSION = "save";
