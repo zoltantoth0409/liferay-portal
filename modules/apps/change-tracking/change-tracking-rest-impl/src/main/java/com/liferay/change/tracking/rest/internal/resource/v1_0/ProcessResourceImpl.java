@@ -68,7 +68,7 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 	}
 
 	private Optional<com.liferay.portal.kernel.backgroundtask.BackgroundTask>
-		_getPortalKernelBackgroundTaskOptional(
+		_getServiceBuilderBackgroundTaskOptional(
 			BackgroundTask backgroundTask) {
 
 		try {
@@ -90,10 +90,10 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 		BackgroundTaskExecutor backgroundTaskExecutor) {
 
 		Optional<com.liferay.portal.kernel.backgroundtask.BackgroundTask>
-			portalKernelBackgroundTaskOptional =
-				_getPortalKernelBackgroundTaskOptional(backgroundTask);
+			serviceBuilderBackgroundTaskOptional =
+				_getServiceBuilderBackgroundTaskOptional(backgroundTask);
 
-		return portalKernelBackgroundTaskOptional.map(
+		return serviceBuilderBackgroundTaskOptional.map(
 			backgroundTaskExecutor::getBackgroundTaskDisplay);
 	}
 
@@ -120,7 +120,7 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 
 				percentage = backgroundTaskOptional.flatMap(
 					ProcessResourceImpl.this::
-						_getPortalKernelBackgroundTaskOptional
+						_getServiceBuilderBackgroundTaskOptional
 				).map(
 					com.liferay.portal.kernel.backgroundtask.BackgroundTask::
 						getTaskExecutorClassName
