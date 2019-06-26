@@ -71,7 +71,7 @@ class Layout extends Component {
 				plugins.push(
 					{
 						cfg: {
-							rowSelector: '.layout-column'
+							rowSelector: '.layout-item'
 						},
 						fn: A.Plugin.SearchContainerSelect
 					}
@@ -810,6 +810,7 @@ Layout.STATE = {
 		Config.arrayOf(
 			Config.shapeOf(
 				{
+					actions: Config.string().required(),
 					actionURLs: Config.object().required(),
 					active: Config.bool().required(),
 					checked: Config.bool().required(),

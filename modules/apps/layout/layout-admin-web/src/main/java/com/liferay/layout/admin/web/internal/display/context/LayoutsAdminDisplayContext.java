@@ -478,6 +478,8 @@ public class LayoutsAdminDisplayContext {
 			JSONObject layoutJSONObject = JSONFactoryUtil.createJSONObject();
 
 			layoutJSONObject.put(
+				"actions", _getAvailableActionDropdownItems(layout));
+			layoutJSONObject.put(
 				"actionURLs", _getActionURLsJSONObject(layout));
 			layoutJSONObject.put("active", _isActive(layout.getPlid()));
 
@@ -1142,6 +1144,22 @@ public class LayoutsAdminDisplayContext {
 		}
 
 		return _activeLayoutSetBranchId;
+	}
+
+	private String _getAvailableActionDropdownItems(Layout layout)
+		throws PortalException {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (LayoutPermissionUtil.contains(
+				themeDisplay.getPermissionChecker(), layout,
+				ActionKeys.DELETE)) {
+
+			return "deleteSelectedPages";
+		}
+
+		return StringPool.BLANK;
 	}
 
 	private String _getBackURL() {
