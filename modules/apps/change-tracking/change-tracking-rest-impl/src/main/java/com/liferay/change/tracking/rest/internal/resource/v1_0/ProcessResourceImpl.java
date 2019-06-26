@@ -61,7 +61,7 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 		CTProcess ctProcess = _ctProcessLocalService.fetchCTProcess(processId);
 
 		if (ctProcess != null) {
-			return _getProcess(ctProcess);
+			return _toProcess(ctProcess);
 		}
 
 		return new Process();
@@ -97,7 +97,7 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 			backgroundTaskExecutor::getBackgroundTaskDisplay);
 	}
 
-	private Process _getProcess(CTProcess ctProcess) {
+	private Process _toProcess(CTProcess ctProcess) {
 		CTCollection ctCollection = _ctCollectionLocalService.fetchCTCollection(
 			ctProcess.getCtCollectionId());
 
