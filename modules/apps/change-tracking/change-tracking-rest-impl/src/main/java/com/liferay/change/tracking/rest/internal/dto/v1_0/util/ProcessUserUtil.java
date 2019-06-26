@@ -26,6 +26,10 @@ import com.liferay.portal.kernel.model.UserConstants;
 public class ProcessUserUtil {
 
 	public static ProcessUser toProcessUser(User user) {
+		if (user == null) {
+			return null;
+		}
+
 		return new ProcessUser() {
 			{
 				userId = user.getUserId();
