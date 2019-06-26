@@ -109,10 +109,6 @@ boolean anonymousAccount = ParamUtil.getBoolean(request, "anonymousUser");
 
 		messageContainer.html(message).removeClass('hide');
 	}
-
-	<c:if test="<%= !company.isStrangers() && (user == null) %>">
-		<portlet:namespace />closeDialog();
-	</c:if>
 </aui:script>
 
 <aui:script sandbox="<%= true %>">
@@ -130,7 +126,7 @@ boolean anonymousAccount = ParamUtil.getBoolean(request, "anonymousUser");
 			window.opener.parent.document.getElementsByName('p_auth')[0].value = '<%= AuthTokenUtil.getToken(request) %>';
 			afterLogin('<%= HtmlUtil.escapeJS(emailAddress) %>', <%= anonymousAccount %>);
 
-			if (<%= !anonymousAccount %>) {
+			if (<%= !anonymousAccount || !company.isStrangers() %>) {
 				window.opener.parent.Liferay.fire(
 					'closeWindow',
 					{
@@ -155,7 +151,7 @@ boolean anonymousAccount = ParamUtil.getBoolean(request, "anonymousUser");
 
 		afterLogin('<%= HtmlUtil.escape(emailAddress) %>', <%= anonymousAccount %>);
 
-		if (<%= !anonymousAccount %>) {
+		if (<%= !anonymousAccount || !company.isStrangers() %>) {
 			Liferay.fire(
 				'closeWindow',
 				{
