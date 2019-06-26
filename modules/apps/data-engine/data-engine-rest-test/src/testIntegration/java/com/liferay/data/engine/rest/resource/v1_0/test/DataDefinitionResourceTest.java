@@ -54,25 +54,25 @@ public class DataDefinitionResourceTest
 
 		Assert.assertEquals(0, page.getTotalCount());
 
-		_testGetSiteDataDefinitionsPage("!@#name", "description", "!@#n");
+		_testGetSiteDataDefinitionsPage("!@#description", "!@#d", "name");
 		_testGetSiteDataDefinitionsPage(
-			"DeFiNiTiON NaMe", "description", "DEFINITION");
+			"DeFiNiTiON dEsCrIpTiOn", "DEFINITION", "name");
 		_testGetSiteDataDefinitionsPage(
-			"definition name", "description", "definition name");
+			"abcdefghijklmnopqrstuvwxyz0123456789",
+			"abcdefghijklmnopqrstuvwxyz0123456789", "definition");
 		_testGetSiteDataDefinitionsPage(
-			"definition name", "description", "nam");
+			"definition description", "descr", "name");
 		_testGetSiteDataDefinitionsPage(
-			"definition", "abcdefghijklmnopqrstuvwxyz0123456789",
-			"abcdefghijklmnopqrstuvwxyz0123456789");
+			"description name", "description name", "definition");
+		_testGetSiteDataDefinitionsPage("description", "!@#n", "!@#name");
 		_testGetSiteDataDefinitionsPage(
-			"definition", "description name", "description name");
-		_testGetSiteDataDefinitionsPage("name", "!@#description", "!@#d");
+			"description", "DEFINITION", "DeFiNiTiON NaMe");
 		_testGetSiteDataDefinitionsPage(
-			"name", "DeFiNiTiON dEsCrIpTiOn", "DEFINITION");
+			"description", "definition name", "definition name");
 		_testGetSiteDataDefinitionsPage(
-			"name", "definition description", "descr");
-		_testGetSiteDataDefinitionsPage("name", "π€† description", "π€†");
-		_testGetSiteDataDefinitionsPage("π€† name", "description", "π€†");
+			"description", "nam", "definition name");
+		_testGetSiteDataDefinitionsPage("description", "π€†", "π€† name");
+		_testGetSiteDataDefinitionsPage("π€† description", "π€†", "name");
 	}
 
 	@Override
@@ -148,10 +148,10 @@ public class DataDefinitionResourceTest
 	}
 
 	private DataDefinition _createDataDefinition(
-			String dataDefinitionName, String dataDefinitionDescription)
+			String description, String name)
 		throws Exception {
 
-		return new DataDefinition() {
+		DataDefinition dataDefinition = new DataDefinition() {
 			{
 				dataDefinitionFields = new DataDefinitionField[] {
 					new DataDefinitionField() {
@@ -177,34 +177,36 @@ public class DataDefinitionResourceTest
 					}
 				};
 				dataDefinitionKey = RandomTestUtil.randomString();
-				description = new HashMap<String, Object>() {
-					{
-						put("en_US", dataDefinitionDescription);
-					}
-				};
-				name = new HashMap<String, Object>() {
-					{
-						put("en_US", dataDefinitionName);
-					}
-				};
 				siteId = testGroup.getGroupId();
 				userId = TestPropsValues.getUserId();
 			}
 		};
+
+		dataDefinition.setDescription(
+			new HashMap<String, Object>() {
+				{
+					put("en_US", description);
+				}
+			});
+		dataDefinition.setName(
+			new HashMap<String, Object>() {
+				{
+					put("en_US", name);
+				}
+			});
+
+		return dataDefinition;
 	}
 
 	private void _testGetSiteDataDefinitionsPage(
-			String dataDefinitionName, String dataDefinitionDescription,
-			String keywords)
+			String description, String keywords, String name)
 		throws Exception {
 
 		Long siteId = testGetSiteDataDefinitionsPage_getSiteId();
 
-		DataDefinition dataDefinition1 =
+		DataDefinition dataDefinition =
 			testGetSiteDataDefinitionsPage_addDataDefinition(
-				siteId,
-				_createDataDefinition(
-					dataDefinitionName, dataDefinitionDescription));
+				siteId, _createDataDefinition(description, name));
 
 		Page<DataDefinition> page =
 			dataDefinitionResource.getSiteDataDefinitionsPage(
@@ -213,11 +215,11 @@ public class DataDefinitionResourceTest
 		Assert.assertEquals(1, page.getTotalCount());
 
 		assertEqualsIgnoringOrder(
-			Arrays.asList(dataDefinition1),
+			Arrays.asList(dataDefinition),
 			(List<DataDefinition>)page.getItems());
 		assertValid(page);
 
-		dataDefinitionResource.deleteDataDefinition(dataDefinition1.getId());
+		dataDefinitionResource.deleteDataDefinition(dataDefinition.getId());
 	}
 
 	private static final String _OPERATION_SAVE_PERMISSION = "save";
