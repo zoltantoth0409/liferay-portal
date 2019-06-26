@@ -114,16 +114,9 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 			{
 				collection = CollectionUtil.toCollection(
 					ctCollection, _ctEngineManager);
-
 				companyId = ctProcess.getCompanyId();
 				processId = ctProcess.getCtProcessId();
 				dateCreated = ctProcess.getCreateDate();
-
-				status = backgroundTaskOptional.map(
-					BackgroundTask::getStatusLabel
-				).orElse(
-					StringPool.BLANK
-				);
 
 				percentage = backgroundTaskOptional.flatMap(
 					ProcessResourceImpl.this::
@@ -140,6 +133,12 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 					BackgroundTaskDisplay::getPercentage
 				).orElse(
 					100
+				);
+
+				status = backgroundTaskOptional.map(
+					BackgroundTask::getStatusLabel
+				).orElse(
+					StringPool.BLANK
 				);
 
 				if (user != null) {
