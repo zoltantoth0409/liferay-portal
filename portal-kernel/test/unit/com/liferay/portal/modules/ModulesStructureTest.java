@@ -1317,7 +1317,7 @@ public class ModulesStructureTest {
 
 		boolean mainConfigurationsAllowed = false;
 
-		if ((_branchName.startsWith("7.1") || _branchName.startsWith("7.0")) &&
+		if ((_branchName.startsWith("7.0") || _branchName.startsWith("7.1")) &&
 			content.contains("copyLibs {\n\tenabled = true")) {
 
 			mainConfigurationsAllowed = true;
