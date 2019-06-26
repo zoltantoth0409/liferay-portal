@@ -35,22 +35,22 @@ public class ProcessUserUtil {
 				userId = user.getUserId();
 				userInitials = user.getInitials();
 				userName = user.getFullName();
-				userPortraitURL = _getPortraitURL(user);
+
+				setUserPortraitURL(
+					() -> {
+						Contact contact = user.fetchContact();
+
+						if (contact == null) {
+							return UserConstants.getPortraitURL(
+								StringPool.BLANK, false, 0, StringPool.BLANK);
+						}
+
+						return UserConstants.getPortraitURL(
+							StringPool.BLANK, contact.isMale(),
+							user.getPortraitId(), user.getUserUuid());
+					});
 			}
 		};
-	}
-
-	private static String _getPortraitURL(User user) {
-		Contact contact = user.fetchContact();
-
-		if (contact == null) {
-			return UserConstants.getPortraitURL(
-				StringPool.BLANK, false, 0, StringPool.BLANK);
-		}
-
-		return UserConstants.getPortraitURL(
-			StringPool.BLANK, contact.isMale(), user.getPortraitId(),
-			user.getUserUuid());
 	}
 
 }
