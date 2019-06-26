@@ -127,7 +127,7 @@ boolean anonymousAccount = ParamUtil.getBoolean(request, "anonymousUser");
 		afterLogin = window.opener.parent[randomNamespace + 'afterLogin'];
 
 		if (typeof afterLogin == 'function') {
-			afterLogin('<%= HtmlUtil.escape(emailAddress) %>', <%= anonymousAccount %>);
+			afterLogin('<%= HtmlUtil.escapeJS(emailAddress) %>', <%= anonymousAccount %>);
 
 			if (<%= !anonymousAccount %>) {
 				window.opener.parent.Liferay.fire(
