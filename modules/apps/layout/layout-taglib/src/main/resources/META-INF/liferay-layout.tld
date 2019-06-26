@@ -143,7 +143,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<description>Creates a component that render a list of fragments</description>
+		<description>Creates a component that renders a list of fragments.</description>
 		<name>render-fragment-layout</name>
 		<tag-class>com.liferay.layout.taglib.servlet.taglib.RenderFragmentLayoutTag</tag-class>
 		<body-content>JSP</body-content>
