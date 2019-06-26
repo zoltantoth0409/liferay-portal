@@ -60,7 +60,7 @@ public class FreeMarkerTemplate extends AbstractSingleResourceTemplate {
 		TemplateResource errorTemplateResource, Map<String, Object> context,
 		Configuration configuration,
 		TemplateContextHelper templateContextHelper, boolean privileged,
-		long interval, boolean restricted) {
+		long interval, boolean restricted, ObjectWrapper objectWrapper) {
 
 		super(
 			templateResource, errorTemplateResource, context,
@@ -69,6 +69,7 @@ public class FreeMarkerTemplate extends AbstractSingleResourceTemplate {
 
 		_configuration = configuration;
 		_privileged = privileged;
+		_objectWrapper = objectWrapper;
 	}
 
 	@Override
@@ -133,10 +134,10 @@ public class FreeMarkerTemplate extends AbstractSingleResourceTemplate {
 					TemplateConstants.DEFAUT_ENCODING);
 			}
 
+			template.setObjectWrapper(_objectWrapper);
+
 			template.process(
-				new CachableDefaultMapAdapter(
-					context, template.getObjectWrapper()),
-				writer);
+				new CachableDefaultMapAdapter(context, _objectWrapper), writer);
 		}
 		catch (PrivilegedActionException pae) {
 			throw pae.getException();
@@ -152,6 +153,7 @@ public class FreeMarkerTemplate extends AbstractSingleResourceTemplate {
 		};
 
 	private final Configuration _configuration;
+	private final ObjectWrapper _objectWrapper;
 	private final boolean _privileged;
 
 	private class CachableDefaultMapAdapter
