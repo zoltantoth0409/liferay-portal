@@ -71,7 +71,7 @@ public class ResourceNodeConverter
 					}
 
 					throw new OASException(
-						"Missing non nullable value at " + valueFinderPath);
+						"Missing non-nullable value at " + valueFinderPath);
 				}
 
 				AvroConverter avroConverter = avroConverters[schemaEntry.pos()];

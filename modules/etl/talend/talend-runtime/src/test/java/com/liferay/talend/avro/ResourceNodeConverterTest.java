@@ -62,13 +62,13 @@ public class ResourceNodeConverterTest {
 		Assert.assertNotNull(
 			"product is converted to indexed record", indexedRecord);
 
-		Assert.assertEquals("sku is '3 pcs'", "3 pcs", indexedRecord.get(13));
+		Assert.assertEquals("SKU is '3 pcs'", "3 pcs", indexedRecord.get(13));
 
 		Object id = indexedRecord.get(17);
 
-		Assert.assertEquals("id class is Long", Long.class, id.getClass());
+		Assert.assertEquals("ID class is Long", Long.class, id.getClass());
 
-		Assert.assertEquals("id value is 19770907", Long.valueOf(19770709), id);
+		Assert.assertEquals("ID value is 19770907", Long.valueOf(19770709), id);
 
 		Object productId = indexedRecord.get(24);
 
