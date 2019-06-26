@@ -29,21 +29,21 @@ public class CollectionUtil {
 	public static Collection toCollection(
 		CTCollection ctCollection, CTEngineManager ctEngineManager) {
 
-		Map<Integer, Long> ctEntriesChangeTypes =
+		Map<Integer, Long> ctCollectionChangeTypeCounts =
 			ctEngineManager.getCTCollectionChangeTypeCounts(
 				ctCollection.getCtCollectionId());
 
 		return new Collection() {
 			{
-				additionCount = ctEntriesChangeTypes.getOrDefault(
+				additionCount = ctCollectionChangeTypeCounts.getOrDefault(
 					CTConstants.CT_CHANGE_TYPE_ADDITION, 0L);
 				collectionId = ctCollection.getCtCollectionId();
 				companyId = ctCollection.getCompanyId();
 				dateStatus = ctCollection.getStatusDate();
-				deletionCount = ctEntriesChangeTypes.getOrDefault(
+				deletionCount = ctCollectionChangeTypeCounts.getOrDefault(
 					CTConstants.CT_CHANGE_TYPE_DELETION, 0L);
 				description = ctCollection.getDescription();
-				modificationCount = ctEntriesChangeTypes.getOrDefault(
+				modificationCount = ctCollectionChangeTypeCounts.getOrDefault(
 					CTConstants.CT_CHANGE_TYPE_MODIFICATION, 0L);
 				name = ctCollection.getName();
 				statusByUserName = ctCollection.getStatusByUserName();
