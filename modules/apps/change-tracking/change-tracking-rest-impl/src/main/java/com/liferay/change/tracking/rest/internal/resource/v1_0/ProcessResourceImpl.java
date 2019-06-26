@@ -135,15 +135,13 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 					100
 				);
 
+				processUser = ProcessUserUtil.toProcessUser(user);
+
 				status = backgroundTaskOptional.map(
 					BackgroundTask::getStatusLabel
 				).orElse(
 					StringPool.BLANK
 				);
-
-				if (user != null) {
-					processUser = ProcessUserUtil.toProcessUser(user);
-				}
 			}
 		};
 	}
