@@ -67,6 +67,18 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 		return new Process();
 	}
 
+	private Optional<BackgroundTaskDisplay> _getBackgroundTaskDisplayOptional(
+		BackgroundTask backgroundTask,
+		BackgroundTaskExecutor backgroundTaskExecutor) {
+
+		Optional<com.liferay.portal.kernel.backgroundtask.BackgroundTask>
+			serviceBuilderBackgroundTaskOptional =
+				_getServiceBuilderBackgroundTaskOptional(backgroundTask);
+
+		return serviceBuilderBackgroundTaskOptional.map(
+			backgroundTaskExecutor::getBackgroundTaskDisplay);
+	}
+
 	private Optional<com.liferay.portal.kernel.backgroundtask.BackgroundTask>
 		_getServiceBuilderBackgroundTaskOptional(
 			BackgroundTask backgroundTask) {
@@ -83,18 +95,6 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 
 			return Optional.empty();
 		}
-	}
-
-	private Optional<BackgroundTaskDisplay> _getBackgroundTaskDisplayOptional(
-		BackgroundTask backgroundTask,
-		BackgroundTaskExecutor backgroundTaskExecutor) {
-
-		Optional<com.liferay.portal.kernel.backgroundtask.BackgroundTask>
-			serviceBuilderBackgroundTaskOptional =
-				_getServiceBuilderBackgroundTaskOptional(backgroundTask);
-
-		return serviceBuilderBackgroundTaskOptional.map(
-			backgroundTaskExecutor::getBackgroundTaskDisplay);
 	}
 
 	private Process _toProcess(CTProcess ctProcess) {
