@@ -127,6 +127,7 @@ boolean anonymousAccount = ParamUtil.getBoolean(request, "anonymousUser");
 		afterLogin = window.opener.parent[randomNamespace + 'afterLogin'];
 
 		if (typeof afterLogin == 'function') {
+			window.opener.parent.document.getElementsByName('p_auth')[0].value = '<%= AuthTokenUtil.getToken(request) %>';
 			afterLogin('<%= HtmlUtil.escapeJS(emailAddress) %>', <%= anonymousAccount %>);
 
 			if (<%= !anonymousAccount %>) {
