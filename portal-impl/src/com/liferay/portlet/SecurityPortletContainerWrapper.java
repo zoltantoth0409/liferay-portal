@@ -444,7 +444,7 @@ public class SecurityPortletContainerWrapper implements PortletContainer {
 			HttpHeaders.CACHE_CONTROL,
 			HttpHeaders.CACHE_CONTROL_NO_CACHE_VALUE);
 
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 
 		if (_log.isWarnEnabled()) {
 			String url = getOriginalURL(request);
