@@ -111,7 +111,9 @@ AUI.add(
 
 						instance._eventHandlers.push(
 							A.one('doc').after('click', A.bind(instance._afterClickOutside, instance)),
-							instance.bindContainerEvent('click', instance._handleContainerClick, '.' + CSS_FORM_FIELD_CONTAINER)
+							instance.bindContainerEvent('click', instance._handleContainerClick, '.' + CSS_FORM_FIELD_CONTAINER),
+							instance.bindContainerEvent('keydown', instance._handleOptionsKeydown, '.' + CSS_SELECT_OPTION_ITEM),
+							instance.bindContainerEvent('keydown', instance._handleSelectFieldKeydown, '.' + CSS_SELECT_TRIGGER_ACTION)
 						);
 					},
 
@@ -381,6 +383,19 @@ AUI.add(
 						instance._preventDocumentClick = false;
 					},
 
+					_closeListAfterDelay: function() {
+						var instance = this;
+
+						setTimeout(
+							function() {
+								if (!instance.hasFocus()) {
+									instance.closeList();
+								}
+							},
+							100
+						);
+					},
+
 					_createLabelTooltip: function() {
 						var instance = this;
 
@@ -510,6 +525,37 @@ AUI.add(
 						instance.setValue(values);
 					},
 
+					_handleOptionsKeydown: function(event) {
+						var instance = this;
+
+						var keyCodes = instance._setKeyCodesForKeyboardNavigation(event);
+
+						if (keyCodes.pressedKeyCode === keyCodes.enterCode || keyCodes.pressedKeyCode === keyCodes.spaceCode) {
+							instance._handleItemClick(event.target);
+						}
+						else if (keyCodes.pressedKeyCode === keyCodes.tabCode) {
+							instance._closeListAfterDelay();
+						}
+					},
+
+					_handleSelectFieldKeydown: function(event) {
+						var instance = this;
+
+						var keyCodes = instance._setKeyCodesForKeyboardNavigation(event);
+
+						if (keyCodes.pressedKeyCode === keyCodes.enterCode || keyCodes.pressedKeyCode === keyCodes.spaceCode) {
+							if (!instance._isListOpen()) {
+								instance.openList();
+							}
+							else {
+								instance.closeList();
+							}
+						}
+						else if (keyCodes.pressedKeyCode === keyCodes.tabCode) {
+							instance._closeListAfterDelay();
+						}
+					},
+
 					_handleSelectTriggerClick: function(event) {
 						var instance = this;
 
@@ -621,6 +667,25 @@ AUI.add(
 								optionNode.removeAttribute('selected');
 							}
 						}
+					},
+
+					_setKeyCodesForKeyboardNavigation: function(event) {
+						var keyCodes = {};
+
+						if (event.code) {
+							keyCodes.enterCode = 'Enter';
+							keyCodes.spaceCode = 'Space';
+							keyCodes.tabCode = 'Tab';
+							keyCodes.pressedKeyCode = event.code;
+						}
+						else if (event.keyCode) {
+							keyCodes.enterCode = 13;
+							keyCodes.spaceCode = 32;
+							keyCodes.tabCode = 9;
+							keyCodes.pressedKeyCode = event.keyCode;
+						}
+
+						return keyCodes;
 					},
 
 					_setSelectNodeOptions: function(optionNode, value) {
