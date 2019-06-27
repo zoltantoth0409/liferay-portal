@@ -81,9 +81,9 @@ public class WebXMLDefinitionLoader extends DefaultHandler {
 		_jspServletFactory = jspServletFactory;
 		_saxParserFactory = saxParserFactory;
 		_logger = logger;
+		_classes = classes;
 
 		_webXMLDefinition = new WebXMLDefinition();
-		_classes = classes;
 	}
 
 	@Override
