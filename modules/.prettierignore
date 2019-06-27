@@ -1,5 +1,5 @@
 ##
-## Generated files
+## Generated Files
 ##
 
 #
@@ -14,7 +14,7 @@
 **/css/clay/**/*
 
 ##
-## Template files
+## Template Files
 ##
 
 #
@@ -26,7 +26,7 @@
 /copyright.js
 
 ##
-## Restricted paths
+## Restricted Paths
 ##
 
 #
@@ -36,7 +36,7 @@
 /modules/tests/poshi-runner/**/*
 
 ##
-## Sample files
+## Sample Files
 ##
 
 #
@@ -48,7 +48,7 @@ apps/fragment/fragment-demo-data-creator-impl/src/main/resources/com/liferay/fra
 apps/fragment/fragment-test/src/testIntegration/resources/com/liferay/fragment/dependencies/**/*.js
 
 ##
-## Third-party
+## Third-Party
 ##
 
 #
