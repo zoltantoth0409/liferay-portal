@@ -96,7 +96,7 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<AffectedEntry> getEntryAffectedEntriesPage(
+	public AffectedEntryPage getEntryAffectedEntriesPage(
 			@GraphQLName("entryId") Long entryId,
 			@GraphQLName("keywords") String keywords,
 			@GraphQLName("pageSize") int pageSize,
@@ -106,17 +106,13 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_affectedEntryResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			affectedEntryResource -> {
-				Page paginationPage =
-					affectedEntryResource.getEntryAffectedEntriesPage(
-						entryId, keywords, Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			affectedEntryResource -> new AffectedEntryPage(
+				affectedEntryResource.getEntryAffectedEntriesPage(
+					entryId, keywords, Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
-	public java.util.Collection<Collection> getCollectionsPage(
+	public CollectionPage getCollectionsPage(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("type")
 				com.liferay.change.tracking.rest.constant.v1_0.CollectionType
@@ -129,13 +125,10 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_collectionResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			collectionResource -> {
-				Page paginationPage = collectionResource.getCollectionsPage(
+			collectionResource -> new CollectionPage(
+				collectionResource.getCollectionsPage(
 					companyId, type, userId, Pagination.of(page, pageSize),
-					sorts);
-
-				return paginationPage.getItems();
-			});
+					sorts)));
 	}
 
 	@GraphQLField
@@ -152,7 +145,7 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<Entry> getCollectionEntriesPage(
+	public EntryPage getCollectionEntriesPage(
 			@GraphQLName("collectionId") Long collectionId,
 			@GraphQLName("changeTypesFilter") String changeTypesFilter,
 			@GraphQLName("classNameIdsFilter") String classNameIdsFilter,
@@ -167,14 +160,11 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_entryResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			entryResource -> {
-				Page paginationPage = entryResource.getCollectionEntriesPage(
+			entryResource -> new EntryPage(
+				entryResource.getCollectionEntriesPage(
 					collectionId, changeTypesFilter, classNameIdsFilter,
 					collision, groupIdsFilter, status, userIdsFilter,
-					Pagination.of(page, pageSize), sorts);
-
-				return paginationPage.getItems();
-			});
+					Pagination.of(page, pageSize), sorts)));
 	}
 
 	@GraphQLField
@@ -188,7 +178,7 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<Process> getProcessesPage(
+	public ProcessPage getProcessesPage(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("keywords") String keywords,
 			@GraphQLName("type")
@@ -202,13 +192,10 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_processResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			processResource -> {
-				Page paginationPage = processResource.getProcessesPage(
+			processResource -> new ProcessPage(
+				processResource.getProcessesPage(
 					companyId, keywords, type, userId,
-					Pagination.of(page, pageSize), sorts);
-
-				return paginationPage.getItems();
-			});
+					Pagination.of(page, pageSize), sorts)));
 	}
 
 	@GraphQLField
@@ -222,7 +209,7 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<ProcessUser> getProcessUsersPage(
+	public ProcessUserPage getProcessUsersPage(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("keywords") String keywords,
 			@GraphQLName("processType")
@@ -235,17 +222,14 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_processUserResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			processUserResource -> {
-				Page paginationPage = processUserResource.getProcessUsersPage(
+			processUserResource -> new ProcessUserPage(
+				processUserResource.getProcessUsersPage(
 					companyId, keywords, processType,
-					Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+					Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
-	public java.util.Collection<Settings> getSettingsPage(
+	public SettingsPage getSettingsPage(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("userId") Long userId)
 		throws Exception {
@@ -253,12 +237,152 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_settingsResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			settingsResource -> {
-				Page paginationPage = settingsResource.getSettingsPage(
-					companyId, userId);
+			settingsResource -> new SettingsPage(
+				settingsResource.getSettingsPage(companyId, userId)));
+	}
 
-				return paginationPage.getItems();
-			});
+	@GraphQLName("AffectedEntryPage")
+	public class AffectedEntryPage {
+
+		public AffectedEntryPage(Page affectedEntryPage) {
+			items = affectedEntryPage.getItems();
+			page = affectedEntryPage.getPage();
+			pageSize = affectedEntryPage.getPageSize();
+			totalCount = affectedEntryPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<AffectedEntry> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("CollectionPage")
+	public class CollectionPage {
+
+		public CollectionPage(Page collectionPage) {
+			items = collectionPage.getItems();
+			page = collectionPage.getPage();
+			pageSize = collectionPage.getPageSize();
+			totalCount = collectionPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<Collection> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("EntryPage")
+	public class EntryPage {
+
+		public EntryPage(Page entryPage) {
+			items = entryPage.getItems();
+			page = entryPage.getPage();
+			pageSize = entryPage.getPageSize();
+			totalCount = entryPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<Entry> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("ProcessPage")
+	public class ProcessPage {
+
+		public ProcessPage(Page processPage) {
+			items = processPage.getItems();
+			page = processPage.getPage();
+			pageSize = processPage.getPageSize();
+			totalCount = processPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<Process> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("ProcessUserPage")
+	public class ProcessUserPage {
+
+		public ProcessUserPage(Page processUserPage) {
+			items = processUserPage.getItems();
+			page = processUserPage.getPage();
+			pageSize = processUserPage.getPageSize();
+			totalCount = processUserPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<ProcessUser> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("SettingsPage")
+	public class SettingsPage {
+
+		public SettingsPage(Page settingsPage) {
+			items = settingsPage.getItems();
+			page = settingsPage.getPage();
+			pageSize = settingsPage.getPageSize();
+			totalCount = settingsPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<Settings> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
 	}
 
 	private <T, R, E1 extends Throwable, E2 extends Throwable> R

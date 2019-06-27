@@ -16,6 +16,7 @@ package com.liferay.data.engine.rest.internal.graphql.query.v1_0;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.dto.v1_0.DataLayout;
+import com.liferay.data.engine.rest.dto.v1_0.DataLayoutPage;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecord;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
@@ -87,7 +88,7 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<DataDefinition> getSiteDataDefinitionsPage(
+	public DataDefinitionPage getSiteDataDefinitionsPage(
 			@GraphQLName("siteId") Long siteId,
 			@GraphQLName("keywords") String keywords,
 			@GraphQLName("pageSize") int pageSize,
@@ -97,13 +98,9 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_dataDefinitionResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			dataDefinitionResource -> {
-				Page paginationPage =
-					dataDefinitionResource.getSiteDataDefinitionsPage(
-						siteId, keywords, Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			dataDefinitionResource -> new DataDefinitionPage(
+				dataDefinitionResource.getSiteDataDefinitionsPage(
+					siteId, keywords, Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
@@ -121,7 +118,7 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<DataLayout> getDataDefinitionDataLayoutsPage(
+	public DataLayoutPage getDataDefinitionDataLayoutsPage(
 			@GraphQLName("dataDefinitionId") Long dataDefinitionId,
 			@GraphQLName("keywords") String keywords,
 			@GraphQLName("pageSize") int pageSize,
@@ -131,14 +128,10 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_dataLayoutResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			dataLayoutResource -> {
-				Page paginationPage =
-					dataLayoutResource.getDataDefinitionDataLayoutsPage(
-						dataDefinitionId, keywords,
-						Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			dataLayoutResource -> new DataLayoutPage(
+				dataLayoutResource.getDataDefinitionDataLayoutsPage(
+					dataDefinitionId, keywords,
+					Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
@@ -154,7 +147,7 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<DataLayout> getSiteDataLayoutPage(
+	public DataLayoutPage getSiteDataLayoutPage(
 			@GraphQLName("siteId") Long siteId,
 			@GraphQLName("keywords") String keywords,
 			@GraphQLName("pageSize") int pageSize,
@@ -164,12 +157,9 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_dataLayoutResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			dataLayoutResource -> {
-				Page paginationPage = dataLayoutResource.getSiteDataLayoutPage(
-					siteId, keywords, Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			dataLayoutResource -> new DataLayoutPage(
+				dataLayoutResource.getSiteDataLayoutPage(
+					siteId, keywords, Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
@@ -186,24 +176,18 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<DataRecord>
-			getDataRecordCollectionDataRecordsPage(
-				@GraphQLName("dataRecordCollectionId") Long
-					dataRecordCollectionId,
-				@GraphQLName("pageSize") int pageSize,
-				@GraphQLName("page") int page)
+	public DataRecordPage getDataRecordCollectionDataRecordsPage(
+			@GraphQLName("dataRecordCollectionId") Long dataRecordCollectionId,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
 			_dataRecordResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			dataRecordResource -> {
-				Page paginationPage =
-					dataRecordResource.getDataRecordCollectionDataRecordsPage(
-						dataRecordCollectionId, Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			dataRecordResource -> new DataRecordPage(
+				dataRecordResource.getDataRecordCollectionDataRecordsPage(
+					dataRecordCollectionId, Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
@@ -234,26 +218,21 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<DataRecordCollection>
-			getDataDefinitionDataRecordCollectionsPage(
-				@GraphQLName("dataDefinitionId") Long dataDefinitionId,
-				@GraphQLName("keywords") String keywords,
-				@GraphQLName("pageSize") int pageSize,
-				@GraphQLName("page") int page)
+	public DataRecordCollectionPage getDataDefinitionDataRecordCollectionsPage(
+			@GraphQLName("dataDefinitionId") Long dataDefinitionId,
+			@GraphQLName("keywords") String keywords,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
 			_dataRecordCollectionResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			dataRecordCollectionResource -> {
-				Page paginationPage =
-					dataRecordCollectionResource.
-						getDataDefinitionDataRecordCollectionsPage(
-							dataDefinitionId, keywords,
-							Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			dataRecordCollectionResource -> new DataRecordCollectionPage(
+				dataRecordCollectionResource.
+					getDataDefinitionDataRecordCollectionsPage(
+						dataDefinitionId, keywords,
+						Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
@@ -270,25 +249,19 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<DataRecordCollection>
-			getSiteDataRecordCollectionsPage(
-				@GraphQLName("siteId") Long siteId,
-				@GraphQLName("keywords") String keywords,
-				@GraphQLName("pageSize") int pageSize,
-				@GraphQLName("page") int page)
+	public DataRecordCollectionPage getSiteDataRecordCollectionsPage(
+			@GraphQLName("siteId") Long siteId,
+			@GraphQLName("keywords") String keywords,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
 			_dataRecordCollectionResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			dataRecordCollectionResource -> {
-				Page paginationPage =
-					dataRecordCollectionResource.
-						getSiteDataRecordCollectionsPage(
-							siteId, keywords, Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			dataRecordCollectionResource -> new DataRecordCollectionPage(
+				dataRecordCollectionResource.getSiteDataRecordCollectionsPage(
+					siteId, keywords, Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
@@ -304,6 +277,102 @@ public class Query {
 			dataRecordCollectionResource ->
 				dataRecordCollectionResource.getSiteDataRecordCollection(
 					siteId, dataRecordCollectionKey));
+	}
+
+	@GraphQLName("DataDefinitionPage")
+	public class DataDefinitionPage {
+
+		public DataDefinitionPage(Page dataDefinitionPage) {
+			items = dataDefinitionPage.getItems();
+			page = dataDefinitionPage.getPage();
+			pageSize = dataDefinitionPage.getPageSize();
+			totalCount = dataDefinitionPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<DataDefinition> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("DataLayoutPage")
+	public class DataLayoutPage {
+
+		public DataLayoutPage(Page dataLayoutPage) {
+			items = dataLayoutPage.getItems();
+			page = dataLayoutPage.getPage();
+			pageSize = dataLayoutPage.getPageSize();
+			totalCount = dataLayoutPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<DataLayout> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("DataRecordPage")
+	public class DataRecordPage {
+
+		public DataRecordPage(Page dataRecordPage) {
+			items = dataRecordPage.getItems();
+			page = dataRecordPage.getPage();
+			pageSize = dataRecordPage.getPageSize();
+			totalCount = dataRecordPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<DataRecord> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("DataRecordCollectionPage")
+	public class DataRecordCollectionPage {
+
+		public DataRecordCollectionPage(Page dataRecordCollectionPage) {
+			items = dataRecordCollectionPage.getItems();
+			page = dataRecordCollectionPage.getPage();
+			pageSize = dataRecordCollectionPage.getPageSize();
+			totalCount = dataRecordCollectionPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<DataRecordCollection> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
 	}
 
 	private <T, R, E1 extends Throwable, E2 extends Throwable> R
