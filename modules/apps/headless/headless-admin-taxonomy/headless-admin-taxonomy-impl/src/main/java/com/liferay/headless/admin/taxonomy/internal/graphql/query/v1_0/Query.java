@@ -23,6 +23,7 @@ import com.liferay.headless.admin.taxonomy.resource.v1_0.TaxonomyVocabularyResou
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -273,6 +274,7 @@ public class Query {
 
 		keywordResource.setContextAcceptLanguage(_acceptLanguage);
 		keywordResource.setContextCompany(_company);
+		keywordResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(
@@ -281,6 +283,7 @@ public class Query {
 
 		taxonomyCategoryResource.setContextAcceptLanguage(_acceptLanguage);
 		taxonomyCategoryResource.setContextCompany(_company);
+		taxonomyCategoryResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(
@@ -289,6 +292,7 @@ public class Query {
 
 		taxonomyVocabularyResource.setContextAcceptLanguage(_acceptLanguage);
 		taxonomyVocabularyResource.setContextCompany(_company);
+		taxonomyVocabularyResource.setContextUser(_user);
 	}
 
 	private static ComponentServiceObjects<KeywordResource>
@@ -300,5 +304,6 @@ public class Query {
 
 	private AcceptLanguage _acceptLanguage;
 	private Company _company;
+	private User _user;
 
 }
