@@ -67,7 +67,7 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<WorkflowLog> getWorkflowTaskWorkflowLogsPage(
+	public WorkflowLogPage getWorkflowTaskWorkflowLogsPage(
 			@GraphQLName("workflowTaskId") Long workflowTaskId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
@@ -76,17 +76,13 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_workflowLogResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			workflowLogResource -> {
-				Page paginationPage =
-					workflowLogResource.getWorkflowTaskWorkflowLogsPage(
-						workflowTaskId, Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			workflowLogResource -> new WorkflowLogPage(
+				workflowLogResource.getWorkflowTaskWorkflowLogsPage(
+					workflowTaskId, Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
-	public java.util.Collection<WorkflowTask> getRoleWorkflowTasksPage(
+	public WorkflowTaskPage getRoleWorkflowTasksPage(
 			@GraphQLName("roleId") Long roleId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
@@ -95,17 +91,13 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_workflowTaskResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			workflowTaskResource -> {
-				Page paginationPage =
-					workflowTaskResource.getRoleWorkflowTasksPage(
-						roleId, Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			workflowTaskResource -> new WorkflowTaskPage(
+				workflowTaskResource.getRoleWorkflowTasksPage(
+					roleId, Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
-	public java.util.Collection<WorkflowTask> getWorkflowTasksAssignedToMePage(
+	public WorkflowTaskPage getWorkflowTasksAssignedToMePage(
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page)
 		throws Exception {
@@ -113,32 +105,23 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_workflowTaskResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			workflowTaskResource -> {
-				Page paginationPage =
-					workflowTaskResource.getWorkflowTasksAssignedToMePage(
-						Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			workflowTaskResource -> new WorkflowTaskPage(
+				workflowTaskResource.getWorkflowTasksAssignedToMePage(
+					Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
-	public java.util.Collection<WorkflowTask>
-			getWorkflowTasksAssignedToMyRolesPage(
-				@GraphQLName("pageSize") int pageSize,
-				@GraphQLName("page") int page)
+	public WorkflowTaskPage getWorkflowTasksAssignedToMyRolesPage(
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
 			_workflowTaskResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			workflowTaskResource -> {
-				Page paginationPage =
-					workflowTaskResource.getWorkflowTasksAssignedToMyRolesPage(
-						Pagination.of(page, pageSize));
-
-				return paginationPage.getItems();
-			});
+			workflowTaskResource -> new WorkflowTaskPage(
+				workflowTaskResource.getWorkflowTasksAssignedToMyRolesPage(
+					Pagination.of(page, pageSize))));
 	}
 
 	@GraphQLField
@@ -151,6 +134,54 @@ public class Query {
 			this::_populateResourceContext,
 			workflowTaskResource -> workflowTaskResource.getWorkflowTask(
 				workflowTaskId));
+	}
+
+	@GraphQLName("WorkflowLogPage")
+	public class WorkflowLogPage {
+
+		public WorkflowLogPage(Page workflowLogPage) {
+			items = workflowLogPage.getItems();
+			page = workflowLogPage.getPage();
+			pageSize = workflowLogPage.getPageSize();
+			totalCount = workflowLogPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<WorkflowLog> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("WorkflowTaskPage")
+	public class WorkflowTaskPage {
+
+		public WorkflowTaskPage(Page workflowTaskPage) {
+			items = workflowTaskPage.getItems();
+			page = workflowTaskPage.getPage();
+			pageSize = workflowTaskPage.getPageSize();
+			totalCount = workflowTaskPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<WorkflowTask> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
 	}
 
 	private <T, R, E1 extends Throwable, E2 extends Throwable> R
