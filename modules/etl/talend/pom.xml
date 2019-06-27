@@ -38,7 +38,7 @@
 				<plugin>
 					<groupId>com.liferay</groupId>
 					<artifactId>com.liferay.javadoc.formatter</artifactId>
-					<version>${liferay.javadoc.formatter.version}</version>
+					<version>1.0.33</version>
 				</plugin>
 				<plugin>
 					<groupId>com.liferay</groupId>
