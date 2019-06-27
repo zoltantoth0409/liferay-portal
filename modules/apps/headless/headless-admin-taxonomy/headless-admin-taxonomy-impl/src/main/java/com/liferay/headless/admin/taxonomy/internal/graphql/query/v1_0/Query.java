@@ -77,7 +77,7 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<Keyword> getSiteKeywordsPage(
+	public KeywordPage getSiteKeywordsPage(
 			@GraphQLName("siteId") Long siteId,
 			@GraphQLName("search") String search,
 			@GraphQLName("filter") Filter filter,
@@ -88,39 +88,30 @@ public class Query {
 		return _applyComponentServiceObjects(
 			_keywordResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			keywordResource -> {
-				Page paginationPage = keywordResource.getSiteKeywordsPage(
+			keywordResource -> new KeywordPage(
+				keywordResource.getSiteKeywordsPage(
 					siteId, search, filter, Pagination.of(page, pageSize),
-					sorts);
-
-				return paginationPage.getItems();
-			});
+					sorts)));
 	}
 
 	@GraphQLField
-	public java.util.Collection<TaxonomyCategory>
-			getTaxonomyCategoryTaxonomyCategoriesPage(
-				@GraphQLName("parentTaxonomyCategoryId") Long
-					parentTaxonomyCategoryId,
-				@GraphQLName("search") String search,
-				@GraphQLName("filter") Filter filter,
-				@GraphQLName("pageSize") int pageSize,
-				@GraphQLName("page") int page,
-				@GraphQLName("sorts") Sort[] sorts)
+	public TaxonomyCategoryPage getTaxonomyCategoryTaxonomyCategoriesPage(
+			@GraphQLName("parentTaxonomyCategoryId") Long
+				parentTaxonomyCategoryId,
+			@GraphQLName("search") String search,
+			@GraphQLName("filter") Filter filter,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
 			_taxonomyCategoryResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			taxonomyCategoryResource -> {
-				Page paginationPage =
-					taxonomyCategoryResource.
-						getTaxonomyCategoryTaxonomyCategoriesPage(
-							parentTaxonomyCategoryId, search, filter,
-							Pagination.of(page, pageSize), sorts);
-
-				return paginationPage.getItems();
-			});
+			taxonomyCategoryResource -> new TaxonomyCategoryPage(
+				taxonomyCategoryResource.
+					getTaxonomyCategoryTaxonomyCategoriesPage(
+						parentTaxonomyCategoryId, search, filter,
+						Pagination.of(page, pageSize), sorts)));
 	}
 
 	@GraphQLField
@@ -137,52 +128,40 @@ public class Query {
 	}
 
 	@GraphQLField
-	public java.util.Collection<TaxonomyCategory>
-			getTaxonomyVocabularyTaxonomyCategoriesPage(
-				@GraphQLName("taxonomyVocabularyId") Long taxonomyVocabularyId,
-				@GraphQLName("search") String search,
-				@GraphQLName("filter") Filter filter,
-				@GraphQLName("pageSize") int pageSize,
-				@GraphQLName("page") int page,
-				@GraphQLName("sorts") Sort[] sorts)
+	public TaxonomyCategoryPage getTaxonomyVocabularyTaxonomyCategoriesPage(
+			@GraphQLName("taxonomyVocabularyId") Long taxonomyVocabularyId,
+			@GraphQLName("search") String search,
+			@GraphQLName("filter") Filter filter,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
 			_taxonomyCategoryResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			taxonomyCategoryResource -> {
-				Page paginationPage =
-					taxonomyCategoryResource.
-						getTaxonomyVocabularyTaxonomyCategoriesPage(
-							taxonomyVocabularyId, search, filter,
-							Pagination.of(page, pageSize), sorts);
-
-				return paginationPage.getItems();
-			});
+			taxonomyCategoryResource -> new TaxonomyCategoryPage(
+				taxonomyCategoryResource.
+					getTaxonomyVocabularyTaxonomyCategoriesPage(
+						taxonomyVocabularyId, search, filter,
+						Pagination.of(page, pageSize), sorts)));
 	}
 
 	@GraphQLField
-	public java.util.Collection<TaxonomyVocabulary>
-			getSiteTaxonomyVocabulariesPage(
-				@GraphQLName("siteId") Long siteId,
-				@GraphQLName("search") String search,
-				@GraphQLName("filter") Filter filter,
-				@GraphQLName("pageSize") int pageSize,
-				@GraphQLName("page") int page,
-				@GraphQLName("sorts") Sort[] sorts)
+	public TaxonomyVocabularyPage getSiteTaxonomyVocabulariesPage(
+			@GraphQLName("siteId") Long siteId,
+			@GraphQLName("search") String search,
+			@GraphQLName("filter") Filter filter,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
 			_taxonomyVocabularyResourceComponentServiceObjects,
 			this::_populateResourceContext,
-			taxonomyVocabularyResource -> {
-				Page paginationPage =
-					taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
-						siteId, search, filter, Pagination.of(page, pageSize),
-						sorts);
-
-				return paginationPage.getItems();
-			});
+			taxonomyVocabularyResource -> new TaxonomyVocabularyPage(
+				taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
+					siteId, search, filter, Pagination.of(page, pageSize),
+					sorts)));
 	}
 
 	@GraphQLField
@@ -196,6 +175,78 @@ public class Query {
 			taxonomyVocabularyResource ->
 				taxonomyVocabularyResource.getTaxonomyVocabulary(
 					taxonomyVocabularyId));
+	}
+
+	@GraphQLName("KeywordPage")
+	public class KeywordPage {
+
+		public KeywordPage(Page keywordPage) {
+			items = keywordPage.getItems();
+			page = keywordPage.getPage();
+			pageSize = keywordPage.getPageSize();
+			totalCount = keywordPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<Keyword> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("TaxonomyCategoryPage")
+	public class TaxonomyCategoryPage {
+
+		public TaxonomyCategoryPage(Page taxonomyCategoryPage) {
+			items = taxonomyCategoryPage.getItems();
+			page = taxonomyCategoryPage.getPage();
+			pageSize = taxonomyCategoryPage.getPageSize();
+			totalCount = taxonomyCategoryPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<TaxonomyCategory> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
+	}
+
+	@GraphQLName("TaxonomyVocabularyPage")
+	public class TaxonomyVocabularyPage {
+
+		public TaxonomyVocabularyPage(Page taxonomyVocabularyPage) {
+			items = taxonomyVocabularyPage.getItems();
+			page = taxonomyVocabularyPage.getPage();
+			pageSize = taxonomyVocabularyPage.getPageSize();
+			totalCount = taxonomyVocabularyPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<TaxonomyVocabulary> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
 	}
 
 	private <T, R, E1 extends Throwable, E2 extends Throwable> R

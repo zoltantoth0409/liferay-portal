@@ -21,6 +21,8 @@ import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLField;
+import com.liferay.portal.vulcan.graphql.annotation.GraphQLName;
+import com.liferay.portal.vulcan.pagination.Page;
 
 import javax.annotation.Generated;
 
@@ -47,6 +49,30 @@ public class Query {
 			_statusResourceComponentServiceObjects,
 			this::_populateResourceContext,
 			statusResource -> statusResource.getStatus());
+	}
+
+	@GraphQLName("StatusPage")
+	public class StatusPage {
+
+		public StatusPage(Page statusPage) {
+			items = statusPage.getItems();
+			page = statusPage.getPage();
+			pageSize = statusPage.getPageSize();
+			totalCount = statusPage.getTotalCount();
+		}
+
+		@GraphQLField
+		protected java.util.Collection<Status> items;
+
+		@GraphQLField
+		protected long page;
+
+		@GraphQLField
+		protected long pageSize;
+
+		@GraphQLField
+		protected long totalCount;
+
 	}
 
 	private <T, R, E1 extends Throwable, E2 extends Throwable> R
