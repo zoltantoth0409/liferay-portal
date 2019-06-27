@@ -19,6 +19,7 @@ import com.liferay.data.engine.rest.dto.v1_0.DataLayoutPermission;
 import com.liferay.data.engine.rest.resource.v1_0.DataLayoutResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -237,6 +238,10 @@ public abstract class BaseDataLayoutResourceImpl implements DataLayoutResource {
 		this.contextCompany = contextCompany;
 	}
 
+	public void setContextUser(User contextUser) {
+		this.contextUser = contextUser;
+	}
+
 	protected void preparePatch(
 		DataLayout dataLayout, DataLayout existingDataLayout) {
 	}
@@ -277,5 +282,8 @@ public abstract class BaseDataLayoutResourceImpl implements DataLayoutResource {
 
 	@Context
 	protected UriInfo contextUriInfo;
+
+	@Context
+	protected User contextUser;
 
 }

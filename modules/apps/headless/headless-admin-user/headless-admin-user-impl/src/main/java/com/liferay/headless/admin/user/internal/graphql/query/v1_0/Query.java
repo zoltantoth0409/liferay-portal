@@ -35,6 +35,7 @@ import com.liferay.headless.admin.user.resource.v1_0.WebUrlResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -694,6 +695,7 @@ public class Query {
 
 		emailAddressResource.setContextAcceptLanguage(_acceptLanguage);
 		emailAddressResource.setContextCompany(_company);
+		emailAddressResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(
@@ -702,6 +704,7 @@ public class Query {
 
 		organizationResource.setContextAcceptLanguage(_acceptLanguage);
 		organizationResource.setContextCompany(_company);
+		organizationResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(PhoneResource phoneResource)
@@ -709,6 +712,7 @@ public class Query {
 
 		phoneResource.setContextAcceptLanguage(_acceptLanguage);
 		phoneResource.setContextCompany(_company);
+		phoneResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(
@@ -717,6 +721,7 @@ public class Query {
 
 		postalAddressResource.setContextAcceptLanguage(_acceptLanguage);
 		postalAddressResource.setContextCompany(_company);
+		postalAddressResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(RoleResource roleResource)
@@ -724,6 +729,7 @@ public class Query {
 
 		roleResource.setContextAcceptLanguage(_acceptLanguage);
 		roleResource.setContextCompany(_company);
+		roleResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(SegmentResource segmentResource)
@@ -731,6 +737,7 @@ public class Query {
 
 		segmentResource.setContextAcceptLanguage(_acceptLanguage);
 		segmentResource.setContextCompany(_company);
+		segmentResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(
@@ -739,6 +746,7 @@ public class Query {
 
 		segmentUserResource.setContextAcceptLanguage(_acceptLanguage);
 		segmentUserResource.setContextCompany(_company);
+		segmentUserResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(
@@ -747,6 +755,7 @@ public class Query {
 
 		userAccountResource.setContextAcceptLanguage(_acceptLanguage);
 		userAccountResource.setContextCompany(_company);
+		userAccountResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(WebUrlResource webUrlResource)
@@ -754,6 +763,7 @@ public class Query {
 
 		webUrlResource.setContextAcceptLanguage(_acceptLanguage);
 		webUrlResource.setContextCompany(_company);
+		webUrlResource.setContextUser(_user);
 	}
 
 	private static ComponentServiceObjects<EmailAddressResource>
@@ -777,5 +787,6 @@ public class Query {
 
 	private AcceptLanguage _acceptLanguage;
 	private Company _company;
+	private User _user;
 
 }

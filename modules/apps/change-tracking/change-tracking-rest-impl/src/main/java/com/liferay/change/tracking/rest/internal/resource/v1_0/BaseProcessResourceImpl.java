@@ -19,6 +19,7 @@ import com.liferay.change.tracking.rest.dto.v1_0.Process;
 import com.liferay.change.tracking.rest.resource.v1_0.ProcessResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -108,6 +109,10 @@ public abstract class BaseProcessResourceImpl implements ProcessResource {
 		this.contextCompany = contextCompany;
 	}
 
+	public void setContextUser(User contextUser) {
+		this.contextUser = contextUser;
+	}
+
 	protected void preparePatch(Process process, Process existingProcess) {
 	}
 
@@ -147,5 +152,8 @@ public abstract class BaseProcessResourceImpl implements ProcessResource {
 
 	@Context
 	protected UriInfo contextUriInfo;
+
+	@Context
+	protected User contextUser;
 
 }

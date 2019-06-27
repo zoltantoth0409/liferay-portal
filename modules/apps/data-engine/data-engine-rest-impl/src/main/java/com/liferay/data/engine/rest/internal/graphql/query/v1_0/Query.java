@@ -26,6 +26,7 @@ import com.liferay.data.engine.rest.resource.v1_0.DataRecordResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLField;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLName;
@@ -400,6 +401,7 @@ public class Query {
 
 		dataDefinitionResource.setContextAcceptLanguage(_acceptLanguage);
 		dataDefinitionResource.setContextCompany(_company);
+		dataDefinitionResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(DataLayoutResource dataLayoutResource)
@@ -407,6 +409,7 @@ public class Query {
 
 		dataLayoutResource.setContextAcceptLanguage(_acceptLanguage);
 		dataLayoutResource.setContextCompany(_company);
+		dataLayoutResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(DataRecordResource dataRecordResource)
@@ -414,6 +417,7 @@ public class Query {
 
 		dataRecordResource.setContextAcceptLanguage(_acceptLanguage);
 		dataRecordResource.setContextCompany(_company);
+		dataRecordResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(
@@ -422,6 +426,7 @@ public class Query {
 
 		dataRecordCollectionResource.setContextAcceptLanguage(_acceptLanguage);
 		dataRecordCollectionResource.setContextCompany(_company);
+		dataRecordCollectionResource.setContextUser(_user);
 	}
 
 	private static ComponentServiceObjects<DataDefinitionResource>
@@ -435,5 +440,6 @@ public class Query {
 
 	private AcceptLanguage _acceptLanguage;
 	private Company _company;
+	private User _user;
 
 }

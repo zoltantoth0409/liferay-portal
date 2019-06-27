@@ -20,6 +20,7 @@ import com.liferay.change.tracking.rest.dto.v1_0.SettingsUpdate;
 import com.liferay.change.tracking.rest.resource.v1_0.SettingsResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -104,6 +105,10 @@ public abstract class BaseSettingsResourceImpl implements SettingsResource {
 		this.contextCompany = contextCompany;
 	}
 
+	public void setContextUser(User contextUser) {
+		this.contextUser = contextUser;
+	}
+
 	protected void preparePatch(Settings settings, Settings existingSettings) {
 	}
 
@@ -143,5 +148,8 @@ public abstract class BaseSettingsResourceImpl implements SettingsResource {
 
 	@Context
 	protected UriInfo contextUriInfo;
+
+	@Context
+	protected User contextUser;
 
 }
