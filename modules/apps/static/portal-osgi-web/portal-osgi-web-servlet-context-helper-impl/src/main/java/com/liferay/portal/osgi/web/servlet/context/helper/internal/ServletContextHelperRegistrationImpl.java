@@ -74,8 +74,6 @@ public class ServletContextHelperRegistrationImpl
 		URL url = _bundle.getEntry("WEB-INF/");
 
 		if (url != null) {
-			_wabShapedBundle = true;
-
 			BundleWiring bundleWiring = _bundle.adapt(BundleWiring.class);
 
 			Collection<String> classResources = bundleWiring.listResources(
@@ -104,6 +102,8 @@ public class ServletContextHelperRegistrationImpl
 				}
 			}
 
+			_wabShapedBundle = true;
+
 			WebXMLDefinitionLoader webXMLDefinitionLoader =
 				new WebXMLDefinitionLoader(
 					_bundle, _jspServletFactory, saxParserFactory, _logger,
@@ -123,11 +123,9 @@ public class ServletContextHelperRegistrationImpl
 			_webXMLDefinition = webXMLDefinition;
 		}
 		else {
-			_wabShapedBundle = false;
-
-			_webXMLDefinition = new WebXMLDefinition();
-
 			_classes = Collections.emptyList();
+			_wabShapedBundle = false;
+			_webXMLDefinition = new WebXMLDefinition();
 		}
 
 		_bundleContext = _bundle.getBundleContext();
