@@ -19,6 +19,7 @@ import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollectionPermission;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -249,6 +250,10 @@ public abstract class BaseDataRecordCollectionResourceImpl
 		this.contextCompany = contextCompany;
 	}
 
+	public void setContextUser(User contextUser) {
+		this.contextUser = contextUser;
+	}
+
 	protected void preparePatch(
 		DataRecordCollection dataRecordCollection,
 		DataRecordCollection existingDataRecordCollection) {
@@ -290,5 +295,8 @@ public abstract class BaseDataRecordCollectionResourceImpl
 
 	@Context
 	protected UriInfo contextUriInfo;
+
+	@Context
+	protected User contextUser;
 
 }

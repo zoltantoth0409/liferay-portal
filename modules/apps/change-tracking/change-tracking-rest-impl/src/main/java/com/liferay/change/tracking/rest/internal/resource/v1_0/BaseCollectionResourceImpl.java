@@ -19,6 +19,7 @@ import com.liferay.change.tracking.rest.dto.v1_0.CollectionUpdate;
 import com.liferay.change.tracking.rest.resource.v1_0.CollectionResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -210,6 +211,10 @@ public abstract class BaseCollectionResourceImpl implements CollectionResource {
 		this.contextCompany = contextCompany;
 	}
 
+	public void setContextUser(User contextUser) {
+		this.contextUser = contextUser;
+	}
+
 	protected void preparePatch(
 		Collection collection, Collection existingCollection) {
 	}
@@ -250,5 +255,8 @@ public abstract class BaseCollectionResourceImpl implements CollectionResource {
 
 	@Context
 	protected UriInfo contextUriInfo;
+
+	@Context
+	protected User contextUser;
 
 }

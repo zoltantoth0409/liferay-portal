@@ -26,6 +26,7 @@ import com.liferay.headless.form.resource.v1_0.FormStructureResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLField;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLName;
@@ -296,6 +297,7 @@ public class Query {
 
 		formResource.setContextAcceptLanguage(_acceptLanguage);
 		formResource.setContextCompany(_company);
+		formResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(
@@ -304,6 +306,7 @@ public class Query {
 
 		formDocumentResource.setContextAcceptLanguage(_acceptLanguage);
 		formDocumentResource.setContextCompany(_company);
+		formDocumentResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(FormRecordResource formRecordResource)
@@ -311,6 +314,7 @@ public class Query {
 
 		formRecordResource.setContextAcceptLanguage(_acceptLanguage);
 		formRecordResource.setContextCompany(_company);
+		formRecordResource.setContextUser(_user);
 	}
 
 	private void _populateResourceContext(
@@ -319,6 +323,7 @@ public class Query {
 
 		formStructureResource.setContextAcceptLanguage(_acceptLanguage);
 		formStructureResource.setContextCompany(_company);
+		formStructureResource.setContextUser(_user);
 	}
 
 	private static ComponentServiceObjects<FormResource>
@@ -332,5 +337,6 @@ public class Query {
 
 	private AcceptLanguage _acceptLanguage;
 	private Company _company;
+	private User _user;
 
 }
