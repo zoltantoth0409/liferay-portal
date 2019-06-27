@@ -115,7 +115,7 @@ public class ClassLoaderAggregatePropertiesUtil {
 				if (Modifier.isStatic(field.getModifiers()) &&
 					(field.getType() == char.class)) {
 
-					_charPoolChars.put(
+					charPoolChars.put(
 						StringUtil.removeChar(
 							field.getName(), CharPool.UNDERLINE),
 						field.getChar(null));
