@@ -19,7 +19,6 @@ import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
-import java.util.Collection;
 import java.util.Date;
 
 import javax.annotation.Generated;
@@ -86,7 +85,7 @@ public class Query {
 			}
 
 			@GraphQLField
-			protected Collection<${schemaName}> items;
+			protected java.util.Collection<${schemaName}> items;
 
 			@GraphQLField
 			protected long page;
