@@ -220,14 +220,16 @@ public class JournalManagementToolbarDisplayContext
 
 		PortletURL moveEntriesURL = liferayPortletResponse.createRenderURL();
 
+		moveEntriesURL.setParameter("mvcPath", "/move_entries.jsp");
+
 		String redirect = ParamUtil.getString(
 			liferayPortletRequest, "redirect", _themeDisplay.getURLCurrent());
+
+		moveEntriesURL.setParameter("redirect", redirect);
 
 		String referringPortletResource = ParamUtil.getString(
 			liferayPortletRequest, "referringPortletResource");
 
-		moveEntriesURL.setParameter("mvcPath", "/move_entries.jsp");
-		moveEntriesURL.setParameter("redirect", redirect);
 		moveEntriesURL.setParameter(
 			"referringPortletResource", referringPortletResource);
 
