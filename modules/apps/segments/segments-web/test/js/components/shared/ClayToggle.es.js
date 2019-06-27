@@ -19,7 +19,7 @@ import {cleanup, render} from 'react-testing-library';
 describe('ClayToggle', () => {
 	afterEach(cleanup);
 
-	it('should render', () => {
+	it('renders', () => {
 		const {asFragment} = render(<ClayToggle onChange={jest.fn()} />);
 
 		expect(asFragment()).toMatchSnapshot();

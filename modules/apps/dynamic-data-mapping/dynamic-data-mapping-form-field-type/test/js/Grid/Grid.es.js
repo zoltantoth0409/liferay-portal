@@ -24,7 +24,7 @@ describe('Grid', () => {
 		}
 	});
 
-	it('should render columns', () => {
+	it('renders columns', () => {
 		component = new Grid({
 			columns: [
 				{
@@ -42,7 +42,7 @@ describe('Grid', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render no columns when columns comes empty', () => {
+	it('renders no columns when columns comes empty', () => {
 		component = new Grid({
 			columns: [],
 			spritemap
@@ -51,7 +51,7 @@ describe('Grid', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should be not edidable', () => {
+	it('is not edidable', () => {
 		component = new Grid({
 			readOnly: false,
 			spritemap
@@ -60,7 +60,7 @@ describe('Grid', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a tip', () => {
+	it('has a tip', () => {
 		component = new Grid({
 			spritemap,
 			tip: 'Type something'
@@ -69,7 +69,7 @@ describe('Grid', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have an id', () => {
+	it('has an id', () => {
 		component = new Grid({
 			id: 'ID',
 			spritemap
@@ -78,7 +78,7 @@ describe('Grid', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a label', () => {
+	it('has a label', () => {
 		component = new Grid({
 			label: 'label',
 			spritemap
@@ -87,7 +87,7 @@ describe('Grid', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not be required', () => {
+	it('is not required', () => {
 		component = new Grid({
 			required: false,
 			spritemap
@@ -96,7 +96,7 @@ describe('Grid', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render rows', () => {
+	it('renders rows', () => {
 		component = new Grid({
 			rows: [
 				{
@@ -114,7 +114,7 @@ describe('Grid', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render no rows when row comes empty', () => {
+	it('renders no rows when row comes empty', () => {
 		component = new Grid({
 			rows: [],
 			spritemap
@@ -123,7 +123,7 @@ describe('Grid', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render Label if showLabel is true', () => {
+	it('renders Label if showLabel is true', () => {
 		component = new Grid({
 			label: 'text',
 			showLabel: true,
@@ -133,7 +133,7 @@ describe('Grid', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a spritemap', () => {
+	it('has a spritemap', () => {
 		component = new Grid({
 			spritemap
 		});

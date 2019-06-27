@@ -39,7 +39,7 @@ describe('PageRenderer', () => {
 		jest.useFakeTimers();
 	});
 
-	it('should display empty drag message when there are rows with no columns specified', () => {
+	it('displays empty drag message when there are rows with no columns specified', () => {
 		component = new PageRenderer({
 			...componentProps,
 			page: {
@@ -49,7 +49,7 @@ describe('PageRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should change the page title', () => {
+	it('changes the page title', () => {
 		component = new PageRenderer({
 			...componentProps
 		});
@@ -70,7 +70,7 @@ describe('PageRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should change the page title', () => {
+	it('changes the page title', () => {
 		component = new PageRenderer({
 			...componentProps
 		});
@@ -91,7 +91,7 @@ describe('PageRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render a layout and emit an event when delete button is clicked', () => {
+	it('renders a layout and emit an event when delete button is clicked', () => {
 		component = new PageRenderer({
 			...componentProps
 		});
@@ -107,7 +107,7 @@ describe('PageRenderer', () => {
 		);
 	});
 
-	it('should render a layout and emit an event when duplicate button is clicked', () => {
+	it('renders a layout and emit an event when duplicate button is clicked', () => {
 		component = new PageRenderer({
 			...componentProps
 		});
@@ -123,7 +123,7 @@ describe('PageRenderer', () => {
 		);
 	});
 
-	it('should render a layout with emit an field clicked event', () => {
+	it('renders a layout with emit an field clicked event', () => {
 		component = new PageRenderer({
 			...componentProps
 		});
@@ -136,7 +136,7 @@ describe('PageRenderer', () => {
 		expect(spy).toHaveBeenCalledWith('fieldClicked', expect.any(Object));
 	});
 
-	it('should emit a fieldClicked event with the field location', () => {
+	it('emits a fieldClicked event with the field location', () => {
 		component = new PageRenderer({
 			...componentProps,
 			dragAndDropDisabled: true

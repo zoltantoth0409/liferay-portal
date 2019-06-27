@@ -23,7 +23,7 @@ describe('document-library-preview-audio', () => {
 		}
 	});
 
-	it('should render an audio player', () => {
+	it('renders an audio player', () => {
 		component = new AudioPreviewer({
 			audioMaxWidth: 520,
 			audioSources: [

@@ -46,12 +46,12 @@ describe('ShareFormPopover', () => {
 		fetch.resetMocks();
 	});
 
-	it('should render the default markup', () => {
+	it('renders the default markup', () => {
 		component = new ShareFormPopover(props);
 		expect(component).toMatchSnapshot();
 	});
 
-	it("should copy the sharable URL to user's clipboard", () => {
+	it("copies the sharable URL to user's clipboard", () => {
 		component = new ShareFormPopover(props);
 		component._clipboard.emit('success');
 

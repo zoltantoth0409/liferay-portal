@@ -61,7 +61,7 @@ describe('CompatibilityEventProxy', () => {
 
 	const namespace = 'namespace';
 
-	it('should not emit any event when no targets have been added', done => {
+	it('does not emit any event when no targets have been added', done => {
 		const component = new CompatibilityEventProxy({
 			host
 		});
@@ -78,7 +78,7 @@ describe('CompatibilityEventProxy', () => {
 		done();
 	});
 
-	it('should not crash if target has no method fire', done => {
+	it('does not crash if target has no method fire', done => {
 		const mockedTarget = {};
 
 		const component = new CompatibilityEventProxy({
@@ -103,7 +103,7 @@ describe('CompatibilityEventProxy', () => {
 		done();
 	});
 
-	it('should emit adapted event with event name and event params to given targets when no namespace is specified', done => {
+	it('emits adapted event with event name and event params to given targets when no namespace is specified', done => {
 		const mockedTarget = createMockedTarget(eventNameToEmit);
 
 		const spy = jest.spyOn(mockedTarget, 'fire');
@@ -124,7 +124,7 @@ describe('CompatibilityEventProxy', () => {
 		done();
 	});
 
-	it('should emit adapted event with event name and event params to given targets when namespace is specified', done => {
+	it('emits adapted event with event name and event params to given targets when namespace is specified', done => {
 		const namespacedEventNameToEmit = namespace + ':' + eventNameToEmit;
 
 		const mockedTarget = createMockedTarget(namespacedEventNameToEmit);
@@ -148,7 +148,7 @@ describe('CompatibilityEventProxy', () => {
 		done();
 	});
 
-	it('should emit adapted event to given targets when target is not listening', done => {
+	it('emits adapted event to given targets when target is not listening', done => {
 		const mockedTarget = createMockedTarget();
 
 		const spy = jest.spyOn(mockedTarget, 'fire');
@@ -166,7 +166,7 @@ describe('CompatibilityEventProxy', () => {
 		done();
 	});
 
-	it('should emit adapted event to given targets when target is listening', done => {
+	it('emits adapted event to given targets when target is listening', done => {
 		const mockedTarget = createMockedTarget(eventNameToEmit);
 
 		const spy = jest.spyOn(mockedTarget, 'fire');
@@ -184,7 +184,7 @@ describe('CompatibilityEventProxy', () => {
 		done();
 	});
 
-	it('should maintain target original state of emitFacade after emiting events', done => {
+	it('maintains target original state of emitFacade after emiting events', done => {
 		const emitFacade = false;
 
 		const mockedTarget = createMockedTarget(eventNameToEmit, emitFacade);
@@ -207,7 +207,7 @@ describe('CompatibilityEventProxy', () => {
 		done();
 	});
 
-	it('should maintain target original state of emitFacade after emiting events when component emitFacade is true', done => {
+	it('maintains target original state of emitFacade after emiting events when component emitFacade is true', done => {
 		const emitFacade = false;
 
 		const mockedTarget = createMockedTarget(eventNameToEmit, emitFacade);
@@ -231,7 +231,7 @@ describe('CompatibilityEventProxy', () => {
 		done();
 	});
 
-	it('should adapt the events according to specified RegExp', done => {
+	it('adapts the events according to specified RegExp', done => {
 		const eventNameToEmit = 'eventChanged';
 
 		const eventObjectToEmit = {
@@ -265,7 +265,7 @@ describe('CompatibilityEventProxy', () => {
 		done();
 	});
 
-	it('should emit events even if the event does not have a key property', done => {
+	it('emits events even if the event does not have a key property', done => {
 		const eventObjectToEmit = {};
 
 		const mockedTarget = createMockedTarget(eventNameToEmit);

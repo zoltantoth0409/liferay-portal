@@ -16,7 +16,7 @@ import * as columnResizedHandler from 'source/components/LayoutProvider/handlers
 
 describe('LayoutProvider/handlers/columnResized', () => {
 	describe('handleColumnResized(state, source, column, direction)', () => {
-		it('should resize columns when pulling with the left handle', () => {
+		it('resizes columns when pulling with the left handle', () => {
 			const source = {
 				dataset: {
 					ddmFieldColumn: 1,
@@ -56,7 +56,7 @@ describe('LayoutProvider/handlers/columnResized', () => {
 			expect(result.pages[0].rows[0].columns[1].size).toEqual(6);
 		});
 
-		it("should remove column to the left if it's empty and cornered", () => {
+		it("removes column to the left if it's empty and cornered", () => {
 			const source = {
 				dataset: {
 					ddmFieldColumn: 1,
@@ -95,7 +95,7 @@ describe('LayoutProvider/handlers/columnResized', () => {
 			expect(result.pages[0].rows[0].columns.length).toEqual(1);
 		});
 
-		it('should add a column when pulling to the right with the left handle', () => {
+		it('adds a column when pulling to the right with the left handle', () => {
 			const source = {
 				dataset: {
 					ddmFieldColumn: 0,
@@ -134,7 +134,7 @@ describe('LayoutProvider/handlers/columnResized', () => {
 			expect(result.pages[0].rows[0].columns.length).toEqual(3);
 		});
 
-		it('should remove column when pulling to the right edge with the right handle', () => {
+		it('removes column when pulling to the right edge with the right handle', () => {
 			const source = {
 				dataset: {
 					ddmFieldColumn: 0,

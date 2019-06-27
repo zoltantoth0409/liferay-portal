@@ -19,7 +19,7 @@ import {cleanup, render} from 'react-testing-library';
 describe('CriteriaBuilder', () => {
 	afterEach(cleanup);
 
-	it('should render', () => {
+	it('renders', () => {
 		const {asFragment} = render(
 			<CriteriaBuilder
 				editing={false}

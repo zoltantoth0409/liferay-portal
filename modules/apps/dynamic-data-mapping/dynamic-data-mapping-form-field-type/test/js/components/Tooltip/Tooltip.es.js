@@ -29,7 +29,7 @@ describe('Field Tooltip', () => {
 		}
 	});
 
-	it('should render the default markup', () => {
+	it('renders the default markup', () => {
 		component = new Tooltip({
 			icon: 'question-circle-full',
 			spritemap,
@@ -39,7 +39,7 @@ describe('Field Tooltip', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should update the tooltip visible state when the mouse is over the tooltip target', () => {
+	it('updates the tooltip visible state when the mouse is over the tooltip target', () => {
 		component = new Tooltip({
 			icon: 'question-circle-full',
 			spritemap,
@@ -56,7 +56,7 @@ describe('Field Tooltip', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should update the tooltip visible state when the mouse leaved the tooltip target', () => {
+	it('updates the tooltip visible state when the mouse leaved the tooltip target', () => {
 		component = new Tooltip({
 			icon: 'question-circle-full',
 			spritemap,
@@ -70,7 +70,7 @@ describe('Field Tooltip', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should update the tooltip visible state when the mouse is over the tooltip target', () => {
+	it('updates the tooltip visible state when the mouse is over the tooltip target', () => {
 		component = new Tooltip({
 			icon: 'question-circle-full',
 			spritemap,

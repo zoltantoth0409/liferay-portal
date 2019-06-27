@@ -34,13 +34,13 @@ describe('Liferay.Util.navigate', () => {
 			};
 		});
 
-		it('should navigate to the given url using the provided Liferay.SPA.app.navigate helper', () => {
+		it('navigates to the given url using the provided Liferay.SPA.app.navigate helper', () => {
 			navigate(sampleUrl);
 
 			expect(Liferay.SPA.app.navigate).toBeCalledWith(sampleUrl);
 		});
 
-		it('should setup one-time-only global listeners in the Liferay object if specified', () => {
+		it('setups one-time-only global listeners in the Liferay object if specified', () => {
 			const listenerFn = jest.fn();
 
 			navigate(sampleUrl, {
@@ -63,7 +63,7 @@ describe('Liferay.Util.navigate', () => {
 	});
 
 	describe('when SPA is disabled', () => {
-		it('should navigate to the given url using window.location.assign', () => {
+		it('navigates to the given url using window.location.assign', () => {
 			const spy = jest
 				.spyOn(console, 'error')
 				.mockImplementation(() => undefined);

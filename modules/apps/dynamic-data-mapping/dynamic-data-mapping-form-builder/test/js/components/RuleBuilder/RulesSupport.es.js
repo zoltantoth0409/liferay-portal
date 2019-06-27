@@ -42,7 +42,7 @@ const mockConditions = [
 ];
 
 describe('RulesSupport', () => {
-	it('should clear the action target value', () => {
+	it('clears the action target value', () => {
 		const mockArgument = [...mockActions];
 
 		const actions = RulesSupport.clearTargetValue(mockArgument, 0);
@@ -50,7 +50,7 @@ describe('RulesSupport', () => {
 		expect(actions[0].target).toEqual('');
 	});
 
-	it('should clear the first operand value', () => {
+	it('clears the first operand value', () => {
 		const mockArgument = [...mockConditions];
 
 		const condition = RulesSupport.clearFirstOperandValue(mockArgument[0]);
@@ -59,7 +59,7 @@ describe('RulesSupport', () => {
 		expect(condition.operands[0].value).toEqual('');
 	});
 
-	it('should clear the operator value', () => {
+	it('clears the operator value', () => {
 		const mockArgument = [...mockConditions];
 
 		const condition = RulesSupport.clearOperatorValue(mockArgument[0]);
@@ -67,7 +67,7 @@ describe('RulesSupport', () => {
 		expect(condition.operator).toEqual('');
 	});
 
-	it('should clear the second operand value', () => {
+	it('clears the second operand value', () => {
 		const mockArgument = [...mockConditions];
 
 		const condition = RulesSupport.clearSecondOperandValue(mockArgument[0]);

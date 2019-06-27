@@ -16,7 +16,7 @@ import {isSubsetOf} from '../../src/main/resources/META-INF/resources/js/validat
 
 describe('validators', () => {
 	describe('isSubsetOf()', () => {
-		it('should return true if a set is subset of a superset', () => {
+		it('returns true if a set is subset of a superset', () => {
 			const superset = ['a', 'b', 'c'];
 			const checker = isSubsetOf(superset);
 

@@ -17,7 +17,7 @@
 import ns from '../../../src/main/resources/META-INF/resources/liferay/util/ns.es';
 
 describe('Liferay.Util.ns', () => {
-	it('should return an object', () => {
+	it('returns an object', () => {
 		const namespace = '_ns_';
 
 		const payload = {

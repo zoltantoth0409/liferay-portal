@@ -89,7 +89,7 @@ describe('LayoutProvider', () => {
 		pages = null;
 	});
 
-	it('should receive pages through PROPS and move to the internal state', () => {
+	it('receives pages through PROPS and move to the internal state', () => {
 		component = new LayoutProvider({
 			initialPages: pages,
 			rules: []
@@ -98,7 +98,7 @@ describe('LayoutProvider', () => {
 		expect(component.state.pages).toEqual(component.props.initialPages);
 	});
 
-	it('should attach the events to the child component', () => {
+	it('attaches the events to the child component', () => {
 		component = new Parent();
 
 		const {provider} = component.refs;
@@ -112,7 +112,7 @@ describe('LayoutProvider', () => {
 		});
 	});
 
-	it('should pass to the child component the pages of the internal state', () => {
+	it('passes to the child component the pages of the internal state', () => {
 		component = new Parent();
 
 		const {child, provider} = component.refs;
@@ -120,7 +120,7 @@ describe('LayoutProvider', () => {
 		expect(child.props.pages).toEqual(provider.state.pages);
 	});
 
-	it('should pass to the child component the focusedField', () => {
+	it('passes to the child component the focusedField', () => {
 		component = new Parent();
 
 		const {child, provider} = component.refs;
@@ -141,7 +141,7 @@ describe('LayoutProvider', () => {
 		expect(child.props.focusedField).toEqual(provider.state.focusedField);
 	});
 
-	it('should receive ruleAdded event to save a rule', () => {
+	it('receives ruleAdded event to save a rule', () => {
 		component = new Parent();
 
 		jest.runAllTimers();
@@ -165,7 +165,7 @@ describe('LayoutProvider', () => {
 		expect([...oldRules, mockEvent]).toEqual(provider.state.rules);
 	});
 
-	it('should receive ruleSaved event to edit a rule', () => {
+	it('receives ruleSaved event to edit a rule', () => {
 		component = new Parent();
 
 		jest.runAllTimers();
@@ -200,7 +200,7 @@ describe('LayoutProvider', () => {
 		expect(originalRule[0]).not.toEqual(provider.state.rules[0]);
 	});
 
-	it('should pass to the child component the mode', () => {
+	it('passes to the child component the mode', () => {
 		component = new Parent();
 
 		const {child, provider} = component.refs;
@@ -216,7 +216,7 @@ describe('LayoutProvider', () => {
 
 	describe('Field events', () => {
 		describe('fieldMoved', () => {
-			it('should listen to the fieldMoved event and move the field to the row in pages', () => {
+			it('listens to the fieldMoved event and move the field to the row in pages', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -247,7 +247,7 @@ describe('LayoutProvider', () => {
 				expect(child.props.pages).toEqual(provider.state.pages);
 			});
 
-			it('should listen to the pagesUpdated event', () => {
+			it('listens to the pagesUpdated event', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -260,7 +260,7 @@ describe('LayoutProvider', () => {
 				expect(child.props.pages).toEqual(provider.state.pages);
 			});
 
-			it('should listen to the fieldMoved event and move the field to the column in pages', () => {
+			it('listens to the fieldMoved event and move the field to the column in pages', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -286,7 +286,7 @@ describe('LayoutProvider', () => {
 				expect(child.props.pages).toEqual(provider.state.pages);
 			});
 
-			it('should move the field to the column in pages and remove the row if there are no fields', () => {
+			it('moves the field to the column in pages and remove the row if there are no fields', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -312,7 +312,7 @@ describe('LayoutProvider', () => {
 				expect(child.props.pages).toEqual(provider.state.pages);
 			});
 
-			it('should move the field to the row in pages and remove the row if there are no fields', () => {
+			it('moves the field to the row in pages and remove the row if there are no fields', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -340,7 +340,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('fieldAdded', () => {
-			it('should listen the fieldAdded event and add the field in the column to the pages', () => {
+			it('listens the fieldAdded event and add the field in the column to the pages', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -365,7 +365,7 @@ describe('LayoutProvider', () => {
 				expect(child.props.pages).toEqual(provider.state.pages);
 			});
 
-			it('should listen the fieldAdded event and add the field in the row to the pages', () => {
+			it('listen the fieldAdded event and add the field in the row to the pages', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -390,7 +390,7 @@ describe('LayoutProvider', () => {
 				expect(child.props.pages).toEqual(provider.state.pages);
 			});
 
-			it('should update the focusedField with the location of the new field when adding to the pages', () => {
+			it('updates the focusedField with the location of the new field when adding to the pages', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -419,7 +419,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('fieldDeleted', () => {
-			it('should listen the fieldDeleted event and delete the field in the column to the pages', () => {
+			it('listens the fieldDeleted event and delete the field in the column to the pages', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -439,7 +439,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('fieldDuplicated', () => {
-			it('should listen the duplicate field event and add this field in the pages', () => {
+			it('listens the duplicate field event and add this field in the pages', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -483,7 +483,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('fieldClicked', () => {
-			it('should listen the fieldClicked event and change the state of the focusedField to the data receive', () => {
+			it('listens the fieldClicked event and change the state of the focusedField to the data receive', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -503,7 +503,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('fieldBlurred', () => {
-			it('should listen the fieldBlurred event and change the state of the focusedField to the data receive', () => {
+			it('listens the fieldBlurred event and change the state of the focusedField to the data receive', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -518,7 +518,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('fieldResized', () => {
-			it('should listen to the columnResized event and resize the field when the left arrow is pulled', () => {
+			it('listens to the columnResized event and resize the field when the left arrow is pulled', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -544,7 +544,7 @@ describe('LayoutProvider', () => {
 		});
 
 		xdescribe('fieldChangesCanceled', () => {
-			it('should listen the fieldChangesCanceled event and change the state of the focusedField and pages for the data wich was received', () => {
+			it('listens the fieldChangesCanceled event and change the state of the focusedField and pages for the data wich was received', () => {
 				component = new Parent({
 					initialPages: pages
 				});
@@ -583,7 +583,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('focusedFieldUpdated', () => {
-			it('should listen the focusedFieldUpdated event and change the state of the focusedField and pages for the data wich was received', () => {
+			it('listens the focusedFieldUpdated event and change the state of the focusedField and pages for the data wich was received', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -604,7 +604,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('pageDeleted', () => {
-			it('should listen the pageDeleted event and change the state of pages for the data wich was received', () => {
+			it('listens the pageDeleted event and change the state of pages for the data wich was received', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -622,7 +622,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('pageAdded', () => {
-			it('should listen the pageAdded event and change the state of pages for the data wich was received', () => {
+			it('listens the pageAdded event and change the state of pages for the data wich was received', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -637,7 +637,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('pageReset', () => {
-			it('should listen the pageReset event and change the state of pages for the data wich was received', () => {
+			it('listens the pageReset event and change the state of pages for the data wich was received', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -652,7 +652,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('paginationModeUpdated', () => {
-			it('should listen the paginationModeUpdated event and change the state of pagination mode for the data wich was received', () => {
+			it('listens the paginationModeUpdated event and change the state of pagination mode for the data wich was received', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -665,7 +665,7 @@ describe('LayoutProvider', () => {
 				expect(provider.state.pages).toMatchSnapshot();
 			});
 
-			it('should listen the paginationModeUpdated event and change the state of pagination mode from pagination to wizard', () => {
+			it('listens the paginationModeUpdated event and change the state of pagination mode from pagination to wizard', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -686,7 +686,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('successPageChanged', () => {
-			it('should listen the successPageChanged event and change the state of success page for the data wich was received', () => {
+			it('listens the successPageChanged event and change the state of success page for the data wich was received', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;
@@ -703,7 +703,7 @@ describe('LayoutProvider', () => {
 		});
 
 		describe('activePageUpdated', () => {
-			it('should listen the activePageUpdated event and change the state of the active page for the data wich was received', () => {
+			it('listens the activePageUpdated event and change the state of the active page for the data wich was received', () => {
 				component = new Parent();
 
 				const {child, provider} = component.refs;

@@ -18,7 +18,7 @@ import register from '../../../src/main/resources/META-INF/resources/liferay/por
 
 describe('PortletHub', () => {
 	describe('newState', () => {
-		it('should return a new RenderState object', () => {
+		it('returns a new RenderState object', () => {
 			expect.assertions(3);
 
 			return register('PortletB').then(hub => {
@@ -45,7 +45,7 @@ describe('PortletHub', () => {
 	});
 
 	describe('newParameters', () => {
-		it('should return new parameters according to the data passed', () => {
+		it('returns new parameters according to the data passed', () => {
 			expect.assertions(4);
 
 			return register('PortletC').then(hub => {
@@ -74,7 +74,7 @@ describe('PortletHub', () => {
 
 	describe('RenderState', () => {
 		describe('constructor', () => {
-			it('should create a RenderState object according to the data passed to the constructor', () => {
+			it('creates a RenderState object according to the data passed to the constructor', () => {
 				const mockData = {
 					parameters: {
 						a: [null],
@@ -106,7 +106,7 @@ describe('PortletHub', () => {
 		});
 
 		describe('clone', () => {
-			it('should return a new RenderState instance with the same properties', () => {
+			it('returns a new RenderState instance with the same properties', () => {
 				const renderState1 = new RenderState({
 					parameters: {
 						a: [1, 2, 3],
@@ -151,7 +151,7 @@ describe('PortletHub', () => {
 		});
 
 		describe('getValue', () => {
-			it('should throw an error if specified parameter is not a string', () => {
+			it('throws an error if specified parameter is not a string', () => {
 				const renderState = new RenderState({
 					parameters: {
 						a: [1, 2, 3]
@@ -167,7 +167,7 @@ describe('PortletHub', () => {
 				expect(testFn).toThrow();
 			});
 
-			it('should return a value if specified parameter is undefined and default value is specified', () => {
+			it('returns a value if specified parameter is undefined and default value is specified', () => {
 				const renderState = new RenderState();
 
 				const defaultValue = [1, 2, 3];
@@ -177,7 +177,7 @@ describe('PortletHub', () => {
 				expect(value).toEqual(expect.arrayContaining(defaultValue));
 			});
 
-			it('should return a parameter value if it is defined', () => {
+			it('returns a parameter value if it is defined', () => {
 				const renderState = new RenderState({
 					parameters: {
 						a: ['foo']
@@ -193,7 +193,7 @@ describe('PortletHub', () => {
 		});
 
 		describe('getValues', () => {
-			it('should throw an error if the specified parameter is not a string', () => {
+			it('throws an error if the specified parameter is not a string', () => {
 				const renderState = new RenderState();
 
 				const testFn = () => {
@@ -203,7 +203,7 @@ describe('PortletHub', () => {
 				expect(testFn).toThrow();
 			});
 
-			it('should return a value if the specified parameter is undefined and a default value is provided', () => {
+			it('returns a value if the specified parameter is undefined and a default value is provided', () => {
 				const renderState = new RenderState();
 
 				const values = renderState.getValues('foo', 'bar');
@@ -211,7 +211,7 @@ describe('PortletHub', () => {
 				expect(values).toEqual('bar');
 			});
 
-			it("should return a parameter's value if it is defined", () => {
+			it("returns a parameter's value if it is defined", () => {
 				const renderState = new RenderState({
 					parameters: {
 						data: ['something', 'here']
@@ -229,7 +229,7 @@ describe('PortletHub', () => {
 		});
 
 		describe('remove', () => {
-			it('should throw an error if the speficied parameter is not a string', () => {
+			it('throws an error if the speficied parameter is not a string', () => {
 				const renderState = new RenderState();
 
 				const testFn = () => {
@@ -239,7 +239,7 @@ describe('PortletHub', () => {
 				expect(testFn).toThrow();
 			});
 
-			it('should not remove a existing parameter', () => {
+			it('does not remove a existing parameter', () => {
 				const renderState = new RenderState({
 					parameters: {
 						data: [1, 2, 3]
@@ -259,7 +259,7 @@ describe('PortletHub', () => {
 		});
 
 		describe('setValue', () => {
-			it('should throw an error if `name` is not a string', () => {
+			it('throws an error if `name` is not a string', () => {
 				const renderState = new RenderState();
 
 				const testFn = () => {
@@ -269,7 +269,7 @@ describe('PortletHub', () => {
 				expect(testFn).toThrow();
 			});
 
-			it('should throw an error if `value` is not a string', () => {
+			it('throws an error if `value` is not a string', () => {
 				const renderState = new RenderState();
 
 				const testFn = () => {
@@ -279,7 +279,7 @@ describe('PortletHub', () => {
 				expect(testFn).toThrow();
 			});
 
-			it('should throw an error if `value` is not a array', () => {
+			it('throws an error if `value` is not a array', () => {
 				const renderState = new RenderState();
 
 				const testFn = () => {
@@ -291,7 +291,7 @@ describe('PortletHub', () => {
 				expect(testFn).toThrow();
 			});
 
-			it('should throw an error if `value` is not null', () => {
+			it('throws an error if `value` is not null', () => {
 				const renderState = new RenderState();
 
 				const testFn = () => {
@@ -301,7 +301,7 @@ describe('PortletHub', () => {
 				expect(testFn).toThrow();
 			});
 
-			it('should set a parameter if `value` is a string', () => {
+			it('sets a parameter if `value` is a string', () => {
 				const renderState = new RenderState();
 
 				renderState.setValue('a', 'foo');
@@ -309,7 +309,7 @@ describe('PortletHub', () => {
 				expect(renderState.getValue('a')).toEqual('foo');
 			});
 
-			it('should set a parameter if `value` is null', () => {
+			it('sets a parameter if `value` is null', () => {
 				const renderState = new RenderState();
 
 				renderState.setValue('b', null);
@@ -319,7 +319,7 @@ describe('PortletHub', () => {
 				expect(value).toEqual(null);
 			});
 
-			it('should set a parameter if `value` is an array', () => {
+			it('sets a parameter if `value` is an array', () => {
 				const renderState = new RenderState();
 
 				renderState.setValue('c', [4, 5, 6]);
@@ -335,7 +335,7 @@ describe('PortletHub', () => {
 		});
 
 		describe('setValues', () => {
-			it('should throw an error if `value` is not a string', () => {
+			it('throws an error if `value` is not a string', () => {
 				const renderState = new RenderState();
 
 				const testFn = () => {
@@ -345,7 +345,7 @@ describe('PortletHub', () => {
 				expect(testFn).toThrow();
 			});
 
-			it('should throw an error if `value` is not null', () => {
+			it('throws an error if `value` is not null', () => {
 				const renderState = new RenderState();
 
 				const testFn = () => {
@@ -355,7 +355,7 @@ describe('PortletHub', () => {
 				expect(testFn).toThrow();
 			});
 
-			it('should throw an error if `value` is not an array', () => {
+			it('throws an error if `value` is not an array', () => {
 				const renderState = new RenderState();
 
 				const testFn = () => {
@@ -367,7 +367,7 @@ describe('PortletHub', () => {
 				expect(testFn).toThrow();
 			});
 
-			it('should set a parameter value if `value` is a string', () => {
+			it('sets a parameter value if `value` is a string', () => {
 				const renderState = new RenderState();
 
 				renderState.setValues('data', 'hello');
@@ -381,7 +381,7 @@ describe('PortletHub', () => {
 				expect(value).toEqual('hello');
 			});
 
-			it('should set a parameter value if `value` is null', () => {
+			it('sets a parameter value if `value` is null', () => {
 				const renderState = new RenderState();
 
 				renderState.setValues('data', null);
@@ -395,7 +395,7 @@ describe('PortletHub', () => {
 				expect(value).toEqual(null);
 			});
 
-			it('should set a parameter value if `value` is an array', () => {
+			it('sets a parameter value if `value` is an array', () => {
 				const renderState = new RenderState();
 
 				renderState.setValues('url', ['one', 'two', 'three']);

@@ -21,7 +21,7 @@ const connectDnd = jest.fn(el => el);
 describe('EmptyDropZone', () => {
 	afterEach(cleanup);
 
-	it('should render', () => {
+	it('renders', () => {
 		const OriginalEmptyDropZone = EmptyDropZone.DecoratedComponent;
 
 		const {asFragment} = render(
@@ -36,7 +36,7 @@ describe('EmptyDropZone', () => {
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('should render illustration when empty contributors', () => {
+	it('renders illustration when empty contributors', () => {
 		const OriginalEmptyDropZone = EmptyDropZone.DecoratedComponent;
 
 		const {asFragment} = render(

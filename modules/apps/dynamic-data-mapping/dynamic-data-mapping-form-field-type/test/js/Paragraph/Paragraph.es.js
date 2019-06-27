@@ -29,7 +29,7 @@ describe('Field Paragraph', () => {
 		}
 	});
 
-	it('should be readOnly', () => {
+	it('is readOnly', () => {
 		component = new Paragraph({
 			...defaultParagraphConfig,
 			readOnly: true
@@ -38,7 +38,7 @@ describe('Field Paragraph', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have an id', () => {
+	it('has an id', () => {
 		component = new Paragraph({
 			...defaultParagraphConfig,
 			id: 'ID'
@@ -47,7 +47,7 @@ describe('Field Paragraph', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a label', () => {
+	it('has a label', () => {
 		component = new Paragraph({
 			...defaultParagraphConfig,
 			label: 'label'
@@ -56,7 +56,7 @@ describe('Field Paragraph', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a placeholder', () => {
+	it('has a placeholder', () => {
 		component = new Paragraph({
 			...defaultParagraphConfig,
 			placeholder: 'Placeholder'
@@ -65,7 +65,7 @@ describe('Field Paragraph', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not be required', () => {
+	it('is not required', () => {
 		component = new Paragraph({
 			...defaultParagraphConfig,
 			required: false
@@ -74,7 +74,7 @@ describe('Field Paragraph', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render Label if showLabel is true', () => {
+	it('renders Label if showLabel is true', () => {
 		component = new Paragraph({
 			...defaultParagraphConfig,
 			label: 'text',
@@ -84,13 +84,13 @@ describe('Field Paragraph', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a spritemap', () => {
+	it('has a spritemap', () => {
 		component = new Paragraph(defaultParagraphConfig);
 
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a value', () => {
+	it('has a value', () => {
 		component = new Paragraph({
 			...defaultParagraphConfig,
 			value: 'value'
@@ -99,7 +99,7 @@ describe('Field Paragraph', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a key', () => {
+	it('has a key', () => {
 		component = new Paragraph({
 			...defaultParagraphConfig,
 			key: 'key'

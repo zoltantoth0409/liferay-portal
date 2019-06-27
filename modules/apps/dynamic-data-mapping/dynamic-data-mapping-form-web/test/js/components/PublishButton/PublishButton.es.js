@@ -51,13 +51,13 @@ describe('PublishButton', () => {
 		fetch.resetMocks();
 	});
 
-	it('should render published', () => {
+	it('renders published', () => {
 		component = new PublishButton(props);
 
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render unpublished', () => {
+	it('renders unpublished', () => {
 		component = new PublishButton({
 			...props,
 			published: false
@@ -67,7 +67,7 @@ describe('PublishButton', () => {
 	});
 
 	describe('publish()', () => {
-		it('should call submitForm()', () => {
+		it('calls submitForm()', () => {
 			const submitForm = jest.fn();
 
 			component = new PublishButton({
@@ -82,7 +82,7 @@ describe('PublishButton', () => {
 	});
 
 	describe('unpublish()', () => {
-		it('should call submitForm()', () => {
+		it('calls submitForm()', () => {
 			const submitForm = jest.fn();
 
 			component = new PublishButton({
@@ -97,7 +97,7 @@ describe('PublishButton', () => {
 	});
 
 	describe('toggle()', () => {
-		it('should call publish() when props.published=false', () => {
+		it('calls publish() when props.published=false', () => {
 			component = new PublishButton({
 				...props,
 				published: false
@@ -112,7 +112,7 @@ describe('PublishButton', () => {
 				.then(() => expect(publishSpy).toHaveBeenCalled());
 		});
 
-		it('should call unpublish() when props.published=true', () => {
+		it('calls unpublish() when props.published=true', () => {
 			component = new PublishButton({
 				...props,
 				published: true
@@ -127,7 +127,7 @@ describe('PublishButton', () => {
 				.then(() => expect(unpublishSpy).toHaveBeenCalled());
 		});
 
-		it('should be called when button is clicked', () => {
+		it('is called when button is clicked', () => {
 			component = new PublishButton({
 				...props,
 				published: true

@@ -18,7 +18,7 @@ import dom from 'metal-dom';
 import getFormElement from '../../../../src/main/resources/META-INF/resources/liferay/util/form/get_form_element.es';
 
 describe('Liferay.Util.getFormElement', () => {
-	it('should return null if the form parameter is not a form node', () => {
+	it('returns null if the form parameter is not a form node', () => {
 		const fragment = dom.buildFragment('<div />');
 
 		const form = fragment.firstElementChild;
@@ -27,7 +27,7 @@ describe('Liferay.Util.getFormElement', () => {
 		expect(getFormElement(form, 'foo')).toEqual(null);
 	});
 
-	it('should return null if the elementName parameter is not a string', () => {
+	it('returns null if the elementName parameter is not a string', () => {
 		const fragment = dom.buildFragment('<form />');
 
 		const form = fragment.firstElementChild;
@@ -36,7 +36,7 @@ describe('Liferay.Util.getFormElement', () => {
 		expect(getFormElement(form, {})).toEqual(null);
 	});
 
-	it('should return null if the element does not exist withing the form', () => {
+	it('returns null if the element does not exist withing the form', () => {
 		const fragment = dom.buildFragment(`
 					<form data-fm-namespace="_com_liferay_test_portlet_" id="fm">
 						<input name="_com_liferay_test_portlet_foo" type="text" value="abc">
@@ -48,7 +48,7 @@ describe('Liferay.Util.getFormElement', () => {
 		expect(getFormElement(form, 'bar')).toEqual(null);
 	});
 
-	it('should return element value if the element does exist withing the form', () => {
+	it('returns element value if the element does exist withing the form', () => {
 		const fragment = dom.buildFragment(`
 					<form data-fm-namespace="_com_liferay_test_portlet_" id="fm">
 						<input name="_com_liferay_test_portlet_foo" type="text" value="abc">

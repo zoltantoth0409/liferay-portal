@@ -21,7 +21,7 @@ const ENTITY_SELECT_INPUT_TESTID = 'entity-select-input';
 describe('SelectEntityInput', () => {
 	afterEach(cleanup);
 
-	it('should render type id', () => {
+	it('renders type id', () => {
 		const mockOnChange = jest.fn();
 
 		const defaultNumberValue = '12345';

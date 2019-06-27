@@ -19,7 +19,7 @@ import {cleanup, render} from 'react-testing-library';
 describe('CriteriaSidebar', () => {
 	afterEach(cleanup);
 
-	it('should render', () => {
+	it('renders', () => {
 		const {asFragment} = render(<CriteriaSidebar propertyGroups={[]} />);
 
 		expect(asFragment()).toMatchSnapshot();

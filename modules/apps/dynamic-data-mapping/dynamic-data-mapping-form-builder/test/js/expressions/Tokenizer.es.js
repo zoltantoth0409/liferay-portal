@@ -16,7 +16,7 @@ import Token from 'source/expressions/Token.es';
 import Tokenizer from 'source/expressions/Tokenizer.es';
 
 describe('Tokenizer', () => {
-	it('should tokenize single digit expressions', () => {
+	it('tokenizes single digit expressions', () => {
 		expect(Tokenizer.tokenize('4[a] + 1')).toEqual([
 			new Token('Literal', '4'),
 			new Token('Operator', '*'),
@@ -26,7 +26,7 @@ describe('Tokenizer', () => {
 		]);
 	});
 
-	it('should tokenize multiple digit expressions', () => {
+	it('tokenizes multiple digit expressions', () => {
 		expect(Tokenizer.tokenize('456[a] + 125')).toEqual([
 			new Token('Literal', '456'),
 			new Token('Operator', '*'),
@@ -36,7 +36,7 @@ describe('Tokenizer', () => {
 		]);
 	});
 
-	it('should tokenize floating point expressions', () => {
+	it('tokenizes floating point expressions', () => {
 		expect(Tokenizer.tokenize('7.346 + 13.44 * 567')).toEqual([
 			new Token('Literal', '7.346'),
 			new Token('Operator', '+'),
@@ -46,7 +46,7 @@ describe('Tokenizer', () => {
 		]);
 	});
 
-	it('should tokenize multiple letter variables', () => {
+	it('tokenizes multiple letter variables', () => {
 		expect(Tokenizer.tokenize('[Field1] * [Field2] + [Field3]')).toEqual([
 			new Token('Variable', 'Field1'),
 			new Token('Operator', '*'),
@@ -56,7 +56,7 @@ describe('Tokenizer', () => {
 		]);
 	});
 
-	it('should tokenize expressions with functions', () => {
+	it('tokenizes expressions with functions', () => {
 		expect(Tokenizer.tokenize('2 * 5 + sum([Field2])')).toEqual([
 			new Token('Literal', '2'),
 			new Token('Operator', '*'),

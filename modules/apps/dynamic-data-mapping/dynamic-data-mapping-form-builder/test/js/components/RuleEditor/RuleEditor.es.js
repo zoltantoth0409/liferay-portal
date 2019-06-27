@@ -142,7 +142,7 @@ describe('Rule Editor', () => {
 		});
 
 		describe("When a condition is added and there's more than one condition, there must be an option the delete the condition", () => {
-			it('should display a confirmation modal when trying to delete a condition', () => {
+			it('displays a confirmation modal when trying to delete a condition', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -170,7 +170,7 @@ describe('Rule Editor', () => {
 				expect(component).toMatchSnapshot();
 			});
 
-			it('should delete a condition of user accepts confirmation modal', () => {
+			it('deletes a condition of user accepts confirmation modal', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -206,7 +206,7 @@ describe('Rule Editor', () => {
 		});
 
 		describe('The OR select must be disabled by default', () => {
-			it('should disable the "AND" or "OR" selector when there\'s only one condtion', () => {
+			it('disables the "AND" or "OR" selector when there\'s only one condtion', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -222,7 +222,7 @@ describe('Rule Editor', () => {
 		});
 
 		describe('The OR select must be activated if the are more than one condition', () => {
-			it('should enable the "AND" or "OR" selector when there\'s more than one condtion', () => {
+			it('enables the "AND" or "OR" selector when there\'s more than one condtion', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -251,7 +251,7 @@ describe('Rule Editor', () => {
 		});
 
 		describe('Clear all fields when first operand is not selected', () => {
-			it('should make operators field "read only" when first operand is not selected', () => {
+			it('makes operators field "read only" when first operand is not selected', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -263,7 +263,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.conditionOperator0.readOnly).toBeTruthy();
 			});
 
-			it('should hide the second operand type selector when first operand is not selected', () => {
+			it('hides the second operand type selector when first operand is not selected', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -275,7 +275,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.secondOperandTypeSelector0).toBeFalsy();
 			});
 
-			it('should hide the second operand when first operand is not selected', () => {
+			it('hides the second operand when first operand is not selected', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -287,7 +287,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.secondOperand0).toBeFalsy();
 			});
 
-			it('should reset the operator, and hide the second operand type selector and second operand', () => {
+			it('resets the operator, and hide the second operand type selector and second operand', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -318,7 +318,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.secondOperand0).toBeFalsy();
 			});
 
-			it('should reset the operator, and hide the second operand type selector and second operand', () => {
+			it('resets the operator, and hide the second operand type selector and second operand', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -349,7 +349,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.secondOperand0).toBeFalsy();
 			});
 
-			it('should not reset second operand type selector nor second operand when operator changes from a binary type to another binary type', () => {
+			it('does not reset second operand type selector nor second operand when operator changes from a binary type to another binary type', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -384,7 +384,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.secondOperand0.value).toEqual(['123']);
 			});
 
-			it('should hide second operand type selector and hide second operand when operator changes from a binary type to an unary type', () => {
+			it('hides second operand type selector and hide second operand when operator changes from a binary type to an unary type', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -414,7 +414,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.secondOperand0).toBeFalsy();
 			});
 
-			it('should not make operators field "read only" when first operand is selected', () => {
+			it('does not make operators field "read only" when first operand is selected', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -427,8 +427,8 @@ describe('Rule Editor', () => {
 			});
 		});
 
-		describe('should configure the conditions according to the first operand type', () => {
-			it('should populate operators when the first selected operand is a field', () => {
+		describe('configuring the conditions according to the first operand type', () => {
+			it('populates operators when the first selected operand is a field', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -442,7 +442,7 @@ describe('Rule Editor', () => {
 				).toMatchSnapshot();
 			});
 
-			it('should populate operators when the first selected operand is an user', () => {
+			it('populates operators when the first selected operand is an user', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -456,7 +456,7 @@ describe('Rule Editor', () => {
 				).toMatchSnapshot();
 			});
 
-			it('should keep operator values the same when first operand changes to another value of the same type', () => {
+			it('keeps operator values the same when first operand changes to another value of the same type', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -477,7 +477,7 @@ describe('Rule Editor', () => {
 				);
 			});
 
-			it('should clear first operand when field is removed from pages', () => {
+			it('clears first operand when field is removed from pages', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -493,7 +493,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.firstOperand0.value).toEqual(['']);
 			});
 
-			it('should not clear first operand when pages are changed and first operand is User', () => {
+			it('does not clear first operand when pages are changed and first operand is User', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -509,7 +509,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.firstOperand0.value).toEqual(['user']);
 			});
 
-			it('should not clear first operand when pages were changed but selected field was not removed', () => {
+			it('does not clear first operand when pages were changed but selected field was not removed', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -544,7 +544,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.firstOperand0.value).toEqual(['radio']);
 			});
 
-			it('should not clear second operand value when pages were changed but selected field was not removed', () => {
+			it('does not clear second operand value when pages were changed but selected field was not removed', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -599,7 +599,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.secondOperand0.value).toEqual(['123']);
 			});
 
-			it('should not display second operand type selector ("Other Field" or "Value") when operator is empty', () => {
+			it('does not display second operand type selector ("Other Field" or "Value") when operator is empty', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -620,7 +620,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.secondOperandTypeSelector0).toBeFalsy();
 			});
 
-			it('should reset second operand type selector ("Other Field" or "Value") and hide second operand when selected field is removed', () => {
+			it('resets second operand type selector ("Other Field" or "Value") and hide second operand when selected field is removed', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -667,7 +667,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.secondOperand0).toBeFalsy();
 			});
 
-			it('should reset second operand type selector ("Other Field" or "Value") and hide second operand when first operand field is changed', () => {
+			it('resets second operand type selector ("Other Field" or "Value") and hide second operand when first operand field is changed', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -705,7 +705,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.secondOperand0).toBeFalsy();
 			});
 
-			it('should add a new condition to the conditions array', () => {
+			it('adds a new condition to the conditions array', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -730,7 +730,7 @@ describe('Rule Editor', () => {
 				expect(component).toMatchSnapshot();
 			});
 
-			it('should change all logical operators when changing it via the global logical operator selector', () => {
+			it('changes all logical operators when changing it via the global logical operator selector', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -759,7 +759,7 @@ describe('Rule Editor', () => {
 		});
 
 		describe('When the user choose any of the options of the action a select target should be displayed', () => {
-			it('should display the action target according to action type (Show, Enable or Required)', () => {
+			it('displays the action target according to action type (Show, Enable or Required)', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -771,7 +771,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.actionTarget0).toBeTruthy();
 			});
 
-			it('should add to the deletedField all the fields removed from the FormBuilder', () => {
+			it('adds to the deletedField all the fields removed from the FormBuilder', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -795,7 +795,7 @@ describe('Rule Editor', () => {
 				expect(notEquals).toEqual(false);
 			});
 
-			it('should not reset the target after setting a target to an action and click in the action selected without changing it', () => {
+			it('does not reset the target after setting a target to an action and click in the action selected without changing it', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -813,7 +813,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.actionTarget0.value).toEqual(['date']);
 			});
 
-			it('should show Result field when the action Calculate is selected', () => {
+			it('shows Result field when the action Calculate is selected', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -827,7 +827,7 @@ describe('Rule Editor', () => {
 				expect(resultField).toBe(true);
 			});
 
-			it('should show Result field when the action Calculate is selected', () => {
+			it('shows Result field when the action Calculate is selected', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -851,7 +851,7 @@ describe('Rule Editor', () => {
 				expect(resultField).toBe(false);
 			});
 
-			it('should refresh the target when the user changes any of the options of the first action select between (Show, Enable or Required)', () => {
+			it('refreshes the target when the user changes any of the options of the first action select between (Show, Enable or Required)', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -870,7 +870,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.actionTarget0.value).toEqual(['']);
 			});
 
-			it('should refresh the target when the user changes de Action from autofill to Show, Enable or Required', () => {
+			it('refreshes the target when the user changes de Action from autofill to Show, Enable or Required', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -890,7 +890,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.actionTarget0.value).toEqual(['']);
 			});
 
-			it('should display the action target according to action type (Autofill)', () => {
+			it('displays the action target according to action type (Autofill)', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -908,7 +908,7 @@ describe('Rule Editor', () => {
 				expect(labelVisible).toBeTruthy();
 			});
 
-			it('should display only one data-provider label everytime an autofill target is selected', () => {
+			it('displays only one data-provider label everytime an autofill target is selected', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -932,7 +932,7 @@ describe('Rule Editor', () => {
 				expect(labelQuantityAfter).toBe(1);
 			});
 
-			it('should duplicate an action when duplicate field is clicked', () => {
+			it('duplicates an action when duplicate field is clicked', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -1008,7 +1008,7 @@ describe('Rule Editor', () => {
 				expect(component.refs.cancel.disabled).toBe(false);
 			});
 
-			it('should be possible to save a rule', () => {
+			it('is possible to save a rule', () => {
 				jest.useFakeTimers();
 
 				component = new RuleEditor({
@@ -1078,7 +1078,7 @@ describe('Rule Editor', () => {
 				});
 			});
 
-			it('should be possible to cancel a rule', () => {
+			it('is possible to cancel a rule', () => {
 				component = new RuleEditor({
 					...getBaseConfig()
 				});
@@ -1121,7 +1121,7 @@ describe('Rule Editor', () => {
 				);
 			});
 
-			it('should edit an existent rule', () => {
+			it('edits an existent rule', () => {
 				component = new RuleEditor({
 					...getBaseConfig(),
 					rule: {
@@ -1187,7 +1187,7 @@ describe('Rule Editor', () => {
 
 describe('Regression', () => {
 	describe('LPS-86162 The filled value is being lost when re-selecting Value in the rule builder', () => {
-		it('should not clear second operand value when there were no changes on second oprand type', () => {
+		it('does not clear second operand value when there were no changes on second oprand type', () => {
 			component = new RuleEditor({
 				...getBaseConfig()
 			});

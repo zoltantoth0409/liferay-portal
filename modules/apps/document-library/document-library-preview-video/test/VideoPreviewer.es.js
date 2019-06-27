@@ -23,7 +23,7 @@ describe('document-library-preview-video', () => {
 		}
 	});
 
-	it('should render an video player', () => {
+	it('renders a video player', () => {
 		component = new VideoPreviewer({
 			videoPosterURL: 'poster.jpg',
 			videoSources: [

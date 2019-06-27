@@ -24,7 +24,7 @@ describe('FieldBase', () => {
 		}
 	});
 
-	it('should render the default markup', () => {
+	it('renders the default markup', () => {
 		component = new FieldBase({
 			spritemap
 		});
@@ -32,7 +32,7 @@ describe('FieldBase', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render the FieldBase with required', () => {
+	it('renders the FieldBase with required', () => {
 		component = new FieldBase({
 			required: true,
 			spritemap
@@ -41,7 +41,7 @@ describe('FieldBase', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render the FieldBase with id', () => {
+	it('renders the FieldBase with id', () => {
 		component = new FieldBase({
 			id: 'Id',
 			spritemap
@@ -50,7 +50,7 @@ describe('FieldBase', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render the FieldBase with help text', () => {
+	it('renders the FieldBase with help text', () => {
 		component = new FieldBase({
 			spritemap,
 			tip: 'Type something!'
@@ -59,7 +59,7 @@ describe('FieldBase', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render the FieldBase with label', () => {
+	it('renders the FieldBase with label', () => {
 		component = new FieldBase({
 			label: 'Text',
 			spritemap
@@ -68,7 +68,7 @@ describe('FieldBase', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not render the label if showLabel is false', () => {
+	it('does not render the label if showLabel is false', () => {
 		component = new FieldBase({
 			label: 'Text',
 			showLabel: false,
@@ -78,7 +78,7 @@ describe('FieldBase', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render the FieldBase with contentRenderer', () => {
+	it('renders the FieldBase with contentRenderer', () => {
 		component = new FieldBase({
 			contentRenderer: `
                 <div>

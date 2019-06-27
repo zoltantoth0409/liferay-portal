@@ -28,7 +28,7 @@ describe('document-library-preview-document', () => {
 		}
 	});
 
-	it('should render a document previewer with ten pages and the first page rendered', () => {
+	it('renders a document previewer with ten pages and the first page rendered', () => {
 		component = new DocumentPreviewer({
 			...defaultDocumentPreviewerConfig,
 			currentPage: 1,
@@ -38,7 +38,7 @@ describe('document-library-preview-document', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render a document previewer with nineteen pages and the fifth page rendered', () => {
+	it('renders a document previewer with nineteen pages and the fifth page rendered', () => {
 		component = new DocumentPreviewer({
 			...defaultDocumentPreviewerConfig,
 			currentPage: 5,

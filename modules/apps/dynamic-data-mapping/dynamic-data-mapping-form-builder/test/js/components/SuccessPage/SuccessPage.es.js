@@ -36,7 +36,7 @@ describe.only('SuccessPage', () => {
 		successPageSettings = null;
 	});
 
-	it('should render the default layour', () => {
+	it('renders the default layour', () => {
 		component = new SuccessPage({
 			contentLabel: 'Content',
 			successPageSettings,
@@ -48,7 +48,7 @@ describe.only('SuccessPage', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should emit success page changed when success page title is changed', () => {
+	it('emits success page changed when success page title is changed', () => {
 		const newPageSettings = {
 			...successPageSettings,
 			enabled: true
@@ -76,7 +76,7 @@ describe.only('SuccessPage', () => {
 		);
 	});
 
-	it('should emit success page changed when success page body is changed', () => {
+	it('emits success page changed when success page body is changed', () => {
 		const newPageSettings = {
 			...successPageSettings,
 			enabled: true

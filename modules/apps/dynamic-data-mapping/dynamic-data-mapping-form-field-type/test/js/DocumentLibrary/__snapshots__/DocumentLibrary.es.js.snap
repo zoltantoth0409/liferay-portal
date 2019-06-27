@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Field DocumentLibrary should have a helptext 1`] = `
+exports[`Field DocumentLibrary has a helptext 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="liferay-ddm-form-field-document-library">
     <div class="input-group">
@@ -11,7 +11,7 @@ exports[`Field DocumentLibrary should have a helptext 1`] = `
 </div>
 `;
 
-exports[`Field DocumentLibrary should have a label 1`] = `
+exports[`Field DocumentLibrary has a label 1`] = `
 <div class="form-group" data-field-name="textField"><label>label </label>
   <div class="liferay-ddm-form-field-document-library">
     <div class="input-group">
@@ -22,7 +22,7 @@ exports[`Field DocumentLibrary should have a label 1`] = `
 </div>
 `;
 
-exports[`Field DocumentLibrary should have a placeholder 1`] = `
+exports[`Field DocumentLibrary has a placeholder 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="liferay-ddm-form-field-document-library">
     <div class="input-group">
@@ -33,7 +33,7 @@ exports[`Field DocumentLibrary should have a placeholder 1`] = `
 </div>
 `;
 
-exports[`Field DocumentLibrary should have a spritemap 1`] = `
+exports[`Field DocumentLibrary has a spritemap 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="liferay-ddm-form-field-document-library">
     <div class="input-group">
@@ -44,7 +44,7 @@ exports[`Field DocumentLibrary should have a spritemap 1`] = `
 </div>
 `;
 
-exports[`Field DocumentLibrary should have a value 1`] = `
+exports[`Field DocumentLibrary has a value 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="liferay-ddm-form-field-document-library">
     <div class="input-group">
@@ -55,7 +55,7 @@ exports[`Field DocumentLibrary should have a value 1`] = `
 </div>
 `;
 
-exports[`Field DocumentLibrary should have an id 1`] = `
+exports[`Field DocumentLibrary has an id 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="liferay-ddm-form-field-document-library">
     <div class="input-group">
@@ -66,7 +66,7 @@ exports[`Field DocumentLibrary should have an id 1`] = `
 </div>
 `;
 
-exports[`Field DocumentLibrary should not be readOnly 1`] = `
+exports[`Field DocumentLibrary is not readOnly 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="liferay-ddm-form-field-document-library">
     <div class="input-group">
@@ -77,7 +77,7 @@ exports[`Field DocumentLibrary should not be readOnly 1`] = `
 </div>
 `;
 
-exports[`Field DocumentLibrary should not be required 1`] = `
+exports[`Field DocumentLibrary is not required 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="liferay-ddm-form-field-document-library">
     <div class="input-group">
@@ -88,7 +88,7 @@ exports[`Field DocumentLibrary should not be required 1`] = `
 </div>
 `;
 
-exports[`Field DocumentLibrary should render Label if showLabel is true 1`] = `
+exports[`Field DocumentLibrary renders Label if showLabel is true 1`] = `
 <div class="form-group" data-field-name="textField"><label>text </label>
   <div class="liferay-ddm-form-field-document-library">
     <div class="input-group">

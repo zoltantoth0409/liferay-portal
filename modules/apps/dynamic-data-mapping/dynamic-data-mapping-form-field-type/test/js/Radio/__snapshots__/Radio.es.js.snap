@@ -1,15 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Field Radio should be not edidable 1`] = `
-<div class="form-group" data-field-name="radioField">
-  <div class="ddm-radio">
-    <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 1</span></span></label></div>
-    <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 2</span></span></label></div>
-  </div>
-</div>
-`;
-
-exports[`Field Radio should have a helptext 1`] = `
+exports[`Field Radio has a helptext 1`] = `
 <div class="form-group" data-field-name="radioField">
   <div class="ddm-radio">
     <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 1</span></span></label></div>
@@ -18,7 +9,7 @@ exports[`Field Radio should have a helptext 1`] = `
 </div>
 `;
 
-exports[`Field Radio should have a label 1`] = `
+exports[`Field Radio has a label 1`] = `
 <div class="form-group" data-field-name="radioField"><label>label </label>
   <div class="ddm-radio">
     <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 1</span></span></label></div>
@@ -27,7 +18,7 @@ exports[`Field Radio should have a label 1`] = `
 </div>
 `;
 
-exports[`Field Radio should have a predefined Value 1`] = `
+exports[`Field Radio has a predefined Value 1`] = `
 <div class="form-group" data-field-name="radioField">
   <div class="ddm-radio">
     <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 1</span></span></label></div>
@@ -36,7 +27,7 @@ exports[`Field Radio should have a predefined Value 1`] = `
 </div>
 `;
 
-exports[`Field Radio should have a spritemap 1`] = `
+exports[`Field Radio has a spritemap 1`] = `
 <div class="form-group" data-field-name="radioField">
   <div class="ddm-radio">
     <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 1</span></span></label></div>
@@ -45,7 +36,7 @@ exports[`Field Radio should have a spritemap 1`] = `
 </div>
 `;
 
-exports[`Field Radio should have a value 1`] = `
+exports[`Field Radio has a value 1`] = `
 <div class="form-group" data-field-name="radioField">
   <div class="ddm-radio">
     <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 1</span></span></label></div>
@@ -54,7 +45,7 @@ exports[`Field Radio should have a value 1`] = `
 </div>
 `;
 
-exports[`Field Radio should have an id 1`] = `
+exports[`Field Radio has an id 1`] = `
 <div class="form-group" data-field-name="radioField">
   <div class="ddm-radio">
     <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 1</span></span></label></div>
@@ -63,7 +54,7 @@ exports[`Field Radio should have an id 1`] = `
 </div>
 `;
 
-exports[`Field Radio should not be required 1`] = `
+exports[`Field Radio is not edidable 1`] = `
 <div class="form-group" data-field-name="radioField">
   <div class="ddm-radio">
     <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 1</span></span></label></div>
@@ -72,7 +63,16 @@ exports[`Field Radio should not be required 1`] = `
 </div>
 `;
 
-exports[`Field Radio should render Label if showLabel is true 1`] = `
+exports[`Field Radio is not required 1`] = `
+<div class="form-group" data-field-name="radioField">
+  <div class="ddm-radio">
+    <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 1</span></span></label></div>
+    <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 2</span></span></label></div>
+  </div>
+</div>
+`;
+
+exports[`Field Radio renders Label if showLabel is true 1`] = `
 <div class="form-group" data-field-name="radioField"><label>text </label>
   <div class="ddm-radio">
     <div class="custom-control custom-radio"><label><input class="custom-control-input" name="radioField" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">Option 1</span></span></label></div>
@@ -81,13 +81,13 @@ exports[`Field Radio should render Label if showLabel is true 1`] = `
 </div>
 `;
 
-exports[`Field Radio should render no options when options is empty 1`] = `
+exports[`Field Radio renders no options when options is empty 1`] = `
 <div class="form-group" data-field-name="radioField">
   <div class="ddm-radio"></div>
 </div>
 `;
 
-exports[`Field Radio should render options 1`] = `
+exports[`Field Radio renders options 1`] = `
 <div class="form-group" data-field-name="radioField">
   <div class="ddm-radio">
     <div class="custom-control custom-radio" id="id"><label><input class="custom-control-input" name="radioField" value="item" ref="input" type="radio" role="radio"><span class="custom-control-label"><span class="custom-control-label-text">label</span></span></label></div>

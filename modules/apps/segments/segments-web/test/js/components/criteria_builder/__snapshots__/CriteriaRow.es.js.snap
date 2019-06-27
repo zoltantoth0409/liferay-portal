@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CriteriaRow should render 1`] = `
+exports[`CriteriaRow renders 1`] = `
 <DocumentFragment>
   <div
     class="criterion-row-root"
@@ -67,7 +67,7 @@ exports[`CriteriaRow should render 1`] = `
 </DocumentFragment>
 `;
 
-exports[`CriteriaRow should render and inform there is an unknown property 1`] = `
+exports[`CriteriaRow renders and inform there is an unknown property 1`] = `
 <DocumentFragment>
   <div
     class="criterion-row-root criterion-row-root-error"

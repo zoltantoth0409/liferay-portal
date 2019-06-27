@@ -15,7 +15,7 @@
 import {setLocalizedValue} from 'source/util/i18n.es';
 
 describe('Internationlization', () => {
-	it('should create a localized property for a specific object string value', () => {
+	it('creates a localized property for a specific object string value', () => {
 		const obj = {
 			title: ''
 		};
@@ -31,7 +31,7 @@ describe('Internationlization', () => {
 		});
 	});
 
-	it('should replace a localized value for a specific object string', () => {
+	it('replaces a localized value for a specific object string', () => {
 		const obj = {
 			localizedTitle: {
 				en_US: ''

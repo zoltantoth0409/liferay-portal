@@ -22,7 +22,7 @@ const INTEGER_NUMBER_INPUT_TESTID = 'integer-number';
 describe('IntegerInput', () => {
 	afterEach(cleanup);
 
-	it('should render type integer number', () => {
+	it('renders type integer number', () => {
 		const mockOnChange = jest.fn();
 
 		const defaultNumberValue = '1';

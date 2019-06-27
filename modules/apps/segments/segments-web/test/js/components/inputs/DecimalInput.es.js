@@ -22,7 +22,7 @@ const DECIMAL_NUMBER_INPUT_TESTID = 'decimal-number';
 describe('DecimalInput', () => {
 	afterEach(cleanup);
 
-	it('should render type decimal number', () => {
+	it('renders type decimal number', () => {
 		const mockOnChange = jest.fn();
 
 		const defaultNumberValue = '1.23';
@@ -44,7 +44,7 @@ describe('DecimalInput', () => {
 		});
 	});
 
-	it('should format the value after blur', () => {
+	it('formats the value after blur', () => {
 		const mockOnChange = jest.fn();
 
 		const {getByTestId} = render(<DecimalInput onChange={mockOnChange} />);

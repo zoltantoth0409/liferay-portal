@@ -21,7 +21,7 @@ import fetch from '../../../src/main/resources/META-INF/resources/liferay/util/f
 describe('Liferay.Util.fetch', () => {
 	const sampleUrl = 'http://sampleurl.com';
 
-	it('should apply default settings if none are given', () => {
+	it('applies default settings if none are given', () => {
 		global.fetch = jest.fn((resource, init) => {
 			expect(init).toEqual({
 				credentials: 'include'
@@ -33,7 +33,7 @@ describe('Liferay.Util.fetch', () => {
 		global.fetch.mockRestore();
 	});
 
-	it('should override a default setting with given setting', () => {
+	it('overrides a default setting with given setting', () => {
 		global.fetch = jest.fn((resource, init) => {
 			expect(init).toEqual({
 				credentials: 'omit'
@@ -47,7 +47,7 @@ describe('Liferay.Util.fetch', () => {
 		global.fetch.mockRestore();
 	});
 
-	it('should merge default settings with given different settings', () => {
+	it('merges default settings with given different settings', () => {
 		global.fetch = jest.fn((resource, init) => {
 			expect(init).toEqual({
 				credentials: 'include',

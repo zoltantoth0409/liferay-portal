@@ -37,7 +37,7 @@ describe('MarkerBase', () => {
 	});
 
 	describe('_handleNativeEvent', () => {
-		it('should call _getNormalizedEventData with the given event', () => {
+		it('calls _getNormalizedEventData with the given event', () => {
 			markerChild._handleNativeEvent(
 				{name: 'NativeEvent'},
 				'NonNativeEvent'
@@ -51,7 +51,7 @@ describe('MarkerBase', () => {
 			]);
 		});
 
-		it('should emit an event with the given event type', () => {
+		it('emits an event with the given event type', () => {
 			markerChild._handleNativeEvent(
 				{name: 'NativeEvent'},
 				'NonNativeEvent'
@@ -61,7 +61,7 @@ describe('MarkerBase', () => {
 			expect(markerChild.emit.mock.calls[0][0]).toBe('NonNativeEvent');
 		});
 
-		it('should add the normalized event data', () => {
+		it('adds the normalized event data', () => {
 			markerChild._handleNativeEvent(
 				{name: 'NativeEvent'},
 				'NonNativeEvent'
@@ -114,7 +114,7 @@ describe('MarkerBase', () => {
 	});
 
 	describe('_getNativeMarker', () => {
-		it('should throw a not implemented error', () => {
+		it('throws a not implemented error', () => {
 			expect(() => {
 				new MarkerBase()._getNativeMarker();
 			}).toThrow();
@@ -122,7 +122,7 @@ describe('MarkerBase', () => {
 	});
 
 	describe('_getNormalizedEventData', () => {
-		it('should throw a not implemented error', () => {
+		it('throws a not implemented error', () => {
 			expect(() => {
 				new MarkerBase()._getNormalizedEventData();
 			}).toThrow();

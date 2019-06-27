@@ -29,7 +29,7 @@ describe('Field DocumentLibrary', () => {
 		}
 	});
 
-	it('should not be readOnly', () => {
+	it('is not readOnly', () => {
 		component = new DocumentLibrary({
 			...defaultDocumentLibraryConfig,
 			readOnly: false
@@ -38,7 +38,7 @@ describe('Field DocumentLibrary', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a helptext', () => {
+	it('has a helptext', () => {
 		component = new DocumentLibrary({
 			...defaultDocumentLibraryConfig,
 			tip: 'Type something'
@@ -47,7 +47,7 @@ describe('Field DocumentLibrary', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have an id', () => {
+	it('has an id', () => {
 		component = new DocumentLibrary({
 			...defaultDocumentLibraryConfig,
 			id: 'ID'
@@ -56,7 +56,7 @@ describe('Field DocumentLibrary', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a label', () => {
+	it('has a label', () => {
 		component = new DocumentLibrary({
 			...defaultDocumentLibraryConfig,
 			label: 'label'
@@ -65,7 +65,7 @@ describe('Field DocumentLibrary', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a placeholder', () => {
+	it('has a placeholder', () => {
 		component = new DocumentLibrary({
 			...defaultDocumentLibraryConfig,
 			placeholder: 'Placeholder'
@@ -74,7 +74,7 @@ describe('Field DocumentLibrary', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not be required', () => {
+	it('is not required', () => {
 		component = new DocumentLibrary({
 			...defaultDocumentLibraryConfig,
 			required: false
@@ -83,7 +83,7 @@ describe('Field DocumentLibrary', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render Label if showLabel is true', () => {
+	it('renders Label if showLabel is true', () => {
 		component = new DocumentLibrary({
 			...defaultDocumentLibraryConfig,
 			label: 'text',
@@ -93,13 +93,13 @@ describe('Field DocumentLibrary', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a spritemap', () => {
+	it('has a spritemap', () => {
 		component = new DocumentLibrary(defaultDocumentLibraryConfig);
 
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a value', () => {
+	it('has a value', () => {
 		component = new DocumentLibrary({
 			...defaultDocumentLibraryConfig,
 			value: {

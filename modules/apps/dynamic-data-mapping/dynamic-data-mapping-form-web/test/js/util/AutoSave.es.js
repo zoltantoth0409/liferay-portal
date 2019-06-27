@@ -71,7 +71,7 @@ describe('AutoSave', () => {
 		});
 	});
 
-	it('should call the saveIfNeeded function every given interval', () => {
+	it('calls the saveIfNeeded function every given interval', () => {
 		const saveIfNeededMock = jest.spyOn(component, 'saveIfNeeded');
 
 		saveIfNeededMock.mockImplementation(() => null);
@@ -83,7 +83,7 @@ describe('AutoSave', () => {
 		saveIfNeededMock.mockRestore();
 	});
 
-	it('should call save function only once when time has passed but state has not changed', () => {
+	it('calls save function only once when time has passed but state has not changed', () => {
 		const saveSpy = jest.spyOn(component, 'save');
 
 		stateSyncronizer.getState = () => {
@@ -104,7 +104,7 @@ describe('AutoSave', () => {
 		saveSpy.mockRestore();
 	});
 
-	it('should save current state hash if request is successful', () => {
+	it('saves current state hash if request is successful', () => {
 		const spy = jest.spyOn(component, 'saveStateHash');
 
 		const modifiedDate = 'date-1';
@@ -122,7 +122,7 @@ describe('AutoSave', () => {
 			.then(() => expect(spy).toHaveBeenCalledTimes(1));
 	});
 
-	it('should reload the page when session has expired', () => {
+	it('reloads the page when session has expired', () => {
 		const reloadMock = jest.spyOn(window.location, 'reload');
 
 		reloadMock.mockImplementation(() => null);
@@ -135,7 +135,7 @@ describe('AutoSave', () => {
 		});
 	});
 
-	it('should not reload the page when request failed for other reasons', () => {
+	it('does not reload the page when request failed for other reasons', () => {
 		const reloadMock = jest.spyOn(window.location, 'reload');
 
 		reloadMock.mockImplementation(() => null);
@@ -148,7 +148,7 @@ describe('AutoSave', () => {
 		});
 	});
 
-	it('should emit the "autosaved" event if request is successful', () => {
+	it('emits the "autosaved" event if request is successful', () => {
 		const spy = jest.spyOn(component, 'emit');
 
 		const modifiedDate = 'date-1';
@@ -169,7 +169,7 @@ describe('AutoSave', () => {
 		});
 	});
 
-	it('should define input ids after form is saved for the first time', () => {
+	it('defines input ids after form is saved for the first time', () => {
 		const ddmStructureIdInput = createInput('ddmStructureId');
 		const formInstanceIdInput = createInput('formInstanceId');
 

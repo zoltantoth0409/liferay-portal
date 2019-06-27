@@ -18,7 +18,7 @@ import dom from 'metal-dom';
 import getCropRegion from '../../../src/main/resources/META-INF/resources/liferay/util/get_crop_region.es';
 
 describe('Liferay.Util.getCropRegion', () => {
-	it('should return an object with original image height and width if region is an empty object', () => {
+	it('returns an object with original image height and width if region is an empty object', () => {
 		const image = {
 			naturalHeight: 438,
 			naturalWidth: 558,
@@ -37,7 +37,7 @@ describe('Liferay.Util.getCropRegion', () => {
 		});
 	});
 
-	it('should throw an error if image parameter is not an image element', () => {
+	it('throws an error if image parameter is not an image element', () => {
 		const image = dom.buildFragment('<div />');
 
 		const region = {
@@ -54,7 +54,7 @@ describe('Liferay.Util.getCropRegion', () => {
 		expect(testFn).toThrow();
 	});
 
-	it('should throw an error if region parameter is not an object', () => {
+	it('throws an error if region parameter is not an object', () => {
 		const image = {
 			naturalHeight: 438,
 			naturalWidth: 558,
@@ -72,7 +72,7 @@ describe('Liferay.Util.getCropRegion', () => {
 		expect(testFn).toThrow();
 	});
 
-	it('should return an object with coordinates set to 0 if region coordinates are negative values', () => {
+	it('returns an object with coordinates set to 0 if region coordinates are negative values', () => {
 		const image = {
 			naturalHeight: 438,
 			naturalWidth: 558,
@@ -96,7 +96,7 @@ describe('Liferay.Util.getCropRegion', () => {
 		});
 	});
 
-	it('should return an object if imagePreview parameter is an image and region parameter is an object', () => {
+	it('returns an object if imagePreview parameter is an image and region parameter is an object', () => {
 		const image = {
 			naturalHeight: 438,
 			naturalWidth: 558,

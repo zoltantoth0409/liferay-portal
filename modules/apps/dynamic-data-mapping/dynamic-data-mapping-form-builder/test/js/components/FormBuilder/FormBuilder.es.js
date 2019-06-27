@@ -153,11 +153,11 @@ describe('Builder', () => {
 		jest.clearAllTimers();
 	});
 
-	it('should render the default markup', () => {
+	it('renders the default markup', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should continue to propagate the fieldAdded event', () => {
+	it('continues to propagate the fieldAdded event', () => {
 		const {sidebar} = component.refs;
 		const spy = jest.spyOn(component, 'emit');
 
@@ -184,7 +184,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('fieldAdded', expect.anything());
 	});
 
-	it('should continue to propagate the fieldBlurred event', () => {
+	it('continues to propagate the fieldBlurred event', () => {
 		const {sidebar} = component.refs;
 		const spy = jest.spyOn(component, 'emit');
 
@@ -195,7 +195,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('sidebarFieldBlurred');
 	});
 
-	it('should continue to propagate the fieldClicked event', () => {
+	it('continues to propagate the fieldClicked event', () => {
 		const {FormRenderer} = component.refs;
 		const spy = jest.spyOn(component, 'emit');
 
@@ -210,7 +210,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
-	it('should open the sidebar when attached and there are no fields on the active page', () => {
+	it('opens the sidebar when attached and there are no fields on the active page', () => {
 		const spy = jest.spyOn(component, 'openSidebar');
 
 		component.props.pages = [{rows: [{columns: [{fields: []}]}]}];
@@ -220,7 +220,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
-	it('should open the sidebar when a field is clicked', () => {
+	it('opens the sidebar when a field is clicked', () => {
 		const {FormRenderer} = component.refs;
 		const spy = jest.spyOn(component, 'openSidebar');
 
@@ -235,7 +235,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
-	it('should continue to propagate the pageAdded event', () => {
+	it('continues to propagate the pageAdded event', () => {
 		const {FormRenderer} = component.refs;
 		const spy = jest.spyOn(component, 'emit');
 
@@ -246,7 +246,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('pageAdded');
 	});
 
-	it('should continue to propagate the pageDeleted event', () => {
+	it('continues to propagate the pageDeleted event', () => {
 		const {FormRenderer} = component.refs;
 		const spy = jest.spyOn(component, 'emit');
 
@@ -257,7 +257,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('pageDeleted', expect.anything());
 	});
 
-	it('should continue to propagate the pagesUpdated event', () => {
+	it('continues to propagate the pagesUpdated event', () => {
 		const {FormRenderer} = component.refs;
 		const spy = jest.spyOn(component, 'emit');
 
@@ -268,7 +268,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('pagesUpdated', expect.anything());
 	});
 
-	it('should continue to propagate the activePageUpdated event', () => {
+	it('continues to propagate the activePageUpdated event', () => {
 		const {FormRenderer} = component.refs;
 		const spy = jest.spyOn(component, 'emit');
 
@@ -282,7 +282,7 @@ describe('Builder', () => {
 		);
 	});
 
-	it('should continue to propagate the fieldDuplicated event', () => {
+	it('continues to propagate the fieldDuplicated event', () => {
 		const {FormRenderer} = component.refs;
 		const spy = jest.spyOn(component, 'emit');
 
@@ -293,7 +293,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('fieldDuplicated', expect.anything());
 	});
 
-	it('should continue to propagate the fieldEdited event', () => {
+	it('continues to propagate the fieldEdited event', () => {
 		const {sidebar} = component.refs;
 		const spy = jest.spyOn(component, 'emit');
 
@@ -312,7 +312,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('fieldEdited', expect.anything());
 	});
 
-	it('should continue to propagate the fieldEdited event when the edited field is predefined value', () => {
+	it('continues to propagate the fieldEdited event when the edited field is predefined value', () => {
 		const {sidebar} = component.refs;
 		const spy = jest.spyOn(component, 'emit');
 
@@ -330,7 +330,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('fieldEdited', expect.anything());
 	});
 
-	it('should continue to propagate the fieldMoved event', () => {
+	it('continues to propagate the fieldMoved event', () => {
 		const spy = jest.spyOn(component, 'emit');
 		const {FormRenderer} = component.refs;
 		const mockEvent = jest.fn();
@@ -341,7 +341,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('fieldMoved', expect.anything());
 	});
 
-	it('should open sidebar when the "pageReset" event is received', () => {
+	it('opens sidebar when the "pageReset" event is received', () => {
 		const {FormRenderer, sidebar} = component.refs;
 
 		FormRenderer.emit('pageReset');
@@ -351,7 +351,7 @@ describe('Builder', () => {
 		expect(sidebar.state.open).toBeTruthy();
 	});
 
-	it('should open sidebar when activePage changes and new page has no fields', () => {
+	it('opens sidebar when activePage changes and new page has no fields', () => {
 		const spy = jest.spyOn(component, 'openSidebar');
 
 		component.props.pages = [
@@ -367,7 +367,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
-	it('should not open sidebar when activePage changes and new page has fields', () => {
+	it('does not open sidebar when activePage changes and new page has fields', () => {
 		const spy = jest.spyOn(component, 'openSidebar');
 
 		component.props.pages = [...pages, ...pages];
@@ -378,7 +378,7 @@ describe('Builder', () => {
 		expect(spy).not.toHaveBeenCalled();
 	});
 
-	it('should show modal when fieldChangesCanceled event is trigered from sidebar', () => {
+	it('shows modal when fieldChangesCanceled event is trigered from sidebar', () => {
 		const {cancelChangesModal, sidebar} = component.refs;
 
 		sidebar.emit('fieldChangesCanceled');
@@ -392,7 +392,7 @@ describe('Builder', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should emit fieldChangesCanceled event when yes is clicked in the modal', () => {
+	it('emits fieldChangesCanceled event when yes is clicked in the modal', () => {
 		const spy = jest.spyOn(component, 'emit');
 		const {cancelChangesModal, sidebar} = component.refs;
 		const mockEvent = jest.fn();
@@ -411,7 +411,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('fieldChangesCanceled', {});
 	});
 
-	it('should show modal when trash button gets clicked', () => {
+	it('shows modal when trash button gets clicked', () => {
 		const {FormRenderer} = component.refs;
 
 		FormRenderer.emit('fieldDeleted', {
@@ -429,7 +429,7 @@ describe('Builder', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should emit deleteField event when yes is clicked in the modal', () => {
+	it('emits deleteField event when yes is clicked in the modal', () => {
 		const spy = jest.spyOn(component, 'emit');
 		const {FormRenderer} = component.refs;
 		const mockEvent = jest.fn();
@@ -448,7 +448,7 @@ describe('Builder', () => {
 		expect(spy).toHaveBeenCalledWith('fieldDeleted', expect.anything());
 	});
 
-	it('should propagate successPageChanged event', () => {
+	it('propagates successPageChanged event', () => {
 		const spy = jest.spyOn(component, 'emit');
 		const {FormRenderer} = component.refs;
 		const mockEvent = jest.fn();
@@ -464,7 +464,7 @@ describe('Builder', () => {
 		);
 	});
 
-	it('should not open sidebar when the delete current page option item is clicked', () => {
+	it('does not open sidebar when the delete current page option item is clicked', () => {
 		const spy = jest.spyOn(component, 'openSidebar');
 
 		const componentPages = [...pages, ...pages];

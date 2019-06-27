@@ -23,7 +23,7 @@ const DATE_INPUT_TESTID = 'date-input';
 describe('DateTimeInput', () => {
 	afterEach(cleanup);
 
-	it('should render type date', () => {
+	it('renders type date', () => {
 		const mockOnChange = jest.fn();
 
 		const defaultValue = '2019-01-23';
@@ -47,7 +47,7 @@ describe('DateTimeInput', () => {
 		});
 	});
 
-	it('should render now with wrong date', () => {
+	it('renders now with wrong date', () => {
 		const mockOnChange = jest.fn();
 
 		const defaultValue = '2019-01-23';

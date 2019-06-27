@@ -1,16 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Field Editor should be readOnly 1`] = `
-<div class="form-group" data-field-name="textField">
-  <div class="field-type-editor form-control input-group-container">
-    <div class="alloy-editor-container input-group" id="textFieldContainer">
-      <div class="alloy-editor alloy-editor-placeholder" contenteditable="false" id="textFieldEditorContainer" name="textFieldEditor"></div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Field Editor should have a helptext 1`] = `
+exports[`Field Editor has a helptext 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="field-type-editor form-control input-group-container">
     <div class="alloy-editor-container input-group" id="textFieldContainer">
@@ -20,7 +10,7 @@ exports[`Field Editor should have a helptext 1`] = `
 </div>
 `;
 
-exports[`Field Editor should have a key 1`] = `
+exports[`Field Editor has a key 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="field-type-editor form-control input-group-container">
     <div class="alloy-editor-container input-group" id="textFieldContainer">
@@ -30,7 +20,7 @@ exports[`Field Editor should have a key 1`] = `
 </div>
 `;
 
-exports[`Field Editor should have a label 1`] = `
+exports[`Field Editor has a label 1`] = `
 <div class="form-group" data-field-name="textField"><label>label </label>
   <div class="field-type-editor form-control input-group-container">
     <div class="alloy-editor-container input-group" id="textFieldContainer">
@@ -40,7 +30,7 @@ exports[`Field Editor should have a label 1`] = `
 </div>
 `;
 
-exports[`Field Editor should have a placeholder 1`] = `
+exports[`Field Editor has a placeholder 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="field-type-editor form-control input-group-container">
     <div class="alloy-editor-container input-group" id="textFieldContainer">
@@ -50,7 +40,7 @@ exports[`Field Editor should have a placeholder 1`] = `
 </div>
 `;
 
-exports[`Field Editor should have a spritemap 1`] = `
+exports[`Field Editor has a spritemap 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="field-type-editor form-control input-group-container">
     <div class="alloy-editor-container input-group" id="textFieldContainer">
@@ -60,7 +50,7 @@ exports[`Field Editor should have a spritemap 1`] = `
 </div>
 `;
 
-exports[`Field Editor should have a value 1`] = `
+exports[`Field Editor has a value 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="field-type-editor form-control input-group-container">
     <div class="alloy-editor-container input-group" id="textFieldContainer">
@@ -70,7 +60,7 @@ exports[`Field Editor should have a value 1`] = `
 </div>
 `;
 
-exports[`Field Editor should have an id 1`] = `
+exports[`Field Editor has an id 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="field-type-editor form-control input-group-container">
     <div class="alloy-editor-container input-group" id="textFieldContainer">
@@ -80,7 +70,7 @@ exports[`Field Editor should have an id 1`] = `
 </div>
 `;
 
-exports[`Field Editor should not be required 1`] = `
+exports[`Field Editor is not required 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="field-type-editor form-control input-group-container">
     <div class="alloy-editor-container input-group" id="textFieldContainer">
@@ -90,7 +80,17 @@ exports[`Field Editor should not be required 1`] = `
 </div>
 `;
 
-exports[`Field Editor should render Label if showLabel is true 1`] = `
+exports[`Field Editor is readOnly 1`] = `
+<div class="form-group" data-field-name="textField">
+  <div class="field-type-editor form-control input-group-container">
+    <div class="alloy-editor-container input-group" id="textFieldContainer">
+      <div class="alloy-editor alloy-editor-placeholder" contenteditable="false" id="textFieldEditorContainer" name="textFieldEditor"></div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Field Editor renders Label if showLabel is true 1`] = `
 <div class="form-group" data-field-name="textField"><label>text </label>
   <div class="field-type-editor form-control input-group-container">
     <div class="alloy-editor-container input-group" id="textFieldContainer">
@@ -100,7 +100,7 @@ exports[`Field Editor should render Label if showLabel is true 1`] = `
 </div>
 `;
 
-exports[`Field Editor should trigger AlloyEditor actionPerformed method 1`] = `
+exports[`Field Editor triggers AlloyEditor actionPerformed method 1`] = `
 <div class="form-group" data-field-name="textField">
   <div class="field-type-editor form-control input-group-container">
     <div class="alloy-editor-container input-group" id="textFieldContainer">

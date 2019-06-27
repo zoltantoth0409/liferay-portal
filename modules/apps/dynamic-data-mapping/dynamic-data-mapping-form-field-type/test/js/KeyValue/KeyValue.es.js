@@ -24,7 +24,7 @@ describe('KeyValue', () => {
 		}
 	});
 
-	it('should be not edidable', () => {
+	it('is not edidable', () => {
 		component = new KeyValue({
 			name: 'keyValue',
 			readOnly: false,
@@ -34,7 +34,7 @@ describe('KeyValue', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a helptext', () => {
+	it('has a helptext', () => {
 		component = new KeyValue({
 			name: 'keyValue',
 			spritemap,
@@ -44,7 +44,7 @@ describe('KeyValue', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have an id', () => {
+	it('has an id', () => {
 		component = new KeyValue({
 			id: 'ID',
 			name: 'keyValue',
@@ -54,7 +54,7 @@ describe('KeyValue', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a label', () => {
+	it('has a label', () => {
 		component = new KeyValue({
 			label: 'label',
 			name: 'keyValue',
@@ -64,7 +64,7 @@ describe('KeyValue', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a predefined Value', () => {
+	it('has a predefined Value', () => {
 		component = new KeyValue({
 			name: 'keyValue',
 			placeholder: 'Option 1',
@@ -74,7 +74,7 @@ describe('KeyValue', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not be required', () => {
+	it('is not required', () => {
 		component = new KeyValue({
 			name: 'keyValue',
 			required: false,
@@ -84,7 +84,7 @@ describe('KeyValue', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render Label if showLabel is true', () => {
+	it('renders Label if showLabel is true', () => {
 		component = new KeyValue({
 			label: 'text',
 			name: 'keyValue',
@@ -95,7 +95,7 @@ describe('KeyValue', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a spritemap', () => {
+	it('has a spritemap', () => {
 		component = new KeyValue({
 			name: 'keyValue',
 			spritemap
@@ -104,7 +104,7 @@ describe('KeyValue', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a value', () => {
+	it('has a value', () => {
 		component = new KeyValue({
 			name: 'keyValue',
 			spritemap,
@@ -114,7 +114,7 @@ describe('KeyValue', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render component with a key', () => {
+	it('renders component with a key', () => {
 		component = new KeyValue({
 			keyword: 'key',
 			name: 'keyValue',

@@ -84,7 +84,7 @@ describe('RuleList', () => {
 		}
 	});
 
-	it('should return the field label for each action', () => {
+	it('returns the field label for each action', () => {
 		component = new RuleList(configDefault);
 
 		const contextLabel =
@@ -97,7 +97,7 @@ describe('RuleList', () => {
 		expect(actionLabel).toEqual(contextLabel);
 	});
 
-	it('should show message when rule list is empty', () => {
+	it('shows message when rule list is empty', () => {
 		component = new RuleList({
 			pages,
 			rules: [],

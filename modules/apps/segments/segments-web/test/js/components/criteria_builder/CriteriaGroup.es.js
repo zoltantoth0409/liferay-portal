@@ -21,7 +21,7 @@ const connectDnd = jest.fn(el => el);
 describe('CriteriaGroup', () => {
 	afterEach(cleanup);
 
-	it('should render', () => {
+	it('renders', () => {
 		const OriginalCriteriaGroup = CriteriaGroup.DecoratedComponent;
 
 		const {asFragment} = render(
