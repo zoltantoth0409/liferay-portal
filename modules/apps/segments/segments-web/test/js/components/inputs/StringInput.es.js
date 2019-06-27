@@ -26,13 +26,13 @@ const defaultValue = 'defaultValue';
 describe('StringInput', () => {
 	afterEach(cleanup);
 
-	it('should render with type string', () => {
+	it('renders with type string', () => {
 		const {asFragment} = render(<StringInput onChange={jest.fn()} />);
 
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('should render type string with value', () => {
+	it('renders type string with value', () => {
 		const mockOnChange = jest.fn();
 
 		const {asFragment, getByTestId} = render(
@@ -50,7 +50,7 @@ describe('StringInput', () => {
 		});
 	});
 
-	it('should render type string with options', () => {
+	it('renders type string with options', () => {
 		const mockOnChange = jest.fn();
 
 		const options = [

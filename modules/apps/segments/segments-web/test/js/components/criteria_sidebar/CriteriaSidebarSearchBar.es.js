@@ -52,7 +52,7 @@ class TestComponent extends Component {
 describe('CriteriaSidebarSearchBar', () => {
 	afterEach(cleanup);
 
-	it('should render', () => {
+	it('renders', () => {
 		const {asFragment} = render(
 			<CriteriaSidebarSearchBar onChange={jest.fn()} />
 		);
@@ -60,7 +60,7 @@ describe('CriteriaSidebarSearchBar', () => {
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('should render with a blank search input with no search value', () => {
+	it('renders with a blank search input with no search value', () => {
 		const {getByTestId} = render(
 			<CriteriaSidebarSearchBar onChange={jest.fn()} />
 		);
@@ -70,7 +70,7 @@ describe('CriteriaSidebarSearchBar', () => {
 		expect(searchInput.value).toEqual('');
 	});
 
-	it('should render with the value in the search input', () => {
+	it('renders with the value in the search input', () => {
 		const {getByTestId} = render(
 			<CriteriaSidebarSearchBar
 				onChange={jest.fn()}
@@ -83,7 +83,7 @@ describe('CriteriaSidebarSearchBar', () => {
 		expect(searchInput.value).toEqual('test');
 	});
 
-	it('should render a button with a times icon when an input is entered', () => {
+	it('renders a button with a times icon when an input is entered', () => {
 		const {getByTestId} = render(
 			<CriteriaSidebarSearchBar
 				onChange={jest.fn()}
@@ -96,7 +96,7 @@ describe('CriteriaSidebarSearchBar', () => {
 		expect(searchButton).toMatchSnapshot();
 	});
 
-	it('should clear the input when the times icon is clicked', () => {
+	it('clears the input when the times icon is clicked', () => {
 		const {getByTestId} = render(<TestComponent initialValue='test' />);
 
 		const searchButton = getByTestId(SEARCH_BUTTON_TESTID);

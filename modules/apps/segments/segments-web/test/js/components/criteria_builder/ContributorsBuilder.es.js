@@ -182,7 +182,7 @@ const propertyGroups = [
 describe('ContributorsBuilder', () => {
 	afterEach(cleanup);
 
-	it('should render builder with sidebar', () => {
+	it('renders builder with sidebar', () => {
 		const editing = true;
 
 		const {asFragment} = render(
@@ -200,7 +200,7 @@ describe('ContributorsBuilder', () => {
 		expect(asFragment()).toMatchSnapshot('initialRenderEditing');
 	});
 
-	it('should render builder without sidebar', () => {
+	it('renders builder without sidebar', () => {
 		const editing = false;
 
 		const {asFragment} = render(

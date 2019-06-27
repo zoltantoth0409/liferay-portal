@@ -45,12 +45,12 @@ describe('Popover', () => {
 		fetch.resetMocks();
 	});
 
-	it('should render the default markup', () => {
+	it('renders the default markup', () => {
 		component = new Popover(props);
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render popover opened', () => {
+	it('renders popover opened', () => {
 		component = new Popover({
 			...props,
 			visible: true
@@ -59,7 +59,7 @@ describe('Popover', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should open when the visible property changes', () => {
+	it('opens when the visible property changes', () => {
 		component = new Popover(props);
 
 		jest.runAllTimers();
@@ -78,7 +78,7 @@ describe('Popover', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should open when alignedElement is clicked', () => {
+	it('opens when alignedElement is clicked', () => {
 		component = new Popover(props);
 
 		jest.runAllTimers();
@@ -89,7 +89,7 @@ describe('Popover', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should close when it is already opened and the alignedElement is clicked', () => {
+	it('closes when it is already opened and the alignedElement is clicked', () => {
 		component = new Popover({
 			...props,
 			visible: true
@@ -103,7 +103,7 @@ describe('Popover', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should close when document has mousedown event', () => {
+	it('closes when document has mousedown event', () => {
 		component = new Popover({
 			...props,
 			visible: true

@@ -32,7 +32,7 @@ describe('DatePicker', () => {
 		jest.useFakeTimers();
 	});
 
-	it('should have a helptext', () => {
+	it('has a helptext', () => {
 		component = new DatePicker({
 			...defaultDatePickerConfig,
 			tip: 'Type something'
@@ -41,7 +41,7 @@ describe('DatePicker', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have an id', () => {
+	it('has an id', () => {
 		component = new DatePicker({
 			...defaultDatePickerConfig,
 			id: 'ID'
@@ -50,7 +50,7 @@ describe('DatePicker', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a label', () => {
+	it('has a label', () => {
 		component = new DatePicker({
 			...defaultDatePickerConfig,
 			label: 'label'
@@ -59,7 +59,7 @@ describe('DatePicker', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a predefinedValue', () => {
+	it('has a predefinedValue', () => {
 		component = new DatePicker({
 			...defaultDatePickerConfig,
 			predefinedValue: '05/05/2019'
@@ -68,7 +68,7 @@ describe('DatePicker', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should expand the datepicker when clicking the calendar icon', () => {
+	it('expands the datepicker when clicking the calendar icon', () => {
 		component = new DatePicker({
 			...defaultDatePickerConfig
 		});
@@ -87,7 +87,7 @@ describe('DatePicker', () => {
 		expect(spy).toBeCalled();
 	});
 
-	it('should fill the input with the current date selected on Date Picker', () => {
+	it('fills the input with the current date selected on Date Picker', () => {
 		component = new DatePicker({
 			...defaultDatePickerConfig
 		});
@@ -111,7 +111,7 @@ describe('DatePicker', () => {
 		expect(spy).toHaveBeenCalledWith('fieldEdited', expect.anything());
 	});
 
-	it('should decrease the current month when the back arrow is selected on Date Picker', () => {
+	it('decreases the current month when the back arrow is selected on Date Picker', () => {
 		component = new DatePicker({
 			...defaultDatePickerConfig
 		});
@@ -146,7 +146,7 @@ describe('DatePicker', () => {
 		}
 	});
 
-	it('should increase the current month when the forward arrow is selected on Date Picker', () => {
+	it('increases the current month when the forward arrow is selected on Date Picker', () => {
 		component = new DatePicker({
 			...defaultDatePickerConfig
 		});

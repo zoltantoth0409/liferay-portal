@@ -21,7 +21,7 @@ const connectDnd = jest.fn(el => el);
 describe('DropZone', () => {
 	afterEach(cleanup);
 
-	it('should render', () => {
+	it('renders', () => {
 		const OriginalDropZone = DropZone.DecoratedComponent;
 
 		const {asFragment} = render(

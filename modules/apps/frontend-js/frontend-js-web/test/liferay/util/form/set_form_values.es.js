@@ -19,7 +19,7 @@ import getFormElement from '../../../../src/main/resources/META-INF/resources/li
 import setFormValues from '../../../../src/main/resources/META-INF/resources/liferay/util/form/set_form_values.es';
 
 describe('Liferay.Util.setFormValues', () => {
-	it('should set the given values of form elements', () => {
+	it('sets the given values of form elements', () => {
 		const fragment = dom.buildFragment(`
 					<form data-fm-namespace="_com_liferay_test_portlet_" id="fm">
 						<input name="_com_liferay_test_portlet_foo" type="text" value="abc">

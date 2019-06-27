@@ -19,7 +19,7 @@ import {
 
 describe('LayoutProvider/util/rules', () => {
 	describe('renameFieldInsideExpression(expression, fieldName, newFieldName)', () => {
-		it('should rename a field name used inside an expression', () => {
+		it('renames a field name used inside an expression', () => {
 			const expression = '2*[FieldName1]+sum([FieldName2])';
 
 			expect(
@@ -40,7 +40,7 @@ describe('LayoutProvider/util/rules', () => {
 	});
 
 	describe('updateRulesFieldName(rules, fieldName, newFieldName)', () => {
-		it('should rename a field name used inside a rule condition operand of type "field"', () => {
+		it('renames a field name used inside a rule condition operand of type "field"', () => {
 			const rules = [
 				{
 					actions: [],
@@ -83,7 +83,7 @@ describe('LayoutProvider/util/rules', () => {
 			);
 		});
 
-		it('should rename a field name used inside a rule action target', () => {
+		it('renames a field name used inside a rule action target', () => {
 			const rules = [
 				{
 					actions: [
@@ -108,7 +108,7 @@ describe('LayoutProvider/util/rules', () => {
 			expect(updatedRules[0].actions[1].target).toEqual('FieldName2');
 		});
 
-		it('should rename a field name used inside an expression of rule of type "calculate"', () => {
+		it('renames a field name used inside an expression of rule of type "calculate"', () => {
 			const rules = [
 				{
 					actions: [

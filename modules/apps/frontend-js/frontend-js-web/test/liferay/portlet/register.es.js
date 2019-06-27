@@ -17,7 +17,7 @@ import register from '../../../src/main/resources/META-INF/resources/liferay/por
 
 describe('PortletHub', () => {
 	describe('register', () => {
-		it('should throw error if called without portletId', () => {
+		it('throws error if called without portletId', () => {
 			expect.assertions(1);
 
 			const testFn = () => register();
@@ -25,7 +25,7 @@ describe('PortletHub', () => {
 			expect(testFn).toThrow();
 		});
 
-		it('should return an instance of PortletInit', () => {
+		it('returns an instance of PortletInit', () => {
 			return register('PortletA').then(hub => {
 				expect(hub).toBeInstanceOf(PortletInit);
 			});

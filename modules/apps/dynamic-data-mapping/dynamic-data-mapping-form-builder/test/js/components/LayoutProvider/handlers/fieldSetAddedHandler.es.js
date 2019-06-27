@@ -17,7 +17,7 @@ import mockPages from 'mock/mockPages.es';
 
 describe('LayoutProvider/handlers/fieldSetAddedHandler', () => {
 	describe('handleFieldSetAdded(props, state, event)', () => {
-		it('should insert the fieldset page to the current page', () => {
+		it('inserts the fieldset page to the current page', () => {
 			const event = {
 				fieldSetPage: [
 					{

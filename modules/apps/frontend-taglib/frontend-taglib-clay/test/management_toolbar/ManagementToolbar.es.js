@@ -57,13 +57,13 @@ describe('ManagementToolbar', () => {
 		});
 	});
 
-	it('should listen to the rowToggled event from the registered search container', () => {
+	it('listens to the rowToggled event from the registered search container', () => {
 		searchContainer.fire('rowToggled');
 
 		expect(searchContainerCallbacks.rowToggled).toHaveBeenCalled();
 	});
 
-	it('should deselect all searchContainer rows', () => {
+	it('deselects all searchContainer rows', () => {
 		managementToolbar._handleClearSelectionButtonClicked();
 
 		expect(searchContainer.select.toggleAllRows).toHaveBeenCalledWith(
@@ -72,7 +72,7 @@ describe('ManagementToolbar', () => {
 		);
 	});
 
-	it('should select all searchContainer rows', () => {
+	it('selects all searchContainer rows', () => {
 		managementToolbar._handleSelectAllButtonClicked();
 
 		expect(searchContainer.select.toggleAllRows).toHaveBeenCalledWith(
@@ -81,7 +81,7 @@ describe('ManagementToolbar', () => {
 		);
 	});
 
-	it('should toggle the searchContainer selected rows', () => {
+	it('toggles the searchContainer selected rows', () => {
 		managementToolbar._handleSelectPageCheckboxChanged({
 			data: {
 				checked: true

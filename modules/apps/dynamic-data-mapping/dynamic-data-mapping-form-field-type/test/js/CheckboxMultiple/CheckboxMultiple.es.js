@@ -28,7 +28,7 @@ describe('Field Checkbox Multiple', () => {
 		}
 	});
 
-	it('should be not edidable', () => {
+	it('is not edidable', () => {
 		component = new CheckboxMultiple({
 			readOnly: false,
 			spritemap
@@ -37,7 +37,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a helptext', () => {
+	it('has a helptext', () => {
 		component = new CheckboxMultiple({
 			spritemap,
 			tip: 'Type something'
@@ -46,7 +46,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have an id', () => {
+	it('has an id', () => {
 		component = new CheckboxMultiple({
 			id: 'ID',
 			spritemap
@@ -55,7 +55,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a label', () => {
+	it('has a label', () => {
 		component = new CheckboxMultiple({
 			label: 'label',
 			spritemap
@@ -64,7 +64,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a predefined Value', () => {
+	it('has a predefined Value', () => {
 		component = new CheckboxMultiple({
 			placeholder: 'Option 1',
 			spritemap
@@ -73,7 +73,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not be required', () => {
+	it('is not required', () => {
 		component = new CheckboxMultiple({
 			required: false,
 			spritemap
@@ -82,7 +82,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should be shown as a switcher', () => {
+	it('is shown as a switcher', () => {
 		component = new CheckboxMultiple({
 			showAsSwitcher: true,
 			spritemap
@@ -91,7 +91,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should be shown as checkbox', () => {
+	it('is shown as checkbox', () => {
 		component = new CheckboxMultiple({
 			showAsSwitcher: false,
 			spritemap
@@ -100,7 +100,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render Label if showLabel is true', () => {
+	it('renders Label if showLabel is true', () => {
 		component = new CheckboxMultiple({
 			label: 'text',
 			showLabel: true,
@@ -110,7 +110,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a spritemap', () => {
+	it('has a spritemap', () => {
 		component = new CheckboxMultiple({
 			spritemap
 		});
@@ -118,7 +118,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a value', () => {
+	it('has a value', () => {
 		component = new CheckboxMultiple({
 			spritemap,
 			value: true
@@ -127,7 +127,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a key', () => {
+	it('has a key', () => {
 		component = new CheckboxMultiple({
 			key: 'key',
 			spritemap
@@ -136,7 +136,7 @@ describe('Field Checkbox Multiple', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should emit field edit event on field change', done => {
+	it('emits field edit event on field change', done => {
 		const handleFieldEdited = jest.fn();
 
 		const events = {fieldEdited: handleFieldEdited};
@@ -161,7 +161,7 @@ describe('Field Checkbox Multiple', () => {
 		jest.runAllTimers();
 	});
 
-	it('should propagate the field edit event on field change', () => {
+	it('propagates the field edit event on field change', () => {
 		component = new CheckboxMultiple({
 			spritemap
 		});

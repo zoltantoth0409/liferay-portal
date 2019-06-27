@@ -19,7 +19,7 @@ import RulesSupport from 'source/components/RuleBuilder/RulesSupport.es';
 
 describe('LayoutProvider/handlers/fieldDeletedHandler', () => {
 	describe('handleFieldDeleted(state, event)', () => {
-		it('should call removeRow() when row is left with no fields after delete operation', () => {
+		it('calls removeRow() when row is left with no fields after delete operation', () => {
 			const event = {
 				columnIndex: 0,
 				pageIndex: 0,
@@ -41,7 +41,7 @@ describe('LayoutProvider/handlers/fieldDeletedHandler', () => {
 			removeRowSpy.mockRestore();
 		});
 
-		it('should call clearAllConditionFieldValues() when deleting a field used as the first operand of a condition', () => {
+		it('calls clearAllConditionFieldValues() when deleting a field used as the first operand of a condition', () => {
 			const event = {
 				columnIndex: 0,
 				pageIndex: 0,

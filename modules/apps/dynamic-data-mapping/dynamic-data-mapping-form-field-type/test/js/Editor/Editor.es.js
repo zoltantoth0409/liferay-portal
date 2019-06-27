@@ -29,7 +29,7 @@ describe('Field Editor', () => {
 		}
 	});
 
-	it('should be readOnly', () => {
+	it('is readOnly', () => {
 		component = new Editor({
 			...defaultEditorConfig,
 			readOnly: true
@@ -38,7 +38,7 @@ describe('Field Editor', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a helptext', () => {
+	it('has a helptext', () => {
 		component = new Editor({
 			...defaultEditorConfig,
 			tip: 'Type something'
@@ -47,7 +47,7 @@ describe('Field Editor', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have an id', () => {
+	it('has an id', () => {
 		component = new Editor({
 			...defaultEditorConfig,
 			id: 'ID'
@@ -56,7 +56,7 @@ describe('Field Editor', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a label', () => {
+	it('has a label', () => {
 		component = new Editor({
 			...defaultEditorConfig,
 			label: 'label'
@@ -65,7 +65,7 @@ describe('Field Editor', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a placeholder', () => {
+	it('has a placeholder', () => {
 		component = new Editor({
 			...defaultEditorConfig,
 			placeholder: 'Placeholder'
@@ -74,7 +74,7 @@ describe('Field Editor', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not be required', () => {
+	it('is not required', () => {
 		component = new Editor({
 			...defaultEditorConfig,
 			required: false
@@ -83,7 +83,7 @@ describe('Field Editor', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render Label if showLabel is true', () => {
+	it('renders Label if showLabel is true', () => {
 		component = new Editor({
 			...defaultEditorConfig,
 			label: 'text',
@@ -93,13 +93,13 @@ describe('Field Editor', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a spritemap', () => {
+	it('has a spritemap', () => {
 		component = new Editor(defaultEditorConfig);
 
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a value', () => {
+	it('has a value', () => {
 		component = new Editor({
 			...defaultEditorConfig,
 			value: 'value'
@@ -108,7 +108,7 @@ describe('Field Editor', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a key', () => {
+	it('has a key', () => {
 		component = new Editor({
 			...defaultEditorConfig,
 			key: 'key'
@@ -117,7 +117,7 @@ describe('Field Editor', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should emit a change value when onChangeEditor method is triggered', () => {
+	it('emits a change value when onChangeEditor method is triggered', () => {
 		component = new Editor({
 			...defaultEditorConfig
 		});
@@ -129,7 +129,7 @@ describe('Field Editor', () => {
 		expect(spy).toBeCalled();
 	});
 
-	it('should trigger AlloyEditor actionPerformed method', () => {
+	it('triggers AlloyEditor actionPerformed method', () => {
 		component = new Editor({
 			...defaultEditorConfig
 		});

@@ -24,7 +24,7 @@ describe('Validation', () => {
 		}
 	});
 
-	it('should render checkbox to enable Validation', () => {
+	it('renders checkbox to enable Validation', () => {
 		component = new Validation({
 			dataType: 'string',
 			label: 'Validator',
@@ -35,7 +35,7 @@ describe('Validation', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should enable validation after click on toogle', done => {
+	it('enables validation after click on toogle', done => {
 		jest.useFakeTimers();
 
 		component = new Validation({
@@ -61,7 +61,7 @@ describe('Validation', () => {
 		jest.runAllTimers();
 	});
 
-	it('should render parameter field with TextField element', done => {
+	it('renders parameter field with TextField element', done => {
 		jest.useFakeTimers();
 
 		component = new Validation({
@@ -87,7 +87,7 @@ describe('Validation', () => {
 		jest.runAllTimers();
 	});
 
-	it('should render parameter field with Numeric element', done => {
+	it('renders parameter field with Numeric element', done => {
 		jest.useFakeTimers();
 
 		component = new Validation({
@@ -114,7 +114,7 @@ describe('Validation', () => {
 		jest.runAllTimers();
 	});
 
-	it('should render parameter field with Text element and then with Numeric after update dataType', done => {
+	it('renders parameter field with Text element and then with Numeric after update dataType', done => {
 		jest.useFakeTimers();
 
 		component = new Validation({
@@ -145,7 +145,7 @@ describe('Validation', () => {
 
 	describe('Regression Tests', () => {
 		describe('LPS-88007', () => {
-			it('should not render "Show Error Message" and "The Value" as required fields', () => {
+			it('does not render "Show Error Message" and "The Value" as required fields', () => {
 				jest.useFakeTimers();
 
 				component = new Validation({

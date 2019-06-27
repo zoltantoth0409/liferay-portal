@@ -23,7 +23,7 @@ const SOURCE_ICON_TESTID = 'source-icon';
 describe('SegmentEdit', () => {
 	afterEach(cleanup);
 
-	it('should render', () => {
+	it('renders', () => {
 		const {asFragment} = render(
 			<SegmentEdit
 				availableLocales={{
@@ -41,7 +41,7 @@ describe('SegmentEdit', () => {
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('should render with an analytics cloud icon', () => {
+	it('renders with an analytics cloud icon', () => {
 		const {icon, name} = SOURCES.ASAH_FARO_BACKEND;
 
 		const {getByTestId} = render(
@@ -64,7 +64,7 @@ describe('SegmentEdit', () => {
 		expect(image).toHaveAttribute('src', icon);
 	});
 
-	it('should render with a dxp icon', () => {
+	it('renders with a dxp icon', () => {
 		const {icon, name} = SOURCES.DEFAULT;
 
 		const {getByTestId} = render(
@@ -87,7 +87,7 @@ describe('SegmentEdit', () => {
 		expect(image).toHaveAttribute('src', icon);
 	});
 
-	it('should render with edit buttons if the user has update permissions', () => {
+	it('renders with edit buttons if the user has update permissions', () => {
 		const hasUpdatePermission = true;
 
 		const {asFragment} = render(
@@ -108,7 +108,7 @@ describe('SegmentEdit', () => {
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('should render without edit buttons if the user does not have update permissions', () => {
+	it('renders without edit buttons if the user does not have update permissions', () => {
 		const hasUpdatePermission = false;
 
 		const {asFragment} = render(
@@ -129,7 +129,7 @@ describe('SegmentEdit', () => {
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('should render with given values', () => {
+	it('renders with given values', () => {
 		const contributors = [
 			{
 				conjunctionId: 'and',

@@ -176,7 +176,7 @@ describe('Sidebar', () => {
 		}
 	});
 
-	it('should render the default markup', () => {
+	it('renders the default markup', () => {
 		component = new Sidebar({
 			fieldTypes,
 			spritemap
@@ -185,7 +185,7 @@ describe('Sidebar', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render a Sidebar open', () => {
+	it('renders a Sidebar open', () => {
 		component = new Sidebar({
 			fieldTypes,
 			spritemap
@@ -197,7 +197,7 @@ describe('Sidebar', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render a Sidebar closed', () => {
+	it('renders a Sidebar closed', () => {
 		component = new Sidebar({
 			fieldTypes,
 			spritemap
@@ -209,7 +209,7 @@ describe('Sidebar', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render a Sidebar with fieldTypes', () => {
+	it('renders a Sidebar with fieldTypes', () => {
 		component = new Sidebar({
 			fieldTypes,
 			spritemap
@@ -222,7 +222,7 @@ describe('Sidebar', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should close the sidebar when the mouse down event is not on it', () => {
+	it('closes the sidebar when the mouse down event is not on it', () => {
 		component = new Sidebar({
 			fieldTypes,
 			spritemap
@@ -239,7 +239,7 @@ describe('Sidebar', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should emit fieldMoved when the dragEnd method is called', () => {
+	it('emits fieldMoved when the dragEnd method is called', () => {
 		component = new Sidebar({
 			fieldTypes,
 			spritemap
@@ -281,7 +281,7 @@ describe('Sidebar', () => {
 		expect(spy).toHaveBeenCalledWith('fieldAdded', expect.anything());
 	});
 
-	it('should emit the fieldDuplicated event when the duplicate field option is clicked on the sidebar settings', () => {
+	it('emits the fieldDuplicated event when the duplicate field option is clicked on the sidebar settings', () => {
 		component = new Sidebar({
 			fieldTypes,
 			focusedField,
@@ -305,7 +305,7 @@ describe('Sidebar', () => {
 		expect(spy).toHaveBeenCalledWith('fieldDuplicated', expect.anything());
 	});
 
-	it('should emit the fieldDeleted event when the delete field option is clicked on the sidebar settings', () => {
+	it('emits the fieldDeleted event when the delete field option is clicked on the sidebar settings', () => {
 		component = new Sidebar({
 			fieldTypes,
 			focusedField,
@@ -329,7 +329,7 @@ describe('Sidebar', () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
-	it('should emit the fieldChangesCanceled event when the cancel field chages option is clicked on the sidebar settings', () => {
+	it('emits the fieldChangesCanceled event when the cancel field chages option is clicked on the sidebar settings', () => {
 		component = new Sidebar({
 			fieldTypes,
 			focusedField,
@@ -353,7 +353,7 @@ describe('Sidebar', () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
-	it('should render a Sidebar with spritemap', () => {
+	it('renders a Sidebar with spritemap', () => {
 		component = new Sidebar({
 			fieldTypes,
 			spritemap
@@ -366,7 +366,7 @@ describe('Sidebar', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should close the sidebar in edition mode', () => {
+	it('closes the sidebar in edition mode', () => {
 		const focusedField = mockFieldType;
 
 		component = new Sidebar({
@@ -382,7 +382,7 @@ describe('Sidebar', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should close the sidebar in edition mode', () => {
+	it('closes the sidebar in edition mode', () => {
 		const focusedField = mockFieldType;
 
 		component = new Sidebar({
@@ -407,7 +407,7 @@ describe('Sidebar', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should propagates evaluator changed event', () => {
+	it('propagates evaluator changed event', () => {
 		const focusedField = mockFieldType;
 
 		component = new Sidebar({
@@ -430,7 +430,7 @@ describe('Sidebar', () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
-	it('should propagates field edited event', () => {
+	it('propagates field edited event', () => {
 		const focusedField = mockFieldType;
 
 		component = new Sidebar({
@@ -452,7 +452,7 @@ describe('Sidebar', () => {
 	});
 
 	describe('Interaction with markup', () => {
-		it('should close Sidebar when click the button close', () => {
+		it('closes Sidebar when click the button close', () => {
 			component = new Sidebar({
 				fieldTypes,
 				spritemap
@@ -475,7 +475,7 @@ describe('Sidebar', () => {
 	});
 
 	describe('Changing field type', () => {
-		it('should always be enabled', () => {
+		it('is always be enabled', () => {
 			component = new Sidebar({
 				fieldTypes,
 				focusedField: mockFieldType,
@@ -487,7 +487,7 @@ describe('Sidebar', () => {
 			expect(component.isChangeFieldTypeEnabled()).toBeTruthy();
 		});
 
-		it('should keep basic properties after changing field type', done => {
+		it('keeps basic properties after changing field type', done => {
 			const {settingsContext} = mockFieldType;
 			let {pages} = settingsContext;
 
@@ -526,7 +526,7 @@ describe('Sidebar', () => {
 			component.changeFieldType('checkbox');
 		});
 
-		it('should not keep validation settings between field type', done => {
+		it('does not keep validation settings between field type', done => {
 			const {settingsContext} = mockFieldType;
 			let {pages} = settingsContext;
 
@@ -559,7 +559,7 @@ describe('Sidebar', () => {
 			component.changeFieldType('checkbox');
 		});
 
-		it('should emit an event with new field type settings', done => {
+		it('emits an event with new field type settings', done => {
 			component = new Sidebar({
 				fieldTypes,
 				focusedField: mockFieldType,

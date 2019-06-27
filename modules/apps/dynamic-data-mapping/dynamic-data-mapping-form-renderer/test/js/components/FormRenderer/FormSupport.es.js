@@ -41,7 +41,7 @@ describe('FormSupport', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should return an implementation of a row for the pages', () => {
+	it('returns an implementation of a row for the pages', () => {
 		const row = [
 			{
 				spritemap: 'icons.svg',
@@ -65,7 +65,7 @@ describe('FormSupport', () => {
 		});
 	});
 
-	it('should get a specific field through the pages', () => {
+	it('gets a specific field through the pages', () => {
 		const indexColumn = 0;
 		const indexPage = 0;
 		const indexRow = 0;
@@ -95,7 +95,7 @@ describe('FormSupport', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should add a new fields to column void', () => {
+	it('adds a new fields to column void', () => {
 		const columnIndex = 2;
 		const fields = [
 			{
@@ -117,7 +117,7 @@ describe('FormSupport', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should remove a column from pages and reorder', () => {
+	it('removes a column from pages and reorder', () => {
 		const columnIndex = 1;
 		const pageIndex = 0;
 		const rowIndex = 1;
@@ -127,7 +127,7 @@ describe('FormSupport', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should remove a fields to column from pages', () => {
+	it('removes a fields to column from pages', () => {
 		const columnIndex = 1;
 		const pageIndex = 0;
 		const rowIndex = 1;
@@ -137,7 +137,7 @@ describe('FormSupport', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should remove a row from pages and reorder', () => {
+	it('removes a row from pages and reorder', () => {
 		const pageIndex = 0;
 		const rowIndex = 1;
 
@@ -146,7 +146,7 @@ describe('FormSupport', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should get a column from pages', () => {
+	it('gets a column from pages', () => {
 		const columnIndex = 1;
 		const pageIndex = 0;
 		const rowIndex = 1;
@@ -156,7 +156,7 @@ describe('FormSupport', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should get a row from pages', () => {
+	it('gets a row from pages', () => {
 		const pageIndex = 0;
 		const rowIndex = 1;
 
@@ -165,7 +165,7 @@ describe('FormSupport', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should return true if there are fields in a row', () => {
+	it('returns true if there are fields in a row', () => {
 		const pageIndex = 0;
 		const rowIndex = 0;
 
@@ -174,7 +174,7 @@ describe('FormSupport', () => {
 		).toBeTruthy();
 	});
 
-	it('should return false if there are fields in a row', () => {
+	it('returns false if there are fields in a row', () => {
 		const pageIndex = 0;
 		const rowIndex = 0;
 
@@ -187,7 +187,7 @@ describe('FormSupport', () => {
 		).toBeFalsy();
 	});
 
-	it('should extract the location of the field through the element', () => {
+	it('extracts the location of the field through the element', () => {
 		const element = createElement({
 			attributes: [
 				{
@@ -213,7 +213,7 @@ describe('FormSupport', () => {
 		});
 	});
 
-	it('should extract the location of the row through the element', () => {
+	it('extracts the location of the row through the element', () => {
 		const element = createElement({
 			attributes: [
 				{
@@ -239,7 +239,7 @@ describe('FormSupport', () => {
 		});
 	});
 
-	it('should update a field', () => {
+	it('updates a field', () => {
 		const properties = {
 			label: 'Foo',
 			type: 'radio'

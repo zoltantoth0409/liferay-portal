@@ -70,7 +70,7 @@ describe('Calculator', () => {
 		});
 
 		describe('addTokenToExpression(tokenType, tokenValue)', () => {
-			it('should add a token to an expression', () => {
+			it('adds a token to an expression', () => {
 				component.expression = '4*[Field1]+';
 
 				component.addTokenToExpression(Token.VARIABLE, 'Field2');
@@ -78,7 +78,7 @@ describe('Calculator', () => {
 				expect(component.expression).toEqual('4*[Field1]+[Field2]');
 			});
 
-			it('should add implicit multiplications to an expression when applicable', () => {
+			it('adds implicit multiplications to an expression when applicable', () => {
 				component.expression = '1+[Field1]';
 
 				component.addTokenToExpression(Token.VARIABLE, 'Field2');
@@ -88,7 +88,7 @@ describe('Calculator', () => {
 		});
 
 		describe('removeTokenFromExpression()', () => {
-			it('should remove the last token from the expression', () => {
+			it('removes the last token from the expression', () => {
 				component.expression = '4*[Field1]';
 
 				component.removeTokenFromExpression();
@@ -96,7 +96,7 @@ describe('Calculator', () => {
 				expect(component.expression).toEqual('4*');
 			});
 
-			it('should remove both the left parenthesis and the function when last tokens are an openning of a function', () => {
+			it('removes both the left parenthesis and the function when last tokens are an openning of a function', () => {
 				component.expression = '1+sum(';
 
 				component.removeTokenFromExpression();
@@ -106,7 +106,7 @@ describe('Calculator', () => {
 		});
 
 		describe('getStateBasedOnExpression(expression)', () => {
-			it('should disable functions, numbers and operators when last token is a sum function', () => {
+			it('disables functions, numbers and operators when last token is a sum function', () => {
 				const result = component.getStateBasedOnExpression('4*sum(');
 
 				expect(result.disableFunctions).toBe(true);
@@ -114,7 +114,7 @@ describe('Calculator', () => {
 				expect(result.disableOperators).toBe(true);
 			});
 
-			it('should not disable functions, numbers and operators when last token is not a sum function', () => {
+			it('does not disable functions, numbers and operators when last token is not a sum function', () => {
 				const result = component.getStateBasedOnExpression(
 					'4*sum(Field2)+4'
 				);
@@ -126,7 +126,7 @@ describe('Calculator', () => {
 		});
 
 		describe('shouldAddImplicitMultiplication(tokens, newToken)', () => {
-			it('should return true if new token is a Left Parenthesis and last token is a Literal', () => {
+			it('returns true if new token is a Left Parenthesis and last token is a Literal', () => {
 				const tokens = [new Token(Token.LITERAL, '5')];
 
 				const result = component.shouldAddImplicitMultiplication(
@@ -137,7 +137,7 @@ describe('Calculator', () => {
 				expect(result).toEqual(true);
 			});
 
-			it('should return true if new token is a Left Parenthesis and last token is a Variable', () => {
+			it('returns true if new token is a Left Parenthesis and last token is a Variable', () => {
 				const tokens = [new Token(Token.VARIABLE, 'Field1')];
 
 				const result = component.shouldAddImplicitMultiplication(
@@ -148,7 +148,7 @@ describe('Calculator', () => {
 				expect(result).toEqual(true);
 			});
 
-			it('should return true if new token is a Function and last token is a Variable', () => {
+			it('returns true if new token is a Function and last token is a Variable', () => {
 				const tokens = [new Token(Token.VARIABLE, 'Field1')];
 
 				const result = component.shouldAddImplicitMultiplication(
@@ -159,7 +159,7 @@ describe('Calculator', () => {
 				expect(result).toEqual(true);
 			});
 
-			it('should return true if new token is a Variable and last token is a Variable', () => {
+			it('returns true if new token is a Variable and last token is a Variable', () => {
 				const tokens = [new Token(Token.VARIABLE, 'Field1')];
 
 				const result = component.shouldAddImplicitMultiplication(
@@ -170,7 +170,7 @@ describe('Calculator', () => {
 				expect(result).toEqual(true);
 			});
 
-			it('should return true if new token is a Variable and last token is a Literal', () => {
+			it('returns true if new token is a Variable and last token is a Literal', () => {
 				const tokens = [new Token(Token.LITERAL, '345')];
 
 				const result = component.shouldAddImplicitMultiplication(
@@ -181,7 +181,7 @@ describe('Calculator', () => {
 				expect(result).toEqual(true);
 			});
 
-			it('should return true if new token is a Literal and last token is a Variable', () => {
+			it('returns true if new token is a Literal and last token is a Variable', () => {
 				const tokens = [new Token(Token.VARIABLE, 'Field1')];
 
 				const result = component.shouldAddImplicitMultiplication(
@@ -192,7 +192,7 @@ describe('Calculator', () => {
 				expect(result).toEqual(true);
 			});
 
-			it('should return true if new token is a Literal and last token is a Function', () => {
+			it('returns true if new token is a Literal and last token is a Function', () => {
 				const tokens = [new Token(Token.FUNCTION, 'sum')];
 
 				const result = component.shouldAddImplicitMultiplication(

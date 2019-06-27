@@ -22,7 +22,7 @@ const OPTIONS_BOOLEAN_INPUT_TESTID = 'options-boolean';
 describe('BooleanInput', () => {
 	afterEach(cleanup);
 
-	it('should render type boolean', () => {
+	it('renders type boolean', () => {
 		const mockOnChange = jest.fn();
 
 		const defaultBoolValue = 'true';

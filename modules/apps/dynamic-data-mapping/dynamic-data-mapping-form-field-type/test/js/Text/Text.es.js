@@ -29,7 +29,7 @@ describe('Field Text', () => {
 		}
 	});
 
-	it('should not be readOnly', () => {
+	it('is not readOnly', () => {
 		component = new Text({
 			...defaultTextConfig,
 			readOnly: false
@@ -38,7 +38,7 @@ describe('Field Text', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a helptext', () => {
+	it('has a helptext', () => {
 		component = new Text({
 			...defaultTextConfig,
 			tip: 'Type something'
@@ -47,7 +47,7 @@ describe('Field Text', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have an id', () => {
+	it('has an id', () => {
 		component = new Text({
 			...defaultTextConfig,
 			id: 'ID'
@@ -56,7 +56,7 @@ describe('Field Text', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a label', () => {
+	it('has a label', () => {
 		component = new Text({
 			...defaultTextConfig,
 			label: 'label'
@@ -65,7 +65,7 @@ describe('Field Text', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a placeholder', () => {
+	it('has a placeholder', () => {
 		component = new Text({
 			...defaultTextConfig,
 			placeholder: 'Placeholder'
@@ -74,7 +74,7 @@ describe('Field Text', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not be required', () => {
+	it('is not required', () => {
 		component = new Text({
 			...defaultTextConfig,
 			required: false
@@ -83,7 +83,7 @@ describe('Field Text', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render Label if showLabel is true', () => {
+	it('renders Label if showLabel is true', () => {
 		component = new Text({
 			...defaultTextConfig,
 			label: 'text',
@@ -93,13 +93,13 @@ describe('Field Text', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a spritemap', () => {
+	it('has a spritemap', () => {
 		component = new Text(defaultTextConfig);
 
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a value', () => {
+	it('has a value', () => {
 		component = new Text({
 			...defaultTextConfig,
 			value: 'value'
@@ -108,7 +108,7 @@ describe('Field Text', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should emit a field edit with correct parameters', done => {
+	it('emits a field edit with correct parameters', done => {
 		const handleFieldEdited = data => {
 			expect(data).toEqual(
 				expect.objectContaining({

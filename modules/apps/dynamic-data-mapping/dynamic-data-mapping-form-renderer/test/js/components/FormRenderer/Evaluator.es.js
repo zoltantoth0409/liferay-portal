@@ -40,7 +40,7 @@ describe('Evaluator', () => {
 		}
 	});
 
-	it('should render default markup', () => {
+	it('renders default markup', () => {
 		component = new EvaluatorComponent({
 			fieldType,
 			formContext: {}
@@ -49,7 +49,7 @@ describe('Evaluator', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should continue propagating the fieldEdited event', () => {
+	it('continues propagating the fieldEdited event', () => {
 		component = new EvaluatorComponent({
 			fieldType,
 			formContext: {}
@@ -73,7 +73,7 @@ describe('Evaluator', () => {
 		expect(spy).toHaveBeenCalledWith('fieldEdited', event);
 	});
 
-	it('should continue propagating the fieldEdited event when it is evaluable', () => {
+	it('continues propagating the fieldEdited event when it is evaluable', () => {
 		component = new EvaluatorComponent({
 			fieldType,
 			formContext: {
@@ -100,7 +100,7 @@ describe('Evaluator', () => {
 		expect(spy).toHaveBeenCalledWith('fieldEdited', event);
 	});
 
-	it("should update the state of the evaluator's pages when it receives a new page as it props", () => {
+	it("updates the state of the evaluator's pages when it receives a new page as it props", () => {
 		const newPages = [
 			{
 				rows: [
@@ -150,7 +150,7 @@ describe('Evaluator', () => {
 		expect(component.state.pages).toEqual(newPages);
 	});
 
-	it("should not update the state of the evaluator's pages when it receives any property which is not pages", () => {
+	it("does not update the state of the evaluator's pages when it receives any property which is not pages", () => {
 		component = new EvaluatorComponent({
 			fieldType,
 			formContext: {

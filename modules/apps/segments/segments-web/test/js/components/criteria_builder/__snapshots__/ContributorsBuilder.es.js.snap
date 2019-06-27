@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ContributorsBuilder should render builder with sidebar: initialRenderEditing 1`] = `
+exports[`ContributorsBuilder renders builder with sidebar: initialRenderEditing 1`] = `
 <DocumentFragment>
   <div
     class="contributor-builder-root editing"
@@ -793,7 +793,7 @@ exports[`ContributorsBuilder should render builder with sidebar: initialRenderEd
 </DocumentFragment>
 `;
 
-exports[`ContributorsBuilder should render builder without sidebar: initialRenderNotEditing 1`] = `
+exports[`ContributorsBuilder renders builder without sidebar: initialRenderNotEditing 1`] = `
 <DocumentFragment>
   <div
     class="contributor-builder-root"

@@ -37,14 +37,14 @@ describe('PreviewButton', () => {
 		fetch.resetMocks();
 	});
 
-	it('should render', () => {
+	it('renders', () => {
 		component = new PreviewButton(props);
 
 		expect(component).toMatchSnapshot();
 	});
 
 	describe('preview()', () => {
-		it('should call fetch with published=true', () => {
+		it('calls fetch with published=true', () => {
 			component = new PreviewButton(props);
 
 			const windowOpenSpy = jest.spyOn(window, 'open');
@@ -61,7 +61,7 @@ describe('PreviewButton', () => {
 				);
 		});
 
-		it('should be called when button is clicked', () => {
+		it('is called when button is clicked', () => {
 			component = new PreviewButton(props);
 
 			const previewSpy = jest.spyOn(component, 'preview');
@@ -73,7 +73,7 @@ describe('PreviewButton', () => {
 			expect(previewSpy).toHaveBeenCalled();
 		});
 
-		it('should show error notification when resolvePreviewURL fails', () => {
+		it('shows error notification when resolvePreviewURL fails', () => {
 			component = new PreviewButton({
 				...props,
 				resolvePreviewURL: () => Promise.reject()

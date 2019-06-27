@@ -212,7 +212,7 @@ describe('RuleBuilder', () => {
 
 		dom.exitDocument(addbutton);
 	});
-	it('should render the list of rules when mode is set to view', () => {
+	it('renders the list of rules when mode is set to view', () => {
 		component.setState({mode: 'view'});
 
 		jest.runAllTimers();
@@ -220,7 +220,7 @@ describe('RuleBuilder', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render rule screen creator when click add button', () => {
+	it('renders rule screen creator when click add button', () => {
 		const addbutton = document.querySelector('#addFieldButton');
 
 		dom.triggerEvent(addbutton, 'click', {});
@@ -230,7 +230,7 @@ describe('RuleBuilder', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should receive ruleAdded event to save a rule', () => {
+	it('receives ruleAdded event to save a rule', () => {
 		jest.runAllTimers();
 
 		const spy = jest.spyOn(component, 'emit');
@@ -248,7 +248,7 @@ describe('RuleBuilder', () => {
 		expect(spy).toHaveBeenCalledWith('ruleAdded', {});
 	});
 
-	it('should change the view mode from view to edit', () => {
+	it('changes the view mode from view to edit', () => {
 		jest.runAllTimers();
 
 		jest.useFakeTimers();
@@ -262,7 +262,7 @@ describe('RuleBuilder', () => {
 		expect(component.state.mode).toEqual('edit');
 	});
 
-	it('should receive ruleCancel event to discard a rule creation', () => {
+	it('receives ruleCancel event to discard a rule creation', () => {
 		jest.runAllTimers();
 
 		const totalRules = component.props.rules.length;
@@ -282,7 +282,7 @@ describe('RuleBuilder', () => {
 		expect(component.state.rules.length).toEqual(totalRules);
 	});
 
-	it('should fetch roles when rendered', () => {
+	it('fetchs roles when rendered', () => {
 		const spy = jest.spyOn(window, 'fetch');
 
 		component = new RuleBuilder(baseConfig);
@@ -295,7 +295,7 @@ describe('RuleBuilder', () => {
 		spy.mockRestore();
 	});
 
-	it('should be able to edit a rule when more than one is available in the Rules list', () => {
+	it('is able to edit a rule when more than one is available in the Rules list', () => {
 		component = new RuleBuilder(baseConfig);
 
 		jest.useFakeTimers();
@@ -309,7 +309,7 @@ describe('RuleBuilder', () => {
 		expect(component.state.mode).toEqual('edit');
 	});
 
-	it("should be able to edit a rule when there's only one rule available in the Rules list", () => {
+	it("is able to edit a rule when there's only one rule available in the Rules list", () => {
 		component = new RuleBuilder({
 			...baseConfig,
 			rules: [

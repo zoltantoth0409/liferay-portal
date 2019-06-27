@@ -39,7 +39,7 @@ describe('FormRenderer', () => {
 		pages = null;
 	});
 
-	it('should render default markup', () => {
+	it('renders default markup', () => {
 		component = new FormRenderer({
 			pages,
 			spritemap,
@@ -49,7 +49,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render a layout in wizard mode', () => {
+	it('renders a layout in wizard mode', () => {
 		component = new FormRenderer({
 			pages,
 			paginationMode: 'wizard',
@@ -60,7 +60,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render a layout in pagination mode', () => {
+	it('renders a layout in pagination mode', () => {
 		component = new FormRenderer({
 			pages,
 			paginationMode: 'pagination',
@@ -71,7 +71,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render a layout with pages in mode of list', () => {
+	it('renders a layout with pages in mode of list', () => {
 		component = new FormRenderer({
 			modeRenderer: 'list',
 			pages,
@@ -82,7 +82,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render a layout in editable mode', () => {
+	it('renders a layout in editable mode', () => {
 		component = new FormRenderer({
 			editable: true,
 			pages,
@@ -94,7 +94,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render a layout with disabled drag and drop', () => {
+	it('renders a layout with disabled drag and drop', () => {
 		component = new FormRenderer({
 			dragAndDropDisabled: true,
 			editable: true,
@@ -107,7 +107,7 @@ describe('FormRenderer', () => {
 		expect(component._dragAndDrop).toBeUndefined();
 	});
 
-	it('should receive an update page event and propage it', () => {
+	it('receives an update page event and propage it', () => {
 		component = new FormRenderer({
 			dragAndDropDisabled: true,
 			editable: true,
@@ -129,7 +129,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should receive a delete button event and propage it', () => {
+	it('receives a delete button event and propage it', () => {
 		component = new FormRenderer({
 			dragAndDropDisabled: true,
 			editable: true,
@@ -151,7 +151,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should receive a duplicate button event and propage it', () => {
+	it('receives a duplicate button event and propage it', () => {
 		component = new FormRenderer({
 			dragAndDropDisabled: true,
 			editable: true,
@@ -173,7 +173,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should continue to propagate the fieldEdited event', () => {
+	it('continues to propagate the fieldEdited event', () => {
 		component = new FormRenderer({
 			dragAndDropDisabled: true,
 			editable: true,
@@ -193,7 +193,7 @@ describe('FormRenderer', () => {
 		expect(spy).toHaveBeenCalledWith('fieldEdited', expect.anything());
 	});
 
-	it('should continue to propagate the fieldClicked event', () => {
+	it('continues to propagate the fieldClicked event', () => {
 		component = new FormRenderer({
 			dragAndDropDisabled: true,
 			editable: true,
@@ -213,7 +213,7 @@ describe('FormRenderer', () => {
 		expect(spy).toHaveBeenCalledWith('fieldClicked', expect.anything());
 	});
 
-	it('should change the active page', () => {
+	it('changes the active page', () => {
 		const newPages = [...pages, ...pages];
 
 		component = new FormRenderer({
@@ -236,7 +236,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should change the pagination mode when switch pagination mode is clicked', () => {
+	it('changes the pagination mode when switch pagination mode is clicked', () => {
 		const newPages = [...pages, ...pages];
 
 		component = new FormRenderer({
@@ -263,7 +263,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should back the pagination mode to wizard mode when user clicks in switch page on the settings menu', () => {
+	it('backs the pagination mode to wizard mode when user clicks in switch page on the settings menu', () => {
 		const newPages = [...pages, ...pages];
 
 		component = new FormRenderer({
@@ -304,7 +304,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should change the active page for a empty page', () => {
+	it('changes the active page for a empty page', () => {
 		const newPages = [...pages, ...pages];
 
 		newPages[1].rows = [
@@ -338,7 +338,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should change the active by clicking on the pagination when the page mode is in pagination mode', () => {
+	it('changes the active by clicking on the pagination when the page mode is in pagination mode', () => {
 		const newPages = [...pages, ...pages];
 
 		component = new FormRenderer({
@@ -365,7 +365,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should change the active page by clicking on the arrow right icon in the pagination button', () => {
+	it('changes the active page by clicking on the arrow right icon in the pagination button', () => {
 		const newPages = [...pages, ...pages];
 
 		component = new FormRenderer({
@@ -387,7 +387,7 @@ describe('FormRenderer', () => {
 		expect(spy).toHaveBeenCalledWith('activePageUpdated', 1);
 	});
 
-	it('should change the page from a normal page to a success page by clicking on the arrow right', () => {
+	it('changes the page from a normal page to a success page by clicking on the arrow right', () => {
 		const newPages = [...pages];
 
 		component = new FormRenderer({
@@ -412,7 +412,7 @@ describe('FormRenderer', () => {
 		expect(spy).toHaveBeenCalledWith('activePageUpdated', -1);
 	});
 
-	it('should change the page from a success page to a normal page by clicking on the arrow left', () => {
+	it('changes the page from a success page to a normal page by clicking on the arrow left', () => {
 		const newPages = [...pages];
 
 		component = new FormRenderer({
@@ -439,7 +439,7 @@ describe('FormRenderer', () => {
 		expect(spy).toHaveBeenCalledWith('activePageUpdated', 0);
 	});
 
-	it('should change the active by clicking on the arrow left icon in the pagination button', () => {
+	it('changes the active by clicking on the arrow left icon in the pagination button', () => {
 		const newPages = [...pages, ...pages];
 
 		component = new FormRenderer({
@@ -461,7 +461,7 @@ describe('FormRenderer', () => {
 		expect(spy).toHaveBeenCalledWith('activePageUpdated', 0);
 	});
 
-	it('should propagate field edit event', () => {
+	it('propagates field edit event', () => {
 		component = new FormRenderer({
 			editable: true,
 			pages,
@@ -477,7 +477,7 @@ describe('FormRenderer', () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
-	it('should render a layout and emit the field move event', () => {
+	it('renders a layout and emit the field move event', () => {
 		component = new FormRenderer({
 			editable: true,
 			pages,
@@ -514,7 +514,7 @@ describe('FormRenderer', () => {
 		});
 	});
 
-	it('should render a layout and ignore the field move when there is no target', () => {
+	it('renders a layout and ignore the field move when there is no target', () => {
 		component = new FormRenderer({
 			editable: true,
 			pages,
@@ -538,7 +538,7 @@ describe('FormRenderer', () => {
 		expect(spy).not.toHaveBeenCalledWith('fieldMoved', expect.any(Object));
 	});
 
-	it('should render a layout and reset drag and drop to every change of API pages when editable is true', () => {
+	it('renders a layout and reset drag and drop to every change of API pages when editable is true', () => {
 		component = new FormRenderer({
 			editable: true,
 			pages,
@@ -561,7 +561,7 @@ describe('FormRenderer', () => {
 		expect(spyDragAndDrop).toHaveBeenCalled();
 	});
 
-	it('should render a layout and if it is not editable should not reset the drag-and-drop feature for all API page changes', () => {
+	it('renders a layout and if it is not editable should not reset the drag-and-drop feature for all API page changes', () => {
 		component = new FormRenderer({
 			editable: false,
 			pages,
@@ -584,7 +584,7 @@ describe('FormRenderer', () => {
 		expect(spy).not.toHaveBeenCalled();
 	});
 
-	it('should render a layout and if it is disabled should not reset the drag-and-drop feature for all API page changes', () => {
+	it('renders a layout and if it is disabled should not reset the drag-and-drop feature for all API page changes', () => {
 		component = new FormRenderer({
 			dragAndDropDisabled: true,
 			editable: true,
@@ -608,7 +608,7 @@ describe('FormRenderer', () => {
 		expect(spy).not.toHaveBeenCalled();
 	});
 
-	it('should render a layout with an empty field only in editable mode', () => {
+	it('renders a layout with an empty field only in editable mode', () => {
 		const columnIndex = 2;
 		const fields = [
 			{
@@ -638,7 +638,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not render the layout with the field empty in non-editable mode', () => {
+	it('does not render the layout with the field empty in non-editable mode', () => {
 		const columnIndex = 2;
 		const fields = [
 			{
@@ -668,7 +668,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should change the form page title', () => {
+	it('changes the form page title', () => {
 		component = new FormRenderer({
 			editable: true,
 			pages,
@@ -692,7 +692,7 @@ describe('FormRenderer', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should change the form page description', () => {
+	it('changes the form page description', () => {
 		component = new FormRenderer({
 			editable: true,
 			pages,
@@ -717,7 +717,7 @@ describe('FormRenderer', () => {
 	});
 
 	describe('PagesSettings', () => {
-		it('should add a new page on the layout render', () => {
+		it('adds a new page on the layout render', () => {
 			component = new FormRenderer({
 				editable: true,
 				pages,
@@ -739,7 +739,7 @@ describe('FormRenderer', () => {
 			expect(component).toMatchSnapshot();
 		});
 
-		it('should reset the current page on layout render', () => {
+		it('resets the current page on layout render', () => {
 			component = new FormRenderer({
 				editable: true,
 				pages,
@@ -761,7 +761,7 @@ describe('FormRenderer', () => {
 			expect(component).toMatchSnapshot();
 		});
 
-		it('should add a success page', () => {
+		it('adds a success page', () => {
 			component = new FormRenderer({
 				editable: true,
 				pages,
@@ -783,7 +783,7 @@ describe('FormRenderer', () => {
 			expect(component).toMatchSnapshot();
 		});
 
-		it('should delete the success page', () => {
+		it('deletes the success page', () => {
 			component = new FormRenderer({
 				editable: true,
 				pages,
@@ -817,7 +817,7 @@ describe('FormRenderer', () => {
 			expect(component).toMatchSnapshot();
 		});
 
-		it('should propagate success page changed when some success page field is changed', () => {
+		it('propagates success page changed when some success page field is changed', () => {
 			component = new FormRenderer({
 				dragAndDropDisabled: true,
 				editable: true,
@@ -844,7 +844,7 @@ describe('FormRenderer', () => {
 			);
 		});
 
-		it('should show delete-field option, when the form builder has more than one page', () => {
+		it('shows delete-field option, when the form builder has more than one page', () => {
 			const pagesTemp = [...pages, ...pages];
 
 			component = new FormRenderer({
@@ -880,7 +880,7 @@ describe('FormRenderer', () => {
 			expect(component).toMatchSnapshot();
 		});
 
-		it('should show reset-field option, when the form builder has only one page', () => {
+		it('shows reset-field option, when the form builder has only one page', () => {
 			component = new FormRenderer({
 				editable: true,
 				pages,
@@ -910,7 +910,7 @@ describe('FormRenderer', () => {
 			expect(component).toMatchSnapshot();
 		});
 
-		it('should delete the current page on layout render', () => {
+		it('deletes the current page on layout render', () => {
 			const newPages = [...pages, ...pages];
 
 			component = new FormRenderer({

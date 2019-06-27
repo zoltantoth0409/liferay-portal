@@ -18,7 +18,7 @@ import mockPages from 'mock/mockPages.es';
 
 describe('LayoutProvider/handlers/fieldEditedHandler', () => {
 	describe('handleFieldEdited(state, event)', () => {
-		it('should call updateFocusedField()', () => {
+		it('calls updateFocusedField()', () => {
 			const event = {
 				propertyName: 'dataType',
 				propertyValue: 'string'
@@ -43,7 +43,7 @@ describe('LayoutProvider/handlers/fieldEditedHandler', () => {
 			updateFocusedFieldSpy.mockRestore();
 		});
 
-		it('should not call updateFocusedField() when changing name to an empty string', () => {
+		it('does not call updateFocusedField() when changing name to an empty string', () => {
 			const event = {
 				propertyName: 'name',
 				propertyValue: ''

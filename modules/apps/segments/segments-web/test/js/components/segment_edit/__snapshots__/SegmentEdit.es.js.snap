@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SegmentEdit should render 1`] = `
+exports[`SegmentEdit renders 1`] = `
 <DocumentFragment>
   <div
     class="segment-edit-page-root"
@@ -99,7 +99,7 @@ exports[`SegmentEdit should render 1`] = `
 </DocumentFragment>
 `;
 
-exports[`SegmentEdit should render with edit buttons if the user has update permissions 1`] = `
+exports[`SegmentEdit renders with edit buttons if the user has update permissions 1`] = `
 <DocumentFragment>
   <div
     class="segment-edit-page-root"
@@ -278,7 +278,7 @@ exports[`SegmentEdit should render with edit buttons if the user has update perm
 </DocumentFragment>
 `;
 
-exports[`SegmentEdit should render with given values 1`] = `
+exports[`SegmentEdit renders with given values 1`] = `
 <DocumentFragment>
   <div
     class="segment-edit-page-root"
@@ -770,7 +770,7 @@ exports[`SegmentEdit should render with given values 1`] = `
 </DocumentFragment>
 `;
 
-exports[`SegmentEdit should render without edit buttons if the user does not have update permissions 1`] = `
+exports[`SegmentEdit renders without edit buttons if the user does not have update permissions 1`] = `
 <DocumentFragment>
   <div
     class="segment-edit-page-root"

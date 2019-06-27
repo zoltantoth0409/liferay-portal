@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PagesVisitor should be able to change columns 1`] = `
+exports[`PagesVisitor is able to change columns 1`] = `
 Array [
   Object {
     "rows": Array [
@@ -170,7 +170,7 @@ Array [
 ]
 `;
 
-exports[`PagesVisitor should be able to change fields 1`] = `
+exports[`PagesVisitor is able to change fields 1`] = `
 Array [
   Object {
     "rows": Array [
@@ -340,7 +340,7 @@ Array [
 ]
 `;
 
-exports[`PagesVisitor should be able to change pages 1`] = `
+exports[`PagesVisitor is able to change pages 1`] = `
 Array [
   Object {
     "rows": Array [
@@ -510,7 +510,7 @@ Array [
 ]
 `;
 
-exports[`PagesVisitor should be able to change rows 1`] = `
+exports[`PagesVisitor is able to change rows 1`] = `
 Array [
   Object {
     "rows": Array [

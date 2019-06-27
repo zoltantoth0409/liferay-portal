@@ -24,7 +24,7 @@ const COLLECTION_VALUE_INPUT_TESTID = 'collection-value-input';
 describe('CollectionInput', () => {
 	afterEach(cleanup);
 
-	it('should render collection type', () => {
+	it('renders collection type', () => {
 		const mockOnChange = jest.fn();
 
 		const startingKey = 'testKey';
@@ -40,7 +40,7 @@ describe('CollectionInput', () => {
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('should render a key input with the right-side value of the equal character', () => {
+	it('renders a key input with the right-side value of the equal character', () => {
 		const mockOnChange = jest.fn();
 
 		const startingKey = 'testKey';
@@ -58,7 +58,7 @@ describe('CollectionInput', () => {
 		expect(keyInputElement.value).toBe(startingKey);
 	});
 
-	it('should render a value input with the left-side value of the equal character', () => {
+	it('renders a value input with the left-side value of the equal character', () => {
 		const mockOnChange = jest.fn();
 
 		const startingKey = 'testKey';
@@ -76,7 +76,7 @@ describe('CollectionInput', () => {
 		expect(valueInputElement.value).toBe(startingValue);
 	});
 
-	it('should have a changeable key input', () => {
+	it('has a changeable key input', () => {
 		const mockOnChange = jest.fn();
 
 		const startingKey = 'testKey';
@@ -100,7 +100,7 @@ describe('CollectionInput', () => {
 		});
 	});
 
-	it('should have a changeable value input', () => {
+	it('has a changeable value input', () => {
 		const mockOnChange = jest.fn();
 
 		const startingKey = 'testKey';

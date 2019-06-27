@@ -21,7 +21,7 @@ const connectDnd = jest.fn(el => el);
 describe('CriteriaSidebarItem', () => {
 	afterEach(cleanup);
 
-	it('should render', () => {
+	it('renders', () => {
 		const OriginalCriteriaSidebarItem =
 			CriteriaSidebarItem.DecoratedComponent;
 

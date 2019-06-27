@@ -30,7 +30,7 @@ describe('PagesVisitor', () => {
 		}
 	});
 
-	it('should not multate the fields of the original array', () => {
+	it('does not multate the fields of the original array', () => {
 		const newPages = visitor.mapFields((field, index) => {
 			if (field.fieldName == 'radio') {
 				field.fieldName = 'liferay';
@@ -42,7 +42,7 @@ describe('PagesVisitor', () => {
 		expect(mockPages).not.toBe(newPages);
 	});
 
-	it('should be able to change pages', () => {
+	it('is able to change pages', () => {
 		expect(
 			visitor.mapPages((page, index) => ({
 				...page,
@@ -51,7 +51,7 @@ describe('PagesVisitor', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should be able to change rows', () => {
+	it('is able to change rows', () => {
 		expect(
 			visitor.mapRows(row => ({
 				...row,
@@ -60,7 +60,7 @@ describe('PagesVisitor', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should be able to change columns', () => {
+	it('is able to change columns', () => {
 		expect(
 			visitor.mapColumns(column => ({
 				...column,
@@ -69,7 +69,7 @@ describe('PagesVisitor', () => {
 		).toMatchSnapshot();
 	});
 
-	it('should be able to change fields', () => {
+	it('is able to change fields', () => {
 		expect(
 			visitor.mapFields((field, index) => ({
 				...field,

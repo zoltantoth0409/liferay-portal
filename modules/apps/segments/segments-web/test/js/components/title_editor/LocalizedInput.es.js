@@ -28,12 +28,12 @@ describe('LocalizedInput', () => {
 	describe('with minimal configuration', () => {
 		afterEach(cleanup);
 
-		it('should render', () => {
+		it('renders', () => {
 			const {asFragment} = setUpComponent();
 			expect(asFragment()).toMatchSnapshot();
 		});
 
-		it('should have main input with empty value', () => {
+		it('has main input with empty value', () => {
 			const {getByTestId} = setUpComponent();
 			const mainInput = getByTestId(LOCALIZED_MAIN_INPUT_ID);
 
@@ -54,21 +54,21 @@ describe('LocalizedInput', () => {
 		}
 	});
 
-	describe('should render with pre-existing value', () => {
+	describe('rendering with pre-existing value', () => {
 		afterEach(cleanup);
 
-		it('should render', () => {
+		it('renders', () => {
 			const {asFragment} = setUpComponent();
 			expect(asFragment()).toMatchSnapshot();
 		});
 
-		it('should have main input with value', () => {
+		it('has main input with value', () => {
 			const {getByTestId} = setUpComponent();
 			const mainInput = getByTestId(LOCALIZED_MAIN_INPUT_ID);
 			expect(mainInput.value).toBe(PRE_EXISTING_VALUE);
 		});
 
-		it('should have dropdown with options', () => {
+		it('has dropdown with options', () => {
 			const {asFragment, getByTestId} = setUpComponent();
 			const dropdownButton = getByTestId(LOCALIZED_DROPDOWN_BUTTON);
 			fireEvent.click(dropdownButton);
@@ -76,7 +76,7 @@ describe('LocalizedInput', () => {
 			expect(asFragment()).toMatchSnapshot();
 		});
 
-		it('should switch main input value on language selection', () => {
+		it('switches main input value on language selection', () => {
 			const {getByTestId, getByText} = setUpComponent();
 			const dropdownButton = getByTestId(LOCALIZED_DROPDOWN_BUTTON);
 			const mainInput = getByTestId(LOCALIZED_MAIN_INPUT_ID);

@@ -34,7 +34,7 @@ describe('Field Numeric', () => {
 		}
 	});
 
-	it('should render the default markup', () => {
+	it('renders the default markup', () => {
 		component = new Numeric({
 			...defaultNumericConfig,
 			readOnly: false
@@ -43,7 +43,7 @@ describe('Field Numeric', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not be readOnly', () => {
+	it('is not readOnly', () => {
 		component = new Numeric({
 			...defaultNumericConfig,
 			readOnly: false
@@ -52,7 +52,7 @@ describe('Field Numeric', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a helptext', () => {
+	it('has a helptext', () => {
 		component = new Numeric({
 			...defaultNumericConfig,
 			tip: 'Type something'
@@ -61,7 +61,7 @@ describe('Field Numeric', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have an id', () => {
+	it('has an id', () => {
 		component = new Numeric({
 			...defaultNumericConfig,
 			id: 'ID'
@@ -70,7 +70,7 @@ describe('Field Numeric', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a label', () => {
+	it('has a label', () => {
 		component = new Numeric({
 			...defaultNumericConfig,
 			label: 'label'
@@ -79,7 +79,7 @@ describe('Field Numeric', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a placeholder', () => {
+	it('has a placeholder', () => {
 		component = new Numeric({
 			...defaultNumericConfig,
 			placeholder: 'Placeholder'
@@ -88,7 +88,7 @@ describe('Field Numeric', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not be required', () => {
+	it('is not required', () => {
 		component = new Numeric({
 			...defaultNumericConfig,
 			required: false
@@ -97,7 +97,7 @@ describe('Field Numeric', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render Label if showLabel is true', () => {
+	it('renders Label if showLabel is true', () => {
 		component = new Numeric({
 			...defaultNumericConfig,
 			label: 'Numeric Field',
@@ -107,13 +107,13 @@ describe('Field Numeric', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a spritemap', () => {
+	it('has a spritemap', () => {
 		component = new Numeric(defaultNumericConfig);
 
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a value', () => {
+	it('has a value', () => {
 		component = new Numeric({
 			...defaultNumericConfig,
 			value: '123'
@@ -122,7 +122,7 @@ describe('Field Numeric', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a key', () => {
+	it('has a key', () => {
 		component = new Numeric({
 			...defaultNumericConfig,
 			key: 'key'
@@ -131,7 +131,7 @@ describe('Field Numeric', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should emit a field edit event on field value change', () => {
+	it('emits a field edit event on field value change', () => {
 		jest.useFakeTimers();
 
 		const handleFieldEdited = jest.fn();
@@ -150,7 +150,7 @@ describe('Field Numeric', () => {
 		expect(handleFieldEdited).toHaveBeenCalled();
 	});
 
-	it('should propagate the field edit event', () => {
+	it('propagates the field edit event', () => {
 		jest.useFakeTimers();
 
 		component = new Numeric({
@@ -168,7 +168,7 @@ describe('Field Numeric', () => {
 		expect(spy).toHaveBeenCalledWith('fieldEdited', expect.any(Object));
 	});
 
-	it('should change the mask type', () => {
+	it('changes the mask type', () => {
 		component = new Numeric({
 			...defaultNumericConfig
 		});

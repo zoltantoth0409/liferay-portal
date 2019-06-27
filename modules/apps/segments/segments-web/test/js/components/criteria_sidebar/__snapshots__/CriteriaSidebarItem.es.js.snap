@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CriteriaSidebarItem should render 1`] = `
+exports[`CriteriaSidebarItem renders 1`] = `
 <DocumentFragment>
   <li
     class="criteria-sidebar-item-root"

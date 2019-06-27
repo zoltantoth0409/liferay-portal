@@ -28,7 +28,7 @@ describe('Select', () => {
 		}
 	});
 
-	it('should be not edidable', () => {
+	it('is not editable', () => {
 		component = new Select({
 			readOnly: false,
 			spritemap
@@ -37,7 +37,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a helptext', () => {
+	it('has a helptext', () => {
 		component = new Select({
 			spritemap,
 			tip: 'Type something'
@@ -46,7 +46,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have an id', () => {
+	it('has an id', () => {
 		component = new Select({
 			id: 'ID',
 			spritemap
@@ -55,7 +55,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render options', () => {
+	it('renders options', () => {
 		component = new Select({
 			options: [
 				{
@@ -75,7 +75,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render no options when options come empty', () => {
+	it('renders no options when options come empty', () => {
 		component = new Select({
 			options: [],
 			spritemap
@@ -84,7 +84,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a label', () => {
+	it('has a label', () => {
 		component = new Select({
 			label: 'label',
 			spritemap
@@ -93,7 +93,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should be closed by default', () => {
+	it('is closed by default', () => {
 		component = new Select({
 			open: false,
 			spritemap
@@ -102,7 +102,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it("should have class dropdown-opened when it's opened", () => {
+	it("has class dropdown-opened when it's opened", () => {
 		component = new Select({
 			open: true,
 			spritemap
@@ -111,7 +111,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a placeholder', () => {
+	it('has a placeholder', () => {
 		component = new Select({
 			placeholder: 'Placeholder',
 			spritemap
@@ -120,7 +120,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a predefinedValue', () => {
+	it('has a predefinedValue', () => {
 		component = new Select({
 			predefinedValue: ['Select'],
 			spritemap
@@ -129,7 +129,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should not be required', () => {
+	it('is not required', () => {
 		component = new Select({
 			required: false,
 			spritemap
@@ -138,7 +138,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should put an asterisk when field is required', () => {
+	it('puts an asterisk when field is required', () => {
 		component = new Select({
 			label: 'This is the label',
 			required: true,
@@ -148,7 +148,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should render Label if showLabel is true', () => {
+	it('renders Label if showLabel is true', () => {
 		component = new Select({
 			label: 'text',
 			showLabel: true,
@@ -158,7 +158,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a spritemap', () => {
+	it('has a spritemap', () => {
 		component = new Select({
 			spritemap
 		});
@@ -166,7 +166,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a value', () => {
+	it('has a value', () => {
 		component = new Select({
 			spritemap,
 			value: ['value']
@@ -175,7 +175,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should have a key', () => {
+	it('has a key', () => {
 		component = new Select({
 			key: 'key',
 			spritemap
@@ -184,7 +184,7 @@ describe('Select', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should emit a field edit event when an item is selected', () => {
+	it('emits a field edit event when an item is selected', () => {
 		const handleFieldEdited = jest.fn();
 
 		const events = {fieldEdited: handleFieldEdited};
@@ -225,7 +225,7 @@ describe('Select', () => {
 		expect(spy).toHaveBeenCalled();
 	});
 
-	it('should render the dropdown with search when there are more than six options', () => {
+	it('renders the dropdown with search when there are more than six options', () => {
 		component = new Select({
 			dataSourceType: 'manual',
 			options: [

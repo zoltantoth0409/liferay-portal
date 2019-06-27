@@ -22,7 +22,7 @@ const connectDnd = jest.fn(el => el);
 describe('CriteriaRow', () => {
 	afterEach(cleanup);
 
-	it('should render', () => {
+	it('renders', () => {
 		const OriginalCriteriaRow = CriteriaRow.DecoratedComponent;
 
 		const {asFragment} = render(
@@ -55,7 +55,7 @@ describe('CriteriaRow', () => {
 		expect(asFragment()).toMatchSnapshot();
 	});
 
-	it('should render and inform there is an unknown property', () => {
+	it('renders and inform there is an unknown property', () => {
 		const OriginalCriteriaRow = CriteriaRow.DecoratedComponent;
 
 		const {asFragment} = render(

@@ -28,7 +28,7 @@ describe('Ajax', function() {
 		callOrder = [];
 	});
 
-	it('should call listener before original method', function() {
+	it('calls listener before original method', function() {
 		const obj = new MyClass();
 
 		AOP.before(spy1, obj, 'add');
@@ -42,7 +42,7 @@ describe('Ajax', function() {
 		expect(retVal).toEqual(3);
 	});
 
-	it('should call listener after original method', function() {
+	it('calls listener after original method', function() {
 		const obj = new MyClass();
 
 		AOP.after(spy1, obj, 'add');
@@ -56,7 +56,7 @@ describe('Ajax', function() {
 		expect(retVal).toEqual(3);
 	});
 
-	it('should call multiple listeners in correct order', function() {
+	it('calls multiple listeners in correct order', function() {
 		const obj = new MyClass();
 
 		AOP.before(spy1, obj, 'add');
@@ -73,7 +73,7 @@ describe('Ajax', function() {
 		expect(retVal).toEqual(3);
 	});
 
-	it('should not call listener if returned handle is removed', function() {
+	it('does not call listener if returned handle is removed', function() {
 		const obj = new MyClass();
 
 		const handle = AOP.before(spy1, obj, 'add');
@@ -91,7 +91,7 @@ describe('Ajax', function() {
 		expect(spy1).toHaveBeenCalledTimes(1);
 	});
 
-	it('should only remove listeners that are detached', function() {
+	it('only removes listeners that are detached', function() {
 		const obj = new MyClass();
 
 		const handle1 = AOP.before(spy1, obj, 'add');
@@ -112,7 +112,7 @@ describe('Ajax', function() {
 		expect(spy2).toHaveBeenCalledTimes(2);
 	});
 
-	it('should prevent wrapped function from firing when AOP.prevent is returned by listener', function() {
+	it('prevents wrapped function from firing when AOP.prevent is returned by listener', function() {
 		const obj = new MyClass();
 
 		AOP.before(
@@ -128,7 +128,7 @@ describe('Ajax', function() {
 		expect(addSpy).not.toHaveBeenCalled();
 	});
 
-	it('should prevent wrapped function and all further before subscribers from firing when AOP.halt is returned by listener', function() {
+	it('prevents wrapped function and all further before subscribers from firing when AOP.halt is returned by listener', function() {
 		const obj = new MyClass();
 
 		AOP.before(
@@ -147,7 +147,7 @@ describe('Ajax', function() {
 		expect(retVal).toEqual('new value');
 	});
 
-	it('should prevent all further after subscribers from firing when AOP.halt is returned by listener', function() {
+	it('prevents all further after subscribers from firing when AOP.halt is returned by listener', function() {
 		const obj = new MyClass();
 
 		AOP.after(
@@ -165,7 +165,7 @@ describe('Ajax', function() {
 		expect(retVal).toEqual('new value');
 	});
 
-	it('should modify return value when AOP.alterReturn is returned by `after` listener', function() {
+	it('modifies return value when AOP.alterReturn is returned by `after` listener', function() {
 		const obj = new MyClass();
 
 		AOP.after(
@@ -182,7 +182,7 @@ describe('Ajax', function() {
 		expect(retVal).toEqual(4);
 	});
 
-	it('should track changes made to return value with subsequent changes made by AOP.alterReturn', function() {
+	it('tracks changes made to return value with subsequent changes made by AOP.alterReturn', function() {
 		const obj = new MyClass();
 
 		AOP.after(
@@ -219,7 +219,7 @@ describe('Ajax', function() {
 		expect(retVal).toEqual('now a string:');
 	});
 
-	it('should track original return value when changes are made by AOP.alterReturn', function() {
+	it('tracks original return value when changes are made by AOP.alterReturn', function() {
 		const obj = new MyClass();
 
 		AOP.after(

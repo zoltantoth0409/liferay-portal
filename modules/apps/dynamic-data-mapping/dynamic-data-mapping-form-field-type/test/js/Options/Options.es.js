@@ -39,7 +39,7 @@ describe('Options', () => {
 		}
 	});
 
-	it('should show the options', () => {
+	it('shows the options', () => {
 		component = new Options({
 			spritemap,
 			value: optionsValue
@@ -48,7 +48,7 @@ describe('Options', () => {
 		expect(component).toMatchSnapshot();
 	});
 
-	it('should delete an option when delete button is clicked', () => {
+	it('deletes an option when delete button is clicked', () => {
 		component = new Options({
 			spritemap,
 			value: optionsValue
@@ -61,7 +61,7 @@ describe('Options', () => {
 		expect(component.items.length).toEqual(before - 1);
 	});
 
-	it('.normalizeValue() should not allow options with the same value', () => {
+	it('.normalizeValue() does not allow options with the same value', () => {
 		component = new Options({
 			spritemap
 		});
@@ -93,7 +93,7 @@ describe('Options', () => {
 		});
 	});
 
-	it('should allow the user to order the fieldName options by dragging and dropping the options', () => {
+	it('allows the user to order the fieldName options by dragging and dropping the options', () => {
 		component = new Options({
 			spritemap,
 			value: optionsValue

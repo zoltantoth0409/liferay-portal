@@ -29,7 +29,7 @@ describe('Liferay.Util.postForm', () => {
 		global.submitForm = jest.fn();
 	});
 
-	it('should do nothing if the form parameter is not a form node', () => {
+	it('does nothing if the form parameter is not a form node', () => {
 		const fragment = dom.buildFragment('<div />');
 
 		postForm(undefined);
@@ -38,7 +38,7 @@ describe('Liferay.Util.postForm', () => {
 		expect(global.submitForm.mock.calls.length).toBe(0);
 	});
 
-	it('should submit form even if options parameter is not set', () => {
+	it('submits form even if options parameter is not set', () => {
 		const fragment = dom.buildFragment('<form />');
 
 		const form = fragment.firstElementChild;
@@ -48,7 +48,7 @@ describe('Liferay.Util.postForm', () => {
 		expect(global.submitForm.mock.calls.length).toBe(1);
 	});
 
-	it('should do nothing if the url optional parameter is not a string', () => {
+	it('does nothing if the url optional parameter is not a string', () => {
 		const fragment = dom.buildFragment('<form />');
 
 		const form = fragment.firstElementChild;
@@ -59,7 +59,7 @@ describe('Liferay.Util.postForm', () => {
 		expect(global.submitForm.mock.calls.length).toBe(0);
 	});
 
-	it('should do nothing if the data optional parameter is not an object', () => {
+	it('does nothing if the data optional parameter is not an object', () => {
 		const fragment = dom.buildFragment('<form />');
 
 		const form = fragment.firstElementChild;
@@ -70,7 +70,7 @@ describe('Liferay.Util.postForm', () => {
 		expect(global.submitForm.mock.calls.length).toBe(0);
 	});
 
-	it('should set given element values in data parameter, and submit form to a given url', () => {
+	it('sets given element values in data parameter, and submit form to a given url', () => {
 		const fragment = dom.buildFragment(`
 					<form data-fm-namespace="_com_liferay_test_portlet_" id="fm">
 						<input name="_com_liferay_test_portlet_foo" type="text" value="abc">
