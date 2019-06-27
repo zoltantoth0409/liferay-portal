@@ -1,19 +1,34 @@
+#
 # Generated files.
+#
+
 **/*.soy.js
 **/build/**/*
 **/classes/**/*
 **/css/clay/**/*
 
+#
 # Template file that needs trailing blank line.
+#
+
 /copyright.js
 
+#
 # Restricted paths.
+#
+
 /modules/tests/poshi-runner/**/*
 
+#
 # Sample files.
+#
+
 apps/portal-portlet-bridge/portal-portlet-bridge-soy-impl/src/test/resources/com/liferay/portal/portlet/bridge/soy/internal/dependencies/**/*.js
 apps/fragment/fragment-demo-data-creator-impl/src/main/resources/com/liferay/fragment/demo/data/creator/internal/dependencies/**/*.js
 apps/fragment/fragment-test/src/testIntegration/resources/com/liferay/fragment/dependencies/**/*.js
 
+#
 # Third-party.
+#
+
 /yarn-*.js
