@@ -14,7 +14,6 @@
 
 package com.liferay.portal.osgi.web.wab.extender.internal;
 
-import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
@@ -159,7 +158,9 @@ public class WabBundleProcessor {
 					servletContextHelperRegistration.getServletContext(),
 					_jspServletFactory, webXMLDefinition, _logger);
 
-			initServletContainerInitializers(_bundle, servletContext);
+			initServletContainerInitializers(
+				_bundle, servletContext,
+				servletContextHelperRegistration.getClasses());
 
 			ModifiableServletContext modifiableServletContext =
 				(ModifiableServletContext)servletContext;
@@ -244,24 +245,8 @@ public class WabBundleProcessor {
 	}
 
 	protected void collectAnnotatedClasses(
-		String classResource, ClassLoader classLoader,
-		Class<?>[] handledTypesArray, Set<Class<?>> annotatedClasses) {
-
-		String className = classResource.substring(
-			0, classResource.length() - 6);
-
-		className = className.replace(CharPool.SLASH, CharPool.PERIOD);
-
-		Class<?> annotatedClass = null;
-
-		try {
-			annotatedClass = classLoader.loadClass(className);
-		}
-		catch (Throwable t) {
-			_logger.log(Logger.LOG_DEBUG, t.getMessage());
-
-			return;
-		}
+		Class<?> annotatedClass, Class<?>[] handledTypesArray,
+		Set<Class<?>> annotatedClasses) {
 
 		// Class extends/implements
 
@@ -588,7 +573,8 @@ public class WabBundleProcessor {
 	}
 
 	protected void initServletContainerInitializers(
-			Bundle bundle, ServletContext servletContext)
+			Bundle bundle, ServletContext servletContext,
+			List<Class<?>> classes)
 		throws IOException {
 
 		Enumeration<URL> initializerResources = bundle.getResources(
@@ -623,7 +609,8 @@ public class WabBundleProcessor {
 
 					if (Validator.isNotNull(fqcn)) {
 						processServletContainerInitializerClass(
-							fqcn, bundle, bundleWiring, servletContext);
+							fqcn, bundle, bundleWiring, servletContext,
+							classes);
 					}
 				}
 			}
@@ -708,7 +695,7 @@ public class WabBundleProcessor {
 
 	protected void processServletContainerInitializerClass(
 		String fqcn, Bundle bundle, BundleWiring bundleWiring,
-		ServletContext servletContext) {
+		ServletContext servletContext, List<Class<?>> classes) {
 
 		Class<? extends ServletContainerInitializer> initializerClass = null;
 
@@ -741,21 +728,10 @@ public class WabBundleProcessor {
 			handledTypesArray = new Class<?>[0];
 		}
 
-		Collection<String> classResources = bundleWiring.listResources(
-			"/", "*.class", BundleWiring.LISTRESOURCES_RECURSE);
-
-		ClassLoader classLoader = bundleWiring.getClassLoader();
-
-		if (classResources == null) {
-			classResources = new ArrayList<>(0);
-		}
-
 		Set<Class<?>> annotatedClasses = new HashSet<>();
 
-		for (String classResource : classResources) {
-			collectAnnotatedClasses(
-				classResource, classLoader, handledTypesArray,
-				annotatedClasses);
+		for (Class<?> clazz : classes) {
+			collectAnnotatedClasses(clazz, handledTypesArray, annotatedClasses);
 		}
 
 		if (annotatedClasses.isEmpty()) {
