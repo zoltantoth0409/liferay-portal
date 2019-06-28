@@ -66,7 +66,7 @@ public class ScopeFinderTest extends BaseClientTestCase {
 		Assert.assertEquals(
 			"everything.read", invocationBuilder.get(String.class));
 
-		// Install the overriding ScopeFinder which does not publish
+		// Install the overriding scope finder which does not publish
 		// "everything.read"
 
 		invocationBuilder.post(null, String.class);
@@ -77,7 +77,7 @@ public class ScopeFinderTest extends BaseClientTestCase {
 			"everything.read", invocationBuilder.get(String.class));
 
 		// Get a new token. This token should be restricted to current scopes
-		// returned by the ScopeFinder
+		// returned by the scope finder.
 
 		token = getToken(
 			"oauthTestClientCredentials", null,
