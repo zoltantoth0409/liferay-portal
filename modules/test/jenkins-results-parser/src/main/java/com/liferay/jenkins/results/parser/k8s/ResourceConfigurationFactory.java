@@ -38,19 +38,19 @@ import org.apache.commons.lang.StringUtils;
  */
 public class ResourceConfigurationFactory {
 
-	public static Pod getPodConfiguration(String name) {
+	public static Pod getConfigurationPod(String name) {
 		if (!_podConfigurationsMap.containsKey(name)) {
 			throw new IllegalArgumentException(
-				"Invalid pod configuration name: " + name);
+				"Invalid configuration pod name: " + name);
 		}
 
 		return _podConfigurationsMap.get(name);
 	}
 
-	public static Pod getPodConfiguration(
+	public static Pod getConfigurationPod(
 		String databaseName, String databaseVersion) {
 
-		return getPodConfiguration(
+		return getConfigurationPod(
 			_getDatabaseConfigurationName(databaseName, databaseVersion));
 	}
 
