@@ -14,8 +14,6 @@
 
 package com.liferay.user.associated.data.web.internal.display;
 
-import java.lang.reflect.InvocationTargetException;
-
 /**
  * @author Drew Brokke
  */
@@ -31,9 +29,7 @@ public class DummyEntryUADDisplay extends DummyUADDisplay<DummyEntry> {
 	}
 
 	@Override
-	public boolean isInTrash(DummyEntry dummyEntry)
-		throws IllegalAccessException, InvocationTargetException {
-
+	public boolean isInTrash(DummyEntry dummyEntry) {
 		return false;
 	}
 
