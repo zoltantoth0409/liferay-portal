@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.web.internal.servlet.filter;
+package com.liferay.journal.internal.servlet.filter;
 
 import com.liferay.journal.model.JournalArticleImage;
 import com.liferay.journal.service.JournalArticleImageLocalService;
