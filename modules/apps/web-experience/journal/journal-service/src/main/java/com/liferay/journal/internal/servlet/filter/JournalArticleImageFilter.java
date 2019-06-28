@@ -71,7 +71,7 @@ public class JournalArticleImageFilter extends BaseFilter {
 			FilterChain filterChain)
 		throws Exception {
 
-		long imageId = _getImageId(request);
+		long imageId = ParamUtil.getLong(request, "img_id");
 
 		if (imageId > 0) {
 			JournalArticleImage journalArticleImage =
@@ -100,20 +100,6 @@ public class JournalArticleImageFilter extends BaseFilter {
 		processFilter(
 			JournalArticleImageFilter.class.getName(), request, response,
 			filterChain);
-	}
-
-	private long _getImageId(HttpServletRequest request) {
-		long imageId = ParamUtil.getLong(request, "image_id");
-
-		if (imageId <= 0) {
-			imageId = ParamUtil.getLong(request, "img_id");
-		}
-
-		if (imageId <= 0) {
-			imageId = ParamUtil.getLong(request, "i_id");
-		}
-
-		return imageId;
 	}
 
 	private User _getUser(HttpServletRequest request) throws Exception {
