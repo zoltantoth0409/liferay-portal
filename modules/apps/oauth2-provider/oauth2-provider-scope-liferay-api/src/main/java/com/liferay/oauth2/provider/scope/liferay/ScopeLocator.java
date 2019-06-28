@@ -37,6 +37,7 @@ public interface ScopeLocator {
 	 *
 	 * @param  companyId the ID of the portal instance containing the scopes
 	 * @return the matching scopes
+	 * @review
 	 */
 	public Collection<LiferayOAuth2Scope> getLiferayOAuth2Scopes(
 		long companyId);
