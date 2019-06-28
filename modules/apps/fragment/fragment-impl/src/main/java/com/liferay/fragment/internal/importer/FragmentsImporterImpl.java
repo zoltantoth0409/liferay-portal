@@ -494,10 +494,10 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 
 		for (Map.Entry<String, String> entry : fragmentEntries.entrySet()) {
 			String name = entry.getKey();
-			String configuration = StringPool.BLANK;
 			String css = StringPool.BLANK;
 			String html = StringPool.BLANK;
 			String js = StringPool.BLANK;
+			String configuration = StringPool.BLANK;
 			String typeLabel = StringPool.BLANK;
 
 			String fragmentJSON = _getContent(zipFile, entry.getValue());
@@ -507,9 +507,6 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 					fragmentJSON);
 
 				name = jsonObject.getString("name");
-				configuration = _getFragmentEntryContent(
-					zipFile, entry.getValue(),
-					jsonObject.getString("configurationPath"));
 				css = _getFragmentEntryContent(
 					zipFile, entry.getValue(), jsonObject.getString("cssPath"));
 				html = _getFragmentEntryContent(
@@ -517,6 +514,9 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 					jsonObject.getString("htmlPath"));
 				js = _getFragmentEntryContent(
 					zipFile, entry.getValue(), jsonObject.getString("jsPath"));
+				configuration = _getFragmentEntryContent(
+					zipFile, entry.getValue(),
+					jsonObject.getString("configurationPath"));
 				typeLabel = jsonObject.getString("type");
 			}
 
