@@ -124,8 +124,8 @@ public class AssetPublisherDisplayContext {
 	public AssetPublisherDisplayContext(
 			AssetEntryActionRegistry assetEntryActionRegistry,
 			AssetHelper assetHelper,
-			AssetPublisherCustomizer assetPublisherCustomizer,
 			AssetListAssetEntryProvider assetListAssetEntryProvider,
+			AssetPublisherCustomizer assetPublisherCustomizer,
 			AssetPublisherHelper assetPublisherHelper,
 			AssetPublisherWebConfiguration assetPublisherWebConfiguration,
 			AssetPublisherWebUtil assetPublisherWebUtil,
@@ -136,8 +136,8 @@ public class AssetPublisherDisplayContext {
 
 		_assetEntryActionRegistry = assetEntryActionRegistry;
 		_assetHelper = assetHelper;
-		_assetPublisherCustomizer = assetPublisherCustomizer;
 		_assetListAssetEntryProvider = assetListAssetEntryProvider;
+		_assetPublisherCustomizer = assetPublisherCustomizer;
 		_assetPublisherHelper = assetPublisherHelper;
 		_assetPublisherWebConfiguration = assetPublisherWebConfiguration;
 		_assetPublisherWebUtil = assetPublisherWebUtil;
