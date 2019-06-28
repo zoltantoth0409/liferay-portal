@@ -419,8 +419,8 @@ public class DLFileEntryLocalServiceTest {
 		List<DLFileEntry> dlFileEntries =
 			DLFileEntryLocalServiceUtil.getNoAssetFileEntries();
 
-		Assert.assertTrue(dlFileEntries.contains(noAssetFileEntry.getModel()));
 		Assert.assertFalse(dlFileEntries.contains(assetFileEntry.getModel()));
+		Assert.assertTrue(dlFileEntries.contains(noAssetFileEntry.getModel()));
 	}
 
 	@Test
