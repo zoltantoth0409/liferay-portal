@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.repository.portlet.file.repository.impl;
+package com.liferay.document.library.repository.portlet.file.repository.internal;
 
 import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
 import com.liferay.document.library.kernel.exception.NoSuchFolderException;
