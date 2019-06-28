@@ -936,6 +936,19 @@ definition {
 		WebContent.viewPGViaAP(
 			webContentContent = "Web Content Content",
 			webContentTitle = "Web Content Title");
+
+		if (IsElementPresent(locator1 = "Home#PAGE_4")) {
+			Click(locator1 = "Home#PAGE_4");
+
+			AssertTextEquals(
+				key_portletName = "Asset Publisher",
+				locator1 = "Portlet#TITLE",
+				value1 = "Asset Publisher");
+
+			AssetPublisherPortlet.viewAssetPG(
+				assetContent = "Web Content Content",
+				assetTitle = "Web Content Title");
+		}
 	}
 
 	macro viewCalendar {
