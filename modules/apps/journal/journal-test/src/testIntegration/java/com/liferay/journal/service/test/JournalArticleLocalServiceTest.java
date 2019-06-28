@@ -32,6 +32,7 @@ import com.liferay.journal.model.JournalFolderConstants;
 import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.ResourcePermission;
@@ -260,12 +261,15 @@ public class JournalArticleLocalServiceTest {
 		titleMap.put(LocaleUtil.US, "Test Article");
 
 		JournalArticle journalArticle =
-			JournalArticleLocalServiceUtil.addArticleDefaultValues(
+			JournalArticleLocalServiceUtil.addArticle(
 				serviceContext.getUserId(), serviceContext.getScopeGroupId(),
+				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 				ClassNameLocalServiceUtil.getClassNameId(DDMStructure.class),
-				ddmStructure.getStructureId(), titleMap, null, content,
-				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
-				null, true, false, null, null, serviceContext);
+				ddmStructure.getStructureId(), StringPool.BLANK, true, 0,
+				titleMap, null, content, ddmStructure.getStructureKey(),
+				ddmTemplate.getTemplateKey(), null, 1, 1, 1965, 0, 0, 0, 0, 0,
+				0, 0, true, 0, 0, 0, 0, 0, true, true, false, null, null, null,
+				null, serviceContext);
 
 		DDMStructure actualDDMStrucure = journalArticle.getDDMStructure();
 
