@@ -242,13 +242,14 @@ public class WabBundleProcessor {
 	}
 
 	protected void collectAnnotatedClasses(
-		Class<?> annotatedClass, Class<?>[] handledTypesArray,
-		Set<Class<?>> annotationHandledTyps, Set<Class<?>> annotatedClasses) {
+		Class<?> annotatedClass, Class<?>[] handlesTypesClasses,
+		Set<Class<?>> annotationHandlesTypesClasses,
+		Set<Class<?>> annotatedClasses) {
 
 		// Class extends/implements
 
-		for (Class<?> handledType : handledTypesArray) {
-			if (handledType.isAssignableFrom(annotatedClass) &&
+		for (Class<?> handlesTypesClass : handlesTypesClasses) {
+			if (handlesTypesClass.isAssignableFrom(annotatedClass) &&
 				!Modifier.isAbstract(annotatedClass.getModifiers())) {
 
 				annotatedClasses.add(annotatedClass);
@@ -257,7 +258,7 @@ public class WabBundleProcessor {
 			}
 		}
 
-		if (annotationHandledTyps == null) {
+		if (annotationHandlesTypesClasses == null) {
 			return;
 		}
 
@@ -275,7 +276,7 @@ public class WabBundleProcessor {
 		}
 
 		for (Annotation classAnnotation : classAnnotations) {
-			if (annotationHandledTyps.contains(
+			if (annotationHandlesTypesClasses.contains(
 					classAnnotation.annotationType())) {
 
 				annotatedClasses.add(annotatedClass);
@@ -310,7 +311,7 @@ public class WabBundleProcessor {
 			}
 
 			for (Annotation methodAnnotation : methodAnnotations) {
-				if (annotationHandledTyps.contains(
+				if (annotationHandlesTypesClasses.contains(
 						methodAnnotation.annotationType())) {
 
 					annotatedClasses.add(annotatedClass);
@@ -346,7 +347,7 @@ public class WabBundleProcessor {
 			}
 
 			for (Annotation fieldAnnotation : fieldAnnotations) {
-				if (annotationHandledTyps.contains(
+				if (annotationHandlesTypesClasses.contains(
 						fieldAnnotation.annotationType())) {
 
 					annotatedClasses.add(annotatedClass);
@@ -768,24 +769,24 @@ public class WabBundleProcessor {
 			return;
 		}
 
-		HandlesTypes handledTypes = initializerClass.getAnnotation(
+		HandlesTypes handlesTypes = initializerClass.getAnnotation(
 			HandlesTypes.class);
 
 		Set<Class<?>> annotatedClasses = null;
 
-		if (handledTypes != null) {
-			Class<?>[] handledTypesArray = handledTypes.value();
+		if (handlesTypes != null) {
+			Class<?>[] handlesTypesClasses = handlesTypes.value();
 
-			if (handledTypesArray != null) {
-				Set<Class<?>> annotationHandledTyps = null;
+			if (handlesTypesClasses != null) {
+				Set<Class<?>> annotationHandlesTypesClasses = null;
 
-				for (Class<?> handledType : handledTypesArray) {
-					if (handledType.isAnnotation()) {
-						if (annotationHandledTyps == null) {
-							annotationHandledTyps = new HashSet<>();
+				for (Class<?> handlesTypesClass : handlesTypesClasses) {
+					if (handlesTypesClass.isAnnotation()) {
+						if (annotationHandlesTypesClasses == null) {
+							annotationHandlesTypesClasses = new HashSet<>();
 						}
 
-						annotationHandledTyps.add(handledType);
+						annotationHandlesTypesClasses.add(handlesTypesClass);
 					}
 				}
 
@@ -793,8 +794,8 @@ public class WabBundleProcessor {
 
 				for (Class<?> clazz : classes) {
 					collectAnnotatedClasses(
-						clazz, handledTypesArray, annotationHandledTyps,
-						annotatedClasses);
+						clazz, handlesTypesClasses,
+						annotationHandlesTypesClasses, annotatedClasses);
 				}
 
 				if (annotatedClasses.isEmpty()) {
