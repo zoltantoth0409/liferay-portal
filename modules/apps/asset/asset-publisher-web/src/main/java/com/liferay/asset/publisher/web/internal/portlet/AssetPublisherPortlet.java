@@ -239,7 +239,7 @@ public class AssetPublisherPortlet extends MVCPortlet {
 			AssetPublisherDisplayContext assetPublisherDisplayContext =
 				new AssetPublisherDisplayContext(
 					assetEntryActionRegistry, assetHelper,
-					assetPublisherCustomizer, assetListAssetEntryProvider,
+					assetListAssetEntryProvider, assetPublisherCustomizer,
 					assetPublisherHelper, assetPublisherWebConfiguration,
 					assetPublisherWebUtil, infoListProviderTracker,
 					resourceRequest, resourceResponse,
@@ -339,7 +339,7 @@ public class AssetPublisherPortlet extends MVCPortlet {
 			AssetPublisherDisplayContext assetPublisherDisplayContext =
 				new AssetPublisherDisplayContext(
 					assetEntryActionRegistry, assetHelper,
-					assetPublisherCustomizer, assetListAssetEntryProvider,
+					assetListAssetEntryProvider, assetPublisherCustomizer,
 					assetPublisherHelper, assetPublisherWebConfiguration,
 					assetPublisherWebUtil, infoListProviderTracker,
 					renderRequest, renderResponse,
