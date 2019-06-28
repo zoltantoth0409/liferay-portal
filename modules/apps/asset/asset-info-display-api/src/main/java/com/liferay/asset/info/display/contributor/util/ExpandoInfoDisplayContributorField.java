@@ -89,7 +89,26 @@ public class ExpandoInfoDisplayContributorField
 
 		int attributeType = _expandoBridge.getAttributeType(_attributeName);
 
-		if (attributeType == ExpandoColumnConstants.GEOLOCATION) {
+		if ((attributeType == ExpandoColumnConstants.BOOLEAN_ARRAY) ||
+			(attributeType == ExpandoColumnConstants.DOUBLE_ARRAY) ||
+			(attributeType == ExpandoColumnConstants.FLOAT_ARRAY) ||
+			(attributeType == ExpandoColumnConstants.INTEGER_ARRAY) ||
+			(attributeType == ExpandoColumnConstants.LONG_ARRAY) ||
+			(attributeType == ExpandoColumnConstants.NUMBER_ARRAY) ||
+			(attributeType == ExpandoColumnConstants.SHORT_ARRAY) ||
+			(attributeType == ExpandoColumnConstants.STRING_ARRAY)) {
+
+			return StringUtil.merge(
+				ArrayUtil.toStringArray((Object[])attributeValue),
+				StringPool.COMMA_AND_SPACE);
+		}
+		else if (attributeType == ExpandoColumnConstants.DATE) {
+			DateFormat dateFormat = DateFormat.getDateInstance(
+				DateFormat.FULL, locale);
+
+			return dateFormat.format((Date)attributeValue);
+		}
+		else if (attributeType == ExpandoColumnConstants.GEOLOCATION) {
 			try {
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 					attributeValue.toString());
@@ -132,25 +151,6 @@ public class ExpandoInfoDisplayContributorField
 			return StringUtil.merge(
 				ArrayUtil.toStringArray((Object[])attributeValue),
 				StringPool.COMMA_AND_SPACE);
-		}
-		else if ((attributeType == ExpandoColumnConstants.BOOLEAN_ARRAY) ||
-				 (attributeType == ExpandoColumnConstants.DOUBLE_ARRAY) ||
-				 (attributeType == ExpandoColumnConstants.FLOAT_ARRAY) ||
-				 (attributeType == ExpandoColumnConstants.INTEGER_ARRAY) ||
-				 (attributeType == ExpandoColumnConstants.LONG_ARRAY) ||
-				 (attributeType == ExpandoColumnConstants.NUMBER_ARRAY) ||
-				 (attributeType == ExpandoColumnConstants.SHORT_ARRAY) ||
-				 (attributeType == ExpandoColumnConstants.STRING_ARRAY)) {
-
-			return StringUtil.merge(
-				ArrayUtil.toStringArray((Object[])attributeValue),
-				StringPool.COMMA_AND_SPACE);
-		}
-		else if (attributeType == ExpandoColumnConstants.DATE) {
-			DateFormat dateFormat = DateFormat.getDateInstance(
-				DateFormat.FULL, locale);
-
-			return dateFormat.format((Date)attributeValue);
 		}
 
 		return ExpandoConverterUtil.getStringFromAttribute(
