@@ -53,6 +53,15 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "vocabul
 		showParentGroups="<%= false %>"
 	/>
 
+	<liferay-ui:error exception="<%= InvalidAssetCategoryException.class %>">
+
+		<%
+		InvalidAssetCategoryException iace = (InvalidAssetCategoryException)errorException;
+		%>
+
+		<liferay-ui:message arguments="<%= iace.getMessageArgument(locale) %>" key="<%= iace.getMessageKey() %>" />
+	</liferay-ui:error>
+
 	<liferay-ui:search-container
 		id="assetVocabularies"
 		searchContainer="<%= assetCategoriesDisplayContext.getVocabulariesSearchContainer() %>"
