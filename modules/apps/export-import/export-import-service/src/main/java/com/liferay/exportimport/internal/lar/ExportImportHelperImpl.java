@@ -866,11 +866,12 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		List<LayoutRevision> layoutRevisions =
 			_layoutRevisionLocalService.getLayoutRevisions(layout.getPlid());
 
-		Stream<LayoutRevision> layoutRevisionStream = layoutRevisions.stream();
+		Stream<LayoutRevision> layoutRevisionsStream = layoutRevisions.stream();
 
-		if (layoutRevisionStream.anyMatch(
-				revision ->
-					revision.getStatus() == WorkflowConstants.STATUS_PENDING)) {
+		if (layoutRevisionsStream.anyMatch(
+				layoutRevision ->
+					layoutRevision.getStatus() ==
+						WorkflowConstants.STATUS_PENDING)) {
 
 			return true;
 		}
