@@ -77,7 +77,7 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 
 		List<Process> processes = transform(
 			_getCTProcesses(
-				companyId, userId, keywords, processType, pagination, sorts),
+				companyId, keywords, processType, userId, pagination, sorts),
 			this::_toProcess);
 
 		return Page.of(processes, pagination, processes.size());
@@ -96,7 +96,7 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 	}
 
 	private List<CTProcess> _getCTProcesses(
-		long companyId, long userId, String keywords, ProcessType processType,
+		long companyId, String keywords, ProcessType processType, long userId,
 		Pagination pagination, Sort[] sorts) {
 
 		if (ProcessType.PUBLISHED_LATEST.equals(processType)) {
