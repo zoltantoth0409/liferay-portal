@@ -39,8 +39,8 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface ProcessResource {
 
 	public Page<Process> getProcessesPage(
-			Long companyId, String keywords, ProcessType type, Long userId,
-			Pagination pagination, Sort[] sorts)
+			Long companyId, String keywords, ProcessType processType,
+			Long userId, Pagination pagination, Sort[] sorts)
 		throws Exception;
 
 	public Process getProcess(Long processId) throws Exception;

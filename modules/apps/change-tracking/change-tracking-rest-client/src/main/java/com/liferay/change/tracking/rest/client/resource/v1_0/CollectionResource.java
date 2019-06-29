@@ -39,12 +39,12 @@ public interface CollectionResource {
 	}
 
 	public Page<Collection> getCollectionsPage(
-			Long companyId, CollectionType type, Long userId,
+			CollectionType collectionType, Long companyId, Long userId,
 			Pagination pagination, String sortString)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse getCollectionsPageHttpResponse(
-			Long companyId, CollectionType type, Long userId,
+			CollectionType collectionType, Long companyId, Long userId,
 			Pagination pagination, String sortString)
 		throws Exception;
 
@@ -131,13 +131,13 @@ public interface CollectionResource {
 	public static class CollectionResourceImpl implements CollectionResource {
 
 		public Page<Collection> getCollectionsPage(
-				Long companyId, CollectionType type, Long userId,
+				CollectionType collectionType, Long companyId, Long userId,
 				Pagination pagination, String sortString)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				getCollectionsPageHttpResponse(
-					companyId, type, userId, pagination, sortString);
+					collectionType, companyId, userId, pagination, sortString);
 
 			String content = httpResponse.getContent();
 
@@ -151,7 +151,7 @@ public interface CollectionResource {
 		}
 
 		public HttpInvoker.HttpResponse getCollectionsPageHttpResponse(
-				Long companyId, CollectionType type, Long userId,
+				CollectionType collectionType, Long companyId, Long userId,
 				Pagination pagination, String sortString)
 			throws Exception {
 
@@ -164,12 +164,13 @@ public interface CollectionResource {
 
 			httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 
-			if (companyId != null) {
-				httpInvoker.parameter("companyId", String.valueOf(companyId));
+			if (collectionType != null) {
+				httpInvoker.parameter(
+					"collectionType", String.valueOf(collectionType));
 			}
 
-			if (type != null) {
-				httpInvoker.parameter("type", String.valueOf(type));
+			if (companyId != null) {
+				httpInvoker.parameter("companyId", String.valueOf(companyId));
 			}
 
 			if (userId != null) {

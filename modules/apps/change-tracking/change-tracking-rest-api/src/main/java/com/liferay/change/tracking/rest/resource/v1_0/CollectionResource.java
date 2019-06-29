@@ -42,7 +42,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface CollectionResource {
 
 	public Page<Collection> getCollectionsPage(
-			Long companyId, CollectionType type, Long userId,
+			CollectionType collectionType, Long companyId, Long userId,
 			Pagination pagination, Sort[] sorts)
 		throws Exception;
 
