@@ -157,6 +157,11 @@ paths:
             operationId: getCollectionsPage
             parameters:
                 - in: query
+                  name: collectionType
+                  required: false
+                  schema:
+                      $ref: "#/components/schemas/CollectionType"
+                - in: query
                   name: companyId
                   required: false
                   schema:
@@ -177,11 +182,6 @@ paths:
                   required: false
                   schema:
                       type: string
-                - in: query
-                  name: collectionType
-                  required: false
-                  schema:
-                      $ref: "#/components/schemas/CollectionType"
                 - in: query
                   name: userId
                   required: false
@@ -529,15 +529,15 @@ paths:
                   schema:
                       type: integer
                 - in: query
-                  name: sort
-                  required: false
-                  schema:
-                      type: string
-                - in: query
                   name: processType
                   required: false
                   schema:
                       $ref: "#/components/schemas/ProcessType"
+                - in: query
+                  name: sort
+                  required: false
+                  schema:
+                      type: string
                 - in: query
                   name: userId
                   required: false
