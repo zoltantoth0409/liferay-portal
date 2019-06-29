@@ -112,7 +112,7 @@ public class CollectionResourceImpl
 
 	@Override
 	public Page<Collection> getCollectionsPage(
-			Long companyId, CollectionType collectionType, Long userId,
+			CollectionType collectionType, Long companyId, Long userId,
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
