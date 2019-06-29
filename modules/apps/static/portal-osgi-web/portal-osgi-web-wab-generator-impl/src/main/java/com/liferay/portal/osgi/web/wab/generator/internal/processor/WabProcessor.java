@@ -1142,12 +1142,11 @@ public class WabProcessor {
 		analyzer.setProperty("-jsp", "*.jsp,*.jspf");
 		analyzer.setProperty("Web-ContextPath", getWebContextPath());
 
+		List<Object> disabledPlugins = new ArrayList<>();
 		Properties properties = PropsUtil.getProperties(
 			"module.framework.web.generator.bnd.plugin.enabled[", true);
 
 		Set<Object> plugins = analyzer.getPlugins();
-
-		List<Object> disabledPlugins = new ArrayList<>();
 
 		for (Object plugin : plugins) {
 			if (plugin instanceof DSAnnotations ||
