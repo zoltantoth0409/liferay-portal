@@ -63,8 +63,8 @@ public abstract class BaseCollectionResourceImpl implements CollectionResource {
 	@GET
 	@Parameters(
 		value = {
+			@Parameter(in = ParameterIn.QUERY, name = "collectionType"),
 			@Parameter(in = ParameterIn.QUERY, name = "companyId"),
-			@Parameter(in = ParameterIn.QUERY, name = "type"),
 			@Parameter(in = ParameterIn.QUERY, name = "userId"),
 			@Parameter(in = ParameterIn.QUERY, name = "page"),
 			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
@@ -75,10 +75,11 @@ public abstract class BaseCollectionResourceImpl implements CollectionResource {
 	@Produces({"application/json", "application/xml"})
 	@Tags(value = {@Tag(name = "Collection")})
 	public Page<Collection> getCollectionsPage(
-			@Parameter(hidden = true) @QueryParam("companyId") Long companyId,
-			@DefaultValue("all") @Parameter(hidden = true) @QueryParam("type")
+			@DefaultValue("all") @Parameter(hidden = true)
+			@QueryParam("collectionType")
 				com.liferay.change.tracking.rest.constant.v1_0.CollectionType
-					type,
+					collectionType,
+			@Parameter(hidden = true) @QueryParam("companyId") Long companyId,
 			@Parameter(hidden = true) @QueryParam("userId") Long userId,
 			@Context Pagination pagination, @Context Sort[] sorts)
 		throws Exception {

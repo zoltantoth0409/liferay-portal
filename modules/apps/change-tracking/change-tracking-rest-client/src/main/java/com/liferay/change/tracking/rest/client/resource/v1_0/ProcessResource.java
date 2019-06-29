@@ -39,13 +39,13 @@ public interface ProcessResource {
 	}
 
 	public Page<Process> getProcessesPage(
-			Long companyId, String keywords, ProcessType type, Long userId,
-			Pagination pagination, String sortString)
+			Long companyId, String keywords, ProcessType processType,
+			Long userId, Pagination pagination, String sortString)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse getProcessesPageHttpResponse(
-			Long companyId, String keywords, ProcessType type, Long userId,
-			Pagination pagination, String sortString)
+			Long companyId, String keywords, ProcessType processType,
+			Long userId, Pagination pagination, String sortString)
 		throws Exception;
 
 	public Process getProcess(Long processId) throws Exception;
@@ -95,13 +95,14 @@ public interface ProcessResource {
 	public static class ProcessResourceImpl implements ProcessResource {
 
 		public Page<Process> getProcessesPage(
-				Long companyId, String keywords, ProcessType type, Long userId,
-				Pagination pagination, String sortString)
+				Long companyId, String keywords, ProcessType processType,
+				Long userId, Pagination pagination, String sortString)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				getProcessesPageHttpResponse(
-					companyId, keywords, type, userId, pagination, sortString);
+					companyId, keywords, processType, userId, pagination,
+					sortString);
 
 			String content = httpResponse.getContent();
 
@@ -115,8 +116,8 @@ public interface ProcessResource {
 		}
 
 		public HttpInvoker.HttpResponse getProcessesPageHttpResponse(
-				Long companyId, String keywords, ProcessType type, Long userId,
-				Pagination pagination, String sortString)
+				Long companyId, String keywords, ProcessType processType,
+				Long userId, Pagination pagination, String sortString)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -136,8 +137,9 @@ public interface ProcessResource {
 				httpInvoker.parameter("keywords", String.valueOf(keywords));
 			}
 
-			if (type != null) {
-				httpInvoker.parameter("type", String.valueOf(type));
+			if (processType != null) {
+				httpInvoker.parameter(
+					"processType", String.valueOf(processType));
 			}
 
 			if (userId != null) {

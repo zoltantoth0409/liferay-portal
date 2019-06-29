@@ -113,10 +113,10 @@ public class Query {
 
 	@GraphQLField
 	public CollectionPage getCollectionsPage(
-			@GraphQLName("companyId") Long companyId,
-			@GraphQLName("type")
+			@GraphQLName("collectionType")
 				com.liferay.change.tracking.rest.constant.v1_0.CollectionType
-					type,
+					collectionType,
+			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("userId") Long userId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
@@ -127,8 +127,8 @@ public class Query {
 			this::_populateResourceContext,
 			collectionResource -> new CollectionPage(
 				collectionResource.getCollectionsPage(
-					companyId, type, userId, Pagination.of(page, pageSize),
-					sorts)));
+					collectionType, companyId, userId,
+					Pagination.of(page, pageSize), sorts)));
 	}
 
 	@GraphQLField
@@ -181,8 +181,9 @@ public class Query {
 	public ProcessPage getProcessesPage(
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("keywords") String keywords,
-			@GraphQLName("type")
-				com.liferay.change.tracking.rest.constant.v1_0.ProcessType type,
+			@GraphQLName("processType")
+				com.liferay.change.tracking.rest.constant.v1_0.ProcessType
+					processType,
 			@GraphQLName("userId") Long userId,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
@@ -193,7 +194,7 @@ public class Query {
 			this::_populateResourceContext,
 			processResource -> new ProcessPage(
 				processResource.getProcessesPage(
-					companyId, keywords, type, userId,
+					companyId, keywords, processType, userId,
 					Pagination.of(page, pageSize), sorts)));
 	}
 

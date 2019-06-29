@@ -61,7 +61,7 @@ public abstract class BaseProcessResourceImpl implements ProcessResource {
 		value = {
 			@Parameter(in = ParameterIn.QUERY, name = "companyId"),
 			@Parameter(in = ParameterIn.QUERY, name = "keywords"),
-			@Parameter(in = ParameterIn.QUERY, name = "type"),
+			@Parameter(in = ParameterIn.QUERY, name = "processType"),
 			@Parameter(in = ParameterIn.QUERY, name = "userId"),
 			@Parameter(in = ParameterIn.QUERY, name = "page"),
 			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
@@ -75,8 +75,10 @@ public abstract class BaseProcessResourceImpl implements ProcessResource {
 			@NotNull @Parameter(hidden = true) @QueryParam("companyId") Long
 				companyId,
 			@Parameter(hidden = true) @QueryParam("keywords") String keywords,
-			@DefaultValue("all") @Parameter(hidden = true) @QueryParam("type")
-				com.liferay.change.tracking.rest.constant.v1_0.ProcessType type,
+			@DefaultValue("all") @Parameter(hidden = true)
+			@QueryParam("processType")
+				com.liferay.change.tracking.rest.constant.v1_0.ProcessType
+					processType,
 			@Parameter(hidden = true) @QueryParam("userId") Long userId,
 			@Context Pagination pagination, @Context Sort[] sorts)
 		throws Exception {
