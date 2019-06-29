@@ -72,12 +72,12 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 
 	@Override
 	public Page<Process> getProcessesPage(
-		Long companyId, String keywords, ProcessType type, Long userId,
+		Long companyId, String keywords, ProcessType processType, Long userId,
 		Pagination pagination, Sort[] sorts) {
 
 		List<Process> processes = transform(
 			_getCTProcesses(
-				companyId, userId, keywords, type, pagination, sorts),
+				companyId, userId, keywords, processType, pagination, sorts),
 			this::_toProcess);
 
 		return Page.of(processes, pagination, processes.size());
@@ -96,10 +96,10 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 	}
 
 	private List<CTProcess> _getCTProcesses(
-		long companyId, long userId, String keywords, ProcessType type,
+		long companyId, long userId, String keywords, ProcessType processType,
 		Pagination pagination, Sort[] sorts) {
 
-		if (ProcessType.PUBLISHED_LATEST.equals(type)) {
+		if (ProcessType.PUBLISHED_LATEST.equals(processType)) {
 			Optional<CTProcess> latestCTProcessOptional =
 				_ctEngineManager.getLatestCTProcessOptional(companyId);
 
@@ -113,7 +113,7 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 		QueryDefinition<CTProcess> queryDefinition =
 			SearchUtil.getQueryDefinition(CTProcess.class, pagination, sorts);
 
-		queryDefinition.setStatus(_getStatus(type));
+		queryDefinition.setStatus(_getStatus(processType));
 
 		return _ctEngineManager.getCTProcesses(
 			companyId, userId, keywords, queryDefinition);
@@ -137,19 +137,19 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 		}
 	}
 
-	private int _getStatus(ProcessType type) {
+	private int _getStatus(ProcessType processType) {
 		int status = 0;
 
-		if (ProcessType.ALL.equals(type)) {
+		if (ProcessType.ALL.equals(processType)) {
 			status = WorkflowConstants.STATUS_ANY;
 		}
-		else if (ProcessType.FAILED.equals(type)) {
+		else if (ProcessType.FAILED.equals(processType)) {
 			status = BackgroundTaskConstants.STATUS_FAILED;
 		}
-		else if (ProcessType.IN_PROGRESS.equals(type)) {
+		else if (ProcessType.IN_PROGRESS.equals(processType)) {
 			status = BackgroundTaskConstants.STATUS_IN_PROGRESS;
 		}
-		else if (ProcessType.PUBLISHED.equals(type)) {
+		else if (ProcessType.PUBLISHED.equals(processType)) {
 			status = BackgroundTaskConstants.STATUS_SUCCESSFUL;
 		}
 
