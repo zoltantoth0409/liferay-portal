@@ -113,7 +113,7 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 		QueryDefinition<CTProcess> queryDefinition =
 			SearchUtil.getQueryDefinition(CTProcess.class, pagination, sorts);
 
-		queryDefinition.setStatus(_getStatus(processType));
+		queryDefinition.setStatus(_toStatus(processType));
 
 		return _ctEngineManager.getCTProcesses(
 			companyId, userId, keywords, queryDefinition);
@@ -137,7 +137,7 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 		}
 	}
 
-	private int _getStatus(ProcessType processType) {
+	private int _toStatus(ProcessType processType) {
 		int status = 0;
 
 		if (ProcessType.ALL.equals(processType)) {
