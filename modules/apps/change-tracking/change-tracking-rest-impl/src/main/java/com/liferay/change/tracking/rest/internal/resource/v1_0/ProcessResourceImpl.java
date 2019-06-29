@@ -137,25 +137,6 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 		}
 	}
 
-	private int _toStatus(ProcessType processType) {
-		int status = 0;
-
-		if (ProcessType.ALL.equals(processType)) {
-			status = WorkflowConstants.STATUS_ANY;
-		}
-		else if (ProcessType.FAILED.equals(processType)) {
-			status = BackgroundTaskConstants.STATUS_FAILED;
-		}
-		else if (ProcessType.IN_PROGRESS.equals(processType)) {
-			status = BackgroundTaskConstants.STATUS_IN_PROGRESS;
-		}
-		else if (ProcessType.PUBLISHED.equals(processType)) {
-			status = BackgroundTaskConstants.STATUS_SUCCESSFUL;
-		}
-
-		return status;
-	}
-
 	private Process _toProcess(CTProcess ctProcess) {
 		if (ctProcess == null) {
 			return null;
@@ -207,6 +188,25 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 				);
 			}
 		};
+	}
+
+	private int _toStatus(ProcessType processType) {
+		int status = 0;
+
+		if (ProcessType.ALL.equals(processType)) {
+			status = WorkflowConstants.STATUS_ANY;
+		}
+		else if (ProcessType.FAILED.equals(processType)) {
+			status = BackgroundTaskConstants.STATUS_FAILED;
+		}
+		else if (ProcessType.IN_PROGRESS.equals(processType)) {
+			status = BackgroundTaskConstants.STATUS_IN_PROGRESS;
+		}
+		else if (ProcessType.PUBLISHED.equals(processType)) {
+			status = BackgroundTaskConstants.STATUS_SUCCESSFUL;
+		}
+
+		return status;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
