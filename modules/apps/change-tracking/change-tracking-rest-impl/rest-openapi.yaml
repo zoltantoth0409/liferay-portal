@@ -178,7 +178,7 @@ paths:
                   schema:
                       type: string
                 - in: query
-                  name: type
+                  name: collectionType
                   required: false
                   schema:
                       $ref: "#/components/schemas/CollectionType"
@@ -534,7 +534,7 @@ paths:
                   schema:
                       type: string
                 - in: query
-                  name: type
+                  name: processType
                   required: false
                   schema:
                       $ref: "#/components/schemas/ProcessType"
