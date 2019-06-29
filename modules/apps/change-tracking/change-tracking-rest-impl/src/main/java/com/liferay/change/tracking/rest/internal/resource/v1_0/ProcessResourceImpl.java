@@ -96,7 +96,7 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 	}
 
 	private List<CTProcess> _getCTProcesses(
-		long companyId, String keywords, ProcessType processType, long userId,
+		Long companyId, String keywords, ProcessType processType, Long userId,
 		Pagination pagination, Sort[] sorts) {
 
 		if (ProcessType.PUBLISHED_LATEST.equals(processType)) {
