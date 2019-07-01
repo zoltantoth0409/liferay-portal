@@ -69,14 +69,13 @@ public class PortletServletResponse extends HttpServletResponseWrapper {
 
 	@Override
 	public void addHeader(String name, String value) {
-		if (!_include) {
-			if (_lifecycle.equals(PortletRequest.RENDER_PHASE) ||
-				_lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
+		if (!_include &&
+			(_lifecycle.equals(PortletRequest.RENDER_PHASE) ||
+			 _lifecycle.equals(PortletRequest.RESOURCE_PHASE))) {
 
-				MimeResponse mimeResponse = _getMimeResponse();
+			MimeResponse mimeResponse = _getMimeResponse();
 
-				mimeResponse.setProperty(name, value);
-			}
+			mimeResponse.setProperty(name, value);
 		}
 	}
 
@@ -260,12 +259,10 @@ public class PortletServletResponse extends HttpServletResponseWrapper {
 
 	@Override
 	public void sendRedirect(String location) throws IOException {
-		if (!_include) {
-			if (_lifecycle.equals(PortletRequest.ACTION_PHASE)) {
-				ActionResponse actionResponse = _getActionResponse();
+		if (!_include && _lifecycle.equals(PortletRequest.ACTION_PHASE)) {
+			ActionResponse actionResponse = _getActionResponse();
 
-				actionResponse.sendRedirect(location);
-			}
+			actionResponse.sendRedirect(location);
 		}
 	}
 
@@ -282,36 +279,31 @@ public class PortletServletResponse extends HttpServletResponseWrapper {
 
 	@Override
 	public void setCharacterEncoding(String characterEncoding) {
-		if (!_include) {
-			if (_lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
-				ResourceResponse resourceResponse = _getResourceResponse();
+		if (!_include && _lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
+			ResourceResponse resourceResponse = _getResourceResponse();
 
-				resourceResponse.setCharacterEncoding(characterEncoding);
-			}
+			resourceResponse.setCharacterEncoding(characterEncoding);
 		}
 	}
 
 	@Override
 	public void setContentLength(int contentLength) {
-		if (!_include) {
-			if (_lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
-				ResourceResponse resourceResponse = _getResourceResponse();
+		if (!_include && _lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
+			ResourceResponse resourceResponse = _getResourceResponse();
 
-				resourceResponse.setContentLength(contentLength);
-			}
+			resourceResponse.setContentLength(contentLength);
 		}
 	}
 
 	@Override
 	public void setContentType(String contentType) {
-		if (!_include) {
-			if (_lifecycle.equals(PortletRequest.RENDER_PHASE) ||
-				_lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
+		if (!_include &&
+			(_lifecycle.equals(PortletRequest.RENDER_PHASE) ||
+			 _lifecycle.equals(PortletRequest.RESOURCE_PHASE))) {
 
-				MimeResponse mimeResponse = _getMimeResponse();
+			MimeResponse mimeResponse = _getMimeResponse();
 
-				mimeResponse.setContentType(contentType);
-			}
+			mimeResponse.setContentType(contentType);
 		}
 	}
 
@@ -322,14 +314,13 @@ public class PortletServletResponse extends HttpServletResponseWrapper {
 
 	@Override
 	public void setHeader(String name, String value) {
-		if (!_include) {
-			if (_lifecycle.equals(PortletRequest.RENDER_PHASE) ||
-				_lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
+		if (!_include &&
+			(_lifecycle.equals(PortletRequest.RENDER_PHASE) ||
+			 _lifecycle.equals(PortletRequest.RESOURCE_PHASE))) {
 
-				MimeResponse mimeResponse = _getMimeResponse();
+			MimeResponse mimeResponse = _getMimeResponse();
 
-				mimeResponse.setProperty(name, value);
-			}
+			mimeResponse.setProperty(name, value);
 		}
 	}
 
@@ -340,24 +331,20 @@ public class PortletServletResponse extends HttpServletResponseWrapper {
 
 	@Override
 	public void setLocale(Locale locale) {
-		if (!_include) {
-			if (_lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
-				ResourceResponse resourceResponse = _getResourceResponse();
+		if (!_include && _lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
+			ResourceResponse resourceResponse = _getResourceResponse();
 
-				resourceResponse.setLocale(locale);
-			}
+			resourceResponse.setLocale(locale);
 		}
 	}
 
 	@Override
 	public void setStatus(int status) {
-		if (!_include) {
-			if (_lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
-				ResourceResponse resourceResponse = _getResourceResponse();
+		if (!_include && _lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
+			ResourceResponse resourceResponse = _getResourceResponse();
 
-				resourceResponse.setProperty(
-					ResourceResponse.HTTP_STATUS_CODE, String.valueOf(status));
-			}
+			resourceResponse.setProperty(
+				ResourceResponse.HTTP_STATUS_CODE, String.valueOf(status));
 		}
 	}
 

@@ -726,12 +726,11 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 		Map<String, String[]> publicRenderParametersMap =
 			PublicRenderParametersPool.get(request, plid);
 
-		if (invokerPortlet != null) {
-			if (invokerPortlet.isStrutsPortlet() ||
-				invokerPortlet.isStrutsBridgePortlet()) {
+		if ((invokerPortlet != null) &&
+			(invokerPortlet.isStrutsPortlet() ||
+			 invokerPortlet.isStrutsBridgePortlet())) {
 
-				_strutsPortlet = true;
-			}
+			_strutsPortlet = true;
 		}
 
 		String portletNamespace = PortalUtil.getPortletNamespace(_portletName);

@@ -498,10 +498,10 @@ public class ConsumerPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		if (_wsrpGroupServiceConfiguration.secureResourceUrlsEnabled()) {
-			if (!authorize(resourceRequest, resourceResponse)) {
-				return;
-			}
+		if (_wsrpGroupServiceConfiguration.secureResourceUrlsEnabled() &&
+			!authorize(resourceRequest, resourceResponse)) {
+
+			return;
 		}
 
 		String resourceID = resourceRequest.getResourceID();

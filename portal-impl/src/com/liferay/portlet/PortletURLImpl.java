@@ -602,14 +602,11 @@ public class PortletURLImpl
 	public void setPortletMode(PortletMode portletMode)
 		throws PortletModeException {
 
-		if (_portletRequest != null) {
-			if (!_portlet.isUndeployedPortlet() &&
-				!_portlet.hasPortletMode(
-					_portletRequest.getResponseContentType(), portletMode)) {
+		if ((_portletRequest != null) && !_portlet.isUndeployedPortlet() &&
+			!_portlet.hasPortletMode(
+				_portletRequest.getResponseContentType(), portletMode)) {
 
-				throw new PortletModeException(
-					portletMode.toString(), portletMode);
-			}
+			throw new PortletModeException(portletMode.toString(), portletMode);
 		}
 
 		_portletModeString = portletMode.toString();
@@ -669,11 +666,10 @@ public class PortletURLImpl
 	public void setWindowState(WindowState windowState)
 		throws WindowStateException {
 
-		if (_portletRequest != null) {
-			if (!_portletRequest.isWindowStateAllowed(windowState)) {
-				throw new WindowStateException(
-					windowState.toString(), windowState);
-			}
+		if ((_portletRequest != null) &&
+			!_portletRequest.isWindowStateAllowed(windowState)) {
+
+			throw new WindowStateException(windowState.toString(), windowState);
 		}
 
 		if (LiferayWindowState.isWindowStatePreserved(
@@ -1011,27 +1007,25 @@ public class PortletURLImpl
 			sb.append("=1");
 		}
 
-		if (PropsValues.PORTLET_URL_ANCHOR_ENABLE) {
-			if (_anchor && (_windowStateString != null) &&
-				!_windowStateString.equals(WindowState.MAXIMIZED.toString()) &&
-				!_windowStateString.equals(
-					LiferayWindowState.EXCLUSIVE.toString()) &&
-				!_windowStateString.equals(
-					LiferayWindowState.POP_UP.toString())) {
+		if (PropsValues.PORTLET_URL_ANCHOR_ENABLE && _anchor &&
+			(_windowStateString != null) &&
+			!_windowStateString.equals(WindowState.MAXIMIZED.toString()) &&
+			!_windowStateString.equals(
+				LiferayWindowState.EXCLUSIVE.toString()) &&
+			!_windowStateString.equals(LiferayWindowState.POP_UP.toString())) {
 
-				String lastString = sb.stringAt(sb.index() - 1);
+			String lastString = sb.stringAt(sb.index() - 1);
 
-				char lastChar = lastString.charAt(lastString.length() - 1);
+			char lastChar = lastString.charAt(lastString.length() - 1);
 
-				if ((lastChar != CharPool.AMPERSAND) &&
-					(lastChar != CharPool.QUESTION)) {
+			if ((lastChar != CharPool.AMPERSAND) &&
+				(lastChar != CharPool.QUESTION)) {
 
-					sb.append(StringPool.AMPERSAND);
-				}
-
-				sb.append("#p_");
-				sb.append(URLCodec.encodeURL(_portlet.getPortletId()));
+				sb.append(StringPool.AMPERSAND);
 			}
+
+			sb.append("#p_");
+			sb.append(URLCodec.encodeURL(_portlet.getPortletId()));
 		}
 
 		String lastString = sb.stringAt(sb.index() - 1);
@@ -1123,18 +1117,16 @@ public class PortletURLImpl
 			sb.append(StringPool.AMPERSAND);
 		}
 
-		if (PropsValues.PORTLET_URL_ANCHOR_ENABLE) {
-			if (_anchor && (_windowStateString != null) &&
-				!_windowStateString.equals(WindowState.MAXIMIZED.toString()) &&
-				!_windowStateString.equals(
-					LiferayWindowState.EXCLUSIVE.toString()) &&
-				!_windowStateString.equals(
-					LiferayWindowState.POP_UP.toString())) {
+		if (PropsValues.PORTLET_URL_ANCHOR_ENABLE && _anchor &&
+			(_windowStateString != null) &&
+			!_windowStateString.equals(WindowState.MAXIMIZED.toString()) &&
+			!_windowStateString.equals(
+				LiferayWindowState.EXCLUSIVE.toString()) &&
+			!_windowStateString.equals(LiferayWindowState.POP_UP.toString())) {
 
-				sb.append("wsrp-fragmentID=#p_");
-				sb.append(URLCodec.encodeURL(_portlet.getPortletId()));
-				sb.append(StringPool.AMPERSAND);
-			}
+			sb.append("wsrp-fragmentID=#p_");
+			sb.append(URLCodec.encodeURL(_portlet.getPortletId()));
+			sb.append(StringPool.AMPERSAND);
 		}
 
 		Map<String, String[]> renderParams = _params;

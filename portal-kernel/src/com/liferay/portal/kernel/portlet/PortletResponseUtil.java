@@ -224,13 +224,10 @@ public class PortletResponseUtil {
 			return;
 		}
 
-		if (contentLength > 0) {
-			if (mimeResponse instanceof ResourceResponse) {
-				ResourceResponse resourceResponse =
-					(ResourceResponse)mimeResponse;
+		if ((contentLength > 0) && (mimeResponse instanceof ResourceResponse)) {
+			ResourceResponse resourceResponse = (ResourceResponse)mimeResponse;
 
-				resourceResponse.setContentLength(contentLength);
-			}
+			resourceResponse.setContentLength(contentLength);
 		}
 
 		StreamUtil.transfer(inputStream, mimeResponse.getPortletOutputStream());

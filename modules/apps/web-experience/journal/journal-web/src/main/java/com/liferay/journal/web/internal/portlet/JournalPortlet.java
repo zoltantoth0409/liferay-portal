@@ -1274,15 +1274,15 @@ public class JournalPortlet extends MVCPortlet {
 			if (windowState.equals(LiferayWindowState.POP_UP)) {
 				redirect = _portal.escapeRedirect(redirect);
 
-				if (Validator.isNotNull(redirect)) {
-					if (actionName.equals("addArticle") && (article != null)) {
-						redirect = _httpUtil.addParameter(
-							redirect, namespace + "className",
-							JournalArticle.class.getName());
-						redirect = _httpUtil.addParameter(
-							redirect, namespace + "classPK",
-							JournalArticleAssetRenderer.getClassPK(article));
-					}
+				if (Validator.isNotNull(redirect) &&
+					actionName.equals("addArticle") && (article != null)) {
+
+					redirect = _httpUtil.addParameter(
+						redirect, namespace + "className",
+						JournalArticle.class.getName());
+					redirect = _httpUtil.addParameter(
+						redirect, namespace + "classPK",
+						JournalArticleAssetRenderer.getClassPK(article));
 				}
 			}
 		}

@@ -1048,10 +1048,10 @@ public class PortalImpl implements Portal {
 	public String getAbsoluteURL(HttpServletRequest request, String url) {
 		String portalURL = getPortalURL(request);
 
-		if (url.charAt(0) == CharPool.SLASH) {
-			if (Validator.isNotNull(portalURL)) {
-				url = portalURL.concat(url);
-			}
+		if ((url.charAt(0) == CharPool.SLASH) &&
+			Validator.isNotNull(portalURL)) {
+
+			url = portalURL.concat(url);
 		}
 
 		if (!CookieKeys.hasSessionId(request) && url.startsWith(portalURL)) {
@@ -7728,12 +7728,12 @@ public class PortalImpl implements Portal {
 			LayoutTypePortlet layoutTypePortlet =
 				(LayoutTypePortlet)layout.getLayoutType();
 
-			if (layoutTypePortlet.hasPortletId(portletId, true)) {
-				if (getScopeGroupId(layout, portletId) == scopeGroupId) {
-					plid = layout.getPlid();
+			if (layoutTypePortlet.hasPortletId(portletId, true) &&
+				(getScopeGroupId(layout, portletId) == scopeGroupId)) {
 
-					break;
-				}
+				plid = layout.getPlid();
+
+				break;
 			}
 		}
 
