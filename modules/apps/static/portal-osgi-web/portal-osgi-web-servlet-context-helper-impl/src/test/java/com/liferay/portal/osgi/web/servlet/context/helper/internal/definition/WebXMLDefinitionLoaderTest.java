@@ -139,7 +139,6 @@ public class WebXMLDefinitionLoaderTest {
 	@Test
 	public void testLoadWebXML() throws Exception {
 		Bundle bundle = new MockBundle();
-
 		Set<Class<?>> classes = Collections.emptySet();
 
 		WebXMLDefinitionLoader webXMLDefinitionLoader =
@@ -402,7 +401,6 @@ public class WebXMLDefinitionLoaderTest {
 		throws Exception {
 
 		TestBundle testBundle = new TestBundle(path);
-
 		Set<Class<?>> classes = Collections.emptySet();
 
 		WebXMLDefinitionLoader webXMLDefinitionLoader =
