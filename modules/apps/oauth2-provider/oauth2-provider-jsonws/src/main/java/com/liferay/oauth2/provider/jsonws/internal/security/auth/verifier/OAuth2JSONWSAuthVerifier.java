@@ -135,7 +135,7 @@ public class OAuth2JSONWSAuthVerifier implements AuthVerifier {
 			for (SAPEntryScope sapEntryScope : sapEntryScopes) {
 				if (scopes.contains(sapEntryScope.getScope())) {
 					serviceAccessPolicyNames.add(
-						sapEntryScope.getSapEntryName());
+						sapEntryScope.getSAPEntryName());
 				}
 			}
 

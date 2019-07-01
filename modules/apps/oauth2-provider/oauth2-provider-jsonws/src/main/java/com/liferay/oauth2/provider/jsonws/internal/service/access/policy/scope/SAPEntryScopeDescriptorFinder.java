@@ -41,7 +41,7 @@ public class SAPEntryScopeDescriptorFinder
 		_defaultScopeDescriptor = defaultScopeDescriptor;
 
 		for (SAPEntryScope sapEntryScope : sapEntryScopes) {
-			SAPEntry sapEntry = sapEntryScope.getSapEntry();
+			SAPEntry sapEntry = sapEntryScope.getSAPEntry();
 
 			if (sapEntry.isEnabled()) {
 				_scopes.add(sapEntryScope.getScope());
