@@ -99,14 +99,9 @@ public class FragmentEntryLinkServiceTest {
 	@Test
 	public void testAddFragmentEntryLink() throws Exception {
 		String css = "div {\\ncolor: red;\\n}";
-
 		String html = "<div>test</div>";
-
 		String js = "alert(\"test\");";
-
 		String configuration = "{fieldSets:[]}";
-
-		long classPK = _layout.getPlid();
 
 		_addSiteMemberUpdatePermission();
 
@@ -119,9 +114,9 @@ public class FragmentEntryLinkServiceTest {
 		FragmentEntryLink fragmentEntryLink =
 			_fragmentEntryLinkService.addFragmentEntryLink(
 				_group.getGroupId(), 0, _fragmentEntry.getFragmentEntryId(),
-				PortalUtil.getClassNameId(Layout.class), classPK, css, html, js,
-				configuration, StringPool.BLANK, StringPool.BLANK, 0, null,
-				serviceContext);
+				PortalUtil.getClassNameId(Layout.class), _layout.getPlid(), css,
+				html, js, configuration, StringPool.BLANK, StringPool.BLANK, 0,
+				null, serviceContext);
 
 		FragmentEntryLink persistedFragmentEntryLink =
 			_fragmentEntryLinkPersistence.findByPrimaryKey(
@@ -154,12 +149,10 @@ public class FragmentEntryLinkServiceTest {
 
 	@Test
 	public void testDeleteFragmentEntryLink() throws Exception {
-		long classPK = _layout.getPlid();
-
 		FragmentEntryLink fragmentEntryLink =
 			FragmentTestUtil.addFragmentEntryLink(
 				_fragmentEntry, PortalUtil.getClassNameId(Layout.class),
-				classPK);
+				_layout.getPlid());
 
 		_addSiteMemberUpdatePermission();
 
@@ -190,14 +183,12 @@ public class FragmentEntryLinkServiceTest {
 
 	@Test
 	public void testUpdateFragmentEntryLink() throws Exception {
-		long classPK = _layout.getPlid();
-
 		String editableValues = _createEditableValues();
 
 		FragmentEntryLink fragmentEntryLink =
 			FragmentTestUtil.addFragmentEntryLink(
 				_fragmentEntry, PortalUtil.getClassNameId(Layout.class),
-				classPK);
+				_layout.getPlid());
 
 		_addSiteMemberUpdatePermission();
 
@@ -217,8 +208,6 @@ public class FragmentEntryLinkServiceTest {
 
 	@Test
 	public void testUpdateFragmentEntryLinks() throws Exception {
-		long classPK = _layout.getPlid();
-
 		String editableValues = _createEditableValues();
 
 		FragmentEntry fragmentEntry = FragmentEntryTestUtil.addFragmentEntry(
@@ -230,7 +219,8 @@ public class FragmentEntryLinkServiceTest {
 		};
 
 		FragmentTestUtil.addFragmentEntryLink(
-			fragmentEntry, PortalUtil.getClassNameId(Layout.class), classPK);
+			fragmentEntry, PortalUtil.getClassNameId(Layout.class),
+			_layout.getPlid());
 
 		_addSiteMemberUpdatePermission();
 
@@ -243,16 +233,17 @@ public class FragmentEntryLinkServiceTest {
 		List<FragmentEntryLink> originalFragmentEntryLinks =
 			_fragmentEntryLinkPersistence.findByG_C_C(
 				_group.getGroupId(), PortalUtil.getClassNameId(Layout.class),
-				classPK);
+				_layout.getPlid());
 
 		_fragmentEntryLinkService.updateFragmentEntryLinks(
 			_group.getGroupId(), PortalUtil.getClassNameId(Layout.class),
-			classPK, fragmentEntryIds, editableValues, serviceContext);
+			_layout.getPlid(), fragmentEntryIds, editableValues,
+			serviceContext);
 
 		List<FragmentEntryLink> actualFragmentEntryLinks =
 			_fragmentEntryLinkPersistence.findByG_C_C(
 				_group.getGroupId(), PortalUtil.getClassNameId(Layout.class),
-				classPK);
+				_layout.getPlid());
 
 		Assert.assertEquals(
 			actualFragmentEntryLinks.toString(),
