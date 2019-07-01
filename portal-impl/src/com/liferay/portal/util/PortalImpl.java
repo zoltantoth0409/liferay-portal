@@ -8300,7 +8300,7 @@ public class PortalImpl implements Portal {
 			languageId = siteDefaultLocale.getLanguage();
 		}
 
-		return StringPool.SLASH.concat(languageId);
+		return StringPool.SLASH.concat(LocaleUtil.toW3cLanguageId(languageId));
 	}
 
 	private Map<Locale, String> _getAlternateURLs(
