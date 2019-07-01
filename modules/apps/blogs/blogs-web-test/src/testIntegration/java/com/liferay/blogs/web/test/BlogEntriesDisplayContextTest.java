@@ -17,6 +17,8 @@ package com.liferay.blogs.web.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryService;
+import com.liferay.blogs.web.test.util.MockLiferayPortletConfig;
+import com.liferay.blogs.web.test.util.MockLiferayPortletRequest;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.comment.CommentManagerUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
