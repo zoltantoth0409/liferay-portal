@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.blogs.web.test;
+package com.liferay.blogs.web.test.util;
 
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
