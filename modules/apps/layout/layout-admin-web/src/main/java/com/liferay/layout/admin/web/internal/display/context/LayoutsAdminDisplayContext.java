@@ -317,8 +317,6 @@ public class LayoutsAdminDisplayContext {
 
 		copyLayoutURL.setParameter(
 			ActionRequest.ACTION_NAME, "/layout/copy_layout");
-		copyLayoutURL.setParameter(
-			"explicitCreation", String.valueOf(Boolean.TRUE));
 		copyLayoutURL.setParameter("sourcePlid", String.valueOf(sourcePlid));
 		copyLayoutURL.setParameter("groupId", String.valueOf(getGroupId()));
 		copyLayoutURL.setParameter(
@@ -327,6 +325,8 @@ public class LayoutsAdminDisplayContext {
 			"stagingGroupId", String.valueOf(getStagingGroupId()));
 		copyLayoutURL.setParameter(
 			"privateLayout", String.valueOf(isPrivateLayout()));
+		copyLayoutURL.setParameter(
+			"explicitCreation", String.valueOf(Boolean.TRUE));
 
 		return copyLayoutURL.toString();
 	}
