@@ -524,7 +524,7 @@ public class ServletContextHelperRegistrationImpl
 	static {
 		String[] blackList =
 			PropsValues.
-				MODULE_FRAMEWORK_WEB_SERVLET_ANNOTATION_SCANNING_PACKAGE_BLACKLIST;
+				MODULE_FRAMEWORK_WEB_SERVLET_ANNOTATION_SCANNING_BLACKLIST;
 
 		blackList = Arrays.copyOf(blackList, blackList.length);
 
