@@ -289,10 +289,10 @@ public class SoyPortlet extends MVCPortlet {
 			throw new PortletException(e);
 		}
 
-		if (clearRequestParameters) {
-			if (lifecycle.equals(PortletRequest.RENDER_PHASE)) {
-				portletResponse.setProperty("clear-request-parameters", "true");
-			}
+		if (clearRequestParameters &&
+			lifecycle.equals(PortletRequest.RENDER_PHASE)) {
+
+			portletResponse.setProperty("clear-request-parameters", "true");
 		}
 	}
 

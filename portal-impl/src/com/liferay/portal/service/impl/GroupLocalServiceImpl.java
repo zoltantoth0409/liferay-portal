@@ -4307,12 +4307,10 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 			// Filter by active
 
-			if (active != null) {
-				if (active != isLiveGroupActive(group)) {
-					iterator.remove();
+			if ((active != null) && (active != isLiveGroupActive(group))) {
+				iterator.remove();
 
-					continue;
-				}
+				continue;
 			}
 
 			// Filter by excluded group IDs
@@ -4373,12 +4371,10 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 			// Filter by site
 
-			if (site != null) {
-				if (site != group.isSite()) {
-					iterator.remove();
+			if ((site != null) && (site != group.isSite())) {
+				iterator.remove();
 
-					continue;
-				}
+				continue;
 			}
 
 			// Filter by type and types

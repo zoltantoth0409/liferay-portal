@@ -1077,10 +1077,10 @@ public class PortalImpl implements Portal {
 	public String getAbsoluteURL(HttpServletRequest request, String url) {
 		String portalURL = getPortalURL(request);
 
-		if (url.charAt(0) == CharPool.SLASH) {
-			if (Validator.isNotNull(portalURL)) {
-				url = portalURL.concat(url);
-			}
+		if ((url.charAt(0) == CharPool.SLASH) &&
+			Validator.isNotNull(portalURL)) {
+
+			url = portalURL.concat(url);
 		}
 
 		if (!CookieKeys.hasSessionId(request) && url.startsWith(portalURL)) {
