@@ -2286,8 +2286,8 @@ public interface PropsKeys {
 			"module.framework.web.generator.jsp.compiler.dependencies";
 
 	public static final String
-		MODULE_FRAMEWORK_WEB_SERVLET_ANNOTATION_SCANNING_PACKAGE_BLACKLIST =
-			"module.framework.web.servlet.annotation.scanning.package.blacklist";
+		MODULE_FRAMEWORK_WEB_SERVLET_ANNOTATION_SCANNING_BLACKLIST =
+			"module.framework.web.servlet.annotation.scanning.blacklist";
 
 	public static final String MULTI_VALUE_MAP = "multi.value.map.";
 
