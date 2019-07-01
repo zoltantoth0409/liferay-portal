@@ -491,9 +491,7 @@ public class ServletContextHelperRegistrationImpl
 				continue;
 			}
 
-			String blackListPackage = _BLACKLIST[-index - 2];
-
-			if (classResource.startsWith(blackListPackage)) {
+			if (classResource.startsWith(_BLACKLIST[-index - 2])) {
 				iterator.remove();
 			}
 		}
