@@ -520,15 +520,15 @@ public class ServletContextHelperRegistrationImpl
 		HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX;
 
 	static {
-		String[] blackList =
+		String[] blacklist =
 			PropsValues.
 				MODULE_FRAMEWORK_WEB_SERVLET_ANNOTATION_SCANNING_BLACKLIST;
 
-		blackList = Arrays.copyOf(blackList, blackList.length);
+		blacklist = Arrays.copyOf(blacklist, blacklist.length);
 
-		Arrays.sort(blackList);
+		Arrays.sort(blacklist);
 
-		_BLACKLIST = blackList;
+		_BLACKLIST = blacklist;
 	}
 
 	private final Set<Class<?>> _annotatedClasses;
