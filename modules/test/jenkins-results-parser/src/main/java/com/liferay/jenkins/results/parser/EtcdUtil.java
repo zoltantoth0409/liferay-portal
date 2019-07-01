@@ -225,7 +225,7 @@ public class EtcdUtil {
 
 				if (retryCount > _RETRIES_SIZE_MAX_DEFAULT) {
 					throw new RuntimeException(
-						"Could not find " + getKey() + " from " +
+						"Unable to find " + getKey() + " from " +
 							getEtcdServerURL());
 				}
 
