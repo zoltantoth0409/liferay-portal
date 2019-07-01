@@ -28,11 +28,11 @@ String configuration = BeanParamUtil.getString(fragmentEntry, request, "configur
 
 FragmentEntryLink fragmentEntryLink = FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
+fragmentEntryLink.setFragmentEntryId(fragmentEntryId);
 fragmentEntryLink.setCss(css);
 fragmentEntryLink.setHtml(html);
 fragmentEntryLink.setJs(js);
 fragmentEntryLink.setConfiguration(configuration);
-fragmentEntryLink.setFragmentEntryId(fragmentEntryId);
 
 DefaultFragmentRendererContext defaultFragmentRendererContext = new DefaultFragmentRendererContext(fragmentEntryLink);
 
