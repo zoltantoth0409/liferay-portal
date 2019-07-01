@@ -202,6 +202,16 @@ public class JournalDisplayContext {
 		return availableLocales;
 	}
 
+	public String getBackURL() {
+		if (_backURL != null) {
+			return _backURL;
+		}
+
+		_backURL = ParamUtil.getString(_request, "backURL");
+
+		return _backURL;
+	}
+
 	public String[] getCharactersBlacklist() throws PortalException {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -1286,6 +1296,7 @@ public class JournalDisplayContext {
 
 	private JournalArticle _article;
 	private JournalArticleDisplay _articleDisplay;
+	private String _backURL;
 	private DDMFormValues _ddmFormValues;
 	private String _ddmStructureKey;
 	private String _ddmStructureName;
