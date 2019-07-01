@@ -1,6 +1,6 @@
 Bundle-Name: Liferay Data Engine SPI
 Bundle-SymbolicName: com.liferay.data.engine.spi
-Bundle-Version: 2.0.1
+Bundle-Version: 3.0.0
 Export-Package:\
 	com.liferay.data.engine.spi.dto,\
 	com.liferay.data.engine.spi.field.type,\
