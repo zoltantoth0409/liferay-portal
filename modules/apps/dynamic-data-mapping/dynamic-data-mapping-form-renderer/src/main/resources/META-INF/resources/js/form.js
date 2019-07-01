@@ -230,7 +230,7 @@ AUI.add(
 
 						var formNode = instance.getFormNode();
 
-						if (formNode) {
+						if (formNode && formNode.hasChildNodes()) {
 							var languageIdNodeId = instance.get('portletNamespace') + 'languageId';
 
 							formNode.get('children').some(
