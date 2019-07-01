@@ -234,13 +234,15 @@ AUI.add(
 							var languageIdNodeId = instance.get('portletNamespace') + 'languageId';
 
 							formNode.get('children').some(
-									function(node) {
-										if (node.get('id') === languageIdNodeId) {
-											languageId = node.val();
-											return true;
-										}
-										return false;
+								function(node) {
+									if (node.get('id') === languageIdNodeId) {
+										languageId = node.val();
+
+										return true;
 									}
+
+									return false;
+								}
 							);
 						}
 
