@@ -49,63 +49,59 @@ public class AffectedEntryResourceImpl extends BaseAffectedEntryResourceImpl {
 
 	@Override
 	public Page<AffectedEntry> getCollectionEntryAffectedEntriesPage(
-		Long collectionId, Long entryId, String keywords,
-		Pagination pagination) {
+			Long collectionId, Long entryId, String keywords,
+			Pagination pagination)
+		throws Exception {
 
-		try {
-			QueryDefinition<CTEntry> queryDefinition =
-				SearchUtil.getQueryDefinition(CTEntry.class, pagination, null);
+		QueryDefinition<CTEntry> queryDefinition =
+			SearchUtil.getQueryDefinition(CTEntry.class, pagination, null);
 
-			queryDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
+		queryDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
 
-			CTEntry ctEntry = _ctEntryLocalService.getCTEntry(
-				GetterUtil.getLong(entryId));
+		CTEntry ctEntry = _ctEntryLocalService.getCTEntry(
+			GetterUtil.getLong(entryId));
 
-			List<CTEntry> affectedByCTEntries;
-			int totalCount;
+		List<CTEntry> affectedByCTEntries;
+		int totalCount;
 
-			if (Validator.isNotNull(keywords)) {
-				OrderByComparator<CTEntry> orderByComparator =
-					OrderByComparatorFactoryUtil.create(
-						"CTEntry", Field.TITLE, "asc");
+		if (Validator.isNotNull(keywords)) {
+			OrderByComparator<CTEntry> orderByComparator =
+				OrderByComparatorFactoryUtil.create(
+					"CTEntry", Field.TITLE, "asc");
 
-				queryDefinition.setOrderByComparator(orderByComparator);
+			queryDefinition.setOrderByComparator(orderByComparator);
 
-				CTEntry ownerCTEntry = _ctEntryLocalService.getCTEntry(
-					ctEntry.getCtEntryId());
+			CTEntry ownerCTEntry = _ctEntryLocalService.getCTEntry(
+				ctEntry.getCtEntryId());
 
-				affectedByCTEntries =
-					_ctEntryLocalService.getRelatedOwnerCTEntries(
-						ownerCTEntry.getCompanyId(), collectionId,
-						ctEntry.getCtEntryId(), keywords, queryDefinition);
+			affectedByCTEntries =
+				_ctEntryLocalService.getRelatedOwnerCTEntries(
+					ownerCTEntry.getCompanyId(), collectionId,
+					ctEntry.getCtEntryId(), keywords, queryDefinition);
 
-				totalCount =
-					(int)_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
-						ownerCTEntry.getCompanyId(), collectionId,
-						ctEntry.getCtEntryId(), keywords, queryDefinition);
-			}
-			else {
-				OrderByComparator<CTEntry> orderByComparator =
-					OrderByComparatorFactoryUtil.create(
-						"CTEntry", "createDate", true);
+			totalCount =
+				(int)_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
+					ownerCTEntry.getCompanyId(), collectionId,
+					ctEntry.getCtEntryId(), keywords, queryDefinition);
+		}
+		else {
+			OrderByComparator<CTEntry> orderByComparator =
+				OrderByComparatorFactoryUtil.create(
+					"CTEntry", "createDate", true);
 
-				queryDefinition.setOrderByComparator(orderByComparator);
+			queryDefinition.setOrderByComparator(orderByComparator);
 
-				affectedByCTEntries =
-					_ctEntryLocalService.getRelatedOwnerCTEntries(
-						ctEntry.getCtEntryId(), queryDefinition);
-
-				totalCount = _ctEntryLocalService.getRelatedOwnerCTEntriesCount(
+			affectedByCTEntries =
+				_ctEntryLocalService.getRelatedOwnerCTEntries(
 					ctEntry.getCtEntryId(), queryDefinition);
-			}
 
-			return Page.of(
-				transform(affectedByCTEntries, this::_toAffectedEntry),
-				pagination, totalCount);
+			totalCount = _ctEntryLocalService.getRelatedOwnerCTEntriesCount(
+				ctEntry.getCtEntryId(), queryDefinition);
 		}
-		catch (PortalException pe) {
-			throw new IllegalArgumentException(pe.getMessage(), pe);
-		}
+
+		return Page.of(
+			transform(affectedByCTEntries, this::_toAffectedEntry),
+			pagination, totalCount);
 	}
 
 	private AffectedEntry _toAffectedEntry(CTEntry ctEntry) {
