@@ -61,8 +61,8 @@ public class AffectedEntryResourceImpl extends BaseAffectedEntryResourceImpl {
 		CTEntry ctEntry = _ctEntryLocalService.getCTEntry(
 			GetterUtil.getLong(entryId));
 
-		List<CTEntry> affectedByCTEntries;
-		int totalCount;
+		List<CTEntry> affectedByCTEntries = null;
+		int totalCount = 0;
 
 		if (Validator.isNotNull(keywords)) {
 			OrderByComparator<CTEntry> orderByComparator =
@@ -78,7 +78,6 @@ public class AffectedEntryResourceImpl extends BaseAffectedEntryResourceImpl {
 				_ctEntryLocalService.getRelatedOwnerCTEntries(
 					ownerCTEntry.getCompanyId(), collectionId,
 					ctEntry.getCtEntryId(), keywords, queryDefinition);
-
 			totalCount =
 				(int)_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
 					ownerCTEntry.getCompanyId(), collectionId,
@@ -94,7 +93,6 @@ public class AffectedEntryResourceImpl extends BaseAffectedEntryResourceImpl {
 			affectedByCTEntries =
 				_ctEntryLocalService.getRelatedOwnerCTEntries(
 					ctEntry.getCtEntryId(), queryDefinition);
-
 			totalCount = _ctEntryLocalService.getRelatedOwnerCTEntriesCount(
 				ctEntry.getCtEntryId(), queryDefinition);
 		}
