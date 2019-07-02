@@ -511,13 +511,13 @@ public class GraphQLServletExtender {
 	}
 
 	private EntityModel _getEntityModel(
-			Object resource, Map<String, String[]> parameters)
+			Object resource, Map<String, String[]> parameterMap)
 		throws Exception {
 
 		EntityModelResource entityModelResource = (EntityModelResource)resource;
 
 		return entityModelResource.getEntityModel(
-			ContextProviderUtil.getMultivaluedHashMap(parameters));
+			ContextProviderUtil.getMultivaluedHashMap(parameterMap));
 	}
 
 	private Boolean _getGraphQLFieldValue(AnnotatedElement annotatedElement) {
