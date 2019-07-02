@@ -154,13 +154,13 @@ public class Query {
 
 	@GraphQLField
 	public EntryPage getCollectionEntriesPage(
+			@GraphQLName("collectionId") Long collectionId,
 			@GraphQLName("changeTypesFilter") String[] changeTypesFilter,
 			@GraphQLName("classNameIdsFilter") String[] classNameIdsFilter,
-			@GraphQLName("groupIdsFilter") String[] groupIdsFilter,
-			@GraphQLName("userIdsFilter") String[] userIdsFilter,
-			@GraphQLName("collectionId") Long collectionId,
 			@GraphQLName("collision") Boolean collision,
+			@GraphQLName("groupIdsFilter") String[] groupIdsFilter,
 			@GraphQLName("status") Integer status,
+			@GraphQLName("userIdsFilter") String[] userIdsFilter,
 			@GraphQLName("pageSize") int pageSize,
 			@GraphQLName("page") int page,
 			@GraphQLName("sorts") String sortsString)
@@ -171,8 +171,8 @@ public class Query {
 			this::_populateResourceContext,
 			entryResource -> new EntryPage(
 				entryResource.getCollectionEntriesPage(
-					changeTypesFilter, classNameIdsFilter, groupIdsFilter,
-					userIdsFilter, collectionId, collision, status,
+					collectionId, changeTypesFilter, classNameIdsFilter,
+					collision, groupIdsFilter, status, userIdsFilter,
 					Pagination.of(page, pageSize),
 					_sortsBiFunction.apply(entryResource, sortsString))));
 	}

@@ -38,17 +38,17 @@ public interface EntryResource {
 	}
 
 	public Page<Entry> getCollectionEntriesPage(
-			String[] changeTypesFilter, String[] classNameIdsFilter,
-			String[] groupIdsFilter, String[] userIdsFilter, Long collectionId,
-			Boolean collision, Integer status, Pagination pagination,
-			String sortString)
+			Long collectionId, String[] changeTypesFilter,
+			String[] classNameIdsFilter, Boolean collision,
+			String[] groupIdsFilter, Integer status, String[] userIdsFilter,
+			Pagination pagination, String sortString)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse getCollectionEntriesPageHttpResponse(
-			String[] changeTypesFilter, String[] classNameIdsFilter,
-			String[] groupIdsFilter, String[] userIdsFilter, Long collectionId,
-			Boolean collision, Integer status, Pagination pagination,
-			String sortString)
+			Long collectionId, String[] changeTypesFilter,
+			String[] classNameIdsFilter, Boolean collision,
+			String[] groupIdsFilter, Integer status, String[] userIdsFilter,
+			Pagination pagination, String sortString)
 		throws Exception;
 
 	public Entry getEntry(Long entryId) throws Exception;
@@ -98,17 +98,17 @@ public interface EntryResource {
 	public static class EntryResourceImpl implements EntryResource {
 
 		public Page<Entry> getCollectionEntriesPage(
-				String[] changeTypesFilter, String[] classNameIdsFilter,
-				String[] groupIdsFilter, String[] userIdsFilter,
-				Long collectionId, Boolean collision, Integer status,
+				Long collectionId, String[] changeTypesFilter,
+				String[] classNameIdsFilter, Boolean collision,
+				String[] groupIdsFilter, Integer status, String[] userIdsFilter,
 				Pagination pagination, String sortString)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				getCollectionEntriesPageHttpResponse(
-					changeTypesFilter, classNameIdsFilter, groupIdsFilter,
-					userIdsFilter, collectionId, collision, status, pagination,
-					sortString);
+					collectionId, changeTypesFilter, classNameIdsFilter,
+					collision, groupIdsFilter, status, userIdsFilter,
+					pagination, sortString);
 
 			String content = httpResponse.getContent();
 
@@ -122,9 +122,9 @@ public interface EntryResource {
 		}
 
 		public HttpInvoker.HttpResponse getCollectionEntriesPageHttpResponse(
-				String[] changeTypesFilter, String[] classNameIdsFilter,
-				String[] groupIdsFilter, String[] userIdsFilter,
-				Long collectionId, Boolean collision, Integer status,
+				Long collectionId, String[] changeTypesFilter,
+				String[] classNameIdsFilter, Boolean collision,
+				String[] groupIdsFilter, Integer status, String[] userIdsFilter,
 				Pagination pagination, String sortString)
 			throws Exception {
 
@@ -153,6 +153,10 @@ public interface EntryResource {
 				}
 			}
 
+			if (collision != null) {
+				httpInvoker.parameter("collision", String.valueOf(collision));
+			}
+
 			if (groupIdsFilter != null) {
 				for (int i = 0; i < groupIdsFilter.length; i++) {
 					httpInvoker.parameter(
@@ -160,19 +164,15 @@ public interface EntryResource {
 				}
 			}
 
+			if (status != null) {
+				httpInvoker.parameter("status", String.valueOf(status));
+			}
+
 			if (userIdsFilter != null) {
 				for (int i = 0; i < userIdsFilter.length; i++) {
 					httpInvoker.parameter(
 						"userIdsFilter", String.valueOf(userIdsFilter[i]));
 				}
-			}
-
-			if (collision != null) {
-				httpInvoker.parameter("collision", String.valueOf(collision));
-			}
-
-			if (status != null) {
-				httpInvoker.parameter("status", String.valueOf(status));
 			}
 
 			if (pagination != null) {
