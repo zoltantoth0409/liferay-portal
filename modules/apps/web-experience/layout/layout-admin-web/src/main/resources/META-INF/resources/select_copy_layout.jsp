@@ -16,23 +16,13 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-Group selGroup = (Group)request.getAttribute(WebKeys.GROUP);
-
-PortletURL redirectURL = layoutsAdminDisplayContext.getRedirectURL();
-%>
-
 <portlet:actionURL name="copyApplications" var="copyApplicationsURL">
 	<portlet:param name="mvcPath" value="/copy_layout_redirect.jsp" />
 	<portlet:param name="referringPortletResource" value="<%= portletDisplay.getId() %>" />
 </portlet:actionURL>
 
-<aui:form action='<%= HttpUtil.addParameter(copyApplicationsURL, "refererPlid", plid) %>' name="copyApplicationsFm">
-	<aui:input name="redirect" type="hidden" value='<%= HttpUtil.addParameter(redirectURL.toString(), liferayPortletResponse.getNamespace() + "selPlid", layoutsAdminDisplayContext.getSelPlid()) %>' />
-	<aui:input name="groupId" type="hidden" value="<%= selGroup.getGroupId() %>" />
+<aui:form action="<%= copyApplicationsURL %>" name="copyApplicationsFm">
 	<aui:input name="selPlid" type="hidden" value="<%= layoutsAdminDisplayContext.getSelPlid() %>" />
-	<aui:input name="privateLayout" type="hidden" value="<%= layoutsAdminDisplayContext.isPrivateLayout() %>" />
-	<aui:input name="layoutId" type="hidden" value="<%= layoutsAdminDisplayContext.getLayoutId() %>" />
 </aui:form>
 
 <%
