@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 /**
  * @author Matthew Chan
  */
-public class UpgradeLayoutParentPlid extends UpgradeProcess {
+public class UpgradeLayout extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
