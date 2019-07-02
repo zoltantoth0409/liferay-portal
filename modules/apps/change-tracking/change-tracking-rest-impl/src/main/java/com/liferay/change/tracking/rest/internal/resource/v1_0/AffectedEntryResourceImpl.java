@@ -54,11 +54,11 @@ public class AffectedEntryResourceImpl extends BaseAffectedEntryResourceImpl {
 		queryDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
 
 		if (Validator.isNotNull(keywords)) {
+			CTEntry ownerCTEntry = _ctEntryLocalService.getCTEntry(entryId);
+
 			queryDefinition.setOrderByComparator(
 				OrderByComparatorFactoryUtil.create(
 					"CTEntry", Field.TITLE, "asc"));
-
-			CTEntry ownerCTEntry = _ctEntryLocalService.getCTEntry(entryId);
 
 			return Page.of(
 				transform(
