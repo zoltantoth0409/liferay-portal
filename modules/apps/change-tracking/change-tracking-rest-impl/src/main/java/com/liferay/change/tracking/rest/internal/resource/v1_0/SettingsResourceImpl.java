@@ -31,11 +31,9 @@ import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.vulcan.pagination.Page;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 import javax.ws.rs.core.Context;
 
@@ -63,12 +61,12 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 
 			return Page.of(
 				Collections.singleton(
-					_getUserSettings(companyId, user.getUserId())));
+					_toUserSettings(companyId, user.getUserId())));
 		}
 		catch (NoSuchUserException | NullPointerException e) {
 			return Page.of(
 				Collections.singleton(
-					_getSettings(companyId, _user.getLocale())));
+					_toSettings(companyId, _user.getLocale())));
 		}
 	}
 
@@ -89,7 +87,7 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 					settingsUpdate.
 						getCheckoutCTCollectionConfirmationEnabled()));
 
-			return _getUserSettings(companyId, user.getUserId());
+			return _toUserSettings(companyId, user.getUserId());
 		}
 		catch (NoSuchUserException | NullPointerException e) {
 			if (_ctEngineManager.isChangeTrackingEnabled(companyId)) {
@@ -104,55 +102,50 @@ public class SettingsResourceImpl extends BaseSettingsResourceImpl {
 				}
 			}
 
-			return _getSettings(companyId, _user.getLocale());
+			return _toSettings(companyId, _user.getLocale());
 		}
 	}
 
-	private Settings _getSettings(Long companyId, Locale locale) {
-		Set<String> supportedContentTypeLanguageKeys = new HashSet<>();
-		Set<String> supportedContentTypes = new HashSet<>();
-
+	private Settings _toSettings(Long companyId, Locale locale) {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
 
-		for (CTDefinition<?, ?> ctDefinition : _ctDefinitions) {
-			supportedContentTypeLanguageKeys.add(
-				ctDefinition.getContentTypeLanguageKey());
+		return new Settings() {
+			{
+				changeTrackingAllowed =
+					_ctEngineManager.isChangeTrackingAllowed(companyId);
+				changeTrackingEnabled =
+					_ctEngineManager.isChangeTrackingEnabled(companyId);
+				supportedContentTypeLanguageKeys = transformToArray(
+					_ctDefinitions,
+					ctDefinition -> ctDefinition.getContentTypeLanguageKey(),
+					String.class);
+				supportedContentTypes = transformToArray(
+					_ctDefinitions,
+					ctDefinition -> LanguageUtil.get(
+						resourceBundle,
+						ctDefinition.getContentTypeLanguageKey()),
+					String.class);
 
-			String contentType = LanguageUtil.get(
-				resourceBundle, ctDefinition.getContentTypeLanguageKey());
-
-			supportedContentTypes.add(contentType);
-		}
-
-		Settings settings = new Settings();
-
-		settings.setChangeTrackingAllowed(
-			_ctEngineManager.isChangeTrackingAllowed(companyId));
-		settings.setChangeTrackingEnabled(
-			_ctEngineManager.isChangeTrackingEnabled(companyId));
-		settings.setCompanyId(companyId);
-		settings.setSupportedContentTypeLanguageKeys(
-			supportedContentTypeLanguageKeys.toArray(new String[0]));
-		settings.setSupportedContentTypes(
-			supportedContentTypes.toArray(new String[0]));
-
-		return settings;
+				setCompanyId(companyId);
+			}
+		};
 	}
 
-	private Settings _getUserSettings(Long companyId, Long userId) {
-		Settings settings = new Settings();
+	private Settings _toUserSettings(Long companyId, Long userId) {
+		return new Settings() {
+			{
+				checkoutCTCollectionConfirmationEnabled = GetterUtil.getBoolean(
+					_ctSettingsManager.getUserCTSetting(
+						userId,
+						CTSettingsKeys.
+							CHECKOUT_CT_COLLECTION_CONFIRMATION_ENABLED,
+						"true"));
 
-		settings.setCheckoutCTCollectionConfirmationEnabled(
-			GetterUtil.getBoolean(
-				_ctSettingsManager.getUserCTSetting(
-					userId,
-					CTSettingsKeys.CHECKOUT_CT_COLLECTION_CONFIRMATION_ENABLED,
-					"true")));
-		settings.setCompanyId(companyId);
-		settings.setUserId(userId);
-
-		return settings;
+				setCompanyId(companyId);
+				setUserId(userId);
+			}
+		};
 	}
 
 	@Reference
