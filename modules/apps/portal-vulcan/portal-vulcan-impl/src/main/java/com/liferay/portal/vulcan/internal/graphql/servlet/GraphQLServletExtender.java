@@ -401,10 +401,10 @@ public class GraphQLServletExtender {
 					instance,
 					_portal.getUser(httpServletRequestOptional.orElse(null)));
 			}
-			else if (fieldName.equals("_filterByFunction")) {
+			else if (fieldName.equals("_filterBiFunction")) {
 				field.setAccessible(true);
 
-				BiFunction<Object, String, Filter> filterByFunction =
+				BiFunction<Object, String, Filter> filterBiFunction =
 					(resource, filter) -> {
 						try {
 							FilterContextProvider filterContextProvider =
@@ -424,12 +424,12 @@ public class GraphQLServletExtender {
 						}
 					};
 
-				field.set(instance, filterByFunction);
+				field.set(instance, filterBiFunction);
 			}
-			else if (fieldName.equals("_sortByFunction")) {
+			else if (fieldName.equals("_sortsBiFunction")) {
 				field.setAccessible(true);
 
-				BiFunction<Object, String, Sort[]> sortByFunction =
+				BiFunction<Object, String, Sort[]> sortsBiFunction =
 					(resource, sorts) -> {
 						try {
 							SortContextProvider sortContextProvider =
@@ -448,7 +448,7 @@ public class GraphQLServletExtender {
 						}
 					};
 
-				field.set(instance, sortByFunction);
+				field.set(instance, sortsBiFunction);
 			}
 		}
 
