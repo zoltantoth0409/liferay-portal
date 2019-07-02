@@ -65,11 +65,16 @@ function addFragmentEntryLinkComment(fragmentEntryLinkId, body) {
  * @param {Array<string>} [fragmentEntryLinkIds=[]]
  * @return {Promise<Response>}
  */
-function removeExperience(segmentsExperienceId, fragmentEntryLinkIds = []) {
+function removeExperience(
+	segmentsExperienceId,
+	fragmentEntryLinkIds = [],
+	deleteSegmentsExperience = true
+) {
 	const state = _store.getState();
 
 	const body = {
-		segmentsExperienceId
+		segmentsExperienceId,
+		deleteSegmentsExperience
 	};
 
 	if (fragmentEntryLinkIds && fragmentEntryLinkIds.length) {

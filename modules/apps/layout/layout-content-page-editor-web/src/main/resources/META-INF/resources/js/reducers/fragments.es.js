@@ -47,6 +47,7 @@ import {
 	getFragmentRowIndex
 } from '../utils/FragmentsEditorGetUtils.es';
 import {
+	removeExperience,
 	removeFragmentEntryLinks,
 	updatePageEditorLayoutData
 } from '../utils/FragmentsEditorFetchUtils.es';
@@ -481,6 +482,12 @@ function removeFragmentEntryLinkReducer(state, action) {
 						[fragmentEntryLinkId],
 						nextState.segmentsExperienceId
 					)
+				);
+			} else {
+				removeExperience(
+					nextState.segmentsExperienceId,
+					[fragmentEntryLinkId],
+					false
 				);
 			}
 
