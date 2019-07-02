@@ -20,18 +20,13 @@ import com.liferay.change.tracking.rest.dto.v1_0.AffectedEntry;
 import com.liferay.change.tracking.rest.resource.v1_0.AffectedEntryResource;
 import com.liferay.change.tracking.service.CTEntryLocalService;
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.SearchUtil;
-
-import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -63,24 +58,22 @@ public class AffectedEntryResourceImpl extends BaseAffectedEntryResourceImpl {
 				OrderByComparatorFactoryUtil.create(
 					"CTEntry", Field.TITLE, "asc"));
 
-			CTEntry ownerCTEntry = _ctEntryLocalService.getCTEntry(
-				entryId);
+			CTEntry ownerCTEntry = _ctEntryLocalService.getCTEntry(entryId);
 
 			return Page.of(
 				transform(
 					_ctEntryLocalService.getRelatedOwnerCTEntries(
-						ownerCTEntry.getCompanyId(), collectionId,
-						entryId, keywords, queryDefinition),
+						ownerCTEntry.getCompanyId(), collectionId, entryId,
+						keywords, queryDefinition),
 					this::_toAffectedEntry),
 				pagination,
 				_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
-					ownerCTEntry.getCompanyId(), collectionId,
-					entryId, keywords, queryDefinition));
+					ownerCTEntry.getCompanyId(), collectionId, entryId,
+					keywords, queryDefinition));
 		}
 
 		queryDefinition.setOrderByComparator(
-			OrderByComparatorFactoryUtil.create(
-				"CTEntry", "createDate", true));
+			OrderByComparatorFactoryUtil.create("CTEntry", "createDate", true));
 
 		return Page.of(
 			transform(
