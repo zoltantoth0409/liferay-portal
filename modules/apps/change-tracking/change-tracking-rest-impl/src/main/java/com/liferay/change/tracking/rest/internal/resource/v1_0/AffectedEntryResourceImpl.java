@@ -58,27 +58,24 @@ public class AffectedEntryResourceImpl extends BaseAffectedEntryResourceImpl {
 
 		queryDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
 
-		CTEntry ctEntry = _ctEntryLocalService.getCTEntry(
-			GetterUtil.getLong(entryId));
-
 		if (Validator.isNotNull(keywords)) {
 			queryDefinition.setOrderByComparator(
 				OrderByComparatorFactoryUtil.create(
 					"CTEntry", Field.TITLE, "asc"));
 
 			CTEntry ownerCTEntry = _ctEntryLocalService.getCTEntry(
-				ctEntry.getCtEntryId());
+				entryId);
 
 			return Page.of(
 				transform(
 					_ctEntryLocalService.getRelatedOwnerCTEntries(
 						ownerCTEntry.getCompanyId(), collectionId,
-						ctEntry.getCtEntryId(), keywords, queryDefinition),
+						entryId, keywords, queryDefinition),
 					this::_toAffectedEntry),
 				pagination,
 				(int)_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
 					ownerCTEntry.getCompanyId(), collectionId,
-					ctEntry.getCtEntryId(), keywords, queryDefinition));
+					entryId, keywords, queryDefinition));
 		}
 
 		queryDefinition.setOrderByComparator(
@@ -88,11 +85,11 @@ public class AffectedEntryResourceImpl extends BaseAffectedEntryResourceImpl {
 		return Page.of(
 			transform(
 				_ctEntryLocalService.getRelatedOwnerCTEntries(
-					ctEntry.getCtEntryId(), queryDefinition),
+					entryId, queryDefinition),
 				this::_toAffectedEntry),
 			pagination,
 			_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
-				ctEntry.getCtEntryId(), queryDefinition));
+				entryId, queryDefinition));
 	}
 
 	private AffectedEntry _toAffectedEntry(CTEntry ctEntry) {
