@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.SearchUtil;
-import com.liferay.portal.vulcan.util.TransformUtil;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -66,7 +65,7 @@ public class EntryResourceImpl extends BaseEntryResourceImpl {
 		queryDefinition.setStatus(status);
 
 		return Page.of(
-			TransformUtil.transform(
+			transform(
 				_ctEngineManager.getCTEntries(
 					ctCollection, GetterUtil.getLongValues(groupIdsFilter),
 					GetterUtil.getLongValues(userIdsFilter),
