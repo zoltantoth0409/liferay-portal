@@ -40,8 +40,8 @@ public interface EntryResource {
 
 	public Page<Entry> getCollectionEntriesPage(
 			String[] changeTypesFilter, String[] classNameIdsFilter,
-			String[] groupIdsFilter, Long collectionId, Boolean collision,
-			Integer status, String[] userIdsFilter, Pagination pagination,
+			String[] groupIdsFilter, String[] userIdsFilter, Long collectionId,
+			Boolean collision, Integer status, Pagination pagination,
 			Sort[] sorts)
 		throws Exception;
 

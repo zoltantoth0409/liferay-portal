@@ -32,6 +32,8 @@ import com.liferay.portal.vulcan.graphql.annotation.GraphQLName;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
+import java.util.function.BiFunction;
+
 import javax.annotation.Generated;
 
 import org.osgi.service.component.ComponentServiceObjects;
@@ -81,9 +83,10 @@ public class Query {
 	public KeywordPage getSiteKeywordsPage(
 			@GraphQLName("siteId") Long siteId,
 			@GraphQLName("search") String search,
-			@GraphQLName("filter") Filter filter,
+			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -91,8 +94,10 @@ public class Query {
 			this::_populateResourceContext,
 			keywordResource -> new KeywordPage(
 				keywordResource.getSiteKeywordsPage(
-					siteId, search, filter, Pagination.of(page, pageSize),
-					sorts)));
+					siteId, search,
+					_filterBiFunction.apply(keywordResource, filterString),
+					Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(keywordResource, sortsString))));
 	}
 
 	@GraphQLField
@@ -100,9 +105,10 @@ public class Query {
 			@GraphQLName("parentTaxonomyCategoryId") Long
 				parentTaxonomyCategoryId,
 			@GraphQLName("search") String search,
-			@GraphQLName("filter") Filter filter,
+			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -111,8 +117,12 @@ public class Query {
 			taxonomyCategoryResource -> new TaxonomyCategoryPage(
 				taxonomyCategoryResource.
 					getTaxonomyCategoryTaxonomyCategoriesPage(
-						parentTaxonomyCategoryId, search, filter,
-						Pagination.of(page, pageSize), sorts)));
+						parentTaxonomyCategoryId, search,
+						_filterBiFunction.apply(
+							taxonomyCategoryResource, filterString),
+						Pagination.of(page, pageSize),
+						_sortsBiFunction.apply(
+							taxonomyCategoryResource, sortsString))));
 	}
 
 	@GraphQLField
@@ -132,9 +142,10 @@ public class Query {
 	public TaxonomyCategoryPage getTaxonomyVocabularyTaxonomyCategoriesPage(
 			@GraphQLName("taxonomyVocabularyId") Long taxonomyVocabularyId,
 			@GraphQLName("search") String search,
-			@GraphQLName("filter") Filter filter,
+			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -143,17 +154,22 @@ public class Query {
 			taxonomyCategoryResource -> new TaxonomyCategoryPage(
 				taxonomyCategoryResource.
 					getTaxonomyVocabularyTaxonomyCategoriesPage(
-						taxonomyVocabularyId, search, filter,
-						Pagination.of(page, pageSize), sorts)));
+						taxonomyVocabularyId, search,
+						_filterBiFunction.apply(
+							taxonomyCategoryResource, filterString),
+						Pagination.of(page, pageSize),
+						_sortsBiFunction.apply(
+							taxonomyCategoryResource, sortsString))));
 	}
 
 	@GraphQLField
 	public TaxonomyVocabularyPage getSiteTaxonomyVocabulariesPage(
 			@GraphQLName("siteId") Long siteId,
 			@GraphQLName("search") String search,
-			@GraphQLName("filter") Filter filter,
+			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -161,8 +177,12 @@ public class Query {
 			this::_populateResourceContext,
 			taxonomyVocabularyResource -> new TaxonomyVocabularyPage(
 				taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
-					siteId, search, filter, Pagination.of(page, pageSize),
-					sorts)));
+					siteId, search,
+					_filterBiFunction.apply(
+						taxonomyVocabularyResource, filterString),
+					Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(
+						taxonomyVocabularyResource, sortsString))));
 	}
 
 	@GraphQLField
@@ -303,6 +323,8 @@ public class Query {
 		_taxonomyVocabularyResourceComponentServiceObjects;
 
 	private AcceptLanguage _acceptLanguage;
+	private BiFunction<Object, String, Filter> _filterBiFunction;
+	private BiFunction<Object, String, Sort[]> _sortsBiFunction;
 	private Company _company;
 	private User _user;
 

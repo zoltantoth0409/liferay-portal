@@ -63,10 +63,10 @@ public abstract class BaseEntryResourceImpl implements EntryResource {
 			@Parameter(in = ParameterIn.QUERY, name = "changeTypesFilter"),
 			@Parameter(in = ParameterIn.QUERY, name = "classNameIdsFilter"),
 			@Parameter(in = ParameterIn.QUERY, name = "groupIdsFilter"),
+			@Parameter(in = ParameterIn.QUERY, name = "userIdsFilter"),
 			@Parameter(in = ParameterIn.PATH, name = "collectionId"),
 			@Parameter(in = ParameterIn.QUERY, name = "collision"),
 			@Parameter(in = ParameterIn.QUERY, name = "status"),
-			@Parameter(in = ParameterIn.QUERY, name = "userIdsFilter"),
 			@Parameter(in = ParameterIn.QUERY, name = "page"),
 			@Parameter(in = ParameterIn.QUERY, name = "pageSize"),
 			@Parameter(in = ParameterIn.QUERY, name = "sort")
@@ -82,14 +82,14 @@ public abstract class BaseEntryResourceImpl implements EntryResource {
 				classNameIdsFilter,
 			@Parameter(hidden = true) @QueryParam("groupIdsFilter") String[]
 				groupIdsFilter,
+			@Parameter(hidden = true) @QueryParam("userIdsFilter") String[]
+				userIdsFilter,
 			@NotNull @Parameter(hidden = true) @PathParam("collectionId") Long
 				collectionId,
 			@DefaultValue("false") @Parameter(hidden = true)
 			@QueryParam("collision") Boolean collision,
 			@DefaultValue("2") @Parameter(hidden = true) @QueryParam("status")
 				Integer status,
-			@Parameter(hidden = true) @QueryParam("userIdsFilter") String[]
-				userIdsFilter,
 			@Context Pagination pagination, @Context Sort[] sorts)
 		throws Exception {
 
