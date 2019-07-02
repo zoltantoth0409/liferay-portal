@@ -73,7 +73,7 @@ public class AffectedEntryResourceImpl extends BaseAffectedEntryResourceImpl {
 						entryId, keywords, queryDefinition),
 					this::_toAffectedEntry),
 				pagination,
-				(int)_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
+				_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
 					ownerCTEntry.getCompanyId(), collectionId,
 					entryId, keywords, queryDefinition));
 		}
