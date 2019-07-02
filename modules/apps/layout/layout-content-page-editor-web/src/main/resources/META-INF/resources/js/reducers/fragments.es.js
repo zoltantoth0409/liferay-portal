@@ -200,7 +200,9 @@ function addFragmentEntryLinkReducer(state, action) {
 					getFragmentEntryLinkContent(
 						nextState.renderFragmentEntryURL,
 						fragmentEntryLink,
-						nextState.portletNamespace
+						nextState.portletNamespace,
+						nextState.segmentsExperienceId ||
+							nextState.defaultSegmentsExperienceId
 					)
 				)
 				.then(response => {
@@ -292,13 +294,19 @@ function enableFragmentEditorReducer(state, action) {
 function getFragmentEntryLinkContent(
 	renderFragmentEntryURL,
 	fragmentEntryLink,
-	portletNamespace
+	portletNamespace,
+	segmentsExperienceId
 ) {
 	const formData = new FormData();
 
 	formData.append(
 		`${portletNamespace}fragmentEntryLinkId`,
 		fragmentEntryLink.fragmentEntryLinkId
+	);
+
+	formData.append(
+		`${portletNamespace}segmentsExperienceId`,
+		segmentsExperienceId
 	);
 
 	return fetch(renderFragmentEntryURL, {
