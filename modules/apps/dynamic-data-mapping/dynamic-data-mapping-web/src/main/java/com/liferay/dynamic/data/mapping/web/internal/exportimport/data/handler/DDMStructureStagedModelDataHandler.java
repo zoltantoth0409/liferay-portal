@@ -612,7 +612,9 @@ public class DDMStructureStagedModelDataHandler
 		for (DDMFormField ddmFormField : ddmFormFields) {
 			String ddmFormFieldType = ddmFormField.getType();
 
-			if (!ddmFormFieldType.equals(DDMFormFieldType.SELECT)) {
+			if (!ddmFormFieldType.equals(DDMFormFieldType.SELECT) &&
+				!ddmFormFieldType.equals(DDMFormFieldType.TEXT)) {
+
 				continue;
 			}
 
