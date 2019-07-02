@@ -44,6 +44,8 @@ import com.liferay.portal.vulcan.graphql.annotation.GraphQLName;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
+import java.util.function.BiFunction;
+
 import javax.annotation.Generated;
 
 import org.osgi.service.component.ComponentServiceObjects;
@@ -168,9 +170,10 @@ public class Query {
 	@GraphQLField
 	public OrganizationPage getOrganizationsPage(
 			@GraphQLName("search") String search,
-			@GraphQLName("filter") Filter filter,
+			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -178,7 +181,11 @@ public class Query {
 			this::_populateResourceContext,
 			organizationResource -> new OrganizationPage(
 				organizationResource.getOrganizationsPage(
-					search, filter, Pagination.of(page, pageSize), sorts)));
+					search,
+					_filterBiFunction.apply(organizationResource, filterString),
+					Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(
+						organizationResource, sortsString))));
 	}
 
 	@GraphQLField
@@ -197,9 +204,10 @@ public class Query {
 	public OrganizationPage getOrganizationOrganizationsPage(
 			@GraphQLName("parentOrganizationId") Long parentOrganizationId,
 			@GraphQLName("search") String search,
-			@GraphQLName("filter") Filter filter,
+			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -207,8 +215,11 @@ public class Query {
 			this::_populateResourceContext,
 			organizationResource -> new OrganizationPage(
 				organizationResource.getOrganizationOrganizationsPage(
-					parentOrganizationId, search, filter,
-					Pagination.of(page, pageSize), sorts)));
+					parentOrganizationId, search,
+					_filterBiFunction.apply(organizationResource, filterString),
+					Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(
+						organizationResource, sortsString))));
 	}
 
 	@GraphQLField
@@ -360,9 +371,10 @@ public class Query {
 	public UserAccountPage getOrganizationUserAccountsPage(
 			@GraphQLName("organizationId") Long organizationId,
 			@GraphQLName("search") String search,
-			@GraphQLName("filter") Filter filter,
+			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -370,16 +382,19 @@ public class Query {
 			this::_populateResourceContext,
 			userAccountResource -> new UserAccountPage(
 				userAccountResource.getOrganizationUserAccountsPage(
-					organizationId, search, filter,
-					Pagination.of(page, pageSize), sorts)));
+					organizationId, search,
+					_filterBiFunction.apply(userAccountResource, filterString),
+					Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(userAccountResource, sortsString))));
 	}
 
 	@GraphQLField
 	public UserAccountPage getUserAccountsPage(
 			@GraphQLName("search") String search,
-			@GraphQLName("filter") Filter filter,
+			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -387,7 +402,10 @@ public class Query {
 			this::_populateResourceContext,
 			userAccountResource -> new UserAccountPage(
 				userAccountResource.getUserAccountsPage(
-					search, filter, Pagination.of(page, pageSize), sorts)));
+					search,
+					_filterBiFunction.apply(userAccountResource, filterString),
+					Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(userAccountResource, sortsString))));
 	}
 
 	@GraphQLField
@@ -406,9 +424,10 @@ public class Query {
 	public UserAccountPage getWebSiteUserAccountsPage(
 			@GraphQLName("webSiteId") Long webSiteId,
 			@GraphQLName("search") String search,
-			@GraphQLName("filter") Filter filter,
+			@GraphQLName("filter") String filterString,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -416,8 +435,10 @@ public class Query {
 			this::_populateResourceContext,
 			userAccountResource -> new UserAccountPage(
 				userAccountResource.getWebSiteUserAccountsPage(
-					webSiteId, search, filter, Pagination.of(page, pageSize),
-					sorts)));
+					webSiteId, search,
+					_filterBiFunction.apply(userAccountResource, filterString),
+					Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(userAccountResource, sortsString))));
 	}
 
 	@GraphQLField
@@ -786,6 +807,8 @@ public class Query {
 		_webUrlResourceComponentServiceObjects;
 
 	private AcceptLanguage _acceptLanguage;
+	private BiFunction<Object, String, Filter> _filterBiFunction;
+	private BiFunction<Object, String, Sort[]> _sortsBiFunction;
 	private Company _company;
 	private User _user;
 
