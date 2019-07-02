@@ -33,19 +33,22 @@ public class ExpandoInfoDisplayFieldProviderUtil {
 	public static List<InfoDisplayField> getExpandoInfoDisplayFields(
 		String className, Locale locale) {
 
-		return getService().getContributorExpandoInfoDisplayFields(
-			className, locale);
+		ExpandoInfoDisplayFieldProvider expandoInfoDisplayFieldProvider =
+			_serviceTracker.getService();
+
+		return expandoInfoDisplayFieldProvider.
+			getContributorExpandoInfoDisplayFields(className, locale);
 	}
 
 	public static Map<String, Object> getExpandoInfoDisplayFieldsValues(
 		String className, Object displayObject, Locale locale) {
 
-		return getService().getContributorExpandoInfoDisplayFieldsValues(
-			className, displayObject, locale);
-	}
+		ExpandoInfoDisplayFieldProvider expandoInfoDisplayFieldProvider =
+			_serviceTracker.getService();
 
-	public static ExpandoInfoDisplayFieldProvider getService() {
-		return _serviceTracker.getService();
+		return expandoInfoDisplayFieldProvider.
+			getContributorExpandoInfoDisplayFieldsValues(
+				className, displayObject, locale);
 	}
 
 	private static final ServiceTracker

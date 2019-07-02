@@ -35,19 +35,22 @@ public class AssetEntryInfoDisplayFieldProviderUtil {
 	public static Set<InfoDisplayField> getInfoDisplayFields(
 		Locale locale, String... className) {
 
-		return getService().getContributorInfoDisplayFields(locale, className);
+		InfoDisplayFieldProvider infoDisplayFieldProvider =
+			_serviceTracker.getService();
+
+		return infoDisplayFieldProvider.getContributorInfoDisplayFields(
+			locale, className);
 	}
 
 	public static Map<String, Object> getInfoDisplayFields(
 			String className, Object displayObject, Locale locale)
 		throws PortalException {
 
-		return getService().getContributorInfoDisplayFieldsValues(
-			className, displayObject, locale);
-	}
+		InfoDisplayFieldProvider infoDisplayFieldProvider =
+			_serviceTracker.getService();
 
-	public static InfoDisplayFieldProvider getService() {
-		return _serviceTracker.getService();
+		return infoDisplayFieldProvider.getContributorInfoDisplayFieldsValues(
+			className, displayObject, locale);
 	}
 
 	private static final ServiceTracker

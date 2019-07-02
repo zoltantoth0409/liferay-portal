@@ -35,7 +35,10 @@ public class ClassTypesInfoDisplayFieldProviderUtil {
 			String className, long classTypeId, Locale locale)
 		throws PortalException {
 
-		return getService().getClassTypeInfoDisplayFields(
+		ClassTypesInfoDisplayFieldProvider classTypesInfoDisplayFieldProvider =
+			_serviceTracker.getService();
+
+		return classTypesInfoDisplayFieldProvider.getClassTypeInfoDisplayFields(
 			className, classTypeId, locale);
 	}
 
@@ -43,11 +46,11 @@ public class ClassTypesInfoDisplayFieldProviderUtil {
 			long groupId, String className, Locale locale)
 		throws PortalException {
 
-		return getService().getClassTypes(groupId, className, locale);
-	}
+		ClassTypesInfoDisplayFieldProvider classTypesInfoDisplayFieldProvider =
+			_serviceTracker.getService();
 
-	public static ClassTypesInfoDisplayFieldProvider getService() {
-		return _serviceTracker.getService();
+		return classTypesInfoDisplayFieldProvider.getClassTypes(
+			groupId, className, locale);
 	}
 
 	private static final ServiceTracker
