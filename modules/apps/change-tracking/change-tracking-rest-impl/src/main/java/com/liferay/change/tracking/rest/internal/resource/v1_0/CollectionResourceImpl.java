@@ -45,7 +45,6 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
-import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,7 +160,7 @@ public class CollectionResourceImpl
 				companyId, userId, false, false, queryDefinition);
 		}
 
-		List<Collection> collections = TransformUtil.transform(
+		List<Collection> collections = transform(
 			ctCollections,
 			ctCollection -> CollectionUtil.toCollection(
 				ctCollection, _ctEngineManager));
