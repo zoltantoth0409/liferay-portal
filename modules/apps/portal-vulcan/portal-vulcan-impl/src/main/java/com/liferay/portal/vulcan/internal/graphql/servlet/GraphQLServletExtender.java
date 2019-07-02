@@ -404,7 +404,7 @@ public class GraphQLServletExtender {
 				field.setAccessible(true);
 
 				BiFunction<Object, String, Filter> filterBiFunction =
-					(resource, filter) -> {
+					(resource, filterString) -> {
 						try {
 							FilterContextProvider filterContextProvider =
 								new FilterContextProvider(
@@ -416,7 +416,7 @@ public class GraphQLServletExtender {
 								_getEntityModel(
 									resource,
 									httpServletRequest.getParameterMap()),
-								filter);
+								filterString);
 						}
 						catch (Exception e) {
 							throw new BadRequestException(e);
@@ -429,7 +429,7 @@ public class GraphQLServletExtender {
 				field.setAccessible(true);
 
 				BiFunction<Object, String, Sort[]> sortsBiFunction =
-					(resource, sorts) -> {
+					(resource, sortsString) -> {
 						try {
 							SortContextProvider sortContextProvider =
 								new SortContextProvider(
@@ -440,7 +440,7 @@ public class GraphQLServletExtender {
 								_getEntityModel(
 									resource,
 									httpServletRequest.getParameterMap()),
-								sorts);
+								sortsString);
 						}
 						catch (Exception e) {
 							throw new BadRequestException(e);
