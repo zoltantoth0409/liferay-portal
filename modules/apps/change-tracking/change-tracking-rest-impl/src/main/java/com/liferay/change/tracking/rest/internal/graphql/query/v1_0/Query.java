@@ -31,11 +31,14 @@ import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLField;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLName;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+
+import java.util.function.BiFunction;
 
 import javax.annotation.Generated;
 
@@ -122,7 +125,8 @@ public class Query {
 			@GraphQLName("companyId") Long companyId,
 			@GraphQLName("userId") Long userId,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -131,7 +135,8 @@ public class Query {
 			collectionResource -> new CollectionPage(
 				collectionResource.getCollectionsPage(
 					collectionType, companyId, userId,
-					Pagination.of(page, pageSize), sorts)));
+					Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(collectionResource, sortsString))));
 	}
 
 	@GraphQLField
@@ -152,12 +157,13 @@ public class Query {
 			@GraphQLName("changeTypesFilter") String[] changeTypesFilter,
 			@GraphQLName("classNameIdsFilter") String[] classNameIdsFilter,
 			@GraphQLName("groupIdsFilter") String[] groupIdsFilter,
+			@GraphQLName("userIdsFilter") String[] userIdsFilter,
 			@GraphQLName("collectionId") Long collectionId,
 			@GraphQLName("collision") Boolean collision,
 			@GraphQLName("status") Integer status,
-			@GraphQLName("userIdsFilter") String[] userIdsFilter,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -166,8 +172,9 @@ public class Query {
 			entryResource -> new EntryPage(
 				entryResource.getCollectionEntriesPage(
 					changeTypesFilter, classNameIdsFilter, groupIdsFilter,
-					collectionId, collision, status, userIdsFilter,
-					Pagination.of(page, pageSize), sorts)));
+					userIdsFilter, collectionId, collision, status,
+					Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(entryResource, sortsString))));
 	}
 
 	@GraphQLField
@@ -189,7 +196,8 @@ public class Query {
 					processType,
 			@GraphQLName("userId") Long userId,
 			@GraphQLName("pageSize") int pageSize,
-			@GraphQLName("page") int page, @GraphQLName("sorts") Sort[] sorts)
+			@GraphQLName("page") int page,
+			@GraphQLName("sorts") String sortsString)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -198,7 +206,8 @@ public class Query {
 			processResource -> new ProcessPage(
 				processResource.getProcessesPage(
 					companyId, keywords, processType, userId,
-					Pagination.of(page, pageSize), sorts)));
+					Pagination.of(page, pageSize),
+					_sortsBiFunction.apply(processResource, sortsString))));
 	}
 
 	@GraphQLField
@@ -471,6 +480,8 @@ public class Query {
 		_settingsResourceComponentServiceObjects;
 
 	private AcceptLanguage _acceptLanguage;
+	private BiFunction<Object, String, Filter> _filterBiFunction;
+	private BiFunction<Object, String, Sort[]> _sortsBiFunction;
 	private Company _company;
 	private User _user;
 

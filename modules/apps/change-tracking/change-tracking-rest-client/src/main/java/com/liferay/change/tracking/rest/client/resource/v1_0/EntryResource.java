@@ -39,15 +39,15 @@ public interface EntryResource {
 
 	public Page<Entry> getCollectionEntriesPage(
 			String[] changeTypesFilter, String[] classNameIdsFilter,
-			String[] groupIdsFilter, Long collectionId, Boolean collision,
-			Integer status, String[] userIdsFilter, Pagination pagination,
+			String[] groupIdsFilter, String[] userIdsFilter, Long collectionId,
+			Boolean collision, Integer status, Pagination pagination,
 			String sortString)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse getCollectionEntriesPageHttpResponse(
 			String[] changeTypesFilter, String[] classNameIdsFilter,
-			String[] groupIdsFilter, Long collectionId, Boolean collision,
-			Integer status, String[] userIdsFilter, Pagination pagination,
+			String[] groupIdsFilter, String[] userIdsFilter, Long collectionId,
+			Boolean collision, Integer status, Pagination pagination,
 			String sortString)
 		throws Exception;
 
@@ -99,15 +99,15 @@ public interface EntryResource {
 
 		public Page<Entry> getCollectionEntriesPage(
 				String[] changeTypesFilter, String[] classNameIdsFilter,
-				String[] groupIdsFilter, Long collectionId, Boolean collision,
-				Integer status, String[] userIdsFilter, Pagination pagination,
-				String sortString)
+				String[] groupIdsFilter, String[] userIdsFilter,
+				Long collectionId, Boolean collision, Integer status,
+				Pagination pagination, String sortString)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				getCollectionEntriesPageHttpResponse(
 					changeTypesFilter, classNameIdsFilter, groupIdsFilter,
-					collectionId, collision, status, userIdsFilter, pagination,
+					userIdsFilter, collectionId, collision, status, pagination,
 					sortString);
 
 			String content = httpResponse.getContent();
@@ -123,9 +123,9 @@ public interface EntryResource {
 
 		public HttpInvoker.HttpResponse getCollectionEntriesPageHttpResponse(
 				String[] changeTypesFilter, String[] classNameIdsFilter,
-				String[] groupIdsFilter, Long collectionId, Boolean collision,
-				Integer status, String[] userIdsFilter, Pagination pagination,
-				String sortString)
+				String[] groupIdsFilter, String[] userIdsFilter,
+				Long collectionId, Boolean collision, Integer status,
+				Pagination pagination, String sortString)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -160,19 +160,19 @@ public interface EntryResource {
 				}
 			}
 
+			if (userIdsFilter != null) {
+				for (int i = 0; i < userIdsFilter.length; i++) {
+					httpInvoker.parameter(
+						"userIdsFilter", String.valueOf(userIdsFilter[i]));
+				}
+			}
+
 			if (collision != null) {
 				httpInvoker.parameter("collision", String.valueOf(collision));
 			}
 
 			if (status != null) {
 				httpInvoker.parameter("status", String.valueOf(status));
-			}
-
-			if (userIdsFilter != null) {
-				for (int i = 0; i < userIdsFilter.length; i++) {
-					httpInvoker.parameter(
-						"userIdsFilter", String.valueOf(userIdsFilter[i]));
-				}
 			}
 
 			if (pagination != null) {
