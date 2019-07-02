@@ -122,6 +122,7 @@ import java.util.Dictionary;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -379,8 +380,6 @@ public class GraphQLServletExtender {
 
 			Class<?> fieldType = field.getType();
 
-			String fieldName = field.getName();
-
 			if (fieldType.isAssignableFrom(AcceptLanguage.class)) {
 				field.setAccessible(true);
 
@@ -401,7 +400,7 @@ public class GraphQLServletExtender {
 					instance,
 					_portal.getUser(httpServletRequestOptional.orElse(null)));
 			}
-			else if (fieldName.equals("_filterBiFunction")) {
+			else if (Objects.equals(field.getName(), "_filterBiFunction")) {
 				field.setAccessible(true);
 
 				BiFunction<Object, String, Filter> filterBiFunction =
@@ -426,7 +425,7 @@ public class GraphQLServletExtender {
 
 				field.set(instance, filterBiFunction);
 			}
-			else if (fieldName.equals("_sortsBiFunction")) {
+			else if (Objects.equals(field.getName(), "_sortsBiFunction")) {
 				field.setAccessible(true);
 
 				BiFunction<Object, String, Sort[]> sortsBiFunction =
