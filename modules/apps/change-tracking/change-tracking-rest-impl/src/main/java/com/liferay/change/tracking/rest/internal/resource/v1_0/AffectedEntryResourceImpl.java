@@ -61,45 +61,38 @@ public class AffectedEntryResourceImpl extends BaseAffectedEntryResourceImpl {
 		CTEntry ctEntry = _ctEntryLocalService.getCTEntry(
 			GetterUtil.getLong(entryId));
 
-		List<CTEntry> affectedByCTEntries = null;
-		int totalCount = 0;
-
 		if (Validator.isNotNull(keywords)) {
-			OrderByComparator<CTEntry> orderByComparator =
+			queryDefinition.setOrderByComparator(
 				OrderByComparatorFactoryUtil.create(
-					"CTEntry", Field.TITLE, "asc");
-
-			queryDefinition.setOrderByComparator(orderByComparator);
+					"CTEntry", Field.TITLE, "asc"));
 
 			CTEntry ownerCTEntry = _ctEntryLocalService.getCTEntry(
 				ctEntry.getCtEntryId());
 
-			affectedByCTEntries =
-				_ctEntryLocalService.getRelatedOwnerCTEntries(
-					ownerCTEntry.getCompanyId(), collectionId,
-					ctEntry.getCtEntryId(), keywords, queryDefinition);
-			totalCount =
+			return Page.of(
+				transform(
+					_ctEntryLocalService.getRelatedOwnerCTEntries(
+						ownerCTEntry.getCompanyId(), collectionId,
+						ctEntry.getCtEntryId(), keywords, queryDefinition),
+					this::_toAffectedEntry),
+				pagination,
 				(int)_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
 					ownerCTEntry.getCompanyId(), collectionId,
-					ctEntry.getCtEntryId(), keywords, queryDefinition);
+					ctEntry.getCtEntryId(), keywords, queryDefinition));
 		}
-		else {
-			OrderByComparator<CTEntry> orderByComparator =
-				OrderByComparatorFactoryUtil.create(
-					"CTEntry", "createDate", true);
 
-			queryDefinition.setOrderByComparator(orderByComparator);
-
-			affectedByCTEntries =
-				_ctEntryLocalService.getRelatedOwnerCTEntries(
-					ctEntry.getCtEntryId(), queryDefinition);
-			totalCount = _ctEntryLocalService.getRelatedOwnerCTEntriesCount(
-				ctEntry.getCtEntryId(), queryDefinition);
-		}
+		queryDefinition.setOrderByComparator(
+			OrderByComparatorFactoryUtil.create(
+				"CTEntry", "createDate", true));
 
 		return Page.of(
-			transform(affectedByCTEntries, this::_toAffectedEntry),
-			pagination, totalCount);
+			transform(
+				_ctEntryLocalService.getRelatedOwnerCTEntries(
+					ctEntry.getCtEntryId(), queryDefinition),
+				this::_toAffectedEntry),
+			pagination,
+			_ctEntryLocalService.getRelatedOwnerCTEntriesCount(
+				ctEntry.getCtEntryId(), queryDefinition));
 	}
 
 	private AffectedEntry _toAffectedEntry(CTEntry ctEntry) {
