@@ -67,7 +67,7 @@ public class Query {
 					this::_populateResourceContext,
 					${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource ->
 						new ${javaMethodSignature.schemaName}Page(
-							${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource.${javaMethodSignature.methodName}(${arguments?replace("pageSize,page", "Pagination.of(page, pageSize)")?replace("filter", "_filterBiFunction.apply(${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource, filterString)")?replace("sorts", "_sortsBiFunction.apply(${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource, sortsString)")}))
+							${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource.${javaMethodSignature.methodName}(${arguments?replace("filter", "_filterBiFunction.apply(${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource, filterString)")?replace("pageSize,page", "Pagination.of(page, pageSize)")?replace("sorts", "_sortsBiFunction.apply(${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource, sortsString)")}))
 					);
 			<#else>
 				return _applyComponentServiceObjects(_${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}ResourceComponentServiceObjects, this::_populateResourceContext, ${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource -> ${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource.${javaMethodSignature.methodName}(${arguments?replace("pageSize,page", "Pagination.of(page, pageSize)")}));
