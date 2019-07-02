@@ -58,7 +58,7 @@ public class Query {
 			${javaMethodSignature.returnType}
 		</#if>
 
-		${javaMethodSignature.methodName}(${freeMarkerTool.getGraphQLParameters(javaMethodSignature.javaMethodParameters, javaMethodSignature.operation, true)?replace("com.liferay.portal.kernel.search.filter.Filter filter", "String filterString")?replace("com.liferay.portal.kernel.search.Sort[] sorts", "String sortString")}) throws Exception {
+		${javaMethodSignature.methodName}(${freeMarkerTool.getGraphQLParameters(javaMethodSignature.javaMethodParameters, javaMethodSignature.operation, true)?replace("com.liferay.portal.kernel.search.filter.Filter filter", "String filterString")?replace("com.liferay.portal.kernel.search.Sort[] sorts", "String sortsString")}) throws Exception {
 			<#assign arguments = freeMarkerTool.getGraphQLArguments(javaMethodSignature.javaMethodParameters) />
 
 			<#if javaMethodSignature.returnType?contains("Collection<")>
@@ -67,7 +67,7 @@ public class Query {
 					this::_populateResourceContext,
 					${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource ->
 						new ${javaMethodSignature.schemaName}Page(
-							${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource.${javaMethodSignature.methodName}(${arguments?replace("pageSize,page", "Pagination.of(page, pageSize)")?replace("filter", "_filterBiFunction.apply(${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource, filterString)")?replace("sorts", "_sortsBiFunction.apply(${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource, sortString)")}))
+							${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource.${javaMethodSignature.methodName}(${arguments?replace("pageSize,page", "Pagination.of(page, pageSize)")?replace("filter", "_filterBiFunction.apply(${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource, filterString)")?replace("sorts", "_sortsBiFunction.apply(${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource, sortsString)")}))
 					);
 			<#else>
 				return _applyComponentServiceObjects(_${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}ResourceComponentServiceObjects, this::_populateResourceContext, ${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource -> ${freeMarkerTool.getSchemaVarName(javaMethodSignature.schemaName)}Resource.${javaMethodSignature.methodName}(${arguments?replace("pageSize,page", "Pagination.of(page, pageSize)")}));
