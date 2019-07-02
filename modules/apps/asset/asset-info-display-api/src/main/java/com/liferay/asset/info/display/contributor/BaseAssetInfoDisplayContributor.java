@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -50,16 +49,11 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 			AssetEntryInfoDisplayFieldProviderUtil.getInfoDisplayFields(
 				locale, AssetEntry.class.getName(), getClassName());
 
-		List<InfoDisplayField> classTypeInfoDisplayFields =
-			getClassTypeInfoDisplayFields(classTypeId, locale);
-
-		infoDisplayFields.addAll(classTypeInfoDisplayFields);
-
-		List<InfoDisplayField> expandoInfoDisplayFields =
+		infoDisplayFields.addAll(
+			getClassTypeInfoDisplayFields(classTypeId, locale));
+		infoDisplayFields.addAll(
 			ExpandoInfoDisplayFieldProviderUtil.getExpandoInfoDisplayFields(
-				getClassName(), locale);
-
-		infoDisplayFields.addAll(expandoInfoDisplayFields);
+				getClassName(), locale));
 
 		return infoDisplayFields;
 	}
@@ -194,29 +188,17 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 
 		Map<String, Object> parameterMap = new HashMap<>();
 
-		Map<String, Object> assetEntryParameterMap =
+		parameterMap.putAll(
 			AssetEntryInfoDisplayFieldProviderUtil.getInfoDisplayFields(
-				AssetEntry.class.getName(), assetEntry, locale);
-
-		parameterMap.putAll(assetEntryParameterMap);
-
-		Map<String, Object> displayObjectParameterMap =
+				AssetEntry.class.getName(), assetEntry, locale));
+		parameterMap.putAll(
 			AssetEntryInfoDisplayFieldProviderUtil.getInfoDisplayFields(
-				getClassName(), assetObject, locale);
-
-		parameterMap.putAll(displayObjectParameterMap);
-
-		Map<String, Object> classTypeParameterMap = getClassTypeValues(
-			assetObject, locale);
-
-		parameterMap.putAll(classTypeParameterMap);
-
-		Map<String, Object> expandoParameterMap =
+				getClassName(), assetObject, locale));
+		parameterMap.putAll(getClassTypeValues(assetObject, locale));
+		parameterMap.putAll(
 			ExpandoInfoDisplayFieldProviderUtil.
 				getExpandoInfoDisplayFieldsValues(
-					getClassName(), assetObject, locale);
-
-		parameterMap.putAll(expandoParameterMap);
+					getClassName(), assetObject, locale));
 
 		return parameterMap;
 	}
