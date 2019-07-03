@@ -66,7 +66,7 @@ public class SchemaUtils {
 	}
 
 	public static Schema createRejectSchema(Schema inputSchema) {
-		final List<Schema.Field> rejectFields = new ArrayList<>();
+		List<Schema.Field> rejectFields = new ArrayList<>();
 
 		Schema.Field field = new Schema.Field(
 			com.liferay.talend.common.schema.constants.SchemaConstants.
