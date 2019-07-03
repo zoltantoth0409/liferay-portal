@@ -106,6 +106,12 @@ definition {
 	}
 
 	macro configureIdentityProviderConnection {
+		Click.waitForMenuToggleJSClick(
+			key_samlEntityID = "${samlEntityID}",
+			locator1 = "CPSAMLAdmin#SAML_CONNECTION_ACTION_BUTTON");
+
+		MenuItem.click(menuItem = "Edit");
+
 		if ("${forceAuthn}" == "enable") {
 			Check(locator1 = "CPSAMLAdminIdentityProviderConnection#IDENTITY_PROVIDER_CONNECTION_FORCE_AUTHN_CHECKBOX");
 		}

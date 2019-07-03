@@ -1043,7 +1043,8 @@ definition {
 		SAMLNavigation.gotoIdentityProviderConnections();
 
 		SAMLPortlet.configureIdentityProviderConnection(
-			forceAuthn = "enable"
+			forceAuthn = "enable",
+			samlEntityID = "samlidp"
 		);
 
 		Navigator.openSpecificURL(url = "http://www.baker.com:10080");
@@ -1059,7 +1060,8 @@ definition {
 		SAMLNavigation.gotoIdentityProviderConnections();
 
 		SAMLPortlet.configureIdentityProviderConnection(
-			forceAuthn = "enable"
+			forceAuthn = "enable",
+			samlEntityID = "samlidp"
 		);
 
 		User.logoutPG(specificURL = "http://www.baker.com:10080");
