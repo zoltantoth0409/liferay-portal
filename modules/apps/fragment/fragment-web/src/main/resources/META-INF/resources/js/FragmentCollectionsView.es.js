@@ -76,7 +76,7 @@ class FragmentCollectionsView extends PortletBase {
 
 				submitForm(
 					this._fragmentCollectionsFm,
-					this.deleteFragmentCollectionFormAction
+					this.deleteFragmentCollectionURL
 				);
 			}
 		);
@@ -98,7 +98,7 @@ class FragmentCollectionsView extends PortletBase {
 
 				submitForm(
 					this._fragmentCollectionsFm,
-					this.exportFragmentCollectionFormAction
+					this.exportFragmentCollectionsURL
 				);
 			}
 		);
@@ -122,7 +122,7 @@ class FragmentCollectionsView extends PortletBase {
 			buttonAddLabel: dialogButtonLabel,
 			eventName: this.ns('selectCollections'),
 			title: dialogTitle,
-			url: this.viewFragmentCollectionsUrl
+			url: this.viewFragmentCollectionsURL
 		});
 
 		itemSelectorDialog.on('selectedItemChange', event => {
@@ -154,7 +154,7 @@ class FragmentCollectionsView extends PortletBase {
 			},
 			id: this.ns('openImportView'),
 			title: Liferay.Language.get('import'),
-			uri: this.viewImportCollectionsUrl
+			uri: this.viewImportURL
 		});
 	}
 }
@@ -177,7 +177,7 @@ FragmentCollectionsView.STATE = {
 	 * @review
 	 * @type {string}
 	 */
-	deleteFragmentCollectionFormAction: Config.string().required(),
+	deleteFragmentCollectionURL: Config.string().required(),
 
 	/**
 	 * @default undefined
@@ -186,7 +186,7 @@ FragmentCollectionsView.STATE = {
 	 * @review
 	 * @type {string}
 	 */
-	exportFragmentCollectionFormAction: Config.string().required(),
+	exportFragmentCollectionsURL: Config.string().required(),
 
 	/**
 	 * @default undefined
@@ -195,7 +195,7 @@ FragmentCollectionsView.STATE = {
 	 * @review
 	 * @type {string}
 	 */
-	viewFragmentCollectionsUrl: Config.string().required(),
+	viewFragmentCollectionsURL: Config.string().required(),
 
 	/**
 	 * @default undefined
@@ -204,7 +204,7 @@ FragmentCollectionsView.STATE = {
 	 * @review
 	 * @type {string}
 	 */
-	viewImportCollectionsUrl: Config.string().required()
+	viewImportURL: Config.string().required()
 };
 
 export default FragmentCollectionsView;

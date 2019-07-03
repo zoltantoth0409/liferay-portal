@@ -150,18 +150,21 @@ List<FragmentCollection> fragmentCollections = (List<FragmentCollection>)request
 <aui:form cssClass="hide" name="fragmentCollectionsFm">
 </aui:form>
 
-<liferay-portlet:actionURL copyCurrentRenderParameters="<%= false %>" name="/fragment/delete_fragment_collection" var="deleteFragmentCollectionFormAction"></liferay-portlet:actionURL>
-<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/fragment/export_fragment_collections" var="exportFragmentCollectionFormAction" />
-<portlet:renderURL var="viewFragmentCollectionsUrl" windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcRenderCommandName" value="/fragment/view_fragment_collections" /></portlet:renderURL>
-<portlet:renderURL var="viewImportCollectionsUrl" windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcRenderCommandName" value="/fragment/view_import" /></portlet:renderURL>
+<liferay-portlet:actionURL copyCurrentRenderParameters="<%= false %>" name="/fragment/delete_fragment_collection" var="deleteFragmentCollectionURL" />
+
+<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/fragment/export_fragment_collections" var="exportFragmentCollectionsURL" />
+
+<portlet:renderURL var="viewFragmentCollectionsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcRenderCommandName" value="/fragment/view_fragment_collections" /></portlet:renderURL>
+
+<portlet:renderURL var="viewImportURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcRenderCommandName" value="/fragment/view_import" /></portlet:renderURL>
 
 <%
 Map<String, Object> context = new HashMap<>();
 
-context.put("deleteFragmentCollectionFormAction", deleteFragmentCollectionFormAction);
-context.put("exportFragmentCollectionFormAction", exportFragmentCollectionFormAction);
-context.put("viewFragmentCollectionsUrl", viewFragmentCollectionsUrl);
-context.put("viewImportCollectionsUrl", viewImportCollectionsUrl);
+context.put("deleteFragmentCollectionURL", deleteFragmentCollectionURL);
+context.put("exportFragmentCollectionsURL", exportFragmentCollectionsURL);
+context.put("viewFragmentCollectionsURL", viewFragmentCollectionsURL);
+context.put("viewImportURL", viewImportURL);
 %>
 
 <liferay-frontend:component
