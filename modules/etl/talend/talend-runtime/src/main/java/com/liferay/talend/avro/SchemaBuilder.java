@@ -277,7 +277,7 @@ public class SchemaBuilder {
 
 		if (StringUtil.isEmpty(schemaName)) {
 			throw TalendRuntimeException.createUnexpectedException(
-				"Unable to determine the Schema for the selected endpoint");
+				"Unable to determine the schema for the selected endpoint");
 		}
 
 		JsonObject schemaJsonObject = _extractSchemaJsonObject(schemaName);
