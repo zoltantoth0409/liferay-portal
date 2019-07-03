@@ -20,7 +20,10 @@ import java.util.Map;
 
 /**
  * @author Máté Thurzó
+ * @deprecated As of Mueller (7.2.x), see {@link
+ *             com.liferay.portal.template.soy.util.SoyContextFactoryUtil}
  */
+@Deprecated
 @ProviderType
 public class SoyContextFactoryUtil {
 

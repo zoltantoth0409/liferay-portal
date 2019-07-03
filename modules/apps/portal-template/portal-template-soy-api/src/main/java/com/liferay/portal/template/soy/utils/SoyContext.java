@@ -18,7 +18,10 @@ import java.util.Map;
 
 /**
  * @author Bruno Basto
+ * @deprecated As of Mueller (7.2.x), see {@link
+ *             com.liferay.portal.template.soy.util.SoyContext}
  */
+@Deprecated
 public interface SoyContext extends Map<String, Object> {
 
 	public void clearInjectedData();
