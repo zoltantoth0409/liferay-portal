@@ -968,7 +968,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				User user = userGroupRole.getUser();
 
-				users.add(user);
+				if (user.isActive()) {
+					users.add(user);
+				}
 			}
 
 			List<UserGroupGroupRole> userGroupGroupRoles =
