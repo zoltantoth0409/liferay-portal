@@ -415,33 +415,31 @@
 
 									if (instance._isEmptySelection(editor)) {
 										if (IE9AndLater) {
-											var emptySelectionMarkup = 'nbsp;';
-
 											var usingAlloyEditor = typeof AlloyEditor == 'undefined';
 
 											if (!usingAlloyEditor) {
-												emptySelectionMarkup = elementOuterHtml + emptySelectionMarkup;
-											}
+												var emptySelectionMarkup = 'nbsp;';
 
-											editor.insertHtml(emptySelectionMarkup);
-											
-											var selection = editor.getSelection();
+												emptySelectionMarkup = elementOuterHtml + emptySelectionMarkup;
+
+												editor.insertHtml(emptySelectionMarkup);
+											}
 
 	 										var element = new CKEDITOR.dom.element('br');
 
-	 										editor.insertElement(element);
+											editor.insertElement(element);
+											editor.getSelection();
 
-	 										var region = element.getClientRect();
-
-	 										var eventData = {
-												nativeEvent: {},
-												selectionData: {
-													element: element,
-													region: region
+											editor.fire(
+												'editorInteraction',
+												{
+													nativeEvent: {},
+													selectionData: {
+														element: element,
+														region: element.getClientRect()
+													}
 												}
-											};
-
-	 										editor.fire('editorInteraction', eventData);
+											);
 										}
 										else {
 											editor.execCommand('enter');
