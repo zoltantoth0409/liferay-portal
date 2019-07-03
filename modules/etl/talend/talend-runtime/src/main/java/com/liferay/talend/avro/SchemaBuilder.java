@@ -271,8 +271,8 @@ public class SchemaBuilder {
 
 		String schemaName = _extractEndpointSchemaName();
 
-		if (_log.isDebugEnabled()) {
-			_log.debug("Schema name: {}", schemaName);
+		if (_logger.isDebugEnabled()) {
+			_logger.debug("Schema name: {}", schemaName);
 		}
 
 		if (StringUtil.isEmpty(schemaName)) {
@@ -367,7 +367,7 @@ public class SchemaBuilder {
 	private static final String _HTTP_OPERATION_POST = StringUtil.toLowerCase(
 		HttpMethod.POST);
 
-	private static final Logger _log = LoggerFactory.getLogger(
+	private static final Logger _logger = LoggerFactory.getLogger(
 		SchemaBuilder.class);
 
 	private static final JsonFinder _jsonFinder = new JsonFinder();
