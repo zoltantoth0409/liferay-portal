@@ -17,6 +17,8 @@ import {ItemSelectorDialog, PortletBase} from 'frontend-js-web';
 
 /**
  * @class MoveEntries
+ * It adds a listener to a #selectFolderButton DOM element
+ * and allows selecting a directory with itemSelector
  */
 class MoveEntries extends PortletBase {
 	/**
@@ -25,7 +27,7 @@ class MoveEntries extends PortletBase {
 	 */
 	created() {
 		const selectFolderButton = document.getElementById(
-			this.ns(this.selectFolderButtonId)
+			this.ns('selectFolderButton')
 		);
 
 		if (selectFolderButton) {
@@ -46,7 +48,7 @@ class MoveEntries extends PortletBase {
 	 */
 	disposed() {
 		const selectFolderButton = document.getElementById(
-			this.ns(this.selectFolderButtonId)
+			this.ns('selectFolderButton')
 		);
 
 		if (selectFolderButton) {
@@ -64,7 +66,7 @@ class MoveEntries extends PortletBase {
 	_handleSelectFolderButtonClick() {
 		const itemSelectorDialog = new ItemSelectorDialog({
 			buttonAddLabel: Liferay.Language.get('done'),
-			eventName: this.ns(this.selectFolderEventName),
+			eventName: this.ns('selectFolder'),
 			title: Liferay.Language.get('select-folder'),
 			url: this.selectFolderURL
 		});
@@ -94,24 +96,6 @@ class MoveEntries extends PortletBase {
  * @static
  */
 MoveEntries.STATE = {
-	/**
-	 * @default undefined
-	 * @memberof MoveEntries
-	 * @required
-	 * @review
-	 * @type {string}
-	 */
-	selectFolderButtonId: Config.string().required(),
-
-	/**
-	 * @default undefined
-	 * @memberof MoveEntries
-	 * @required
-	 * @review
-	 * @type {string}
-	 */
-	selectFolderEventName: Config.string().required(),
-
 	/**
 	 * @default undefined
 	 * @memberof MoveEntries
