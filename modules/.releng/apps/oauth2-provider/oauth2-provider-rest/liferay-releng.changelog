@@ -42,3 +42,8 @@ a884b87ae4574dcf9c9ef37dafc821af62472642^..4ab34b9025daf62bd4b7344f30e91119a74de
 # Bundle Version 2.0.8
 #
 4ab34b9025daf62bd4b7344f30e91119a74de304^..8ab3d8bca3e00cfdc20bb0af5a22a871b06f44f7=LPS-77699 LPS-96318 OAUTH2-170
+
+#
+# Bundle Version 2.0.9
+#
+8ab3d8bca3e00cfdc20bb0af5a22a871b06f44f7^..8bd25a727fc370fddb50fabe6d40575d056db71e=LPS-84119
