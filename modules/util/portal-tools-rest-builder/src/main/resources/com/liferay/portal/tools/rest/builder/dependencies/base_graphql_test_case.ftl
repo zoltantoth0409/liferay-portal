@@ -168,10 +168,12 @@ public abstract class Base${schemaName}GraphQLTestCase {
 	}
 
 	private String _invoke(String query) throws IOException {
+		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
 		JSONObject jsonObject = JSONUtil.put("query", query);
 
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 		httpInvoker.body(jsonObject.toString(), "application/json");
+
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 		httpInvoker.path("http://localhost:8080/o/graphql");
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
