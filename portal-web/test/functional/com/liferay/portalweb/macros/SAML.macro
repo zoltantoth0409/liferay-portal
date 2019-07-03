@@ -68,7 +68,7 @@ definition {
 		SAMLRole.configureCertificateAndPrivateKey(samlKeyPassword = "${samlEntityID}");
 
 		SAML.connectSPAndIdP(
-			Attributes = "${Attributes}",
+			attributes = "${attributes}",
 			idpEntityID = "samlidp",
 			idpKeepAliveURL = "${idpKeepAliveURL}",
 			idpURL = "http://localhost:8080",
@@ -98,10 +98,10 @@ definition {
 		SAMLNavigation.gotoIdentityProviderConnection();
 
 		SAMLPortlet.addIdentityProviderConnection(
-			IdpEntityID = "${idpEntityID}",
-			IdpKeepAliveURL = "${idpKeepAliveURL}",
-			IdpMetadataURL = "${idpURL}/c/portal/saml/metadata",
-			IdpNameID = "${IdpEntityID}",
+			idpEntityID = "${idpEntityID}",
+			idpKeepAliveURL = "${idpKeepAliveURL}",
+			idpMetadataURL = "${idpURL}/c/portal/saml/metadata",
+			idpNameID = "${idpEntityID}",
 			nameIdentifierFormat = "${nameIdentifierFormat}");
 
 		SAMLNavigation.gotoGeneral();
@@ -131,13 +131,13 @@ definition {
 		SAMLNavigation.gotoServiceProviderConnection();
 
 		SAMLPortlet.addServiceProviderConnection(
-			Attributes = "${Attributes}",
+			attributes = "${attributes}",
 			nameIdentifierAttributeName = "${nameIdentifierAttributeName}",
 			nameIdentifierFormat = "${nameIdentifierFormat}",
-			SPEntityID = "${spEntityID}",
-			SPKeepAliveURL = "${spKeepAliveURL}",
-			SPMetadataURL = "${spURL}/c/portal/saml/metadata",
-			SPNameID = "${spEntityID}");
+			spEntityID = "${spEntityID}",
+			spKeepAliveURL = "${spKeepAliveURL}",
+			spMetadataURL = "${spURL}/c/portal/saml/metadata",
+			spNameID = "${spEntityID}");
 	}
 
 	@description = "Sign into portal by executing a IdP initiated SSO login. The IdP will redirect to the SP. If the same users with the same email address are present on both instances, it will authenticate and show the SP. SAML can authenticate across major portal versions, that is, the IdP can be Portal 6.1 EE GA3 and the SP can be Portal 6.2. EE GA1. For testing purposes, it is obvious if the authentication succeeds or fails if the IdP and SP are different portal versions."
