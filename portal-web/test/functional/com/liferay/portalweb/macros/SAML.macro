@@ -4,6 +4,15 @@ definition {
 	macro configureLiferaySAMLAsIdP {
 		// Configure IdP (Identity Provider) on http://localhost:8080 with database lportal and saml deployed
 
+		if (isSet(idpURL)) {
+			User.loginPG(
+				password = "test",
+				specificURL = "${idpURL}",
+				userEmailAddress = "test@liferay.com");
+
+			Navigator.openSpecificURL(url = "${idpURL}");
+		}
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
@@ -157,9 +166,11 @@ definition {
 	macro executeSPInitiatedSSO {
 		User.loginPG(
 			authenticationMethod = "${authenticationMethod}",
+			idpName = "${idpName}",
 			nodePort = "${nodePort}",
 			password = "${password}",
 			rememberMeChecked = "${rememberMeChecked}",
+			samlMultiIdPs = "${samlMultiIdPs}",
 			specificURL = "${specificURL}",
 			syntaxCheckingEnabled = "${syntaxCheckingEnabled}",
 			userEmailAddress = "test@liferay.com",

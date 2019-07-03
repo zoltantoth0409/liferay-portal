@@ -1408,6 +1408,15 @@ definition {
 			User.loginLocalizationPG(localization = "${localization}");
 		}
 
+		if ("${samlMultiIdPs}" == "true") {
+			Select(
+				key_fieldLabel = "Identity Provider",
+				locator1 = "Select#GENERIC_SELECT_FIELD",
+				value1 = "${idpName}");
+
+			Button.click(button = "Sign In");
+		}
+
 		if ((isSet(authenticationMethod)) && ("${authenticationMethod}" == "By Screen Name")) {
 			Type(
 				locator1 = "TextInput#SCREEN_NAME",

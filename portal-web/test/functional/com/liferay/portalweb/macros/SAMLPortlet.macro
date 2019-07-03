@@ -1,6 +1,10 @@
 definition {
 
 	macro addIdentityProviderConnection {
+		AssertClick(
+			locator1 = "CPSAMLAdminIdentityProviderConnection#ADD_IDENTITY_PROVIDER_BUTTON",
+			value1 = "Add Identity Provider");
+
 		Type(
 			locator1 = "TextInput#SAML_NAME_FIELD",
 			value1 = "${IdpNameID}");
