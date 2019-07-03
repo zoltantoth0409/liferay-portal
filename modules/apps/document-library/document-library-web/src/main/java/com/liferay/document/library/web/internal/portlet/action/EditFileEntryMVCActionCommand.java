@@ -49,7 +49,10 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.lock.DuplicateLockException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.TrashedModel;
+import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
@@ -61,6 +64,8 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
+import com.liferay.portal.kernel.service.permission.ModelPermissions;
+import com.liferay.portal.kernel.service.permission.ModelPermissionsFactory;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.PortletDisplay;
@@ -938,6 +943,9 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			if (cmd.equals(Constants.ADD) ||
 				cmd.equals(Constants.ADD_DYNAMIC)) {
 
+				_clearGuestPermissionsIfPrivateLayout(
+					cmd, themeDisplay, serviceContext);
+
 				// Add file entry
 
 				fileEntry = _dlAppService.addFileEntry(
@@ -973,6 +981,40 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			}
 
 			return fileEntry;
+		}
+	}
+
+	private void _clearGuestPermissionsIfPrivateLayout(
+		String cmd, ThemeDisplay themeDisplay, ServiceContext serviceContext) {
+
+		if (cmd.equals(Constants.ADD_DYNAMIC)) {
+			boolean guestChecked = false;
+
+			Layout layout = themeDisplay.getLayout();
+
+			if (layout.isTypeControlPanel()) {
+				Group group = themeDisplay.getScopeGroup();
+
+				if (!group.hasPrivateLayouts()) {
+					guestChecked = true;
+				}
+			}
+			else if (layout.isPublicLayout()) {
+				guestChecked = true;
+			}
+
+			if (!guestChecked) {
+				ModelPermissions currentModelPermissions =
+					serviceContext.getModelPermissions();
+
+				ModelPermissions modelPermissions =
+					ModelPermissionsFactory.create(
+						currentModelPermissions.getActionIds(
+							RoleConstants.PLACEHOLDER_DEFAULT_GROUP_ROLE),
+						new String[0], DLFileEntry.class.getName());
+
+				serviceContext.setModelPermissions(modelPermissions);
+			}
 		}
 	}
 
