@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.graphql.query.GraphQLField;
-import com.liferay.portal.vulcan.util.GraphQLQueryUtil;
 
 import java.io.IOException;
 
@@ -82,31 +81,25 @@ public abstract class Base${schemaName}GraphQLTestCase {
 
 					List<GraphQLField> graphQLFields = new ArrayList<>();
 
-					graphQLFields.add(GraphQLQueryUtil.field("id"));
+					graphQLFields.add(new GraphQLField("id"));
 
 					for (String additionalAssertFieldName : getAdditionalAssertFieldNames()) {
-						graphQLFields.add(GraphQLQueryUtil.field(additionalAssertFieldName));
+						graphQLFields.add(new GraphQLField(additionalAssertFieldName));
 					}
 
-					GraphQLField graphQLField = GraphQLQueryUtil.field("query",
-						GraphQLQueryUtil.field("${javaMethodSignature.methodName}",
-						parameterMap, graphQLFields.toArray(new GraphQLField[0])
-					));
+					GraphQLField graphQLField = new GraphQLField(
+						"query",
+						new GraphQLField("${javaMethodSignature.methodName}", parameterMap, graphQLFields.toArray(new GraphQLField[0])));
 
-					JSONObject responseJSONObject = new JSONObjectImpl(
-						_invoke(graphQLField.toString()));
+					JSONObject responseJSONObject = new JSONObjectImpl(_invoke(graphQLField.toString()));
 
-					JSONObject dataJSONObject =
-						responseJSONObject.getJSONObject("data");
+					JSONObject dataJSONObject = responseJSONObject.getJSONObject("data");
 
-					JSONObject jsonObject =
-						dataJSONObject.getJSONObject("${javaMethodSignature.methodName}");
+					JSONObject jsonObject = dataJSONObject.getJSONObject("${javaMethodSignature.methodName}");
 
 					Assert.assertTrue(equals(post${schemaName}, jsonObject));
 				<#else>
-
 					Assert.assertTrue(true);
-
 				</#if>
 			}
 
