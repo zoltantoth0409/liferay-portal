@@ -38,7 +38,7 @@ definition {
 		);
 
 		ServerAdministration.addCategoryLogLevels(
-			categoryName = "com.liferay.saml.opensaml.integration.internal.profile.BaseProfile",
+			categoryName = "com.liferay.saml.opensaml.integration",
 			categoryPriority = "DEBUG"
 		);
 
