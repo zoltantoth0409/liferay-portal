@@ -1171,13 +1171,13 @@ definition {
 			samlMultiIdPs = "true",
 			specificURL = "http://www.baker.com:10080");
 
-		User.viewLoggedInPG();
+		User.viewLoggedInPG(userFirstName = "Test");
 
 		// Verify first IdP is logged in
 
 		Navigator.openURL();
 
-		User.viewLoggedInPG();
+		User.viewLoggedInPG(userFirstName = "Test");
 
 		// Initiate Single Logout via SP with first IdP
 
@@ -1199,13 +1199,13 @@ definition {
 			samlMultiIdPs = "true",
 			specificURL = "http://www.baker.com:10080");
 
-		User.viewLoggedInPG();
+		User.viewLoggedInPG(userFirstName = "Test");
 
 		// Verify second IdP is logged in
 
 		Navigator.openSpecificURL(url = "http://www.able.com:9080");
 
-		User.viewLoggedInPG();
+		User.viewLoggedInPG(userFirstName = "Test");
 
 		// Initiate Single Logout via SP with second IdP
 
