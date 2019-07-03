@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import javax.annotation.Generated;
@@ -73,12 +72,6 @@ public abstract class Base${schemaName}GraphQLTestCase {
 				<#if properties?keys?seq_contains("id")>
 					${schemaName} post${schemaName} = test${javaMethodSignature.methodName?cap_first}_add${schemaName}();
 
-					Map<String, Object> parameterMap = new HashMap<String, Object>() {
-						{
-							put("${schemaVarName}Id", post${schemaName}.getId());
-						}
-					};
-
 					List<GraphQLField> graphQLFields = new ArrayList<>();
 
 					graphQLFields.add(new GraphQLField("id"));
@@ -89,7 +82,14 @@ public abstract class Base${schemaName}GraphQLTestCase {
 
 					GraphQLField graphQLField = new GraphQLField(
 						"query",
-						new GraphQLField("${javaMethodSignature.methodName}", parameterMap, graphQLFields.toArray(new GraphQLField[0])));
+						new GraphQLField(
+							"${javaMethodSignature.methodName}",
+							new HashMap<String, Object>() {
+								{
+									put("${schemaVarName}Id", post${schemaName}.getId());
+								}
+							},
+							graphQLFields.toArray(new GraphQLField[0])));
 
 					JSONObject responseJSONObject = JSONFactoryUtil.createJSONObject(_invoke(graphQLField.toString()));
 
