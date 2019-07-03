@@ -14,6 +14,7 @@
 
 package com.liferay.portal.vulcan.graphql.query;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,6 +22,10 @@ import java.util.Set;
  * @author Javier Gamarra
  */
 public class GraphQLField {
+
+	public GraphQLField(String key, GraphQLField... graphQLFields) {
+		this(key, new HashMap<>(), graphQLFields);
+	}
 
 	public GraphQLField(
 		String key, Map<String, Object> parameters,
