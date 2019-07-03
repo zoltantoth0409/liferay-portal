@@ -95,7 +95,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "SAML Admin");
 
-		SAMLNavigation.gotoIdentityProviderConnection();
+		SAMLNavigation.gotoIdentityProviderConnections();
 
 		SAMLPortlet.addIdentityProviderConnection(
 			idpEntityID = "${idpEntityID}",
