@@ -87,7 +87,7 @@ definition {
 	test MoveFolderWithWebContentToRecycleBin {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -98,7 +98,7 @@ definition {
 			folderDescription = "WC Folder Description",
 			folderName = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -119,7 +119,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -130,7 +130,7 @@ definition {
 			assetType = "Web Content Folder",
 			folderName = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -139,7 +139,7 @@ definition {
 
 		WebContent.viewDefaultCP(webContentTitle = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -156,7 +156,7 @@ definition {
 	test RecycleWebContentViaDeleteIcon {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -173,7 +173,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -182,7 +182,7 @@ definition {
 
 		WebContent.moveToRecycleBinViaDeleteIconCP();
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -191,7 +191,7 @@ definition {
 
 		WebContent.viewDefaultCP(webContentTitle = "WC WebContent Title");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -325,7 +325,7 @@ definition {
 	test ViewDuplicateAssetNamesInRecycleBin {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -342,7 +342,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -351,7 +351,7 @@ definition {
 
 		WebContent.moveToRecycleBinViaDeleteIconCP();
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -363,7 +363,7 @@ definition {
 			assetType = "Web Content Article",
 			deleteUser = "Test Test");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -380,7 +380,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -389,7 +389,7 @@ definition {
 
 		WebContent.moveToRecycleBinViaDeleteIconCP();
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -403,7 +403,7 @@ definition {
 	test ViewDuplicateFolderNamesInRecycleBin {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -414,7 +414,7 @@ definition {
 			folderDescription = "WC Folder Description",
 			folderName = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -425,7 +425,7 @@ definition {
 			assetType = "Web Content Folder",
 			folderName = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -437,7 +437,7 @@ definition {
 			assetType = "Web Content Folder",
 			deleteUser = "Test Test");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -448,7 +448,7 @@ definition {
 			folderDescription = "WC Folder Description",
 			folderName = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -459,7 +459,7 @@ definition {
 			assetType = "Web Content Folder",
 			folderName = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

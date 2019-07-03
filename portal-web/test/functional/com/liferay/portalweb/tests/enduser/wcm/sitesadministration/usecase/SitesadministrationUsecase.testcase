@@ -776,7 +776,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site2 Name");
 
-		ProductMenu.gotoSite(site = "Site2 Name");
+		Navigator.openSiteURL(siteName = "Site2 Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -831,7 +831,7 @@ definition {
 			password = "test",
 			userEmailAddress = "test@liferay.com");
 
-		ProductMenu.gotoSite(site = "Site1 Name");
+		Navigator.openSiteURL(siteName = "Site1 Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -1063,7 +1063,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		Page.add(
 			pageName = "Blog Page Template",
@@ -1127,7 +1127,7 @@ definition {
 			siteName = "Site Name",
 			userScreenName = "usersn2");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1138,7 +1138,7 @@ definition {
 			teamDescription = "Site Team Description",
 			teamName = "Site Team Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1225,7 +1225,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1276,7 +1276,7 @@ definition {
 			siteTemplateName = '''<script>alert(123);</script>''',
 			siteType = "Site Template");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

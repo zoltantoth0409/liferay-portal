@@ -65,7 +65,7 @@ definition {
 
 		Organization.editOrganizationCreateSite(orgName = "College of Agricultural Science");
 
-		ProductMenu.gotoSite(site = "College of Agricultural Science");
+		Navigator.openSiteURL(siteName = "College of Agricultural Science");
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
@@ -336,7 +336,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Global");
+		Navigator.openSiteURL(siteName = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

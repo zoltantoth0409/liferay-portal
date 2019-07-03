@@ -204,7 +204,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Users and Organizations");
 
-		ProductMenu.gotoSite(site = "Test Site Name");
+		Navigator.openSiteURL(siteName = "Test Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1595,7 +1595,7 @@ definition {
 			webContentContent = "WC Content Body",
 			webContentTitle = "WC Content Title");
 
-		ProductMenu.gotoSite(site = "Child SiteName");
+		Navigator.openSiteURL(siteName = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

@@ -235,7 +235,7 @@ definition {
 
 	@priority = "4"
 	test AssertAssetListScopeViaAssetPublisher {
-		ProductMenu.gotoSite(site = "Global");
+		Navigator.openSiteURL(siteName = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1069,7 +1069,7 @@ definition {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		for (var siteName : list "${siteName},Site Name,Global") {
-			ProductMenu.gotoSite(site = "${siteName}");
+			Navigator.openSiteURL(siteName = "${siteName}");
 
 			ProductMenu.gotoPortlet(
 				category = "Content",
@@ -1129,7 +1129,7 @@ definition {
 			siteName = "Site Name");
 
 		for (var siteName1 : list "${siteName},Site Name,Global") {
-			ProductMenu.gotoSite(site = "${siteName1}");
+			Navigator.openSiteURL(siteName = "${siteName1}");
 
 			ProductMenu.gotoPortlet(
 				category = "Content",
@@ -1828,7 +1828,7 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		Navigator.gotoPage(pageName = "Asset Publisher Page");
 

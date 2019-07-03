@@ -313,7 +313,7 @@ definition {
 
 		Site.addBlankCP(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -453,7 +453,7 @@ definition {
 
 		Site.addBlankCP(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -501,7 +501,7 @@ definition {
 			roleTitle = "${roleTitle}",
 			roleType = "${roleType}");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -552,7 +552,7 @@ definition {
 
 		Site.addBlankCP(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -565,7 +565,7 @@ definition {
 			userMiddleName = "${userMiddleName}",
 			userScreenName = "${userScreenName}");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",

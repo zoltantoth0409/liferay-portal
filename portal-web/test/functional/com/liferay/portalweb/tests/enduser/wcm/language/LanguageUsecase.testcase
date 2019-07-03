@@ -42,7 +42,7 @@ definition {
 	test AddWCWithMultipleTranslations {
 		property test.name.skip.portal.instance = "LanguageUsecase#AddWCWithMultipleTranslations";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -125,7 +125,7 @@ definition {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "LanguageUsecase#AddWCWithTranslation";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -217,7 +217,7 @@ definition {
 
 		PortalSettings.configureCurrentLanguagesCP(defaultPortalLanguage = "Spanish (Spain)");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -328,7 +328,7 @@ definition {
 
 		Portlet.addPG(portletName = "Language Selector");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

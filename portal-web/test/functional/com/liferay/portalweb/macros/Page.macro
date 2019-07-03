@@ -91,7 +91,7 @@ definition {
 	@summary = "Add a page named '${pageName}'"
 	macro add {
 		if (isSet(siteName)) {
-			ProductMenu.gotoSite(site = "${siteName}");
+			Navigator.openSiteURL(siteName = "${siteName}");
 		}
 
 		if (isSet(pageStaging)) {
@@ -634,7 +634,7 @@ definition {
 	macro tearDownPG {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		while (IsElementPresent(locator1 = "SitePages#PAGE_ELLIPSIS_2")) {
 			ProductMenuHelper.expandPanel(panel = "Site Administration");

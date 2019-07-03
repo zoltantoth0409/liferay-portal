@@ -157,7 +157,7 @@ definition {
 			pageTemplateName = "Page Template Name",
 			pageTemplateStatus = "No");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		SitePageNavigator.gotoPages(page = "Public Pages");
 
@@ -183,7 +183,7 @@ definition {
 			pageTemplateName = "Page Template Name",
 			pageTemplateStatus = "Yes");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		SitePageNavigator.gotoPages(page = "Public Pages");
 

@@ -53,7 +53,7 @@ definition {
 
 		Site.addBlankCP(parentSiteName = "Site Name", siteName = "Child SiteName");
 
-		ProductMenu.gotoSite(site = "Child SiteName");
+		Navigator.openSiteURL(siteName = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

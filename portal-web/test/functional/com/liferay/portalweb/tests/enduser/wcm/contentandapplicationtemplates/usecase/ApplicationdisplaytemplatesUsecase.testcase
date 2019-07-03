@@ -259,7 +259,7 @@ definition {
 	test ADTCategoriesNavigation {
 		property portal.acceptance = "true";
 
-		ProductMenu.gotoSite(site = "Test Site Name");
+		Navigator.openSiteURL(siteName = "Test Site Name");
 
 		for (var i : list "1,2") {
 			ProductMenu.gotoPortlet(
@@ -461,7 +461,7 @@ definition {
 
 	@priority = "3"
 	test ADTStagingCategoriesNavigation {
-		ProductMenu.gotoSite(site = "Test Site Name");
+		Navigator.openSiteURL(siteName = "Test Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

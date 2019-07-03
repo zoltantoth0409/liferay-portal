@@ -948,7 +948,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Remote Site");
 
-		ProductMenu.gotoSite(site = "Remote Site");
+		Navigator.openSiteURL(siteName = "Remote Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -971,7 +971,7 @@ definition {
 			Navigator.openURL();
 		}
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",

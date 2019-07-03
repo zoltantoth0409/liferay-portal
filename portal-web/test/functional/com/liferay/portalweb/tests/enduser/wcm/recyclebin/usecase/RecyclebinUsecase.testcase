@@ -88,7 +88,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -155,7 +155,7 @@ definition {
 
 		BookmarksFolder.moveSubfolderToRecycleBinPG(subfolderName = "Subfolder Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -190,7 +190,7 @@ definition {
 
 		Bookmark.moveToRecycleBinPG(bookmarkName = "Bookmark Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -220,7 +220,7 @@ definition {
 
 	@priority = "3"
 	test RecycleBinMBAttachment {
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -232,7 +232,7 @@ definition {
 			threadBody = "MB Body",
 			threadSubject = "MB Subject");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -246,7 +246,7 @@ definition {
 			threadAttachmentRemove = "true",
 			threadBodyEdit = "MB Body Edit");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -264,7 +264,7 @@ definition {
 
 		MessageboardsThread.restoreMBAttachmentCP(mbAttachmentFile = "Document_1.doc");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -302,7 +302,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -369,7 +369,7 @@ definition {
 			entryContent = "Blogs Entry Content 1",
 			entryTitle = "Blogs Entry Title 1");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -383,7 +383,7 @@ definition {
 			assetType = "Blogs Entry",
 			deleteUser = "Test Test");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -397,7 +397,7 @@ definition {
 			assetType = "Blogs Entry",
 			deleteUser = "Test Test");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -458,7 +458,7 @@ definition {
 
 		DMFolder.deletePG(dmFolderName = "DM Folder Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -472,7 +472,7 @@ definition {
 			assetType = "Document",
 			deleteUser = "test test");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -522,7 +522,7 @@ definition {
 			entryContent = "Blogs Entry Content",
 			entryTitle = "Blogs Entry Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -571,7 +571,7 @@ definition {
 
 	@priority = "3"
 	test RecycleBinWebContent {
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -591,7 +591,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "WC Structure Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -627,7 +627,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -638,7 +638,7 @@ definition {
 			assetType = "Web Content Article",
 			webContentTitle = "WC WebContent Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -655,7 +655,7 @@ definition {
 			assetRestoreLocation = "Home",
 			assetType = "Web Content Article");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -666,7 +666,7 @@ definition {
 			webContentText = "WC WebContent Text",
 			webContentTitle = "WC WebContent Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -685,7 +685,7 @@ definition {
 			fieldFieldLabel = "Text",
 			fieldName = "Text");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -701,7 +701,7 @@ definition {
 
 	@priority = "3"
 	test RecycleBinWiki {
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -710,7 +710,7 @@ definition {
 
 		WikiNode.addCP(wikiNodeName = "Wiki Node Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -719,7 +719,7 @@ definition {
 
 		WikiNode.addCP(wikiNodeName = "Wiki2 Node2 Name2");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -734,7 +734,7 @@ definition {
 			wikiPageContent = "Wiki Page Content",
 			wikiPageTitle = "Wiki Page Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -750,7 +750,7 @@ definition {
 			wikiNodeName = "Wiki Node Name",
 			wikiPageTitle = "Wiki Page Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -761,7 +761,7 @@ definition {
 			assetType = "Wiki Node",
 			wikiNodeName = "Wiki Node Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -789,7 +789,7 @@ definition {
 			assetRestoreLocation = "Wiki Node",
 			assetType = "Wiki Page");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -813,7 +813,7 @@ definition {
 	test RestoreDMDocumentFromFolderCP {
 		property portal.acceptance = "false";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -822,7 +822,7 @@ definition {
 
 		DMFolder.addCP(dmFolderName = "DM Folder Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -835,7 +835,7 @@ definition {
 			dmDocumentDescription = "DM Document Description 1",
 			dmDocumentTitle = "DM Document Title 1");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -848,7 +848,7 @@ definition {
 			dmDocumentDescription = "DM Document Description 2",
 			dmDocumentTitle = "DM Document Title 2");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -861,7 +861,7 @@ definition {
 			dmDocumentDescription = "DM Document Description 3",
 			dmDocumentTitle = "DM Document Title 3");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -872,7 +872,7 @@ definition {
 			assetType = "Documents Folder",
 			dmFolderName = "DM Folder Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -886,7 +886,7 @@ definition {
 			assetType2 = "Document",
 			documentName = "DM Document Title 2");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -900,7 +900,7 @@ definition {
 
 	@priority = "3"
 	test RestoreMessageboardsThreadViaRBCP {
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -921,7 +921,7 @@ definition {
 			threadReplyBody = "MB Body Reply",
 			threadSubject = "MB Subject");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -933,7 +933,7 @@ definition {
 			categoryName = "MB Category Name",
 			siteScopeName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -950,7 +950,7 @@ definition {
 			assetRestoreLocation = "Home",
 			assetType = "Message Boards Category");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -977,7 +977,7 @@ definition {
 
 	@priority = "3"
 	test RestoreWebContentFromFolderCP {
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -988,7 +988,7 @@ definition {
 			folderDescription = "WC Folder Description",
 			folderName = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1009,7 +1009,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "Web Content Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1020,7 +1020,7 @@ definition {
 			assetType = "Web Content Folder",
 			folderName = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1034,7 +1034,7 @@ definition {
 			assetType2 = "Web Content Article",
 			documentName = "Web Content Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1050,7 +1050,7 @@ definition {
 
 	@priority = "3"
 	test RestoreWebContentWithArticleVersions {
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1061,7 +1061,7 @@ definition {
 			folderDescription = "WC Folder Description",
 			folderName = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1082,7 +1082,7 @@ definition {
 
 		WebContent.viewTitle(webContentTitle = "Web Content Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1100,7 +1100,7 @@ definition {
 			webContentTitle = "Web Content Title",
 			webContentTitleEdit = "Web Content Title Edit 1");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1118,7 +1118,7 @@ definition {
 			webContentTitle = "Web Content Title Edit 1",
 			webContentTitleEdit = "Web Content Title Edit 2");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1136,7 +1136,7 @@ definition {
 			webContentTitle = "Web Content Title Edit 2",
 			webContentTitleEdit = "Web Content Title Edit 3");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1151,7 +1151,7 @@ definition {
 			webContentList = "Web Content Title Edit 1,Web Content Title Edit 2",
 			webContentTitle = "Web Content Title Edit 3");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1170,7 +1170,7 @@ definition {
 			webContentTitle = "Web Content Title Edit 3",
 			webContentTitleEdit = "Web Content Title Edit Draft");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1181,7 +1181,7 @@ definition {
 			assetType = "Web Content Folder",
 			folderName = "WC Folder Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1193,7 +1193,7 @@ definition {
 			assetRestoreLocation = "Home",
 			assetType = "Web Content Folder");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

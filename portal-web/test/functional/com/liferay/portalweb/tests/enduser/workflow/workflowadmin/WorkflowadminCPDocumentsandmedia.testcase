@@ -122,7 +122,7 @@ definition {
 			roleName = "Board Member",
 			userScreenName = "usersn");
 
-		ProductMenu.gotoSite(site = "Space Program Academy of Continuing Education");
+		Navigator.openSiteURL(siteName = "Space Program Academy of Continuing Education");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -221,7 +221,7 @@ definition {
 
 		Navigator.openURL();
 
-		ProductMenu.gotoSite(site = "Space Program Academy of Continuing Education");
+		Navigator.openSiteURL(siteName = "Space Program Academy of Continuing Education");
 
 		for (var entryCount : list "1,2,3") {
 			ProductMenu.gotoPortlet(

@@ -467,7 +467,7 @@ definition {
 			pageName = "Organization Public Page",
 			siteName = "Organization Name");
 
-		ProductMenu.gotoSite(site = "Organization Name");
+		Navigator.openSiteURL(siteName = "Organization Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1471,7 +1471,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

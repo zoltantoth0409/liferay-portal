@@ -56,7 +56,7 @@ definition {
 
 	@priority = "5"
 	test ContentCannotBeCreatedOnLive {
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -185,7 +185,7 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		Navigator.gotoStagedView();
 
@@ -553,7 +553,7 @@ definition {
 		property portal.acceptance = "true";
 		property testray.component.names = "Training";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		Navigator.gotoStagedView();
 
@@ -643,7 +643,7 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		Navigator.gotoStagedView();
 
@@ -1032,7 +1032,7 @@ definition {
 			pageStaging = "true",
 			siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		Navigator.gotoStagedView();
 

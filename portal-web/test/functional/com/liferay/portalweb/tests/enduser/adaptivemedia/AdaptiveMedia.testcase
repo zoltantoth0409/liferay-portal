@@ -670,7 +670,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -721,7 +721,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Another Site Name");
 
-		ProductMenu.gotoSite(site = "Another Site Name");
+		Navigator.openSiteURL(siteName = "Another Site Name");
 
 		for (var entryCount : list "1,2") {
 			ProductMenu.gotoPortlet(
@@ -735,7 +735,7 @@ definition {
 				dmDocumentTitle = "Document_${entryCount}.jpg");
 		}
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

@@ -146,7 +146,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Sites");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		Page.add(pageName = "Site Page 1");
 
@@ -837,7 +837,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		ProductMenu.gotoSite(site = "Moon Rocks 101");
+		Navigator.openSiteURL(siteName = "Moon Rocks 101");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -874,7 +874,7 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		ProductMenu.gotoSite(site = "Moon Rocks 101");
+		Navigator.openSiteURL(siteName = "Moon Rocks 101");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -916,7 +916,7 @@ definition {
 
 		Refresh();
 
-		ProductMenu.gotoSite(site = "Moon Rocks 101");
+		Navigator.openSiteURL(siteName = "Moon Rocks 101");
 
 		User.logoutPG();
 
@@ -966,7 +966,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -977,7 +977,7 @@ definition {
 
 		Navigator.openURL();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1298,7 +1298,7 @@ definition {
 
 		Portlet.addPG(portletName = "Documents and Media");
 
-		ProductMenu.gotoSite(site = "Global");
+		Navigator.openSiteURL(siteName = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1315,7 +1315,7 @@ definition {
 			dmSubFolderDescription = "DM SubFolder Description",
 			dmSubFolderName = "DM SubFolder Name");
 
-		ProductMenu.gotoSite(site = "Global");
+		Navigator.openSiteURL(siteName = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1382,7 +1382,7 @@ definition {
 			siteName = "DM Site Name",
 			siteTemplateName = "Site Template Name");
 
-		ProductMenu.gotoSite(site = "DM Site Name");
+		Navigator.openSiteURL(siteName = "DM Site Name");
 
 		Navigator.gotoSitePage(
 			pageName = "DM Site Page Name - Global",

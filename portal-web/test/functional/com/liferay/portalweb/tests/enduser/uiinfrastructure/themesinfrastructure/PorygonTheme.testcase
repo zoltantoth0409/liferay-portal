@@ -36,7 +36,7 @@ definition {
 				siteName = "Porygon Theme Site",
 				siteTemplateName = "Porygon Theme");
 
-			ProductMenu.gotoSite(site = "Porygon Theme Site");
+			Navigator.openSiteURL(siteName = "Porygon Theme Site");
 
 			AssertClick(
 				key_pageName = "home",

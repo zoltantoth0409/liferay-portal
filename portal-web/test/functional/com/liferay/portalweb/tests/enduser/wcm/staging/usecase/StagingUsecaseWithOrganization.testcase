@@ -102,7 +102,7 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		ProductMenu.gotoSite(site = "Organization Name");
+		Navigator.openSiteURL(siteName = "Organization Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",

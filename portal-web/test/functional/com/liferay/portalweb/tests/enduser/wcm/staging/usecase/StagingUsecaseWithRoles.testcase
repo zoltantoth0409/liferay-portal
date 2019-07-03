@@ -727,7 +727,7 @@ definition {
 			workflowDefinition = "Single Approver (Version 1)",
 			workflowResourceValue = "Page Revision");
 
-		ProductMenu.gotoSite(site = "Community Site Name");
+		Navigator.openSiteURL(siteName = "Community Site Name");
 
 		Navigator.gotoStagedView();
 
@@ -1103,7 +1103,7 @@ definition {
 
 		Page.deletePG(pageName = "Wiki");
 
-		ProductMenu.gotoSite(site = "Community Site Name");
+		Navigator.openSiteURL(siteName = "Community Site Name");
 
 		Navigator.gotoStagedView();
 

@@ -276,7 +276,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -670,7 +670,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -963,7 +963,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1230,7 +1230,7 @@ definition {
 			pageName = "Staging Test Page",
 			siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		Portlet.addPG(
 			pageName = "Staging Test Page",
@@ -1301,7 +1301,7 @@ definition {
 
 		CalendarEvent.assertEventNotEditable();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		CalendarNavigator.gotoAddEvent();
 
@@ -1311,7 +1311,7 @@ definition {
 
 		Navigator.openURL();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		CalendarNavigator.gotoView(viewType = "Day");
 
@@ -3973,7 +3973,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -4179,7 +4179,7 @@ definition {
 			calendarName = "Site Name",
 			siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -4273,7 +4273,7 @@ definition {
 				userScreenName = "usersn");
 		}
 
-		ProductMenu.gotoSite(site = "Site A");
+		Navigator.openSiteURL(siteName = "Site A");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -4286,7 +4286,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
-		ProductMenu.gotoSite(site = "Site C");
+		Navigator.openSiteURL(siteName = "Site C");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",

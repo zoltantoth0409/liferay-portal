@@ -55,7 +55,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingCampaign#AddBlankCP";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -68,7 +68,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -87,7 +87,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -106,7 +106,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingCampaign#AddCampaignContentCP";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -119,7 +119,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -131,7 +131,7 @@ definition {
 			dmDocumentFile = "Document_1.jpg",
 			dmDocumentTitle = "DM Document Title");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -150,7 +150,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -171,7 +171,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -194,7 +194,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingCampaign#AddCampaignCustomFormCP";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -207,7 +207,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -226,7 +226,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -246,7 +246,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -270,7 +270,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingCampaign#AddCampaignDDLFormCP";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -283,7 +283,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -361,7 +361,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingCampaign#AddCampaignLinkCP";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -374,7 +374,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -404,7 +404,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -424,7 +424,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -448,7 +448,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingCampaign#AddCampaignPageCP";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -461,7 +461,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -480,7 +480,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -499,7 +499,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -523,7 +523,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingCampaign#AddCampaignYouTubeCP";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -536,7 +536,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -566,7 +566,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -586,7 +586,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -610,7 +610,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingCampaign#DeleteCampaignCP";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -623,7 +623,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -642,7 +642,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -657,7 +657,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingCampaign#EditCampaignCP";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -670,7 +670,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -695,7 +695,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -715,7 +715,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -733,7 +733,7 @@ definition {
 			formTrackingActionSelect = "Submit",
 			viewTrackingActionsList = "Form");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -764,7 +764,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -781,7 +781,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -808,7 +808,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingCampaign#ViewInactiveCampaignCP";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -821,7 +821,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -841,7 +841,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

@@ -36,7 +36,7 @@ definition {
 				siteName = "1975 London Theme Site",
 				siteTemplateName = "1975 London Theme");
 
-			ProductMenu.gotoSite(site = "1975 London Theme Site");
+			Navigator.openSiteURL(siteName = "1975 London Theme Site");
 
 			ProductMenu.gotoPublicPages();
 
