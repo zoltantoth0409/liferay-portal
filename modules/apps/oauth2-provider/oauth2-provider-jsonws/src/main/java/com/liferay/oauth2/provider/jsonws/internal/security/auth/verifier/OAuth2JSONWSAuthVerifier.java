@@ -95,7 +95,7 @@ public class OAuth2JSONWSAuthVerifier implements AuthVerifier {
 
 		try {
 			BearerTokenProvider.AccessToken accessToken = getAccessToken(
-				oAuth2Authorization, oAuth2AuthorizationOAuth2ScopeGrants);
+				oAuth2Authorization);
 
 			if (accessToken == null) {
 				return authVerifierResult;
@@ -174,8 +174,7 @@ public class OAuth2JSONWSAuthVerifier implements AuthVerifier {
 	}
 
 	protected BearerTokenProvider.AccessToken getAccessToken(
-			OAuth2Authorization oAuth2Authorization,
-			List<OAuth2ScopeGrant> oAuth2AuthorizationOAuth2ScopeGrants)
+			OAuth2Authorization oAuth2Authorization)
 		throws PortalException {
 
 		if (oAuth2Authorization == null) {
