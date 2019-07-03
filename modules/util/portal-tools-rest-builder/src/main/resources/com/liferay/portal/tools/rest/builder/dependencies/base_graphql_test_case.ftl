@@ -6,7 +6,7 @@ package ${configYAML.apiPackagePath}.graphql.${escapedVersion}.test;
 
 import ${configYAML.apiPackagePath}.client.http.HttpInvoker;
 
-import com.liferay.portal.json.JSONObjectImpl;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -91,13 +91,11 @@ public abstract class Base${schemaName}GraphQLTestCase {
 						"query",
 						new GraphQLField("${javaMethodSignature.methodName}", parameterMap, graphQLFields.toArray(new GraphQLField[0])));
 
-					JSONObject responseJSONObject = new JSONObjectImpl(_invoke(graphQLField.toString()));
+					JSONObject responseJSONObject = JSONFactoryUtil.createJSONObject(_invoke(graphQLField.toString()));
 
 					JSONObject dataJSONObject = responseJSONObject.getJSONObject("data");
 
-					JSONObject jsonObject = dataJSONObject.getJSONObject("${javaMethodSignature.methodName}");
-
-					Assert.assertTrue(equals(post${schemaName}, jsonObject));
+					Assert.assertTrue(equals(post${schemaName}, dataJSONObject.getJSONObject("${javaMethodSignature.methodName}")));
 				<#else>
 					Assert.assertTrue(true);
 				</#if>
@@ -131,7 +129,7 @@ public abstract class Base${schemaName}GraphQLTestCase {
 				</#if>
 			</#list>
 
-			throw new IllegalArgumentException("Invalid additional assert field name " + fieldName);
+			throw new IllegalArgumentException("Invalid field name " + fieldName);
 		}
 
 		return true;
