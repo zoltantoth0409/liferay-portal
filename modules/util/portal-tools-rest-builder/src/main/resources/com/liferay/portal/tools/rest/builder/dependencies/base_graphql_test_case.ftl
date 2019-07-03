@@ -119,17 +119,14 @@ public abstract class Base${schemaName}GraphQLTestCase {
 	</#list>
 
 	protected boolean equals(${schemaName} ${schemaVarName}, JSONObject jsonObject) {
+		List<String> fieldNames = new ArrayList(Arrays.asList(getAdditionalAssertFieldNames()));
 
-		List<String> fields = new ArrayList(Arrays.asList(getAdditionalAssertFieldNames()));
+		fieldNames.add("id");
 
-		fields.add("id");
-
-		for (String field : fields) {
+		for (String fieldName : fieldNames) {
 			<#list properties?keys as propertyName>
-
 				<#if randomDataTypes?seq_contains(properties[propertyName])>
-
-					if (Objects.equals("${propertyName}", field)) {
+					if (Objects.equals("${propertyName}", fieldName)) {
 						<#assign capitalizedPropertyName = propertyName?cap_first />
 
 						if (!Objects.equals(${schemaVarName}.get${capitalizedPropertyName}(), (${properties[propertyName]})jsonObject.get${properties[propertyName]}("${propertyName}"))) {
@@ -141,7 +138,7 @@ public abstract class Base${schemaName}GraphQLTestCase {
 				</#if>
 			</#list>
 
-			throw new IllegalArgumentException("Invalid additional assert field name " + field);
+			throw new IllegalArgumentException("Invalid additional assert field name " + fieldName);
 		}
 
 		return true;
