@@ -16,7 +16,6 @@ package com.liferay.portal.vulcan.graphql.query;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Javier Gamarra
@@ -43,9 +42,7 @@ public class GraphQLField {
 		if (!_parameterMap.isEmpty()) {
 			sb.append("(");
 
-			Set<Map.Entry<String, Object>> entries = _parameterMap.entrySet();
-
-			for (Map.Entry<String, Object> entry : entries) {
+			for (Map.Entry<String, Object> entry : _parameterMap.entrySet()) {
 				sb.append(entry.getKey());
 				sb.append(":");
 				sb.append(entry.getValue());
