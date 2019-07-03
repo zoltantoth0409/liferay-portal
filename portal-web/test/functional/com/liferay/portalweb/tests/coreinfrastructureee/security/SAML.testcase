@@ -565,7 +565,7 @@ definition {
 
 		AssertTextEquals.assertPartialText(locator1 = "Portlet#PORTLET_CONTENT", value1 = "Unable to process SAML request");
 
-		AssertConsoleTextPresent(value1 = "Inbound message issuer was not authenticated.");
+		AssertConsoleTextPresent(value1 = "Message context was not authenticated");
 	}
 
 	@priority = "4"
