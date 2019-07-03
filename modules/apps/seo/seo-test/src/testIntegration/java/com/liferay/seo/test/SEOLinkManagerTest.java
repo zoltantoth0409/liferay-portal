@@ -106,9 +106,8 @@ public class SEOLinkManagerTest {
 					seoLinks.toString(), _alternateURLs.size() + 2,
 					seoLinks.size());
 
-				_assertCanonicalSEOLink(seoLinks, _CANONICAL_URL);
-
 				_assertAlternateSEOLinks(seoLinks, _alternateURLs);
+				_assertCanonicalSEOLink(seoLinks, _CANONICAL_URL);
 			});
 	}
 
@@ -127,10 +126,9 @@ public class SEOLinkManagerTest {
 					seoLinks.toString(), _alternateURLs.size() + 2,
 					seoLinks.size());
 
+				_assertAlternateSEOLinks(seoLinks, _alternateURLs);
 				_assertCanonicalSEOLink(
 					seoLinks, _alternateURLs.get(LocaleUtil.SPAIN));
-
-				_assertAlternateSEOLinks(seoLinks, _alternateURLs);
 			});
 	}
 
