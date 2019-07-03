@@ -9,8 +9,6 @@ import ${configYAML.apiPackagePath}.client.http.HttpInvoker;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
@@ -18,8 +16,6 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.graphql.query.GraphQLField;
-
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -155,7 +151,7 @@ public abstract class Base${schemaName}GraphQLTestCase {
 		};
 	}
 
-	private String _invoke(String query) throws IOException {
+	private String _invoke(String query) throws Exception {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
 		JSONObject jsonObject = JSONUtil.put("query", query);
