@@ -28,11 +28,11 @@ public class GraphQLField {
 	}
 
 	public GraphQLField(
-		String key, Map<String, Object> parameters,
+		String key, Map<String, Object> parameterMap,
 		GraphQLField... graphQLFields) {
 
 		_key = key;
-		_parameters = parameters;
+		_parameterMap = parameterMap;
 		_graphQLFields = graphQLFields;
 	}
 
@@ -40,9 +40,10 @@ public class GraphQLField {
 	public String toString() {
 		StringBuilder sb = new StringBuilder(_key);
 
-		if (!_parameters.isEmpty()) {
+		if (!_parameterMap.isEmpty()) {
 			sb.append("(");
-			Set<Map.Entry<String, Object>> entries = _parameters.entrySet();
+
+			Set<Map.Entry<String, Object>> entries = _parameterMap.entrySet();
 
 			for (Map.Entry<String, Object> entry : entries) {
 				sb.append(entry.getKey());
@@ -70,6 +71,6 @@ public class GraphQLField {
 
 	private final GraphQLField[] _graphQLFields;
 	private final String _key;
-	private final Map<String, Object> _parameters;
+	private final Map<String, Object> _parameterMap;
 
 }
