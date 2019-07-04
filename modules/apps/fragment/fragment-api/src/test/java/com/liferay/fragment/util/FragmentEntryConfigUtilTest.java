@@ -31,11 +31,13 @@ public class FragmentEntryConfigUtilTest {
 
 	@BeforeClass
 	public static void setUpClass() {
+		FileUtil fileUtil = new FileUtil();
+
+		fileUtil.setFile(new FileImpl());
+
 		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
 
 		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
-
-		new FileUtil().setFile(new FileImpl());
 	}
 
 	@Test
