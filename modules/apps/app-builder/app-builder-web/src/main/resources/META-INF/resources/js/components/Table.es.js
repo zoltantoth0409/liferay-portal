@@ -13,12 +13,13 @@
  */
 
 import ClayTable from '@clayui/table';
+import DropDown from './DropDown.es';
 import React from 'react';
 
 const {Body, Cell, Head, Row} = ClayTable;
 
 export default function Table(props) {
-	const {columns, rows} = props;
+	const {actions, columns, rows} = props;
 
 	return (
 		<ClayTable>
@@ -34,16 +35,20 @@ export default function Table(props) {
 							{Object.values(column)[0]}
 						</Cell>
 					))}
+					{actions.length > 0 && <Cell>{''}</Cell>}
 				</Row>
 			</Head>
 			<Body>
-				{rows.map((row, index) => (
-					<Row key={index}>
+				{rows.map(row => (
+					<Row key={row.id}>
 						{columns.map((column, index) => (
 							<Cell key={index} headingTitle={index === 0}>
 								{row[Object.keys(column)[0]]}
 							</Cell>
 						))}
+						<Cell>
+							<DropDown actions={actions} row={row} />
+						</Cell>
 					</Row>
 				))}
 			</Body>

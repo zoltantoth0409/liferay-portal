@@ -12,12 +12,31 @@
  * details.
  */
 
-import axios from 'axios';
+import ClayDropDown from '@clayui/drop-down';
+import React from 'react';
 
-export const deleteItem = endpoint => {
-	return axios.delete(endpoint, {
-		params: {
-			['p_auth']: Liferay.authToken
-		}
-	});
-};
+const {Item} = ClayDropDown;
+
+export default function DropDownAction(props) {
+	const {action, row, setActive} = props;
+
+	return (
+		<Item
+			onClick={() => {
+				setActive(false);
+
+				const confirmed = confirm(
+					Liferay.Language.get(
+						'are-you-sure-you-want-to-delete-it-permanently'
+					)
+				);
+
+				if (confirmed) {
+					action.callback(row);
+				}
+			}}
+		>
+			{action.name}
+		</Item>
+	);
+}

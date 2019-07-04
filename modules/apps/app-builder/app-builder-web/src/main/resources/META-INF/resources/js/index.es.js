@@ -12,12 +12,21 @@
  * details.
  */
 
+import {deleteItem} from './utils/client.es';
 import moment from 'moment';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchContainer from './components/SearchContainer.es';
 
 function AppBuilder() {
+	const actions = [
+		{
+			name: Liferay.Language.get('delete'),
+			callback: row =>
+				deleteItem(`/o/data-engine/v1.0/data-definitions/${row.id}`)
+		}
+	];
+
 	const columns = [
 		{
 			name: Liferay.Language.get('name')
@@ -34,6 +43,7 @@ function AppBuilder() {
 
 	const formatter = items =>
 		items.map(item => ({
+			id: item.id,
 			name: item.name.en_US,
 			dateCreated: moment(item.dateCreated).fromNow(),
 			dateModified: moment(item.dateModified).fromNow()
@@ -41,6 +51,7 @@ function AppBuilder() {
 
 	return (
 		<SearchContainer
+			actions={actions}
 			columns={columns}
 			endpoint={endpoint}
 			formatter={formatter}

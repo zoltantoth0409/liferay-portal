@@ -28,7 +28,7 @@ export default function SearchContainer(props) {
 
 	const {page, pageSize} = state;
 
-	const result = useResource({
+	const {resource, refetch} = useResource({
 		link: endpoint,
 		variables: {
 			p_auth: Liferay.authToken,
@@ -36,21 +36,39 @@ export default function SearchContainer(props) {
 		}
 	});
 
-	let items = [],
-		totalCount = 0,
-		totalPages = 1;
+	let items = [];
+	let totalCount = 0;
+	let totalPages = 1;
 
-	if (result) {
-		const {resource} = result;
-
-		if (resource) {
-			({items, totalCount, lastPage: totalPages} = resource);
-		}
+	if (resource) {
+		({items, totalCount, lastPage: totalPages} = resource);
 	}
+
+	const actions = props.actions.map(action => ({
+		...action,
+		callback: row => {
+			action.callback(row).then(() => {
+				if (page > 1 && items.length === 1) {
+					setState(prevState => ({
+						...prevState,
+						page: prevState.page - 1
+					}));
+
+					return;
+				}
+
+				refetch();
+			});
+		}
+	}));
 
 	return (
 		<Fragment>
-			<Table columns={columns} rows={formatter(items)} />
+			<Table
+				actions={actions}
+				columns={columns}
+				rows={formatter(items)}
+			/>
 			<PageSize
 				itemsCount={items.length}
 				onPageSizeChange={pageSize => setState({page: 1, pageSize})}

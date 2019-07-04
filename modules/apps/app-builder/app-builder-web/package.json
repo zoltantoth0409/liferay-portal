@@ -1,6 +1,8 @@
 {
 	"dependencies": {
 		"@clayui/data-provider": "^3.0.0-milestone.1",
+		"@clayui/drop-down": "^3.0.0-milestone.1",
+		"@clayui/icon": "^3.0.0-milestone.1",
 		"@clayui/pagination": "^3.0.0-milestone.1",
 		"@clayui/select": "^3.0.0-milestone.1",
 		"@clayui/table": "^3.0.0-milestone.1",
