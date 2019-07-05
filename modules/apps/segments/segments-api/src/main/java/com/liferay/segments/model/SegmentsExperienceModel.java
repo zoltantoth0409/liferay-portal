@@ -209,6 +209,20 @@ public interface SegmentsExperienceModel
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
+	 * Returns the segments entry ID of this segments experience.
+	 *
+	 * @return the segments entry ID of this segments experience
+	 */
+	public long getSegmentsEntryId();
+
+	/**
+	 * Sets the segments entry ID of this segments experience.
+	 *
+	 * @param segmentsEntryId the segments entry ID of this segments experience
+	 */
+	public void setSegmentsEntryId(long segmentsEntryId);
+
+	/**
 	 * Returns the segments experience key of this segments experience.
 	 *
 	 * @return the segments experience key of this segments experience
@@ -222,20 +236,6 @@ public interface SegmentsExperienceModel
 	 * @param segmentsExperienceKey the segments experience key of this segments experience
 	 */
 	public void setSegmentsExperienceKey(String segmentsExperienceKey);
-
-	/**
-	 * Returns the segments entry ID of this segments experience.
-	 *
-	 * @return the segments entry ID of this segments experience
-	 */
-	public long getSegmentsEntryId();
-
-	/**
-	 * Sets the segments entry ID of this segments experience.
-	 *
-	 * @param segmentsEntryId the segments entry ID of this segments experience
-	 */
-	public void setSegmentsEntryId(long segmentsEntryId);
 
 	/**
 	 * Returns the fully qualified class name of this segments experience.

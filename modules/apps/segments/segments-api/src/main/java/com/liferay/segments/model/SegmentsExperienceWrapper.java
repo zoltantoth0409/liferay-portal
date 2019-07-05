@@ -54,8 +54,8 @@ public class SegmentsExperienceWrapper
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("segmentsExperienceKey", getSegmentsExperienceKey());
 		attributes.put("segmentsEntryId", getSegmentsEntryId());
+		attributes.put("segmentsExperienceKey", getSegmentsExperienceKey());
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
 		attributes.put("name", getName());
@@ -117,17 +117,17 @@ public class SegmentsExperienceWrapper
 			setModifiedDate(modifiedDate);
 		}
 
+		Long segmentsEntryId = (Long)attributes.get("segmentsEntryId");
+
+		if (segmentsEntryId != null) {
+			setSegmentsEntryId(segmentsEntryId);
+		}
+
 		String segmentsExperienceKey = (String)attributes.get(
 			"segmentsExperienceKey");
 
 		if (segmentsExperienceKey != null) {
 			setSegmentsExperienceKey(segmentsExperienceKey);
-		}
-
-		Long segmentsEntryId = (Long)attributes.get("segmentsEntryId");
-
-		if (segmentsEntryId != null) {
-			setSegmentsEntryId(segmentsEntryId);
 		}
 
 		Long classNameId = (Long)attributes.get("classNameId");

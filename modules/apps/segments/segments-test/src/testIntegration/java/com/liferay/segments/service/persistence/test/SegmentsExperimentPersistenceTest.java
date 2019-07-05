@@ -139,13 +139,17 @@ public class SegmentsExperimentPersistenceTest {
 
 		newSegmentsExperiment.setModifiedDate(RandomTestUtil.nextDate());
 
-		newSegmentsExperiment.setSegmentsExperimentKey(
-			RandomTestUtil.randomString());
+		newSegmentsExperiment.setSegmentsEntryId(RandomTestUtil.nextLong());
 
 		newSegmentsExperiment.setSegmentsExperienceId(
 			RandomTestUtil.nextLong());
 
-		newSegmentsExperiment.setSegmentsEntryId(RandomTestUtil.nextLong());
+		newSegmentsExperiment.setSegmentsExperimentKey(
+			RandomTestUtil.randomString());
+
+		newSegmentsExperiment.setClassNameId(RandomTestUtil.nextLong());
+
+		newSegmentsExperiment.setClassPK(RandomTestUtil.nextLong());
 
 		newSegmentsExperiment.setName(RandomTestUtil.randomString());
 
@@ -187,14 +191,20 @@ public class SegmentsExperimentPersistenceTest {
 				existingSegmentsExperiment.getModifiedDate()),
 			Time.getShortTimestamp(newSegmentsExperiment.getModifiedDate()));
 		Assert.assertEquals(
-			existingSegmentsExperiment.getSegmentsExperimentKey(),
-			newSegmentsExperiment.getSegmentsExperimentKey());
+			existingSegmentsExperiment.getSegmentsEntryId(),
+			newSegmentsExperiment.getSegmentsEntryId());
 		Assert.assertEquals(
 			existingSegmentsExperiment.getSegmentsExperienceId(),
 			newSegmentsExperiment.getSegmentsExperienceId());
 		Assert.assertEquals(
-			existingSegmentsExperiment.getSegmentsEntryId(),
-			newSegmentsExperiment.getSegmentsEntryId());
+			existingSegmentsExperiment.getSegmentsExperimentKey(),
+			newSegmentsExperiment.getSegmentsExperimentKey());
+		Assert.assertEquals(
+			existingSegmentsExperiment.getClassNameId(),
+			newSegmentsExperiment.getClassNameId());
+		Assert.assertEquals(
+			existingSegmentsExperiment.getClassPK(),
+			newSegmentsExperiment.getClassPK());
 		Assert.assertEquals(
 			existingSegmentsExperiment.getName(),
 			newSegmentsExperiment.getName());
@@ -244,19 +254,56 @@ public class SegmentsExperimentPersistenceTest {
 	}
 
 	@Test
-	public void testCountBySegmentsExperienceId() throws Exception {
-		_persistence.countBySegmentsExperienceId(RandomTestUtil.nextLong());
-
-		_persistence.countBySegmentsExperienceId(0L);
-	}
-
-	@Test
 	public void testCountByG_S() throws Exception {
 		_persistence.countByG_S(RandomTestUtil.nextLong(), "");
 
 		_persistence.countByG_S(0L, "null");
 
 		_persistence.countByG_S(0L, (String)null);
+	}
+
+	@Test
+	public void testCountByG_C_C() throws Exception {
+		_persistence.countByG_C_C(
+			RandomTestUtil.nextLong(), RandomTestUtil.nextLong(),
+			RandomTestUtil.nextLong());
+
+		_persistence.countByG_C_C(0L, 0L, 0L);
+	}
+
+	@Test
+	public void testCountByS_C_C() throws Exception {
+		_persistence.countByS_C_C(
+			RandomTestUtil.nextLong(), RandomTestUtil.nextLong(),
+			RandomTestUtil.nextLong());
+
+		_persistence.countByS_C_C(0L, 0L, 0L);
+	}
+
+	@Test
+	public void testCountByG_S_C_C() throws Exception {
+		_persistence.countByG_S_C_C(
+			RandomTestUtil.nextLong(), RandomTestUtil.nextLong(),
+			RandomTestUtil.nextLong(), RandomTestUtil.nextLong());
+
+		_persistence.countByG_S_C_C(0L, 0L, 0L, 0L);
+	}
+
+	@Test
+	public void testCountByG_S_C_CArrayable() throws Exception {
+		_persistence.countByG_S_C_C(
+			RandomTestUtil.nextLong(),
+			new long[] {RandomTestUtil.nextLong(), 0L},
+			RandomTestUtil.nextLong(), RandomTestUtil.nextLong());
+	}
+
+	@Test
+	public void testCountByS_C_C_S() throws Exception {
+		_persistence.countByS_C_C_S(
+			RandomTestUtil.nextLong(), RandomTestUtil.nextLong(),
+			RandomTestUtil.nextLong(), RandomTestUtil.nextInt());
+
+		_persistence.countByS_C_C_S(0L, 0L, 0L, 0);
 	}
 
 	@Test
@@ -283,14 +330,20 @@ public class SegmentsExperimentPersistenceTest {
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, getOrderByComparator());
 	}
 
+	@Test
+	public void testFilterFindByGroupId() throws Exception {
+		_persistence.filterFindByGroupId(
+			0, QueryUtil.ALL_POS, QueryUtil.ALL_POS, getOrderByComparator());
+	}
+
 	protected OrderByComparator<SegmentsExperiment> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create(
 			"SegmentsExperiment", "uuid", true, "segmentsExperimentId", true,
 			"groupId", true, "companyId", true, "userId", true, "userName",
-			true, "createDate", true, "modifiedDate", true,
-			"segmentsExperimentKey", true, "segmentsExperienceId", true,
-			"segmentsEntryId", true, "name", true, "description", true,
-			"status", true);
+			true, "createDate", true, "modifiedDate", true, "segmentsEntryId",
+			true, "segmentsExperienceId", true, "segmentsExperimentKey", true,
+			"classNameId", true, "classPK", true, "name", true, "description",
+			true, "status", true);
 	}
 
 	@Test
@@ -570,12 +623,16 @@ public class SegmentsExperimentPersistenceTest {
 
 		segmentsExperiment.setModifiedDate(RandomTestUtil.nextDate());
 
-		segmentsExperiment.setSegmentsExperimentKey(
-			RandomTestUtil.randomString());
+		segmentsExperiment.setSegmentsEntryId(RandomTestUtil.nextLong());
 
 		segmentsExperiment.setSegmentsExperienceId(RandomTestUtil.nextLong());
 
-		segmentsExperiment.setSegmentsEntryId(RandomTestUtil.nextLong());
+		segmentsExperiment.setSegmentsExperimentKey(
+			RandomTestUtil.randomString());
+
+		segmentsExperiment.setClassNameId(RandomTestUtil.nextLong());
+
+		segmentsExperiment.setClassPK(RandomTestUtil.nextLong());
 
 		segmentsExperiment.setName(RandomTestUtil.randomString());
 

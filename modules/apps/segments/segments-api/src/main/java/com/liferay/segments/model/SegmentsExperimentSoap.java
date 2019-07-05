@@ -42,9 +42,11 @@ public class SegmentsExperimentSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setSegmentsExperimentKey(model.getSegmentsExperimentKey());
-		soapModel.setSegmentsExperienceId(model.getSegmentsExperienceId());
 		soapModel.setSegmentsEntryId(model.getSegmentsEntryId());
+		soapModel.setSegmentsExperienceId(model.getSegmentsExperienceId());
+		soapModel.setSegmentsExperimentKey(model.getSegmentsExperimentKey());
+		soapModel.setClassNameId(model.getClassNameId());
+		soapModel.setClassPK(model.getClassPK());
 		soapModel.setName(model.getName());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setStatus(model.getStatus());
@@ -175,12 +177,12 @@ public class SegmentsExperimentSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getSegmentsExperimentKey() {
-		return _segmentsExperimentKey;
+	public long getSegmentsEntryId() {
+		return _segmentsEntryId;
 	}
 
-	public void setSegmentsExperimentKey(String segmentsExperimentKey) {
-		_segmentsExperimentKey = segmentsExperimentKey;
+	public void setSegmentsEntryId(long segmentsEntryId) {
+		_segmentsEntryId = segmentsEntryId;
 	}
 
 	public long getSegmentsExperienceId() {
@@ -191,12 +193,28 @@ public class SegmentsExperimentSoap implements Serializable {
 		_segmentsExperienceId = segmentsExperienceId;
 	}
 
-	public long getSegmentsEntryId() {
-		return _segmentsEntryId;
+	public String getSegmentsExperimentKey() {
+		return _segmentsExperimentKey;
 	}
 
-	public void setSegmentsEntryId(long segmentsEntryId) {
-		_segmentsEntryId = segmentsEntryId;
+	public void setSegmentsExperimentKey(String segmentsExperimentKey) {
+		_segmentsExperimentKey = segmentsExperimentKey;
+	}
+
+	public long getClassNameId() {
+		return _classNameId;
+	}
+
+	public void setClassNameId(long classNameId) {
+		_classNameId = classNameId;
+	}
+
+	public long getClassPK() {
+		return _classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
 	}
 
 	public String getName() {
@@ -239,9 +257,11 @@ public class SegmentsExperimentSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _segmentsExperimentKey;
-	private long _segmentsExperienceId;
 	private long _segmentsEntryId;
+	private long _segmentsExperienceId;
+	private String _segmentsExperimentKey;
+	private long _classNameId;
+	private long _classPK;
 	private String _name;
 	private String _description;
 	private int _status;

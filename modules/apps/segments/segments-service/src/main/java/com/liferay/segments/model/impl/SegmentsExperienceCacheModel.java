@@ -85,10 +85,10 @@ public class SegmentsExperienceCacheModel
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", segmentsExperienceKey=");
-		sb.append(segmentsExperienceKey);
 		sb.append(", segmentsEntryId=");
 		sb.append(segmentsEntryId);
+		sb.append(", segmentsExperienceKey=");
+		sb.append(segmentsExperienceKey);
 		sb.append(", classNameId=");
 		sb.append(classNameId);
 		sb.append(", classPK=");
@@ -144,6 +144,8 @@ public class SegmentsExperienceCacheModel
 			segmentsExperienceImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
+		segmentsExperienceImpl.setSegmentsEntryId(segmentsEntryId);
+
 		if (segmentsExperienceKey == null) {
 			segmentsExperienceImpl.setSegmentsExperienceKey("");
 		}
@@ -152,7 +154,6 @@ public class SegmentsExperienceCacheModel
 				segmentsExperienceKey);
 		}
 
-		segmentsExperienceImpl.setSegmentsEntryId(segmentsEntryId);
 		segmentsExperienceImpl.setClassNameId(classNameId);
 		segmentsExperienceImpl.setClassPK(classPK);
 
@@ -193,9 +194,9 @@ public class SegmentsExperienceCacheModel
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
-		segmentsExperienceKey = objectInput.readUTF();
 
 		segmentsEntryId = objectInput.readLong();
+		segmentsExperienceKey = objectInput.readUTF();
 
 		classNameId = objectInput.readLong();
 
@@ -235,14 +236,14 @@ public class SegmentsExperienceCacheModel
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
+		objectOutput.writeLong(segmentsEntryId);
+
 		if (segmentsExperienceKey == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(segmentsExperienceKey);
 		}
-
-		objectOutput.writeLong(segmentsEntryId);
 
 		objectOutput.writeLong(classNameId);
 
@@ -269,8 +270,8 @@ public class SegmentsExperienceCacheModel
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public String segmentsExperienceKey;
 	public long segmentsEntryId;
+	public String segmentsExperienceKey;
 	public long classNameId;
 	public long classPK;
 	public String name;

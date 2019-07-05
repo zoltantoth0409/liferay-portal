@@ -67,7 +67,7 @@ public class SegmentsExperimentCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -85,12 +85,16 @@ public class SegmentsExperimentCacheModel
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", segmentsExperimentKey=");
-		sb.append(segmentsExperimentKey);
-		sb.append(", segmentsExperienceId=");
-		sb.append(segmentsExperienceId);
 		sb.append(", segmentsEntryId=");
 		sb.append(segmentsEntryId);
+		sb.append(", segmentsExperienceId=");
+		sb.append(segmentsExperienceId);
+		sb.append(", segmentsExperimentKey=");
+		sb.append(segmentsExperimentKey);
+		sb.append(", classNameId=");
+		sb.append(classNameId);
+		sb.append(", classPK=");
+		sb.append(classPK);
 		sb.append(", name=");
 		sb.append(name);
 		sb.append(", description=");
@@ -142,6 +146,9 @@ public class SegmentsExperimentCacheModel
 			segmentsExperimentImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
+		segmentsExperimentImpl.setSegmentsEntryId(segmentsEntryId);
+		segmentsExperimentImpl.setSegmentsExperienceId(segmentsExperienceId);
+
 		if (segmentsExperimentKey == null) {
 			segmentsExperimentImpl.setSegmentsExperimentKey("");
 		}
@@ -150,8 +157,8 @@ public class SegmentsExperimentCacheModel
 				segmentsExperimentKey);
 		}
 
-		segmentsExperimentImpl.setSegmentsExperienceId(segmentsExperienceId);
-		segmentsExperimentImpl.setSegmentsEntryId(segmentsEntryId);
+		segmentsExperimentImpl.setClassNameId(classNameId);
+		segmentsExperimentImpl.setClassPK(classPK);
 
 		if (name == null) {
 			segmentsExperimentImpl.setName("");
@@ -195,11 +202,15 @@ public class SegmentsExperimentCacheModel
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
-		segmentsExperimentKey = objectInput.readUTF();
-
-		segmentsExperienceId = objectInput.readLong();
 
 		segmentsEntryId = objectInput.readLong();
+
+		segmentsExperienceId = objectInput.readLong();
+		segmentsExperimentKey = objectInput.readUTF();
+
+		classNameId = objectInput.readLong();
+
+		classPK = objectInput.readLong();
 		name = objectInput.readUTF();
 		description = objectInput.readUTF();
 
@@ -234,6 +245,10 @@ public class SegmentsExperimentCacheModel
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
+		objectOutput.writeLong(segmentsEntryId);
+
+		objectOutput.writeLong(segmentsExperienceId);
+
 		if (segmentsExperimentKey == null) {
 			objectOutput.writeUTF("");
 		}
@@ -241,9 +256,9 @@ public class SegmentsExperimentCacheModel
 			objectOutput.writeUTF(segmentsExperimentKey);
 		}
 
-		objectOutput.writeLong(segmentsExperienceId);
+		objectOutput.writeLong(classNameId);
 
-		objectOutput.writeLong(segmentsEntryId);
+		objectOutput.writeLong(classPK);
 
 		if (name == null) {
 			objectOutput.writeUTF("");
@@ -277,9 +292,11 @@ public class SegmentsExperimentCacheModel
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public String segmentsExperimentKey;
-	public long segmentsExperienceId;
 	public long segmentsEntryId;
+	public long segmentsExperienceId;
+	public String segmentsExperimentKey;
+	public long classNameId;
+	public long classPK;
 	public String name;
 	public String description;
 	public int status;

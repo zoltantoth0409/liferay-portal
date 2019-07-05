@@ -42,8 +42,8 @@ public class SegmentsExperienceSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setSegmentsExperienceKey(model.getSegmentsExperienceKey());
 		soapModel.setSegmentsEntryId(model.getSegmentsEntryId());
+		soapModel.setSegmentsExperienceKey(model.getSegmentsExperienceKey());
 		soapModel.setClassNameId(model.getClassNameId());
 		soapModel.setClassPK(model.getClassPK());
 		soapModel.setName(model.getName());
@@ -176,20 +176,20 @@ public class SegmentsExperienceSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getSegmentsExperienceKey() {
-		return _segmentsExperienceKey;
-	}
-
-	public void setSegmentsExperienceKey(String segmentsExperienceKey) {
-		_segmentsExperienceKey = segmentsExperienceKey;
-	}
-
 	public long getSegmentsEntryId() {
 		return _segmentsEntryId;
 	}
 
 	public void setSegmentsEntryId(long segmentsEntryId) {
 		_segmentsEntryId = segmentsEntryId;
+	}
+
+	public String getSegmentsExperienceKey() {
+		return _segmentsExperienceKey;
+	}
+
+	public void setSegmentsExperienceKey(String segmentsExperienceKey) {
+		_segmentsExperienceKey = segmentsExperienceKey;
 	}
 
 	public long getClassNameId() {
@@ -252,8 +252,8 @@ public class SegmentsExperienceSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _segmentsExperienceKey;
 	private long _segmentsEntryId;
+	private String _segmentsExperienceKey;
 	private long _classNameId;
 	private long _classPK;
 	private String _name;

@@ -139,10 +139,10 @@ public class SegmentsExperiencePersistenceTest {
 
 		newSegmentsExperience.setModifiedDate(RandomTestUtil.nextDate());
 
+		newSegmentsExperience.setSegmentsEntryId(RandomTestUtil.nextLong());
+
 		newSegmentsExperience.setSegmentsExperienceKey(
 			RandomTestUtil.randomString());
-
-		newSegmentsExperience.setSegmentsEntryId(RandomTestUtil.nextLong());
 
 		newSegmentsExperience.setClassNameId(RandomTestUtil.nextLong());
 
@@ -188,11 +188,11 @@ public class SegmentsExperiencePersistenceTest {
 				existingSegmentsExperience.getModifiedDate()),
 			Time.getShortTimestamp(newSegmentsExperience.getModifiedDate()));
 		Assert.assertEquals(
-			existingSegmentsExperience.getSegmentsExperienceKey(),
-			newSegmentsExperience.getSegmentsExperienceKey());
-		Assert.assertEquals(
 			existingSegmentsExperience.getSegmentsEntryId(),
 			newSegmentsExperience.getSegmentsEntryId());
+		Assert.assertEquals(
+			existingSegmentsExperience.getSegmentsExperienceKey(),
+			newSegmentsExperience.getSegmentsExperienceKey());
 		Assert.assertEquals(
 			existingSegmentsExperience.getClassNameId(),
 			newSegmentsExperience.getClassNameId());
@@ -363,10 +363,10 @@ public class SegmentsExperiencePersistenceTest {
 		return OrderByComparatorFactoryUtil.create(
 			"SegmentsExperience", "uuid", true, "segmentsExperienceId", true,
 			"groupId", true, "companyId", true, "userId", true, "userName",
-			true, "createDate", true, "modifiedDate", true,
-			"segmentsExperienceKey", true, "segmentsEntryId", true,
-			"classNameId", true, "classPK", true, "name", true, "priority",
-			true, "active", true, "lastPublishDate", true);
+			true, "createDate", true, "modifiedDate", true, "segmentsEntryId",
+			true, "segmentsExperienceKey", true, "classNameId", true, "classPK",
+			true, "name", true, "priority", true, "active", true,
+			"lastPublishDate", true);
 	}
 
 	@Test
@@ -667,10 +667,10 @@ public class SegmentsExperiencePersistenceTest {
 
 		segmentsExperience.setModifiedDate(RandomTestUtil.nextDate());
 
+		segmentsExperience.setSegmentsEntryId(RandomTestUtil.nextLong());
+
 		segmentsExperience.setSegmentsExperienceKey(
 			RandomTestUtil.randomString());
-
-		segmentsExperience.setSegmentsEntryId(RandomTestUtil.nextLong());
 
 		segmentsExperience.setClassNameId(RandomTestUtil.nextLong());
 
