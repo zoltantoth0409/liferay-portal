@@ -53,7 +53,7 @@ definition {
 	test AddGlobalUserSegmentToSiteViaUserSegmentContentDisplayPortlet {
 		property content.targeting.release = "true";
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

@@ -269,7 +269,7 @@ definition {
 
 		SitePages.addPublicPage(pageName = "Test Page");
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -287,7 +287,7 @@ definition {
 
 		DDLDataDefinition.save();
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -314,7 +314,7 @@ definition {
 
 		PortletEntry.publish();
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

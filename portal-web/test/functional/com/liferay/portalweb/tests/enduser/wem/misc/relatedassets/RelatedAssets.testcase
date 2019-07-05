@@ -194,7 +194,7 @@ definition {
 			pageVersioningEnabled = "true",
 			siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

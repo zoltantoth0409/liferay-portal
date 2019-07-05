@@ -2538,7 +2538,7 @@ definition {
 	test UserSegmentAddFromGlobalSiteViaCampaign {
 		property content.targeting.release = "true";
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2674,7 +2674,7 @@ definition {
 	test UserSegmentAddGlobalCategorizationToSiteContent {
 		property content.targeting.release = "true";
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

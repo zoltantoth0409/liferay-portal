@@ -1320,7 +1320,7 @@ definition {
 	test EditBasicWebContentStructureAndTemplate {
 		property testray.component.names = "Web Content Administration";
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -2401,7 +2401,7 @@ definition {
 	test ValidateDDMNavigation {
 		property testray.component.names = "Web Content Administration";
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

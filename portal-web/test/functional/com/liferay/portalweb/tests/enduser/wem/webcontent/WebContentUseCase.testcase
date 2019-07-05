@@ -1212,7 +1212,7 @@ definition {
 	test AddWebContentViaWCDWithGlobalStructureAndLocalTemplate {
 		property testray.component.names = "Web Content Administration";
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1282,7 +1282,7 @@ definition {
 	test AddWebContentWithGlobalStructureAndEditedDefaultValues {
 		property testray.component.names = "Web Content Administration";
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1310,7 +1310,7 @@ definition {
 
 		Navigator.openURL();
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1333,7 +1333,7 @@ definition {
 
 		Navigator.openURL();
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1565,7 +1565,7 @@ definition {
 	test EditArticleMadeFromGlobalStructure {
 		property testray.component.names = "Web Content Administration";
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1588,7 +1588,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "Global WC Structure Name");
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1728,7 +1728,7 @@ definition {
 	test EditGlobalWebContentTemplate {
 		property testray.component.names = "Web Content Administration";
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1751,7 +1751,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "Global WC Structure Name");
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -2131,7 +2131,7 @@ definition {
 
 		JSONGroup.addGroup(groupName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -2676,7 +2676,7 @@ definition {
 	test ViewGlobalStructureViaAddMenuInLiferaySite {
 		property testray.component.names = "Web Content Administration";
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

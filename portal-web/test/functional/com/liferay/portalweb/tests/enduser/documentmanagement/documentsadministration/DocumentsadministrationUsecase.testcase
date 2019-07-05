@@ -1400,7 +1400,7 @@ definition {
 
 		Portlet.addPG(portletName = "Documents and Media");
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1417,7 +1417,7 @@ definition {
 			dmSubFolderDescription = "DM SubFolder Description",
 			dmSubFolderName = "DM SubFolder Name");
 
-		Navigator.openSiteURL(siteName = "Global");
+		SitePages.openPagesAdmin(siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
