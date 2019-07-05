@@ -14,17 +14,15 @@
 
 package com.liferay.oauth2.provider.client.test;
 
-import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.oauth2.provider.test.internal.TestApplication;
+import com.liferay.oauth2.provider.test.internal.activator.BaseTestPreparatorBundleActivator;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
-import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Arrays;
 
@@ -32,24 +30,27 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.Archive;
+
 import org.junit.Assert;
-import org.junit.ClassRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import org.osgi.framework.BundleActivator;
 
 /**
  * @author Carlos Sierra Andrés
  */
+@RunAsClient
 @RunWith(Arquillian.class)
 public class DisabledUserClientTest extends BaseClientTestCase {
 
-	@ClassRule
-	@Rule
-	public static final AggregateTestRule aggregateTestRule =
-		new LiferayIntegrationTestRule();
+	@Deployment
+	public static Archive<?> getArchive() throws Exception {
+		return BaseClientTestCase.getArchive(
+			DisabledUserTestPreparatorBundleActivator.class);
+	}
 
 	@Test
 	public void test() throws Exception {
@@ -98,11 +99,6 @@ public class DisabledUserClientTest extends BaseClientTestCase {
 				Arrays.asList("GET"));
 		}
 
-	}
-
-	@Override
-	protected BundleActivator getBundleActivator() {
-		return new DisabledUserTestPreparatorBundleActivator();
 	}
 
 }
