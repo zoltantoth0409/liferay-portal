@@ -59,8 +59,6 @@ public class LayoutsAdminDisplayContext extends BaseLayoutDisplayContext {
 
 		super(liferayPortletRequest, liferayPortletResponse);
 
-		_liferayPortletRequest = liferayPortletRequest;
-
 		_groupDisplayContextHelper = new GroupDisplayContextHelper(
 			PortalUtil.getHttpServletRequest(liferayPortletRequest));
 	}
@@ -80,7 +78,7 @@ public class LayoutsAdminDisplayContext extends BaseLayoutDisplayContext {
 	public String getCopyLayoutURL() {
 		try {
 			PortletURL portletURL = PortletURLFactoryUtil.create(
-				_liferayPortletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
+				liferayPortletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
 				PortletRequest.RENDER_PHASE);
 
 			portletURL.setParameter("mvcPath", "/select_copy_layout.jsp");
@@ -319,7 +317,6 @@ public class LayoutsAdminDisplayContext extends BaseLayoutDisplayContext {
 	private final GroupDisplayContextHelper _groupDisplayContextHelper;
 	private List<LayoutDescription> _layoutDescriptions;
 	private Long _layoutId;
-	private final LiferayPortletRequest _liferayPortletRequest;
 	private Organization _organization;
 	private String _pagesName;
 	private String _redirect;
