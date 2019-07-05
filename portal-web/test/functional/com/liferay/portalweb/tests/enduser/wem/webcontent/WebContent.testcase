@@ -1320,7 +1320,7 @@ definition {
 	test EditBasicWebContentStructureAndTemplate {
 		property testray.component.names = "Web Content Administration";
 
-		ProductMenu.gotoSite(site = "Global");
+		Navigator.openSiteURL(siteName = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -2360,7 +2360,7 @@ definition {
 			roleTitle = "Web Content Administrator Role",
 			userScreenName = "usersn");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -2401,7 +2401,7 @@ definition {
 	test ValidateDDMNavigation {
 		property testray.component.names = "Web Content Administration";
 
-		ProductMenu.gotoSite(site = "Global");
+		Navigator.openSiteURL(siteName = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

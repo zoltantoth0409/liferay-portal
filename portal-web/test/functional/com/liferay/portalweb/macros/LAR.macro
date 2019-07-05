@@ -119,7 +119,7 @@ definition {
 
 	macro _gotoExportSite {
 		if (isSet(siteScopeName)) {
-			ProductMenu.gotoSite(site = "${siteScopeName}");
+			Navigator.openSiteURL(siteName = "${siteScopeName}");
 		}
 
 		ProductMenu.gotoPortlet(
@@ -130,7 +130,7 @@ definition {
 
 	macro _gotoImportSite {
 		if (isSet(siteName)) {
-			ProductMenu.gotoSite(site = "${siteName}");
+			Navigator.openSiteURL(siteName = "${siteName}");
 		}
 
 		ProductMenu.gotoPortlet(
@@ -594,12 +594,12 @@ definition {
 
 	macro setupContentTargeting {
 		if ("${stagingSetup}" == "true") {
-			ProductMenu.gotoSite(site = "Site Name");
+			Navigator.openSiteURL(siteName = "Site Name");
 
 			Navigator.gotoStagedView();
 		}
 		else {
-			ProductMenu.gotoSite(site = "Site Name");
+			Navigator.openSiteURL(siteName = "Site Name");
 		}
 
 		ProductMenu.gotoPortlet(
@@ -613,15 +613,15 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		if ("${stagingSetup}" == "true") {
-			ProductMenu.gotoSite(site = "Site Name");
+			Navigator.openSiteURL(siteName = "Site Name");
 
 			Navigator.gotoStagedView();
 		}
 		else {
-			ProductMenu.gotoSite(site = "Site Name");
+			Navigator.openSiteURL(siteName = "Site Name");
 		}
 
 		ProductMenu.gotoPortlet(
@@ -643,12 +643,12 @@ definition {
 		ContentTargetingCampaign.saveCP();
 
 		if ("${stagingSetup}" == "true") {
-			ProductMenu.gotoSite(site = "Site Name");
+			Navigator.openSiteURL(siteName = "Site Name");
 
 			Navigator.gotoStagedView();
 		}
 		else {
-			ProductMenu.gotoSite(site = "Site Name");
+			Navigator.openSiteURL(siteName = "Site Name");
 		}
 
 		ProductMenu.gotoPortlet(

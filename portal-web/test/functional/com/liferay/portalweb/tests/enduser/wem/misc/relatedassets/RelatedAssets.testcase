@@ -194,7 +194,7 @@ definition {
 			pageVersioningEnabled = "true",
 			siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Global");
+		Navigator.openSiteURL(siteName = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -209,7 +209,7 @@ definition {
 
 		PortletEntry.publish();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoStagingSite();
 

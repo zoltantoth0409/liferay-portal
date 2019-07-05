@@ -80,7 +80,7 @@ definition {
 			orgName = "Organization Name",
 			page = "Public Pages");
 
-		ProductMenu.gotoSite(site = "Organization Name");
+		Navigator.openSiteURL(siteName = "Organization Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
@@ -241,7 +241,7 @@ definition {
 
 	@priority = "4"
 	test AssertAssetListScopeViaAssetPublisher {
-		ProductMenu.gotoSite(site = "Global");
+		Navigator.openSiteURL(siteName = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1100,7 +1100,7 @@ definition {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		for (var siteName : list "${siteName},Site Name,Global") {
-			ProductMenu.gotoSite(site = "${siteName}");
+			Navigator.openSiteURL(siteName = "${siteName}");
 
 			ProductMenu.gotoPortlet(
 				category = "Content",
@@ -1162,7 +1162,7 @@ definition {
 		SitePages.addPublicPage(pageName = "Site Page");
 
 		for (var siteName1 : list "${siteName},Site Name,Global") {
-			ProductMenu.gotoSite(site = "${siteName1}");
+			Navigator.openSiteURL(siteName = "${siteName1}");
 
 			ProductMenu.gotoPortlet(
 				category = "Content",
@@ -1905,7 +1905,7 @@ definition {
 	test ViewWebContentWithConfiguredDisplayPageViaAP {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		Navigator.gotoPage(pageName = "Asset Publisher Page");
 

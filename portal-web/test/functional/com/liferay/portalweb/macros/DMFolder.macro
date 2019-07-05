@@ -23,7 +23,7 @@ definition {
 		PortletEntry.save();
 
 		if (isSet(siteName)) {
-			ProductMenu.gotoSite(site = "${siteName}");
+			Navigator.openSiteURL(siteName = "${siteName}");
 
 			ProductMenu.gotoPortlet(
 				category = "Content",

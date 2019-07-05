@@ -680,7 +680,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -743,7 +743,7 @@ definition {
 				dmDocumentTitle = "Document_${entryCount}.jpg");
 		}
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

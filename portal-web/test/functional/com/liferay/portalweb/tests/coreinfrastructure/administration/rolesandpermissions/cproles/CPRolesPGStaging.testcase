@@ -112,7 +112,7 @@ definition {
 			roleTitle = "Regrole Name",
 			userScreenName = "usersn");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -198,7 +198,7 @@ definition {
 			roleTitle = "Power User Name",
 			roleType = "site");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -257,7 +257,7 @@ definition {
 			roleTitle = "Portal Content Reviewer",
 			userScreenName = "usersncr");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -305,7 +305,7 @@ definition {
 			roleTitle = "Administrator",
 			userScreenName = "usersna");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -326,7 +326,7 @@ definition {
 
 		Staging.activateStagingCP(siteName = "Site Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -342,7 +342,7 @@ definition {
 			userLoginEmailAddress = "usereapu@liferay.com",
 			userLoginFullName = "userfnpu userlnpu");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		Navigator.gotoStagedView();
 

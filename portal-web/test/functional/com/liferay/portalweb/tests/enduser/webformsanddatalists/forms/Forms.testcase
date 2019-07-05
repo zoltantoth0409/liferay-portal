@@ -315,7 +315,7 @@ definition {
 
 		Navigator.openURL();
 
-		ProductMenu.gotoSite(site = "Global");
+		Navigator.openSiteURL(siteName = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -550,7 +550,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		ProductMenu.gotoSite(site = "Form Site");
+		Navigator.openSiteURL(siteName = "Form Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

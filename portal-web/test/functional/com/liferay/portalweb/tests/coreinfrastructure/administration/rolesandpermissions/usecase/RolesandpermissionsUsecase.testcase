@@ -145,7 +145,7 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -205,7 +205,7 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -533,7 +533,7 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Organization Name");
 
-		ProductMenu.gotoSite(site = "Organization Name");
+		Navigator.openSiteURL(siteName = "Organization Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
@@ -1454,7 +1454,7 @@ definition {
 			roleTitle = "Sports Journalist Name",
 			roleType = "site");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1466,7 +1466,7 @@ definition {
 			userLastName = "userln1",
 			userScreenName = "usersn1");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1475,7 +1475,7 @@ definition {
 
 		Site.assignOrganizationAsMemberCP(orgName = "Organization Name 2");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1484,7 +1484,7 @@ definition {
 
 		Site.assignUserGroupAsMemberCP(userGroupName = "UG UserGroup3 Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1495,7 +1495,7 @@ definition {
 			resourceName = "userfn1 userln1",
 			roleTitle = "Music Fan Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1506,7 +1506,7 @@ definition {
 			resourceName = "userfn2 userln2",
 			roleTitle = "Movie Blogger Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1797,7 +1797,7 @@ definition {
 
 		Navigator.openURL();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1819,7 +1819,7 @@ definition {
 			teamName = "Site Team Name",
 			userScreenName = "usersn1");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",

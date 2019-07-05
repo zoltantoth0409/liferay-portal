@@ -341,7 +341,7 @@ definition {
 
 		SitePages.addPublicPage(pageName = "Site Page Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -350,7 +350,7 @@ definition {
 
 		Site.configureCurrentLanguagesCP(defaultSiteLanguage = "English (United States)");
 
-		ProductMenu.gotoSite(site = "Site2 Name");
+		Navigator.openSiteURL(siteName = "Site2 Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -462,7 +462,7 @@ definition {
 
 		Portlet.addPG(portletName = "Web Content Display");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -675,7 +675,7 @@ definition {
 			siteType = "Site Template",
 			uncheckPropagation = "true");
 
-		ProductMenu.gotoSite(site = "Site Name from Template");
+		Navigator.openSiteURL(siteName = "Site Name from Template");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -687,7 +687,7 @@ definition {
 			defaultSiteLanguage = "Spanish (Spain)",
 			displaySettings = "Display Settings");
 
-		ProductMenu.gotoSite(site = "Site Name from Template");
+		Navigator.openSiteURL(siteName = "Site Name from Template");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -747,7 +747,7 @@ definition {
 			defaultSiteLanguage = "English (United States)",
 			displaySettings = "Display Settings");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
@@ -844,7 +844,7 @@ definition {
 
 		AssertLocation(value1 = "${portalURL}/web/guest");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

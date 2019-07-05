@@ -369,7 +369,7 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		Navigator.openSiteURL(siteName = "${siteName}");
 
 		Navigator.gotoPage(pageName = "Asset Publisher Page");
 

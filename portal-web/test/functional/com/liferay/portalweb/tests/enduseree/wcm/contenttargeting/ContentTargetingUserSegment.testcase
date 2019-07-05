@@ -53,7 +53,7 @@ definition {
 	test AddGlobalUserSegmentToSiteViaUserSegmentContentDisplayPortlet {
 		property content.targeting.release = "true";
 
-		ProductMenu.gotoSite(site = "Global");
+		Navigator.openSiteURL(siteName = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -68,7 +68,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -137,7 +137,7 @@ definition {
 
 		SitePages.addPublicPage(pageName = "Test Page Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -152,7 +152,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Child SiteName");
+		Navigator.openSiteURL(siteName = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -167,7 +167,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Child SiteName");
+		Navigator.openSiteURL(siteName = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -224,7 +224,7 @@ definition {
 	test DeleteUserSegmentCP {
 		property content.targeting.release = "true";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -237,7 +237,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -251,7 +251,7 @@ definition {
 	test EditUserSegmentCP {
 		property content.targeting.release = "true";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -264,7 +264,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -278,7 +278,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -296,7 +296,7 @@ definition {
 	test UserSegmentContentViewReport {
 		property content.targeting.release = "true";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -311,7 +311,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -348,7 +348,7 @@ definition {
 
 		UserSegmentContentDisplayPortlet.viewEntryPG(entryContentText = "WC Male Content View");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -372,7 +372,7 @@ definition {
 	test ViewRulesAppliedUserSegmentContentDisplayPortlet {
 		property content.targeting.release = "true";
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -387,7 +387,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -408,7 +408,7 @@ definition {
 			categoryNameList = "Female Users",
 			vocabularyName = "User Segment");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

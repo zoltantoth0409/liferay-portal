@@ -81,7 +81,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -118,7 +118,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -138,7 +138,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -156,7 +156,7 @@ definition {
 			formTrackingActionSelect = "Submit",
 			viewTrackingActionsList = "Custom Form");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -187,7 +187,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ContentTargeting.enableAnalyticsViaSiteSettings(analyticsList = "YouTube Videos,Link,Link Clicks");
 
@@ -206,7 +206,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -250,7 +250,7 @@ definition {
 
 		PortletEntry.save();
 
-		ProductMenu.gotoSite(site = "Site Name");
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
