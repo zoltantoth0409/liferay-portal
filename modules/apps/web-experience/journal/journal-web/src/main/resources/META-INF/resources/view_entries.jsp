@@ -42,6 +42,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 		JournalArticle curArticle = null;
 		JournalFolder curFolder = null;
 
+		boolean latestVersion = false;
 		Object result = row.getObject();
 
 		if (result instanceof JournalFolder) {
@@ -51,6 +52,10 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 			curArticle = (JournalArticle)result;
 
 			article = journalDisplayContext.getLatestArticle(curArticle);
+
+			if (curArticle.equals(article)) {
+				latestVersion = true;
+			}
 		}
 		%>
 
@@ -109,7 +114,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 							</h6>
 
 							<h5>
-								<aui:a href="<%= (rowURL != null) ? rowURL.toString() : null %>">
+								<aui:a href="<%= (rowURL != null) ? rowURL.toString() : null %>" title='<%= !latestVersion ? LanguageUtil.get(request, "the-version-that-is-going-to-be-edited-is-not-the-one-shown-because-recent-versions-have-been-created-on-top-of-it") : StringPool.BLANK %>'>
 									<%= HtmlUtil.escape(curArticle.getTitle(locale)) %>
 								</aui:a>
 							</h5>
@@ -142,6 +147,10 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 							<%
 							String articleImageURL = curArticle.getArticleImageURL(themeDisplay);
 							%>
+
+							<c:if test="<%= !latestVersion %>">
+								<span onmouseover="Liferay.Portal.ToolTip.show(this, '<liferay-ui:message key="the-version-that-is-going-to-be-edited-is-not-the-one-shown-because-recent-versions-have-been-created-on-top-of-it" unicode="<%= true %>" />');">
+							</c:if>
 
 							<c:choose>
 								<c:when test="<%= Validator.isNotNull(articleImageURL) %>">
