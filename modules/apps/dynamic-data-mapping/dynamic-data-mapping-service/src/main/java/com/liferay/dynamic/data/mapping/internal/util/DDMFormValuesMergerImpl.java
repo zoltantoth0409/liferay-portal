@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -84,8 +85,9 @@ public class DDMFormValuesMergerImpl implements DDMFormValuesMerger {
 					existingDDMFormFieldValues, newDDMFormFieldValue.getName());
 
 			if (actualDDMFormFieldValue != null) {
-				DDMFormField ddmFormField = ddmFormFields.stream(
-				).filter(
+				Stream<DDMFormField> stream = ddmFormFields.stream();
+
+				DDMFormField ddmFormField = stream.filter(
 					p -> p.getName(
 					).equals(
 						newDDMFormFieldValue.getName()
