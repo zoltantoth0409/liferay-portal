@@ -107,3 +107,8 @@ ccb0f9721c1caec34ec1af4bbe83fbb7d90f5cfb^..7882df95ce2e599aa43b560e688d2718a2535
 # Bundle Version 4.0.21
 #
 21a540e4ed9eeeebbddf651cf56c231325090b96^..acbbc6fad8ce7b737bb0369b118965e42dfc662d=LPS-84119 LPS-97600
+
+#
+# Bundle Version 4.0.22
+#
+acbbc6fad8ce7b737bb0369b118965e42dfc662d^..32b1a0bca3ef319a46fc5daaf854f05dfb5bf99c=LPS-87353
