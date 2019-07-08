@@ -91,7 +91,7 @@ definition {
 	@summary = "Add a page named '${pageName}'"
 	macro add {
 		if (isSet(siteName)) {
-			Navigator.openSiteURL(siteName = "${siteName}");
+			ProductMenu.gotoSite(site = "${siteName}");
 		}
 
 		if (isSet(pageStaging)) {
