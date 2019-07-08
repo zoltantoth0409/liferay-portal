@@ -408,7 +408,7 @@ definition {
 			userName = "Test Test",
 			userScreenName = "test");
 
-		Navigator.openSiteURL(siteName = "Organization Name");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
@@ -417,7 +417,7 @@ definition {
 
 		SitePages.addPublicPage(pageName = "Organization Public Page");
 
-		Navigator.openSiteURL(siteName = "Organization Name");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
