@@ -17,6 +17,8 @@ File editorDestinationDir = file("tmp/META-INF/resources")
 File editorSrcDir = file("src/main/resources/META-INF/resources")
 
 buildCKEditor {
+	dependsOn npmInstall
+
 	File ckEditorDestinationDir = new File(editorDestinationDir, "ckeditor")
 
 	doFirst {
