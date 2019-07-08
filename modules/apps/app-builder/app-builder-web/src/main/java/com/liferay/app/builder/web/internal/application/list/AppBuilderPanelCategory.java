@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.app.builder.web.internal.portlet;
+package com.liferay.app.builder.web.internal.application.list;
 
-import com.liferay.app.builder.web.internal.constants.AppBuilderPortletKeys;
+import com.liferay.app.builder.web.internal.constants.AppBuilderPanelCategoryKeys;
 import com.liferay.application.list.BasePanelCategory;
 import com.liferay.application.list.PanelCategory;
 import com.liferay.application.list.constants.PanelCategoryKeys;
@@ -41,7 +41,7 @@ public class AppBuilderPanelCategory extends BasePanelCategory {
 
 	@Override
 	public String getKey() {
-		return AppBuilderPortletKeys.CONTROL_PANEL_APP_BUILDER;
+		return AppBuilderPanelCategoryKeys.CONTROL_PANEL_APP_BUILDER;
 	}
 
 	@Override

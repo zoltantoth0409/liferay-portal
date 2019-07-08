@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.app.builder.web.internal.portlet;
+package com.liferay.app.builder.web.internal.application.list;
 
+import com.liferay.app.builder.web.internal.constants.AppBuilderPanelCategoryKeys;
 import com.liferay.app.builder.web.internal.constants.AppBuilderPortletKeys;
 import com.liferay.application.list.BasePanelApp;
 import com.liferay.application.list.PanelApp;
@@ -29,7 +30,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"panel.app.order:Integer=100",
-		"panel.category.key=" + AppBuilderPortletKeys.CONTROL_PANEL_APP_BUILDER
+		"panel.category.key=" + AppBuilderPanelCategoryKeys.CONTROL_PANEL_APP_BUILDER
 	},
 	service = PanelApp.class
 )
