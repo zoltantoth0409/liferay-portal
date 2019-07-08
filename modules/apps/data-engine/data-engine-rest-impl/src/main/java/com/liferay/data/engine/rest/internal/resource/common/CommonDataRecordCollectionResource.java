@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.data.engine.rest.internal.resource.spi;
+package com.liferay.data.engine.rest.internal.resource.common;
 
 import com.liferay.data.engine.field.type.util.LocalizedValueUtil;
 import com.liferay.data.engine.rest.internal.constants.DataActionKeys;
@@ -51,9 +51,9 @@ import javax.ws.rs.BadRequestException;
 /**
  * @author Leonardo Barros
  */
-public class SPIDataRecordCollectionResource<T> {
+public class CommonDataRecordCollectionResource<T> {
 
-	public SPIDataRecordCollectionResource(
+	public CommonDataRecordCollectionResource(
 		DDLRecordSetLocalService ddlRecordSetLocalService,
 		DDMStructureLocalService ddmStructureLocalService,
 		GroupLocalService groupLocalService,

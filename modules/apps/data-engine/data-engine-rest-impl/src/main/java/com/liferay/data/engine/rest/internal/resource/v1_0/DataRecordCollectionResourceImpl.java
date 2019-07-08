@@ -18,7 +18,7 @@ import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollectionPermission;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataRecordCollectionUtil;
 import com.liferay.data.engine.rest.internal.model.InternalDataRecordCollection;
-import com.liferay.data.engine.rest.internal.resource.spi.SPIDataRecordCollectionResource;
+import com.liferay.data.engine.rest.internal.resource.common.CommonDataRecordCollectionResource;
 import com.liferay.data.engine.rest.resource.v1_0.DataRecordCollectionResource;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
@@ -51,7 +51,7 @@ public class DataRecordCollectionResourceImpl
 	public void deleteDataRecordCollection(Long dataRecordCollectionId)
 		throws Exception {
 
-		_spiDataRecordCollectionResource.deleteDataRecordCollection(
+		_commonDataRecordCollectionResource.deleteDataRecordCollection(
 			dataRecordCollectionId);
 	}
 
@@ -61,7 +61,7 @@ public class DataRecordCollectionResourceImpl
 				Long dataDefinitionId, String keywords, Pagination pagination)
 		throws Exception {
 
-		return _spiDataRecordCollectionResource.
+		return _commonDataRecordCollectionResource.
 			getDataDefinitionDataRecordCollectionsPage(
 				contextAcceptLanguage, dataDefinitionId, keywords, pagination);
 	}
@@ -71,7 +71,7 @@ public class DataRecordCollectionResourceImpl
 			Long dataRecordCollectionId)
 		throws Exception {
 
-		return _spiDataRecordCollectionResource.getDataRecordCollection(
+		return _commonDataRecordCollectionResource.getDataRecordCollection(
 			dataRecordCollectionId);
 	}
 
@@ -80,7 +80,7 @@ public class DataRecordCollectionResourceImpl
 			Long siteId, String dataRecordCollectionKey)
 		throws Exception {
 
-		return _spiDataRecordCollectionResource.getSiteDataRecordCollection(
+		return _commonDataRecordCollectionResource.getSiteDataRecordCollection(
 			dataRecordCollectionKey, siteId);
 	}
 
@@ -89,7 +89,7 @@ public class DataRecordCollectionResourceImpl
 			Long siteId, String keywords, Pagination pagination)
 		throws Exception {
 
-		return _spiDataRecordCollectionResource.
+		return _commonDataRecordCollectionResource.
 			getSiteDataRecordCollectionsPage(
 				contextAcceptLanguage, keywords, pagination, siteId);
 	}
@@ -99,7 +99,7 @@ public class DataRecordCollectionResourceImpl
 			Long dataDefinitionId, DataRecordCollection dataRecordCollection)
 		throws Exception {
 
-		return _spiDataRecordCollectionResource.
+		return _commonDataRecordCollectionResource.
 			postDataDefinitionDataRecordCollection(
 				contextCompany, dataDefinitionId,
 				dataRecordCollection.getDataRecordCollectionKey(),
@@ -113,7 +113,7 @@ public class DataRecordCollectionResourceImpl
 			DataRecordCollectionPermission dataRecordCollectionPermission)
 		throws Exception {
 
-		_spiDataRecordCollectionResource.
+		_commonDataRecordCollectionResource.
 			postDataRecordCollectionDataRecordCollectionPermissions(
 				contextCompany, dataRecordCollectionId,
 				GetterUtil.getBoolean(
@@ -140,7 +140,7 @@ public class DataRecordCollectionResourceImpl
 			DataRecordCollectionPermission dataRecordCollectionPermission)
 		throws Exception {
 
-		_spiDataRecordCollectionResource.
+		_commonDataRecordCollectionResource.
 			postSiteDataRecordCollectionPermissions(
 				contextCompany,
 				GetterUtil.getBoolean(
@@ -158,15 +158,15 @@ public class DataRecordCollectionResourceImpl
 			DataRecordCollection dataRecordCollection)
 		throws Exception {
 
-		return _spiDataRecordCollectionResource.putDataRecordCollection(
+		return _commonDataRecordCollectionResource.putDataRecordCollection(
 			dataRecordCollectionId, dataRecordCollection.getDescription(),
 			dataRecordCollection.getName());
 	}
 
 	@Activate
 	protected void activate() {
-		_spiDataRecordCollectionResource =
-			new SPIDataRecordCollectionResource<>(
+		_commonDataRecordCollectionResource =
+			new CommonDataRecordCollectionResource<>(
 				_ddlRecordSetLocalService, _ddmStructureLocalService,
 				_groupLocalService, _modelResourcePermission,
 				_resourceLocalService, _resourcePermissionLocalService,
@@ -176,7 +176,7 @@ public class DataRecordCollectionResourceImpl
 
 	@Deactivate
 	protected void deactivate() {
-		_spiDataRecordCollectionResource = null;
+		_commonDataRecordCollectionResource = null;
 	}
 
 	@Reference(
@@ -189,6 +189,9 @@ public class DataRecordCollectionResourceImpl
 
 		_modelResourcePermission = modelResourcePermission;
 	}
+
+	private CommonDataRecordCollectionResource<DataRecordCollection>
+		_commonDataRecordCollectionResource;
 
 	@Reference
 	private DDLRecordSetLocalService _ddlRecordSetLocalService;
@@ -210,8 +213,5 @@ public class DataRecordCollectionResourceImpl
 
 	@Reference
 	private RoleLocalService _roleLocalService;
-
-	private SPIDataRecordCollectionResource<DataRecordCollection>
-		_spiDataRecordCollectionResource;
 
 }
