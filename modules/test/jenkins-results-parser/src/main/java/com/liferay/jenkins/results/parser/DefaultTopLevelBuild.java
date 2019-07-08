@@ -21,16 +21,10 @@ public class DefaultTopLevelBuild extends TopLevelBuild {
 
 	public DefaultTopLevelBuild(String url) {
 		super(url);
-
-		// TODO Auto-generated constructor stub
-
 	}
 
 	public DefaultTopLevelBuild(String url, TopLevelBuild topLevelBuild) {
 		super(url, topLevelBuild);
-
-		// TODO Auto-generated constructor stub
-
 	}
 
 	@Override
