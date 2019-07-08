@@ -298,7 +298,11 @@ public class DDMExpressionImpl<T> implements DDMExpression<T> {
 
 	protected Double parseDoubleValue(String value) {
 		try {
-			return Double.parseDouble(value);
+			if (value.matches(_FLOAT_REGEXP)) {
+				return Double.parseDouble(value);
+			}
+
+			throw new NumberFormatException();
 		}
 		catch (NumberFormatException nfe) {
 			return null;
@@ -654,6 +658,8 @@ public class DDMExpressionImpl<T> implements DDMExpression<T> {
 			return decodeString(result);
 		}
 	}
+
+	private static final String _FLOAT_REGEXP = "^([+-]?\\d*\\.?\\d*)$";
 
 	private final Class<?> _expressionClass;
 	private final String _expressionString;
