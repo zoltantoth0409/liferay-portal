@@ -24,7 +24,7 @@ import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionUtil;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataRecordCollectionUtil;
 import com.liferay.data.engine.rest.internal.model.InternalDataDefinition;
 import com.liferay.data.engine.rest.internal.model.InternalDataRecordCollection;
-import com.liferay.data.engine.rest.internal.resource.spi.SPIDataRecordCollectionResource;
+import com.liferay.data.engine.rest.internal.resource.common.CommonDataRecordCollectionResource;
 import com.liferay.data.engine.rest.internal.resource.v1_0.util.DataEnginePermissionUtil;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
@@ -203,10 +203,11 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			InternalDataDefinition.class.getName(), dataDefinition.getId(),
 			serviceContext.getModelPermissions());
 
-		_spiDataRecordCollectionResource.postDataDefinitionDataRecordCollection(
-			contextCompany, dataDefinition.getId(),
-			dataDefinition.getDataDefinitionKey(),
-			dataDefinition.getDescription(), dataDefinition.getName());
+		_commonDataRecordCollectionResource.
+			postDataDefinitionDataRecordCollection(
+				contextCompany, dataDefinition.getId(),
+				dataDefinition.getDataDefinitionKey(),
+				dataDefinition.getDescription(), dataDefinition.getName());
 
 		return dataDefinition;
 	}
@@ -266,8 +267,8 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 	@Activate
 	protected void activate() {
-		_spiDataRecordCollectionResource =
-			new SPIDataRecordCollectionResource<>(
+		_commonDataRecordCollectionResource =
+			new CommonDataRecordCollectionResource<>(
 				_ddlRecordSetLocalService, _ddmStructureLocalService,
 				_groupLocalService,
 				_dataRecordCollectionModelResourcePermission,
@@ -278,7 +279,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 	@Deactivate
 	protected void deactivate() {
-		_spiDataRecordCollectionResource = null;
+		_commonDataRecordCollectionResource = null;
 	}
 
 	@Reference(
@@ -295,6 +296,9 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 	private long _getClassNameId() {
 		return _portal.getClassNameId(InternalDataDefinition.class);
 	}
+
+	private CommonDataRecordCollectionResource<DataRecordCollection>
+		_commonDataRecordCollectionResource;
 
 	@Reference(
 		target = "(model.class.name=com.liferay.data.engine.rest.internal.model.InternalDataRecordCollection)"
@@ -331,8 +335,5 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 	@Reference
 	private RoleLocalService _roleLocalService;
-
-	private SPIDataRecordCollectionResource<DataRecordCollection>
-		_spiDataRecordCollectionResource;
 
 }
