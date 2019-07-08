@@ -16,8 +16,8 @@
 
 <%@ include file="/html/common/init.jsp" %>
 
-<%@ page import="com.liferay.layouts.seo.kernel.SEOLink" %><%@
-page import="com.liferay.layouts.seo.kernel.SEOLinkManagerUtil" %><%@
+<%@ page import="com.liferay.layout.seo.kernel.SEOLink" %><%@
+page import="com.liferay.layout.seo.kernel.SEOLinkManagerUtil" %><%@
 page import="com.liferay.portal.kernel.model.Portlet" %><%@
 page import="com.liferay.portal.kernel.model.portlet.PortletDependency" %><%@
 page import="com.liferay.portal.kernel.servlet.BrowserMetadata" %><%@

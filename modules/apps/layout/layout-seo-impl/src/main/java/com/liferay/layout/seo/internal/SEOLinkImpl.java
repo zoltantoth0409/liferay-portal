@@ -14,7 +14,7 @@
 
 package com.liferay.layout.seo.internal;
 
-import com.liferay.layouts.seo.kernel.SEOLink;
+import com.liferay.layout.seo.kernel.SEOLink;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
