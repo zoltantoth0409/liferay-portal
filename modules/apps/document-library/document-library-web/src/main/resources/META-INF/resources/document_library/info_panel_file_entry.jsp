@@ -117,6 +117,7 @@ long assetClassPK = DLAssetHelperUtil.getAssetClassPK(fileEntry, fileVersion);
 						<c:if test="<%= dlViewFileVersionDisplayContext.isDownloadLinkVisible() %>">
 							<c:choose>
 								<c:when test="<%= PropsValues.DL_FILE_ENTRY_CONVERSIONS_ENABLED && DocumentConversionUtil.isEnabled() %>">
+
 									<%
 										final String[] conversions = DocumentConversionUtil.getConversions(fileVersion.getExtension());
 										final String label = LanguageUtil.get(resourceBundle, "original");
@@ -124,10 +125,7 @@ long assetClassPK = DLAssetHelperUtil.getAssetClassPK(fileEntry, fileVersion);
 
 									<c:choose>
 										<c:when test="<%= conversions.length > 0 %>">
-											<div
-												class="btn-group-item"
-												data-analytics-file-entry-id="<%= String.valueOf(fileEntry.getFileEntryId()) %>"
-											>
+											<div class="btn-group-item" data-analytics-file-entry-id="<%= String.valueOf(fileEntry.getFileEntryId()) %>">
 												<clay:dropdown-menu
 													dropdownItems="<%=
 														new JSPDropdownItemList(pageContext) {
@@ -157,11 +155,7 @@ long assetClassPK = DLAssetHelperUtil.getAssetClassPK(fileEntry, fileVersion);
 											</div>
 										</c:when>
 										<c:otherwise>
-											<div
-												class="btn-group-item"
-												data-analytics-file-entry-id="<%= String.valueOf(fileEntry.getFileEntryId()) %>"
-											>
-
+											<div class="btn-group-item" data-analytics-file-entry-id="<%= String.valueOf(fileEntry.getFileEntryId()) %>">
 												<clay:link
 													buttonStyle="primary"
 													elementClasses='<%= "btn-sm" %>'
@@ -172,14 +166,9 @@ long assetClassPK = DLAssetHelperUtil.getAssetClassPK(fileEntry, fileVersion);
 											</div>
 										</c:otherwise>
 									</c:choose>
-
 								</c:when>
 								<c:otherwise>
-									<div
-										class="btn-group-item"
-										data-analytics-file-entry-id="<%= String.valueOf(fileEntry.getFileEntryId()) %>"
-									>
-
+									<div class="btn-group-item" data-analytics-file-entry-id="<%= String.valueOf(fileEntry.getFileEntryId()) %>">
 										<clay:link
 											buttonStyle="primary"
 											elementClasses='<%= "btn-sm" %>'
@@ -191,7 +180,6 @@ long assetClassPK = DLAssetHelperUtil.getAssetClassPK(fileEntry, fileVersion);
 								</c:otherwise>
 							</c:choose>
 						</c:if>
-
 
 						<c:if test="<%= dlViewFileVersionDisplayContext.isSharingLinkVisible() %>">
 							<div class="btn-group-item">
