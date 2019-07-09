@@ -79,10 +79,10 @@ public class NarrowDownScopeClientTest extends BaseClientTestCase {
 
 		Assert.assertEquals("GET", parseScopeString(response));
 
-		WebTarget methods = getWebTarget("methods");
+		WebTarget webTarget = getWebTarget("methods");
 
 		Invocation.Builder builder = authorize(
-			methods.request(), parseTokenString(response));
+			webTarget.request(), parseTokenString(response));
 
 		Response postResponse = builder.post(
 			Entity.entity("", MediaType.TEXT_PLAIN_TYPE));
