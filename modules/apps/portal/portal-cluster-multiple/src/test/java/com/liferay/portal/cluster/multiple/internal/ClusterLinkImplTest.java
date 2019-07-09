@@ -51,7 +51,7 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 
 	@Test
 	public void testDeactivate() {
-		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(1);
+		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(true, 1);
 
 		List<TestClusterChannel> clusterChannels =
 			TestClusterChannel.getClusterChannels();
@@ -73,8 +73,54 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 	}
 
 	@Test
+	public void testDisabledClusterLink() {
+
+		// Test 1, initialize
+
+		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(false, 1);
+
+		List<TestClusterChannel> clusterChannels =
+			TestClusterChannel.getClusterChannels();
+
+		Assert.assertTrue(
+			clusterChannels.toString(), clusterChannels.isEmpty());
+
+		Assert.assertNull(clusterLinkImpl.getExecutorService());
+
+		// Test 2, send unicast message
+
+		List<Serializable> multicastMessages =
+			TestClusterChannel.getMulticastMessages();
+		List<ObjectValuePair<Serializable, Address>> unicastMessages =
+			TestClusterChannel.getUnicastMessages();
+
+		Message message = new Message();
+		Address address = new TestAddress(-1);
+
+		clusterLinkImpl.sendUnicastMessage(address, message, Priority.LEVEL1);
+
+		Assert.assertTrue(
+			multicastMessages.toString(), multicastMessages.isEmpty());
+		Assert.assertTrue(
+			unicastMessages.toString(), unicastMessages.isEmpty());
+
+		// Test 3, send multicast message
+
+		clusterLinkImpl.sendMulticastMessage(message, Priority.LEVEL1);
+
+		Assert.assertTrue(
+			multicastMessages.toString(), multicastMessages.isEmpty());
+		Assert.assertTrue(
+			unicastMessages.toString(), unicastMessages.isEmpty());
+
+		// Test 4, destroy
+
+		clusterLinkImpl.deactivate();
+	}
+
+	@Test
 	public void testGetChannel() {
-		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(2);
+		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(true, 2);
 
 		ClusterChannel clusterChannel1 = clusterLinkImpl.getChannel(
 			Priority.LEVEL1);
@@ -126,7 +172,7 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 			List<LogRecord> logRecords = captureHandler.getLogRecords();
 
 			try {
-				getClusterLinkImpl(ClusterLinkImpl.MAX_CHANNEL_COUNT + 1);
+				getClusterLinkImpl(true, ClusterLinkImpl.MAX_CHANNEL_COUNT + 1);
 
 				Assert.fail();
 			}
@@ -144,7 +190,7 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 			logRecords = captureHandler.resetLogLevel(Level.SEVERE);
 
 			try {
-				getClusterLinkImpl(0);
+				getClusterLinkImpl(true, 0);
 
 				Assert.fail();
 			}
@@ -167,7 +213,7 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 
 	@Test
 	public void testInitialize() {
-		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(2);
+		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(true, 2);
 
 		Assert.assertNotNull(clusterLinkImpl.getExecutorService());
 
@@ -192,7 +238,7 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 
 	@Test
 	public void testSendMulticastMessage() {
-		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(1);
+		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(true, 1);
 
 		List<Serializable> multicastMessages =
 			TestClusterChannel.getMulticastMessages();
@@ -218,7 +264,7 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 
 	@Test
 	public void testSendUnicastMessage() {
-		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(1);
+		ClusterLinkImpl clusterLinkImpl = getClusterLinkImpl(true, 1);
 
 		List<Serializable> multicastMessages =
 			TestClusterChannel.getMulticastMessages();
@@ -250,7 +296,9 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 	@Rule
 	public final NewEnvTestRule newEnvTestRule = NewEnvTestRule.INSTANCE;
 
-	protected ClusterLinkImpl getClusterLinkImpl(final int channels) {
+	protected ClusterLinkImpl getClusterLinkImpl(
+		final boolean enabled, final int channels) {
+
 		ClusterLinkImpl clusterLinkImpl = new ClusterLinkImpl();
 
 		Properties channelNameProperties = new Properties();
@@ -275,6 +323,7 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 		properties.put(
 			PropsKeys.CLUSTER_LINK_CHANNEL_PROPERTIES_TRANSPORT,
 			channelPropertiesProperties);
+		properties.put(PropsKeys.CLUSTER_LINK_ENABLED, String.valueOf(enabled));
 
 		clusterLinkImpl.setProps(PropsTestUtil.setProps(properties));
 
