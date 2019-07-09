@@ -105,6 +105,10 @@ public class ClusterExecutorImpl implements ClusterExecutor {
 
 	@Override
 	public FutureClusterResponses execute(ClusterRequest clusterRequest) {
+		if (!isEnabled()) {
+			return null;
+		}
+
 		Set<String> clusterNodeIds = new HashSet<>();
 
 		if (clusterRequest.isMulticast()) {
@@ -182,6 +186,10 @@ public class ClusterExecutorImpl implements ClusterExecutor {
 
 	@Override
 	public List<ClusterNode> getClusterNodes() {
+		if (!isEnabled()) {
+			return Collections.emptyList();
+		}
+
 		List<ClusterNode> clusterNodes = new ArrayList<>();
 
 		for (ClusterNodeStatus clusterNodeStatus :
@@ -195,11 +203,19 @@ public class ClusterExecutorImpl implements ClusterExecutor {
 
 	@Override
 	public ClusterNode getLocalClusterNode() {
+		if (!isEnabled()) {
+			return null;
+		}
+
 		return _localClusterNodeStatus.getClusterNode();
 	}
 
 	@Override
 	public boolean isClusterNodeAlive(String clusterNodeId) {
+		if (!isEnabled()) {
+			return false;
+		}
+
 		return _clusterNodeStatuses.containsKey(clusterNodeId);
 	}
 
@@ -217,7 +233,12 @@ public class ClusterExecutorImpl implements ClusterExecutor {
 
 	@Activate
 	protected void activate(ComponentContext componentContext) {
-		_enabled = true;
+		_enabled = GetterUtil.getBoolean(
+			_props.get(PropsKeys.CLUSTER_LINK_ENABLED));
+
+		if (!_enabled) {
+			return;
+		}
 
 		clusterExecutorConfiguration = ConfigurableUtil.createConfigurable(
 			ClusterExecutorConfiguration.class,
@@ -258,6 +279,10 @@ public class ClusterExecutorImpl implements ClusterExecutor {
 
 	@Deactivate
 	protected void deactivate() {
+		if (!_enabled) {
+			return;
+		}
+
 		if (_clusterChannel != null) {
 			_clusterChannel.close();
 		}
@@ -471,6 +496,10 @@ public class ClusterExecutorImpl implements ClusterExecutor {
 	protected void initialize(
 		String channelLogicName, String channelPropertiesString,
 		String channelName) {
+
+		if (!isEnabled()) {
+			return;
+		}
 
 		if (Validator.isNull(channelPropertiesString)) {
 			throw new IllegalStateException(
@@ -713,6 +742,10 @@ public class ClusterExecutorImpl implements ClusterExecutor {
 		@Override
 		public void portalLocalInetSocketAddressConfigured(
 			InetSocketAddress inetSocketAddress, boolean secure) {
+
+			if (!isEnabled()) {
+				return;
+			}
 
 			ClusterNode localClusterNode = getLocalClusterNode();
 
