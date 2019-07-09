@@ -22,8 +22,10 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.junit.Assert;
@@ -460,6 +462,62 @@ public class JSONUtilTest {
 
 		Assert.assertEquals(
 			expectedJSONArray2.toString(), actualJSONArray2.toString());
+	}
+
+	@Test
+	public void testToJSONObjectMap() {
+		Assert.assertEquals(
+			Collections.emptyMap(),
+			JSONUtil.toJSONObjectMap(_createJSONArray(), null));
+
+		Map<String, JSONObject> expectedJSONObjects =
+			new HashMap<String, JSONObject>() {
+				{
+					put(
+						"1",
+						JSONUtil.put(
+							"alpha", 1
+						).put(
+							"key", "1"
+						));
+					put(
+						"2",
+						JSONUtil.put(
+							"beta", 1
+						).put(
+							"key", "2"
+						));
+					put(
+						"3",
+						JSONUtil.put(
+							"gamma", 1
+						).put(
+							"key", "3"
+						));
+				}
+			};
+
+		Map<String, JSONObject> actualJSONObjects = JSONUtil.toJSONObjectMap(
+			JSONUtil.putAll(
+				JSONUtil.put(
+					"alpha", 1
+				).put(
+					"key", "1"
+				),
+				JSONUtil.put(
+					"beta", 1
+				).put(
+					"key", "2"
+				),
+				JSONUtil.put(
+					"gamma", 1
+				).put(
+					"key", "3"
+				)),
+			"key");
+
+		Assert.assertEquals(
+			expectedJSONObjects.toString(), actualJSONObjects.toString());
 	}
 
 	@Test
