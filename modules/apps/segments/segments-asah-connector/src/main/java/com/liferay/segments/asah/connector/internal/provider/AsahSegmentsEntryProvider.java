@@ -94,7 +94,7 @@ public class AsahSegmentsEntryProvider implements SegmentsEntryProvider {
 		String userId = GetterUtil.getString(
 			context.get(
 				SegmentsAsahRequestContextContributor.
-					SEGMENTS_ANONYMOUS_USER_ID_KEY));
+					KEY_SEGMENTS_ANONYMOUS_USER_ID));
 
 		if (Validator.isNull(userId)) {
 			return new long[0];

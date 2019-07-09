@@ -127,7 +127,7 @@ public class AsahSegmentsEntryProviderTest {
 
 		context.put(
 			SegmentsAsahRequestContextContributor.
-				SEGMENTS_ANONYMOUS_USER_ID_KEY,
+				KEY_SEGMENTS_ANONYMOUS_USER_ID,
 			userId);
 
 		Assert.assertArrayEquals(
@@ -149,7 +149,7 @@ public class AsahSegmentsEntryProviderTest {
 
 		context.put(
 			SegmentsAsahRequestContextContributor.
-				SEGMENTS_ANONYMOUS_USER_ID_KEY,
+				KEY_SEGMENTS_ANONYMOUS_USER_ID,
 			StringPool.BLANK);
 
 		Assert.assertArrayEquals(
@@ -193,7 +193,7 @@ public class AsahSegmentsEntryProviderTest {
 
 		context.put(
 			SegmentsAsahRequestContextContributor.
-				SEGMENTS_ANONYMOUS_USER_ID_KEY,
+				KEY_SEGMENTS_ANONYMOUS_USER_ID,
 			userId);
 
 		Assert.assertArrayEquals(
