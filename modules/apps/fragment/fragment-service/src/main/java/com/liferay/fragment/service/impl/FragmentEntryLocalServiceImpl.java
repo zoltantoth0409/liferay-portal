@@ -431,8 +431,9 @@ public class FragmentEntryLocalServiceImpl
 		return addFragmentEntry(
 			userId, groupId, fragmentCollectionId, null, sb.toString(),
 			fragmentEntry.getCss(), fragmentEntry.getHtml(),
-			fragmentEntry.getJs(), fragmentEntry.getPreviewFileEntryId(),
-			fragmentEntry.getType(), fragmentEntry.getStatus(), serviceContext);
+			fragmentEntry.getJs(), fragmentEntry.getConfiguration(),
+			fragmentEntry.getPreviewFileEntryId(), fragmentEntry.getType(),
+			fragmentEntry.getStatus(), serviceContext);
 	}
 
 	@Override
