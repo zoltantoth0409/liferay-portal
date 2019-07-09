@@ -602,6 +602,12 @@ public class FragmentEntryLocalServiceImpl
 		return fragmentEntry;
 	}
 
+	/**
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link
+	 *             #updateFragmentEntry(long, long, String, String, String,
+	 *             String, String, int)}
+	 */
+	@Deprecated
 	@Override
 	public FragmentEntry updateFragmentEntry(
 			long userId, long fragmentEntryId, String name, String css,
@@ -617,6 +623,12 @@ public class FragmentEntryLocalServiceImpl
 			fragmentEntry.getPreviewFileEntryId(), status);
 	}
 
+	/**
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link
+	 *             #updateFragmentEntry(long, long, String, String, String,
+	 *             String, String, long, int)}
+	 */
+	@Deprecated
 	@Override
 	public FragmentEntry updateFragmentEntry(
 			long userId, long fragmentEntryId, String name, String css,
