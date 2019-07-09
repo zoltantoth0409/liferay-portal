@@ -1069,7 +1069,7 @@ definition {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		for (var siteName : list "${siteName},Site Name,Global") {
-			Navigator.openSiteURL(siteName = "${siteName}");
+			Navigator.openSiteLanding(siteURLKey = "${siteName}");
 
 			ProductMenu.gotoPortlet(
 				category = "Content",
