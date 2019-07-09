@@ -57,7 +57,7 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 
 		// Test 1, add cluster event listener
 
-		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl();
+		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl(true);
 
 		List<ClusterEventListener> clusterEventListeners =
 			clusterExecutorImpl.getClusterEventListeners();
@@ -105,7 +105,7 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 
 	@Test
 	public void testDeactivate() {
-		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl();
+		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl(true);
 
 		List<TestClusterChannel> clusterChannels =
 			TestClusterChannel.getClusterChannels();
@@ -130,7 +130,7 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 
 	@Test
 	public void testDebugClusterEventListener() {
-		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl();
+		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl(true);
 
 		clusterExecutorImpl.clusterExecutorConfiguration =
 			new ClusterExecutorConfiguration() {
@@ -174,11 +174,57 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 	}
 
 	@Test
+	public void testDisabledClusterLink() {
+
+		// Test 1, initialize
+
+		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl(false);
+
+		List<TestClusterChannel> clusterChannels =
+			TestClusterChannel.getClusterChannels();
+
+		Assert.assertTrue(
+			clusterChannels.toString(), clusterChannels.isEmpty());
+
+		Assert.assertNull(clusterExecutorImpl.getExecutorService());
+
+		// Test 2, send unitcast message
+
+		List<Serializable> multicastMessages =
+			TestClusterChannel.getMulticastMessages();
+		List<ObjectValuePair<Serializable, Address>> unicastMessages =
+			TestClusterChannel.getUnicastMessages();
+
+		clusterExecutorImpl.execute(
+			ClusterRequest.createUnicastRequest(
+				StringPool.BLANK, StringPool.BLANK));
+
+		Assert.assertTrue(
+			multicastMessages.toString(), multicastMessages.isEmpty());
+		Assert.assertTrue(
+			unicastMessages.toString(), unicastMessages.isEmpty());
+
+		// Test 3, send multicast message
+
+		clusterExecutorImpl.execute(
+			ClusterRequest.createMulticastRequest(StringPool.BLANK));
+
+		Assert.assertTrue(
+			multicastMessages.toString(), multicastMessages.isEmpty());
+		Assert.assertTrue(
+			unicastMessages.toString(), unicastMessages.isEmpty());
+
+		// Test 4, destroy
+
+		clusterExecutorImpl.deactivate();
+	}
+
+	@Test
 	public void testExecute() throws Exception {
 
 		// Test 1, execute multicast request and not skip local
 
-		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl();
+		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl(true);
 
 		TestClusterChannel.clearAllMessages();
 
@@ -272,7 +318,8 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 		Assert.assertTrue(
 			unicastMessages.toString(), unicastMessages.isEmpty());
 
-		ClusterExecutorImpl newClusterExecutorImpl = getClusterExecutorImpl();
+		ClusterExecutorImpl newClusterExecutorImpl = getClusterExecutorImpl(
+			true);
 
 		Assert.assertEquals(
 			multicastMessages.toString(), 1, multicastMessages.size());
@@ -307,7 +354,7 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 
 	@Test
 	public void testExecuteClusterRequest() throws Exception {
-		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl();
+		ClusterExecutorImpl clusterExecutorImpl = getClusterExecutorImpl(true);
 
 		// Test 1, payload is not method handler
 
@@ -371,7 +418,7 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 	@Rule
 	public final NewEnvTestRule newEnvTestRule = NewEnvTestRule.INSTANCE;
 
-	protected ClusterExecutorImpl getClusterExecutorImpl() {
+	protected ClusterExecutorImpl getClusterExecutorImpl(boolean enabled) {
 		ClusterExecutorImpl clusterExecutorImpl = new ClusterExecutorImpl();
 
 		Map<String, Object> properties = new HashMap<>();
@@ -382,6 +429,7 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 		properties.put(
 			PropsKeys.CLUSTER_LINK_CHANNEL_PROPERTIES_CONTROL,
 			"test-channel-properties-control");
+		properties.put(PropsKeys.CLUSTER_LINK_ENABLED, String.valueOf(enabled));
 
 		clusterExecutorImpl.setProps(PropsTestUtil.setProps(properties));
 
