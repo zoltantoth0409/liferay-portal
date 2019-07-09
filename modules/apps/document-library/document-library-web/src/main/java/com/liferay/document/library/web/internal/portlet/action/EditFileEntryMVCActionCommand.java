@@ -145,7 +145,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			DLConfiguration.class, properties);
 	}
 
-	protected void addMultipleFileEntries(
+	private void _addMultipleFileEntries(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			ActionResponse actionResponse)
 		throws Exception {
@@ -157,7 +157,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "selectedFileName", new String[0], false);
 
 		for (String selectedFileName : selectedFileNames) {
-			addMultipleFileEntries(
+			_addMultipleFileEntries(
 				portletConfig, actionRequest, selectedFileName,
 				validFileNameKVPs, invalidFileNameKVPs);
 		}
@@ -195,7 +195,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, actionResponse, jsonArray);
 	}
 
-	protected void addMultipleFileEntries(
+	private void _addMultipleFileEntries(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			String selectedFileName, List<KeyValuePair> validFileNameKVPs,
 			List<KeyValuePair> invalidFileNameKVPs)
@@ -239,7 +239,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				new KeyValuePair(uniqueFileName, selectedFileName));
 		}
 		catch (Exception e) {
-			String errorMessage = getAddMultipleFileEntriesErrorMessage(
+			String errorMessage = _getAddMultipleFileEntriesErrorMessage(
 				portletConfig, actionRequest, e);
 
 			invalidFileNameKVPs.add(
@@ -253,7 +253,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void addTempFileEntry(
+	private void _addTempFileEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -286,7 +286,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void cancelFileEntriesCheckOut(ActionRequest actionRequest)
+	private void _cancelFileEntriesCheckOut(ActionRequest actionRequest)
 		throws Exception {
 
 		long fileEntryId = ParamUtil.getLong(actionRequest, "fileEntryId");
@@ -304,7 +304,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void checkInFileEntries(ActionRequest actionRequest)
+	private void _checkInFileEntries(ActionRequest actionRequest)
 		throws Exception {
 
 		long fileEntryId = ParamUtil.getLong(actionRequest, "fileEntryId");
@@ -331,7 +331,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void checkOutFileEntries(ActionRequest actionRequest)
+	private void _checkOutFileEntries(ActionRequest actionRequest)
 		throws Exception {
 
 		long fileEntryId = ParamUtil.getLong(actionRequest, "fileEntryId");
@@ -352,7 +352,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void deleteFileEntry(
+	private void _deleteFileEntry(
 			ActionRequest actionRequest, boolean moveToTrash)
 		throws Exception {
 
@@ -397,7 +397,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		addDeleteSuccessData(actionRequest, data);
 	}
 
-	protected void deleteTempFileEntry(
+	private void _deleteTempFileEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -482,7 +482,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 					"file");
 
 				try {
-					fileEntry = updateFileEntry(
+					fileEntry = _updateFileEntry(
 						portletConfig, actionRequest, actionResponse,
 						uploadPortletRequest);
 				}
@@ -498,35 +498,35 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				}
 			}
 			else if (cmd.equals(Constants.ADD_MULTIPLE)) {
-				addMultipleFileEntries(
+				_addMultipleFileEntries(
 					portletConfig, actionRequest, actionResponse);
 			}
 			else if (cmd.equals(Constants.ADD_TEMP)) {
-				addTempFileEntry(actionRequest, actionResponse);
+				_addTempFileEntry(actionRequest, actionResponse);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deleteFileEntry(actionRequest, false);
+				_deleteFileEntry(actionRequest, false);
 			}
 			else if (cmd.equals(Constants.DELETE_TEMP)) {
-				deleteTempFileEntry(actionRequest, actionResponse);
+				_deleteTempFileEntry(actionRequest, actionResponse);
 			}
 			else if (cmd.equals(Constants.CANCEL_CHECKOUT)) {
-				cancelFileEntriesCheckOut(actionRequest);
+				_cancelFileEntriesCheckOut(actionRequest);
 			}
 			else if (cmd.equals(Constants.CHECKIN)) {
-				checkInFileEntries(actionRequest);
+				_checkInFileEntries(actionRequest);
 			}
 			else if (cmd.equals(Constants.CHECKOUT)) {
-				checkOutFileEntries(actionRequest);
+				_checkOutFileEntries(actionRequest);
 			}
 			else if (cmd.equals(Constants.MOVE_TO_TRASH)) {
-				deleteFileEntry(actionRequest, true);
+				_deleteFileEntry(actionRequest, true);
 			}
 			else if (cmd.equals(Constants.RESTORE)) {
-				restoreTrashEntries(actionRequest);
+				_restoreTrashEntries(actionRequest);
 			}
 			else if (cmd.equals(Constants.REVERT)) {
-				revertFileEntry(actionRequest);
+				_revertFileEntry(actionRequest);
 			}
 
 			WindowState windowState = actionRequest.getWindowState();
@@ -560,7 +560,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				if ((fileEntry != null) &&
 					(workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT)) {
 
-					redirect = getSaveAndContinueRedirect(
+					redirect = _getSaveAndContinueRedirect(
 						portletConfig, actionRequest, fileEntry, redirect);
 
 					sendRedirect(actionRequest, actionResponse, redirect);
@@ -596,11 +596,11 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			}
 		}
 		catch (Exception e) {
-			handleUploadException(actionRequest, actionResponse, cmd, e);
+			_handleUploadException(actionRequest, actionResponse, cmd, e);
 		}
 	}
 
-	protected String getAddMultipleFileEntriesErrorMessage(
+	private String _getAddMultipleFileEntriesErrorMessage(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			Exception e)
 		throws Exception {
@@ -649,7 +649,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			errorMessage = themeDisplay.translate(
 				"please-enter-a-file-with-a-valid-extension-x",
 				StringUtil.merge(
-					getAllowedFileExtensions(portletConfig, actionRequest)));
+					_getAllowedFileExtensions(portletConfig, actionRequest)));
 		}
 		else if (e instanceof FileNameException) {
 			errorMessage = themeDisplay.translate(
@@ -674,7 +674,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		return errorMessage;
 	}
 
-	protected String[] getAllowedFileExtensions(
+	private String[] _getAllowedFileExtensions(
 			PortletConfig portletConfig, PortletRequest portletRequest)
 		throws PortalException {
 
@@ -704,7 +704,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		return extensions.toArray(new String[0]);
 	}
 
-	protected String getSaveAndContinueRedirect(
+	private String _getSaveAndContinueRedirect(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			FileEntry fileEntry, String redirect)
 		throws Exception {
@@ -728,7 +728,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		return portletURL.toString();
 	}
 
-	protected void handleUploadException(
+	private void _handleUploadException(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			String cmd, Exception e)
 		throws Exception {
@@ -821,7 +821,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void restoreTrashEntries(ActionRequest actionRequest)
+	private void _restoreTrashEntries(ActionRequest actionRequest)
 		throws Exception {
 
 		long[] restoreTrashEntryIds = StringUtil.split(
@@ -832,7 +832,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void revertFileEntry(ActionRequest actionRequest)
+	private void _revertFileEntry(ActionRequest actionRequest)
 		throws Exception {
 
 		long fileEntryId = ParamUtil.getLong(actionRequest, "fileEntryId");
@@ -844,7 +844,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		_dlAppService.revertFileEntry(fileEntryId, version, serviceContext);
 	}
 
-	protected FileEntry updateFileEntry(
+	private FileEntry _updateFileEntry(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			ActionResponse actionResponse,
 			UploadPortletRequest uploadPortletRequest)
