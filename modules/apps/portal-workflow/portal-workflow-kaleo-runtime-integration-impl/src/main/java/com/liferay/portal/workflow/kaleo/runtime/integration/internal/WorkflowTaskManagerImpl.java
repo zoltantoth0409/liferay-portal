@@ -67,7 +67,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -981,13 +980,11 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				List<User> userGroupUsers = _userLocalService.getGroupUsers(
 					kaleoTaskInstanceToken.getGroupId());
 
-				users.addAll(
-					userGroupUsers.stream(
-					).filter(
-						User::isActive
-					).collect(
-						Collectors.toList()
-					));
+				for (User user : userGroupUsers) {
+					if (user.isActive()) {
+						users.add(user);
+					}
+				}
 
 				return;
 			}
@@ -1013,13 +1010,11 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				List<User> userGroupUsers = _userLocalService.getUserGroupUsers(
 					userGroupGroupRole.getUserGroupId());
 
-				users.addAll(
-					userGroupUsers.stream(
-					).filter(
-						User::isActive
-					).collect(
-						Collectors.toList()
-					));
+				for (User user : userGroupUsers) {
+					if (user.isActive()) {
+						users.add(user);
+					}
+				}
 			}
 		}
 		else {
@@ -1028,13 +1023,11 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					assigneeClassPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-			users.addAll(
-				inheritedRoleUsers.stream(
-				).filter(
-					User::isActive
-				).collect(
-					Collectors.toList()
-				));
+			for (User user : inheritedRoleUsers) {
+				if (user.isActive()) {
+					users.add(user);
+				}
+			}
 		}
 	}
 
