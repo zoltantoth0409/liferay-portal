@@ -15,6 +15,7 @@
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
+import './comments/SidebarCommentsPanel.es';
 import './fragments/SidebarElementsPanel.es';
 import './fragments/SidebarSectionsPanel.es';
 import './layouts/SidebarLayoutsPanel.es';
