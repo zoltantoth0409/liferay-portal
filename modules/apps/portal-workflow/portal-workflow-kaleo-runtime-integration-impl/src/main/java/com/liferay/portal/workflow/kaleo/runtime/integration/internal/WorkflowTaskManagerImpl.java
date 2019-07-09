@@ -67,6 +67,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -868,7 +869,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			User user = _userLocalService.fetchUser(assigneeClassPK);
 
-			if (user != null) {
+			if ((user != null) && user.isActive()) {
 				return true;
 			}
 
@@ -892,7 +893,11 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					kaleoTaskInstanceToken.getGroupId(), assigneeClassPK);
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
-				if (userGroupRole.getUserId() != userId) {
+				User user = userGroupRole.getUser();
+
+				if ((user != null) && user.isActive() &&
+					(user.getUserId() != userId)) {
+
 					return true;
 				}
 			}
@@ -907,7 +912,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					userGroupGroupRole.getUserGroupId());
 
 				for (User user : userGroupUsers) {
-					if (user.getUserId() != userId) {
+					if (user.isActive() && (user.getUserId() != userId)) {
 						return true;
 					}
 				}
@@ -920,7 +925,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					null);
 
 			for (User user : inheritedRoleUsers) {
-				if (user.getUserId() != userId) {
+				if (user.isActive() && (user.getUserId() != userId)) {
 					return true;
 				}
 			}
@@ -940,7 +945,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		if (assigneeClassName.equals(User.class.getName())) {
 			User user = _userLocalService.fetchUser(assigneeClassPK);
 
-			if (user != null) {
+			if ((user != null) && user.isActive()) {
 				users.add(user);
 			}
 
@@ -956,7 +961,13 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				List<User> userGroupUsers = _userLocalService.getGroupUsers(
 					kaleoTaskInstanceToken.getGroupId());
 
-				users.addAll(userGroupUsers);
+				users.addAll(
+					userGroupUsers.stream(
+					).filter(
+						User::isActive
+					).collect(
+						Collectors.toList()
+					));
 
 				return;
 			}
@@ -982,7 +993,13 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				List<User> userGroupUsers = _userLocalService.getUserGroupUsers(
 					userGroupGroupRole.getUserGroupId());
 
-				users.addAll(userGroupUsers);
+				users.addAll(
+					userGroupUsers.stream(
+					).filter(
+						User::isActive
+					).collect(
+						Collectors.toList()
+					));
 			}
 		}
 		else {
@@ -991,7 +1008,13 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					assigneeClassPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-			users.addAll(inheritedRoleUsers);
+			users.addAll(
+				inheritedRoleUsers.stream(
+				).filter(
+					User::isActive
+				).collect(
+					Collectors.toList()
+				));
 		}
 	}
 
