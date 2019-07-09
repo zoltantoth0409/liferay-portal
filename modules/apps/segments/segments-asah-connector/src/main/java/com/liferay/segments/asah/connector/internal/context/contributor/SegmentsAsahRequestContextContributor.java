@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	immediate = true,
 	property = {
-		"request.context.contributor.key=" + SegmentsAsahRequestContextContributor.SEGMENTS_ANONYMOUS_USER_ID_KEY,
+		"request.context.contributor.key=" + SegmentsAsahRequestContextContributor.KEY_SEGMENTS_ANONYMOUS_USER_ID,
 		"request.context.contributor.type=id"
 	},
 	service = RequestContextContributor.class
@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Component;
 public class SegmentsAsahRequestContextContributor
 	implements RequestContextContributor {
 
-	public static final String SEGMENTS_ANONYMOUS_USER_ID_KEY =
+	public static final String KEY_SEGMENTS_ANONYMOUS_USER_ID =
 		"segmentsAnonymousUserId";
 
 	@Override
@@ -56,7 +56,7 @@ public class SegmentsAsahRequestContextContributor
 			SegmentsWebKeys.SEGMENTS_ANONYMOUS_USER_ID,
 			segmentsAnonymousUserId);
 
-		context.put(SEGMENTS_ANONYMOUS_USER_ID_KEY, segmentsAnonymousUserId);
+		context.put(KEY_SEGMENTS_ANONYMOUS_USER_ID, segmentsAnonymousUserId);
 	}
 
 	private String _getSegmentsAnonymousUserId(
