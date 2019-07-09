@@ -84,7 +84,7 @@ public class ResourceConfigurationFactory {
 				"kubernetes.docker.registry.hostname");
 		}
 		catch (IOException ioe) {
-			throw new RuntimeException("Unable to get Docker Registry URL");
+			throw new RuntimeException("Unable to get Docker registry URL");
 		}
 	}
 
@@ -230,7 +230,7 @@ public class ResourceConfigurationFactory {
 		}
 		catch (IOException ioe) {
 			throw new RuntimeException(
-				"Unable to get oracle database password");
+				"Unable to get Oracle database password");
 		}
 
 		return _newDatabaseConfigurationPod(
