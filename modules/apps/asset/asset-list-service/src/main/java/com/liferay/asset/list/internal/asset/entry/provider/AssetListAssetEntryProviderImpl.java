@@ -302,14 +302,14 @@ public class AssetListAssetEntryProviderImpl
 		policy = ReferencePolicy.DYNAMIC,
 		policyOption = ReferencePolicyOption.GREEDY
 	)
-	protected void setAssetListEntryQueryProcessor(
+	protected void setAssetListAssetEntryQueryProcessor(
 		AssetListAssetEntryQueryProcessor assetListAssetEntryQueryProcessor) {
 
 		_assetListAssetEntryQueryProcessors.add(
 			assetListAssetEntryQueryProcessor);
 	}
 
-	protected void unsetAssetListEntryQueryProcessor(
+	protected void unsetAssetListAssetEntryQueryProcessor(
 		AssetListAssetEntryQueryProcessor assetListAssetEntryQueryProcessor) {
 
 		_assetListAssetEntryQueryProcessors.remove(
