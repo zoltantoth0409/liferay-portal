@@ -103,7 +103,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletResponse;
 import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
@@ -159,7 +158,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		for (String selectedFileName : selectedFileNames) {
 			addMultipleFileEntries(
-				portletConfig, actionRequest, actionResponse, selectedFileName,
+				portletConfig, actionRequest, selectedFileName,
 				validFileNameKVPs, invalidFileNameKVPs);
 		}
 
@@ -198,8 +197,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	protected void addMultipleFileEntries(
 			PortletConfig portletConfig, ActionRequest actionRequest,
-			ActionResponse actionResponse, String selectedFileName,
-			List<KeyValuePair> validFileNameKVPs,
+			String selectedFileName, List<KeyValuePair> validFileNameKVPs,
 			List<KeyValuePair> invalidFileNameKVPs)
 		throws Exception {
 
@@ -242,7 +240,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 		catch (Exception e) {
 			String errorMessage = getAddMultipleFileEntriesErrorMessage(
-				portletConfig, actionRequest, actionResponse, e);
+				portletConfig, actionRequest, e);
 
 			invalidFileNameKVPs.add(
 				new KeyValuePair(selectedFileName, errorMessage));
@@ -598,14 +596,13 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			}
 		}
 		catch (Exception e) {
-			handleUploadException(
-				portletConfig, actionRequest, actionResponse, cmd, e);
+			handleUploadException(actionRequest, actionResponse, cmd, e);
 		}
 	}
 
 	protected String getAddMultipleFileEntriesErrorMessage(
 			PortletConfig portletConfig, ActionRequest actionRequest,
-			ActionResponse actionResponse, Exception e)
+			Exception e)
 		throws Exception {
 
 		String errorMessage = null;
@@ -652,8 +649,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			errorMessage = themeDisplay.translate(
 				"please-enter-a-file-with-a-valid-extension-x",
 				StringUtil.merge(
-					getAllowedFileExtensions(
-						portletConfig, actionRequest, actionResponse)));
+					getAllowedFileExtensions(portletConfig, actionRequest)));
 		}
 		else if (e instanceof FileNameException) {
 			errorMessage = themeDisplay.translate(
@@ -679,8 +675,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	protected String[] getAllowedFileExtensions(
-			PortletConfig portletConfig, PortletRequest portletRequest,
-			PortletResponse portletResponse)
+			PortletConfig portletConfig, PortletRequest portletRequest)
 		throws PortalException {
 
 		String portletName = portletConfig.getPortletName();
@@ -734,8 +729,8 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	protected void handleUploadException(
-			PortletConfig portletConfig, ActionRequest actionRequest,
-			ActionResponse actionResponse, String cmd, Exception e)
+			ActionRequest actionRequest, ActionResponse actionResponse,
+			String cmd, Exception e)
 		throws Exception {
 
 		if (e instanceof AssetCategoryException ||
