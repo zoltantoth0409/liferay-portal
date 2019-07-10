@@ -50,7 +50,7 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 	}
 
 	@Override
-	public void filter(ContainerRequestContext requestContext) {
+	public void filter(ContainerRequestContext containerRequestContext) {
 		handleMessage(PhaseInterceptorChain.getCurrentMessage());
 	}
 
@@ -67,18 +67,18 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 			Class<?> superClass = clazz.getSuperclass();
 
 			for (Field field : superClass.getDeclaredFields()) {
-				if (Modifier.isStatic(field.getModifiers()) ||
-					Modifier.isFinal(field.getModifiers())) {
+				if (Modifier.isFinal(field.getModifiers()) ||
+					Modifier.isStatic(field.getModifiers())) {
 
 					continue;
 				}
 
-				Class<?> fieldType = field.getType();
+				Class<?> fieldClass = field.getType();
 
 				HttpServletRequest httpServletRequest =
 					ContextProviderUtil.getHttpServletRequest(message);
 
-				if (fieldType.isAssignableFrom(AcceptLanguage.class)) {
+				if (fieldClass.isAssignableFrom(AcceptLanguage.class)) {
 					field.setAccessible(true);
 
 					field.set(
@@ -86,17 +86,17 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 						new AcceptLanguageImpl(
 							httpServletRequest, _language, _portal));
 				}
-				else if (fieldType.isAssignableFrom(Company.class)) {
+				else if (fieldClass.isAssignableFrom(Company.class)) {
 					field.setAccessible(true);
 
 					field.set(instance, _portal.getCompany(httpServletRequest));
 				}
-				else if (fieldType.isAssignableFrom(HttpServletRequest.class)) {
+				else if (fieldClass.isAssignableFrom(HttpServletRequest.class)) {
 					field.setAccessible(true);
 
 					field.set(instance, httpServletRequest);
 				}
-				else if (fieldType.isAssignableFrom(
+				else if (fieldClass.isAssignableFrom(
 							HttpServletResponse.class)) {
 
 					field.setAccessible(true);
@@ -105,12 +105,12 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 						instance,
 						message.getContextualProperty("HTTP.RESPONSE"));
 				}
-				else if (fieldType.isAssignableFrom(UriInfo.class)) {
+				else if (fieldClass.isAssignableFrom(UriInfo.class)) {
 					field.setAccessible(true);
 
 					field.set(instance, new UriInfoImpl(message));
 				}
-				else if (fieldType.isAssignableFrom(User.class)) {
+				else if (fieldClass.isAssignableFrom(User.class)) {
 					field.setAccessible(true);
 
 					field.set(instance, _portal.getUser(httpServletRequest));
