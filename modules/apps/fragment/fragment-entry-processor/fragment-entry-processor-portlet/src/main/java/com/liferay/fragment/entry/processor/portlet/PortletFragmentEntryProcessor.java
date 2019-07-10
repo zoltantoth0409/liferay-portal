@@ -191,14 +191,15 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 			String instanceId = _getInstanceId(
 				fragmentEntryLink.getNamespace(), id);
 
-			OptionalLong segmentsExperienceIdOptional =
+			OptionalLong segmentsExperienceIdOptionalLong =
 				_getSegmentsExperienceIdOptional(
 					fragmentEntryProcessorContext.getSegmentsExperienceIds());
 
-			if (segmentsExperienceIdOptional.isPresent()) {
+			if (segmentsExperienceIdOptionalLong.isPresent()) {
 				instanceId =
 					SegmentsExperiencePortletUtil.setSegmentsExperienceId(
-						instanceId, segmentsExperienceIdOptional.getAsLong());
+						instanceId,
+						segmentsExperienceIdOptionalLong.getAsLong());
 			}
 
 			String defaultPreferences = StringPool.BLANK;
@@ -352,13 +353,14 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		String instanceId = _getInstanceId(namespace, id);
 
 		if (ArrayUtil.isNotEmpty(segmentsExperienceIds)) {
-			OptionalLong segmentsExperienceIdOptional =
+			OptionalLong segmentsExperienceIdOptionalLong =
 				_getSegmentsExperienceIdOptional(segmentsExperienceIds);
 
-			if (segmentsExperienceIdOptional.isPresent()) {
+			if (segmentsExperienceIdOptionalLong.isPresent()) {
 				instanceId =
 					SegmentsExperiencePortletUtil.setSegmentsExperienceId(
-						instanceId, segmentsExperienceIdOptional.getAsLong());
+						instanceId,
+						segmentsExperienceIdOptionalLong.getAsLong());
 			}
 		}
 
@@ -473,13 +475,13 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 				fragmentEntryProcessorContext.getHttpServletRequest(),
 				PortletIdCodec.encode(portletId, instanceId));
 
-		OptionalLong segmentsExperienceIdOptional =
+		OptionalLong segmentsExperienceIdOptionalLong =
 			_getSegmentsExperienceIdOptional(
 				fragmentEntryProcessorContext.getSegmentsExperienceIds());
 
-		if (segmentsExperienceIdOptional.isPresent()) {
+		if (segmentsExperienceIdOptionalLong.isPresent()) {
 			instanceId = SegmentsExperiencePortletUtil.setSegmentsExperienceId(
-				instanceId, segmentsExperienceIdOptional.getAsLong());
+				instanceId, segmentsExperienceIdOptionalLong.getAsLong());
 
 			String defaultExperienceInstanceId =
 				SegmentsExperiencePortletUtil.setSegmentsExperienceId(
