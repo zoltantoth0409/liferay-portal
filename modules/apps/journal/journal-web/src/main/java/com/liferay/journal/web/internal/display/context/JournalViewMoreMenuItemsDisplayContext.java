@@ -190,6 +190,7 @@ public class JournalViewMoreMenuItemsDisplayContext {
 		portletURL.setParameter("mvcPath", "/view_more_menu_items.jsp");
 		portletURL.setParameter("folderId", String.valueOf(_folderId));
 		portletURL.setParameter("eventName", getEventName());
+		portletURL.setParameter("orderByType", getOrderByType());
 
 		return portletURL;
 	}
