@@ -232,7 +232,8 @@ public class JournalViewMoreMenuItemsDisplayContext {
 				add(
 					dropdownItem -> {
 						dropdownItem.setActive(true);
-						dropdownItem.setHref(_renderResponse.createRenderURL());
+						dropdownItem.setHref(
+							getPortletURL(), "navigation", "all");
 						dropdownItem.setLabel(
 							LanguageUtil.get(_request, "all"));
 					});
