@@ -144,8 +144,8 @@ public class BuildingsSiteInitializer implements SiteInitializer {
 		serviceContext.setLanguageId(LanguageUtil.getLanguageId(locale));
 
 		serviceContext.setScopeGroupId(groupId);
-		serviceContext.setUserId(user.getUserId());
 		serviceContext.setTimeZone(user.getTimeZone());
+		serviceContext.setUserId(user.getUserId());
 
 		_serviceContext = serviceContext;
 	}
