@@ -356,10 +356,6 @@ public class GraphQLServletExtender {
 			DataFetchingEnvironment dataFetchingEnvironment, Method method)
 		throws Exception {
 
-		Class<?> clazz = method.getDeclaringClass();
-
-		Object instance = clazz.newInstance();
-
 		GraphQLContext graphQLContext = dataFetchingEnvironment.getContext();
 
 		Optional<HttpServletRequest> httpServletRequestOptional =
@@ -371,9 +367,13 @@ public class GraphQLServletExtender {
 		AcceptLanguage acceptLanguage = new AcceptLanguageImpl(
 			httpServletRequest, _language, _portal);
 
+		Class<?> clazz = method.getDeclaringClass();
+
+		Object instance = clazz.newInstance();
+
 		for (Field field : clazz.getDeclaredFields()) {
-			if (Modifier.isStatic(field.getModifiers()) ||
-				Modifier.isFinal(field.getModifiers())) {
+			if (Modifier.isFinal(field.getModifiers()) ||
+				Modifier.isStatic(field.getModifiers())) {
 
 				continue;
 			}

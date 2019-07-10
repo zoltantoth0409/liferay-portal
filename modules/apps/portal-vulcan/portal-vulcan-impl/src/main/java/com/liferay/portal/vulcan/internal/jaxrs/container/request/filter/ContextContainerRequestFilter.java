@@ -62,6 +62,9 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 		}
 
 		try {
+			HttpServletRequest httpServletRequest =
+				ContextProviderUtil.getHttpServletRequest(message);
+
 			Class<?> clazz = instance.getClass();
 
 			Class<?> superClass = clazz.getSuperclass();
@@ -74,9 +77,6 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 				}
 
 				Class<?> fieldClass = field.getType();
-
-				HttpServletRequest httpServletRequest =
-					ContextProviderUtil.getHttpServletRequest(message);
 
 				if (fieldClass.isAssignableFrom(AcceptLanguage.class)) {
 					field.setAccessible(true);
@@ -91,7 +91,9 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 
 					field.set(instance, _portal.getCompany(httpServletRequest));
 				}
-				else if (fieldClass.isAssignableFrom(HttpServletRequest.class)) {
+				else if (fieldClass.isAssignableFrom(
+							HttpServletRequest.class)) {
+
 					field.setAccessible(true);
 
 					field.set(instance, httpServletRequest);
