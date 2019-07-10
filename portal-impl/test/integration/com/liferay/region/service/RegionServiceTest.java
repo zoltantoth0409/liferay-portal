@@ -40,7 +40,7 @@ public class RegionServiceTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testJapanRegionOrdering() {
+	public void testGetRegions() {
 		Country countryJapan = CountryServiceUtil.fetchCountryByA2("JP");
 
 		Assert.assertNotNull(countryJapan);
@@ -59,7 +59,7 @@ public class RegionServiceTest {
 			});
 
 		Assert.assertEquals(
-			"Japan regions should be sorted by region code", sortedRegions,
+			"Japanese regions should be sorted by region code", sortedRegions,
 			regions);
 	}
 
