@@ -37,7 +37,10 @@ definition {
 		property database.types = "db2,hypersonic,mariadb,mysql,oracle,postgresql,sqlserver,sybase";
 		property environment.acceptance = "true";
 
-		Staging.remoteStagingSetUp(siteName = "Site Name");
+		Staging.remoteStagingSetUp(
+			remotePort = "9080",
+			remoteStaging = "true",
+			siteName = "Site Name");
 
 		Navigator.gotoSitePage(
 			pageName = "Staging Test Page",
@@ -165,7 +168,10 @@ definition {
 		property databases.size = "1";
 		property portal.acceptance = "true";
 
-		Staging.remoteStagingSetUp(siteName = "Site Name");
+		Staging.remoteStagingSetUp(
+			remotePort = "9080",
+			remoteStaging = "true",
+			siteName = "Site Name");
 	}
 
 	@priority = "5"
@@ -742,6 +748,8 @@ definition {
 
 		Staging.remoteStagingSetUp(
 			pageVersioningEnabled = "true",
+			remotePort = "9080",
+			remoteStaging = "true",
 			siteName = "Site Name");
 
 		Navigator.gotoSitePage(
@@ -850,6 +858,8 @@ definition {
 
 		Staging.remoteStagingSetUp(
 			pageVersioningEnabled = "true",
+			remotePort = "9080",
+			remoteStaging = "true",
 			siteName = "Site Name");
 
 		Navigator.gotoSitePage(
