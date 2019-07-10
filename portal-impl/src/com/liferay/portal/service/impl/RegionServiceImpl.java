@@ -125,18 +125,17 @@ public class RegionServiceImpl extends RegionServiceBaseImpl {
 			return null;
 		}
 
-		return _countryOrderByComparatorMap.get(country.getA2());
+		return _orderByComparators.get(country.getA2());
 	}
 
 	private static final Map<String, OrderByComparator<Region>>
-		_countryOrderByComparatorMap =
-			new HashMap<String, OrderByComparator<Region>>() {
-				{
-					put(
-						"JP",
-						OrderByComparatorFactoryUtil.create(
-							RegionModelImpl.TABLE_NAME, "regionCode", true));
-				}
-			};
+		_orderByComparators = new HashMap<String, OrderByComparator<Region>>() {
+			{
+				put(
+					"JP",
+					OrderByComparatorFactoryUtil.create(
+						RegionModelImpl.TABLE_NAME, "regionCode", true));
+			}
+		};
 
 }
