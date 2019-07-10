@@ -252,8 +252,7 @@ public class ActionUtil {
 		long classNameId = ParamUtil.getLong(request, "classNameId");
 		long classPK = ParamUtil.getLong(request, "classPK");
 		String articleId = ParamUtil.getString(request, "articleId");
-		long ddmStructureId = ParamUtil.getLong(
-				request, "ddmStructureId");
+		long ddmStructureId = ParamUtil.getLong(request, "ddmStructureId");
 		String ddmStructureKey = ParamUtil.getString(
 			request, "ddmStructureKey");
 		int status = ParamUtil.getInteger(
