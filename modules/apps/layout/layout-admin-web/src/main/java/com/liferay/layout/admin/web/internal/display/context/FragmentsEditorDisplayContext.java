@@ -43,6 +43,8 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigurationFactory
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
@@ -267,6 +269,10 @@ public class FragmentsEditorDisplayContext {
 		PortletURL actionURL = _renderResponse.createActionURL();
 
 		actionURL.setParameter(ActionRequest.ACTION_NAME, action);
+
+		if (_classNameId == PortalUtil.getClassNameId(Layout.class)) {
+			((LiferayPortletURL)actionURL).setRefererPlid(_classPK);
+		}
 
 		return actionURL.toString();
 	}

@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portletdisplaytemplate.PortletDisplayTemplateManagerUtil;
+import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.NavItem;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -240,7 +241,7 @@ public class NavigationMenuTag extends IncludeTag {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Layout layout = themeDisplay.getLayout();
+		Layout layout = _getLayout(themeDisplay);
 
 		long siteNavigationMenuItemId = _getRelativeSiteNavigationMenuItemId(
 			layout);
@@ -288,6 +289,20 @@ public class NavigationMenuTag extends IncludeTag {
 				request, themeDisplay, originalSiteNavigationMenuItem));
 
 		return navItems;
+	}
+
+	private Layout _getLayout(ThemeDisplay themeDisplay)
+		throws PortalException {
+
+		Layout layout = themeDisplay.getLayout();
+
+		long refererPlid = themeDisplay.getRefererPlid();
+
+		if (layout.isTypeControlPanel() && (refererPlid > 0)) {
+			return LayoutLocalServiceUtil.getLayout(refererPlid);
+		}
+
+		return layout;
 	}
 
 	private List<NavItem> _getMenuNavItems(

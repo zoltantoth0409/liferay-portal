@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.service.LayoutLocalService;
+import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.NavItem;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Validator;
@@ -49,7 +50,7 @@ public class NavItemUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Layout layout = themeDisplay.getLayout();
+		Layout layout = _getLayout(themeDisplay);
 
 		if (layout.isRootLayout()) {
 			return Collections.singletonList(
@@ -154,7 +155,7 @@ public class NavItemUtil {
 		}
 		else if (rootLayoutType.equals("select")) {
 			if (Validator.isNotNull(rootLayoutUuid)) {
-				Layout layout = themeDisplay.getLayout();
+				Layout layout = _getLayout(themeDisplay);
 
 				Layout rootLayout =
 					_layoutLocalService.getLayoutByUuidAndGroupId(
@@ -201,6 +202,20 @@ public class NavItemUtil {
 
 		_siteNavigationMenuItemTypeRegistry =
 			siteNavigationMenuItemTypeRegistry;
+	}
+
+	private static Layout _getLayout(ThemeDisplay themeDisplay)
+		throws PortalException {
+
+		Layout layout = themeDisplay.getLayout();
+
+		long refererPlid = themeDisplay.getRefererPlid();
+
+		if (layout.isTypeControlPanel() && (refererPlid > 0)) {
+			return LayoutLocalServiceUtil.getLayout(refererPlid);
+		}
+
+		return layout;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(NavItemUtil.class);

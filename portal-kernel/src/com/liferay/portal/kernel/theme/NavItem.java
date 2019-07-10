@@ -17,6 +17,8 @@ package com.liferay.portal.kernel.theme;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.LayoutConstants;
+import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.model.LayoutType;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
@@ -94,15 +96,17 @@ public class NavItem implements Serializable {
 			Map<String, Object> contextObjects)
 		throws PortalException {
 
-		List<Layout> parentLayouts = themeDisplay.getLayouts();
+		List<Layout> parentLayouts = _getLayouts(themeDisplay);
 
 		if (parentLayouts == null) {
 			return Collections.emptyList();
 		}
 
+		LayoutSet layoutSet = _getLayoutSet(themeDisplay);
+
 		Map<Long, List<Layout>> layoutChildLayouts =
 			LayoutLocalServiceUtil.getLayoutChildLayouts(
-				themeDisplay.getLayoutSet(), parentLayouts);
+				layoutSet, parentLayouts);
 
 		for (List<Layout> childLayouts : layoutChildLayouts.values()) {
 			Iterator<Layout> iterator = childLayouts.iterator();
@@ -429,6 +433,40 @@ public class NavItem implements Serializable {
 		}
 
 		return navItems;
+	}
+
+	private static List<Layout> _getLayouts(ThemeDisplay themeDisplay) {
+		Layout layout = themeDisplay.getLayout();
+
+		long refererPlid = themeDisplay.getRefererPlid();
+
+		if (layout.isTypeControlPanel() && (refererPlid > 0)) {
+			layout = LayoutLocalServiceUtil.fetchLayout(refererPlid);
+
+			if (layout != null) {
+				return LayoutLocalServiceUtil.getLayouts(
+					layout.getGroupId(), layout.isPrivateLayout(),
+					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+			}
+		}
+
+		return themeDisplay.getLayouts();
+	}
+
+	private static LayoutSet _getLayoutSet(ThemeDisplay themeDisplay) {
+		Layout layout = themeDisplay.getLayout();
+
+		long refererPlid = themeDisplay.getRefererPlid();
+
+		if (layout.isTypeControlPanel() && (refererPlid > 0)) {
+			layout = LayoutLocalServiceUtil.fetchLayout(refererPlid);
+
+			if (layout != null) {
+				return layout.getLayoutSet();
+			}
+		}
+
+		return themeDisplay.getLayoutSet();
 	}
 
 	private NavItem(

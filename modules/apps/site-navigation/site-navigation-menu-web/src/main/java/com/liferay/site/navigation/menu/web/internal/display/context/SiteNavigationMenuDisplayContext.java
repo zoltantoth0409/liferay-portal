@@ -18,9 +18,11 @@ import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
+import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -377,6 +379,62 @@ public class SiteNavigationMenuDisplayContext {
 		return _preview;
 	}
 
+	public boolean isShowPrivatePagesHierarchy() {
+		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Group scopeGroup = null;
+
+		Layout layout = themeDisplay.getLayout();
+
+		if (layout.isTypeControlPanel() &&
+			(themeDisplay.getRefererPlid() > 0)) {
+
+			layout = LayoutLocalServiceUtil.fetchLayout(
+				themeDisplay.getRefererPlid());
+			scopeGroup = layout.getGroup();
+		}
+
+		if (layout == null) {
+			layout = themeDisplay.getLayout();
+			scopeGroup = themeDisplay.getScopeGroup();
+		}
+
+		if (scopeGroup.hasPrivateLayouts() && layout.isPrivateLayout()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isShowPublicPagesHierarchy() {
+		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Group scopeGroup = null;
+
+		Layout layout = themeDisplay.getLayout();
+
+		if (layout.isTypeControlPanel() &&
+			(themeDisplay.getRefererPlid() > 0)) {
+
+			layout = LayoutLocalServiceUtil.fetchLayout(
+				themeDisplay.getRefererPlid());
+			scopeGroup = layout.getGroup();
+		}
+
+		if (layout == null) {
+			layout = themeDisplay.getLayout();
+			scopeGroup = themeDisplay.getScopeGroup();
+		}
+
+		if (scopeGroup.hasPublicLayouts() && layout.isPublicLayout()) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public boolean isSiteNavigationMenuSelected() {
 		if ((_siteNavigationMenuPortletInstanceConfiguration.
 				siteNavigationMenuId() > 0) &&
@@ -394,6 +452,17 @@ public class SiteNavigationMenuDisplayContext {
 			WebKeys.THEME_DISPLAY);
 
 		Layout layout = themeDisplay.getLayout();
+
+		if (layout.isTypeControlPanel() &&
+			(themeDisplay.getRefererPlid() > 0)) {
+
+			layout = LayoutLocalServiceUtil.fetchLayout(
+				themeDisplay.getRefererPlid());
+		}
+
+		if (layout == null) {
+			layout = themeDisplay.getLayout();
+		}
 
 		if (layout.isPrivateLayout()) {
 			return SiteNavigationConstants.TYPE_PRIVATE_PAGES_HIERARCHY;

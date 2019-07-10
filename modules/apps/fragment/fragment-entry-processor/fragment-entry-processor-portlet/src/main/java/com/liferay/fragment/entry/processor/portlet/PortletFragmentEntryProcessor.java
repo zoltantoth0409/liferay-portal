@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.Portlet;
+import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
@@ -162,7 +163,8 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 				Objects.equals(mode, FragmentEntryLinkConstants.EDIT)) {
 
 				portletElement.appendChild(
-					_getPortletTopperElement(portletName, instanceId));
+					_getPortletTopperElement(
+						portletName, instanceId, fragmentEntryLink));
 			}
 
 			portletElement.appendChild(runtimeTagElement);
@@ -208,7 +210,10 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		}
 	}
 
-	private String _getConfigurationURL(String portletId) throws Exception {
+	private String _getConfigurationURL(
+			String portletId, FragmentEntryLink fragmentEntryLink)
+		throws Exception {
+
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
@@ -232,6 +237,13 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 			"resourcePrimKey",
 			PortletPermissionUtil.getPrimaryKey(
 				serviceContext.getPlid(), portletId));
+
+		if (fragmentEntryLink.getClassNameId() == _portal.getClassNameId(
+				Layout.class)) {
+
+			((LiferayPortletURL)configurationURL).setRefererPlid(
+				fragmentEntryLink.getClassPK());
+		}
 
 		configurationURL.setWindowState(LiferayWindowState.POP_UP);
 
@@ -273,7 +285,8 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 	}
 
 	private Element _getPortletMenuElement(
-			String portletName, String instanceId)
+			String portletName, String instanceId,
+			FragmentEntryLink fragmentEntryLink)
 		throws PortalException {
 
 		String portletId = PortletIdCodec.encode(
@@ -291,7 +304,8 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		buttonElement.attr("class", "btn btn-primary btn-sm");
 
 		try {
-			buttonElement.attr("onClick", _getConfigurationURL(portletId));
+			buttonElement.attr(
+				"onClick", _getConfigurationURL(portletId, fragmentEntryLink));
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
@@ -311,7 +325,8 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 	}
 
 	private Element _getPortletTopperElement(
-			String portletName, String instanceId)
+			String portletName, String instanceId,
+			FragmentEntryLink fragmentEntryLink)
 		throws PortalException {
 
 		Element portletTopperElement = new Element("header");
@@ -336,7 +351,7 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		portletTopperElement.appendChild(portletTitleElement);
 
 		portletTopperElement.appendChild(
-			_getPortletMenuElement(portletName, instanceId));
+			_getPortletMenuElement(portletName, instanceId, fragmentEntryLink));
 
 		return portletTopperElement;
 	}

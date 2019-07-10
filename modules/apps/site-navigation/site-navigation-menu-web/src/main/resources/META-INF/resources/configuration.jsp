@@ -63,16 +63,11 @@ else {
 						<aui:input checked="<%= !siteNavigationMenuDisplayContext.isSiteNavigationMenuSelected() %>" cssClass="select-navigation" label="select-navigation" name="selectNavigation" type="radio" value="0" />
 
 						<aui:select disabled="<%= siteNavigationMenuDisplayContext.isSiteNavigationMenuSelected() %>" label="" name="selectSiteNavigationMenuType" value="<%= siteNavigationMenuDisplayContext.getSelectSiteNavigationMenuType() %>">
-
-							<%
-							Group scopeGroup = themeDisplay.getScopeGroup();
-							%>
-
-							<c:if test="<%= scopeGroup.hasPublicLayouts() && layout.isPublicLayout() %>">
+							<c:if test="<%= siteNavigationMenuDisplayContext.isShowPublicPagesHierarchy() %>">
 								<aui:option label="public-pages-hierarchy" selected="<%= siteNavigationMenuDisplayContext.getSelectSiteNavigationMenuType() == SiteNavigationConstants.TYPE_PUBLIC_PAGES_HIERARCHY %>" value="<%= SiteNavigationConstants.TYPE_PUBLIC_PAGES_HIERARCHY %>" />
 							</c:if>
 
-							<c:if test="<%= scopeGroup.hasPrivateLayouts() && layout.isPrivateLayout() %>">
+							<c:if test="<%= siteNavigationMenuDisplayContext.isShowPrivatePagesHierarchy() %>">
 								<aui:option label="private-pages-hierarchy" selected="<%= siteNavigationMenuDisplayContext.getSelectSiteNavigationMenuType() == SiteNavigationConstants.TYPE_PRIVATE_PAGES_HIERARCHY %>" value="<%= SiteNavigationConstants.TYPE_PRIVATE_PAGES_HIERARCHY %>" />
 							</c:if>
 
@@ -262,6 +257,8 @@ else {
 		data.siteNavigationMenuType = selectSiteNavigationMenuType.val();
 
 		data = Liferay.Util.ns('_<%= HtmlUtil.escapeJS(portletResource) %>_', data);
+
+		data.refererPlid = <%= themeDisplay.getRefererPlid() %>;
 
 		Liferay.Portlet.refresh(curPortletBoundaryId, data);
 	}
