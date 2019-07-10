@@ -57,11 +57,11 @@ public class AddFragmentEntryLinkRootCommentMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long fragmentEntryLinkId = ParamUtil.getLong(
-			actionRequest, "fragmentEntryLinkId");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		long fragmentEntryLinkId = ParamUtil.getLong(
+			actionRequest, "fragmentEntryLinkId");
 
 		User user = themeDisplay.getUser();
 
