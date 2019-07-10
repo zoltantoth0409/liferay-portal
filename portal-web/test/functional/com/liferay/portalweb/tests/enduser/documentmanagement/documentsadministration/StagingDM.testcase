@@ -130,8 +130,7 @@ definition {
 
 		DMDocument.viewPG(dmDocumentTitle = "DM Document Title");
 
-		BlogsEntryComment.viewPG(
-			commentCount = "1",
+		Comments.viewPG(
 			entryComment = "DM Document Comment",
 			userFullName = "Test Test (You)");
 	}
