@@ -55,72 +55,71 @@ public class ContextContainerRequestFilter implements ContainerRequestFilter {
 	}
 
 	public void handleMessage(Message message) throws Fault {
+		try {
+			_handleMessage(message);
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private void _handleMessage(Message message) throws Exception {
 		Object instance = ContextProviderUtil.getMatchedResource(message);
 
 		if (instance == null) {
 			return;
 		}
 
-		try {
-			HttpServletRequest httpServletRequest =
-				ContextProviderUtil.getHttpServletRequest(message);
+		HttpServletRequest httpServletRequest =
+			ContextProviderUtil.getHttpServletRequest(message);
 
-			Class<?> clazz = instance.getClass();
+		Class<?> clazz = instance.getClass();
 
-			Class<?> superClass = clazz.getSuperclass();
+		Class<?> superClass = clazz.getSuperclass();
 
-			for (Field field : superClass.getDeclaredFields()) {
-				if (Modifier.isFinal(field.getModifiers()) ||
-					Modifier.isStatic(field.getModifiers())) {
+		for (Field field : superClass.getDeclaredFields()) {
+			if (Modifier.isFinal(field.getModifiers()) ||
+				Modifier.isStatic(field.getModifiers())) {
 
-					continue;
-				}
-
-				Class<?> fieldClass = field.getType();
-
-				if (fieldClass.isAssignableFrom(AcceptLanguage.class)) {
-					field.setAccessible(true);
-
-					field.set(
-						instance,
-						new AcceptLanguageImpl(
-							httpServletRequest, _language, _portal));
-				}
-				else if (fieldClass.isAssignableFrom(Company.class)) {
-					field.setAccessible(true);
-
-					field.set(instance, _portal.getCompany(httpServletRequest));
-				}
-				else if (fieldClass.isAssignableFrom(
-							HttpServletRequest.class)) {
-
-					field.setAccessible(true);
-
-					field.set(instance, httpServletRequest);
-				}
-				else if (fieldClass.isAssignableFrom(
-							HttpServletResponse.class)) {
-
-					field.setAccessible(true);
-
-					field.set(
-						instance,
-						message.getContextualProperty("HTTP.RESPONSE"));
-				}
-				else if (fieldClass.isAssignableFrom(UriInfo.class)) {
-					field.setAccessible(true);
-
-					field.set(instance, new UriInfoImpl(message));
-				}
-				else if (fieldClass.isAssignableFrom(User.class)) {
-					field.setAccessible(true);
-
-					field.set(instance, _portal.getUser(httpServletRequest));
-				}
+				continue;
 			}
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
+
+			Class<?> fieldClass = field.getType();
+
+			if (fieldClass.isAssignableFrom(AcceptLanguage.class)) {
+				field.setAccessible(true);
+
+				field.set(
+					instance,
+					new AcceptLanguageImpl(
+						httpServletRequest, _language, _portal));
+			}
+			else if (fieldClass.isAssignableFrom(Company.class)) {
+				field.setAccessible(true);
+
+				field.set(instance, _portal.getCompany(httpServletRequest));
+			}
+			else if (fieldClass.isAssignableFrom(HttpServletRequest.class)) {
+				field.setAccessible(true);
+
+				field.set(instance, httpServletRequest);
+			}
+			else if (fieldClass.isAssignableFrom(HttpServletResponse.class)) {
+				field.setAccessible(true);
+
+				field.set(
+					instance, message.getContextualProperty("HTTP.RESPONSE"));
+			}
+			else if (fieldClass.isAssignableFrom(UriInfo.class)) {
+				field.setAccessible(true);
+
+				field.set(instance, new UriInfoImpl(message));
+			}
+			else if (fieldClass.isAssignableFrom(User.class)) {
+				field.setAccessible(true);
+
+				field.set(instance, _portal.getUser(httpServletRequest));
+			}
 		}
 	}
 
