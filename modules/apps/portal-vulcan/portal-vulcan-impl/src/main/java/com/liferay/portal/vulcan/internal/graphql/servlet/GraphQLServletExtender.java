@@ -378,14 +378,14 @@ public class GraphQLServletExtender {
 				continue;
 			}
 
-			Class<?> fieldType = field.getType();
+			Class<?> fieldClass = field.getType();
 
-			if (fieldType.isAssignableFrom(AcceptLanguage.class)) {
+			if (fieldClass.isAssignableFrom(AcceptLanguage.class)) {
 				field.setAccessible(true);
 
 				field.set(instance, acceptLanguage);
 			}
-			else if (fieldType.isAssignableFrom(Company.class)) {
+			else if (fieldClass.isAssignableFrom(Company.class)) {
 				field.setAccessible(true);
 
 				field.set(
@@ -393,7 +393,7 @@ public class GraphQLServletExtender {
 					_companyLocalService.getCompany(
 						CompanyThreadLocal.getCompanyId()));
 			}
-			else if (fieldType.isAssignableFrom(User.class)) {
+			else if (fieldClass.isAssignableFrom(User.class)) {
 				field.setAccessible(true);
 
 				field.set(
