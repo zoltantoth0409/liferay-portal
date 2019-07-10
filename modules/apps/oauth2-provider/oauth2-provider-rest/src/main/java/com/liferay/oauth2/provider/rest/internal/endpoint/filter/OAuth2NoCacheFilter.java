@@ -42,7 +42,7 @@ public class OAuth2NoCacheFilter implements ContainerResponseFilter {
 		ContainerResponseContext containerResponseContext) {
 
 		MultivaluedMap<String, Object> headers =
-			containerRequestContext.getHeaders();
+			containerResponseContext.getHeaders();
 
 		headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
 		headers.add("Expires", "0");
