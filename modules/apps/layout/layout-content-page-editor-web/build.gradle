@@ -1,8 +1,10 @@
 dependencies {
 	compileInclude group: "com.liferay", name: "org.jsoup", version: "1.10.2.LIFERAY-PATCHED-3"
 
+	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation", version: "4.2.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.info.display.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.configuration.admin.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.fragment.api", version: "2.11.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.editor.taglib", version: "2.0.0"
@@ -18,6 +20,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.segments.api", version: "1.0.0"
