@@ -1275,7 +1275,10 @@ definition {
 		property databases.size = "1";
 		property test.name.skip.portal.instance = "Staging#StagingRemoteDMDocumentType";
 
-		Staging.remoteStagingSetUp(siteName = "Site Name");
+		Staging.remoteStagingSetUp(
+			remotePort = "9080",
+			remoteStaging = "true",
+			siteName = "Site Name");
 
 		ProductMenu.gotoSite(site = "Site Name");
 
@@ -1538,7 +1541,10 @@ definition {
 		property databases.size = "1";
 		property test.name.skip.portal.instance = "Staging#StagingRemoteLivePolls";
 
-		Staging.remoteStagingSetUp(siteName = "Site Name");
+		Staging.remoteStagingSetUp(
+			remotePort = "9080",
+			remoteStaging = "true",
+			siteName = "Site Name");
 
 		Navigator.gotoSitePage(
 			pageName = "Staging Test Page",
@@ -1596,7 +1602,10 @@ definition {
 		property databases.size = "1";
 		property test.name.skip.portal.instance = "Staging#StagingRemoteLiveWebContent";
 
-		Staging.remoteStagingSetUp(siteName = "Site Name");
+		Staging.remoteStagingSetUp(
+			remotePort = "9080",
+			remoteStaging = "true",
+			siteName = "Site Name");
 
 		Navigator.gotoSitePage(
 			pageName = "Staging Test Page",
