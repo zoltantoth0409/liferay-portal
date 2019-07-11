@@ -189,6 +189,8 @@ public class SegmentsExperienceLocalServiceImpl
 			long groupId, long classNameId, long classPK)
 		throws PortalException {
 
+		// Segments experiences
+
 		List<SegmentsExperience> segmentsExperiences =
 			segmentsExperiencePersistence.findByG_C_C(
 				groupId, classNameId, _getPublishedLayoutClassPK(classPK));
@@ -198,7 +200,7 @@ public class SegmentsExperienceLocalServiceImpl
 				segmentsExperience.getSegmentsExperienceId());
 		}
 
-		// Segments experiments of default experience
+		// Segments experiments
 
 		segmentsExperimentLocalService.deleteSegmentsExperiments(
 			SegmentsConstants.SEGMENTS_EXPERIENCE_ID_DEFAULT, classNameId,
