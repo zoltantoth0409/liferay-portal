@@ -98,9 +98,7 @@ public class LiferayOAuth2OSGiFeature implements Feature {
 			new AbstractContextContainerRequestFilter() {
 
 				@Override
-				public void filter(
-					ContainerRequestContext containerRequestContext) {
-
+				public void filter(ContainerRequestContext requestContext) {
 					_scopeContext.setApplicationName(osgiJAXRSName);
 					_scopeContext.setBundle(_bundle);
 					_scopeContext.setCompanyId(getCompanyId());
