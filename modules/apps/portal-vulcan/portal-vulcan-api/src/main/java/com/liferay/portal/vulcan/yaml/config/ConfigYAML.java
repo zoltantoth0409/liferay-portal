@@ -140,8 +140,9 @@ public class ConfigYAML {
 	private boolean _forcePredictableOperationId = true;
 	private boolean _forcePredictableSchemaPropertyName = true;
 	private String _implDir = "src/main/java";
-	private String _licenseName;
-	private String _licenseURL;
+	private String _licenseName = "Apache 2.0";
+	private String _licenseURL =
+		"http://www.apache.org/licenses/LICENSE-2.0.html";
 	private String _testDir;
 	private boolean _warningsEnabled = true;
 
