@@ -18,7 +18,6 @@ import com.liferay.oauth2.provider.test.internal.activator.BaseTestPreparatorBun
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.test.log.CaptureAppender;
 import com.liferay.portal.test.log.Log4JLoggerTestUtil;
 
 import java.util.Arrays;
@@ -32,6 +31,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Level;
+
 import org.codehaus.jettison.json.JSONObject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -124,16 +124,11 @@ public class JsonWebServiceTest extends BaseClientTestCase {
 
 		formData.putSingle("virtualHost", "testcompany.xyz");
 
-		try (CaptureAppender captureAppender =
-				Log4JLoggerTestUtil.configureLog4JLogger(
-					"portal_web.docroot.errors.code_jsp", Level.WARN)) {
-
-			Assert.assertEquals(
-				403,
-				invocationBuilder.post(
-					Entity.form(formData)
-				).getStatus());
-		}
+		Assert.assertEquals(
+			403,
+			invocationBuilder.post(
+				Entity.form(formData)
+			).getStatus());
 	}
 
 	public static class JsonWebServiceTestPreparatorBundleActivator
@@ -154,6 +149,10 @@ public class JsonWebServiceTest extends BaseClientTestCase {
 			createOAuth2Application(
 				defaultCompanyId, user, "oauthTestApplicationRW",
 				Arrays.asList("everything.read", "everything.write"));
+
+			autoCloseables.add(
+				Log4JLoggerTestUtil.configureLog4JLogger(
+					"portal_web.docroot.errors.code_jsp", Level.WARN));
 		}
 
 	}
