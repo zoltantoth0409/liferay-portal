@@ -33,17 +33,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The implementation of the segments experiment local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the <code>com.liferay.segments.service.SegmentsExperimentLocalService</code> interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Eduardo García
- * @see SegmentsExperimentLocalServiceBaseImpl
  */
 public class SegmentsExperimentLocalServiceImpl
 	extends SegmentsExperimentLocalServiceBaseImpl {
