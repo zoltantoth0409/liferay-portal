@@ -12,19 +12,19 @@
  * details.
  */
 
-package com.liferay.portal.search.elasticsearch6.internal.synonym;
+package com.liferay.portal.search.elasticsearch7.internal.synonym;
 
-import com.liferay.portal.search.elasticsearch6.internal.connection.ElasticsearchClientResolver;
-import com.liferay.portal.search.elasticsearch6.internal.connection.ElasticsearchFixture;
-import com.liferay.portal.search.elasticsearch6.internal.connection.IndexName;
-import com.liferay.portal.search.elasticsearch6.internal.document.SingleFieldFixture;
-import com.liferay.portal.search.elasticsearch6.internal.index.LiferayTypeMappingsConstants;
-import com.liferay.portal.search.elasticsearch6.internal.query.QueryBuilderFactories;
-import com.liferay.portal.search.elasticsearch6.internal.query.SearchAssert;
-import com.liferay.portal.search.elasticsearch6.internal.search.engine.adapter.ElasticsearchSearchEngineAdapterImpl;
-import com.liferay.portal.search.elasticsearch6.internal.search.engine.adapter.ElasticsearchSearchEngineAdapterIndexRequestTest;
-import com.liferay.portal.search.elasticsearch6.internal.search.engine.adapter.index.IndexRequestExecutorFixture;
-import com.liferay.portal.search.elasticsearch6.internal.util.ResourceUtil;
+import com.liferay.portal.search.elasticsearch7.internal.connection.ElasticsearchClientResolver;
+import com.liferay.portal.search.elasticsearch7.internal.connection.ElasticsearchFixture;
+import com.liferay.portal.search.elasticsearch7.internal.connection.IndexName;
+import com.liferay.portal.search.elasticsearch7.internal.document.SingleFieldFixture;
+import com.liferay.portal.search.elasticsearch7.internal.index.LiferayTypeMappingsConstants;
+import com.liferay.portal.search.elasticsearch7.internal.query.QueryBuilderFactories;
+import com.liferay.portal.search.elasticsearch7.internal.query.SearchAssert;
+import com.liferay.portal.search.elasticsearch7.internal.search.engine.adapter.ElasticsearchSearchEngineAdapterImpl;
+import com.liferay.portal.search.elasticsearch7.internal.search.engine.adapter.ElasticsearchSearchEngineAdapterIndexRequestTest;
+import com.liferay.portal.search.elasticsearch7.internal.search.engine.adapter.index.IndexRequestExecutorFixture;
+import com.liferay.portal.search.elasticsearch7.internal.util.ResourceUtil;
 import com.liferay.portal.search.engine.adapter.SearchEngineAdapter;
 import com.liferay.portal.search.engine.adapter.index.CreateIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.CreateIndexResponse;
