@@ -94,7 +94,7 @@ clean {
 dependencies {
 	ckEditor group: "com.liferay.webjars", name: "com.liferay.webjars.ckeditor", version: ckEditorVersionLfr
 
-	compileOnly group: "com.liferay", name: "com.liferay.frontend.editor.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.editor.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.editor.taglib", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "4.0.0"
