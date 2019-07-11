@@ -46,15 +46,9 @@ public class SegmentsExperimentLocalServiceImpl
 
 		// Segments experiment
 
-		User user = userLocalService.getUser(serviceContext.getUserId());
-
-		long groupId = serviceContext.getScopeGroupId();
-
 		long segmentsExperimentId = counterLocalService.increment();
-
-		int status = SegmentsConstants.SEGMENTS_EXPERIMENT_STATUS_DRAFT;
-
 		long publishedClassPK = _getPublishedLayoutClassPK(classPK);
+		int status = SegmentsConstants.SEGMENTS_EXPERIMENT_STATUS_DRAFT;
 
 		_validate(
 			segmentsExperienceId, classNameId, publishedClassPK, name, status);
@@ -63,10 +57,14 @@ public class SegmentsExperimentLocalServiceImpl
 			segmentsExperimentPersistence.create(segmentsExperimentId);
 
 		segmentsExperiment.setUuid(serviceContext.getUuid());
-		segmentsExperiment.setGroupId(groupId);
+		segmentsExperiment.setGroupId(serviceContext.getScopeGroupId());
+
+		User user = userLocalService.getUser(serviceContext.getUserId());
+
 		segmentsExperiment.setCompanyId(user.getCompanyId());
 		segmentsExperiment.setUserId(user.getUserId());
 		segmentsExperiment.setUserName(user.getFullName());
+
 		segmentsExperiment.setCreateDate(
 			serviceContext.getCreateDate(new Date()));
 		segmentsExperiment.setModifiedDate(
