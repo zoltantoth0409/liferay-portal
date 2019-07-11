@@ -68,6 +68,9 @@ public class DDMFormFieldOptionsFactoryImpl
 
 		DDMFormFieldOptions ddmFormFieldOptions = new DDMFormFieldOptions();
 
+		ddmFormFieldOptions.setDefaultLocale(
+			ddmFormFieldRenderingContext.getLocale());
+
 		List<Map<String, String>> options =
 			(List<Map<String, String>>)ddmFormFieldRenderingContext.getProperty(
 				"options");
