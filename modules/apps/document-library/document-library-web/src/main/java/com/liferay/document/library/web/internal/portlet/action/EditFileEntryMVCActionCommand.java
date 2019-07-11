@@ -51,8 +51,8 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.RoleConstants;
 import com.liferay.portal.kernel.model.TrashedModel;
-import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
@@ -559,7 +559,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			ModelPermissionsFactory.create(
 				modelPermissions.getActionIds(
 					RoleConstants.PLACEHOLDER_DEFAULT_GROUP_ROLE),
-				_RESTRICTED_GUEST_PERMISSIONS, DLFileEntry.class.getName()));
+				_RESTRICTED_GUEST_PERMISSIONS));
 
 		return serviceContext;
 	}
