@@ -465,11 +465,11 @@ public class FacebookConnectAction extends BaseStrutsAction {
 
 		String emailAddress = jsonObject.getString("email");
 
-		if (company.hasCompanyMx(emailAddress)) {
-			if (!company.isStrangersWithMx()) {
-				throw new UserEmailAddressException.MustNotUseCompanyMx(
-					emailAddress);
-			}
+		if (company.hasCompanyMx(emailAddress) &&
+			!company.isStrangersWithMx()) {
+
+			throw new UserEmailAddressException.MustNotUseCompanyMx(
+				emailAddress);
 		}
 	}
 
