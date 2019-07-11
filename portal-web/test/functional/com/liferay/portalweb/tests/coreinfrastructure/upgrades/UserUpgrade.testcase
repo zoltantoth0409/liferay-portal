@@ -111,6 +111,7 @@ definition {
 		property data.archive.type = "data-archive-user";
 		property database.types = "db2,mariadb,mysql,oracle,postgresql,sybase";
 		property portal.version = "7.1.10";
+		property test.run.environment = "EE";
 
 		SignIn.signIn();
 
