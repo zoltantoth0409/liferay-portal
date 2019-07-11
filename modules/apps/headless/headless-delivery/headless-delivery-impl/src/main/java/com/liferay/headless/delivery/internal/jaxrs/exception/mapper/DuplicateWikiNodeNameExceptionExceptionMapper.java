@@ -23,7 +23,7 @@ import javax.ws.rs.ext.ExceptionMapper;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * Converts any {@code FolderNameException} to a {@code 400} error.
+ * Converts any {@code DuplicateNodeNameException} to a {@code 400} error.
  *
  * @author Javier Gamarra
  */
@@ -31,11 +31,11 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.application.select=(osgi.jaxrs.name=Liferay.Headless.Delivery)",
 		"osgi.jaxrs.extension=true",
-		"osgi.jaxrs.name=Liferay.Headless.Delivery.DuplicateNodeNameExceptionExceptionMapper"
+		"osgi.jaxrs.name=Liferay.Headless.Delivery.DuplicateWikiNodeNameExceptionExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )
-public class DuplicateNodeNameExceptionExceptionMapper
+public class DuplicateWikiNodeNameExceptionExceptionMapper
 	implements ExceptionMapper<DuplicateNodeNameException> {
 
 	@Override
