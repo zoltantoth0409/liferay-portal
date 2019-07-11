@@ -43,8 +43,6 @@ public class JPAddressTextLocalizer implements AddressTextLocalizer {
 		Optional<String> countryNameOptional =
 			AddressUtil.getCountryNameOptional(address);
 
-		// Country
-
 		countryNameOptional.ifPresent(
 			countryName -> {
 				sb.append(html.escape(countryName));
@@ -64,13 +62,9 @@ public class JPAddressTextLocalizer implements AddressTextLocalizer {
 
 		boolean hasZip = Validator.isNotNull(zip);
 
-		// Zip code
-
 		if (hasZip) {
 			sb.append(zip);
 		}
-
-		// Prefecture
 
 		regionNameOptional.ifPresent(
 			regionName -> {
@@ -81,14 +75,10 @@ public class JPAddressTextLocalizer implements AddressTextLocalizer {
 				sb.append(html.escape(regionName));
 			});
 
-		// City
-
 		if (hasCity) {
 			sb.append(StringPool.SPACE);
 			sb.append(city);
 		}
-
-		// Residence
 
 		String street1 = escapedAddress.getStreet1();
 
@@ -100,16 +90,12 @@ public class JPAddressTextLocalizer implements AddressTextLocalizer {
 			sb.append(street1);
 		}
 
-		// Apartment name, etc
-
 		String street2 = escapedAddress.getStreet2();
 
 		if (Validator.isNotNull(street2)) {
 			sb.append(StringPool.NEW_LINE);
 			sb.append(street2);
 		}
-
-		// Apartment room number, etc
 
 		String street3 = escapedAddress.getStreet3();
 
