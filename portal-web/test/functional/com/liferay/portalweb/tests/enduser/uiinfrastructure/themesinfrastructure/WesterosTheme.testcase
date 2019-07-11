@@ -1,8 +1,6 @@
 @component-name = "portal-user-interface"
 definition {
 
-	property osgi.app.includes = "frontend-theme-westeros-bank";
-	property plugins.deployment.type = "osgi";
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "User Interface";
@@ -25,6 +23,7 @@ definition {
 	test AddThemeSite {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "WesterosTheme#AddThemeSite";
+		property theme.file.name = "westeros-bank-theme.war";
 		var themeContainsResources = PropsUtil.get("theme.contains.resources");
 
 		if ("${themeContainsResources}" == "true") {
@@ -39,24 +38,17 @@ definition {
 
 			ProductMenu.gotoSite(site = "Westeros Bank Theme Site");
 
+			AssertVisible(locator1 = "UserBar#USER_AVATAR_IMAGE");
+
 			AssertClick(
 				key_pageName = "For You",
 				locator1 = "Home#PAGE",
 				value1 = "FOR YOU");
 
-			MouseOver(
-				key_pageName = "Checking and Credit Cards",
-				locator1 = "Home#PAGE");
-
-			AssertClick(
-				key_childPageName = "All credit cards",
-				locator1 = "Home#PAGE_CHILD_PAGE",
-				value1 = "All credit cards");
-
 			AssertTextEquals(
-				key_title = "We help you to achieve your goals",
+				key_title = "Always thinking of you",
 				locator1 = "Header#H2_TITLE",
-				value1 = "We help you to achieve your goals");
+				value1 = "Always thinking of you");
 		}
 		else {
 			var appName = "westeros-bank-theme";

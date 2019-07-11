@@ -1,8 +1,6 @@
 @component-name = "portal-user-interface"
 definition {
 
-	property osgi.app.includes = "frontend-theme-porygon";
-	property plugins.deployment.type = "osgi";
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property testray.main.component.name = "User Interface";
@@ -25,6 +23,7 @@ definition {
 	test AddThemeSite {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "PorygonTheme#AddThemeSite";
+		property theme.file.name = "porygon-theme.war";
 		var themeContainsResources = PropsUtil.get("theme.contains.resources");
 
 		if ("${themeContainsResources}" == "true") {
