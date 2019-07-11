@@ -37,9 +37,6 @@ public class UpgradeMVCCVersionTest extends UpgradeMVCCVersion {
 
 		_createTable(_HIBERNATE_MAPPING_TABLE_NAME);
 		_createTable(_TABLE_NAME);
-
-		_excludedTableNames = new String[0];
-		_moduleTableNames = new String[0];
 	}
 
 	@After
@@ -97,7 +94,7 @@ public class UpgradeMVCCVersionTest extends UpgradeMVCCVersion {
 
 	private static final String _TABLE_NAME = "UpgradeMVCCVersionTest";
 
-	private String[] _excludedTableNames;
-	private String[] _moduleTableNames;
+	private String[] _excludedTableNames = new String[0];
+	private String[] _moduleTableNames = new String[0];
 
 }
