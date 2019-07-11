@@ -179,7 +179,7 @@ public class SegmentsExperimentLocalServiceImpl
 			return;
 		}
 
-		if (ListUtil.isNotNull(
+		if (ListUtil.isNotEmpty(
 				segmentsExperimentPersistence.findByS_C_C_S(
 					segmentsExperienceId, classNameId, classPK,
 					SegmentsConstants.SEGMENTS_EXPERIMENT_STATUS_DRAFT))) {
