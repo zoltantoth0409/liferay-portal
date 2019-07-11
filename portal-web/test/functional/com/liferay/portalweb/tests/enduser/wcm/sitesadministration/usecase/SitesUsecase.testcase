@@ -336,7 +336,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

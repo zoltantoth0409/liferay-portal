@@ -670,7 +670,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -721,7 +721,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Another Site Name");
 
-		Navigator.openSiteURL(siteName = "Another Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Another Site Name");
 
 		for (var entryCount : list "1,2") {
 			ProductMenu.gotoPortlet(

@@ -1774,7 +1774,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

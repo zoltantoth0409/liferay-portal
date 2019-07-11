@@ -313,7 +313,7 @@ definition {
 
 		Site.addBlankCP(siteName = "${siteName}");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openSiteLanding(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -453,7 +453,7 @@ definition {
 
 		Site.addBlankCP(siteName = "${siteName}");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openSiteLanding(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -552,7 +552,7 @@ definition {
 
 		Site.addBlankCP(siteName = "${siteName}");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openSiteLanding(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",

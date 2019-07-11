@@ -520,7 +520,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Test Site Name");
 
-		Navigator.openSiteURL(siteName = "Test Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Test Site Name");
 
 		SitePageNavigator.gotoPages(page = "Public Pages");
 
@@ -607,7 +607,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Test Site Name");
 
-		Navigator.openSiteURL(siteName = "Test Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Test Site Name");
 
 		SitePageNavigator.gotoPages(page = "Public Pages");
 
@@ -1992,7 +1992,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -2051,7 +2051,7 @@ definition {
 
 		Site.addBlankCP(siteName = "S.P.A.C.E.");
 
-		Navigator.openSiteURL(siteName = "S.P.A.C.E.");
+		Navigator.openSiteLanding(siteURLKey = "S.P.A.C.E.");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

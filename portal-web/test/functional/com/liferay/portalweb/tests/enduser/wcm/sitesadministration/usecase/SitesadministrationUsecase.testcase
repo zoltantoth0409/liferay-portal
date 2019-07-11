@@ -776,7 +776,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site2 Name");
 
-		Navigator.openSiteURL(siteName = "Site2 Name");
+		Navigator.openSiteLanding(siteURLKey = "Site2 Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -1063,7 +1063,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		Page.add(
 			pageName = "Blog Page Template",
@@ -1225,7 +1225,7 @@ definition {
 
 		Site.addBlankCP(siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
