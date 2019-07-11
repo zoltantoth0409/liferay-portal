@@ -18,6 +18,7 @@ import com.liferay.portal.vulcan.resource.OpenAPIResource;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -49,7 +50,9 @@ import org.osgi.service.component.annotations.Reference;
 	service = OpenAPIResourceImpl.class
 )
 @Generated("")
-@OpenAPIDefinition(info = @Info(description = "", title = "", version = "v1.0"))
+@OpenAPIDefinition(
+	info = @Info(description = "", license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html"), title = "", version = "v1.0")
+)
 @Path("/v1.0")
 public class OpenAPIResourceImpl {
 
