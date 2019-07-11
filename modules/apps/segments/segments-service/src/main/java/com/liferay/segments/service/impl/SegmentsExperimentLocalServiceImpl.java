@@ -48,11 +48,12 @@ public class SegmentsExperimentLocalServiceImpl
 
 		long segmentsExperimentId = counterLocalService.increment();
 
-		long publishedClassPK = _getPublishedLayoutClassPK(classPK);
+		long publishedLayoutClassPK = _getPublishedLayoutClassPK(classPK);
 		int status = SegmentsConstants.SEGMENTS_EXPERIMENT_STATUS_DRAFT;
 
 		_validate(
-			segmentsExperienceId, classNameId, publishedClassPK, name, status);
+			segmentsExperienceId, classNameId, publishedLayoutClassPK, name,
+			status);
 
 		SegmentsExperiment segmentsExperiment =
 			segmentsExperimentPersistence.create(segmentsExperimentId);
@@ -74,7 +75,7 @@ public class SegmentsExperimentLocalServiceImpl
 		segmentsExperiment.setSegmentsExperimentKey(
 			String.valueOf(counterLocalService.increment()));
 		segmentsExperiment.setClassNameId(classNameId);
-		segmentsExperiment.setClassPK(publishedClassPK);
+		segmentsExperiment.setClassPK(publishedLayoutClassPK);
 		segmentsExperiment.setName(name);
 		segmentsExperiment.setDescription(description);
 		segmentsExperiment.setStatus(status);
