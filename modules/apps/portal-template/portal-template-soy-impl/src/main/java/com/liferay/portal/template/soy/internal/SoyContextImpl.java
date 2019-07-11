@@ -156,7 +156,7 @@ public class SoyContextImpl implements SoyContext {
 		SoyDataFactory soyDataFactory =
 			SoyDataFactoryProvider.getSoyDataFactory();
 
-		_map.put(key, soyDataFactory.createSoyHTMLData(value));
+		_map.put(key, soyDataFactory.createSoyRawData(value));
 	}
 
 	@Override
