@@ -89,9 +89,9 @@ public class SegmentsExperienceLocalServiceImpl
 			serviceContext.getCreateDate(new Date()));
 		segmentsExperience.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
+		segmentsExperience.setSegmentsEntryId(segmentsEntryId);
 		segmentsExperience.setSegmentsExperienceKey(
 			String.valueOf(counterLocalService.increment()));
-		segmentsExperience.setSegmentsEntryId(segmentsEntryId);
 		segmentsExperience.setClassNameId(classNameId);
 		segmentsExperience.setClassPK(publishedClassPK);
 		segmentsExperience.setNameMap(nameMap);

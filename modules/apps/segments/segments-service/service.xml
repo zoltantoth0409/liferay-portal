@@ -138,8 +138,8 @@
 
 		<!-- Other fields -->
 
-		<column name="segmentsExperienceKey" type="String" />
 		<column name="segmentsEntryId" type="long" />
+		<column name="segmentsExperienceKey" type="String" />
 		<column name="classNameId" type="long" />
 		<column name="classPK" type="long" />
 		<column localized="true" name="name" type="String" />
@@ -226,11 +226,11 @@
 
 		<!-- Other fields -->
 
-		<column name="segmentsExperimentKey" type="String" />
+		<column name="segmentsEntryId" type="long" />
 		<column name="segmentsExperienceId" type="long" />
+		<column name="segmentsExperimentKey" type="String" />
 		<column name="classNameId" type="long" />
 		<column name="classPK" type="long" />
-		<column name="segmentsEntryId" type="long" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
 		<column name="status" type="int" />
