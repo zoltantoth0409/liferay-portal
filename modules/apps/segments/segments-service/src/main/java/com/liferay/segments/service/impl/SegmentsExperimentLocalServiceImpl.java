@@ -47,6 +47,7 @@ public class SegmentsExperimentLocalServiceImpl
 		// Segments experiment
 
 		long segmentsExperimentId = counterLocalService.increment();
+
 		long publishedClassPK = _getPublishedLayoutClassPK(classPK);
 		int status = SegmentsConstants.SEGMENTS_EXPERIMENT_STATUS_DRAFT;
 
@@ -123,20 +124,20 @@ public class SegmentsExperimentLocalServiceImpl
 	}
 
 	@Override
-	public List<SegmentsExperiment> getSegmentsExperiments(
-		long groupId, long classNameId, long classPK) {
-
-		return segmentsExperimentPersistence.findByG_C_C(
-			groupId, classNameId, _getPublishedLayoutClassPK(classPK));
-	}
-
-	@Override
-	public List<SegmentsExperiment> getSegmentsExperimentsByExperience(
+	public List<SegmentsExperiment> getSegmentsExperienceSegmentsExperiments(
 		long segmentsExperienceId, long classNameId, long classPK) {
 
 		return segmentsExperimentPersistence.findByS_C_C(
 			segmentsExperienceId, classNameId,
 			_getPublishedLayoutClassPK(classPK));
+	}
+
+	@Override
+	public List<SegmentsExperiment> getSegmentsExperiments(
+		long groupId, long classNameId, long classPK) {
+
+		return segmentsExperimentPersistence.findByG_C_C(
+			groupId, classNameId, _getPublishedLayoutClassPK(classPK));
 	}
 
 	private long _getPublishedLayoutClassPK(long classPK) {
