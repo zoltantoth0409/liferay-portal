@@ -35,8 +35,8 @@ serverURL.setParameter("delta", String.valueOf(delta));
 
 PortletURL clearResultsURL = PortletURLUtil.clone(serverURL, liferayPortletResponse);
 
-clearResultsURL.setParameter("keywords", StringPool.BLANK);
 clearResultsURL.setParameter("navigation", (String)null);
+clearResultsURL.setParameter("keywords", StringPool.BLANK);
 
 SearchContainer loggerSearchContainer = new SearchContainer(liferayPortletRequest, serverURL, null, null);
 
