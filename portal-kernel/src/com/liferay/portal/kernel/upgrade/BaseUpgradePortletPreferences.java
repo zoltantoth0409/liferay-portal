@@ -77,6 +77,55 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 		return companyId;
 	}
 
+	protected long getCompanyIdIfPortletIsEmbedded(
+			long ownerId, String portletId)
+		throws Exception {
+
+		long companyId = 0;
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			ps = connection.prepareStatement(
+				"select count(*) from PortletPreferences where ownerId = ? " +
+					"and ownerType = ? and plid = ? and portletId = ?");
+
+			ps.setLong(1, ownerId);
+			ps.setInt(2, PortletKeys.PREFS_OWNER_TYPE_LAYOUT);
+			ps.setLong(3, PortletKeys.PREFS_PLID_SHARED);
+			ps.setString(4, portletId);
+
+			rs = ps.executeQuery();
+
+			if (rs.next() && (rs.getInt(1) > 0)) {
+				PreparedStatement ps2 = null;
+				ResultSet rs2 = null;
+
+				try {
+					ps2 = connection.prepareStatement(
+						"select companyId from Group_ where groupId = ?");
+
+					ps2.setLong(1, ownerId);
+
+					rs2 = ps2.executeQuery();
+
+					while (rs2.next()) {
+						companyId = rs2.getLong("companyId");
+					}
+				}
+				finally {
+					DataAccess.cleanUp(ps2, rs2);
+				}
+			}
+		}
+		finally {
+			DataAccess.cleanUp(ps, rs);
+		}
+
+		return companyId;
+	}
+
 	protected Object[] getGroup(long groupId) throws Exception {
 		Object[] group = null;
 
@@ -311,10 +360,16 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 						}
 					}
 					else if (ownerType == PortletKeys.PREFS_OWNER_TYPE_LAYOUT) {
-						Object[] layout = getLayout(plid);
+						if (plid != PortletKeys.PREFS_PLID_SHARED) {
+							Object[] layout = getLayout(plid);
 
-						if (layout != null) {
-							companyId = (Long)layout[1];
+							if (layout != null) {
+								companyId = (Long)layout[1];
+							}
+						}
+						else if (ownerId > 0) {
+							companyId = getCompanyIdIfPortletIsEmbedded(
+								ownerId, portletId);
 						}
 					}
 					else if (ownerType ==
