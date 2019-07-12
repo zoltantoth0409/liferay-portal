@@ -1159,6 +1159,8 @@ definition {
 
 		SitePages.addPublicPage(pageName = "Site Page");
 
+		Navigator.openSiteURL(siteName = "New Site");
+
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Site Administration",
