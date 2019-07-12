@@ -13,7 +13,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "2.2.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.renderer.api", version: "1.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.3.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.vulcan.api", version: "3.6.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "4.0.0"
