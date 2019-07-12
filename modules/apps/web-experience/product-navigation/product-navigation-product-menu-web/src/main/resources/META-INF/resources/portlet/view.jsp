@@ -127,6 +127,7 @@ String productMenuState = SessionClicks.get(request, ProductNavigationProductMen
 				}
 			}
 		);
+
 		var clearProductNavigationProductMenuHandles = Liferay.on(
 			'destroyPortlet',
 			function(event) {
