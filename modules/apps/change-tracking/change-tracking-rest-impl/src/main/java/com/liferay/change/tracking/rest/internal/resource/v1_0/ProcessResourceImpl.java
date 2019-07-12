@@ -48,10 +48,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-
-import javax.ws.rs.core.Context;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -229,9 +225,6 @@ public class ProcessResourceImpl extends BaseProcessResourceImpl {
 
 	@Reference
 	private CTProcessLocalService _ctProcessLocalService;
-
-	@Context
-	private HttpServletRequest _httpServletRequest;
 
 	@Reference
 	private UserLocalService _userLocalService;
