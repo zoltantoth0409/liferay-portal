@@ -90,7 +90,7 @@ public class UpgradeMVCCVersionTest extends UpgradeMVCCVersion {
 	}
 
 	private static final String _HIBERNATE_MAPPING_TABLE_NAME =
-		"UpgradeMVCCVersionHbmTest";
+		"UpgradeMVCCVersionHBMTest";
 
 	private static final String _TABLE_NAME = "UpgradeMVCCVersionTest";
 
