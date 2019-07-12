@@ -8,6 +8,7 @@
 	<#if !disabled>
 		<@liferay_aui.input
 			name=namespacedFieldName
+			required=required
 			type="hidden"
 			value=fieldValue
 		/>

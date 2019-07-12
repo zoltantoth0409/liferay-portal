@@ -43,6 +43,7 @@
 		cssClass=cssClass
 		label=escape(fieldStructure.label)
 		name="${namespacedParentFieldName}"
+		required=required
 		type="radio"
 		value=fieldStructure.value
 	>
