@@ -31,11 +31,13 @@ AUI.add(
 
 				instance._eventHandlers = [];
 
+				instance._eventHandlers.push(
+					instance.after('fieldValueChange', A.bind(instance._afterFieldValueChange, instance))
+				);
+
 				instance._stateRepaintableAttributes = {};
 
 				instance.bindFieldClassAttributesStatus(fieldClass);
-				
-				instance._eventHandlers.push(instance.after('fieldValueChange', A.bind(instance._afterFieldValueChange, instance)));
 			},
 
 			bindFieldClassAttributesStatus: function(fieldClass) {
@@ -111,15 +113,15 @@ AUI.add(
 				}
 			},
 			
-			_afterFieldValueChange: function(context) {
+			_afterFieldValueChange: function(fieldContext) {
 				var instance = this;
 
-				var instanceContext = instance.get('context');
+				var context = instance.get('context');
 
-				var value = instanceContext.value;
+				var value = context.value;
 				
-				if (!Util.compare(value, context.value)) {
-					instance._updateContextValue(context.value);
+				if (!Util.compare(value, fieldContext.value)) {
+					instance._updateContextValue(fieldContext.value);
 				}
 			},
 
