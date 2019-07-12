@@ -643,13 +643,13 @@ public class JournalDisplayContext {
 
 		_orderByCol = ParamUtil.getString(_httpServletRequest, "orderByCol");
 
-		String defaultOrderByCol = "modified-date";
-
-		if (isSearch()) {
-			defaultOrderByCol = "relevance";
-		}
-
 		if (Validator.isNull(_orderByCol)) {
+			String defaultOrderByCol = "modified-date";
+
+			if (isSearch()) {
+				defaultOrderByCol = "relevance";
+			}
+
 			_orderByCol = _portalPreferences.getValue(
 				JournalPortletKeys.JOURNAL, "order-by-col", defaultOrderByCol);
 		}
