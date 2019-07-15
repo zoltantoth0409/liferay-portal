@@ -239,6 +239,9 @@ public abstract class BaseDataLayoutResourceTestCase {
 			Arrays.asList(dataLayout1, dataLayout2),
 			(List<DataLayout>)page.getItems());
 		assertValid(page);
+
+		dataLayoutResource.deleteDataLayout(dataLayout1.getId());
+		dataLayoutResource.deleteDataLayout(dataLayout2.getId());
 	}
 
 	@Test
@@ -544,6 +547,9 @@ public abstract class BaseDataLayoutResourceTestCase {
 			Arrays.asList(dataLayout1, dataLayout2),
 			(List<DataLayout>)page.getItems());
 		assertValid(page);
+
+		dataLayoutResource.deleteDataLayout(dataLayout1.getId());
+		dataLayoutResource.deleteDataLayout(dataLayout2.getId());
 	}
 
 	@Test
