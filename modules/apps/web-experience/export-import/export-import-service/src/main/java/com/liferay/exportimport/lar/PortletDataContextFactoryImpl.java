@@ -208,6 +208,7 @@ public class PortletDataContextFactoryImpl
 		portletDataContext.setCompanyId(companyId);
 		portletDataContext.setGroupId(groupId);
 		portletDataContext.setScopeGroupId(groupId);
+		portletDataContext.setSourceGroupId(groupId);
 
 		try {
 			Group userPersonalSiteGroup =
