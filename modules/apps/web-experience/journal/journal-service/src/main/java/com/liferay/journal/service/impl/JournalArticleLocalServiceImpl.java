@@ -5973,6 +5973,11 @@ public class JournalArticleLocalServiceImpl
 		JournalArticle article = journalArticlePersistence.findByG_A_V(
 			groupId, articleId, version);
 
+		User user = userLocalService.getUser(article.getUserId());
+
+		content = format(
+			user, groupId, articleId, version, false, content, new HashMap<>());
+
 		article.setContent(content);
 
 		journalArticlePersistence.update(article);
