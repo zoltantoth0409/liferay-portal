@@ -46,17 +46,6 @@ public class DDMStructureLayoutModelDocumentContributor
 			Field.CLASS_NAME_ID,
 			classNameLocalService.getClassNameId(DDMStructureLayout.class));
 
-		document.addLocalizedKeyword(
-			"localized_name",
-			LocalizationUtil.populateLocalizationMap(
-				ddmStructureLayout.getNameMap(),
-				ddmStructureLayout.getDefaultLanguageId(),
-				ddmStructureLayout.getGroupId()),
-			true, true);
-
-		document.addKeyword(
-			"structureVersionId", ddmStructureLayout.getStructureVersionId());
-
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
@@ -79,6 +68,16 @@ public class DDMStructureLayoutModelDocumentContributor
 				LocalizationUtil.getLocalizedName(Field.NAME, nameLanguageId),
 				ddmStructureLayout.getName(nameLanguageId));
 		}
+
+		document.addLocalizedKeyword(
+			"localized_name",
+			LocalizationUtil.populateLocalizationMap(
+				ddmStructureLayout.getNameMap(),
+				ddmStructureLayout.getDefaultLanguageId(),
+				ddmStructureLayout.getGroupId()),
+			true, true);
+		document.addKeyword(
+			"structureVersionId", ddmStructureLayout.getStructureVersionId());
 	}
 
 	protected String[] getLanguageIds(
