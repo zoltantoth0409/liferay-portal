@@ -66,8 +66,15 @@ AUI.add(
 						return A.map(
 							instance.get('options'),
 							function(item) {
+								var label = item.label[instance.get('locale')] || item.label[instance.get('defaultLocale')];
+								
+								if(!label) {
+									var values = Object.values(item.label);
+									label = values[0];
+								}
+
 								return {
-									label: item.label[instance.get('locale')] || label[instance.get('defaultLocale')],
+									label: label,
 									status: value === item.value ? 'checked' : '',
 									value: item.value
 								};
