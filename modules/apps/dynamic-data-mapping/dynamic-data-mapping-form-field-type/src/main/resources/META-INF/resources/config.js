@@ -83,7 +83,8 @@
 							},
 							path: 'document_library_field.js',
 							requires: [
-								'liferay-ddm-form-renderer-field'
+								'liferay-ddm-form-renderer-field',
+								'liferay-portlet-url'
 							]
 						}
 					},
