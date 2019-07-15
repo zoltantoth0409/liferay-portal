@@ -176,14 +176,11 @@ public class StructuredContentDTOConverter implements DTOConverter {
 
 		DDMFormField ddmFormField = ddmFormFieldValue.getDDMFormField();
 
-		LocalizedValue localizedValue = ddmFormField.getLabel();
-
 		return new ContentField() {
 			{
 				dataType = ContentStructureUtil.toDataType(ddmFormField);
 				inputControl = ContentStructureUtil.toInputControl(
 					ddmFormField);
-				label = localizedValue.getString(locale);
 				name = ddmFormField.getName();
 				nestedFields = TransformUtil.transformToArray(
 					ddmFormFieldValue.getNestedDDMFormFieldValues(),
@@ -195,6 +192,13 @@ public class StructuredContentDTOConverter implements DTOConverter {
 				value = _toValue(
 					ddmFormFieldValue, dlAppService, dlURLHelper,
 					journalArticleService, layoutLocalService, locale);
+
+				setLabel(
+					() -> {
+						LocalizedValue localizedValue = ddmFormField.getLabel();
+
+						return localizedValue.getString(locale);
+					});
 			}
 		};
 	}
