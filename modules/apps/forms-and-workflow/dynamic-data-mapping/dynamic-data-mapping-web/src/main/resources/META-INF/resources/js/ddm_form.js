@@ -1109,6 +1109,12 @@ AUI.add(
 						if (value) {
 							var date = A.DataType.Date.parse(value);
 
+							if (!date) {
+								datePicker.selectDates('');
+
+								return;
+							}
+
 							date = DateMath.add(date, DateMath.MINUTES, date.getTimezoneOffset());
 
 							datePicker.selectDates(date);
