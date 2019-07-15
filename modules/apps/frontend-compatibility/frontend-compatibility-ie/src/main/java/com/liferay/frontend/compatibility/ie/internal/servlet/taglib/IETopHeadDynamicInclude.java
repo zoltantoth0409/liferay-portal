@@ -59,7 +59,8 @@ public class IETopHeadDynamicInclude extends BaseDynamicInclude {
 
 				printWriter.print(
 					absolutePortalURLBuilder.forResource(
-						"/o/frontend-compatibility-ie/" + fileName
+						request.getContextPath() +
+							"/o/frontend-compatibility-ie/" + fileName
 					).build());
 
 				printWriter.println("\" type=\"text/javascript\"></script>");
