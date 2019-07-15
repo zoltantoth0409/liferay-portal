@@ -47,7 +47,6 @@ public class DataLayoutResourceTest extends BaseDataLayoutResourceTestCase {
 			irrelevantGroup);
 	}
 
-	@Ignore
 	@Override
 	@Test
 	public void testGetDataDefinitionDataLayoutsPage() throws Exception {
