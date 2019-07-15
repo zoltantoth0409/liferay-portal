@@ -392,13 +392,13 @@ public class JournalArticleExportImportContentProcessor
 				stagedModel, JournalArticle.class);
 
 		for (Element referenceElement : referenceElements) {
-			JournalArticle journalArticle = null;
-
 			long classPK = GetterUtil.getLong(
 				referenceElement.attributeValue("class-pk"));
 
 			long articlePrimaryKey = portletDataContext.getNewPrimaryKey(
 				JournalArticle.class + ".primaryKey", classPK);
+
+			JournalArticle journalArticle = null;
 
 			if (articlePrimaryKey != 0) {
 				journalArticle =
