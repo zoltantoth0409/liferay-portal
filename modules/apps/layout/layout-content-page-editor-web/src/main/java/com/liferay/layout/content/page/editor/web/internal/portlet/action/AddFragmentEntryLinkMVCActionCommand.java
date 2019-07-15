@@ -148,16 +148,17 @@ public class AddFragmentEntryLinkMVCActionCommand extends BaseMVCActionCommand {
 			FragmentEntryLink fragmentEntryLink = TransactionInvokerUtil.invoke(
 				_transactionConfig, callable);
 
-			DefaultFragmentRendererContext fragmentRendererContext =
+			DefaultFragmentRendererContext defaultFragmentRendererContext =
 				new DefaultFragmentRendererContext(fragmentEntryLink);
 
-			fragmentRendererContext.setLocale(themeDisplay.getLocale());
-			fragmentRendererContext.setMode(FragmentEntryLinkConstants.EDIT);
-			fragmentRendererContext.setSegmentsExperienceIds(
+			defaultFragmentRendererContext.setLocale(themeDisplay.getLocale());
+			defaultFragmentRendererContext.setMode(
+				FragmentEntryLinkConstants.EDIT);
+			defaultFragmentRendererContext.setSegmentsExperienceIds(
 				new long[] {SegmentsConstants.SEGMENTS_EXPERIENCE_ID_DEFAULT});
 
 			String configuration = _fragmentRendererController.getConfiguration(
-				fragmentRendererContext);
+				defaultFragmentRendererContext);
 
 			jsonObject.put(
 				"configuration", JSONFactoryUtil.createJSONObject(configuration)
