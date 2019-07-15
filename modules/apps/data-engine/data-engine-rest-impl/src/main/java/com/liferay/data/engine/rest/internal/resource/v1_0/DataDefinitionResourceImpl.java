@@ -109,8 +109,10 @@ public class DataDefinitionResourceImpl
 	}
 
 	@Override
-	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
-		return new DataDefinitionEntityModel();
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
+		throws Exception {
+
+		return _entityModel;
 	}
 
 	@Override
@@ -314,6 +316,9 @@ public class DataDefinitionResourceImpl
 	private long _getClassNameId() {
 		return _portal.getClassNameId(InternalDataDefinition.class);
 	}
+
+	private static final EntityModel _entityModel =
+		new DataDefinitionEntityModel();
 
 	@Reference(
 		target = "(model.class.name=com.liferay.data.engine.rest.internal.model.InternalDataRecordCollection)"
