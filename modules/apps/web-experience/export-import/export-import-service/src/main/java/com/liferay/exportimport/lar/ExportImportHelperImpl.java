@@ -872,7 +872,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 
 		StagedGroupedModel stagedGroupedModel = (StagedGroupedModel)stagedModel;
 
-		if (portletDataContext.getGroupId() ==
+		if (portletDataContext.getSourceGroupId() ==
 				stagedGroupedModel.getGroupId()) {
 
 			return true;
@@ -900,7 +900,9 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 				return false;
 			}
 
-			if (scopeLayout.getGroupId() == portletDataContext.getGroupId()) {
+			if (scopeLayout.getGroupId() ==
+					portletDataContext.getSourceGroupId()) {
+
 				return true;
 			}
 		}
