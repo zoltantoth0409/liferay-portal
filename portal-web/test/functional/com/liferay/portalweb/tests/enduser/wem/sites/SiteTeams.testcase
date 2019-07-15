@@ -259,7 +259,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
