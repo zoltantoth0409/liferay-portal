@@ -21,9 +21,6 @@ import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.model.role.RoleConstants;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
-import com.liferay.portal.kernel.security.permission.PermissionCheckerFactoryUtil;
-import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.GroupService;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserService;
@@ -34,9 +31,9 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserGroupTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.security.audit.storage.service.AuditEventService;
+import com.liferay.portal.service.test.ServiceTestUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -52,9 +49,7 @@ public class RoleLocalServiceSystemRolesTest {
 	@ClassRule
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
-		new AggregateTestRule(
-			new LiferayIntegrationTestRule(),
-			PermissionCheckerMethodTestRule.INSTANCE);
+		new LiferayIntegrationTestRule();
 
 	@Test
 	public void testAnalyticsAdminRolePermissions() throws Exception {
@@ -68,11 +63,7 @@ public class RoleLocalServiceSystemRolesTest {
 
 		_roleLocalService.addUserRole(_user.getUserId(), role.getRoleId());
 
-		PermissionChecker oldPermissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		PermissionThreadLocal.setPermissionChecker(
-			PermissionCheckerFactoryUtil.create(_user));
+		ServiceTestUtil.setUser(_user);
 
 		try {
 			_groupService.getGtGroups(
@@ -108,7 +99,7 @@ public class RoleLocalServiceSystemRolesTest {
 				null);
 		}
 		finally {
-			PermissionThreadLocal.setPermissionChecker(oldPermissionChecker);
+			ServiceTestUtil.setUser(TestPropsValues.getUser());
 		}
 	}
 
