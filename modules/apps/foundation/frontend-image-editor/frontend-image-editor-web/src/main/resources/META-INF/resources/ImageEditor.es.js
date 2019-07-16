@@ -192,6 +192,8 @@ class ImageEditor extends Component {
 	 * @return {String} The normalized mime type
 	 */
 	normalizeCanvasMimeType_(mimeType) {
+		mimeType = mimeType.toLowerCase();
+
 		return mimeType.replace('jpg', 'jpeg');
 	}
 
