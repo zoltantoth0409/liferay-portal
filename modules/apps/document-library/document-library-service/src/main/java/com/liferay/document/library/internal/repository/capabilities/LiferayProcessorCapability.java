@@ -92,8 +92,9 @@ public class LiferayProcessorCapability
 
 				@Override
 				public void execute(FileEntry fileEntry) {
-					_dlFileVersionPreviewLocalService.deleteDLFileEntryFileVersionPreviews(
-						fileEntry.getFileEntryId());
+					_dlFileVersionPreviewLocalService.
+						deleteDLFileEntryFileVersionPreviews(
+							fileEntry.getFileEntryId());
 
 					cleanUp(fileEntry);
 				}
