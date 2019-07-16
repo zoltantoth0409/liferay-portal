@@ -1550,7 +1550,7 @@ definition {
 
 		Site.assignUserGroupAsMemberCP(userGroupName = "UG UserGroup Name");
 
-		Navigator.openSiteURL(siteName = "Site Name 1");
+		Navigator.openSiteLanding(siteURLKey = "Site Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1561,7 +1561,7 @@ definition {
 			teamDescription = "Site Team Description",
 			teamName = "Site Team Name");
 
-		Navigator.openSiteURL(siteName = "Site Name 1");
+		Navigator.openSiteLanding(siteURLKey = "Site Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1572,7 +1572,7 @@ definition {
 			teamName = "Site Team Name",
 			userGroupName = "UG UserGroup Name");
 
-		Navigator.openSiteURL(siteName = "Site Name 1");
+		Navigator.openSiteLanding(siteURLKey = "Site Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",

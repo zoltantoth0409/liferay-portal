@@ -1393,7 +1393,7 @@ definition {
 			siteName = "Import Site"
 		);
 
-		Navigator.openSiteURL(siteName = "Import Site");
+		Navigator.openSiteLanding(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -1603,7 +1603,7 @@ definition {
 
 		SelectFrame(value1 = "relative=top");
 
-		SitePageNavigator.gotoPages(page = "Public Pages", siteName = "Import Site");
+		Navigator.openSiteLanding(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
@@ -1618,7 +1618,7 @@ definition {
 			siteName = "Import Site"
 		);
 
-		Navigator.openSiteURL(siteName = "Import Site");
+		Navigator.openSiteLanding(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -1630,7 +1630,7 @@ definition {
 			userSegmentName = "User Segment Name"
 		);
 
-		Navigator.openSiteURL(siteName = "Import Site");
+		Navigator.openSiteLanding(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2476,7 +2476,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingUsecase#UserSegmentAddFromGlobalSiteViaCampaign";
 
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2495,7 +2495,7 @@ definition {
 
 		PortletEntry.save();
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2516,7 +2516,7 @@ definition {
 
 		ContentTargetingCampaign.saveCP();
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2616,7 +2616,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingUsecase#UserSegmentAddGlobalCategorizationToSiteContent";
 
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2635,7 +2635,7 @@ definition {
 
 		PortletEntry.save();
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -2862,7 +2862,7 @@ definition {
 
 		Site.addBlankCP(parentSiteName = "Site Name", siteName = "Child SiteName");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2881,7 +2881,7 @@ definition {
 
 		PortletEntry.save();
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		Navigator.openSiteLanding(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

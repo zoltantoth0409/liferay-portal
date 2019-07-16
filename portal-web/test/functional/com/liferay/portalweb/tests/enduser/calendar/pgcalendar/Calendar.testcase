@@ -276,7 +276,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openSiteLanding(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -670,7 +670,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openSiteLanding(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -963,7 +963,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openSiteLanding(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -3973,7 +3973,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openSiteLanding(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -4273,7 +4273,7 @@ definition {
 				userScreenName = "usersn");
 		}
 
-		Navigator.openSiteURL(siteName = "Site A");
+		Navigator.openSiteLanding(siteURLKey = "Site A");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -4286,7 +4286,7 @@ definition {
 
 		Navigator.gotoPage(pageName = "Calendar Page");
 
-		Navigator.openSiteURL(siteName = "Site C");
+		Navigator.openSiteLanding(siteURLKey = "Site C");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",

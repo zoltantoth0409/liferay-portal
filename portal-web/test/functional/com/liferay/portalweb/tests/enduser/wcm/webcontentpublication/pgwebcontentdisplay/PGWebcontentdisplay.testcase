@@ -462,7 +462,7 @@ definition {
 
 	@priority = "3"
 	test SelectWebContentScopeGlobal {
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

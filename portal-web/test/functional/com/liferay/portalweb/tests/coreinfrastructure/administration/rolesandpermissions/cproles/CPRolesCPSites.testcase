@@ -177,7 +177,7 @@ definition {
 			parentSiteName = "Parent Site Name",
 			siteName = "Child SiteName");
 
-		Navigator.openSiteURL(siteName = "Parent Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Parent Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -189,7 +189,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Parent Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Parent Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -200,7 +200,7 @@ definition {
 			resourceName = "userfn userln",
 			roleName = "Site Administrator");
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		Navigator.openSiteLanding(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -212,7 +212,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		Navigator.openSiteLanding(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -308,7 +308,7 @@ definition {
 			parentSiteName = "Site Name",
 			siteName = "Child SiteName1");
 
-		Navigator.openSiteURL(siteName = "Child SiteName1");
+		Navigator.openSiteLanding(siteURLKey = "Child SiteName1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",

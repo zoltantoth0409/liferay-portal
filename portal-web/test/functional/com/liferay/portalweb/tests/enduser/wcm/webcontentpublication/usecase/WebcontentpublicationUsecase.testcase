@@ -1129,7 +1129,7 @@ definition {
 			siteName = "Site Name");
 
 		for (var siteName1 : list "${siteName},Site Name,Global") {
-			Navigator.openSiteURL(siteName = "${siteName1}");
+			Navigator.openSiteLanding(siteURLKey = "${siteName1}");
 
 			ProductMenu.gotoPortlet(
 				category = "Content",

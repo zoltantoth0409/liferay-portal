@@ -55,7 +55,7 @@ definition {
 		property content.targeting.release = "true";
 		property test.name.skip.portal.instance = "ContentTargetingUserSegment#AddGlobalUserSegmentToSiteViaUserSegmentContentDisplayPortlet";
 
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -70,7 +70,7 @@ definition {
 
 		PortletEntry.save();
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
