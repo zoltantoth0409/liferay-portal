@@ -25,6 +25,7 @@ import com.liferay.document.library.opener.constants.DLOpenerFileEntryReferenceC
 import com.liferay.document.library.opener.google.drive.DLOpenerGoogleDriveFileReference;
 import com.liferay.document.library.opener.google.drive.DLOpenerGoogleDriveManager;
 import com.liferay.document.library.opener.google.drive.web.internal.background.task.UploadGoogleDriveDocumentBackgroundTaskExecutor;
+import com.liferay.document.library.opener.google.drive.web.internal.constants.DLOpenerGoogleDriveConstants;
 import com.liferay.document.library.opener.google.drive.web.internal.constants.GoogleDriveBackgroundTaskConstants;
 import com.liferay.document.library.opener.google.drive.web.internal.oauth.OAuth2Manager;
 import com.liferay.document.library.opener.model.DLOpenerFileEntryReference;
@@ -81,8 +82,8 @@ public class DLOpenerGoogleDriveManagerImpl
 
 		_dlOpenerFileEntryReferenceLocalService.
 			addPlaceholderDLOpenerFileEntryReference(
-				userId, fileEntry,
-				DLOpenerFileEntryReferenceConstants.TYPE_EDIT);
+				userId, DLOpenerGoogleDriveConstants.GOOGLE_REFERENCE_TYPE,
+				fileEntry, DLOpenerFileEntryReferenceConstants.TYPE_EDIT);
 
 		return new DLOpenerGoogleDriveFileReference(
 			fileEntry.getFileEntryId(),
@@ -102,8 +103,8 @@ public class DLOpenerGoogleDriveManagerImpl
 
 		_dlOpenerFileEntryReferenceLocalService.
 			addPlaceholderDLOpenerFileEntryReference(
-				userId, fileEntry,
-				DLOpenerFileEntryReferenceConstants.TYPE_NEW);
+				userId, DLOpenerGoogleDriveConstants.GOOGLE_REFERENCE_TYPE,
+				fileEntry, DLOpenerFileEntryReferenceConstants.TYPE_NEW);
 
 		return new DLOpenerGoogleDriveFileReference(
 			fileEntry.getFileEntryId(),
@@ -131,7 +132,9 @@ public class DLOpenerGoogleDriveManagerImpl
 			driveFilesDelete.execute();
 
 			_dlOpenerFileEntryReferenceLocalService.
-				deleteDLOpenerFileEntryReference(fileEntry);
+				deleteDLOpenerFileEntryReference(
+					DLOpenerGoogleDriveConstants.GOOGLE_REFERENCE_TYPE,
+					fileEntry);
 		}
 		catch (IOException ioe) {
 			throw new PortalException(ioe);
@@ -175,7 +178,9 @@ public class DLOpenerGoogleDriveManagerImpl
 	public boolean isGoogleDriveFile(FileEntry fileEntry) {
 		DLOpenerFileEntryReference dlOpenerFileEntryReference =
 			_dlOpenerFileEntryReferenceLocalService.
-				fetchDLOpenerFileEntryReference(fileEntry);
+				fetchDLOpenerFileEntryReference(
+					DLOpenerGoogleDriveConstants.GOOGLE_REFERENCE_TYPE,
+					fileEntry);
 
 		if (dlOpenerFileEntryReference == null) {
 			return false;
@@ -326,7 +331,9 @@ public class DLOpenerGoogleDriveManagerImpl
 
 		DLOpenerFileEntryReference dlOpenerFileEntryReference =
 			_dlOpenerFileEntryReferenceLocalService.
-				getDLOpenerFileEntryReference(fileEntry);
+				getDLOpenerFileEntryReference(
+					DLOpenerGoogleDriveConstants.GOOGLE_REFERENCE_TYPE,
+					fileEntry);
 
 		return dlOpenerFileEntryReference.getReferenceKey();
 	}
