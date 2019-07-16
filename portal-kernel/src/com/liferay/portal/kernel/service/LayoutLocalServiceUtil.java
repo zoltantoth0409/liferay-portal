@@ -1689,6 +1689,13 @@ public class LayoutLocalServiceUtil {
 			groupId, privateLayout, layoutId, typeSettings);
 	}
 
+	public static com.liferay.portal.kernel.model.Layout updateLayoutType(
+			long plid, String type)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().updateLayoutType(plid, type);
+	}
+
 	/**
 	 * Updates the look and feel of the layout.
 	 *
