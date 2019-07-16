@@ -1109,7 +1109,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	@Override
 	public Object getNewPrimaryKey(String className, Object newPrimaryKey) {
-		Map<?, ?> primaryKeys = (Map<?, ?>)getNewPrimaryKeysMap(className);
+		Map<?, ?> primaryKeys = getNewPrimaryKeysMap(className);
 
 		return primaryKeys.get(newPrimaryKey);
 	}
