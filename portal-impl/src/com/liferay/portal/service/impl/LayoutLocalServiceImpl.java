@@ -2725,6 +2725,17 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		return updateDraft(draftLayout);
 	}
 
+	@Override
+	public Layout updateLayoutType(long plid, String type)
+		throws PortalException {
+
+		Layout layout = layoutPersistence.findByPrimaryKey(plid);
+
+		layout.setType(type);
+
+		return layoutLocalService.updateLayout(layout);
+	}
+
 	/**
 	 * Updates the look and feel of the layout.
 	 *
