@@ -16,6 +16,7 @@ package com.liferay.document.library.internal.repository.capabilities;
 
 import com.liferay.document.library.kernel.service.DLAppHelperLocalService;
 import com.liferay.document.library.security.io.InputStreamSanitizer;
+import com.liferay.document.library.service.DLFileVersionPreviewLocalService;
 import com.liferay.document.library.sync.service.DLSyncEventLocalService;
 import com.liferay.portal.kernel.repository.DocumentRepository;
 import com.liferay.portal.kernel.repository.capabilities.BulkOperationCapability;
@@ -171,6 +172,12 @@ public class PortalCapabilityLocatorImpl implements PortalCapabilityLocator {
 
 	@Activate
 	protected void activate() {
+		_alwaysGeneratingProcessorCapability = new LiferayProcessorCapability(
+			ProcessorCapability.ResourceGenerationStrategy.ALWAYS_GENERATE,
+			_dlFileVersionPreviewLocalService);
+		_reusingProcessorCapability = new LiferayProcessorCapability(
+			ProcessorCapability.ResourceGenerationStrategy.REUSE,
+			_dlFileVersionPreviewLocalService);
 	}
 
 	@Activate
@@ -189,6 +196,9 @@ public class PortalCapabilityLocatorImpl implements PortalCapabilityLocator {
 
 	@Reference
 	private DLAppHelperLocalService _dlAppHelperLocalService;
+
+	@Reference
+	private DLFileVersionPreviewLocalService _dlFileVersionPreviewLocalService;
 
 	@Reference
 	private DLSyncEventLocalService _dlSyncEventLocalService;

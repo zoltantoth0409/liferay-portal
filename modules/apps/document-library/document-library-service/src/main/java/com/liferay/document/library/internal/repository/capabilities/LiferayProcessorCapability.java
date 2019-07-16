@@ -16,6 +16,7 @@ package com.liferay.document.library.internal.repository.capabilities;
 
 import com.liferay.document.library.kernel.util.DLProcessorRegistryUtil;
 import com.liferay.document.library.security.io.InputStreamSanitizer;
+import com.liferay.document.library.service.DLFileVersionPreviewLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.LocalRepository;
 import com.liferay.portal.kernel.repository.Repository;
@@ -47,9 +48,11 @@ public class LiferayProcessorCapability
 
 	public LiferayProcessorCapability(
 		ResourceGenerationStrategy resourceGenerationStrategy,
+		DLFileVersionPreviewLocalService dlFileVersionPreviewLocalService) {
 		InputStreamSanitizer inputStreamSanitizer) {
 
 		_resourceGenerationStrategy = resourceGenerationStrategy;
+		_dlFileVersionPreviewLocalService = dlFileVersionPreviewLocalService;
 		_inputStreamSanitizer = inputStreamSanitizer;
 	}
 
@@ -89,6 +92,9 @@ public class LiferayProcessorCapability
 
 				@Override
 				public void execute(FileEntry fileEntry) {
+					_dlFileVersionPreviewLocalService.deleteDLFileEntryFileVersionPreviews(
+						fileEntry.getFileEntryId());
+
 					cleanUp(fileEntry);
 				}
 
@@ -150,6 +156,8 @@ public class LiferayProcessorCapability
 	}
 
 	private final InputStreamSanitizer _inputStreamSanitizer;
+	private final DLFileVersionPreviewLocalService
+		_dlFileVersionPreviewLocalService;
 	private final ResourceGenerationStrategy _resourceGenerationStrategy;
 
 	private class SafeFileEntry extends FileEntryWrapper {

@@ -647,11 +647,6 @@ public class DLFileEntryLocalServiceImpl
 				DLFileEntry.class.getName(), dlFileVersion.getFileVersionId());
 		}
 
-		// DLFileEntryPreviews
-
-		_fileVersionPreviewEventListener.deleteDLFileVersionPreviews(
-			dlFileEntry.getFileEntryId());
-
 		// Expando
 
 		expandoRowLocalService.deleteRows(dlFileEntry.getFileEntryId());
@@ -2877,12 +2872,6 @@ public class DLFileEntryLocalServiceImpl
 	private static final Log _log = LogFactoryUtil.getLog(
 		DLFileEntryLocalServiceImpl.class);
 
-	private static volatile FileVersionPreviewEventListener
-		_fileVersionPreviewEventListener =
-			ServiceProxyFactory.newServiceTrackedInstance(
-				FileVersionPreviewEventListener.class,
-				DLFileEntryLocalServiceImpl.class, "_fileVersionPreviewEventListener",
-				false, false);
 	private static final Pattern _fileVersionPattern = Pattern.compile(
 		"\\d+\\.\\d+");
 
