@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.service.LayoutLocalService;
-import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.NavItem;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Validator;
@@ -212,7 +211,7 @@ public class NavItemUtil {
 		long refererPlid = themeDisplay.getRefererPlid();
 
 		if (layout.isTypeControlPanel() && (refererPlid > 0)) {
-			return LayoutLocalServiceUtil.getLayout(refererPlid);
+			return _layoutLocalService.getLayout(refererPlid);
 		}
 
 		return layout;
