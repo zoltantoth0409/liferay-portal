@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class PortletDataException extends PortalException {
 
-	public static final int COMPANY_BEING_DELETED = 14;
+	public static final int COMPANY_BEING_DELETED = 25;
 
 	public static final int DEFAULT = 1;
 
