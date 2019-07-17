@@ -67,6 +67,7 @@ import com.liferay.portal.kernel.search.facet.ScopeFacet;
 import com.liferay.portal.kernel.search.facet.faceted.searcher.FacetedSearcher;
 import com.liferay.portal.kernel.search.facet.faceted.searcher.FacetedSearcherManagerUtil;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.security.auth.EmailAddressValidator;
 import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.transaction.Isolation;
@@ -87,6 +88,7 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.liveusers.LiveUsers;
+import com.liferay.portal.security.auth.EmailAddressValidatorFactory;
 import com.liferay.portal.service.base.CompanyLocalServiceBaseImpl;
 import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.util.PrefsPropsUtil;
@@ -168,7 +170,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		}
 
 		validateVirtualHost(webId, virtualHostname);
-		validateMx(mx);
+		validateMx(-1, mx);
 
 		Company company = checkCompany(webId, mx);
 
@@ -848,7 +850,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		validateVirtualHost(company.getWebId(), virtualHostname);
 
 		if (PropsValues.MAIL_MX_UPDATE) {
-			validateMx(mx);
+			validateMx(companyId, mx);
 
 			company.setMx(mx);
 		}
@@ -909,7 +911,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		validateVirtualHost(company.getWebId(), virtualHostname);
 
 		if (PropsValues.MAIL_MX_UPDATE) {
-			validateMx(mx);
+			validateMx(companyId, mx);
 		}
 
 		validateName(companyId, name);
@@ -1634,8 +1636,24 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		}
 	}
 
-	protected void validateMx(String mx) throws PortalException {
+	protected void validateMx(long companyId, String mx)
+		throws PortalException {
+
 		if (Validator.isNull(mx) || !Validator.isDomain(mx)) {
+			throw new CompanyMxException();
+		}
+
+		if (companyId <= 0) {
+			return;
+		}
+
+		String emailAddress =
+			PropsValues.DEFAULT_ADMIN_EMAIL_ADDRESS_PREFIX + "@" + mx;
+
+		EmailAddressValidator emailAddressValidator =
+			EmailAddressValidatorFactory.getInstance();
+
+		if (!emailAddressValidator.validate(companyId, emailAddress)) {
 			throw new CompanyMxException();
 		}
 	}
