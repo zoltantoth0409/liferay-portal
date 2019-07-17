@@ -1488,7 +1488,7 @@ definition {
 
 	@priority = "4"
 	test EditArticleMadeFromGlobalStructure {
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1511,7 +1511,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "Global WC Structure Name");
 
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1654,7 +1654,7 @@ definition {
 
 	@priority = "4"
 	test EditGlobalWebContentTemplate {
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1677,7 +1677,7 @@ definition {
 
 		WebContentStructures.saveCP(structureName = "Global WC Structure Name");
 
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -2074,7 +2074,7 @@ definition {
 			uploadFrom = "dependencies"
 		);
 
-		Navigator.openSiteURL(siteName = "S.P.A.C.E.");
+		Navigator.openSiteLanding(siteURLKey = "S.P.A.C.E.");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -2358,7 +2358,7 @@ definition {
 
 		Site.addBlankCP(parentSiteName = "Site Name", siteName = "Child SiteName");
 
-		Navigator.openSiteLanding(siteURLKey = "Child SiteName");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

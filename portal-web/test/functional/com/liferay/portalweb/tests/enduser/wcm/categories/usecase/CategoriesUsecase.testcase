@@ -1595,7 +1595,7 @@ definition {
 			webContentContent = "WC Content Body",
 			webContentTitle = "WC Content Title");
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		Navigator.openSiteLanding(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

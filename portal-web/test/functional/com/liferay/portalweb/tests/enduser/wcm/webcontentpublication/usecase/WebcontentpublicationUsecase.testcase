@@ -235,7 +235,7 @@ definition {
 
 	@priority = "4"
 	test AssertAssetListScopeViaAssetPublisher {
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
