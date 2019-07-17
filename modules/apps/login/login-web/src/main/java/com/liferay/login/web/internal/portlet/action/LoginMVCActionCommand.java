@@ -225,7 +225,10 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 				redirect = mainPath.concat("/portal/protected");
 			}
 
-			actionResponse.sendRedirect(redirect);
+			HttpServletResponse httpServletResponse =
+				_portal.getHttpServletResponse(actionResponse);
+
+			httpServletResponse.sendRedirect(redirect);
 
 			return;
 		}
