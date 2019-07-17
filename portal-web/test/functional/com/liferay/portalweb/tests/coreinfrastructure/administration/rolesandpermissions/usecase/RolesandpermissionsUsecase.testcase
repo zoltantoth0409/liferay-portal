@@ -1797,7 +1797,7 @@ definition {
 
 		Navigator.openURL();
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1819,7 +1819,7 @@ definition {
 			teamName = "Site Team Name",
 			userScreenName = "usersn1");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",

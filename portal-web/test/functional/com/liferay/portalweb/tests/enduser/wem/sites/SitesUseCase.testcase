@@ -1189,7 +1189,7 @@ definition {
 			teamDescription = "Site Team Description",
 			teamName = "Site Team Name");
 
-		ProductMenu.gotoSite(site = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",

@@ -550,7 +550,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Form Site");
+		SitePages.openPagesAdmin(siteURLKey = "Form Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

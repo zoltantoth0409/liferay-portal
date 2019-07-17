@@ -68,7 +68,7 @@ definition {
 
 		PortletEntry.save();
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -137,7 +137,7 @@ definition {
 
 		SitePages.addPublicPage(pageName = "Test Page Name");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -152,7 +152,7 @@ definition {
 
 		PortletEntry.save();
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -167,7 +167,7 @@ definition {
 
 		PortletEntry.save();
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

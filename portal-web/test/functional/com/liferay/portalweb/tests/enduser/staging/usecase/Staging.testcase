@@ -192,7 +192,7 @@ definition {
 
 		WebContent.viewPGViaWCD(webContentContent = "WC WebContent Content");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
@@ -672,7 +672,7 @@ definition {
 			pageVersioningEnabled = "true",
 			siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -900,7 +900,7 @@ definition {
 			pageVersioningEnabled = "true",
 			siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

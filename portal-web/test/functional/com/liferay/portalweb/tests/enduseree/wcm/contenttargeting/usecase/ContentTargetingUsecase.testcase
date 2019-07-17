@@ -1396,7 +1396,7 @@ definition {
 			siteName = "Import Site"
 		);
 
-		Navigator.openSiteURL(siteName = "Import Site");
+		SitePages.openPagesAdmin(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -1624,7 +1624,7 @@ definition {
 
 		SelectFrame(value1 = "relative=top");
 
-		Navigator.openSiteURL(siteName = "Import Site");
+		SitePages.openPagesAdmin(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
@@ -1639,7 +1639,7 @@ definition {
 			siteName = "Import Site"
 		);
 
-		Navigator.openSiteURL(siteName = "Import Site");
+		SitePages.openPagesAdmin(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -1651,7 +1651,7 @@ definition {
 			userSegmentName = "User Segment Name"
 		);
 
-		Navigator.openSiteURL(siteName = "Import Site");
+		SitePages.openPagesAdmin(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -1883,7 +1883,7 @@ definition {
 
 		LAR.importSiteCP(larFileName = "${larFileName}", siteName = "Import Site");
 
-		Navigator.openSiteURL(siteName = "Import Site");
+		SitePages.openPagesAdmin(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -1898,7 +1898,7 @@ definition {
 			webContentTitle = "Web Content Title"
 		);
 
-		Navigator.openSiteURL(siteName = "Import Site");
+		SitePages.openPagesAdmin(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -2632,7 +2632,7 @@ definition {
 
 		SitePages.addPublicPage(pageName = "Page Name");
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2653,7 +2653,7 @@ definition {
 
 		ContentTargetingCampaign.saveCP();
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -2937,7 +2937,7 @@ definition {
 
 		PortletEntry.save();
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -4140,7 +4140,7 @@ definition {
 			portletName = "Asset Publisher"
 		);
 
-		Navigator.openSiteURL(siteName = "Import Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Import Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

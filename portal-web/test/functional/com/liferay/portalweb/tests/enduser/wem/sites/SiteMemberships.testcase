@@ -281,7 +281,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -293,7 +293,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -307,7 +307,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -319,7 +319,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -333,7 +333,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -346,7 +346,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -359,7 +359,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -398,7 +398,7 @@ definition {
 
 		Organization.addSiteCP(orgName = "Organization Name 1");
 
-		Navigator.openSiteURL(siteName = "Organization Name 1");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
@@ -458,7 +458,7 @@ definition {
 			allowManualMembershipManagement = "true",
 			orgName = "Organization Name 1");
 
-		Navigator.openSiteURL(siteName = "Organization Name 1");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -485,7 +485,7 @@ definition {
 			orgName = "Organization Name 3",
 			orgType = "Organization");
 
-		Navigator.openSiteURL(siteName = "Organization Name 1");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -497,7 +497,7 @@ definition {
 			userLastName = "userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Organization Name 1");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -506,7 +506,7 @@ definition {
 
 		Site.assignOrganizationAsMemberCP(orgName = "Organization Name 2");
 
-		Navigator.openSiteURL(siteName = "Organization Name 1");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -515,7 +515,7 @@ definition {
 
 		Site.viewMemberOrganizationCP(orgName = "Organization Name 2");
 
-		Navigator.openSiteURL(siteName = "Organization Name 1");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -524,7 +524,7 @@ definition {
 
 		Site.assignOrganizationAsMemberCP(orgName = "Organization Name 3");
 
-		Navigator.openSiteURL(siteName = "Organization Name 1");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -676,7 +676,7 @@ definition {
 
 		Site.addAllMembersCP();
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -995,7 +995,7 @@ definition {
 
 		User.logoutAndLoginPG(userLoginFullName = "Test Test");
 
-		Navigator.openSiteURL(siteName = "Site Name 1");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1006,7 +1006,7 @@ definition {
 			userFirstName = "userfn",
 			userLastName = "userln");
 
-		Navigator.openSiteURL(siteName = "Site Name 2");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name 2");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1035,7 +1035,7 @@ definition {
 
 		Navigator.openURL();
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		SitePages.openPagesAdmin(siteURLKey = "${siteName}");
 
 		AssertNotVisible(
 			locator1 = "ControlMenu#ADMIN_SITE_ADMINISTRATION_USERS",

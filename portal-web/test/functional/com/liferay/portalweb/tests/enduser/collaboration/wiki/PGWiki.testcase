@@ -67,7 +67,7 @@ definition {
 
 		Site.addBlankCP(parentSiteName = "Site Name", siteName = "Child SiteName");
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -94,7 +94,7 @@ definition {
 
 		PortletEntry.publish();
 
-		Navigator.openSiteURL(siteName = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",

@@ -604,6 +604,7 @@ definition {
 	test ExportImportPrivatePage {
 		property portal.acceptance = "true";
 		property testray.component.names = "Training";
+		property test.name.skip.portal.instance = "ExportImport#ExportImportPrivatePage";
 
 		ProductMenu.gotoPortlet(
 			category = "Build",

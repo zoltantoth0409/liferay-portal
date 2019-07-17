@@ -189,7 +189,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		SitePages.openPagesAdmin(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -472,7 +472,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		SitePages.openPagesAdmin(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -711,7 +711,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		SitePages.openPagesAdmin(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",

@@ -1162,7 +1162,7 @@ definition {
 		SitePages.addPublicPage(pageName = "Site Page");
 
 		for (var siteName1 : list "${siteName},Site Name,Global") {
-			Navigator.openSiteURL(siteName = "${siteName1}");
+			SitePages.openPagesAdmin(siteURLKey = "${siteName1}");
 
 			ProductMenu.gotoPortlet(
 				category = "Content",
