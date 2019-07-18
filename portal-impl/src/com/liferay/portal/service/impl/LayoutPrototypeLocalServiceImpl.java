@@ -155,8 +155,8 @@ public class LayoutPrototypeLocalServiceImpl
 
 			StringBundler sb = new StringBundler(5);
 
-			sb.append("Delete not performed because exists some Layout");
-			sb.append("with companyId ");
+			sb.append("Delete not performed because it is being used by ");
+			sb.append("a layout with companyId ");
 			sb.append(layoutPrototype.getCompanyId());
 			sb.append(" and layoutPrototypeUuid ");
 			sb.append(layoutPrototype.getUuid());
