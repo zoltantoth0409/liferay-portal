@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.servlet.BufferCacheServletResponse;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.PortalWebResourceConstants;
 import com.liferay.portal.kernel.servlet.PortalWebResourcesUtil;
+import com.liferay.portal.kernel.servlet.RequestDispatcherUtil;
 import com.liferay.portal.kernel.servlet.ResourceUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -38,6 +39,7 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServiceProxyFactory;
@@ -71,7 +73,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -585,7 +586,7 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 	protected String getCssContent(
 			HttpServletRequest request, HttpServletResponse response,
 			String resourcePath)
-		throws IOException, ServletException {
+		throws Exception {
 
 		String resourcePathRoot = null;
 
@@ -654,7 +655,7 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 	protected String getJavaScriptContent(
 			HttpServletRequest request, HttpServletResponse response,
 			String resourcePath, URL resourceURL)
-		throws IOException, ServletException {
+		throws Exception {
 
 		String content = _readResource(request, response, resourcePath);
 
@@ -712,7 +713,7 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 	private String _readResource(
 			HttpServletRequest request, HttpServletResponse response,
 			String resourcePath)
-		throws IOException, ServletException {
+		throws Exception {
 
 		URL url = _servletContext.getResource(resourcePath);
 
@@ -720,12 +721,11 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(
 				resourcePath);
 
-			BufferCacheServletResponse bufferCacheServletResponse =
-				new BufferCacheServletResponse(response);
+			ObjectValuePair<String, Long> objectValuePair =
+				RequestDispatcherUtil.getContentAndLastModifiedTime(
+					requestDispatcher, request, response);
 
-			requestDispatcher.include(request, bufferCacheServletResponse);
-
-			return bufferCacheServletResponse.getString();
+			return objectValuePair.getKey();
 		}
 
 		URLConnection urlConnection = url.openConnection();
