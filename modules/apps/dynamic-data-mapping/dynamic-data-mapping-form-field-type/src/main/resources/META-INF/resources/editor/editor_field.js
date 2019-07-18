@@ -114,7 +114,6 @@ AUI.add(
 									namespace: name,
 									onBlurMethod: A.bind(instance._afterBlur, instance),
 									onChangeMethod: A.bind(instance._onChangeEditor, instance),
-									onFocusMethod: A.bind(instance._afterFocus, instance),
 									plugins: [],
 									textMode: false
 								}
