@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class SoyTemplateResourcesProviderImpl
 	implements com.liferay.portal.template.soy.utils.
-		SoyTemplateResourcesProvider,
+				   SoyTemplateResourcesProvider,
 			   SoyTemplateResourcesProvider {
 
 	@Override
