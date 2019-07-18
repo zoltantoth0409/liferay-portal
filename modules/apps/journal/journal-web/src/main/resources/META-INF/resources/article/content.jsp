@@ -21,17 +21,15 @@ JournalArticle article = journalDisplayContext.getArticle();
 
 long groupId = BeanParamUtil.getLong(article, request, "groupId", scopeGroupId);
 
+JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalEditArticleDisplayContext(request, liferayPortletResponse, article);
+
 long classNameId = ParamUtil.getLong(request, "classNameId");
 
 String newArticleId = ParamUtil.getString(request, "newArticleId");
 
-DDMStructure ddmStructure = (DDMStructure)request.getAttribute("edit_article.jsp-structure");
+DDMStructure ddmStructure = journalEditArticleDisplayContext.getDDMStructure();
 
 DDMTemplate ddmTemplate = (DDMTemplate)request.getAttribute("edit_article.jsp-template");
-
-String defaultLanguageId = (String)request.getAttribute("edit_article.jsp-defaultLanguageId");
-
-boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_article.jsp-changeStructure"));
 %>
 
 <liferay-ui:error-marker
@@ -39,7 +37,7 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 	value="content"
 />
 
-<aui:model-context bean="<%= article %>" defaultLanguageId="<%= defaultLanguageId %>" model="<%= JournalArticle.class %>" />
+<aui:model-context bean="<%= article %>" defaultLanguageId="<%= journalEditArticleDisplayContext.getDefaultLanguageId() %>" model="<%= JournalArticle.class %>" />
 
 <liferay-ui:error exception="<%= ArticleContentException.class %>" message="please-enter-valid-content" />
 <liferay-ui:error exception="<%= ArticleIdException.class %>" message="please-enter-a-valid-id" />
@@ -120,10 +118,10 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 
 		<liferay-ui:input-localized
 			cssClass="form-control"
-			defaultLanguageId="<%= defaultLanguageId %>"
+			defaultLanguageId="<%= journalEditArticleDisplayContext.getDefaultLanguageId() %>"
 			editorName="alloyeditor"
 			formName="fm"
-			ignoreRequestValue="<%= changeStructure %>"
+			ignoreRequestValue="<%= journalEditArticleDisplayContext.isChangeStructure() %>"
 			name="descriptionMapAsXML"
 			placeholder="description"
 			type="editor"
@@ -141,9 +139,9 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 			classNameId="<%= PortalUtil.getClassNameId(DDMStructure.class) %>"
 			classPK="<%= ddmStructure.getStructureId() %>"
 			ddmFormValues="<%= journalDisplayContext.getDDMFormValues(ddmStructure) %>"
-			defaultEditLocale="<%= LocaleUtil.fromLanguageId(defaultLanguageId) %>"
+			defaultEditLocale="<%= LocaleUtil.fromLanguageId(journalEditArticleDisplayContext.getDefaultLanguageId()) %>"
 			documentLibrarySelectorURL="<%= String.valueOf(journalItemSelectorHelper.getDocumentLibrarySelectorURL()) %>"
-			ignoreRequestValue="<%= changeStructure %>"
+			ignoreRequestValue="<%= journalEditArticleDisplayContext.isChangeStructure() %>"
 			imageSelectorURL="<%= String.valueOf(journalItemSelectorHelper.getImageSelectorURL()) %>"
 			requestedLocale="<%= locale %>"
 		/>
