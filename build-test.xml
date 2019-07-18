@@ -6341,8 +6341,8 @@ go]]></replacevalue>
 					dir="modules"
 					erroronmissingdir="false"
 				>
-					<include name="**/TEST-*.xml" />
 					<exclude name="**/node_modules/**/TEST-*.xml" />
+					<include name="**/TEST-*.xml" />
 				</fileset>
 				<fileset
 					dir="portal-impl/test-results"
