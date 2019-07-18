@@ -180,7 +180,6 @@ public class StructuredContentResourceTest
 	protected StructuredContent randomStructuredContent() throws Exception {
 		StructuredContent structuredContent = super.randomStructuredContent();
 
-		structuredContent.setContentStructureId(_ddmStructure.getStructureId());
 		structuredContent.setContentFields(
 			new ContentField[] {
 				new ContentField() {
@@ -194,6 +193,7 @@ public class StructuredContentResourceTest
 					}
 				}
 			});
+		structuredContent.setContentStructureId(_ddmStructure.getStructureId());
 
 		return structuredContent;
 	}
