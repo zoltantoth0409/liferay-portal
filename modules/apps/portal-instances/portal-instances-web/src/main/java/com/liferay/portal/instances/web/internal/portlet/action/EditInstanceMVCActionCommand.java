@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
+import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.CompanyService;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
@@ -93,6 +94,15 @@ public class EditInstanceMVCActionCommand extends BaseMVCActionCommand {
 					 e instanceof CompanyVirtualHostException ||
 					 e instanceof CompanyWebIdException) {
 
+				long companyId = ParamUtil.getLong(actionRequest, "companyId");
+
+				Company company = _companyLocalService.fetchCompanyById(
+					companyId);
+
+				if (company != null) {
+					actionRequest.setAttribute(WebKeys.SEL_COMPANY, company);
+				}
+
 				SessionErrors.add(actionRequest, e.getClass());
 
 				mvcPath = "/edit_instance.jsp";
@@ -153,6 +163,9 @@ public class EditInstanceMVCActionCommand extends BaseMVCActionCommand {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		EditInstanceMVCActionCommand.class);
+
+	@Reference
+	private CompanyLocalService _companyLocalService;
 
 	@Reference
 	private CompanyService _companyService;
