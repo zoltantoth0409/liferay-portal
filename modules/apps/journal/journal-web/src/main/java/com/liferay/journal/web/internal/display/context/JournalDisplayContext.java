@@ -19,8 +19,6 @@ import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalServiceUtil;
-import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
-import com.liferay.dynamic.data.mapping.storage.Fields;
 import com.liferay.dynamic.data.mapping.util.DDMNavigationHelper;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandler;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerRegistryUtil;
@@ -34,7 +32,6 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
 import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.journal.constants.JournalPortletKeys;
-import com.liferay.journal.constants.JournalWebKeys;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleConstants;
 import com.liferay.journal.model.JournalArticleDisplay;
@@ -44,7 +41,6 @@ import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.service.JournalArticleServiceUtil;
 import com.liferay.journal.service.JournalFolderLocalServiceUtil;
 import com.liferay.journal.service.JournalFolderServiceUtil;
-import com.liferay.journal.util.JournalConverter;
 import com.liferay.journal.util.comparator.FolderArticleArticleIdComparator;
 import com.liferay.journal.util.comparator.FolderArticleDisplayDateComparator;
 import com.liferay.journal.util.comparator.FolderArticleModifiedDateComparator;
@@ -71,7 +67,6 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
@@ -444,39 +439,6 @@ public class JournalDisplayContext {
 		};
 	}
 
-	public DDMFormValues getDDMFormValues(DDMStructure ddmStructure)
-		throws PortalException {
-
-		if (_ddmFormValues != null) {
-			return _ddmFormValues;
-		}
-
-		JournalArticle article = getArticle();
-
-		if (article == null) {
-			return _ddmFormValues;
-		}
-
-		String content = article.getContent();
-
-		if (Validator.isNull(content)) {
-			return _ddmFormValues;
-		}
-
-		JournalConverter journalConverter = getJournalConverter();
-
-		Fields fields = journalConverter.getDDMFields(ddmStructure, content);
-
-		if (fields == null) {
-			return _ddmFormValues;
-		}
-
-		_ddmFormValues = journalConverter.getDDMFormValues(
-			ddmStructure, fields);
-
-		return _ddmFormValues;
-	}
-
 	public String getDDMStructureKey() {
 		if (_ddmStructureKey != null) {
 			return _ddmStructureKey;
@@ -738,35 +700,6 @@ public class JournalDisplayContext {
 		return StringPool.BLANK;
 	}
 
-	public String getFriendlyURLBase() {
-		StringBundler sb = new StringBundler(4);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		sb.append(themeDisplay.getPortalURL());
-
-		Group group = themeDisplay.getScopeGroup();
-
-		boolean privateLayout = false;
-
-		if (_article != null) {
-			Layout layout = _article.getLayout();
-
-			if (layout != null) {
-				privateLayout = layout.isPrivateLayout();
-			}
-		}
-
-		sb.append(group.getPathFriendlyURL(privateLayout, themeDisplay));
-
-		sb.append(group.getFriendlyURL());
-
-		sb.append(JournalArticleConstants.CANONICAL_URL_SEPARATOR);
-
-		return sb.toString();
-	}
-
 	public List<NavigationItem> getInfoPanelNavigationItems() {
 		return new NavigationItemList() {
 			{
@@ -779,11 +712,6 @@ public class JournalDisplayContext {
 					});
 			}
 		};
-	}
-
-	public JournalConverter getJournalConverter() {
-		return (JournalConverter)_request.getAttribute(
-			JournalWebKeys.JOURNAL_CONVERTER);
 	}
 
 	public String getKeywords() {
@@ -1973,7 +1901,6 @@ public class JournalDisplayContext {
 	private String[] _addMenuFavItems;
 	private JournalArticle _article;
 	private JournalArticleDisplay _articleDisplay;
-	private DDMFormValues _ddmFormValues;
 	private String _ddmStructureKey;
 	private String _ddmStructureName;
 	private List<DDMStructure> _ddmStructures;
