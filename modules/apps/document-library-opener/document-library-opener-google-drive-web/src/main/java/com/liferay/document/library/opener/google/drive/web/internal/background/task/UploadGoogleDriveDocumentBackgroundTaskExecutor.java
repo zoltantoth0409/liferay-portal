@@ -23,8 +23,8 @@ import com.google.api.services.drive.Drive;
 
 import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.document.library.opener.google.drive.constants.DLOpenerGoogleDriveMimeTypes;
-import com.liferay.document.library.opener.google.drive.web.internal.OAuth2Manager;
 import com.liferay.document.library.opener.google.drive.web.internal.constants.GoogleDriveBackgroundTaskConstants;
+import com.liferay.document.library.opener.google.drive.web.internal.oauth.OAuth2Manager;
 import com.liferay.document.library.opener.service.DLOpenerFileEntryReferenceLocalService;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
