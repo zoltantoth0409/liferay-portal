@@ -78,7 +78,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "anonymous-account"));
 
 		<aui:col width="<%= 50 %>">
 			<c:if test="<%= PropsValues.CAPTCHA_CHECK_PORTAL_CREATE_ACCOUNT %>">
-				<portlet:resourceURL id="/login/captcha" var="captchaURL" />
+				<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/login/captcha" var="captchaURL" />
 
 				<liferay-captcha:captcha
 					url="<%= captchaURL %>"
