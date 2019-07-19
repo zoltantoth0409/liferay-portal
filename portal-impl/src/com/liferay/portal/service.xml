@@ -188,6 +188,8 @@
 
 		<reference entity="Account" package-path="com.liferay.portal" />
 		<reference entity="Contact" package-path="com.liferay.portal" />
+		<reference entity="ExpandoColumn" package-path="com.liferay.portlet.expando" />
+		<reference entity="ExpandoTable" package-path="com.liferay.portlet.expando" />
 		<reference entity="Group" package-path="com.liferay.portal" />
 		<reference entity="Image" package-path="com.liferay.portal" />
 		<reference entity="LayoutPrototype" package-path="com.liferay.portal" />
@@ -200,6 +202,7 @@
 		<reference entity="Resource" package-path="com.liferay.portal" />
 		<reference entity="ResourcePermission" package-path="com.liferay.portal" />
 		<reference entity="Role" package-path="com.liferay.portal" />
+		<reference entity="SystemEvent" package-path="com.liferay.portal" />
 		<reference entity="User" package-path="com.liferay.portal" />
 		<reference entity="UserGroup" package-path="com.liferay.portal" />
 		<reference entity="VirtualHost" package-path="com.liferay.portal" />
