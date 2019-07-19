@@ -62,6 +62,17 @@ function addFragmentEntryLinkComment(fragmentEntryLinkId, body) {
 
 /**
  * @param {string} commentId
+ */
+function deleteFragmentEntryLinkComment(commentId) {
+	const state = _store.getState();
+
+	return _fetch(state.deleteFragmentEntryLinkCommentURL, {
+		commentId
+	});
+}
+
+/**
+ * @param {string} commentId
  * @param {string} body
  */
 function editFragmentEntryLinkComment(commentId, body) {
@@ -163,6 +174,7 @@ function updatePageEditorLayoutData(layoutData, segmentsExperienceId) {
 
 export {
 	addFragmentEntryLinkComment,
+	deleteFragmentEntryLinkComment,
 	editFragmentEntryLinkComment,
 	removeExperience,
 	removeFragmentEntryLinks,
