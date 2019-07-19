@@ -1205,7 +1205,9 @@ definition {
 			password = "test",
 			userEmailAddress = "test@liferay.com");
 
-		SitePages.openPagesAdmin(siteURLKey = "Global");
+		SitePages.openPagesAdmin(
+			baseURL = "http://localhost:9080",
+			siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -1253,7 +1255,9 @@ definition {
 			password = "test",
 			userEmailAddress = "test@liferay.com");
 
-		SitePages.openPagesAdmin(siteURLKey = "Global");
+		SitePages.openPagesAdmin(
+			baseURL = "http://localhost:9080",
+			siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Categorization",
@@ -1284,7 +1288,9 @@ definition {
 			password = "test",
 			userEmailAddress = "test@liferay.com");
 
-		SitePages.openPagesAdmin(siteURLKey = "global");
+		SitePages.openPagesAdmin(
+			baseURL = "http://localhost:9080",
+			siteURLKey = "global");
 
 		ProductMenu.gotoPortlet(
 			category = "Categorization",
