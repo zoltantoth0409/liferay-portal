@@ -279,6 +279,7 @@ AUI.add(
 			_updateValueConfiguration: function(config) {
 				var instance = this;
 
+				var locale = instance.get('locale');
 				var predefinedValue = instance.get('predefinedValue');
 				var value = instance.getValue();
 
@@ -297,6 +298,11 @@ AUI.add(
 					}
 				}
 
+				var localizedValue = {};
+
+				localizedValue[locale] = value;
+
+				config.localizedValue = config.context.localizedValue = localizedValue;
 				config.value = config.context.value = value;
 			},
 
