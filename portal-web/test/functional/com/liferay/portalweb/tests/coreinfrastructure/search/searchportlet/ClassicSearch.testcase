@@ -186,10 +186,6 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
-		SitePages.openPagesAdmin(siteURLKey = "${siteName}");
-
 		ClassicSearch.search(searchTerm = "WC Title");
 
 		ClassicSearch.viewSearchResultPG(
