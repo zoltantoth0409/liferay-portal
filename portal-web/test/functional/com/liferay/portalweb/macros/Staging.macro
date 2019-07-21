@@ -774,6 +774,10 @@ definition {
 		SelectFrame(locator1 = "IFrame#SITE_VARIATION_IFRAME");
 	}
 
+	macro openStagingAdmin {
+		Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_staging_processes_web_portlet_StagingProcessesPortlet");
+	}
+
 	macro publishCustomPublication {
 		LexiconEntry.gotoAdd();
 
@@ -971,7 +975,7 @@ definition {
 			Navigator.openURL();
 		}
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		ProductMenu.gotoSite(site = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
