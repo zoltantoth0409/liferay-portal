@@ -794,9 +794,16 @@ definition {
 
 		Pause(locator1 = "30000");
 
-		AssertTextEquals(
-			locator1 = "Staging#INITIAL_PROCESS_SUCCESSFUL",
-			value1 = "Successful");
+		if (isSet(failureExpected)) {
+			AssertTextEquals(
+				locator1 = "Staging#PROCESS_RESULT",
+				value1 = "Failed");
+		}
+		else {
+			AssertTextEquals(
+				locator1 = "Staging#PROCESS_RESULT",
+				value1 = "Successful");
+		}
 	}
 
 	macro publishToLive {
