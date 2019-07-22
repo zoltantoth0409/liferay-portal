@@ -1729,6 +1729,11 @@ public class CalendarBookingLocalServiceImpl
 					continue;
 				}
 
+				if (DateUtil.equals(childCalendarBooking.getCreateDate(),calendarBooking.getModifiedDate())) {
+					notificationTemplateType =
+						NotificationTemplateType.INVITE;
+				}
+
 				if (childCalendarBooking.isDenied()) {
 					notificationTemplateType = NotificationTemplateType.DECLINE;
 				}
