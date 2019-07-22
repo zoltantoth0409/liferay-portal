@@ -40,6 +40,10 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle((structure == null) ? LanguageUtil.get(request, "new-element-set") : LanguageUtil.get(request, "edit-element-set"));
 %>
 
+<liferay-util:html-top>
+	<link href="<%= PortalUtil.getStaticResourceURL(request, "/o/dynamic-data-mapping-form-builder/css/main.css") %>" rel="stylesheet" type="text/css" />
+</liferay-util:html-top>
+
 <div class="loading-animation" id="<portlet:namespace />loader"></div>
 
 <portlet:actionURL name="saveStructure" var="saveStructureURL">

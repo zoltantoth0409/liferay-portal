@@ -35,6 +35,10 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-form") : LanguageUtil.get(request, "edit-form"));
 %>
 
+<liferay-util:html-top>
+	<link href="<%= PortalUtil.getStaticResourceURL(request, "/o/dynamic-data-mapping-form-builder/css/main.css") %>" rel="stylesheet" type="text/css" />
+</liferay-util:html-top>
+
 <div class="loading-animation" id="<portlet:namespace />loader"></div>
 
 <portlet:actionURL name="saveFormInstance" var="saveFormInstanceURL">
