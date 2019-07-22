@@ -1129,9 +1129,9 @@ definition {
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
-				category = "Content",
-				panel = "Site Administration",
-				portlet = "Web Content");
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Web Content");
 
 		WebContentNavigator.gotoAddCP();
 
