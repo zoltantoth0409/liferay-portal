@@ -91,7 +91,7 @@ describe('Liferay.Search.SearchBar', function() {
 		);
 	});
 
-	describe(
+	describe.skip(
 		'.updateQueryString',
 		function() {
 			it(
