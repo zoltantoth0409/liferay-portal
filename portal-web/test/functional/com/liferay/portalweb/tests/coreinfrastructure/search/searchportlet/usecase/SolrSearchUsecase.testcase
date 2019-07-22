@@ -202,7 +202,7 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openSiteLanding(siteURLKey = "${siteName}");
 
 		Search.searchPG(searchTerm = "WC Title");
 

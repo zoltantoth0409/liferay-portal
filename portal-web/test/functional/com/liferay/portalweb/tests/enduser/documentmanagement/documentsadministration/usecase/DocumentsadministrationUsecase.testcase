@@ -146,7 +146,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Sites");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		Page.add(pageName = "Site Page 1");
 
@@ -874,7 +874,7 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		Navigator.openSiteURL(siteName = "Moon Rocks 101");
+		Navigator.openSiteLanding(siteURLKey = "Moon Rocks 101");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -916,7 +916,7 @@ definition {
 
 		Refresh();
 
-		Navigator.openSiteURL(siteName = "Moon Rocks 101");
+		Navigator.openSiteLanding(siteURLKey = "Moon Rocks 101");
 
 		User.logoutPG();
 
@@ -1315,7 +1315,7 @@ definition {
 			dmSubFolderDescription = "DM SubFolder Description",
 			dmSubFolderName = "DM SubFolder Name");
 
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

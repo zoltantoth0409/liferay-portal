@@ -210,7 +210,7 @@ definition {
 			assetContent = "WC WebContent Content",
 			assetTitle = "WC WebContent Title");
 
-		Navigator.openSiteURL(siteName = "Global");
+		Navigator.openSiteLanding(siteURLKey = "Global");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

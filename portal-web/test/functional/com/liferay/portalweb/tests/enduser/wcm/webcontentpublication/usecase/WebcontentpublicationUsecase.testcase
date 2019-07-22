@@ -1110,8 +1110,6 @@ definition {
 
 	@priority = "4"
 	test AssetPublisherTogglingBetweenSites {
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
 		ProductMenu.gotoPortlet(
 			category = "Sites",
 			panel = "Control Panel",
@@ -1128,7 +1126,22 @@ definition {
 			pageName = "Site Page",
 			siteName = "Site Name");
 
-		for (var siteName1 : list "${siteName},Site Name,Global") {
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+				category = "Content",
+				panel = "Site Administration",
+				portlet = "Web Content");
+
+		WebContentNavigator.gotoAddCP();
+
+		WebContent.addCP(
+			webContentContent = "Liferay WC Content",
+			webContentTitle = "Liferay WC Title");
+
+		PortletEntry.publish();
+
+		for (var siteName1 : list "Site Name,Global") {
 			Navigator.openSiteLanding(siteURLKey = "${siteName1}");
 
 			ProductMenu.gotoPortlet(
@@ -1175,7 +1188,7 @@ definition {
 			pageName = "Site Page",
 			siteName = "Site Name");
 
-		AssetPublisherPortlet.configureAddSiteScopes(otherSite = "${siteName}");
+		AssetPublisherPortlet.configureAddSiteScopes(otherSite = "Liferay");
 
 		Navigator.gotoSitePage(
 			pageName = "Site Page",
@@ -1188,8 +1201,8 @@ definition {
 			siteName = "Site Name");
 
 		AssetPublisherPortlet.viewAssetPG(
-			assetContent = "${siteName} WC Content",
-			assetTitle = "${siteName} WC Title");
+			assetContent = "Liferay WC Content",
+			assetTitle = "Liferay WC Title");
 	}
 
 	@priority = "4"
