@@ -260,6 +260,8 @@ public class WebServerServlet extends HttpServlet {
 
 			PermissionThreadLocal.setPermissionChecker(permissionChecker);
 
+			_checkResourcePermission(request, response);
+
 			if (_lastModified) {
 				long lastModified = getLastModified(request);
 
@@ -319,13 +321,9 @@ public class WebServerServlet extends HttpServlet {
 				}
 			}
 		}
-		catch (NoSuchFileEntryException nsfee) {
+		catch (NoSuchFileEntryException | NoSuchFolderException e) {
 			PortalUtil.sendError(
-				HttpServletResponse.SC_NOT_FOUND, nsfee, request, response);
-		}
-		catch (NoSuchFolderException nsfe) {
-			PortalUtil.sendError(
-				HttpServletResponse.SC_NOT_FOUND, nsfe, request, response);
+				HttpServletResponse.SC_NOT_FOUND, e, request, response);
 		}
 		catch (PrincipalException pe) {
 			processPrincipalException(pe, user, request, response);
@@ -392,11 +390,8 @@ public class WebServerServlet extends HttpServlet {
 
 			return image;
 		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
+		catch (PortalException | SystemException e) {
+			throw e;
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -483,16 +478,8 @@ public class WebServerServlet extends HttpServlet {
 					true, imageId);
 
 				if (layout != null) {
-					User user = PortalUtil.getUser(request);
-
-					if (user == null) {
-						long companyId = PortalUtil.getCompanyId(request);
-
-						user = UserLocalServiceUtil.getDefaultUser(companyId);
-					}
-
-					PermissionChecker permissionChecker =
-						PermissionCheckerFactoryUtil.create(user);
+					PermissionChecker permissionChecker = _getPermissionChecker(
+						request);
 
 					if (!LayoutPermissionUtil.contains(
 							permissionChecker, layout, ActionKeys.VIEW)) {
@@ -509,16 +496,8 @@ public class WebServerServlet extends HttpServlet {
 						true, imageId);
 
 				if (layoutSet != null) {
-					User user = PortalUtil.getUser(request);
-
-					if (user == null) {
-						long companyId = PortalUtil.getCompanyId(request);
-
-						user = UserLocalServiceUtil.getDefaultUser(companyId);
-					}
-
-					PermissionChecker permissionChecker =
-						PermissionCheckerFactoryUtil.create(user);
+					PermissionChecker permissionChecker = _getPermissionChecker(
+						request);
 
 					Group group = layoutSet.getGroup();
 
@@ -895,34 +874,19 @@ public class WebServerServlet extends HttpServlet {
 
 			return;
 		}
-		catch (Exception e) {
-			if (e instanceof NoSuchFileEntryException ||
-				e instanceof PrincipalException) {
+		catch (NoSuchFileEntryException | PrincipalException e1) {
+			try {
+				sendFile(response, user, groupId, folderId, "index.htm");
 
-				try {
-					sendFile(response, user, groupId, folderId, "index.htm");
-
-					return;
-				}
-				catch (NoSuchFileEntryException nsfee) {
-
-					// LPS-52675
-
-					if (_log.isDebugEnabled()) {
-						_log.debug(nsfee, nsfee);
-					}
-				}
-				catch (PrincipalException pe) {
-
-					// LPS-52675
-
-					if (_log.isDebugEnabled()) {
-						_log.debug(pe, pe);
-					}
-				}
+				return;
 			}
-			else {
-				throw e;
+			catch (NoSuchFileEntryException | PrincipalException e2) {
+
+				// LPS-52675
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(e2, e2);
+				}
 			}
 		}
 
@@ -965,8 +929,23 @@ public class WebServerServlet extends HttpServlet {
 
 		FileEntry fileEntry = getFileEntry(pathArray);
 
-		if (fileEntry == null) {
-			throw new NoSuchFileEntryException();
+		Group group = GroupLocalServiceUtil.getGroup(fileEntry.getGroupId());
+
+		if (group.isStagingGroup()) {
+			PermissionChecker permissionChecker =
+				PermissionThreadLocal.getPermissionChecker();
+
+			String portletId = PortletProviderUtil.getPortletId(
+				FileEntry.class.getName(), PortletProvider.Action.VIEW);
+
+			if (!PortletPermissionUtil.hasControlPanelAccessPermission(
+					permissionChecker, fileEntry.getGroupId(), portletId)) {
+
+				throw new PrincipalException.MustHavePermission(
+					permissionChecker, FileEntry.class.getName(),
+					fileEntry.getFileEntryId(),
+					ActionKeys.ACCESS_IN_CONTROL_PANEL);
+			}
 		}
 
 		String version = ParamUtil.getString(request, "version");
@@ -979,30 +958,6 @@ public class WebServerServlet extends HttpServlet {
 
 		String tempFileId = DLUtil.getTempFileId(
 			fileEntry.getFileEntryId(), version);
-
-		if (fileEntry.isInTrash()) {
-			int status = ParamUtil.getInteger(
-				request, "status", WorkflowConstants.STATUS_APPROVED);
-
-			if (status != WorkflowConstants.STATUS_IN_TRASH) {
-				throw new NoSuchFileEntryException();
-			}
-
-			PermissionChecker permissionChecker =
-				PermissionThreadLocal.getPermissionChecker();
-
-			String portletId = PortletProviderUtil.getPortletId(
-				TrashEntry.class.getName(), PortletProvider.Action.VIEW);
-
-			if (!PortletPermissionUtil.hasControlPanelAccessPermission(
-					permissionChecker, fileEntry.getGroupId(), portletId)) {
-
-				throw new PrincipalException.MustHavePermission(
-					permissionChecker, FileEntry.class.getName(),
-					fileEntry.getFileEntryId(),
-					ActionKeys.ACCESS_IN_CONTROL_PANEL);
-			}
-		}
 
 		FileVersion fileVersion = fileEntry.getFileVersion(version);
 
@@ -1245,12 +1200,6 @@ public class WebServerServlet extends HttpServlet {
 			HttpServletResponse response, User user, String path)
 		throws Exception {
 
-		if (!PropsValues.WEB_SERVER_SERVLET_DIRECTORY_INDEXING_ENABLED) {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-
-			throw new PrincipalException();
-		}
-
 		List<WebServerEntry> webServerEntries = new ArrayList<>();
 
 		List<Group> groups = WebDAVUtil.getGroups(user);
@@ -1457,9 +1406,7 @@ public class WebServerServlet extends HttpServlet {
 
 		User user = UserLocalServiceUtil.getUserByScreenName(companyId, name);
 
-		group = user.getGroup();
-
-		return group;
+		return user.getGroup();
 	}
 
 	private static User _getUser(HttpServletRequest request) throws Exception {
@@ -1481,17 +1428,14 @@ public class WebServerServlet extends HttpServlet {
 		if ((userIdString != null) && (password != null)) {
 			long userId = GetterUtil.getLong(userIdString);
 
-			user = UserLocalServiceUtil.getUser(userId);
-		}
-		else {
-			long companyId = PortalUtil.getCompanyId(request);
-
-			Company company = CompanyLocalServiceUtil.getCompany(companyId);
-
-			user = company.getDefaultUser();
+			return UserLocalServiceUtil.getUser(userId);
 		}
 
-		return user;
+		long companyId = PortalUtil.getCompanyId(request);
+
+		Company company = CompanyLocalServiceUtil.getCompany(companyId);
+
+		return company.getDefaultUser();
 	}
 
 	private static boolean _isDirectoryIndexingEnabled(Group group) {
@@ -1501,6 +1445,93 @@ public class WebServerServlet extends HttpServlet {
 		return GetterUtil.getBoolean(
 			typeSettingsProperties.getProperty("directoryIndexingEnabled"),
 			PropsValues.WEB_SERVER_SERVLET_DIRECTORY_INDEXING_ENABLED);
+	}
+
+	private void _checkResourcePermission(
+			HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse)
+		throws Exception {
+
+		String path = HttpUtil.fixPath(httpServletRequest.getPathInfo());
+
+		String[] pathArray = StringUtil.split(path, CharPool.SLASH);
+
+		if (pathArray.length == 0) {
+
+			// Check for sendGroups
+
+			if (!PropsValues.WEB_SERVER_SERVLET_DIRECTORY_INDEXING_ENABLED) {
+				httpServletResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
+
+				throw new PrincipalException();
+			}
+		}
+		else if (Validator.isNumber(pathArray[0])) {
+
+			// Check for sendFile
+
+			FileEntry fileEntry = getFileEntry(pathArray);
+
+			String portletId = _getPortletId(fileEntry, httpServletRequest);
+
+			if (portletId == null) {
+				return;
+			}
+
+			PermissionChecker permissionChecker =
+				PermissionThreadLocal.getPermissionChecker();
+
+			if (!PortletPermissionUtil.hasControlPanelAccessPermission(
+					permissionChecker, fileEntry.getGroupId(), portletId)) {
+
+				throw new PrincipalException.MustHavePermission(
+					permissionChecker, FileEntry.class.getName(),
+					fileEntry.getFileEntryId(),
+					ActionKeys.ACCESS_IN_CONTROL_PANEL);
+			}
+		}
+	}
+
+	private PermissionChecker _getPermissionChecker(
+			HttpServletRequest httpServletRequest)
+		throws Exception {
+
+		User user = PortalUtil.getUser(httpServletRequest);
+
+		if (user == null) {
+			long companyId = PortalUtil.getCompanyId(httpServletRequest);
+
+			user = UserLocalServiceUtil.getDefaultUser(companyId);
+		}
+
+		return PermissionCheckerFactoryUtil.create(user);
+	}
+
+	private String _getPortletId(
+			FileEntry fileEntry, HttpServletRequest httpServletRequest)
+		throws PortalException {
+
+		if (fileEntry.isInTrash()) {
+			int status = ParamUtil.getInteger(
+				httpServletRequest, "status",
+				WorkflowConstants.STATUS_APPROVED);
+
+			if (status != WorkflowConstants.STATUS_IN_TRASH) {
+				throw new NoSuchFileEntryException();
+			}
+
+			return PortletProviderUtil.getPortletId(
+				TrashEntry.class.getName(), PortletProvider.Action.VIEW);
+		}
+
+		Group group = GroupLocalServiceUtil.getGroup(fileEntry.getGroupId());
+
+		if (!group.isStagingGroup()) {
+			return null;
+		}
+
+		return PortletProviderUtil.getPortletId(
+			FileEntry.class.getName(), PortletProvider.Action.VIEW);
 	}
 
 	private static final boolean _WEB_SERVER_SERVLET_VERSION_VERBOSITY_DEFAULT =
