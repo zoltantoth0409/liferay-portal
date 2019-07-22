@@ -334,7 +334,7 @@ definition {
 
 		Organization.addSiteCP(orgName = "Organization Name");
 
-		Navigator.openSiteURL(siteName = "Organization Name");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
@@ -1268,7 +1268,7 @@ definition {
 			userName = "userfn userln",
 			userScreenName = "usersn");
 
-		Navigator.openSiteURL(siteName = "Organization Name");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
@@ -1277,7 +1277,7 @@ definition {
 
 		SitePages.addPublicPage(pageName = "Public Page");
 
-		Navigator.openSiteURL(siteName = "Organization Name");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -1844,7 +1844,7 @@ definition {
 
 		Organization.addSiteCP(orgName = "Organization Name 1");
 
-		Navigator.openSiteURL(siteName = "Organization Name 1");
+		SitePages.openPagesAdmin(siteURLKey = "Organization Name 1");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",

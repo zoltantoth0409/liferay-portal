@@ -450,8 +450,6 @@ definition {
 
 	@priority = "4"
 	test AddRegularWithUserInviteAccept {
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
@@ -471,8 +469,6 @@ definition {
 		User.editPasswordCP(
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
-
-		SitePages.openPagesAdmin(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
@@ -689,8 +685,6 @@ definition {
 
 	@priority = "3"
 	test AddRepeatingWithUserInviteAccept {
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
@@ -710,8 +704,6 @@ definition {
 		User.editPasswordCP(
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
-
-		SitePages.openPagesAdmin(siteURLKey = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",

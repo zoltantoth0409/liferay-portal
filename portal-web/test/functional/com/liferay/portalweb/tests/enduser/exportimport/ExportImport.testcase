@@ -87,7 +87,7 @@ definition {
 			larFileName = "${larFileName}",
 			siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -139,7 +139,7 @@ definition {
 			larFileName = "${larFileName}",
 			siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
@@ -717,7 +717,7 @@ definition {
 			groupName = "Site Name A",
 			title = "Web Content Title");
 
-		ProductMenu.gotoSite(site = "Site Name A");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name A");
 
 		LAR.exportSiteCP();
 
@@ -733,7 +733,7 @@ definition {
 
 		JSONGroup.addGroup(groupName = "Site Name B");
 
-		Navigator.openSiteURL(siteName = "Site Name B");
+		SitePages.openPagesAdmin(siteURLKey = "Site Name B");
 
 		ProductMenu.gotoPortlet(
 			category = "Build",

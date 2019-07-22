@@ -428,8 +428,6 @@ definition {
 	test DisplayTemplateWithHorizontalStyle {
 		property testray.component.names = "Breadcrumb";
 
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
@@ -439,7 +437,7 @@ definition {
 			childPageName = "Child Page Name",
 			parentPageName = "Welcome");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openURL();
 
 		Page.gotoChildPagePG(
 			childPageName = "Child Page Name",
@@ -470,8 +468,6 @@ definition {
 	test DisplayTemplateWithVerticalStyle {
 		property testray.component.names = "Breadcrumb";
 
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
@@ -480,8 +476,6 @@ definition {
 		SitePages.addPublicChildPage(
 			childPageName = "Child Page Name",
 			parentPageName = "Welcome");
-
-		Navigator.openSiteURL(siteName = "${siteName}");
 
 		Page.gotoChildPagePG(
 			childPageName = "Child Page Name",
@@ -513,8 +507,6 @@ definition {
 		property test.name.skip.portal.instance = "Breadcrumb#EnableShowGuestSite";
 		property testray.component.names = "Breadcrumb";
 
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
 		ProductMenu.gotoPortlet(
 			category = "Build",
 			panel = "Site Administration",
@@ -524,7 +516,7 @@ definition {
 			childPageName = "Child Page Name",
 			parentPageName = "Welcome");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openURL();
 
 		Page.gotoChildPagePG(
 			childPageName = "Child Page Name",

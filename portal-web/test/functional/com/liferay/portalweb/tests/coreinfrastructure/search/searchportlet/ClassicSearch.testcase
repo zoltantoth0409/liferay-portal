@@ -188,7 +188,7 @@ definition {
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
-		Navigator.openSiteURL(siteName = "${siteName}");
+		SitePages.openPagesAdmin(siteURLKey = "${siteName}");
 
 		ClassicSearch.search(searchTerm = "WC Title");
 

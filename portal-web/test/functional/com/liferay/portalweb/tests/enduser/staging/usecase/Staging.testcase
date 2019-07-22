@@ -418,7 +418,7 @@ definition {
 			templateFieldNames = "Text",
 			templateName = "Template Name");
 
-		ProductMenu.gotoSite(site = "Child SiteName");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

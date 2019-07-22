@@ -1100,7 +1100,7 @@ definition {
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		for (var siteName : list "${siteName},Site Name,Global") {
-			Navigator.openSiteURL(siteName = "${siteName}");
+			SitePages.openPagesAdmin(siteURLKey = "${siteName}");
 
 			ProductMenu.gotoPortlet(
 				category = "Content",
@@ -1145,7 +1145,7 @@ definition {
 
 	@priority = "4"
 	test AssetPublisherTogglingBetweenSites {
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
+		var siteName = TestCase.getSiteViaEnvironment(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
