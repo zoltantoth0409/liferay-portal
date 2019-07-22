@@ -966,7 +966,12 @@ definition {
 
 		Site.addBlankCP(siteName = "Remote Site");
 
-		Navigator.openSiteLanding(siteURLKey = "Remote Site");
+		if (isSet(remotePort)) {
+			Navigator.openSpecificURL(url = "http://localhost:${remotePort}/group/remote-site/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet");
+		}
+		else {
+			Navigator.openSiteLanding(siteURLKey = "Remote Site");
+		}
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
@@ -989,7 +994,12 @@ definition {
 			Navigator.openURL();
 		}
 
-		ProductMenu.gotoSite(site = "${siteName}");
+		if (isSet(remotePort)) {
+			Navigator.openSpecificURL(url = "http://localhost:${remotePort}/group/${siteName}/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet");
+		}
+		else {
+			Navigator.openSiteLanding(siteURLKey = "${siteName}");
+		}
 
 		ProductMenu.gotoPortlet(
 			category = "Publishing",
