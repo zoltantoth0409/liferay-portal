@@ -995,6 +995,9 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
+		long oldStartTime = calendarBooking.getStartTime();
+		long oldEndTime = calendarBooking.getEndTime();
+
 		if (isStagingCalendarBooking(calendarBooking) &&
 			(calendar.getGroupId() != calendarBooking.getGroupId())) {
 
@@ -1073,6 +1076,20 @@ public class CalendarBookingLocalServiceImpl
 			!calendarBooking.isPending()) {
 
 			calendarBooking.setStatus(WorkflowConstants.STATUS_DRAFT);
+		}
+		else if (oldStartTime != calendarBooking.getStartTime() || oldEndTime != calendarBooking.getEndTime()) {
+			if (hasExclusiveCalendarBooking(calendar, startTime, endTime)) {
+				calendarBooking.setStatus(WorkflowConstants.STATUS_DENIED);
+			}
+			else if (isStagingCalendarBooking(calendarBooking)) {
+				calendarBooking.setStatus(CalendarBookingWorkflowConstants.STATUS_MASTER_STAGING);
+			}
+			else if (isMasterPending(calendarBooking)) {
+				calendarBooking.setStatus(CalendarBookingWorkflowConstants.STATUS_MASTER_PENDING);
+			}
+			else {
+				calendarBooking.setStatus(WorkflowConstants.STATUS_PENDING);
+			}
 		}
 
 		calendarBooking.setExpandoBridgeAttributes(serviceContext);
