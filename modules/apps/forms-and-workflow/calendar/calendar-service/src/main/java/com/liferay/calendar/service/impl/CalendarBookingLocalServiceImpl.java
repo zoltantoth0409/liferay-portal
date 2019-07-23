@@ -1341,7 +1341,10 @@ public class CalendarBookingLocalServiceImpl
 
 				if (DateUtil.equals(
 						childCalendarBooking.getCreateDate(),
-						calendarBooking.getModifiedDate())) {
+						calendarBooking.getModifiedDate()) ||
+					DateUtil.equals(
+						childCalendarBooking.getCreateDate(),
+						oldModifiedDate)) {
 
 					notificationTemplateType = NotificationTemplateType.INVITE;
 				}
