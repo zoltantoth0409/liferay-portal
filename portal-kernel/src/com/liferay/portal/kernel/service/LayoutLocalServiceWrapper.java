@@ -1789,14 +1789,6 @@ public class LayoutLocalServiceWrapper
 			groupId, privateLayout, layoutId, typeSettings);
 	}
 
-	@Override
-	public com.liferay.portal.kernel.model.Layout updateLayoutType(
-			long plid, String type)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _layoutLocalService.updateLayoutType(plid, type);
-	}
-
 	/**
 	 * Updates the look and feel of the layout.
 	 *
@@ -2025,6 +2017,14 @@ public class LayoutLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _layoutLocalService.updatePriority(plid, priority);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Layout updateType(
+			long plid, String type)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _layoutLocalService.updateType(plid, type);
 	}
 
 	@Override

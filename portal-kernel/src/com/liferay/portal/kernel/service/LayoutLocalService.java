@@ -1342,9 +1342,6 @@ public interface LayoutLocalService
 			String typeSettings)
 		throws PortalException;
 
-	public Layout updateLayoutType(long plid, String type)
-		throws PortalException;
-
 	/**
 	 * Updates the look and feel of the layout.
 	 *
@@ -1513,5 +1510,7 @@ public interface LayoutLocalService
 	 */
 	public Layout updatePriority(long plid, int priority)
 		throws PortalException;
+
+	public Layout updateType(long plid, String type) throws PortalException;
 
 }
