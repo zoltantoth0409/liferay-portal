@@ -1,9 +1,9 @@
-{namespace com.liferay.layout.content.page.editor.web.CheckboxFieldDelegateTemplate}
+{namespace com.liferay.layout.content.page.editor.web.TextFieldDelegateTemplate}
 
 /**
- * Field Select variation
+ * Field Text variation
  */
-{deltemplate com.liferay.layout.content.page.editor.web.field variant="'checkbox'"}
+{deltemplate com.liferay.layout.content.page.editor.web.field variant="'text'"}
 	{@param configurationValues: ?}
 	{@param field: [
 		name: string,
@@ -17,7 +17,7 @@
 		]
 	]}
 
-	{call com.liferay.layout.content.page.editor.web.CheckboxField.render}
+	{call com.liferay.layout.content.page.editor.web.TextField.render}
 		{param configurationValues: $configurationValues /}
 		{param field: $field /}
 	{/call}
