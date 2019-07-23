@@ -1949,7 +1949,7 @@ definition {
 			teamName = "Site Team Name",
 			userScreenName = "usersn1");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		Page.add(
 			pageName = "USA Ice Hockey Team Blog",

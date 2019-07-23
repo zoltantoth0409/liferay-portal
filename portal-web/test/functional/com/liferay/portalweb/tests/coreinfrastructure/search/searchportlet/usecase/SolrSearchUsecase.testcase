@@ -200,10 +200,6 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
-		Navigator.openSiteLanding(siteURLKey = "${siteName}");
-
 		Search.searchPG(searchTerm = "WC Title");
 
 		Search.viewSearchResultPG(
