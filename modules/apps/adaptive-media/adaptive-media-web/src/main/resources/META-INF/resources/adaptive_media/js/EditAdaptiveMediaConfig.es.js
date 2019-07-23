@@ -84,14 +84,6 @@ class EditAdaptiveMediaConfig extends PortletBase {
 	}
 
 	/**
-	 * @inheritDoc
-	 */
-	detached() {
-		super.detached();
-		this.eventHandler_.removeAllListeners();
-	}
-
-	/**
 	 * Updates the uuid identifier based on the "name" field
 	 * if the "Automatic" option is selected
 	 */
