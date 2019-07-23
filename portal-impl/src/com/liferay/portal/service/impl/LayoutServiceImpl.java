@@ -1080,7 +1080,7 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 	}
 
 	@Override
-	public Layout updateLayoutType(long plid, String type)
+	public Layout updateType(long plid, String type)
 		throws PortalException {
 
 		Layout layout = layoutLocalService.getLayout(plid);
@@ -1088,7 +1088,7 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 		LayoutPermissionUtil.check(
 			getPermissionChecker(), layout, ActionKeys.UPDATE);
 
-		return layoutLocalService.updateLayoutType(plid, type);
+		return layoutLocalService.updateType(plid, type);
 	}
 
 	/**
