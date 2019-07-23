@@ -1079,18 +1079,6 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 			groupId, privateLayout, layoutId, typeSettings);
 	}
 
-	@Override
-	public Layout updateType(long plid, String type)
-		throws PortalException {
-
-		Layout layout = layoutLocalService.getLayout(plid);
-
-		LayoutPermissionUtil.check(
-			getPermissionChecker(), layout, ActionKeys.UPDATE);
-
-		return layoutLocalService.updateType(plid, type);
-	}
-
 	/**
 	 * Updates the look and feel of the layout.
 	 *
@@ -1303,6 +1291,16 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 			getPermissionChecker(), plid, ActionKeys.UPDATE);
 
 		return layoutLocalService.updatePriority(plid, priority);
+	}
+
+	@Override
+	public Layout updateType(long plid, String type) throws PortalException {
+		Layout layout = layoutLocalService.getLayout(plid);
+
+		LayoutPermissionUtil.check(
+			getPermissionChecker(), layout, ActionKeys.UPDATE);
+
+		return layoutLocalService.updateType(plid, type);
 	}
 
 	protected void checkLayoutTypeSettings(
