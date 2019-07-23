@@ -967,7 +967,7 @@ definition {
 		Site.addBlankCP(siteName = "Remote Site");
 
 		if (isSet(remotePort)) {
-			Navigator.openSpecificURL(url = "http://localhost:${remotePort}/group/remote-site/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet");
+			Navigator.openSpecificURL(url = "http://localhost:${remotePort}/group/remote-site/~/control_panel/manage?p_p_id=com_liferay_journal_web_portlet_JournalPortlet");
 		}
 		else {
 			Navigator.openSiteLanding(siteURLKey = "Remote Site");
