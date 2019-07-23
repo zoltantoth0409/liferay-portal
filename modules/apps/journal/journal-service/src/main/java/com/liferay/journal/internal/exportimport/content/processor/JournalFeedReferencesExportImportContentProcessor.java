@@ -14,13 +14,13 @@
 
 package com.liferay.journal.internal.exportimport.content.processor;
 
-import com.liferay.exportimport.configuration.ExportImportServiceConfiguration;
 import com.liferay.exportimport.content.processor.ExportImportContentProcessor;
 import com.liferay.exportimport.kernel.exception.ExportImportContentProcessorException;
 import com.liferay.exportimport.kernel.exception.ExportImportContentValidationException;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.exception.NoSuchFeedException;
 import com.liferay.journal.model.JournalFeed;
@@ -159,9 +159,9 @@ public class JournalFeedReferencesExportImportContentProcessor
 
 	protected boolean isValidateJournalFeedReferences() {
 		try {
-			ExportImportServiceConfiguration configuration =
+			JournalServiceConfiguration configuration =
 				_configurationProvider.getCompanyConfiguration(
-					ExportImportServiceConfiguration.class,
+					JournalServiceConfiguration.class,
 					CompanyThreadLocal.getCompanyId());
 
 			return configuration.validateJournalFeedReferences();

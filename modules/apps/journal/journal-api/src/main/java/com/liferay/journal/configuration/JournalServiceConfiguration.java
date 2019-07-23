@@ -125,6 +125,12 @@ public interface JournalServiceConfiguration {
 	public boolean publishToLiveByDefaultEnabled();
 
 	@Meta.AD(
+		deflt = "true", description = "validate-journal-feed-references-help",
+		name = "validate-journal-feed-references", required = false
+	)
+	public boolean validateJournalFeedReferences();
+
+	@Meta.AD(
 		deflt = "true", description = "publish-version-history-by-default",
 		name = "version-history-by-default-enabled", required = false
 	)
