@@ -68,8 +68,9 @@ AUI.add(
 							function(item) {
 								var label = item.label[instance.get('locale')] || item.label[instance.get('defaultLocale')];
 								
-								if(!label) {
+								if (!label) {
 									var values = Object.values(item.label);
+
 									label = values[0];
 								}
 
