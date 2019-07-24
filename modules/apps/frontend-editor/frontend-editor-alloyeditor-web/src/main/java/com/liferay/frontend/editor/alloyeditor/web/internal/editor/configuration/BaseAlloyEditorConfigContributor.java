@@ -79,7 +79,7 @@ public abstract class BaseAlloyEditorConfigContributor
 
 		jsonObject.put(
 			"removePlugins",
-			"contextmenu,elementspath,image,link,liststyle,resize,table," +
+			"contextmenu,elementspath,floatingspace,image,link,liststyle,resize,table," +
 				"tabletools,toolbar");
 
 		String namespace = GetterUtil.getString(
