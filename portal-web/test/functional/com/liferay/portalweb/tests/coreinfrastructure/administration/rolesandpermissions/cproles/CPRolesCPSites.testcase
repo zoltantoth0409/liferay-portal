@@ -190,7 +190,7 @@ definition {
 			resourceName = "userfn userln",
 			roleTitle = "Site Administrator");
 
-		SitePages.openPagesAdmin(siteURLKey = "Parent Site Name");
+		SitePages.openPagesAdmin(siteURLKey = "Child SiteName");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
