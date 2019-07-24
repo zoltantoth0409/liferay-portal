@@ -149,5 +149,5 @@ dependencies {
 
 	lexicon group: "com.liferay.webjars", name: "com.liferay.webjars.lexicon", transitive: false, version: lexiconVersion
 
-	lodash group: "org.webjars.bower", name: "lodash", transitive: false, version: lodashVersion
+	lodash group: "org.webjars.npm", name: "lodash", transitive: false, version: lodashVersion
 }
