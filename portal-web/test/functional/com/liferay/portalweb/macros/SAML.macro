@@ -99,39 +99,14 @@ definition {
 
 	@description = "Sign into portal by executing a IdP initiated SSO login. The IdP will redirect to the SP. If the same users with the same email address are present on both instances, it will authenticate and show the SP. SAML can authenticate across major portal versions, that is, the IdP can be Portal 6.1 EE GA3 and the SP can be Portal 6.2. EE GA1. For testing purposes, it is obvious if the authentication succeeds or fails if the IdP and SP are different portal versions."
 	macro executeIdPInitiatedSSO {
-		Navigator.openSpecificURL(url = "${idpInitiatedSSOURL}");
+		if ("${autoLogin}" == "true") {
+			Navigator.openSpecificURL(url = "${idpInitiatedSSOURL}");
 
-		Type(
-			locator1 = "TextInput#EMAIL_ADDRESS",
-			value1 = "test@liferay.com");
-
-		Type(
-			locator1 = "TextInput#PASSWORD",
-			value1 = "test");
-
-		if (("${rememberMeChecked}" == "true") && (isSet(rememberMeChecked))) {
-			Check(locator1 = "Checkbox#REMEMBER_ME");
+			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 		}
+		else {
+			Navigator.openSpecificURL(url = "${idpInitiatedSSOURL}");
 
-		Click(locator1 = "Button#SIGN_IN");
-
-		AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
-
-		var portalURL = PropsUtil.get("portal.url");
-		var spURL = StringUtil.replace("${idpInitiatedSSOURL}", "${portalURL}/c/portal/saml/sso?entityId=samlsp&RelayState=", "");
-
-		AssertLocation.assertPartialLocation(value1 = "${spURL}");
-	}
-
-	@description = "Sign into portal by executing a SP initiated SSO login. In the SP, click on the Sign In button to."
-	macro executeSPInitiatedSSO {
-		Navigator.openSpecificURL(url = "${spURL}");
-
-		AssertClick(
-			locator1 = "UserBar#USER_SIGN_IN",
-			value1 = "Sign In");
-
-		if (!(("${idpLoggedIn}" == "true") && (isSet(idpLoggedIn)))) {
 			Type(
 				locator1 = "TextInput#EMAIL_ADDRESS",
 				value1 = "test@liferay.com");
@@ -148,7 +123,46 @@ definition {
 
 			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
+			var portalURL = PropsUtil.get("portal.url");
+			var spURL = StringUtil.replace("${idpInitiatedSSOURL}", "${portalURL}/c/portal/saml/sso?entityId=samlsp&RelayState=", "");
+
 			AssertLocation.assertPartialLocation(value1 = "${spURL}");
+		}
+	}
+
+	@description = "Sign into portal by executing a SP initiated SSO login. In the SP, click on the Sign In button to."
+	macro executeSPInitiatedSSO {
+		if ("${autoLogin}" == "true") {
+			Navigator.openSpecificURL(url = "${idpInitiatedSSOURL}");
+
+			AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+		}
+		else {
+			Navigator.openSpecificURL(url = "${spURL}");
+
+			AssertClick(
+				locator1 = "UserBar#USER_SIGN_IN",
+				value1 = "Sign In");
+
+			if (!(("${idpLoggedIn}" == "true") && (isSet(idpLoggedIn)))) {
+				Type(
+					locator1 = "TextInput#EMAIL_ADDRESS",
+					value1 = "test@liferay.com");
+
+				Type(
+					locator1 = "TextInput#PASSWORD",
+					value1 = "test");
+
+				if (("${rememberMeChecked}" == "true") && (isSet(rememberMeChecked))) {
+					Check(locator1 = "Checkbox#REMEMBER_ME");
+				}
+
+				Click(locator1 = "Button#SIGN_IN");
+
+				AssertElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE");
+
+				AssertLocation.assertPartialLocation(value1 = "${spURL}");
+			}
 		}
 	}
 
