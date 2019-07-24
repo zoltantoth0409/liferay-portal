@@ -52,6 +52,7 @@
 <aui:form action="<%= deleteLayoutURL %>" cssClass="container-fluid-1280" name="fm">
 	<c:choose>
 		<c:when test="<%= layoutsAdminDisplayContext.hasLayouts() %>">
+
 			<%
 			Map<String, Object> context = new HashMap<>();
 
