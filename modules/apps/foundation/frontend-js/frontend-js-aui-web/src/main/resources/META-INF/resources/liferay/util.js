@@ -986,7 +986,7 @@
 
 		toCharCode: _.memoize(
 			function(name) {
-				return _.invoke(name, 'charCodeAt').join('');
+				return _.invokeMap(name, 'charCodeAt').join('');
 			}
 		),
 
