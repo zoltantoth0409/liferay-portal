@@ -68,12 +68,13 @@ definition {
 		SAMLRole.configureCertificateAndPrivateKey(samlKeyPassword = "${samlEntityID}");
 
 		SAML.connectSPAndIdP(
-			attributes = "${attributes}",
+			idpAttributes = "${idpAttributes}",
 			idpEntityID = "samlidp",
 			idpKeepAliveURL = "${idpKeepAliveURL}",
 			idpURL = "http://localhost:8080",
 			nameIdentifierAttributeName = "${nameIdentifierAttributeName}",
 			nameIdentifierFormat = "${nameIdentifierFormat}",
+			spAttributes = "${spAttributes}",
 			spEntityID = "${samlEntityID}",
 			spKeepAliveURL = "${spKeepAliveURL}",
 			spMetadataURL = "${spURL}/c/portal/saml/metadata",
@@ -98,6 +99,7 @@ definition {
 		SAMLNavigation.gotoIdentityProviderConnections();
 
 		SAMLPortlet.addIdentityProviderConnection(
+			idpAttributes = "${idpAttributes}",
 			idpEntityID = "${idpEntityID}",
 			idpKeepAliveURL = "${idpKeepAliveURL}",
 			idpMetadataURL = "${idpURL}/c/portal/saml/metadata",
@@ -131,9 +133,9 @@ definition {
 		SAMLNavigation.gotoServiceProviderConnection();
 
 		SAMLPortlet.addServiceProviderConnection(
-			attributes = "${attributes}",
 			nameIdentifierAttributeName = "${nameIdentifierAttributeName}",
 			nameIdentifierFormat = "${nameIdentifierFormat}",
+			spAttributes = "${spAttributes}",
 			spEntityID = "${spEntityID}",
 			spKeepAliveURL = "${spKeepAliveURL}",
 			spMetadataURL = "${spURL}/c/portal/saml/metadata",

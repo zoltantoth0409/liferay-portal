@@ -23,9 +23,9 @@ definition {
 		SAML.configureLiferaySAMLAsIdP(samlEntityID = "samlidp");
 
 		SAML.configureLiferaySAMLAsSP(
-			attributes = "siteRoles",
 			nameIdentifierAttributeName = "emailAddress",
 			samlEntityID = "samlsp",
+			spAttributes = "siteRoles",
 			spURL = "http://www.able.com:9080/"
 		);
 
