@@ -78,8 +78,10 @@ AUI.add(
 								return;
 							}
 
-							if (field !== trigger) {
-								if (fieldContext.valueChanged && !Util.compare(field.get('value'), fieldContext.value)) {
+							var fieldValue = field.get('value');
+
+							if (field !== trigger || !fieldValue) {
+								if (fieldContext.valueChanged && !Util.compare(fieldValue, fieldContext.value)) {
 									field.setValue(fieldContext.value);
 									field.fire('fieldValueChange', fieldContext);
 								}
