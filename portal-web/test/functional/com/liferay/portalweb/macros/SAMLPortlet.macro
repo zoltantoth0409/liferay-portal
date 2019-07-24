@@ -64,11 +64,13 @@ definition {
 			locator1 = "TextInput#SAML_METADATA_URL_FIELD",
 			value1 = "${spMetadataURL}");
 
-		if (isSet(nameIdentifierAttributeName)) {
-			Type(
-				locator1 = "CPSAMLAdminServiceProviderConnections#SERVICE_PROVIDER_CONNECTION_NAME_IDENTIFIER_ATTRIBUTE_NAME_FIELD",
-				value1 = "${nameIdentifierAttributeName}");
+		if (!(isSet(nameIdentifierAttributeName))) {
+			var nameIdentifierAttributeName = "emailAddress";
 		}
+
+		Type(
+			locator1 = "CPSAMLAdminServiceProviderConnections#SERVICE_PROVIDER_CONNECTION_NAME_IDENTIFIER_ATTRIBUTE_NAME_FIELD",
+			value1 = "${nameIdentifierAttributeName}");
 
 		if (isSet(nameIdentifierFormat)) {
 			Select(
