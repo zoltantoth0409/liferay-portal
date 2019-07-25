@@ -684,6 +684,18 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 	@Override
 	public int searchCount(
+		String assetTitle, String taskName, String[] assetTypes,
+		Long[] assetPrimaryKeys, Date dueDateGT, Date dueDateLT,
+		Boolean completed, Boolean searchByUserRoles, boolean andOperator,
+		ServiceContext serviceContext) {
+
+		return searchCount(
+			null, assetTitle, taskName, assetTypes, assetPrimaryKeys, dueDateGT,
+			dueDateLT, completed, searchByUserRoles, false, serviceContext);
+	}
+
+	@Override
+	public int searchCount(
 		String keywords, String[] assetTypes, Boolean completed,
 		Boolean searchByUserRoles, ServiceContext serviceContext) {
 
