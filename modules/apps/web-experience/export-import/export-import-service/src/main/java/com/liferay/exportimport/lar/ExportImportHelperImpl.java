@@ -458,7 +458,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		for (Map.Entry<Long, Boolean> entry : entrySet) {
 			long plid = GetterUtil.getLong(String.valueOf(entry.getKey()));
 
-			Layout layout = getLayoutOrCreateDummyRootLayout(plid);
+			Layout layout = null;
 
 			try {
 				layout = getLayoutOrCreateDummyRootLayout(plid);
