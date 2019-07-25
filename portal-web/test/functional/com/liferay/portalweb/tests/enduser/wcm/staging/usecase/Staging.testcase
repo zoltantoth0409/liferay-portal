@@ -2291,6 +2291,75 @@ definition {
 			structureName = "Structure Name");
 	}
 
+	@description = "This is a use case for LPS-81953"
+	@priority = "3"
+	test StagingRemoteLiveWebContentWithManualChosenID {
+		property app.server.bundles.size = "1";
+		property custom.properties = "tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelAuthVerifier.hosts.allowed=";
+		property databases.size = "1";
+		property test.name.skip.portal.instance = "Staging#StagingRemoteLiveWebContentWithManualChosenID";
+
+		Staging.remoteStagingSetUp(
+			remotePort = "9080",
+			remoteStaging = "true",
+			siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings");
+
+		SystemSettings.gotoCategory(category = "Web Experience");
+
+		SystemSettings.editConfiguration(configurationName = "Web Content Administration");
+
+		FormFields.disableCheckbox(fieldName = "journalArticleForceAutogenerateId");
+
+		SystemSettings.saveConfiguration();
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		WebContentNavigator.gotoAddCP();
+
+		WebContent.addCP(
+			webContentContent = "WC WebContent Content",
+			webContentId = "12345",
+			webContentTitle = "WC WebContent Title");
+
+		PortletEntry.publish();
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		Staging.gotoPublishToLive();
+
+		Staging.publishToLive();
+
+		User.logoutPG(
+			password = "test",
+			userEmailAddress = "test@liferay.com");
+
+		User.loginPG(
+			nodePort = "9080",
+			password = "test",
+			userEmailAddress = "test@liferay.com");
+
+		Navigator.openSiteLanding(
+			baseURL = "http://localhost:9080",
+			siteURLKey = "Remote Site");
+
+		Portlet.changeDisplayStyle(displayStyle = "List");
+
+		AssertTextEquals(
+			key_webContentTitle = "WC WebContent Title",
+			locator1 = "WC#ENTRY_LIST_ID",
+			value1 = "12345");
+	}
+
 	@priority = "4"
 	test StagingWithPublishTemplate {
 		Navigator.openSiteURL(siteName = "Site Name");
