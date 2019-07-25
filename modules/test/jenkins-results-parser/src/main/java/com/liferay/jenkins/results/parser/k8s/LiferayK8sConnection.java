@@ -282,7 +282,7 @@ public class LiferayK8sConnection {
 					"Unable to get pod with name '", pod.getName(),
 					"' in namespace '", namespace, "'"));
 
-			return null;
+			throw new RuntimeException(ae);
 		}
 	}
 
