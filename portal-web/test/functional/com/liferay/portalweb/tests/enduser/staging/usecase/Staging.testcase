@@ -830,6 +830,14 @@ definition {
 			pageName = "Page Revision Page",
 			workflowStatus = "Pending (Review)");
 
+		Navigator.gotoStagedSitePage(
+			pageName = "Page Revision Page",
+			siteName = "Site Name");
+
+		Page.viewWithWorkflowPG(
+			pageName = "Page Revision Page",
+			workflowStatus = "Draft");
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -842,9 +850,21 @@ definition {
 			workflowAssetType = "Page Revision",
 			workflowTask = "Review");
 
-		Navigator.gotoStagedSitePage(
-			pageName = "Page Revision Page",
-			siteName = "Site Name");
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "My Account",
+			panel = "User",
+			portlet = "My Workflow Tasks");
+
+		Workflow.viewCompletedTask(
+			workflowAssetTitle = "Page Revision Page",
+			workflowAssetType = "Page Revision",
+			workflowTask = "Review");
+
+		Workflow.gotoAssetViaTableTitle(workflowAssetTitle = "Page Revision Page");
+
+		Workflow.gotoPreviewView();
 
 		Page.viewWithWorkflowPG(
 			pageName = "Page Revision Page",
