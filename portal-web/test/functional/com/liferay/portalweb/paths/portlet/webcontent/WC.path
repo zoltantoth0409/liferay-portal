@@ -92,6 +92,11 @@
 </tr>
 <!--ENTRY_LIST-->
 <tr>
+	<td>ENTRY_LIST_ID</td>
+	<td>//tr[contains(@data-title,'${key_webContentTitle}')]/td[2]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>ENTRY_LIST_TITLE</td>
 	<td>//tr[contains(.,'${key_webContentTitle}')]//a</td>
 	<td></td>
