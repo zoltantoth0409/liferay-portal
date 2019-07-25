@@ -48,6 +48,14 @@ definition {
 				locator1 = "Select#PERMISSIONS",
 				value1 = "${viewableBy}");
 		}
+
+		if (isSet(webContentId)) {
+			Uncheck(locator1 = "WCEditWebContent#AUTOGENERATEID");
+
+			Type(
+				locator1 = "WCEditWebContent#WEB_CONTENT_ID",
+				value1 = "${webContentId}");
+		}
 	}
 
 	macro addDraft {
