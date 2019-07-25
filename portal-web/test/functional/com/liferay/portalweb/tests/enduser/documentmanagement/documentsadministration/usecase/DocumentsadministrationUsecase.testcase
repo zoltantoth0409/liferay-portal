@@ -874,7 +874,7 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		Navigator.openSiteLanding(siteURLKey = "Moon Rocks 101");
+		Navigator.openSiteURL(siteName = "Moon Rocks 101");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
