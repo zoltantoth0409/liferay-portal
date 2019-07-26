@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"@clayui/sticker": "^3.0.0-milestone.1",
+		"@clayui/sticker": "^3.0.0-milestone.2",
 		"clay-checkbox": "2.16.2",
 		"clay-dropdown": "2.16.2",
 		"frontend-js-web": "^3.0.0",
