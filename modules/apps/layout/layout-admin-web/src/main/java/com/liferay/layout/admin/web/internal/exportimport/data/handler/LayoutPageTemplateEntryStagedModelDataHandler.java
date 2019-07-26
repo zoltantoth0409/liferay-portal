@@ -20,6 +20,7 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.exportimport.data.handler.base.BaseStagedModelDataHandler;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
+import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataException;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandler;
@@ -38,6 +39,7 @@ import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.xml.Element;
 
 import java.util.List;
@@ -257,11 +259,13 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 				layoutPageTemplateEntry, LayoutPrototype.class,
 				layoutPageTemplateEntry.getLayoutPrototypeId());
 
+		LayoutPrototype layoutPrototype = null;
+
 		if (layoutPrototypeElement != null) {
 			String layoutPrototypePath = layoutPrototypeElement.attributeValue(
 				"path");
 
-			LayoutPrototype layoutPrototype =
+			layoutPrototype =
 				(LayoutPrototype)portletDataContext.getZipEntryAsObject(
 					layoutPrototypePath);
 
@@ -281,6 +285,8 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 				layoutPrototypeId);
 		}
 
+		boolean isNew = false;
+
 		if (portletDataContext.isDataStrategyMirror()) {
 			Element element =
 				portletDataContext.getImportDataStagedModelElement(
@@ -296,6 +302,8 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 					layoutPageTemplateEntry.getName(), preloaded);
 
 			if (existingLayoutPageTemplateEntry == null) {
+				isNew = true;
+
 				importedLayoutPageTemplateEntry =
 					_stagedModelRepository.addStagedModel(
 						portletDataContext, importedLayoutPageTemplateEntry);
@@ -311,9 +319,50 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 			}
 		}
 		else {
+			isNew = true;
+
 			importedLayoutPageTemplateEntry =
 				_stagedModelRepository.addStagedModel(
 					portletDataContext, importedLayoutPageTemplateEntry);
+		}
+
+		if (isNew && !ExportImportThreadLocal.isStagingInProcess() &&
+			(layoutPrototype != null)) {
+
+			LayoutPrototype layoutPrototypeOld =
+				_layoutPrototypeLocalService.
+					getLayoutPrototypeByUuidAndCompanyId(
+						layoutPrototype.getUuid(),
+						portletDataContext.getCompanyId());
+
+			if (layoutPrototypeOld != null) {
+				LayoutPageTemplateEntry layoutPageTemplateEntryOld =
+					_layoutPageTemplateEntryLocalService.
+						fetchFirstLayoutPageTemplateEntry(
+							layoutPrototypeOld.getLayoutPrototypeId());
+
+				if ((layoutPageTemplateEntryOld != null) &&
+					(layoutPageTemplateEntryOld.
+						getLayoutPageTemplateEntryId() !=
+							importedLayoutPageTemplateEntry.
+								getLayoutPageTemplateEntryId())) {
+
+					StringBundler sb = new StringBundler(9);
+
+					sb.append("LayoutPageTemplate with ");
+					sb.append("layoutPageTemplateEntryId ");
+					sb.append(
+						layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
+					sb.append(" can not be imported because uses ");
+					sb.append("LayoutPrototype with uuid ");
+					sb.append(layoutPrototype.getUuid());
+					sb.append(" and companyId ");
+					sb.append(portletDataContext.getCompanyId());
+					sb.append(" already exists");
+
+					throw new UnsupportedOperationException(sb.toString());
+				}
+			}
 		}
 
 		importFragmentEntryLinks(
