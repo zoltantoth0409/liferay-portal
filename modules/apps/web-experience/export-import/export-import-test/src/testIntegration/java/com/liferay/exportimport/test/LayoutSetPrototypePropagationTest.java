@@ -167,12 +167,11 @@ public class LayoutSetPrototypePropagationTest
 				newLayout.getUuid(), group.getGroupId(), false);
 
 		Assert.assertNotNull(
-			"Deleted and re-added Layout could not be found on propagated " +
-				"site.",
+			"Deleted and readded layout could not be found on propagated site",
 			propagatedLayout);
 
 		Assert.assertEquals(
-			"Friendly URLs of the source and target Layouts should match.",
+			"Friendly URLs of the source and target layouts should match",
 			friendlyURL, propagatedLayout.getFriendlyURL());
 	}
 
