@@ -155,8 +155,8 @@ public class LayoutPrototypeLocalServiceImpl
 
 			StringBundler sb = new StringBundler(5);
 
-			sb.append("Layout prototype cannot be deleted because it is ");
-			sb.append("used by layout with company ID ");
+			sb.append("Layout prototype cannot be deleted because it is used ");
+			sb.append("by layout with company ID ");
 			sb.append(layoutPrototype.getCompanyId());
 			sb.append(" and layout prototype UUID ");
 			sb.append(layoutPrototype.getUuid());
@@ -346,6 +346,6 @@ public class LayoutPrototypeLocalServiceImpl
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-			LayoutPrototypeLocalServiceImpl.class);
+		LayoutPrototypeLocalServiceImpl.class);
 
 }
