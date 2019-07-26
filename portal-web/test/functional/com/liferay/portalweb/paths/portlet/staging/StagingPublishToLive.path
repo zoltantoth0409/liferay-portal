@@ -113,6 +113,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>SIMPLE_PUBLICATION_DELETION</td>
+	<td>//li[contains(.,'${key_itemName}')]//span[contains(@class,'deletions')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td></td>
 	<td></td>
 	<td></td>
