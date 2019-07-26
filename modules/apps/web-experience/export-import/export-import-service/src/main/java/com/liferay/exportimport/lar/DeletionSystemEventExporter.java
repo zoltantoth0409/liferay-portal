@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
 import java.util.Date;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -145,21 +144,13 @@ public class DeletionSystemEventExporter {
 				String className = stagedModelType.getClassName();
 
 				if (className.equals(Layout.class.getName())) {
-					Map<String, String[]> parameterMap =
-						portletDataContext.getParameterMap();
+					Property extraDataProperty = PropertyFactoryUtil.forName(
+						"extraData");
 
-					if (parameterMap.containsKey("privateLayout")) {
-						Property extraDataProperty =
-							PropertyFactoryUtil.forName("extraData");
-
-						boolean privateLayout = MapUtil.getBoolean(
-							parameterMap, "privateLayout");
-
-						conjunction.add(
-							extraDataProperty.like(
-								"%\"privateLayout\":\"" + privateLayout +
-									"\"%"));
-					}
+					conjunction.add(
+						extraDataProperty.like(
+							"%\"privateLayout\":\"" +
+								portletDataContext.isPrivateLayout() + "\"%"));
 				}
 
 				referrerClassNameIdDisjunction.add(conjunction);
