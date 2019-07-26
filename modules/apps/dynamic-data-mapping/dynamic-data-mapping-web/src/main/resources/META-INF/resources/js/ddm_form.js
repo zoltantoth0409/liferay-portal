@@ -3612,6 +3612,8 @@ AUI.add(
 								if (field.get('repeatable')) {
 									instance.unregisterRepeatable(field);
 								}
+
+								field.destroy();
 							}
 
 							liferayForm.formValidator.set('rules', validatorRules);
