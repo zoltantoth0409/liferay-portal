@@ -2127,6 +2127,10 @@ public class PortletImpl extends PortletBaseImpl {
 	public URLEncoder getURLEncoderInstance() {
 		PortletBag portletBag = PortletBagPool.get(getRootPortletId());
 
+		if (portletBag == null) {
+			return null;
+		}
+
 		List<URLEncoder> urlEncoderInstances =
 			portletBag.getURLEncoderInstances();
 
