@@ -4,7 +4,7 @@ dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation", version: "4.2.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.concurrent", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.executor", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.io", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.io", version: "3.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.memory", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "3.0.0"
