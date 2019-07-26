@@ -29,6 +29,7 @@ import com.liferay.portal.events.EventsProcessorUtil;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTask;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskManagerUtil;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskThreadLocal;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.RequiredLayoutException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -1330,6 +1331,11 @@ public class SitesImpl implements Sites {
 			return;
 		}
 
+		EntityCacheUtil.clearLocalCache();
+
+		layoutSet = LayoutSetLocalServiceUtil.fetchLayoutSet(
+			layoutSet.getLayoutSetId());
+
 		UnicodeProperties settingsProperties =
 			layoutSet.getSettingsProperties();
 
@@ -1733,6 +1739,10 @@ public class SitesImpl implements Sites {
 		if (owner == null) {
 			return;
 		}
+
+		EntityCacheUtil.clearLocalCache();
+
+		layout = LayoutLocalServiceUtil.fetchLayout(layout.getPlid());
 
 		try {
 			MergeLayoutPrototypesThreadLocal.setInProgress(true);
