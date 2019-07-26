@@ -3,7 +3,11 @@ AUI.add(
 	function(A) {
 		var CSS_ACTIVE = A.getClassName('active');
 
+		var CSS_CUSTOM_CONTROL_INPUT = A.getClassName('custom', 'control', 'input');
+
 		var CSS_DROP_CHOSEN = A.getClassName('drop', 'chosen');
+
+		var CSS_DROP_CHOSEN_SEARCH = A.getClassName('drop', 'chosen', 'search');
 
 		var CSS_FORM_FIELD_CONTAINER = A.getClassName('lfr', 'ddm', 'form', 'field', 'container');
 
@@ -110,9 +114,22 @@ AUI.add(
 						instance._eventHandlers.push(
 							A.one('doc').after('click', A.bind(instance._afterClickOutside, instance)),
 							instance.bindContainerEvent('click', instance._handleContainerClick, '.' + CSS_FORM_FIELD_CONTAINER),
-							instance.bindContainerEvent('keydown', instance._handleOptionsKeydown, '.' + CSS_SELECT_OPTION_ITEM),
+							instance.bindContainerEvent('keydown', instance._handleSearchFieldKeydown, '.' + CSS_DROP_CHOSEN_SEARCH),
 							instance.bindContainerEvent('keydown', instance._handleSelectFieldKeydown, '.' + CSS_SELECT_TRIGGER_ACTION)
 						);
+
+						if (instance.get('multiple')) {
+							instance._eventHandlers.push(
+								instance.bindContainerEvent('blur', instance._handleMultipleOptionsBlur, '.' + CSS_CUSTOM_CONTROL_INPUT),
+								instance.bindContainerEvent('focus', instance._handleMultipleOptionsFocus, '.' + CSS_CUSTOM_CONTROL_INPUT),
+								instance.bindContainerEvent('keydown', instance._handleMultipleOptionsKeydown, '.' + CSS_CUSTOM_CONTROL_INPUT)
+							);
+						}
+						else {
+							instance._eventHandlers.push(
+								instance.bindContainerEvent('keydown', instance._handleOptionsKeydown, '.' + CSS_SELECT_OPTION_ITEM)
+							);
+						}
 					},
 
 					destructor: function() {
@@ -200,14 +217,31 @@ AUI.add(
 						}
 					},
 
-					focus: function() {
+					focus: function(target) {
 						var instance = this;
 
 						var container = instance.get('container');
 
-						var selectField = container.one('.' + CSS_SELECT_TRIGGER_ACTION);
+						if (instance._hasMultipleOptionFocused) {
+							var dropdownNodesList = container.all('.' + CSS_SELECT_DROPDOWN_ITEM);
 
-						selectField.focus();
+							var focusedDropdownNodeList = dropdownNodesList.filter(
+								function(dropdownNode) {
+									return dropdownNode.attr('data-option-index') === target.getAttribute('data-option-index');
+								}
+							);
+
+							var focusedDropdownNode = focusedDropdownNodeList.first();
+
+							var focusedMultipleOption = focusedDropdownNode.one('.' + CSS_CUSTOM_CONTROL_INPUT);
+
+							focusedMultipleOption.focus();
+						}
+						else {
+							var selectField = container.one('.' + CSS_SELECT_TRIGGER_ACTION);
+
+							selectField.focus();
+						}
 					},
 
 					getEvaluationContext: function(context) {
@@ -260,7 +294,7 @@ AUI.add(
 								return true;
 							}
 
-							if (node.hasClass('trigger-label-item-close')) {
+							if (node.hasClass(CSS_SELECT_LABEL_ITEM_CLOSE)) {
 								return true;
 							}
 						}
@@ -508,7 +542,7 @@ AUI.add(
 
 						instance.setValue(value);
 
-						instance.focus();
+						instance.focus(currentTarget);
 
 						instance._fireStartedFillingEvent();
 					},
@@ -521,6 +555,28 @@ AUI.add(
 						var values = instance._removeValue(value);
 
 						instance.setValue(values);
+
+						instance.focus(target);
+					},
+
+					_handleMultipleOptionsBlur: function() {
+						var instance = this;
+
+						instance._hasMultipleOptionFocused = false;
+
+						instance._closeListAfterDelay();
+					},
+
+					_handleMultipleOptionsFocus: function() {
+						var instance = this;
+
+						instance._hasMultipleOptionFocused = true;
+					},
+
+					_handleMultipleOptionsKeydown: function(event) {
+						var instance = this;
+
+						instance._preventFormSubmissionWhenEnterIsPressed(event);
 					},
 
 					_handleOptionsKeydown: function(event) {
@@ -536,17 +592,27 @@ AUI.add(
 						}
 					},
 
+					_handleSearchFieldKeydown: function(event) {
+						var instance = this;
+
+						instance._preventFormSubmissionWhenEnterIsPressed(event);
+					},
+
 					_handleSelectFieldKeydown: function(event) {
 						var instance = this;
 
 						var keyCodes = instance._setKeyCodesForKeyboardNavigation(event);
 
 						if (keyCodes.pressedKeyCode === keyCodes.enterCode || keyCodes.pressedKeyCode === keyCodes.spaceCode) {
-							if (!instance._isListOpen()) {
-								instance.openList();
-							}
-							else {
-								instance.closeList();
+							var targetNode = event.target._node;
+
+							if (targetNode && !targetNode.classList.contains(CSS_SELECT_LABEL_ITEM_CLOSE)) {
+								if (!instance._isListOpen()) {
+									instance.openList();
+								}
+								else {
+									instance.closeList();
+								}
 							}
 						}
 						else if (keyCodes.pressedKeyCode === keyCodes.tabCode) {
@@ -634,6 +700,16 @@ AUI.add(
 						}
 
 						return false;
+					},
+
+					_preventFormSubmissionWhenEnterIsPressed: function(event) {
+						var instance = this;
+
+						var keyCodes = instance._setKeyCodesForKeyboardNavigation(event);
+
+						if (keyCodes.pressedKeyCode === keyCodes.enterCode) {
+							event.preventDefault();
+						}
 					},
 
 					_removeValue: function(value) {
