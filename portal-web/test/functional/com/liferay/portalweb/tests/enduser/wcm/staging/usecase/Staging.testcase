@@ -3107,4 +3107,60 @@ definition {
 			assetTitle = "Web Content Title 2");
 	}
 
+	@description = "This is a use case for LPS-77935."
+	@priority = "4"
+	test ViewSimplePublicationAfterDeleteDocumentInGlobal {
+		Navigator.openSiteLanding(siteURLKey = "Global");
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Documents and Media");
+
+		DMDocument.addCP(
+			dmDocumentDescription = "DM Document Description",
+			dmDocumentFile = "Document_2.jpg",
+			dmDocumentTitle = "Document_2.jpg");
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		WebContentNavigator.gotoAddCP();
+
+		WebContent.addWithDocumentCP(
+			dmDocumentTitle = "Document_2.jpg",
+			siteName = "Global",
+			webContentTitle = "Document_2.jpg");
+
+		ProductMenu.gotoPortlet(
+			category = "Publishing",
+			panel = "Site Administration",
+			portlet = "Staging");
+
+		Staging.activateStagingCP(siteName = "Site Name");
+
+		Navigator.openSiteLanding(siteURLKey = "Global");
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Documents and Media");
+
+		DMDocument.deleteCP(dmDocumentTitle = "Document_2.jpg");
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Test Page",
+			siteName = "Site Name");
+
+		Staging.gotoPublishToLive();
+
+		AssertElementNotPresent(
+			key_itemName = "Documents and Media",
+			locator1 = "StagingPublishToLive#SIMPLE_PUBLICATION_DELETION");
+	}
+
 }
