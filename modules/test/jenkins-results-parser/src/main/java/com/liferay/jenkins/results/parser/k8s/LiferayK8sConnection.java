@@ -59,7 +59,7 @@ public class LiferayK8sConnection {
 
 		};
 
-		return retryable.realExecute();
+		return retryable.executeWithRetries();
 	}
 
 	public Boolean assertPodRunning(Pod pod) {
@@ -89,7 +89,7 @@ public class LiferayK8sConnection {
 
 		};
 
-		return retryable.realExecute();
+		return retryable.executeWithRetries();
 	}
 
 	public Boolean deletePod(Pod pod) {
@@ -105,7 +105,7 @@ public class LiferayK8sConnection {
 
 		};
 
-		return retryable.realExecute();
+		return retryable.executeWithRetries();
 	}
 
 	public boolean deleteSpawnedPods() {
@@ -164,7 +164,7 @@ public class LiferayK8sConnection {
 
 		};
 
-		return retryable.realExecute();
+		return retryable.executeWithRetries();
 	}
 
 	public List<Pod> getPods() {
@@ -176,7 +176,7 @@ public class LiferayK8sConnection {
 
 		};
 
-		return retryable.realExecute();
+		return retryable.executeWithRetries();
 	}
 
 	public List<Pod> getPods(final String namespace) {
@@ -188,7 +188,7 @@ public class LiferayK8sConnection {
 
 		};
 
-		return retryable.realExecute();
+		return retryable.executeWithRetries();
 	}
 
 	public void setDebugging(boolean debugging) {
