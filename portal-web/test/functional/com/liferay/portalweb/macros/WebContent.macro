@@ -489,6 +489,15 @@ definition {
 
 		Pause(locator1 = "5000");
 
+		if (isSet(siteName)) {
+			Click(locator1 = "ItemSelector#SITES_NAVIGATION");
+
+			AssertClick(
+				key_siteName = "${siteName}",
+				locator1 = "ItemSelector#SITE_SELECTOR",
+				value1 = "${siteName}");
+		}
+
 		Click(locator1 = "ItemSelector#SELECT_FILE_IMAGE_PREVIEW");
 
 		SelectFrameTop(value1 = "relative=top");

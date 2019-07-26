@@ -50,6 +50,16 @@
 	<td></td>
 </tr>
 <tr>
+	<td>SITES_NAVIGATION</td>
+	<td>//a[contains(.,'sites')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SITE_SELECTOR</td>
+	<td>//div[contains(@class,'card-horizontal')]//a[contains(@title,'${key_siteName}')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td></td>
 	<td></td>
 	<td></td>
