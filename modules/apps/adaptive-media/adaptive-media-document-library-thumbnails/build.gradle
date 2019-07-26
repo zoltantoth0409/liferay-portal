@@ -4,6 +4,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.adaptive.media.image.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.document.library.api", version: "4.2.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
