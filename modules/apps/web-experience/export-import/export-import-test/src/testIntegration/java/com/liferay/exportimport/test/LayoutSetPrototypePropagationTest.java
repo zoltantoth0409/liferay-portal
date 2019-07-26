@@ -130,7 +130,7 @@ public class LayoutSetPrototypePropagationTest
 	}
 
 	@Test
-	public void testLayoutDeleteAndReAddWithSameFriendlyURL() throws Exception {
+	public void testLayoutDeleteAndReaddWithSameFriendlyURL() throws Exception {
 		setLinkEnabled(true);
 
 		Layout layout = LayoutTestUtil.addLayout(
