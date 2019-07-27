@@ -222,7 +222,7 @@ if (comment) {
 	</div>
 </aui:form>
 
-<aui:script use="aui-base,aui-event-input,aui-template-deprecated,aui-form-textarea-deprecated,autocomplete,autocomplete-filters">
+<aui:script use="aui-base,aui-event-input,aui-form-textarea-deprecated,aui-template-deprecated,autocomplete,autocomplete-filters">
 	var MAP_MATCHED_USERS = {
 		screenName: function(str, match) {
 			return '[@' + MAP_USERS[str] + ']';

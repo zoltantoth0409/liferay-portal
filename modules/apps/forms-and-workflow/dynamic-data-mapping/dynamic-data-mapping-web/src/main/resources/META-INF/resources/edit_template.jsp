@@ -168,7 +168,7 @@ DDMNavigationHelper ddmNavigationHelper = ddmDisplay.getDDMNavigationHelper();
 
 				<div class="template-history-toolbar" id="<portlet:namespace />templateHistoryToolbar"></div>
 
-				<aui:script use="aui-toolbar,aui-dialog-iframe-deprecated,liferay-util-window">
+				<aui:script use="aui-dialog-iframe-deprecated,aui-toolbar,liferay-util-window">
 					var toolbarChildren = [
 						<portlet:renderURL var="viewHistoryURL">
 							<portlet:param name="mvcPath" value="/view_template_history.jsp" />
