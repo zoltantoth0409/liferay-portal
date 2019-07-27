@@ -193,7 +193,7 @@
 	</aui:select>
 </aui:fieldset>
 
-<aui:script use="aui-base,aui-alert">
+<aui:script use="aui-alert,aui-base">
 	var languageSelectInput = A.one('#<portlet:namespace />languageId');
 
 	if (languageSelectInput) {

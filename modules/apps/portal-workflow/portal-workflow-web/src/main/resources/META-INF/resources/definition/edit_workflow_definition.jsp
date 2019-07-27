@@ -312,7 +312,7 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 	</c:if>
 </div>
 
-<aui:script use="aui-ace-editor,liferay-xml-formatter,liferay-workflow-web">
+<aui:script use="aui-ace-editor,liferay-workflow-web,liferay-xml-formatter">
 	var STR_VALUE = 'value';
 
 	var contentEditor = new A.AceEditor(

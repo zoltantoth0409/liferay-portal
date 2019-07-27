@@ -80,7 +80,7 @@ if (oAuth2Application.getOAuth2ApplicationScopeAliasesId() > 0) {
 	</div>
 </div>
 
-<aui:script use="node,aui-modal,event-outside">
+<aui:script use="aui-modal,event-outside,node">
 
 	if (A.all('#<portlet:namespace />navGlobalScopes .panel').size() > 0) {
 		A.one('#<portlet:namespace />navScopeTypes').toggleClass('hidden', false);

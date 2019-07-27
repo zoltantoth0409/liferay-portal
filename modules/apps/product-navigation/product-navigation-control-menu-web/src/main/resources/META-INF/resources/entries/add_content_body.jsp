@@ -38,7 +38,7 @@
 		</div>
 	</div>
 
-	<aui:script use="liferay-store,io-request,parse-content">
+	<aui:script use="io-request,liferay-store,parse-content">
 		var addToggle = $('#<%= portletNamespace %>addToggleId');
 
 		addToggle.sideNavigation();
