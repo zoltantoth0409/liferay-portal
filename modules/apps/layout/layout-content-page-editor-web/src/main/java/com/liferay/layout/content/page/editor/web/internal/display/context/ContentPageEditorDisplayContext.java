@@ -1095,15 +1095,9 @@ public class ContentPageEditorDisplayContext {
 		return itemSelectorURL.toString();
 	}
 
-	private SoyContext _getJournalArticleStatusSoyContext(long classPK)
-		throws PortalException {
-
+	private SoyContext _getJournalArticleStatusSoyContext(long classPK) {
 		JournalArticle journalArticle =
-			JournalArticleLocalServiceUtil.getLatestArticle(classPK);
-
-		journalArticle = JournalArticleLocalServiceUtil.fetchLatestArticle(
-			_groupId, journalArticle.getArticleId(),
-			WorkflowConstants.STATUS_ANY);
+			JournalArticleLocalServiceUtil.fetchLatestArticle(classPK);
 
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
