@@ -814,7 +814,7 @@ definition {
 			pageName = "Private Blogs Page",
 			sitePagePrivacy = "Private");
 
-		Navigator.openSiteLanding(siteURLKey = "www.able.com");
+		Navigator.openSpecificURL(url = "http://www.able.com:8080");
 
 		ProductMenu.gotoPrivatePages();
 
@@ -839,7 +839,7 @@ definition {
 			userEmailAddress = "test@www.able.com",
 			virtualHostsURL = "http://www.baker.com:8080");
 
-		Navigator.openSiteLanding(siteURLKey = "www.able.com");
+		Navigator.openSpecificURL(url = "http://www.able.com:8080");
 
 		ProductMenu.gotoPrivatePages();
 
