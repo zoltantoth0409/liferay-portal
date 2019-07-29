@@ -405,7 +405,7 @@
 						'destroy',
 						function() {
 							if (imageSrc) {
-								if (callback) {
+								if (typeof callback === 'function') {
 									callback(imageSrc, selectedItem);
 								}
 								else {
@@ -467,7 +467,7 @@
 					Liferay.Util.getWindow(eventName).onceAfter(
 						'destroy',
 						function() {
-							if (callback) {
+							if (typeof callback === 'function') {
 								callback(linkUrl);
 							}
 						}
@@ -484,7 +484,7 @@
 					var videoSrc = instance._getItemSrc(editor, selectedItem);
 
 					if (videoSrc) {
-						if (callback) {
+						if (typeof callback === 'function') {
 							callback(videoSrc);
 						}
 						else {
