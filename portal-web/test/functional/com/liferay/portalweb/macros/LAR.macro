@@ -420,6 +420,24 @@ definition {
 		}
 	}
 
+	macro deleteCurrentAndPreviousProcess {
+		if (isSet(deleteFromPortlet)) {
+			LAR._gotoExportImport();
+
+			SelectFrame(locator1 = "IFrame#CONFIGURATION_DIALOG");
+
+			Click(locator1 = "ExportImport#CURRENT_AND_PREVIOUS_TAB");
+		}
+
+		LexiconEntry.gotoEntryMenuItemNoWaitNoError(
+			menuItem = "Clear",
+			rowEntry = "${larFileName}");
+
+		Confirm.waitForConfirmation(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+
+		Alert.viewSuccessMessage();
+	}
+
 	macro downloadLar {
 		Click(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_DOWNLOAD");
 
