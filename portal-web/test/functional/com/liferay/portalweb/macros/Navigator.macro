@@ -123,7 +123,9 @@ definition {
 	}
 
 	macro gotoSitePage {
-		Navigator.openSiteURL(siteName = "${siteName}");
+		Navigator.openSiteURL(
+			baseURL = "${baseURL}",
+			siteName = "${siteName}");
 
 		Navigator._gotoPage(pageName = "${pageName}");
 	}
@@ -190,8 +192,13 @@ definition {
 	macro openSiteURL {
 		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
 		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
+		var baseURL = "${baseURL}";
 
-		Open(locator1 = "/web/${siteNameURL}");
+		if (contains("${baseURL}", "{baseURL}")) {
+			var baseURL = PropsUtil.get("portal.url");
+		}
+
+		Open(locator1 = "${baseURL}/web/${siteNameURL}");
 	}
 
 	macro openSpecificURL {
