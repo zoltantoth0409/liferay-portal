@@ -487,7 +487,7 @@ const INITIAL_STATE = {
 	/**
 	 * @default []
 	 * @review
-	 * @type {Array<{name: string, status: { label: string, style: string }, title: string, usageLabel: string}>}
+	 * @type {Array<{name: string, status: { label: string, style: string }, title: string, usagesCount: number}>}
 	 */
 	mappedContents: Config.arrayOf(
 		Config.shapeOf({
@@ -497,7 +497,7 @@ const INITIAL_STATE = {
 				style: Config.string()
 			}),
 			title: Config.string(),
-			usageLabel: Config.string()
+			usagesCount: Config.number()
 		})
 	).value([]),
 
