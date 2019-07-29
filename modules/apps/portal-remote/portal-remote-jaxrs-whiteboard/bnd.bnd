@@ -73,6 +73,7 @@ Export-Package:\
 	org.apache.cxf.internal;version="3.2.5";-split-package:=first,\
 	org.apache.cxf.io;version="3.2.5";-split-package:=first,\
 	org.apache.cxf.jaxrs;version="3.2.5",\
+	org.apache.cxf.jaxrs.client;version="3.2.5",\
 	org.apache.cxf.jaxrs.client.spec;version="3.2.5",\
 	org.apache.cxf.jaxrs.ext;version="3.2.5",\
 	org.apache.cxf.jaxrs.ext.multipart;version="3.2.5",\
