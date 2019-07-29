@@ -17,24 +17,17 @@ definition {
 		if ("${testPortalInstance}" == "true") {
 			PortalInstances.tearDownCP();
 		}
-		else {
-			Site.tearDownCP();
-		}
 	}
 
 	@priority = "4"
 	test DeleteCustomExportProcess {
 		Navigator.openURL();
 
-		LAR.configureExportSiteCP(larFileName = "CustomExport");
+		LAR.exportSiteCP(larFileName = "CustomExport");
 
-		AssertClick(
-			locator1 = "SitePagesExport#EXPORT_BUTTON",
-			value1 = "Export");
+		LAR.deleteCurrentAndPreviousProcess(larFileName = "CustomExport");
 
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Clear",
-			rowEntry = "CustomExport");
+		AssertElementNotPresent(locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS");
 	}
 
 	@priority = "4"
@@ -46,13 +39,13 @@ definition {
 			panel = "Site Administration",
 			portlet = "Documents and Media");
 
-		LAR.configureExportSiteCP(larFileName = "DMExport");
+		LAR.exportPortlet(larFileName = "DMExport");
 
-		LAR.exportSuccess();
+		LAR.deleteCurrentAndPreviousProcess(
+			deleteFromPortlet = "true",
+			larFileName = "DMExport");
 
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Clear",
-			rowEntry = "DMExport");
+		AssertElementNotPresent(locator1 = "ExportImport#CURRENT_AND_PREVIOUS_STATUS");
 	}
 
 	@priority = "3"
