@@ -185,7 +185,7 @@ definition {
 			threadBody = "MB Body",
 			threadSubject = "MB Subject");
 
-		Navigator.openSiteURL(siteName = "Site Name");
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
