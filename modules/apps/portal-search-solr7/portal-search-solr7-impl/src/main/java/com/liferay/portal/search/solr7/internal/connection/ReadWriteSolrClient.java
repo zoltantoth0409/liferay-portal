@@ -44,6 +44,13 @@ public class ReadWriteSolrClient extends SolrClient {
 
 	@Override
 	public void close() throws IOException {
+		if (_readSolrClient != null) {
+			_readSolrClient.close();
+		}
+
+		if (_writeSolrClient != null) {
+			_writeSolrClient.close();
+		}
 	}
 
 	@Override
