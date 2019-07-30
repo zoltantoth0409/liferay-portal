@@ -183,19 +183,15 @@ public class CommonSearchRequestBuilderAssemblerImplTest {
 
 		return new CommonSearchRequestBuilderAssemblerImpl() {
 			{
+				setComplexQueryBuilderFactory(
+					new TestComplexQueryBuilderFactory());
 				setFacetTranslator(new DefaultFacetTranslator());
-
 				setFilterToQueryBuilderTranslator(
 					elasticsearchFilterTranslatorFixture.
 						getElasticsearchFilterTranslator());
-
 				setLegacyQueryToQueryBuilderTranslator(
 					legacyElasticsearchQueryTranslator);
-
 				setQueryToQueryBuilderTranslator(elasticsearchQueryTranslator);
-
-				setComplexQueryBuilderFactory(
-					new TestComplexQueryBuilderFactory());
 			}
 		};
 	}
