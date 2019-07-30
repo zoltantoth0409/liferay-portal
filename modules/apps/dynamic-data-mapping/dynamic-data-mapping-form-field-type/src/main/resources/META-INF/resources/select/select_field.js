@@ -147,6 +147,29 @@ AUI.add(
 						}
 					},
 
+					checkOpenList: function(page) {
+						var instance = this;
+
+						if (page) {
+							var dropNodes = page._node.getElementsByClassName(CSS_DROP_CHOSEN);
+							var selectNodes = page._node.getElementsByClassName(CSS_SELECT_TRIGGER_ACTION);
+
+							for (var i = 0; i < dropNodes.length; i++) {
+								if (!(dropNodes[i].classList.contains(CSS_HIDE))) {
+									dropNodes[i].classList.add(CSS_HIDE);
+								}
+							}
+
+							for (var j = 0; j < selectNodes.length; j++) {
+								if (selectNodes[j].classList.contains(CSS_ACTIVE)) {
+									selectNodes[j].classList.remove(CSS_ACTIVE);
+								}
+							}
+
+							instance._open = false;
+						}
+					},
+
 					cleanSelect: function() {
 						var instance = this;
 
@@ -316,12 +339,16 @@ AUI.add(
 
 						var container = instance.get('container');
 
+						var page = container.ancestor('.lfr-ddm-form-page', true);
+
 						var selectTrigger = container.one('.select-field-trigger');
 
 						if (instance._isListOpen()) {
 							instance.closeList();
 						}
 						else if (!selectTrigger.hasAttribute('disabled')) {
+							instance.checkOpenList(page);
+
 							instance.openList();
 
 							var userView = container.ancestor('.ddm-user-view-content');
@@ -429,11 +456,17 @@ AUI.add(
 
 						var value = instance.get('value') || [];
 
+						var container = instance.get('container');
+
+						var page = container.ancestor('.lfr-ddm-form-page', true);
+
 						var currentTarget = target;
 
 						var itemValue = currentTarget.getAttribute('data-option-value');
 
 						if (instance.get('multiple')) {
+							instance.checkOpenList(page);
+
 							instance._open = true;
 
 							if (currentTarget.getAttribute('data-option-selected')) {
