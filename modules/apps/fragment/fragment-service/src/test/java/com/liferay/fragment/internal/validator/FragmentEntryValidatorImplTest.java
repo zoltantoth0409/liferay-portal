@@ -72,8 +72,7 @@ public class FragmentEntryValidatorImplTest {
 					"^[A-Za-z0-9]+");
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_read(
-				"configuration-invalid-field-name-non-alphanumeric.json"));
+			_read("configuration-invalid-field-name-non-alphanumeric.json"));
 	}
 
 	@Test
@@ -86,8 +85,7 @@ public class FragmentEntryValidatorImplTest {
 				"/name: string [a b] does not match pattern ^[A-Za-z0-9]+");
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_read(
-				"configuration-invalid-field-name-with-space.json"));
+			_read("configuration-invalid-field-name-with-space.json"));
 	}
 
 	@Test
@@ -99,8 +97,7 @@ public class FragmentEntryValidatorImplTest {
 			"#: extraneous key [extra] is not permitted");
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_read(
-				"configuration-invalid-field-sets-extra-properties.json"));
+			_read("configuration-invalid-field-sets-extra-properties.json"));
 	}
 
 	@Test
