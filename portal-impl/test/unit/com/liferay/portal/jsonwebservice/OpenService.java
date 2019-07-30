@@ -27,7 +27,4 @@ public class OpenService {
 	public static void run2(byte[] bytes) {
 	}
 
-	public static void run3(Object object) {
-	}
-
 }
