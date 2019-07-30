@@ -325,6 +325,12 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Display Settings");
 
+		if ("${enableComments}" == "true") {
+			Check.checkHiddenToggleSwitch(
+				locator1 = "ToggleSwitch#ENABLE_COMMENTS",
+				value1 = "Enable Comments");
+		}
+
 		if ("${enableRatings}" == "true") {
 			Check.checkHiddenToggleSwitch(
 				locator1 = "ToggleSwitch#ENABLE_RATINGS",
