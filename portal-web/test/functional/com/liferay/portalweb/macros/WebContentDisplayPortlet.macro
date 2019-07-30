@@ -256,7 +256,7 @@ definition {
 		SelectFrame(value1 = "relative=top");
 	}
 
-	macro selectParentSiteWebContent {
+	macro selectOtherSiteWebContent {
 		Portlet.gotoPortletOptions(
 			portletName = "Web Content Display",
 			portletOption = "Configuration");
@@ -274,9 +274,9 @@ definition {
 		Click(locator1 = "Dropdown#FILTER");
 
 		AssertClick(
-			key_filterValue = "${parentSiteName}",
+			key_filterValue = "${otherSiteName}",
 			locator1 = "Dropdown#FILTER_VALUES",
-			value1 = "${parentSiteName}");
+			value1 = "${otherSiteName}");
 
 		AssertClick(
 			key_webContentTitle = "${webContentTitle}",
