@@ -540,13 +540,13 @@ public class ContentPageEditorDisplayContext {
 			String className = PortalUtil.getClassName(classNameId);
 
 			soyContext.put(
-				"href", _getAssetBrowserURL(className)
+				"assetBrowserURL", _getAssetBrowserURL(className)
 			).put(
 				"className", className
 			).put(
 				"classNameId", classNameId
 			).put(
-				"typeName",
+				"name",
 				ResourceActionsUtil.getModelResource(
 					themeDisplay.getLocale(), className)
 			);
