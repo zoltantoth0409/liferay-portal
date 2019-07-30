@@ -1869,6 +1869,10 @@ definition {
 		UserBar.signOut();
 	}
 
+	macro openUsersAdmin {
+		Navigator.openWithAppendToBaseURL(urlAppend = "group/control_panel/manage?p_p_id=com_liferay_users_admin_web_portlet_UsersAdminPortlet");
+	}
+
 	macro removeIdentificationInformation {
 		Click(
 			key_rowEntry = "${rowEntry}",

@@ -472,6 +472,10 @@ definition {
 		Alert.viewSuccessMessage();
 	}
 
+	macro openRolesAdmin {
+		Navigator.openWithAppendToBaseURL(urlAppend = "group/control_panel/manage?p_p_id=com_liferay_roles_admin_web_portlet_RolesAdminPortlet");
+	}
+
 	macro removePermissionCP {
 		Role.editPermissionCmdCP(
 			permissionDefinitionKey = "${permissionDefinitionKey}",
