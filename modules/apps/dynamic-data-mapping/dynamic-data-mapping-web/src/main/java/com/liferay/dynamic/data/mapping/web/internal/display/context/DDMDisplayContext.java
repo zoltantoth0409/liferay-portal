@@ -857,6 +857,12 @@ public class DDMDisplayContext {
 			portletURL.setParameter("delta", delta);
 		}
 
+		String eventName = ParamUtil.getString(_renderRequest, "eventName");
+
+		if (Validator.isNotNull(eventName)) {
+			portletURL.setParameter("eventName", eventName);
+		}
+
 		String keywords = getKeywords();
 
 		if (Validator.isNotNull(keywords)) {
@@ -880,12 +886,6 @@ public class DDMDisplayContext {
 		if (showAncestorScopes) {
 			portletURL.setParameter(
 				"showAncestorScopes", String.valueOf(showAncestorScopes));
-		}
-
-		String eventName = ParamUtil.getString(_renderRequest, "eventName");
-
-		if (Validator.isNotNull(eventName)) {
-			portletURL.setParameter("eventName", eventName);
 		}
 
 		return portletURL;
