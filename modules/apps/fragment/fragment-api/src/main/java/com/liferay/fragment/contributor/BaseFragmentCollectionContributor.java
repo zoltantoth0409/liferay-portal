@@ -172,12 +172,10 @@ public abstract class BaseFragmentCollectionContributor
 				}
 				catch (FragmentEntryConfigurationException fece) {
 					if (_log.isWarnEnabled()) {
-						String message = String.format(
-							"FragmentEntry with url %s cannot be registered " +
-								"since its configuration is invalid",
-							url);
-
-						_log.warn(message, fece);
+						_log.warn(
+							"Fragment entry " + url +
+								" has an invalid configuration",
+							fece);
 					}
 
 					continue;
@@ -190,12 +188,8 @@ public abstract class BaseFragmentCollectionContributor
 				}
 				catch (PortalException pe) {
 					if (_log.isWarnEnabled()) {
-						String message = String.format(
-							"FragmentEntry with url %s cannot be registered " +
-								"since its html is invalid",
-							url);
-
-						_log.warn(message, pe);
+						_log.warn(
+							"Fragment entry " + url + " has invalid HTML", pe);
 					}
 
 					continue;
