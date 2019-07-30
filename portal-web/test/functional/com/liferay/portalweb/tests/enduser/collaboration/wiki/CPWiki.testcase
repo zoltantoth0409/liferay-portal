@@ -331,7 +331,7 @@ definition {
 
 		SitePages.addPublicPage(pageName = "Wiki");
 
-		Navigator.openURL();
+		Navigator.openSiteURL(siteName = "Site Name");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
