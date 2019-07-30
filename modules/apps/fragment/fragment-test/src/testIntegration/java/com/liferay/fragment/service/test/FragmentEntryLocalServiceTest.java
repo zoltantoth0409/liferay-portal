@@ -87,7 +87,7 @@ public class FragmentEntryLocalServiceTest {
 		String css = RandomTestUtil.randomString();
 		String html = RandomTestUtil.randomString();
 		String js = RandomTestUtil.randomString();
-		String configuration = _getFileContent(
+		String configuration = _read(
 			"configuration-valid-complete.json");
 		long previewFileEntryId = RandomTestUtil.randomLong();
 		int type = FragmentConstants.TYPE_COMPONENT;
@@ -827,7 +827,7 @@ public class FragmentEntryLocalServiceTest {
 		String css = RandomTestUtil.randomString();
 		String html = RandomTestUtil.randomString();
 		String js = RandomTestUtil.randomString();
-		String configuration = _getFileContent(
+		String configuration = _read(
 			"configuration-valid-complete.json");
 		int status = WorkflowConstants.STATUS_PENDING;
 
@@ -859,7 +859,7 @@ public class FragmentEntryLocalServiceTest {
 		String css = RandomTestUtil.randomString();
 		String html = RandomTestUtil.randomString();
 		String js = RandomTestUtil.randomString();
-		String configuration = _getFileContent(
+		String configuration = _read(
 			"configuration-valid-complete.json");
 		long previewFileEntryId = RandomTestUtil.randomLong();
 		int status = WorkflowConstants.STATUS_PENDING;
@@ -922,7 +922,7 @@ public class FragmentEntryLocalServiceTest {
 			fragmentEntry.getType(), copyFragmentEntry.getType());
 	}
 
-	private String _getFileContent(String fileName) throws Exception {
+	private String _read(String fileName) throws Exception {
 		return new String(
 			FileUtil.getBytes(getClass(), "dependencies/" + fileName));
 	}

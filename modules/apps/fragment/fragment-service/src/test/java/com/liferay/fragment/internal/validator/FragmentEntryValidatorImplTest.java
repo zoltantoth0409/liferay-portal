@@ -45,7 +45,7 @@ public class FragmentEntryValidatorImplTest {
 				"#/fieldSets/0/fields/0: #: only 1 subschema matches out of 2");
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_getFileContent("configuration-invalid-field-name-empty.json"));
+			_read("configuration-invalid-field-name-empty.json"));
 	}
 
 	@Test
@@ -58,7 +58,7 @@ public class FragmentEntryValidatorImplTest {
 				"#/fieldSets/0/fields/0: #: only 1 subschema matches out of 2");
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_getFileContent("configuration-invalid-field-name-missing.json"));
+			_read("configuration-invalid-field-name-missing.json"));
 	}
 
 	@Test
@@ -71,8 +71,7 @@ public class FragmentEntryValidatorImplTest {
 				"#/fieldSets/0/fields/0: #: only 1 subschema matches out of 2");
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_getFileContent(
-				"configuration-invalid-field-name-with-space.json"));
+			_read("configuration-invalid-field-name-with-space.json"));
 	}
 
 	@Test
@@ -85,8 +84,7 @@ public class FragmentEntryValidatorImplTest {
 				"[extra] is not permitted");
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_getFileContent(
-				"configuration-invalid-field-sets-extra-properties.json"));
+			_read("configuration-invalid-field-sets-extra-properties.json"));
 	}
 
 	@Test
@@ -99,25 +97,25 @@ public class FragmentEntryValidatorImplTest {
 				"[fieldSets] not found");
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_getFileContent("configuration-invalid-field-sets-missing.json"));
+			_read("configuration-invalid-field-sets-missing.json"));
 	}
 
 	@Test
 	public void testValidateConfigurationValidComplete() throws Exception {
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_getFileContent("configuration-valid-complete.json"));
+			_read("configuration-valid-complete.json"));
 	}
 
 	@Test
 	public void testValidateConfigurationValidRequired() throws Exception {
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_getFileContent("configuration-valid-required.json"));
+			_read("configuration-valid-required.json"));
 	}
 
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
 
-	private String _getFileContent(String fileName) throws Exception {
+	private String _read(String fileName) throws Exception {
 		return new String(
 			FileUtil.getBytes(getClass(), "dependencies/" + fileName));
 	}
