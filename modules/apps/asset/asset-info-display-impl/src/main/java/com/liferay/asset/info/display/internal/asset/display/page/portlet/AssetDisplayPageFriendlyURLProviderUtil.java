@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.info.display.internal.url.provider.util;
+package com.liferay.asset.info.display.internal.asset.display.page.portlet;
 
 import com.liferay.asset.display.page.portlet.AssetDisplayPageFriendlyURLProvider;
 
