@@ -557,6 +557,16 @@ definition {
 		}
 	}
 
+	macro deleteAllCP {
+		Click(locator1 = "Checkbox#SELECT_ALL");
+
+		ClickNoError(locator1 = "Icon#DELETE");
+
+		Confirm(value1 = "Are you sure you want to delete this? It will be deleted immediately.");
+
+		Alert.viewSuccessMessage();
+	}
+
 	macro deleteCP {
 		var key_siteName = "${siteName}";
 
