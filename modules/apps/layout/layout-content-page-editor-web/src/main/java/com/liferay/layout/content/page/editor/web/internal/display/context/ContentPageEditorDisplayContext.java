@@ -909,7 +909,7 @@ public class ContentPageEditorDisplayContext {
 				boolean error = false;
 
 				if (SessionErrors.contains(
-						request, "fragmentEntryInvalidContent")) {
+						request, "fragmentEntryContentInvalid")) {
 
 					error = true;
 
