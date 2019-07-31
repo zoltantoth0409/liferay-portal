@@ -87,8 +87,7 @@ public class FragmentEntryLocalServiceTest {
 		String css = RandomTestUtil.randomString();
 		String html = RandomTestUtil.randomString();
 		String js = RandomTestUtil.randomString();
-		String configuration = _read(
-			"configuration-valid-complete.json");
+		String configuration = _read("configuration-valid-complete.json");
 		long previewFileEntryId = RandomTestUtil.randomLong();
 		int type = FragmentConstants.TYPE_COMPONENT;
 		int status = WorkflowConstants.STATUS_PENDING;
@@ -827,8 +826,7 @@ public class FragmentEntryLocalServiceTest {
 		String css = RandomTestUtil.randomString();
 		String html = RandomTestUtil.randomString();
 		String js = RandomTestUtil.randomString();
-		String configuration = _read(
-			"configuration-valid-complete.json");
+		String configuration = _read("configuration-valid-complete.json");
 		int status = WorkflowConstants.STATUS_PENDING;
 
 		FragmentEntry fragmentEntry = FragmentEntryTestUtil.addFragmentEntry(
@@ -859,8 +857,7 @@ public class FragmentEntryLocalServiceTest {
 		String css = RandomTestUtil.randomString();
 		String html = RandomTestUtil.randomString();
 		String js = RandomTestUtil.randomString();
-		String configuration = _read(
-			"configuration-valid-complete.json");
+		String configuration = _read("configuration-valid-complete.json");
 		long previewFileEntryId = RandomTestUtil.randomLong();
 		int status = WorkflowConstants.STATUS_PENDING;
 
