@@ -157,17 +157,10 @@ class FloatingToolbarLinkPanel extends PortletBase {
 	 * @review
 	 */
 	syncItem(newItem, oldItem) {
-		if (newItem && oldItem) {
-			const newConfig = newItem.editableValues.config;
-			const oldConfig = newItem.editableValues.config;
-
-			if (
-				newConfig.classNameId !== oldConfig.classNameId ||
-				newConfig.classPK !== oldConfig.classPK
-			) {
-				this._loadFields();
-			}
-		} else {
+		if (
+			!oldItem ||
+			newItem.editableValues.config !== oldItem.editableValues.config
+		) {
 			this._loadFields();
 		}
 	}
