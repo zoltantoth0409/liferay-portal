@@ -179,11 +179,11 @@ public class JSPServletFactoryImpl implements JSPServletFactory {
 
 				if (PropsValues.WORK_FOLDER_OVERRIDE && _log.isInfoEnabled()) {
 					_log.info(
-						"Deleting jsp class files from ".concat(scratchDir));
+						"Deleting JSP class files from ".concat(scratchDir));
 				}
 				else if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Deleting jsp class files from ".concat(scratchDir));
+						"Deleting JSP class files from ".concat(scratchDir));
 				}
 
 				for (String path : tracked._paths) {
