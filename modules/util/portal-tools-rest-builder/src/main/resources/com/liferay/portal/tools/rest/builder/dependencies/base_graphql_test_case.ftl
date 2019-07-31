@@ -151,10 +151,6 @@ public abstract class Base${schemaName}GraphQLTestCase {
 		</#if>
 	</#list>
 
-	protected ${schemaName} test${schemaName}_add${schemaName}() throws Exception {
-		throw new UnsupportedOperationException("This method needs to be implemented");
-	}
-
 	protected void assertEqualsIgnoringOrder(
 		List<${schemaName}> ${schemaVarNames}, JSONArray jsonArray) {
 
@@ -174,24 +170,8 @@ public abstract class Base${schemaName}GraphQLTestCase {
 		}
 	}
 
-	protected String invoke(String query) throws Exception {
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
-
-		JSONObject jsonObject = JSONUtil.put("query", query);
-
-		httpInvoker.body(jsonObject.toString(), "application/json");
-
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
-		httpInvoker.path("http://localhost:8080/o/graphql");
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
-
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
-
-		return httpResponse.getContent();
-	}
-
 	protected boolean equals(${schemaName} ${schemaVarName}, JSONObject jsonObject) {
-		List<String> fieldNames = new ArrayList(Arrays.asList(getAdditionalAssertFieldNames()));
+		List<String> fieldNames = new ArrayList<>(Arrays.asList(getAdditionalAssertFieldNames()));
 
 		fieldNames.add("id");
 
@@ -232,6 +212,22 @@ public abstract class Base${schemaName}GraphQLTestCase {
 		return graphQLFields;
 	}
 
+	protected String invoke(String query) throws Exception {
+		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		JSONObject jsonObject = JSONUtil.put("query", query);
+
+		httpInvoker.body(jsonObject.toString(), "application/json");
+
+		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
+		httpInvoker.path("http://localhost:8080/o/graphql");
+		httpInvoker.userNameAndPassword("test@liferay.com:test");
+
+		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+
+		return httpResponse.getContent();
+	}
+
 	protected ${schemaName} random${schemaName}() throws Exception {
 		return new ${schemaName}() {
 			{
@@ -247,6 +243,13 @@ public abstract class Base${schemaName}GraphQLTestCase {
 			}
 		};
 	}
+
+	protected ${schemaName} test${schemaName}_add${schemaName}() throws Exception {
+		throw new UnsupportedOperationException("This method needs to be implemented");
+	}
+
+	protected Company testCompany;
+	protected Group testGroup;
 
 	protected class GraphQLField {
 
@@ -301,8 +304,5 @@ public abstract class Base${schemaName}GraphQLTestCase {
 		private final Map<String, Object> _parameterMap;
 
 	}
-
-	protected Company testCompany;
-	protected Group testGroup;
 
 }
