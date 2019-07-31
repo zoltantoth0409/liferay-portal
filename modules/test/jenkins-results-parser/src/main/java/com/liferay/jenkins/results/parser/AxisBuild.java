@@ -496,7 +496,7 @@ public class AxisBuild extends BaseBuild {
 	private static final FailureMessageGenerator[] _FAILURE_MESSAGE_GENERATORS =
 		{
 			new ModulesCompilationFailureMessageGenerator(),
-
+			//
 			new CompileFailureMessageGenerator(),
 			new IntegrationTestTimeoutFailureMessageGenerator(),
 			new LocalGitMirrorFailureMessageGenerator(),
@@ -506,9 +506,9 @@ public class AxisBuild extends BaseBuild {
 			new SemanticVersioningFailureMessageGenerator(),
 			new SourceFormatFailureMessageGenerator(),
 			new StartupFailureMessageGenerator(),
-
+			//
 			new GradleTaskFailureMessageGenerator(),
-
+			//
 			new CIFailureMessageGenerator(),
 			new GenericFailureMessageGenerator()
 		};
