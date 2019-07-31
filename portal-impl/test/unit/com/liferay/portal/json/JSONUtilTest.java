@@ -202,7 +202,7 @@ public class JSONUtilTest {
 	}
 
 	@Test
-	public void testMerge() {
+	public void testMerge() throws Exception {
 		JSONObject jsonObject1 = JSONUtil.put("alpha", "1");
 		JSONObject jsonObject2 = JSONUtil.put(
 			"beta", "2"
