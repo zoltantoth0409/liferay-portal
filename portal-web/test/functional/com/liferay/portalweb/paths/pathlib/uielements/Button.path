@@ -64,6 +64,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>ANY_DISABLED</td>
+	<td>//*[contains(@class,'disabled')]//*[contains(@class,'btn')][normalize-space(text())='${key_text}']</td>
+	<td></td>
+</tr>
+<tr>
 	<td>APPLY_EFFECTS</td>
 	<td>//div[contains(@class,'controls-container') and contains(@class,'open')]//button[contains(@class,'btn') and contains(.,'Apply')]</td>
 	<td></td>
