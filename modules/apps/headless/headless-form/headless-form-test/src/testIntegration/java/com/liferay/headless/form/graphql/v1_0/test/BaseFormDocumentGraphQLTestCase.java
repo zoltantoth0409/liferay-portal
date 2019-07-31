@@ -16,6 +16,7 @@ package com.liferay.headless.form.graphql.v1_0.test;
 
 import com.liferay.headless.form.client.dto.v1_0.FormDocument;
 import com.liferay.headless.form.client.http.HttpInvoker;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -69,17 +70,9 @@ public abstract class BaseFormDocumentGraphQLTestCase {
 
 	@Test
 	public void testGetFormDocument() throws Exception {
-		FormDocument postFormDocument = testGetFormDocument_addFormDocument();
+		FormDocument formDocument = testFormDocument_addFormDocument();
 
-		List<GraphQLField> graphQLFields = new ArrayList<>();
-
-		graphQLFields.add(new GraphQLField("id"));
-
-		for (String additionalAssertFieldName :
-				getAdditionalAssertFieldNames()) {
-
-			graphQLFields.add(new GraphQLField(additionalAssertFieldName));
-		}
+		List<GraphQLField> graphQLFields = getGraphQLFields();
 
 		GraphQLField graphQLField = new GraphQLField(
 			"query",
@@ -87,31 +80,41 @@ public abstract class BaseFormDocumentGraphQLTestCase {
 				"formDocument",
 				new HashMap<String, Object>() {
 					{
-						put("formDocumentId", postFormDocument.getId());
+						put("formDocumentId", formDocument.getId());
 					}
 				},
 				graphQLFields.toArray(new GraphQLField[0])));
 
-		JSONObject responseJSONObject = JSONFactoryUtil.createJSONObject(
-			_invoke(graphQLField.toString()));
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			invoke(graphQLField.toString()));
 
-		JSONObject dataJSONObject = responseJSONObject.getJSONObject("data");
+		JSONObject dataJSONObject = jsonObject.getJSONObject("data");
 
 		Assert.assertTrue(
-			equals(
-				postFormDocument,
-				dataJSONObject.getJSONObject("formDocument")));
+			equals(formDocument, dataJSONObject.getJSONObject("formDocument")));
 	}
 
-	protected FormDocument testGetFormDocument_addFormDocument()
-		throws Exception {
+	protected void assertEqualsIgnoringOrder(
+		List<FormDocument> formDocuments, JSONArray jsonArray) {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		for (FormDocument formDocument : formDocuments) {
+			boolean contains = false;
+
+			for (Object object : jsonArray) {
+				if (equals(formDocument, (JSONObject)object)) {
+					contains = true;
+
+					break;
+				}
+			}
+
+			Assert.assertTrue(
+				jsonArray + " does not contain " + formDocument, contains);
+		}
 	}
 
 	protected boolean equals(FormDocument formDocument, JSONObject jsonObject) {
-		List<String> fieldNames = new ArrayList(
+		List<String> fieldNames = new ArrayList<>(
 			Arrays.asList(getAdditionalAssertFieldNames()));
 
 		fieldNames.add("id");
@@ -226,6 +229,37 @@ public abstract class BaseFormDocumentGraphQLTestCase {
 		return new String[0];
 	}
 
+	protected List<GraphQLField> getGraphQLFields() {
+		List<GraphQLField> graphQLFields = new ArrayList<>();
+
+		graphQLFields.add(new GraphQLField("id"));
+
+		for (String additionalAssertFieldName :
+				getAdditionalAssertFieldNames()) {
+
+			graphQLFields.add(new GraphQLField(additionalAssertFieldName));
+		}
+
+		return graphQLFields;
+	}
+
+	protected String invoke(String query) throws Exception {
+		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(
+			JSONUtil.put(
+				"query", query
+			).toString(),
+			"application/json");
+		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
+		httpInvoker.path("http://localhost:8080/o/graphql");
+		httpInvoker.userNameAndPassword("test@liferay.com:test");
+
+		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+
+		return httpResponse.getContent();
+	}
+
 	protected FormDocument randomFormDocument() throws Exception {
 		return new FormDocument() {
 			{
@@ -242,26 +276,15 @@ public abstract class BaseFormDocumentGraphQLTestCase {
 		};
 	}
 
+	protected FormDocument testFormDocument_addFormDocument() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected Company testCompany;
 	protected Group testGroup;
 
-	private String _invoke(String query) throws Exception {
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
-
-		JSONObject jsonObject = JSONUtil.put("query", query);
-
-		httpInvoker.body(jsonObject.toString(), "application/json");
-
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
-		httpInvoker.path("http://localhost:8080/o/graphql");
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
-
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
-
-		return httpResponse.getContent();
-	}
-
-	private class GraphQLField {
+	protected class GraphQLField {
 
 		public GraphQLField(String key, GraphQLField... graphQLFields) {
 			this(key, new HashMap<>(), graphQLFields);

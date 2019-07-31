@@ -17,6 +17,7 @@ package com.liferay.change.tracking.rest.graphql.v1_0.test;
 import com.liferay.change.tracking.rest.client.dto.v1_0.AffectedEntry;
 import com.liferay.change.tracking.rest.client.dto.v1_0.Entry;
 import com.liferay.change.tracking.rest.client.http.HttpInvoker;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Company;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Generated;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -65,10 +67,29 @@ public abstract class BaseAffectedEntryGraphQLTestCase {
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
+	protected void assertEqualsIgnoringOrder(
+		List<AffectedEntry> affectedEntries, JSONArray jsonArray) {
+
+		for (AffectedEntry affectedEntry : affectedEntries) {
+			boolean contains = false;
+
+			for (Object object : jsonArray) {
+				if (equals(affectedEntry, (JSONObject)object)) {
+					contains = true;
+
+					break;
+				}
+			}
+
+			Assert.assertTrue(
+				jsonArray + " does not contain " + affectedEntry, contains);
+		}
+	}
+
 	protected boolean equals(
 		AffectedEntry affectedEntry, JSONObject jsonObject) {
 
-		List<String> fieldNames = new ArrayList(
+		List<String> fieldNames = new ArrayList<>(
 			Arrays.asList(getAdditionalAssertFieldNames()));
 
 		fieldNames.add("id");
@@ -107,25 +128,28 @@ public abstract class BaseAffectedEntryGraphQLTestCase {
 		return new String[0];
 	}
 
-	protected AffectedEntry randomAffectedEntry() throws Exception {
-		return new AffectedEntry() {
-			{
-				contentType = RandomTestUtil.randomString();
-				title = RandomTestUtil.randomString();
-			}
-		};
+	protected List<GraphQLField> getGraphQLFields() {
+		List<GraphQLField> graphQLFields = new ArrayList<>();
+
+		graphQLFields.add(new GraphQLField("id"));
+
+		for (String additionalAssertFieldName :
+				getAdditionalAssertFieldNames()) {
+
+			graphQLFields.add(new GraphQLField(additionalAssertFieldName));
+		}
+
+		return graphQLFields;
 	}
 
-	protected Company testCompany;
-	protected Group testGroup;
-
-	private String _invoke(String query) throws Exception {
+	protected String invoke(String query) throws Exception {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		JSONObject jsonObject = JSONUtil.put("query", query);
-
-		httpInvoker.body(jsonObject.toString(), "application/json");
-
+		httpInvoker.body(
+			JSONUtil.put(
+				"query", query
+			).toString(),
+			"application/json");
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 		httpInvoker.path("http://localhost:8080/o/graphql");
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
@@ -135,7 +159,26 @@ public abstract class BaseAffectedEntryGraphQLTestCase {
 		return httpResponse.getContent();
 	}
 
-	private class GraphQLField {
+	protected AffectedEntry randomAffectedEntry() throws Exception {
+		return new AffectedEntry() {
+			{
+				contentType = RandomTestUtil.randomString();
+				title = RandomTestUtil.randomString();
+			}
+		};
+	}
+
+	protected AffectedEntry testAffectedEntry_addAffectedEntry()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Company testCompany;
+	protected Group testGroup;
+
+	protected class GraphQLField {
 
 		public GraphQLField(String key, GraphQLField... graphQLFields) {
 			this(key, new HashMap<>(), graphQLFields);

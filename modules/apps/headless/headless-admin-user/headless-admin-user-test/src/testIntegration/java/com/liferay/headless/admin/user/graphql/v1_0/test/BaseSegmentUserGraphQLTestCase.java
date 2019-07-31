@@ -16,6 +16,7 @@ package com.liferay.headless.admin.user.graphql.v1_0.test;
 
 import com.liferay.headless.admin.user.client.dto.v1_0.SegmentUser;
 import com.liferay.headless.admin.user.client.http.HttpInvoker;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Company;
@@ -35,6 +36,7 @@ import java.util.Objects;
 import javax.annotation.Generated;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -64,8 +66,27 @@ public abstract class BaseSegmentUserGraphQLTestCase {
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
+	protected void assertEqualsIgnoringOrder(
+		List<SegmentUser> segmentUsers, JSONArray jsonArray) {
+
+		for (SegmentUser segmentUser : segmentUsers) {
+			boolean contains = false;
+
+			for (Object object : jsonArray) {
+				if (equals(segmentUser, (JSONObject)object)) {
+					contains = true;
+
+					break;
+				}
+			}
+
+			Assert.assertTrue(
+				jsonArray + " does not contain " + segmentUser, contains);
+		}
+	}
+
 	protected boolean equals(SegmentUser segmentUser, JSONObject jsonObject) {
-		List<String> fieldNames = new ArrayList(
+		List<String> fieldNames = new ArrayList<>(
 			Arrays.asList(getAdditionalAssertFieldNames()));
 
 		fieldNames.add("id");
@@ -114,6 +135,37 @@ public abstract class BaseSegmentUserGraphQLTestCase {
 		return new String[0];
 	}
 
+	protected List<GraphQLField> getGraphQLFields() {
+		List<GraphQLField> graphQLFields = new ArrayList<>();
+
+		graphQLFields.add(new GraphQLField("id"));
+
+		for (String additionalAssertFieldName :
+				getAdditionalAssertFieldNames()) {
+
+			graphQLFields.add(new GraphQLField(additionalAssertFieldName));
+		}
+
+		return graphQLFields;
+	}
+
+	protected String invoke(String query) throws Exception {
+		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(
+			JSONUtil.put(
+				"query", query
+			).toString(),
+			"application/json");
+		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
+		httpInvoker.path("http://localhost:8080/o/graphql");
+		httpInvoker.userNameAndPassword("test@liferay.com:test");
+
+		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+
+		return httpResponse.getContent();
+	}
+
 	protected SegmentUser randomSegmentUser() throws Exception {
 		return new SegmentUser() {
 			{
@@ -124,26 +176,15 @@ public abstract class BaseSegmentUserGraphQLTestCase {
 		};
 	}
 
+	protected SegmentUser testSegmentUser_addSegmentUser() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected Company testCompany;
 	protected Group testGroup;
 
-	private String _invoke(String query) throws Exception {
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
-
-		JSONObject jsonObject = JSONUtil.put("query", query);
-
-		httpInvoker.body(jsonObject.toString(), "application/json");
-
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
-		httpInvoker.path("http://localhost:8080/o/graphql");
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
-
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
-
-		return httpResponse.getContent();
-	}
-
-	private class GraphQLField {
+	protected class GraphQLField {
 
 		public GraphQLField(String key, GraphQLField... graphQLFields) {
 			this(key, new HashMap<>(), graphQLFields);

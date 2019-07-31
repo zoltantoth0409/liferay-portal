@@ -16,6 +16,7 @@ package com.liferay.data.engine.rest.graphql.v1_0.test;
 
 import com.liferay.data.engine.rest.client.dto.v1_0.DataLayout;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -69,17 +70,9 @@ public abstract class BaseDataLayoutGraphQLTestCase {
 
 	@Test
 	public void testGetDataLayout() throws Exception {
-		DataLayout postDataLayout = testGetDataLayout_addDataLayout();
+		DataLayout dataLayout = testDataLayout_addDataLayout();
 
-		List<GraphQLField> graphQLFields = new ArrayList<>();
-
-		graphQLFields.add(new GraphQLField("id"));
-
-		for (String additionalAssertFieldName :
-				getAdditionalAssertFieldNames()) {
-
-			graphQLFields.add(new GraphQLField(additionalAssertFieldName));
-		}
+		List<GraphQLField> graphQLFields = getGraphQLFields();
 
 		GraphQLField graphQLField = new GraphQLField(
 			"query",
@@ -87,38 +80,25 @@ public abstract class BaseDataLayoutGraphQLTestCase {
 				"dataLayout",
 				new HashMap<String, Object>() {
 					{
-						put("dataLayoutId", postDataLayout.getId());
+						put("dataLayoutId", dataLayout.getId());
 					}
 				},
 				graphQLFields.toArray(new GraphQLField[0])));
 
-		JSONObject responseJSONObject = JSONFactoryUtil.createJSONObject(
-			_invoke(graphQLField.toString()));
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			invoke(graphQLField.toString()));
 
-		JSONObject dataJSONObject = responseJSONObject.getJSONObject("data");
+		JSONObject dataJSONObject = jsonObject.getJSONObject("data");
 
 		Assert.assertTrue(
-			equals(postDataLayout, dataJSONObject.getJSONObject("dataLayout")));
-	}
-
-	protected DataLayout testGetDataLayout_addDataLayout() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+			equals(dataLayout, dataJSONObject.getJSONObject("dataLayout")));
 	}
 
 	@Test
 	public void testGetSiteDataLayout() throws Exception {
-		DataLayout postDataLayout = testGetSiteDataLayout_addDataLayout();
+		DataLayout dataLayout = testDataLayout_addDataLayout();
 
-		List<GraphQLField> graphQLFields = new ArrayList<>();
-
-		graphQLFields.add(new GraphQLField("id"));
-
-		for (String additionalAssertFieldName :
-				getAdditionalAssertFieldNames()) {
-
-			graphQLFields.add(new GraphQLField(additionalAssertFieldName));
-		}
+		List<GraphQLField> graphQLFields = getGraphQLFields();
 
 		GraphQLField graphQLField = new GraphQLField(
 			"query",
@@ -126,29 +106,41 @@ public abstract class BaseDataLayoutGraphQLTestCase {
 				"dataLayout",
 				new HashMap<String, Object>() {
 					{
-						put("dataLayoutId", postDataLayout.getId());
+						put("dataLayoutId", dataLayout.getId());
 					}
 				},
 				graphQLFields.toArray(new GraphQLField[0])));
 
-		JSONObject responseJSONObject = JSONFactoryUtil.createJSONObject(
-			_invoke(graphQLField.toString()));
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			invoke(graphQLField.toString()));
 
-		JSONObject dataJSONObject = responseJSONObject.getJSONObject("data");
+		JSONObject dataJSONObject = jsonObject.getJSONObject("data");
 
 		Assert.assertTrue(
-			equals(postDataLayout, dataJSONObject.getJSONObject("dataLayout")));
+			equals(dataLayout, dataJSONObject.getJSONObject("dataLayout")));
 	}
 
-	protected DataLayout testGetSiteDataLayout_addDataLayout()
-		throws Exception {
+	protected void assertEqualsIgnoringOrder(
+		List<DataLayout> dataLayouts, JSONArray jsonArray) {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		for (DataLayout dataLayout : dataLayouts) {
+			boolean contains = false;
+
+			for (Object object : jsonArray) {
+				if (equals(dataLayout, (JSONObject)object)) {
+					contains = true;
+
+					break;
+				}
+			}
+
+			Assert.assertTrue(
+				jsonArray + " does not contain " + dataLayout, contains);
+		}
 	}
 
 	protected boolean equals(DataLayout dataLayout, JSONObject jsonObject) {
-		List<String> fieldNames = new ArrayList(
+		List<String> fieldNames = new ArrayList<>(
 			Arrays.asList(getAdditionalAssertFieldNames()));
 
 		fieldNames.add("id");
@@ -241,6 +233,37 @@ public abstract class BaseDataLayoutGraphQLTestCase {
 		return new String[0];
 	}
 
+	protected List<GraphQLField> getGraphQLFields() {
+		List<GraphQLField> graphQLFields = new ArrayList<>();
+
+		graphQLFields.add(new GraphQLField("id"));
+
+		for (String additionalAssertFieldName :
+				getAdditionalAssertFieldNames()) {
+
+			graphQLFields.add(new GraphQLField(additionalAssertFieldName));
+		}
+
+		return graphQLFields;
+	}
+
+	protected String invoke(String query) throws Exception {
+		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.body(
+			JSONUtil.put(
+				"query", query
+			).toString(),
+			"application/json");
+		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
+		httpInvoker.path("http://localhost:8080/o/graphql");
+		httpInvoker.userNameAndPassword("test@liferay.com:test");
+
+		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+
+		return httpResponse.getContent();
+	}
+
 	protected DataLayout randomDataLayout() throws Exception {
 		return new DataLayout() {
 			{
@@ -257,26 +280,15 @@ public abstract class BaseDataLayoutGraphQLTestCase {
 		};
 	}
 
+	protected DataLayout testDataLayout_addDataLayout() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
 	protected Company testCompany;
 	protected Group testGroup;
 
-	private String _invoke(String query) throws Exception {
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
-
-		JSONObject jsonObject = JSONUtil.put("query", query);
-
-		httpInvoker.body(jsonObject.toString(), "application/json");
-
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
-		httpInvoker.path("http://localhost:8080/o/graphql");
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
-
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
-
-		return httpResponse.getContent();
-	}
-
-	private class GraphQLField {
+	protected class GraphQLField {
 
 		public GraphQLField(String key, GraphQLField... graphQLFields) {
 			this(key, new HashMap<>(), graphQLFields);

@@ -16,6 +16,7 @@ package com.liferay.data.engine.rest.graphql.v1_0.test;
 
 import com.liferay.data.engine.rest.client.dto.v1_0.DataRecord;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -69,17 +70,9 @@ public abstract class BaseDataRecordGraphQLTestCase {
 
 	@Test
 	public void testGetDataRecord() throws Exception {
-		DataRecord postDataRecord = testGetDataRecord_addDataRecord();
+		DataRecord dataRecord = testDataRecord_addDataRecord();
 
-		List<GraphQLField> graphQLFields = new ArrayList<>();
-
-		graphQLFields.add(new GraphQLField("id"));
-
-		for (String additionalAssertFieldName :
-				getAdditionalAssertFieldNames()) {
-
-			graphQLFields.add(new GraphQLField(additionalAssertFieldName));
-		}
+		List<GraphQLField> graphQLFields = getGraphQLFields();
 
 		GraphQLField graphQLField = new GraphQLField(
 			"query",
@@ -87,27 +80,41 @@ public abstract class BaseDataRecordGraphQLTestCase {
 				"dataRecord",
 				new HashMap<String, Object>() {
 					{
-						put("dataRecordId", postDataRecord.getId());
+						put("dataRecordId", dataRecord.getId());
 					}
 				},
 				graphQLFields.toArray(new GraphQLField[0])));
 
-		JSONObject responseJSONObject = JSONFactoryUtil.createJSONObject(
-			_invoke(graphQLField.toString()));
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			invoke(graphQLField.toString()));
 
-		JSONObject dataJSONObject = responseJSONObject.getJSONObject("data");
+		JSONObject dataJSONObject = jsonObject.getJSONObject("data");
 
 		Assert.assertTrue(
-			equals(postDataRecord, dataJSONObject.getJSONObject("dataRecord")));
+			equals(dataRecord, dataJSONObject.getJSONObject("dataRecord")));
 	}
 
-	protected DataRecord testGetDataRecord_addDataRecord() throws Exception {
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+	protected void assertEqualsIgnoringOrder(
+		List<DataRecord> dataRecords, JSONArray jsonArray) {
+
+		for (DataRecord dataRecord : dataRecords) {
+			boolean contains = false;
+
+			for (Object object : jsonArray) {
+				if (equals(dataRecord, (JSONObject)object)) {
+					contains = true;
+
+					break;
+				}
+			}
+
+			Assert.assertTrue(
+				jsonArray + " does not contain " + dataRecord, contains);
+		}
 	}
 
 	protected boolean equals(DataRecord dataRecord, JSONObject jsonObject) {
-		List<String> fieldNames = new ArrayList(
+		List<String> fieldNames = new ArrayList<>(
 			Arrays.asList(getAdditionalAssertFieldNames()));
 
 		fieldNames.add("id");
@@ -145,25 +152,28 @@ public abstract class BaseDataRecordGraphQLTestCase {
 		return new String[0];
 	}
 
-	protected DataRecord randomDataRecord() throws Exception {
-		return new DataRecord() {
-			{
-				dataRecordCollectionId = RandomTestUtil.randomLong();
-				id = RandomTestUtil.randomLong();
-			}
-		};
+	protected List<GraphQLField> getGraphQLFields() {
+		List<GraphQLField> graphQLFields = new ArrayList<>();
+
+		graphQLFields.add(new GraphQLField("id"));
+
+		for (String additionalAssertFieldName :
+				getAdditionalAssertFieldNames()) {
+
+			graphQLFields.add(new GraphQLField(additionalAssertFieldName));
+		}
+
+		return graphQLFields;
 	}
 
-	protected Company testCompany;
-	protected Group testGroup;
-
-	private String _invoke(String query) throws Exception {
+	protected String invoke(String query) throws Exception {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		JSONObject jsonObject = JSONUtil.put("query", query);
-
-		httpInvoker.body(jsonObject.toString(), "application/json");
-
+		httpInvoker.body(
+			JSONUtil.put(
+				"query", query
+			).toString(),
+			"application/json");
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 		httpInvoker.path("http://localhost:8080/o/graphql");
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
@@ -173,7 +183,24 @@ public abstract class BaseDataRecordGraphQLTestCase {
 		return httpResponse.getContent();
 	}
 
-	private class GraphQLField {
+	protected DataRecord randomDataRecord() throws Exception {
+		return new DataRecord() {
+			{
+				dataRecordCollectionId = RandomTestUtil.randomLong();
+				id = RandomTestUtil.randomLong();
+			}
+		};
+	}
+
+	protected DataRecord testDataRecord_addDataRecord() throws Exception {
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Company testCompany;
+	protected Group testGroup;
+
+	protected class GraphQLField {
 
 		public GraphQLField(String key, GraphQLField... graphQLFields) {
 			this(key, new HashMap<>(), graphQLFields);
