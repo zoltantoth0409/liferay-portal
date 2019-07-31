@@ -148,11 +148,11 @@ public class JSONUtilTest {
 						"innerJSONArray2",
 						JSONUtil.put(
 							JSONUtil.put(
+								"integer3", 3
+							).put(
 								"integer1", 1
 							).put(
 								"integer2", 2
-							).put(
-								"integer3", 3
 							)
 						).put(
 							JSONUtil.put(
@@ -166,12 +166,6 @@ public class JSONUtilTest {
 					)),
 				JSONUtil.put(
 					JSONUtil.put(
-						"innerDouble", 0.532049
-					).put(
-						"innerFoo", "bar"
-					).put(
-						"innerJSONArray1", JSONUtil.putAll(5, 9, 4, 3)
-					).put(
 						"innerJSONArray2",
 						JSONUtil.put(
 							JSONUtil.put(
@@ -183,13 +177,19 @@ public class JSONUtilTest {
 							)
 						).put(
 							JSONUtil.put(
-								"double1", 1.0
-							).put(
 								"foo1", "bar1"
+							).put(
+								"double1", 1.0
 							)
 						)
 					).put(
+						"innerDouble", 0.532049
+					).put(
 						"innerJSONArray3", JSONUtil.putAll("5", "9", "4", "3")
+					).put(
+						"innerFoo", "bar"
+					).put(
+						"innerJSONArray1", JSONUtil.putAll(5, 9, 4, 3)
 					))));
 	}
 
@@ -254,39 +254,39 @@ public class JSONUtilTest {
 					"integer", 5
 				),
 				JSONUtil.put(
-					"double", 0.532049
-				).put(
-					"foo", "bar"
+					"integer", 5
 				).put(
 					"innerJSONObject",
 					JSONUtil.put(
-						"innerDouble", 0.532049
+						"innerJSONArray1", JSONUtil.putAll(5, 9, 4, 3)
+					).put(
+						"innerJSONArray3", JSONUtil.putAll("5", "9", "4", "3")
 					).put(
 						"innerFoo", "bar"
 					).put(
-						"innerJSONArray1", JSONUtil.putAll(5, 9, 4, 3)
+						"innerDouble", 0.532049
 					).put(
 						"innerJSONArray2",
 						JSONUtil.put(
 							JSONUtil.put(
+								"integer3", 3
+							).put(
 								"integer1", 1
 							).put(
 								"integer2", 2
-							).put(
-								"integer3", 3
 							)
 						).put(
 							JSONUtil.put(
-								"double1", 1.0
-							).put(
 								"foo1", "bar1"
+							).put(
+								"double1", 1.0
 							)
 						)
-					).put(
-						"innerJSONArray3", JSONUtil.putAll("5", "9", "4", "3")
 					)
 				).put(
-					"integer", 5
+					"foo", "bar"
+				).put(
+					"double", 0.532049
 				)));
 	}
 
