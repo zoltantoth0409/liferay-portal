@@ -92,8 +92,11 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 					"VARCHAR(75) null");
 		}
 
-		_updateDefaultLanguage("title", false);
-		_updateDefaultLanguage("content", true);
+		String whereClause =
+			" where defaultLanguageId is null or defaultLanguageId = ''";
+
+		_updateDefaultLanguage("title", whereClause, false);
+		_updateDefaultLanguage("content", whereClause, true);
 	}
 
 	protected void updateJournalArticleLocalizedFields() throws Exception {
@@ -228,15 +231,14 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 	}
 
 	private void _updateDefaultLanguage(
-			String sourceField, boolean strictUpdate)
+			String sourceField, String whereClause, boolean strictUpdate)
 		throws Exception {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select id_, ", sourceField,
-					", groupId from JournalArticle where defaultLanguageId " +
-						"is null or defaultLanguageId = ''"));
+					", groupId from JournalArticle", whereClause));
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
