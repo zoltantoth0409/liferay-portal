@@ -49,7 +49,9 @@ AUI.add(
 
 						instance._bindUI();
 
-						instance._setEditorInitialValues();
+						if (typeof CKEDITOR != 'undefined') {
+							instance._setEditorInitialValues();
+						}
 					},
 
 					destructor: function() {
