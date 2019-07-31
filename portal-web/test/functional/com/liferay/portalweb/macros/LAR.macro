@@ -50,7 +50,9 @@ definition {
 
 	macro _gotoImportSite {
 		if (isSet(siteName)) {
-			Navigator.openSiteLanding(siteURLKey = "${siteName}");
+			Navigator.openSiteLanding(
+				baseURL = "${baseURL}",
+				siteURLKey = "${siteName}");
 		}
 
 		ProductMenu.gotoPortlet(
@@ -584,7 +586,9 @@ definition {
 	}
 
 	macro importSiteCP {
-		LAR._gotoImportSite(siteName = "${siteName}");
+		LAR._gotoImportSite(
+			baseURL = "${baseURL}",
+			siteName = "${siteName}");
 
 		LAR._selectImportFileSite(
 			importCampaignValidationError = "${importCampaignValidationError}",
