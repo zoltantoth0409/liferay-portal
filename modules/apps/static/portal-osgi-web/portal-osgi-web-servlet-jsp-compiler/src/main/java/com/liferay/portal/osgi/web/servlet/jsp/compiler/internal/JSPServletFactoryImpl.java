@@ -177,7 +177,9 @@ public class JSPServletFactoryImpl implements JSPServletFactory {
 
 				String scratchDir = sb.toString();
 
-				if (PropsValues.WORK_FOLDER_OVERRIDE && _log.isInfoEnabled()) {
+				if (PropsValues.WORK_DIR_OVERRIDE_ENABLED &&
+					_log.isInfoEnabled()) {
+
 					_log.info(
 						"Deleting JSP class files from ".concat(scratchDir));
 				}
