@@ -71,8 +71,8 @@ public abstract class Base${schemaName}GraphQLTestCase {
 
 				List<GraphQLField> itemsGraphQLFields = getGraphQLFields();
 
-				graphQLFields.add(
-					new GraphQLField("items", itemsGraphQLFields.toArray(new GraphQLField[0])));
+				graphQLFields.add(new GraphQLField("items", itemsGraphQLFields.toArray(new GraphQLField[0])));
+
 				graphQLFields.add(new GraphQLField("page"));
 				graphQLFields.add(new GraphQLField("totalCount"));
 
@@ -91,8 +91,7 @@ public abstract class Base${schemaName}GraphQLTestCase {
 						},
 						graphQLFields.toArray(new GraphQLField[0])));
 
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-					invoke(graphQLField.toString()));
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(invoke(graphQLField.toString()));
 
 				JSONObject dataJSONObject = jsonObject.getJSONObject("data");
 
@@ -103,8 +102,7 @@ public abstract class Base${schemaName}GraphQLTestCase {
 				${schemaName} ${schemaVarName}1 = test${schemaName}_add${schemaName}();
 				${schemaName} ${schemaVarName}2 = test${schemaName}_add${schemaName}();
 
-				jsonObject = JSONFactoryUtil.createJSONObject(
-					invoke(graphQLField.toString()));
+				jsonObject = JSONFactoryUtil.createJSONObject(invoke(graphQLField.toString()));
 
 				dataJSONObject = jsonObject.getJSONObject("data");
 
@@ -112,9 +110,7 @@ public abstract class Base${schemaName}GraphQLTestCase {
 
 				Assert.assertEquals(2, ${schemaVarNames}JSONObject.get("totalCount"));
 
-				assertEqualsIgnoringOrder(
-					Arrays.asList(${schemaVarName}1, ${schemaVarName}2),
-					${schemaVarNames}JSONObject.getJSONArray("items"));
+				assertEqualsIgnoringOrder(Arrays.asList(${schemaVarName}1, ${schemaVarName}2), ${schemaVarNames}JSONObject.getJSONArray("items"));
 			}
 
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "get") && javaMethodSignature.returnType?ends_with(schemaName)>
@@ -140,10 +136,7 @@ public abstract class Base${schemaName}GraphQLTestCase {
 
 					JSONObject dataJSONObject = jsonObject.getJSONObject("data");
 
-					Assert.assertTrue(
-						equals(${schemaVarName},
-						dataJSONObject.getJSONObject(
-							"${freeMarkerTool.getGraphQLPropertyName(javaMethodSignature)}")));
+					Assert.assertTrue(equals(${schemaVarName}, dataJSONObject.getJSONObject("${freeMarkerTool.getGraphQLPropertyName(javaMethodSignature)}")));
 				<#else>
 					Assert.assertTrue(true);
 				</#if>
@@ -151,22 +144,19 @@ public abstract class Base${schemaName}GraphQLTestCase {
 		</#if>
 	</#list>
 
-	protected void assertEqualsIgnoringOrder(
-		List<${schemaName}> ${schemaVarNames}, JSONArray jsonArray) {
-
+	protected void assertEqualsIgnoringOrder(List<${schemaName}> ${schemaVarNames}, JSONArray jsonArray) {
 		for (${schemaName} ${schemaVarName} : ${schemaVarNames}) {
 			boolean contains = false;
 
-			for (Object o : jsonArray) {
-				if (equals(${schemaVarName}, (JSONObject) o)) {
+			for (Object object : jsonArray) {
+				if (equals(${schemaVarName}, (JSONObject)object)) {
 					contains = true;
 
 					break;
 				}
 			}
 
-			Assert.assertTrue(
-				jsonArray + " does not contain " + ${schemaVarName}, contains);
+			Assert.assertTrue(jsonArray + " does not contain " + ${schemaVarName}, contains);
 		}
 	}
 
@@ -215,10 +205,11 @@ public abstract class Base${schemaName}GraphQLTestCase {
 	protected String invoke(String query) throws Exception {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		JSONObject jsonObject = JSONUtil.put("query", query);
-
-		httpInvoker.body(jsonObject.toString(), "application/json");
-
+		httpInvoker.body(
+			JSONUtil.put(
+				"query", query
+			).toString(),
+			"application/json");
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 		httpInvoker.path("http://localhost:8080/o/graphql");
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
