@@ -16,6 +16,7 @@ package com.liferay.bulk.rest.graphql.v1_0.test;
 
 import com.liferay.bulk.rest.client.dto.v1_0.TaxonomyCategory;
 import com.liferay.bulk.rest.client.http.HttpInvoker;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Company;
@@ -35,6 +36,7 @@ import java.util.Objects;
 import javax.annotation.Generated;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -64,10 +66,29 @@ public abstract class BaseTaxonomyCategoryGraphQLTestCase {
 		GroupTestUtil.deleteGroup(testGroup);
 	}
 
+	protected void assertEqualsIgnoringOrder(
+		List<TaxonomyCategory> taxonomyCategories, JSONArray jsonArray) {
+
+		for (TaxonomyCategory taxonomyCategory : taxonomyCategories) {
+			boolean contains = false;
+
+			for (Object object : jsonArray) {
+				if (equals(taxonomyCategory, (JSONObject)object)) {
+					contains = true;
+
+					break;
+				}
+			}
+
+			Assert.assertTrue(
+				jsonArray + " does not contain " + taxonomyCategory, contains);
+		}
+	}
+
 	protected boolean equals(
 		TaxonomyCategory taxonomyCategory, JSONObject jsonObject) {
 
-		List<String> fieldNames = new ArrayList(
+		List<String> fieldNames = new ArrayList<>(
 			Arrays.asList(getAdditionalAssertFieldNames()));
 
 		fieldNames.add("id");
@@ -106,25 +127,28 @@ public abstract class BaseTaxonomyCategoryGraphQLTestCase {
 		return new String[0];
 	}
 
-	protected TaxonomyCategory randomTaxonomyCategory() throws Exception {
-		return new TaxonomyCategory() {
-			{
-				taxonomyCategoryId = RandomTestUtil.randomLong();
-				taxonomyCategoryName = RandomTestUtil.randomString();
-			}
-		};
+	protected List<GraphQLField> getGraphQLFields() {
+		List<GraphQLField> graphQLFields = new ArrayList<>();
+
+		graphQLFields.add(new GraphQLField("id"));
+
+		for (String additionalAssertFieldName :
+				getAdditionalAssertFieldNames()) {
+
+			graphQLFields.add(new GraphQLField(additionalAssertFieldName));
+		}
+
+		return graphQLFields;
 	}
 
-	protected Company testCompany;
-	protected Group testGroup;
-
-	private String _invoke(String query) throws Exception {
+	protected String invoke(String query) throws Exception {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		JSONObject jsonObject = JSONUtil.put("query", query);
-
-		httpInvoker.body(jsonObject.toString(), "application/json");
-
+		httpInvoker.body(
+			JSONUtil.put(
+				"query", query
+			).toString(),
+			"application/json");
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.POST);
 		httpInvoker.path("http://localhost:8080/o/graphql");
 		httpInvoker.userNameAndPassword("test@liferay.com:test");
@@ -134,7 +158,26 @@ public abstract class BaseTaxonomyCategoryGraphQLTestCase {
 		return httpResponse.getContent();
 	}
 
-	private class GraphQLField {
+	protected TaxonomyCategory randomTaxonomyCategory() throws Exception {
+		return new TaxonomyCategory() {
+			{
+				taxonomyCategoryId = RandomTestUtil.randomLong();
+				taxonomyCategoryName = RandomTestUtil.randomString();
+			}
+		};
+	}
+
+	protected TaxonomyCategory testTaxonomyCategory_addTaxonomyCategory()
+		throws Exception {
+
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
+	}
+
+	protected Company testCompany;
+	protected Group testGroup;
+
+	protected class GraphQLField {
 
 		public GraphQLField(String key, GraphQLField... graphQLFields) {
 			this(key, new HashMap<>(), graphQLFields);
