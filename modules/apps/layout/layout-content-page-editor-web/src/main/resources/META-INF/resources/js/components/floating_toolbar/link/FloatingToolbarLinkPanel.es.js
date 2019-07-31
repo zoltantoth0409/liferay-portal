@@ -24,10 +24,7 @@ import {
 	updateLastSaveDateAction
 } from '../../../actions/saveChanges.es';
 import templates from './FloatingToolbarLinkPanel.soy';
-import {
-	ADD_MAPPED_ASSET_ENTRY,
-	UPDATE_CONFIG_ATTRIBUTES
-} from '../../../actions/actions.es';
+import {UPDATE_CONFIG_ATTRIBUTES} from '../../../actions/actions.es';
 import getConnectedComponent from '../../../store/ConnectedComponent.es';
 import {
 	FloatingToolbarMappingPanel,
@@ -35,7 +32,6 @@ import {
 } from '../mapping/FloatingToolbarMappingPanel.es';
 import {setIn} from '../../../utils/FragmentsEditorUpdateUtils.es';
 import {encodeAssetId} from '../../../utils/FragmentsEditorIdUtils.es';
-import {openAssetBrowser} from '../../../utils/FragmentsEditorDialogUtils';
 
 /**
  * FloatingToolbarLinkPanel
@@ -138,55 +134,6 @@ class FloatingToolbarLinkPanel extends Component {
 	}
 
 	/**
-	 * @param {MouseEvent} event
-	 * @private
-	 * @review
-	 */
-	_handleAssetBrowserLinkClick(event) {
-		const {
-			assetBrowserUrl,
-			assetBrowserWindowTitle
-		} = event.delegateTarget.dataset;
-
-		openAssetBrowser({
-			assetBrowserURL: assetBrowserUrl,
-			callback: selectedAssetEntry => {
-				this._selectAssetEntry(selectedAssetEntry);
-
-				this.store.dispatch(
-					Object.assign({}, selectedAssetEntry, {
-						type: ADD_MAPPED_ASSET_ENTRY
-					})
-				);
-
-				requestAnimationFrame(() => {
-					this.refs.panel.focus();
-				});
-			},
-			modalTitle: assetBrowserWindowTitle,
-			portletNamespace: this.portletNamespace
-		});
-	}
-
-	/**
-	 * @param {MouseEvent} event
-	 * @private
-	 * @review
-	 */
-	_handleAssetEntryLinkClick(event) {
-		const data = event.delegateTarget.dataset;
-
-		this._selectAssetEntry({
-			classNameId: data.classNameId,
-			classPK: data.classPk
-		});
-
-		requestAnimationFrame(() => {
-			this.refs.panel.focus();
-		});
-	}
-
-	/**
 	 * Callback executed on href keyup
 	 * @param {object} event
 	 * @private
@@ -221,22 +168,6 @@ class FloatingToolbarLinkPanel extends Component {
 		event.preventDefault();
 
 		event.stopPropagation();
-	}
-
-	/**
-	 * @param {object} assetEntry
-	 * @param {string} assetEntry.classNameId
-	 * @param {string} assetEntry.classPK
-	 * @private
-	 * @review
-	 */
-	_selectAssetEntry(assetEntry) {
-		const config = {
-			classNameId: assetEntry.classNameId,
-			classPK: assetEntry.classPK
-		};
-
-		this._updateRowConfig(config);
 	}
 
 	/**
