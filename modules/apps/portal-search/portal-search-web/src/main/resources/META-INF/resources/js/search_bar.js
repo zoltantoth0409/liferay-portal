@@ -83,7 +83,7 @@ AUI.add(
 				if (instance.scopeSelect) {
 					searchParams.set(
 						instance.scopeSelect.get('name'),
-						instance.scopeSelect.val(),
+						instance.scopeSelect.val()
 					);
 				}
 
