@@ -42,7 +42,7 @@ public class OrganizationGraphQLTest extends BaseOrganizationGraphQLTestCase {
 	}
 
 	@Override
-	protected Organization testGetOrganization_addOrganization()
+	protected Organization testOrganization_addOrganization()
 		throws Exception {
 
 		Organization organization = randomOrganization();
