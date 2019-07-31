@@ -129,7 +129,7 @@ public class CompilerWrapper extends Compiler {
 
 		URL url = null;
 
-		if (PropsValues.WORK_FOLDER_OVERRIDE) {
+		if (PropsValues.WORK_DIR_OVERRIDE_ENABLED) {
 			Options options = ctxt.getOptions();
 
 			File scratchDir = options.getScratchDir();
