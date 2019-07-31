@@ -2002,8 +2002,6 @@ definition {
 
 	@priority = "4"
 	test UserEditWebContent {
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -2066,7 +2064,7 @@ definition {
 			roleName = "Web Content Administrator Role",
 			userScreenName = "usersn");
 
-		Navigator.openSiteLanding(siteURLKey = "${siteName}");
+		Navigator.openSiteLanding(siteURLKey = "guest");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",

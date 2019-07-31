@@ -254,8 +254,6 @@ definition {
 
 	@priority = "3"
 	test AddEventAllDayWithUserInviteAccept {
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
@@ -276,7 +274,7 @@ definition {
 			userEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		Navigator.openSiteLanding(siteURLKey = "${siteName}");
+		Navigator.openSiteLanding(siteURLKey = "guest");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
