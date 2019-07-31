@@ -2275,8 +2275,6 @@ definition {
 	test UserEditWebContent {
 		property testray.component.names = "Permissions,Roles,Users and Organizations,Web Content Administration";
 
-		var siteName = TestCase.getSiteName(siteName = "${siteName}");
-
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -2360,7 +2358,7 @@ definition {
 			roleTitle = "Web Content Administrator Role",
 			userScreenName = "usersn");
 
-		SitePages.openPagesAdmin(siteURLKey = "${siteName}");
+		SitePages.openPagesAdmin(siteURLKey = "guest");
 
 		ProductMenu.gotoPortlet(
 			category = "Members",
