@@ -151,9 +151,9 @@ function removeExperience(
  * @param {Array<string>} [fragmentEntryLinkIds=[]]
  * @return {Promise<Response>}
  */
-function addExperience({name, segmentsEntryId}) {
+function addSegmentsExperience({name, segmentsEntryId}) {
 	const state = _store.getState();
-	const {classPK, classNameId, addSegmentsExperience} = state;
+	const {classPK, classNameId, addSegmentsExperienceURL} = state;
 
 	const body = {
 		active: true,
@@ -163,7 +163,7 @@ function addExperience({name, segmentsEntryId}) {
 		segmentsEntryId
 	};
 
-	return _fetch(addSegmentsExperience, body);
+	return _fetch(addSegmentsExperienceURL, body);
 }
 
 /**
@@ -233,7 +233,7 @@ function updatePageEditorLayoutData(layoutData, segmentsExperienceId) {
 export {
 	addFragmentEntryLinkComment,
 	addFragmentEntryLinkCommentReply,
-	addExperience,
+	addSegmentsExperience,
 	deleteFragmentEntryLinkComment,
 	editFragmentEntryLinks,
 	editFragmentEntryLinkComment,
