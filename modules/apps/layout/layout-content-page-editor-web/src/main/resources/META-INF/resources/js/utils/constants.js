@@ -115,6 +115,14 @@ export const FLOATING_TOOLBAR_BUTTONS = {
 		type: 'panel'
 	},
 
+	imageLink: {
+		icon: 'link',
+		id: 'image_properties',
+		panelId: 'image_properties',
+		title: Liferay.Language.get('image-properties'),
+		type: 'panel'
+	},
+
 	imageProperties: {
 		icon: 'pencil',
 		id: 'image_properties',
