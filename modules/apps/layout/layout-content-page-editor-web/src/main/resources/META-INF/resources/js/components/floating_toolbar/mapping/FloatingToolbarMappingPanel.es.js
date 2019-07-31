@@ -44,7 +44,7 @@ class FloatingToolbarMappingPanel extends PortletBase {
 	 * @static
 	 * @review
 	 */
-	static getSourceTypes(subtypeLabel) {
+	static _getSourceTypes(subtypeLabel) {
 		return [
 			{
 				id: SOURCE_TYPE_IDS.structure,
@@ -85,7 +85,7 @@ class FloatingToolbarMappingPanel extends PortletBase {
 			nextState = setIn(
 				nextState,
 				['_sourceTypes'],
-				FloatingToolbarMappingPanel.getSourceTypes(
+				FloatingToolbarMappingPanel._getSourceTypes(
 					nextState.selectedMappingTypes.subtype
 						? nextState.selectedMappingTypes.subtype.label
 						: nextState.selectedMappingTypes.type.label
@@ -431,9 +431,5 @@ const ConnectedFloatingToolbarMappingPanel = getConnectedComponent(
 
 Soy.register(ConnectedFloatingToolbarMappingPanel, templates);
 
-export {
-	ConnectedFloatingToolbarMappingPanel,
-	FloatingToolbarMappingPanel,
-	SOURCE_TYPE_IDS
-};
+export {ConnectedFloatingToolbarMappingPanel, FloatingToolbarMappingPanel};
 export default ConnectedFloatingToolbarMappingPanel;
