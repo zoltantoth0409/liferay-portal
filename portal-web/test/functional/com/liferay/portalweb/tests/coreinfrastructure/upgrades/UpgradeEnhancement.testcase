@@ -117,9 +117,9 @@ definition {
 		property skip.upgrade-legacy-database = "true";
 		property test.assert.warning.exceptions = "true";
 
-		Portlet.assertServerStartup();
-
 		AssertConsoleTextNotPresent(value1 = "You must first upgrade the portal to the required schema version");
+
+		Portlet.assertServerStartup();
 	}
 
 	@priority = "5"
@@ -130,9 +130,9 @@ definition {
 		property skip.upgrade-legacy-database = "true";
 		property test.assert.warning.exceptions = "true";
 
-		Portlet.assertServerStartup();
-
 		AssertConsoleTextNotPresent(value1 = "You must first upgrade the portal to the required schema version");
+
+		Portlet.assertServerStartup();
 	}
 
 }
