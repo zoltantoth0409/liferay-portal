@@ -274,6 +274,62 @@ definition {
 			fieldFieldLabel = "Text Label");
 	}
 
+	@description = "This is a use case for LPS-91735."
+	@priority = "3"
+	test ExportImportGlobalDDMStructureViaInstances {
+		property test.name.skip.portal.instance = "ExportImport#ExportImportGlobalDDMStructureViaInstances";
+		property portal.release = "false";
+
+		Navigator.openSiteLanding(siteURLKey = "Global");
+
+		ProductMenu.gotoPortlet(
+			category = "Publishing",
+			panel = "Site Administration",
+			portlet = "Export");
+
+		LexiconEntry.gotoAdd();
+
+		Check(locator1 = "Select#CONTENT_CHOOSE_CONTENT");
+
+		LAR.configureExportSiteCP(
+			checkContentNameList = "Web Content",
+			uncheckContentNameList = "Documents and Media");
+
+		LAR.exportSuccess();
+
+		var larFileName = LAR.getLarFileName();
+
+		LAR.downloadLar();
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Virtual Instances");
+
+		PortalInstances.addCP(
+			mailDomain = "www.able.com",
+			virtualHost = "www.able.com",
+			webId = "www.able.com");
+
+		User.logoutPG();
+
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "test@www.able.com",
+			virtualHostsURL = "http://www.able.com:8080");
+
+		Navigator.openSiteLanding(
+			baseURL = "http://www.able.com:8080",
+			siteURLKey = "Global");
+
+		LAR.importSiteCP(
+			baseURL = "http://www.able.com:8080",
+			larFileName = "${larFileName}",
+			siteName = "Global");
+
+		AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
+	}
+
 	@priority = "3"
 	test ExportImportPortletWithADT {
 		property test.name.skip.portal.instance = "ExportImport#ExportImportPortletWithADT";
