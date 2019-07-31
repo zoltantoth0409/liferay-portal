@@ -98,7 +98,7 @@ public class JspReloader {
 				if (file.exists()) {
 					FileUtil.deltree(file);
 
-					if (PropsValues.WORK_FOLDER_OVERRIDE &&
+					if (PropsValues.WORK_DIR_OVERRIDE_ENABLED &&
 						_log.isInfoEnabled()) {
 
 						_log.info(
