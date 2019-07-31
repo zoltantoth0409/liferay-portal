@@ -181,18 +181,6 @@ class FloatingToolbarLinkPanel extends PortletBase {
 		this._fields = [];
 	}
 
-	/**
-	 * @private
-	 * @review
-	 */
-	_focusPanel() {
-		requestAnimationFrame(() => {
-			if (this.refs.panel) {
-				this.refs.panel.focus();
-			}
-		});
-	}
-
 	_getMappedValue(fieldId) {
 		if (fieldId) {
 			return this.fetch(this.getAssetFieldValueURL, {
@@ -227,7 +215,9 @@ class FloatingToolbarLinkPanel extends PortletBase {
 					})
 				);
 
-				this._focusPanel();
+				requestAnimationFrame(() => {
+					this.refs.panel.focus();
+				});
 			},
 			modalTitle: assetBrowserWindowTitle,
 			portletNamespace: this.portletNamespace
@@ -247,7 +237,9 @@ class FloatingToolbarLinkPanel extends PortletBase {
 			classPK: data.classPk
 		});
 
-		this._focusPanel();
+		requestAnimationFrame(() => {
+			this.refs.panel.focus();
+		});
 	}
 
 	/**
