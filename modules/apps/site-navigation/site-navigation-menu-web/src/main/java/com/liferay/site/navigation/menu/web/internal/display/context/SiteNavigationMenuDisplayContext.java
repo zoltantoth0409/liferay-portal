@@ -383,7 +383,7 @@ public class SiteNavigationMenuDisplayContext {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Group scopeGroup = null;
+		Group scopeGroup = themeDisplay.getScopeGroup();
 
 		Layout layout = themeDisplay.getLayout();
 
@@ -411,7 +411,7 @@ public class SiteNavigationMenuDisplayContext {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Group scopeGroup = null;
+		Group scopeGroup = themeDisplay.getScopeGroup();
 
 		Layout layout = themeDisplay.getLayout();
 
