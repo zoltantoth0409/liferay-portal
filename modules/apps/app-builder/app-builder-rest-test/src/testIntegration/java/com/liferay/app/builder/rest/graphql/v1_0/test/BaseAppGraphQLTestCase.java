@@ -138,12 +138,7 @@ public abstract class BaseAppGraphQLTestCase {
 	}
 
 	protected boolean equals(App app, JSONObject jsonObject) {
-		List<String> fieldNames = new ArrayList<>(
-			Arrays.asList(getAdditionalAssertFieldNames()));
-
-		fieldNames.add("id");
-
-		for (String fieldName : fieldNames) {
+		for (String fieldName : getAdditionalAssertFieldNames()) {
 			if (Objects.equals("dataDefinitionId", fieldName)) {
 				if (!Objects.equals(
 						app.getDataDefinitionId(),
