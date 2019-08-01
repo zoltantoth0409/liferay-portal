@@ -70,6 +70,11 @@ public interface AccountEntryLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public AccountEntry addAccountEntry(AccountEntry accountEntry);
 
+	public AccountEntry addAccountEntry(
+			long userId, long parentAccountEntryId, String name,
+			String description, long logoId, int status)
+		throws PortalException;
+
 	/**
 	 * Creates a new account entry with the primary key. Does not add the account entry to the database.
 	 *
@@ -188,6 +193,11 @@ public interface AccountEntryLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AccountEntry> getAccountEntries(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<AccountEntry> getAccountEntries(
+		long companyId, int status, int start, int end,
+		OrderByComparator<AccountEntry> obc);
 
 	/**
 	 * Returns the number of account entries.

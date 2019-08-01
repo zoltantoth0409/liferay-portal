@@ -49,6 +49,16 @@ public class AccountEntryLocalServiceWrapper
 		return _accountEntryLocalService.addAccountEntry(accountEntry);
 	}
 
+	@Override
+	public com.liferay.account.model.AccountEntry addAccountEntry(
+			long userId, long parentAccountEntryId, String name,
+			String description, long logoId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _accountEntryLocalService.addAccountEntry(
+			userId, parentAccountEntryId, name, description, logoId, status);
+	}
+
 	/**
 	 * Creates a new account entry with the primary key. Does not add the account entry to the database.
 	 *
@@ -214,6 +224,17 @@ public class AccountEntryLocalServiceWrapper
 		getAccountEntries(int start, int end) {
 
 		return _accountEntryLocalService.getAccountEntries(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.account.model.AccountEntry>
+		getAccountEntries(
+			long companyId, int status, int start, int end,
+			com.liferay.portal.kernel.util.OrderByComparator
+				<com.liferay.account.model.AccountEntry> obc) {
+
+		return _accountEntryLocalService.getAccountEntries(
+			companyId, status, start, end, obc);
 	}
 
 	/**
