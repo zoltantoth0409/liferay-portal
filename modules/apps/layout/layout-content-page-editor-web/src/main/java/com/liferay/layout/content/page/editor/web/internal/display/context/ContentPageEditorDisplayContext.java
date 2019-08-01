@@ -47,6 +47,7 @@ import com.liferay.layout.content.page.editor.constants.ContentPageEditorPortlet
 import com.liferay.layout.content.page.editor.constants.ContentPageEditorWebKeys;
 import com.liferay.layout.content.page.editor.web.internal.comment.CommentUtil;
 import com.liferay.layout.content.page.editor.web.internal.configuration.util.ContentPageEditorCommentsConfigurationUtil;
+import com.liferay.layout.content.page.editor.web.internal.configuration.util.FragmentConfigurationUtil;
 import com.liferay.layout.page.template.model.LayoutPageTemplateStructure;
 import com.liferay.layout.page.template.service.LayoutPageTemplateStructureLocalServiceUtil;
 import com.liferay.petra.string.StringPool;
@@ -227,6 +228,9 @@ public class ContentPageEditorDisplayContext {
 		).put(
 			"elements",
 			_getFragmentCollectionsSoyContexts(FragmentConstants.TYPE_COMPONENT)
+		).put(
+			"enableConfiguration",
+			FragmentConfigurationUtil.isEnableConfiguration()
 		).put(
 			"fragmentEntryLinks", _getFragmentEntryLinksSoyContext()
 		);
