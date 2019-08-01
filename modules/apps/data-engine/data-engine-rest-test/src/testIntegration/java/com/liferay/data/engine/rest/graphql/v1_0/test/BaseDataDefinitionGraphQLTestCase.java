@@ -17,6 +17,7 @@ package com.liferay.data.engine.rest.graphql.v1_0.test;
 import com.liferay.data.engine.rest.client.dto.v1_0.DataDefinition;
 import com.liferay.data.engine.rest.client.http.HttpInvoker;
 import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONDeserializer;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -25,6 +26,8 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.test.log.CaptureAppender;
+import com.liferay.portal.test.log.Log4JLoggerTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.ArrayList;
@@ -35,6 +38,8 @@ import java.util.Map;
 import java.util.Objects;
 
 import javax.annotation.Generated;
+
+import org.apache.log4j.Level;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -66,6 +71,52 @@ public abstract class BaseDataDefinitionGraphQLTestCase {
 	@After
 	public void tearDown() throws Exception {
 		GroupTestUtil.deleteGroup(testGroup);
+	}
+
+	@Test
+	public void testDeleteDataDefinition() throws Exception {
+		DataDefinition dataDefinition = testDataDefinition_addDataDefinition();
+
+		GraphQLField graphQLField = new GraphQLField(
+			"mutation",
+			new GraphQLField(
+				"deleteDataDefinition",
+				new HashMap<String, Object>() {
+					{
+						put("dataDefinitionId", dataDefinition.getId());
+					}
+				}));
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			invoke(graphQLField.toString()));
+
+		JSONObject dataJSONObject = jsonObject.getJSONObject("data");
+
+		Assert.assertTrue(dataJSONObject.getBoolean("deleteDataDefinition"));
+
+		try (CaptureAppender captureAppender =
+				Log4JLoggerTestUtil.configureLog4JLogger(
+					"graphql.execution.SimpleDataFetcherExceptionHandler",
+					Level.WARN)) {
+
+			graphQLField = new GraphQLField(
+				"query",
+				new GraphQLField(
+					"dataDefinition",
+					new HashMap<String, Object>() {
+						{
+							put("dataDefinitionId", dataDefinition.getId());
+						}
+					},
+					new GraphQLField("id")));
+
+			jsonObject = JSONFactoryUtil.createJSONObject(
+				invoke(graphQLField.toString()));
+
+			JSONArray errorsJSONArray = jsonObject.getJSONArray("errors");
+
+			Assert.assertTrue(errorsJSONArray.length() > 0);
+		}
 	}
 
 	@Test
@@ -151,6 +202,20 @@ public abstract class BaseDataDefinitionGraphQLTestCase {
 	}
 
 	@Test
+	public void testPostSiteDataDefinition() throws Exception {
+		DataDefinition randomDataDefinition = randomDataDefinition();
+
+		DataDefinition dataDefinition = testDataDefinition_addDataDefinition(
+			randomDataDefinition);
+
+		Assert.assertTrue(
+			equals(
+				randomDataDefinition,
+				JSONFactoryUtil.createJSONObject(
+					JSONFactoryUtil.serialize(dataDefinition))));
+	}
+
+	@Test
 	public void testGetSiteDataDefinition() throws Exception {
 		DataDefinition dataDefinition = testDataDefinition_addDataDefinition();
 
@@ -200,12 +265,7 @@ public abstract class BaseDataDefinitionGraphQLTestCase {
 	protected boolean equals(
 		DataDefinition dataDefinition, JSONObject jsonObject) {
 
-		List<String> fieldNames = new ArrayList<>(
-			Arrays.asList(getAdditionalAssertFieldNames()));
-
-		fieldNames.add("id");
-
-		for (String fieldName : fieldNames) {
+		for (String fieldName : getAdditionalAssertFieldNames()) {
 			if (Objects.equals("dataDefinitionKey", fieldName)) {
 				if (!Objects.equals(
 						dataDefinition.getDataDefinitionKey(),
@@ -320,8 +380,140 @@ public abstract class BaseDataDefinitionGraphQLTestCase {
 	protected DataDefinition testDataDefinition_addDataDefinition()
 		throws Exception {
 
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
+		return testDataDefinition_addDataDefinition(randomDataDefinition());
+	}
+
+	protected DataDefinition testDataDefinition_addDataDefinition(
+			DataDefinition dataDefinition)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder("{");
+
+		for (String additionalAssertFieldName :
+				getAdditionalAssertFieldNames()) {
+
+			if (Objects.equals(
+					"dataDefinitionKey", additionalAssertFieldName)) {
+
+				sb.append(additionalAssertFieldName);
+				sb.append(": ");
+
+				Object value = dataDefinition.getDataDefinitionKey();
+
+				if (value instanceof String) {
+					sb.append("\"");
+					sb.append(value);
+					sb.append("\"");
+				}
+				else {
+					sb.append(value);
+				}
+
+				sb.append(", ");
+			}
+
+			if (Objects.equals("id", additionalAssertFieldName)) {
+				sb.append(additionalAssertFieldName);
+				sb.append(": ");
+
+				Object value = dataDefinition.getId();
+
+				if (value instanceof String) {
+					sb.append("\"");
+					sb.append(value);
+					sb.append("\"");
+				}
+				else {
+					sb.append(value);
+				}
+
+				sb.append(", ");
+			}
+
+			if (Objects.equals("siteId", additionalAssertFieldName)) {
+				sb.append(additionalAssertFieldName);
+				sb.append(": ");
+
+				Object value = dataDefinition.getSiteId();
+
+				if (value instanceof String) {
+					sb.append("\"");
+					sb.append(value);
+					sb.append("\"");
+				}
+				else {
+					sb.append(value);
+				}
+
+				sb.append(", ");
+			}
+
+			if (Objects.equals("storageType", additionalAssertFieldName)) {
+				sb.append(additionalAssertFieldName);
+				sb.append(": ");
+
+				Object value = dataDefinition.getStorageType();
+
+				if (value instanceof String) {
+					sb.append("\"");
+					sb.append(value);
+					sb.append("\"");
+				}
+				else {
+					sb.append(value);
+				}
+
+				sb.append(", ");
+			}
+
+			if (Objects.equals("userId", additionalAssertFieldName)) {
+				sb.append(additionalAssertFieldName);
+				sb.append(": ");
+
+				Object value = dataDefinition.getUserId();
+
+				if (value instanceof String) {
+					sb.append("\"");
+					sb.append(value);
+					sb.append("\"");
+				}
+				else {
+					sb.append(value);
+				}
+
+				sb.append(", ");
+			}
+		}
+
+		sb.append("}");
+
+		List<GraphQLField> graphQLFields = getGraphQLFields();
+
+		GraphQLField graphQLField = new GraphQLField(
+			"mutation",
+			new GraphQLField(
+				"createSiteDataDefinition",
+				new HashMap<String, Object>() {
+					{
+						put("siteId", testGroup.getGroupId());
+						put("dataDefinition", sb.toString());
+					}
+				},
+				graphQLFields.toArray(new GraphQLField[0])));
+
+		JSONDeserializer<DataDefinition> jsonDeserializer =
+			JSONFactoryUtil.createJSONDeserializer();
+
+		String object = invoke(graphQLField.toString());
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(object);
+
+		JSONObject dataJSONObject = jsonObject.getJSONObject("data");
+
+		return jsonDeserializer.deserialize(
+			String.valueOf(
+				dataJSONObject.getJSONObject("createSiteDataDefinition")),
+			DataDefinition.class);
 	}
 
 	protected Company testCompany;

@@ -167,12 +167,7 @@ public abstract class BaseProcessGraphQLTestCase {
 	}
 
 	protected boolean equals(Process process, JSONObject jsonObject) {
-		List<String> fieldNames = new ArrayList<>(
-			Arrays.asList(getAdditionalAssertFieldNames()));
-
-		fieldNames.add("id");
-
-		for (String fieldName : fieldNames) {
+		for (String fieldName : getAdditionalAssertFieldNames()) {
 			if (Objects.equals("companyId", fieldName)) {
 				if (!Objects.equals(
 						process.getCompanyId(),
