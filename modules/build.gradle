@@ -211,6 +211,12 @@ gradle.beforeProject {
 			}
 		}
 
+		pluginManager.withPlugin("com.liferay.jsdoc") {
+			downloadJSDoc {
+				enabled = false
+			}
+		}
+
 		pluginManager.withPlugin("com.liferay.node") {
 			if (npmInstall.packageLockJsonFile == null) {
 				afterEvaluate {
