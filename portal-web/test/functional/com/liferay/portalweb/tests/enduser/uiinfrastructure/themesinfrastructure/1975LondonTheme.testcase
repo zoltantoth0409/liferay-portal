@@ -70,4 +70,30 @@ definition {
 		}
 	}
 
+	@priority = "5"
+	test AddThemeSitePage {
+		property test.name.skip.portal.instance = "1975LondonTheme#AddThemeSitePage";
+		property theme.file.name = "1975-london-theme.war";
+
+		Page.add(pageName = "Themes Page");
+
+		SitePageNavigator.gotoEditPage(page = "Themes Page");
+
+		Navigator.gotoNavTab(navTab = "Look and Feel");
+
+		Click(locator1 = "Radio#SPECIFIC_LOOK");
+
+		Page.changeCurrentTheme(themeName = "1975 London");
+
+		Page.viewCurrentTheme(
+			navTab = "Look and Feel",
+			page = "Welcome",
+			themeName = "Classic Theme");
+
+		Page.viewCurrentTheme(
+			navTab = "Look and Feel",
+			page = "Themes Page",
+			themeName = "1975 London");
+	}
+
 }
