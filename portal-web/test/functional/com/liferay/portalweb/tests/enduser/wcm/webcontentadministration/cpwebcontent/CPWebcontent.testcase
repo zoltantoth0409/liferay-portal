@@ -1630,6 +1630,90 @@ definition {
 			webContentTitle = "WC WebContent Title");
 	}
 
+	@description = "This is a use case for LPS-88889."
+	@priority = "4"
+	test ExportLARWithDeletedDocumentLink {
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites");
+
+		Site.addBlankCP(siteName = "Site Name");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Documents and Media");
+
+		DMDocument.addCP(
+			dmDocumentDescription = "DM Document Description",
+			dmDocumentFile = "Document_1.txt",
+			dmDocumentTitle = "DM Document Title");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoManageStructures();
+
+		WebContentStructures.addCP(
+			structureDescription = "WC Structure Description",
+			structureName = "WC Structure Name");
+
+		DynamicDataMapping.addField(
+			field = "Documents and Media",
+			fieldFieldLabel = "Documents and Media",
+			fieldName = "DocumentsAndMedia");
+
+		WebContentStructures.saveCP(structureName = "WC Structure Name");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoManageTemplates();
+
+		WebContentTemplates.addCP(
+			templateDescription = "WC Template Description",
+			templateLanguage = "ftl",
+			templateName = "WC Template Name");
+
+		WebContentTemplates.addStructure(
+			structureName = "WC Structure Name",
+			templateFieldNames = "Documents and Media",
+			templateLanguage = "ftl");
+
+		DDLDataDefinition.save();
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
+
+		WebContent.addWithStructureCP(
+			fieldName = "DocumentsAndMedia",
+			structureName = "WC Structure Name",
+			templateName = "WC Template Name",
+			webContentDocumentsAndMedia = "DM Document Title.txt",
+			webContentTitle = "WC WebContent Title");
+
+		PortletEntry.publish();
+
+		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Documents and Media");
+
+		DMDocument.deleteCP(dmDocumentTitle = "DM Document Title");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		LAR.exportPortlet(larFileName = "WebContent_portlet.lar");
+
+		AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
+	}
+
 	@priority = "5"
 	test ImportLAR {
 		property portal.acceptance = "true";
