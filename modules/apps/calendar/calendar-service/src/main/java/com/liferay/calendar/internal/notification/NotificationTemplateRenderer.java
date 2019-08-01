@@ -67,6 +67,9 @@ public class NotificationTemplateRenderer {
 			NotificationTemplateContext notificationTemplateContext, int mode)
 		throws Exception {
 
+		Map<String, Serializable> attributes =
+			notificationTemplateContext.getAttributes();
+
 		String location = GetterUtil.getString(attributes.get("location"));
 		String title = GetterUtil.getString(attributes.get("title"));
 
@@ -74,9 +77,6 @@ public class NotificationTemplateRenderer {
 			location = HtmlUtil.escape(location);
 			title = HtmlUtil.escape(title);
 		}
-
-		Map<String, Serializable> attributes =
-			notificationTemplateContext.getAttributes();
 
 		return StringUtil.replace(
 			notificationTemplate,
