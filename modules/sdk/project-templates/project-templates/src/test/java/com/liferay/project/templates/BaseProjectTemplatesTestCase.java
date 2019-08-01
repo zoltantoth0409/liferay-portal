@@ -80,7 +80,7 @@ import org.w3c.dom.Text;
 /**
  * @author Lawrence Lee
  */
-public interface BaseProjectTemplatesTest {
+public interface BaseProjectTemplatesTestCase {
 
 	public static final String BUILD_PROJECTS = System.getProperty(
 		"project.templates.test.builds");

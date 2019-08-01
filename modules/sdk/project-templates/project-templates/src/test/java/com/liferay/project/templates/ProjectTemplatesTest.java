@@ -79,7 +79,7 @@ import org.w3c.dom.Text;
  * @author Gregory Amerson
  * @author Andrea Di Giorgi
  */
-public class ProjectTemplatesTest implements BaseProjectTemplatesTest {
+public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();

@@ -46,7 +46,7 @@ import org.junit.runners.Parameterized;
  */
 @RunWith(Parameterized.class)
 public class ProjectTemplatesSpringPortletMVCTest
-	implements BaseProjectTemplatesTest {
+	implements BaseProjectTemplatesTestCase {
 
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
