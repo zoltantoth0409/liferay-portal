@@ -3,32 +3,6 @@ AUI.add(
 	function(A) {
 		var AArray = A.Array;
 		var AObject = A.Object;
-		var FieldSettings = [
-			'autosaveEnabled',
-			'cacheable',
-			'emailFromAddress',
-			'emailFromName',
-			'emailSubject',
-			'emailToAddress',
-			'filterable',
-			'filterParameterName',
-			'inputParameters',
-			'outputParameters',
-			'pagination',
-			'paginationEndParameterName',
-			'paginationStartParameterName',
-			'password',
-			'published',
-			'redirectURL',
-			'requireAuthentication',
-			'requireCaptcha',
-			'sendEmailNotification',
-			'storageType',
-			'timeout',
-			'url',
-			'username',
-			'workflowDefinition'
-		];
 		var Renderer = Liferay.DDM.Renderer;
 
 		var FieldTypes = Renderer.FieldTypes;
@@ -243,29 +217,34 @@ AUI.add(
 
 			_removeFieldContexts: function(columnFieldContexts, repeatedSiblings) {
 				var removeContext = [];
-				var repeatedContext = [];
+				var repeatedContexts = [];
 
 				repeatedSiblings.forEach(
 					function(context) {
-						repeatedContext.push(context.get('context'));
+						repeatedContexts.push(context.get('context'));
 					}
 				);
 
 				columnFieldContexts.forEach(
 					function(columnFieldContext) {
-						if (
-							FieldSettings.indexOf(columnFieldContext.fieldName) ===
-							-1
-						) {
+						if (columnFieldContext.repeatable === true) {
+							var repeatable =  false;
+
 							var foundFieldContext = AArray.find(
-								repeatedContext,
+								repeatedContexts,
 								function(repeatedContext) {
-									return columnFieldContext.fieldName === repeatedContext.fieldName && columnFieldContext.instanceId === repeatedContext.instanceId;
+									if ((repeatedContext.repeatable === true) && columnFieldContext.fieldName === repeatedContext.fieldName
+									) {
+										repeatable = true;
+										return columnFieldContext.instanceId === repeatedContext.instanceId;
+									}
 								}
 							);
 
-							if (!foundFieldContext) {
-								removeContext.push(columnFieldContext);
+							if (repeatable) {
+								if (!foundFieldContext) {
+									removeContext.push(columnFieldContext);
+								}
 							}
 						}
 					}
