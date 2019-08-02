@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.template.soy.util.SoyContext;
 import com.liferay.portal.template.soy.util.SoyContextFactoryUtil;
@@ -72,7 +73,7 @@ public class ChangeListsDisplayContext {
 
 	public ChangeListsDisplayContext(
 		HttpServletRequest httpServletRequest, RenderRequest renderRequest,
-		RenderResponse renderResponse, ThemeDisplay themeDisplay,
+		RenderResponse renderResponse,
 		CTPreferencesLocalService ctPreferencesLocalService,
 		CTEntryLocalService ctEntryLocalService,
 		CTEngineManager ctEngineManager) {
@@ -80,10 +81,12 @@ public class ChangeListsDisplayContext {
 		_httpServletRequest = httpServletRequest;
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
-		_themeDisplay = themeDisplay;
 		_ctPreferencesLocalService = ctPreferencesLocalService;
 		_ctEntryLocalService = ctEntryLocalService;
 		_ctEngineManager = ctEngineManager;
+
+		_themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 	}
 
 	public SoyContext getChangeListsContext() throws Exception {

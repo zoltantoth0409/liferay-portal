@@ -29,10 +29,8 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.permission.UserBag;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
 
@@ -46,8 +44,6 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -103,16 +99,11 @@ public class ChangeListsPortlet extends MVCPortlet {
 					"checkoutProductionSuccess");
 		}
 
-		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
-			renderRequest);
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		ChangeListsDisplayContext changeListsDisplayContext =
 			new ChangeListsDisplayContext(
-				httpServletRequest, renderRequest, renderResponse, themeDisplay,
-				_ctPreferencesLocalService, _ctEntryLocalService,
-				_ctEngineManager);
+				_portal.getHttpServletRequest(renderRequest), renderRequest,
+				renderResponse, _ctPreferencesLocalService,
+				_ctEntryLocalService, _ctEngineManager);
 
 		renderRequest.setAttribute(
 			CTWebConstants.CHANGE_LISTS_DISPLAY_CONTEXT,
