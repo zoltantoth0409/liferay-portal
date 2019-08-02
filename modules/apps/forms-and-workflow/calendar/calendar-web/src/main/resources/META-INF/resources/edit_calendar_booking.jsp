@@ -460,7 +460,7 @@ while (manageableCalendarsIterator.hasNext()) {
 
 		<aui:button cssClass="btn-lg" name="saveButton" primary="<%= false %>" type="submit" value="save-as-draft" />
 
-		<c:if test="<%= calendarBooking != null %>">
+		<c:if test="<%= (calendarBooking != null) && CalendarBookingPermission.contains(themeDisplay.getPermissionChecker(), calendarBooking, ActionKeys.PERMISSIONS) %>">
 			<liferay-security:permissionsURL
 				modelResource="<%= CalendarBooking.class.getName() %>"
 				modelResourceDescription="<%= calendarBooking.getTitle(locale) %>"

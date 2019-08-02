@@ -56,6 +56,7 @@ page import="com.liferay.calendar.service.CalendarNotificationTemplateLocalServi
 page import="com.liferay.calendar.service.CalendarResourceServiceUtil" %><%@
 page import="com.liferay.calendar.service.CalendarServiceUtil" %><%@
 page import="com.liferay.calendar.service.configuration.CalendarServiceConfigurationValues" %><%@
+page import="com.liferay.calendar.service.permission.CalendarBookingPermission" %><%@
 page import="com.liferay.calendar.service.permission.CalendarPermission" %><%@
 page import="com.liferay.calendar.service.permission.CalendarPortletPermission" %><%@
 page import="com.liferay.calendar.service.permission.CalendarResourcePermission" %><%@
