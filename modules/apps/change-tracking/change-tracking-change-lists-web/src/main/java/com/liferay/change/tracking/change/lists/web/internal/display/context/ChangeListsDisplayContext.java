@@ -429,7 +429,7 @@ public class ChangeListsDisplayContext {
 		String contentType =
 			CTDefinitionRegistryUtil.getVersionEntityContentTypeLanguageKey(
 				ctEntry.getModelClassNameId());
-		Format dateFormatDate = FastDateFormatFactoryUtil.getDateTime(
+		Format format = FastDateFormatFactoryUtil.getDateTime(
 			_themeDisplay.getLocale());
 
 		return jsonObject.put(
@@ -438,7 +438,7 @@ public class ChangeListsDisplayContext {
 		).put(
 			"contentType", _getEntityNameTranslation(contentType)
 		).put(
-			"lastEdited", dateFormatDate.format(ctEntry.getModifiedDate())
+			"lastEdited", format.format(ctEntry.getModifiedDate())
 		).put(
 			"site",
 			CTDefinitionRegistryUtil.getVersionEntitySiteName(
