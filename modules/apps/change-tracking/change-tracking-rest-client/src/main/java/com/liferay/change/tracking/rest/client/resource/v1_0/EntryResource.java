@@ -16,9 +16,6 @@ package com.liferay.change.tracking.rest.client.resource.v1_0;
 
 import com.liferay.change.tracking.rest.client.dto.v1_0.Entry;
 import com.liferay.change.tracking.rest.client.http.HttpInvoker;
-import com.liferay.change.tracking.rest.client.pagination.Page;
-import com.liferay.change.tracking.rest.client.pagination.Pagination;
-import com.liferay.change.tracking.rest.client.serdes.v1_0.EntrySerDes;
 
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -98,6 +95,7 @@ public interface EntryResource {
 	}
 
 	public static class EntryResourceImpl implements EntryResource {
+
 		public Entry getEntry(Long entryId) throws Exception {
 			HttpInvoker.HttpResponse httpResponse = getEntryHttpResponse(
 				entryId);
@@ -111,7 +109,8 @@ public interface EntryResource {
 				"HTTP response status code: " + httpResponse.getStatusCode());
 
 			try {
-				return EntrySerDes.toDTO(content);
+				return com.liferay.change.tracking.rest.client.serdes.v1_0.
+					EntrySerDes.toDTO(content);
 			}
 			catch (Exception e) {
 				_logger.log(

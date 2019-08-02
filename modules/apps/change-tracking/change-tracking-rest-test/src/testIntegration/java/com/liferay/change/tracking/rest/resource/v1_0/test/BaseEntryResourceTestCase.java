@@ -26,10 +26,8 @@ import com.liferay.change.tracking.rest.client.dto.v1_0.Collection;
 import com.liferay.change.tracking.rest.client.dto.v1_0.Entry;
 import com.liferay.change.tracking.rest.client.http.HttpInvoker;
 import com.liferay.change.tracking.rest.client.pagination.Page;
-import com.liferay.change.tracking.rest.client.pagination.Pagination;
 import com.liferay.change.tracking.rest.client.resource.v1_0.EntryResource;
 import com.liferay.change.tracking.rest.client.serdes.v1_0.EntrySerDes;
-import com.liferay.petra.function.UnsafeTriConsumer;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -41,7 +39,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
@@ -49,13 +46,9 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import java.text.DateFormat;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -66,7 +59,6 @@ import javax.annotation.Generated;
 
 import javax.ws.rs.core.MultivaluedHashMap;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.lang.time.DateUtils;
 
@@ -195,27 +187,6 @@ public abstract class BaseEntryResourceTestCase {
 		Assert.assertEquals(regex, entry.getTitle());
 		Assert.assertEquals(regex, entry.getUserName());
 		Assert.assertEquals(regex, entry.getVersion());
-	}
-
-	protected Entry testGetCollectionEntriesPage_addEntry(
-			Long collectionId, Entry entry)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long testGetCollectionEntriesPage_getCollectionId()
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	protected Long testGetCollectionEntriesPage_getIrrelevantCollectionId()
-		throws Exception {
-
-		return null;
 	}
 
 	@Test
