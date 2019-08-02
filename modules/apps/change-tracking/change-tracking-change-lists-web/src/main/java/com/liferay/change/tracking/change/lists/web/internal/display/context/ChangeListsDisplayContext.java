@@ -95,7 +95,8 @@ public class ChangeListsDisplayContext {
 		soyContext.put(
 			"changeEntries", _getCTEntriesJSONArray()
 		).put(
-			"entityNameTranslations", _getEntityNameTranslations()
+			"entityNameTranslationsJSONArray",
+			_getEntityNameTranslationsJSONArray()
 		).put(
 			"namespace", _renderResponse.getNamespace()
 		).put(
@@ -460,11 +461,12 @@ public class ChangeListsDisplayContext {
 	private String _getEntityNameTranslation(String contentType)
 		throws Exception {
 
-		JSONArray entityNameTranslations = _getEntityNameTranslations();
+		JSONArray entityNameTranslationsJSONArray =
+			_getEntityNameTranslationsJSONArray();
 
-		for (int i = 0; i < entityNameTranslations.length(); i++) {
+		for (int i = 0; i < entityNameTranslationsJSONArray.length(); i++) {
 			JSONObject entityNameTranslation =
-				entityNameTranslations.getJSONObject(i);
+				entityNameTranslationsJSONArray.getJSONObject(i);
 
 			if (contentType.equals(entityNameTranslation.getString("key"))) {
 				return entityNameTranslation.getString("translation");
@@ -474,12 +476,12 @@ public class ChangeListsDisplayContext {
 		return StringPool.BLANK;
 	}
 
-	private JSONArray _getEntityNameTranslations() throws Exception {
-		if (_entityNameTranslations != null) {
-			return _entityNameTranslations;
+	private JSONArray _getEntityNameTranslationsJSONArray() throws Exception {
+		if (_entityNameTranslationsJSONArray != null) {
+			return _entityNameTranslationsJSONArray;
 		}
 
-		_entityNameTranslations = JSONUtil.toJSONArray(
+		_entityNameTranslationsJSONArray = JSONUtil.toJSONArray(
 			CTDefinitionRegistryUtil.getContentTypeLanguageKeys(),
 			contentTypeLanguageKey -> JSONUtil.put(
 				"key", contentTypeLanguageKey
@@ -488,7 +490,7 @@ public class ChangeListsDisplayContext {
 				LanguageUtil.get(_httpServletRequest, contentTypeLanguageKey)
 			));
 
-		return _entityNameTranslations;
+		return _entityNameTranslationsJSONArray;
 	}
 
 	private String _getFilterByStatus() {
@@ -623,7 +625,7 @@ public class ChangeListsDisplayContext {
 	private final CTEntryLocalService _ctEntryLocalService;
 	private final CTPreferencesLocalService _ctPreferencesLocalService;
 	private String _displayStyle;
-	private JSONArray _entityNameTranslations;
+	private JSONArray _entityNameTranslationsJSONArray;
 	private String _filterByStatus;
 	private final HttpServletRequest _httpServletRequest;
 	private String _orderByCol;
