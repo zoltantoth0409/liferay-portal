@@ -43,7 +43,6 @@ import com.liferay.segments.service.SegmentsExperienceService;
 
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 import javax.portlet.ActionRequest;
@@ -136,9 +135,13 @@ public class AddSegmentsExperienceMVCActionCommand
 			_segmentsExperienceService.addSegmentsExperience(
 				ParamUtil.getLong(actionRequest, "segmentsEntryId"),
 				classNameId, classPK,
-				_getNameMap(
-					LocaleUtil.getSiteDefault(),
-					ParamUtil.getString(actionRequest, "name")),
+				new HashMap<Locale, String>() {
+					{
+						put(
+							LocaleUtil.getSiteDefault(),
+							ParamUtil.getString(actionRequest, "name"));
+					}
+				},
 				ParamUtil.getBoolean(actionRequest, "active", true),
 				ServiceContextFactory.getInstance(actionRequest));
 
@@ -154,14 +157,6 @@ public class AddSegmentsExperienceMVCActionCommand
 		_populateLayoutDataJSONObject(jsonObject, layoutData);
 
 		return jsonObject;
-	}
-
-	private Map<Locale, String> _getNameMap(Locale locale, String name) {
-		Map<Locale, String> nameMap = new HashMap<>();
-
-		nameMap.put(locale, name);
-
-		return nameMap;
 	}
 
 	private void _populateLayoutDataJSONObject(
