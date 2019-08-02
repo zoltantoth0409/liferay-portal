@@ -40,7 +40,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.segments.constants.SegmentsConstants;
+import com.liferay.segments.constants.SegmentsExperienceConstants;
 
 import java.util.Iterator;
 import java.util.Locale;
@@ -274,7 +274,7 @@ public class FragmentEntryProcessorImpl implements FragmentEntryProcessorUtil {
 		JSONObject jsonObject, Locale locale, Long segmentsExperienceId) {
 
 		JSONObject segmentsExperienceJSONObject = jsonObject.getJSONObject(
-			SegmentsConstants.SEGMENTS_EXPERIENCE_ID_PREFIX +
+			SegmentsExperienceConstants.SEGMENTS_EXPERIENCE_ID_PREFIX +
 				segmentsExperienceId);
 
 		if (segmentsExperienceJSONObject == null) {
@@ -305,7 +305,8 @@ public class FragmentEntryProcessorImpl implements FragmentEntryProcessorUtil {
 			String key = keys.next();
 
 			if (key.startsWith(
-					SegmentsConstants.SEGMENTS_EXPERIENCE_ID_PREFIX)) {
+					SegmentsExperienceConstants.
+						SEGMENTS_EXPERIENCE_ID_PREFIX)) {
 
 				return true;
 			}
