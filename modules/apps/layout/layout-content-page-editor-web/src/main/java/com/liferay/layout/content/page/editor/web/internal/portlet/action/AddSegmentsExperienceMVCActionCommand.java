@@ -79,7 +79,7 @@ public class AddSegmentsExperienceMVCActionCommand
 		Callable<JSONObject> callable = new AddSegmentsExperienceCallable(
 			actionRequest);
 
-		JSONObject jsonObject;
+		JSONObject jsonObject = null;
 
 		try {
 			jsonObject = TransactionInvokerUtil.invoke(
