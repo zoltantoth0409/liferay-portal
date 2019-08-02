@@ -197,6 +197,12 @@ gradle.beforeProject {
 			}
 		}
 
+		pluginManager.withPlugin("com.liferay.jsdoc") {
+			downloadJSDoc {
+				moduleVersion = "3.5.5"
+			}
+		}
+
 		pluginManager.withPlugin("com.liferay.node") {
 			node {
 				global = false
