@@ -106,7 +106,7 @@ public class AddSegmentsExperienceMVCActionCommand
 	}
 
 	private String _addLayoutData(
-			long classNameId, long classPK, long groupId,
+			long groupId, long classNameId, long classPK,
 			long segmentsExperienceId)
 		throws PortalException {
 
@@ -148,7 +148,7 @@ public class AddSegmentsExperienceMVCActionCommand
 			WebKeys.THEME_DISPLAY);
 
 		String layoutData = _addLayoutData(
-			classNameId, classPK, themeDisplay.getScopeGroupId(),
+			themeDisplay.getScopeGroupId(), classNameId, classPK,
 			segmentsExperience.getSegmentsExperienceId());
 
 		_populateLayoutDataJSONObject(jsonObject, layoutData);
