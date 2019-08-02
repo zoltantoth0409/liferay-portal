@@ -43,7 +43,7 @@ public class DateParamConverter implements ParamConverter<Date> {
 	@Override
 	public String toString(Date date) {
 		return new SimpleDateFormat(
-			_DATE_TIME_PATTERN
+			_PATTERN_DATE_TIME
 		).format(
 			date
 		);
@@ -52,21 +52,21 @@ public class DateParamConverter implements ParamConverter<Date> {
 	private String _getPattern(String string) {
 		if (string.contains("T")) {
 			if (string.contains(".")) {
-				return _DATE_TIME_PATTERN;
+				return _PATTERN_DATE_TIME;
 			}
 
-			return _DATE_TIME_WITHOUT_MILLIS_PATTERN;
+			return _PATTERN_DATE_TIME_WITHOUT_MILLIS;
 		}
 
-		return _DATE_PATTERN;
+		return _PATTERN_DATE;
 	}
 
-	private static final String _DATE_PATTERN = "yyyy-MM-dd";
+	private static final String _PATTERN_DATE = "yyyy-MM-dd";
 
-	private static final String _DATE_TIME_PATTERN =
+	private static final String _PATTERN_DATE_TIME =
 		"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
-	private static final String _DATE_TIME_WITHOUT_MILLIS_PATTERN =
+	private static final String _PATTERN_DATE_TIME_WITHOUT_MILLIS =
 		"yyyy-MM-dd'T'HH:mm:ss'Z'";
 
 }
