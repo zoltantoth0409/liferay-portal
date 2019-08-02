@@ -101,7 +101,6 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
-import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -1329,7 +1328,7 @@ public class SitesImpl implements Sites {
 
 		String owner = _acquireLock(
 			LayoutSet.class.getName(), layoutSet.getLayoutSetId(),
-			Time.SECOND * PropsValues.LAYOUT_SET_PROTOTYPE_MERGE_LOCK_MAX_TIME);
+			PropsValues.LAYOUT_SET_PROTOTYPE_MERGE_LOCK_MAX_TIME);
 
 		if (owner == null) {
 			return;
@@ -1746,7 +1745,7 @@ public class SitesImpl implements Sites {
 
 		String owner = _acquireLock(
 			Layout.class.getName(), layout.getPlid(),
-			Time.SECOND * PropsValues.LAYOUT_PROTOTYPE_MERGE_LOCK_MAX_TIME);
+			PropsValues.LAYOUT_PROTOTYPE_MERGE_LOCK_MAX_TIME);
 
 		if (owner == null) {
 			return;
