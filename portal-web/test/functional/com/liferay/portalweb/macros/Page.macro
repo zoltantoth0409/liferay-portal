@@ -108,8 +108,9 @@ definition {
 
 		if (isSet(pageName)) {
 			var portalURL = StringUtil.add("${portalURL}", "/${pageName}","");
-			var portalURL = StringUtil.replace("${portalURL}", " ", "-");
+
 			var portalURL = StringUtil.lowerCase("${portalURL}");
+			var portalURL = StringUtil.replace("${portalURL}", " ", "-");
 		}
 
 		if (isSet(locale)) {
