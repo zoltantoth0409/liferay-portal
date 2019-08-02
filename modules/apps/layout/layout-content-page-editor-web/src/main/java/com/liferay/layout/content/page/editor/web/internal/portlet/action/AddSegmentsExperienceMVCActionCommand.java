@@ -157,7 +157,7 @@ public class AddSegmentsExperienceMVCActionCommand
 	}
 
 	private Map<Locale, String> _getNameMap(Locale locale, String name) {
-		HashMap<Locale, String> nameMap = new HashMap<>();
+		Map<Locale, String> nameMap = new HashMap<>();
 
 		nameMap.put(locale, name);
 
