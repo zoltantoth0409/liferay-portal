@@ -88,8 +88,8 @@ public class AppBuilderAppLocalServiceImpl
 
 		if (ddmStructure == null) {
 			throw new NoSuchStructureException(
-				"No DDMStructure exists with the DDMStructure ID " +
-					ddmStructureId);
+				"Dynamic data mapping structure " + ddmStructureId +
+					" does not exist");
 		}
 
 		DDMStructureLayout ddmStructureLayout =
@@ -98,8 +98,8 @@ public class AppBuilderAppLocalServiceImpl
 
 		if (ddmStructureLayout == null) {
 			throw new NoSuchStructureLayoutException(
-				"No DDMStructureLayout exists with the DDMStructureLayout ID " +
-					ddmStructureLayoutId);
+				"Dynamic data mapping structure layout " +
+					ddmStructureLayoutId + " does not exist");
 		}
 
 		DEDataListView deDataListView =
@@ -107,8 +107,8 @@ public class AppBuilderAppLocalServiceImpl
 
 		if (deDataListView == null) {
 			throw new NoSuchDataListViewException(
-				"No DEDataListView exists with the DEDataListView ID " +
-					deDataListViewId);
+				"Data engine data list view " + deDataListViewId +
+					" does not exist");
 		}
 	}
 
