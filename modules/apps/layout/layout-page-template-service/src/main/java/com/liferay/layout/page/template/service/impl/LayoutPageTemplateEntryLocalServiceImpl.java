@@ -431,7 +431,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 		getLayoutPageTemplateEntriesByLayoutPrototypeId(
 			long layoutPrototypeId) {
 
-		return layoutPageTemplateEntryPersistence.findByLayoutPrototypeId(
+		return layoutPageTemplateEntryPersistence.findByLayoutPrototype(
 			layoutPrototypeId);
 	}
 
