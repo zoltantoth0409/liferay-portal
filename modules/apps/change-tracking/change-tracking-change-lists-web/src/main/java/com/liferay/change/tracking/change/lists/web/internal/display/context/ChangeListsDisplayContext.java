@@ -465,11 +465,13 @@ public class ChangeListsDisplayContext {
 			_getEntityNameTranslationsJSONArray();
 
 		for (int i = 0; i < entityNameTranslationsJSONArray.length(); i++) {
-			JSONObject entityNameTranslation =
+			JSONObject entityNameTranslationJSONObject =
 				entityNameTranslationsJSONArray.getJSONObject(i);
 
-			if (contentType.equals(entityNameTranslation.getString("key"))) {
-				return entityNameTranslation.getString("translation");
+			if (contentType.equals(
+					entityNameTranslationJSONObject.getString("key"))) {
+
+				return entityNameTranslationJSONObject.getString("translation");
 			}
 		}
 
