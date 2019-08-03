@@ -68,7 +68,6 @@ public class AppResourceTest extends BaseAppResourceTestCase {
 				dataLayoutId = _ddmStructureLayout.getStructureLayoutId();
 				dataListViewId = _deDataListView.getDeDataListViewId();
 				siteId = testGroup.getGroupId();
-				userId = testGroup.getCreatorUserId();
 				settings = new HashMap<String, Object>() {
 					{
 						put("deploymentStatus", "ok");
@@ -79,6 +78,7 @@ public class AppResourceTest extends BaseAppResourceTestCase {
 							});
 					}
 				};
+				userId = testGroup.getCreatorUserId();
 			}
 		};
 	}
