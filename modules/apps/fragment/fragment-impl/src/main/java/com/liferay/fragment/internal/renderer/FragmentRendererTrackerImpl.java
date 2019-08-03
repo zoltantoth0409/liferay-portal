@@ -135,9 +135,9 @@ public class FragmentRendererTrackerImpl implements FragmentRendererTracker {
 			catch (FragmentEntryConfigurationException fece) {
 				_log.error(
 					String.format(
-						"FragmentRenderer with collection key %s and label " +
+						"Fragment renderer with collection key %s and label " +
 							"%s could not be registered due to invalid " +
-								"configuration.",
+								"configuration",
 						fragmentRenderer.getCollectionKey(),
 						fragmentRenderer.getLabel(
 							LocaleUtil.getMostRelevantLocale())),
