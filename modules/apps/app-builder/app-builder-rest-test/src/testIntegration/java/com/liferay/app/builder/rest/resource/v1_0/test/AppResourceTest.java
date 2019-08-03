@@ -108,7 +108,7 @@ public class AppResourceTest extends BaseAppResourceTestCase {
 			StorageType.JSON.getValue());
 	}
 
-	private DDMStructureLayout _addDDMStructureLayout(long structureId)
+	private DDMStructureLayout _addDDMStructureLayout(long ddmStructureId)
 		throws Exception {
 
 		DDMFormLayout ddmFormLayout = new DDMFormLayout();
@@ -119,7 +119,7 @@ public class AppResourceTest extends BaseAppResourceTestCase {
 			new DDMStructureLayoutTestHelper(testGroup);
 
 		return ddmStructureLayoutTestHelper.addStructureLayout(
-			structureId, ddmFormLayout);
+			ddmStructureId, ddmFormLayout);
 	}
 
 	private String _read(String fileName) throws Exception {
