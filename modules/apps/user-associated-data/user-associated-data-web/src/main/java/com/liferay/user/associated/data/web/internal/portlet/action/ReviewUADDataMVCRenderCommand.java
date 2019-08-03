@@ -76,6 +76,9 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 
 			List<ScopeDisplay> scopeDisplays = _getScopeDisplays(selectedUser);
 
+			renderRequest.setAttribute(
+				UADWebKeys.SCOPE_DISPLAYS, scopeDisplays);
+
 			ScopeDisplay activeScopeDisplay = _getActiveScopeDisplay(
 				renderRequest, scopeDisplays);
 
@@ -100,8 +103,6 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 
 			UADDisplay uadDisplay = _uadRegistry.getUADDisplay(uadRegistryKey);
 
-			renderRequest.setAttribute(
-				UADWebKeys.SCOPE_DISPLAYS, scopeDisplays);
 			renderRequest.setAttribute(
 				UADWebKeys.TOTAL_UAD_ENTITIES_COUNT,
 				_getTotalUADEntitiesCount(selectedUser));
