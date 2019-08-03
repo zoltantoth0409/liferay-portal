@@ -38,8 +38,9 @@ public abstract class BaseUADDisplayTestCase<T> {
 
 	@Before
 	public void setUp() throws Exception {
-		_uadDisplay = getUADDisplay();
 		user = UserTestUtil.addUser();
+
+		_uadDisplay = getUADDisplay();
 	}
 
 	@Test
