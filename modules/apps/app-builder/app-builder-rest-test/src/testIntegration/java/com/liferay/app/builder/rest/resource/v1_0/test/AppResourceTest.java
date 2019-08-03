@@ -74,7 +74,7 @@ public class AppResourceTest extends BaseAppResourceTestCase {
 						put(
 							"deploymentTypes",
 							new String[] {
-								"widget", "standalone", "productMenu"
+								"productMenu", "standalone", "widget"
 							});
 					}
 				};
