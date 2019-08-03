@@ -41,6 +41,8 @@ public class AccountEntryLocalServiceImpl
 			String description, long logoId, int status)
 		throws PortalException {
 
+		// Account entry
+
 		User user = userLocalService.getUser(userId);
 
 		long accountEntryId = counterLocalService.increment();
