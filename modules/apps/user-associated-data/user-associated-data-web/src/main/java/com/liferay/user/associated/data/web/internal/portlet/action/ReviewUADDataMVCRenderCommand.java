@@ -76,13 +76,6 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 
 			List<ScopeDisplay> scopeDisplays = _getScopeDisplays(selectedUser);
 
-			renderRequest.setAttribute(
-				UADWebKeys.SCOPE_DISPLAYS, scopeDisplays);
-
-			renderRequest.setAttribute(
-				UADWebKeys.TOTAL_UAD_ENTITIES_COUNT,
-				_getTotalUADEntitiesCount(selectedUser));
-
 			ScopeDisplay activeScopeDisplay = _getActiveScopeDisplay(
 				renderRequest, scopeDisplays);
 
@@ -92,14 +85,24 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 			UADHierarchyDisplay uadHierarchyDisplay =
 				_uadRegistry.getUADHierarchyDisplay(applicationKey);
 
-			if (uadHierarchyDisplay != null) {
-				renderRequest.setAttribute(
-					UADWebKeys.UAD_HIERARCHY_DISPLAY, uadHierarchyDisplay);
-			}
-			else {
+			if (uadHierarchyDisplay == null) {
 				renderRequest.setAttribute(
 					UADWebKeys.APPLICATION_UAD_DISPLAYS,
 					_uadRegistry.getApplicationUADDisplays(applicationKey));
+			}
+
+			renderRequest.setAttribute(
+				UADWebKeys.SCOPE_DISPLAYS, scopeDisplays);
+			renderRequest.setAttribute(
+				UADWebKeys.TOTAL_UAD_ENTITIES_COUNT,
+				_getTotalUADEntitiesCount(selectedUser));
+			renderRequest.setAttribute(
+				UADWebKeys.UAD_APPLICATION_SUMMARY_DISPLAY_LIST,
+				activeScopeDisplay.getUADApplicationSummaryDisplays());
+
+			if (uadHierarchyDisplay != null) {
+				renderRequest.setAttribute(
+					UADWebKeys.UAD_HIERARCHY_DISPLAY, uadHierarchyDisplay);
 			}
 
 			String uadRegistryKey = _getUADRegistryKey(
@@ -107,9 +110,6 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 
 			UADDisplay uadDisplay = _uadRegistry.getUADDisplay(uadRegistryKey);
 
-			renderRequest.setAttribute(
-				UADWebKeys.UAD_APPLICATION_SUMMARY_DISPLAY_LIST,
-				activeScopeDisplay.getUADApplicationSummaryDisplays());
 			renderRequest.setAttribute(
 				UADWebKeys.UAD_INFO_PANEL_DISPLAY,
 				_getUADInfoPanelDisplay(uadHierarchyDisplay, uadDisplay));
