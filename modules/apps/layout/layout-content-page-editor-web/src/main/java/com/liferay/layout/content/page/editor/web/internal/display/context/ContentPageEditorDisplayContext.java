@@ -913,10 +913,10 @@ public class ContentPageEditorDisplayContext {
 			soyContext.put(
 				"fragmentEntryKey", fragmentEntry.getFragmentEntryKey()
 			).put(
+				"groupId", fragmentEntry.getGroupId()
+			).put(
 				"imagePreviewURL",
 				fragmentEntry.getImagePreviewURL(themeDisplay)
-			).put(
-				"groupId", fragmentEntry.getGroupId()
 			).put(
 				"name", fragmentEntry.getName()
 			);
