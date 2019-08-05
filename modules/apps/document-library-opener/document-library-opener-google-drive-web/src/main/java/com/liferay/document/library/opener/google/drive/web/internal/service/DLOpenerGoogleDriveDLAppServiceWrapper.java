@@ -23,9 +23,9 @@ import com.liferay.document.library.opener.constants.DLOpenerFileEntryReferenceC
 import com.liferay.document.library.opener.constants.DLOpenerMimeTypes;
 import com.liferay.document.library.opener.google.drive.DLOpenerGoogleDriveFileReference;
 import com.liferay.document.library.opener.google.drive.DLOpenerGoogleDriveManager;
-import com.liferay.document.library.opener.google.drive.upload.UniqueFileEntryTitleProvider;
 import com.liferay.document.library.opener.model.DLOpenerFileEntryReference;
 import com.liferay.document.library.opener.service.DLOpenerFileEntryReferenceLocalService;
+import com.liferay.document.library.opener.upload.UniqueFileEntryTitleProvider;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
