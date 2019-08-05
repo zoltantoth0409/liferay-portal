@@ -14,17 +14,14 @@
  */
 --%>
 
-<%@page import="com.liferay.portal.kernel.security.permission.ActionKeys"%>
-<%@page import="com.liferay.asset.kernel.model.AssetRendererFactory"%>
-
 <%@ include file="/init.jsp" %>
 
 <%
-	AssetRendererFactory assetRendererFactory = null;
+AssetRendererFactory assetRendererFactory = null;
 
-	if (assetEntry != null) {
-		assetRendererFactory = assetEntry.getAssetRendererFactory();
-	}
+if (assetEntry != null) {
+	assetRendererFactory = assetEntry.getAssetRendererFactory();
+}
 %>
 
 <c:choose>
