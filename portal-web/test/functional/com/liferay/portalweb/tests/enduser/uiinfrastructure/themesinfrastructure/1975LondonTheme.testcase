@@ -90,10 +90,18 @@ definition {
 			page = "Welcome",
 			themeName = "Classic Theme");
 
+		Navigator.gotoPage(pageName = "Welcome");
+
+		AssertElementNotPresent(locator1 = "//footer//div[contains(@class,'navbar')]");
+
 		Page.viewCurrentTheme(
 			navTab = "Look and Feel",
 			page = "Themes Page",
 			themeName = "1975 London");
+
+		Navigator.gotoPage(pageName = "Themes Page");
+
+		AssertElementPresent(locator1 = "//footer//div[contains(@class,'navbar')]");
 	}
 
 }
