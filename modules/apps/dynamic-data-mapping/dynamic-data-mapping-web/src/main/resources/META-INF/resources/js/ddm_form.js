@@ -41,6 +41,8 @@ AUI.add(
 
 		var TPL_REPEATABLE_ADD = '<a class="icon-plus-sign lfr-ddm-repeatable-add-button" href="javascript:;"></a>';
 
+		var TPL_REPEATABLE_ICON = Liferay.Util.getLexiconIconTpl('drag');
+
 		var TPL_REPEATABLE_DELETE = '<a class="hide icon-minus-sign lfr-ddm-repeatable-delete-button" href="javascript:;"></a>';
 
 		var TPL_REPEATABLE_HELPER = '<div class="lfr-ddm-repeatable-helper"></div>';
@@ -643,6 +645,13 @@ AUI.add(
 						var instance = this;
 
 						var container = instance.get('container');
+
+						var containerLabel = container._node.children[0];
+
+						containerLabel.insertAdjacentHTML(
+							'afterbegin',
+							TPL_REPEATABLE_ICON
+						);
 
 						container.append(TPL_REPEATABLE_ADD);
 						container.append(TPL_REPEATABLE_DELETE);
