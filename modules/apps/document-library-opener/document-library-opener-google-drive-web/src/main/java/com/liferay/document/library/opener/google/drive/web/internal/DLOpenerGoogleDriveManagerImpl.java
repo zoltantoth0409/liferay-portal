@@ -66,7 +66,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Adolfo Pérez
  */
-@Component(immediate = true, service = DLOpenerGoogleDriveManager.class)
+@Component(service = DLOpenerGoogleDriveManager.class)
 public class DLOpenerGoogleDriveManagerImpl
 	implements DLOpenerGoogleDriveManager {
 
