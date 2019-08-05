@@ -149,16 +149,21 @@ public class SitesImpl implements Sites {
 		UnicodeProperties settingsProperties =
 			layoutSet.getSettingsProperties();
 
-		String mergeFailFriendlyURLLayouts = settingsProperties.getProperty(
+		String oldMergeFailFriendlyURLLayouts = settingsProperties.getProperty(
 			MERGE_FAIL_FRIENDLY_URL_LAYOUTS, StringPool.BLANK);
 
-		mergeFailFriendlyURLLayouts = StringUtil.add(
-			mergeFailFriendlyURLLayouts, layout.getUuid());
+		String newMergeFailFriendlyURLLayouts = StringUtil.add(
+			oldMergeFailFriendlyURLLayouts, layout.getUuid());
 
-		settingsProperties.setProperty(
-			MERGE_FAIL_FRIENDLY_URL_LAYOUTS, mergeFailFriendlyURLLayouts);
+		if (!oldMergeFailFriendlyURLLayouts.equals(
+				newMergeFailFriendlyURLLayouts)) {
 
-		LayoutSetLocalServiceUtil.updateLayoutSet(layoutSet);
+			settingsProperties.setProperty(
+				MERGE_FAIL_FRIENDLY_URL_LAYOUTS,
+				oldMergeFailFriendlyURLLayouts);
+
+			LayoutSetLocalServiceUtil.updateLayoutSet(layoutSet);
+		}
 	}
 
 	@Override
@@ -331,9 +336,11 @@ public class SitesImpl implements Sites {
 		UnicodeProperties prototypeTypeSettingsProperties =
 			layoutPrototypeLayout.getTypeSettingsProperties();
 
-		prototypeTypeSettingsProperties.setProperty(MERGE_FAIL_COUNT, "0");
+		if (prototypeTypeSettingsProperties.containsKey(MERGE_FAIL_COUNT)) {
+			prototypeTypeSettingsProperties.remove(MERGE_FAIL_COUNT);
 
-		LayoutLocalServiceUtil.updateLayout(layoutPrototypeLayout);
+			LayoutLocalServiceUtil.updateLayout(layoutPrototypeLayout);
+		}
 	}
 
 	@Override
@@ -1391,9 +1398,11 @@ public class SitesImpl implements Sites {
 		UnicodeProperties settingsProperties =
 			layoutSet.getSettingsProperties();
 
-		settingsProperties.remove(MERGE_FAIL_FRIENDLY_URL_LAYOUTS);
+		if (settingsProperties.containsKey(MERGE_FAIL_FRIENDLY_URL_LAYOUTS)) {
+			settingsProperties.remove(MERGE_FAIL_FRIENDLY_URL_LAYOUTS);
 
-		LayoutSetLocalServiceUtil.updateLayoutSet(layoutSet);
+			LayoutSetLocalServiceUtil.updateLayoutSet(layoutSet);
+		}
 	}
 
 	/**
@@ -1437,22 +1446,32 @@ public class SitesImpl implements Sites {
 
 		Layout layoutPrototypeLayout = layoutPrototype.getLayout();
 
+		boolean updateLayoutPrototypeLayout = false;
+
 		UnicodeProperties prototypeTypeSettingsProperties =
 			layoutPrototypeLayout.getTypeSettingsProperties();
 
 		if (newMergeFailCount == 0) {
-			prototypeTypeSettingsProperties.remove(MERGE_FAIL_COUNT);
+			if (prototypeTypeSettingsProperties.containsKey(MERGE_FAIL_COUNT)) {
+				prototypeTypeSettingsProperties.remove(MERGE_FAIL_COUNT);
+
+				updateLayoutPrototypeLayout = true;
+			}
 		}
 		else {
 			prototypeTypeSettingsProperties.setProperty(
 				MERGE_FAIL_COUNT, String.valueOf(newMergeFailCount));
+
+			updateLayoutPrototypeLayout = true;
 		}
 
-		LayoutServiceUtil.updateLayout(
-			layoutPrototypeLayout.getGroupId(),
-			layoutPrototypeLayout.isPrivateLayout(),
-			layoutPrototypeLayout.getLayoutId(),
-			layoutPrototypeLayout.getTypeSettings());
+		if (updateLayoutPrototypeLayout) {
+			LayoutServiceUtil.updateLayout(
+				layoutPrototypeLayout.getGroupId(),
+				layoutPrototypeLayout.isPrivateLayout(),
+				layoutPrototypeLayout.getLayoutId(),
+				layoutPrototypeLayout.getTypeSettings());
+		}
 	}
 
 	/**
@@ -1470,21 +1489,33 @@ public class SitesImpl implements Sites {
 		LayoutSet layoutSetPrototypeLayoutSet =
 			layoutSetPrototype.getLayoutSet();
 
+		boolean updateLayoutSetPrototypeLayoutSet = false;
+
 		UnicodeProperties layoutSetPrototypeSettingsProperties =
 			layoutSetPrototypeLayoutSet.getSettingsProperties();
 
 		if (newMergeFailCount == 0) {
-			layoutSetPrototypeSettingsProperties.remove(MERGE_FAIL_COUNT);
+			if (layoutSetPrototypeSettingsProperties.containsKey(
+					MERGE_FAIL_COUNT)) {
+
+				layoutSetPrototypeSettingsProperties.remove(MERGE_FAIL_COUNT);
+
+				updateLayoutSetPrototypeLayoutSet = true;
+			}
 		}
 		else {
 			layoutSetPrototypeSettingsProperties.setProperty(
 				MERGE_FAIL_COUNT, String.valueOf(newMergeFailCount));
+
+			updateLayoutSetPrototypeLayoutSet = true;
 		}
 
-		LayoutSetServiceUtil.updateSettings(
-			layoutSetPrototypeLayoutSet.getGroupId(),
-			layoutSetPrototypeLayoutSet.isPrivateLayout(),
-			layoutSetPrototypeLayoutSet.getSettings());
+		if (updateLayoutSetPrototypeLayoutSet) {
+			LayoutSetServiceUtil.updateSettings(
+				layoutSetPrototypeLayoutSet.getGroupId(),
+				layoutSetPrototypeLayoutSet.isPrivateLayout(),
+				layoutSetPrototypeLayoutSet.getSettings());
+		}
 	}
 
 	@Override
