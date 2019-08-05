@@ -75,9 +75,6 @@ public class DLOpenerGoogleDriveManagerImpl
 			long userId, FileEntry fileEntry)
 		throws PortalException {
 
-		final String jobName =
-			"googleDriveFileEntry-" + fileEntry.getFileEntryId();
-
 		Map<String, Serializable> taskContextMap = new HashMap<>();
 
 		taskContextMap.put(
@@ -95,7 +92,8 @@ public class DLOpenerGoogleDriveManagerImpl
 
 		BackgroundTask backgroundTask =
 			_backgroundTaskManager.addBackgroundTask(
-				userId, CompanyConstants.SYSTEM, jobName,
+				userId, CompanyConstants.SYSTEM,
+				"googleDriveFileEntry-" + fileEntry.getFileEntryId(),
 				UploadGoogleDriveDocumentBackgroundTaskExecutor.class.getName(),
 				taskContextMap, new ServiceContext());
 
@@ -117,9 +115,6 @@ public class DLOpenerGoogleDriveManagerImpl
 			long userId, FileEntry fileEntry)
 		throws PortalException {
 
-		final String jobName =
-			"googleDriveFileEntry-" + fileEntry.getFileEntryId();
-
 		Map<String, Serializable> taskContextMap = new HashMap<>();
 
 		taskContextMap.put(
@@ -137,7 +132,8 @@ public class DLOpenerGoogleDriveManagerImpl
 
 		BackgroundTask backgroundTask =
 			_backgroundTaskManager.addBackgroundTask(
-				userId, CompanyConstants.SYSTEM, jobName,
+				userId, CompanyConstants.SYSTEM,
+				"googleDriveFileEntry-" + fileEntry.getFileEntryId(),
 				UploadGoogleDriveDocumentBackgroundTaskExecutor.class.getName(),
 				taskContextMap, new ServiceContext());
 
