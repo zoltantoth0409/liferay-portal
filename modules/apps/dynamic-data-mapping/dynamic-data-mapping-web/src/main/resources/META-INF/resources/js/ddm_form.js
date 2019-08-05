@@ -593,14 +593,6 @@ AUI.add(
 						.join('');
 				},
 
-				getRuleInputName: function() {
-					var instance = this;
-
-					var inputName = instance.getInputName();
-
-					return inputName;
-				},
-
 				getInputNode: function() {
 					var instance = this;
 
@@ -648,6 +640,14 @@ AUI.add(
 					return instance.getSiblings().filter(function(item) {
 						return item.get('name') === instance.get('name');
 					});
+				},
+
+				getRuleInputName: function() {
+					var instance = this;
+
+					var inputName = instance.getInputName();
+
+					return inputName;
 				},
 
 				getSiblings: function() {
@@ -1440,14 +1440,6 @@ AUI.add(
 					return portletURL.toString();
 				},
 
-				getRuleInputName: function() {
-					var instance = this;
-
-					var inputName = instance.getInputName();
-
-					return inputName + 'Title';
-				},
-
 				getParsedValue: function(value) {
 					var instance = this;
 
@@ -1460,6 +1452,14 @@ AUI.add(
 					}
 
 					return value;
+				},
+
+				getRuleInputName: function() {
+					var instance = this;
+
+					var inputName = instance.getInputName();
+
+					return inputName + 'Title';
 				},
 
 				getUploadURL: function() {
