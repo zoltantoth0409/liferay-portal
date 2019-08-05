@@ -224,11 +224,11 @@ public class AddSegmentsExperienceMVCActionCommand
 			long segmentsExperienceId)
 		throws PortalException {
 
+		Map<Long, String> fragmentEntryLinksEditableValuesMap = new HashMap<>();
+
 		List<FragmentEntryLink> fragmentEntryLinks =
 			_fragmentEntryLinkLocalService.getFragmentEntryLinks(
 				groupId, classNameId, classPK);
-
-		Map<Long, String> fragmentEntryLinksEditableValuesMap = new HashMap<>();
 
 		for (FragmentEntryLink fragmentEntryLink : fragmentEntryLinks) {
 			JSONObject editableValuesJSONObject =
