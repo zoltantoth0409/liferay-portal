@@ -474,15 +474,13 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		}
 
 		String instanceId = jsonObject.getString("instanceId");
-
 		Portlet portlet = _portletLocalService.getPortletById(
 			SegmentsExperiencePortletUtil.decodePortletName(portletId));
+		PortletPreferences portletPreferences = null;
 
 		OptionalLong segmentsExperienceIdOptionalLong =
 			_getSegmentsExperienceIdOptional(
 				fragmentEntryProcessorContext.getSegmentsExperienceIds());
-
-		PortletPreferences portletPreferences = null;
 
 		if (segmentsExperienceIdOptionalLong.isPresent()) {
 			String preferencesPortletId = portletId;
