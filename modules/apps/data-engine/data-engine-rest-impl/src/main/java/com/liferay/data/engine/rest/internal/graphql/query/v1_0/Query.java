@@ -89,7 +89,7 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {dataDefinition(dataDefinitionId: ___){dataDefinitionFields, dataDefinitionKey, dataDefinitionRules, dateCreated, dateModified, description, id, name, siteId, storageType, userId}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {dataDefinition(dataDefinitionId: ___){availableLanguageIds, dataDefinitionFields, dataDefinitionKey, dataDefinitionRules, dateCreated, dateModified, defaultLanguageId, description, id, name, siteId, storageType, userId}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField
 	public DataDefinition dataDefinition(
@@ -130,7 +130,7 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {dataDefinition(dataDefinitionKey: ___, siteId: ___){dataDefinitionFields, dataDefinitionKey, dataDefinitionRules, dateCreated, dateModified, description, id, name, siteId, storageType, userId}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {dataDefinition(dataDefinitionKey: ___, siteId: ___){availableLanguageIds, dataDefinitionFields, dataDefinitionKey, dataDefinitionRules, dateCreated, dateModified, defaultLanguageId, description, id, name, siteId, storageType, userId}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField
 	public DataDefinition dataDefinition(
@@ -172,7 +172,7 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {dataLayout(dataLayoutId: ___){dataDefinitionId, dataLayoutKey, dataLayoutPages, dateCreated, dateModified, defaultLanguageId, description, id, name, paginationMode, siteId, userId}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {dataLayout(dataLayoutId: ___){dataDefinitionId, dataLayoutKey, dataLayoutPages, dateCreated, dateModified, description, id, name, paginationMode, siteId, userId}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField
 	public DataLayout dataLayout(@GraphQLName("dataLayoutId") Long dataLayoutId)
@@ -211,7 +211,7 @@ public class Query {
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {dataLayout(dataLayoutKey: ___, siteId: ___){dataDefinitionId, dataLayoutKey, dataLayoutPages, dateCreated, dateModified, defaultLanguageId, description, id, name, paginationMode, siteId, userId}}"}' -u 'test@liferay.com:test'
+	 * curl -H 'Content-Type: text/plain; charset=utf-8' -X 'POST' 'http://localhost:8080/o/graphql' -d $'{"query": "query {dataLayout(dataLayoutKey: ___, siteId: ___){dataDefinitionId, dataLayoutKey, dataLayoutPages, dateCreated, dateModified, description, id, name, paginationMode, siteId, userId}}"}' -u 'test@liferay.com:test'
 	 */
 	@GraphQLField
 	public DataLayout dataLayout(
