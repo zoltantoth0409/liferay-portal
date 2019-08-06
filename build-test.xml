@@ -7255,6 +7255,43 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 			</then>
 		</if>
 
+		<get-testcase-property property.name="deploy.lcs.token.file" />
+
+		<if>
+			<and>
+				<equals arg1="${app.server.type}" arg2="websphere" />
+				<equals arg1="${deploy.lcs.token.file}" arg2="true" />
+			</and>
+			<then>
+				<echo append="true" file="portal-impl/src/portal-ext.properties">
+module.framework.properties.org.osgi.framework.bootdelegation=\
+    __redirected,\
+    com.liferay.aspectj,\
+    com.liferay.aspectj.*,\
+    com.liferay.portal.servlet.delegate,\
+    com.liferay.portal.servlet.delegate*,\
+    com.sun.ccpp,\
+    com.sun.ccpp.*,\
+    com.sun.crypto.*,\
+    com.sun.image.*,\
+    com.sun.jmx.*,\
+    com.sun.jna,\
+    com.sun.jndi.*,\
+    com.sun.mail.*,\
+    com.sun.management.*,\
+    com.sun.media.*,\
+    com.sun.msv.*,\
+    com.sun.org.*,\
+    com.sun.syndication,\
+    com.sun.tools.*,\
+    com.sun.xml.*,\
+    com.yourkit.*,\
+    jdk.*,\
+    com.ibm.crypto.*,\
+    sun.*</echo>
+			</then>
+		</if>
+
 		<apply-portal-ext-properties />
 	</target>
 
