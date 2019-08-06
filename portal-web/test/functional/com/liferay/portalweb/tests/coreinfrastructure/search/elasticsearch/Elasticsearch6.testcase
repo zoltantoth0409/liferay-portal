@@ -29,26 +29,6 @@ definition {
 		}
 	}
 
-	@description = "This test asserts that index on startup works consistently on remote Elasticsearch."
-	@priority = "5"
-	test AssertRemoteIndexOnStartup {
-		property portal.acceptance = "true";
-		property remote.elasticsearch.enabled = "true";
-
-		ProductMenu.gotoPortlet(
-			category = "Users",
-			panel = "Control Panel",
-			portlet = "Users and Organizations"
-		);
-
-		User.viewCP(
-			userEmailAddress = "test@liferay.com",
-			userFirstName = "Test",
-			userLastName = "Test",
-			userScreenName = "test"
-		);
-	}
-
 	@ignore = "true"
 	@priority = "3"
 	test AssertSystemSettingsPropogateToModule {
