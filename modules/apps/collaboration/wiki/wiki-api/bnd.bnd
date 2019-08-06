@@ -1,6 +1,6 @@
 Bundle-Name: Liferay Wiki API
 Bundle-SymbolicName: com.liferay.wiki.api
-Bundle-Version: 2.6.12
+Bundle-Version: 2.6.13
 Export-Package:\
 	com.liferay.wiki.configuration,\
 	com.liferay.wiki.configuration.definition,\
