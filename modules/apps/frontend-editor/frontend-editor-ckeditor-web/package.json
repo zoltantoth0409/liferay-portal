@@ -3,5 +3,5 @@
 		"liferay-ckeditor": "4.11.4-liferay.2"
 	},
 	"name": "frontend-editor-ckeditor-web",
-	"version": "3.0.12"
+	"version": "3.0.13"
 }
