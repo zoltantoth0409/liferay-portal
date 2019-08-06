@@ -243,14 +243,14 @@ public class AppResourceImpl
 
 		DataListViewResource dataListViewResource =
 			DataListViewResource.builder(
-			).header(
-				"Cookie", "JSESSIONID=" + sessionId
-			).parameter(
-				"p_auth", AuthTokenUtil.getToken(contextHttpServletRequest)
 			).endpoint(
 				_portal.getHost(contextHttpServletRequest),
 				contextHttpServletRequest.getServerPort(),
 				contextHttpServletRequest.getScheme()
+			).header(
+				"Cookie", "JSESSIONID=" + sessionId
+			).parameter(
+				"p_auth", AuthTokenUtil.getToken(contextHttpServletRequest)
 			).build();
 
 		try {
