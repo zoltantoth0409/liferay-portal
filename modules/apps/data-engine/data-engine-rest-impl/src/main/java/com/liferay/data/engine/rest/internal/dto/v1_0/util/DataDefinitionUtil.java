@@ -24,9 +24,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * @author Jeyvison Nascimento
  */
@@ -89,13 +86,8 @@ public class DataDefinitionUtil {
 	}
 
 	private static String[] _getAvailableLanguageIds(JSONObject jsonObject) {
-		Set<String> availableLanguageIds = new HashSet<>();
-
-		JSONUtil.addToStringCollection(
-			availableLanguageIds,
+		return JSONUtil.toStringArray(
 			jsonObject.getJSONArray("availableLanguageIds"));
-
-		return availableLanguageIds.toArray(new String[0]);
 	}
 
 	private static DataDefinitionField _toDataDefinitionField(
