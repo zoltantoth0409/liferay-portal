@@ -154,13 +154,11 @@ public class MemberRequestUtil {
 	 * Returns the member request where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param key the key
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
 	 */
-	public static MemberRequest fetchByKey(
-		String key, boolean retrieveFromCache) {
-
-		return getPersistence().fetchByKey(key, retrieveFromCache);
+	public static MemberRequest fetchByKey(String key, boolean useFinderCache) {
+		return getPersistence().fetchByKey(key, useFinderCache);
 	}
 
 	/**
@@ -249,16 +247,16 @@ public class MemberRequestUtil {
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching member requests
 	 */
 	public static List<MemberRequest> findByReceiverUserId(
 		long receiverUserId, int start, int end,
 		OrderByComparator<MemberRequest> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByReceiverUserId(
-			receiverUserId, start, end, orderByComparator, retrieveFromCache);
+			receiverUserId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -431,17 +429,17 @@ public class MemberRequestUtil {
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching member requests
 	 */
 	public static List<MemberRequest> findByR_S(
 		long receiverUserId, int status, int start, int end,
 		OrderByComparator<MemberRequest> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByR_S(
 			receiverUserId, status, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -592,15 +590,14 @@ public class MemberRequestUtil {
 	 * @param groupId the group ID
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
 	 */
 	public static MemberRequest fetchByG_R_S(
-		long groupId, long receiverUserId, int status,
-		boolean retrieveFromCache) {
+		long groupId, long receiverUserId, int status, boolean useFinderCache) {
 
 		return getPersistence().fetchByG_R_S(
-			groupId, receiverUserId, status, retrieveFromCache);
+			groupId, receiverUserId, status, useFinderCache);
 	}
 
 	/**
@@ -756,15 +753,15 @@ public class MemberRequestUtil {
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of member requests
 	 */
 	public static List<MemberRequest> findAll(
 		int start, int end, OrderByComparator<MemberRequest> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

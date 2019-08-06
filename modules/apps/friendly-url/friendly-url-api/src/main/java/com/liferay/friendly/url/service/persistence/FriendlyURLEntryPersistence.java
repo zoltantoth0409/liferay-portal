@@ -101,14 +101,14 @@ public interface FriendlyURLEntryPersistence
 	 * @param start the lower bound of the range of friendly url entries
 	 * @param end the upper bound of the range of friendly url entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching friendly url entries
 	 */
 	public java.util.List<FriendlyURLEntry> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<FriendlyURLEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first friendly url entry in the ordered set where uuid = &#63;.
@@ -217,11 +217,11 @@ public interface FriendlyURLEntryPersistence
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching friendly url entry, or <code>null</code> if a matching friendly url entry could not be found
 	 */
 	public FriendlyURLEntry fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the friendly url entry where uuid = &#63; and groupId = &#63; from the database.
@@ -299,14 +299,14 @@ public interface FriendlyURLEntryPersistence
 	 * @param start the lower bound of the range of friendly url entries
 	 * @param end the upper bound of the range of friendly url entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching friendly url entries
 	 */
 	public java.util.List<FriendlyURLEntry> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<FriendlyURLEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first friendly url entry in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -458,14 +458,14 @@ public interface FriendlyURLEntryPersistence
 	 * @param start the lower bound of the range of friendly url entries
 	 * @param end the upper bound of the range of friendly url entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching friendly url entries
 	 */
 	public java.util.List<FriendlyURLEntry> findByG_C_C(
 		long groupId, long classNameId, long classPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<FriendlyURLEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first friendly url entry in the ordered set where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -664,14 +664,14 @@ public interface FriendlyURLEntryPersistence
 	 * @param start the lower bound of the range of friendly url entries
 	 * @param end the upper bound of the range of friendly url entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of friendly url entries
 	 */
 	public java.util.List<FriendlyURLEntry> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<FriendlyURLEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the friendly url entries from the database.

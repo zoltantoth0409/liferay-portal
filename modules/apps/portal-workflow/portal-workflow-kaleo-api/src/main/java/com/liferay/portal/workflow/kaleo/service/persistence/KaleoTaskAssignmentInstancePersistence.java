@@ -102,14 +102,14 @@ public interface KaleoTaskAssignmentInstancePersistence
 	 * @param start the lower bound of the range of kaleo task assignment instances
 	 * @param end the upper bound of the range of kaleo task assignment instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo task assignment instances
 	 */
 	public java.util.List<KaleoTaskAssignmentInstance> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
 			<KaleoTaskAssignmentInstance> orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where companyId = &#63;.
@@ -248,7 +248,7 @@ public interface KaleoTaskAssignmentInstancePersistence
 	 * @param start the lower bound of the range of kaleo task assignment instances
 	 * @param end the upper bound of the range of kaleo task assignment instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo task assignment instances
 	 */
 	public java.util.List<KaleoTaskAssignmentInstance>
@@ -256,7 +256,7 @@ public interface KaleoTaskAssignmentInstancePersistence
 			long kaleoDefinitionVersionId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
 				<KaleoTaskAssignmentInstance> orderByComparator,
-			boolean retrieveFromCache);
+			boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where kaleoDefinitionVersionId = &#63;.
@@ -395,14 +395,14 @@ public interface KaleoTaskAssignmentInstancePersistence
 	 * @param start the lower bound of the range of kaleo task assignment instances
 	 * @param end the upper bound of the range of kaleo task assignment instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo task assignment instances
 	 */
 	public java.util.List<KaleoTaskAssignmentInstance> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
 			<KaleoTaskAssignmentInstance> orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where kaleoInstanceId = &#63;.
@@ -541,7 +541,7 @@ public interface KaleoTaskAssignmentInstancePersistence
 	 * @param start the lower bound of the range of kaleo task assignment instances
 	 * @param end the upper bound of the range of kaleo task assignment instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo task assignment instances
 	 */
 	public java.util.List<KaleoTaskAssignmentInstance>
@@ -549,7 +549,7 @@ public interface KaleoTaskAssignmentInstancePersistence
 			long kaleoTaskInstanceTokenId, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
 				<KaleoTaskAssignmentInstance> orderByComparator,
-			boolean retrieveFromCache);
+			boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where kaleoTaskInstanceTokenId = &#63;.
@@ -688,14 +688,14 @@ public interface KaleoTaskAssignmentInstancePersistence
 	 * @param start the lower bound of the range of kaleo task assignment instances
 	 * @param end the upper bound of the range of kaleo task assignment instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo task assignment instances
 	 */
 	public java.util.List<KaleoTaskAssignmentInstance> findByassigneeClassName(
 		String assigneeClassName, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
 			<KaleoTaskAssignmentInstance> orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where assigneeClassName = &#63;.
@@ -836,14 +836,14 @@ public interface KaleoTaskAssignmentInstancePersistence
 	 * @param start the lower bound of the range of kaleo task assignment instances
 	 * @param end the upper bound of the range of kaleo task assignment instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo task assignment instances
 	 */
 	public java.util.List<KaleoTaskAssignmentInstance> findByG_ACPK(
 		long groupId, long assigneeClassPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
 			<KaleoTaskAssignmentInstance> orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where groupId = &#63; and assigneeClassPK = &#63;.
@@ -992,14 +992,14 @@ public interface KaleoTaskAssignmentInstancePersistence
 	 * @param start the lower bound of the range of kaleo task assignment instances
 	 * @param end the upper bound of the range of kaleo task assignment instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo task assignment instances
 	 */
 	public java.util.List<KaleoTaskAssignmentInstance> findByACN_ACPK(
 		String assigneeClassName, long assigneeClassPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
 			<KaleoTaskAssignmentInstance> orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo task assignment instance in the ordered set where assigneeClassName = &#63; and assigneeClassPK = &#63;.
@@ -1200,14 +1200,14 @@ public interface KaleoTaskAssignmentInstancePersistence
 	 * @param start the lower bound of the range of kaleo task assignment instances
 	 * @param end the upper bound of the range of kaleo task assignment instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo task assignment instances
 	 */
 	public java.util.List<KaleoTaskAssignmentInstance> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator
 			<KaleoTaskAssignmentInstance> orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the kaleo task assignment instances from the database.

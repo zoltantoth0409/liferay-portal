@@ -149,14 +149,14 @@ public class DDMTemplateLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm template links
 	 * @param end the upper bound of the range of ddm template links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm template links
 	 */
 	@Override
 	public List<DDMTemplateLink> findByClassNameId(
 		long classNameId, int start, int end,
 		OrderByComparator<DDMTemplateLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -166,10 +166,13 @@ public class DDMTemplateLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByClassNameId;
-			finderArgs = new Object[] {classNameId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByClassNameId;
+				finderArgs = new Object[] {classNameId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByClassNameId;
 			finderArgs = new Object[] {
 				classNameId, start, end, orderByComparator
@@ -178,7 +181,7 @@ public class DDMTemplateLinkPersistenceImpl
 
 		List<DDMTemplateLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMTemplateLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -244,10 +247,14 @@ public class DDMTemplateLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -665,14 +672,14 @@ public class DDMTemplateLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm template links
 	 * @param end the upper bound of the range of ddm template links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm template links
 	 */
 	@Override
 	public List<DDMTemplateLink> findByTemplateId(
 		long templateId, int start, int end,
 		OrderByComparator<DDMTemplateLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -682,10 +689,13 @@ public class DDMTemplateLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByTemplateId;
-			finderArgs = new Object[] {templateId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByTemplateId;
+				finderArgs = new Object[] {templateId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByTemplateId;
 			finderArgs = new Object[] {
 				templateId, start, end, orderByComparator
@@ -694,7 +704,7 @@ public class DDMTemplateLinkPersistenceImpl
 
 		List<DDMTemplateLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMTemplateLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -760,10 +770,14 @@ public class DDMTemplateLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1167,18 +1181,22 @@ public class DDMTemplateLinkPersistenceImpl
 	 *
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm template link, or <code>null</code> if a matching ddm template link could not be found
 	 */
 	@Override
 	public DDMTemplateLink fetchByC_C(
-		long classNameId, long classPK, boolean retrieveFromCache) {
+		long classNameId, long classPK, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {classNameId, classPK};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {classNameId, classPK};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByC_C, finderArgs, this);
 		}
@@ -1220,8 +1238,10 @@ public class DDMTemplateLinkPersistenceImpl
 				List<DDMTemplateLink> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByC_C, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByC_C, finderArgs, list);
+					}
 				}
 				else {
 					DDMTemplateLink ddmTemplateLink = list.get(0);
@@ -1232,7 +1252,9 @@ public class DDMTemplateLinkPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByC_C, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByC_C, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1950,14 +1972,14 @@ public class DDMTemplateLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm template links
 	 * @param end the upper bound of the range of ddm template links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm template links
 	 */
 	@Override
 	public List<DDMTemplateLink> findAll(
 		int start, int end,
 		OrderByComparator<DDMTemplateLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1967,17 +1989,20 @@ public class DDMTemplateLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DDMTemplateLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMTemplateLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -2027,10 +2052,14 @@ public class DDMTemplateLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

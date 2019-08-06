@@ -100,14 +100,14 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 * @param start the lower bound of the range of kb comments
 	 * @param end the upper bound of the range of kb comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb comments
 	 */
 	public java.util.List<KBComment> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KBComment>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kb comment in the ordered set where uuid = &#63;.
@@ -216,11 +216,11 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kb comment, or <code>null</code> if a matching kb comment could not be found
 	 */
 	public KBComment fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the kb comment where uuid = &#63; and groupId = &#63; from the database.
@@ -297,14 +297,14 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 * @param start the lower bound of the range of kb comments
 	 * @param end the upper bound of the range of kb comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb comments
 	 */
 	public java.util.List<KBComment> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KBComment>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kb comment in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -447,14 +447,14 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 * @param start the lower bound of the range of kb comments
 	 * @param end the upper bound of the range of kb comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb comments
 	 */
 	public java.util.List<KBComment> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KBComment>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kb comment in the ordered set where groupId = &#63;.
@@ -594,14 +594,14 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 * @param start the lower bound of the range of kb comments
 	 * @param end the upper bound of the range of kb comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb comments
 	 */
 	public java.util.List<KBComment> findByG_C(
 		long groupId, long classNameId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KBComment>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kb comment in the ordered set where groupId = &#63; and classNameId = &#63;.
@@ -748,14 +748,14 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 * @param start the lower bound of the range of kb comments
 	 * @param end the upper bound of the range of kb comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb comments
 	 */
 	public java.util.List<KBComment> findByG_S(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KBComment>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kb comment in the ordered set where groupId = &#63; and status = &#63;.
@@ -902,14 +902,14 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 * @param start the lower bound of the range of kb comments
 	 * @param end the upper bound of the range of kb comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb comments
 	 */
 	public java.util.List<KBComment> findByC_C(
 		long classNameId, long classPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KBComment>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kb comment in the ordered set where classNameId = &#63; and classPK = &#63;.
@@ -1061,14 +1061,14 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 * @param start the lower bound of the range of kb comments
 	 * @param end the upper bound of the range of kb comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb comments
 	 */
 	public java.util.List<KBComment> findByU_C_C(
 		long userId, long classNameId, long classPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KBComment>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kb comment in the ordered set where userId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -1227,14 +1227,14 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 * @param start the lower bound of the range of kb comments
 	 * @param end the upper bound of the range of kb comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb comments
 	 */
 	public java.util.List<KBComment> findByC_C_S(
 		long classNameId, long classPK, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KBComment>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kb comment in the ordered set where classNameId = &#63; and classPK = &#63; and status = &#63;.
@@ -1378,14 +1378,14 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 * @param start the lower bound of the range of kb comments
 	 * @param end the upper bound of the range of kb comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb comments
 	 */
 	public java.util.List<KBComment> findByC_C_S(
 		long classNameId, long classPK, int[] statuses, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KBComment>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the kb comments where classNameId = &#63; and classPK = &#63; and status = &#63; from the database.
@@ -1514,14 +1514,14 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	 * @param start the lower bound of the range of kb comments
 	 * @param end the upper bound of the range of kb comments (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kb comments
 	 */
 	public java.util.List<KBComment> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KBComment>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the kb comments from the database.

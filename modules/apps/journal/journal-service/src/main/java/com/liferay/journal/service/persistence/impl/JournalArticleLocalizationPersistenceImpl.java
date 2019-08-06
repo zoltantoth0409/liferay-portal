@@ -149,14 +149,14 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @param start the lower bound of the range of journal article localizations
 	 * @param end the upper bound of the range of journal article localizations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article localizations
 	 */
 	@Override
 	public List<JournalArticleLocalization> findByArticlePK(
 		long articlePK, int start, int end,
 		OrderByComparator<JournalArticleLocalization> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -166,10 +166,13 @@ public class JournalArticleLocalizationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByArticlePK;
-			finderArgs = new Object[] {articlePK};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByArticlePK;
+				finderArgs = new Object[] {articlePK};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByArticlePK;
 			finderArgs = new Object[] {
 				articlePK, start, end, orderByComparator
@@ -178,7 +181,7 @@ public class JournalArticleLocalizationPersistenceImpl
 
 		List<JournalArticleLocalization> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<JournalArticleLocalization>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -248,10 +251,14 @@ public class JournalArticleLocalizationPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -666,20 +673,24 @@ public class JournalArticleLocalizationPersistenceImpl
 	 *
 	 * @param articlePK the article pk
 	 * @param languageId the language ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal article localization, or <code>null</code> if a matching journal article localization could not be found
 	 */
 	@Override
 	public JournalArticleLocalization fetchByA_L(
-		long articlePK, String languageId, boolean retrieveFromCache) {
+		long articlePK, String languageId, boolean useFinderCache) {
 
 		languageId = Objects.toString(languageId, "");
 
-		Object[] finderArgs = new Object[] {articlePK, languageId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {articlePK, languageId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByA_L, finderArgs, this);
 		}
@@ -734,8 +745,10 @@ public class JournalArticleLocalizationPersistenceImpl
 				List<JournalArticleLocalization> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByA_L, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByA_L, finderArgs, list);
+					}
 				}
 				else {
 					JournalArticleLocalization journalArticleLocalization =
@@ -747,7 +760,9 @@ public class JournalArticleLocalizationPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByA_L, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByA_L, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1509,14 +1524,14 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @param start the lower bound of the range of journal article localizations
 	 * @param end the upper bound of the range of journal article localizations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal article localizations
 	 */
 	@Override
 	public List<JournalArticleLocalization> findAll(
 		int start, int end,
 		OrderByComparator<JournalArticleLocalization> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1526,17 +1541,20 @@ public class JournalArticleLocalizationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<JournalArticleLocalization> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<JournalArticleLocalization>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -1587,10 +1605,14 @@ public class JournalArticleLocalizationPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

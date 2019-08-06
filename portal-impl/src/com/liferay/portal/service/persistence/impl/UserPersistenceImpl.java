@@ -164,13 +164,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching users
 	 */
 	@Override
 	public List<User> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<User> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<User> orderByComparator, boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -182,17 +182,20 @@ public class UserPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -269,10 +272,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -710,13 +717,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching users
 	 */
 	@Override
 	public List<User> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<User> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<User> orderByComparator, boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -728,10 +735,13 @@ public class UserPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
@@ -740,7 +750,7 @@ public class UserPersistenceImpl
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -823,10 +833,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1291,13 +1305,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching users
 	 */
 	@Override
 	public List<User> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<User> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<User> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1307,10 +1321,13 @@ public class UserPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] {companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByCompanyId;
+				finderArgs = new Object[] {companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
@@ -1319,7 +1336,7 @@ public class UserPersistenceImpl
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -1385,10 +1402,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1778,16 +1799,20 @@ public class UserPersistenceImpl
 	 * Returns the user where contactId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param contactId the contact ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
-	public User fetchByContactId(long contactId, boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] {contactId};
+	public User fetchByContactId(long contactId, boolean useFinderCache) {
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {contactId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByContactId, finderArgs, this);
 		}
@@ -1823,8 +1848,10 @@ public class UserPersistenceImpl
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByContactId, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByContactId, finderArgs, list);
+					}
 				}
 				else {
 					User user = list.get(0);
@@ -1835,8 +1862,10 @@ public class UserPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByContactId, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByContactId, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1989,13 +2018,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching users
 	 */
 	@Override
 	public List<User> findByEmailAddress(
 		String emailAddress, int start, int end,
-		OrderByComparator<User> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<User> orderByComparator, boolean useFinderCache) {
 
 		emailAddress = Objects.toString(emailAddress, "");
 
@@ -2007,10 +2036,13 @@ public class UserPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByEmailAddress;
-			finderArgs = new Object[] {emailAddress};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByEmailAddress;
+				finderArgs = new Object[] {emailAddress};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByEmailAddress;
 			finderArgs = new Object[] {
 				emailAddress, start, end, orderByComparator
@@ -2019,7 +2051,7 @@ public class UserPersistenceImpl
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -2096,10 +2128,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2519,16 +2555,20 @@ public class UserPersistenceImpl
 	 * Returns the user where portraitId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param portraitId the portrait ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
-	public User fetchByPortraitId(long portraitId, boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] {portraitId};
+	public User fetchByPortraitId(long portraitId, boolean useFinderCache) {
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {portraitId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByPortraitId, finderArgs, this);
 		}
@@ -2564,14 +2604,20 @@ public class UserPersistenceImpl
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByPortraitId, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByPortraitId, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {portraitId};
+							}
+
 							_log.warn(
 								"UserPersistenceImpl.fetchByPortraitId(long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -2587,8 +2633,10 @@ public class UserPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByPortraitId, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByPortraitId, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2744,13 +2792,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching users
 	 */
 	@Override
 	public List<User> findByU_C(
 		long userId, long companyId, int start, int end,
-		OrderByComparator<User> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<User> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2763,7 +2811,7 @@ public class UserPersistenceImpl
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -2835,10 +2883,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3110,18 +3162,22 @@ public class UserPersistenceImpl
 	 *
 	 * @param companyId the company ID
 	 * @param userId the user ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
 	public User fetchByC_U(
-		long companyId, long userId, boolean retrieveFromCache) {
+		long companyId, long userId, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {companyId, userId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {companyId, userId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByC_U, finderArgs, this);
 		}
@@ -3163,8 +3219,10 @@ public class UserPersistenceImpl
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByC_U, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByC_U, finderArgs, list);
+					}
 				}
 				else {
 					User user = list.get(0);
@@ -3175,7 +3233,10 @@ public class UserPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByC_U, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByC_U, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3342,13 +3403,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching users
 	 */
 	@Override
 	public List<User> findByC_CD(
 		long companyId, Date createDate, int start, int end,
-		OrderByComparator<User> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<User> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3358,10 +3419,13 @@ public class UserPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_CD;
-			finderArgs = new Object[] {companyId, _getTime(createDate)};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_CD;
+				finderArgs = new Object[] {companyId, _getTime(createDate)};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_CD;
 			finderArgs = new Object[] {
 				companyId, _getTime(createDate), start, end, orderByComparator
@@ -3370,7 +3434,7 @@ public class UserPersistenceImpl
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -3453,10 +3517,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3925,13 +3993,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching users
 	 */
 	@Override
 	public List<User> findByC_MD(
 		long companyId, Date modifiedDate, int start, int end,
-		OrderByComparator<User> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<User> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3941,10 +4009,13 @@ public class UserPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_MD;
-			finderArgs = new Object[] {companyId, _getTime(modifiedDate)};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_MD;
+				finderArgs = new Object[] {companyId, _getTime(modifiedDate)};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_MD;
 			finderArgs = new Object[] {
 				companyId, _getTime(modifiedDate), start, end, orderByComparator
@@ -3953,7 +4024,7 @@ public class UserPersistenceImpl
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -4036,10 +4107,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4496,18 +4571,22 @@ public class UserPersistenceImpl
 	 *
 	 * @param companyId the company ID
 	 * @param defaultUser the default user
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
 	public User fetchByC_DU(
-		long companyId, boolean defaultUser, boolean retrieveFromCache) {
+		long companyId, boolean defaultUser, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {companyId, defaultUser};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {companyId, defaultUser};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByC_DU, finderArgs, this);
 		}
@@ -4549,14 +4628,22 @@ public class UserPersistenceImpl
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByC_DU, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByC_DU, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									companyId, defaultUser
+								};
+							}
+
 							_log.warn(
 								"UserPersistenceImpl.fetchByC_DU(long, boolean, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -4572,8 +4659,10 @@ public class UserPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByC_DU, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByC_DU, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4726,20 +4815,24 @@ public class UserPersistenceImpl
 	 *
 	 * @param companyId the company ID
 	 * @param screenName the screen name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
 	public User fetchByC_SN(
-		long companyId, String screenName, boolean retrieveFromCache) {
+		long companyId, String screenName, boolean useFinderCache) {
 
 		screenName = Objects.toString(screenName, "");
 
-		Object[] finderArgs = new Object[] {companyId, screenName};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {companyId, screenName};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByC_SN, finderArgs, this);
 		}
@@ -4792,8 +4885,10 @@ public class UserPersistenceImpl
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByC_SN, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByC_SN, finderArgs, list);
+					}
 				}
 				else {
 					User user = list.get(0);
@@ -4804,8 +4899,10 @@ public class UserPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByC_SN, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByC_SN, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4974,20 +5071,24 @@ public class UserPersistenceImpl
 	 *
 	 * @param companyId the company ID
 	 * @param emailAddress the email address
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
 	public User fetchByC_EA(
-		long companyId, String emailAddress, boolean retrieveFromCache) {
+		long companyId, String emailAddress, boolean useFinderCache) {
 
 		emailAddress = Objects.toString(emailAddress, "");
 
-		Object[] finderArgs = new Object[] {companyId, emailAddress};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {companyId, emailAddress};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByC_EA, finderArgs, this);
 		}
@@ -5040,8 +5141,10 @@ public class UserPersistenceImpl
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByC_EA, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByC_EA, finderArgs, list);
+					}
 				}
 				else {
 					User user = list.get(0);
@@ -5052,8 +5155,10 @@ public class UserPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByC_EA, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByC_EA, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5222,18 +5327,22 @@ public class UserPersistenceImpl
 	 *
 	 * @param companyId the company ID
 	 * @param facebookId the facebook ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
 	public User fetchByC_FID(
-		long companyId, long facebookId, boolean retrieveFromCache) {
+		long companyId, long facebookId, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {companyId, facebookId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {companyId, facebookId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByC_FID, finderArgs, this);
 		}
@@ -5275,14 +5384,22 @@ public class UserPersistenceImpl
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByC_FID, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByC_FID, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									companyId, facebookId
+								};
+							}
+
 							_log.warn(
 								"UserPersistenceImpl.fetchByC_FID(long, long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -5298,8 +5415,10 @@ public class UserPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByC_FID, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByC_FID, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5452,20 +5571,24 @@ public class UserPersistenceImpl
 	 *
 	 * @param companyId the company ID
 	 * @param googleUserId the google user ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
 	public User fetchByC_GUID(
-		long companyId, String googleUserId, boolean retrieveFromCache) {
+		long companyId, String googleUserId, boolean useFinderCache) {
 
 		googleUserId = Objects.toString(googleUserId, "");
 
-		Object[] finderArgs = new Object[] {companyId, googleUserId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {companyId, googleUserId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByC_GUID, finderArgs, this);
 		}
@@ -5518,14 +5641,22 @@ public class UserPersistenceImpl
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByC_GUID, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByC_GUID, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									companyId, googleUserId
+								};
+							}
+
 							_log.warn(
 								"UserPersistenceImpl.fetchByC_GUID(long, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -5541,8 +5672,10 @@ public class UserPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByC_GUID, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByC_GUID, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5711,20 +5844,24 @@ public class UserPersistenceImpl
 	 *
 	 * @param companyId the company ID
 	 * @param openId the open ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
 	public User fetchByC_O(
-		long companyId, String openId, boolean retrieveFromCache) {
+		long companyId, String openId, boolean useFinderCache) {
 
 		openId = Objects.toString(openId, "");
 
-		Object[] finderArgs = new Object[] {companyId, openId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {companyId, openId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByC_O, finderArgs, this);
 		}
@@ -5777,14 +5914,20 @@ public class UserPersistenceImpl
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByC_O, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByC_O, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {companyId, openId};
+							}
+
 							_log.warn(
 								"UserPersistenceImpl.fetchByC_O(long, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -5800,7 +5943,10 @@ public class UserPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByC_O, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByC_O, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5983,13 +6129,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching users
 	 */
 	@Override
 	public List<User> findByC_S(
 		long companyId, int status, int start, int end,
-		OrderByComparator<User> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<User> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5999,10 +6145,13 @@ public class UserPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_S;
-			finderArgs = new Object[] {companyId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_S;
+				finderArgs = new Object[] {companyId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_S;
 			finderArgs = new Object[] {
 				companyId, status, start, end, orderByComparator
@@ -6011,7 +6160,7 @@ public class UserPersistenceImpl
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -6083,10 +6232,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -6536,13 +6689,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching users
 	 */
 	@Override
 	public List<User> findByC_CD_MD(
 		long companyId, Date createDate, Date modifiedDate, int start, int end,
-		OrderByComparator<User> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<User> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6552,12 +6705,15 @@ public class UserPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_CD_MD;
-			finderArgs = new Object[] {
-				companyId, _getTime(createDate), _getTime(modifiedDate)
-			};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_CD_MD;
+				finderArgs = new Object[] {
+					companyId, _getTime(createDate), _getTime(modifiedDate)
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_CD_MD;
 			finderArgs = new Object[] {
 				companyId, _getTime(createDate), _getTime(modifiedDate), start,
@@ -6567,7 +6723,7 @@ public class UserPersistenceImpl
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -6666,10 +6822,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -7206,13 +7366,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching users
 	 */
 	@Override
 	public List<User> findByC_DU_S(
 		long companyId, boolean defaultUser, int status, int start, int end,
-		OrderByComparator<User> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<User> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -7222,10 +7382,13 @@ public class UserPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_DU_S;
-			finderArgs = new Object[] {companyId, defaultUser, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_DU_S;
+				finderArgs = new Object[] {companyId, defaultUser, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_DU_S;
 			finderArgs = new Object[] {
 				companyId, defaultUser, status, start, end, orderByComparator
@@ -7234,7 +7397,7 @@ public class UserPersistenceImpl
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -7311,10 +7474,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -7774,21 +7941,24 @@ public class UserPersistenceImpl
 	 *
 	 * @param companyId the company ID
 	 * @param externalReferenceCode the external reference code
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
 	public User fetchByC_ERC(
-		long companyId, String externalReferenceCode,
-		boolean retrieveFromCache) {
+		long companyId, String externalReferenceCode, boolean useFinderCache) {
 
 		externalReferenceCode = Objects.toString(externalReferenceCode, "");
 
-		Object[] finderArgs = new Object[] {companyId, externalReferenceCode};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {companyId, externalReferenceCode};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByC_ERC, finderArgs, this);
 		}
@@ -7842,14 +8012,22 @@ public class UserPersistenceImpl
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByC_ERC, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByC_ERC, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									companyId, externalReferenceCode
+								};
+							}
+
 							_log.warn(
 								"UserPersistenceImpl.fetchByC_ERC(long, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -7865,8 +8043,10 @@ public class UserPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByC_ERC, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByC_ERC, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -9146,13 +9326,13 @@ public class UserPersistenceImpl
 	 * @param start the lower bound of the range of users
 	 * @param end the upper bound of the range of users (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of users
 	 */
 	@Override
 	public List<User> findAll(
 		int start, int end, OrderByComparator<User> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -9162,17 +9342,20 @@ public class UserPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<User> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<User>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -9222,10 +9405,14 @@ public class UserPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

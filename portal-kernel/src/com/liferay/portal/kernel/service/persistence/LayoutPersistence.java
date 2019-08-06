@@ -98,14 +98,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where uuid = &#63;.
@@ -219,12 +219,12 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout, or <code>null</code> if a matching layout could not be found
 	 */
 	public Layout fetchByUUID_G_P(
 		String uuid, long groupId, boolean privateLayout,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes the layout where uuid = &#63; and groupId = &#63; and privateLayout = &#63; from the database.
@@ -305,14 +305,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -455,14 +455,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where groupId = &#63;.
@@ -662,14 +662,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where companyId = &#63;.
@@ -775,11 +775,10 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * Returns the layout where iconImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param iconImageId the icon image ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout, or <code>null</code> if a matching layout could not be found
 	 */
-	public Layout fetchByIconImageId(
-		long iconImageId, boolean retrieveFromCache);
+	public Layout fetchByIconImageId(long iconImageId, boolean useFinderCache);
 
 	/**
 	 * Removes the layout where iconImageId = &#63; from the database.
@@ -851,14 +850,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByLayoutPrototypeUuid(
 		String layoutPrototypeUuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where layoutPrototypeUuid = &#63;.
@@ -995,14 +994,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findBySourcePrototypeLayoutUuid(
 		String sourcePrototypeLayoutUuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where sourcePrototypeLayoutUuid = &#63;.
@@ -1145,14 +1144,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByG_P(
 		long groupId, boolean privateLayout, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where groupId = &#63; and privateLayout = &#63;.
@@ -1369,14 +1368,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByG_T(
 		long groupId, String type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where groupId = &#63; and type = &#63;.
@@ -1593,14 +1592,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByC_L(
 		long companyId, String layoutPrototypeUuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where companyId = &#63; and layoutPrototypeUuid = &#63;.
@@ -1716,11 +1715,11 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 *
 	 * @param privateLayout the private layout
 	 * @param iconImageId the icon image ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout, or <code>null</code> if a matching layout could not be found
 	 */
 	public Layout fetchByP_I(
-		boolean privateLayout, long iconImageId, boolean retrieveFromCache);
+		boolean privateLayout, long iconImageId, boolean useFinderCache);
 
 	/**
 	 * Removes the layout where privateLayout = &#63; and iconImageId = &#63; from the database.
@@ -1771,12 +1770,12 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param layoutId the layout ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout, or <code>null</code> if a matching layout could not be found
 	 */
 	public Layout fetchByG_P_L(
 		long groupId, boolean privateLayout, long layoutId,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes the layout where groupId = &#63; and privateLayout = &#63; and layoutId = &#63; from the database.
@@ -1863,7 +1862,7 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByG_P_P(
@@ -1871,7 +1870,7 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63;.
@@ -2134,7 +2133,7 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByG_P_P(
@@ -2142,7 +2141,7 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the layouts where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; from the database.
@@ -2259,14 +2258,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByG_P_T(
 		long groupId, boolean privateLayout, String type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where groupId = &#63; and privateLayout = &#63; and type = &#63;.
@@ -2470,12 +2469,12 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param friendlyURL the friendly url
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout, or <code>null</code> if a matching layout could not be found
 	 */
 	public Layout fetchByG_P_F(
 		long groupId, boolean privateLayout, String friendlyURL,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes the layout where groupId = &#63; and privateLayout = &#63; and friendlyURL = &#63; from the database.
@@ -2531,12 +2530,12 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param groupId the group ID
 	 * @param privateLayout the private layout
 	 * @param sourcePrototypeLayoutUuid the source prototype layout uuid
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout, or <code>null</code> if a matching layout could not be found
 	 */
 	public Layout fetchByG_P_SPLU(
 		long groupId, boolean privateLayout, String sourcePrototypeLayoutUuid,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes the layout where groupId = &#63; and privateLayout = &#63; and sourcePrototypeLayoutUuid = &#63; from the database.
@@ -2629,7 +2628,7 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layouts
 	 */
 	public java.util.List<Layout> findByG_P_P_LtP(
@@ -2637,7 +2636,7 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first layout in the ordered set where groupId = &#63; and privateLayout = &#63; and parentLayoutId = &#63; and priority &le; &#63;.
@@ -2928,14 +2927,14 @@ public interface LayoutPersistence extends BasePersistence<Layout> {
 	 * @param start the lower bound of the range of layouts
 	 * @param end the upper bound of the range of layouts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of layouts
 	 */
 	public java.util.List<Layout> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Layout>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the layouts from the database.

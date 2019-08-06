@@ -186,16 +186,16 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByTreePath(
 		String treePath, int start, int end,
 		OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByTreePath(
-			treePath, start, end, orderByComparator, retrieveFromCache);
+			treePath, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -362,17 +362,17 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByM_R(
 		long modifiedTime, long repositoryId, int start, int end,
 		OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByM_R(
 			modifiedTime, repositoryId, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -550,17 +550,17 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByR_P(
 		long repositoryId, long parentFolderId, int start, int end,
 		OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByR_P(
 			repositoryId, parentFolderId, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -737,17 +737,16 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByR_NotE(
 		long repositoryId, String event, int start, int end,
 		OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByR_NotE(
-			repositoryId, event, start, end, orderByComparator,
-			retrieveFromCache);
+			repositoryId, event, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -922,17 +921,16 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByR_T(
 		long repositoryId, String type, int start, int end,
 		OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByR_T(
-			repositoryId, type, start, end, orderByComparator,
-			retrieveFromCache);
+			repositoryId, type, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1109,16 +1107,16 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByT_NotE(
 		String treePath, String event, int start, int end,
 		OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByT_NotE(
-			treePath, event, start, end, orderByComparator, retrieveFromCache);
+			treePath, event, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1293,16 +1291,16 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByV_T(
 		String version, String type, int start, int end,
 		OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByV_T(
-			version, type, start, end, orderByComparator, retrieveFromCache);
+			version, type, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1443,13 +1441,13 @@ public class SyncDLObjectUtil {
 	 *
 	 * @param type the type
 	 * @param typePK the type pk
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching sync dl object, or <code>null</code> if a matching sync dl object could not be found
 	 */
 	public static SyncDLObject fetchByT_T(
-		String type, long typePK, boolean retrieveFromCache) {
+		String type, long typePK, boolean useFinderCache) {
 
-		return getPersistence().fetchByT_T(type, typePK, retrieveFromCache);
+		return getPersistence().fetchByT_T(type, typePK, useFinderCache);
 	}
 
 	/**
@@ -1549,17 +1547,17 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByM_R_NotE(
 		long modifiedTime, long repositoryId, String event, int start, int end,
 		OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByM_R_NotE(
 			modifiedTime, repositoryId, event, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -1732,17 +1730,17 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByM_R_NotE(
 		long modifiedTime, long repositoryId, String[] events, int start,
 		int end, OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByM_R_NotE(
 			modifiedTime, repositoryId, events, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -1860,17 +1858,17 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByR_P_T(
 		long repositoryId, long parentFolderId, String type, int start, int end,
 		OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByR_P_T(
 			repositoryId, parentFolderId, type, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -2043,17 +2041,17 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync dl objects
 	 */
 	public static List<SyncDLObject> findByR_P_T(
 		long repositoryId, long parentFolderId, String[] types, int start,
 		int end, OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByR_P_T(
 			repositoryId, parentFolderId, types, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -2219,15 +2217,15 @@ public class SyncDLObjectUtil {
 	 * @param start the lower bound of the range of sync dl objects
 	 * @param end the upper bound of the range of sync dl objects (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of sync dl objects
 	 */
 	public static List<SyncDLObject> findAll(
 		int start, int end, OrderByComparator<SyncDLObject> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

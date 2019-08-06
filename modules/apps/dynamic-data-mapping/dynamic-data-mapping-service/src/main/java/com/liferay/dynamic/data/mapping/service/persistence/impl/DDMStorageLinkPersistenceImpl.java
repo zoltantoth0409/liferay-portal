@@ -153,14 +153,14 @@ public class DDMStorageLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm storage links
 	 * @param end the upper bound of the range of ddm storage links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm storage links
 	 */
 	@Override
 	public List<DDMStorageLink> findByUuid(
 		String uuid, int start, int end,
 		OrderByComparator<DDMStorageLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -172,17 +172,20 @@ public class DDMStorageLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<DDMStorageLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMStorageLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -259,10 +262,14 @@ public class DDMStorageLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -705,14 +712,14 @@ public class DDMStorageLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm storage links
 	 * @param end the upper bound of the range of ddm storage links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm storage links
 	 */
 	@Override
 	public List<DDMStorageLink> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		OrderByComparator<DDMStorageLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -724,10 +731,13 @@ public class DDMStorageLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
@@ -736,7 +746,7 @@ public class DDMStorageLinkPersistenceImpl
 
 		List<DDMStorageLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMStorageLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -819,10 +829,14 @@ public class DDMStorageLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1278,18 +1292,20 @@ public class DDMStorageLinkPersistenceImpl
 	 * Returns the ddm storage link where classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param classPK the class pk
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm storage link, or <code>null</code> if a matching ddm storage link could not be found
 	 */
 	@Override
-	public DDMStorageLink fetchByClassPK(
-		long classPK, boolean retrieveFromCache) {
+	public DDMStorageLink fetchByClassPK(long classPK, boolean useFinderCache) {
+		Object[] finderArgs = null;
 
-		Object[] finderArgs = new Object[] {classPK};
+		if (useFinderCache) {
+			finderArgs = new Object[] {classPK};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByClassPK, finderArgs, this);
 		}
@@ -1325,8 +1341,10 @@ public class DDMStorageLinkPersistenceImpl
 				List<DDMStorageLink> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByClassPK, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByClassPK, finderArgs, list);
+					}
 				}
 				else {
 					DDMStorageLink ddmStorageLink = list.get(0);
@@ -1337,7 +1355,10 @@ public class DDMStorageLinkPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByClassPK, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByClassPK, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1491,14 +1512,14 @@ public class DDMStorageLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm storage links
 	 * @param end the upper bound of the range of ddm storage links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm storage links
 	 */
 	@Override
 	public List<DDMStorageLink> findByStructureId(
 		long structureId, int start, int end,
 		OrderByComparator<DDMStorageLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1508,10 +1529,13 @@ public class DDMStorageLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByStructureId;
-			finderArgs = new Object[] {structureId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByStructureId;
+				finderArgs = new Object[] {structureId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByStructureId;
 			finderArgs = new Object[] {
 				structureId, start, end, orderByComparator
@@ -1520,7 +1544,7 @@ public class DDMStorageLinkPersistenceImpl
 
 		List<DDMStorageLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMStorageLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1586,10 +1610,14 @@ public class DDMStorageLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2006,14 +2034,14 @@ public class DDMStorageLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm storage links
 	 * @param end the upper bound of the range of ddm storage links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm storage links
 	 */
 	@Override
 	public List<DDMStorageLink> findByStructureVersionId(
 		long structureVersionId, int start, int end,
 		OrderByComparator<DDMStorageLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2023,10 +2051,14 @@ public class DDMStorageLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByStructureVersionId;
-			finderArgs = new Object[] {structureVersionId};
+
+			if (useFinderCache) {
+				finderPath =
+					_finderPathWithoutPaginationFindByStructureVersionId;
+				finderArgs = new Object[] {structureVersionId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByStructureVersionId;
 			finderArgs = new Object[] {
 				structureVersionId, start, end, orderByComparator
@@ -2035,7 +2067,7 @@ public class DDMStorageLinkPersistenceImpl
 
 		List<DDMStorageLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMStorageLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -2104,10 +2136,14 @@ public class DDMStorageLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2458,14 +2494,14 @@ public class DDMStorageLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm storage links
 	 * @param end the upper bound of the range of ddm storage links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm storage links
 	 */
 	@Override
 	public List<DDMStorageLink> findByStructureVersionId(
 		long[] structureVersionIds, int start, int end,
 		OrderByComparator<DDMStorageLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (structureVersionIds == null) {
 			structureVersionIds = new long[0];
@@ -2488,9 +2524,14 @@ public class DDMStorageLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {StringUtil.merge(structureVersionIds)};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					StringUtil.merge(structureVersionIds)
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(structureVersionIds), start, end,
 				orderByComparator
@@ -2499,7 +2540,7 @@ public class DDMStorageLinkPersistenceImpl
 
 		List<DDMStorageLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMStorageLink>)finderCache.getResult(
 				_finderPathWithPaginationFindByStructureVersionId, finderArgs,
 				this);
@@ -2572,14 +2613,18 @@ public class DDMStorageLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByStructureVersionId,
-					finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByStructureVersionId,
+						finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByStructureVersionId,
-					finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByStructureVersionId,
+						finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3444,13 +3489,13 @@ public class DDMStorageLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm storage links
 	 * @param end the upper bound of the range of ddm storage links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm storage links
 	 */
 	@Override
 	public List<DDMStorageLink> findAll(
 		int start, int end, OrderByComparator<DDMStorageLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3460,17 +3505,20 @@ public class DDMStorageLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DDMStorageLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMStorageLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -3520,10 +3568,14 @@ public class DDMStorageLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

@@ -145,20 +145,24 @@ public class WeDeployAuthTokenPersistenceImpl
 	 *
 	 * @param token the token
 	 * @param type the type
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching we deploy auth token, or <code>null</code> if a matching we deploy auth token could not be found
 	 */
 	@Override
 	public WeDeployAuthToken fetchByT_T(
-		String token, int type, boolean retrieveFromCache) {
+		String token, int type, boolean useFinderCache) {
 
 		token = Objects.toString(token, "");
 
-		Object[] finderArgs = new Object[] {token, type};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {token, type};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByT_T, finderArgs, this);
 		}
@@ -211,14 +215,20 @@ public class WeDeployAuthTokenPersistenceImpl
 				List<WeDeployAuthToken> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByT_T, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByT_T, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {token, type};
+							}
+
 							_log.warn(
 								"WeDeployAuthTokenPersistenceImpl.fetchByT_T(String, int, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -234,7 +244,9 @@ public class WeDeployAuthTokenPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByT_T, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByT_T, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -412,21 +424,25 @@ public class WeDeployAuthTokenPersistenceImpl
 	 * @param clientId the client ID
 	 * @param token the token
 	 * @param type the type
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching we deploy auth token, or <code>null</code> if a matching we deploy auth token could not be found
 	 */
 	@Override
 	public WeDeployAuthToken fetchByCI_T_T(
-		String clientId, String token, int type, boolean retrieveFromCache) {
+		String clientId, String token, int type, boolean useFinderCache) {
 
 		clientId = Objects.toString(clientId, "");
 		token = Objects.toString(token, "");
 
-		Object[] finderArgs = new Object[] {clientId, token, type};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {clientId, token, type};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByCI_T_T, finderArgs, this);
 		}
@@ -495,14 +511,22 @@ public class WeDeployAuthTokenPersistenceImpl
 				List<WeDeployAuthToken> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByCI_T_T, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByCI_T_T, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									clientId, token, type
+								};
+							}
+
 							_log.warn(
 								"WeDeployAuthTokenPersistenceImpl.fetchByCI_T_T(String, String, int, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -518,7 +542,10 @@ public class WeDeployAuthTokenPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByCI_T_T, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByCI_T_T, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1316,14 +1343,14 @@ public class WeDeployAuthTokenPersistenceImpl
 	 * @param start the lower bound of the range of we deploy auth tokens
 	 * @param end the upper bound of the range of we deploy auth tokens (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of we deploy auth tokens
 	 */
 	@Override
 	public List<WeDeployAuthToken> findAll(
 		int start, int end,
 		OrderByComparator<WeDeployAuthToken> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1333,17 +1360,20 @@ public class WeDeployAuthTokenPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<WeDeployAuthToken> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<WeDeployAuthToken>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -1393,10 +1423,14 @@ public class WeDeployAuthTokenPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

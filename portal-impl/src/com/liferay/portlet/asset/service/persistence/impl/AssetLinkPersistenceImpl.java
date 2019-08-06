@@ -145,14 +145,14 @@ public class AssetLinkPersistenceImpl
 	 * @param start the lower bound of the range of asset links
 	 * @param end the upper bound of the range of asset links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset links
 	 */
 	@Override
 	public List<AssetLink> findByE1(
 		long entryId1, int start, int end,
 		OrderByComparator<AssetLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -162,17 +162,20 @@ public class AssetLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByE1;
-			finderArgs = new Object[] {entryId1};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByE1;
+				finderArgs = new Object[] {entryId1};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByE1;
 			finderArgs = new Object[] {entryId1, start, end, orderByComparator};
 		}
 
 		List<AssetLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<AssetLink>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -238,10 +241,14 @@ public class AssetLinkPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -646,14 +653,14 @@ public class AssetLinkPersistenceImpl
 	 * @param start the lower bound of the range of asset links
 	 * @param end the upper bound of the range of asset links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset links
 	 */
 	@Override
 	public List<AssetLink> findByE2(
 		long entryId2, int start, int end,
 		OrderByComparator<AssetLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -663,17 +670,20 @@ public class AssetLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByE2;
-			finderArgs = new Object[] {entryId2};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByE2;
+				finderArgs = new Object[] {entryId2};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByE2;
 			finderArgs = new Object[] {entryId2, start, end, orderByComparator};
 		}
 
 		List<AssetLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<AssetLink>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -739,10 +749,14 @@ public class AssetLinkPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1155,14 +1169,14 @@ public class AssetLinkPersistenceImpl
 	 * @param start the lower bound of the range of asset links
 	 * @param end the upper bound of the range of asset links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset links
 	 */
 	@Override
 	public List<AssetLink> findByE_E(
 		long entryId1, long entryId2, int start, int end,
 		OrderByComparator<AssetLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1172,10 +1186,13 @@ public class AssetLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByE_E;
-			finderArgs = new Object[] {entryId1, entryId2};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByE_E;
+				finderArgs = new Object[] {entryId1, entryId2};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByE_E;
 			finderArgs = new Object[] {
 				entryId1, entryId2, start, end, orderByComparator
@@ -1184,7 +1201,7 @@ public class AssetLinkPersistenceImpl
 
 		List<AssetLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<AssetLink>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -1256,10 +1273,14 @@ public class AssetLinkPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1705,14 +1726,14 @@ public class AssetLinkPersistenceImpl
 	 * @param start the lower bound of the range of asset links
 	 * @param end the upper bound of the range of asset links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset links
 	 */
 	@Override
 	public List<AssetLink> findByE1_T(
 		long entryId1, int type, int start, int end,
 		OrderByComparator<AssetLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1722,10 +1743,13 @@ public class AssetLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByE1_T;
-			finderArgs = new Object[] {entryId1, type};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByE1_T;
+				finderArgs = new Object[] {entryId1, type};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByE1_T;
 			finderArgs = new Object[] {
 				entryId1, type, start, end, orderByComparator
@@ -1734,7 +1758,7 @@ public class AssetLinkPersistenceImpl
 
 		List<AssetLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<AssetLink>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -1806,10 +1830,14 @@ public class AssetLinkPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2253,14 +2281,14 @@ public class AssetLinkPersistenceImpl
 	 * @param start the lower bound of the range of asset links
 	 * @param end the upper bound of the range of asset links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset links
 	 */
 	@Override
 	public List<AssetLink> findByE2_T(
 		long entryId2, int type, int start, int end,
 		OrderByComparator<AssetLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2270,10 +2298,13 @@ public class AssetLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByE2_T;
-			finderArgs = new Object[] {entryId2, type};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByE2_T;
+				finderArgs = new Object[] {entryId2, type};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByE2_T;
 			finderArgs = new Object[] {
 				entryId2, type, start, end, orderByComparator
@@ -2282,7 +2313,7 @@ public class AssetLinkPersistenceImpl
 
 		List<AssetLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<AssetLink>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -2354,10 +2385,14 @@ public class AssetLinkPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2793,18 +2828,22 @@ public class AssetLinkPersistenceImpl
 	 * @param entryId1 the entry id1
 	 * @param entryId2 the entry id2
 	 * @param type the type
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching asset link, or <code>null</code> if a matching asset link could not be found
 	 */
 	@Override
 	public AssetLink fetchByE_E_T(
-		long entryId1, long entryId2, int type, boolean retrieveFromCache) {
+		long entryId1, long entryId2, int type, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {entryId1, entryId2, type};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {entryId1, entryId2, type};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByE_E_T, finderArgs, this);
 		}
@@ -2851,8 +2890,10 @@ public class AssetLinkPersistenceImpl
 				List<AssetLink> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByE_E_T, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByE_E_T, finderArgs, list);
+					}
 				}
 				else {
 					AssetLink assetLink = list.get(0);
@@ -2863,8 +2904,10 @@ public class AssetLinkPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByE_E_T, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByE_E_T, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3689,13 +3732,13 @@ public class AssetLinkPersistenceImpl
 	 * @param start the lower bound of the range of asset links
 	 * @param end the upper bound of the range of asset links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of asset links
 	 */
 	@Override
 	public List<AssetLink> findAll(
 		int start, int end, OrderByComparator<AssetLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3705,17 +3748,20 @@ public class AssetLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<AssetLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<AssetLink>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -3765,10 +3811,14 @@ public class AssetLinkPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

@@ -179,15 +179,15 @@ public class MBBanUtil {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards bans
 	 */
 	public static List<MBBan> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<MBBan> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<MBBan> orderByComparator, boolean useFinderCache) {
 
 		return getPersistence().findByUuid(
-			uuid, start, end, orderByComparator, retrieveFromCache);
+			uuid, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -312,13 +312,13 @@ public class MBBanUtil {
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards ban, or <code>null</code> if a matching message boards ban could not be found
 	 */
 	public static MBBan fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache) {
+		String uuid, long groupId, boolean useFinderCache) {
 
-		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
+		return getPersistence().fetchByUUID_G(uuid, groupId, useFinderCache);
 	}
 
 	/**
@@ -409,15 +409,15 @@ public class MBBanUtil {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards bans
 	 */
 	public static List<MBBan> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<MBBan> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<MBBan> orderByComparator, boolean useFinderCache) {
 
 		return getPersistence().findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, retrieveFromCache);
+			uuid, companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -586,15 +586,15 @@ public class MBBanUtil {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards bans
 	 */
 	public static List<MBBan> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<MBBan> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<MBBan> orderByComparator, boolean useFinderCache) {
 
 		return getPersistence().findByGroupId(
-			groupId, start, end, orderByComparator, retrieveFromCache);
+			groupId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -749,15 +749,15 @@ public class MBBanUtil {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards bans
 	 */
 	public static List<MBBan> findByUserId(
 		long userId, int start, int end,
-		OrderByComparator<MBBan> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<MBBan> orderByComparator, boolean useFinderCache) {
 
 		return getPersistence().findByUserId(
-			userId, start, end, orderByComparator, retrieveFromCache);
+			userId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -912,15 +912,15 @@ public class MBBanUtil {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards bans
 	 */
 	public static List<MBBan> findByBanUserId(
 		long banUserId, int start, int end,
-		OrderByComparator<MBBan> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<MBBan> orderByComparator, boolean useFinderCache) {
 
 		return getPersistence().findByBanUserId(
-			banUserId, start, end, orderByComparator, retrieveFromCache);
+			banUserId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1050,14 +1050,13 @@ public class MBBanUtil {
 	 *
 	 * @param groupId the group ID
 	 * @param banUserId the ban user ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards ban, or <code>null</code> if a matching message boards ban could not be found
 	 */
 	public static MBBan fetchByG_B(
-		long groupId, long banUserId, boolean retrieveFromCache) {
+		long groupId, long banUserId, boolean useFinderCache) {
 
-		return getPersistence().fetchByG_B(
-			groupId, banUserId, retrieveFromCache);
+		return getPersistence().fetchByG_B(groupId, banUserId, useFinderCache);
 	}
 
 	/**
@@ -1204,15 +1203,15 @@ public class MBBanUtil {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message boards bans
 	 */
 	public static List<MBBan> findAll(
 		int start, int end, OrderByComparator<MBBan> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

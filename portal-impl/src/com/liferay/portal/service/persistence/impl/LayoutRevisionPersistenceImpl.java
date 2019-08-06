@@ -154,14 +154,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByLayoutSetBranchId(
 		long layoutSetBranchId, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -171,10 +171,14 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByLayoutSetBranchId;
-			finderArgs = new Object[] {layoutSetBranchId};
+
+			if (useFinderCache) {
+				finderPath =
+					_finderPathWithoutPaginationFindByLayoutSetBranchId;
+				finderArgs = new Object[] {layoutSetBranchId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByLayoutSetBranchId;
 			finderArgs = new Object[] {
 				layoutSetBranchId, start, end, orderByComparator
@@ -183,7 +187,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -251,10 +255,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -671,14 +679,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByPlid(
 		long plid, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -688,17 +696,20 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByPlid;
-			finderArgs = new Object[] {plid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByPlid;
+				finderArgs = new Object[] {plid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByPlid;
 			finderArgs = new Object[] {plid, start, end, orderByComparator};
 		}
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -764,10 +775,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1174,14 +1189,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByStatus(
 		int status, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1191,17 +1206,20 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByStatus;
-			finderArgs = new Object[] {status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByStatus;
+				finderArgs = new Object[] {status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByStatus;
 			finderArgs = new Object[] {status, start, end, orderByComparator};
 		}
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -1267,10 +1285,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1690,14 +1712,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByL_H(
 		long layoutSetBranchId, boolean head, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1707,10 +1729,13 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByL_H;
-			finderArgs = new Object[] {layoutSetBranchId, head};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByL_H;
+				finderArgs = new Object[] {layoutSetBranchId, head};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByL_H;
 			finderArgs = new Object[] {
 				layoutSetBranchId, head, start, end, orderByComparator
@@ -1719,7 +1744,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -1792,10 +1817,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2245,14 +2274,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByL_P(
 		long layoutSetBranchId, long plid, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2262,10 +2291,13 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByL_P;
-			finderArgs = new Object[] {layoutSetBranchId, plid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByL_P;
+				finderArgs = new Object[] {layoutSetBranchId, plid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByL_P;
 			finderArgs = new Object[] {
 				layoutSetBranchId, plid, start, end, orderByComparator
@@ -2274,7 +2306,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -2347,10 +2379,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2800,14 +2836,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByL_S(
 		long layoutSetBranchId, int status, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2817,10 +2853,13 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByL_S;
-			finderArgs = new Object[] {layoutSetBranchId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByL_S;
+				finderArgs = new Object[] {layoutSetBranchId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByL_S;
 			finderArgs = new Object[] {
 				layoutSetBranchId, status, start, end, orderByComparator
@@ -2829,7 +2868,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -2902,10 +2941,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3353,14 +3396,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByH_P(
 		boolean head, long plid, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3370,10 +3413,13 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByH_P;
-			finderArgs = new Object[] {head, plid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByH_P;
+				finderArgs = new Object[] {head, plid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByH_P;
 			finderArgs = new Object[] {
 				head, plid, start, end, orderByComparator
@@ -3382,7 +3428,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -3454,10 +3500,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3900,14 +3950,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByP_NotS(
 		long plid, int status, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3918,7 +3968,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -3990,10 +4040,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4449,14 +4503,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByL_L_P(
 		long layoutSetBranchId, long layoutBranchId, long plid, int start,
 		int end, OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4466,10 +4520,15 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByL_L_P;
-			finderArgs = new Object[] {layoutSetBranchId, layoutBranchId, plid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByL_L_P;
+				finderArgs = new Object[] {
+					layoutSetBranchId, layoutBranchId, plid
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByL_L_P;
 			finderArgs = new Object[] {
 				layoutSetBranchId, layoutBranchId, plid, start, end,
@@ -4479,7 +4538,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -4558,10 +4617,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5052,14 +5115,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByL_P_P(
 		long layoutSetBranchId, long parentLayoutRevisionId, long plid,
 		int start, int end, OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5069,12 +5132,15 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByL_P_P;
-			finderArgs = new Object[] {
-				layoutSetBranchId, parentLayoutRevisionId, plid
-			};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByL_P_P;
+				finderArgs = new Object[] {
+					layoutSetBranchId, parentLayoutRevisionId, plid
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByL_P_P;
 			finderArgs = new Object[] {
 				layoutSetBranchId, parentLayoutRevisionId, plid, start, end,
@@ -5084,7 +5150,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -5163,10 +5229,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5644,19 +5714,23 @@ public class LayoutRevisionPersistenceImpl
 	 * @param layoutSetBranchId the layout set branch ID
 	 * @param head the head
 	 * @param plid the plid
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout revision, or <code>null</code> if a matching layout revision could not be found
 	 */
 	@Override
 	public LayoutRevision fetchByL_H_P(
 		long layoutSetBranchId, boolean head, long plid,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {layoutSetBranchId, head, plid};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {layoutSetBranchId, head, plid};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByL_H_P, finderArgs, this);
 		}
@@ -5703,14 +5777,22 @@ public class LayoutRevisionPersistenceImpl
 				List<LayoutRevision> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByL_H_P, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByL_H_P, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									layoutSetBranchId, head, plid
+								};
+							}
+
 							_log.warn(
 								"LayoutRevisionPersistenceImpl.fetchByL_H_P(long, boolean, long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -5726,8 +5808,10 @@ public class LayoutRevisionPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByL_H_P, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByL_H_P, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5914,14 +5998,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByL_H_P_Collection(
 		long layoutSetBranchId, boolean head, long plid, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5931,10 +6015,13 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByL_H_P_Collection;
-			finderArgs = new Object[] {layoutSetBranchId, head, plid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByL_H_P_Collection;
+				finderArgs = new Object[] {layoutSetBranchId, head, plid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByL_H_P_Collection;
 			finderArgs = new Object[] {
 				layoutSetBranchId, head, plid, start, end, orderByComparator
@@ -5943,7 +6030,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -6021,10 +6108,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -6510,14 +6601,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByL_H_S(
 		long layoutSetBranchId, boolean head, int status, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6527,10 +6618,13 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByL_H_S;
-			finderArgs = new Object[] {layoutSetBranchId, head, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByL_H_S;
+				finderArgs = new Object[] {layoutSetBranchId, head, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByL_H_S;
 			finderArgs = new Object[] {
 				layoutSetBranchId, head, status, start, end, orderByComparator
@@ -6539,7 +6633,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -6617,10 +6711,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -7104,14 +7202,14 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findByL_P_S(
 		long layoutSetBranchId, long plid, int status, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -7121,10 +7219,13 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByL_P_S;
-			finderArgs = new Object[] {layoutSetBranchId, plid, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByL_P_S;
+				finderArgs = new Object[] {layoutSetBranchId, plid, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByL_P_S;
 			finderArgs = new Object[] {
 				layoutSetBranchId, plid, status, start, end, orderByComparator
@@ -7133,7 +7234,7 @@ public class LayoutRevisionPersistenceImpl
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -7211,10 +7312,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -7691,21 +7796,25 @@ public class LayoutRevisionPersistenceImpl
 	 * @param layoutBranchId the layout branch ID
 	 * @param head the head
 	 * @param plid the plid
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout revision, or <code>null</code> if a matching layout revision could not be found
 	 */
 	@Override
 	public LayoutRevision fetchByL_L_H_P(
 		long layoutSetBranchId, long layoutBranchId, boolean head, long plid,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {
-			layoutSetBranchId, layoutBranchId, head, plid
-		};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {
+				layoutSetBranchId, layoutBranchId, head, plid
+			};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByL_L_H_P, finderArgs, this);
 		}
@@ -7757,14 +7866,23 @@ public class LayoutRevisionPersistenceImpl
 				List<LayoutRevision> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByL_L_H_P, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByL_L_H_P, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									layoutSetBranchId, layoutBranchId, head,
+									plid
+								};
+							}
+
 							_log.warn(
 								"LayoutRevisionPersistenceImpl.fetchByL_L_H_P(long, long, boolean, long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -7780,8 +7898,10 @@ public class LayoutRevisionPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByL_L_H_P, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByL_L_H_P, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -8933,13 +9053,13 @@ public class LayoutRevisionPersistenceImpl
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of layout revisions
 	 */
 	@Override
 	public List<LayoutRevision> findAll(
 		int start, int end, OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -8949,17 +9069,20 @@ public class LayoutRevisionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<LayoutRevision> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<LayoutRevision>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -9009,10 +9132,14 @@ public class LayoutRevisionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

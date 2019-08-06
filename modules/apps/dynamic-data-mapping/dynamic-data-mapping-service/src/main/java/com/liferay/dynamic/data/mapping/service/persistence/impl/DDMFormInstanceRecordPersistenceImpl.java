@@ -155,14 +155,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByUuid(
 		String uuid, int start, int end,
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -174,17 +174,20 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<DDMFormInstanceRecord> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -261,10 +264,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -700,20 +707,24 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm form instance record, or <code>null</code> if a matching ddm form instance record could not be found
 	 */
 	@Override
 	public DDMFormInstanceRecord fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache) {
+		String uuid, long groupId, boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] {uuid, groupId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {uuid, groupId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByUUID_G, finderArgs, this);
 		}
@@ -767,8 +778,10 @@ public class DDMFormInstanceRecordPersistenceImpl
 				List<DDMFormInstanceRecord> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByUUID_G, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByUUID_G, finderArgs, list);
+					}
 				}
 				else {
 					DDMFormInstanceRecord ddmFormInstanceRecord = list.get(0);
@@ -779,7 +792,10 @@ public class DDMFormInstanceRecordPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByUUID_G, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -965,14 +981,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -984,10 +1000,13 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
@@ -996,7 +1015,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 		List<DDMFormInstanceRecord> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1079,10 +1098,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1556,14 +1579,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByCompanyId(
 		long companyId, int start, int end,
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1573,10 +1596,13 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] {companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByCompanyId;
+				finderArgs = new Object[] {companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
@@ -1585,7 +1611,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 		List<DDMFormInstanceRecord> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1651,10 +1677,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2077,14 +2107,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByFormInstanceId(
 		long formInstanceId, int start, int end,
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2094,10 +2124,13 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByFormInstanceId;
-			finderArgs = new Object[] {formInstanceId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByFormInstanceId;
+				finderArgs = new Object[] {formInstanceId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByFormInstanceId;
 			finderArgs = new Object[] {
 				formInstanceId, start, end, orderByComparator
@@ -2106,7 +2139,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 		List<DDMFormInstanceRecord> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -2174,10 +2207,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2605,14 +2642,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByU_F(
 		long userId, long formInstanceId, int start, int end,
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2622,10 +2659,13 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByU_F;
-			finderArgs = new Object[] {userId, formInstanceId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByU_F;
+				finderArgs = new Object[] {userId, formInstanceId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByU_F;
 			finderArgs = new Object[] {
 				userId, formInstanceId, start, end, orderByComparator
@@ -2634,7 +2674,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 		List<DDMFormInstanceRecord> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -2707,10 +2747,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3164,14 +3208,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findByF_F(
 		long formInstanceId, String formInstanceVersion, int start, int end,
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		formInstanceVersion = Objects.toString(formInstanceVersion, "");
 
@@ -3183,10 +3227,13 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByF_F;
-			finderArgs = new Object[] {formInstanceId, formInstanceVersion};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByF_F;
+				finderArgs = new Object[] {formInstanceId, formInstanceVersion};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByF_F;
 			finderArgs = new Object[] {
 				formInstanceId, formInstanceVersion, start, end,
@@ -3196,7 +3243,7 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 		List<DDMFormInstanceRecord> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -3281,10 +3328,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4526,14 +4577,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 	 * @param start the lower bound of the range of ddm form instance records
 	 * @param end the upper bound of the range of ddm form instance records (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm form instance records
 	 */
 	@Override
 	public List<DDMFormInstanceRecord> findAll(
 		int start, int end,
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4543,17 +4594,20 @@ public class DDMFormInstanceRecordPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DDMFormInstanceRecord> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMFormInstanceRecord>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -4604,10 +4658,14 @@ public class DDMFormInstanceRecordPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

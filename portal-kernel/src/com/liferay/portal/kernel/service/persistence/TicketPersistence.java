@@ -68,10 +68,10 @@ public interface TicketPersistence extends BasePersistence<Ticket> {
 	 * Returns the ticket where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param key the key
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ticket, or <code>null</code> if a matching ticket could not be found
 	 */
-	public Ticket fetchByKey(String key, boolean retrieveFromCache);
+	public Ticket fetchByKey(String key, boolean useFinderCache);
 
 	/**
 	 * Removes the ticket where key = &#63; from the database.
@@ -150,14 +150,14 @@ public interface TicketPersistence extends BasePersistence<Ticket> {
 	 * @param start the lower bound of the range of tickets
 	 * @param end the upper bound of the range of tickets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching tickets
 	 */
 	public java.util.List<Ticket> findByC_C_T(
 		long classNameId, long classPK, int type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Ticket>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ticket in the ordered set where classNameId = &#63; and classPK = &#63; and type = &#63;.
@@ -322,7 +322,7 @@ public interface TicketPersistence extends BasePersistence<Ticket> {
 	 * @param start the lower bound of the range of tickets
 	 * @param end the upper bound of the range of tickets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching tickets
 	 */
 	public java.util.List<Ticket> findByC_C_C_T(
@@ -330,7 +330,7 @@ public interface TicketPersistence extends BasePersistence<Ticket> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Ticket>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ticket in the ordered set where companyId = &#63; and classNameId = &#63; and classPK = &#63; and type = &#63;.
@@ -535,14 +535,14 @@ public interface TicketPersistence extends BasePersistence<Ticket> {
 	 * @param start the lower bound of the range of tickets
 	 * @param end the upper bound of the range of tickets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of tickets
 	 */
 	public java.util.List<Ticket> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Ticket>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the tickets from the database.

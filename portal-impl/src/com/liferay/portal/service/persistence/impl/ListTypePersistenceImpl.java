@@ -146,14 +146,13 @@ public class ListTypePersistenceImpl
 	 * @param start the lower bound of the range of list types
 	 * @param end the upper bound of the range of list types (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching list types
 	 */
 	@Override
 	public List<ListType> findByType(
 		String type, int start, int end,
-		OrderByComparator<ListType> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<ListType> orderByComparator, boolean useFinderCache) {
 
 		type = Objects.toString(type, "");
 
@@ -165,17 +164,20 @@ public class ListTypePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByType;
-			finderArgs = new Object[] {type};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByType;
+				finderArgs = new Object[] {type};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByType;
 			finderArgs = new Object[] {type, start, end, orderByComparator};
 		}
 
 		List<ListType> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<ListType>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -252,10 +254,14 @@ public class ListTypePersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -681,21 +687,25 @@ public class ListTypePersistenceImpl
 	 *
 	 * @param name the name
 	 * @param type the type
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching list type, or <code>null</code> if a matching list type could not be found
 	 */
 	@Override
 	public ListType fetchByN_T(
-		String name, String type, boolean retrieveFromCache) {
+		String name, String type, boolean useFinderCache) {
 
 		name = Objects.toString(name, "");
 		type = Objects.toString(type, "");
 
-		Object[] finderArgs = new Object[] {name, type};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {name, type};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByN_T, finderArgs, this);
 		}
@@ -759,14 +769,20 @@ public class ListTypePersistenceImpl
 				List<ListType> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByN_T, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByN_T, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {name, type};
+							}
+
 							_log.warn(
 								"ListTypePersistenceImpl.fetchByN_T(String, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -782,7 +798,10 @@ public class ListTypePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByN_T, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByN_T, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1501,13 +1520,13 @@ public class ListTypePersistenceImpl
 	 * @param start the lower bound of the range of list types
 	 * @param end the upper bound of the range of list types (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of list types
 	 */
 	@Override
 	public List<ListType> findAll(
 		int start, int end, OrderByComparator<ListType> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1517,17 +1536,20 @@ public class ListTypePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<ListType> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<ListType>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -1577,10 +1599,14 @@ public class ListTypePersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

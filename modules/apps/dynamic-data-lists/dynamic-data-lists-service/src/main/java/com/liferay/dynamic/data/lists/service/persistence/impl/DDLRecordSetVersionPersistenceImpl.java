@@ -152,14 +152,14 @@ public class DDLRecordSetVersionPersistenceImpl
 	 * @param start the lower bound of the range of ddl record set versions
 	 * @param end the upper bound of the range of ddl record set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl record set versions
 	 */
 	@Override
 	public List<DDLRecordSetVersion> findByRecordSetId(
 		long recordSetId, int start, int end,
 		OrderByComparator<DDLRecordSetVersion> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -169,10 +169,13 @@ public class DDLRecordSetVersionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByRecordSetId;
-			finderArgs = new Object[] {recordSetId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByRecordSetId;
+				finderArgs = new Object[] {recordSetId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByRecordSetId;
 			finderArgs = new Object[] {
 				recordSetId, start, end, orderByComparator
@@ -181,7 +184,7 @@ public class DDLRecordSetVersionPersistenceImpl
 
 		List<DDLRecordSetVersion> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDLRecordSetVersion>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -247,10 +250,14 @@ public class DDLRecordSetVersionPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -661,20 +668,24 @@ public class DDLRecordSetVersionPersistenceImpl
 	 *
 	 * @param recordSetId the record set ID
 	 * @param version the version
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddl record set version, or <code>null</code> if a matching ddl record set version could not be found
 	 */
 	@Override
 	public DDLRecordSetVersion fetchByRS_V(
-		long recordSetId, String version, boolean retrieveFromCache) {
+		long recordSetId, String version, boolean useFinderCache) {
 
 		version = Objects.toString(version, "");
 
-		Object[] finderArgs = new Object[] {recordSetId, version};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {recordSetId, version};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByRS_V, finderArgs, this);
 		}
@@ -728,8 +739,10 @@ public class DDLRecordSetVersionPersistenceImpl
 				List<DDLRecordSetVersion> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByRS_V, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByRS_V, finderArgs, list);
+					}
 				}
 				else {
 					DDLRecordSetVersion ddlRecordSetVersion = list.get(0);
@@ -740,7 +753,10 @@ public class DDLRecordSetVersionPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByRS_V, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByRS_V, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -924,14 +940,14 @@ public class DDLRecordSetVersionPersistenceImpl
 	 * @param start the lower bound of the range of ddl record set versions
 	 * @param end the upper bound of the range of ddl record set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddl record set versions
 	 */
 	@Override
 	public List<DDLRecordSetVersion> findByRS_S(
 		long recordSetId, int status, int start, int end,
 		OrderByComparator<DDLRecordSetVersion> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -941,10 +957,13 @@ public class DDLRecordSetVersionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByRS_S;
-			finderArgs = new Object[] {recordSetId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByRS_S;
+				finderArgs = new Object[] {recordSetId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByRS_S;
 			finderArgs = new Object[] {
 				recordSetId, status, start, end, orderByComparator
@@ -953,7 +972,7 @@ public class DDLRecordSetVersionPersistenceImpl
 
 		List<DDLRecordSetVersion> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDLRecordSetVersion>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1025,10 +1044,14 @@ public class DDLRecordSetVersionPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2068,14 +2091,14 @@ public class DDLRecordSetVersionPersistenceImpl
 	 * @param start the lower bound of the range of ddl record set versions
 	 * @param end the upper bound of the range of ddl record set versions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddl record set versions
 	 */
 	@Override
 	public List<DDLRecordSetVersion> findAll(
 		int start, int end,
 		OrderByComparator<DDLRecordSetVersion> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2085,17 +2108,20 @@ public class DDLRecordSetVersionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DDLRecordSetVersion> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDLRecordSetVersion>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -2146,10 +2172,14 @@ public class DDLRecordSetVersionPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

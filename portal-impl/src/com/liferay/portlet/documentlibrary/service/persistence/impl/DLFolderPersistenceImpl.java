@@ -160,14 +160,13 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<DLFolder> orderByComparator, boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -179,17 +178,20 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -266,10 +268,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -695,20 +701,24 @@ public class DLFolderPersistenceImpl
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching document library folder, or <code>null</code> if a matching document library folder could not be found
 	 */
 	@Override
 	public DLFolder fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache) {
+		String uuid, long groupId, boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] {uuid, groupId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {uuid, groupId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByUUID_G, finderArgs, this);
 		}
@@ -761,8 +771,10 @@ public class DLFolderPersistenceImpl
 				List<DLFolder> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByUUID_G, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByUUID_G, finderArgs, list);
+					}
 				}
 				else {
 					DLFolder dlFolder = list.get(0);
@@ -773,8 +785,10 @@ public class DLFolderPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByUUID_G, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByUUID_G, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -958,14 +972,13 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<DLFolder> orderByComparator, boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -977,10 +990,13 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
@@ -989,7 +1005,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -1072,10 +1088,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1542,14 +1562,13 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByGroupId(
 		long groupId, int start, int end,
-		OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<DLFolder> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1559,17 +1578,20 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -1635,10 +1657,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2419,14 +2445,13 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<DLFolder> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2436,10 +2461,13 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] {companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByCompanyId;
+				finderArgs = new Object[] {companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
@@ -2448,7 +2476,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -2514,10 +2542,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2928,14 +2960,13 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByRepositoryId(
 		long repositoryId, int start, int end,
-		OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<DLFolder> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2945,10 +2976,13 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByRepositoryId;
-			finderArgs = new Object[] {repositoryId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByRepositoryId;
+				finderArgs = new Object[] {repositoryId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByRepositoryId;
 			finderArgs = new Object[] {
 				repositoryId, start, end, orderByComparator
@@ -2957,7 +2991,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -3023,10 +3057,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3443,14 +3481,13 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByG_P(
 		long groupId, long parentFolderId, int start, int end,
-		OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<DLFolder> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3460,10 +3497,13 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P;
-			finderArgs = new Object[] {groupId, parentFolderId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P;
+				finderArgs = new Object[] {groupId, parentFolderId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P;
 			finderArgs = new Object[] {
 				groupId, parentFolderId, start, end, orderByComparator
@@ -3472,7 +3512,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -3544,10 +3584,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4389,14 +4433,13 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByC_NotS(
 		long companyId, int status, int start, int end,
-		OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<DLFolder> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4409,7 +4452,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -4481,10 +4524,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4914,18 +4961,22 @@ public class DLFolderPersistenceImpl
 	 *
 	 * @param repositoryId the repository ID
 	 * @param mountPoint the mount point
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching document library folder, or <code>null</code> if a matching document library folder could not be found
 	 */
 	@Override
 	public DLFolder fetchByR_M(
-		long repositoryId, boolean mountPoint, boolean retrieveFromCache) {
+		long repositoryId, boolean mountPoint, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {repositoryId, mountPoint};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {repositoryId, mountPoint};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByR_M, finderArgs, this);
 		}
@@ -4967,14 +5018,22 @@ public class DLFolderPersistenceImpl
 				List<DLFolder> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByR_M, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByR_M, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									repositoryId, mountPoint
+								};
+							}
+
 							_log.warn(
 								"DLFolderPersistenceImpl.fetchByR_M(long, boolean, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -4990,7 +5049,10 @@ public class DLFolderPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByR_M, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByR_M, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5159,14 +5221,13 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByR_P(
 		long repositoryId, long parentFolderId, int start, int end,
-		OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<DLFolder> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5176,10 +5237,13 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByR_P;
-			finderArgs = new Object[] {repositoryId, parentFolderId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByR_P;
+				finderArgs = new Object[] {repositoryId, parentFolderId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByR_P;
 			finderArgs = new Object[] {
 				repositoryId, parentFolderId, start, end, orderByComparator
@@ -5188,7 +5252,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -5260,10 +5324,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5711,14 +5779,13 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByP_N(
 		long parentFolderId, String name, int start, int end,
-		OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<DLFolder> orderByComparator, boolean useFinderCache) {
 
 		name = Objects.toString(name, "");
 
@@ -5730,10 +5797,13 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByP_N;
-			finderArgs = new Object[] {parentFolderId, name};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByP_N;
+				finderArgs = new Object[] {parentFolderId, name};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByP_N;
 			finderArgs = new Object[] {
 				parentFolderId, name, start, end, orderByComparator
@@ -5742,7 +5812,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -5825,10 +5895,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -6313,14 +6387,14 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByG_M_P(
 		long groupId, boolean mountPoint, long parentFolderId, int start,
 		int end, OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6330,10 +6404,13 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_M_P;
-			finderArgs = new Object[] {groupId, mountPoint, parentFolderId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_M_P;
+				finderArgs = new Object[] {groupId, mountPoint, parentFolderId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_M_P;
 			finderArgs = new Object[] {
 				groupId, mountPoint, parentFolderId, start, end,
@@ -6343,7 +6420,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -6420,10 +6497,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -7317,21 +7398,25 @@ public class DLFolderPersistenceImpl
 	 * @param groupId the group ID
 	 * @param parentFolderId the parent folder ID
 	 * @param name the name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching document library folder, or <code>null</code> if a matching document library folder could not be found
 	 */
 	@Override
 	public DLFolder fetchByG_P_N(
 		long groupId, long parentFolderId, String name,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		name = Objects.toString(name, "");
 
-		Object[] finderArgs = new Object[] {groupId, parentFolderId, name};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {groupId, parentFolderId, name};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByG_P_N, finderArgs, this);
 		}
@@ -7389,8 +7474,10 @@ public class DLFolderPersistenceImpl
 				List<DLFolder> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByG_P_N, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByG_P_N, finderArgs, list);
+					}
 				}
 				else {
 					DLFolder dlFolder = list.get(0);
@@ -7401,8 +7488,10 @@ public class DLFolderPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByG_P_N, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByG_P_N, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -7609,14 +7698,14 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByF_C_P_NotS(
 		long folderId, long companyId, long parentFolderId, int status,
 		int start, int end, OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -7630,7 +7719,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -7712,10 +7801,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -8066,14 +8159,14 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByG_M_P_H(
 		long groupId, boolean mountPoint, long parentFolderId, boolean hidden,
 		int start, int end, OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -8083,12 +8176,15 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_M_P_H;
-			finderArgs = new Object[] {
-				groupId, mountPoint, parentFolderId, hidden
-			};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_M_P_H;
+				finderArgs = new Object[] {
+					groupId, mountPoint, parentFolderId, hidden
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_M_P_H;
 			finderArgs = new Object[] {
 				groupId, mountPoint, parentFolderId, hidden, start, end,
@@ -8098,7 +8194,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -8180,10 +8276,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -9144,14 +9244,14 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByG_M_T_H(
 		long groupId, boolean mountPoint, String treePath, boolean hidden,
 		int start, int end, OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		treePath = Objects.toString(treePath, "");
 
@@ -9166,7 +9266,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -9261,10 +9361,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -10291,14 +10395,14 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByG_P_H_S(
 		long groupId, long parentFolderId, boolean hidden, int status,
 		int start, int end, OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -10308,10 +10412,15 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P_H_S;
-			finderArgs = new Object[] {groupId, parentFolderId, hidden, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P_H_S;
+				finderArgs = new Object[] {
+					groupId, parentFolderId, hidden, status
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P_H_S;
 			finderArgs = new Object[] {
 				groupId, parentFolderId, hidden, status, start, end,
@@ -10321,7 +10430,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -10403,10 +10512,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -11372,15 +11485,14 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching document library folders
 	 */
 	@Override
 	public List<DLFolder> findByG_M_P_H_S(
 		long groupId, boolean mountPoint, long parentFolderId, boolean hidden,
 		int status, int start, int end,
-		OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<DLFolder> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -11390,12 +11502,15 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_M_P_H_S;
-			finderArgs = new Object[] {
-				groupId, mountPoint, parentFolderId, hidden, status
-			};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_M_P_H_S;
+				finderArgs = new Object[] {
+					groupId, mountPoint, parentFolderId, hidden, status
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_M_P_H_S;
 			finderArgs = new Object[] {
 				groupId, mountPoint, parentFolderId, hidden, status, start, end,
@@ -11405,7 +11520,7 @@ public class DLFolderPersistenceImpl
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -11492,10 +11607,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -13487,13 +13606,13 @@ public class DLFolderPersistenceImpl
 	 * @param start the lower bound of the range of document library folders
 	 * @param end the upper bound of the range of document library folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of document library folders
 	 */
 	@Override
 	public List<DLFolder> findAll(
 		int start, int end, OrderByComparator<DLFolder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -13503,17 +13622,20 @@ public class DLFolderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DLFolder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DLFolder>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -13563,10 +13685,14 @@ public class DLFolderPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

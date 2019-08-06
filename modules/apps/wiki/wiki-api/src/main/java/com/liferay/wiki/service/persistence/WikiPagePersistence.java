@@ -100,14 +100,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByResourcePrimKey(
 		long resourcePrimKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where resourcePrimKey = &#63;.
@@ -242,14 +242,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where uuid = &#63;.
@@ -358,11 +358,11 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching wiki page, or <code>null</code> if a matching wiki page could not be found
 	 */
 	public WikiPage fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the wiki page where uuid = &#63; and groupId = &#63; from the database.
@@ -439,14 +439,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -589,14 +589,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByNodeId(
 		long nodeId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63;.
@@ -732,14 +732,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByFormat(
 		String format, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where format = &#63;.
@@ -880,14 +880,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByR_N(
 		long resourcePrimKey, long nodeId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where resourcePrimKey = &#63; and nodeId = &#63;.
@@ -1034,14 +1034,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByR_S(
 		long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where resourcePrimKey = &#63; and status = &#63;.
@@ -1188,14 +1188,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_T(
 		long nodeId, String title, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and title = &#63;.
@@ -1342,14 +1342,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_H(
 		long nodeId, boolean head, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and head = &#63;.
@@ -1496,14 +1496,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_P(
 		long nodeId, String parentTitle, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and parentTitle = &#63;.
@@ -1651,14 +1651,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_R(
 		long nodeId, String redirectTitle, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and redirectTitle = &#63;.
@@ -1805,14 +1805,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_S(
 		long nodeId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and status = &#63;.
@@ -1933,12 +1933,12 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param resourcePrimKey the resource prim key
 	 * @param nodeId the node ID
 	 * @param version the version
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching wiki page, or <code>null</code> if a matching wiki page could not be found
 	 */
 	public WikiPage fetchByR_N_V(
 		long resourcePrimKey, long nodeId, double version,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes the wiki page where resourcePrimKey = &#63; and nodeId = &#63; and version = &#63; from the database.
@@ -2023,14 +2023,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByR_N_H(
 		long resourcePrimKey, long nodeId, boolean head, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where resourcePrimKey = &#63; and nodeId = &#63; and head = &#63;.
@@ -2189,14 +2189,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByR_N_S(
 		long resourcePrimKey, long nodeId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where resourcePrimKey = &#63; and nodeId = &#63; and status = &#63;.
@@ -2355,14 +2355,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByG_N_H(
 		long groupId, long nodeId, boolean head, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where groupId = &#63; and nodeId = &#63; and head = &#63;.
@@ -2596,14 +2596,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByG_N_S(
 		long groupId, long nodeId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where groupId = &#63; and nodeId = &#63; and status = &#63;.
@@ -2837,14 +2837,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByU_N_S(
 		long userId, long nodeId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where userId = &#63; and nodeId = &#63; and status = &#63;.
@@ -2970,11 +2970,11 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param nodeId the node ID
 	 * @param title the title
 	 * @param version the version
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching wiki page, or <code>null</code> if a matching wiki page could not be found
 	 */
 	public WikiPage fetchByN_T_V(
-		long nodeId, String title, double version, boolean retrieveFromCache);
+		long nodeId, String title, double version, boolean useFinderCache);
 
 	/**
 	 * Removes the wiki page where nodeId = &#63; and title = &#63; and version = &#63; from the database.
@@ -3058,14 +3058,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_T_H(
 		long nodeId, String title, boolean head, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and title = &#63; and head = &#63;.
@@ -3224,14 +3224,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_T_S(
 		long nodeId, String title, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and title = &#63; and status = &#63;.
@@ -3390,14 +3390,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_H_P(
 		long nodeId, boolean head, String parentTitle, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and head = &#63; and parentTitle = &#63;.
@@ -3556,14 +3556,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_H_R(
 		long nodeId, boolean head, String redirectTitle, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and head = &#63; and redirectTitle = &#63;.
@@ -3722,14 +3722,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_H_S(
 		long nodeId, boolean head, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and head = &#63; and status = &#63;.
@@ -3888,14 +3888,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_H_NotS(
 		long nodeId, boolean head, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and head = &#63; and status &ne; &#63;.
@@ -4058,14 +4058,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByG_U_N_S(
 		long groupId, long userId, long nodeId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where groupId = &#63; and userId = &#63; and nodeId = &#63; and status = &#63;.
@@ -4320,7 +4320,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByG_N_T_H(
@@ -4328,7 +4328,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where groupId = &#63; and nodeId = &#63; and title = &#63; and head = &#63;.
@@ -4584,14 +4584,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByG_N_H_S(
 		long groupId, long nodeId, boolean head, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where groupId = &#63; and nodeId = &#63; and head = &#63; and status = &#63;.
@@ -4847,7 +4847,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_H_P_S(
@@ -4855,7 +4855,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and head = &#63; and parentTitle = &#63; and status = &#63;.
@@ -5030,7 +5030,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_H_P_NotS(
@@ -5038,7 +5038,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and head = &#63; and parentTitle = &#63; and status &ne; &#63;.
@@ -5213,7 +5213,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_H_R_S(
@@ -5221,7 +5221,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and head = &#63; and redirectTitle = &#63; and status = &#63;.
@@ -5396,7 +5396,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByN_H_R_NotS(
@@ -5404,7 +5404,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where nodeId = &#63; and head = &#63; and redirectTitle = &#63; and status &ne; &#63;.
@@ -5584,7 +5584,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wiki pages
 	 */
 	public java.util.List<WikiPage> findByG_N_H_P_S(
@@ -5592,7 +5592,7 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wiki page in the ordered set where groupId = &#63; and nodeId = &#63; and head = &#63; and parentTitle = &#63; and status = &#63;.
@@ -5899,14 +5899,14 @@ public interface WikiPagePersistence extends BasePersistence<WikiPage> {
 	 * @param start the lower bound of the range of wiki pages
 	 * @param end the upper bound of the range of wiki pages (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wiki pages
 	 */
 	public java.util.List<WikiPage> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WikiPage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the wiki pages from the database.

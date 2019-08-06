@@ -794,72 +794,6 @@ public abstract class SyncDLObjectServiceBaseImpl
 	}
 
 	/**
-	 * Returns the document library file version local service.
-	 *
-	 * @return the document library file version local service
-	 */
-	public com.liferay.document.library.kernel.service.DLFileVersionLocalService
-		getDLFileVersionLocalService() {
-
-		return dlFileVersionLocalService;
-	}
-
-	/**
-	 * Sets the document library file version local service.
-	 *
-	 * @param dlFileVersionLocalService the document library file version local service
-	 */
-	public void setDLFileVersionLocalService(
-		com.liferay.document.library.kernel.service.DLFileVersionLocalService
-			dlFileVersionLocalService) {
-
-		this.dlFileVersionLocalService = dlFileVersionLocalService;
-	}
-
-	/**
-	 * Returns the document library file version remote service.
-	 *
-	 * @return the document library file version remote service
-	 */
-	public com.liferay.document.library.kernel.service.DLFileVersionService
-		getDLFileVersionService() {
-
-		return dlFileVersionService;
-	}
-
-	/**
-	 * Sets the document library file version remote service.
-	 *
-	 * @param dlFileVersionService the document library file version remote service
-	 */
-	public void setDLFileVersionService(
-		com.liferay.document.library.kernel.service.DLFileVersionService
-			dlFileVersionService) {
-
-		this.dlFileVersionService = dlFileVersionService;
-	}
-
-	/**
-	 * Returns the document library file version persistence.
-	 *
-	 * @return the document library file version persistence
-	 */
-	public DLFileVersionPersistence getDLFileVersionPersistence() {
-		return dlFileVersionPersistence;
-	}
-
-	/**
-	 * Sets the document library file version persistence.
-	 *
-	 * @param dlFileVersionPersistence the document library file version persistence
-	 */
-	public void setDLFileVersionPersistence(
-		DLFileVersionPersistence dlFileVersionPersistence) {
-
-		this.dlFileVersionPersistence = dlFileVersionPersistence;
-	}
-
-	/**
 	 * Returns the document library folder local service.
 	 *
 	 * @return the document library folder local service
@@ -969,6 +903,72 @@ public abstract class SyncDLObjectServiceBaseImpl
 			dlTrashService) {
 
 		this.dlTrashService = dlTrashService;
+	}
+
+	/**
+	 * Returns the document library file version local service.
+	 *
+	 * @return the document library file version local service
+	 */
+	public com.liferay.document.library.kernel.service.DLFileVersionLocalService
+		getDLFileVersionLocalService() {
+
+		return dlFileVersionLocalService;
+	}
+
+	/**
+	 * Sets the document library file version local service.
+	 *
+	 * @param dlFileVersionLocalService the document library file version local service
+	 */
+	public void setDLFileVersionLocalService(
+		com.liferay.document.library.kernel.service.DLFileVersionLocalService
+			dlFileVersionLocalService) {
+
+		this.dlFileVersionLocalService = dlFileVersionLocalService;
+	}
+
+	/**
+	 * Returns the document library file version remote service.
+	 *
+	 * @return the document library file version remote service
+	 */
+	public com.liferay.document.library.kernel.service.DLFileVersionService
+		getDLFileVersionService() {
+
+		return dlFileVersionService;
+	}
+
+	/**
+	 * Sets the document library file version remote service.
+	 *
+	 * @param dlFileVersionService the document library file version remote service
+	 */
+	public void setDLFileVersionService(
+		com.liferay.document.library.kernel.service.DLFileVersionService
+			dlFileVersionService) {
+
+		this.dlFileVersionService = dlFileVersionService;
+	}
+
+	/**
+	 * Returns the document library file version persistence.
+	 *
+	 * @return the document library file version persistence
+	 */
+	public DLFileVersionPersistence getDLFileVersionPersistence() {
+		return dlFileVersionPersistence;
+	}
+
+	/**
+	 * Sets the document library file version persistence.
+	 *
+	 * @param dlFileVersionPersistence the document library file version persistence
+	 */
+	public void setDLFileVersionPersistence(
+		DLFileVersionPersistence dlFileVersionPersistence) {
+
+		this.dlFileVersionPersistence = dlFileVersionPersistence;
 	}
 
 	public void afterPropertiesSet() {
@@ -1182,22 +1182,6 @@ public abstract class SyncDLObjectServiceBaseImpl
 	protected DLFileEntryPersistence dlFileEntryPersistence;
 
 	@ServiceReference(
-		type = com.liferay.document.library.kernel.service.DLFileVersionLocalService.class
-	)
-	protected
-		com.liferay.document.library.kernel.service.DLFileVersionLocalService
-			dlFileVersionLocalService;
-
-	@ServiceReference(
-		type = com.liferay.document.library.kernel.service.DLFileVersionService.class
-	)
-	protected com.liferay.document.library.kernel.service.DLFileVersionService
-		dlFileVersionService;
-
-	@ServiceReference(type = DLFileVersionPersistence.class)
-	protected DLFileVersionPersistence dlFileVersionPersistence;
-
-	@ServiceReference(
 		type = com.liferay.document.library.kernel.service.DLFolderLocalService.class
 	)
 	protected com.liferay.document.library.kernel.service.DLFolderLocalService
@@ -1223,5 +1207,21 @@ public abstract class SyncDLObjectServiceBaseImpl
 	)
 	protected com.liferay.document.library.kernel.service.DLTrashService
 		dlTrashService;
+
+	@ServiceReference(
+		type = com.liferay.document.library.kernel.service.DLFileVersionLocalService.class
+	)
+	protected
+		com.liferay.document.library.kernel.service.DLFileVersionLocalService
+			dlFileVersionLocalService;
+
+	@ServiceReference(
+		type = com.liferay.document.library.kernel.service.DLFileVersionService.class
+	)
+	protected com.liferay.document.library.kernel.service.DLFileVersionService
+		dlFileVersionService;
+
+	@ServiceReference(type = DLFileVersionPersistence.class)
+	protected DLFileVersionPersistence dlFileVersionPersistence;
 
 }

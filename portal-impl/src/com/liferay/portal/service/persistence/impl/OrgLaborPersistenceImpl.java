@@ -147,14 +147,13 @@ public class OrgLaborPersistenceImpl
 	 * @param start the lower bound of the range of org labors
 	 * @param end the upper bound of the range of org labors (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching org labors
 	 */
 	@Override
 	public List<OrgLabor> findByOrganizationId(
 		long organizationId, int start, int end,
-		OrderByComparator<OrgLabor> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<OrgLabor> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -164,10 +163,13 @@ public class OrgLaborPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByOrganizationId;
-			finderArgs = new Object[] {organizationId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByOrganizationId;
+				finderArgs = new Object[] {organizationId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByOrganizationId;
 			finderArgs = new Object[] {
 				organizationId, start, end, orderByComparator
@@ -176,7 +178,7 @@ public class OrgLaborPersistenceImpl
 
 		List<OrgLabor> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<OrgLabor>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -242,10 +244,14 @@ public class OrgLaborPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1123,13 +1129,13 @@ public class OrgLaborPersistenceImpl
 	 * @param start the lower bound of the range of org labors
 	 * @param end the upper bound of the range of org labors (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of org labors
 	 */
 	@Override
 	public List<OrgLabor> findAll(
 		int start, int end, OrderByComparator<OrgLabor> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1139,17 +1145,20 @@ public class OrgLaborPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<OrgLabor> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<OrgLabor>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -1199,10 +1208,14 @@ public class OrgLaborPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

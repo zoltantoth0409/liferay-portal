@@ -144,14 +144,14 @@ public class ResourceActionPersistenceImpl
 	 * @param start the lower bound of the range of resource actions
 	 * @param end the upper bound of the range of resource actions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching resource actions
 	 */
 	@Override
 	public List<ResourceAction> findByName(
 		String name, int start, int end,
 		OrderByComparator<ResourceAction> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		name = Objects.toString(name, "");
 
@@ -163,17 +163,20 @@ public class ResourceActionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByName;
-			finderArgs = new Object[] {name};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByName;
+				finderArgs = new Object[] {name};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByName;
 			finderArgs = new Object[] {name, start, end, orderByComparator};
 		}
 
 		List<ResourceAction> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<ResourceAction>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -250,10 +253,14 @@ public class ResourceActionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -682,21 +689,25 @@ public class ResourceActionPersistenceImpl
 	 *
 	 * @param name the name
 	 * @param actionId the action ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching resource action, or <code>null</code> if a matching resource action could not be found
 	 */
 	@Override
 	public ResourceAction fetchByN_A(
-		String name, String actionId, boolean retrieveFromCache) {
+		String name, String actionId, boolean useFinderCache) {
 
 		name = Objects.toString(name, "");
 		actionId = Objects.toString(actionId, "");
 
-		Object[] finderArgs = new Object[] {name, actionId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {name, actionId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByN_A, finderArgs, this);
 		}
@@ -760,8 +771,10 @@ public class ResourceActionPersistenceImpl
 				List<ResourceAction> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByN_A, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByN_A, finderArgs, list);
+					}
 				}
 				else {
 					ResourceAction resourceAction = list.get(0);
@@ -772,7 +785,10 @@ public class ResourceActionPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByN_A, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByN_A, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1492,13 +1508,13 @@ public class ResourceActionPersistenceImpl
 	 * @param start the lower bound of the range of resource actions
 	 * @param end the upper bound of the range of resource actions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of resource actions
 	 */
 	@Override
 	public List<ResourceAction> findAll(
 		int start, int end, OrderByComparator<ResourceAction> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1508,17 +1524,20 @@ public class ResourceActionPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<ResourceAction> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<ResourceAction>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -1568,10 +1587,14 @@ public class ResourceActionPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

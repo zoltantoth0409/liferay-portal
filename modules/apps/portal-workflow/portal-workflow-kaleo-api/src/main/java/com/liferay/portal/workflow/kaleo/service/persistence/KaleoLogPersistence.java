@@ -100,14 +100,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	public java.util.List<KaleoLog> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoLog>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo log in the ordered set where companyId = &#63;.
@@ -244,14 +244,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	public java.util.List<KaleoLog> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoLog>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo log in the ordered set where kaleoDefinitionVersionId = &#63;.
@@ -387,14 +387,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	public java.util.List<KaleoLog> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoLog>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo log in the ordered set where kaleoInstanceId = &#63;.
@@ -531,14 +531,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	public java.util.List<KaleoLog> findByKaleoTaskInstanceTokenId(
 		long kaleoTaskInstanceTokenId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoLog>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo log in the ordered set where kaleoTaskInstanceTokenId = &#63;.
@@ -679,14 +679,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	public java.util.List<KaleoLog> findByKITI_T(
 		long kaleoInstanceTokenId, String type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoLog>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo log in the ordered set where kaleoInstanceTokenId = &#63; and type = &#63;.
@@ -845,7 +845,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	public java.util.List<KaleoLog> findByKCN_KCPK_KITI_T(
@@ -853,7 +853,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		String type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoLog>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo log in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and kaleoInstanceTokenId = &#63; and type = &#63;.
@@ -1064,14 +1064,14 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo logs
 	 */
 	public java.util.List<KaleoLog> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoLog>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the kaleo logs from the database.

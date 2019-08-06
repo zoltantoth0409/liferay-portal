@@ -101,14 +101,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first social relation in the ordered set where uuid = &#63;.
@@ -249,14 +249,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first social relation in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -399,14 +399,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first social relation in the ordered set where companyId = &#63;.
@@ -542,14 +542,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByUserId1(
 		long userId1, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first social relation in the ordered set where userId1 = &#63;.
@@ -685,14 +685,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByUserId2(
 		long userId2, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first social relation in the ordered set where userId2 = &#63;.
@@ -828,14 +828,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByType(
 		int type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first social relation in the ordered set where type = &#63;.
@@ -975,14 +975,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByC_T(
 		long companyId, int type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first social relation in the ordered set where companyId = &#63; and type = &#63;.
@@ -1130,14 +1130,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByU1_U2(
 		long userId1, long userId2, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first social relation in the ordered set where userId1 = &#63; and userId2 = &#63;.
@@ -1284,14 +1284,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByU1_T(
 		long userId1, int type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first social relation in the ordered set where userId1 = &#63; and type = &#63;.
@@ -1438,14 +1438,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching social relations
 	 */
 	public java.util.List<SocialRelation> findByU2_T(
 		long userId2, int type, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first social relation in the ordered set where userId2 = &#63; and type = &#63;.
@@ -1564,11 +1564,11 @@ public interface SocialRelationPersistence
 	 * @param userId1 the user id1
 	 * @param userId2 the user id2
 	 * @param type the type
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching social relation, or <code>null</code> if a matching social relation could not be found
 	 */
 	public SocialRelation fetchByU1_U2_T(
-		long userId1, long userId2, int type, boolean retrieveFromCache);
+		long userId1, long userId2, int type, boolean useFinderCache);
 
 	/**
 	 * Removes the social relation where userId1 = &#63; and userId2 = &#63; and type = &#63; from the database.
@@ -1690,14 +1690,14 @@ public interface SocialRelationPersistence
 	 * @param start the lower bound of the range of social relations
 	 * @param end the upper bound of the range of social relations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of social relations
 	 */
 	public java.util.List<SocialRelation> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SocialRelation>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the social relations from the database.

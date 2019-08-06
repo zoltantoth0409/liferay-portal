@@ -100,14 +100,14 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @param start the lower bound of the range of expando rows
 	 * @param end the upper bound of the range of expando rows (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching expando rows
 	 */
 	public java.util.List<ExpandoRow> findByTableId(
 		long tableId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first expando row in the ordered set where tableId = &#63;.
@@ -243,14 +243,14 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @param start the lower bound of the range of expando rows
 	 * @param end the upper bound of the range of expando rows (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching expando rows
 	 */
 	public java.util.List<ExpandoRow> findByClassPK(
 		long classPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first expando row in the ordered set where classPK = &#63;.
@@ -359,11 +359,11 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 *
 	 * @param tableId the table ID
 	 * @param classPK the class pk
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching expando row, or <code>null</code> if a matching expando row could not be found
 	 */
 	public ExpandoRow fetchByT_C(
-		long tableId, long classPK, boolean retrieveFromCache);
+		long tableId, long classPK, boolean useFinderCache);
 
 	/**
 	 * Removes the expando row where tableId = &#63; and classPK = &#63; from the database.
@@ -481,14 +481,14 @@ public interface ExpandoRowPersistence extends BasePersistence<ExpandoRow> {
 	 * @param start the lower bound of the range of expando rows
 	 * @param end the upper bound of the range of expando rows (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of expando rows
 	 */
 	public java.util.List<ExpandoRow> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ExpandoRow>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the expando rows from the database.
