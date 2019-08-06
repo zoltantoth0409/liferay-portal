@@ -188,8 +188,10 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 
 		StringBundler sb = new StringBundler(6);
 
-		if (!ignoreCDNHost) {
-			sb.append(_getCDNHost(_request));
+		String cdnHost = _getCDNHost(_request);
+
+		if (!ignoreCDNHost && !Validator.isBlank(cdnHost)) {
+			sb.append(cdnHost);
 		}
 		else if (!ignorePathProxy) {
 			sb.append(_getPathProxy());
