@@ -278,17 +278,28 @@ if (hints != null) {
 
 							var form = $(document.<portlet:namespace /><%= formName %>);
 
-							form.fm('<%= fieldParam %>').prop('disabled', checked);
-							form.fm('<%= fieldParam %>Month').prop('disabled', checked);
-							form.fm('<%= fieldParam %>Day').prop('disabled', checked);
-							form.fm('<%= fieldParam %>Year').prop('disabled', checked);
+							var elements = [
+								form.fm('<%= fieldParam %>'),
+								form.fm('<%= fieldParam %>Day'),
+								form.fm('<%= fieldParam %>Month'),
+								form.fm('<%= fieldParam %>Year'),
+								form.fm('<%= fieldParam %>Time'),
+								form.fm('<%= fieldParam %>Hour'),
+								form.fm('<%= fieldParam %>Minute'),
+								form.fm('<%= fieldParam %>AmPm')
+							].filter(Boolean);
 
-							<c:if test="<%= showTime %>">
-								form.fm('<%= fieldParam %>Time').prop('disabled', checked);
-								form.fm('<%= fieldParam %>Hour').prop('disabled', checked);
-								form.fm('<%= fieldParam %>Minute').prop('disabled', checked);
-								form.fm('<%= fieldParam %>AmPm').prop('disabled', checked);
-							</c:if>
+							elements.forEach(
+								function(element) {
+									if (checked) {
+										element.attr('disabled', '');
+									}
+									else {
+										element.removeAttr('disabled');
+									}
+									element.toggleClass('disabled', checked);
+								}
+							);
 						}
 					);
 				</aui:script>
