@@ -2,7 +2,7 @@ dependencies {
 	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.9.9"
 	compileOnly group: "com.liferay", name: "com.liferay.captcha.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.data.engine.api", version: "1.1.0"
-	compileOnly group: "com.liferay", name: "com.liferay.data.engine.rest.api", version: "7.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.data.engine.rest.api", version: "8.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.data.engine.spi", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.lists.api", version: "4.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.3.0"
