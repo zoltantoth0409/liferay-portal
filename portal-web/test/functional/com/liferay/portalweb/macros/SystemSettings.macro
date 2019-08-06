@@ -57,6 +57,27 @@ definition {
 			value1 = "${category}");
 	}
 
+	macro gotoConfiguration {
+		Click(
+			key_itemName = "${configurationCategory}",
+			locator1 = "ListGroupItem#ITEM_TEXT");
+
+		var browserType = PropsUtil.get("browser.type");
+
+		if ("${browserType}" == "chrome") {
+			Pause(locator1 = "5000");
+		}
+
+		Click(
+			key_configurationName = "${configurationName}",
+			key_configurationScope = "${configurationScope}",
+			locator1 = "SystemSettings#SCOPED_CONFIGURATION_NAME");
+
+		AssertElementPresent(
+			key_title = "${configurationName}",
+			locator1 = "Header#H2_TITLE");
+	}
+
 	macro resetConfiguration {
 		SystemSettings.gotoCategory(category = "${category}");
 
