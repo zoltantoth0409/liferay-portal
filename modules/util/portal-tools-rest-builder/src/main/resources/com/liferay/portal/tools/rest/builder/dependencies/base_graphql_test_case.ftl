@@ -334,18 +334,15 @@ public abstract class Base${schemaName}GraphQLTestCase {
 				)
 			);
 
-			JSONDeserializer<${schemaName}> jsonDeserializer =
-				JSONFactoryUtil.createJSONDeserializer();
+			JSONDeserializer<${schemaName}> jsonDeserializer = JSONFactoryUtil.createJSONDeserializer();
 
 			String object = invoke(graphQLField.toString());
 
-			JSONObject jsonObject =
-				JSONFactoryUtil.createJSONObject(object);
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(object);
 
-			String data = jsonObject.getJSONObject("data" ).getJSONObject(
-				"createSite${schemaName}" ).toString();
+			JSONObject dataJSONObject = jsonObject.getJSONObject("data");
 
-			return jsonDeserializer.deserialize(data, ${schemaName}.class);
+			return jsonDeserializer.deserialize(String.valueOf(dataJSONObject.getJSONObject("createSite${schemaName}")), ${schemaName}.class);
 		}
 	<#else>
 		protected ${schemaName} test${schemaName}_add${schemaName}() throws Exception {
