@@ -46,6 +46,7 @@ definition {
 	@priority = "5"
 	test DeleteEntryFromApplication {
 		property portal.acceptance = "true";
+		property test.name.skip.portal.instance = "GDPR#DeleteEntryFromApplication";
 
 		User.logoutPG();
 
