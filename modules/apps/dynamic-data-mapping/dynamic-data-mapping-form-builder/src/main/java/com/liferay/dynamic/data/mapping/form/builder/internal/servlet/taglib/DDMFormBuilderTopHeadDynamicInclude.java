@@ -80,9 +80,6 @@ public class DDMFormBuilderTopHeadDynamicInclude extends BaseDynamicInclude {
 	@Override
 	public void register(DynamicIncludeRegistry dynamicIncludeRegistry) {
 		dynamicIncludeRegistry.register(
-			"com.liferay.data.engine.taglib#/data_layout_builder/start.jsp" +
-				"#pre");
-		dynamicIncludeRegistry.register(
 			"com.liferay.dynamic.data.mapping.form.web#" +
 				"EditElementSetInstanceMVCRenderCommand#render");
 		dynamicIncludeRegistry.register(
