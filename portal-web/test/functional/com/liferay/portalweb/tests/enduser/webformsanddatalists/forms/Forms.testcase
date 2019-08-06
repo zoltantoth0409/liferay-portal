@@ -503,6 +503,10 @@ definition {
 
 		Site.addBlankCP(siteName = "Form Site");
 
+		JSONLayout.addPublicLayout(
+			groupName = "Form Site",
+			layoutName = "Form Page");
+
 		ProductMenu.gotoPortlet(
 			category = "Members",
 			panel = "Site Administration",
@@ -550,7 +554,7 @@ definition {
 			userLoginEmailAddress = "userea@liferay.com",
 			userScreenName = "usersn");
 
-		SitePages.openPagesAdmin(siteURLKey = "Form Site");
+		Navigator.openSiteURL(siteName = "Form Site");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",

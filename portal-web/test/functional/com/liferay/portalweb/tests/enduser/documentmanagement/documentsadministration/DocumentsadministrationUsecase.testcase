@@ -857,6 +857,10 @@ definition {
 
 		Site.addBlankCP(siteName = "Moon Rocks 101");
 
+		JSONLayout.addPublicLayout(
+			groupName = "Moon Rocks 101",
+			layoutName = "Moon Rocks Page");
+
 		ProductMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
@@ -916,7 +920,9 @@ definition {
 			password = "test",
 			userEmailAddress = "userea@liferay.com");
 
-		SitePages.openPagesAdmin(siteURLKey = "Moon Rocks 101");
+		Navigator.gotoSitePage(
+			pageName = "Moon Rocks Page",
+			siteName = "Moon Rocks 101");
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
