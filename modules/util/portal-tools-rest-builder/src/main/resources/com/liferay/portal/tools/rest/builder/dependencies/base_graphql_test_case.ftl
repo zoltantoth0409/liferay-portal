@@ -68,7 +68,7 @@ public abstract class Base${schemaName}GraphQLTestCase {
 	/>
 
 	<#list javaMethodSignatures as javaMethodSignature>
-		<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete") && stringUtil.equals(freeMarkerTool.getGraphQLPropertyName(javaMethodSignature), "delete"+schemaName)>
+		<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete") && stringUtil.equals(freeMarkerTool.getGraphQLPropertyName(javaMethodSignature), "delete" + schemaName)>
 			@Test
 			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
 				${schemaName} ${schemaVarName} = test${schemaName}_add${schemaName}();
@@ -83,36 +83,29 @@ public abstract class Base${schemaName}GraphQLTestCase {
 							}
 						}));
 
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-					invoke(graphQLField.toString()));
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(invoke(graphQLField.toString()));
 
 				JSONObject dataJSONObject = jsonObject.getJSONObject("data");
 
-				Assert.assertTrue(
-					dataJSONObject.getBoolean("delete${schemaName}"));
+				Assert.assertTrue(dataJSONObject.getBoolean("delete${schemaName}"));
 
-				try (CaptureAppender captureAppender =
-						 Log4JLoggerTestUtil.configureLog4JLogger(
-							 "graphql.execution.SimpleDataFetcherExceptionHandler", Level.WARN)) {
-
+				try (CaptureAppender captureAppender = Log4JLoggerTestUtil.configureLog4JLogger("graphql.execution.SimpleDataFetcherExceptionHandler", Level.WARN)) {
 					graphQLField = new GraphQLField(
 						"query",
 						new GraphQLField(
 							"${schemaVarName}",
 							new HashMap<String, Object>() {
 								{
-									put("${schemaVarName}Id", ${schemaVarName}.getId())
-									;
+									put("${schemaVarName}Id", ${schemaVarName}.getId());
 								}
 							},
 							new GraphQLField("id")));
 
-					jsonObject = JSONFactoryUtil.createJSONObject(
-						invoke(graphQLField.toString()));
+					jsonObject = JSONFactoryUtil.createJSONObject(invoke(graphQLField.toString()));
 
-					JSONArray errors = jsonObject.getJSONArray("errors");
+					JSONArray errorsJSONArray = jsonObject.getJSONArray("errors");
 
-					Assert.assertTrue(errors.length() > 0);
+					Assert.assertTrue(errorsJSONArray.length() > 0);
 				}
 			}
 		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "get") && javaMethodSignature.returnType?contains("Page<") && stringUtil.equals(freeMarkerTool.getGraphQLPropertyName(javaMethodSignature), schemaVarNames)>
@@ -192,17 +185,14 @@ public abstract class Base${schemaName}GraphQLTestCase {
 					Assert.assertTrue(true);
 				</#if>
 			}
-		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post") && stringUtil.equals(javaMethodSignature.methodName, "postSite"+schemaName)>
+		<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post") && stringUtil.equals(javaMethodSignature.methodName, "postSite" + schemaName)>
 			@Test
 			public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
 				${schemaName} random${schemaName} = random${schemaName}();
 
 				${schemaName} ${schemaVarName} = test${schemaName}_add${schemaName}(random${schemaName});
 
-				Assert.assertTrue(
-					equals(
-						random${schemaName},
-						JSONFactoryUtil.createJSONObject(JSONFactoryUtil.serialize(${schemaVarName}))));
+				Assert.assertTrue(equals(random${schemaName}, JSONFactoryUtil.createJSONObject(JSONFactoryUtil.serialize(${schemaVarName}))));
 			}
 		</#if>
 	</#list>
@@ -294,7 +284,7 @@ public abstract class Base${schemaName}GraphQLTestCase {
 		};
 	}
 
-	<#if freeMarkerTool.hasJavaMethodSignature(javaMethodSignatures, "postSite"+schemaName)>
+	<#if freeMarkerTool.hasJavaMethodSignature(javaMethodSignatures, "postSite" + schemaName)>
 		protected ${schemaName} test${schemaName}_add${schemaName}() throws Exception {
 			return test${schemaName}_add${schemaName}(random${schemaName}());
 		}
@@ -302,27 +292,28 @@ public abstract class Base${schemaName}GraphQLTestCase {
 		protected ${schemaName} test${schemaName}_add${schemaName}(${schemaName} ${schemaVarName}) throws Exception {
 			StringBuilder sb = new StringBuilder("{");
 
-			for (String field : getAdditionalAssertFieldNames()) {
-			<#list properties?keys as propertyName>
-				<#if randomDataTypes?seq_contains(properties[propertyName])>
-					if (Objects.equals("${propertyName}", field)) {
-						sb.append(field);
-						sb.append(":");
+			for (String additionalAssertFieldName : getAdditionalAssertFieldNames()) {
+				<#list properties?keys as propertyName>
+					<#if randomDataTypes?seq_contains(properties[propertyName])>
+						if (Objects.equals("${propertyName}", additionalAssertFieldName)) {
+							sb.append(additionalAssertFieldName);
+							sb.append(": ");
 
-						Object value = ${schemaVarName}.get${propertyName?cap_first}();
+							Object value = ${schemaVarName}.get${propertyName?cap_first}();
 
-						if (value instanceof String) {
-							sb.append("\"");
-							sb.append(value);
-							sb.append("\"");
+							if (value instanceof String) {
+								sb.append("\"");
+								sb.append(value);
+								sb.append("\"");
+							}
+							else {
+								sb.append(value);
+							}
+
+							sb.append(", ");
 						}
-						else {
-							sb.append(value);
-						}
-						sb.append(",");
-					}
-				</#if>
-			</#list>
+					</#if>
+				</#list>
 			}
 
 			sb.append("}");
