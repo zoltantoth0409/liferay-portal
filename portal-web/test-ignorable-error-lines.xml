@@ -256,6 +256,10 @@
 			<contains>Invocation to listener threw exception</contains>
 			<matches></matches>
 		</ignore-error>
+		<ignore-error description="LRQA-51049, LPP-25407, fixed at head, but failing on hotfix runs using older code">
+			<contains></contains>
+			<matches>The property \"portal-dependency-jars\" is deprecated. Specified JARs may not be included in the class path.</matches>
+		</ignore-error>
 		<ignore-error description="WCM-202">
 			<contains>No score point assigners available</contains>
 			<matches></matches>
