@@ -982,6 +982,18 @@ definition {
 		SelectFrameTop();
 	}
 
+	macro viewConfigureSiteScope {
+		var key_siteName = "${siteName}";
+
+		AssetPublisherPortlet.gotoConfigurationPG();
+
+		Panel.expandPanel(panelHeading = "Source");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "APConfiguration#SOURCE_SCOPE_NAME",
+			value1 = "${siteName}");
+	}
+
 	macro viewConfigureSiteScopeContentSharingPG {
 		AssetPublisherPortlet.gotoConfigurationPG();
 
