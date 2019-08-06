@@ -93,14 +93,14 @@ public interface CTEntryPersistence extends BasePersistence<CTEntry> {
 	 * @param start the lower bound of the range of ct entries
 	 * @param end the upper bound of the range of ct entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ct entries
 	 */
 	public java.util.List<CTEntry> findByModelClassNameId(
 		long modelClassNameId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CTEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first ct entry in the ordered set where modelClassNameId = &#63;.
@@ -209,11 +209,11 @@ public interface CTEntryPersistence extends BasePersistence<CTEntry> {
 	 *
 	 * @param modelClassNameId the model class name ID
 	 * @param modelClassPK the model class pk
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ct entry, or <code>null</code> if a matching ct entry could not be found
 	 */
 	public CTEntry fetchByMCNI_MCPK(
-		long modelClassNameId, long modelClassPK, boolean retrieveFromCache);
+		long modelClassNameId, long modelClassPK, boolean useFinderCache);
 
 	/**
 	 * Removes the ct entry where modelClassNameId = &#63; and modelClassPK = &#63; from the database.
@@ -331,14 +331,14 @@ public interface CTEntryPersistence extends BasePersistence<CTEntry> {
 	 * @param start the lower bound of the range of ct entries
 	 * @param end the upper bound of the range of ct entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ct entries
 	 */
 	public java.util.List<CTEntry> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CTEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the ct entries from the database.

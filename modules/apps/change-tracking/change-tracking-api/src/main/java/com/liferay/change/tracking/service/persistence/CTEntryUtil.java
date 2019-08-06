@@ -186,16 +186,15 @@ public class CTEntryUtil {
 	 * @param start the lower bound of the range of ct entries
 	 * @param end the upper bound of the range of ct entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ct entries
 	 */
 	public static List<CTEntry> findByModelClassNameId(
 		long modelClassNameId, int start, int end,
-		OrderByComparator<CTEntry> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<CTEntry> orderByComparator, boolean useFinderCache) {
 
 		return getPersistence().findByModelClassNameId(
-			modelClassNameId, start, end, orderByComparator, retrieveFromCache);
+			modelClassNameId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -329,14 +328,14 @@ public class CTEntryUtil {
 	 *
 	 * @param modelClassNameId the model class name ID
 	 * @param modelClassPK the model class pk
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ct entry, or <code>null</code> if a matching ct entry could not be found
 	 */
 	public static CTEntry fetchByMCNI_MCPK(
-		long modelClassNameId, long modelClassPK, boolean retrieveFromCache) {
+		long modelClassNameId, long modelClassPK, boolean useFinderCache) {
 
 		return getPersistence().fetchByMCNI_MCPK(
-			modelClassNameId, modelClassPK, retrieveFromCache);
+			modelClassNameId, modelClassPK, useFinderCache);
 	}
 
 	/**
@@ -488,15 +487,15 @@ public class CTEntryUtil {
 	 * @param start the lower bound of the range of ct entries
 	 * @param end the upper bound of the range of ct entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ct entries
 	 */
 	public static List<CTEntry> findAll(
 		int start, int end, OrderByComparator<CTEntry> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
