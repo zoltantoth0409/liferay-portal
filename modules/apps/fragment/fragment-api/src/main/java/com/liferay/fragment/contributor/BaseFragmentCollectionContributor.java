@@ -265,15 +265,12 @@ public abstract class BaseFragmentCollectionContributor
 
 		String path = FileUtil.getPath(url.getPath());
 
-		String css = _read(
-			path, jsonObject.getString("cssPath"), _DEFAULT_CSS_FILE_NAME);
+		String css = _read(path, jsonObject.getString("cssPath"), "index.css");
 		String html = _read(
-			path, jsonObject.getString("htmlPath"), _DEFAULT_HTML_FILE_NAME);
-		String js = _read(
-			path, jsonObject.getString("jsPath"), _DEFAULT_JS_FILE_NAME);
+			path, jsonObject.getString("htmlPath"), "index.html");
+		String js = _read(path, jsonObject.getString("jsPath"), "index.js");
 		String configuration = _read(
-			path, jsonObject.getString("configurationPath"),
-			_DEFAULT_CONFIGURATION_FILE_NAME);
+			path, jsonObject.getString("configurationPath"), "index.json");
 
 		String thumbnailURL = _getImagePreviewURL(
 			jsonObject.getString("thumbnail"));
@@ -390,14 +387,6 @@ public abstract class BaseFragmentCollectionContributor
 				fragmentEntryLink);
 		}
 	}
-
-	private static final String _DEFAULT_CONFIGURATION_FILE_NAME = "index.json";
-
-	private static final String _DEFAULT_CSS_FILE_NAME = "index.css";
-
-	private static final String _DEFAULT_HTML_FILE_NAME = "index.html";
-
-	private static final String _DEFAULT_JS_FILE_NAME = "index.js";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseFragmentCollectionContributor.class);
