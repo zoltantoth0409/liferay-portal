@@ -36,6 +36,12 @@ public class JavaModuleTestCheck extends BaseJavaTermCheck {
 
 		String content = javaTerm.getContent();
 
+		if (!fileName.contains("/test/") &&
+			!fileName.contains("/testIntegration/")) {
+
+			return content;
+		}
+
 		JavaClass javaClass = (JavaClass)javaTerm;
 
 		if ((javaClass.getParentJavaClass() != null) ||
