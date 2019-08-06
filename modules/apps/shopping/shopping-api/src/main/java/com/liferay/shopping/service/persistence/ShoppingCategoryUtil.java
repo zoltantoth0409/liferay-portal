@@ -186,16 +186,16 @@ public class ShoppingCategoryUtil {
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
 	public static List<ShoppingCategory> findByGroupId(
 		long groupId, int start, int end,
 		OrderByComparator<ShoppingCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByGroupId(
-			groupId, start, end, orderByComparator, retrieveFromCache);
+			groupId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -436,17 +436,17 @@ public class ShoppingCategoryUtil {
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
 	public static List<ShoppingCategory> findByG_P(
 		long groupId, long parentCategoryId, int start, int end,
 		OrderByComparator<ShoppingCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_P(
 			groupId, parentCategoryId, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -672,13 +672,13 @@ public class ShoppingCategoryUtil {
 	 *
 	 * @param groupId the group ID
 	 * @param name the name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
 	public static ShoppingCategory fetchByG_N(
-		long groupId, String name, boolean retrieveFromCache) {
+		long groupId, String name, boolean useFinderCache) {
 
-		return getPersistence().fetchByG_N(groupId, name, retrieveFromCache);
+		return getPersistence().fetchByG_N(groupId, name, useFinderCache);
 	}
 
 	/**
@@ -828,16 +828,16 @@ public class ShoppingCategoryUtil {
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping categories
 	 */
 	public static List<ShoppingCategory> findAll(
 		int start, int end,
 		OrderByComparator<ShoppingCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

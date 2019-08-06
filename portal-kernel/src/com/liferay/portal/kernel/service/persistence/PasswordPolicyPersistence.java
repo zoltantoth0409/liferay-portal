@@ -100,14 +100,14 @@ public interface PasswordPolicyPersistence
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching password policies
 	 */
 	public java.util.List<PasswordPolicy> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PasswordPolicy>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first password policy in the ordered set where uuid = &#63;.
@@ -312,14 +312,14 @@ public interface PasswordPolicyPersistence
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching password policies
 	 */
 	public java.util.List<PasswordPolicy> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PasswordPolicy>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first password policy in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -532,14 +532,14 @@ public interface PasswordPolicyPersistence
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching password policies
 	 */
 	public java.util.List<PasswordPolicy> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PasswordPolicy>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first password policy in the ordered set where companyId = &#63;.
@@ -712,11 +712,11 @@ public interface PasswordPolicyPersistence
 	 *
 	 * @param companyId the company ID
 	 * @param defaultPolicy the default policy
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching password policy, or <code>null</code> if a matching password policy could not be found
 	 */
 	public PasswordPolicy fetchByC_DP(
-		long companyId, boolean defaultPolicy, boolean retrieveFromCache);
+		long companyId, boolean defaultPolicy, boolean useFinderCache);
 
 	/**
 	 * Removes the password policy where companyId = &#63; and defaultPolicy = &#63; from the database.
@@ -762,11 +762,11 @@ public interface PasswordPolicyPersistence
 	 *
 	 * @param companyId the company ID
 	 * @param name the name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching password policy, or <code>null</code> if a matching password policy could not be found
 	 */
 	public PasswordPolicy fetchByC_N(
-		long companyId, String name, boolean retrieveFromCache);
+		long companyId, String name, boolean useFinderCache);
 
 	/**
 	 * Removes the password policy where companyId = &#63; and name = &#63; from the database.
@@ -886,14 +886,14 @@ public interface PasswordPolicyPersistence
 	 * @param start the lower bound of the range of password policies
 	 * @param end the upper bound of the range of password policies (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of password policies
 	 */
 	public java.util.List<PasswordPolicy> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<PasswordPolicy>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the password policies from the database.

@@ -100,14 +100,14 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 	 * @param start the lower bound of the range of calendars
 	 * @param end the upper bound of the range of calendars (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendars
 	 */
 	public java.util.List<Calendar> findByResourceBlockId(
 		long resourceBlockId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Calendar>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar in the ordered set where resourceBlockId = &#63;.
@@ -242,14 +242,14 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 	 * @param start the lower bound of the range of calendars
 	 * @param end the upper bound of the range of calendars (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendars
 	 */
 	public java.util.List<Calendar> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Calendar>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar in the ordered set where uuid = &#63;.
@@ -358,11 +358,11 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching calendar, or <code>null</code> if a matching calendar could not be found
 	 */
 	public Calendar fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the calendar where uuid = &#63; and groupId = &#63; from the database.
@@ -439,14 +439,14 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 	 * @param start the lower bound of the range of calendars
 	 * @param end the upper bound of the range of calendars (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendars
 	 */
 	public java.util.List<Calendar> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Calendar>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -594,14 +594,14 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 	 * @param start the lower bound of the range of calendars
 	 * @param end the upper bound of the range of calendars (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendars
 	 */
 	public java.util.List<Calendar> findByG_C(
 		long groupId, long calendarResourceId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Calendar>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63;.
@@ -825,7 +825,7 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 	 * @param start the lower bound of the range of calendars
 	 * @param end the upper bound of the range of calendars (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendars
 	 */
 	public java.util.List<Calendar> findByG_C_D(
@@ -833,7 +833,7 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Calendar>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar in the ordered set where groupId = &#63; and calendarResourceId = &#63; and defaultCalendar = &#63;.
@@ -1111,14 +1111,14 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 	 * @param start the lower bound of the range of calendars
 	 * @param end the upper bound of the range of calendars (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of calendars
 	 */
 	public java.util.List<Calendar> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Calendar>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the calendars from the database.

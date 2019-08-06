@@ -102,14 +102,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByResourceBlockId(
 		long resourceBlockId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where resourceBlockId = &#63;.
@@ -245,14 +245,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where uuid = &#63;.
@@ -361,11 +361,11 @@ public interface BookmarksEntryPersistence
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching bookmarks entry, or <code>null</code> if a matching bookmarks entry could not be found
 	 */
 	public BookmarksEntry fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the bookmarks entry where uuid = &#63; and groupId = &#63; from the database.
@@ -443,14 +443,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -593,14 +593,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where companyId = &#63;.
@@ -741,14 +741,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_F(
 		long groupId, long folderId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where groupId = &#63; and folderId = &#63;.
@@ -989,14 +989,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_F(
 		long groupId, long[] folderIds, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the bookmarks entries where groupId = &#63; and folderId = &#63; from the database.
@@ -1098,14 +1098,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_S(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where groupId = &#63; and status = &#63;.
@@ -1323,14 +1323,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_NotS(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where groupId = &#63; and status &ne; &#63;.
@@ -1548,14 +1548,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByC_NotS(
 		long companyId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where companyId = &#63; and status &ne; &#63;.
@@ -1707,14 +1707,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_U_S(
 		long groupId, long userId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -1948,14 +1948,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_U_NotS(
 		long groupId, long userId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where groupId = &#63; and userId = &#63; and status &ne; &#63;.
@@ -2189,14 +2189,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_F_S(
 		long groupId, long folderId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where groupId = &#63; and folderId = &#63; and status = &#63;.
@@ -2453,14 +2453,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_F_S(
 		long groupId, long[] folderIds, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the bookmarks entries where groupId = &#63; and folderId = &#63; and status = &#63; from the database.
@@ -2572,14 +2572,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_F_NotS(
 		long groupId, long folderId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where groupId = &#63; and folderId = &#63; and status &ne; &#63;.
@@ -2836,14 +2836,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_F_NotS(
 		long groupId, long[] folderIds, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the bookmarks entries where groupId = &#63; and folderId = &#63; and status &ne; &#63; from the database.
@@ -2962,7 +2962,7 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_U_F_S(
@@ -2970,7 +2970,7 @@ public interface BookmarksEntryPersistence
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first bookmarks entry in the ordered set where groupId = &#63; and userId = &#63; and folderId = &#63; and status = &#63;.
@@ -3249,7 +3249,7 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findByG_U_F_S(
@@ -3257,7 +3257,7 @@ public interface BookmarksEntryPersistence
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the bookmarks entries where groupId = &#63; and userId = &#63; and folderId = &#63; and status = &#63; from the database.
@@ -3416,14 +3416,14 @@ public interface BookmarksEntryPersistence
 	 * @param start the lower bound of the range of bookmarks entries
 	 * @param end the upper bound of the range of bookmarks entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of bookmarks entries
 	 */
 	public java.util.List<BookmarksEntry> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BookmarksEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the bookmarks entries from the database.

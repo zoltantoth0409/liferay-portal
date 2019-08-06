@@ -130,18 +130,22 @@ public class CountryPersistenceImpl
 	 * Returns the country where name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param name the name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching country, or <code>null</code> if a matching country could not be found
 	 */
 	@Override
-	public Country fetchByName(String name, boolean retrieveFromCache) {
+	public Country fetchByName(String name, boolean useFinderCache) {
 		name = Objects.toString(name, "");
 
-		Object[] finderArgs = new Object[] {name};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {name};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByName, finderArgs, this);
 		}
@@ -188,8 +192,10 @@ public class CountryPersistenceImpl
 				List<Country> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByName, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByName, finderArgs, list);
+					}
 				}
 				else {
 					Country country = list.get(0);
@@ -200,8 +206,10 @@ public class CountryPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByName, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByName, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -350,18 +358,22 @@ public class CountryPersistenceImpl
 	 * Returns the country where a2 = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param a2 the a2
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching country, or <code>null</code> if a matching country could not be found
 	 */
 	@Override
-	public Country fetchByA2(String a2, boolean retrieveFromCache) {
+	public Country fetchByA2(String a2, boolean useFinderCache) {
 		a2 = Objects.toString(a2, "");
 
-		Object[] finderArgs = new Object[] {a2};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {a2};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByA2, finderArgs, this);
 		}
@@ -408,8 +420,10 @@ public class CountryPersistenceImpl
 				List<Country> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByA2, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByA2, finderArgs, list);
+					}
 				}
 				else {
 					Country country = list.get(0);
@@ -420,7 +434,10 @@ public class CountryPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByA2, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByA2, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -569,18 +586,22 @@ public class CountryPersistenceImpl
 	 * Returns the country where a3 = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param a3 the a3
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching country, or <code>null</code> if a matching country could not be found
 	 */
 	@Override
-	public Country fetchByA3(String a3, boolean retrieveFromCache) {
+	public Country fetchByA3(String a3, boolean useFinderCache) {
 		a3 = Objects.toString(a3, "");
 
-		Object[] finderArgs = new Object[] {a3};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {a3};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByA3, finderArgs, this);
 		}
@@ -627,8 +648,10 @@ public class CountryPersistenceImpl
 				List<Country> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByA3, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByA3, finderArgs, list);
+					}
 				}
 				else {
 					Country country = list.get(0);
@@ -639,7 +662,10 @@ public class CountryPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByA3, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByA3, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -803,14 +829,13 @@ public class CountryPersistenceImpl
 	 * @param start the lower bound of the range of countries
 	 * @param end the upper bound of the range of countries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching countries
 	 */
 	@Override
 	public List<Country> findByActive(
 		boolean active, int start, int end,
-		OrderByComparator<Country> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<Country> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -820,17 +845,20 @@ public class CountryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByActive;
-			finderArgs = new Object[] {active};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByActive;
+				finderArgs = new Object[] {active};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByActive;
 			finderArgs = new Object[] {active, start, end, orderByComparator};
 		}
 
 		List<Country> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<Country>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -896,10 +924,14 @@ public class CountryPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1876,13 +1908,13 @@ public class CountryPersistenceImpl
 	 * @param start the lower bound of the range of countries
 	 * @param end the upper bound of the range of countries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of countries
 	 */
 	@Override
 	public List<Country> findAll(
 		int start, int end, OrderByComparator<Country> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1892,17 +1924,20 @@ public class CountryPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<Country> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<Country>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -1952,10 +1987,14 @@ public class CountryPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

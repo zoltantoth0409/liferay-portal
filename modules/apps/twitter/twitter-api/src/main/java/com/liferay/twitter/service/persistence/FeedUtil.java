@@ -152,14 +152,14 @@ public class FeedUtil {
 	 *
 	 * @param userId the user ID
 	 * @param twitterScreenName the twitter screen name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 */
 	public static Feed fetchByU_TSN(
-		long userId, String twitterScreenName, boolean retrieveFromCache) {
+		long userId, String twitterScreenName, boolean useFinderCache) {
 
 		return getPersistence().fetchByU_TSN(
-			userId, twitterScreenName, retrieveFromCache);
+			userId, twitterScreenName, useFinderCache);
 	}
 
 	/**
@@ -306,15 +306,15 @@ public class FeedUtil {
 	 * @param start the lower bound of the range of feeds
 	 * @param end the upper bound of the range of feeds (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of feeds
 	 */
 	public static List<Feed> findAll(
 		int start, int end, OrderByComparator<Feed> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

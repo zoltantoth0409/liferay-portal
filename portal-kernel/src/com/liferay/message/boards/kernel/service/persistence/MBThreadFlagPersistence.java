@@ -100,14 +100,14 @@ public interface MBThreadFlagPersistence extends BasePersistence<MBThreadFlag> {
 	 * @param start the lower bound of the range of message boards thread flags
 	 * @param end the upper bound of the range of message boards thread flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards thread flags
 	 */
 	public java.util.List<MBThreadFlag> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBThreadFlag>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first message boards thread flag in the ordered set where uuid = &#63;.
@@ -216,11 +216,11 @@ public interface MBThreadFlagPersistence extends BasePersistence<MBThreadFlag> {
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards thread flag, or <code>null</code> if a matching message boards thread flag could not be found
 	 */
 	public MBThreadFlag fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the message boards thread flag where uuid = &#63; and groupId = &#63; from the database.
@@ -298,14 +298,14 @@ public interface MBThreadFlagPersistence extends BasePersistence<MBThreadFlag> {
 	 * @param start the lower bound of the range of message boards thread flags
 	 * @param end the upper bound of the range of message boards thread flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards thread flags
 	 */
 	public java.util.List<MBThreadFlag> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBThreadFlag>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first message boards thread flag in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -448,14 +448,14 @@ public interface MBThreadFlagPersistence extends BasePersistence<MBThreadFlag> {
 	 * @param start the lower bound of the range of message boards thread flags
 	 * @param end the upper bound of the range of message boards thread flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards thread flags
 	 */
 	public java.util.List<MBThreadFlag> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBThreadFlag>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first message boards thread flag in the ordered set where userId = &#63;.
@@ -591,14 +591,14 @@ public interface MBThreadFlagPersistence extends BasePersistence<MBThreadFlag> {
 	 * @param start the lower bound of the range of message boards thread flags
 	 * @param end the upper bound of the range of message boards thread flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards thread flags
 	 */
 	public java.util.List<MBThreadFlag> findByThreadId(
 		long threadId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBThreadFlag>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first message boards thread flag in the ordered set where threadId = &#63;.
@@ -707,11 +707,11 @@ public interface MBThreadFlagPersistence extends BasePersistence<MBThreadFlag> {
 	 *
 	 * @param userId the user ID
 	 * @param threadId the thread ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards thread flag, or <code>null</code> if a matching message boards thread flag could not be found
 	 */
 	public MBThreadFlag fetchByU_T(
-		long userId, long threadId, boolean retrieveFromCache);
+		long userId, long threadId, boolean useFinderCache);
 
 	/**
 	 * Removes the message boards thread flag where userId = &#63; and threadId = &#63; from the database.
@@ -831,14 +831,14 @@ public interface MBThreadFlagPersistence extends BasePersistence<MBThreadFlag> {
 	 * @param start the lower bound of the range of message boards thread flags
 	 * @param end the upper bound of the range of message boards thread flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message boards thread flags
 	 */
 	public java.util.List<MBThreadFlag> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBThreadFlag>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the message boards thread flags from the database.

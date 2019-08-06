@@ -101,14 +101,14 @@ public interface JournalFolderPersistence
 	 * @param start the lower bound of the range of journal folders
 	 * @param end the upper bound of the range of journal folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal folders
 	 */
 	public java.util.List<JournalFolder> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalFolder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal folder in the ordered set where uuid = &#63;.
@@ -217,11 +217,11 @@ public interface JournalFolderPersistence
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal folder, or <code>null</code> if a matching journal folder could not be found
 	 */
 	public JournalFolder fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the journal folder where uuid = &#63; and groupId = &#63; from the database.
@@ -299,14 +299,14 @@ public interface JournalFolderPersistence
 	 * @param start the lower bound of the range of journal folders
 	 * @param end the upper bound of the range of journal folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal folders
 	 */
 	public java.util.List<JournalFolder> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalFolder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal folder in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -449,14 +449,14 @@ public interface JournalFolderPersistence
 	 * @param start the lower bound of the range of journal folders
 	 * @param end the upper bound of the range of journal folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal folders
 	 */
 	public java.util.List<JournalFolder> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalFolder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal folder in the ordered set where groupId = &#63;.
@@ -656,14 +656,14 @@ public interface JournalFolderPersistence
 	 * @param start the lower bound of the range of journal folders
 	 * @param end the upper bound of the range of journal folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal folders
 	 */
 	public java.util.List<JournalFolder> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalFolder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal folder in the ordered set where companyId = &#63;.
@@ -804,14 +804,14 @@ public interface JournalFolderPersistence
 	 * @param start the lower bound of the range of journal folders
 	 * @param end the upper bound of the range of journal folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal folders
 	 */
 	public java.util.List<JournalFolder> findByG_P(
 		long groupId, long parentFolderId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalFolder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal folder in the ordered set where groupId = &#63; and parentFolderId = &#63;.
@@ -997,11 +997,11 @@ public interface JournalFolderPersistence
 	 *
 	 * @param groupId the group ID
 	 * @param name the name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal folder, or <code>null</code> if a matching journal folder could not be found
 	 */
 	public JournalFolder fetchByG_N(
-		long groupId, String name, boolean retrieveFromCache);
+		long groupId, String name, boolean useFinderCache);
 
 	/**
 	 * Removes the journal folder where groupId = &#63; and name = &#63; from the database.
@@ -1079,14 +1079,14 @@ public interface JournalFolderPersistence
 	 * @param start the lower bound of the range of journal folders
 	 * @param end the upper bound of the range of journal folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal folders
 	 */
 	public java.util.List<JournalFolder> findByC_NotS(
 		long companyId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalFolder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal folder in the ordered set where companyId = &#63; and status &ne; &#63;.
@@ -1207,12 +1207,11 @@ public interface JournalFolderPersistence
 	 * @param groupId the group ID
 	 * @param parentFolderId the parent folder ID
 	 * @param name the name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal folder, or <code>null</code> if a matching journal folder could not be found
 	 */
 	public JournalFolder fetchByG_P_N(
-		long groupId, long parentFolderId, String name,
-		boolean retrieveFromCache);
+		long groupId, long parentFolderId, String name, boolean useFinderCache);
 
 	/**
 	 * Removes the journal folder where groupId = &#63; and parentFolderId = &#63; and name = &#63; from the database.
@@ -1297,14 +1296,14 @@ public interface JournalFolderPersistence
 	 * @param start the lower bound of the range of journal folders
 	 * @param end the upper bound of the range of journal folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal folders
 	 */
 	public java.util.List<JournalFolder> findByG_P_S(
 		long groupId, long parentFolderId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalFolder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal folder in the ordered set where groupId = &#63; and parentFolderId = &#63; and status = &#63;.
@@ -1539,14 +1538,14 @@ public interface JournalFolderPersistence
 	 * @param start the lower bound of the range of journal folders
 	 * @param end the upper bound of the range of journal folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal folders
 	 */
 	public java.util.List<JournalFolder> findByG_P_NotS(
 		long groupId, long parentFolderId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalFolder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal folder in the ordered set where groupId = &#63; and parentFolderId = &#63; and status &ne; &#63;.
@@ -1787,7 +1786,7 @@ public interface JournalFolderPersistence
 	 * @param start the lower bound of the range of journal folders
 	 * @param end the upper bound of the range of journal folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal folders
 	 */
 	public java.util.List<JournalFolder> findByF_C_P_NotS(
@@ -1795,7 +1794,7 @@ public interface JournalFolderPersistence
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalFolder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal folder in the ordered set where folderId &gt; &#63; and companyId = &#63; and parentFolderId = &#63; and status &ne; &#63;.
@@ -1982,14 +1981,14 @@ public interface JournalFolderPersistence
 	 * @param start the lower bound of the range of journal folders
 	 * @param end the upper bound of the range of journal folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal folders
 	 */
 	public java.util.List<JournalFolder> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalFolder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the journal folders from the database.

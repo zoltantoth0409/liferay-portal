@@ -100,14 +100,14 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	public java.util.List<WallEntry> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wall entry in the ordered set where groupId = &#63;.
@@ -243,14 +243,14 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	public java.util.List<WallEntry> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wall entry in the ordered set where userId = &#63;.
@@ -390,14 +390,14 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	public java.util.List<WallEntry> findByG_U(
 		long groupId, long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wall entry in the ordered set where groupId = &#63; and userId = &#63;.
@@ -586,14 +586,14 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wall entries
 	 */
 	public java.util.List<WallEntry> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WallEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the wall entries from the database.

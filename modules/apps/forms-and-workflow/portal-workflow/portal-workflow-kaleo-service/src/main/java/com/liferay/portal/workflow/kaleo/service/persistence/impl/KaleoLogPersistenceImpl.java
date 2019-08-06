@@ -151,14 +151,13 @@ public class KaleoLogPersistenceImpl
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	@Override
 	public List<KaleoLog> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<KaleoLog> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<KaleoLog> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -168,10 +167,13 @@ public class KaleoLogPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] {companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByCompanyId;
+				finderArgs = new Object[] {companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
@@ -180,7 +182,7 @@ public class KaleoLogPersistenceImpl
 
 		List<KaleoLog> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KaleoLog>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -246,10 +248,14 @@ public class KaleoLogPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -659,14 +665,13 @@ public class KaleoLogPersistenceImpl
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	@Override
 	public List<KaleoLog> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		OrderByComparator<KaleoLog> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<KaleoLog> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -676,10 +681,14 @@ public class KaleoLogPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByKaleoDefinitionId;
-			finderArgs = new Object[] {kaleoDefinitionId};
+
+			if (useFinderCache) {
+				finderPath =
+					_finderPathWithoutPaginationFindByKaleoDefinitionId;
+				finderArgs = new Object[] {kaleoDefinitionId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByKaleoDefinitionId;
 			finderArgs = new Object[] {
 				kaleoDefinitionId, start, end, orderByComparator
@@ -688,7 +697,7 @@ public class KaleoLogPersistenceImpl
 
 		List<KaleoLog> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KaleoLog>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -756,10 +765,14 @@ public class KaleoLogPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1174,14 +1187,13 @@ public class KaleoLogPersistenceImpl
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	@Override
 	public List<KaleoLog> findByKaleoInstanceId(
 		long kaleoInstanceId, int start, int end,
-		OrderByComparator<KaleoLog> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<KaleoLog> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1191,10 +1203,13 @@ public class KaleoLogPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByKaleoInstanceId;
-			finderArgs = new Object[] {kaleoInstanceId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByKaleoInstanceId;
+				finderArgs = new Object[] {kaleoInstanceId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByKaleoInstanceId;
 			finderArgs = new Object[] {
 				kaleoInstanceId, start, end, orderByComparator
@@ -1203,7 +1218,7 @@ public class KaleoLogPersistenceImpl
 
 		List<KaleoLog> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KaleoLog>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1269,10 +1284,14 @@ public class KaleoLogPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1690,14 +1709,13 @@ public class KaleoLogPersistenceImpl
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	@Override
 	public List<KaleoLog> findByKaleoTaskInstanceTokenId(
 		long kaleoTaskInstanceTokenId, int start, int end,
-		OrderByComparator<KaleoLog> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<KaleoLog> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1707,11 +1725,14 @@ public class KaleoLogPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath =
-				_finderPathWithoutPaginationFindByKaleoTaskInstanceTokenId;
-			finderArgs = new Object[] {kaleoTaskInstanceTokenId};
+
+			if (useFinderCache) {
+				finderPath =
+					_finderPathWithoutPaginationFindByKaleoTaskInstanceTokenId;
+				finderArgs = new Object[] {kaleoTaskInstanceTokenId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath =
 				_finderPathWithPaginationFindByKaleoTaskInstanceTokenId;
 			finderArgs = new Object[] {
@@ -1721,7 +1742,7 @@ public class KaleoLogPersistenceImpl
 
 		List<KaleoLog> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KaleoLog>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1790,10 +1811,14 @@ public class KaleoLogPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2221,14 +2246,13 @@ public class KaleoLogPersistenceImpl
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	@Override
 	public List<KaleoLog> findByKITI_T(
 		long kaleoInstanceTokenId, String type, int start, int end,
-		OrderByComparator<KaleoLog> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<KaleoLog> orderByComparator, boolean useFinderCache) {
 
 		type = Objects.toString(type, "");
 
@@ -2240,10 +2264,13 @@ public class KaleoLogPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByKITI_T;
-			finderArgs = new Object[] {kaleoInstanceTokenId, type};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByKITI_T;
+				finderArgs = new Object[] {kaleoInstanceTokenId, type};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByKITI_T;
 			finderArgs = new Object[] {
 				kaleoInstanceTokenId, type, start, end, orderByComparator
@@ -2252,7 +2279,7 @@ public class KaleoLogPersistenceImpl
 
 		List<KaleoLog> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KaleoLog>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -2336,10 +2363,14 @@ public class KaleoLogPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2832,15 +2863,14 @@ public class KaleoLogPersistenceImpl
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo logs
 	 */
 	@Override
 	public List<KaleoLog> findByKCN_KCPK_KITI_T(
 		String kaleoClassName, long kaleoClassPK, long kaleoInstanceTokenId,
 		String type, int start, int end,
-		OrderByComparator<KaleoLog> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<KaleoLog> orderByComparator, boolean useFinderCache) {
 
 		kaleoClassName = Objects.toString(kaleoClassName, "");
 		type = Objects.toString(type, "");
@@ -2853,12 +2883,15 @@ public class KaleoLogPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByKCN_KCPK_KITI_T;
-			finderArgs = new Object[] {
-				kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type
-			};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByKCN_KCPK_KITI_T;
+				finderArgs = new Object[] {
+					kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByKCN_KCPK_KITI_T;
 			finderArgs = new Object[] {
 				kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type, start,
@@ -2868,7 +2901,7 @@ public class KaleoLogPersistenceImpl
 
 		List<KaleoLog> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KaleoLog>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -2973,10 +3006,14 @@ public class KaleoLogPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4199,13 +4236,13 @@ public class KaleoLogPersistenceImpl
 	 * @param start the lower bound of the range of kaleo logs
 	 * @param end the upper bound of the range of kaleo logs (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo logs
 	 */
 	@Override
 	public List<KaleoLog> findAll(
 		int start, int end, OrderByComparator<KaleoLog> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4215,17 +4252,20 @@ public class KaleoLogPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<KaleoLog> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KaleoLog>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -4275,10 +4315,14 @@ public class KaleoLogPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

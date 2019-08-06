@@ -101,14 +101,14 @@ public interface ShoppingCouponPersistence
 	 * @param start the lower bound of the range of shopping coupons
 	 * @param end the upper bound of the range of shopping coupons (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping coupons
 	 */
 	public java.util.List<ShoppingCoupon> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCoupon>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping coupon in the ordered set where groupId = &#63;.
@@ -213,10 +213,10 @@ public interface ShoppingCouponPersistence
 	 * Returns the shopping coupon where code = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param code the code
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping coupon, or <code>null</code> if a matching shopping coupon could not be found
 	 */
-	public ShoppingCoupon fetchByCode(String code, boolean retrieveFromCache);
+	public ShoppingCoupon fetchByCode(String code, boolean useFinderCache);
 
 	/**
 	 * Removes the shopping coupon where code = &#63; from the database.
@@ -333,14 +333,14 @@ public interface ShoppingCouponPersistence
 	 * @param start the lower bound of the range of shopping coupons
 	 * @param end the upper bound of the range of shopping coupons (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping coupons
 	 */
 	public java.util.List<ShoppingCoupon> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCoupon>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the shopping coupons from the database.

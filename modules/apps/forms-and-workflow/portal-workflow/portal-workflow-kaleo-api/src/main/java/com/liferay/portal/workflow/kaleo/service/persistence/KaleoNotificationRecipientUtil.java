@@ -194,16 +194,16 @@ public class KaleoNotificationRecipientUtil {
 	 * @param start the lower bound of the range of kaleo notification recipients
 	 * @param end the upper bound of the range of kaleo notification recipients (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notification recipients
 	 */
 	public static List<KaleoNotificationRecipient> findByCompanyId(
 		long companyId, int start, int end,
 		OrderByComparator<KaleoNotificationRecipient> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByCompanyId(
-			companyId, start, end, orderByComparator, retrieveFromCache);
+			companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -373,17 +373,16 @@ public class KaleoNotificationRecipientUtil {
 	 * @param start the lower bound of the range of kaleo notification recipients
 	 * @param end the upper bound of the range of kaleo notification recipients (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notification recipients
 	 */
 	public static List<KaleoNotificationRecipient> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator<KaleoNotificationRecipient> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByKaleoDefinitionId(
-			kaleoDefinitionId, start, end, orderByComparator,
-			retrieveFromCache);
+			kaleoDefinitionId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -554,17 +553,16 @@ public class KaleoNotificationRecipientUtil {
 	 * @param start the lower bound of the range of kaleo notification recipients
 	 * @param end the upper bound of the range of kaleo notification recipients (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notification recipients
 	 */
 	public static List<KaleoNotificationRecipient> findByKaleoNotificationId(
 		long kaleoNotificationId, int start, int end,
 		OrderByComparator<KaleoNotificationRecipient> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByKaleoNotificationId(
-			kaleoNotificationId, start, end, orderByComparator,
-			retrieveFromCache);
+			kaleoNotificationId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -808,16 +806,16 @@ public class KaleoNotificationRecipientUtil {
 	 * @param start the lower bound of the range of kaleo notification recipients
 	 * @param end the upper bound of the range of kaleo notification recipients (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo notification recipients
 	 */
 	public static List<KaleoNotificationRecipient> findAll(
 		int start, int end,
 		OrderByComparator<KaleoNotificationRecipient> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

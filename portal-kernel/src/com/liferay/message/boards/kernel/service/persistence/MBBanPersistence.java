@@ -99,14 +99,14 @@ public interface MBBanPersistence extends BasePersistence<MBBan> {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards bans
 	 */
 	public java.util.List<MBBan> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBBan>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first message boards ban in the ordered set where uuid = &#63;.
@@ -215,11 +215,11 @@ public interface MBBanPersistence extends BasePersistence<MBBan> {
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards ban, or <code>null</code> if a matching message boards ban could not be found
 	 */
 	public MBBan fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the message boards ban where uuid = &#63; and groupId = &#63; from the database.
@@ -296,14 +296,14 @@ public interface MBBanPersistence extends BasePersistence<MBBan> {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards bans
 	 */
 	public java.util.List<MBBan> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBBan>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first message boards ban in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -446,14 +446,14 @@ public interface MBBanPersistence extends BasePersistence<MBBan> {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards bans
 	 */
 	public java.util.List<MBBan> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBBan>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first message boards ban in the ordered set where groupId = &#63;.
@@ -588,14 +588,14 @@ public interface MBBanPersistence extends BasePersistence<MBBan> {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards bans
 	 */
 	public java.util.List<MBBan> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBBan>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first message boards ban in the ordered set where userId = &#63;.
@@ -731,14 +731,14 @@ public interface MBBanPersistence extends BasePersistence<MBBan> {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message boards bans
 	 */
 	public java.util.List<MBBan> findByBanUserId(
 		long banUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBBan>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first message boards ban in the ordered set where banUserId = &#63;.
@@ -847,11 +847,11 @@ public interface MBBanPersistence extends BasePersistence<MBBan> {
 	 *
 	 * @param groupId the group ID
 	 * @param banUserId the ban user ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching message boards ban, or <code>null</code> if a matching message boards ban could not be found
 	 */
 	public MBBan fetchByG_B(
-		long groupId, long banUserId, boolean retrieveFromCache);
+		long groupId, long banUserId, boolean useFinderCache);
 
 	/**
 	 * Removes the message boards ban where groupId = &#63; and banUserId = &#63; from the database.
@@ -969,14 +969,14 @@ public interface MBBanPersistence extends BasePersistence<MBBan> {
 	 * @param start the lower bound of the range of message boards bans
 	 * @param end the upper bound of the range of message boards bans (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of message boards bans
 	 */
 	public java.util.List<MBBan> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBBan>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the message boards bans from the database.

@@ -100,14 +100,14 @@ public interface MDRRuleGroupPersistence extends BasePersistence<MDRRuleGroup> {
 	 * @param start the lower bound of the range of mdr rule groups
 	 * @param end the upper bound of the range of mdr rule groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule groups
 	 */
 	public java.util.List<MDRRuleGroup> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroup>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first mdr rule group in the ordered set where uuid = &#63;.
@@ -216,11 +216,11 @@ public interface MDRRuleGroupPersistence extends BasePersistence<MDRRuleGroup> {
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching mdr rule group, or <code>null</code> if a matching mdr rule group could not be found
 	 */
 	public MDRRuleGroup fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the mdr rule group where uuid = &#63; and groupId = &#63; from the database.
@@ -298,14 +298,14 @@ public interface MDRRuleGroupPersistence extends BasePersistence<MDRRuleGroup> {
 	 * @param start the lower bound of the range of mdr rule groups
 	 * @param end the upper bound of the range of mdr rule groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule groups
 	 */
 	public java.util.List<MDRRuleGroup> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroup>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first mdr rule group in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -448,14 +448,14 @@ public interface MDRRuleGroupPersistence extends BasePersistence<MDRRuleGroup> {
 	 * @param start the lower bound of the range of mdr rule groups
 	 * @param end the upper bound of the range of mdr rule groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule groups
 	 */
 	public java.util.List<MDRRuleGroup> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroup>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first mdr rule group in the ordered set where groupId = &#63;.
@@ -677,14 +677,14 @@ public interface MDRRuleGroupPersistence extends BasePersistence<MDRRuleGroup> {
 	 * @param start the lower bound of the range of mdr rule groups
 	 * @param end the upper bound of the range of mdr rule groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching mdr rule groups
 	 */
 	public java.util.List<MDRRuleGroup> findByGroupId(
 		long[] groupIds, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroup>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the mdr rule groups where groupId = &#63; from the database.
@@ -824,14 +824,14 @@ public interface MDRRuleGroupPersistence extends BasePersistence<MDRRuleGroup> {
 	 * @param start the lower bound of the range of mdr rule groups
 	 * @param end the upper bound of the range of mdr rule groups (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of mdr rule groups
 	 */
 	public java.util.List<MDRRuleGroup> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MDRRuleGroup>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the mdr rule groups from the database.

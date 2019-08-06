@@ -187,16 +187,16 @@ public class KaleoInstanceUtil {
 	 * @param start the lower bound of the range of kaleo instances
 	 * @param end the upper bound of the range of kaleo instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instances
 	 */
 	public static List<KaleoInstance> findByCompanyId(
 		long companyId, int start, int end,
 		OrderByComparator<KaleoInstance> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByCompanyId(
-			companyId, start, end, orderByComparator, retrieveFromCache);
+			companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -362,17 +362,16 @@ public class KaleoInstanceUtil {
 	 * @param start the lower bound of the range of kaleo instances
 	 * @param end the upper bound of the range of kaleo instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instances
 	 */
 	public static List<KaleoInstance> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator<KaleoInstance> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByKaleoDefinitionId(
-			kaleoDefinitionId, start, end, orderByComparator,
-			retrieveFromCache);
+			kaleoDefinitionId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -543,17 +542,16 @@ public class KaleoInstanceUtil {
 	 * @param start the lower bound of the range of kaleo instances
 	 * @param end the upper bound of the range of kaleo instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instances
 	 */
 	public static List<KaleoInstance> findByC_U(
 		long companyId, long userId, int start, int end,
 		OrderByComparator<KaleoInstance> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_U(
-			companyId, userId, start, end, orderByComparator,
-			retrieveFromCache);
+			companyId, userId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -734,17 +732,17 @@ public class KaleoInstanceUtil {
 	 * @param start the lower bound of the range of kaleo instances
 	 * @param end the upper bound of the range of kaleo instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instances
 	 */
 	public static List<KaleoInstance> findByKDI_C(
 		long kaleoDefinitionId, boolean completed, int start, int end,
 		OrderByComparator<KaleoInstance> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByKDI_C(
 			kaleoDefinitionId, completed, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -926,17 +924,16 @@ public class KaleoInstanceUtil {
 	 * @param start the lower bound of the range of kaleo instances
 	 * @param end the upper bound of the range of kaleo instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instances
 	 */
 	public static List<KaleoInstance> findByCN_CPK(
 		String className, long classPK, int start, int end,
 		OrderByComparator<KaleoInstance> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByCN_CPK(
-			className, classPK, start, end, orderByComparator,
-			retrieveFromCache);
+			className, classPK, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1132,18 +1129,18 @@ public class KaleoInstanceUtil {
 	 * @param start the lower bound of the range of kaleo instances
 	 * @param end the upper bound of the range of kaleo instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo instances
 	 */
 	public static List<KaleoInstance> findByC_KDN_KDV_CD(
 		long companyId, String kaleoDefinitionName, int kaleoDefinitionVersion,
 		Date completionDate, int start, int end,
 		OrderByComparator<KaleoInstance> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByC_KDN_KDV_CD(
 			companyId, kaleoDefinitionName, kaleoDefinitionVersion,
-			completionDate, start, end, orderByComparator, retrieveFromCache);
+			completionDate, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1414,15 +1411,15 @@ public class KaleoInstanceUtil {
 	 * @param start the lower bound of the range of kaleo instances
 	 * @param end the upper bound of the range of kaleo instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo instances
 	 */
 	public static List<KaleoInstance> findAll(
 		int start, int end, OrderByComparator<KaleoInstance> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

@@ -186,16 +186,16 @@ public class WallEntryUtil {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	public static List<WallEntry> findByGroupId(
 		long groupId, int start, int end,
 		OrderByComparator<WallEntry> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByGroupId(
-			groupId, start, end, orderByComparator, retrieveFromCache);
+			groupId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -355,16 +355,16 @@ public class WallEntryUtil {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	public static List<WallEntry> findByUserId(
 		long userId, int start, int end,
 		OrderByComparator<WallEntry> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByUserId(
-			userId, start, end, orderByComparator, retrieveFromCache);
+			userId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -527,16 +527,16 @@ public class WallEntryUtil {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wall entries
 	 */
 	public static List<WallEntry> findByG_U(
 		long groupId, long userId, int start, int end,
 		OrderByComparator<WallEntry> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_U(
-			groupId, userId, start, end, orderByComparator, retrieveFromCache);
+			groupId, userId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -772,15 +772,15 @@ public class WallEntryUtil {
 	 * @param start the lower bound of the range of wall entries
 	 * @param end the upper bound of the range of wall entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wall entries
 	 */
 	public static List<WallEntry> findAll(
 		int start, int end, OrderByComparator<WallEntry> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

@@ -101,14 +101,14 @@ public interface JournalArticleImagePersistence
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
 	public java.util.List<JournalArticleImage> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalArticleImage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal article image in the ordered set where groupId = &#63;.
@@ -245,14 +245,14 @@ public interface JournalArticleImagePersistence
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
 	public java.util.List<JournalArticleImage> findByTempImage(
 		boolean tempImage, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalArticleImage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal article image in the ordered set where tempImage = &#63;.
@@ -397,14 +397,14 @@ public interface JournalArticleImagePersistence
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
 	public java.util.List<JournalArticleImage> findByG_A_V(
 		long groupId, String articleId, double version, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalArticleImage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first journal article image in the ordered set where groupId = &#63; and articleId = &#63; and version = &#63;.
@@ -543,12 +543,12 @@ public interface JournalArticleImagePersistence
 	 * @param elInstanceId the el instance ID
 	 * @param elName the el name
 	 * @param languageId the language ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal article image, or <code>null</code> if a matching journal article image could not be found
 	 */
 	public JournalArticleImage fetchByG_A_V_E_E_L(
 		long groupId, String articleId, double version, String elInstanceId,
-		String elName, String languageId, boolean retrieveFromCache);
+		String elName, String languageId, boolean useFinderCache);
 
 	/**
 	 * Removes the journal article image where groupId = &#63; and articleId = &#63; and version = &#63; and elInstanceId = &#63; and elName = &#63; and languageId = &#63; from the database.
@@ -682,14 +682,14 @@ public interface JournalArticleImagePersistence
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal article images
 	 */
 	public java.util.List<JournalArticleImage> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JournalArticleImage>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the journal article images from the database.

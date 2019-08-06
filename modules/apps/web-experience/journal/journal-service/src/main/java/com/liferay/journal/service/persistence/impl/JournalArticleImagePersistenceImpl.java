@@ -149,14 +149,14 @@ public class JournalArticleImagePersistenceImpl
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
 	@Override
 	public List<JournalArticleImage> findByGroupId(
 		long groupId, int start, int end,
 		OrderByComparator<JournalArticleImage> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -166,17 +166,20 @@ public class JournalArticleImagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
 		List<JournalArticleImage> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<JournalArticleImage>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -242,10 +245,14 @@ public class JournalArticleImagePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -663,14 +670,14 @@ public class JournalArticleImagePersistenceImpl
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
 	@Override
 	public List<JournalArticleImage> findByTempImage(
 		boolean tempImage, int start, int end,
 		OrderByComparator<JournalArticleImage> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -680,10 +687,13 @@ public class JournalArticleImagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByTempImage;
-			finderArgs = new Object[] {tempImage};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByTempImage;
+				finderArgs = new Object[] {tempImage};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByTempImage;
 			finderArgs = new Object[] {
 				tempImage, start, end, orderByComparator
@@ -692,7 +702,7 @@ public class JournalArticleImagePersistenceImpl
 
 		List<JournalArticleImage> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<JournalArticleImage>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -758,10 +768,14 @@ public class JournalArticleImagePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1193,14 +1207,14 @@ public class JournalArticleImagePersistenceImpl
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching journal article images
 	 */
 	@Override
 	public List<JournalArticleImage> findByG_A_V(
 		long groupId, String articleId, double version, int start, int end,
 		OrderByComparator<JournalArticleImage> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		articleId = Objects.toString(articleId, "");
 
@@ -1212,10 +1226,13 @@ public class JournalArticleImagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_A_V;
-			finderArgs = new Object[] {groupId, articleId, version};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_A_V;
+				finderArgs = new Object[] {groupId, articleId, version};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_A_V;
 			finderArgs = new Object[] {
 				groupId, articleId, version, start, end, orderByComparator
@@ -1224,7 +1241,7 @@ public class JournalArticleImagePersistenceImpl
 
 		List<JournalArticleImage> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<JournalArticleImage>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1312,10 +1329,14 @@ public class JournalArticleImagePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1835,26 +1856,30 @@ public class JournalArticleImagePersistenceImpl
 	 * @param elInstanceId the el instance ID
 	 * @param elName the el name
 	 * @param languageId the language ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching journal article image, or <code>null</code> if a matching journal article image could not be found
 	 */
 	@Override
 	public JournalArticleImage fetchByG_A_V_E_E_L(
 		long groupId, String articleId, double version, String elInstanceId,
-		String elName, String languageId, boolean retrieveFromCache) {
+		String elName, String languageId, boolean useFinderCache) {
 
 		articleId = Objects.toString(articleId, "");
 		elInstanceId = Objects.toString(elInstanceId, "");
 		elName = Objects.toString(elName, "");
 		languageId = Objects.toString(languageId, "");
 
-		Object[] finderArgs = new Object[] {
-			groupId, articleId, version, elInstanceId, elName, languageId
-		};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {
+				groupId, articleId, version, elInstanceId, elName, languageId
+			};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByG_A_V_E_E_L, finderArgs, this);
 		}
@@ -1964,8 +1989,10 @@ public class JournalArticleImagePersistenceImpl
 				List<JournalArticleImage> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByG_A_V_E_E_L, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByG_A_V_E_E_L, finderArgs, list);
+					}
 				}
 				else {
 					JournalArticleImage journalArticleImage = list.get(0);
@@ -1976,8 +2003,10 @@ public class JournalArticleImagePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathFetchByG_A_V_E_E_L, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByG_A_V_E_E_L, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2866,14 +2895,14 @@ public class JournalArticleImagePersistenceImpl
 	 * @param start the lower bound of the range of journal article images
 	 * @param end the upper bound of the range of journal article images (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of journal article images
 	 */
 	@Override
 	public List<JournalArticleImage> findAll(
 		int start, int end,
 		OrderByComparator<JournalArticleImage> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2883,17 +2912,20 @@ public class JournalArticleImagePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<JournalArticleImage> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<JournalArticleImage>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -2944,10 +2976,14 @@ public class JournalArticleImagePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

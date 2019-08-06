@@ -186,16 +186,16 @@ public class UserThreadUtil {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public static List<UserThread> findByUserId(
 		long userId, int start, int end,
 		OrderByComparator<UserThread> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByUserId(
-			userId, start, end, orderByComparator, retrieveFromCache);
+			userId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -354,16 +354,16 @@ public class UserThreadUtil {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public static List<UserThread> findByMBThreadId(
 		long mbThreadId, int start, int end,
 		OrderByComparator<UserThread> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByMBThreadId(
-			mbThreadId, start, end, orderByComparator, retrieveFromCache);
+			mbThreadId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -497,14 +497,13 @@ public class UserThreadUtil {
 	 *
 	 * @param userId the user ID
 	 * @param mbThreadId the mb thread ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	 */
 	public static UserThread fetchByU_M(
-		long userId, long mbThreadId, boolean retrieveFromCache) {
+		long userId, long mbThreadId, boolean useFinderCache) {
 
-		return getPersistence().fetchByU_M(
-			userId, mbThreadId, retrieveFromCache);
+		return getPersistence().fetchByU_M(userId, mbThreadId, useFinderCache);
 	}
 
 	/**
@@ -596,16 +595,16 @@ public class UserThreadUtil {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public static List<UserThread> findByU_D(
 		long userId, boolean deleted, int start, int end,
 		OrderByComparator<UserThread> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByU_D(
-			userId, deleted, start, end, orderByComparator, retrieveFromCache);
+			userId, deleted, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -789,17 +788,17 @@ public class UserThreadUtil {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public static List<UserThread> findByU_R_D(
 		long userId, boolean read, boolean deleted, int start, int end,
 		OrderByComparator<UserThread> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByU_R_D(
 			userId, read, deleted, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -1044,15 +1043,15 @@ public class UserThreadUtil {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of user threads
 	 */
 	public static List<UserThread> findAll(
 		int start, int end, OrderByComparator<UserThread> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

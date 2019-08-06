@@ -182,16 +182,16 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByUuid(
 		String uuid, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByUuid(
-			uuid, start, end, orderByComparator, retrieveFromCache);
+			uuid, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -317,13 +317,13 @@ public class AssetCategoryUtil {
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching asset category, or <code>null</code> if a matching asset category could not be found
 	 */
 	public static AssetCategory fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache) {
+		String uuid, long groupId, boolean useFinderCache) {
 
-		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
+		return getPersistence().fetchByUUID_G(uuid, groupId, useFinderCache);
 	}
 
 	/**
@@ -416,16 +416,16 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, retrieveFromCache);
+			uuid, companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -596,16 +596,16 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByGroupId(
 		long groupId, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByGroupId(
-			groupId, start, end, orderByComparator, retrieveFromCache);
+			groupId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -842,16 +842,16 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByParentCategoryId(
 		long parentCategoryId, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByParentCategoryId(
-			parentCategoryId, start, end, orderByComparator, retrieveFromCache);
+			parentCategoryId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1015,16 +1015,16 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByVocabularyId(
 		long vocabularyId, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByVocabularyId(
-			vocabularyId, start, end, orderByComparator, retrieveFromCache);
+			vocabularyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1192,17 +1192,17 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByG_V(
 		long groupId, long vocabularyId, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_V(
 			groupId, vocabularyId, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -1491,17 +1491,17 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByG_V(
 		long groupId, long[] vocabularyIds, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_V(
 			groupId, vocabularyIds, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -1624,17 +1624,17 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByP_N(
 		long parentCategoryId, String name, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByP_N(
 			parentCategoryId, name, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -1812,17 +1812,17 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByP_V(
 		long parentCategoryId, long vocabularyId, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByP_V(
 			parentCategoryId, vocabularyId, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -1999,17 +1999,16 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByN_V(
 		String name, long vocabularyId, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByN_V(
-			name, vocabularyId, start, end, orderByComparator,
-			retrieveFromCache);
+			name, vocabularyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -2194,17 +2193,17 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByG_P_V(
 		long groupId, long parentCategoryId, long vocabularyId, int start,
 		int end, OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_P_V(
 			groupId, parentCategoryId, vocabularyId, start, end,
-			orderByComparator, retrieveFromCache);
+			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -2498,17 +2497,17 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByG_LikeN_V(
 		long groupId, String name, long vocabularyId, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_LikeN_V(
 			groupId, name, vocabularyId, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -2816,17 +2815,17 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByG_LikeN_V(
 		long groupId, String name, long[] vocabularyIds, int start, int end,
 		OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_LikeN_V(
 			groupId, name, vocabularyIds, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -2938,15 +2937,15 @@ public class AssetCategoryUtil {
 	 * @param parentCategoryId the parent category ID
 	 * @param name the name
 	 * @param vocabularyId the vocabulary ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching asset category, or <code>null</code> if a matching asset category could not be found
 	 */
 	public static AssetCategory fetchByP_N_V(
 		long parentCategoryId, String name, long vocabularyId,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().fetchByP_N_V(
-			parentCategoryId, name, vocabularyId, retrieveFromCache);
+			parentCategoryId, name, vocabularyId, useFinderCache);
 	}
 
 	/**
@@ -3059,17 +3058,17 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching asset categories
 	 */
 	public static List<AssetCategory> findByG_P_N_V(
 		long groupId, long parentCategoryId, String name, long vocabularyId,
 		int start, int end, OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_P_N_V(
 			groupId, parentCategoryId, name, vocabularyId, start, end,
-			orderByComparator, retrieveFromCache);
+			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -3427,15 +3426,15 @@ public class AssetCategoryUtil {
 	 * @param start the lower bound of the range of asset categories
 	 * @param end the upper bound of the range of asset categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of asset categories
 	 */
 	public static List<AssetCategory> findAll(
 		int start, int end, OrderByComparator<AssetCategory> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

@@ -100,14 +100,14 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	 * @param start the lower bound of the range of wsrp producers
 	 * @param end the upper bound of the range of wsrp producers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp producers
 	 */
 	public java.util.List<WSRPProducer> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wsrp producer in the ordered set where uuid = &#63;.
@@ -216,11 +216,11 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
 	 */
 	public WSRPProducer fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the wsrp producer where uuid = &#63; and groupId = &#63; from the database.
@@ -298,14 +298,14 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	 * @param start the lower bound of the range of wsrp producers
 	 * @param end the upper bound of the range of wsrp producers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp producers
 	 */
 	public java.util.List<WSRPProducer> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -448,14 +448,14 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	 * @param start the lower bound of the range of wsrp producers
 	 * @param end the upper bound of the range of wsrp producers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp producers
 	 */
 	public java.util.List<WSRPProducer> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wsrp producer in the ordered set where companyId = &#63;.
@@ -638,14 +638,14 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	 * @param start the lower bound of the range of wsrp producers
 	 * @param end the upper bound of the range of wsrp producers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wsrp producers
 	 */
 	public java.util.List<WSRPProducer> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the wsrp producers from the database.

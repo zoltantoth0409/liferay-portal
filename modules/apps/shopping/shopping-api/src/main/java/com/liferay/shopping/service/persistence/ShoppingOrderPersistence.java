@@ -101,14 +101,14 @@ public interface ShoppingOrderPersistence
 	 * @param start the lower bound of the range of shopping orders
 	 * @param end the upper bound of the range of shopping orders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping orders
 	 */
 	public java.util.List<ShoppingOrder> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingOrder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping order in the ordered set where groupId = &#63;.
@@ -278,11 +278,10 @@ public interface ShoppingOrderPersistence
 	 * Returns the shopping order where number = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param number the number
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping order, or <code>null</code> if a matching shopping order could not be found
 	 */
-	public ShoppingOrder fetchByNumber(
-		String number, boolean retrieveFromCache);
+	public ShoppingOrder fetchByNumber(String number, boolean useFinderCache);
 
 	/**
 	 * Removes the shopping order where number = &#63; from the database.
@@ -323,11 +322,10 @@ public interface ShoppingOrderPersistence
 	 * Returns the shopping order where ppTxnId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param ppTxnId the pp txn ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping order, or <code>null</code> if a matching shopping order could not be found
 	 */
-	public ShoppingOrder fetchByPPTxnId(
-		String ppTxnId, boolean retrieveFromCache);
+	public ShoppingOrder fetchByPPTxnId(String ppTxnId, boolean useFinderCache);
 
 	/**
 	 * Removes the shopping order where ppTxnId = &#63; from the database.
@@ -407,14 +405,14 @@ public interface ShoppingOrderPersistence
 	 * @param start the lower bound of the range of shopping orders
 	 * @param end the upper bound of the range of shopping orders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping orders
 	 */
 	public java.util.List<ShoppingOrder> findByG_U_PPPS(
 		long groupId, long userId, String ppPaymentStatus, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingOrder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping order in the ordered set where groupId = &#63; and userId = &#63; and ppPaymentStatus = &#63;.
@@ -688,14 +686,14 @@ public interface ShoppingOrderPersistence
 	 * @param start the lower bound of the range of shopping orders
 	 * @param end the upper bound of the range of shopping orders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping orders
 	 */
 	public java.util.List<ShoppingOrder> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingOrder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the shopping orders from the database.

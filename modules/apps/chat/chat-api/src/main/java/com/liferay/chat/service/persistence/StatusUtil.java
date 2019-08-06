@@ -149,11 +149,11 @@ public class StatusUtil {
 	 * Returns the status where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param userId the user ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching status, or <code>null</code> if a matching status could not be found
 	 */
-	public static Status fetchByUserId(long userId, boolean retrieveFromCache) {
-		return getPersistence().fetchByUserId(userId, retrieveFromCache);
+	public static Status fetchByUserId(long userId, boolean useFinderCache) {
+		return getPersistence().fetchByUserId(userId, useFinderCache);
 	}
 
 	/**
@@ -238,16 +238,15 @@ public class StatusUtil {
 	 * @param start the lower bound of the range of statuses
 	 * @param end the upper bound of the range of statuses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching statuses
 	 */
 	public static List<Status> findByModifiedDate(
 		long modifiedDate, int start, int end,
-		OrderByComparator<Status> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<Status> orderByComparator, boolean useFinderCache) {
 
 		return getPersistence().findByModifiedDate(
-			modifiedDate, start, end, orderByComparator, retrieveFromCache);
+			modifiedDate, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -407,16 +406,15 @@ public class StatusUtil {
 	 * @param start the lower bound of the range of statuses
 	 * @param end the upper bound of the range of statuses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching statuses
 	 */
 	public static List<Status> findByOnline(
 		boolean online, int start, int end,
-		OrderByComparator<Status> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<Status> orderByComparator, boolean useFinderCache) {
 
 		return getPersistence().findByOnline(
-			online, start, end, orderByComparator, retrieveFromCache);
+			online, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -576,17 +574,16 @@ public class StatusUtil {
 	 * @param start the lower bound of the range of statuses
 	 * @param end the upper bound of the range of statuses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching statuses
 	 */
 	public static List<Status> findByM_O(
 		long modifiedDate, boolean online, int start, int end,
-		OrderByComparator<Status> orderByComparator,
-		boolean retrieveFromCache) {
+		OrderByComparator<Status> orderByComparator, boolean useFinderCache) {
 
 		return getPersistence().findByM_O(
 			modifiedDate, online, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -817,15 +814,15 @@ public class StatusUtil {
 	 * @param start the lower bound of the range of statuses
 	 * @param end the upper bound of the range of statuses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of statuses
 	 */
 	public static List<Status> findAll(
 		int start, int end, OrderByComparator<Status> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

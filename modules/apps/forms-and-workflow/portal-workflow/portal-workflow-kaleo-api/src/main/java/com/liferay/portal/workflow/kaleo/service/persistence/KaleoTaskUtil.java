@@ -186,16 +186,16 @@ public class KaleoTaskUtil {
 	 * @param start the lower bound of the range of kaleo tasks
 	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo tasks
 	 */
 	public static List<KaleoTask> findByCompanyId(
 		long companyId, int start, int end,
 		OrderByComparator<KaleoTask> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByCompanyId(
-			companyId, start, end, orderByComparator, retrieveFromCache);
+			companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -358,17 +358,16 @@ public class KaleoTaskUtil {
 	 * @param start the lower bound of the range of kaleo tasks
 	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo tasks
 	 */
 	public static List<KaleoTask> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator<KaleoTask> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByKaleoDefinitionId(
-			kaleoDefinitionId, start, end, orderByComparator,
-			retrieveFromCache);
+			kaleoDefinitionId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -499,14 +498,13 @@ public class KaleoTaskUtil {
 	 * Returns the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param kaleoNodeId the kaleo node ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
 	 */
 	public static KaleoTask fetchByKaleoNodeId(
-		long kaleoNodeId, boolean retrieveFromCache) {
+		long kaleoNodeId, boolean useFinderCache) {
 
-		return getPersistence().fetchByKaleoNodeId(
-			kaleoNodeId, retrieveFromCache);
+		return getPersistence().fetchByKaleoNodeId(kaleoNodeId, useFinderCache);
 	}
 
 	/**
@@ -651,15 +649,15 @@ public class KaleoTaskUtil {
 	 * @param start the lower bound of the range of kaleo tasks
 	 * @param end the upper bound of the range of kaleo tasks (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo tasks
 	 */
 	public static List<KaleoTask> findAll(
 		int start, int end, OrderByComparator<KaleoTask> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

@@ -156,14 +156,14 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findByUuid(
 		String uuid, int start, int end,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -175,17 +175,20 @@ public class WSRPConsumerPortletPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<WSRPConsumerPortlet> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<WSRPConsumerPortlet>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -262,10 +265,14 @@ public class WSRPConsumerPortletPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -713,14 +720,14 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -732,10 +739,13 @@ public class WSRPConsumerPortletPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
@@ -744,7 +754,7 @@ public class WSRPConsumerPortletPersistenceImpl
 
 		List<WSRPConsumerPortlet> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<WSRPConsumerPortlet>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -827,10 +837,14 @@ public class WSRPConsumerPortletPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1305,14 +1319,14 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId, int start, int end,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1322,10 +1336,13 @@ public class WSRPConsumerPortletPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByWsrpConsumerId;
-			finderArgs = new Object[] {wsrpConsumerId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByWsrpConsumerId;
+				finderArgs = new Object[] {wsrpConsumerId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByWsrpConsumerId;
 			finderArgs = new Object[] {
 				wsrpConsumerId, start, end, orderByComparator
@@ -1334,7 +1351,7 @@ public class WSRPConsumerPortletPersistenceImpl
 
 		List<WSRPConsumerPortlet> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<WSRPConsumerPortlet>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1402,10 +1419,14 @@ public class WSRPConsumerPortletPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1820,20 +1841,24 @@ public class WSRPConsumerPortletPersistenceImpl
 	 *
 	 * @param wsrpConsumerId the wsrp consumer ID
 	 * @param portletHandle the portlet handle
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching wsrp consumer portlet, or <code>null</code> if a matching wsrp consumer portlet could not be found
 	 */
 	@Override
 	public WSRPConsumerPortlet fetchByW_P(
-		long wsrpConsumerId, String portletHandle, boolean retrieveFromCache) {
+		long wsrpConsumerId, String portletHandle, boolean useFinderCache) {
 
 		portletHandle = Objects.toString(portletHandle, "");
 
-		Object[] finderArgs = new Object[] {wsrpConsumerId, portletHandle};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {wsrpConsumerId, portletHandle};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByW_P, finderArgs, this);
 		}
@@ -1888,14 +1913,22 @@ public class WSRPConsumerPortletPersistenceImpl
 				List<WSRPConsumerPortlet> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByW_P, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByW_P, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									wsrpConsumerId, portletHandle
+								};
+							}
+
 							_log.warn(
 								"WSRPConsumerPortletPersistenceImpl.fetchByW_P(long, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -1911,7 +1944,9 @@ public class WSRPConsumerPortletPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByW_P, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByW_P, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2750,14 +2785,14 @@ public class WSRPConsumerPortletPersistenceImpl
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wsrp consumer portlets
 	 */
 	@Override
 	public List<WSRPConsumerPortlet> findAll(
 		int start, int end,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2767,17 +2802,20 @@ public class WSRPConsumerPortletPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<WSRPConsumerPortlet> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<WSRPConsumerPortlet>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -2828,10 +2866,14 @@ public class WSRPConsumerPortletPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

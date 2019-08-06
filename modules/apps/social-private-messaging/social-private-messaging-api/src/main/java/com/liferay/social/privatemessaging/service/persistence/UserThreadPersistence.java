@@ -100,14 +100,14 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public java.util.List<UserThread> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first user thread in the ordered set where userId = &#63;.
@@ -243,14 +243,14 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public java.util.List<UserThread> findByMBThreadId(
 		long mbThreadId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first user thread in the ordered set where mbThreadId = &#63;.
@@ -359,11 +359,11 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	 *
 	 * @param userId the user ID
 	 * @param mbThreadId the mb thread ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	 */
 	public UserThread fetchByU_M(
-		long userId, long mbThreadId, boolean retrieveFromCache);
+		long userId, long mbThreadId, boolean useFinderCache);
 
 	/**
 	 * Removes the user thread where userId = &#63; and mbThreadId = &#63; from the database.
@@ -440,14 +440,14 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public java.util.List<UserThread> findByU_D(
 		long userId, boolean deleted, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first user thread in the ordered set where userId = &#63; and deleted = &#63;.
@@ -599,14 +599,14 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching user threads
 	 */
 	public java.util.List<UserThread> findByU_R_D(
 		long userId, boolean read, boolean deleted, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
@@ -803,14 +803,14 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	 * @param start the lower bound of the range of user threads
 	 * @param end the upper bound of the range of user threads (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of user threads
 	 */
 	public java.util.List<UserThread> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the user threads from the database.

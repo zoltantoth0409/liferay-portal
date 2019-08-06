@@ -100,14 +100,14 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	 * @param start the lower bound of the range of wsrp consumers
 	 * @param end the upper bound of the range of wsrp consumers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumers
 	 */
 	public java.util.List<WSRPConsumer> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wsrp consumer in the ordered set where uuid = &#63;.
@@ -248,14 +248,14 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	 * @param start the lower bound of the range of wsrp consumers
 	 * @param end the upper bound of the range of wsrp consumers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumers
 	 */
 	public java.util.List<WSRPConsumer> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wsrp consumer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -398,14 +398,14 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	 * @param start the lower bound of the range of wsrp consumers
 	 * @param end the upper bound of the range of wsrp consumers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumers
 	 */
 	public java.util.List<WSRPConsumer> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wsrp consumer in the ordered set where companyId = &#63;.
@@ -588,14 +588,14 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	 * @param start the lower bound of the range of wsrp consumers
 	 * @param end the upper bound of the range of wsrp consumers (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wsrp consumers
 	 */
 	public java.util.List<WSRPConsumer> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the wsrp consumers from the database.

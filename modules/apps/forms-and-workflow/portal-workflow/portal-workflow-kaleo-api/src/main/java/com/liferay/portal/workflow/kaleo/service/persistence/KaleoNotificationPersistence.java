@@ -101,14 +101,14 @@ public interface KaleoNotificationPersistence
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
 	public java.util.List<KaleoNotification> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo notification in the ordered set where companyId = &#63;.
@@ -245,14 +245,14 @@ public interface KaleoNotificationPersistence
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
 	public java.util.List<KaleoNotification> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo notification in the ordered set where kaleoDefinitionId = &#63;.
@@ -393,14 +393,14 @@ public interface KaleoNotificationPersistence
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
 	public java.util.List<KaleoNotification> findByKCN_KCPK(
 		String kaleoClassName, long kaleoClassPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo notification in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63;.
@@ -554,7 +554,7 @@ public interface KaleoNotificationPersistence
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo notifications
 	 */
 	public java.util.List<KaleoNotification> findByKCN_KCPK_ET(
@@ -562,7 +562,7 @@ public interface KaleoNotificationPersistence
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first kaleo notification in the ordered set where kaleoClassName = &#63; and kaleoClassPK = &#63; and executionType = &#63;.
@@ -763,14 +763,14 @@ public interface KaleoNotificationPersistence
 	 * @param start the lower bound of the range of kaleo notifications
 	 * @param end the upper bound of the range of kaleo notifications (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo notifications
 	 */
 	public java.util.List<KaleoNotification> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<KaleoNotification>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the kaleo notifications from the database.

@@ -102,14 +102,14 @@ public interface MeetupsRegistrationPersistence
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups registrations
 	 */
 	public java.util.List<MeetupsRegistration> findByMeetupsEntryId(
 		long meetupsEntryId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first meetups registration in the ordered set where meetupsEntryId = &#63;.
@@ -218,11 +218,11 @@ public interface MeetupsRegistrationPersistence
 	 *
 	 * @param userId the user ID
 	 * @param meetupsEntryId the meetups entry ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 */
 	public MeetupsRegistration fetchByU_ME(
-		long userId, long meetupsEntryId, boolean retrieveFromCache);
+		long userId, long meetupsEntryId, boolean useFinderCache);
 
 	/**
 	 * Removes the meetups registration where userId = &#63; and meetupsEntryId = &#63; from the database.
@@ -300,14 +300,14 @@ public interface MeetupsRegistrationPersistence
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups registrations
 	 */
 	public java.util.List<MeetupsRegistration> findByME_S(
 		long meetupsEntryId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
@@ -499,14 +499,14 @@ public interface MeetupsRegistrationPersistence
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of meetups registrations
 	 */
 	public java.util.List<MeetupsRegistration> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MeetupsRegistration>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the meetups registrations from the database.

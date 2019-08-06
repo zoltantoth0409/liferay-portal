@@ -168,14 +168,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByResourcePrimKey(
 		long resourcePrimKey, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -185,10 +185,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByResourcePrimKey;
-			finderArgs = new Object[] {resourcePrimKey};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByResourcePrimKey;
+				finderArgs = new Object[] {resourcePrimKey};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByResourcePrimKey;
 			finderArgs = new Object[] {
 				resourcePrimKey, start, end, orderByComparator
@@ -197,7 +200,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -263,10 +266,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -677,14 +684,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByUuid(
 		String uuid, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -696,17 +703,20 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -783,10 +793,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1211,20 +1225,24 @@ public class KBArticlePersistenceImpl
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kb article, or <code>null</code> if a matching kb article could not be found
 	 */
 	@Override
 	public KBArticle fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache) {
+		String uuid, long groupId, boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] {uuid, groupId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {uuid, groupId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByUUID_G, finderArgs, this);
 		}
@@ -1277,8 +1295,10 @@ public class KBArticlePersistenceImpl
 				List<KBArticle> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByUUID_G, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByUUID_G, finderArgs, list);
+					}
 				}
 				else {
 					KBArticle kbArticle = list.get(0);
@@ -1289,7 +1309,10 @@ public class KBArticlePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByUUID_G, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByUUID_G, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1472,14 +1495,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -1491,10 +1514,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
@@ -1503,7 +1529,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1586,10 +1612,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2063,14 +2093,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G(
 		long resourcePrimKey, long groupId, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2080,10 +2110,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByR_G;
-			finderArgs = new Object[] {resourcePrimKey, groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByR_G;
+				finderArgs = new Object[] {resourcePrimKey, groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByR_G;
 			finderArgs = new Object[] {
 				resourcePrimKey, groupId, start, end, orderByComparator
@@ -2092,7 +2125,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -2164,10 +2197,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2996,18 +3033,22 @@ public class KBArticlePersistenceImpl
 	 *
 	 * @param resourcePrimKey the resource prim key
 	 * @param version the version
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kb article, or <code>null</code> if a matching kb article could not be found
 	 */
 	@Override
 	public KBArticle fetchByR_V(
-		long resourcePrimKey, int version, boolean retrieveFromCache) {
+		long resourcePrimKey, int version, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {resourcePrimKey, version};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {resourcePrimKey, version};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByR_V, finderArgs, this);
 		}
@@ -3049,8 +3090,10 @@ public class KBArticlePersistenceImpl
 				List<KBArticle> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByR_V, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByR_V, finderArgs, list);
+					}
 				}
 				else {
 					KBArticle kbArticle = list.get(0);
@@ -3061,7 +3104,9 @@ public class KBArticlePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByR_V, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByR_V, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3230,14 +3275,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_L(
 		long resourcePrimKey, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3247,10 +3292,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByR_L;
-			finderArgs = new Object[] {resourcePrimKey, latest};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByR_L;
+				finderArgs = new Object[] {resourcePrimKey, latest};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByR_L;
 			finderArgs = new Object[] {
 				resourcePrimKey, latest, start, end, orderByComparator
@@ -3259,7 +3307,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -3331,10 +3379,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3703,14 +3755,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_L(
 		long[] resourcePrimKeies, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -3733,11 +3785,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), latest
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					StringUtil.merge(resourcePrimKeies), latest
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), latest, start, end,
 				orderByComparator
@@ -3746,7 +3801,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByR_L, finderArgs, this);
 
@@ -3826,12 +3881,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByR_L, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByR_L, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByR_L, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByR_L, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4080,14 +4139,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_M(
 		long resourcePrimKey, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4097,10 +4156,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByR_M;
-			finderArgs = new Object[] {resourcePrimKey, main};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByR_M;
+				finderArgs = new Object[] {resourcePrimKey, main};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByR_M;
 			finderArgs = new Object[] {
 				resourcePrimKey, main, start, end, orderByComparator
@@ -4109,7 +4171,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -4181,10 +4243,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4553,14 +4619,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_M(
 		long[] resourcePrimKeies, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -4583,11 +4649,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), main
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					StringUtil.merge(resourcePrimKeies), main
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), main, start, end,
 				orderByComparator
@@ -4596,7 +4665,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByR_M, finderArgs, this);
 
@@ -4676,12 +4745,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByR_M, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByR_M, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByR_M, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByR_M, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -4931,14 +5004,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_S(
 		long resourcePrimKey, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -4948,10 +5021,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByR_S;
-			finderArgs = new Object[] {resourcePrimKey, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByR_S;
+				finderArgs = new Object[] {resourcePrimKey, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByR_S;
 			finderArgs = new Object[] {
 				resourcePrimKey, status, start, end, orderByComparator
@@ -4960,7 +5036,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -5032,10 +5108,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5403,14 +5483,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_S(
 		long[] resourcePrimKeies, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -5433,11 +5513,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), status
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					StringUtil.merge(resourcePrimKeies), status
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), status, start, end,
 				orderByComparator
@@ -5446,7 +5529,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByR_S, finderArgs, this);
 
@@ -5526,12 +5609,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByR_S, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByR_S, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByR_S, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByR_S, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -5778,14 +5865,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_L(
 		long groupId, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -5795,10 +5882,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_L;
-			finderArgs = new Object[] {groupId, latest};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_L;
+				finderArgs = new Object[] {groupId, latest};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_L;
 			finderArgs = new Object[] {
 				groupId, latest, start, end, orderByComparator
@@ -5807,7 +5897,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -5879,10 +5969,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -6717,14 +6811,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_M(
 		long groupId, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -6734,10 +6828,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_M;
-			finderArgs = new Object[] {groupId, main};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_M;
+				finderArgs = new Object[] {groupId, main};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_M;
 			finderArgs = new Object[] {
 				groupId, main, start, end, orderByComparator
@@ -6746,7 +6843,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -6818,10 +6915,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -7655,14 +7756,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S(
 		long groupId, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -7672,10 +7773,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_S;
-			finderArgs = new Object[] {groupId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_S;
+				finderArgs = new Object[] {groupId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_S;
 			finderArgs = new Object[] {
 				groupId, status, start, end, orderByComparator
@@ -7684,7 +7788,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -7756,10 +7860,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -8595,14 +8703,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByC_L(
 		long companyId, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -8612,10 +8720,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_L;
-			finderArgs = new Object[] {companyId, latest};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_L;
+				finderArgs = new Object[] {companyId, latest};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_L;
 			finderArgs = new Object[] {
 				companyId, latest, start, end, orderByComparator
@@ -8624,7 +8735,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -8696,10 +8807,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -9143,14 +9258,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByC_M(
 		long companyId, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -9160,10 +9275,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_M;
-			finderArgs = new Object[] {companyId, main};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_M;
+				finderArgs = new Object[] {companyId, main};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_M;
 			finderArgs = new Object[] {
 				companyId, main, start, end, orderByComparator
@@ -9172,7 +9290,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -9244,10 +9362,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -9691,14 +9813,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByC_S(
 		long companyId, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -9708,10 +9830,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByC_S;
-			finderArgs = new Object[] {companyId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByC_S;
+				finderArgs = new Object[] {companyId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByC_S;
 			finderArgs = new Object[] {
 				companyId, status, start, end, orderByComparator
@@ -9720,7 +9845,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -9792,10 +9917,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -10244,14 +10373,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByP_L(
 		long parentResourcePrimKey, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -10261,10 +10390,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByP_L;
-			finderArgs = new Object[] {parentResourcePrimKey, latest};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByP_L;
+				finderArgs = new Object[] {parentResourcePrimKey, latest};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByP_L;
 			finderArgs = new Object[] {
 				parentResourcePrimKey, latest, start, end, orderByComparator
@@ -10273,7 +10405,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -10346,10 +10478,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -10721,14 +10857,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByP_L(
 		long[] parentResourcePrimKeies, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -10752,11 +10888,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				StringUtil.merge(parentResourcePrimKeies), latest
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					StringUtil.merge(parentResourcePrimKeies), latest
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(parentResourcePrimKeies), latest, start, end,
 				orderByComparator
@@ -10765,7 +10904,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByP_L, finderArgs, this);
 
@@ -10845,12 +10984,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByP_L, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByP_L, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByP_L, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByP_L, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -11100,14 +11243,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByP_M(
 		long parentResourcePrimKey, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -11117,10 +11260,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByP_M;
-			finderArgs = new Object[] {parentResourcePrimKey, main};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByP_M;
+				finderArgs = new Object[] {parentResourcePrimKey, main};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByP_M;
 			finderArgs = new Object[] {
 				parentResourcePrimKey, main, start, end, orderByComparator
@@ -11129,7 +11275,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -11202,10 +11348,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -11576,14 +11726,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByP_M(
 		long[] parentResourcePrimKeies, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -11607,11 +11757,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				StringUtil.merge(parentResourcePrimKeies), main
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					StringUtil.merge(parentResourcePrimKeies), main
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(parentResourcePrimKeies), main, start, end,
 				orderByComparator
@@ -11620,7 +11773,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByP_M, finderArgs, this);
 
@@ -11700,12 +11853,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByP_M, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByP_M, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByP_M, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByP_M, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -11955,14 +12112,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByP_S(
 		long parentResourcePrimKey, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -11972,10 +12129,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByP_S;
-			finderArgs = new Object[] {parentResourcePrimKey, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByP_S;
+				finderArgs = new Object[] {parentResourcePrimKey, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByP_S;
 			finderArgs = new Object[] {
 				parentResourcePrimKey, status, start, end, orderByComparator
@@ -11984,7 +12144,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -12057,10 +12217,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -12432,14 +12596,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByP_S(
 		long[] parentResourcePrimKeies, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -12463,11 +12627,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				StringUtil.merge(parentResourcePrimKeies), status
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					StringUtil.merge(parentResourcePrimKeies), status
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(parentResourcePrimKeies), status, start, end,
 				orderByComparator
@@ -12476,7 +12643,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByP_S, finderArgs, this);
 
@@ -12556,12 +12723,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByP_S, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByP_S, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByP_S, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByP_S, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -12803,19 +12974,23 @@ public class KBArticlePersistenceImpl
 	 * @param resourcePrimKey the resource prim key
 	 * @param groupId the group ID
 	 * @param version the version
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kb article, or <code>null</code> if a matching kb article could not be found
 	 */
 	@Override
 	public KBArticle fetchByR_G_V(
 		long resourcePrimKey, long groupId, int version,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {resourcePrimKey, groupId, version};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {resourcePrimKey, groupId, version};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByR_G_V, finderArgs, this);
 		}
@@ -12862,8 +13037,10 @@ public class KBArticlePersistenceImpl
 				List<KBArticle> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByR_G_V, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByR_G_V, finderArgs, list);
+					}
 				}
 				else {
 					KBArticle kbArticle = list.get(0);
@@ -12874,7 +13051,10 @@ public class KBArticlePersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByR_G_V, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByR_G_V, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -13061,14 +13241,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G_L(
 		long resourcePrimKey, long groupId, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -13078,10 +13258,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByR_G_L;
-			finderArgs = new Object[] {resourcePrimKey, groupId, latest};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByR_G_L;
+				finderArgs = new Object[] {resourcePrimKey, groupId, latest};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByR_G_L;
 			finderArgs = new Object[] {
 				resourcePrimKey, groupId, latest, start, end, orderByComparator
@@ -13090,7 +13273,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -13167,10 +13350,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -14091,14 +14278,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G_L(
 		long[] resourcePrimKeies, long groupId, boolean latest, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -14122,11 +14309,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), groupId, latest
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					StringUtil.merge(resourcePrimKeies), groupId, latest
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), groupId, latest, start,
 				end, orderByComparator
@@ -14135,7 +14325,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByR_G_L, finderArgs, this);
 
@@ -14220,12 +14410,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByR_G_L, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByR_G_L, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByR_G_L, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByR_G_L, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -14645,14 +14839,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G_M(
 		long resourcePrimKey, long groupId, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -14662,10 +14856,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByR_G_M;
-			finderArgs = new Object[] {resourcePrimKey, groupId, main};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByR_G_M;
+				finderArgs = new Object[] {resourcePrimKey, groupId, main};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByR_G_M;
 			finderArgs = new Object[] {
 				resourcePrimKey, groupId, main, start, end, orderByComparator
@@ -14674,7 +14871,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -14751,10 +14948,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -15671,14 +15872,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G_M(
 		long[] resourcePrimKeies, long groupId, boolean main, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -15702,11 +15903,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), groupId, main
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					StringUtil.merge(resourcePrimKeies), groupId, main
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), groupId, main, start, end,
 				orderByComparator
@@ -15715,7 +15919,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByR_G_M, finderArgs, this);
 
@@ -15800,12 +16004,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByR_G_M, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByR_G_M, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByR_G_M, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByR_G_M, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -16223,14 +16431,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G_S(
 		long resourcePrimKey, long groupId, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -16240,10 +16448,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByR_G_S;
-			finderArgs = new Object[] {resourcePrimKey, groupId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByR_G_S;
+				finderArgs = new Object[] {resourcePrimKey, groupId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByR_G_S;
 			finderArgs = new Object[] {
 				resourcePrimKey, groupId, status, start, end, orderByComparator
@@ -16252,7 +16463,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -16329,10 +16540,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -17252,14 +17467,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByR_G_S(
 		long[] resourcePrimKeies, long groupId, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (resourcePrimKeies == null) {
 			resourcePrimKeies = new long[0];
@@ -17283,11 +17498,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), groupId, status
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					StringUtil.merge(resourcePrimKeies), groupId, status
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				StringUtil.merge(resourcePrimKeies), groupId, status, start,
 				end, orderByComparator
@@ -17296,7 +17514,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByR_G_S, finderArgs, this);
 
@@ -17381,12 +17599,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByR_G_S, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByR_G_S, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByR_G_S, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByR_G_S, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -17804,14 +18026,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_P_L(
 		long groupId, long parentResourcePrimKey, boolean latest, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -17821,10 +18043,15 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P_L;
-			finderArgs = new Object[] {groupId, parentResourcePrimKey, latest};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P_L;
+				finderArgs = new Object[] {
+					groupId, parentResourcePrimKey, latest
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P_L;
 			finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, latest, start, end,
@@ -17834,7 +18061,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -17912,10 +18139,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -18836,14 +19067,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_P_L(
 		long groupId, long[] parentResourcePrimKeies, boolean latest, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -18867,11 +19098,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				groupId, StringUtil.merge(parentResourcePrimKeies), latest
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					groupId, StringUtil.merge(parentResourcePrimKeies), latest
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(parentResourcePrimKeies), latest,
 				start, end, orderByComparator
@@ -18880,7 +19114,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByG_P_L, finderArgs, this);
 
@@ -18965,12 +19199,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByG_P_L, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByG_P_L, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByG_P_L, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByG_P_L, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -19394,14 +19632,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_P_M(
 		long groupId, long parentResourcePrimKey, boolean main, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -19411,10 +19649,15 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P_M;
-			finderArgs = new Object[] {groupId, parentResourcePrimKey, main};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P_M;
+				finderArgs = new Object[] {
+					groupId, parentResourcePrimKey, main
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P_M;
 			finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, main, start, end,
@@ -19424,7 +19667,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -19502,10 +19745,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -20426,14 +20673,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_P_M(
 		long groupId, long[] parentResourcePrimKeies, boolean main, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -20457,11 +20704,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				groupId, StringUtil.merge(parentResourcePrimKeies), main
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					groupId, StringUtil.merge(parentResourcePrimKeies), main
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(parentResourcePrimKeies), main, start,
 				end, orderByComparator
@@ -20470,7 +20720,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByG_P_M, finderArgs, this);
 
@@ -20555,12 +20805,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByG_P_M, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByG_P_M, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByG_P_M, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByG_P_M, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -20984,14 +21238,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_P_S(
 		long groupId, long parentResourcePrimKey, int status, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -21001,10 +21255,15 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_P_S;
-			finderArgs = new Object[] {groupId, parentResourcePrimKey, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_P_S;
+				finderArgs = new Object[] {
+					groupId, parentResourcePrimKey, status
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_P_S;
 			finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, status, start, end,
@@ -21014,7 +21273,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -21092,10 +21351,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -22016,14 +22279,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_P_S(
 		long groupId, long[] parentResourcePrimKeies, int status, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (parentResourcePrimKeies == null) {
 			parentResourcePrimKeies = new long[0];
@@ -22047,11 +22310,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				groupId, StringUtil.merge(parentResourcePrimKeies), status
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					groupId, StringUtil.merge(parentResourcePrimKeies), status
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(parentResourcePrimKeies), status,
 				start, end, orderByComparator
@@ -22060,7 +22326,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByG_P_S, finderArgs, this);
 
@@ -22145,12 +22411,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByG_P_S, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByG_P_S, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByG_P_S, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByG_P_S, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -22570,14 +22840,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_KBFI_UT(
 		long groupId, long kbFolderId, String urlTitle, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		urlTitle = Objects.toString(urlTitle, "");
 
@@ -22589,10 +22859,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_KBFI_UT;
-			finderArgs = new Object[] {groupId, kbFolderId, urlTitle};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_KBFI_UT;
+				finderArgs = new Object[] {groupId, kbFolderId, urlTitle};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_KBFI_UT;
 			finderArgs = new Object[] {
 				groupId, kbFolderId, urlTitle, start, end, orderByComparator
@@ -22601,7 +22874,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -22689,10 +22962,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -23661,14 +23938,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_KBFI_L(
 		long groupId, long kbFolderId, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -23678,10 +23955,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_KBFI_L;
-			finderArgs = new Object[] {groupId, kbFolderId, latest};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_KBFI_L;
+				finderArgs = new Object[] {groupId, kbFolderId, latest};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_KBFI_L;
 			finderArgs = new Object[] {
 				groupId, kbFolderId, latest, start, end, orderByComparator
@@ -23690,7 +23970,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -23767,10 +24047,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -24669,14 +24953,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_KBFI_S(
 		long groupId, long kbFolderId, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -24686,10 +24970,13 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_KBFI_S;
-			finderArgs = new Object[] {groupId, kbFolderId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_KBFI_S;
+				finderArgs = new Object[] {groupId, kbFolderId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_KBFI_S;
 			finderArgs = new Object[] {
 				groupId, kbFolderId, status, start, end, orderByComparator
@@ -24698,7 +24985,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -24775,10 +25062,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -25674,14 +25965,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S_L(
 		long groupId, String sections, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		sections = Objects.toString(sections, "");
 
@@ -25696,7 +25987,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -25786,10 +26077,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -26757,14 +27052,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S_L(
 		long groupId, String[] sectionses, boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (sectionses == null) {
 			sectionses = new String[0];
@@ -26791,11 +27086,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				groupId, StringUtil.merge(sectionses), latest
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					groupId, StringUtil.merge(sectionses), latest
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(sectionses), latest, start, end,
 				orderByComparator
@@ -26804,7 +27102,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByG_S_L, finderArgs, this);
 
@@ -26903,12 +27201,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByG_S_L, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByG_S_L, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByG_S_L, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByG_S_L, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -27389,14 +27691,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S_M(
 		long groupId, String sections, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		sections = Objects.toString(sections, "");
 
@@ -27411,7 +27713,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -27501,10 +27803,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -28472,14 +28778,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S_M(
 		long groupId, String[] sectionses, boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (sectionses == null) {
 			sectionses = new String[0];
@@ -28506,11 +28812,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				groupId, StringUtil.merge(sectionses), main
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					groupId, StringUtil.merge(sectionses), main
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(sectionses), main, start, end,
 				orderByComparator
@@ -28519,7 +28828,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByG_S_M, finderArgs, this);
 
@@ -28618,12 +28927,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByG_S_M, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByG_S_M, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByG_S_M, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByG_S_M, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -29102,14 +29415,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S_S(
 		long groupId, String sections, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		sections = Objects.toString(sections, "");
 
@@ -29124,7 +29437,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -29214,10 +29527,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -30185,14 +30502,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_S_S(
 		long groupId, String[] sectionses, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		if (sectionses == null) {
 			sectionses = new String[0];
@@ -30219,11 +30536,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				groupId, StringUtil.merge(sectionses), status
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					groupId, StringUtil.merge(sectionses), status
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				groupId, StringUtil.merge(sectionses), status, start, end,
 				orderByComparator
@@ -30232,7 +30552,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByG_S_S, finderArgs, this);
 
@@ -30331,12 +30651,16 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByG_S_S, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByG_S_S, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByG_S_S, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByG_S_S, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -30824,14 +31148,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_KBFI_UT_ST(
 		long groupId, long kbFolderId, String urlTitle, int status, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		urlTitle = Objects.toString(urlTitle, "");
 
@@ -30843,10 +31167,15 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_KBFI_UT_ST;
-			finderArgs = new Object[] {groupId, kbFolderId, urlTitle, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_KBFI_UT_ST;
+				finderArgs = new Object[] {
+					groupId, kbFolderId, urlTitle, status
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_KBFI_UT_ST;
 			finderArgs = new Object[] {
 				groupId, kbFolderId, urlTitle, status, start, end,
@@ -30856,7 +31185,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -30949,10 +31278,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -31961,14 +32294,14 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kb articles
 	 */
 	@Override
 	public List<KBArticle> findByG_KBFI_UT_ST(
 		long groupId, long kbFolderId, String urlTitle, int[] statuses,
 		int start, int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		urlTitle = Objects.toString(urlTitle, "");
 
@@ -31994,11 +32327,14 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderArgs = new Object[] {
-				groupId, kbFolderId, urlTitle, StringUtil.merge(statuses)
-			};
+
+			if (useFinderCache) {
+				finderArgs = new Object[] {
+					groupId, kbFolderId, urlTitle, StringUtil.merge(statuses)
+				};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderArgs = new Object[] {
 				groupId, kbFolderId, urlTitle, StringUtil.merge(statuses),
 				start, end, orderByComparator
@@ -32007,7 +32343,7 @@ public class KBArticlePersistenceImpl
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				_finderPathWithPaginationFindByG_KBFI_UT_ST, finderArgs, this);
 
@@ -32104,13 +32440,18 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(
-					_finderPathWithPaginationFindByG_KBFI_UT_ST, finderArgs,
-					list);
+				if (useFinderCache) {
+					finderCache.putResult(
+						_finderPathWithPaginationFindByG_KBFI_UT_ST, finderArgs,
+						list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathWithPaginationFindByG_KBFI_UT_ST, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathWithPaginationFindByG_KBFI_UT_ST,
+						finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -34078,13 +34419,13 @@ public class KBArticlePersistenceImpl
 	 * @param start the lower bound of the range of kb articles
 	 * @param end the upper bound of the range of kb articles (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kb articles
 	 */
 	@Override
 	public List<KBArticle> findAll(
 		int start, int end, OrderByComparator<KBArticle> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -34094,17 +34435,20 @@ public class KBArticlePersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<KBArticle> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<KBArticle>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -34154,10 +34498,14 @@ public class KBArticlePersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

@@ -192,16 +192,16 @@ public class MeetupsRegistrationUtil {
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups registrations
 	 */
 	public static List<MeetupsRegistration> findByMeetupsEntryId(
 		long meetupsEntryId, int start, int end,
 		OrderByComparator<MeetupsRegistration> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByMeetupsEntryId(
-			meetupsEntryId, start, end, orderByComparator, retrieveFromCache);
+			meetupsEntryId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -342,14 +342,14 @@ public class MeetupsRegistrationUtil {
 	 *
 	 * @param userId the user ID
 	 * @param meetupsEntryId the meetups entry ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 */
 	public static MeetupsRegistration fetchByU_ME(
-		long userId, long meetupsEntryId, boolean retrieveFromCache) {
+		long userId, long meetupsEntryId, boolean useFinderCache) {
 
 		return getPersistence().fetchByU_ME(
-			userId, meetupsEntryId, retrieveFromCache);
+			userId, meetupsEntryId, useFinderCache);
 	}
 
 	/**
@@ -444,17 +444,17 @@ public class MeetupsRegistrationUtil {
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups registrations
 	 */
 	public static List<MeetupsRegistration> findByME_S(
 		long meetupsEntryId, int status, int start, int end,
 		OrderByComparator<MeetupsRegistration> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByME_S(
 			meetupsEntryId, status, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -698,16 +698,16 @@ public class MeetupsRegistrationUtil {
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of meetups registrations
 	 */
 	public static List<MeetupsRegistration> findAll(
 		int start, int end,
 		OrderByComparator<MeetupsRegistration> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

@@ -100,14 +100,14 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	 * @param start the lower bound of the range of entries
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching entries
 	 */
 	public java.util.List<Entry> findByCreateDate(
 		long createDate, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first entry in the ordered set where createDate = &#63;.
@@ -243,14 +243,14 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	 * @param start the lower bound of the range of entries
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching entries
 	 */
 	public java.util.List<Entry> findByFromUserId(
 		long fromUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first entry in the ordered set where fromUserId = &#63;.
@@ -386,14 +386,14 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	 * @param start the lower bound of the range of entries
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching entries
 	 */
 	public java.util.List<Entry> findByToUserId(
 		long toUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first entry in the ordered set where toUserId = &#63;.
@@ -533,14 +533,14 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	 * @param start the lower bound of the range of entries
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching entries
 	 */
 	public java.util.List<Entry> findByC_F(
 		long createDate, long fromUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
@@ -687,14 +687,14 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	 * @param start the lower bound of the range of entries
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching entries
 	 */
 	public java.util.List<Entry> findByC_T(
 		long createDate, long toUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
@@ -841,14 +841,14 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	 * @param start the lower bound of the range of entries
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching entries
 	 */
 	public java.util.List<Entry> findByF_T(
 		long fromUserId, long toUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
@@ -1000,14 +1000,14 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	 * @param start the lower bound of the range of entries
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching entries
 	 */
 	public java.util.List<Entry> findByC_F_T(
 		long createDate, long fromUserId, long toUserId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -1166,14 +1166,14 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	 * @param start the lower bound of the range of entries
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching entries
 	 */
 	public java.util.List<Entry> findByF_T_C(
 		long fromUserId, long toUserId, String content, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1368,14 +1368,14 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	 * @param start the lower bound of the range of entries
 	 * @param end the upper bound of the range of entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of entries
 	 */
 	public java.util.List<Entry> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the entries from the database.

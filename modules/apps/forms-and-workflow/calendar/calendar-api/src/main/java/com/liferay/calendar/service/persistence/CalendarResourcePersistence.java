@@ -102,14 +102,14 @@ public interface CalendarResourcePersistence
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	public java.util.List<CalendarResource> findByResourceBlockId(
 		long resourceBlockId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CalendarResource>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar resource in the ordered set where resourceBlockId = &#63;.
@@ -245,14 +245,14 @@ public interface CalendarResourcePersistence
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	public java.util.List<CalendarResource> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CalendarResource>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar resource in the ordered set where uuid = &#63;.
@@ -361,11 +361,11 @@ public interface CalendarResourcePersistence
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	 */
 	public CalendarResource fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the calendar resource where uuid = &#63; and groupId = &#63; from the database.
@@ -443,14 +443,14 @@ public interface CalendarResourcePersistence
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	public java.util.List<CalendarResource> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CalendarResource>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar resource in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -593,14 +593,14 @@ public interface CalendarResourcePersistence
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	public java.util.List<CalendarResource> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CalendarResource>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar resource in the ordered set where groupId = &#63;.
@@ -800,14 +800,14 @@ public interface CalendarResourcePersistence
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	public java.util.List<CalendarResource> findByActive(
 		boolean active, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CalendarResource>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar resource in the ordered set where active = &#63;.
@@ -948,14 +948,14 @@ public interface CalendarResourcePersistence
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	public java.util.List<CalendarResource> findByG_C(
 		long groupId, String code, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CalendarResource>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar resource in the ordered set where groupId = &#63; and code = &#63;.
@@ -1196,14 +1196,14 @@ public interface CalendarResourcePersistence
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	public java.util.List<CalendarResource> findByG_C(
 		long[] groupIds, String code, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CalendarResource>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the calendar resources where groupId = &#63; and code = &#63; from the database.
@@ -1306,14 +1306,14 @@ public interface CalendarResourcePersistence
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	public java.util.List<CalendarResource> findByG_A(
 		long groupId, boolean active, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CalendarResource>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar resource in the ordered set where groupId = &#63; and active = &#63;.
@@ -1499,11 +1499,11 @@ public interface CalendarResourcePersistence
 	 *
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
 	 */
 	public CalendarResource fetchByC_C(
-		long classNameId, long classPK, boolean retrieveFromCache);
+		long classNameId, long classPK, boolean useFinderCache);
 
 	/**
 	 * Removes the calendar resource where classNameId = &#63; and classPK = &#63; from the database.
@@ -1585,14 +1585,14 @@ public interface CalendarResourcePersistence
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching calendar resources
 	 */
 	public java.util.List<CalendarResource> findByC_C_A(
 		long companyId, String code, boolean active, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CalendarResource>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first calendar resource in the ordered set where companyId = &#63; and code LIKE &#63; and active = &#63;.
@@ -1790,14 +1790,14 @@ public interface CalendarResourcePersistence
 	 * @param start the lower bound of the range of calendar resources
 	 * @param end the upper bound of the range of calendar resources (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of calendar resources
 	 */
 	public java.util.List<CalendarResource> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<CalendarResource>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the calendar resources from the database.

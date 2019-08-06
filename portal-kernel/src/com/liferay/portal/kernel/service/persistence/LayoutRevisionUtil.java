@@ -186,17 +186,16 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByLayoutSetBranchId(
 		long layoutSetBranchId, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByLayoutSetBranchId(
-			layoutSetBranchId, start, end, orderByComparator,
-			retrieveFromCache);
+			layoutSetBranchId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -362,16 +361,16 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByPlid(
 		long plid, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByPlid(
-			plid, start, end, orderByComparator, retrieveFromCache);
+			plid, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -536,17 +535,17 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByL_H(
 		long layoutSetBranchId, boolean head, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByL_H(
 			layoutSetBranchId, head, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -726,17 +725,17 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByL_P(
 		long layoutSetBranchId, long plid, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByL_P(
 			layoutSetBranchId, plid, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -917,17 +916,17 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByL_S(
 		long layoutSetBranchId, int status, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByL_S(
 			layoutSetBranchId, status, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -1105,16 +1104,16 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByH_P(
 		boolean head, long plid, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByH_P(
-			head, plid, start, end, orderByComparator, retrieveFromCache);
+			head, plid, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1288,16 +1287,16 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByP_NotS(
 		long plid, int status, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByP_NotS(
-			plid, status, start, end, orderByComparator, retrieveFromCache);
+			plid, status, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1485,17 +1484,17 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByL_L_P(
 		long layoutSetBranchId, long layoutBranchId, long plid, int start,
 		int end, OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByL_L_P(
 			layoutSetBranchId, layoutBranchId, plid, start, end,
-			orderByComparator, retrieveFromCache);
+			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1697,17 +1696,17 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByL_P_P(
 		long layoutSetBranchId, long parentLayoutRevisionId, long plid,
 		int start, int end, OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByL_P_P(
 			layoutSetBranchId, parentLayoutRevisionId, plid, start, end,
-			orderByComparator, retrieveFromCache);
+			orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -1873,15 +1872,15 @@ public class LayoutRevisionUtil {
 	 * @param layoutSetBranchId the layout set branch ID
 	 * @param head the head
 	 * @param plid the plid
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout revision, or <code>null</code> if a matching layout revision could not be found
 	 */
 	public static LayoutRevision fetchByL_H_P(
 		long layoutSetBranchId, boolean head, long plid,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().fetchByL_H_P(
-			layoutSetBranchId, head, plid, retrieveFromCache);
+			layoutSetBranchId, head, plid, useFinderCache);
 	}
 
 	/**
@@ -1986,17 +1985,17 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByL_H_P_Collection(
 		long layoutSetBranchId, boolean head, long plid, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByL_H_P_Collection(
 			layoutSetBranchId, head, plid, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -2194,17 +2193,17 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByL_H_S(
 		long layoutSetBranchId, boolean head, int status, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByL_H_S(
 			layoutSetBranchId, head, status, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -2401,17 +2400,17 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching layout revisions
 	 */
 	public static List<LayoutRevision> findByL_P_S(
 		long layoutSetBranchId, long plid, int status, int start, int end,
 		OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByL_P_S(
 			layoutSetBranchId, plid, status, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -2580,15 +2579,15 @@ public class LayoutRevisionUtil {
 	 * @param layoutBranchId the layout branch ID
 	 * @param head the head
 	 * @param plid the plid
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching layout revision, or <code>null</code> if a matching layout revision could not be found
 	 */
 	public static LayoutRevision fetchByL_L_H_P(
 		long layoutSetBranchId, long layoutBranchId, boolean head, long plid,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().fetchByL_L_H_P(
-			layoutSetBranchId, layoutBranchId, head, plid, retrieveFromCache);
+			layoutSetBranchId, layoutBranchId, head, plid, useFinderCache);
 	}
 
 	/**
@@ -2749,15 +2748,15 @@ public class LayoutRevisionUtil {
 	 * @param start the lower bound of the range of layout revisions
 	 * @param end the upper bound of the range of layout revisions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of layout revisions
 	 */
 	public static List<LayoutRevision> findAll(
 		int start, int end, OrderByComparator<LayoutRevision> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

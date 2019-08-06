@@ -153,14 +153,14 @@ public class MeetupsRegistrationPersistenceImpl
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups registrations
 	 */
 	@Override
 	public List<MeetupsRegistration> findByMeetupsEntryId(
 		long meetupsEntryId, int start, int end,
 		OrderByComparator<MeetupsRegistration> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -170,10 +170,13 @@ public class MeetupsRegistrationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByMeetupsEntryId;
-			finderArgs = new Object[] {meetupsEntryId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByMeetupsEntryId;
+				finderArgs = new Object[] {meetupsEntryId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByMeetupsEntryId;
 			finderArgs = new Object[] {
 				meetupsEntryId, start, end, orderByComparator
@@ -182,7 +185,7 @@ public class MeetupsRegistrationPersistenceImpl
 
 		List<MeetupsRegistration> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<MeetupsRegistration>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -250,10 +253,14 @@ public class MeetupsRegistrationPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -665,18 +672,22 @@ public class MeetupsRegistrationPersistenceImpl
 	 *
 	 * @param userId the user ID
 	 * @param meetupsEntryId the meetups entry ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
 	 */
 	@Override
 	public MeetupsRegistration fetchByU_ME(
-		long userId, long meetupsEntryId, boolean retrieveFromCache) {
+		long userId, long meetupsEntryId, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {userId, meetupsEntryId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {userId, meetupsEntryId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByU_ME, finderArgs, this);
 		}
@@ -719,14 +730,22 @@ public class MeetupsRegistrationPersistenceImpl
 				List<MeetupsRegistration> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByU_ME, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByU_ME, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									userId, meetupsEntryId
+								};
+							}
+
 							_log.warn(
 								"MeetupsRegistrationPersistenceImpl.fetchByU_ME(long, long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -742,7 +761,10 @@ public class MeetupsRegistrationPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByU_ME, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByU_ME, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -912,14 +934,14 @@ public class MeetupsRegistrationPersistenceImpl
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups registrations
 	 */
 	@Override
 	public List<MeetupsRegistration> findByME_S(
 		long meetupsEntryId, int status, int start, int end,
 		OrderByComparator<MeetupsRegistration> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -929,10 +951,13 @@ public class MeetupsRegistrationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByME_S;
-			finderArgs = new Object[] {meetupsEntryId, status};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByME_S;
+				finderArgs = new Object[] {meetupsEntryId, status};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByME_S;
 			finderArgs = new Object[] {
 				meetupsEntryId, status, start, end, orderByComparator
@@ -941,7 +966,7 @@ public class MeetupsRegistrationPersistenceImpl
 
 		List<MeetupsRegistration> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<MeetupsRegistration>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1014,10 +1039,14 @@ public class MeetupsRegistrationPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2066,14 +2095,14 @@ public class MeetupsRegistrationPersistenceImpl
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of meetups registrations
 	 */
 	@Override
 	public List<MeetupsRegistration> findAll(
 		int start, int end,
 		OrderByComparator<MeetupsRegistration> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2083,17 +2112,20 @@ public class MeetupsRegistrationPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<MeetupsRegistration> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<MeetupsRegistration>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -2144,10 +2176,14 @@ public class MeetupsRegistrationPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

@@ -101,14 +101,14 @@ public interface WSRPConsumerPortletPersistence
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	public java.util.List<WSRPConsumerPortlet> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wsrp consumer portlet in the ordered set where uuid = &#63;.
@@ -249,14 +249,14 @@ public interface WSRPConsumerPortletPersistence
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	public java.util.List<WSRPConsumerPortlet> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wsrp consumer portlet in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -400,14 +400,14 @@ public interface WSRPConsumerPortletPersistence
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	public java.util.List<WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first wsrp consumer portlet in the ordered set where wsrpConsumerId = &#63;.
@@ -518,11 +518,11 @@ public interface WSRPConsumerPortletPersistence
 	 *
 	 * @param wsrpConsumerId the wsrp consumer ID
 	 * @param portletHandle the portlet handle
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching wsrp consumer portlet, or <code>null</code> if a matching wsrp consumer portlet could not be found
 	 */
 	public WSRPConsumerPortlet fetchByW_P(
-		long wsrpConsumerId, String portletHandle, boolean retrieveFromCache);
+		long wsrpConsumerId, String portletHandle, boolean useFinderCache);
 
 	/**
 	 * Removes the wsrp consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; from the database.
@@ -645,14 +645,14 @@ public interface WSRPConsumerPortletPersistence
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wsrp consumer portlets
 	 */
 	public java.util.List<WSRPConsumerPortlet> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the wsrp consumer portlets from the database.

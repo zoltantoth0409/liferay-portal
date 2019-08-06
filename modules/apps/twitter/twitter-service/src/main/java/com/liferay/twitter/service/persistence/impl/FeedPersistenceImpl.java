@@ -142,20 +142,24 @@ public class FeedPersistenceImpl
 	 *
 	 * @param userId the user ID
 	 * @param twitterScreenName the twitter screen name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 */
 	@Override
 	public Feed fetchByU_TSN(
-		long userId, String twitterScreenName, boolean retrieveFromCache) {
+		long userId, String twitterScreenName, boolean useFinderCache) {
 
 		twitterScreenName = Objects.toString(twitterScreenName, "");
 
-		Object[] finderArgs = new Object[] {userId, twitterScreenName};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {userId, twitterScreenName};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByU_TSN, finderArgs, this);
 		}
@@ -209,14 +213,22 @@ public class FeedPersistenceImpl
 				List<Feed> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByU_TSN, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByU_TSN, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {
+									userId, twitterScreenName
+								};
+							}
+
 							_log.warn(
 								"FeedPersistenceImpl.fetchByU_TSN(long, String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -232,7 +244,10 @@ public class FeedPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByU_TSN, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByU_TSN, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -905,13 +920,13 @@ public class FeedPersistenceImpl
 	 * @param start the lower bound of the range of feeds
 	 * @param end the upper bound of the range of feeds (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of feeds
 	 */
 	@Override
 	public List<Feed> findAll(
 		int start, int end, OrderByComparator<Feed> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -921,17 +936,20 @@ public class FeedPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<Feed> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<Feed>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -981,10 +999,14 @@ public class FeedPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

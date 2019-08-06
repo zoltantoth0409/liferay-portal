@@ -100,14 +100,14 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	 * @param start the lower bound of the range of meetups entries
 	 * @param end the upper bound of the range of meetups entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups entries
 	 */
 	public java.util.List<MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MeetupsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first meetups entry in the ordered set where companyId = &#63;.
@@ -243,14 +243,14 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	 * @param start the lower bound of the range of meetups entries
 	 * @param end the upper bound of the range of meetups entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching meetups entries
 	 */
 	public java.util.List<MeetupsEntry> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MeetupsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first meetups entry in the ordered set where userId = &#63;.
@@ -433,14 +433,14 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	 * @param start the lower bound of the range of meetups entries
 	 * @param end the upper bound of the range of meetups entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of meetups entries
 	 */
 	public java.util.List<MeetupsEntry> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MeetupsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the meetups entries from the database.

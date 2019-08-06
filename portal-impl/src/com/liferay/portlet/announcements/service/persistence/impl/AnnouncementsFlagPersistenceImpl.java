@@ -147,14 +147,14 @@ public class AnnouncementsFlagPersistenceImpl
 	 * @param start the lower bound of the range of announcements flags
 	 * @param end the upper bound of the range of announcements flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching announcements flags
 	 */
 	@Override
 	public List<AnnouncementsFlag> findByEntryId(
 		long entryId, int start, int end,
 		OrderByComparator<AnnouncementsFlag> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -164,17 +164,20 @@ public class AnnouncementsFlagPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByEntryId;
-			finderArgs = new Object[] {entryId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByEntryId;
+				finderArgs = new Object[] {entryId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByEntryId;
 			finderArgs = new Object[] {entryId, start, end, orderByComparator};
 		}
 
 		List<AnnouncementsFlag> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<AnnouncementsFlag>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 
@@ -240,10 +243,14 @@ public class AnnouncementsFlagPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -657,18 +664,22 @@ public class AnnouncementsFlagPersistenceImpl
 	 * @param userId the user ID
 	 * @param entryId the entry ID
 	 * @param value the value
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching announcements flag, or <code>null</code> if a matching announcements flag could not be found
 	 */
 	@Override
 	public AnnouncementsFlag fetchByU_E_V(
-		long userId, long entryId, int value, boolean retrieveFromCache) {
+		long userId, long entryId, int value, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {userId, entryId, value};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {userId, entryId, value};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = FinderCacheUtil.getResult(
 				_finderPathFetchByU_E_V, finderArgs, this);
 		}
@@ -715,8 +726,10 @@ public class AnnouncementsFlagPersistenceImpl
 				List<AnnouncementsFlag> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(
-						_finderPathFetchByU_E_V, finderArgs, list);
+					if (useFinderCache) {
+						FinderCacheUtil.putResult(
+							_finderPathFetchByU_E_V, finderArgs, list);
+					}
 				}
 				else {
 					AnnouncementsFlag announcementsFlag = list.get(0);
@@ -727,8 +740,10 @@ public class AnnouncementsFlagPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(
-					_finderPathFetchByU_E_V, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(
+						_finderPathFetchByU_E_V, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1441,14 +1456,14 @@ public class AnnouncementsFlagPersistenceImpl
 	 * @param start the lower bound of the range of announcements flags
 	 * @param end the upper bound of the range of announcements flags (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of announcements flags
 	 */
 	@Override
 	public List<AnnouncementsFlag> findAll(
 		int start, int end,
 		OrderByComparator<AnnouncementsFlag> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1458,17 +1473,20 @@ public class AnnouncementsFlagPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<AnnouncementsFlag> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<AnnouncementsFlag>)FinderCacheUtil.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -1518,10 +1536,14 @@ public class AnnouncementsFlagPersistenceImpl
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					FinderCacheUtil.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

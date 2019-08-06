@@ -152,14 +152,14 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm data provider instance links
 	 * @param end the upper bound of the range of ddm data provider instance links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm data provider instance links
 	 */
 	@Override
 	public List<DDMDataProviderInstanceLink> findByDataProviderInstanceId(
 		long dataProviderInstanceId, int start, int end,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -169,11 +169,14 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath =
-				_finderPathWithoutPaginationFindByDataProviderInstanceId;
-			finderArgs = new Object[] {dataProviderInstanceId};
+
+			if (useFinderCache) {
+				finderPath =
+					_finderPathWithoutPaginationFindByDataProviderInstanceId;
+				finderArgs = new Object[] {dataProviderInstanceId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByDataProviderInstanceId;
 			finderArgs = new Object[] {
 				dataProviderInstanceId, start, end, orderByComparator
@@ -182,7 +185,7 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 
 		List<DDMDataProviderInstanceLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMDataProviderInstanceLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -255,10 +258,14 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -692,14 +699,14 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm data provider instance links
 	 * @param end the upper bound of the range of ddm data provider instance links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching ddm data provider instance links
 	 */
 	@Override
 	public List<DDMDataProviderInstanceLink> findByStructureId(
 		long structureId, int start, int end,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -709,10 +716,13 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByStructureId;
-			finderArgs = new Object[] {structureId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByStructureId;
+				finderArgs = new Object[] {structureId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByStructureId;
 			finderArgs = new Object[] {
 				structureId, start, end, orderByComparator
@@ -721,7 +731,7 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 
 		List<DDMDataProviderInstanceLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMDataProviderInstanceLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -792,10 +802,14 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1211,21 +1225,22 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 *
 	 * @param dataProviderInstanceId the data provider instance ID
 	 * @param structureId the structure ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching ddm data provider instance link, or <code>null</code> if a matching ddm data provider instance link could not be found
 	 */
 	@Override
 	public DDMDataProviderInstanceLink fetchByD_S(
-		long dataProviderInstanceId, long structureId,
-		boolean retrieveFromCache) {
+		long dataProviderInstanceId, long structureId, boolean useFinderCache) {
 
-		Object[] finderArgs = new Object[] {
-			dataProviderInstanceId, structureId
-		};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {dataProviderInstanceId, structureId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByD_S, finderArgs, this);
 		}
@@ -1269,8 +1284,10 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 				List<DDMDataProviderInstanceLink> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByD_S, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByD_S, finderArgs, list);
+					}
 				}
 				else {
 					DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
@@ -1282,7 +1299,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByD_S, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(_finderPathFetchByD_S, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -2074,14 +2093,14 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * @param start the lower bound of the range of ddm data provider instance links
 	 * @param end the upper bound of the range of ddm data provider instance links (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of ddm data provider instance links
 	 */
 	@Override
 	public List<DDMDataProviderInstanceLink> findAll(
 		int start, int end,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -2091,17 +2110,20 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DDMDataProviderInstanceLink> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<DDMDataProviderInstanceLink>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -2152,10 +2174,14 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

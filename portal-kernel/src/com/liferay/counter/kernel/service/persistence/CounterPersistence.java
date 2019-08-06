@@ -145,14 +145,14 @@ public interface CounterPersistence extends BasePersistence<Counter> {
 	 * @param start the lower bound of the range of counters
 	 * @param end the upper bound of the range of counters (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of counters
 	 */
 	public java.util.List<Counter> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Counter>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the counters from the database.

@@ -101,14 +101,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where uuid = &#63;.
@@ -217,11 +217,11 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching blogs entry, or <code>null</code> if a matching blogs entry could not be found
 	 */
 	public BlogsEntry fetchByUUID_G(
-		String uuid, long groupId, boolean retrieveFromCache);
+		String uuid, long groupId, boolean useFinderCache);
 
 	/**
 	 * Removes the blogs entry where uuid = &#63; and groupId = &#63; from the database.
@@ -298,14 +298,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -448,14 +448,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63;.
@@ -655,14 +655,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where companyId = &#63;.
@@ -771,11 +771,11 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 *
 	 * @param groupId the group ID
 	 * @param urlTitle the url title
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching blogs entry, or <code>null</code> if a matching blogs entry could not be found
 	 */
 	public BlogsEntry fetchByG_UT(
-		long groupId, String urlTitle, boolean retrieveFromCache);
+		long groupId, String urlTitle, boolean useFinderCache);
 
 	/**
 	 * Removes the blogs entry where groupId = &#63; and urlTitle = &#63; from the database.
@@ -853,14 +853,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_LtD(
 		long groupId, Date displayDate, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and displayDate &lt; &#63;.
@@ -1077,14 +1077,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_S(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and status = &#63;.
@@ -1300,14 +1300,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_NotS(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and status &ne; &#63;.
@@ -1524,14 +1524,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByC_U(
 		long companyId, long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where companyId = &#63; and userId = &#63;.
@@ -1679,14 +1679,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByC_LtD(
 		long companyId, Date displayDate, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where companyId = &#63; and displayDate &lt; &#63;.
@@ -1833,14 +1833,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByC_S(
 		long companyId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where companyId = &#63; and status = &#63;.
@@ -1987,14 +1987,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByC_NotS(
 		long companyId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where companyId = &#63; and status &ne; &#63;.
@@ -2141,14 +2141,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByLtD_S(
 		Date displayDate, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where displayDate &lt; &#63; and status = &#63;.
@@ -2300,14 +2300,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_U_LtD(
 		long groupId, long userId, Date displayDate, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and userId = &#63; and displayDate &lt; &#63;.
@@ -2542,14 +2542,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_U_S(
 		long groupId, long userId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
@@ -2806,14 +2806,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_U_S(
 		long groupId, long userId, int[] statuses, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the blogs entries where groupId = &#63; and userId = &#63; and status = &#63; from the database.
@@ -2925,14 +2925,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_U_NotS(
 		long groupId, long userId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and userId = &#63; and status &ne; &#63;.
@@ -3166,14 +3166,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_D_S(
 		long groupId, Date displayDate, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and displayDate = &#63; and status = &#63;.
@@ -3407,14 +3407,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_GtD_S(
 		long groupId, Date displayDate, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and displayDate &gt; &#63; and status = &#63;.
@@ -3648,14 +3648,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_LtD_S(
 		long groupId, Date displayDate, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and displayDate &lt; &#63; and status = &#63;.
@@ -3889,14 +3889,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_LtD_NotS(
 		long groupId, Date displayDate, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and displayDate &lt; &#63; and status &ne; &#63;.
@@ -4131,14 +4131,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByC_U_S(
 		long companyId, long userId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where companyId = &#63; and userId = &#63; and status = &#63;.
@@ -4297,14 +4297,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByC_U_NotS(
 		long companyId, long userId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where companyId = &#63; and userId = &#63; and status &ne; &#63;.
@@ -4463,14 +4463,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByC_LtD_S(
 		long companyId, Date displayDate, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where companyId = &#63; and displayDate &lt; &#63; and status = &#63;.
@@ -4629,14 +4629,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByC_LtD_NotS(
 		long companyId, Date displayDate, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where companyId = &#63; and displayDate &lt; &#63; and status &ne; &#63;.
@@ -4802,7 +4802,7 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_U_LtD_S(
@@ -4810,7 +4810,7 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and userId = &#63; and displayDate &lt; &#63; and status = &#63;.
@@ -5069,7 +5069,7 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching blogs entries
 	 */
 	public java.util.List<BlogsEntry> findByG_U_LtD_NotS(
@@ -5077,7 +5077,7 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first blogs entry in the ordered set where groupId = &#63; and userId = &#63; and displayDate &lt; &#63; and status &ne; &#63;.
@@ -5367,14 +5367,14 @@ public interface BlogsEntryPersistence extends BasePersistence<BlogsEntry> {
 	 * @param start the lower bound of the range of blogs entries
 	 * @param end the upper bound of the range of blogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of blogs entries
 	 */
 	public java.util.List<BlogsEntry> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<BlogsEntry>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the blogs entries from the database.

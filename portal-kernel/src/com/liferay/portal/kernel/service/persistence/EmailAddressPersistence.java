@@ -99,14 +99,14 @@ public interface EmailAddressPersistence extends BasePersistence<EmailAddress> {
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	public java.util.List<EmailAddress> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<EmailAddress>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first email address in the ordered set where uuid = &#63;.
@@ -247,14 +247,14 @@ public interface EmailAddressPersistence extends BasePersistence<EmailAddress> {
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	public java.util.List<EmailAddress> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<EmailAddress>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first email address in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -397,14 +397,14 @@ public interface EmailAddressPersistence extends BasePersistence<EmailAddress> {
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	public java.util.List<EmailAddress> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<EmailAddress>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first email address in the ordered set where companyId = &#63;.
@@ -540,14 +540,14 @@ public interface EmailAddressPersistence extends BasePersistence<EmailAddress> {
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	public java.util.List<EmailAddress> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<EmailAddress>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first email address in the ordered set where userId = &#63;.
@@ -688,14 +688,14 @@ public interface EmailAddressPersistence extends BasePersistence<EmailAddress> {
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	public java.util.List<EmailAddress> findByC_C(
 		long companyId, long classNameId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<EmailAddress>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first email address in the ordered set where companyId = &#63; and classNameId = &#63;.
@@ -847,14 +847,14 @@ public interface EmailAddressPersistence extends BasePersistence<EmailAddress> {
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	public java.util.List<EmailAddress> findByC_C_C(
 		long companyId, long classNameId, long classPK, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<EmailAddress>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first email address in the ordered set where companyId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -1019,7 +1019,7 @@ public interface EmailAddressPersistence extends BasePersistence<EmailAddress> {
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching email addresses
 	 */
 	public java.util.List<EmailAddress> findByC_C_C_P(
@@ -1027,7 +1027,7 @@ public interface EmailAddressPersistence extends BasePersistence<EmailAddress> {
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<EmailAddress>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first email address in the ordered set where companyId = &#63; and classNameId = &#63; and classPK = &#63; and primary = &#63;.
@@ -1234,14 +1234,14 @@ public interface EmailAddressPersistence extends BasePersistence<EmailAddress> {
 	 * @param start the lower bound of the range of email addresses
 	 * @param end the upper bound of the range of email addresses (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of email addresses
 	 */
 	public java.util.List<EmailAddress> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<EmailAddress>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the email addresses from the database.

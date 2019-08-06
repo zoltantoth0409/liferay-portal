@@ -186,16 +186,16 @@ public class KaleoTransitionUtil {
 	 * @param start the lower bound of the range of kaleo transitions
 	 * @param end the upper bound of the range of kaleo transitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo transitions
 	 */
 	public static List<KaleoTransition> findByCompanyId(
 		long companyId, int start, int end,
 		OrderByComparator<KaleoTransition> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByCompanyId(
-			companyId, start, end, orderByComparator, retrieveFromCache);
+			companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -363,17 +363,16 @@ public class KaleoTransitionUtil {
 	 * @param start the lower bound of the range of kaleo transitions
 	 * @param end the upper bound of the range of kaleo transitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo transitions
 	 */
 	public static List<KaleoTransition> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator<KaleoTransition> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByKaleoDefinitionId(
-			kaleoDefinitionId, start, end, orderByComparator,
-			retrieveFromCache);
+			kaleoDefinitionId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -540,16 +539,16 @@ public class KaleoTransitionUtil {
 	 * @param start the lower bound of the range of kaleo transitions
 	 * @param end the upper bound of the range of kaleo transitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching kaleo transitions
 	 */
 	public static List<KaleoTransition> findByKaleoNodeId(
 		long kaleoNodeId, int start, int end,
 		OrderByComparator<KaleoTransition> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByKaleoNodeId(
-			kaleoNodeId, start, end, orderByComparator, retrieveFromCache);
+			kaleoNodeId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -687,14 +686,13 @@ public class KaleoTransitionUtil {
 	 *
 	 * @param kaleoNodeId the kaleo node ID
 	 * @param name the name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
 	 */
 	public static KaleoTransition fetchByKNI_N(
-		long kaleoNodeId, String name, boolean retrieveFromCache) {
+		long kaleoNodeId, String name, boolean useFinderCache) {
 
-		return getPersistence().fetchByKNI_N(
-			kaleoNodeId, name, retrieveFromCache);
+		return getPersistence().fetchByKNI_N(kaleoNodeId, name, useFinderCache);
 	}
 
 	/**
@@ -756,15 +754,14 @@ public class KaleoTransitionUtil {
 	 *
 	 * @param kaleoNodeId the kaleo node ID
 	 * @param defaultTransition the default transition
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
 	 */
 	public static KaleoTransition fetchByKNI_DT(
-		long kaleoNodeId, boolean defaultTransition,
-		boolean retrieveFromCache) {
+		long kaleoNodeId, boolean defaultTransition, boolean useFinderCache) {
 
 		return getPersistence().fetchByKNI_DT(
-			kaleoNodeId, defaultTransition, retrieveFromCache);
+			kaleoNodeId, defaultTransition, useFinderCache);
 	}
 
 	/**
@@ -918,16 +915,16 @@ public class KaleoTransitionUtil {
 	 * @param start the lower bound of the range of kaleo transitions
 	 * @param end the upper bound of the range of kaleo transitions (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of kaleo transitions
 	 */
 	public static List<KaleoTransition> findAll(
 		int start, int end,
 		OrderByComparator<KaleoTransition> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

@@ -153,14 +153,14 @@ public class ShoppingItemUtil {
 	 * Returns the shopping item where smallImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param smallImageId the small image ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
 	public static ShoppingItem fetchBySmallImageId(
-		long smallImageId, boolean retrieveFromCache) {
+		long smallImageId, boolean useFinderCache) {
 
 		return getPersistence().fetchBySmallImageId(
-			smallImageId, retrieveFromCache);
+			smallImageId, useFinderCache);
 	}
 
 	/**
@@ -212,14 +212,14 @@ public class ShoppingItemUtil {
 	 * Returns the shopping item where mediumImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param mediumImageId the medium image ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
 	public static ShoppingItem fetchByMediumImageId(
-		long mediumImageId, boolean retrieveFromCache) {
+		long mediumImageId, boolean useFinderCache) {
 
 		return getPersistence().fetchByMediumImageId(
-			mediumImageId, retrieveFromCache);
+			mediumImageId, useFinderCache);
 	}
 
 	/**
@@ -271,14 +271,14 @@ public class ShoppingItemUtil {
 	 * Returns the shopping item where largeImageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param largeImageId the large image ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
 	public static ShoppingItem fetchByLargeImageId(
-		long largeImageId, boolean retrieveFromCache) {
+		long largeImageId, boolean useFinderCache) {
 
 		return getPersistence().fetchByLargeImageId(
-			largeImageId, retrieveFromCache);
+			largeImageId, useFinderCache);
 	}
 
 	/**
@@ -367,17 +367,16 @@ public class ShoppingItemUtil {
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping items
 	 */
 	public static List<ShoppingItem> findByG_C(
 		long groupId, long categoryId, int start, int end,
 		OrderByComparator<ShoppingItem> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_C(
-			groupId, categoryId, start, end, orderByComparator,
-			retrieveFromCache);
+			groupId, categoryId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -603,13 +602,13 @@ public class ShoppingItemUtil {
 	 *
 	 * @param companyId the company ID
 	 * @param sku the sku
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping item, or <code>null</code> if a matching shopping item could not be found
 	 */
 	public static ShoppingItem fetchByC_S(
-		long companyId, String sku, boolean retrieveFromCache) {
+		long companyId, String sku, boolean useFinderCache) {
 
-		return getPersistence().fetchByC_S(companyId, sku, retrieveFromCache);
+		return getPersistence().fetchByC_S(companyId, sku, useFinderCache);
 	}
 
 	/**
@@ -756,15 +755,15 @@ public class ShoppingItemUtil {
 	 * @param start the lower bound of the range of shopping items
 	 * @param end the upper bound of the range of shopping items (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping items
 	 */
 	public static List<ShoppingItem> findAll(
 		int start, int end, OrderByComparator<ShoppingItem> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

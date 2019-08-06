@@ -153,13 +153,13 @@ public class AppPersistenceImpl
 	 * @param start the lower bound of the range of apps
 	 * @param end the upper bound of the range of apps (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching apps
 	 */
 	@Override
 	public List<App> findByUuid(
 		String uuid, int start, int end,
-		OrderByComparator<App> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<App> orderByComparator, boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -171,17 +171,20 @@ public class AppPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] {uuid};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid;
+				finderArgs = new Object[] {uuid};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<App> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<App>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -258,10 +261,14 @@ public class AppPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -698,13 +705,13 @@ public class AppPersistenceImpl
 	 * @param start the lower bound of the range of apps
 	 * @param end the upper bound of the range of apps (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching apps
 	 */
 	@Override
 	public List<App> findByUuid_C(
 		String uuid, long companyId, int start, int end,
-		OrderByComparator<App> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<App> orderByComparator, boolean useFinderCache) {
 
 		uuid = Objects.toString(uuid, "");
 
@@ -716,10 +723,13 @@ public class AppPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] {uuid, companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByUuid_C;
+				finderArgs = new Object[] {uuid, companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 				uuid, companyId, start, end, orderByComparator
@@ -728,7 +738,7 @@ public class AppPersistenceImpl
 
 		List<App> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<App>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -811,10 +821,14 @@ public class AppPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1275,13 +1289,13 @@ public class AppPersistenceImpl
 	 * @param start the lower bound of the range of apps
 	 * @param end the upper bound of the range of apps (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching apps
 	 */
 	@Override
 	public List<App> findByCompanyId(
 		long companyId, int start, int end,
-		OrderByComparator<App> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<App> orderByComparator, boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -1291,10 +1305,13 @@ public class AppPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] {companyId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByCompanyId;
+				finderArgs = new Object[] {companyId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] {
 				companyId, start, end, orderByComparator
@@ -1303,7 +1320,7 @@ public class AppPersistenceImpl
 
 		List<App> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<App>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1369,10 +1386,14 @@ public class AppPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1761,16 +1782,20 @@ public class AppPersistenceImpl
 	 * Returns the app where remoteAppId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param remoteAppId the remote app ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching app, or <code>null</code> if a matching app could not be found
 	 */
 	@Override
-	public App fetchByRemoteAppId(long remoteAppId, boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] {remoteAppId};
+	public App fetchByRemoteAppId(long remoteAppId, boolean useFinderCache) {
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {remoteAppId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByRemoteAppId, finderArgs, this);
 		}
@@ -1806,14 +1831,20 @@ public class AppPersistenceImpl
 				List<App> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByRemoteAppId, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByRemoteAppId, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {remoteAppId};
+							}
+
 							_log.warn(
 								"AppPersistenceImpl.fetchByRemoteAppId(long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -1829,8 +1860,10 @@ public class AppPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(
-					_finderPathFetchByRemoteAppId, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByRemoteAppId, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1979,13 +2012,13 @@ public class AppPersistenceImpl
 	 * @param start the lower bound of the range of apps
 	 * @param end the upper bound of the range of apps (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching apps
 	 */
 	@Override
 	public List<App> findByCategory(
 		String category, int start, int end,
-		OrderByComparator<App> orderByComparator, boolean retrieveFromCache) {
+		OrderByComparator<App> orderByComparator, boolean useFinderCache) {
 
 		category = Objects.toString(category, "");
 
@@ -1997,17 +2030,20 @@ public class AppPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByCategory;
-			finderArgs = new Object[] {category};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByCategory;
+				finderArgs = new Object[] {category};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByCategory;
 			finderArgs = new Object[] {category, start, end, orderByComparator};
 		}
 
 		List<App> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<App>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -2084,10 +2120,14 @@ public class AppPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3144,13 +3184,13 @@ public class AppPersistenceImpl
 	 * @param start the lower bound of the range of apps
 	 * @param end the upper bound of the range of apps (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of apps
 	 */
 	@Override
 	public List<App> findAll(
 		int start, int end, OrderByComparator<App> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3160,17 +3200,20 @@ public class AppPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<App> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<App>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -3220,10 +3263,14 @@ public class AppPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

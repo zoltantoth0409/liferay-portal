@@ -155,14 +155,14 @@ public class ShoppingOrderPersistenceImpl
 	 * @param start the lower bound of the range of shopping orders
 	 * @param end the upper bound of the range of shopping orders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping orders
 	 */
 	@Override
 	public List<ShoppingOrder> findByGroupId(
 		long groupId, int start, int end,
 		OrderByComparator<ShoppingOrder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -172,17 +172,20 @@ public class ShoppingOrderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] {groupId};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByGroupId;
+				finderArgs = new Object[] {groupId};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
 		List<ShoppingOrder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<ShoppingOrder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -248,10 +251,14 @@ public class ShoppingOrderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1023,20 +1030,22 @@ public class ShoppingOrderPersistenceImpl
 	 * Returns the shopping order where number = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param number the number
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping order, or <code>null</code> if a matching shopping order could not be found
 	 */
 	@Override
-	public ShoppingOrder fetchByNumber(
-		String number, boolean retrieveFromCache) {
-
+	public ShoppingOrder fetchByNumber(String number, boolean useFinderCache) {
 		number = Objects.toString(number, "");
 
-		Object[] finderArgs = new Object[] {number};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {number};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByNumber, finderArgs, this);
 		}
@@ -1083,8 +1092,10 @@ public class ShoppingOrderPersistenceImpl
 				List<ShoppingOrder> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByNumber, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByNumber, finderArgs, list);
+					}
 				}
 				else {
 					ShoppingOrder shoppingOrder = list.get(0);
@@ -1095,7 +1106,10 @@ public class ShoppingOrderPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByNumber, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByNumber, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1248,20 +1262,24 @@ public class ShoppingOrderPersistenceImpl
 	 * Returns the shopping order where ppTxnId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param ppTxnId the pp txn ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping order, or <code>null</code> if a matching shopping order could not be found
 	 */
 	@Override
 	public ShoppingOrder fetchByPPTxnId(
-		String ppTxnId, boolean retrieveFromCache) {
+		String ppTxnId, boolean useFinderCache) {
 
 		ppTxnId = Objects.toString(ppTxnId, "");
 
-		Object[] finderArgs = new Object[] {ppTxnId};
+		Object[] finderArgs = null;
+
+		if (useFinderCache) {
+			finderArgs = new Object[] {ppTxnId};
+		}
 
 		Object result = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			result = finderCache.getResult(
 				_finderPathFetchByPPTxnId, finderArgs, this);
 		}
@@ -1308,14 +1326,20 @@ public class ShoppingOrderPersistenceImpl
 				List<ShoppingOrder> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(
-						_finderPathFetchByPPTxnId, finderArgs, list);
+					if (useFinderCache) {
+						finderCache.putResult(
+							_finderPathFetchByPPTxnId, finderArgs, list);
+					}
 				}
 				else {
 					if (list.size() > 1) {
 						Collections.sort(list, Collections.reverseOrder());
 
 						if (_log.isWarnEnabled()) {
+							if (!useFinderCache) {
+								finderArgs = new Object[] {ppTxnId};
+							}
+
 							_log.warn(
 								"ShoppingOrderPersistenceImpl.fetchByPPTxnId(String, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
@@ -1331,7 +1355,10 @@ public class ShoppingOrderPersistenceImpl
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByPPTxnId, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(
+						_finderPathFetchByPPTxnId, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -1514,14 +1541,14 @@ public class ShoppingOrderPersistenceImpl
 	 * @param start the lower bound of the range of shopping orders
 	 * @param end the upper bound of the range of shopping orders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping orders
 	 */
 	@Override
 	public List<ShoppingOrder> findByG_U_PPPS(
 		long groupId, long userId, String ppPaymentStatus, int start, int end,
 		OrderByComparator<ShoppingOrder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		ppPaymentStatus = Objects.toString(ppPaymentStatus, "");
 
@@ -1533,10 +1560,13 @@ public class ShoppingOrderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByG_U_PPPS;
-			finderArgs = new Object[] {groupId, userId, ppPaymentStatus};
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByG_U_PPPS;
+				finderArgs = new Object[] {groupId, userId, ppPaymentStatus};
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindByG_U_PPPS;
 			finderArgs = new Object[] {
 				groupId, userId, ppPaymentStatus, start, end, orderByComparator
@@ -1545,7 +1575,7 @@ public class ShoppingOrderPersistenceImpl
 
 		List<ShoppingOrder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<ShoppingOrder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 
@@ -1634,10 +1664,14 @@ public class ShoppingOrderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}
@@ -3216,13 +3250,13 @@ public class ShoppingOrderPersistenceImpl
 	 * @param start the lower bound of the range of shopping orders
 	 * @param end the upper bound of the range of shopping orders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping orders
 	 */
 	@Override
 	public List<ShoppingOrder> findAll(
 		int start, int end, OrderByComparator<ShoppingOrder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		boolean pagination = true;
 		FinderPath finderPath = null;
@@ -3232,17 +3266,20 @@ public class ShoppingOrderPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindAll;
-			finderArgs = FINDER_ARGS_EMPTY;
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindAll;
+				finderArgs = FINDER_ARGS_EMPTY;
+			}
 		}
-		else {
+		else if (useFinderCache) {
 			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<ShoppingOrder> list = null;
 
-		if (retrieveFromCache) {
+		if (useFinderCache) {
 			list = (List<ShoppingOrder>)finderCache.getResult(
 				finderPath, finderArgs, this);
 		}
@@ -3292,10 +3329,14 @@ public class ShoppingOrderPersistenceImpl
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
+				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				if (useFinderCache) {
+					finderCache.removeResult(finderPath, finderArgs);
+				}
 
 				throw processException(e);
 			}

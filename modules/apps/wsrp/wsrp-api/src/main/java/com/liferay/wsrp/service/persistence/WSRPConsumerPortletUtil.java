@@ -188,16 +188,16 @@ public class WSRPConsumerPortletUtil {
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	public static List<WSRPConsumerPortlet> findByUuid(
 		String uuid, int start, int end,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByUuid(
-			uuid, start, end, orderByComparator, retrieveFromCache);
+			uuid, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -361,16 +361,16 @@ public class WSRPConsumerPortletUtil {
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	public static List<WSRPConsumerPortlet> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByUuid_C(
-			uuid, companyId, start, end, orderByComparator, retrieveFromCache);
+			uuid, companyId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -544,16 +544,16 @@ public class WSRPConsumerPortletUtil {
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching wsrp consumer portlets
 	 */
 	public static List<WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId, int start, int end,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByWsrpConsumerId(
-			wsrpConsumerId, start, end, orderByComparator, retrieveFromCache);
+			wsrpConsumerId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -690,14 +690,14 @@ public class WSRPConsumerPortletUtil {
 	 *
 	 * @param wsrpConsumerId the wsrp consumer ID
 	 * @param portletHandle the portlet handle
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching wsrp consumer portlet, or <code>null</code> if a matching wsrp consumer portlet could not be found
 	 */
 	public static WSRPConsumerPortlet fetchByW_P(
-		long wsrpConsumerId, String portletHandle, boolean retrieveFromCache) {
+		long wsrpConsumerId, String portletHandle, boolean useFinderCache) {
 
 		return getPersistence().fetchByW_P(
-			wsrpConsumerId, portletHandle, retrieveFromCache);
+			wsrpConsumerId, portletHandle, useFinderCache);
 	}
 
 	/**
@@ -853,16 +853,16 @@ public class WSRPConsumerPortletUtil {
 	 * @param start the lower bound of the range of wsrp consumer portlets
 	 * @param end the upper bound of the range of wsrp consumer portlets (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of wsrp consumer portlets
 	 */
 	public static List<WSRPConsumerPortlet> findAll(
 		int start, int end,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**

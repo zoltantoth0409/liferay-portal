@@ -101,14 +101,14 @@ public interface ShoppingItemPricePersistence
 	 * @param start the lower bound of the range of shopping item prices
 	 * @param end the upper bound of the range of shopping item prices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping item prices
 	 */
 	public java.util.List<ShoppingItemPrice> findByItemId(
 		long itemId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemPrice>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping item price in the ordered set where itemId = &#63;.
@@ -292,14 +292,14 @@ public interface ShoppingItemPricePersistence
 	 * @param start the lower bound of the range of shopping item prices
 	 * @param end the upper bound of the range of shopping item prices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping item prices
 	 */
 	public java.util.List<ShoppingItemPrice> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingItemPrice>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the shopping item prices from the database.

@@ -101,14 +101,14 @@ public interface ShoppingCategoryPersistence
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
 	public java.util.List<ShoppingCategory> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping category in the ordered set where groupId = &#63;.
@@ -313,14 +313,14 @@ public interface ShoppingCategoryPersistence
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping categories
 	 */
 	public java.util.List<ShoppingCategory> findByG_P(
 		long groupId, long parentCategoryId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping category in the ordered set where groupId = &#63; and parentCategoryId = &#63;.
@@ -506,11 +506,11 @@ public interface ShoppingCategoryPersistence
 	 *
 	 * @param groupId the group ID
 	 * @param name the name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
 	public ShoppingCategory fetchByG_N(
-		long groupId, String name, boolean retrieveFromCache);
+		long groupId, String name, boolean useFinderCache);
 
 	/**
 	 * Removes the shopping category where groupId = &#63; and name = &#63; from the database.
@@ -631,14 +631,14 @@ public interface ShoppingCategoryPersistence
 	 * @param start the lower bound of the range of shopping categories
 	 * @param end the upper bound of the range of shopping categories (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping categories
 	 */
 	public java.util.List<ShoppingCategory> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCategory>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the shopping categories from the database.

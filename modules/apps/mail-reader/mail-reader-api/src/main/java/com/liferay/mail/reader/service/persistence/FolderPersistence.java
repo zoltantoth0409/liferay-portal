@@ -100,14 +100,14 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	 * @param start the lower bound of the range of folders
 	 * @param end the upper bound of the range of folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching folders
 	 */
 	public java.util.List<Folder> findByAccountId(
 		long accountId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Folder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first folder in the ordered set where accountId = &#63;.
@@ -216,11 +216,11 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	 *
 	 * @param accountId the account ID
 	 * @param fullName the full name
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
 	 */
 	public Folder fetchByA_F(
-		long accountId, String fullName, boolean retrieveFromCache);
+		long accountId, String fullName, boolean useFinderCache);
 
 	/**
 	 * Removes the folder where accountId = &#63; and fullName = &#63; from the database.
@@ -338,14 +338,14 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	 * @param start the lower bound of the range of folders
 	 * @param end the upper bound of the range of folders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of folders
 	 */
 	public java.util.List<Folder> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<Folder>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the folders from the database.

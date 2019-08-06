@@ -100,14 +100,14 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
 	public java.util.List<SyncDevice> findByUuid(
 		String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first sync device in the ordered set where uuid = &#63;.
@@ -247,14 +247,14 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
 	public java.util.List<SyncDevice> findByUuid_C(
 		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first sync device in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -397,14 +397,14 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
 	public java.util.List<SyncDevice> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first sync device in the ordered set where userId = &#63;.
@@ -545,14 +545,14 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching sync devices
 	 */
 	public java.util.List<SyncDevice> findByC_U(
 		long companyId, String userName, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first sync device in the ordered set where companyId = &#63; and userName LIKE &#63;.
@@ -741,14 +741,14 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	 * @param start the lower bound of the range of sync devices
 	 * @param end the upper bound of the range of sync devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of sync devices
 	 */
 	public java.util.List<SyncDevice> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the sync devices from the database.

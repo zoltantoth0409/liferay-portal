@@ -100,14 +100,14 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @param start the lower bound of the range of shopping carts
 	 * @param end the upper bound of the range of shopping carts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping carts
 	 */
 	public java.util.List<ShoppingCart> findByGroupId(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping cart in the ordered set where groupId = &#63;.
@@ -243,14 +243,14 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @param start the lower bound of the range of shopping carts
 	 * @param end the upper bound of the range of shopping carts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping carts
 	 */
 	public java.util.List<ShoppingCart> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Returns the first shopping cart in the ordered set where userId = &#63;.
@@ -359,11 +359,11 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 *
 	 * @param groupId the group ID
 	 * @param userId the user ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping cart, or <code>null</code> if a matching shopping cart could not be found
 	 */
 	public ShoppingCart fetchByG_U(
-		long groupId, long userId, boolean retrieveFromCache);
+		long groupId, long userId, boolean useFinderCache);
 
 	/**
 	 * Removes the shopping cart where groupId = &#63; and userId = &#63; from the database.
@@ -482,14 +482,14 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 * @param start the lower bound of the range of shopping carts
 	 * @param end the upper bound of the range of shopping carts (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping carts
 	 */
 	public java.util.List<ShoppingCart> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<ShoppingCart>
 			orderByComparator,
-		boolean retrieveFromCache);
+		boolean useFinderCache);
 
 	/**
 	 * Removes all the shopping carts from the database.

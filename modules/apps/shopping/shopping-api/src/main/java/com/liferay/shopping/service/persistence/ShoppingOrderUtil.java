@@ -186,16 +186,16 @@ public class ShoppingOrderUtil {
 	 * @param start the lower bound of the range of shopping orders
 	 * @param end the upper bound of the range of shopping orders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping orders
 	 */
 	public static List<ShoppingOrder> findByGroupId(
 		long groupId, int start, int end,
 		OrderByComparator<ShoppingOrder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByGroupId(
-			groupId, start, end, orderByComparator, retrieveFromCache);
+			groupId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
@@ -396,13 +396,13 @@ public class ShoppingOrderUtil {
 	 * Returns the shopping order where number = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param number the number
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping order, or <code>null</code> if a matching shopping order could not be found
 	 */
 	public static ShoppingOrder fetchByNumber(
-		String number, boolean retrieveFromCache) {
+		String number, boolean useFinderCache) {
 
-		return getPersistence().fetchByNumber(number, retrieveFromCache);
+		return getPersistence().fetchByNumber(number, useFinderCache);
 	}
 
 	/**
@@ -454,13 +454,13 @@ public class ShoppingOrderUtil {
 	 * Returns the shopping order where ppTxnId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param ppTxnId the pp txn ID
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching shopping order, or <code>null</code> if a matching shopping order could not be found
 	 */
 	public static ShoppingOrder fetchByPPTxnId(
-		String ppTxnId, boolean retrieveFromCache) {
+		String ppTxnId, boolean useFinderCache) {
 
-		return getPersistence().fetchByPPTxnId(ppTxnId, retrieveFromCache);
+		return getPersistence().fetchByPPTxnId(ppTxnId, useFinderCache);
 	}
 
 	/**
@@ -557,17 +557,17 @@ public class ShoppingOrderUtil {
 	 * @param start the lower bound of the range of shopping orders
 	 * @param end the upper bound of the range of shopping orders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching shopping orders
 	 */
 	public static List<ShoppingOrder> findByG_U_PPPS(
 		long groupId, long userId, String ppPaymentStatus, int start, int end,
 		OrderByComparator<ShoppingOrder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findByG_U_PPPS(
 			groupId, userId, ppPaymentStatus, start, end, orderByComparator,
-			retrieveFromCache);
+			useFinderCache);
 	}
 
 	/**
@@ -905,15 +905,15 @@ public class ShoppingOrderUtil {
 	 * @param start the lower bound of the range of shopping orders
 	 * @param end the upper bound of the range of shopping orders (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of shopping orders
 	 */
 	public static List<ShoppingOrder> findAll(
 		int start, int end, OrderByComparator<ShoppingOrder> orderByComparator,
-		boolean retrieveFromCache) {
+		boolean useFinderCache) {
 
 		return getPersistence().findAll(
-			start, end, orderByComparator, retrieveFromCache);
+			start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
