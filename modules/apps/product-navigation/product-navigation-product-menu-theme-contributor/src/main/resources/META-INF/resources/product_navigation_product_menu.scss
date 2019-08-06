@@ -102,7 +102,7 @@ body {
 }
 
 .product-menu {
-	a {
+	.nav > li > a {
 		color: $product-menu-nav-link-color;
 
 		&:hover {
