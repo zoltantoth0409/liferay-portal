@@ -156,7 +156,8 @@ public class JavaModuleTestCheck extends BaseJavaTermCheck {
 	private boolean _hasTestMethod(JavaClass javaClass) {
 		for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
 			if (((javaTerm instanceof JavaMethod) &&
-				 javaTerm.hasAnnotation("Test")) ||
+				 javaTerm.hasAnnotation(
+					 "After", "AfterClass", "Before", "BeforeClass", "Test")) ||
 				((javaTerm instanceof JavaClass) &&
 				 _hasTestMethod((JavaClass)javaTerm))) {
 
