@@ -80,6 +80,8 @@
 		<suppress checks="JavaIllegalImportsCheck" files="modules/apps/message-boards/message-boards-comment/src/main/java/com/liferay/message/boards/comment/internal/MBCommentManagerImpl\.java" />
 		<suppress checks="JavaIllegalImportsCheck" files="modules/apps/message-boards/message-boards-comment/src/test/java/com/liferay/message/boards/comment/internal/MBCommentManagerImplTest\.java" />
 		<suppress checks="JavaIllegalImportsCheck" files="util-slf4j/src/com/liferay/util/sl4fj/LiferayLoggerFactory\.java" />
+		<suppress checks="JavaMultiPlusConcatCheck" files=".*/test/.*" />
+		<suppress checks="JavaMultiPlusConcatCheck" files=".*/testIntegration/.*" />
 		<suppress checks="JavaPackagePathCheck" files=".*/ServletContextUtil\.java" />
 		<suppress checks="JavaStringBundlerConcatCheck" files="portal-kernel/test/unit/com/liferay/portal/kernel/util/StringBundlerTest\.java" />
 		<suppress checks="JavaStringBundlerInitialCapacityCheck" files="portal-kernel/test/unit/com/liferay/portal/kernel/util/StringBundlerTest\.java" />
