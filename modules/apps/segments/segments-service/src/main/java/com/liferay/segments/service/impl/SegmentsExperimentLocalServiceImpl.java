@@ -87,16 +87,16 @@ public class SegmentsExperimentLocalServiceImpl
 
 		segmentsExperimentPersistence.update(segmentsExperiment);
 
+		// Resources
+
+		resourceLocalService.addModelResources(
+			segmentsExperiment, serviceContext);
+
 		// Segments experiment rel
 
 		segmentsExperimentRelLocalService.addSegmentsExperimentRel(
 			segmentsExperiment.getSegmentsExperimentId(),
 			segmentsExperiment.getSegmentsExperienceId(), serviceContext);
-
-		// Resources
-
-		resourceLocalService.addModelResources(
-			segmentsExperiment, serviceContext);
 
 		return segmentsExperiment;
 	}
@@ -111,15 +111,15 @@ public class SegmentsExperimentLocalServiceImpl
 
 		segmentsExperimentPersistence.remove(segmentsExperiment);
 
-		// Segments experiment rels
-
-		segmentsExperimentRelLocalService.deleteSegmentsExperimentRels(
-			segmentsExperiment.getSegmentsExperimentId());
-
 		// Resources
 
 		resourceLocalService.deleteResource(
 			segmentsExperiment, ResourceConstants.SCOPE_INDIVIDUAL);
+
+		// Segments experiment rels
+
+		segmentsExperimentRelLocalService.deleteSegmentsExperimentRels(
+			segmentsExperiment.getSegmentsExperimentId());
 
 		return segmentsExperiment;
 	}
