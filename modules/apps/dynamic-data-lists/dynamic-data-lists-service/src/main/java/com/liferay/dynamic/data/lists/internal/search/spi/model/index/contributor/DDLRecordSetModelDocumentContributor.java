@@ -40,10 +40,6 @@ public class DDLRecordSetModelDocumentContributor
 
 	@Override
 	public void contribute(Document document, DDLRecordSet ddlRecordSet) {
-		document.addKeyword("DDMStructureId", ddlRecordSet.getDDMStructureId());
-		document.addKeyword("scope", ddlRecordSet.getScope());
-		document.addKeyword(Field.VERSION, ddlRecordSet.getVersion());
-
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
@@ -66,6 +62,10 @@ public class DDLRecordSetModelDocumentContributor
 				LocalizationUtil.getLocalizedName(Field.NAME, nameLanguageId),
 				ddlRecordSet.getName(nameLanguageId));
 		}
+
+		document.addKeyword(Field.VERSION, ddlRecordSet.getVersion());
+		document.addKeyword("DDMStructureId", ddlRecordSet.getDDMStructureId());
+		document.addKeyword("scope", ddlRecordSet.getScope());
 	}
 
 	protected String[] getLanguageIds(
