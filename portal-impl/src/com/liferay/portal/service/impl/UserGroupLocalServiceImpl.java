@@ -1234,6 +1234,10 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 	}
 
 	protected boolean isUseCustomSQL(LinkedHashMap<String, Object> params) {
+		if (MapUtil.isEmpty(params)) {
+			return false;
+		}
+
 		Indexer<?> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			UserGroup.class);
 
