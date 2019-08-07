@@ -34,13 +34,13 @@ String segmentsExperimentRootId = renderResponse.getNamespace() + "-segments-exp
 			selectedSegmentsExperienceId: '<%= segmentsExperimentDisplayContext.getSelectedSegmentsExperienceId() %>'
 		},
 		{
+			contentPageEditorNamespace: '<%= segmentsExperimentDisplayContext.getContentPageEditorPortletNamespace() %>',
 			endpoints: {
 				createSegmentsExperimentURL: '<%= segmentsExperimentDisplayContext.getCreateSegmentsExperimentURL() %>',
-				editSegmentsExperimentURL: '/segments.segmentsexperiment/update-segments-experiment',
-				createSegmentsVariantURL: '<%= segmentsExperimentDisplayContext.getCreateSegmentsVariantURL() %>'
+				createSegmentsVariantURL: '<%= segmentsExperimentDisplayContext.getCreateSegmentsVariantURL() %>',
+				editSegmentsExperimentURL: '/segments.segmentsexperiment/update-segments-experiment'
 			},
 			namespace: '<portlet:namespace />',
-			contentPageEditorNamespace: '<%= segmentsExperimentDisplayContext.getContentPageEditorPortletNamespace() %>',
 			page: {
 				classPK: '<%= themeDisplay.getPlid() %>',
 				classNameId: '<%= PortalUtil.getClassNameId(Layout.class.getName()) %>',

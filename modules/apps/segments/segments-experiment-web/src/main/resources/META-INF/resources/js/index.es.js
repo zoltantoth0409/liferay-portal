@@ -24,10 +24,10 @@ export default function segmentsExperimentsApp(id, props, context) {
 	ReactDOM.render(
 		<SegmentsExperimentsContext.Provider
 			value={{
-				page: context.page,
-				endpoints: context.endpoints,
 				contentPageEditorNamespace: context.contentPageEditorNamespace,
-				namespace: context.namespace
+				endpoints: context.endpoints,
+				namespace: context.namespace,
+				page: context.page
 			}}
 		>
 			<ClayIconSpriteContext.Provider value={context.spritemap}>
