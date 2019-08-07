@@ -747,6 +747,37 @@ definition {
 			siteName = "Site Name");
 	}
 
+	@description = "This is a use case for LPS-83326."
+	@priority = "5"
+	test ExportImportWebcontentFolderWithWorkflow {
+		Navigator.openSiteLanding(siteURLKey = "Guest");
+
+		WebContentFolder.addCP(
+			folderDescription = "WC Folder Description",
+			folderName = "WC Folder Name");
+
+		WebContentFolder.configureWorkflowCP(
+			folderName = "WC Folder Name",
+			workflowDefinition = "Single Approver (Version 1)",
+			workflowRestriction = "Default Workflow");
+
+		Navigator.openSiteLanding(siteURLKey = "guest");
+
+		LAR.exportPortlet(larFileName = "WebContent_portlet.lar");
+
+		JSONGroup.addGroup(groupName = "Site Name");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		LAR.importPortlet(larFileName = "WebContent_portlet.lar");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentFolder.viewFolderWorkflow(
+			folderName = "WC Folder Name",
+			workflowResourceValue = "Single Approver");
+	}
+
 	@priority = "4"
 	test ExportImportWithExportTemplate {
 		Navigator.openURL();
