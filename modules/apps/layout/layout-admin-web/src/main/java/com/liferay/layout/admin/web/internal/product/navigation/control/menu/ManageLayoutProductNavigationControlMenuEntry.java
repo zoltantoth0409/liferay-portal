@@ -143,8 +143,8 @@ public class ManageLayoutProductNavigationControlMenuEntry
 			values.put(
 				"layoutUpdatedMessage", successTag.doTagAsString(pageContext));
 		}
-		catch (JspException je) {
-			ReflectionUtil.throwException(je);
+		catch (JspException jspe) {
+			ReflectionUtil.throwException(jspe);
 		}
 
 		Writer writer = httpServletResponse.getWriter();
