@@ -44,7 +44,6 @@ public class DDLRecordSetKeywordQueryContributor
 
 		addSearchLocalizedTerm(
 			booleanQuery, keywordQueryContributorHelper, Field.DESCRIPTION);
-
 		addSearchLocalizedTerm(
 			booleanQuery, keywordQueryContributorHelper, Field.NAME);
 	}
