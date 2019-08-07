@@ -78,7 +78,6 @@ public class CTProcessMessageUtil {
 		statusMessage.put(
 			BackgroundTaskConstants.BACKGROUND_TASK_ID,
 			BackgroundTaskThreadLocal.getBackgroundTaskId());
-
 		statusMessage.put("date", date);
 		statusMessage.put("level", level);
 		statusMessage.put("message", message);
