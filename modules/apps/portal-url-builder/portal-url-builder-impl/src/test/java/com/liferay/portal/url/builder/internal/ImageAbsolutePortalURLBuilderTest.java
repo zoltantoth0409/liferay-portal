@@ -65,31 +65,31 @@ public class ImageAbsolutePortalURLBuilderTest
 	}
 
 	@Test
-	public void testIgnoringCDN() {
+	public void testIgnoreCDN() {
 		_absolutePortalURLBuilder.ignoreCDNHost();
 
 		String url = _imageAbsolutePortalURLBuilder.build();
 
-		Assert.assertEquals(_RESULTS_IGNORING_CDN[index], url);
+		Assert.assertEquals(_RESULTS_IGNORE_CDN[index], url);
 	}
 
 	@Test
-	public void testIgnoringCDNAndProxy() {
+	public void testIgnoreCDNAndProxy() {
 		_absolutePortalURLBuilder.ignoreCDNHost();
 		_absolutePortalURLBuilder.ignorePathProxy();
 
 		String url = _imageAbsolutePortalURLBuilder.build();
 
-		Assert.assertEquals(_RESULTS_IGNORING_CDN_AND_PROXY[index], url);
+		Assert.assertEquals(_RESULTS_IGNORE_CDN_AND_PROXY[index], url);
 	}
 
 	@Test
-	public void testIgnoringProxy() {
+	public void testIgnoreProxy() {
 		_absolutePortalURLBuilder.ignorePathProxy();
 
 		String url = _imageAbsolutePortalURLBuilder.build();
 
-		Assert.assertEquals(_RESULTS_IGNORING_PROXY[index], url);
+		Assert.assertEquals(_RESULTS_IGNORE_PROXY[index], url);
 	}
 
 	@Parameterized.Parameter(3)
@@ -111,20 +111,20 @@ public class ImageAbsolutePortalURLBuilderTest
 		"/proxy/image/path/to/image.png"
 	};
 
-	private static final String[] _RESULTS_IGNORING_CDN = {
+	private static final String[] _RESULTS_IGNORE_CDN = {
 		"/image/path/to/image.png", "/image/path/to/image.png",
 		"/context/image/path/to/image.png",
 		"/proxy/context/image/path/to/image.png",
 		"/proxy/image/path/to/image.png"
 	};
 
-	private static final String[] _RESULTS_IGNORING_CDN_AND_PROXY = {
+	private static final String[] _RESULTS_IGNORE_CDN_AND_PROXY = {
 		"/image/path/to/image.png", "/image/path/to/image.png",
 		"/context/image/path/to/image.png", "/context/image/path/to/image.png",
 		"/image/path/to/image.png"
 	};
 
-	private static final String[] _RESULTS_IGNORING_PROXY = {
+	private static final String[] _RESULTS_IGNORE_PROXY = {
 		"/image/path/to/image.png", "http://cdn-host/image/path/to/image.png",
 		"/context/image/path/to/image.png", "/context/image/path/to/image.png",
 		"/image/path/to/image.png"
