@@ -114,8 +114,8 @@ public class SegmentsExperimentProductNavigationControlMenuEntry
 				httpServletRequest, httpServletResponse,
 				this::_processBodyBottomTagBody);
 		}
-		catch (JspException je) {
-			throw new IOException(je);
+		catch (JspException jspe) {
+			throw new IOException(jspe);
 		}
 
 		return true;
@@ -175,8 +175,8 @@ public class SegmentsExperimentProductNavigationControlMenuEntry
 				"iconTag",
 				iconTag.doTagAsString(httpServletRequest, httpServletResponse));
 		}
-		catch (JspException je) {
-			ReflectionUtil.throwException(je);
+		catch (JspException jspe) {
+			ReflectionUtil.throwException(jspe);
 		}
 
 		values.put("portletNamespace", _portletNamespace);

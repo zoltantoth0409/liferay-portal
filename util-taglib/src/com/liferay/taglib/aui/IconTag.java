@@ -73,8 +73,8 @@ public class IconTag extends BaseIconTag {
 				new PipingServletResponse(
 					httpServletResponse, unsyncStringWriter));
 		}
-		catch (JspException je) {
-			throw new ServletException(je);
+		catch (JspException jspe) {
+			throw new ServletException(jspe);
 		}
 
 		return unsyncStringWriter.toString();
