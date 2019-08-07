@@ -82,31 +82,31 @@ public class ModuleAbsolutePortalURLBuilderTest
 	}
 
 	@Test
-	public void testIgnoringCDN() {
+	public void testIgnoreCDN() {
 		_absolutePortalURLBuilder.ignoreCDNHost();
 
 		String url = _moduleAbsolutePortalURLBuilder.build();
 
-		Assert.assertEquals(_RESULTS_IGNORING_CDN[index], url);
+		Assert.assertEquals(_RESULTS_IGNORE_CDN[index], url);
 	}
 
 	@Test
-	public void testIgnoringCDNAndProxy() {
+	public void testIgnoreCDNAndProxy() {
 		_absolutePortalURLBuilder.ignoreCDNHost();
 		_absolutePortalURLBuilder.ignorePathProxy();
 
 		String url = _moduleAbsolutePortalURLBuilder.build();
 
-		Assert.assertEquals(_RESULTS_IGNORING_CDN_AND_PROXY[index], url);
+		Assert.assertEquals(_RESULTS_IGNORE_CDN_AND_PROXY[index], url);
 	}
 
 	@Test
-	public void testIgnoringProxy() {
+	public void testIgnoreProxy() {
 		_absolutePortalURLBuilder.ignorePathProxy();
 
 		String url = _moduleAbsolutePortalURLBuilder.build();
 
-		Assert.assertEquals(_RESULTS_IGNORING_PROXY[index], url);
+		Assert.assertEquals(_RESULTS_IGNORE_PROXY[index], url);
 	}
 
 	@Parameterized.Parameter(3)
@@ -129,20 +129,20 @@ public class ModuleAbsolutePortalURLBuilderTest
 		"/proxy/o/bundle/path/to/resource"
 	};
 
-	private static final String[] _RESULTS_IGNORING_CDN = {
+	private static final String[] _RESULTS_IGNORE_CDN = {
 		"/o/bundle/path/to/resource", "/o/bundle/path/to/resource",
 		"/context/o/bundle/path/to/resource",
 		"/proxy/context/o/bundle/path/to/resource",
 		"/proxy/o/bundle/path/to/resource"
 	};
 
-	private static final String[] _RESULTS_IGNORING_CDN_AND_PROXY = {
+	private static final String[] _RESULTS_IGNORE_CDN_AND_PROXY = {
 		"/o/bundle/path/to/resource", "/o/bundle/path/to/resource",
 		"/context/o/bundle/path/to/resource",
 		"/context/o/bundle/path/to/resource", "/o/bundle/path/to/resource"
 	};
 
-	private static final String[] _RESULTS_IGNORING_PROXY = {
+	private static final String[] _RESULTS_IGNORE_PROXY = {
 		"/o/bundle/path/to/resource",
 		"http://cdn-host/o/bundle/path/to/resource",
 		"/context/o/bundle/path/to/resource",

@@ -65,12 +65,12 @@ public class WhiteboardAbsolutePortalURLBuilderTest
 	}
 
 	@Test
-	public void testIgnoringProxy() {
+	public void testIgnoreProxy() {
 		_absolutePortalURLBuilder.ignorePathProxy();
 
 		String url = _whiteboardAbsolutePortalURLBuilder.build();
 
-		Assert.assertEquals(_RESULTS_IGNORING_PROXY[index], url);
+		Assert.assertEquals(_RESULTS_IGNORE_PROXY[index], url);
 	}
 
 	@Parameterized.Parameter(3)
@@ -91,7 +91,7 @@ public class WhiteboardAbsolutePortalURLBuilderTest
 		"/proxy/o/path/to/resource"
 	};
 
-	private static final String[] _RESULTS_IGNORING_PROXY = {
+	private static final String[] _RESULTS_IGNORE_PROXY = {
 		"/o/path/to/resource", "/o/path/to/resource",
 		"/context/o/path/to/resource", "/context/o/path/to/resource",
 		"/o/path/to/resource"

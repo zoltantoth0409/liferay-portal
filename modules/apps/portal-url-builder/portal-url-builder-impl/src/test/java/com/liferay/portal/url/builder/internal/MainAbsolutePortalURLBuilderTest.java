@@ -65,12 +65,12 @@ public class MainAbsolutePortalURLBuilderTest
 	}
 
 	@Test
-	public void testIgnoringProxy() {
+	public void testIgnoreProxy() {
 		_absolutePortalURLBuilder.ignorePathProxy();
 
 		String url = _mainAbsolutePortalURLBuilder.build();
 
-		Assert.assertEquals(_RESULTS_IGNORING_PROXY[index], url);
+		Assert.assertEquals(_RESULTS_IGNORE_PROXY[index], url);
 	}
 
 	@Parameterized.Parameter(3)
@@ -90,7 +90,7 @@ public class MainAbsolutePortalURLBuilderTest
 		"/proxy/context/c/path/to/login", "/proxy/c/path/to/login"
 	};
 
-	private static final String[] _RESULTS_IGNORING_PROXY = {
+	private static final String[] _RESULTS_IGNORE_PROXY = {
 		"/c/path/to/login", "/c/path/to/login", "/context/c/path/to/login",
 		"/context/c/path/to/login", "/c/path/to/login"
 	};
