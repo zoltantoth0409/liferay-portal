@@ -62,7 +62,7 @@
 					{/if}
 				{/if}
 
-				<div class="form-control select-field-trigger" {if $dir}dir="{$dir}"{/if} id="{$name}" name="{$name}" {if $readOnly} disabled{/if}>
+				<div class="form-control select-field-trigger" {if $dir}dir="{$dir}"{/if} id="{$name}" name="{$name}" {if $readOnly} disabled{/if} tabindex="0">
 					{if $multiple}
 						{if $displayValues}
 							<ul class="multiple-label-list">
@@ -258,7 +258,7 @@
 	{@param strings: [chooseAnOption: string, chooseOptions: string, search: string, emptyList: string]}
 	{@param value: list<string>}
 
-	<li class="select-option-item">
+	<li class="select-option-item" tabindex="0">
 		{let $itemAttributes kind="attributes"}
 			class="
 			{if length($value) == 0} active{sp} {/if}
@@ -421,7 +421,7 @@
 
 		data-option-value="{$option.value}"
 	{/let}
-	<li {$attributesNormalSelection}>
+	<li {$attributesNormalSelection} tabindex="0">
 		{let $itemAttributes kind="attributes"}
 			class="
 				dropdown-item
