@@ -107,10 +107,10 @@ public class CommonDataRecordCollectionResource<T> {
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
 			searchContext -> {
-				searchContext.setAttribute(
-					"DDMStructureId", ddmStructure.getStructureId());
 				searchContext.setAttribute(Field.DESCRIPTION, keywords);
 				searchContext.setAttribute(Field.NAME, keywords);
+				searchContext.setAttribute(
+					"DDMStructureId", ddmStructure.getStructureId());
 				searchContext.setAttribute(
 					"scope", DDLRecordSetConstants.SCOPE_DATA_ENGINE);
 				searchContext.setCompanyId(company.getCompanyId());
