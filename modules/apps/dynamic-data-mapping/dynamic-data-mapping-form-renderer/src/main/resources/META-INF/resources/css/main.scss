@@ -311,6 +311,20 @@ body .ddm-user-view-content {
 		position: relative;
 	}
 
+	.select-option-item {
+		border: 0.0625rem solid transparent;
+
+		&:focus {
+			background-color: #f0f5ff;
+			border-color: #80acff;
+			outline: none;
+
+			a {
+				color: #272833;
+			}
+		}
+	}
+
 	.select-search-container {
 		left: 8px;
 		position: absolute;
