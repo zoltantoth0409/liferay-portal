@@ -65,6 +65,8 @@
 		<suppress checks="JavaDiamondOperatorCheck" files="portal-kernel/src/com/liferay/portal/kernel/util/ListUtil\.java" />
 		<suppress checks="JavaFinderImplCustomSQLCheck" files="portal-impl/src/com/liferay/portlet/asset/service/persistence/impl/AssetCategoryPropertyFinderImpl\.java" />
 		<suppress checks="JavaIllegalImportsCheck" files="util-slf4j/src/com/liferay/util/sl4fj/LiferayLoggerFactory\.java" />
+		<suppress checks="JavaMultiPlusConcatCheck" files=".*/test/.*" />
+		<suppress checks="JavaMultiPlusConcatCheck" files=".*/testIntegration/.*" />
 		<suppress checks="JavaPackagePathCheck" files=".*/ServletContextUtil\.java" />
 		<suppress checks="JavaStringBundlerInitialCapacityCheck" files="portal-kernel/test/unit/com/liferay/portal/kernel/util/StringBundlerTest\.java" />
 		<suppress checks="JavaUnsafeCastingCheck" files="portal-impl/src/com/liferay/portal/util/PortalImpl\.java" />
