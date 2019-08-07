@@ -221,7 +221,6 @@ public class DataRecordCollectionResourceTest
 					put("en_US", description);
 				}
 			});
-
 		dataRecordCollection.setName(
 			new HashMap<String, Object>() {
 				{
