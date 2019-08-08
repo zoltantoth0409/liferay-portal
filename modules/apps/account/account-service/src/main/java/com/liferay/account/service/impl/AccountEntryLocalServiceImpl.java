@@ -68,16 +68,17 @@ public class AccountEntryLocalServiceImpl
 
 		// Account entry
 
-		User user = userLocalService.getUser(userId);
-
 		long accountEntryId = counterLocalService.increment();
 
 		AccountEntry accountEntry = accountEntryPersistence.create(
 			accountEntryId);
 
+		User user = userLocalService.getUser(userId);
+
 		accountEntry.setCompanyId(user.getCompanyId());
 		accountEntry.setUserId(user.getUserId());
 		accountEntry.setUserName(user.getFullName());
+
 		accountEntry.setParentAccountEntryId(parentAccountEntryId);
 		accountEntry.setName(name);
 		accountEntry.setDescription(description);
