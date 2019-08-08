@@ -2039,8 +2039,8 @@ definition {
 		WebContentNavigator.gotoAddWithStructureCP(structureName = "Test Structure");
 
 		WebContent.addWithStructureCP(
-			linkFieldName = "LinktoPage",
 			linkedPageName = "Test Page",
+			linkFieldName = "LinktoPage",
 			structureName = "Test Structure",
 			templateName = "Test Template",
 			webContentTitle = "WC Title");
