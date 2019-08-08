@@ -22,9 +22,9 @@ import com.liferay.portal.kernel.security.auth.AccessControlContext;
 import com.liferay.portal.kernel.security.auth.verifier.AuthVerifierResult;
 import com.liferay.portal.kernel.servlet.ProtectedServletRequest;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -223,7 +223,7 @@ public class AuthVerifierFilter extends BasePortalFilter {
 			HttpServletRequest request, HttpServletResponse response)
 		throws IOException {
 
-		if (!_httpsRequired || request.isSecure()) {
+		if (!_httpsRequired || PortalUtil.isSecure(request)) {
 			return false;
 		}
 
@@ -233,11 +233,10 @@ public class AuthVerifierFilter extends BasePortalFilter {
 			_log.debug("Securing " + completeURL);
 		}
 
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(4);
 
-		sb.append(Http.HTTPS_WITH_SLASH);
-		sb.append(request.getServerName());
-		sb.append(request.getServletPath());
+		sb.append(PortalUtil.getPortalURL(request, true));
+		sb.append(request.getRequestURI());
 
 		String queryString = request.getQueryString();
 
