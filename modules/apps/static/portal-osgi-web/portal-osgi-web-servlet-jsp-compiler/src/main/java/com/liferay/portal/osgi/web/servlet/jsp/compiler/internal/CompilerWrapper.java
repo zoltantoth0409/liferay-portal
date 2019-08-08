@@ -123,7 +123,7 @@ public class CompilerWrapper extends Compiler {
 
 	private URL _getClassURL(String className) {
 		String classNamePath = className.replace(
-			CharPool.PERIOD, CharPool.BACK_SLASH);
+			CharPool.PERIOD, File.separatorChar);
 
 		classNamePath = classNamePath.concat(".class");
 
