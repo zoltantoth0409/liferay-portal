@@ -89,6 +89,14 @@ definition {
 			locator1 = "ProductMenu#PORTLET_ACTIVE");
 	}
 
+	macro viewEntryRowInApplicationCP {
+		for (var tableEntryPartialText : list "${tableEntryPartialTextList}") {
+			LexiconTable.viewTableEntryPartialText(
+				tableEntry = "${tableEntry}",
+				tableEntryPartialText = "${tableEntryPartialText}");
+		}
+	}
+
 	macro viewNoEntryInApplicationCP {
 		if (IsElementNotPresent(locator1 = "NavTab#ACTIVE_TAB_LINK", key_tab = "Review Data")) {
 			Navigator.gotoNavTab(navTab = "Review Data");
