@@ -62,15 +62,6 @@ public class AuthVerifierFilterTest {
 		RegistryUtil.setRegistry(registry);
 	}
 
-	@Before
-	public void setUp() {
-		_authVerifierFilter = new AuthVerifierFilter();
-		_mockFilterChain = new MockFilterChain();
-		_mockFilterConfig = new MockFilterConfig();
-		_mockHttpServletRequest = new MockHttpServletRequest();
-		_mockHttpServletResponse = new MockHttpServletResponse();
-	}
-
 	@After
 	public void tearDown() {
 		AccessControlUtil.setAccessControlContext(null);
@@ -251,11 +242,13 @@ public class AuthVerifierFilterTest {
 	private static final PortalImpl _portalImpl = new PortalImpl();
 	private static final PortalUtil _portalUtil = new PortalUtil();
 
-	private AuthVerifierFilter _authVerifierFilter;
-	private MockFilterChain _mockFilterChain;
-	private MockFilterConfig _mockFilterConfig;
-	private MockHttpServletRequest _mockHttpServletRequest;
-	private MockHttpServletResponse _mockHttpServletResponse;
+	private AuthVerifierFilter _authVerifierFilter = new AuthVerifierFilter();
+	private MockFilterChain _mockFilterChain = new MockFilterChain();
+	private MockFilterConfig _mockFilterConfig = new MockFilterConfig();
+	private MockHttpServletRequest _mockHttpServletRequest =
+		new MockHttpServletRequest();
+	private MockHttpServletResponse _mockHttpServletResponse =
+		new MockHttpServletResponse();
 
 	private static class TestAccessControlImpl extends AccessControlImpl {
 
