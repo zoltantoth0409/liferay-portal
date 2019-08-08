@@ -50,14 +50,14 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		boolean force = GetterUtil.getBoolean(
-			serviceContext.getAttribute("force"));
-
 		CTCollection ctCollection = ctCollectionPersistence.findByPrimaryKey(
 			ctCollectionId);
 
 		CTEntry ctEntry = ctEntryPersistence.fetchByC_MCNI_MCPK(
 			ctCollectionId, modelClassNameId, modelClassPK);
+
+		boolean force = GetterUtil.getBoolean(
+			serviceContext.getAttribute("force"));
 
 		_validate(ctEntry, changeType, force);
 
