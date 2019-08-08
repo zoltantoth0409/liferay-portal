@@ -171,7 +171,6 @@ public class AccountEntryLocalServiceImpl
 			dynamicQuery -> dynamicQuery.add(
 				RestrictionsFactoryUtil.in(
 					"accountEntryId", ArrayUtil.toArray(accountEntryIds))));
-
 		actionableDynamicQuery.setPerformActionMethod(performActionMethod);
 
 		actionableDynamicQuery.performActions();
