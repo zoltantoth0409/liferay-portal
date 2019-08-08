@@ -337,11 +337,10 @@ public class AccountEntryLocalServiceUtil {
 		return getService().updateAccountEntry(accountEntry);
 	}
 
-	public static com.liferay.account.model.AccountEntry
-		updateAccountEntryStatus(
-			com.liferay.account.model.AccountEntry accountEntry, int status) {
+	public static com.liferay.account.model.AccountEntry updateStatus(
+		com.liferay.account.model.AccountEntry accountEntry, int status) {
 
-		return getService().updateAccountEntryStatus(accountEntry, status);
+		return getService().updateStatus(accountEntry, status);
 	}
 
 	public static AccountEntryLocalService getService() {

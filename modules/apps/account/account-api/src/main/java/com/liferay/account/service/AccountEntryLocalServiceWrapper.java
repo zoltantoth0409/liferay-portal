@@ -361,11 +361,10 @@ public class AccountEntryLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.account.model.AccountEntry updateAccountEntryStatus(
+	public com.liferay.account.model.AccountEntry updateStatus(
 		com.liferay.account.model.AccountEntry accountEntry, int status) {
 
-		return _accountEntryLocalService.updateAccountEntryStatus(
-			accountEntry, status);
+		return _accountEntryLocalService.updateStatus(accountEntry, status);
 	}
 
 	@Override

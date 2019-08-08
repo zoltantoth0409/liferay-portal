@@ -265,7 +265,6 @@ public interface AccountEntryLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public AccountEntry updateAccountEntry(AccountEntry accountEntry);
 
-	public AccountEntry updateAccountEntryStatus(
-		AccountEntry accountEntry, int status);
+	public AccountEntry updateStatus(AccountEntry accountEntry, int status);
 
 }
