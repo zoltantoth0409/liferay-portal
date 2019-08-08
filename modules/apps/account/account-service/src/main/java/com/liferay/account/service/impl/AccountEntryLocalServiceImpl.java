@@ -44,7 +44,7 @@ public class AccountEntryLocalServiceImpl
 	public void activateAccountEntries(long[] accountEntryIds)
 		throws PortalException {
 
-		_performBulkAction(accountEntryIds, this::activateAccountEntry);
+		_performActions(accountEntryIds, this::activateAccountEntry);
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class AccountEntryLocalServiceImpl
 	public void deactivateAccountEntries(long[] accountEntryIds)
 		throws PortalException {
 
-		_performBulkAction(accountEntryIds, this::deactivateAccountEntry);
+		_performActions(accountEntryIds, this::deactivateAccountEntry);
 	}
 
 	@Override
@@ -119,7 +119,7 @@ public class AccountEntryLocalServiceImpl
 	public void deleteAccountEntries(long[] accountEntryIds)
 		throws PortalException {
 
-		_performBulkAction(accountEntryIds, this::deleteAccountEntry);
+		_performActions(accountEntryIds, this::deleteAccountEntry);
 	}
 
 	@Override
@@ -158,7 +158,7 @@ public class AccountEntryLocalServiceImpl
 		return updateAccountEntry(accountEntry);
 	}
 
-	private void _performBulkAction(
+	private void _performActions(
 			long[] accountEntryIds,
 			ActionableDynamicQuery.PerformActionMethod<AccountEntry>
 				performActionMethod)
