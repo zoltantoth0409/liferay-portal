@@ -172,7 +172,7 @@ const FragmentComment = props => {
 			)}
 
 			{!isReply && (
-				<React.Fragment>
+				<>
 					<footer className="fragments-editor__fragment-comment-replies">
 						{props.comment.children &&
 							props.comment.children.map(childComment => (
@@ -196,7 +196,7 @@ const FragmentComment = props => {
 						fragmentEntryLinkId={props.fragmentEntryLinkId}
 						parentCommentId={props.comment.commentId}
 					/>
-				</React.Fragment>
+				</>
 			)}
 
 			{showDeleteMask && (
