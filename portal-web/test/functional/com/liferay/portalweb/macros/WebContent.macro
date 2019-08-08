@@ -692,7 +692,10 @@ definition {
 		}
 
 		if (isSet(linkedPageName)) {
-			Click(locator1 = "WC#LINK_TO_PAGE_SELECT_PAGE_BUTTON");
+			AssertClick(
+				key_fieldName = "${linkFieldName}",
+				locator1 = "Button#FIELD_SELECT",
+				value1 = "Select");
 
 			Click(
 				key_pageName = "${linkedPageName}",
