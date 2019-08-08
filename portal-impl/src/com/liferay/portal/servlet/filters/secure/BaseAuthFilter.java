@@ -268,9 +268,10 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 				_log.debug("Securing " + completeURL);
 			}
 
-			StringBundler sb = new StringBundler(4);
+			StringBundler sb = new StringBundler(5);
 
 			sb.append(PortalUtil.getPortalURL(request, true));
+			sb.append(PortalUtil.getPathContext(request));
 			sb.append(request.getRequestURI());
 
 			String queryString = request.getQueryString();
