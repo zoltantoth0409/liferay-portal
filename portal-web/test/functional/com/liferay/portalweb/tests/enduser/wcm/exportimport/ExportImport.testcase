@@ -841,6 +841,89 @@ definition {
 			value1 = "Not Found");
 	}
 
+	@description = "This is a use case for LPS-88831 and LPS-88889."
+	@priority = "4"
+	test ExportWebContentWithDeletedReference {
+		JSONGroup.addGroup(groupName = "Site Name");
+
+		JSONLayout.addLayoutByGroupName(
+			groupName = "Site Name",
+			layoutName = "Test Page");
+
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
+
+		DMDocument.addCP(
+			dmDocumentDescription = "DM Document Description",
+			dmDocumentFile = "Document_1.txt",
+			dmDocumentTitle = "DM Document Title");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoManageStructures();
+
+		WebContentStructures.addCP(
+			structureDescription = "WC Structure Description",
+			structureName = "WC Structure Name");
+
+		for (var structureFieldName : list "Documents and Media,Link to Page") {
+			DynamicDataMapping.addField(
+				field = "${structureFieldName}",
+				fieldFieldLabel = "${structureFieldName}",
+				fieldName = StringUtil.replace("${structureFieldName}", " ", ""));
+		}
+
+		WebContentStructures.saveCP(structureName = "WC Structure Name");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoManageTemplates();
+
+		WebContentTemplates.addCP(
+			templateDescription = "WC Template Description",
+			templateLanguage = "ftl",
+			templateName = "WC Template Name");
+
+		WebContentTemplates.addStructure(
+			structureName = "WC Structure Name",
+			templateFieldNames = "Documents and Media,Link to Page",
+			templateLanguage = "ftl");
+
+		DDLDataDefinition.save();
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
+
+		WebContent.addWithStructureCP(
+			fieldName = "DocumentsandMedia",
+			linkedPageName = "Test Page",
+			linkFieldName = "LinktoPage",
+			structureName = "WC Structure Name",
+			templateName = "WC Template Name",
+			webContentDocumentsAndMedia = "DM Document Title.txt",
+			webContentTitle = "WC WebContent Title");
+
+		PortletEntry.publish();
+
+		WebContent.viewTitle(webContentTitle = "WC WebContent Title");
+
+		DMNavigator.openDocumentsAndMediaAdmin(siteURLKey = "site-name");
+
+		DMDocument.deleteCP(dmDocumentTitle = "DM Document Title");
+
+		Navigator.gotoSitePage(
+			pageName = "Test Page",
+			siteName = "Site Name");
+
+		Page.deletePG(pageName = "Test Page");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		LAR.exportPortlet(larFileName = "WebContent_portlet.lar");
+
+		AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
+	}
+
 	@priority = "5"
 	test ImportCorruptedFile {
 		property portal.acceptance = "true";
