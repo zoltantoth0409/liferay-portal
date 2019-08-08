@@ -126,7 +126,7 @@ public class AccountEntryLocalServiceImpl
 	public AccountEntry deleteAccountEntry(AccountEntry accountEntry)
 		throws PortalException {
 
-		// AccountEntry
+		// Account entry
 
 		accountEntry = super.deleteAccountEntry(accountEntry);
 
