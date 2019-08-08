@@ -36,7 +36,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -242,12 +241,13 @@ public class AuthVerifierFilterTest {
 	private static final PortalImpl _portalImpl = new PortalImpl();
 	private static final PortalUtil _portalUtil = new PortalUtil();
 
-	private AuthVerifierFilter _authVerifierFilter = new AuthVerifierFilter();
-	private MockFilterChain _mockFilterChain = new MockFilterChain();
-	private MockFilterConfig _mockFilterConfig = new MockFilterConfig();
-	private MockHttpServletRequest _mockHttpServletRequest =
+	private final AuthVerifierFilter _authVerifierFilter =
+		new AuthVerifierFilter();
+	private final MockFilterChain _mockFilterChain = new MockFilterChain();
+	private final MockFilterConfig _mockFilterConfig = new MockFilterConfig();
+	private final MockHttpServletRequest _mockHttpServletRequest =
 		new MockHttpServletRequest();
-	private MockHttpServletResponse _mockHttpServletResponse =
+	private final MockHttpServletResponse _mockHttpServletResponse =
 		new MockHttpServletResponse();
 
 	private static class TestAccessControlImpl extends AccessControlImpl {
