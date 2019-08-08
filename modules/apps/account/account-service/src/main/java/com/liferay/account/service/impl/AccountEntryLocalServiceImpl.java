@@ -104,8 +104,7 @@ public class AccountEntryLocalServiceImpl
 
 	@Override
 	public AccountEntry deactivateAccountEntry(AccountEntry accountEntry) {
-		return updateStatus(
-			accountEntry, WorkflowConstants.STATUS_INACTIVE);
+		return updateStatus(accountEntry, WorkflowConstants.STATUS_INACTIVE);
 	}
 
 	@Override

@@ -14,12 +14,13 @@
 
 package com.liferay.account.service.impl;
 
-import com.liferay.account.constants.AccountEntryActionKeys;
+import com.liferay.account.constants.AccountActionKeys;
 import com.liferay.account.model.AccountEntry;
 import com.liferay.account.service.base.AccountEntryServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -47,7 +48,7 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 		throws PortalException {
 
 		PortalPermissionUtil.check(
-			getPermissionChecker(), AccountEntryActionKeys.ADD_ACCOUNT_ENTRY);
+			getPermissionChecker(), AccountActionKeys.ADD_ACCOUNT_ENTRY);
 
 		return accountEntryLocalService.addAccountEntry(
 			userId, parentAccountEntryId, name, description, logoId, status);
@@ -63,11 +64,11 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 
 		if (!permissionChecker.hasPermission(
 				null, AccountEntry.class.getName(), companyId,
-				AccountEntryActionKeys.VIEW)) {
+				ActionKeys.VIEW)) {
 
 			throw new PrincipalException.MustHavePermission(
 				permissionChecker, AccountEntry.class.getName(), 0,
-				AccountEntryActionKeys.VIEW);
+				ActionKeys.VIEW);
 		}
 
 		return accountEntryLocalService.getAccountEntries(

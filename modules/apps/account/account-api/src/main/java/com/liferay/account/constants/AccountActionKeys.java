@@ -17,10 +17,8 @@ package com.liferay.account.constants;
 /**
  * @author Pei-Jung Lan
  */
-public class AccountEntryActionKeys {
+public class AccountActionKeys {
 
 	public static final String ADD_ACCOUNT_ENTRY = "ADD_ACCOUNT_ENTRY";
-
-	public static final String VIEW = "VIEW";
 
 }
