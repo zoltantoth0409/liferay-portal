@@ -49,8 +49,7 @@ public class AccountEntryLocalServiceImpl
 
 	@Override
 	public AccountEntry activateAccountEntry(AccountEntry accountEntry) {
-		return updateAccountEntryStatus(
-			accountEntry, WorkflowConstants.STATUS_APPROVED);
+		return updateStatus(accountEntry, WorkflowConstants.STATUS_APPROVED);
 	}
 
 	@Override
@@ -105,7 +104,7 @@ public class AccountEntryLocalServiceImpl
 
 	@Override
 	public AccountEntry deactivateAccountEntry(AccountEntry accountEntry) {
-		return updateAccountEntryStatus(
+		return updateStatus(
 			accountEntry, WorkflowConstants.STATUS_INACTIVE);
 	}
 
@@ -151,9 +150,7 @@ public class AccountEntryLocalServiceImpl
 	}
 
 	@Override
-	public AccountEntry updateAccountEntryStatus(
-		AccountEntry accountEntry, int status) {
-
+	public AccountEntry updateStatus(AccountEntry accountEntry, int status) {
 		accountEntry.setStatus(status);
 
 		return updateAccountEntry(accountEntry);
