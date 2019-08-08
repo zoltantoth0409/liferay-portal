@@ -307,7 +307,7 @@ public class FragmentDisplayContext {
 			"propagationEnabled",
 			fragmentServiceConfiguration.propagateChanges()
 		).put(
-			"readOnly", _readOnlyFragmentEntry()
+			"readOnly", _isReadOnlyFragmentEntry()
 		).put(
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg"
@@ -747,7 +747,7 @@ public class FragmentDisplayContext {
 		return _tabs1;
 	}
 
-	private boolean _readOnlyFragmentEntry() {
+	private boolean _isReadOnlyFragmentEntry() {
 		if (Objects.equals(
 				getFragmentType(), FragmentTypeConstants.BASIC_FRAGMENT_TYPE)) {
 
