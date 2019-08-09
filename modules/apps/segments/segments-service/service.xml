@@ -233,8 +233,8 @@
 		<column name="classPK" type="long" />
 		<column name="name" type="String" />
 		<column name="description" type="String" />
-		<column name="status" type="int" />
 		<column name="typeSettings" type="String" />
+		<column name="status" type="int" />
 
 		<!-- Order -->
 

@@ -61,7 +61,7 @@ public class SegmentsExperimentLocalServiceImpl
 
 		_validate(
 			segmentsExperimentId, segmentsExperienceId, classNameId,
-			publishedLayoutClassPK, name, status, goal);
+			publishedLayoutClassPK, name, goal, status);
 
 		SegmentsExperiment segmentsExperiment =
 			segmentsExperimentPersistence.create(segmentsExperimentId);
@@ -86,7 +86,6 @@ public class SegmentsExperimentLocalServiceImpl
 		segmentsExperiment.setClassPK(publishedLayoutClassPK);
 		segmentsExperiment.setName(name);
 		segmentsExperiment.setDescription(description);
-		segmentsExperiment.setStatus(status);
 
 		UnicodeProperties typeSettings = new UnicodeProperties(true);
 
@@ -94,6 +93,8 @@ public class SegmentsExperimentLocalServiceImpl
 		typeSettings.setProperty("goalTarget", goalTarget);
 
 		segmentsExperiment.setTypeSettings(typeSettings.toString());
+
+		segmentsExperiment.setStatus(status);
 
 		segmentsExperimentPersistence.update(segmentsExperiment);
 
@@ -285,8 +286,8 @@ public class SegmentsExperimentLocalServiceImpl
 
 	private void _validate(
 			long segmentsExperimentId, long segmentsExperienceId,
-			long classNameId, long classPK, String name, int status,
-			String goal)
+			long classNameId, long classPK, String name, String goal,
+			int status)
 		throws PortalException {
 
 		_validateGoal(goal);
