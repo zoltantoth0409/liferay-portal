@@ -168,7 +168,7 @@ request.setAttribute("edit_article.jsp-changeStructure", changeStructure);
 	<portlet:param name="mvcPath" value="/edit_article.jsp" />
 </portlet:renderURL>
 
-<aui:form action="<%= editArticleActionURL %>" cssClass="container-fluid-1280" enctype="multipart/form-data" method="post" name="fm1" onSubmit="event.preventDefault();">
+<aui:form action="<%= editArticleActionURL %>" autocomplete="off" cssClass="container-fluid-1280" enctype="multipart/form-data" method="post" name="fm1" onSubmit="event.preventDefault();">
 	<aui:input name="<%= ActionRequest.ACTION_NAME %>" type="hidden" />
 	<aui:input name="hideDefaultSuccessMessage" type="hidden" value="<%= classNameId == PortalUtil.getClassNameId(DDMStructure.class) %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
