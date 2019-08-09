@@ -149,7 +149,7 @@ public class SegmentsExperimentDisplayContext {
 		return segmentsExperiencesJSONArray;
 	}
 
-	public JSONArray getSegmentsExperimentGoals(Locale locale) {
+	public JSONArray getSegmentsExperimentGoalsJSONArray(Locale locale) {
 		JSONArray segmentsExperimentGoalsJSONArray =
 			JSONFactoryUtil.createJSONArray();
 
