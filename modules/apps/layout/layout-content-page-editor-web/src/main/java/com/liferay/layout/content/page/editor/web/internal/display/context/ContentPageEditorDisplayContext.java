@@ -937,9 +937,14 @@ public class ContentPageEditorDisplayContext {
 					SessionErrors.clear(request);
 				}
 
-				soyContext.put(
-					"comments",
-					_getFragmentEntryLinkCommentsJSONArray(fragmentEntryLink));
+				if (ContentPageEditorConfigurationUtil.isCommentsEnabled(
+						themeDisplay.getCompanyId())) {
+
+					soyContext.put(
+						"comments",
+						_getFragmentEntryLinkCommentsJSONArray(
+							fragmentEntryLink));
+				}
 
 				String configuration =
 					_fragmentRendererController.getConfiguration(
