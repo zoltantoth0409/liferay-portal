@@ -88,8 +88,8 @@ public class SegmentsExperimentModelImpl
 		{"segmentsExperienceId", Types.BIGINT},
 		{"segmentsExperimentKey", Types.VARCHAR}, {"classNameId", Types.BIGINT},
 		{"classPK", Types.BIGINT}, {"name", Types.VARCHAR},
-		{"description", Types.VARCHAR}, {"status", Types.INTEGER},
-		{"typeSettings", Types.CLOB}
+		{"description", Types.VARCHAR}, {"typeSettings", Types.CLOB},
+		{"status", Types.INTEGER}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -111,12 +111,12 @@ public class SegmentsExperimentModelImpl
 		TABLE_COLUMNS_MAP.put("classPK", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("typeSettings", Types.CLOB);
+		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table SegmentsExperiment (uuid_ VARCHAR(75) null,segmentsExperimentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,segmentsEntryId LONG,segmentsExperienceId LONG,segmentsExperimentKey VARCHAR(75) null,classNameId LONG,classPK LONG,name VARCHAR(75) null,description VARCHAR(75) null,status INTEGER,typeSettings TEXT null)";
+		"create table SegmentsExperiment (uuid_ VARCHAR(75) null,segmentsExperimentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,segmentsEntryId LONG,segmentsExperienceId LONG,segmentsExperimentKey VARCHAR(75) null,classNameId LONG,classPK LONG,name VARCHAR(75) null,description VARCHAR(75) null,typeSettings TEXT null,status INTEGER)";
 
 	public static final String TABLE_SQL_DROP = "drop table SegmentsExperiment";
 
@@ -193,8 +193,8 @@ public class SegmentsExperimentModelImpl
 		model.setClassPK(soapModel.getClassPK());
 		model.setName(soapModel.getName());
 		model.setDescription(soapModel.getDescription());
-		model.setStatus(soapModel.getStatus());
 		model.setTypeSettings(soapModel.getTypeSettings());
+		model.setStatus(soapModel.getStatus());
 
 		return model;
 	}
@@ -442,17 +442,17 @@ public class SegmentsExperimentModelImpl
 			"description",
 			(BiConsumer<SegmentsExperiment, String>)
 				SegmentsExperiment::setDescription);
-		attributeGetterFunctions.put("status", SegmentsExperiment::getStatus);
-		attributeSetterBiConsumers.put(
-			"status",
-			(BiConsumer<SegmentsExperiment, Integer>)
-				SegmentsExperiment::setStatus);
 		attributeGetterFunctions.put(
 			"typeSettings", SegmentsExperiment::getTypeSettings);
 		attributeSetterBiConsumers.put(
 			"typeSettings",
 			(BiConsumer<SegmentsExperiment, String>)
 				SegmentsExperiment::setTypeSettings);
+		attributeGetterFunctions.put("status", SegmentsExperiment::getStatus);
+		attributeSetterBiConsumers.put(
+			"status",
+			(BiConsumer<SegmentsExperiment, Integer>)
+				SegmentsExperiment::setStatus);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -776,6 +776,22 @@ public class SegmentsExperimentModelImpl
 
 	@JSON
 	@Override
+	public String getTypeSettings() {
+		if (_typeSettings == null) {
+			return "";
+		}
+		else {
+			return _typeSettings;
+		}
+	}
+
+	@Override
+	public void setTypeSettings(String typeSettings) {
+		_typeSettings = typeSettings;
+	}
+
+	@JSON
+	@Override
 	public int getStatus() {
 		return _status;
 	}
@@ -795,22 +811,6 @@ public class SegmentsExperimentModelImpl
 
 	public int getOriginalStatus() {
 		return _originalStatus;
-	}
-
-	@JSON
-	@Override
-	public String getTypeSettings() {
-		if (_typeSettings == null) {
-			return "";
-		}
-		else {
-			return _typeSettings;
-		}
-	}
-
-	@Override
-	public void setTypeSettings(String typeSettings) {
-		_typeSettings = typeSettings;
 	}
 
 	@Override
@@ -876,8 +876,8 @@ public class SegmentsExperimentModelImpl
 		segmentsExperimentImpl.setClassPK(getClassPK());
 		segmentsExperimentImpl.setName(getName());
 		segmentsExperimentImpl.setDescription(getDescription());
-		segmentsExperimentImpl.setStatus(getStatus());
 		segmentsExperimentImpl.setTypeSettings(getTypeSettings());
+		segmentsExperimentImpl.setStatus(getStatus());
 
 		segmentsExperimentImpl.resetOriginalValues();
 
@@ -1067,8 +1067,6 @@ public class SegmentsExperimentModelImpl
 			segmentsExperimentCacheModel.description = null;
 		}
 
-		segmentsExperimentCacheModel.status = getStatus();
-
 		segmentsExperimentCacheModel.typeSettings = getTypeSettings();
 
 		String typeSettings = segmentsExperimentCacheModel.typeSettings;
@@ -1076,6 +1074,8 @@ public class SegmentsExperimentModelImpl
 		if ((typeSettings != null) && (typeSettings.length() == 0)) {
 			segmentsExperimentCacheModel.typeSettings = null;
 		}
+
+		segmentsExperimentCacheModel.status = getStatus();
 
 		return segmentsExperimentCacheModel;
 	}
@@ -1178,10 +1178,10 @@ public class SegmentsExperimentModelImpl
 	private boolean _setOriginalClassPK;
 	private String _name;
 	private String _description;
+	private String _typeSettings;
 	private int _status;
 	private int _originalStatus;
 	private boolean _setOriginalStatus;
-	private String _typeSettings;
 	private long _columnBitmask;
 	private SegmentsExperiment _escapedModel;
 

@@ -155,9 +155,9 @@ public class SegmentsExperimentPersistenceTest {
 
 		newSegmentsExperiment.setDescription(RandomTestUtil.randomString());
 
-		newSegmentsExperiment.setStatus(RandomTestUtil.nextInt());
-
 		newSegmentsExperiment.setTypeSettings(RandomTestUtil.randomString());
+
+		newSegmentsExperiment.setStatus(RandomTestUtil.nextInt());
 
 		_segmentsExperiments.add(_persistence.update(newSegmentsExperiment));
 
@@ -212,11 +212,11 @@ public class SegmentsExperimentPersistenceTest {
 			existingSegmentsExperiment.getDescription(),
 			newSegmentsExperiment.getDescription());
 		Assert.assertEquals(
-			existingSegmentsExperiment.getStatus(),
-			newSegmentsExperiment.getStatus());
-		Assert.assertEquals(
 			existingSegmentsExperiment.getTypeSettings(),
 			newSegmentsExperiment.getTypeSettings());
+		Assert.assertEquals(
+			existingSegmentsExperiment.getStatus(),
+			newSegmentsExperiment.getStatus());
 	}
 
 	@Test
@@ -647,9 +647,9 @@ public class SegmentsExperimentPersistenceTest {
 
 		segmentsExperiment.setDescription(RandomTestUtil.randomString());
 
-		segmentsExperiment.setStatus(RandomTestUtil.nextInt());
-
 		segmentsExperiment.setTypeSettings(RandomTestUtil.randomString());
+
+		segmentsExperiment.setStatus(RandomTestUtil.nextInt());
 
 		_segmentsExperiments.add(_persistence.update(segmentsExperiment));
 

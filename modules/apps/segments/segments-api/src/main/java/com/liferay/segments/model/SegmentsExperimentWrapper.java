@@ -61,8 +61,8 @@ public class SegmentsExperimentWrapper
 		attributes.put("classPK", getClassPK());
 		attributes.put("name", getName());
 		attributes.put("description", getDescription());
-		attributes.put("status", getStatus());
 		attributes.put("typeSettings", getTypeSettings());
+		attributes.put("status", getStatus());
 
 		return attributes;
 	}
@@ -162,16 +162,16 @@ public class SegmentsExperimentWrapper
 			setDescription(description);
 		}
 
-		Integer status = (Integer)attributes.get("status");
-
-		if (status != null) {
-			setStatus(status);
-		}
-
 		String typeSettings = (String)attributes.get("typeSettings");
 
 		if (typeSettings != null) {
 			setTypeSettings(typeSettings);
+		}
+
+		Integer status = (Integer)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 	}
 
