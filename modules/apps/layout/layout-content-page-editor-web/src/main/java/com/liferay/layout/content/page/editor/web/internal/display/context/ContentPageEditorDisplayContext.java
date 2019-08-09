@@ -46,7 +46,7 @@ import com.liferay.layout.admin.constants.LayoutAdminPortletKeys;
 import com.liferay.layout.content.page.editor.constants.ContentPageEditorPortletKeys;
 import com.liferay.layout.content.page.editor.constants.ContentPageEditorWebKeys;
 import com.liferay.layout.content.page.editor.web.internal.comment.CommentUtil;
-import com.liferay.layout.content.page.editor.web.internal.configuration.util.ContentPageEditorCommentsConfigurationUtil;
+import com.liferay.layout.content.page.editor.web.internal.configuration.util.ContentPageEditorConfigurationUtil;
 import com.liferay.layout.content.page.editor.web.internal.configuration.util.FragmentServiceConfigurationUtil;
 import com.liferay.layout.page.template.model.LayoutPageTemplateStructure;
 import com.liferay.layout.page.template.service.LayoutPageTemplateStructureLocalServiceUtil;
@@ -452,7 +452,7 @@ public class ContentPageEditorDisplayContext {
 			soyContexts.add(availableSoyContext);
 		}
 
-		if (ContentPageEditorCommentsConfigurationUtil.isEnabled()) {
+		if (ContentPageEditorConfigurationUtil.commentsEnabled()) {
 			availableSoyContext = SoyContextFactoryUtil.createSoyContext();
 
 			availableSoyContext.put("type", "separator");
