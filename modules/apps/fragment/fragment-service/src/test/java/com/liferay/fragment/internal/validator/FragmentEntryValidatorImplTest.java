@@ -160,8 +160,7 @@ public class FragmentEntryValidatorImplTest {
 				"/name: string [a_b-c.d?e] does not match pattern");
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
-			_getFileContent(
-				"configuration-invalid-field-name-non-alphanumeric.json"));
+			_read("configuration-invalid-field-name-non-alphanumeric.json"));
 	}
 
 	@Test
