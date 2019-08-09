@@ -72,7 +72,10 @@ public final class JournalValidatorImpl implements JournalValidator {
 		throws FolderNameException {
 
 		if (!isValidName(folderName)) {
-			throw new FolderNameException(folderName);
+			throw new FolderNameException(
+				folderName +
+					" contains characters that are not allowed in web " +
+						"content folder names");
 		}
 	}
 
