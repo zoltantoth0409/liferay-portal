@@ -107,9 +107,9 @@ public class DataLayoutUtil {
 		throws Exception {
 
 		return JSONUtil.put(
-			"fieldNames", JSONUtil.put(dataLayoutColumn.getFieldNames())
-		).put(
 			"columnSize", dataLayoutColumn.getColumnSize()
+		).put(
+			"fieldNames", JSONUtil.put(dataLayoutColumn.getFieldNames())
 		);
 	}
 
