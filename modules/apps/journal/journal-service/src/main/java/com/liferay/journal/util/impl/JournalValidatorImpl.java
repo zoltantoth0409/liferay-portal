@@ -14,9 +14,11 @@
 
 package com.liferay.journal.util.impl;
 
+import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
 import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.journal.exception.FolderNameException;
 import com.liferay.journal.util.JournalValidator;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
@@ -72,10 +74,24 @@ public final class JournalValidatorImpl implements JournalValidator {
 		throws FolderNameException {
 
 		if (!isValidName(folderName)) {
-			throw new FolderNameException(
-				folderName +
-					" contains characters that are not allowed in web " +
-						"content folder names");
+			String message =
+				" contains characters that are not allowed in web content " +
+					"folder names";
+
+			if (!ExportImportThreadLocal.isImportInProcess()) {
+				throw new FolderNameException(folderName + message);
+			}
+
+			if (_log.isWarnEnabled()) {
+				StringBundler sb = new StringBundler(4);
+
+				sb.append("Imported folder with name: ");
+				sb.append(folderName);
+				sb.append(" that ");
+				sb.append(message);
+
+				_log.warn(sb.toString());
+			}
 		}
 	}
 
