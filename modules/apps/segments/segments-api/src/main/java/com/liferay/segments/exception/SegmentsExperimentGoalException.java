@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * @author Sarai Díaz
+ * @author Eduardo García
  */
 @ProviderType
 public class SegmentsExperimentGoalException extends PortalException {
