@@ -143,7 +143,7 @@ public class RootCauseAnalysisToolTopLevelBuildRunner
 		failBuildRunner(
 			JenkinsResultsParserUtil.combine(
 				buildParameter, " should point to a ", portalRepositoryName,
-				" GitHub url"));
+				" GitHub URL"));
 	}
 
 	private Integer _getAllowedPortalBranchSHAs() {
