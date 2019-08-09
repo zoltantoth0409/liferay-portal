@@ -2106,8 +2106,8 @@ definition {
 		);
 
 		var liferaySiteId = JSONGroup._getSiteIdByGroupName(groupName = "Guest");
-		var webContentFolderName1 = "WC Folder Name 1";
 		var portalURL = PropsUtil.get("portal.url");
+		var webContentFolderName1 = "WC Folder Name 1";
 
 		var curl = '''
 			${portalURL}/api/jsonws/journal.journalfolder/add-folder \
@@ -2131,8 +2131,8 @@ definition {
 			title = "apple"
 		);
 
-		var webContentFolderName2 = "WC Folder Name 2";
 		var portalURL = PropsUtil.get("portal.url");
+		var webContentFolderName2 = "WC Folder Name 2";
 
 		var curl = '''
 			${portalURL}/api/jsonws/journal.journalfolder/add-folder \
