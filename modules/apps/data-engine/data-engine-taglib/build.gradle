@@ -13,6 +13,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.data.engine.rest.api", version: "8.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.data.engine.spi", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "5.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.editor.taglib", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.js.loader.modules.extender.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "2.0.0"
