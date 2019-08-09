@@ -140,7 +140,7 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 		</div>
 
 		<portlet:actionURL name="publishFormInstance" var="publishFormInstanceURL">
-			<portlet:param name="mvcPath" value="/admin/edit_form_instance.jsp" />
+			<portlet:param name="mvcRenderCommandName" value="/admin/edit_form_instance" />
 		</portlet:actionURL>
 
 		<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="saveFormInstance" var="autoSaveFormInstanceURL" />
