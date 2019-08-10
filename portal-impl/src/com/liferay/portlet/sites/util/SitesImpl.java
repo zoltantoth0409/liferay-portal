@@ -1345,9 +1345,11 @@ public class SitesImpl implements Sites {
 					StringBundler.concat(
 						"Applying layout set prototype ",
 						layoutSetPrototype.getUuid(), " (mvccVersion ",
-						layoutSetPrototype.getMvccVersion(), ") to layout set ",
-						layoutSet.getLayoutSetId(), " (mvccVersion ",
-						layoutSet.getMvccVersion(), ")"));
+						String.valueOf(layoutSetPrototype.getMvccVersion()),
+						") to layout set ",
+						String.valueOf(layoutSet.getLayoutSetId()),
+						" (mvccVersion ",
+						String.valueOf(layoutSet.getMvccVersion()), ")"));
 			}
 
 			boolean importData = true;
@@ -1749,9 +1751,11 @@ public class SitesImpl implements Sites {
 				_log.debug(
 					StringBundler.concat(
 						"Applying layout prototype ", layoutPrototype.getUuid(),
-						" (mvccVersion ", layoutPrototype.getMvccVersion(),
-						") to layout ", layout.getPlid(), " (mvccVersion ",
-						layout.getMvccVersion(), ")"));
+						" (mvccVersion ",
+						String.valueOf(layoutPrototype.getMvccVersion()),
+						") to layout ", String.valueOf(layout.getPlid()),
+						" (mvccVersion ",
+						String.valueOf(layout.getMvccVersion()), ")"));
 			}
 
 			applyLayoutPrototype(layoutPrototype, layout, true);
