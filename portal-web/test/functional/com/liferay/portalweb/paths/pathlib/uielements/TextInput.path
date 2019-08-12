@@ -354,6 +354,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>REQUIRED_ALERT_SPECIFIC_FIELD</td>
+	<td>//div[contains(@class,'has-error') and contains(.,'${key_fieldName}')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>SCREEN_NAME</td>
 	<td>//div[label[contains(.,'Screen Name')]]/input[@type='text']</td>
 	<td></td>
