@@ -367,8 +367,20 @@ public class LayoutStagedModelDataHandler
 		Layout existingLayout = _layoutLocalService.fetchLayoutByUuidAndGroupId(
 			uuid, groupId, privateLayout);
 
-		if ((existingLayout == null) ||
-			(existingLayout.getGroupId() != portletDataContext.getGroupId()) ||
+		if (existingLayout == null) {
+			return;
+		}
+
+		Map<Long, Long> layoutPlids =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				Layout.class);
+
+		long plid = GetterUtil.getLong(
+			referenceElement.attributeValue("class-pk"));
+
+		layoutPlids.put(plid, existingLayout.getPlid());
+
+		if ((existingLayout.getGroupId() != portletDataContext.getGroupId()) ||
 			(existingLayout.isPrivateLayout() !=
 				portletDataContext.isPrivateLayout())) {
 
@@ -383,15 +395,6 @@ public class LayoutStagedModelDataHandler
 			referenceElement.attributeValue("layout-id"));
 
 		layouts.put(layoutId, existingLayout);
-
-		Map<Long, Long> layoutPlids =
-			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-				Layout.class);
-
-		long plid = GetterUtil.getLong(
-			referenceElement.attributeValue("class-pk"));
-
-		layoutPlids.put(plid, existingLayout.getPlid());
 	}
 
 	@Override
