@@ -15,8 +15,6 @@ AUI.add(
 
 		var CSS_SEARCH_CHOSEN = A.getClassName('drop', 'chosen');
 
-		var CSS_SELECT_ARROW_DOWN = A.getClassName('select', 'arrow', 'down', 'container');
-
 		var CSS_SELECT_DROPDOWN_ITEM = A.getClassName('dropdown', 'item');
 
 		var CSS_SELECT_LABEL_ITEM_CLOSE = A.getClassName('trigger', 'label', 'item', 'close');
@@ -207,9 +205,9 @@ AUI.add(
 
 						var container = instance.get('container');
 
-						var arrowSelect = container.one('.' + CSS_SELECT_ARROW_DOWN);
+						var selectField = container.one('.' + CSS_SELECT_TRIGGER_ACTION);
 
-						arrowSelect.focus();
+						selectField.focus();
 					},
 
 					getEvaluationContext: function(context) {
