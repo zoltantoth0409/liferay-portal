@@ -195,7 +195,7 @@ public class SegmentsServicePreAction extends Action {
 			}
 			catch (PortalException pe) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(pe.getMessage());
+					_log.warn(pe, pe);
 				}
 			}
 		}
