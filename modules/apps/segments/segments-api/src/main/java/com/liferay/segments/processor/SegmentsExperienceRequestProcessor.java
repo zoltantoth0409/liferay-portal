@@ -26,6 +26,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * com.liferay.segments.model.SegmentsExperiment SegmentsExperiment}s.
  *
  * @author Eduardo García
+ * @review
  */
 @ProviderType
 public interface SegmentsExperienceRequestProcessor {
