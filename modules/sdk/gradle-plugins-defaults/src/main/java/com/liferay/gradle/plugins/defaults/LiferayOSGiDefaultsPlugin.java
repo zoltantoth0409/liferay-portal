@@ -2182,11 +2182,11 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				public void execute(
 					ExternalModuleDependency externalModuleDependency) {
 
-					String group = externalModuleDependency.getGroup();
-					String name = externalModuleDependency.getName();
-
 					File appServerPortalDir =
 						liferayExtension.getAppServerPortalDir();
+
+					String group = externalModuleDependency.getGroup();
+					String name = externalModuleDependency.getName();
 
 					if (_isTaglibDependency(group, name)) {
 						String projectName = name.substring(12);
