@@ -167,6 +167,7 @@ class FragmentEntryLink extends Component {
 		const config = {
 			anchorElement: this.element,
 			buttons: [],
+			fixSelectedPanel: true,
 			item: {
 				configuration: this._configuration,
 				configurationValues: this._configurationValues,
@@ -176,10 +177,9 @@ class FragmentEntryLink extends Component {
 			itemId: this.fragmentEntryLinkId,
 			itemType: FRAGMENTS_EDITOR_ITEM_TYPES.fragment,
 			portalElement: document.body,
-			store: this.store,
-			fixSelectedPanel: true,
 			selectedPanelId:
-				FLOATING_TOOLBAR_BUTTONS.fragmentConfiguration.panelId
+				FLOATING_TOOLBAR_BUTTONS.fragmentConfiguration.panelId,
+			store: this.store
 		};
 
 		if (this._floatingToolbar) {
