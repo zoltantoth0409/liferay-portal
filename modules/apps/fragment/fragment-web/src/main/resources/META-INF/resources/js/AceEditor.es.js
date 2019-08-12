@@ -204,10 +204,8 @@ class AceEditor extends Component {
 	_overrideSetAnnotations(session) {
 		const setAnnotations = session.setAnnotations.bind(session);
 
-		session.setAnnotations = annotations => {
-			setAnnotations(
-				annotations.filter(annotation => annotation.type !== 'info')
-			);
+		session.setAnnotations = () => {
+			setAnnotations([]);
 		};
 	}
 }
