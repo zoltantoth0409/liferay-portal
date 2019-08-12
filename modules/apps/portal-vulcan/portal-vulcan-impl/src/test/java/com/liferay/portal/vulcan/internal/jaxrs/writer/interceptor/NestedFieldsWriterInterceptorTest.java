@@ -283,9 +283,8 @@ public class NestedFieldsWriterInterceptorTest {
 	private class MockProviderFactory extends ProviderFactory {
 
 		@Override
-		@SuppressWarnings("unchecked")
 		public <T> ContextProvider<T> createContextProvider(
-			Type contextType, Message m) {
+			Type contextType, Message message) {
 
 			if (Objects.equals(
 					contextType.getTypeName(), Pagination.class.getName())) {
