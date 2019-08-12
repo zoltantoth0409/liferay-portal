@@ -1349,9 +1349,13 @@ AUI.add(
 					syncUI: function() {
 						var instance = this;
 
-						var clearButtonNode = A.one('#' + instance.getInputName() + 'ClearButton');
-
 						var parsedValue = instance.getParsedValue(instance.getValue());
+
+						var titleNode = A.one('#' + instance.getInputName() + 'Title');
+
+						titleNode.val(parsedValue.title || '');
+
+						var clearButtonNode = A.one('#' + instance.getInputName() + 'ClearButton');
 
 						clearButtonNode.toggle(!!parsedValue.classPK);
 					},
@@ -1391,14 +1395,6 @@ AUI.add(
 						url.setWindowState('pop_up');
 
 						return url;
-					},
-
-					setTitle: function(title) {
-						var instance = this;
-
-						var titleNode = A.one('#' + instance.getInputName() + 'Title');
-
-						titleNode.val(title);
 					},
 
 					setValue: function(value) {
@@ -1466,7 +1462,6 @@ AUI.add(
 					_handleClearButtonClick: function() {
 						var instance = this;
 
-						instance.setTitle('');
 						instance.setValue('');
 					},
 
@@ -1489,12 +1484,11 @@ AUI.add(
 								if (event.details.length > 0) {
 									var selectedWebContent = event.details[0];
 
-									instance.setTitle(selectedWebContent.assettitle || '');
-
 									instance.setValue(
 										{
 											className: selectedWebContent.assetclassname,
-											classPK: selectedWebContent.assetclasspk
+											classPK: selectedWebContent.assetclasspk,
+											title: selectedWebContent.assettitle || ''
 										}
 									);
 								}
