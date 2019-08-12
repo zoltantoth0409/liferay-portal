@@ -14,6 +14,7 @@
 
 package com.liferay.portal.security.ldap.internal.messaging;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.configuration.persistence.listener.ConfigurationModelListener;
 import com.liferay.portal.kernel.log.Log;
@@ -103,7 +104,7 @@ public class UserImportMessageListener
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Skipping LDAP user import for company " + companyId +
-							"; LDAP Import not enabled.");
+							" because LDAP import is disabled");
 				}
 
 				continue;
@@ -113,7 +114,7 @@ public class UserImportMessageListener
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Skipping LDAP user import for company " + companyId +
-							"; LDAP Import Interval less than 1.");
+							" because LDAP import interval is less than 1");
 				}
 
 				continue;
@@ -122,8 +123,10 @@ public class UserImportMessageListener
 			if (time < ldapImportConfiguration.importInterval()) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Skipping LDAP user import for company " + companyId +
-							"; LDAP Import Interval not yet reached.");
+						StringBundler.concat(
+							"Skipping LDAP user import for company ", companyId,
+							" because LDAP import interval has not been ",
+							"reached"));
 				}
 
 				continue;
