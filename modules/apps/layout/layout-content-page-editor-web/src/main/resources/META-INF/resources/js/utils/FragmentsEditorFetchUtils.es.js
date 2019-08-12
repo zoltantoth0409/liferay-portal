@@ -55,8 +55,8 @@ function addFragmentEntryLinkComment(fragmentEntryLinkId, body) {
 	const state = _store.getState();
 
 	return _fetch(state.addFragmentEntryLinkCommentURL, {
-		fragmentEntryLinkId,
-		body
+		body,
+		fragmentEntryLinkId
 	});
 }
 
@@ -73,9 +73,9 @@ function addFragmentEntryLinkCommentReply(
 	const state = _store.getState();
 
 	return _fetch(state.addFragmentEntryLinkCommentURL, {
+		body,
 		fragmentEntryLinkId,
-		parentCommentId,
-		body
+		parentCommentId
 	});
 }
 
@@ -98,8 +98,8 @@ function editFragmentEntryLinkComment(commentId, body, resolved) {
 	const state = _store.getState();
 
 	return _fetch(state.editFragmentEntryLinkCommentURL, {
-		commentId,
 		body,
+		commentId,
 		resolved
 	}).then(response => response.json());
 }
@@ -117,8 +117,8 @@ function removeExperience(
 	const state = _store.getState();
 
 	const body = {
-		segmentsExperienceId,
-		deleteSegmentsExperience
+		deleteSegmentsExperience,
+		segmentsExperienceId
 	};
 
 	if (fragmentEntryLinkIds && fragmentEntryLinkIds.length) {

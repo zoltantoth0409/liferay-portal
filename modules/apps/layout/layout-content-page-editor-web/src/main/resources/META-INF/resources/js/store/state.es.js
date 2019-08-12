@@ -103,6 +103,15 @@ const INITIAL_STATE = {
 		})
 	).value([]),
 
+	availableAssets: Config.arrayOf(
+		Config.shapeOf({
+			assetBrowserURL: Config.string(),
+			className: Config.string(),
+			classNameId: Config.string(),
+			name: Config.string()
+		})
+	).value([]),
+
 	/**
 	 * Object of available languages.
 	 * @default {}
@@ -115,15 +124,6 @@ const INITIAL_STATE = {
 			languageLabel: Config.string()
 		})
 	).value({}),
-
-	availableAssets: Config.arrayOf(
-		Config.shapeOf({
-			assetBrowserURL: Config.string(),
-			className: Config.string(),
-			classNameId: Config.string(),
-			name: Config.string()
-		})
-	).value([]),
 
 	/**
 	 * List of available segments
@@ -263,24 +263,12 @@ const INITIAL_STATE = {
 	dropTargetItemType: Config.string().value(''),
 
 	/**
-	 * When true, it indicates that configuration is enabled
-	 * @review
-	 * @type {boolean}
-	 */
-	enableConfiguration: Config.bool().value(false),
-
-	/**
-	 * List of layoutData related to segmentsExperiences
+	 * URL for editing a comment to a FragmentEntryLink
 	 * @default ''
 	 * @review
-	 * @type {!Array}
+	 * @type {string}
 	 */
-	layoutDataList: Config.arrayOf(
-		Config.shapeOf({
-			layoutData: LayoutDataShape.required(),
-			segmentsExperienceId: Config.string().required()
-		})
-	).value([]),
+	editFragmentEntryLinkCommentURL: Config.string().value(''),
 
 	/**
 	 * URL for updating a distinct fragment entries of the editor.
@@ -290,15 +278,6 @@ const INITIAL_STATE = {
 	 * @type {string}
 	 */
 	editFragmentEntryLinkURL: Config.string().value(''),
-
-	/**
-	 * URL for editing a comment to a FragmentEntryLink
-	 * @default ''
-	 * @review
-	 * @type {string}
-	 */
-	editFragmentEntryLinkCommentURL: Config.string().value(''),
-
 	/**
 	 * Available elements that can be dragged inside the existing Page Template,
 	 * organized by fragment categories.
@@ -327,6 +306,13 @@ const INITIAL_STATE = {
 			name: Config.string().required()
 		})
 	).value([]),
+
+	/**
+	 * When true, it indicates that configuration is enabled
+	 * @review
+	 * @type {boolean}
+	 */
+	enableConfiguration: Config.bool().value(false),
 
 	/**
 	 * Fragment id to indicate if that fragment editor has to be cleared.
@@ -460,6 +446,19 @@ const INITIAL_STATE = {
 	layoutData: LayoutDataShape.value(getEmptyLayoutData()),
 
 	/**
+	 * List of layoutData related to segmentsExperiences
+	 * @default ''
+	 * @review
+	 * @type {!Array}
+	 */
+	layoutDataList: Config.arrayOf(
+		Config.shapeOf({
+			layoutData: LayoutDataShape.required(),
+			segmentsExperienceId: Config.string().required()
+		})
+	).value([]),
+
+	/**
 	 * Current layout look&feel url
 	 * @default undefined
 	 * @review
@@ -558,19 +557,6 @@ const INITIAL_STATE = {
 	segmentsExperienceId: Config.string().value(),
 
 	/**
-	 * Selected items
-	 * @default []
-	 * @review
-	 * @type {Array<string>}
-	 */
-	selectedItems: Config.arrayOf(
-		Config.shapeOf({
-			itemId: Config.string(),
-			itemType: Config.string()
-		})
-	).value([]),
-
-	/**
 	 * EditableId of the field that is being mapped
 	 * @default ''
 	 * @review
@@ -617,6 +603,19 @@ const INITIAL_STATE = {
 	 * @type {boolean}
 	 */
 	selectMappingTypeDialogVisible: Config.bool().value(false),
+
+	/**
+	 * Selected items
+	 * @default []
+	 * @review
+	 * @type {Array<string>}
+	 */
+	selectedItems: Config.arrayOf(
+		Config.shapeOf({
+			itemId: Config.string(),
+			itemType: Config.string()
+		})
+	).value([]),
 
 	/**
 	 * Selected mapping type label
@@ -669,10 +668,10 @@ const INITIAL_STATE = {
 	 */
 	sidebarPanels: Config.arrayOf(
 		Config.shapeOf({
-			type: Config.oneOf(['button', 'separator']),
 			icon: Config.string(),
 			label: Config.string(),
-			sidebarPanelId: Config.string()
+			sidebarPanelId: Config.string(),
+			type: Config.oneOf(['button', 'separator'])
 		})
 	).value([]),
 

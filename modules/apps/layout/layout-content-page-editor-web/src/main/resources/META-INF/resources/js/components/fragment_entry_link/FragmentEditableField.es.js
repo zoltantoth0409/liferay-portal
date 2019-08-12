@@ -417,11 +417,11 @@ class FragmentEditableField extends PortletBase {
 
 		this.store.dispatch(
 			updateEditableValueAction({
-				fragmentEntryLinkId: this.fragmentEntryLinkId,
-				editableValueContent: newValue,
-				processor: EDITABLE_FRAGMENT_ENTRY_PROCESSOR,
 				editableId: this.editableId,
+				editableValueContent: newValue,
 				editableValueId: this.languageId || DEFAULT_LANGUAGE_ID_KEY,
+				fragmentEntryLinkId: this.fragmentEntryLinkId,
+				processor: EDITABLE_FRAGMENT_ENTRY_PROCESSOR,
 				segmentsExperienceId: editableValueSegmentsExperienceId
 			})
 		);
@@ -543,6 +543,46 @@ class FragmentEditableField extends PortletBase {
  */
 FragmentEditableField.STATE = {
 	/**
+	 * Internal FloatingToolbar instance.
+	 * @default null
+	 * @instance
+	 * @memberOf FragmentEditableField
+	 * @review
+	 * @type {object|null}
+	 */
+	_floatingToolbar: Config.internal().value(null),
+
+	/**
+	 * Translated label of the mapped field
+	 * @instance
+	 * @memberOf FragmentEditableField
+	 * @private
+	 * @review
+	 * @type {string}
+	 */
+	_mappedFieldLabel: Config.internal().string(),
+
+	/**
+	 * Mapped asset field value
+	 * @instance
+	 * @memberOf FragmentEditableField
+	 * @private
+	 * @review
+	 * @type {string}
+	 */
+	_mappedFieldValue: Config.internal().string(),
+
+	/**
+	 * Prevent editable click effect
+	 * @instance
+	 * @memberOf FragmentEditableField
+	 * @private
+	 * @review
+	 * @type {boolean}
+	 */
+	_preventEditableClick: Config.bool().value(),
+
+	/**
 	 * Editable content to be rendered
 	 * @default undefined
 	 * @instance
@@ -615,47 +655,7 @@ FragmentEditableField.STATE = {
 		'link',
 		'rich-text',
 		'text'
-	]).required(),
-
-	/**
-	 * Internal FloatingToolbar instance.
-	 * @default null
-	 * @instance
-	 * @memberOf FragmentEditableField
-	 * @review
-	 * @type {object|null}
-	 */
-	_floatingToolbar: Config.internal().value(null),
-
-	/**
-	 * Translated label of the mapped field
-	 * @instance
-	 * @memberOf FragmentEditableField
-	 * @private
-	 * @review
-	 * @type {string}
-	 */
-	_mappedFieldLabel: Config.internal().string(),
-
-	/**
-	 * Mapped asset field value
-	 * @instance
-	 * @memberOf FragmentEditableField
-	 * @private
-	 * @review
-	 * @type {string}
-	 */
-	_mappedFieldValue: Config.internal().string(),
-
-	/**
-	 * Prevent editable click effect
-	 * @instance
-	 * @memberOf FragmentEditableField
-	 * @private
-	 * @review
-	 * @type {boolean}
-	 */
-	_preventEditableClick: Config.bool().value()
+	]).required()
 };
 
 const ConnectedFragmentEditableField = getConnectedComponent(

@@ -161,15 +161,6 @@ class ContentsAffected extends Component {
  */
 ContentsAffected.STATE = {
 	/**
-	 * Path to the images.
-	 *
-	 * @instance
-	 * @memberOf ContentsAffected
-	 * @type {String}
-	 */
-	spritemap: Config.string().required(),
-
-	/**
 	 * Affected Contents for the currently selected change tracking entry.
 	 *
 	 * @default undefined
@@ -206,6 +197,15 @@ ContentsAffected.STATE = {
 	page: Config.number().value(1),
 
 	pageSize: Config.number().value(10),
+
+	/**
+	 * Path to the images.
+	 *
+	 * @instance
+	 * @memberOf ContentsAffected
+	 * @type {String}
+	 */
+	spritemap: Config.string().required(),
 
 	startPosition: Config.number().value(1),
 
