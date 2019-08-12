@@ -15,6 +15,7 @@
 package com.liferay.portal.kernel.servlet;
 
 import com.liferay.portal.kernel.portlet.MockLiferayPortletRequest;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.util.PortalImpl;
 
@@ -175,9 +176,7 @@ public class MultiSessionErrorsTest {
 		PortletRequest mockPortletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
 
-		String key = "test_error";
-
-		Assert.assertNull(MultiSessionErrors.get(mockPortletRequest, key));
+		Assert.assertNull(MultiSessionErrors.get(mockPortletRequest, RandomTestUtil.randomString()));
 	}
 
 	@Test
@@ -207,9 +206,7 @@ public class MultiSessionErrorsTest {
 		PortletRequest mockPortletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
 
-		String key = "test_error";
-
-		SessionErrors.add(mockHttpServletRequest, key);
+		SessionErrors.add(mockHttpServletRequest, RandomTestUtil.randomString());
 
 		Assert.assertFalse(MultiSessionErrors.isEmpty(mockPortletRequest));
 	}
@@ -225,9 +222,8 @@ public class MultiSessionErrorsTest {
 
 		PortletRequest mockPortletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
-		String key = "test_error";
 
-		SessionErrors.add(mockPortletRequest, key);
+		SessionErrors.add(mockPortletRequest, RandomTestUtil.randomString());
 
 		Assert.assertFalse(MultiSessionErrors.isEmpty(mockPortletRequest));
 	}
