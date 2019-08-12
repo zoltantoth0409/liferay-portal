@@ -172,7 +172,7 @@ public class UserImportMessageListener
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				"LDAP user imports will be attempted every " + interval +
-					" minute(s).");
+					" minutes");
 		}
 
 		Class<?> clazz = getClass();
