@@ -45,9 +45,11 @@ public class MultiSessionErrorsTest {
 		String key = RandomTestUtil.randomString();
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSession(new MockHttpSession());
+			new MockHttpServletRequest() {
+			{
+				setSession(new MockHttpSession());
+			}
+		};
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
@@ -64,9 +66,11 @@ public class MultiSessionErrorsTest {
 	@Test
 	public void testClearPortletRequest() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSession(new MockHttpSession());
+			new MockHttpServletRequest() {
+			{
+				setSession(new MockHttpSession());
+			}
+		};
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
@@ -85,9 +89,11 @@ public class MultiSessionErrorsTest {
 	@Test
 	public void testContainsOnHttpServletRequest() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSession(new MockHttpSession());
+			new MockHttpServletRequest() {
+			{
+				setSession(new MockHttpSession());
+			}
+		};
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
@@ -102,9 +108,11 @@ public class MultiSessionErrorsTest {
 	@Test
 	public void testContainsOnPortletRequest() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSession(new MockHttpSession());
+			new MockHttpServletRequest() {
+			{
+				setSession(new MockHttpSession());
+			}
+		};
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
@@ -119,9 +127,11 @@ public class MultiSessionErrorsTest {
 	@Test
 	public void testGetFoundHttpServletRequest() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSession(new MockHttpSession());
+			new MockHttpServletRequest() {
+			{
+				setSession(new MockHttpSession());
+			}
+		};
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
@@ -137,9 +147,11 @@ public class MultiSessionErrorsTest {
 	@Test
 	public void testGetFoundPortletRequest() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSession(new MockHttpSession());
+			new MockHttpServletRequest() {
+			{
+				setSession(new MockHttpSession());
+			}
+		};
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
@@ -155,9 +167,11 @@ public class MultiSessionErrorsTest {
 	@Test
 	public void testGetNotFound() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSession(new MockHttpSession());
+			new MockHttpServletRequest() {
+			{
+				setSession(new MockHttpSession());
+			}
+		};
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
@@ -168,9 +182,11 @@ public class MultiSessionErrorsTest {
 	@Test
 	public void testIsEmpty() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSession(new MockHttpSession());
+			new MockHttpServletRequest() {
+			{
+				setSession(new MockHttpSession());
+			}
+		};
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
@@ -181,9 +197,11 @@ public class MultiSessionErrorsTest {
 	@Test
 	public void testIsEmptyFalseByHttpServletRequest() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSession(new MockHttpSession());
+			new MockHttpServletRequest() {
+			{
+				setSession(new MockHttpSession());
+			}
+		};
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
@@ -196,9 +214,11 @@ public class MultiSessionErrorsTest {
 	@Test
 	public void testIsEmptyFalseByPortletRequest() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSession(new MockHttpSession());
+			new MockHttpServletRequest() {
+			{
+				setSession(new MockHttpSession());
+			}
+		};
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			mockHttpServletRequest);
