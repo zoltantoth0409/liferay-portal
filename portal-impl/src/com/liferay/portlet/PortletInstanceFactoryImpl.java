@@ -194,8 +194,7 @@ public class PortletInstanceFactoryImpl implements PortletInstanceFactory {
 			javax.portlet.Portlet portletInstance = null;
 
 			if (deployed) {
-				portletInstance = PortletBagUtil.getPortletInstance(
-					servletContext, portlet, rootPortletId);
+				portletInstance = portletBag.getPortletInstance();
 			}
 			else {
 				portletInstance = UndeployedPortlet.getInstance();
