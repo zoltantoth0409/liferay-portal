@@ -7415,6 +7415,7 @@ module.framework.properties.org.osgi.framework.bootdelegation=\
 			get.location.timeout=${test.get.location.timeout}
 			ignore.errors.file.name=${project.dir}/portal-web/test-ignorable-error-lines.xml
 			ip.address=${ip.address}
+			liferay.home.dir.name=${liferay.home}
 			output.dir.name=${selenium.output.dir.name}
 			product.names=${product.names}
 			project.dir=${project.dir}

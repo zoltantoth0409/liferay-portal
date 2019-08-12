@@ -114,4 +114,50 @@ definition {
 			value1 = "Please enter a valid email address.");
 	}
 
+	@priority = "5"
+	test ViewConfiguredSetupWizardValue {
+		property database.types = "mysql";
+		property test.name.skip.portal.instance = "SetupWizard#ViewConfiguredSetupWizardValue";
+
+		SetupWizard.viewDefaultPortalNamePG();
+
+		SetupWizard.configureAdministratorUserPG(
+			administratorEmail = "user@liferay.com",
+			administratorFirstName = "User",
+			administratorLastName = "User");
+
+		SetupWizard.configureDatabasePG(
+			databasePassword = PropsUtil.get("database.mysql.password"),
+			databaseType = "MySQL",
+			databaseUserName = PropsUtil.get("database.mysql.username"),
+			jdbcDriverClassName = PropsUtil.get("database.mysql.driver"),
+			jdbcURL = PropsUtil.get("database.mysql.url"));
+
+		SetupWizard.finishConfigurationPG();
+
+		SetupWizard.viewConfigurationSavedPG();
+
+		Portlet.shutdownServer();
+
+		Portlet.startServer(
+			base_branch = "${base_branch}",
+			deleteLiferayHome = "false");
+
+		SetupWizard.viewConfiguredDatabaseInConsole(databaseType = "MySQL");
+
+		User.firstLoginPG(
+			password = "test",
+			userEmailAddress = "user@liferay.com");
+
+		var liferayHome = PropsUtil.get("liferay.home.dir.name");
+		var fileContent = FileUtil.read("${liferayHome}/portal-setup-wizard.properties");
+
+		if ((contains("${fileContent}", "admin.email.from.address=user@liferay.com")) && (contains("${fileContent}", "admin.email.from.name=User User")) && (contains("${fileContent}", "default.admin.email.address.prefix=user")) && (contains("${fileContent}", "default.admin.first.name=User")) && (contains("${fileContent}", "default.admin.last.name=User"))) {
+			echo("The configuration was saved successfully in portal-setup-wizard.properties!");
+		}
+		else {
+			fail("Fail to save the configuration in portal file portal-setup-wizard.properties.");
+		}
+	}
+
 }
