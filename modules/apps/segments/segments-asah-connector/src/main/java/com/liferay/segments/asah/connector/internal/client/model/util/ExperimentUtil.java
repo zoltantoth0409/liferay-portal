@@ -84,11 +84,24 @@ public class ExperimentUtil {
 		Experiment experiment = new Experiment();
 
 		experiment.setCreateDate(segmentsExperiment.getCreateDate());
-		experiment.setModifiedDate(segmentsExperiment.getModifiedDate());
-		experiment.setName(segmentsExperiment.getName());
 		experiment.setDataSourceId(dataSourceId);
 		experiment.setDescription(segmentsExperiment.getDescription());
+
+		Layout layout = layoutLocalService.getLayout(
+			segmentsExperiment.getClassPK());
+
+		experiment.setDxpLayoutId(layout.getUuid());
+
+		experiment.setExperimentStatus(
+			_toExperimentStatus(segmentsExperiment.getStatus()));
+		experiment.setGoal(_toExperimentGoal(segmentsExperiment));
 		experiment.setId(segmentsExperiment.getSegmentsExperimentKey());
+		experiment.setModifiedDate(segmentsExperiment.getModifiedDate());
+		experiment.setName(segmentsExperiment.getName());
+		experiment.setPageRelativePath(
+			layout.getFriendlyURL(LocaleUtil.getDefault()));
+		experiment.setPageTitle(layout.getTitle(LocaleUtil.getDefault()));
+		experiment.setPageURL(pageURL);
 
 		if (segmentsExperiment.getSegmentsExperienceId() ==
 				SegmentsExperienceConstants.ID_DEFAULT) {
@@ -117,20 +130,6 @@ public class ExperimentUtil {
 			experiment.setDXPSegmentName(
 				segmentsEntry.getName(LocaleUtil.getDefault()));
 		}
-
-		experiment.setGoal(_toExperimentGoal(segmentsExperiment));
-		experiment.setExperimentStatus(
-			_toExperimentStatus(segmentsExperiment.getStatus()));
-
-		Layout layout = layoutLocalService.getLayout(
-			segmentsExperiment.getClassPK());
-
-		experiment.setDxpLayoutId(layout.getUuid());
-		experiment.setPageRelativePath(
-			layout.getFriendlyURL(LocaleUtil.getDefault()));
-		experiment.setPageTitle(layout.getTitle(LocaleUtil.getDefault()));
-
-		experiment.setPageURL(pageURL);
 
 		return experiment;
 	}
