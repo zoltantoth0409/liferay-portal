@@ -508,6 +508,14 @@ AUI.add(
 						).join('');
 					},
 
+					getRuleInputName: function() {
+						var instance = this;
+
+						var inputName = instance.getInputName();
+
+						return inputName;
+					},
+
 					getInputNode: function() {
 						var instance = this;
 
@@ -1207,6 +1215,14 @@ AUI.add(
 						return portletURL.toString();
 					},
 
+					getRuleInputName: function() {
+						var instance = this;
+
+						var inputName = instance.getInputName();
+
+						return inputName + 'Title';
+					},
+
 					getParsedValue: function(value) {
 						var instance = this;
 
@@ -1371,6 +1387,14 @@ AUI.add(
 						}
 
 						return value;
+					},
+
+					getRuleInputName: function() {
+						var instance = this;
+
+						var inputName = instance.getInputName();
+
+						return inputName + 'Title';
 					},
 
 					getWebContentSelectorURL: function() {
@@ -1582,6 +1606,14 @@ AUI.add(
 						}
 
 						return value;
+					},
+
+					getRuleInputName: function() {
+						var instance = this;
+
+						var inputName = instance.getInputName();
+
+						return inputName + 'LayoutName';
 					},
 
 					setValue: function(value) {
@@ -3267,16 +3299,16 @@ AUI.add(
 							if (event.type === 'liferay-ddm-field:repeat') {
 								var originalField = event.originalField;
 
-								var originalFieldInputName = originalField.getInputName();
+								var originalFieldRuleInputName = originalField.getRuleInputName();
 
-								var originalFieldRules = validatorRules[originalFieldInputName];
+								var originalFieldRules = validatorRules[originalFieldRuleInputName];
 
 								if (originalFieldRules) {
-									validatorRules[field.getInputName()] = originalFieldRules;
+									validatorRules[field.getRuleInputName()] = originalFieldRules;
 								}
 							}
 							else if (event.type === 'liferay-ddm-field:remove') {
-								delete validatorRules[field.getInputName()];
+								delete validatorRules[field.getRuleInputName()];
 
 								var inputNode = field.getInputNode();
 
