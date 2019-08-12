@@ -154,6 +154,11 @@ public class AssetBrowserManagementToolbarDisplayContext
 	}
 
 	@Override
+	public Boolean isDisabled() {
+		return false;
+	}
+
+	@Override
 	public Boolean isSelectable() {
 		return _assetBrowserDisplayContext.isMultipleSelection();
 	}
