@@ -12,6 +12,8 @@
  * details.
  */
 
+import {fetch} from 'frontend-js-web';
+
 import {
 	add,
 	addRow,
@@ -304,7 +306,6 @@ function getFragmentEntryLinkContent(
 
 	return fetch(renderFragmentEntryURL, {
 		body: formData,
-		credentials: 'include',
 		method: 'POST'
 	})
 		.then(response => response.json())
@@ -551,7 +552,6 @@ function updateFragmentEntryLinkConfigReducer(state, action) {
 
 		fetch(nextState.editFragmentEntryLinkURL, {
 			body: formData,
-			credentials: 'include',
 			method: 'POST'
 		}).then(() => {
 			nextState = setIn(
@@ -625,7 +625,6 @@ function _addFragmentEntryLink(
 
 	return fetch(addFragmentEntryLinkURL, {
 		body: formData,
-		credentials: 'include',
 		method: 'POST'
 	})
 		.then(response => response.json())

@@ -12,6 +12,8 @@
  * details.
  */
 
+import {fetch} from 'frontend-js-web';
+
 import {addFragment, getFragmentEntryLinkContent} from './fragments.es';
 import {getWidgetPath} from '../utils/FragmentsEditorGetUtils.es';
 import {prefixSegmentsExperienceId} from '../utils/prefixSegmentsExperienceId.es';
@@ -128,7 +130,6 @@ function _addPortlet(
 
 	return fetch(addPortletURL, {
 		body: formData,
-		credentials: 'include',
 		method: 'POST'
 	})
 		.then(response => response.json())
