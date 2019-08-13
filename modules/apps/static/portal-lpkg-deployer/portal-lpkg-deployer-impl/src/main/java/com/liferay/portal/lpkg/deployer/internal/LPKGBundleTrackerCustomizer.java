@@ -46,7 +46,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.attribute.FileTime;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,7 +63,6 @@ import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
@@ -183,10 +181,6 @@ public class LPKGBundleTrackerCustomizer
 				ZipEntry zipEntry = zipEntries.nextElement();
 
 				String name = zipEntry.getName();
-
-				if (name.endsWith("-jspc.zip")) {
-					_unzipJSPs(zipFile, zipEntry);
-				}
 
 				if (!(name.endsWith(".jar") || name.endsWith(".war"))) {
 					continue;
@@ -707,60 +701,6 @@ public class LPKGBundleTrackerCustomizer
 		}
 	}
 
-	private void _unzipJSPs(ZipFile zipFile, ZipEntry zipEntry) {
-		String name = zipEntry.getName();
-
-		Path jspDirPath = _WORK_DIR.resolve(
-			name.substring(0, name.length() - 9));
-
-		if (Files.exists(jspDirPath)) {
-			return;
-		}
-
-		try (ZipInputStream zipInputStream = new ZipInputStream(
-				zipFile.getInputStream(zipEntry))) {
-
-			Files.createDirectory(jspDirPath);
-
-			while (true) {
-				ZipEntry jspZipEntry = zipInputStream.getNextEntry();
-
-				if (jspZipEntry == null) {
-					break;
-				}
-
-				String jspName = jspZipEntry.getName();
-
-				Path jspPath = jspDirPath.resolve(jspName);
-
-				if (jspName.endsWith(".java") || jspName.endsWith(".class")) {
-					Files.createFile(jspPath);
-
-					File jspFile = jspPath.toFile();
-
-					try (FileOutputStream fileOutputStream =
-							new FileOutputStream(jspFile)) {
-
-						StreamUtil.transfer(
-							zipInputStream, fileOutputStream, false);
-					}
-
-					FileTime fileTime = jspZipEntry.getLastModifiedTime();
-
-					jspFile.setLastModified(fileTime.toMillis());
-				}
-				else {
-					Files.createDirectory(jspPath);
-				}
-			}
-		}
-		catch (IOException ioe) {
-			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to extract jsps from " + name, ioe);
-			}
-		}
-	}
-
 	private void _writeClasses(
 			JarOutputStream jarOutputStream, Class<?>... classes)
 		throws IOException {
@@ -827,9 +767,6 @@ public class LPKGBundleTrackerCustomizer
 	}
 
 	private static final String _MARKER_FILE = ".lfr-outdated";
-
-	private static final Path _WORK_DIR = Paths.get(
-		PropsValues.LIFERAY_HOME, "work");
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		LPKGBundleTrackerCustomizer.class);
