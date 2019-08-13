@@ -229,19 +229,18 @@ public class DDMFormContextToDDMForm
 			return ddmFormFieldValidation;
 		}
 
+		LocalizedValue errorMessageLocalizedValue = null;
+
 		JSONObject jsonObject = jsonFactory.createJSONObject(serializedValue);
 
 		JSONObject errorMessageJSONObject = jsonObject.getJSONObject(
 			"errorMessage");
 
-		LocalizedValue errorMessageLocalizedValue;
-
-		String errorMessage = jsonObject.getString("errorMessage");
-
 		if (errorMessageJSONObject == null) {
 			errorMessageLocalizedValue = new LocalizedValue();
 
-			errorMessageLocalizedValue.addString(defaultLocale, errorMessage);
+			errorMessageLocalizedValue.addString(
+				defaultLocale, jsonObject.getString("errorMessage"));
 		}
 		else {
 			errorMessageLocalizedValue = getLocalizedValue(
