@@ -129,26 +129,26 @@ public class DDMDataProviderTestUtil {
 	protected static DDMFormFieldValue createInputParameter(
 		DDMDataProviderInputParametersSettings inputParameterSetting) {
 
-		DDMFormFieldValue outputParameters =
+		DDMFormFieldValue inputParameters =
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"inputParameters", null);
 
-		outputParameters.addNestedDDMFormFieldValue(
+		inputParameters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"inputParameterLabel",
 				inputParameterSetting.inputParameterLabel()));
 
-		outputParameters.addNestedDDMFormFieldValue(
+		inputParameters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"inputParameterName",
 				inputParameterSetting.inputParameterName()));
 
-		outputParameters.addNestedDDMFormFieldValue(
+		inputParameters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"inputParameterType",
 				inputParameterSetting.inputParameterType()));
 
-		return outputParameters;
+		return inputParameters;
 	}
 
 	protected static DDMFormFieldValue createOutputParameter(
@@ -172,6 +172,11 @@ public class DDMDataProviderTestUtil {
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"outputParameterType",
 				outputParameterSetting.outputParameterType()));
+
+		outputParameters.addNestedDDMFormFieldValue(
+			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
+				"outputParameterId",
+				outputParameterSetting.outputParameterId()));
 
 		return outputParameters;
 	}

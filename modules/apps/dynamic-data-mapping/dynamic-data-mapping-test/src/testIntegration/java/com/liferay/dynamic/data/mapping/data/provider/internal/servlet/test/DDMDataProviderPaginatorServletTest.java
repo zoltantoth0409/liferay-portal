@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.log.CaptureAppender;
 import com.liferay.portal.test.log.Log4JLoggerTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -343,6 +344,10 @@ public class DDMDataProviderPaginatorServletTest {
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"outputParameterType", outputParameterType));
 
+		outputParameters.addNestedDDMFormFieldValue(
+			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
+				"outputParameterId", _OUTPUT_PARAMETER_ID));
+
 		return outputParameters;
 	}
 
@@ -354,7 +359,7 @@ public class DDMDataProviderPaginatorServletTest {
 		params.put(
 			"dataProviderInstanceUUID", ddmDataProviderInstance.getUuid());
 
-		params.put("outputParameterName", "Countries");
+		params.put("outputParameterId", _OUTPUT_PARAMETER_ID);
 
 		return params;
 	}
@@ -413,6 +418,9 @@ public class DDMDataProviderPaginatorServletTest {
 
 	@DeleteAfterTestRun
 	protected Group group;
+
+	private static final String _OUTPUT_PARAMETER_ID =
+		StringUtil.randomString();
 
 	private static final String _URL_CONFIGURATION_RESOURCE_CLASS_NAME =
 		"com.netflix.config.sources.URLConfigurationSource";

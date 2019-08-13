@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerTestRule;
 import com.liferay.registry.Registry;
@@ -74,6 +75,11 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 			ListUtil.fromArray(
 				new DDMDataProviderOutputParametersSettings[] {
 					new DDMDataProviderOutputParametersSettings() {
+
+						@Override
+						public String outputParameterId() {
+							return StringUtil.randomString();
+						}
 
 						@Override
 						public String outputParameterName() {
@@ -115,6 +121,11 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 					new DDMDataProviderOutputParametersSettings() {
 
 						@Override
+						public String outputParameterId() {
+							return StringUtil.randomString();
+						}
+
+						@Override
 						public String outputParameterName() {
 							return "Countries";
 						}
@@ -131,6 +142,11 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 
 					},
 					new DDMDataProviderOutputParametersSettings() {
+
+						@Override
+						public String outputParameterId() {
+							return StringUtil.randomString();
+						}
 
 						@Override
 						public String outputParameterName() {
@@ -162,11 +178,11 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 
 		KeyValuePair keyValuePair = options.get(0);
 
-		Assert.assertEquals("Countries", keyValuePair.getKey());
+		Assert.assertEquals("Countries", keyValuePair.getValue());
 
 		keyValuePair = options.get(1);
 
-		Assert.assertEquals("Countries2", keyValuePair.getKey());
+		Assert.assertEquals("Countries2", keyValuePair.getValue());
 	}
 
 	@Test

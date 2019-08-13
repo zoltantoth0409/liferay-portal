@@ -27,6 +27,7 @@ import com.liferay.dynamic.data.mapping.test.util.DDMFormValuesTestUtil;
 import com.liferay.dynamic.data.mapping.util.DDMFormFactory;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.KeyValuePair;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -110,6 +111,12 @@ public class DDMRESTDataProviderTest {
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"outputParameterType", "[\"list\"]"));
 
+		String outputParameterId = StringUtil.randomString();
+
+		outputParameters.addNestedDDMFormFieldValue(
+			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
+				"outputParameterId", outputParameterId));
+
 		DDMDataProviderRequest ddmDataProviderRequest =
 			new DDMDataProviderRequest(null, null);
 
@@ -122,7 +129,7 @@ public class DDMRESTDataProviderTest {
 		Assert.assertNotNull(ddmDataProviderResponse);
 
 		DDMDataProviderResponseOutput ddmDataProviderResponseOutput =
-			ddmDataProviderResponse.get("output");
+			ddmDataProviderResponse.get(outputParameterId);
 
 		Assert.assertNotNull(ddmDataProviderResponseOutput);
 
@@ -183,6 +190,12 @@ public class DDMRESTDataProviderTest {
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
 				"outputParameterType", "[\"list\"]"));
 
+		String outputParameterId = StringUtil.randomString();
+
+		outputParameters.addNestedDDMFormFieldValue(
+			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
+				"outputParameterId", outputParameterId));
+
 		DDMDataProviderRequest ddmDataProviderRequest =
 			new DDMDataProviderRequest(null, null);
 
@@ -197,7 +210,7 @@ public class DDMRESTDataProviderTest {
 		Assert.assertNotNull(ddmDataProviderResponse);
 
 		DDMDataProviderResponseOutput ddmDataProviderResponseOutput =
-			ddmDataProviderResponse.get("output");
+			ddmDataProviderResponse.get(outputParameterId);
 
 		Assert.assertNotNull(ddmDataProviderResponseOutput);
 
