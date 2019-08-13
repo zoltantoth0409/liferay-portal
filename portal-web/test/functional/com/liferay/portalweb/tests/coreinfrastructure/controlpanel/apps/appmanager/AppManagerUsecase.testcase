@@ -24,9 +24,6 @@ definition {
 		}
 	}
 
-	// LRQA-42977
-
-	@ignore = "true"
 	@priority = "5"
 	test InstallUninstallApp {
 		property test.name.skip.portal.instance = "AppManagerUsecase#InstallUninstallApp";
@@ -39,7 +36,7 @@ definition {
 
 		AppManager.uploadAppCP(
 			appName = "${appName}",
-			warFileName = "${appName}-7.1.0.1.war");
+			warFileName = "${appName}-7.0.0.war");
 
 		AppManager.viewAppCP(
 			appName = "${appName}",
