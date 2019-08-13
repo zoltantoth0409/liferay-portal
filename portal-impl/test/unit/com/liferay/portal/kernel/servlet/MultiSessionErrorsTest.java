@@ -41,7 +41,7 @@ public class MultiSessionErrorsTest {
 	}
 
 	@Test
-	public void testClearHttpServletRequest() {
+	public void testClearByHttpServletRequest() {
 		String key = RandomTestUtil.randomString();
 
 		SessionErrors.add(_mockHttpServletRequest, key);
@@ -57,7 +57,7 @@ public class MultiSessionErrorsTest {
 	}
 
 	@Test
-	public void testClearPortletRequest() {
+	public void testClearByPortletRequest() {
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			_mockHttpServletRequest);
 		String key = RandomTestUtil.randomString();
@@ -72,7 +72,7 @@ public class MultiSessionErrorsTest {
 	}
 
 	@Test
-	public void testContainsOnHttpServletRequest() {
+	public void testContainsByHttpServletRequest() {
 		String key = RandomTestUtil.randomString();
 
 		SessionErrors.add(_mockHttpServletRequest, key);
@@ -84,7 +84,7 @@ public class MultiSessionErrorsTest {
 	}
 
 	@Test
-	public void testContainsOnPortletRequest() {
+	public void testContainsByPortletRequest() {
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			_mockHttpServletRequest);
 		String key = RandomTestUtil.randomString();
@@ -95,7 +95,7 @@ public class MultiSessionErrorsTest {
 	}
 
 	@Test
-	public void testGetFoundHttpServletRequest() {
+	public void testGetByHttpServletRequest() {
 		String key = RandomTestUtil.randomString();
 
 		SessionErrors.add(_mockHttpServletRequest, key);
@@ -108,7 +108,7 @@ public class MultiSessionErrorsTest {
 	}
 
 	@Test
-	public void testGetFoundPortletRequest() {
+	public void testGetByPortletRequest() {
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			_mockHttpServletRequest);
 		String key = RandomTestUtil.randomString();
@@ -120,7 +120,7 @@ public class MultiSessionErrorsTest {
 	}
 
 	@Test
-	public void testGetNotFound() {
+	public void testGet() {
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			_mockHttpServletRequest);
 
