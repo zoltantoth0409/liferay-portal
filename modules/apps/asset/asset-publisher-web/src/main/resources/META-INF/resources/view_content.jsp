@@ -96,12 +96,12 @@ else {
 	</c:otherwise>
 </c:choose>
 
-<aui:script use="aui-base">
+<aui:script>
 	Liferay.once(
 		'allPortletsReady',
 		function() {
 			if (!Liferay.Browser.isIe()) {
-				A.one('#p_p_id_<%= portletDisplay.getId() %>_').scrollIntoView();
+				document.getElementById('p_p_id_<%= portletDisplay.getId() %>_').scrollIntoView();
 			}
 		}
 	);
