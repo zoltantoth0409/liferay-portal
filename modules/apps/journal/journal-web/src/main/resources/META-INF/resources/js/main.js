@@ -193,6 +193,10 @@ AUI.add(
 							instance._updateLocalizableInput('descriptionMapAsXML', defaultLanguageId, selectedLanguageId);
 
 							instance._updateLocalizableInput('titleMapAsXML', defaultLanguageId, selectedLanguageId);
+
+							if (typeof CKEDITOR != 'undefined' && !instance._formChanged) {
+								instance._setEditorInitialValues();
+							}
 						}
 					},
 
