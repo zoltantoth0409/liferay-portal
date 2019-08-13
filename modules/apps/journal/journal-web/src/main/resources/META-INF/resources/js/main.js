@@ -210,11 +210,21 @@ AUI.add(
 						if (!instance._hasUnsavedChanges()) {
 							var article = instance.get(STR_ARTICLE);
 
+							var languageId = themeDisplay.getLanguageId();
+
+							var inputComponent = Liferay.component(instance.NS + 'titleMapAsXML');
+
+							if (inputComponent) {
+								languageId = inputComponent.getSelectedLanguageId();
+							}
+
+							previewUrl = Liferay.Util.addParams(instance.NS + 'languageId=' + languageId, article.previewUrl);
+
 							Liferay.fire(
 								'previewArticle',
 								{
 									title: article.title,
-									uri: article.previewUrl
+									uri: previewUrl
 								}
 							);
 						}
