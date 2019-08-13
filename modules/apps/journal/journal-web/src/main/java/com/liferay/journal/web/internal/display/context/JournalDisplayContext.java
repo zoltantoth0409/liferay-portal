@@ -1689,10 +1689,8 @@ public class JournalDisplayContext {
 							dropdownItem.setHref(
 								getPortletURL(), "status",
 								String.valueOf(status));
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_request,
-									WorkflowConstants.getStatusLabel(status)));
+
+							dropdownItem.setLabel(_getStatusLabel(status));
 						});
 				}
 			}
@@ -1778,6 +1776,16 @@ public class JournalDisplayContext {
 		statuses.add(WorkflowConstants.STATUS_EXPIRED);
 
 		return statuses;
+	}
+
+	private String _getStatusLabel(int status) {
+		String label = WorkflowConstants.getStatusLabel(status);
+
+		if (status == WorkflowConstants.STATUS_EXPIRED) {
+			label = "with-expired-versions";
+		}
+
+		return LanguageUtil.get(_request, label);
 	}
 
 	private String _getStructuresURL() {
