@@ -1295,6 +1295,37 @@ public class JournalDisplayContext {
 		return _tabs1;
 	}
 
+	public String getTitleMapAsJSON() throws PortalException {
+		if (_article == null) {
+			_article = getArticle();
+		}
+
+		Map<Locale, String> titleMap = _article.getTitleMap();
+
+		StringBundler sb = new StringBundler(2 + 8 * titleMap.size());
+
+		sb.append("{");
+
+		for (Map.Entry<Locale, String> entry : titleMap.entrySet()) {
+			sb.append(StringPool.QUOTE);
+			sb.append(entry.getKey());
+			sb.append(StringPool.QUOTE);
+			sb.append(StringPool.COLON);
+			sb.append(StringPool.QUOTE);
+			sb.append(entry.getValue());
+			sb.append(StringPool.QUOTE);
+			sb.append(StringPool.COMMA);
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
 	public int getTotalItems() throws PortalException {
 		SearchContainer articleSearch = getSearchContainer(false);
 

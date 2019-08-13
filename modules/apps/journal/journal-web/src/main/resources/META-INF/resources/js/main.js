@@ -223,7 +223,7 @@ AUI.add(
 							Liferay.fire(
 								'previewArticle',
 								{
-									title: article.title,
+									title: article.titleMap[languageId],
 									uri: previewUrl
 								}
 							);

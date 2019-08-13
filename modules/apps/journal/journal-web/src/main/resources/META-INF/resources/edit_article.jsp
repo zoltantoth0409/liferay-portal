@@ -224,6 +224,7 @@ JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalE
 
 				<c:if test="<%= (article != null) && !article.isNew() %>">
 					previewUrl: '<%= HtmlUtil.escapeJS(previewArticleContentURL.toString()) %>',
+					titleMap: <%= journalDisplayContext.getTitleMapAsJSON() %>,
 				</c:if>
 
 				title: '<%= (article != null) ? HtmlUtil.escapeJS(article.getTitle(locale)) : StringPool.BLANK %>'
