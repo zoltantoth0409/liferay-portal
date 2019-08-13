@@ -42,6 +42,16 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 
 		_portal = portal;
 		_request = request;
+
+		String pathContext = portal.getPathContext();
+
+		String pathProxy = portal.getPathProxy();
+
+		_pathContext = pathContext.substring(pathProxy.length());
+
+		_pathImage = _pathContext + Portal.PATH_IMAGE;
+		_pathMain = _pathContext + Portal.PATH_MAIN;
+		_pathModule = _pathContext + Portal.PATH_MODULE;
 	}
 
 	@Override
@@ -50,7 +60,7 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 
 			@Override
 			public String build() {
-				return _build(_portal.getPathImage(), relativeURL);
+				return _build(_pathImage, relativeURL);
 			}
 
 		};
@@ -62,7 +72,7 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 
 			@Override
 			public String build() {
-				return _build(_portal.getPathMain(), relativeURL);
+				return _build(_pathMain, relativeURL);
 			}
 
 		};
@@ -74,7 +84,7 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 
 			@Override
 			public String build() {
-				return _build(_portal.getPathModule(), relativeURL);
+				return _build(_pathModule, relativeURL);
 			}
 
 		};
@@ -152,7 +162,7 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 
 			@Override
 			public String build() {
-				return _build(_portal.getPathContext(), relativeURL);
+				return _build(_pathContext, relativeURL);
 			}
 
 		};
@@ -183,11 +193,7 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 		}
 
 		if (!ignorePathProxy) {
-			String pathProxy = _getPathProxy();
-
-			if (!pathPrefix.startsWith(pathProxy)) {
-				sb.append(pathProxy);
-			}
+			sb.append(_getPathProxy());
 		}
 
 		if (!Validator.isBlank(pathPrefix)) {
@@ -259,6 +265,10 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 
 	private boolean _ignoreCDNHost;
 	private boolean _ignorePathProxy;
+	private final String _pathContext;
+	private final String _pathImage;
+	private final String _pathMain;
+	private final String _pathModule;
 	private final Portal _portal;
 	private final HttpServletRequest _request;
 
