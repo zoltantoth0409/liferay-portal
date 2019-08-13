@@ -26,7 +26,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.junit.After;
@@ -80,13 +79,15 @@ public class AccountEntryLocalServiceTest {
 		AccountEntry accountEntry = _addAccountEntry(
 			WorkflowConstants.STATUS_INACTIVE);
 
-		long accountEntryId = accountEntry.getAccountEntryId();
-
-		_assertStatus(accountEntryId, WorkflowConstants.STATUS_INACTIVE);
+		_assertStatus(
+			accountEntry.getAccountEntryId(),
+			WorkflowConstants.STATUS_INACTIVE);
 
 		_accountEntryLocalService.activateAccountEntry(accountEntry);
 
-		_assertStatus(accountEntryId, WorkflowConstants.STATUS_APPROVED);
+		_assertStatus(
+			accountEntry.getAccountEntryId(),
+			WorkflowConstants.STATUS_APPROVED);
 	}
 
 	@Test
@@ -94,13 +95,16 @@ public class AccountEntryLocalServiceTest {
 		AccountEntry accountEntry = _addAccountEntry(
 			WorkflowConstants.STATUS_INACTIVE);
 
-		long accountEntryId = accountEntry.getAccountEntryId();
+		_assertStatus(
+			accountEntry.getAccountEntryId(),
+			WorkflowConstants.STATUS_INACTIVE);
 
-		_assertStatus(accountEntryId, WorkflowConstants.STATUS_INACTIVE);
+		_accountEntryLocalService.activateAccountEntry(
+			accountEntry.getAccountEntryId());
 
-		_accountEntryLocalService.activateAccountEntry(accountEntryId);
-
-		_assertStatus(accountEntryId, WorkflowConstants.STATUS_APPROVED);
+		_assertStatus(
+			accountEntry.getAccountEntryId(),
+			WorkflowConstants.STATUS_APPROVED);
 	}
 
 	@Test
@@ -139,26 +143,31 @@ public class AccountEntryLocalServiceTest {
 	public void testDeactivateAccountEntryByModel() throws Exception {
 		AccountEntry accountEntry = _addAccountEntry();
 
-		long accountEntryId = accountEntry.getAccountEntryId();
-
-		_assertStatus(accountEntryId, WorkflowConstants.STATUS_APPROVED);
+		_assertStatus(
+			accountEntry.getAccountEntryId(),
+			WorkflowConstants.STATUS_APPROVED);
 
 		_accountEntryLocalService.deactivateAccountEntry(accountEntry);
 
-		_assertStatus(accountEntryId, WorkflowConstants.STATUS_INACTIVE);
+		_assertStatus(
+			accountEntry.getAccountEntryId(),
+			WorkflowConstants.STATUS_INACTIVE);
 	}
 
 	@Test
 	public void testDeactivateAccountEntryByPrimaryKey() throws Exception {
 		AccountEntry accountEntry = _addAccountEntry();
 
-		long accountEntryId = accountEntry.getAccountEntryId();
+		_assertStatus(
+			accountEntry.getAccountEntryId(),
+			WorkflowConstants.STATUS_APPROVED);
 
-		_assertStatus(accountEntryId, WorkflowConstants.STATUS_APPROVED);
+		_accountEntryLocalService.deactivateAccountEntry(
+			accountEntry.getAccountEntryId());
 
-		_accountEntryLocalService.deactivateAccountEntry(accountEntryId);
-
-		_assertStatus(accountEntryId, WorkflowConstants.STATUS_INACTIVE);
+		_assertStatus(
+			accountEntry.getAccountEntryId(),
+			WorkflowConstants.STATUS_INACTIVE);
 	}
 
 	@Test
@@ -176,22 +185,19 @@ public class AccountEntryLocalServiceTest {
 	public void testDeleteAccountEntryByModel() throws Exception {
 		AccountEntry accountEntry = _addAccountEntry();
 
-		long accountEntryId = accountEntry.getAccountEntryId();
-
 		_accountEntryLocalService.deleteAccountEntry(accountEntry);
 
-		_assertDeleted(accountEntryId);
+		_assertDeleted(accountEntry.getAccountEntryId());
 	}
 
 	@Test
 	public void testDeleteAccountEntryByPrimaryKey() throws Exception {
 		AccountEntry accountEntry = _addAccountEntry();
 
-		long accountEntryId = accountEntry.getAccountEntryId();
+		_accountEntryLocalService.deleteAccountEntry(
+			accountEntry.getAccountEntryId());
 
-		_accountEntryLocalService.deleteAccountEntry(accountEntryId);
-
-		_assertDeleted(accountEntryId);
+		_assertDeleted(accountEntry.getAccountEntryId());
 	}
 
 	private long[] _addAccountEntries() throws Exception {
