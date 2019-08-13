@@ -97,13 +97,11 @@ else {
 </c:choose>
 
 <aui:script use="aui-base">
-	var portletId = '<%= portletDisplay.getId() %>';
-
 	Liferay.once(
 		'allPortletsReady',
 		function() {
 			if (!Liferay.Browser.isIe()) {
-				A.one('#p_p_id_' + portletId + '_').scrollIntoView();
+				A.one('#p_p_id_<%= portletDisplay.getId() %>_').scrollIntoView();
 			}
 		}
 	);
