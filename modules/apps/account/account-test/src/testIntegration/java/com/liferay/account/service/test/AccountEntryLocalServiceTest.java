@@ -49,12 +49,7 @@ public class AccountEntryLocalServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
-		Iterator<AccountEntry> accountEntryIterator =
-			_accountEntries.iterator();
-
-		while (accountEntryIterator.hasNext()) {
-			AccountEntry accountEntry = accountEntryIterator.next();
-
+		for (AccountEntry accountEntry : _accountEntries) {
 			accountEntry = _accountEntryLocalService.fetchAccountEntry(
 				accountEntry.getAccountEntryId());
 
