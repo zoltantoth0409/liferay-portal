@@ -66,13 +66,13 @@ public class CustomServletContextHelper
 		_logger = logger;
 		_webResourceCollectionDefinitions = webResourceCollectionDefinitions;
 
+		_overrideDirName = StringBundler.concat(
+			PropsValues.LIFERAY_HOME, File.separator, "work", File.separator,
+			_bundle.getSymbolicName(), StringPool.DASH, _bundle.getVersion());
+
 		Class<?> clazz = getClass();
 
 		_string = clazz.getSimpleName() + '[' + bundle + ']';
-
-		_overrideDir = StringBundler.concat(
-			PropsValues.LIFERAY_HOME, File.separator, "work", File.separator,
-			_bundle.getSymbolicName(), StringPool.DASH, _bundle.getVersion());
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class CustomServletContextHelper
 		if (PropsValues.WORK_DIR_OVERRIDE_ENABLED && name.endsWith(".css")) {
 			String overrideName = name.replace("/META-INF/resources", "");
 
-			File file = new File(_overrideDir, overrideName);
+			File file = new File(_overrideDirName, overrideName);
 
 			if (file.exists()) {
 				try {
@@ -319,7 +319,7 @@ public class CustomServletContextHelper
 
 	private final Bundle _bundle;
 	private final Logger _logger;
-	private final String _overrideDir;
+	private final String _overrideDirName;
 	private ServletContext _servletContext;
 	private final String _string;
 	private final List<WebResourceCollectionDefinition>
