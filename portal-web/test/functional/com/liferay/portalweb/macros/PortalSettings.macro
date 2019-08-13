@@ -1101,17 +1101,29 @@ definition {
 			locator1 = "NavTab#PASSWORD_CHANGED_NOTIFICATION",
 			value1 = "Password Changed Notification");
 
-		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_SUBJECT_HEADER");
+		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_SUBJECT_WITH_PASSWORD_HEADER");
 
 		AssertTextEquals(
-			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_SUBJECT_FIELD",
+			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_SUBJECT_WITH_PASSWORD_FIELD",
 			value1 = "[$PORTAL_URL$]: Your New Password");
 
 		AssertTextEquals.assertPartialText(
-			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_BODY_HEADER",
-			value1 = "Body");
+			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_BODY_WITH_PASSWORD_HEADER",
+			value1 = "Email with Password");
 
-		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_BODY_FIELD");
+		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_BODY_WITH_PASSWORD_FIELD");
+
+		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_SUBJECT_WITHOUT_PASSWORD_HEADER");
+
+		AssertTextEquals(
+			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_SUBJECT_WITHOUT_PASSWORD_FIELD",
+			value1 = "[$PORTAL_URL$]: Your Password Has Been Changed");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_BODY_WITHOUT_PASSWORD_HEADER",
+			value1 = "Email without Password");
+
+		AssertElementPresent(locator1 = "PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_PASSWORD_CHANGED_NOTIFICATION_BODY_WITHOUT_PASSWORD_FIELD");
 	}
 
 	macro viewEmailNotificationsSenderCP {
