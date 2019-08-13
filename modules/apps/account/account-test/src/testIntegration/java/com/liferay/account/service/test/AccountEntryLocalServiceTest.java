@@ -199,20 +199,6 @@ public class AccountEntryLocalServiceTest {
 		_assertDeleted(accountEntryId);
 	}
 
-	private AccountEntry _addAccountEntry() throws Exception {
-		return _addAccountEntry(WorkflowConstants.STATUS_APPROVED);
-	}
-
-	private AccountEntry _addAccountEntry(int status) throws Exception {
-		AccountEntry accountEntry = _accountEntryLocalService.addAccountEntry(
-			TestPropsValues.getUserId(), 0L, RandomTestUtil.randomString(50),
-			RandomTestUtil.randomString(50), 0L, status);
-
-		_accountEntries.add(accountEntry);
-
-		return accountEntry;
-	}
-
 	private long[] _addAccountEntries() throws Exception {
 		return _addAccountEntries(WorkflowConstants.STATUS_APPROVED);
 	}
@@ -229,6 +215,20 @@ public class AccountEntryLocalServiceTest {
 		}
 
 		return accountEntryIds;
+	}
+
+	private AccountEntry _addAccountEntry() throws Exception {
+		return _addAccountEntry(WorkflowConstants.STATUS_APPROVED);
+	}
+
+	private AccountEntry _addAccountEntry(int status) throws Exception {
+		AccountEntry accountEntry = _accountEntryLocalService.addAccountEntry(
+			TestPropsValues.getUserId(), 0L, RandomTestUtil.randomString(50),
+			RandomTestUtil.randomString(50), 0L, status);
+
+		_accountEntries.add(accountEntry);
+
+		return accountEntry;
 	}
 
 	private void _assertDeleted(long accountEntryId) throws Exception {
