@@ -191,12 +191,7 @@ definition {
 			pageVersioningEnabled = "true",
 			siteName = "Site Name");
 
-		Navigator.openSiteURL(siteName = "Global");
-
-		ProductMenu.gotoPortlet(
-			category = "Content",
-			panel = "Site Administration",
-			portlet = "Web Content");
+		WebContent.openWebContentAdmin(siteURLKey = "global");
 
 		WebContentNavigator.gotoAddCP();
 
