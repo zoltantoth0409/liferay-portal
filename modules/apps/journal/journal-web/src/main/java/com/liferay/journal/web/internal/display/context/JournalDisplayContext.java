@@ -265,7 +265,7 @@ public class JournalDisplayContext {
 		int page = ParamUtil.getInteger(_request, "page");
 
 		_articleDisplay = JournalArticleLocalServiceUtil.getArticleDisplay(
-			article, null, null, _themeDisplay.getLanguageId(), page,
+			article, null, null, getLanguageId(), page,
 			new PortletRequestModel(
 				_liferayPortletRequest, _liferayPortletResponse),
 			_themeDisplay);
@@ -701,6 +701,17 @@ public class JournalDisplayContext {
 		_keywords = ParamUtil.getString(_request, "keywords");
 
 		return _keywords;
+	}
+
+	public String getLanguageId() {
+		if (_languageId != null) {
+			return _languageId;
+		}
+
+		_languageId = ParamUtil.getString(
+			_request, "languageId", _themeDisplay.getLanguageId());
+
+		return _languageId;
 	}
 
 	public JournalArticle getLatestArticle(JournalArticle journalArticle) {
@@ -1874,6 +1885,7 @@ public class JournalDisplayContext {
 	private Long _folderId;
 	private final JournalWebConfiguration _journalWebConfiguration;
 	private String _keywords;
+	private String _languageId;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
 	private Integer _maxAddMenuItems;
