@@ -665,7 +665,7 @@ public class JournalDisplayContext {
 						labelItem -> {
 							labelItem.setLabel(
 								LanguageUtil.get(_request, "status") + ": " +
-									WorkflowConstants.getStatusLabel(status));
+									_getStatusLabel(status));
 						});
 				}
 			}
