@@ -37,6 +37,15 @@ public class NotificationTemplateRenderer {
 
 	public static String render(
 			NotificationTemplateContext notificationTemplateContext,
+			NotificationField notificationField)
+		throws Exception {
+
+		return render(
+			notificationTemplateContext, notificationField, MODE_HTML);
+	}
+
+	protected static String render(
+			NotificationTemplateContext notificationTemplateContext,
 			NotificationField notificationField, int mode)
 		throws Exception {
 
@@ -53,6 +62,15 @@ public class NotificationTemplateRenderer {
 
 		return replaceTokens(
 			notificationTemplate, notificationTemplateContext, mode);
+	}
+
+	protected static String replaceTokens(
+			String notificationTemplate,
+			NotificationTemplateContext notificationTemplateContext)
+		throws Exception {
+
+		return replaceTokens(
+			notificationTemplate, notificationTemplateContext, MODE_HTML);
 	}
 
 	protected static String replaceTokens(
