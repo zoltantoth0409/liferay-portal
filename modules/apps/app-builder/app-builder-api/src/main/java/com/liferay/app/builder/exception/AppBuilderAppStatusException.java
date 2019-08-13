@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * @author Bruno Farache
+ * @author Brian Wing Shun Chan
  */
 @ProviderType
 public class AppBuilderAppStatusException extends PortalException {
