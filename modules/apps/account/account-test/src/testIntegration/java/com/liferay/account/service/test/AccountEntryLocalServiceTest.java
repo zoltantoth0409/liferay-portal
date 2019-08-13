@@ -81,7 +81,7 @@ public class AccountEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testActivateAccountEntryByEntity() throws Exception {
+	public void testActivateAccountEntryByModel() throws Exception {
 		AccountEntry accountEntry = _addAccountEntry(
 			WorkflowConstants.STATUS_INACTIVE);
 
@@ -141,7 +141,7 @@ public class AccountEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testDeactivateAccountEntryByEntity() throws Exception {
+	public void testDeactivateAccountEntryByModel() throws Exception {
 		AccountEntry accountEntry = _addAccountEntry();
 
 		long accountEntryId = accountEntry.getAccountEntryId();
@@ -178,7 +178,7 @@ public class AccountEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testDeleteAccountEntryByEntity() throws Exception {
+	public void testDeleteAccountEntryByModel() throws Exception {
 		AccountEntry accountEntry = _addAccountEntry();
 
 		long accountEntryId = accountEntry.getAccountEntryId();
