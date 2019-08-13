@@ -19,8 +19,7 @@ AUI.add(
 
 				instance._eventHandlers.push(
 					instance.bindContainerEvent('input', A.debounce(instance._afterStartSearching, 400), '.' + CSS_SEARCH_INPUT),
-					instance.after('closeList', A.bind('_afterCloseList', instance)),
-					instance.after(A.bind('_afterOpenList', instance), instance, 'openList')
+					instance.after('closeList', A.bind('_afterCloseList', instance))
 				);
 			},
 
@@ -41,16 +40,6 @@ AUI.add(
 
 				if (instance._showSearch()) {
 					instance.clearFilter();
-				}
-			},
-
-			_afterOpenList: function() {
-				var instance = this;
-
-				var searchInputNode = instance._getInputSearch();
-
-				if (instance._showSearch()) {
-					searchInputNode.focus();
 				}
 			},
 
