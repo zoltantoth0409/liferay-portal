@@ -95,6 +95,16 @@ public class MultiSessionErrorsTest {
 	}
 
 	@Test
+	public void testGet() {
+		PortletRequest portletRequest = new MockLiferayPortletRequest(
+			_mockHttpServletRequest);
+
+		Assert.assertNull(
+			MultiSessionErrors.get(
+				portletRequest, RandomTestUtil.randomString()));
+	}
+
+	@Test
 	public void testGetByHttpServletRequest() {
 		String key = RandomTestUtil.randomString();
 
@@ -103,8 +113,7 @@ public class MultiSessionErrorsTest {
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			_mockHttpServletRequest);
 
-		Assert.assertEquals(
-			key, MultiSessionErrors.get(portletRequest, key));
+		Assert.assertEquals(key, MultiSessionErrors.get(portletRequest, key));
 	}
 
 	@Test
@@ -115,16 +124,7 @@ public class MultiSessionErrorsTest {
 
 		SessionErrors.add(portletRequest, key);
 
-		Assert.assertEquals(
-			key, MultiSessionErrors.get(portletRequest, key));
-	}
-
-	@Test
-	public void testGet() {
-		PortletRequest portletRequest = new MockLiferayPortletRequest(
-			_mockHttpServletRequest);
-
-		Assert.assertNull(MultiSessionErrors.get(portletRequest, RandomTestUtil.randomString()));
+		Assert.assertEquals(key, MultiSessionErrors.get(portletRequest, key));
 	}
 
 	@Test
@@ -137,7 +137,8 @@ public class MultiSessionErrorsTest {
 
 	@Test
 	public void testIsEmptyByHttpServletRequest() {
-		SessionErrors.add(_mockHttpServletRequest, RandomTestUtil.randomString());
+		SessionErrors.add(
+			_mockHttpServletRequest, RandomTestUtil.randomString());
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			_mockHttpServletRequest);
@@ -155,12 +156,11 @@ public class MultiSessionErrorsTest {
 		Assert.assertFalse(MultiSessionErrors.isEmpty(portletRequest));
 	}
 
-	private MockHttpServletRequest _mockHttpServletRequest =
+	private final MockHttpServletRequest _mockHttpServletRequest =
 		new MockHttpServletRequest() {
 			{
 				setSession(new MockHttpSession());
 			}
 		};
-
 
 }
