@@ -31,9 +31,9 @@ import java.util.Map;
 /**
  * @author István András Dézsi
  */
-public class UpgradeDDMFormValidation extends UpgradeProcess {
+public class UpgradeDDMFormFieldValidation extends UpgradeProcess {
 
-	public UpgradeDDMFormValidation(JSONFactory jsonFactory) {
+	public UpgradeDDMFormFieldValidation(JSONFactory jsonFactory) {
 		_jsonFactory = jsonFactory;
 	}
 
