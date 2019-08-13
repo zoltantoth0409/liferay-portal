@@ -180,7 +180,6 @@ public class AppResourceImpl
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
 			dataDefinitionId);
-
 		AppBuilderAppConstants.Status appBuilderAppConstantsStatus =
 			AppBuilderAppConstants.Status.parse(app.getStatus());
 
@@ -201,7 +200,6 @@ public class AppResourceImpl
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
 			app.getDataDefinitionId());
-
 		AppBuilderAppConstants.Status appBuilderAppConstantsStatus =
 			AppBuilderAppConstants.Status.parse(app.getStatus());
 
@@ -231,7 +229,6 @@ public class AppResourceImpl
 					appBuilderApp.getNameMap());
 				settings = _toSettings(appBuilderApp.getSettings());
 				siteId = appBuilderApp.getGroupId();
-
 				status = appBuilderAppConstantsStatus.getLabel();
 				userId = appBuilderApp.getUserId();
 			}
