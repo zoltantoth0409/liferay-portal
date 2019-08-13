@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -304,15 +305,12 @@ public class DDMFormBuilderContextFactoryHelper {
 				errorMessageLocalizedValue.getString(availableLocale));
 		}
 
-		JSONObject jsonObject = _jsonFactory.createJSONObject();
-
-		jsonObject.put(
-			"errorMessage", errorMessageJSONObject
-		).put(
-			"expression", ddmFormFieldValidation.getExpression()
-		);
-
-		return new UnlocalizedValue(jsonObject.toString());
+		return new UnlocalizedValue(
+			JSONUtil.put(
+				"errorMessage", errorMessageJSONObject
+			).put(
+				"expression", ddmFormFieldValidation.getExpression()
+			).toString());
 	}
 
 	protected Map<String, Object> doCreateFormContext(
