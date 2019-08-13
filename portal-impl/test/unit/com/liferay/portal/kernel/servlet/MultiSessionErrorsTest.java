@@ -136,7 +136,7 @@ public class MultiSessionErrorsTest {
 	}
 
 	@Test
-	public void testIsEmptyFalseByHttpServletRequest() {
+	public void testIsEmptyByHttpServletRequest() {
 		SessionErrors.add(_mockHttpServletRequest, RandomTestUtil.randomString());
 
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
@@ -146,7 +146,7 @@ public class MultiSessionErrorsTest {
 	}
 
 	@Test
-	public void testIsEmptyFalseByPortletRequest() {
+	public void testIsEmptyByPortletRequest() {
 		PortletRequest portletRequest = new MockLiferayPortletRequest(
 			_mockHttpServletRequest);
 
