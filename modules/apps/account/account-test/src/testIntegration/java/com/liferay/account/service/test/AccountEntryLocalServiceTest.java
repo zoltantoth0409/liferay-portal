@@ -66,7 +66,7 @@ public class AccountEntryLocalServiceTest {
 
 	@Test
 	public void testActivateAccountEntries() throws Exception {
-		long[] accountEntryIds = _addMultipleAccountEntries(
+		long[] accountEntryIds = _addAccountEntries(
 			WorkflowConstants.STATUS_INACTIVE);
 
 		for (long accountEntryId : accountEntryIds) {
@@ -127,7 +127,7 @@ public class AccountEntryLocalServiceTest {
 
 	@Test
 	public void testDeactivateAccountEntries() throws Exception {
-		long[] accountEntryIds = _addMultipleAccountEntries();
+		long[] accountEntryIds = _addAccountEntries();
 
 		for (long accountEntryId : accountEntryIds) {
 			_assertStatus(accountEntryId, WorkflowConstants.STATUS_APPROVED);
@@ -168,7 +168,7 @@ public class AccountEntryLocalServiceTest {
 
 	@Test
 	public void testDeleteAccountEntries() throws Exception {
-		long[] accountEntryIds = _addMultipleAccountEntries();
+		long[] accountEntryIds = _addAccountEntries();
 
 		_accountEntryLocalService.deleteAccountEntries(accountEntryIds);
 
@@ -213,11 +213,11 @@ public class AccountEntryLocalServiceTest {
 		return accountEntry;
 	}
 
-	private long[] _addMultipleAccountEntries() throws Exception {
-		return _addMultipleAccountEntries(WorkflowConstants.STATUS_APPROVED);
+	private long[] _addAccountEntries() throws Exception {
+		return _addAccountEntries(WorkflowConstants.STATUS_APPROVED);
 	}
 
-	private long[] _addMultipleAccountEntries(int status) throws Exception {
+	private long[] _addAccountEntries(int status) throws Exception {
 		int size = 5;
 
 		long[] accountEntryIds = new long[size];
