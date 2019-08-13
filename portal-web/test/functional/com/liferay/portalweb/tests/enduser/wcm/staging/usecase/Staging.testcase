@@ -255,6 +255,57 @@ definition {
 		Staging.deletePublishTemplate(publishTemplateName = "Publish Template Name");
 	}
 
+	@priority = "4"
+	test EnableStagingWithWebContentReferencedFromDeletedSite {
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Web Content");
+
+		LexiconEntry.gotoAdd();
+
+		WebContent.addCP(
+			webContentContent = "WC Content",
+			webContentTitle = "WC Title");
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites");
+
+		Site.addBlankCP(siteName = "Site B Name");
+
+		Navigator.openSiteURL(siteName = "Site B Name");
+
+		Page.add(
+			pageName = "Staging B Test Page",
+			siteName = "Site B Name");
+
+		Navigator.gotoSitePage(
+			pageName = "Site B Test Page",
+			siteName = "Site B Name");
+
+		Portlet.addPG(portletName = "Web Content Display");
+
+		WebContentDisplayPortlet.selectWebContent(
+			fromSite = "Site Name",
+			portletName = "Web Content Display",
+			webContentTitle = "WC Title");
+
+		Site.deleteCP(siteName = "Site Name");
+
+		Navigator.openSiteURL(siteName = "Site B Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Publishing",
+			panel = "Site Administration",
+			portlet = "Staging");
+
+		Staging.activateStagingCP(siteName = "Site B Name");
+	}
+
 	@priority = "3"
 	test ModifyInitalPageVariationSetup {
 		ProductMenu.gotoPortlet(
