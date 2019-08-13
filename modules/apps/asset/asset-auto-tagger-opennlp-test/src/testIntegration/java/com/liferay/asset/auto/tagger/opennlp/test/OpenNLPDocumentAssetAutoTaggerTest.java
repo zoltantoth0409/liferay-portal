@@ -82,10 +82,11 @@ public class OpenNLPDocumentAssetAutoTaggerTest
 					TestPropsValues.getUserId(), group.getGroupId(), className,
 					RandomTestUtil.randomLong(), new long[0], new String[0]);
 
-				Collection<String> tagNames = Arrays.asList(
+				Collection<String> assetTagNames = Arrays.asList(
 					assetEntry.getTagNames());
 
-				Assert.assertEquals(tagNames.toString(), 0, tagNames.size());
+				Assert.assertEquals(
+					assetTagNames.toString(), 0, assetTagNames.size());
 			});
 	}
 
@@ -112,20 +113,18 @@ public class OpenNLPDocumentAssetAutoTaggerTest
 			});
 
 		long classPK = RandomTestUtil.randomLong();
-
-		long[] categoryIds = new long[0];
-
-		String[] tagNames = new String[0];
+		long[] assetCategoryIds = new long[0];
+		String[] assetTagNames = new String[0];
 
 		assetEntryLocalService.updateEntry(
 			TestPropsValues.getUserId(), group.getGroupId(), getClassName(),
-			classPK, categoryIds, tagNames);
+			classPK, assetCategoryIds, assetTagNames);
 
 		return assetEntryLocalService.updateEntry(
 			TestPropsValues.getUserId(), group.getGroupId(), null, null,
-			getClassName(), classPK, null, 0, categoryIds, tagNames, true, true,
-			null, null, new Date(), null, null, null, null, null, null, null, 0,
-			0, (Double)null);
+			getClassName(), classPK, null, 0, assetCategoryIds, assetTagNames,
+			true, true, null, null, new Date(), null, null, null, null, null,
+			null, null, 0, 0, (Double)null);
 	}
 
 	@Override
