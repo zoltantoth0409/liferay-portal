@@ -330,6 +330,135 @@ definition {
 		AssertConsoleTextNotPresent(value1 = "com.liferay.exportimport.kernel.lar.PortletDataException");
 	}
 
+	@description = "This is a use case for LPS-88378."
+	@priority = "3"
+	test ExportImportLayoutCircularReference {
+		JSONGroup.addGroup(groupName = "Site Name");
+
+		JSONLayout.addLayoutByGroupName(
+			groupName = "Site Name",
+			layoutName = "Site Page");
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites");
+
+		Page.addChild(
+			page = "Public Pages",
+			pageName = "Site Page",
+			siteChildPageName = "Site Child Page",
+			siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites");
+
+		Page.addChild(
+			page = "Public Pages",
+			pageName = "Site Child Page",
+			siteChildPageName = "Site Child Child Page",
+			siteName = "Site Name");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoManageStructures();
+
+		WebContentStructures.addCP(
+			structureDescription = "WC Structure Description",
+			structureName = "WC Structure Name");
+
+		DynamicDataMapping.addField(
+			field = "Link to Page",
+			fieldFieldLabel = "Link to Page",
+			fieldName = "LinkToPage");
+
+		WebContentStructures.saveCP(structureName = "WC Structure Name");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoManageTemplates();
+
+		WebContentTemplates.addCP(
+			templateDescription = "WC Template Description",
+			templateLanguage = "ftl",
+			templateName = "WC Template Name");
+
+		WebContentTemplates.addStructure(
+			structureName = "WC Structure Name",
+			templateFieldNames = "Link to Page",
+			templateLanguage = "ftl");
+
+		DDLDataDefinition.save();
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
+
+		WebContent.addWithStructureCP(
+			linkedPageName = "Site Child Page",
+			linkFieldName = "LinkToPage",
+			structureName = "WC Structure Name",
+			templateName = "WC Template Name",
+			webContentTitle = "WC WebContent Title 1");
+
+		PortletEntry.publish();
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name");
+
+		WebContentNavigator.gotoAddWithStructureCP(structureName = "WC Structure Name");
+
+		WebContent.addWithStructureCP(
+			linkedPageName = "Site Child Child Page",
+			linkFieldName = "LinkToPage",
+			structureName = "WC Structure Name",
+			templateName = "WC Template Name",
+			webContentTitle = "WC WebContent Title 2");
+
+		PortletEntry.publish();
+
+		Navigator.gotoSitePage(
+			pageName = "Site Page",
+			siteName = "Site Name");
+
+		Portlet.addPG(portletName = "Web Content Display");
+
+		Navigator.gotoSitePage(
+			pageName = "Site Page",
+			siteName = "Site Name");
+
+		WebContentDisplayPortlet.selectWebContent(webContentTitle = "WC WebContent Title 2");
+
+		WebContent.viewPGViaWCD(
+			linkName = "Link to Page",
+			linkToPage = "true");
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		LAR.exportSiteCP();
+
+		var key_larFileName = "${larFileName}";
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS",
+			value1 = "Successful");
+
+		var larFileName = LAR.getLarFileName();
+
+		LAR.downloadLar();
+
+		JSONGroup.addGroup(groupName = "Site Name B");
+
+		Navigator.openSiteLanding(siteURLKey = "Site Name B");
+
+		LAR.importSiteCP(
+			larFileName = "${larFileName}",
+			siteName = "Site Name B");
+
+		AssertConsoleTextNotPresent(value1 = "java.lang.NullPointerException");
+	}
+
 	@priority = "3"
 	test ExportImportPortletWithADT {
 		property test.name.skip.portal.instance = "ExportImport#ExportImportPortletWithADT";
