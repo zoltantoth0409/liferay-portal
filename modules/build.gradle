@@ -212,8 +212,10 @@ gradle.beforeProject {
 		}
 
 		pluginManager.withPlugin("com.liferay.jsdoc") {
-			downloadJSDoc {
-				enabled = false
+			if (npmInstall.packageLockJsonFile == null) {
+				downloadJSDoc {
+					enabled = false
+				}
 			}
 		}
 
