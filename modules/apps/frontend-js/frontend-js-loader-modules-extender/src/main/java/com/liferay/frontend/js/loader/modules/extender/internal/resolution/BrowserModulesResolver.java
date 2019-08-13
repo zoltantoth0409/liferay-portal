@@ -30,6 +30,8 @@ import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.url.builder.AbsolutePortalURLBuilder;
+import com.liferay.portal.url.builder.AbsolutePortalURLBuilderFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,6 +41,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -54,7 +58,9 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class BrowserModulesResolver {
 
-	public BrowserModulesResolution resolve(List<String> moduleNames) {
+	public BrowserModulesResolution resolve(
+		List<String> moduleNames, HttpServletRequest httpServletRequest) {
+
 		BrowserModulesResolution browserModulesResolution =
 			new BrowserModulesResolution(
 				_jsonFactory, _details.explainResolutions());
@@ -62,7 +68,9 @@ public class BrowserModulesResolver {
 		Map<String, BrowserModule> browserModulesMap = _getBrowserModulesMap();
 
 		for (String moduleName : moduleNames) {
-			_resolve(browserModulesMap, moduleName, browserModulesResolution);
+			_resolve(
+				browserModulesMap, moduleName, browserModulesResolution,
+				httpServletRequest);
 		}
 
 		_populateMappedModuleNames(browserModulesResolution);
@@ -200,7 +208,8 @@ public class BrowserModulesResolver {
 	private boolean _processBrowserModule(
 		Map<String, BrowserModule> browserModulesMap,
 		BrowserModule browserModule,
-		BrowserModulesResolution browserModulesResolution) {
+		BrowserModulesResolution browserModulesResolution,
+		HttpServletRequest httpServletRequest) {
 
 		String moduleName = browserModule.getName();
 
@@ -233,7 +242,7 @@ public class BrowserModulesResolver {
 			if (dependencyBrowserModule != null) {
 				_processBrowserModule(
 					browserModulesMap, dependencyBrowserModule,
-					browserModulesResolution);
+					browserModulesResolution, httpServletRequest);
 			}
 		}
 
@@ -241,7 +250,16 @@ public class BrowserModulesResolver {
 
 		browserModulesResolution.putDependenciesMap(
 			moduleName, dependenciesMap);
-		browserModulesResolution.putPath(moduleName, browserModule.getPath());
+
+		AbsolutePortalURLBuilder absolutePortalURLBuilder =
+			_absolutePortalURLBuilderFactory.getAbsolutePortalURLBuilder(
+				httpServletRequest);
+
+		browserModulesResolution.putPath(
+			moduleName,
+			absolutePortalURLBuilder.forResource(
+				browserModule.getPath()
+			).build());
 
 		browserModulesResolution.addResolvedModuleName(moduleName);
 
@@ -250,7 +268,8 @@ public class BrowserModulesResolver {
 
 	private void _resolve(
 		Map<String, BrowserModule> browserModulesMap, String moduleName,
-		BrowserModulesResolution browserModulesResolution) {
+		BrowserModulesResolution browserModulesResolution,
+		HttpServletRequest httpServletRequest) {
 
 		String mappedModuleName = _browserModuleNameMapper.mapModuleName(
 			moduleName);
@@ -270,8 +289,12 @@ public class BrowserModulesResolver {
 		}
 
 		_processBrowserModule(
-			browserModulesMap, browserModule, browserModulesResolution);
+			browserModulesMap, browserModule, browserModulesResolution,
+			httpServletRequest);
 	}
+
+	@Reference
+	private AbsolutePortalURLBuilderFactory _absolutePortalURLBuilderFactory;
 
 	@Reference
 	private BrowserModuleNameMapper _browserModuleNameMapper;
