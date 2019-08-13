@@ -294,8 +294,7 @@ public class AppResourceImpl
 		}
 
 		if (Validator.isNull(AppBuilderAppConstants.Status.parse(status))) {
-			throw new AppBuilderAppStatusException(
-				"Invalid AppStatus " + status);
+			throw new AppBuilderAppStatusException("Invalid status " + status);
 		}
 	}
 
