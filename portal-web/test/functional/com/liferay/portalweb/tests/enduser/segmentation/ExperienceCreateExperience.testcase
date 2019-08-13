@@ -12,14 +12,16 @@ definition {
 
 		Navigator.openURL();
 
-		//Create Site and Content Page
+		// Create site and content page
+
 		JSONGroup.addGroup(groupName = "Test Site Name");
 
 		SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
 		ContentPages.addPage(pageName = "Experience Content Page");
 
-		//Create Segmentation
+		// Create segmentation
+
 		ProductMenu.gotoPortlet(
 			category = "People",
 			panel = "Site Administration",
