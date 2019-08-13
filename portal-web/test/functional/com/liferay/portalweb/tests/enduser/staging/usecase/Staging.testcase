@@ -836,7 +836,7 @@ definition {
 
 		Page.viewWithWorkflowPG(
 			pageName = "Page Revision Page",
-			workflowStatus = "Draft");
+			workflowStatus = "Pending (Review)");
 
 		Navigator.openURL();
 
