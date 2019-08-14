@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -74,22 +73,15 @@ public final class JournalValidatorImpl implements JournalValidator {
 
 		if (!isValidName(folderName)) {
 			String message =
-				" contains characters that are not allowed in web content " +
-					"folder names";
-
-			if (!ExportImportThreadLocal.isImportInProcess()) {
-				throw new FolderNameException(folderName + message);
-			}
+				"Folder name \"" + folderName +
+					"\" contains invalid characters";
 
 			if (_log.isWarnEnabled()) {
-				StringBundler sb = new StringBundler(4);
+				_log.warn(message);
+			}
 
-				sb.append("Imported folder with name: ");
-				sb.append(folderName);
-				sb.append(" that ");
-				sb.append(message);
-
-				_log.warn(sb.toString());
+			if (!ExportImportThreadLocal.isImportInProcess()) {
+				throw new FolderNameException(message);
 			}
 		}
 	}
