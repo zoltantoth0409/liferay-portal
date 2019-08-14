@@ -407,6 +407,10 @@ public class ContentPageEditorDisplayContext {
 		return _groupId;
 	}
 
+	protected long getSegmentsExperienceId() {
+		return SegmentsExperienceConstants.ID_DEFAULT;
+	}
+
 	protected List<SoyContext> getSidebarPanelSoyContexts(
 			boolean pageIsDisplayPage)
 		throws PortalException {
@@ -998,7 +1002,7 @@ public class ContentPageEditorDisplayContext {
 
 		themeDisplay.setIsolated(true);
 
-		long[] segmentsExperienceIds = {SegmentsExperienceConstants.ID_DEFAULT};
+		long[] segmentsExperienceIds = {getSegmentsExperienceId()};
 
 		try {
 			for (FragmentEntryLink fragmentEntryLink : fragmentEntryLinks) {
@@ -1211,7 +1215,7 @@ public class ContentPageEditorDisplayContext {
 					themeDisplay.getScopeGroupId(), classNameId, classPK, true);
 
 		_layoutData = layoutPageTemplateStructure.getData(
-			SegmentsExperienceConstants.ID_DEFAULT);
+			getSegmentsExperienceId());
 
 		return _layoutData;
 	}
