@@ -2202,10 +2202,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		String className = (String)serviceContext.getAttribute("className");
 		long classPK = ParamUtil.getLong(serviceContext, "classPK");
 
-		subscriptionSender.addPersistedSubscribers(
-			com.liferay.message.boards.util.MBUtil.getSubscriptionClassName(
-				className),
-			classPK);
+		subscriptionSender.addPersistedSubscribers(className, classPK);
 
 		subscriptionSender.flushNotificationsAsync();
 	}
