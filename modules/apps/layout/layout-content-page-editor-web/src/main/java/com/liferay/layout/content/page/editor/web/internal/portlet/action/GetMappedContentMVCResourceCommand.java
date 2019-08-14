@@ -52,6 +52,7 @@ public class GetMappedContentMVCResourceCommand extends BaseMVCResourceCommand {
 			WebKeys.THEME_DISPLAY);
 
 		String backURL = ParamUtil.getString(resourceRequest, "backURL");
+
 		long classNameId = ParamUtil.getLong(resourceRequest, "classNameId");
 		long classPK = ParamUtil.getLong(resourceRequest, "classPK");
 
