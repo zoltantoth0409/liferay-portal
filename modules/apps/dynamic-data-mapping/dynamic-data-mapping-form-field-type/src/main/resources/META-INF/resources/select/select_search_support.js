@@ -111,7 +111,7 @@ AUI.add(
 						fixedOptions: instance.get('fixedOptions'),
 						multiple: instance.get('multiple'),
 						options: options,
-						showPlaceholderOption: showPlaceholderOption,
+						showPlaceholderOption: showPlaceholderOption && instance.showPlaceholderOption(),
 						strings: instance.get('strings'),
 						value: instance.getValue()
 					}

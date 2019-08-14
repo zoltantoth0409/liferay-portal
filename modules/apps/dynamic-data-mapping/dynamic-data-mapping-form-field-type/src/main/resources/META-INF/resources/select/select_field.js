@@ -330,6 +330,12 @@ AUI.add(
 						inputGroup.insert(container.one('.' + CSS_HELP_BLOCK), 'after');
 					},
 
+					showPlaceholderOption: function () {
+						var instance = this;
+
+						return instance._showPlaceholderOption();
+					},
+
 					toggleList: function(event) {
 						var instance = this;
 
