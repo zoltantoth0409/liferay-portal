@@ -31,11 +31,11 @@ public class UpgradeUrlTitle extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		updateFriendlyURLEntryLocalization();
+		updateFriendlyUrlEntryLocalization();
 		updateUrlTitle();
 	}
 
-	protected void updateFriendlyURLEntryLocalization() throws Exception {
+	protected void updateFriendlyUrlEntryLocalization() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps1 = connection.prepareStatement(
 				"select friendlyURLEntryLocalizationId, urlTitle from " +
