@@ -238,7 +238,7 @@ public class MBCommentManagerImplTest extends Mockito {
 				Matchers.anyLong(), Matchers.anyString(), Matchers.anyLong(),
 				Matchers.anyString(), Matchers.anyLong(), Matchers.anyLong(),
 				Matchers.anyLong(), Matchers.anyString(), Matchers.anyString(),
-				Matchers.any())
+				Matchers.<ServiceContext>any())
 		).thenReturn(
 			_mbMessage
 		);
