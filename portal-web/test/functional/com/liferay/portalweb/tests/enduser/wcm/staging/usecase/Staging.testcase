@@ -264,11 +264,13 @@ definition {
 			panel = "Site Administration",
 			portlet = "Web Content");
 
-		LexiconEntry.gotoAdd();
+		WebContentNavigator.gotoAddCP();
 
 		WebContent.addCP(
 			webContentContent = "WC Content",
 			webContentTitle = "WC Title");
+
+		PortletEntry.publish();
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",
