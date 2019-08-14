@@ -19,6 +19,8 @@ import aQute.bnd.annotation.metatype.Meta;
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * @author Iván Zaera
  */
@@ -30,6 +32,7 @@ import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 	localization = "content/Language",
 	name = "wiki-group-service-configuration-name"
 )
+@ProviderType
 public interface WikiGroupServiceConfiguration {
 
 	/**
