@@ -63,6 +63,27 @@ public class PropsValues {
 	public static final String ADMIN_EMAIL_PASSWORD_RESET_SUBJECT =
 		PropsUtil.get(PropsKeys.ADMIN_EMAIL_PASSWORD_RESET_SUBJECT);
 
+	/**
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
+	 */
+	@Deprecated
+	public static final String ADMIN_EMAIL_PASSWORD_SENT_BODY = PropsUtil.get(
+		PropsKeys.ADMIN_EMAIL_PASSWORD_SENT_BODY);
+
+	/**
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
+	 */
+	@Deprecated
+	public static final String ADMIN_EMAIL_PASSWORD_SENT_SUBJECT =
+		PropsUtil.get(PropsKeys.ADMIN_EMAIL_PASSWORD_SENT_SUBJECT);
+
+	/**
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
+	 */
+	@Deprecated
+	public static final String ADMIN_EMAIL_USER_ADDED_BODY = PropsUtil.get(
+		PropsKeys.ADMIN_EMAIL_USER_ADDED_BODY);
+
 	public static final String ADMIN_EMAIL_USER_ADDED_NO_PASSWORD_BODY =
 		PropsUtil.get(PropsKeys.ADMIN_EMAIL_USER_ADDED_NO_PASSWORD_BODY);
 
@@ -654,6 +675,14 @@ public class PropsValues {
 				PropsUtil.get(
 					PropsKeys.
 						COMPANY_SECURITY_PASSWORD_REMINDER_QUERY_FORM_AUTOCOMPLETE));
+
+	/**
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
+	 */
+	@Deprecated
+	public static final boolean COMPANY_SECURITY_SEND_PASSWORD =
+		GetterUtil.getBoolean(
+			PropsUtil.get(PropsKeys.COMPANY_SECURITY_SEND_PASSWORD));
 
 	public static final boolean COMPANY_SECURITY_SEND_PASSWORD_RESET_LINK =
 		GetterUtil.getBoolean(
