@@ -181,10 +181,6 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 			"1.1.5", "1.1.6",
 			new UpgradeAssetDisplayPageEntry(
 				_assetDisplayPageEntryLocalService, _companyLocalService));
-
-		registry.register(
-			"1.1.6", "1.1.7",
-			new com.liferay.journal.internal.upgrade.v1_1_7.UpgradeUrlTitle());
 	}
 
 	protected void deleteTempImages() throws Exception {
