@@ -27,3 +27,8 @@
 # Bundle Version 4.1.3
 #
 eccb4bbcaa14c3c7762cb9adb0ac5797d3a0d0da^..3407f7cbedf9c159a1b5cad63d7ef1926c692b16=LPS-98669 LPS-98877
+
+#
+# Bundle Version 4.1.4
+#
+3407f7cbedf9c159a1b5cad63d7ef1926c692b16^..fa96cdb00e3c6d979c7549f886af03cb3fac06b0=LPS-98879 LPS-99623
