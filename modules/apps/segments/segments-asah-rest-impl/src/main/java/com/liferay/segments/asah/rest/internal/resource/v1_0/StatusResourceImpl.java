@@ -80,10 +80,10 @@ public class StatusResourceImpl extends BaseStatusResourceImpl {
 
 		return new Experiment() {
 			{
-				id = segmentsExperiment.getSegmentsExperimentKey();
-				description = segmentsExperiment.getDescription();
 				dateCreated = segmentsExperiment.getCreateDate();
 				dateModified = segmentsExperiment.getModifiedDate();
+				description = segmentsExperiment.getDescription();
+				id = segmentsExperiment.getSegmentsExperimentKey();
 				name = segmentsExperiment.getName();
 				siteId = segmentsExperiment.getGroupId();
 				status = segmentsExperimentConstantsStatus.toString();
