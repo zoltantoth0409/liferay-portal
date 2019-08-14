@@ -78,7 +78,7 @@ public class DiscussionTaglibHelper {
 	}
 
 	public String getSubscriptionClassName() {
-		return _CLASS_NAME + StringPool.UNDERLINE + getClassName();
+		return _MBDISCUSSION_CLASS_NAME + StringPool.UNDERLINE + getClassName();
 	}
 
 	public long getUserId() {
@@ -132,7 +132,7 @@ public class DiscussionTaglibHelper {
 		return (String)request.getAttribute(_PREFIX + name);
 	}
 
-	private static final String _CLASS_NAME =
+	private static final String _MBDISCUSSION_CLASS_NAME =
 		"com.liferay.message.boards.model.MBDiscussion";
 
 	private static final String _LEGACY_PREFIX = "liferay-ui:discussion:";
