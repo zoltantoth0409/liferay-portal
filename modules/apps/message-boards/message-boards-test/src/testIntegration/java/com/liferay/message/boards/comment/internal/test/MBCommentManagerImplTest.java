@@ -95,7 +95,7 @@ public class MBCommentManagerImplTest {
 	}
 
 	@Test
-	public void testGetChildComments() {
+	public void testGetChildComments() throws Exception {
 		List<Comment> childComments = _commentManager.getChildComments(
 			_parentCommentId, WorkflowConstants.STATUS_APPROVED,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
@@ -104,7 +104,7 @@ public class MBCommentManagerImplTest {
 	}
 
 	@Test
-	public void testGetChildCommentsCount() {
+	public void testGetChildCommentsCount() throws Exception {
 		int childCommentsCount = _commentManager.getChildCommentsCount(
 			_parentCommentId, WorkflowConstants.STATUS_APPROVED);
 
@@ -122,7 +122,7 @@ public class MBCommentManagerImplTest {
 	}
 
 	@Test
-	public void testGetRootCommentsCount() {
+	public void testGetRootCommentsCount() throws Exception {
 		int rootCommentsCount = _commentManager.getRootCommentsCount(
 			DLFileEntryConstants.getClassName(), _fileEntry.getFileEntryId(),
 			WorkflowConstants.STATUS_APPROVED);
