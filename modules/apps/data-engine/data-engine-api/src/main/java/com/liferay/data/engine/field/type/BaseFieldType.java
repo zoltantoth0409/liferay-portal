@@ -185,9 +185,15 @@ public abstract class BaseFieldType implements FieldType {
 			"name", name
 		).put(
 			"nestedDataDefinitionFields",
-			_toJSONArray(
-				fieldTypeTracker,
-				spiDataDefinitionField.getNestedSPIDataDefinitionFields())
+			JSONUtil.toJSONArray(
+				spiDataDefinitionField.getNestedSPIDataDefinitionFields(),
+				nestedSPIDataDefinitionField -> {
+					FieldType fieldType = fieldTypeTracker.getFieldType(
+						nestedSPIDataDefinitionField.getFieldType());
+
+					return fieldType.toJSONObject(
+						fieldTypeTracker, nestedSPIDataDefinitionField);
+				})
 		).put(
 			"repeatable", spiDataDefinitionField.getRepeatable()
 		).put(
@@ -229,22 +235,6 @@ public abstract class BaseFieldType implements FieldType {
 
 		spiDataDefinitionField.setNestedSPIDataDefinitionFields(
 			spiDataDefinitionFields.toArray(new SPIDataDefinitionField[0]));
-	}
-
-	private JSONArray _toJSONArray(
-			FieldTypeTracker fieldTypeTracker,
-			SPIDataDefinitionField[] spiDataDefinitionFields)
-		throws Exception {
-
-		return JSONUtil.toJSONArray(
-			spiDataDefinitionFields,
-			spiDataDefinitionField -> {
-				FieldType fieldType = fieldTypeTracker.getFieldType(
-					spiDataDefinitionField.getFieldType());
-
-				return fieldType.toJSONObject(
-					fieldTypeTracker, spiDataDefinitionField);
-			});
 	}
 
 }
