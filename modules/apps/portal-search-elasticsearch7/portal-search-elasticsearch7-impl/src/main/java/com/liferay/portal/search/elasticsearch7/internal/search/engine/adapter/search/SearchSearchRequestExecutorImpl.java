@@ -50,10 +50,10 @@ public class SearchSearchRequestExecutorImpl
 		_searchSearchRequestAssembler.assemble(
 			searchRequestBuilder, searchSearchRequest);
 
-		String debugRequestString = _getDebugRequestString(
-			searchRequestBuilder);
-
 		if (_log.isTraceEnabled()) {
+			String debugRequestString = _getDebugRequestString(
+				searchRequestBuilder);
+
 			_log.trace("Search query: " + debugRequestString);
 		}
 
