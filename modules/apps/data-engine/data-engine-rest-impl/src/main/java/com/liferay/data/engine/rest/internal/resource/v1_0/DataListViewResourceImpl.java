@@ -106,7 +106,7 @@ public class DataListViewResourceImpl
 						ddmStructure.getStructureId(),
 						pagination.getStartPosition(),
 						pagination.getEndPosition(),
-						_getDEDataListViewOrderByComparator(
+						_toOrderByComparator(
 							(Sort)ArrayUtil.getValue(sorts, 0))),
 					this::_toDataListView),
 				pagination,
@@ -170,12 +170,10 @@ public class DataListViewResourceImpl
 		return dataListView;
 	}
 
-	private OrderByComparator<DEDataListView>
-		_getDEDataListViewOrderByComparator(Sort sort) {
+	private OrderByComparator<DEDataListView> _toOrderByComparator(Sort sort) {
+		boolean ascending = !sort.isReverse();
 
 		String sortFieldName = sort.getFieldName();
-
-		boolean ascending = !sort.isReverse();
 
 		if (StringUtil.startsWith(sortFieldName, "createDate")) {
 			return new DEDataListViewCreateDateComparator(ascending);
@@ -183,9 +181,8 @@ public class DataListViewResourceImpl
 		else if (StringUtil.startsWith(sortFieldName, "localized_name")) {
 			return new DEDataListViewNameComparator(ascending);
 		}
-		else {
-			return new DEDataListViewModifiedDateComparator(ascending);
-		}
+
+		return new DEDataListViewModifiedDateComparator(ascending);
 	}
 
 	private DataListView _toDataListView(DEDataListView deDataListView)
