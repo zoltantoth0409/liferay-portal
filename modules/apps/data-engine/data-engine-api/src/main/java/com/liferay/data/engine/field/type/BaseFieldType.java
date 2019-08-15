@@ -76,12 +76,25 @@ public abstract class BaseFieldType implements FieldType {
 		spiDataDefinitionField.setName(jsonObject.getString("name"));
 
 		if (jsonObject.has("nestedDataDefinitionFields")) {
-			_deserializeNestedDataDefinitionFields(
-				fieldTypeTracker,
-				(JSONArray)GetterUtil.getObject(
-					jsonObject.getJSONArray("nestedDataDefinitionFields"),
-					JSONFactoryUtil.createJSONArray()),
-				spiDataDefinitionField);
+			spiDataDefinitionField.setNestedSPIDataDefinitionFields(
+				JSONUtil.toArray(
+					(JSONArray)GetterUtil.getObject(
+						jsonObject.getJSONArray("nestedDataDefinitionFields"),
+						JSONFactoryUtil.createJSONArray()),
+					nestedDataDefinitionFieldJSONObject -> {
+						if (jsonObject.has("type")) {
+							FieldType fieldType = fieldTypeTracker.getFieldType(
+								nestedDataDefinitionFieldJSONObject.getString(
+									"type"));
+
+							return fieldType.deserialize(
+								fieldTypeTracker,
+								nestedDataDefinitionFieldJSONObject);
+						}
+
+						return null;
+					},
+					SPIDataDefinitionField.class));
 		}
 
 		spiDataDefinitionField.setRepeatable(
@@ -210,27 +223,5 @@ public abstract class BaseFieldType implements FieldType {
 		Map<String, Object> context, HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse,
 		SPIDataDefinitionField spiDataDefinitionField);
-
-	private void _deserializeNestedDataDefinitionFields(
-			FieldTypeTracker fieldTypeTracker, JSONArray jsonArray,
-			SPIDataDefinitionField spiDataDefinitionField)
-		throws Exception {
-
-		spiDataDefinitionField.setNestedSPIDataDefinitionFields(
-			JSONUtil.toArray(
-				jsonArray,
-				jsonObject -> {
-					if (jsonObject.has("type")) {
-						FieldType fieldType = fieldTypeTracker.getFieldType(
-							jsonObject.getString("type"));
-
-						return fieldType.deserialize(
-							fieldTypeTracker, jsonObject);
-					}
-
-					return null;
-				},
-				SPIDataDefinitionField.class));
-	}
 
 }
