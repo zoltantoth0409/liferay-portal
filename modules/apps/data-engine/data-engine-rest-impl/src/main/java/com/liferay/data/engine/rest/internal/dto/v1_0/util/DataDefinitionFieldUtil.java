@@ -18,6 +18,7 @@ import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.spi.dto.SPIDataDefinitionField;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -85,35 +86,19 @@ public class DataDefinitionFieldUtil {
 	private static DataDefinitionField[] _toDataDefinitionFields(
 		SPIDataDefinitionField[] spiDataDefinitionFields) {
 
-		if (ArrayUtil.isNotEmpty(spiDataDefinitionFields)) {
-			Stream<SPIDataDefinitionField> stream = Arrays.stream(
-				spiDataDefinitionFields);
-
-			return stream.map(
-				DataDefinitionFieldUtil::toDataDefinitionField
-			).toArray(
-				DataDefinitionField[]::new
-			);
-		}
-
-		return new DataDefinitionField[0];
+		return TransformUtil.transform(
+			spiDataDefinitionFields,
+			DataDefinitionFieldUtil::toDataDefinitionField,
+			SPIDataDefinitionField.class);
 	}
 
 	private static SPIDataDefinitionField[] _toSPIDataDefinitionFields(
 		DataDefinitionField[] dataDefinitionFields) {
 
-		if (ArrayUtil.isNotEmpty(dataDefinitionFields)) {
-			Stream<DataDefinitionField> stream = Arrays.stream(
-				dataDefinitionFields);
-
-			return stream.map(
-				DataDefinitionFieldUtil::toSPIDataDefinitionField
-			).toArray(
-				SPIDataDefinitionField[]::new
-			);
-		}
-
-		return new SPIDataDefinitionField[0];
+		return TransformUtil.transform(
+			dataDefinitionFields,
+			DataDefinitionFieldUtil::toSPIDataDefinitionField,
+			DataDefinitionField.class);
 	}
 
 }
