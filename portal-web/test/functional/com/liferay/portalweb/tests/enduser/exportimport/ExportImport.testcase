@@ -1491,22 +1491,36 @@ definition {
 	@priority = "5"
 	test ExportViaGuest {
 		property portal.release = "false";
+		property test.name.skip.portal.instance = "ExportImport#ExportViaGuest";
+
+		JSONUser.addUser(
+			userEmailAddress = "userea@liferay.com",
+			userFirstName = "userfn",
+			userLastName = "userln",
+			userScreenName = "usersn");
+
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations");
+
+		User.editPasswordCP(
+			userEmailAddress = "userea@liferay.com",
+			userScreenName = "usersn");
 
 		LAR.exportSiteCP();
 
-		AssertTextEquals.assertPartialText(
-			locator1 = "SitePagesExport#CURRENT_AND_PREVIOUS_STATUS",
-			value1 = "Successful");
-
 		var downloadURL = selenium.getAttribute("//ul/li/div/h5/span/a@href");
 
-		User.logoutPG();
+		User.logoutAndLoginPG(
+			userLoginEmailAddress = "userea@liferay.com",
+			userLoginFullName = "userfn userln");
 
 		Navigator.openSpecificURL(url = "${downloadURL}");
 
 		AssertTextEquals(
 			locator1 = "Home#ERROR_MESSAGE_ALERT_ERROR",
-			value1 = "Not Found");
+			value1 = "Forbidden");
 	}
 
 	@description = "This is a use case for LPS-88831 and LPS-88889."
