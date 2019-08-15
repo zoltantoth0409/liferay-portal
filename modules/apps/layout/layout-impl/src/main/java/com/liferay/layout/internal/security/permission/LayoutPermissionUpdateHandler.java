@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.internal.service.permission;
+package com.liferay.layout.internal.security.permission;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
