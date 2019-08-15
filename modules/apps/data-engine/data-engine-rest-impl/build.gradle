@@ -30,5 +30,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	compileOnly project(":apps:data-engine:data-engine-api")
 	compileOnly group: "com.liferay", name: "com.liferay.data.engine.rest.api", version: "8.1.0"
-	compileOnly project(":apps:data-engine:data-engine-spi")
+	compileOnly group: "com.liferay", name: "com.liferay.data.engine.spi", version: "3.1.0"
 }
