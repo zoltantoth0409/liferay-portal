@@ -68,7 +68,7 @@ public class ElasticsearchIndexSearcherLoggingTest
 	@Test
 	public void testSearchSearchRequestExecutorLogsDebugString() {
 		expectedLogTestRule.configure(
-			SearchSearchRequestExecutorImpl.class, Level.FINEST);
+			SearchSearchRequestExecutorImpl.class, Level.FINE);
 
 		expectedLogTestRule.expectMessage("Search query:");
 
