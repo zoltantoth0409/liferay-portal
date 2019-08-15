@@ -27,29 +27,24 @@ public class DataDefinitionFieldUtil {
 	public static DataDefinitionField toDataDefinitionField(
 		SPIDataDefinitionField spiDataDefinitionField) {
 
-		DataDefinitionField dataDefinitionField = new DataDefinitionField();
-
-		dataDefinitionField.setCustomProperties(
-			spiDataDefinitionField.getCustomProperties());
-		dataDefinitionField.setDefaultValue(
-			spiDataDefinitionField.getDefaultValue());
-		dataDefinitionField.setFieldType(spiDataDefinitionField.getFieldType());
-		dataDefinitionField.setId(spiDataDefinitionField.getId());
-		dataDefinitionField.setIndexable(spiDataDefinitionField.getIndexable());
-		dataDefinitionField.setLabel(spiDataDefinitionField.getLabel());
-		dataDefinitionField.setLocalizable(
-			spiDataDefinitionField.getLocalizable());
-		dataDefinitionField.setName(spiDataDefinitionField.getName());
-		dataDefinitionField.setNestedDataDefinitionFields(
-			TransformUtil.transform(
-				spiDataDefinitionField.getNestedSPIDataDefinitionFields(),
-				DataDefinitionFieldUtil::toDataDefinitionField,
-				SPIDataDefinitionField.class));
-		dataDefinitionField.setRepeatable(
-			spiDataDefinitionField.getRepeatable());
-		dataDefinitionField.setTip(spiDataDefinitionField.getTip());
-
-		return dataDefinitionField;
+		return new DataDefinitionField() {
+			{
+				customProperties = spiDataDefinitionField.getCustomProperties();
+				defaultValue = spiDataDefinitionField.getDefaultValue();
+				fieldType = spiDataDefinitionField.getFieldType();
+				id = spiDataDefinitionField.getId();
+				indexable = spiDataDefinitionField.getIndexable();
+				label = spiDataDefinitionField.getLabel();
+				localizable = spiDataDefinitionField.getLocalizable();
+				name = spiDataDefinitionField.getName();
+				nestedDataDefinitionFields = TransformUtil.transform(
+					spiDataDefinitionField.getNestedSPIDataDefinitionFields(),
+					DataDefinitionFieldUtil::toDataDefinitionField,
+					SPIDataDefinitionField.class);
+				repeatable = spiDataDefinitionField.getRepeatable();
+				tip = spiDataDefinitionField.getTip();
+			}
+		};
 	}
 
 	public static SPIDataDefinitionField toSPIDataDefinitionField(
