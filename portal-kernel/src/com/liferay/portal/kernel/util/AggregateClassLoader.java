@@ -210,7 +210,9 @@ public class AggregateClassLoader extends ClassLoader {
 			urls.addAll(Collections.list(classLoader.getResources(name)));
 		}
 
-		urls.addAll(Collections.list(getParent().getResources(name)));
+		ClassLoader parentClassLoader = getParent();
+
+		urls.addAll(Collections.list(parentClassLoader.getResources(name)));
 
 		return Collections.enumeration(urls);
 	}
