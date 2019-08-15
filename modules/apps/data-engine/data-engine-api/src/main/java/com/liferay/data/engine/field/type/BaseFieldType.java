@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageConstants;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -237,25 +236,15 @@ public abstract class BaseFieldType implements FieldType {
 			SPIDataDefinitionField[] spiDataDefinitionFields)
 		throws Exception {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		return JSONUtil.toJSONArray(
+			spiDataDefinitionFields,
+			spiDataDefinitionField -> {
+				FieldType fieldType = fieldTypeTracker.getFieldType(
+					spiDataDefinitionField.getFieldType());
 
-		if (ArrayUtil.isEmpty(spiDataDefinitionFields)) {
-			return jsonArray;
-		}
-
-		for (SPIDataDefinitionField spiDataDefinitionField :
-				spiDataDefinitionFields) {
-
-			FieldType fieldType = fieldTypeTracker.getFieldType(
-				spiDataDefinitionField.getFieldType());
-
-			JSONObject jsonObject = fieldType.toJSONObject(
-				fieldTypeTracker, spiDataDefinitionField);
-
-			jsonArray.put(jsonObject);
-		}
-
-		return jsonArray;
+				return fieldType.toJSONObject(
+					fieldTypeTracker, spiDataDefinitionField);
+			});
 	}
 
 }
