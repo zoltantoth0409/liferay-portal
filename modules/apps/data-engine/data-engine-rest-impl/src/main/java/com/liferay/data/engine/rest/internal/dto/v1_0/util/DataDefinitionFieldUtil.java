@@ -16,12 +16,8 @@ package com.liferay.data.engine.rest.internal.dto.v1_0.util;
 
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinitionField;
 import com.liferay.data.engine.spi.dto.SPIDataDefinitionField;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.vulcan.util.TransformUtil;
-
-import java.util.Arrays;
-import java.util.stream.Stream;
 
 /**
  * @author Leonardo Barros
@@ -45,8 +41,10 @@ public class DataDefinitionFieldUtil {
 			spiDataDefinitionField.getLocalizable());
 		dataDefinitionField.setName(spiDataDefinitionField.getName());
 		dataDefinitionField.setNestedDataDefinitionFields(
-			_toDataDefinitionFields(
-				spiDataDefinitionField.getNestedSPIDataDefinitionFields()));
+			TransformUtil.transform(
+				spiDataDefinitionField.getNestedSPIDataDefinitionFields(),
+				DataDefinitionFieldUtil::toDataDefinitionField,
+				SPIDataDefinitionField.class));
 		dataDefinitionField.setRepeatable(
 			spiDataDefinitionField.getRepeatable());
 		dataDefinitionField.setTip(spiDataDefinitionField.getTip());
@@ -74,31 +72,15 @@ public class DataDefinitionFieldUtil {
 			GetterUtil.getBoolean(dataDefinitionField.getLocalizable()));
 		spiDataDefinitionField.setName(dataDefinitionField.getName());
 		spiDataDefinitionField.setNestedSPIDataDefinitionFields(
-			_toSPIDataDefinitionFields(
-				dataDefinitionField.getNestedDataDefinitionFields()));
+			TransformUtil.transform(
+				dataDefinitionField.getNestedDataDefinitionFields(),
+				DataDefinitionFieldUtil::toSPIDataDefinitionField,
+				DataDefinitionField.class));
 		spiDataDefinitionField.setRepeatable(
 			GetterUtil.getBoolean(dataDefinitionField.getRepeatable()));
 		spiDataDefinitionField.setTip(dataDefinitionField.getTip());
 
 		return spiDataDefinitionField;
-	}
-
-	private static DataDefinitionField[] _toDataDefinitionFields(
-		SPIDataDefinitionField[] spiDataDefinitionFields) {
-
-		return TransformUtil.transform(
-			spiDataDefinitionFields,
-			DataDefinitionFieldUtil::toDataDefinitionField,
-			SPIDataDefinitionField.class);
-	}
-
-	private static SPIDataDefinitionField[] _toSPIDataDefinitionFields(
-		DataDefinitionField[] dataDefinitionFields) {
-
-		return TransformUtil.transform(
-			dataDefinitionFields,
-			DataDefinitionFieldUtil::toSPIDataDefinitionField,
-			DataDefinitionField.class);
 	}
 
 }
