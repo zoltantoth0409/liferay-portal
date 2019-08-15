@@ -140,10 +140,10 @@ public class ProductMenuAppDeployer implements AppDeployer {
 	private void _deployAppPanelCategory(long appId, String appName) {
 		Dictionary properties = new HashMapDictionary() {
 			{
-				put("panel.category.key", PanelCategoryKeys.CONTROL_PANEL);
-				put("panel.category.order:Integer", 600);
 				put("key", _getPanelCategoryKey(appId));
 				put("label", appName);
+				put("panel.category.key", PanelCategoryKeys.CONTROL_PANEL);
+				put("panel.category.order:Integer", 600);
 			}
 		};
 
