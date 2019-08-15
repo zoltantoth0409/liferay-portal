@@ -291,9 +291,8 @@ definition {
 
 		Portlet.addPG(portletName = "Web Content Display");
 
-		WebContentDisplayPortlet.selectWebContent(
-			fromSite = "Site Name",
-			portletName = "Web Content Display",
+		WebContentDisplayPortlet.selectOtherSiteWebContent(
+			otherSiteName = "Site Name",
 			webContentTitle = "WC Title");
 
 		Site.deleteCP(siteName = "Site Name");
