@@ -27,9 +27,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -218,23 +216,21 @@ public abstract class BaseFieldType implements FieldType {
 			SPIDataDefinitionField spiDataDefinitionField)
 		throws Exception {
 
-		List<SPIDataDefinitionField> spiDataDefinitionFields =
-			new ArrayList<>();
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-			if (jsonObject.has("type")) {
-				FieldType fieldType = fieldTypeTracker.getFieldType(
-					jsonObject.getString("type"));
-
-				spiDataDefinitionFields.add(
-					fieldType.deserialize(fieldTypeTracker, jsonObject));
-			}
-		}
-
 		spiDataDefinitionField.setNestedSPIDataDefinitionFields(
-			spiDataDefinitionFields.toArray(new SPIDataDefinitionField[0]));
+			JSONUtil.toArray(
+				jsonArray,
+				jsonObject -> {
+					if (jsonObject.has("type")) {
+						FieldType fieldType = fieldTypeTracker.getFieldType(
+							jsonObject.getString("type"));
+
+						return fieldType.deserialize(
+							fieldTypeTracker, jsonObject);
+					}
+
+					return null;
+				},
+				SPIDataDefinitionField.class));
 	}
 
 }
