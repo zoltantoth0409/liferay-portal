@@ -6574,10 +6574,9 @@ public class JournalArticleLocalServiceImpl
 
 			// Subscriptions
 
-			if ((article.getVersion() == 1.0) &&
-				isLatestVersion(
-					article.getGroupId(), article.getArticleId(),
-					article.getVersion())) {
+			if (article.equals(
+					getOldestArticle(
+						article.getGroupId(), article.getArticleId()))) {
 
 				action = "add";
 			}
