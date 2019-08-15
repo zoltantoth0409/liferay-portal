@@ -170,21 +170,6 @@ public class DataListViewResourceImpl
 		return dataListView;
 	}
 
-	private OrderByComparator<DEDataListView> _toOrderByComparator(Sort sort) {
-		boolean ascending = !sort.isReverse();
-
-		String sortFieldName = sort.getFieldName();
-
-		if (StringUtil.startsWith(sortFieldName, "createDate")) {
-			return new DEDataListViewCreateDateComparator(ascending);
-		}
-		else if (StringUtil.startsWith(sortFieldName, "localized_name")) {
-			return new DEDataListViewNameComparator(ascending);
-		}
-
-		return new DEDataListViewModifiedDateComparator(ascending);
-	}
-
 	private DataListView _toDataListView(DEDataListView deDataListView)
 		throws Exception {
 
@@ -223,6 +208,21 @@ public class DataListViewResourceImpl
 		}
 
 		return map;
+	}
+
+	private OrderByComparator<DEDataListView> _toOrderByComparator(Sort sort) {
+		boolean ascending = !sort.isReverse();
+
+		String sortFieldName = sort.getFieldName();
+
+		if (StringUtil.startsWith(sortFieldName, "createDate")) {
+			return new DEDataListViewCreateDateComparator(ascending);
+		}
+		else if (StringUtil.startsWith(sortFieldName, "localized_name")) {
+			return new DEDataListViewNameComparator(ascending);
+		}
+
+		return new DEDataListViewModifiedDateComparator(ascending);
 	}
 
 	private static final EntityModel _entityModel =
