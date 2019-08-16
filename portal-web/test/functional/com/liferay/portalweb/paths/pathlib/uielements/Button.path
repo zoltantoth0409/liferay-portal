@@ -270,7 +270,7 @@
 </tr>
 <tr>
 	<td>FIELD_SELECT</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//button[contains(.,'Select')]</td>
+	<td>//div[@data-fieldname='${key_fieldName}']//button[contains(.,'Select')] | //div[contains(@data-fieldname,'${key_fieldName}')]//button/span[contains(.,'Select')]</td>
 	<td></td>
 </tr>
 <tr>
