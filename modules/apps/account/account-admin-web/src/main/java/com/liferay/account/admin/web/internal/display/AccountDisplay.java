@@ -15,11 +15,84 @@
 package com.liferay.account.admin.web.internal.display;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.account.admin.web.internal.display.AccountDisplay;
+import com.liferay.account.model.AccountEntry;
+import com.liferay.account.service.AccountEntryLocalServiceUtil;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.model.Website;
+import com.liferay.portal.kernel.service.WebsiteLocalServiceUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+import java.util.List;
 
 /**
  * @author Pei-Jung Lan
  */
 public class AccountDisplay {
+
+	public static AccountDisplay getAccountDisplay(AccountEntry accountEntry) {
+		AccountDisplay.Builder builder = new AccountDisplay.Builder();
+
+		return builder.accountId(
+			accountEntry.getAccountEntryId()
+		).description(
+			accountEntry.getDescription()
+		).name(
+			accountEntry.getName()
+		).parentAccountName(
+			_getParentAccountName(accountEntry)
+		).statusLabel(
+			_getStatusLabel(accountEntry)
+		).website(
+			_getWebsite(accountEntry)
+		).build();
+	}
+
+	private static String _getParentAccountName(AccountEntry accountEntry) {
+		long parentAccountEntryId = accountEntry.getParentAccountEntryId();
+
+		if (parentAccountEntryId == 0) {
+			return StringPool.BLANK;
+		}
+
+		AccountEntry parentAccountEntry =
+			AccountEntryLocalServiceUtil.fetchAccountEntry(
+				parentAccountEntryId);
+
+		if (parentAccountEntry != null) {
+			return parentAccountEntry.getName();
+		}
+
+		return StringPool.BLANK;
+	}
+
+	private static String _getStatusLabel(AccountEntry accountEntry) {
+		int status = accountEntry.getStatus();
+
+		if (status == WorkflowConstants.STATUS_APPROVED) {
+			return "active";
+		}
+
+		if (status == WorkflowConstants.STATUS_INACTIVE) {
+			return "inactive";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	private static String _getWebsite(AccountEntry accountEntry) {
+		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
+			accountEntry.getCompanyId(), AccountEntry.class.getName(),
+			accountEntry.getAccountEntryId());
+
+		if (websites.isEmpty()) {
+			return StringPool.BLANK;
+		}
+
+		Website website = websites.get(0);
+
+		return website.getUrl();
+	}
 
 	public long getAccountId() {
 		return _builder._accountId;
