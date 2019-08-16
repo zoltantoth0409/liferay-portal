@@ -36,10 +36,6 @@ public class AccountDisplay {
 		return _accountId;
 	}
 
-	public String getAccountOwner() {
-		return _accountOwner;
-	}
-
 	public String getDescription() {
 		return _description;
 	}
@@ -116,7 +112,6 @@ public class AccountDisplay {
 	}
 
 	private final long _accountId;
-	private String _accountOwner;
 	private final String _description;
 	private final String _name;
 	private final String _parentAccountName;
