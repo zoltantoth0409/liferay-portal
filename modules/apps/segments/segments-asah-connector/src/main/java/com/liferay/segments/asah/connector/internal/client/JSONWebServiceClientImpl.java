@@ -134,10 +134,9 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		JacksonJsonProvider jacksonJsonProvider = new JacksonJaxbJsonProvider();
 
 		jacksonJsonProvider.configure(
-			DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-		jacksonJsonProvider.configure(
 			SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+		jacksonJsonProvider.configure(
+			DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
 		_client.register(jacksonJsonProvider);
 	}
