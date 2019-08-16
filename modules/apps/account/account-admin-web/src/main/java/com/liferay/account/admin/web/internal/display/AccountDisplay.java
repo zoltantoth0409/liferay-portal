@@ -60,6 +60,15 @@ public class AccountDisplay {
 		return _website;
 	}
 
+	private AccountDisplay(AccountEntry accountEntry) {
+		_accountId = accountEntry.getAccountEntryId();
+		_description = accountEntry.getDescription();
+		_name = accountEntry.getName();
+		_parentAccountName = _getParentAccountName(accountEntry);
+		_statusLabel = _getStatusLabel(accountEntry);
+		_website = _getWebsite(accountEntry);
+	}
+
 	private String _getParentAccountName(AccountEntry accountEntry) {
 		long parentAccountEntryId = accountEntry.getParentAccountEntryId();
 
@@ -106,21 +115,12 @@ public class AccountDisplay {
 		return website.getUrl();
 	}
 
-	private AccountDisplay(AccountEntry accountEntry) {
-		_accountId = accountEntry.getAccountEntryId();
-		_description = accountEntry.getDescription();
-		_name = accountEntry.getName();
-		_parentAccountName= _getParentAccountName(accountEntry);
-		_statusLabel = _getStatusLabel(accountEntry);
-		_website = _getWebsite(accountEntry);
-	}
-
-	private long _accountId;
-	private String _accountOwner = StringPool.BLANK;
-	private String _description = StringPool.BLANK;
-	private String _name = StringPool.BLANK;
-	private String _parentAccountName = StringPool.BLANK;
-	private String _statusLabel = StringPool.BLANK;
-	private String _website = StringPool.BLANK;
+	private final long _accountId;
+	private String _accountOwner;
+	private final String _description;
+	private final String _name;
+	private final String _parentAccountName;
+	private final String _statusLabel;
+	private final String _website;
 
 }
