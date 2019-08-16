@@ -74,7 +74,59 @@ public class AccountDisplay {
 		return _builder._website;
 	}
 
-	public static class Builder {
+	private static String _getParentAccountName(AccountEntry accountEntry) {
+		long parentAccountEntryId = accountEntry.getParentAccountEntryId();
+
+		if (parentAccountEntryId == 0) {
+			return StringPool.BLANK;
+		}
+
+		AccountEntry parentAccountEntry =
+			AccountEntryLocalServiceUtil.fetchAccountEntry(
+				parentAccountEntryId);
+
+		if (parentAccountEntry != null) {
+			return parentAccountEntry.getName();
+		}
+
+		return StringPool.BLANK;
+	}
+
+	private static String _getStatusLabel(AccountEntry accountEntry) {
+		int status = accountEntry.getStatus();
+
+		if (status == WorkflowConstants.STATUS_APPROVED) {
+			return "active";
+		}
+
+		if (status == WorkflowConstants.STATUS_INACTIVE) {
+			return "inactive";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	private static String _getWebsite(AccountEntry accountEntry) {
+		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
+			accountEntry.getCompanyId(), AccountEntry.class.getName(),
+			accountEntry.getAccountEntryId());
+
+		if (websites.isEmpty()) {
+			return StringPool.BLANK;
+		}
+
+		Website website = websites.get(0);
+
+		return website.getUrl();
+	}
+
+	private AccountDisplay(Builder builder) {
+		_builder = builder;
+	}
+
+	private final Builder _builder;
+
+	private static class Builder {
 
 		public Builder accountId(long accountId) {
 			_accountId = accountId;
@@ -131,57 +183,5 @@ public class AccountDisplay {
 		private String _website = StringPool.BLANK;
 
 	}
-
-	private static String _getParentAccountName(AccountEntry accountEntry) {
-		long parentAccountEntryId = accountEntry.getParentAccountEntryId();
-
-		if (parentAccountEntryId == 0) {
-			return StringPool.BLANK;
-		}
-
-		AccountEntry parentAccountEntry =
-			AccountEntryLocalServiceUtil.fetchAccountEntry(
-				parentAccountEntryId);
-
-		if (parentAccountEntry != null) {
-			return parentAccountEntry.getName();
-		}
-
-		return StringPool.BLANK;
-	}
-
-	private static String _getStatusLabel(AccountEntry accountEntry) {
-		int status = accountEntry.getStatus();
-
-		if (status == WorkflowConstants.STATUS_APPROVED) {
-			return "active";
-		}
-
-		if (status == WorkflowConstants.STATUS_INACTIVE) {
-			return "inactive";
-		}
-
-		return StringPool.BLANK;
-	}
-
-	private static String _getWebsite(AccountEntry accountEntry) {
-		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
-			accountEntry.getCompanyId(), AccountEntry.class.getName(),
-			accountEntry.getAccountEntryId());
-
-		if (websites.isEmpty()) {
-			return StringPool.BLANK;
-		}
-
-		Website website = websites.get(0);
-
-		return website.getUrl();
-	}
-
-	private AccountDisplay(Builder builder) {
-		_builder = builder;
-	}
-
-	private final Builder _builder;
 
 }
